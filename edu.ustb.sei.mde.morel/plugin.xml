@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated morel -->
+      <package
+            uri="http://www.ustb.edu.cn/sei/mde/morel"
+            class="edu.ustb.sei.mde.morel.MorelPackage"
+            genModel="metamodel/morel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated morel.runtime -->
+      <package
+            uri="http://www.ustb.edu.cn/sei/morel/runtime"
+            class="edu.ustb.sei.mde.morel.runtime.RuntimePackage"
+            genModel="metamodel/morel.runtime.genmodel"/>
+   </extension>
+
+</plugin>

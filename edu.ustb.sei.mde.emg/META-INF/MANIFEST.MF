@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: EModelGraph
+Bundle-SymbolicName: edu.ustb.sei.mde.emg
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: edu.ustb.sei.mde.emg.Activator
+Require-Bundle: org.eclipse.core.runtime,
+ edu.ustb.sei.commonutil;bundle-version="1.0.0",
+ org.eclipse.emf.ecore;bundle-version="2.9.2",
+ org.eclipse.emf.ecore.xmi;bundle-version="2.9.1"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7

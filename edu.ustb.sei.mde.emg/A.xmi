@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ASCII"?>
+<test:A xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:test="http://www.ustb.edu.cn/sei/test"
+    xsi:schemaLocation="http://www.ustb.edu.cn/sei/test Test.ecore"
+    name="a">
+  <b name="b1"
+      rc="//@c.0 //@c.1"/>
+  <b name="b2"
+      rc="//@c.2"/>
+  <c name="c1"/>
+  <c name="c2"/>
+  <c name="c3"/>
+</test:A>

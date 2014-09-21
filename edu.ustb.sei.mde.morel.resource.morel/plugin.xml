@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+	<extension point="org.emftext.access.syntax">
+		<metaInformationProvider class="edu.ustb.sei.mde.morel.resource.morel.mopp.MorelMetaInformation" id="edu.ustb.sei.mde.morel.resource.morel.mopp.MorelMetaInformation">
+		</metaInformationProvider>
+	</extension>
+	
+	<extension id="edu.ustb.sei.mde.morel.resource.morel.problem" name="EMFText Problem" point="org.eclipse.core.resources.markers">
+		<persistent value="true">
+		</persistent>
+		<super type="org.eclipse.core.resources.problemmarker">
+		</super>
+		<super type="org.eclipse.core.resources.textmarker">
+		</super>
+		<super type="org.eclipse.emf.ecore.diagnostic">
+		</super>
+	</extension>
+	
+	<extension id="edu.ustb.sei.mde.morel.resource.morel.problem.syntax_error" name="EMFText Problem" point="org.eclipse.core.resources.markers">
+		<persistent value="true">
+		</persistent>
+		<super type="edu.ustb.sei.mde.morel.resource.morel.problem">
+		</super>
+	</extension>
+	
+	<extension id="edu.ustb.sei.mde.morel.resource.morel.problem.print_problem" name="EMFText Problem" point="org.eclipse.core.resources.markers">
+		<persistent value="true">
+		</persistent>
+		<super type="edu.ustb.sei.mde.morel.resource.morel.problem">
+		</super>
+	</extension>
+	
+	<extension id="edu.ustb.sei.mde.morel.resource.morel.problem.unresolved_reference" name="EMFText Problem" point="org.eclipse.core.resources.markers">
+		<persistent value="true">
+		</persistent>
+		<super type="edu.ustb.sei.mde.morel.resource.morel.problem">
+		</super>
+	</extension>
+	
+	<extension id="edu.ustb.sei.mde.morel.resource.morel.problem.analysis_problem" name="EMFText Problem" point="org.eclipse.core.resources.markers">
+		<persistent value="true">
+		</persistent>
+		<super type="edu.ustb.sei.mde.morel.resource.morel.problem">
+		</super>
+	</extension>
+	
+	<extension id="edu.ustb.sei.mde.morel.resource.morel.problem.builder_error" name="EMFText Problem" point="org.eclipse.core.resources.markers">
+		<persistent value="true">
+		</persistent>
+		<super type="edu.ustb.sei.mde.morel.resource.morel.problem">
+		</super>
+	</extension>
+	
+	<extension id="edu.ustb.sei.mde.morel.resource.morel.nature" name="morel nature" point="org.eclipse.core.resources.natures">
+		<runtime>
+			<run class="edu.ustb.sei.mde.morel.resource.morel.mopp.MorelNature">
+			</run>
+		</runtime>
+		<builder id="edu.ustb.sei.mde.morel.resource.morel.builder">
+		</builder>
+	</extension>
+	
+	<extension point="org.eclipse.core.resources.builders" id="edu.ustb.sei.mde.morel.resource.morel.builder" name="morel Builder">
+		<builder hasNature="true">
+			<run class="edu.ustb.sei.mde.morel.resource.morel.mopp.MorelBuilderAdapter">
+			</run>
+		</builder>
+	</extension>
+	
+	<extension-point id="edu.ustb.sei.mde.morel.resource.morel.default_load_options" name="Default Load Options" schema="schema/default_load_options.exsd">
+	</extension-point>
+	
+	<extension point="org.eclipse.emf.ecore.extension_parser">
+		<parser class="edu.ustb.sei.mde.morel.resource.morel.mopp.MorelResourceFactoryDelegator" type="morel">
+		</parser>
+	</extension>
+	
+	<extension-point id="edu.ustb.sei.mde.morel.resource.morel.additional_extension_parser" name="Additional Extension Parser" schema="schema/additional_extension_parser.exsd">
+	</extension-point>
+	
+	<extension point="org.eclipse.debug.core.breakpoints">
+		<breakpoint class="edu.ustb.sei.mde.morel.resource.morel.debug.MorelLineBreakpoint" id="edu.ustb.sei.mde.morel.resource.morel.debug.breakpoint" markerType="edu.ustb.sei.mde.morel.resource.morel.debug.lineBreakpoint.marker" name="morel Breakpoint">
+		</breakpoint>
+	</extension>
+	
+	<extension id="edu.ustb.sei.mde.morel.resource.morel.debug.lineBreakpoint.marker" point="org.eclipse.core.resources.markers">
+		<super type="org.eclipse.debug.core.lineBreakpointMarker">
+		</super>
+		<super type="org.eclipse.core.resources.textmarker">
+		</super>
+		<persistent value="true">
+		</persistent>
+	</extension>
+	
+	<extension point="org.eclipse.debug.core.launchConfigurationTypes">
+		<launchConfigurationType id="edu.ustb.sei.mde.morel.resource.morel.ui.launchConfigurationType" delegate="edu.ustb.sei.mde.morel.resource.morel.launch.MorelLaunchConfigurationDelegate" modes="run,debug" name="morel Application" sourceLocatorId="edu.ustb.sei.mde.morel.resource.morel.ui.sourceLocator" sourcePathComputerId="edu.ustb.sei.mde.morel.resource.morel.ui.sourcePathComputer" delegateName="morel Launch Tooling" delegateDescription="This will run or debug .morel files.">
+		</launchConfigurationType>
+	</extension>
+	
+	<extension point="org.eclipse.debug.core.sourcePathComputers">
+		<sourcePathComputer class="edu.ustb.sei.mde.morel.resource.morel.debug.MorelSourcePathComputerDelegate" id="edu.ustb.sei.mde.morel.resource.morel.ui.sourcePathComputer">
+		</sourcePathComputer>
+	</extension>
+	
+	<extension point="org.eclipse.debug.core.sourceLocators">
+		<sourceLocator id="edu.ustb.sei.mde.morel.resource.morel.ui.sourceLocator" class="edu.ustb.sei.mde.morel.resource.morel.debug.MorelSourceLocator" name="morel Source Locator">
+		</sourceLocator>
+	</extension>
+	
+</plugin>

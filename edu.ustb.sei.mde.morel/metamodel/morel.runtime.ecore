@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="runtime" nsURI="http://www.ustb.edu.cn/sei/morel/runtime" nsPrefix="runtime">
+  <eClassifiers xsi:type="ecore:EClass" name="Context">
+    <eOperations name="initWithHost"/>
+    <eOperations name="newScope" eType="#//Context"/>
+    <eOperations name="getValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject">
+      <eParameters name="var" eType="ecore:EClass morel.ecore#//Variable"/>
+    </eOperations>
+    <eOperations name="putValue">
+      <eParameters name="var" eType="ecore:EClass morel.ecore#//Variable"/>
+      <eParameters name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bindingMap" transient="true">
+      <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+        <eTypeArguments eClassifier="ecore:EClass morel.ecore#//Variable"/>
+        <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+      </eGenericType>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="host" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parentContext" eType="#//Context"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parentScope" eType="#//Context"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="enviroment" lowerBound="1"
+        eType="#//Environment"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Environment">
+    <eOperations name="createContext" eType="#//Context"/>
+  </eClassifiers>
+</ecore:EPackage>

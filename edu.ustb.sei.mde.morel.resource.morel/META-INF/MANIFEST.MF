@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: EMFText Parser Plugin: morel
+Bundle-SymbolicName: edu.ustb.sei.mde.morel.resource.morel;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Vendor: Software Technology Group - TU Dresden Germany
+Require-Bundle: org.eclipse.core.runtime;resolution:=optional,
+  org.eclipse.emf.ecore,
+  org.eclipse.emf.ecore.change,
+  org.eclipse.emf.validation;resolution:=optional,
+  org.emftext.access;resolution:=optional,
+  org.eclipse.debug.core;resolution:=optional,
+  org.emftext.commons.antlr3_4_0,
+  edu.ustb.sei.mde.morel
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: edu.ustb.sei.mde.morel.resource.morel,
+  edu.ustb.sei.mde.morel.resource.morel.analysis,
+  edu.ustb.sei.mde.morel.resource.morel.mopp,
+  edu.ustb.sei.mde.morel.resource.morel.debug,
+  edu.ustb.sei.mde.morel.resource.morel.launch,
+  edu.ustb.sei.mde.morel.resource.morel.grammar,
+  edu.ustb.sei.mde.morel.resource.morel.util
+Bundle-Activator: edu.ustb.sei.mde.morel.resource.morel.mopp.MorelPlugin

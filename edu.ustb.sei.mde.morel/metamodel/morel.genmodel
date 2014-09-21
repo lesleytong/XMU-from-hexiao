@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/edu.ustb.sei.mde.morel/src" modelPluginID="edu.ustb.sei.mde.morel"
+    modelName="Morel" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="7.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>morel.ecore</foreignModel>
+  <genPackages prefix="Morel" basePackage="edu.ustb.sei.mde" disposableProviderFactory="true"
+      ecorePackage="morel.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="morel.ecore#//SectionType">
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//SectionType/LHS"/>
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//SectionType/RHS"/>
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//SectionType/NAC"/>
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//SectionType/PAC"/>
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//SectionType/PRE"/>
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//SectionType/POST"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="morel.ecore#//OperationSeparator">
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//OperationSeparator/dot"/>
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//OperationSeparator/arrow"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="morel.ecore#//IteratorType">
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//IteratorType/forAll"/>
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//IteratorType/exists"/>
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//IteratorType/select"/>
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//IteratorType/reject"/>
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//IteratorType/collect"/>
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//IteratorType/closure"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="morel.ecore#//BooleanOperator">
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//BooleanOperator/and"/>
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//BooleanOperator/or"/>
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//BooleanOperator/not"/>
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//BooleanOperator/implies"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="morel.ecore#//RelationalOperator">
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//RelationalOperator/equal"/>
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//RelationalOperator/less"/>
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//RelationalOperator/lessOrEq"/>
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//RelationalOperator/greater"/>
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//RelationalOperator/greaterOrEq"/>
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//RelationalOperator/notEqual"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="morel.ecore#//AdditiveOperator">
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//AdditiveOperator/plus"/>
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//AdditiveOperator/minus"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="morel.ecore#//MultiplicativeOperator">
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//MultiplicativeOperator/multi"/>
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//MultiplicativeOperator/div"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="morel.ecore#//UnaryOperator">
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//UnaryOperator/plus"/>
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//UnaryOperator/minus"/>
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//UnaryOperator/not"/>
+    </genEnums>
+    <genClasses image="false" ecoreClass="morel.ecore#//NamedElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute morel.ecore#//NamedElement/name"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="morel.ecore#//Section">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute morel.ecore#//Section/type"/>
+    </genClasses>
+    <genClasses ecoreClass="morel.ecore#//Pattern">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//Pattern/variables"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//Pattern/linkConstraints"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//Pattern/statements"/>
+    </genClasses>
+    <genClasses ecoreClass="morel.ecore#//Clause"/>
+    <genClasses ecoreClass="morel.ecore#//Variable"/>
+    <genClasses ecoreClass="morel.ecore#//ObjectVariable">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference morel.ecore#//ObjectVariable/type"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference morel.ecore#//ObjectVariable/model"/>
+    </genClasses>
+    <genClasses ecoreClass="morel.ecore#//PrimitiveVariable">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference morel.ecore#//PrimitiveVariable/type"/>
+    </genClasses>
+    <genClasses ecoreClass="morel.ecore#//LinkConstraint">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//LinkConstraint/source"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//LinkConstraint/target"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//LinkConstraint/id"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference morel.ecore#//LinkConstraint/reference"/>
+    </genClasses>
+    <genClasses ecoreClass="morel.ecore#//QueryModel">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//QueryModel/queries"/>
+    </genClasses>
+    <genClasses ecoreClass="morel.ecore#//TypedModel">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference morel.ecore#//TypedModel/package"/>
+    </genClasses>
+    <genClasses ecoreClass="morel.ecore#//Query"/>
+    <genClasses image="false" ecoreClass="morel.ecore#//Unit">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//Unit/models"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//Unit/dataTypes"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="morel.ecore#//Expression"/>
+    <genClasses image="false" ecoreClass="morel.ecore#//AtomicExp">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//AtomicExp/path"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="morel.ecore#//LiteralExp"/>
+    <genClasses ecoreClass="morel.ecore#//StringLiteralExp">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute morel.ecore#//StringLiteralExp/stringSymbol"/>
+    </genClasses>
+    <genClasses ecoreClass="morel.ecore#//IntegerLiteralExp">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute morel.ecore#//IntegerLiteralExp/integerSymbol"/>
+    </genClasses>
+    <genClasses ecoreClass="morel.ecore#//RealLiteralExp">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute morel.ecore#//RealLiteralExp/realSymbol"/>
+    </genClasses>
+    <genClasses ecoreClass="morel.ecore#//BooleanLiteralExp">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute morel.ecore#//BooleanLiteralExp/boolSymbol"/>
+    </genClasses>
+    <genClasses ecoreClass="morel.ecore#//VariableExp">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference morel.ecore#//VariableExp/referredVariable"/>
+    </genClasses>
+    <genClasses ecoreClass="morel.ecore#//NestedExp">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//NestedExp/expression"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="morel.ecore#//CallPathExp">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//CallPathExp/next"/>
+    </genClasses>
+    <genClasses ecoreClass="morel.ecore#//FeaturePathExp">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute morel.ecore#//FeaturePathExp/feature"/>
+    </genClasses>
+    <genClasses ecoreClass="morel.ecore#//OperationPathExp">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute morel.ecore#//OperationPathExp/separator"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute morel.ecore#//OperationPathExp/operation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//OperationPathExp/parameters"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="morel.ecore#//LoopPathExp"/>
+    <genClasses ecoreClass="morel.ecore#//IteratorPathExp">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute morel.ecore#//IteratorPathExp/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//IteratorPathExp/firstVar"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//IteratorPathExp/secondVar"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//IteratorPathExp/bodyExp"/>
+    </genClasses>
+    <genClasses ecoreClass="morel.ecore#//LetExp">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//LetExp/variables"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//LetExp/inExp"/>
+    </genClasses>
+    <genClasses ecoreClass="morel.ecore#//VariableWithInit"/>
+    <genClasses ecoreClass="morel.ecore#//ObjectVariableWithInit">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//ObjectVariableWithInit/initExp"/>
+    </genClasses>
+    <genClasses ecoreClass="morel.ecore#//PrimitiveVariableWithInit">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//PrimitiveVariableWithInit/initExp"/>
+    </genClasses>
+    <genClasses ecoreClass="morel.ecore#//ConditionExp">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//ConditionExp/condition"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference morel.ecore#//ConditionExp/thenBranch"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference morel.ecore#//ConditionExp/elseBranch"/>
+    </genClasses>
+    <genClasses ecoreClass="morel.ecore#//BooleanImpliesExp">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//BooleanImpliesExp/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//BooleanImpliesExp/right"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute morel.ecore#//BooleanImpliesExp/operator"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="morel.ecore#//BooleanImpliesExpChild"/>
+    <genClasses ecoreClass="morel.ecore#//BooleanOrExp">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//BooleanOrExp/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//BooleanOrExp/right"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute morel.ecore#//BooleanOrExp/operator"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="morel.ecore#//BooleanOrExpChild"/>
+    <genClasses ecoreClass="morel.ecore#//BooleanAndExp">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//BooleanAndExp/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//BooleanAndExp/right"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute morel.ecore#//BooleanAndExp/operator"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="morel.ecore#//BooleanAndExpChild"/>
+    <genClasses ecoreClass="morel.ecore#//RelationalExp">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//RelationalExp/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//RelationalExp/right"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute morel.ecore#//RelationalExp/operator"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="morel.ecore#//RelationalExpChild"/>
+    <genClasses ecoreClass="morel.ecore#//AdditiveExp">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//AdditiveExp/children"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute morel.ecore#//AdditiveExp/operators"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="morel.ecore#//AdditiveExpChild"/>
+    <genClasses ecoreClass="morel.ecore#//MultiplicativeExp">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//MultiplicativeExp/children"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute morel.ecore#//MultiplicativeExp/operators"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="morel.ecore#//MultiplicativeExpChild"/>
+    <genClasses ecoreClass="morel.ecore#//UnaryExp">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute morel.ecore#//UnaryExp/operator"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//UnaryExp/child"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="morel.ecore#//UnaryExpChild"/>
+    <genClasses image="false" ecoreClass="morel.ecore#//CollectionType">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference morel.ecore#//CollectionType/elementType"/>
+    </genClasses>
+    <genClasses ecoreClass="morel.ecore#//OrderedSetType"/>
+    <genClasses ecoreClass="morel.ecore#//SequenceType"/>
+    <genClasses ecoreClass="morel.ecore#//SetType"/>
+    <genClasses ecoreClass="morel.ecore#//BagType"/>
+    <genClasses image="false" ecoreClass="morel.ecore#//ImperativeExp"/>
+    <genClasses ecoreClass="morel.ecore#//BindExp">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//BindExp/source"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//BindExp/valueExp"/>
+    </genClasses>
+    <genClasses ecoreClass="morel.ecore#//IfStatement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//IfStatement/condition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//IfStatement/thenStatement"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//IfStatement/elseStatement"/>
+    </genClasses>
+    <genClasses ecoreClass="morel.ecore#//ForStatement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//ForStatement/iterator"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//ForStatement/terminationExp"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//ForStatement/stepExp"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//ForStatement/bodyStatement"/>
+    </genClasses>
+    <genClasses ecoreClass="morel.ecore#//BlockStatement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//BlockStatement/statements"/>
+    </genClasses>
+    <genClasses ecoreClass="morel.ecore#//TransformationModel">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//TransformationModel/rules"/>
+    </genClasses>
+    <genClasses ecoreClass="morel.ecore#//Rule">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//Rule/patterns"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="morel.ecore#//Statement"/>
+    <genClasses ecoreClass="morel.ecore#//DeclarativeStatement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//DeclarativeStatement/expression"/>
+    </genClasses>
+    <genClasses ecoreClass="morel.ecore#//ImperativeStatement"/>
+  </genPackages>
+</genmodel:GenModel>
