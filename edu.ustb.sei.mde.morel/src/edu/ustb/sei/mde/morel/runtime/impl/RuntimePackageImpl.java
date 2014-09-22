@@ -3,19 +3,16 @@
 package edu.ustb.sei.mde.morel.runtime.impl;
 
 import edu.ustb.sei.mde.morel.MorelPackage;
-
 import edu.ustb.sei.mde.morel.runtime.Context;
 import edu.ustb.sei.mde.morel.runtime.Environment;
 import edu.ustb.sei.mde.morel.runtime.RuntimeFactory;
 import edu.ustb.sei.mde.morel.runtime.RuntimePackage;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
@@ -207,6 +204,15 @@ public class RuntimePackageImpl extends EPackageImpl implements RuntimePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getEnvironment_ModelSpaces() {
+		return (EAttribute)environmentEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getEnvironment__CreateContext() {
 		return environmentEClass.getEOperations().get(0);
 	}
@@ -251,6 +257,7 @@ public class RuntimePackageImpl extends EPackageImpl implements RuntimePackage {
 		createEOperation(contextEClass, CONTEXT___PUT_VALUE__VARIABLE_OBJECT);
 
 		environmentEClass = createEClass(ENVIRONMENT);
+		createEAttribute(environmentEClass, ENVIRONMENT__MODEL_SPACES);
 		createEOperation(environmentEClass, ENVIRONMENT___CREATE_CONTEXT);
 	}
 
@@ -311,6 +318,12 @@ public class RuntimePackageImpl extends EPackageImpl implements RuntimePackage {
 		addEParameter(op, ecorePackage.getEJavaObject(), "value", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(environmentEClass, Environment.class, "Environment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(theMorelPackage.getTypedModel());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		initEAttribute(getEnvironment_ModelSpaces(), g1, "modelSpaces", null, 0, 1, Environment.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getEnvironment__CreateContext(), this.getContext(), "createContext", 0, 1, IS_UNIQUE, IS_ORDERED);
 

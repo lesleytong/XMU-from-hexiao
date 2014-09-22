@@ -5,13 +5,15 @@ Bundle-SymbolicName: edu.ustb.sei.mde.morel.resource.morel;singleton:=true
 Bundle-Version: 1.0.0
 Bundle-Vendor: Software Technology Group - TU Dresden Germany
 Require-Bundle: org.eclipse.core.runtime;resolution:=optional,
-  org.eclipse.emf.ecore,
-  org.eclipse.emf.ecore.change,
-  org.eclipse.emf.validation;resolution:=optional,
-  org.emftext.access;resolution:=optional,
-  org.eclipse.debug.core;resolution:=optional,
-  org.emftext.commons.antlr3_4_0,
-  edu.ustb.sei.mde.morel
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.ecore.change,
+ org.eclipse.emf.validation;resolution:=optional,
+ org.emftext.access;resolution:=optional,
+ org.eclipse.debug.core;resolution:=optional,
+ org.emftext.commons.antlr3_4_0,
+ edu.ustb.sei.mde.morel,
+ edu.ustb.sei.mde.modeling;bundle-version="1.0.2",
+ org.eclipse.ui.console;bundle-version="3.5.300"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: edu.ustb.sei.mde.morel.resource.morel,

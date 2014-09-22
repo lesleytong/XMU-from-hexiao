@@ -177,13 +177,22 @@ public interface RuntimePackage extends EPackage {
 	int ENVIRONMENT = 1;
 
 	/**
+	 * The feature id for the '<em><b>Model Spaces</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENVIRONMENT__MODEL_SPACES = 0;
+
+	/**
 	 * The number of structural features of the '<em>Environment</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ENVIRONMENT_FEATURE_COUNT = 0;
+	int ENVIRONMENT_FEATURE_COUNT = 1;
 
 	/**
 	 * The operation id for the '<em>Create Context</em>' operation.
@@ -320,6 +329,17 @@ public interface RuntimePackage extends EPackage {
 	EClass getEnvironment();
 
 	/**
+	 * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.morel.runtime.Environment#getModelSpaces <em>Model Spaces</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Model Spaces</em>'.
+	 * @see edu.ustb.sei.mde.morel.runtime.Environment#getModelSpaces()
+	 * @see #getEnvironment()
+	 * @generated
+	 */
+	EAttribute getEnvironment_ModelSpaces();
+
+	/**
 	 * Returns the meta object for the '{@link edu.ustb.sei.mde.morel.runtime.Environment#createContext() <em>Create Context</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -443,6 +463,14 @@ public interface RuntimePackage extends EPackage {
 		 * @generated
 		 */
 		EClass ENVIRONMENT = eINSTANCE.getEnvironment();
+
+		/**
+		 * The meta object literal for the '<em><b>Model Spaces</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ENVIRONMENT__MODEL_SPACES = eINSTANCE.getEnvironment_ModelSpaces();
 
 		/**
 		 * The meta object literal for the '<em><b>Create Context</b></em>' operation.

@@ -25,5 +25,11 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Environment">
     <eOperations name="createContext" eType="#//Context"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="modelSpaces" transient="true">
+      <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+        <eTypeArguments eClassifier="ecore:EClass morel.ecore#//TypedModel"/>
+        <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+      </eGenericType>
+    </eStructuralFeatures>
   </eClassifiers>
 </ecore:EPackage>

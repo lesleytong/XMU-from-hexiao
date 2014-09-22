@@ -11,6 +11,7 @@ import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
+import edu.ustb.sei.mde.modeling.ui.ConsoleUtil;
 import edu.ustb.sei.mde.morel.QueryModel;
 import edu.ustb.sei.mde.morel.TransformationModel;
 import edu.ustb.sei.mde.morel.TypedModel;
@@ -21,6 +22,7 @@ import edu.ustb.sei.mde.morel.TypedModel;
  */
 public class MorelLaunchConfigurationHelper {
 	
+	private static final String MOREL_TITLE = "Morel";
 	public static class SystemOutInterpreter extends edu.ustb.sei.mde.morel.resource.morel.util.AbstractMorelInterpreter<Void,Void> {
 		
 		@Override		
@@ -35,6 +37,7 @@ public class MorelLaunchConfigurationHelper {
 	 */
 	public void launch(org.eclipse.debug.core.ILaunchConfiguration configuration, String mode, org.eclipse.debug.core.ILaunch launch, org.eclipse.core.runtime.IProgressMonitor monitor) throws org.eclipse.core.runtime.CoreException {
 		org.eclipse.emf.ecore.EObject root = getModelRoot(configuration);
+		ConsoleUtil.printToConsole("Execute "+root.eResource().getURI(), MOREL_TITLE, true);
 		String[] uris = getModelURIs(configuration);
 		// replace this delegate with your actual interpreter
 		
@@ -47,13 +50,13 @@ public class MorelLaunchConfigurationHelper {
 				}
 				
 				if(uris.length!=queryModel.getModels().size()) {
-					System.out.println("Wrong Model Size");
+					ConsoleUtil.printToConsole("Wrong Model Size", MOREL_TITLE, true);
 					return;
 				} else {
 					for(String u : uris) {
 						String buf[] = u.split("=");
 						if(buf.length!=2) {
-							System.out.println("Wrong URI format: "+u);
+							ConsoleUtil.printToConsole("Wrong URI format: "+u,MOREL_TITLE, true);
 							return;
 						} else {
 							Resource res = resSet.getResource(org.eclipse.emf.common.util.URI.createURI(buf[1]), true);
