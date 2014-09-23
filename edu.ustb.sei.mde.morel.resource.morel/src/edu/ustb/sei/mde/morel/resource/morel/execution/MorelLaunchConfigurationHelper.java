@@ -58,6 +58,9 @@ public class MorelLaunchConfigurationHelper {
 				Query query = ((QueryModel) root).getQueries().get(0);
 				Match match = new Match();
 				Context init = env.createContext();
+				init.setHost(query);
+				init.initWithHost();
+				
 				List<Context> result = match.match(query, init, env);
 				for(Context c : result){
 					ConsoleUtil.printToConsole(c.toString(), MOREL_TITLE, true);

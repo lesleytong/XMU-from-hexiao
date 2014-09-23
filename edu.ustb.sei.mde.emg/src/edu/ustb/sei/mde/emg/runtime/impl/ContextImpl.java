@@ -358,6 +358,8 @@ public class ContextImpl extends MinimalEObjectImpl.Container implements Context
 		copy.setEnviroment(this.getEnviroment());
 		copy.setParentContext(this.getParentContext());
 		copy.setParentScope(this.getParentScope());
+		copy.setHost(this.getHost());
+		copy.initWithHost();
 		
 		for(Map.Entry<Variable, Object> entry : this.getBindingMap().entrySet()){
 			copy.putValue(entry.getKey(), entry.getValue());
@@ -501,12 +503,15 @@ public class ContextImpl extends MinimalEObjectImpl.Container implements Context
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (bindingMap: ");
-		result.append(bindingMap);
-		result.append(", host: ");
-		result.append(host);
-		result.append(')');
+		result.append('{');
+		for(Map.Entry<Variable, Object> entry : getBindingMap().entrySet()){
+			result.append(entry.getKey());
+			result.append('=');
+			result.append(entry.getValue());
+		}
+		result.append('}');
 		return result.toString();
 	}
+	
 
 } //ContextImpl

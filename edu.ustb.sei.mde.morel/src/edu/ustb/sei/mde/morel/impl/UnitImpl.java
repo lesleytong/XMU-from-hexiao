@@ -104,12 +104,14 @@ public abstract class UnitImpl extends MinimalEObjectImpl.Container implements U
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public TypedModel getTypedModel(String name) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		for(TypedModel m : getModels()) {
+			if(name.equals(m.getName()))
+				return m;
+		}
+		return null;
 	}
 
 	/**
