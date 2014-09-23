@@ -50,6 +50,7 @@ public class MorelSyntaxCoverageInformationProvider {
 	public org.eclipse.emf.ecore.EClass[] getStartSymbols() {
 		return new org.eclipse.emf.ecore.EClass[] {
 			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getQueryModel(),
+			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getTransformationModel(),
 		};
 	}
 	

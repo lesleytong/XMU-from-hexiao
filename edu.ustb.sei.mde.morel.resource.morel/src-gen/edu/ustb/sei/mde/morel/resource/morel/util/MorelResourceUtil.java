@@ -115,14 +115,14 @@ public class MorelResourceUtil {
 	/**
 	 * Returns the root element of the resource with the given URI.
 	 */
-	public static edu.ustb.sei.mde.morel.QueryModel getResourceContent(org.eclipse.emf.common.util.URI uri) {
+	public static org.eclipse.emf.ecore.EObject getResourceContent(org.eclipse.emf.common.util.URI uri) {
 		return getResourceContent(uri, null);
 	}
 	
 	/**
 	 * Returns the root element of the resource with the given URI.
 	 */
-	public static edu.ustb.sei.mde.morel.QueryModel getResourceContent(org.eclipse.emf.common.util.URI uri, java.util.Map<?,?> options) {
+	public static org.eclipse.emf.ecore.EObject getResourceContent(org.eclipse.emf.common.util.URI uri, java.util.Map<?,?> options) {
 		org.eclipse.emf.ecore.resource.Resource resource = getResource(uri, options);
 		if (resource == null) {
 			return null;
@@ -132,13 +132,13 @@ public class MorelResourceUtil {
 			return null;
 		}
 		org.eclipse.emf.ecore.EObject root = contents.get(0);
-		return (edu.ustb.sei.mde.morel.QueryModel) root;
+		return (org.eclipse.emf.ecore.EObject) root;
 	}
 	
 	/**
 	 * Returns the root element after parsing the given text.
 	 */
-	public static edu.ustb.sei.mde.morel.QueryModel getResourceContent(String text) {
+	public static org.eclipse.emf.ecore.EObject getResourceContent(String text) {
 		org.eclipse.emf.ecore.resource.Resource resource = getResource(text);
 		if (resource == null) {
 			return null;
@@ -148,7 +148,7 @@ public class MorelResourceUtil {
 			return null;
 		}
 		org.eclipse.emf.ecore.EObject root = contents.get(0);
-		return (edu.ustb.sei.mde.morel.QueryModel) root;
+		return (org.eclipse.emf.ecore.EObject) root;
 	}
 	
 	public static void saveResource(java.io.File file, org.eclipse.emf.ecore.resource.Resource resource) throws java.io.IOException {
