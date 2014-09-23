@@ -4,6 +4,7 @@ package edu.ustb.sei.mde.morel.impl;
 
 import edu.ustb.sei.mde.morel.MorelPackage;
 import edu.ustb.sei.mde.morel.Variable;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -34,7 +35,7 @@ public abstract class VariableImpl extends NamedElementImpl implements Variable 
 	protected EClass eStaticClass() {
 		return MorelPackage.Literals.VARIABLE;
 	}
-	
+
 	public boolean equals(Object o) {
 		if(o==null || !(o instanceof Variable)) return false;
 		return this.getName().equals(((Variable)o).getName());		
@@ -44,5 +45,4 @@ public abstract class VariableImpl extends NamedElementImpl implements Variable 
 		if(getName()==null) return 0;
 		return getName().hashCode();
 	}
-
 } //VariableImpl

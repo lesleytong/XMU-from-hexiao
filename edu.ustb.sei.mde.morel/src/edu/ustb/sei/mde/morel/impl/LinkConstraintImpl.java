@@ -9,9 +9,11 @@ import edu.ustb.sei.mde.morel.ObjectVariable;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
@@ -352,7 +354,7 @@ public class LinkConstraintImpl extends MinimalEObjectImpl.Container implements 
 		}
 		return super.eIsSet(featureID);
 	}
-	
+
 	/**
 	 * 不比较id约束的！
 	 */
@@ -367,5 +369,4 @@ public class LinkConstraintImpl extends MinimalEObjectImpl.Container implements 
 		}
 		return false;
 	}
-
 } //LinkConstraintImpl

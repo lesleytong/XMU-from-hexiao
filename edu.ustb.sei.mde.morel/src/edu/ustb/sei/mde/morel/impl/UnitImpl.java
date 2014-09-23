@@ -7,6 +7,7 @@ import edu.ustb.sei.mde.morel.TypedModel;
 import edu.ustb.sei.mde.morel.Unit;
 
 import java.lang.reflect.InvocationTargetException;
+
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -103,14 +104,12 @@ public abstract class UnitImpl extends MinimalEObjectImpl.Container implements U
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public TypedModel getTypedModel(String name) {
-		for(TypedModel m : this.getModels()) {
-			if(name.equals(m.getName()))
-				return m;
-		}
-		return null;
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 	/**
