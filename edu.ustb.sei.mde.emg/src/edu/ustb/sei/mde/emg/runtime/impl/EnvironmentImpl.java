@@ -1,12 +1,13 @@
 /**
  */
-package edu.ustb.sei.mde.morel.runtime.impl;
+package edu.ustb.sei.mde.emg.runtime.impl;
 
+import edu.ustb.sei.mde.emg.graph.ModelSpace;
+import edu.ustb.sei.mde.emg.runtime.Context;
+import edu.ustb.sei.mde.emg.runtime.Environment;
+import edu.ustb.sei.mde.emg.runtime.RuntimeFactory;
+import edu.ustb.sei.mde.emg.runtime.RuntimePackage;
 import edu.ustb.sei.mde.morel.TypedModel;
-import edu.ustb.sei.mde.morel.runtime.Context;
-import edu.ustb.sei.mde.morel.runtime.Environment;
-import edu.ustb.sei.mde.morel.runtime.RuntimeFactory;
-import edu.ustb.sei.mde.morel.runtime.RuntimePackage;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
@@ -25,7 +26,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link edu.ustb.sei.mde.morel.runtime.impl.EnvironmentImpl#getModelSpaces <em>Model Spaces</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.emg.runtime.impl.EnvironmentImpl#getModelSpaces <em>Model Spaces</em>}</li>
  * </ul>
  * </p>
  *
@@ -40,7 +41,7 @@ public class EnvironmentImpl extends MinimalEObjectImpl.Container implements Env
 	 * @generated
 	 * @ordered
 	 */
-	protected Map<TypedModel, Object> modelSpaces;
+	protected Map<TypedModel, ModelSpace> modelSpaces;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,9 +66,9 @@ public class EnvironmentImpl extends MinimalEObjectImpl.Container implements Env
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Map<TypedModel, Object> getModelSpaces() {
+	public Map<TypedModel, ModelSpace> getModelSpaces() {
 		if(modelSpaces==null) {
-			modelSpaces = new HashMap<TypedModel,Object>();
+			modelSpaces = new HashMap<TypedModel,ModelSpace>();
 		}
 		return modelSpaces;
 	}
@@ -77,8 +78,8 @@ public class EnvironmentImpl extends MinimalEObjectImpl.Container implements Env
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setModelSpaces(Map<TypedModel, Object> newModelSpaces) {
-		Map<TypedModel, Object> oldModelSpaces = modelSpaces;
+	public void setModelSpaces(Map<TypedModel, ModelSpace> newModelSpaces) {
+		Map<TypedModel, ModelSpace> oldModelSpaces = modelSpaces;
 		modelSpaces = newModelSpaces;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RuntimePackage.ENVIRONMENT__MODEL_SPACES, oldModelSpaces, modelSpaces));
@@ -119,7 +120,7 @@ public class EnvironmentImpl extends MinimalEObjectImpl.Container implements Env
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case RuntimePackage.ENVIRONMENT__MODEL_SPACES:
-				setModelSpaces((Map<TypedModel, Object>)newValue);
+				setModelSpaces((Map<TypedModel, ModelSpace>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -134,7 +135,7 @@ public class EnvironmentImpl extends MinimalEObjectImpl.Container implements Env
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case RuntimePackage.ENVIRONMENT__MODEL_SPACES:
-				setModelSpaces((Map<TypedModel, Object>)null);
+				setModelSpaces((Map<TypedModel, ModelSpace>)null);
 				return;
 		}
 		super.eUnset(featureID);

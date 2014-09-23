@@ -1,9 +1,10 @@
 /**
  */
-package edu.ustb.sei.mde.morel.runtime;
+package edu.ustb.sei.mde.emg.runtime;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -20,7 +21,7 @@ import org.eclipse.emf.ecore.EReference;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see edu.ustb.sei.mde.morel.runtime.RuntimeFactory
+ * @see edu.ustb.sei.mde.emg.runtime.RuntimeFactory
  * @model kind="package"
  * @generated
  */
@@ -39,7 +40,7 @@ public interface RuntimePackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.ustb.edu.cn/sei/morel/runtime";
+	String eNS_URI = "http://www.ustb.edu.cn/sei/mde/emg/runtime";
 
 	/**
 	 * The package namespace name.
@@ -55,14 +56,14 @@ public interface RuntimePackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	RuntimePackage eINSTANCE = edu.ustb.sei.mde.morel.runtime.impl.RuntimePackageImpl.init();
+	RuntimePackage eINSTANCE = edu.ustb.sei.mde.emg.runtime.impl.RuntimePackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.runtime.impl.ContextImpl <em>Context</em>}' class.
+	 * The meta object id for the '{@link edu.ustb.sei.mde.emg.runtime.impl.ContextImpl <em>Context</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see edu.ustb.sei.mde.morel.runtime.impl.ContextImpl
-	 * @see edu.ustb.sei.mde.morel.runtime.impl.RuntimePackageImpl#getContext()
+	 * @see edu.ustb.sei.mde.emg.runtime.impl.ContextImpl
+	 * @see edu.ustb.sei.mde.emg.runtime.impl.RuntimePackageImpl#getContext()
 	 * @generated
 	 */
 	int CONTEXT = 0;
@@ -158,20 +159,29 @@ public interface RuntimePackage extends EPackage {
 	int CONTEXT___PUT_VALUE__VARIABLE_OBJECT = 3;
 
 	/**
+	 * The operation id for the '<em>Get Copy</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTEXT___GET_COPY__CONTEXT = 4;
+
+	/**
 	 * The number of operations of the '<em>Context</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTEXT_OPERATION_COUNT = 4;
+	int CONTEXT_OPERATION_COUNT = 5;
 
 	/**
-	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.runtime.impl.EnvironmentImpl <em>Environment</em>}' class.
+	 * The meta object id for the '{@link edu.ustb.sei.mde.emg.runtime.impl.EnvironmentImpl <em>Environment</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see edu.ustb.sei.mde.morel.runtime.impl.EnvironmentImpl
-	 * @see edu.ustb.sei.mde.morel.runtime.impl.RuntimePackageImpl#getEnvironment()
+	 * @see edu.ustb.sei.mde.emg.runtime.impl.EnvironmentImpl
+	 * @see edu.ustb.sei.mde.emg.runtime.impl.RuntimePackageImpl#getEnvironment()
 	 * @generated
 	 */
 	int ENVIRONMENT = 1;
@@ -214,140 +224,172 @@ public interface RuntimePackage extends EPackage {
 
 
 	/**
-	 * Returns the meta object for class '{@link edu.ustb.sei.mde.morel.runtime.Context <em>Context</em>}'.
+	 * The meta object id for the '<em>Model Space</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.emg.graph.ModelSpace
+	 * @see edu.ustb.sei.mde.emg.runtime.impl.RuntimePackageImpl#getModelSpace()
+	 * @generated
+	 */
+	int MODEL_SPACE = 2;
+
+
+	/**
+	 * Returns the meta object for class '{@link edu.ustb.sei.mde.emg.runtime.Context <em>Context</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Context</em>'.
-	 * @see edu.ustb.sei.mde.morel.runtime.Context
+	 * @see edu.ustb.sei.mde.emg.runtime.Context
 	 * @generated
 	 */
 	EClass getContext();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.morel.runtime.Context#getBindingMap <em>Binding Map</em>}'.
+	 * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.emg.runtime.Context#getBindingMap <em>Binding Map</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Binding Map</em>'.
-	 * @see edu.ustb.sei.mde.morel.runtime.Context#getBindingMap()
+	 * @see edu.ustb.sei.mde.emg.runtime.Context#getBindingMap()
 	 * @see #getContext()
 	 * @generated
 	 */
 	EAttribute getContext_BindingMap();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.morel.runtime.Context#getHost <em>Host</em>}'.
+	 * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.emg.runtime.Context#getHost <em>Host</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Host</em>'.
-	 * @see edu.ustb.sei.mde.morel.runtime.Context#getHost()
+	 * @see edu.ustb.sei.mde.emg.runtime.Context#getHost()
 	 * @see #getContext()
 	 * @generated
 	 */
 	EAttribute getContext_Host();
 
 	/**
-	 * Returns the meta object for the reference '{@link edu.ustb.sei.mde.morel.runtime.Context#getParentContext <em>Parent Context</em>}'.
+	 * Returns the meta object for the reference '{@link edu.ustb.sei.mde.emg.runtime.Context#getParentContext <em>Parent Context</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Parent Context</em>'.
-	 * @see edu.ustb.sei.mde.morel.runtime.Context#getParentContext()
+	 * @see edu.ustb.sei.mde.emg.runtime.Context#getParentContext()
 	 * @see #getContext()
 	 * @generated
 	 */
 	EReference getContext_ParentContext();
 
 	/**
-	 * Returns the meta object for the reference '{@link edu.ustb.sei.mde.morel.runtime.Context#getParentScope <em>Parent Scope</em>}'.
+	 * Returns the meta object for the reference '{@link edu.ustb.sei.mde.emg.runtime.Context#getParentScope <em>Parent Scope</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Parent Scope</em>'.
-	 * @see edu.ustb.sei.mde.morel.runtime.Context#getParentScope()
+	 * @see edu.ustb.sei.mde.emg.runtime.Context#getParentScope()
 	 * @see #getContext()
 	 * @generated
 	 */
 	EReference getContext_ParentScope();
 
 	/**
-	 * Returns the meta object for the reference '{@link edu.ustb.sei.mde.morel.runtime.Context#getEnviroment <em>Enviroment</em>}'.
+	 * Returns the meta object for the reference '{@link edu.ustb.sei.mde.emg.runtime.Context#getEnviroment <em>Enviroment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Enviroment</em>'.
-	 * @see edu.ustb.sei.mde.morel.runtime.Context#getEnviroment()
+	 * @see edu.ustb.sei.mde.emg.runtime.Context#getEnviroment()
 	 * @see #getContext()
 	 * @generated
 	 */
 	EReference getContext_Enviroment();
 
 	/**
-	 * Returns the meta object for the '{@link edu.ustb.sei.mde.morel.runtime.Context#initWithHost() <em>Init With Host</em>}' operation.
+	 * Returns the meta object for the '{@link edu.ustb.sei.mde.emg.runtime.Context#initWithHost() <em>Init With Host</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Init With Host</em>' operation.
-	 * @see edu.ustb.sei.mde.morel.runtime.Context#initWithHost()
+	 * @see edu.ustb.sei.mde.emg.runtime.Context#initWithHost()
 	 * @generated
 	 */
 	EOperation getContext__InitWithHost();
 
 	/**
-	 * Returns the meta object for the '{@link edu.ustb.sei.mde.morel.runtime.Context#newScope() <em>New Scope</em>}' operation.
+	 * Returns the meta object for the '{@link edu.ustb.sei.mde.emg.runtime.Context#newScope() <em>New Scope</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>New Scope</em>' operation.
-	 * @see edu.ustb.sei.mde.morel.runtime.Context#newScope()
+	 * @see edu.ustb.sei.mde.emg.runtime.Context#newScope()
 	 * @generated
 	 */
 	EOperation getContext__NewScope();
 
 	/**
-	 * Returns the meta object for the '{@link edu.ustb.sei.mde.morel.runtime.Context#getValue(edu.ustb.sei.mde.morel.Variable) <em>Get Value</em>}' operation.
+	 * Returns the meta object for the '{@link edu.ustb.sei.mde.emg.runtime.Context#getValue(edu.ustb.sei.mde.morel.Variable) <em>Get Value</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Get Value</em>' operation.
-	 * @see edu.ustb.sei.mde.morel.runtime.Context#getValue(edu.ustb.sei.mde.morel.Variable)
+	 * @see edu.ustb.sei.mde.emg.runtime.Context#getValue(edu.ustb.sei.mde.morel.Variable)
 	 * @generated
 	 */
 	EOperation getContext__GetValue__Variable();
 
 	/**
-	 * Returns the meta object for the '{@link edu.ustb.sei.mde.morel.runtime.Context#putValue(edu.ustb.sei.mde.morel.Variable, java.lang.Object) <em>Put Value</em>}' operation.
+	 * Returns the meta object for the '{@link edu.ustb.sei.mde.emg.runtime.Context#putValue(edu.ustb.sei.mde.morel.Variable, java.lang.Object) <em>Put Value</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Put Value</em>' operation.
-	 * @see edu.ustb.sei.mde.morel.runtime.Context#putValue(edu.ustb.sei.mde.morel.Variable, java.lang.Object)
+	 * @see edu.ustb.sei.mde.emg.runtime.Context#putValue(edu.ustb.sei.mde.morel.Variable, java.lang.Object)
 	 * @generated
 	 */
 	EOperation getContext__PutValue__Variable_Object();
 
 	/**
-	 * Returns the meta object for class '{@link edu.ustb.sei.mde.morel.runtime.Environment <em>Environment</em>}'.
+	 * Returns the meta object for the '{@link edu.ustb.sei.mde.emg.runtime.Context#getCopy(edu.ustb.sei.mde.emg.runtime.Context) <em>Get Copy</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Copy</em>' operation.
+	 * @see edu.ustb.sei.mde.emg.runtime.Context#getCopy(edu.ustb.sei.mde.emg.runtime.Context)
+	 * @generated
+	 */
+	EOperation getContext__GetCopy__Context();
+
+	/**
+	 * Returns the meta object for class '{@link edu.ustb.sei.mde.emg.runtime.Environment <em>Environment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Environment</em>'.
-	 * @see edu.ustb.sei.mde.morel.runtime.Environment
+	 * @see edu.ustb.sei.mde.emg.runtime.Environment
 	 * @generated
 	 */
 	EClass getEnvironment();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.morel.runtime.Environment#getModelSpaces <em>Model Spaces</em>}'.
+	 * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.emg.runtime.Environment#getModelSpaces <em>Model Spaces</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Model Spaces</em>'.
-	 * @see edu.ustb.sei.mde.morel.runtime.Environment#getModelSpaces()
+	 * @see edu.ustb.sei.mde.emg.runtime.Environment#getModelSpaces()
 	 * @see #getEnvironment()
 	 * @generated
 	 */
 	EAttribute getEnvironment_ModelSpaces();
 
 	/**
-	 * Returns the meta object for the '{@link edu.ustb.sei.mde.morel.runtime.Environment#createContext() <em>Create Context</em>}' operation.
+	 * Returns the meta object for the '{@link edu.ustb.sei.mde.emg.runtime.Environment#createContext() <em>Create Context</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Create Context</em>' operation.
-	 * @see edu.ustb.sei.mde.morel.runtime.Environment#createContext()
+	 * @see edu.ustb.sei.mde.emg.runtime.Environment#createContext()
 	 * @generated
 	 */
 	EOperation getEnvironment__CreateContext();
+
+	/**
+	 * Returns the meta object for data type '{@link edu.ustb.sei.mde.emg.graph.ModelSpace <em>Model Space</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>Model Space</em>'.
+	 * @see edu.ustb.sei.mde.emg.graph.ModelSpace
+	 * @model instanceClass="edu.ustb.sei.mde.emg.graph.ModelSpace"
+	 * @generated
+	 */
+	EDataType getModelSpace();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -373,11 +415,11 @@ public interface RuntimePackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.runtime.impl.ContextImpl <em>Context</em>}' class.
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.emg.runtime.impl.ContextImpl <em>Context</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see edu.ustb.sei.mde.morel.runtime.impl.ContextImpl
-		 * @see edu.ustb.sei.mde.morel.runtime.impl.RuntimePackageImpl#getContext()
+		 * @see edu.ustb.sei.mde.emg.runtime.impl.ContextImpl
+		 * @see edu.ustb.sei.mde.emg.runtime.impl.RuntimePackageImpl#getContext()
 		 * @generated
 		 */
 		EClass CONTEXT = eINSTANCE.getContext();
@@ -455,11 +497,19 @@ public interface RuntimePackage extends EPackage {
 		EOperation CONTEXT___PUT_VALUE__VARIABLE_OBJECT = eINSTANCE.getContext__PutValue__Variable_Object();
 
 		/**
-		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.runtime.impl.EnvironmentImpl <em>Environment</em>}' class.
+		 * The meta object literal for the '<em><b>Get Copy</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see edu.ustb.sei.mde.morel.runtime.impl.EnvironmentImpl
-		 * @see edu.ustb.sei.mde.morel.runtime.impl.RuntimePackageImpl#getEnvironment()
+		 * @generated
+		 */
+		EOperation CONTEXT___GET_COPY__CONTEXT = eINSTANCE.getContext__GetCopy__Context();
+
+		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.emg.runtime.impl.EnvironmentImpl <em>Environment</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.emg.runtime.impl.EnvironmentImpl
+		 * @see edu.ustb.sei.mde.emg.runtime.impl.RuntimePackageImpl#getEnvironment()
 		 * @generated
 		 */
 		EClass ENVIRONMENT = eINSTANCE.getEnvironment();
@@ -479,6 +529,16 @@ public interface RuntimePackage extends EPackage {
 		 * @generated
 		 */
 		EOperation ENVIRONMENT___CREATE_CONTEXT = eINSTANCE.getEnvironment__CreateContext();
+
+		/**
+		 * The meta object literal for the '<em>Model Space</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.emg.graph.ModelSpace
+		 * @see edu.ustb.sei.mde.emg.runtime.impl.RuntimePackageImpl#getModelSpace()
+		 * @generated
+		 */
+		EDataType MODEL_SPACE = eINSTANCE.getModelSpace();
 
 	}
 

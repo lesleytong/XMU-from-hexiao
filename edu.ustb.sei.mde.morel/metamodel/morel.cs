@@ -14,6 +14,8 @@ OPTIONS {
 	//disableTokenSorting = "true";
 	overrideLaunchConfigurationMainTab = "false";
 	overrideLaunchConfigurationDelegate ="false";
+	additionalDependencies = "edu.ustb.sei.mde.emg, org.eclipse.ui.console, edu.ustb.sei.mde.modeling,edu.ustb.sei.commonutil";
+	additionalExports = "edu.ustb.sei.mde.morel.resource.morel.execution";
 }
 
 TOKENS {

@@ -1,4 +1,4 @@
-package edu.ustb.sei.mde.morel.runtime.datatype;
+package edu.ustb.sei.mde.emg.runtime.datatype;
 
 public class OclUndefined {
 	private String name;

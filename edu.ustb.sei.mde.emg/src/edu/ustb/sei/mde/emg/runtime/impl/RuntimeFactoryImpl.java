@@ -1,12 +1,17 @@
 /**
  */
-package edu.ustb.sei.mde.morel.runtime.impl;
+package edu.ustb.sei.mde.emg.runtime.impl;
 
-import edu.ustb.sei.mde.morel.runtime.*;
+import edu.ustb.sei.mde.emg.graph.ModelSpace;
+import edu.ustb.sei.mde.emg.runtime.*;
+
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
+
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 /**
@@ -65,6 +70,36 @@ public class RuntimeFactoryImpl extends EFactoryImpl implements RuntimeFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public Object createFromString(EDataType eDataType, String initialValue) {
+		switch (eDataType.getClassifierID()) {
+			case RuntimePackage.MODEL_SPACE:
+				return createModelSpaceFromString(eDataType, initialValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String convertToString(EDataType eDataType, Object instanceValue) {
+		switch (eDataType.getClassifierID()) {
+			case RuntimePackage.MODEL_SPACE:
+				return convertModelSpaceToString(eDataType, instanceValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Context createContext() {
 		ContextImpl context = new ContextImpl();
 		return context;
@@ -78,6 +113,24 @@ public class RuntimeFactoryImpl extends EFactoryImpl implements RuntimeFactory {
 	public Environment createEnvironment() {
 		EnvironmentImpl environment = new EnvironmentImpl();
 		return environment;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ModelSpace createModelSpaceFromString(EDataType eDataType, String initialValue) {
+		return (ModelSpace)super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertModelSpaceToString(EDataType eDataType, Object instanceValue) {
+		return super.convertToString(eDataType, instanceValue);
 	}
 
 	/**

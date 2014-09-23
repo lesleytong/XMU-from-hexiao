@@ -6,15 +6,24 @@
  */
 package edu.ustb.sei.mde.morel.resource.morel.execution;
 
+import java.util.List;
+
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
+import edu.ustb.sei.mde.emg.graph.ModelSpace;
+import edu.ustb.sei.mde.emg.primitives.Match;
+import edu.ustb.sei.mde.emg.runtime.Context;
+import edu.ustb.sei.mde.emg.runtime.Environment;
+import edu.ustb.sei.mde.emg.runtime.RuntimeFactory;
 import edu.ustb.sei.mde.modeling.ui.ConsoleUtil;
+import edu.ustb.sei.mde.morel.Query;
 import edu.ustb.sei.mde.morel.QueryModel;
 import edu.ustb.sei.mde.morel.TransformationModel;
 import edu.ustb.sei.mde.morel.TypedModel;
+import edu.ustb.sei.mde.morel.Unit;
 
 /**
  * A class that provides common methods that are required by launch configuration
@@ -41,30 +50,18 @@ public class MorelLaunchConfigurationHelper {
 		String[] uris = getModelURIs(configuration);
 		// replace this delegate with your actual interpreter
 		
+		Environment env = RuntimeFactory.eINSTANCE.createEnvironment();				
+		initModelSpace(root, uris, env);
+		
 		try {
 			if(root instanceof QueryModel) {
-				ResourceSet resSet = root.eResource().getResourceSet();
-				QueryModel queryModel = (QueryModel) root;
-				for(TypedModel m : queryModel.getModels()){
-					resSet.getPackageRegistry().put(m.getPackage().getNsURI(), m.getPackage());
+				Query query = ((QueryModel) root).getQueries().get(0);
+				Match match = new Match();
+				Context init = env.createContext();
+				List<Context> result = match.match(query, init, env);
+				for(Context c : result){
+					ConsoleUtil.printToConsole(c.toString(), MOREL_TITLE, true);
 				}
-				
-				if(uris.length!=queryModel.getModels().size()) {
-					ConsoleUtil.printToConsole("Wrong Model Size", MOREL_TITLE, true);
-					return;
-				} else {
-					for(String u : uris) {
-						String buf[] = u.split("=");
-						if(buf.length!=2) {
-							ConsoleUtil.printToConsole("Wrong URI format: "+u,MOREL_TITLE, true);
-							return;
-						} else {
-							Resource res = resSet.getResource(org.eclipse.emf.common.util.URI.createURI(buf[1]), true);
-							System.out.println(res);
-						}
-					}
-				}
-				
 				
 			} else if(root instanceof TransformationModel) {
 				
@@ -79,11 +76,48 @@ public class MorelLaunchConfigurationHelper {
 		}
 		
 	}
+
+
+
+	private void initModelSpace(org.eclipse.emf.ecore.EObject root,
+			String[] uris, Environment env) {
+		ResourceSet resSet = root.eResource().getResourceSet();
+		Unit queryModel = (Unit) root;
+		for(TypedModel m : queryModel.getModels()){
+			resSet.getPackageRegistry().put(m.getPackage().getNsURI(), m.getPackage());
+		}
+		
+		if(uris.length!=queryModel.getModels().size()) {
+			ConsoleUtil.printToConsole("Wrong Model Size", MOREL_TITLE, true);
+			return;
+		} else {
+			for(String u : uris) {
+				String buf[] = u.split("=");
+				if(buf.length!=2) {
+					ConsoleUtil.printToConsole("Wrong URI format: "+u,MOREL_TITLE, true);
+					return;
+				} else {
+					Resource res = resSet.getResource(org.eclipse.emf.common.util.URI.createURI(buf[1]), true);
+					ConsoleUtil.printToConsole("Load "+res.getURI(), MOREL_TITLE, true);
+					TypedModel typedModel = queryModel.getTypedModel(buf[0]);
+					if(typedModel==null) {
+						ConsoleUtil.printToConsole("Wrong Model Name: "+u,MOREL_TITLE, true);
+						return;
+					}
+					ModelSpace space = new ModelSpace();
+					space.initWithResource(res, typedModel.getPackage());
+					env.getModelSpaces().put(typedModel, space);
+				}
+			}
+		}
+	}
+	
+	
 	
 	private String[] getModelURIs(ILaunchConfiguration configuration) {
 		String[] uris = null;
 		try {
-			String uri = configuration.getAttribute(edu.ustb.sei.mde.morel.resource.morel.launch.MorelLaunchConfigurationDelegate.ATTR_MODEL_URIS, (String)null);
+			String uri = configuration.getAttribute(edu.ustb.sei.mde.morel.resource.morel.execution.MorelLaunchConfigurationDelegate.ATTR_MODEL_URIS, (String)null);
 			uris = uri.split(";");
 		} catch (CoreException e) {
 		}
@@ -124,7 +158,7 @@ public class MorelLaunchConfigurationHelper {
 	}
 	
 	public org.eclipse.emf.common.util.URI getURI(org.eclipse.debug.core.ILaunchConfiguration configuration) throws org.eclipse.core.runtime.CoreException {
-		return org.eclipse.emf.common.util.URI.createURI(configuration.getAttribute(edu.ustb.sei.mde.morel.resource.morel.launch.MorelLaunchConfigurationDelegate.ATTR_RESOURCE_URI, (String) null));
+		return org.eclipse.emf.common.util.URI.createURI(configuration.getAttribute(edu.ustb.sei.mde.morel.resource.morel.execution.MorelLaunchConfigurationDelegate.ATTR_RESOURCE_URI, (String) null));
 	}
 	
 	public org.eclipse.emf.ecore.EObject getModelRoot(org.eclipse.debug.core.ILaunchConfiguration configuration) throws org.eclipse.core.runtime.CoreException {

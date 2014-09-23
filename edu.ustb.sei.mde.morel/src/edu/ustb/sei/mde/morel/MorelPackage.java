@@ -5,6 +5,7 @@ package edu.ustb.sei.mde.morel;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -473,13 +474,22 @@ public interface MorelPackage extends EPackage {
 	int UNIT_FEATURE_COUNT = 2;
 
 	/**
+	 * The operation id for the '<em>Get Typed Model</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNIT___GET_TYPED_MODEL__STRING = 0;
+
+	/**
 	 * The number of operations of the '<em>Unit</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UNIT_OPERATION_COUNT = 0;
+	int UNIT_OPERATION_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.impl.QueryModelImpl <em>Query Model</em>}' class.
@@ -526,6 +536,15 @@ public interface MorelPackage extends EPackage {
 	 * @ordered
 	 */
 	int QUERY_MODEL_FEATURE_COUNT = UNIT_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Get Typed Model</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_MODEL___GET_TYPED_MODEL__STRING = UNIT___GET_TYPED_MODEL__STRING;
 
 	/**
 	 * The number of operations of the '<em>Query Model</em>' class.
@@ -3168,6 +3187,15 @@ public interface MorelPackage extends EPackage {
 	int TRANSFORMATION_MODEL_FEATURE_COUNT = UNIT_FEATURE_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>Get Typed Model</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSFORMATION_MODEL___GET_TYPED_MODEL__STRING = UNIT___GET_TYPED_MODEL__STRING;
+
+	/**
 	 * The number of operations of the '<em>Transformation Model</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3635,6 +3663,16 @@ public interface MorelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getUnit_DataTypes();
+
+	/**
+	 * Returns the meta object for the '{@link edu.ustb.sei.mde.morel.Unit#getTypedModel(java.lang.String) <em>Get Typed Model</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Typed Model</em>' operation.
+	 * @see edu.ustb.sei.mde.morel.Unit#getTypedModel(java.lang.String)
+	 * @generated
+	 */
+	EOperation getUnit__GetTypedModel__String();
 
 	/**
 	 * Returns the meta object for class '{@link edu.ustb.sei.mde.morel.Expression <em>Expression</em>}'.
@@ -5071,6 +5109,14 @@ public interface MorelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference UNIT__DATA_TYPES = eINSTANCE.getUnit_DataTypes();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Typed Model</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation UNIT___GET_TYPED_MODEL__STRING = eINSTANCE.getUnit__GetTypedModel__String();
 
 		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.impl.ExpressionImpl <em>Expression</em>}' class.

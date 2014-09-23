@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/edu.ustb.sei.mde.emg/src" modelPluginID="edu.ustb.sei.mde.emg"
+    modelName="Runtime" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="7.0" copyrightFields="false"
+    usedGenPackages="../../edu.ustb.sei.mde.morel/metamodel/morel.genmodel#//morel"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>runtime.ecore</foreignModel>
+  <genPackages prefix="Runtime" basePackage="edu.ustb.sei.mde.emg" disposableProviderFactory="true"
+      ecorePackage="runtime.ecore#/">
+    <genDataTypes ecoreDataType="runtime.ecore#//ModelSpace"/>
+    <genClasses ecoreClass="runtime.ecore#//Context">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute runtime.ecore#//Context/bindingMap"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute runtime.ecore#//Context/host"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference runtime.ecore#//Context/parentContext"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference runtime.ecore#//Context/parentScope"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference runtime.ecore#//Context/enviroment"/>
+      <genOperations ecoreOperation="runtime.ecore#//Context/initWithHost"/>
+      <genOperations ecoreOperation="runtime.ecore#//Context/newScope"/>
+      <genOperations ecoreOperation="runtime.ecore#//Context/getValue">
+        <genParameters ecoreParameter="runtime.ecore#//Context/getValue/var"/>
+      </genOperations>
+      <genOperations ecoreOperation="runtime.ecore#//Context/putValue">
+        <genParameters ecoreParameter="runtime.ecore#//Context/putValue/var"/>
+        <genParameters ecoreParameter="runtime.ecore#//Context/putValue/value"/>
+      </genOperations>
+      <genOperations ecoreOperation="runtime.ecore#//Context/getCopy">
+        <genParameters ecoreParameter="runtime.ecore#//Context/getCopy/copy"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="runtime.ecore#//Environment">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute runtime.ecore#//Environment/modelSpaces"/>
+      <genOperations ecoreOperation="runtime.ecore#//Environment/createContext"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

@@ -1,8 +1,8 @@
 /**
  */
-package edu.ustb.sei.mde.morel.runtime.util;
+package edu.ustb.sei.mde.emg.runtime.util;
 
-import edu.ustb.sei.mde.morel.runtime.*;
+import edu.ustb.sei.mde.emg.runtime.*;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see edu.ustb.sei.mde.morel.runtime.RuntimePackage
+ * @see edu.ustb.sei.mde.emg.runtime.RuntimePackage
  * @generated
  */
 public class RuntimeAdapterFactory extends AdapterFactoryImpl {
@@ -96,13 +96,13 @@ public class RuntimeAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.morel.runtime.Context <em>Context</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.emg.runtime.Context <em>Context</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see edu.ustb.sei.mde.morel.runtime.Context
+	 * @see edu.ustb.sei.mde.emg.runtime.Context
 	 * @generated
 	 */
 	public Adapter createContextAdapter() {
@@ -110,13 +110,13 @@ public class RuntimeAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.morel.runtime.Environment <em>Environment</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.emg.runtime.Environment <em>Environment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see edu.ustb.sei.mde.morel.runtime.Environment
+	 * @see edu.ustb.sei.mde.emg.runtime.Environment
 	 * @generated
 	 */
 	public Adapter createEnvironmentAdapter() {

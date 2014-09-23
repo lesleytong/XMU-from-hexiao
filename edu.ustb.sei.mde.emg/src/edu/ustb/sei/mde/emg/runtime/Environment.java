@@ -1,7 +1,8 @@
 /**
  */
-package edu.ustb.sei.mde.morel.runtime;
+package edu.ustb.sei.mde.emg.runtime;
 
+import edu.ustb.sei.mde.emg.graph.ModelSpace;
 import edu.ustb.sei.mde.morel.TypedModel;
 import java.util.Map;
 import org.eclipse.emf.ecore.EObject;
@@ -14,11 +15,11 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link edu.ustb.sei.mde.morel.runtime.Environment#getModelSpaces <em>Model Spaces</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.emg.runtime.Environment#getModelSpaces <em>Model Spaces</em>}</li>
  * </ul>
  * </p>
  *
- * @see edu.ustb.sei.mde.morel.runtime.RuntimePackage#getEnvironment()
+ * @see edu.ustb.sei.mde.emg.runtime.RuntimePackage#getEnvironment()
  * @model
  * @generated
  */
@@ -33,21 +34,21 @@ public interface Environment extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Model Spaces</em>' attribute.
 	 * @see #setModelSpaces(Map)
-	 * @see edu.ustb.sei.mde.morel.runtime.RuntimePackage#getEnvironment_ModelSpaces()
+	 * @see edu.ustb.sei.mde.emg.runtime.RuntimePackage#getEnvironment_ModelSpaces()
 	 * @model transient="true"
 	 * @generated
 	 */
-	Map<TypedModel, Object> getModelSpaces();
+	Map<TypedModel, ModelSpace> getModelSpaces();
 
 	/**
-	 * Sets the value of the '{@link edu.ustb.sei.mde.morel.runtime.Environment#getModelSpaces <em>Model Spaces</em>}' attribute.
+	 * Sets the value of the '{@link edu.ustb.sei.mde.emg.runtime.Environment#getModelSpaces <em>Model Spaces</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Model Spaces</em>' attribute.
 	 * @see #getModelSpaces()
 	 * @generated
 	 */
-	void setModelSpaces(Map<TypedModel, Object> value);
+	void setModelSpaces(Map<TypedModel, ModelSpace> value);
 
 	/**
 	 * <!-- begin-user-doc -->

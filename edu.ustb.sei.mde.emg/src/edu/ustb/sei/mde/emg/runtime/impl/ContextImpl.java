@@ -1,30 +1,25 @@
 /**
  */
-package edu.ustb.sei.mde.morel.runtime.impl;
+package edu.ustb.sei.mde.emg.runtime.impl;
 
+import edu.ustb.sei.mde.emg.runtime.Context;
+import edu.ustb.sei.mde.emg.runtime.Environment;
+import edu.ustb.sei.mde.emg.runtime.RuntimeFactory;
+import edu.ustb.sei.mde.emg.runtime.RuntimePackage;
+import edu.ustb.sei.mde.emg.runtime.datatype.OclUndefined;
 import edu.ustb.sei.mde.morel.Query;
 import edu.ustb.sei.mde.morel.Rule;
 import edu.ustb.sei.mde.morel.Variable;
 import edu.ustb.sei.mde.morel.VariableWithInit;
 
-import edu.ustb.sei.mde.morel.runtime.Context;
-import edu.ustb.sei.mde.morel.runtime.Environment;
-import edu.ustb.sei.mde.morel.runtime.RuntimeFactory;
-import edu.ustb.sei.mde.morel.runtime.RuntimePackage;
-import edu.ustb.sei.mde.morel.runtime.datatype.OclUndefined;
-
 import java.lang.reflect.InvocationTargetException;
-
 import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
@@ -35,11 +30,11 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link edu.ustb.sei.mde.morel.runtime.impl.ContextImpl#getBindingMap <em>Binding Map</em>}</li>
- *   <li>{@link edu.ustb.sei.mde.morel.runtime.impl.ContextImpl#getHost <em>Host</em>}</li>
- *   <li>{@link edu.ustb.sei.mde.morel.runtime.impl.ContextImpl#getParentContext <em>Parent Context</em>}</li>
- *   <li>{@link edu.ustb.sei.mde.morel.runtime.impl.ContextImpl#getParentScope <em>Parent Scope</em>}</li>
- *   <li>{@link edu.ustb.sei.mde.morel.runtime.impl.ContextImpl#getEnviroment <em>Enviroment</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.emg.runtime.impl.ContextImpl#getBindingMap <em>Binding Map</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.emg.runtime.impl.ContextImpl#getHost <em>Host</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.emg.runtime.impl.ContextImpl#getParentContext <em>Parent Context</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.emg.runtime.impl.ContextImpl#getParentScope <em>Parent Scope</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.emg.runtime.impl.ContextImpl#getEnviroment <em>Enviroment</em>}</li>
  * </ul>
  * </p>
  *
@@ -357,6 +352,21 @@ public class ContextImpl extends MinimalEObjectImpl.Container implements Context
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void getCopy(Context copy) {
+		copy.setEnviroment(this.getEnviroment());
+		copy.setParentContext(this.getParentContext());
+		copy.setParentScope(this.getParentScope());
+		
+		for(Map.Entry<Variable, Object> entry : this.getBindingMap().entrySet()){
+			copy.putValue(entry.getKey(), entry.getValue());
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -473,6 +483,9 @@ public class ContextImpl extends MinimalEObjectImpl.Container implements Context
 				return getValue((Variable)arguments.get(0));
 			case RuntimePackage.CONTEXT___PUT_VALUE__VARIABLE_OBJECT:
 				putValue((Variable)arguments.get(0), arguments.get(1));
+				return null;
+			case RuntimePackage.CONTEXT___GET_COPY__CONTEXT:
+				getCopy((Context)arguments.get(0));
 				return null;
 		}
 		return super.eInvoke(operationID, arguments);

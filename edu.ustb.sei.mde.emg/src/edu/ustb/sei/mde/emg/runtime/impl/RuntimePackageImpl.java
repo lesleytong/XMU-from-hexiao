@@ -1,18 +1,23 @@
 /**
  */
-package edu.ustb.sei.mde.morel.runtime.impl;
+package edu.ustb.sei.mde.emg.runtime.impl;
+
+import edu.ustb.sei.mde.emg.graph.ModelSpace;
+import edu.ustb.sei.mde.emg.runtime.Context;
+import edu.ustb.sei.mde.emg.runtime.Environment;
+import edu.ustb.sei.mde.emg.runtime.RuntimeFactory;
+import edu.ustb.sei.mde.emg.runtime.RuntimePackage;
 
 import edu.ustb.sei.mde.morel.MorelPackage;
-import edu.ustb.sei.mde.morel.runtime.Context;
-import edu.ustb.sei.mde.morel.runtime.Environment;
-import edu.ustb.sei.mde.morel.runtime.RuntimeFactory;
-import edu.ustb.sei.mde.morel.runtime.RuntimePackage;
+
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
@@ -37,6 +42,13 @@ public class RuntimePackageImpl extends EPackageImpl implements RuntimePackage {
 	private EClass environmentEClass = null;
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType modelSpaceEDataType = null;
+
+	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -47,7 +59,7 @@ public class RuntimePackageImpl extends EPackageImpl implements RuntimePackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see edu.ustb.sei.mde.morel.runtime.RuntimePackage#eNS_URI
+	 * @see edu.ustb.sei.mde.emg.runtime.RuntimePackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */
@@ -195,6 +207,15 @@ public class RuntimePackageImpl extends EPackageImpl implements RuntimePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getContext__GetCopy__Context() {
+		return contextEClass.getEOperations().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getEnvironment() {
 		return environmentEClass;
 	}
@@ -215,6 +236,15 @@ public class RuntimePackageImpl extends EPackageImpl implements RuntimePackage {
 	 */
 	public EOperation getEnvironment__CreateContext() {
 		return environmentEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EDataType getModelSpace() {
+		return modelSpaceEDataType;
 	}
 
 	/**
@@ -255,10 +285,14 @@ public class RuntimePackageImpl extends EPackageImpl implements RuntimePackage {
 		createEOperation(contextEClass, CONTEXT___NEW_SCOPE);
 		createEOperation(contextEClass, CONTEXT___GET_VALUE__VARIABLE);
 		createEOperation(contextEClass, CONTEXT___PUT_VALUE__VARIABLE_OBJECT);
+		createEOperation(contextEClass, CONTEXT___GET_COPY__CONTEXT);
 
 		environmentEClass = createEClass(ENVIRONMENT);
 		createEAttribute(environmentEClass, ENVIRONMENT__MODEL_SPACES);
 		createEOperation(environmentEClass, ENVIRONMENT___CREATE_CONTEXT);
+
+		// Create data types
+		modelSpaceEDataType = createEDataType(MODEL_SPACE);
 	}
 
 	/**
@@ -317,15 +351,21 @@ public class RuntimePackageImpl extends EPackageImpl implements RuntimePackage {
 		addEParameter(op, theMorelPackage.getVariable(), "var", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEJavaObject(), "value", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		op = initEOperation(getContext__GetCopy__Context(), null, "getCopy", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getContext(), "copy", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(environmentEClass, Environment.class, "Environment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(theMorelPackage.getTypedModel());
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g2 = createEGenericType(this.getModelSpace());
 		g1.getETypeArguments().add(g2);
 		initEAttribute(getEnvironment_ModelSpaces(), g1, "modelSpaces", null, 0, 1, Environment.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getEnvironment__CreateContext(), this.getContext(), "createContext", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		// Initialize data types
+		initEDataType(modelSpaceEDataType, ModelSpace.class, "ModelSpace", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

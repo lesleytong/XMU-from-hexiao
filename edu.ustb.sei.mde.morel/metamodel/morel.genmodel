@@ -90,6 +90,9 @@
     <genClasses image="false" ecoreClass="morel.ecore#//Unit">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//Unit/models"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//Unit/dataTypes"/>
+      <genOperations ecoreOperation="morel.ecore#//Unit/getTypedModel">
+        <genParameters ecoreParameter="morel.ecore#//Unit/getTypedModel/name"/>
+      </genOperations>
     </genClasses>
     <genClasses image="false" ecoreClass="morel.ecore#//Expression"/>
     <genClasses image="false" ecoreClass="morel.ecore#//AtomicExp">

@@ -198,8 +198,8 @@ public class MorelLaunchConfigurationMainTab extends org.eclipse.debug.ui.Abstra
 	
 	public void initializeFrom(org.eclipse.debug.core.ILaunchConfiguration configuration) {
 		try {
-			uriText.setText(configuration.getAttribute(edu.ustb.sei.mde.morel.resource.morel.launch.MorelLaunchConfigurationDelegate.ATTR_RESOURCE_URI, ""));
-			modelUriText.setText(configuration.getAttribute(edu.ustb.sei.mde.morel.resource.morel.launch.MorelLaunchConfigurationDelegate.ATTR_MODEL_URIS, ""));
+			uriText.setText(configuration.getAttribute(edu.ustb.sei.mde.morel.resource.morel.execution.MorelLaunchConfigurationDelegate.ATTR_RESOURCE_URI, ""));
+			modelUriText.setText(configuration.getAttribute(edu.ustb.sei.mde.morel.resource.morel.execution.MorelLaunchConfigurationDelegate.ATTR_MODEL_URIS, ""));
 			// more initialization code can be added here
 		} catch (org.eclipse.core.runtime.CoreException e) {
 			edu.ustb.sei.mde.morel.resource.morel.mopp.MorelPlugin.logError("Can't initialize launch configuration tab.", e);
@@ -207,8 +207,8 @@ public class MorelLaunchConfigurationMainTab extends org.eclipse.debug.ui.Abstra
 	}
 	
 	public void performApply(org.eclipse.debug.core.ILaunchConfigurationWorkingCopy configuration) {
-		configuration.setAttribute(edu.ustb.sei.mde.morel.resource.morel.launch.MorelLaunchConfigurationDelegate.ATTR_RESOURCE_URI, uriText.getText());
-		configuration.setAttribute(edu.ustb.sei.mde.morel.resource.morel.launch.MorelLaunchConfigurationDelegate.ATTR_MODEL_URIS, modelUriText.getText());
+		configuration.setAttribute(edu.ustb.sei.mde.morel.resource.morel.execution.MorelLaunchConfigurationDelegate.ATTR_RESOURCE_URI, uriText.getText());
+		configuration.setAttribute(edu.ustb.sei.mde.morel.resource.morel.execution.MorelLaunchConfigurationDelegate.ATTR_MODEL_URIS, modelUriText.getText());
 	}
 	
 	public String getName() {

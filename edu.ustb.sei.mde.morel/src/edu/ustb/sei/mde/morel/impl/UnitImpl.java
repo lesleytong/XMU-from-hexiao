@@ -6,6 +6,7 @@ import edu.ustb.sei.mde.morel.MorelPackage;
 import edu.ustb.sei.mde.morel.TypedModel;
 import edu.ustb.sei.mde.morel.Unit;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -102,6 +103,19 @@ public abstract class UnitImpl extends MinimalEObjectImpl.Container implements U
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public TypedModel getTypedModel(String name) {
+		for(TypedModel m : this.getModels()) {
+			if(name.equals(m.getName()))
+				return m;
+		}
+		return null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -184,6 +198,20 @@ public abstract class UnitImpl extends MinimalEObjectImpl.Container implements U
 				return dataTypes != null && !dataTypes.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case MorelPackage.UNIT___GET_TYPED_MODEL__STRING:
+				return getTypedModel((String)arguments.get(0));
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 } //UnitImpl

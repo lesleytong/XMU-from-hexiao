@@ -1,11 +1,9 @@
 /**
  */
-package edu.ustb.sei.mde.morel.runtime;
+package edu.ustb.sei.mde.emg.runtime;
 
 import edu.ustb.sei.mde.morel.Variable;
-
 import java.util.Map;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -16,15 +14,15 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link edu.ustb.sei.mde.morel.runtime.Context#getBindingMap <em>Binding Map</em>}</li>
- *   <li>{@link edu.ustb.sei.mde.morel.runtime.Context#getHost <em>Host</em>}</li>
- *   <li>{@link edu.ustb.sei.mde.morel.runtime.Context#getParentContext <em>Parent Context</em>}</li>
- *   <li>{@link edu.ustb.sei.mde.morel.runtime.Context#getParentScope <em>Parent Scope</em>}</li>
- *   <li>{@link edu.ustb.sei.mde.morel.runtime.Context#getEnviroment <em>Enviroment</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.emg.runtime.Context#getBindingMap <em>Binding Map</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.emg.runtime.Context#getHost <em>Host</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.emg.runtime.Context#getParentContext <em>Parent Context</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.emg.runtime.Context#getParentScope <em>Parent Scope</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.emg.runtime.Context#getEnviroment <em>Enviroment</em>}</li>
  * </ul>
  * </p>
  *
- * @see edu.ustb.sei.mde.morel.runtime.RuntimePackage#getContext()
+ * @see edu.ustb.sei.mde.emg.runtime.RuntimePackage#getContext()
  * @model
  * @generated
  */
@@ -39,14 +37,14 @@ public interface Context extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Binding Map</em>' attribute.
 	 * @see #setBindingMap(Map)
-	 * @see edu.ustb.sei.mde.morel.runtime.RuntimePackage#getContext_BindingMap()
+	 * @see edu.ustb.sei.mde.emg.runtime.RuntimePackage#getContext_BindingMap()
 	 * @model transient="true"
 	 * @generated
 	 */
 	Map<Variable, Object> getBindingMap();
 
 	/**
-	 * Sets the value of the '{@link edu.ustb.sei.mde.morel.runtime.Context#getBindingMap <em>Binding Map</em>}' attribute.
+	 * Sets the value of the '{@link edu.ustb.sei.mde.emg.runtime.Context#getBindingMap <em>Binding Map</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Binding Map</em>' attribute.
@@ -65,14 +63,14 @@ public interface Context extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Host</em>' attribute.
 	 * @see #setHost(Object)
-	 * @see edu.ustb.sei.mde.morel.runtime.RuntimePackage#getContext_Host()
+	 * @see edu.ustb.sei.mde.emg.runtime.RuntimePackage#getContext_Host()
 	 * @model
 	 * @generated
 	 */
 	Object getHost();
 
 	/**
-	 * Sets the value of the '{@link edu.ustb.sei.mde.morel.runtime.Context#getHost <em>Host</em>}' attribute.
+	 * Sets the value of the '{@link edu.ustb.sei.mde.emg.runtime.Context#getHost <em>Host</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Host</em>' attribute.
@@ -91,14 +89,14 @@ public interface Context extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Parent Context</em>' reference.
 	 * @see #setParentContext(Context)
-	 * @see edu.ustb.sei.mde.morel.runtime.RuntimePackage#getContext_ParentContext()
+	 * @see edu.ustb.sei.mde.emg.runtime.RuntimePackage#getContext_ParentContext()
 	 * @model
 	 * @generated
 	 */
 	Context getParentContext();
 
 	/**
-	 * Sets the value of the '{@link edu.ustb.sei.mde.morel.runtime.Context#getParentContext <em>Parent Context</em>}' reference.
+	 * Sets the value of the '{@link edu.ustb.sei.mde.emg.runtime.Context#getParentContext <em>Parent Context</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Parent Context</em>' reference.
@@ -117,14 +115,14 @@ public interface Context extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Parent Scope</em>' reference.
 	 * @see #setParentScope(Context)
-	 * @see edu.ustb.sei.mde.morel.runtime.RuntimePackage#getContext_ParentScope()
+	 * @see edu.ustb.sei.mde.emg.runtime.RuntimePackage#getContext_ParentScope()
 	 * @model
 	 * @generated
 	 */
 	Context getParentScope();
 
 	/**
-	 * Sets the value of the '{@link edu.ustb.sei.mde.morel.runtime.Context#getParentScope <em>Parent Scope</em>}' reference.
+	 * Sets the value of the '{@link edu.ustb.sei.mde.emg.runtime.Context#getParentScope <em>Parent Scope</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Parent Scope</em>' reference.
@@ -143,14 +141,14 @@ public interface Context extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Enviroment</em>' reference.
 	 * @see #setEnviroment(Environment)
-	 * @see edu.ustb.sei.mde.morel.runtime.RuntimePackage#getContext_Enviroment()
+	 * @see edu.ustb.sei.mde.emg.runtime.RuntimePackage#getContext_Enviroment()
 	 * @model required="true"
 	 * @generated
 	 */
 	Environment getEnviroment();
 
 	/**
-	 * Sets the value of the '{@link edu.ustb.sei.mde.morel.runtime.Context#getEnviroment <em>Enviroment</em>}' reference.
+	 * Sets the value of the '{@link edu.ustb.sei.mde.emg.runtime.Context#getEnviroment <em>Enviroment</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Enviroment</em>' reference.
@@ -190,5 +188,13 @@ public interface Context extends EObject {
 	 * @generated
 	 */
 	void putValue(Variable var, Object value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	void getCopy(Context copy);
 
 } // Context

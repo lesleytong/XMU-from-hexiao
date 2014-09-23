@@ -15,7 +15,6 @@ public class MorelNewFileContentProvider {
 	public String getNewFileContent(String newFileName) {
 		return getExampleContent(new org.eclipse.emf.ecore.EClass[] {
 			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getQueryModel(),
-			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getTransformationModel(),
 		}, getMetaInformation().getClassesWithSyntax(), newFileName);
 	}
 	

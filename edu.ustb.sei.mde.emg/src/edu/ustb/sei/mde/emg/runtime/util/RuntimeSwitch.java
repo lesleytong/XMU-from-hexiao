@@ -1,8 +1,8 @@
 /**
  */
-package edu.ustb.sei.mde.morel.runtime.util;
+package edu.ustb.sei.mde.emg.runtime.util;
 
-import edu.ustb.sei.mde.morel.runtime.*;
+import edu.ustb.sei.mde.emg.runtime.*;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.util.Switch;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see edu.ustb.sei.mde.morel.runtime.RuntimePackage
+ * @see edu.ustb.sei.mde.emg.runtime.RuntimePackage
  * @generated
  */
 public class RuntimeSwitch<T> extends Switch<T> {

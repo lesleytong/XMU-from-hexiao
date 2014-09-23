@@ -57,4 +57,12 @@ public interface Unit extends EObject {
 	 */
 	EList<EDataType> getDataTypes();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	TypedModel getTypedModel(String name);
+
 } // Unit

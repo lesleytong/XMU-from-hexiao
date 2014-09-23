@@ -9,6 +9,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -21,6 +22,8 @@ public class ModelSpace extends NamedElement {
 	
 	static private BidirectionalMap<Integer, EObject> idObjMap  = new BidirectionalMap<Integer,EObject>();
 	
+	
+	
 	private List<ModelSpace> instanceSpaces;
 	private ObjectAdapter elementAdapter = null;
 	
@@ -28,6 +31,28 @@ public class ModelSpace extends NamedElement {
 	
 	private HashMap<EObject, List<EObject>> typeToAllElementsMap = null;
 	private HashMap<EObject, int[]> typeToAllElementIDMap = null;
+	
+	private Resource model;
+	public Resource getModel() {
+		return model;
+	}
+
+
+	public void setModel(Resource model) {
+		this.model = model;
+	}
+
+
+	public EPackage getMetamodel() {
+		return metamodel;
+	}
+
+
+	public void setMetamodel(EPackage metamodel) {
+		this.metamodel = metamodel;
+	}
+
+	private EPackage metamodel;
 	
 	//private ModelSpaceHelper modelHelper = null;
 	
@@ -292,14 +317,44 @@ public class ModelSpace extends NamedElement {
 	 */
 	public void resetElementRelationshipMap(EObject source, EReference feature) {
 		elemRelMap.put(source, feature, null);
+		referenceToTupleID.remove(feature);
 	}
 	
-	public void initWithResource(Resource resource) {
+	public void initWithResource(Resource resource, EPackage metamodel) {
 		TreeIterator<EObject> iterator = resource.getAllContents();
 		while(iterator.hasNext()) {
 			EObject object = iterator.next();
 			this.addElement(object);
 		}
+		
+		this.setModel(resource);
+		this.setMetamodel(metamodel);
+	}
+	
+	public void initWithResource(Resource resource) {
+		this.initWithResource(resource);
+	}
+	
+	private HashMap<EReference, List<int[]>> referenceToTupleID = new HashMap<EReference, List<int[]>>();
+	public List<int[]> getAllTupleIDByReference(EReference ref,boolean initOnDemand) {
+		List<int[]> list = referenceToTupleID.get(ref);
+		if(list==null) {
+			list = new ArrayList<int[]>();
+			referenceToTupleID.put(ref, list);
+			if(initOnDemand) {
+				for(EObject o : allElements) {
+					if(ref.getEContainingClass().isSuperTypeOf(o.eClass())){
+						int s = getElementID(o);
+						int[] tars = getElementRelationship(o, ref);
+						for(int t : tars) {
+							list.add(new int[]{s,t});
+						}
+					}
+				}
+			}
+		}
+		
+		return list;
 	}
 	
 	public void addRelationship(EObject source, EObject target, EReference ref) {

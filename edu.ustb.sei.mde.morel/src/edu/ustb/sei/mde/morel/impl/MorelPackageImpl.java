@@ -72,13 +72,12 @@ import edu.ustb.sei.mde.morel.Unit;
 import edu.ustb.sei.mde.morel.Variable;
 import edu.ustb.sei.mde.morel.VariableExp;
 import edu.ustb.sei.mde.morel.VariableWithInit;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
@@ -875,6 +874,15 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 */
 	public EReference getUnit_DataTypes() {
 		return (EReference)unitEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getUnit__GetTypedModel__String() {
+		return unitEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -1943,6 +1951,7 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		unitEClass = createEClass(UNIT);
 		createEReference(unitEClass, UNIT__MODELS);
 		createEReference(unitEClass, UNIT__DATA_TYPES);
+		createEOperation(unitEClass, UNIT___GET_TYPED_MODEL__STRING);
 
 		expressionEClass = createEClass(EXPRESSION);
 
@@ -2233,6 +2242,9 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		initEClass(unitEClass, Unit.class, "Unit", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getUnit_Models(), this.getTypedModel(), null, "models", null, 1, -1, Unit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getUnit_DataTypes(), ecorePackage.getEDataType(), null, "dataTypes", null, 0, -1, Unit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		EOperation op = initEOperation(getUnit__GetTypedModel__String(), this.getTypedModel(), "getTypedModel", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "name", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(expressionEClass, Expression.class, "Expression", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
