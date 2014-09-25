@@ -6,4 +6,12 @@ public class OclUndefined {
 		this.name = name;
 	}
 	final static public OclUndefined INVALIDED = new OclUndefined("invalid");
+	public static boolean isOclUndefined(Object self) {
+		if(self==null || self==INVALIDED) return true;
+		return false;
+	}
+	
+	public String toString(){
+		return name;
+	}
 }
