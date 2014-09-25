@@ -4,6 +4,7 @@ package edu.ustb.sei.mde.morel.impl;
 
 import edu.ustb.sei.mde.morel.CollectionType;
 import edu.ustb.sei.mde.morel.MorelPackage;
+import edu.ustb.sei.mde.morel.SetType;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -153,5 +154,15 @@ public abstract class CollectionTypeImpl extends EDataTypeImpl implements Collec
 		}
 		return super.eIsSet(featureID);
 	}
-
+	
+	public boolean equals(Object object) {
+		if(object == null) return false;
+		if(this==object) return true;
+		if(object instanceof CollectionType) {
+			if(this.getClass() == object.getClass()) 
+				return this.getElementType().equals(((CollectionType) object).getElementType());
+			else return false;
+		} else 
+			return false;
+	}
 } //CollectionTypeImpl

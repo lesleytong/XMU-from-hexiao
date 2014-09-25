@@ -1,15 +1,24 @@
 package edu.ustb.sei.mde.emg.library;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.util.EcoreEList;
 
-import edu.ustb.sei.mde.emg.runtime.datatype.Bag;
+import edu.ustb.sei.mde.emg.runtime.datatype.OclBag;
+import edu.ustb.sei.mde.emg.runtime.datatype.OclOrderedSet;
+import edu.ustb.sei.mde.emg.runtime.datatype.OclSequence;
+import edu.ustb.sei.mde.emg.runtime.datatype.OclSet;
 import edu.ustb.sei.mde.emg.runtime.datatype.OclUndefined;
+import edu.ustb.sei.mde.morel.CollectionType;
+import edu.ustb.sei.mde.morel.MorelFactory;
 import edu.ustb.sei.mde.morel.MorelPackage;
+import edu.ustb.sei.mde.morel.SequenceType;
 
 public class AnyLibrary extends Library {
 
@@ -30,6 +39,8 @@ public class AnyLibrary extends Library {
 			return equal(self,params[0]);
 		case "<>":
 			return equal(self,params[0]);
+		case "oclType":
+			return oclType(self);
 		default:
 			throw new UnsupportedOperationException(operation);
 		}
@@ -51,6 +62,8 @@ public class AnyLibrary extends Library {
 		}
 	}
 	
+	private HashMap<EStructuralFeature, CollectionType> ecoreListType = new HashMap<EStructuralFeature, CollectionType>();
+	
 	public Object oclType(Object self) {
 		if(self==null) {
 			return OclUndefined.INVALIDED;
@@ -64,15 +77,34 @@ public class AnyLibrary extends Library {
 			return EcorePackage.eINSTANCE.getEDoubleObject();
 		} else if(self instanceof Boolean) {
 			return EcorePackage.eINSTANCE.getEBooleanObject();
-		} else if(self instanceof UniqueEList) {
-			return MorelPackage.eINSTANCE.getOrderedSetType();
-		} else if(self instanceof Set) {
-			return MorelPackage.eINSTANCE.getSetType();
-		} else if(self instanceof Bag) {
-			return MorelPackage.eINSTANCE.getBagType();
-		} else if(self instanceof List) {
-			return MorelPackage.eINSTANCE.getSequenceType();
-		} else if(self instanceof EObject){
+		} else if(self instanceof OclOrderedSet) {
+			return ((OclOrderedSet) self).getType();
+		} else if(self instanceof OclSet) {
+			return ((OclOrderedSet) self).getType();
+		} else if(self instanceof OclBag) {
+			return ((OclOrderedSet) self).getType();
+		} else if(self instanceof OclSequence) {
+			return ((OclOrderedSet) self).getType();
+		} else if(self instanceof EcoreEList) {
+			EStructuralFeature feature = ((EcoreEList<?>) self).getEStructuralFeature();
+			CollectionType type = ecoreListType.get(feature);
+			
+			if(type==null) {
+				if(feature.isUnique() && feature.isOrdered())
+					type = MorelFactory.eINSTANCE.createOrderedSetType();
+				else if(!feature.isUnique() && feature.isOrdered())
+					type = MorelFactory.eINSTANCE.createSequenceType();
+				else if(feature.isUnique() && !feature.isOrdered())
+					type = MorelFactory.eINSTANCE.createSetType();
+				else if(!feature.isUnique() && !feature.isOrdered())
+					type = MorelFactory.eINSTANCE.createBagType();
+				type.setElementType(feature.getEType());
+				
+				ecoreListType.put(feature, type);
+			}
+			return type;
+		}
+		else if(self instanceof EObject){
 			return ((EObject)self).eClass();
 		} else 
 			return EcorePackage.eINSTANCE.getEJavaObject();//OclAny
