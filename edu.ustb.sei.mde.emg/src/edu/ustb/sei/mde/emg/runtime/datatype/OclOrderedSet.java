@@ -10,8 +10,8 @@ public class OclOrderedSet extends OclCollection {
 	}
 
 	public OclOrderedSet(Collection<?> c) {
-		super(c);
-		// TODO Auto-generated constructor stub
+		super(c.size());
+		this.addAll(c);
 	}
 
 	public OclOrderedSet(int initialCapacity) {

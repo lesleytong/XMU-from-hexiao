@@ -14,8 +14,8 @@ public class OclSet extends OclCollection {
 	}
 
 	public OclSet(Collection<?> c) {
-		super(c);
-		// TODO Auto-generated constructor stub
+		super(c.size());
+		this.addAll(c);
 	}
 
 	@Override
@@ -41,8 +41,5 @@ public class OclSet extends OclCollection {
 		// TODO Auto-generated method stub
 		c.retainAll(this);
 		return super.addAll(index, c);
-	}
-
-	
-	
+	}	
 }

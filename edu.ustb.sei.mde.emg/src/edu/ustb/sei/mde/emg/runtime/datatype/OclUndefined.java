@@ -6,8 +6,10 @@ public class OclUndefined {
 		this.name = name;
 	}
 	final static public OclUndefined INVALIDED = new OclUndefined("invalid");
+	final static public OclUndefined NULL = null;
+	
 	public static boolean isOclUndefined(Object self) {
-		if(self==null || self==INVALIDED) return true;
+		if(self==NULL || self==INVALIDED) return true;
 		return false;
 	}
 	
