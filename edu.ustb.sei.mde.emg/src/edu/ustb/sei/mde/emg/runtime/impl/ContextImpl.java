@@ -328,8 +328,8 @@ public class ContextImpl extends MinimalEObjectImpl.Container implements Context
 			Object value = map.get(var);
 			return value;
 		} else {
-			if(getParentContext()!=null)
-				return getParentContext().getValue(var);
+			if(getParentScope()!=null)
+				return getParentScope().getValue(var);
 		}
 		return null;
 	}
@@ -344,8 +344,8 @@ public class ContextImpl extends MinimalEObjectImpl.Container implements Context
 		if(map.containsKey(var)){
 			map.put(var, value);
 		} else {
-			if(getParentContext()!=null)
-				getParentContext().putValue(var, value);
+			if(getParentScope()!=null)
+				getParentScope().putValue(var, value);
 		}
 	}
 

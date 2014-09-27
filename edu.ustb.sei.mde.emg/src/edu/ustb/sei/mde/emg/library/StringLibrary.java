@@ -2,7 +2,10 @@ package edu.ustb.sei.mde.emg.library;
 
 import org.eclipse.emf.ecore.EcorePackage;
 
+import edu.ustb.sei.mde.emg.runtime.datatype.OclSequence;
 import edu.ustb.sei.mde.emg.runtime.datatype.OclUndefined;
+import edu.ustb.sei.mde.morel.MorelFactory;
+import edu.ustb.sei.mde.morel.SequenceType;
 
 public class StringLibrary extends AnyLibrary {
 
@@ -32,6 +35,8 @@ public class StringLibrary extends AnyLibrary {
 			return this.toReal(self);
 		case "toBoolean":
 			return this.toBoolean(self);
+		case "toString":
+			return self;
 		case "toUpperCase":
 			return this.toUpperCase(self);
 		case "toLowerCase":
@@ -151,10 +156,6 @@ public class StringLibrary extends AnyLibrary {
 		}
 	}
 	
-	public Object characters(Object self) {
-		throw new UnsupportedOperationException();
-	}
-	
 	public Object compare(Object self, Object str) {
 		try{
 			return self.toString().compareTo(str.toString());
@@ -173,6 +174,24 @@ public class StringLibrary extends AnyLibrary {
 			else if(op=="<=") return r<=0;
 			else if(op==">=") return r>=0;
 			else return OclUndefined.INVALIDED;
+		} catch (Exception e) {
+			return OclUndefined.INVALIDED;
+		}
+	}
+	
+	public Object characters(Object self) {
+		try {
+			String str = self.toString();
+			OclSequence seq = new OclSequence(str.length());
+			SequenceType type = MorelFactory.eINSTANCE.createSequenceType();
+			type.setElementType(EcorePackage.eINSTANCE.getEString());
+			seq.setType(type);
+			
+			for(int i=0;i<str.length();i++){
+				char a = str.charAt(i);
+				seq.add(Character.toString(a));
+			}
+			return seq;
 		} catch (Exception e) {
 			return OclUndefined.INVALIDED;
 		}

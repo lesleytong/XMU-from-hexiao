@@ -3,7 +3,7 @@ package edu.ustb.sei.mde.emg.library;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class LibrarySpace extends Library {
+public abstract class LibrarySpace extends AnyLibrary {
 
 	public LibrarySpace(LibrarySpace librarySpace) {
 		super(librarySpace);
@@ -18,9 +18,23 @@ public abstract class LibrarySpace extends Library {
 
 	@Override
 	public Object execute(String operation, Object self, Object... params) {
-		// TODO Auto-generated method stub
-		return null;
+		Object type = super.oclType(self);
+		try {
+			for(Library l : this.getLibraries()) {
+				if(l.adaptFor(type)){
+					return l.execute(operation, self, params);
+				}
+			}
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		throw new UnsupportedOperationException(operation+" for "+type);
 	}
 	
-	
+	public boolean adaptFor(Object type) {
+		for(Library l : this.getLibraries()) {
+			if(l.adaptFor(type)) return true;
+		}
+		return false;
+	}
 }

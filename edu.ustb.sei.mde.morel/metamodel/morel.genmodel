@@ -139,13 +139,11 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//LetExp/variables"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//LetExp/inExp"/>
     </genClasses>
-    <genClasses ecoreClass="morel.ecore#//VariableWithInit"/>
-    <genClasses ecoreClass="morel.ecore#//ObjectVariableWithInit">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//ObjectVariableWithInit/initExp"/>
+    <genClasses ecoreClass="morel.ecore#//VariableWithInit">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//VariableWithInit/initExp"/>
     </genClasses>
-    <genClasses ecoreClass="morel.ecore#//PrimitiveVariableWithInit">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//PrimitiveVariableWithInit/initExp"/>
-    </genClasses>
+    <genClasses ecoreClass="morel.ecore#//ObjectVariableWithInit"/>
+    <genClasses ecoreClass="morel.ecore#//PrimitiveVariableWithInit"/>
     <genClasses ecoreClass="morel.ecore#//ConditionExp">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//ConditionExp/condition"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference morel.ecore#//ConditionExp/thenBranch"/>

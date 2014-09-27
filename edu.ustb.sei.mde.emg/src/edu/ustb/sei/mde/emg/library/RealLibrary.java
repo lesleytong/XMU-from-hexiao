@@ -41,10 +41,20 @@ public class RealLibrary extends AnyLibrary {
 			return greater(self,this.getLibrarySpace().execute("toReal", params[0]));
 		case ">=":
 			return greaterOrEqual(self,this.getLibrarySpace().execute("toReal", params[0]));
+		case "minus":
+			return minus(self);
+		case "abs":
+			return abs(self);
+		case "floor":
+			return floor(self);
+		case "round":
+			return round(self);
 		case "toString":
 			return toString(self);
 		case "toInteger":
 			return toInteger(self);
+		case "toReal":
+			return self;
 		default:
 			return super.execute(operation, self, params);
 		}
@@ -174,6 +184,42 @@ public class RealLibrary extends AnyLibrary {
 			Double b = (Double)right;
 			return a>=b;
 		} catch(Exception e) {
+			return OclUndefined.INVALIDED;
+		}
+	}
+	
+	public Object minus(Object self) {
+		try {
+			Double i = (Double)self;
+			return -i;
+		} catch (Exception e) {
+			return OclUndefined.INVALIDED;
+		}
+	}
+	
+	public Object abs(Object self) {
+		try {
+			Double v = (Double)self;
+			return Math.abs(v);
+		} catch (Exception e) {
+			return OclUndefined.INVALIDED;
+		}
+	}
+	
+	public Object floor(Object self) {
+		try {
+			Double v = (Double)self;
+			return Math.floor(v);
+		} catch (Exception e) {
+			return OclUndefined.INVALIDED;
+		}
+	}
+	
+	public Object round(Object self) {
+		try {
+			Double v = (Double)self;
+			return Math.round(v);
+		} catch (Exception e) {
 			return OclUndefined.INVALIDED;
 		}
 	}

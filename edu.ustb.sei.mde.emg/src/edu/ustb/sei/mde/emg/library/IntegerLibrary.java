@@ -33,6 +33,8 @@ public class IntegerLibrary extends AnyLibrary {
 			return mod(self,this.getLibrarySpace().execute("toInteger", params[0]));
 		case "max":
 			return max(self,this.getLibrarySpace().execute("toInteger", params[0]));
+		case "min":
+			return min(self,this.getLibrarySpace().execute("toInteger", params[0]));
 		case "<":
 			return less(self,this.getLibrarySpace().execute("toInteger", params[0]));
 		case "<=":
@@ -41,10 +43,16 @@ public class IntegerLibrary extends AnyLibrary {
 			return greater(self,this.getLibrarySpace().execute("toInteger", params[0]));
 		case ">=":
 			return greaterOrEqual(self,this.getLibrarySpace().execute("toInteger", params[0]));
+		case "minus":
+			return minus(self);
+		case "abs":
+			return abs(self);
 		case "toString":
 			return toString(self);
 		case "toReal":
 			return toReal(self);
+		case "toInteger":
+			return self;
 		default:
 			return super.execute(operation, self, params);
 		}
@@ -139,6 +147,10 @@ public class IntegerLibrary extends AnyLibrary {
 		}
 	}
 	
+	public Object toInteger(Object self) {
+		return self;
+	}
+	
 	public Object toReal(Object self) {
 		try {
 			int a = (Integer)self;
@@ -184,6 +196,24 @@ public class IntegerLibrary extends AnyLibrary {
 			Integer b = (Integer)right;
 			return a>=b;
 		} catch(Exception e) {
+			return OclUndefined.INVALIDED;
+		}
+	}
+	
+	public Object minus(Object self) {
+		try {
+			Integer i = (Integer)self;
+			return -i;
+		} catch (Exception e) {
+			return OclUndefined.INVALIDED;
+		}
+	}
+	
+	public Object abs(Object self) {
+		try {
+			Double v = (Double)self;
+			return Math.abs(v);
+		} catch (Exception e) {
 			return OclUndefined.INVALIDED;
 		}
 	}

@@ -43,7 +43,7 @@ public class SetLibrary extends CollectionLibrary {
 	public Object union(Object self, Object right) {
 		try {
 			OclCollection result = super.createSameTypeCollection((Collection<?>) right);
-			result.setType((EObject) super.oclType(right));
+			//result.setType((EObject) super.oclType(right));
 			
 			result.addAll((Collection<?>) self);
 			result.addAll((Collection<?>) right);
@@ -73,7 +73,7 @@ public class SetLibrary extends CollectionLibrary {
 			Collection<?> col = (Collection<?>)self;
 			Collection<?> rightCol = (Collection<?>)right;
 			OclCollection result = super.createSameTypeCollection(col);
-			result.setType((EObject) super.oclType(right));
+			//result.setType((EObject) super.oclType(col));
 			
 			result.addAll((Collection<?>) self);
 			
@@ -91,7 +91,7 @@ public class SetLibrary extends CollectionLibrary {
 			Collection<?> col = (Collection<?>)self;
 			Collection<?> rightCol = (Collection<?>)right;
 			OclCollection result = super.createSameTypeCollection(col);
-			result.setType((EObject) super.oclType(self));
+			//result.setType((EObject) super.oclType(col));
 			
 			result.addAll((Collection<?>) self);
 			result.removeAll(rightCol);

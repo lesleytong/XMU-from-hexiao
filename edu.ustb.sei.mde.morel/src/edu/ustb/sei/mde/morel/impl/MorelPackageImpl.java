@@ -1198,6 +1198,15 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getVariableWithInit_InitExp() {
+		return (EReference)variableWithInitEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getObjectVariableWithInit() {
 		return objectVariableWithInitEClass;
 	}
@@ -1207,26 +1216,8 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getObjectVariableWithInit_InitExp() {
-		return (EReference)objectVariableWithInitEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getPrimitiveVariableWithInit() {
 		return primitiveVariableWithInitEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getPrimitiveVariableWithInit_InitExp() {
-		return (EReference)primitiveVariableWithInitEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -2004,12 +1995,11 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		createEReference(letExpEClass, LET_EXP__IN_EXP);
 
 		variableWithInitEClass = createEClass(VARIABLE_WITH_INIT);
+		createEReference(variableWithInitEClass, VARIABLE_WITH_INIT__INIT_EXP);
 
 		objectVariableWithInitEClass = createEClass(OBJECT_VARIABLE_WITH_INIT);
-		createEReference(objectVariableWithInitEClass, OBJECT_VARIABLE_WITH_INIT__INIT_EXP);
 
 		primitiveVariableWithInitEClass = createEClass(PRIMITIVE_VARIABLE_WITH_INIT);
-		createEReference(primitiveVariableWithInitEClass, PRIMITIVE_VARIABLE_WITH_INIT__INIT_EXP);
 
 		conditionExpEClass = createEClass(CONDITION_EXP);
 		createEReference(conditionExpEClass, CONDITION_EXP__CONDITION);
@@ -2297,12 +2287,11 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		initEReference(getLetExp_InExp(), this.getExpression(), null, "inExp", null, 1, 1, LetExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(variableWithInitEClass, VariableWithInit.class, "VariableWithInit", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getVariableWithInit_InitExp(), this.getExpression(), null, "initExp", null, 1, 1, VariableWithInit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(objectVariableWithInitEClass, ObjectVariableWithInit.class, "ObjectVariableWithInit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getObjectVariableWithInit_InitExp(), this.getExpression(), null, "initExp", null, 1, 1, ObjectVariableWithInit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(primitiveVariableWithInitEClass, PrimitiveVariableWithInit.class, "PrimitiveVariableWithInit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPrimitiveVariableWithInit_InitExp(), this.getExpression(), null, "initExp", null, 1, 1, PrimitiveVariableWithInit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(conditionExpEClass, ConditionExp.class, "ConditionExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getConditionExp_Condition(), this.getBooleanImpliesExp(), null, "condition", null, 1, 1, ConditionExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

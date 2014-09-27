@@ -17,6 +17,7 @@ Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: edu.ustb.sei.mde.emg,
  edu.ustb.sei.mde.emg.graph,
+ edu.ustb.sei.mde.emg.library,
  edu.ustb.sei.mde.emg.primitives,
  edu.ustb.sei.mde.emg.runtime,
  edu.ustb.sei.mde.emg.runtime.datatype,

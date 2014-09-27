@@ -20,7 +20,7 @@ import edu.ustb.sei.mde.morel.MorelFactory;
 import edu.ustb.sei.mde.morel.MorelPackage;
 import edu.ustb.sei.mde.morel.SequenceType;
 
-public class AnyLibrary extends Library {
+public class AnyLibrary extends ReflectiveLibrary {
 
 	public AnyLibrary(LibrarySpace librarySpace) {
 		super(librarySpace);
@@ -42,7 +42,7 @@ public class AnyLibrary extends Library {
 		case "oclType":
 			return oclType(self);
 		default:
-			throw new UnsupportedOperationException(operation);
+			return super.execute(operation, self, params);
 		}
 	}
 
@@ -62,7 +62,7 @@ public class AnyLibrary extends Library {
 		}
 	}
 	
-	private HashMap<EStructuralFeature, CollectionType> ecoreListType = new HashMap<EStructuralFeature, CollectionType>();
+	static private HashMap<EStructuralFeature, CollectionType> ecoreListType = new HashMap<EStructuralFeature, CollectionType>();
 	
 	public Object oclType(Object self) {
 		if(self==null) {
@@ -80,11 +80,11 @@ public class AnyLibrary extends Library {
 		} else if(self instanceof OclOrderedSet) {
 			return ((OclOrderedSet) self).getType();
 		} else if(self instanceof OclSet) {
-			return ((OclOrderedSet) self).getType();
+			return ((OclSet) self).getType();
 		} else if(self instanceof OclBag) {
-			return ((OclOrderedSet) self).getType();
+			return ((OclBag) self).getType();
 		} else if(self instanceof OclSequence) {
-			return ((OclOrderedSet) self).getType();
+			return ((OclSequence) self).getType();
 		} else if(self instanceof EcoreEList) {
 			EStructuralFeature feature = ((EcoreEList<?>) self).getEStructuralFeature();
 			CollectionType type = ecoreListType.get(feature);

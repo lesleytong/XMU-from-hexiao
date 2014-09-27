@@ -4,14 +4,10 @@ package edu.ustb.sei.mde.morel.impl;
 
 import edu.ustb.sei.mde.morel.CollectionType;
 import edu.ustb.sei.mde.morel.MorelPackage;
-import edu.ustb.sei.mde.morel.SetType;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.EDataTypeImpl;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 

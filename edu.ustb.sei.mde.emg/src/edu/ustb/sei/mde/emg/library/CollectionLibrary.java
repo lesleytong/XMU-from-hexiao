@@ -64,6 +64,8 @@ public abstract class CollectionLibrary extends AnyLibrary {
 			return selectByType(self,params[0]);
 		case "flatten":
 			return flatten(self);
+		case "createNewCollection":
+			return this.createSameTypeCollection((Collection<?>) self);
 		default:
 			return super.execute(operation, self, params);
 		}
@@ -221,7 +223,7 @@ public abstract class CollectionLibrary extends AnyLibrary {
 			
 			result = createSameTypeCollection(col);
 			
-			result.setType((EObject) super.oclType(col));
+			//result.setType((EObject) super.oclType(col));
 			
 			EClassifier kind = (EClassifier)type;
 			
@@ -263,7 +265,7 @@ public abstract class CollectionLibrary extends AnyLibrary {
 			
 			result = createSameTypeCollection(col);
 			
-			result.setType((EObject) super.oclType(col));
+			//result.setType((EObject) super.oclType(col));
 			
 			EClassifier kind = (EClassifier)type;
 			
@@ -308,7 +310,7 @@ public abstract class CollectionLibrary extends AnyLibrary {
 		}
 	}
 	
-	private CollectionType createFlattenType(CollectionType type) {
+	static public CollectionType createFlattenType(CollectionType type) {
 		CollectionType result = null;
 		if(type instanceof SetType)
 			result = MorelFactory.eINSTANCE.createSetType();
@@ -333,7 +335,7 @@ public abstract class CollectionLibrary extends AnyLibrary {
 			Collection<?> col = (Collection<?>)self;
 			OclCollection result = null;
 			result = createSameTypeCollection(col);
-			result.setType((EObject) super.oclType(col));
+			//result.setType((EObject) super.oclType(col));
 			result.addAll(col);
 			result.add(obj);
 			return result;
@@ -347,7 +349,7 @@ public abstract class CollectionLibrary extends AnyLibrary {
 			Collection<?> col = (Collection<?>)self;
 			OclCollection result = null;
 			result = createSameTypeCollection(col);
-			result.setType((EObject) super.oclType(col));
+			//result.setType((EObject) super.oclType(col));
 			
 			result.addAll(col);
 			
@@ -363,7 +365,7 @@ public abstract class CollectionLibrary extends AnyLibrary {
 			Collection<?> col = (Collection<?>)self;
 			OclCollection result = null;
 			result = createSameTypeCollection(col);
-			result.setType((EObject) super.oclType(col));
+			//result.setType((EObject) super.oclType(col));
 			result.add(obj);
 			result.addAll(col);
 			return result;
@@ -378,7 +380,7 @@ public abstract class CollectionLibrary extends AnyLibrary {
 			Integer i = (Integer)obj;
 			
 			result = createSameTypeCollection(col);
-			result.setType((EObject) super.oclType(col));
+			//result.setType((EObject) super.oclType(col));
 			result.addAll(col);
 			result.add(i,obj);
 			return result;
@@ -392,7 +394,7 @@ public abstract class CollectionLibrary extends AnyLibrary {
 			Integer e = (Integer)end;
 			List<?> col = (List<?>)self;
 			OclCollection result = createSameTypeCollection(col);
-			result.setType((EObject) super.oclType(col));
+			//result.setType((EObject) super.oclType(col));
 			for(int i = s-1; i<e; i++)
 				result.add(col.get(i));
 			return result;
@@ -438,7 +440,7 @@ public abstract class CollectionLibrary extends AnyLibrary {
 		try {
 			List<?> col = (List<?>)self;
 			OclCollection result = createSameTypeCollection(col);
-			result.setType((EObject) super.oclType(col));
+			//result.setType((EObject) super.oclType(col));
 			result.addAll(col);
 			Collections.reverse(result);
 			return result;

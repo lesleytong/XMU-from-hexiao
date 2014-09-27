@@ -6,6 +6,7 @@ import edu.ustb.sei.mde.morel.Expression;
 import edu.ustb.sei.mde.morel.MorelPackage;
 import edu.ustb.sei.mde.morel.ObjectVariableWithInit;
 
+import edu.ustb.sei.mde.morel.VariableWithInit;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -170,6 +171,38 @@ public class ObjectVariableWithInitImpl extends ObjectVariableImpl implements Ob
 				return initExp != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == VariableWithInit.class) {
+			switch (derivedFeatureID) {
+				case MorelPackage.OBJECT_VARIABLE_WITH_INIT__INIT_EXP: return MorelPackage.VARIABLE_WITH_INIT__INIT_EXP;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == VariableWithInit.class) {
+			switch (baseFeatureID) {
+				case MorelPackage.VARIABLE_WITH_INIT__INIT_EXP: return MorelPackage.OBJECT_VARIABLE_WITH_INIT__INIT_EXP;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 } //ObjectVariableWithInitImpl

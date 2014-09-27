@@ -13,22 +13,24 @@ public class BooleanLibrary extends AnyLibrary {
 
 	@Override
 	public boolean adaptFor(Object type) {
-		return type==EcorePackage.eINSTANCE.getEBoolean();
+		return type==EcorePackage.eINSTANCE.getEBooleanObject();
 	}
 
 	@Override
 	public Object execute(String operation, Object self, Object... params) {
 		switch(operation) {
 		case "or":
-			return or(self,params[0]);
+			return or(self,this.getLibrarySpace().execute("toBoolean", params[0]));
 		case "xor":
-			return xor(self,params[0]);
+			return xor(self,this.getLibrarySpace().execute("toBoolean", params[0]));
 		case "and":
-			return and(self,params[0]);
+			return and(self,this.getLibrarySpace().execute("toBoolean", params[0]));
 		case "implies":
-			return implies(self,params[0]);
+			return implies(self,this.getLibrarySpace().execute("toBoolean", params[0]));
 		case "not":
 			return not(self);
+		case "toBoolean":
+			return self;
 		default:
 			return super.execute(operation, self, params);
 		}

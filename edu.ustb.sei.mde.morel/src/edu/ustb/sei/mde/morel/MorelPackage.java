@@ -1571,13 +1571,22 @@ public interface MorelPackage extends EPackage {
 	int VARIABLE_WITH_INIT__NAME = VARIABLE__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Init Exp</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_WITH_INIT__INIT_EXP = VARIABLE_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Variable With Init</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_WITH_INIT_FEATURE_COUNT = VARIABLE_FEATURE_COUNT + 0;
+	int VARIABLE_WITH_INIT_FEATURE_COUNT = VARIABLE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Variable With Init</em>' class.
@@ -4033,6 +4042,17 @@ public interface MorelPackage extends EPackage {
 	EClass getVariableWithInit();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.morel.VariableWithInit#getInitExp <em>Init Exp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Init Exp</em>'.
+	 * @see edu.ustb.sei.mde.morel.VariableWithInit#getInitExp()
+	 * @see #getVariableWithInit()
+	 * @generated
+	 */
+	EReference getVariableWithInit_InitExp();
+
+	/**
 	 * Returns the meta object for class '{@link edu.ustb.sei.mde.morel.ObjectVariableWithInit <em>Object Variable With Init</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4043,17 +4063,6 @@ public interface MorelPackage extends EPackage {
 	EClass getObjectVariableWithInit();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.morel.ObjectVariableWithInit#getInitExp <em>Init Exp</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Init Exp</em>'.
-	 * @see edu.ustb.sei.mde.morel.ObjectVariableWithInit#getInitExp()
-	 * @see #getObjectVariableWithInit()
-	 * @generated
-	 */
-	EReference getObjectVariableWithInit_InitExp();
-
-	/**
 	 * Returns the meta object for class '{@link edu.ustb.sei.mde.morel.PrimitiveVariableWithInit <em>Primitive Variable With Init</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4062,17 +4071,6 @@ public interface MorelPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getPrimitiveVariableWithInit();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.morel.PrimitiveVariableWithInit#getInitExp <em>Init Exp</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Init Exp</em>'.
-	 * @see edu.ustb.sei.mde.morel.PrimitiveVariableWithInit#getInitExp()
-	 * @see #getPrimitiveVariableWithInit()
-	 * @generated
-	 */
-	EReference getPrimitiveVariableWithInit_InitExp();
 
 	/**
 	 * Returns the meta object for class '{@link edu.ustb.sei.mde.morel.ConditionExp <em>Condition Exp</em>}'.
@@ -5423,6 +5421,14 @@ public interface MorelPackage extends EPackage {
 		EClass VARIABLE_WITH_INIT = eINSTANCE.getVariableWithInit();
 
 		/**
+		 * The meta object literal for the '<em><b>Init Exp</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VARIABLE_WITH_INIT__INIT_EXP = eINSTANCE.getVariableWithInit_InitExp();
+
+		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.impl.ObjectVariableWithInitImpl <em>Object Variable With Init</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -5433,14 +5439,6 @@ public interface MorelPackage extends EPackage {
 		EClass OBJECT_VARIABLE_WITH_INIT = eINSTANCE.getObjectVariableWithInit();
 
 		/**
-		 * The meta object literal for the '<em><b>Init Exp</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference OBJECT_VARIABLE_WITH_INIT__INIT_EXP = eINSTANCE.getObjectVariableWithInit_InitExp();
-
-		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.impl.PrimitiveVariableWithInitImpl <em>Primitive Variable With Init</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -5449,14 +5447,6 @@ public interface MorelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass PRIMITIVE_VARIABLE_WITH_INIT = eINSTANCE.getPrimitiveVariableWithInit();
-
-		/**
-		 * The meta object literal for the '<em><b>Init Exp</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PRIMITIVE_VARIABLE_WITH_INIT__INIT_EXP = eINSTANCE.getPrimitiveVariableWithInit_InitExp();
 
 		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.impl.ConditionExpImpl <em>Condition Exp</em>}' class.
