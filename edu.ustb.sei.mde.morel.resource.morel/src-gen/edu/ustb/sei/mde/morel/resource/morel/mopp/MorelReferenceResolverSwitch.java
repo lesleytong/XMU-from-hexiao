@@ -21,6 +21,7 @@ public class MorelReferenceResolverSwitch implements edu.ustb.sei.mde.morel.reso
 	protected edu.ustb.sei.mde.morel.resource.morel.analysis.LinkConstraintReferenceReferenceResolver linkConstraintReferenceReferenceResolver = new edu.ustb.sei.mde.morel.resource.morel.analysis.LinkConstraintReferenceReferenceResolver();
 	protected edu.ustb.sei.mde.morel.resource.morel.analysis.LinkConstraintTargetReferenceResolver linkConstraintTargetReferenceResolver = new edu.ustb.sei.mde.morel.resource.morel.analysis.LinkConstraintTargetReferenceResolver();
 	protected edu.ustb.sei.mde.morel.resource.morel.analysis.VariableExpReferredVariableReferenceResolver variableExpReferredVariableReferenceResolver = new edu.ustb.sei.mde.morel.resource.morel.analysis.VariableExpReferredVariableReferenceResolver();
+	protected edu.ustb.sei.mde.morel.resource.morel.analysis.TypeLiteralExpValueReferenceResolver typeLiteralExpValueReferenceResolver = new edu.ustb.sei.mde.morel.resource.morel.analysis.TypeLiteralExpValueReferenceResolver();
 	
 	public edu.ustb.sei.mde.morel.resource.morel.IMorelReferenceResolver<edu.ustb.sei.mde.morel.TypedModel, org.eclipse.emf.ecore.EPackage> getTypedModelPackageReferenceResolver() {
 		return getResolverChain(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getTypedModel_Package(), typedModelPackageReferenceResolver);
@@ -54,6 +55,10 @@ public class MorelReferenceResolverSwitch implements edu.ustb.sei.mde.morel.reso
 		return getResolverChain(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getVariableExp_ReferredVariable(), variableExpReferredVariableReferenceResolver);
 	}
 	
+	public edu.ustb.sei.mde.morel.resource.morel.IMorelReferenceResolver<edu.ustb.sei.mde.morel.TypeLiteralExp, org.eclipse.emf.ecore.EClassifier> getTypeLiteralExpValueReferenceResolver() {
+		return getResolverChain(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getTypeLiteralExp_Value(), typeLiteralExpValueReferenceResolver);
+	}
+	
 	public void setOptions(java.util.Map<?, ?> options) {
 		if (options != null) {
 			this.options = new java.util.LinkedHashMap<Object, Object>();
@@ -67,6 +72,7 @@ public class MorelReferenceResolverSwitch implements edu.ustb.sei.mde.morel.reso
 		linkConstraintReferenceReferenceResolver.setOptions(options);
 		linkConstraintTargetReferenceResolver.setOptions(options);
 		variableExpReferredVariableReferenceResolver.setOptions(options);
+		typeLiteralExpValueReferenceResolver.setOptions(options);
 	}
 	
 	public void resolveFuzzy(String identifier, org.eclipse.emf.ecore.EObject container, org.eclipse.emf.ecore.EReference reference, int position, edu.ustb.sei.mde.morel.resource.morel.IMorelReferenceResolveResult<org.eclipse.emf.ecore.EObject> result) {
@@ -137,6 +143,14 @@ public class MorelReferenceResolverSwitch implements edu.ustb.sei.mde.morel.reso
 				variableExpReferredVariableReferenceResolver.resolve(identifier, (edu.ustb.sei.mde.morel.VariableExp) container, (org.eclipse.emf.ecore.EReference) feature, position, true, frr);
 			}
 		}
+		if (edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getTypeLiteralExp().isInstance(container)) {
+			MorelFuzzyResolveResult<org.eclipse.emf.ecore.EClassifier> frr = new MorelFuzzyResolveResult<org.eclipse.emf.ecore.EClassifier>(result);
+			String referenceName = reference.getName();
+			org.eclipse.emf.ecore.EStructuralFeature feature = container.eClass().getEStructuralFeature(referenceName);
+			if (feature != null && feature instanceof org.eclipse.emf.ecore.EReference && referenceName != null && referenceName.equals("value")) {
+				typeLiteralExpValueReferenceResolver.resolve(identifier, (edu.ustb.sei.mde.morel.TypeLiteralExp) container, (org.eclipse.emf.ecore.EReference) feature, position, true, frr);
+			}
+		}
 	}
 	
 	public edu.ustb.sei.mde.morel.resource.morel.IMorelReferenceResolver<? extends org.eclipse.emf.ecore.EObject, ? extends org.eclipse.emf.ecore.EObject> getResolver(org.eclipse.emf.ecore.EStructuralFeature reference) {
@@ -163,6 +177,9 @@ public class MorelReferenceResolverSwitch implements edu.ustb.sei.mde.morel.reso
 		}
 		if (reference == edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getVariableExp_ReferredVariable()) {
 			return getResolverChain(reference, variableExpReferredVariableReferenceResolver);
+		}
+		if (reference == edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getTypeLiteralExp_Value()) {
+			return getResolverChain(reference, typeLiteralExpValueReferenceResolver);
 		}
 		return null;
 	}

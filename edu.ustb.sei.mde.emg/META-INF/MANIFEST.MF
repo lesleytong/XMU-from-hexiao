@@ -3,22 +3,20 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.ustb.sei.mde.emg;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-ClassPath: .,
- choco-solver-3.2.0-jar-with-dependencies.jar
+Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-Activator: edu.ustb.sei.mde.emg.Activator
 Require-Bundle: org.eclipse.core.runtime,
  edu.ustb.sei.commonutil;bundle-version="1.0.0",
- org.eclipse.emf.ecore;bundle-version="2.9.2",
+ org.eclipse.emf.ecore;bundle-version="2.9.2";visibility:=reexport,
  org.eclipse.emf.ecore.xmi;bundle-version="2.9.1",
- edu.ustb.sei.mde.morel;bundle-version="1.0.0"
+ edu.ustb.sei.mde.morel;bundle-version="1.0.0";visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: edu.ustb.sei.mde.emg,
  edu.ustb.sei.mde.emg.graph,
  edu.ustb.sei.mde.emg.library,
- edu.ustb.sei.mde.emg.primitives,
  edu.ustb.sei.mde.emg.runtime,
  edu.ustb.sei.mde.emg.runtime.datatype,
  edu.ustb.sei.mde.emg.runtime.impl,

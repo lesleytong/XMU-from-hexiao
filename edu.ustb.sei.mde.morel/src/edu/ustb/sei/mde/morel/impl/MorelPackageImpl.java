@@ -64,10 +64,13 @@ import edu.ustb.sei.mde.morel.SetType;
 import edu.ustb.sei.mde.morel.Statement;
 import edu.ustb.sei.mde.morel.StringLiteralExp;
 import edu.ustb.sei.mde.morel.TransformationModel;
+import edu.ustb.sei.mde.morel.TypeLiteralExp;
 import edu.ustb.sei.mde.morel.TypedModel;
 import edu.ustb.sei.mde.morel.UnaryExp;
 import edu.ustb.sei.mde.morel.UnaryExpChild;
 import edu.ustb.sei.mde.morel.UnaryOperator;
+import edu.ustb.sei.mde.morel.UndefinedLiteral;
+import edu.ustb.sei.mde.morel.UndefinedLiteralExp;
 import edu.ustb.sei.mde.morel.Unit;
 import edu.ustb.sei.mde.morel.Variable;
 import edu.ustb.sei.mde.morel.VariableExp;
@@ -221,6 +224,20 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 * @generated
 	 */
 	private EClass booleanLiteralExpEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass undefinedLiteralExpEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass typeLiteralExpEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -515,6 +532,13 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 * @generated
 	 */
 	private EEnum sectionTypeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum undefinedLiteralEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1000,6 +1024,42 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getUndefinedLiteralExp() {
+		return undefinedLiteralExpEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getUndefinedLiteralExp_Value() {
+		return (EAttribute)undefinedLiteralExpEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getTypeLiteralExp() {
+		return typeLiteralExpEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTypeLiteralExp_Value() {
+		return (EReference)typeLiteralExpEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getVariableExp() {
 		return variableExpEClass;
 	}
@@ -1315,7 +1375,7 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getBooleanOrExp_Left() {
+	public EReference getBooleanOrExp_Children() {
 		return (EReference)booleanOrExpEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1324,17 +1384,8 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getBooleanOrExp_Right() {
-		return (EReference)booleanOrExpEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getBooleanOrExp_Operator() {
-		return (EAttribute)booleanOrExpEClass.getEStructuralFeatures().get(2);
+	public EAttribute getBooleanOrExp_Operators() {
+		return (EAttribute)booleanOrExpEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1360,7 +1411,7 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getBooleanAndExp_Left() {
+	public EReference getBooleanAndExp_Children() {
 		return (EReference)booleanAndExpEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1369,17 +1420,8 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getBooleanAndExp_Right() {
-		return (EReference)booleanAndExpEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getBooleanAndExp_Operator() {
-		return (EAttribute)booleanAndExpEClass.getEStructuralFeatures().get(2);
+	public EAttribute getBooleanAndExp_Operators() {
+		return (EAttribute)booleanAndExpEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1819,6 +1861,15 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EEnum getUndefinedLiteral() {
+		return undefinedLiteralEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getOperationSeparator() {
 		return operationSeparatorEEnum;
 	}
@@ -1965,6 +2016,12 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		booleanLiteralExpEClass = createEClass(BOOLEAN_LITERAL_EXP);
 		createEAttribute(booleanLiteralExpEClass, BOOLEAN_LITERAL_EXP__BOOL_SYMBOL);
 
+		undefinedLiteralExpEClass = createEClass(UNDEFINED_LITERAL_EXP);
+		createEAttribute(undefinedLiteralExpEClass, UNDEFINED_LITERAL_EXP__VALUE);
+
+		typeLiteralExpEClass = createEClass(TYPE_LITERAL_EXP);
+		createEReference(typeLiteralExpEClass, TYPE_LITERAL_EXP__VALUE);
+
 		variableExpEClass = createEClass(VARIABLE_EXP);
 		createEReference(variableExpEClass, VARIABLE_EXP__REFERRED_VARIABLE);
 
@@ -2014,16 +2071,14 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		booleanImpliesExpChildEClass = createEClass(BOOLEAN_IMPLIES_EXP_CHILD);
 
 		booleanOrExpEClass = createEClass(BOOLEAN_OR_EXP);
-		createEReference(booleanOrExpEClass, BOOLEAN_OR_EXP__LEFT);
-		createEReference(booleanOrExpEClass, BOOLEAN_OR_EXP__RIGHT);
-		createEAttribute(booleanOrExpEClass, BOOLEAN_OR_EXP__OPERATOR);
+		createEReference(booleanOrExpEClass, BOOLEAN_OR_EXP__CHILDREN);
+		createEAttribute(booleanOrExpEClass, BOOLEAN_OR_EXP__OPERATORS);
 
 		booleanOrExpChildEClass = createEClass(BOOLEAN_OR_EXP_CHILD);
 
 		booleanAndExpEClass = createEClass(BOOLEAN_AND_EXP);
-		createEReference(booleanAndExpEClass, BOOLEAN_AND_EXP__LEFT);
-		createEReference(booleanAndExpEClass, BOOLEAN_AND_EXP__RIGHT);
-		createEAttribute(booleanAndExpEClass, BOOLEAN_AND_EXP__OPERATOR);
+		createEReference(booleanAndExpEClass, BOOLEAN_AND_EXP__CHILDREN);
+		createEAttribute(booleanAndExpEClass, BOOLEAN_AND_EXP__OPERATORS);
 
 		booleanAndExpChildEClass = createEClass(BOOLEAN_AND_EXP_CHILD);
 
@@ -2098,6 +2153,7 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 
 		// Create enums
 		sectionTypeEEnum = createEEnum(SECTION_TYPE);
+		undefinedLiteralEEnum = createEEnum(UNDEFINED_LITERAL);
 		operationSeparatorEEnum = createEEnum(OPERATION_SEPARATOR);
 		iteratorTypeEEnum = createEEnum(ITERATOR_TYPE);
 		booleanOperatorEEnum = createEEnum(BOOLEAN_OPERATOR);
@@ -2150,6 +2206,8 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		integerLiteralExpEClass.getESuperTypes().add(this.getLiteralExp());
 		realLiteralExpEClass.getESuperTypes().add(this.getLiteralExp());
 		booleanLiteralExpEClass.getESuperTypes().add(this.getLiteralExp());
+		undefinedLiteralExpEClass.getESuperTypes().add(this.getLiteralExp());
+		typeLiteralExpEClass.getESuperTypes().add(this.getLiteralExp());
 		variableExpEClass.getESuperTypes().add(this.getAtomicExp());
 		nestedExpEClass.getESuperTypes().add(this.getAtomicExp());
 		featurePathExpEClass.getESuperTypes().add(this.getCallPathExp());
@@ -2257,6 +2315,12 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		initEClass(booleanLiteralExpEClass, BooleanLiteralExp.class, "BooleanLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getBooleanLiteralExp_BoolSymbol(), ecorePackage.getEBoolean(), "boolSymbol", null, 1, 1, BooleanLiteralExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(undefinedLiteralExpEClass, UndefinedLiteralExp.class, "UndefinedLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getUndefinedLiteralExp_Value(), this.getUndefinedLiteral(), "value", null, 1, 1, UndefinedLiteralExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(typeLiteralExpEClass, TypeLiteralExp.class, "TypeLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getTypeLiteralExp_Value(), ecorePackage.getEClassifier(), null, "value", null, 1, 1, TypeLiteralExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(variableExpEClass, VariableExp.class, "VariableExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getVariableExp_ReferredVariable(), this.getVariable(), null, "referredVariable", null, 1, 1, VariableExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -2306,16 +2370,14 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		initEClass(booleanImpliesExpChildEClass, BooleanImpliesExpChild.class, "BooleanImpliesExpChild", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(booleanOrExpEClass, BooleanOrExp.class, "BooleanOrExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getBooleanOrExp_Left(), this.getBooleanOrExpChild(), null, "left", null, 1, 1, BooleanOrExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getBooleanOrExp_Right(), this.getBooleanOrExpChild(), null, "right", null, 0, 1, BooleanOrExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBooleanOrExp_Operator(), this.getBooleanOperator(), "operator", null, 0, 1, BooleanOrExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBooleanOrExp_Children(), this.getBooleanOrExpChild(), null, "children", null, 1, -1, BooleanOrExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBooleanOrExp_Operators(), this.getBooleanOperator(), "operators", null, 0, -1, BooleanOrExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(booleanOrExpChildEClass, BooleanOrExpChild.class, "BooleanOrExpChild", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(booleanAndExpEClass, BooleanAndExp.class, "BooleanAndExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getBooleanAndExp_Left(), this.getBooleanAndExpChild(), null, "left", null, 1, 1, BooleanAndExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getBooleanAndExp_Right(), this.getBooleanAndExpChild(), null, "right", null, 0, 1, BooleanAndExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBooleanAndExp_Operator(), this.getBooleanOperator(), "operator", null, 0, 1, BooleanAndExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBooleanAndExp_Children(), this.getBooleanAndExpChild(), null, "children", null, 1, -1, BooleanAndExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBooleanAndExp_Operators(), this.getBooleanOperator(), "operators", null, 0, -1, BooleanAndExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(booleanAndExpChildEClass, BooleanAndExpChild.class, "BooleanAndExpChild", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -2396,6 +2458,10 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		addEEnumLiteral(sectionTypeEEnum, SectionType.PAC);
 		addEEnumLiteral(sectionTypeEEnum, SectionType.PRE);
 		addEEnumLiteral(sectionTypeEEnum, SectionType.POST);
+
+		initEEnum(undefinedLiteralEEnum, UndefinedLiteral.class, "UndefinedLiteral");
+		addEEnumLiteral(undefinedLiteralEEnum, UndefinedLiteral.NULL);
+		addEEnumLiteral(undefinedLiteralEEnum, UndefinedLiteral.INVALID);
 
 		initEEnum(operationSeparatorEEnum, OperationSeparator.class, "OperationSeparator");
 		addEEnumLiteral(operationSeparatorEEnum, OperationSeparator.DOT);

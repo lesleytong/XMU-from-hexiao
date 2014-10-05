@@ -6,14 +6,14 @@ import edu.ustb.sei.mde.morel.BooleanAndExp;
 import edu.ustb.sei.mde.morel.BooleanAndExpChild;
 import edu.ustb.sei.mde.morel.BooleanOperator;
 import edu.ustb.sei.mde.morel.MorelPackage;
-
-import org.eclipse.emf.common.notify.Notification;
+import java.util.Collection;
 import org.eclipse.emf.common.notify.NotificationChain;
-
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,9 +22,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link edu.ustb.sei.mde.morel.impl.BooleanAndExpImpl#getLeft <em>Left</em>}</li>
- *   <li>{@link edu.ustb.sei.mde.morel.impl.BooleanAndExpImpl#getRight <em>Right</em>}</li>
- *   <li>{@link edu.ustb.sei.mde.morel.impl.BooleanAndExpImpl#getOperator <em>Operator</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.morel.impl.BooleanAndExpImpl#getChildren <em>Children</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.morel.impl.BooleanAndExpImpl#getOperators <em>Operators</em>}</li>
  * </ul>
  * </p>
  *
@@ -32,44 +31,24 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class BooleanAndExpImpl extends BooleanOrExpChildImpl implements BooleanAndExp {
 	/**
-	 * The cached value of the '{@link #getLeft() <em>Left</em>}' containment reference.
+	 * The cached value of the '{@link #getChildren() <em>Children</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getLeft()
+	 * @see #getChildren()
 	 * @generated
 	 * @ordered
 	 */
-	protected BooleanAndExpChild left;
+	protected EList<BooleanAndExpChild> children;
 
 	/**
-	 * The cached value of the '{@link #getRight() <em>Right</em>}' containment reference.
+	 * The cached value of the '{@link #getOperators() <em>Operators</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getRight()
+	 * @see #getOperators()
 	 * @generated
 	 * @ordered
 	 */
-	protected BooleanAndExpChild right;
-
-	/**
-	 * The default value of the '{@link #getOperator() <em>Operator</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOperator()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final BooleanOperator OPERATOR_EDEFAULT = BooleanOperator.AND;
-
-	/**
-	 * The cached value of the '{@link #getOperator() <em>Operator</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOperator()
-	 * @generated
-	 * @ordered
-	 */
-	protected BooleanOperator operator = OPERATOR_EDEFAULT;
+	protected EList<BooleanOperator> operators;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -95,23 +74,11 @@ public class BooleanAndExpImpl extends BooleanOrExpChildImpl implements BooleanA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BooleanAndExpChild getLeft() {
-		return left;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetLeft(BooleanAndExpChild newLeft, NotificationChain msgs) {
-		BooleanAndExpChild oldLeft = left;
-		left = newLeft;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MorelPackage.BOOLEAN_AND_EXP__LEFT, oldLeft, newLeft);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+	public EList<BooleanAndExpChild> getChildren() {
+		if (children == null) {
+			children = new EObjectContainmentEList<BooleanAndExpChild>(BooleanAndExpChild.class, this, MorelPackage.BOOLEAN_AND_EXP__CHILDREN);
 		}
-		return msgs;
+		return children;
 	}
 
 	/**
@@ -119,82 +86,11 @@ public class BooleanAndExpImpl extends BooleanOrExpChildImpl implements BooleanA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLeft(BooleanAndExpChild newLeft) {
-		if (newLeft != left) {
-			NotificationChain msgs = null;
-			if (left != null)
-				msgs = ((InternalEObject)left).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MorelPackage.BOOLEAN_AND_EXP__LEFT, null, msgs);
-			if (newLeft != null)
-				msgs = ((InternalEObject)newLeft).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MorelPackage.BOOLEAN_AND_EXP__LEFT, null, msgs);
-			msgs = basicSetLeft(newLeft, msgs);
-			if (msgs != null) msgs.dispatch();
+	public EList<BooleanOperator> getOperators() {
+		if (operators == null) {
+			operators = new EDataTypeUniqueEList<BooleanOperator>(BooleanOperator.class, this, MorelPackage.BOOLEAN_AND_EXP__OPERATORS);
 		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MorelPackage.BOOLEAN_AND_EXP__LEFT, newLeft, newLeft));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public BooleanAndExpChild getRight() {
-		return right;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetRight(BooleanAndExpChild newRight, NotificationChain msgs) {
-		BooleanAndExpChild oldRight = right;
-		right = newRight;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MorelPackage.BOOLEAN_AND_EXP__RIGHT, oldRight, newRight);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setRight(BooleanAndExpChild newRight) {
-		if (newRight != right) {
-			NotificationChain msgs = null;
-			if (right != null)
-				msgs = ((InternalEObject)right).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MorelPackage.BOOLEAN_AND_EXP__RIGHT, null, msgs);
-			if (newRight != null)
-				msgs = ((InternalEObject)newRight).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MorelPackage.BOOLEAN_AND_EXP__RIGHT, null, msgs);
-			msgs = basicSetRight(newRight, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MorelPackage.BOOLEAN_AND_EXP__RIGHT, newRight, newRight));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public BooleanOperator getOperator() {
-		return operator;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOperator(BooleanOperator newOperator) {
-		BooleanOperator oldOperator = operator;
-		operator = newOperator == null ? OPERATOR_EDEFAULT : newOperator;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MorelPackage.BOOLEAN_AND_EXP__OPERATOR, oldOperator, operator));
+		return operators;
 	}
 
 	/**
@@ -205,10 +101,8 @@ public class BooleanAndExpImpl extends BooleanOrExpChildImpl implements BooleanA
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MorelPackage.BOOLEAN_AND_EXP__LEFT:
-				return basicSetLeft(null, msgs);
-			case MorelPackage.BOOLEAN_AND_EXP__RIGHT:
-				return basicSetRight(null, msgs);
+			case MorelPackage.BOOLEAN_AND_EXP__CHILDREN:
+				return ((InternalEList<?>)getChildren()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -221,12 +115,10 @@ public class BooleanAndExpImpl extends BooleanOrExpChildImpl implements BooleanA
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MorelPackage.BOOLEAN_AND_EXP__LEFT:
-				return getLeft();
-			case MorelPackage.BOOLEAN_AND_EXP__RIGHT:
-				return getRight();
-			case MorelPackage.BOOLEAN_AND_EXP__OPERATOR:
-				return getOperator();
+			case MorelPackage.BOOLEAN_AND_EXP__CHILDREN:
+				return getChildren();
+			case MorelPackage.BOOLEAN_AND_EXP__OPERATORS:
+				return getOperators();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -236,17 +128,17 @@ public class BooleanAndExpImpl extends BooleanOrExpChildImpl implements BooleanA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MorelPackage.BOOLEAN_AND_EXP__LEFT:
-				setLeft((BooleanAndExpChild)newValue);
+			case MorelPackage.BOOLEAN_AND_EXP__CHILDREN:
+				getChildren().clear();
+				getChildren().addAll((Collection<? extends BooleanAndExpChild>)newValue);
 				return;
-			case MorelPackage.BOOLEAN_AND_EXP__RIGHT:
-				setRight((BooleanAndExpChild)newValue);
-				return;
-			case MorelPackage.BOOLEAN_AND_EXP__OPERATOR:
-				setOperator((BooleanOperator)newValue);
+			case MorelPackage.BOOLEAN_AND_EXP__OPERATORS:
+				getOperators().clear();
+				getOperators().addAll((Collection<? extends BooleanOperator>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -260,14 +152,11 @@ public class BooleanAndExpImpl extends BooleanOrExpChildImpl implements BooleanA
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MorelPackage.BOOLEAN_AND_EXP__LEFT:
-				setLeft((BooleanAndExpChild)null);
+			case MorelPackage.BOOLEAN_AND_EXP__CHILDREN:
+				getChildren().clear();
 				return;
-			case MorelPackage.BOOLEAN_AND_EXP__RIGHT:
-				setRight((BooleanAndExpChild)null);
-				return;
-			case MorelPackage.BOOLEAN_AND_EXP__OPERATOR:
-				setOperator(OPERATOR_EDEFAULT);
+			case MorelPackage.BOOLEAN_AND_EXP__OPERATORS:
+				getOperators().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -281,12 +170,10 @@ public class BooleanAndExpImpl extends BooleanOrExpChildImpl implements BooleanA
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MorelPackage.BOOLEAN_AND_EXP__LEFT:
-				return left != null;
-			case MorelPackage.BOOLEAN_AND_EXP__RIGHT:
-				return right != null;
-			case MorelPackage.BOOLEAN_AND_EXP__OPERATOR:
-				return operator != OPERATOR_EDEFAULT;
+			case MorelPackage.BOOLEAN_AND_EXP__CHILDREN:
+				return children != null && !children.isEmpty();
+			case MorelPackage.BOOLEAN_AND_EXP__OPERATORS:
+				return operators != null && !operators.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -301,8 +188,8 @@ public class BooleanAndExpImpl extends BooleanOrExpChildImpl implements BooleanA
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (operator: ");
-		result.append(operator);
+		result.append(" (operators: ");
+		result.append(operators);
 		result.append(')');
 		return result.toString();
 	}

@@ -130,6 +130,24 @@ public interface MorelFactory extends EFactory {
 	BooleanLiteralExp createBooleanLiteralExp();
 
 	/**
+	 * Returns a new object of class '<em>Undefined Literal Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Undefined Literal Exp</em>'.
+	 * @generated
+	 */
+	UndefinedLiteralExp createUndefinedLiteralExp();
+
+	/**
+	 * Returns a new object of class '<em>Type Literal Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Type Literal Exp</em>'.
+	 * @generated
+	 */
+	TypeLiteralExp createTypeLiteralExp();
+
+	/**
 	 * Returns a new object of class '<em>Variable Exp</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

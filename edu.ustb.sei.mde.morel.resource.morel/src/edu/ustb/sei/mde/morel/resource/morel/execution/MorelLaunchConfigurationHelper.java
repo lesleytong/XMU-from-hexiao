@@ -14,7 +14,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import edu.ustb.sei.mde.emg.graph.ModelSpace;
-import edu.ustb.sei.mde.emg.primitives.Match;
 import edu.ustb.sei.mde.emg.runtime.Context;
 import edu.ustb.sei.mde.emg.runtime.Environment;
 import edu.ustb.sei.mde.emg.runtime.RuntimeFactory;
@@ -24,6 +23,7 @@ import edu.ustb.sei.mde.morel.QueryModel;
 import edu.ustb.sei.mde.morel.TransformationModel;
 import edu.ustb.sei.mde.morel.TypedModel;
 import edu.ustb.sei.mde.morel.Unit;
+import edu.ustb.sei.mde.morel.resource.morel.execution.primitives.Match;
 
 /**
  * A class that provides common methods that are required by launch configuration
@@ -56,12 +56,13 @@ public class MorelLaunchConfigurationHelper {
 		try {
 			if(root instanceof QueryModel) {
 				Query query = ((QueryModel) root).getQueries().get(0);
-				Match match = new Match();
+				//Match match = new Match();
 				Context init = env.createContext();
-				init.setHost(query);
-				init.initWithHost();
+				OclInterpreter interpreter = new OclInterpreter();
 				
-				List<Context> result = match.match(query, init, env);
+				@SuppressWarnings("unchecked")
+				List<Context> result = (List<Context>) interpreter.interprete_edu_ustb_sei_mde_morel_Query(query, init);
+				
 				for(Context c : result){
 					ConsoleUtil.printToConsole(c.toString(), MOREL_TITLE, true);
 				}

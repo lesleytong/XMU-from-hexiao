@@ -154,6 +154,18 @@ public class AbstractMorelInterpreter<ResultType, ContextType> {
 		if (result != null) {
 			return result;
 		}
+		if (object instanceof edu.ustb.sei.mde.morel.UndefinedLiteralExp) {
+			result = interprete_edu_ustb_sei_mde_morel_UndefinedLiteralExp((edu.ustb.sei.mde.morel.UndefinedLiteralExp) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
+		if (object instanceof edu.ustb.sei.mde.morel.TypeLiteralExp) {
+			result = interprete_edu_ustb_sei_mde_morel_TypeLiteralExp((edu.ustb.sei.mde.morel.TypeLiteralExp) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
 		if (object instanceof edu.ustb.sei.mde.morel.LiteralExp) {
 			result = interprete_edu_ustb_sei_mde_morel_LiteralExp((edu.ustb.sei.mde.morel.LiteralExp) object, context);
 		}
@@ -614,6 +626,14 @@ public class AbstractMorelInterpreter<ResultType, ContextType> {
 	}
 	
 	public ResultType interprete_edu_ustb_sei_mde_morel_BooleanLiteralExp(edu.ustb.sei.mde.morel.BooleanLiteralExp booleanLiteralExp, ContextType context) {
+		return null;
+	}
+	
+	public ResultType interprete_edu_ustb_sei_mde_morel_UndefinedLiteralExp(edu.ustb.sei.mde.morel.UndefinedLiteralExp undefinedLiteralExp, ContextType context) {
+		return null;
+	}
+	
+	public ResultType interprete_edu_ustb_sei_mde_morel_TypeLiteralExp(edu.ustb.sei.mde.morel.TypeLiteralExp typeLiteralExp, ContextType context) {
 		return null;
 	}
 	

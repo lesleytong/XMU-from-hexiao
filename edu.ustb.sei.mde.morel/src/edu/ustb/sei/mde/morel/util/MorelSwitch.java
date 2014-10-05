@@ -253,6 +253,38 @@ public class MorelSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MorelPackage.UNDEFINED_LITERAL_EXP: {
+				UndefinedLiteralExp undefinedLiteralExp = (UndefinedLiteralExp)theEObject;
+				T result = caseUndefinedLiteralExp(undefinedLiteralExp);
+				if (result == null) result = caseLiteralExp(undefinedLiteralExp);
+				if (result == null) result = caseAtomicExp(undefinedLiteralExp);
+				if (result == null) result = caseUnaryExpChild(undefinedLiteralExp);
+				if (result == null) result = caseMultiplicativeExpChild(undefinedLiteralExp);
+				if (result == null) result = caseAdditiveExpChild(undefinedLiteralExp);
+				if (result == null) result = caseRelationalExpChild(undefinedLiteralExp);
+				if (result == null) result = caseBooleanAndExpChild(undefinedLiteralExp);
+				if (result == null) result = caseBooleanOrExpChild(undefinedLiteralExp);
+				if (result == null) result = caseBooleanImpliesExpChild(undefinedLiteralExp);
+				if (result == null) result = caseExpression(undefinedLiteralExp);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MorelPackage.TYPE_LITERAL_EXP: {
+				TypeLiteralExp typeLiteralExp = (TypeLiteralExp)theEObject;
+				T result = caseTypeLiteralExp(typeLiteralExp);
+				if (result == null) result = caseLiteralExp(typeLiteralExp);
+				if (result == null) result = caseAtomicExp(typeLiteralExp);
+				if (result == null) result = caseUnaryExpChild(typeLiteralExp);
+				if (result == null) result = caseMultiplicativeExpChild(typeLiteralExp);
+				if (result == null) result = caseAdditiveExpChild(typeLiteralExp);
+				if (result == null) result = caseRelationalExpChild(typeLiteralExp);
+				if (result == null) result = caseBooleanAndExpChild(typeLiteralExp);
+				if (result == null) result = caseBooleanOrExpChild(typeLiteralExp);
+				if (result == null) result = caseBooleanImpliesExpChild(typeLiteralExp);
+				if (result == null) result = caseExpression(typeLiteralExp);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case MorelPackage.VARIABLE_EXP: {
 				VariableExp variableExp = (VariableExp)theEObject;
 				T result = caseVariableExp(variableExp);
@@ -915,6 +947,36 @@ public class MorelSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseBooleanLiteralExp(BooleanLiteralExp object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Undefined Literal Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Undefined Literal Exp</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseUndefinedLiteralExp(UndefinedLiteralExp object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Type Literal Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Type Literal Exp</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTypeLiteralExp(TypeLiteralExp object) {
 		return null;
 	}
 

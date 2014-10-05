@@ -16,6 +16,7 @@ OPTIONS {
 	overrideLaunchConfigurationDelegate ="false";
 	additionalDependencies = "edu.ustb.sei.mde.emg, org.eclipse.ui.console, edu.ustb.sei.mde.modeling,edu.ustb.sei.commonutil";
 	additionalExports = "edu.ustb.sei.mde.morel.resource.morel.execution";
+	additionalLibraries = "choco-solver-3.2.0-jar-with-dependencies.jar";
 }
 
 TOKENS {
@@ -26,7 +27,7 @@ TOKENS {
 	DEFINE FRAGMENT COLLECTION $('Sequence'|'Set'|'Bag'|'OrderedSet')$;
 
 	DEFINE FRAGMENT TYPE  $'String'|'Integer'|'Boolean'|'Real'|'Char'|'Any'$;
-
+	
 	DEFINE DATA_TYPE $($+COLLECTION+$'(')*($+TYPE+$)')'*|($+COLLECTION+$'(')+($+IDENTIFIER+$)')'+$;
 
     DEFINE IDENTIFIER $('a'..'z'|'A'..'Z'|'_')('a'..'z'|'A'..'Z'|'_'|'0'..'9')*$;
@@ -45,6 +46,8 @@ TOKENSTYLES {
 	"DATA_TYPE" COLOR #FF0000;
 	"true" COLOR #FF8000;
 	"false" COLOR #ff8000;
+	"null" COLOR #ff0000;
+	"invalid" COLOR #ff0000;
 	
 }
 
@@ -77,6 +80,10 @@ RULES {
 	StringLiteralExp ::= stringSymbol['\'','\'','\\'] (path)?;
 	
 	BooleanLiteralExp ::= boolSymbol["true":"false"] (path)?;
+	
+	UndefinedLiteralExp ::= value[NULL:"null", INVALID:"invalid"] (path)?;
+	
+	TypeLiteralExp ::= value[DATA_TYPE] (path)?;
 
 	FeaturePathExp ::= "." feature[IDENTIFIER] next?;
 	
@@ -88,11 +95,11 @@ RULES {
 	
 	ConditionExp ::= "if" condition "then" thenBranch "else" elseBranch "endif";
 	
-	BooleanImpliesExp ::= left:BooleanOrExp (operator[implies:"implies"] right:BooleanOrExp)? ;
+	BooleanImpliesExp ::= left:BooleanOrExp (operator[implies:"implies", implies:"=>"] right:BooleanOrExp)? ;
 	
-	BooleanOrExp ::= left:BooleanAndExp (operator[or:"or"] right:BooleanAndExp)? ;
+	BooleanOrExp ::= children:BooleanAndExp (operators[or:"or", or:"||"] children:BooleanAndExp)? ;
 	
-	BooleanAndExp ::= left:RelationalExp (operator[and:"and"] right:RelationalExp)?;
+	BooleanAndExp ::= children:RelationalExp (operators[and:"and", and:"&&"] children:RelationalExp)?;
 	
 	RelationalExp ::= left:AdditiveExp (operator[equal:"=", notEqual:"<>", notEqual:"!=", less:"<",lessOrEq:"<=",greater:">",greaterOrEq:">="] right:AdditiveExp)?;
 	
@@ -100,7 +107,7 @@ RULES {
 	
 	MultiplicativeExp ::= children (operators[multi : "*", div : "/"] children)*;
 	
-	UnaryExp ::= operator[plus : "+", minus : "-", not : "not"]? child:AtomicExp ;
+	UnaryExp ::= operator[plus : "+", minus : "-", not : "not", not:"!"]? child:AtomicExp ;
 	
 	BindExp ::= source "<-" valueExp:LetExp, ConditionExp, BooleanImpliesExp;
 	
@@ -118,4 +125,5 @@ RULES {
 	
 	Pattern ::= type[LHS : "lhs", RHS : "rhs", NAC : "nac", PAC : "pac", PRE : "pre", POST : "post", LHS : ""] "{" "match" ":" (variables ("," variables)* ";")?  (linkConstraints ("," linkConstraints)* ";")? ("when" ":" (statements)+)? "}";
 	
+
 }

@@ -1,4 +1,4 @@
-package edu.ustb.sei.mde.emg.primitives;
+package edu.ustb.sei.mde.morel.resource.morel.execution.primitives;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,10 @@ import edu.ustb.sei.mde.emg.runtime.datatype.OclUndefined;
 import edu.ustb.sei.mde.morel.LinkConstraint;
 import edu.ustb.sei.mde.morel.ObjectVariable;
 import edu.ustb.sei.mde.morel.Pattern;
+import edu.ustb.sei.mde.morel.Statement;
 import edu.ustb.sei.mde.morel.Variable;
+import edu.ustb.sei.mde.morel.resource.morel.execution.OclInterpreter;
+import edu.ustb.sei.mde.morel.resource.morel.util.AbstractMorelInterpreter;
 import solver.Solver;
 import solver.constraints.ICF;
 import solver.constraints.extension.Tuples;
@@ -60,7 +63,7 @@ public class Match {
 		return new Pair<BidirectionalMap<ObjectVariable, IntVar>,Solver>(varMap,solver);
 	}
 	
-	public List<Context> match(Pattern pattern, Context context, Environment env) {
+	public List<Context> match(Pattern pattern, Context context, OclInterpreter interpreter, Environment env) {
 		Pair<BidirectionalMap<ObjectVariable, IntVar>,Solver> pair = makeModel(pattern,context,env);
 		
 		boolean flag = pair.getSecond().findSolution();
@@ -80,12 +83,26 @@ public class Match {
 				}
 			}
 			
-			result.add(newContext);
+			
+			if(checkCondition(pattern,newContext,interpreter,false))
+				result.add(newContext);
 			
 			flag = pair.getSecond().nextSolution();
 		}
 		
 		return result;
+	}
+
+	private boolean checkCondition(Pattern pattern, Context newContext,OclInterpreter interpreter, boolean partial) {
+		for(Statement statement : pattern.getStatements()){
+			Object v = interpreter.interprete(statement, newContext);
+			if(partial==false) {
+				if(v!=Boolean.TRUE) return false;
+			} else {
+				if(v==Boolean.FALSE) return false;
+			}
+		}
+		return true;
 	}
 
 }

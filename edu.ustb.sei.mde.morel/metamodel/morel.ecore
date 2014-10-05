@@ -82,6 +82,16 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="boolSymbol" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UndefinedLiteralExp" eSuperTypes="#//LiteralExp">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="#//UndefinedLiteral"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="UndefinedLiteral">
+    <eLiterals name="NULL"/>
+    <eLiterals name="INVALID" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TypeLiteralExp" eSuperTypes="#//LiteralExp">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClassifier"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VariableExp" eSuperTypes="#//AtomicExp">
     <eStructuralFeatures xsi:type="ecore:EReference" name="referredVariable" lowerBound="1"
         eType="#//Variable"/>
@@ -158,19 +168,17 @@
   <eClassifiers xsi:type="ecore:EClass" name="BooleanImpliesExpChild" abstract="true"
       eSuperTypes="#//Expression"/>
   <eClassifiers xsi:type="ecore:EClass" name="BooleanOrExp" eSuperTypes="#//BooleanImpliesExpChild">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="left" lowerBound="1" eType="#//BooleanOrExpChild"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//BooleanOrExpChild"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="#//BooleanOperator"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="children" lowerBound="1"
+        upperBound="-1" eType="#//BooleanOrExpChild" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operators" upperBound="-1"
+        eType="#//BooleanOperator"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BooleanOrExpChild" abstract="true" eSuperTypes="#//BooleanImpliesExpChild"/>
   <eClassifiers xsi:type="ecore:EClass" name="BooleanAndExp" eSuperTypes="#//BooleanOrExpChild">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="left" lowerBound="1" eType="#//BooleanAndExpChild"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//BooleanAndExpChild"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="#//BooleanOperator"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="children" lowerBound="1"
+        upperBound="-1" eType="#//BooleanAndExpChild" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operators" upperBound="-1"
+        eType="#//BooleanOperator"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BooleanAndExpChild" abstract="true"
       eSuperTypes="#//BooleanOrExpChild"/>

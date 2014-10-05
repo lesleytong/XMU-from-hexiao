@@ -710,7 +710,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getBooleanImpliesExpChild()
 	 * @generated
 	 */
-	int BOOLEAN_IMPLIES_EXP_CHILD = 32;
+	int BOOLEAN_IMPLIES_EXP_CHILD = 34;
 
 	/**
 	 * The number of structural features of the '<em>Boolean Implies Exp Child</em>' class.
@@ -738,7 +738,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getBooleanOrExpChild()
 	 * @generated
 	 */
-	int BOOLEAN_OR_EXP_CHILD = 34;
+	int BOOLEAN_OR_EXP_CHILD = 36;
 
 	/**
 	 * The number of structural features of the '<em>Boolean Or Exp Child</em>' class.
@@ -766,7 +766,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getBooleanAndExpChild()
 	 * @generated
 	 */
-	int BOOLEAN_AND_EXP_CHILD = 36;
+	int BOOLEAN_AND_EXP_CHILD = 38;
 
 	/**
 	 * The number of structural features of the '<em>Boolean And Exp Child</em>' class.
@@ -794,7 +794,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getRelationalExpChild()
 	 * @generated
 	 */
-	int RELATIONAL_EXP_CHILD = 38;
+	int RELATIONAL_EXP_CHILD = 40;
 
 	/**
 	 * The number of structural features of the '<em>Relational Exp Child</em>' class.
@@ -822,7 +822,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getAdditiveExpChild()
 	 * @generated
 	 */
-	int ADDITIVE_EXP_CHILD = 40;
+	int ADDITIVE_EXP_CHILD = 42;
 
 	/**
 	 * The number of structural features of the '<em>Additive Exp Child</em>' class.
@@ -850,7 +850,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getMultiplicativeExpChild()
 	 * @generated
 	 */
-	int MULTIPLICATIVE_EXP_CHILD = 42;
+	int MULTIPLICATIVE_EXP_CHILD = 44;
 
 	/**
 	 * The number of structural features of the '<em>Multiplicative Exp Child</em>' class.
@@ -878,7 +878,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getUnaryExpChild()
 	 * @generated
 	 */
-	int UNARY_EXP_CHILD = 44;
+	int UNARY_EXP_CHILD = 46;
 
 	/**
 	 * The number of structural features of the '<em>Unary Exp Child</em>' class.
@@ -1157,6 +1157,98 @@ public interface MorelPackage extends EPackage {
 	int BOOLEAN_LITERAL_EXP_OPERATION_COUNT = LITERAL_EXP_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.impl.UndefinedLiteralExpImpl <em>Undefined Literal Exp</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.morel.impl.UndefinedLiteralExpImpl
+	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getUndefinedLiteralExp()
+	 * @generated
+	 */
+	int UNDEFINED_LITERAL_EXP = 19;
+
+	/**
+	 * The feature id for the '<em><b>Path</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNDEFINED_LITERAL_EXP__PATH = LITERAL_EXP__PATH;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNDEFINED_LITERAL_EXP__VALUE = LITERAL_EXP_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Undefined Literal Exp</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNDEFINED_LITERAL_EXP_FEATURE_COUNT = LITERAL_EXP_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Undefined Literal Exp</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNDEFINED_LITERAL_EXP_OPERATION_COUNT = LITERAL_EXP_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.impl.TypeLiteralExpImpl <em>Type Literal Exp</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.morel.impl.TypeLiteralExpImpl
+	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getTypeLiteralExp()
+	 * @generated
+	 */
+	int TYPE_LITERAL_EXP = 20;
+
+	/**
+	 * The feature id for the '<em><b>Path</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_LITERAL_EXP__PATH = LITERAL_EXP__PATH;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_LITERAL_EXP__VALUE = LITERAL_EXP_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Type Literal Exp</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_LITERAL_EXP_FEATURE_COUNT = LITERAL_EXP_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Type Literal Exp</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_LITERAL_EXP_OPERATION_COUNT = LITERAL_EXP_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.impl.VariableExpImpl <em>Variable Exp</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1164,7 +1256,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getVariableExp()
 	 * @generated
 	 */
-	int VARIABLE_EXP = 19;
+	int VARIABLE_EXP = 21;
 
 	/**
 	 * The feature id for the '<em><b>Path</b></em>' containment reference.
@@ -1210,7 +1302,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getNestedExp()
 	 * @generated
 	 */
-	int NESTED_EXP = 20;
+	int NESTED_EXP = 22;
 
 	/**
 	 * The feature id for the '<em><b>Path</b></em>' containment reference.
@@ -1256,7 +1348,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getCallPathExp()
 	 * @generated
 	 */
-	int CALL_PATH_EXP = 21;
+	int CALL_PATH_EXP = 23;
 
 	/**
 	 * The feature id for the '<em><b>Next</b></em>' containment reference.
@@ -1293,7 +1385,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getFeaturePathExp()
 	 * @generated
 	 */
-	int FEATURE_PATH_EXP = 22;
+	int FEATURE_PATH_EXP = 24;
 
 	/**
 	 * The feature id for the '<em><b>Next</b></em>' containment reference.
@@ -1339,7 +1431,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getOperationPathExp()
 	 * @generated
 	 */
-	int OPERATION_PATH_EXP = 23;
+	int OPERATION_PATH_EXP = 25;
 
 	/**
 	 * The feature id for the '<em><b>Next</b></em>' containment reference.
@@ -1403,7 +1495,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getLoopPathExp()
 	 * @generated
 	 */
-	int LOOP_PATH_EXP = 24;
+	int LOOP_PATH_EXP = 26;
 
 	/**
 	 * The feature id for the '<em><b>Next</b></em>' containment reference.
@@ -1440,7 +1532,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getIteratorPathExp()
 	 * @generated
 	 */
-	int ITERATOR_PATH_EXP = 25;
+	int ITERATOR_PATH_EXP = 27;
 
 	/**
 	 * The feature id for the '<em><b>Next</b></em>' containment reference.
@@ -1513,7 +1605,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getLetExp()
 	 * @generated
 	 */
-	int LET_EXP = 26;
+	int LET_EXP = 28;
 
 	/**
 	 * The feature id for the '<em><b>Variables</b></em>' containment reference list.
@@ -1559,7 +1651,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getVariableWithInit()
 	 * @generated
 	 */
-	int VARIABLE_WITH_INIT = 27;
+	int VARIABLE_WITH_INIT = 29;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1605,7 +1697,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getObjectVariableWithInit()
 	 * @generated
 	 */
-	int OBJECT_VARIABLE_WITH_INIT = 28;
+	int OBJECT_VARIABLE_WITH_INIT = 30;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1669,7 +1761,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getPrimitiveVariableWithInit()
 	 * @generated
 	 */
-	int PRIMITIVE_VARIABLE_WITH_INIT = 29;
+	int PRIMITIVE_VARIABLE_WITH_INIT = 31;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1724,7 +1816,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getConditionExp()
 	 * @generated
 	 */
-	int CONDITION_EXP = 30;
+	int CONDITION_EXP = 32;
 
 	/**
 	 * The feature id for the '<em><b>Condition</b></em>' containment reference.
@@ -1779,7 +1871,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getBooleanImpliesExp()
 	 * @generated
 	 */
-	int BOOLEAN_IMPLIES_EXP = 31;
+	int BOOLEAN_IMPLIES_EXP = 33;
 
 	/**
 	 * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1834,34 +1926,25 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getBooleanOrExp()
 	 * @generated
 	 */
-	int BOOLEAN_OR_EXP = 33;
+	int BOOLEAN_OR_EXP = 35;
 
 	/**
-	 * The feature id for the '<em><b>Left</b></em>' containment reference.
+	 * The feature id for the '<em><b>Children</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BOOLEAN_OR_EXP__LEFT = BOOLEAN_IMPLIES_EXP_CHILD_FEATURE_COUNT + 0;
+	int BOOLEAN_OR_EXP__CHILDREN = BOOLEAN_IMPLIES_EXP_CHILD_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Right</b></em>' containment reference.
+	 * The feature id for the '<em><b>Operators</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BOOLEAN_OR_EXP__RIGHT = BOOLEAN_IMPLIES_EXP_CHILD_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Operator</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOLEAN_OR_EXP__OPERATOR = BOOLEAN_IMPLIES_EXP_CHILD_FEATURE_COUNT + 2;
+	int BOOLEAN_OR_EXP__OPERATORS = BOOLEAN_IMPLIES_EXP_CHILD_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Boolean Or Exp</em>' class.
@@ -1870,7 +1953,7 @@ public interface MorelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOOLEAN_OR_EXP_FEATURE_COUNT = BOOLEAN_IMPLIES_EXP_CHILD_FEATURE_COUNT + 3;
+	int BOOLEAN_OR_EXP_FEATURE_COUNT = BOOLEAN_IMPLIES_EXP_CHILD_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Boolean Or Exp</em>' class.
@@ -1889,34 +1972,25 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getBooleanAndExp()
 	 * @generated
 	 */
-	int BOOLEAN_AND_EXP = 35;
+	int BOOLEAN_AND_EXP = 37;
 
 	/**
-	 * The feature id for the '<em><b>Left</b></em>' containment reference.
+	 * The feature id for the '<em><b>Children</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BOOLEAN_AND_EXP__LEFT = BOOLEAN_OR_EXP_CHILD_FEATURE_COUNT + 0;
+	int BOOLEAN_AND_EXP__CHILDREN = BOOLEAN_OR_EXP_CHILD_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Right</b></em>' containment reference.
+	 * The feature id for the '<em><b>Operators</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BOOLEAN_AND_EXP__RIGHT = BOOLEAN_OR_EXP_CHILD_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Operator</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOLEAN_AND_EXP__OPERATOR = BOOLEAN_OR_EXP_CHILD_FEATURE_COUNT + 2;
+	int BOOLEAN_AND_EXP__OPERATORS = BOOLEAN_OR_EXP_CHILD_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Boolean And Exp</em>' class.
@@ -1925,7 +1999,7 @@ public interface MorelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOOLEAN_AND_EXP_FEATURE_COUNT = BOOLEAN_OR_EXP_CHILD_FEATURE_COUNT + 3;
+	int BOOLEAN_AND_EXP_FEATURE_COUNT = BOOLEAN_OR_EXP_CHILD_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Boolean And Exp</em>' class.
@@ -1944,7 +2018,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getRelationalExp()
 	 * @generated
 	 */
-	int RELATIONAL_EXP = 37;
+	int RELATIONAL_EXP = 39;
 
 	/**
 	 * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1999,7 +2073,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getAdditiveExp()
 	 * @generated
 	 */
-	int ADDITIVE_EXP = 39;
+	int ADDITIVE_EXP = 41;
 
 	/**
 	 * The feature id for the '<em><b>Children</b></em>' containment reference list.
@@ -2045,7 +2119,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getMultiplicativeExp()
 	 * @generated
 	 */
-	int MULTIPLICATIVE_EXP = 41;
+	int MULTIPLICATIVE_EXP = 43;
 
 	/**
 	 * The feature id for the '<em><b>Children</b></em>' containment reference list.
@@ -2091,7 +2165,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getUnaryExp()
 	 * @generated
 	 */
-	int UNARY_EXP = 43;
+	int UNARY_EXP = 45;
 
 	/**
 	 * The feature id for the '<em><b>Operator</b></em>' attribute.
@@ -2137,7 +2211,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getCollectionType()
 	 * @generated
 	 */
-	int COLLECTION_TYPE = 45;
+	int COLLECTION_TYPE = 47;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -2282,7 +2356,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getOrderedSetType()
 	 * @generated
 	 */
-	int ORDERED_SET_TYPE = 46;
+	int ORDERED_SET_TYPE = 48;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -2427,7 +2501,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getSequenceType()
 	 * @generated
 	 */
-	int SEQUENCE_TYPE = 47;
+	int SEQUENCE_TYPE = 49;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -2572,7 +2646,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getSetType()
 	 * @generated
 	 */
-	int SET_TYPE = 48;
+	int SET_TYPE = 50;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -2717,7 +2791,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getBagType()
 	 * @generated
 	 */
-	int BAG_TYPE = 49;
+	int BAG_TYPE = 51;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -2862,7 +2936,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getImperativeExp()
 	 * @generated
 	 */
-	int IMPERATIVE_EXP = 50;
+	int IMPERATIVE_EXP = 52;
 
 	/**
 	 * The number of structural features of the '<em>Imperative Exp</em>' class.
@@ -2890,7 +2964,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getBindExp()
 	 * @generated
 	 */
-	int BIND_EXP = 51;
+	int BIND_EXP = 53;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' containment reference.
@@ -2936,7 +3010,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getStatement()
 	 * @generated
 	 */
-	int STATEMENT = 57;
+	int STATEMENT = 59;
 
 	/**
 	 * The number of structural features of the '<em>Statement</em>' class.
@@ -2964,7 +3038,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getImperativeStatement()
 	 * @generated
 	 */
-	int IMPERATIVE_STATEMENT = 59;
+	int IMPERATIVE_STATEMENT = 61;
 
 	/**
 	 * The number of structural features of the '<em>Imperative Statement</em>' class.
@@ -2992,7 +3066,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getIfStatement()
 	 * @generated
 	 */
-	int IF_STATEMENT = 52;
+	int IF_STATEMENT = 54;
 
 	/**
 	 * The feature id for the '<em><b>Condition</b></em>' containment reference.
@@ -3047,7 +3121,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getForStatement()
 	 * @generated
 	 */
-	int FOR_STATEMENT = 53;
+	int FOR_STATEMENT = 55;
 
 	/**
 	 * The feature id for the '<em><b>Iterator</b></em>' containment reference.
@@ -3111,7 +3185,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getBlockStatement()
 	 * @generated
 	 */
-	int BLOCK_STATEMENT = 54;
+	int BLOCK_STATEMENT = 56;
 
 	/**
 	 * The feature id for the '<em><b>Statements</b></em>' containment reference list.
@@ -3148,7 +3222,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getTransformationModel()
 	 * @generated
 	 */
-	int TRANSFORMATION_MODEL = 55;
+	int TRANSFORMATION_MODEL = 57;
 
 	/**
 	 * The feature id for the '<em><b>Models</b></em>' containment reference list.
@@ -3221,7 +3295,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getRule()
 	 * @generated
 	 */
-	int RULE = 56;
+	int RULE = 58;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3267,7 +3341,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getDeclarativeStatement()
 	 * @generated
 	 */
-	int DECLARATIVE_STATEMENT = 58;
+	int DECLARATIVE_STATEMENT = 60;
 
 	/**
 	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
@@ -3304,7 +3378,17 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getSectionType()
 	 * @generated
 	 */
-	int SECTION_TYPE = 60;
+	int SECTION_TYPE = 62;
+
+	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.UndefinedLiteral <em>Undefined Literal</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.morel.UndefinedLiteral
+	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getUndefinedLiteral()
+	 * @generated
+	 */
+	int UNDEFINED_LITERAL = 63;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.OperationSeparator <em>Operation Separator</em>}' enum.
@@ -3314,7 +3398,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getOperationSeparator()
 	 * @generated
 	 */
-	int OPERATION_SEPARATOR = 61;
+	int OPERATION_SEPARATOR = 64;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.IteratorType <em>Iterator Type</em>}' enum.
@@ -3324,7 +3408,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getIteratorType()
 	 * @generated
 	 */
-	int ITERATOR_TYPE = 62;
+	int ITERATOR_TYPE = 65;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.BooleanOperator <em>Boolean Operator</em>}' enum.
@@ -3334,7 +3418,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getBooleanOperator()
 	 * @generated
 	 */
-	int BOOLEAN_OPERATOR = 63;
+	int BOOLEAN_OPERATOR = 66;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.RelationalOperator <em>Relational Operator</em>}' enum.
@@ -3344,7 +3428,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getRelationalOperator()
 	 * @generated
 	 */
-	int RELATIONAL_OPERATOR = 64;
+	int RELATIONAL_OPERATOR = 67;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.AdditiveOperator <em>Additive Operator</em>}' enum.
@@ -3354,7 +3438,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getAdditiveOperator()
 	 * @generated
 	 */
-	int ADDITIVE_OPERATOR = 65;
+	int ADDITIVE_OPERATOR = 68;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.MultiplicativeOperator <em>Multiplicative Operator</em>}' enum.
@@ -3364,7 +3448,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getMultiplicativeOperator()
 	 * @generated
 	 */
-	int MULTIPLICATIVE_OPERATOR = 66;
+	int MULTIPLICATIVE_OPERATOR = 69;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.UnaryOperator <em>Unary Operator</em>}' enum.
@@ -3374,7 +3458,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getUnaryOperator()
 	 * @generated
 	 */
-	int UNARY_OPERATOR = 67;
+	int UNARY_OPERATOR = 70;
 
 
 	/**
@@ -3809,6 +3893,48 @@ public interface MorelPackage extends EPackage {
 	EAttribute getBooleanLiteralExp_BoolSymbol();
 
 	/**
+	 * Returns the meta object for class '{@link edu.ustb.sei.mde.morel.UndefinedLiteralExp <em>Undefined Literal Exp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Undefined Literal Exp</em>'.
+	 * @see edu.ustb.sei.mde.morel.UndefinedLiteralExp
+	 * @generated
+	 */
+	EClass getUndefinedLiteralExp();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.morel.UndefinedLiteralExp#getValue <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Value</em>'.
+	 * @see edu.ustb.sei.mde.morel.UndefinedLiteralExp#getValue()
+	 * @see #getUndefinedLiteralExp()
+	 * @generated
+	 */
+	EAttribute getUndefinedLiteralExp_Value();
+
+	/**
+	 * Returns the meta object for class '{@link edu.ustb.sei.mde.morel.TypeLiteralExp <em>Type Literal Exp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Type Literal Exp</em>'.
+	 * @see edu.ustb.sei.mde.morel.TypeLiteralExp
+	 * @generated
+	 */
+	EClass getTypeLiteralExp();
+
+	/**
+	 * Returns the meta object for the reference '{@link edu.ustb.sei.mde.morel.TypeLiteralExp#getValue <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Value</em>'.
+	 * @see edu.ustb.sei.mde.morel.TypeLiteralExp#getValue()
+	 * @see #getTypeLiteralExp()
+	 * @generated
+	 */
+	EReference getTypeLiteralExp_Value();
+
+	/**
 	 * Returns the meta object for class '{@link edu.ustb.sei.mde.morel.VariableExp <em>Variable Exp</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4179,37 +4305,26 @@ public interface MorelPackage extends EPackage {
 	EClass getBooleanOrExp();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.morel.BooleanOrExp#getLeft <em>Left</em>}'.
+	 * Returns the meta object for the containment reference list '{@link edu.ustb.sei.mde.morel.BooleanOrExp#getChildren <em>Children</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Left</em>'.
-	 * @see edu.ustb.sei.mde.morel.BooleanOrExp#getLeft()
+	 * @return the meta object for the containment reference list '<em>Children</em>'.
+	 * @see edu.ustb.sei.mde.morel.BooleanOrExp#getChildren()
 	 * @see #getBooleanOrExp()
 	 * @generated
 	 */
-	EReference getBooleanOrExp_Left();
+	EReference getBooleanOrExp_Children();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.morel.BooleanOrExp#getRight <em>Right</em>}'.
+	 * Returns the meta object for the attribute list '{@link edu.ustb.sei.mde.morel.BooleanOrExp#getOperators <em>Operators</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Right</em>'.
-	 * @see edu.ustb.sei.mde.morel.BooleanOrExp#getRight()
+	 * @return the meta object for the attribute list '<em>Operators</em>'.
+	 * @see edu.ustb.sei.mde.morel.BooleanOrExp#getOperators()
 	 * @see #getBooleanOrExp()
 	 * @generated
 	 */
-	EReference getBooleanOrExp_Right();
-
-	/**
-	 * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.morel.BooleanOrExp#getOperator <em>Operator</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Operator</em>'.
-	 * @see edu.ustb.sei.mde.morel.BooleanOrExp#getOperator()
-	 * @see #getBooleanOrExp()
-	 * @generated
-	 */
-	EAttribute getBooleanOrExp_Operator();
+	EAttribute getBooleanOrExp_Operators();
 
 	/**
 	 * Returns the meta object for class '{@link edu.ustb.sei.mde.morel.BooleanOrExpChild <em>Boolean Or Exp Child</em>}'.
@@ -4232,37 +4347,26 @@ public interface MorelPackage extends EPackage {
 	EClass getBooleanAndExp();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.morel.BooleanAndExp#getLeft <em>Left</em>}'.
+	 * Returns the meta object for the containment reference list '{@link edu.ustb.sei.mde.morel.BooleanAndExp#getChildren <em>Children</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Left</em>'.
-	 * @see edu.ustb.sei.mde.morel.BooleanAndExp#getLeft()
+	 * @return the meta object for the containment reference list '<em>Children</em>'.
+	 * @see edu.ustb.sei.mde.morel.BooleanAndExp#getChildren()
 	 * @see #getBooleanAndExp()
 	 * @generated
 	 */
-	EReference getBooleanAndExp_Left();
+	EReference getBooleanAndExp_Children();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.morel.BooleanAndExp#getRight <em>Right</em>}'.
+	 * Returns the meta object for the attribute list '{@link edu.ustb.sei.mde.morel.BooleanAndExp#getOperators <em>Operators</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Right</em>'.
-	 * @see edu.ustb.sei.mde.morel.BooleanAndExp#getRight()
+	 * @return the meta object for the attribute list '<em>Operators</em>'.
+	 * @see edu.ustb.sei.mde.morel.BooleanAndExp#getOperators()
 	 * @see #getBooleanAndExp()
 	 * @generated
 	 */
-	EReference getBooleanAndExp_Right();
-
-	/**
-	 * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.morel.BooleanAndExp#getOperator <em>Operator</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Operator</em>'.
-	 * @see edu.ustb.sei.mde.morel.BooleanAndExp#getOperator()
-	 * @see #getBooleanAndExp()
-	 * @generated
-	 */
-	EAttribute getBooleanAndExp_Operator();
+	EAttribute getBooleanAndExp_Operators();
 
 	/**
 	 * Returns the meta object for class '{@link edu.ustb.sei.mde.morel.BooleanAndExpChild <em>Boolean And Exp Child</em>}'.
@@ -4768,6 +4872,16 @@ public interface MorelPackage extends EPackage {
 	EEnum getSectionType();
 
 	/**
+	 * Returns the meta object for enum '{@link edu.ustb.sei.mde.morel.UndefinedLiteral <em>Undefined Literal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Undefined Literal</em>'.
+	 * @see edu.ustb.sei.mde.morel.UndefinedLiteral
+	 * @generated
+	 */
+	EEnum getUndefinedLiteral();
+
+	/**
 	 * Returns the meta object for enum '{@link edu.ustb.sei.mde.morel.OperationSeparator <em>Operation Separator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5227,6 +5341,42 @@ public interface MorelPackage extends EPackage {
 		EAttribute BOOLEAN_LITERAL_EXP__BOOL_SYMBOL = eINSTANCE.getBooleanLiteralExp_BoolSymbol();
 
 		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.impl.UndefinedLiteralExpImpl <em>Undefined Literal Exp</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.morel.impl.UndefinedLiteralExpImpl
+		 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getUndefinedLiteralExp()
+		 * @generated
+		 */
+		EClass UNDEFINED_LITERAL_EXP = eINSTANCE.getUndefinedLiteralExp();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute UNDEFINED_LITERAL_EXP__VALUE = eINSTANCE.getUndefinedLiteralExp_Value();
+
+		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.impl.TypeLiteralExpImpl <em>Type Literal Exp</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.morel.impl.TypeLiteralExpImpl
+		 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getTypeLiteralExp()
+		 * @generated
+		 */
+		EClass TYPE_LITERAL_EXP = eINSTANCE.getTypeLiteralExp();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TYPE_LITERAL_EXP__VALUE = eINSTANCE.getTypeLiteralExp_Value();
+
+		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.impl.VariableExpImpl <em>Variable Exp</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -5537,28 +5687,20 @@ public interface MorelPackage extends EPackage {
 		EClass BOOLEAN_OR_EXP = eINSTANCE.getBooleanOrExp();
 
 		/**
-		 * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Children</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference BOOLEAN_OR_EXP__LEFT = eINSTANCE.getBooleanOrExp_Left();
+		EReference BOOLEAN_OR_EXP__CHILDREN = eINSTANCE.getBooleanOrExp_Children();
 
 		/**
-		 * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Operators</b></em>' attribute list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference BOOLEAN_OR_EXP__RIGHT = eINSTANCE.getBooleanOrExp_Right();
-
-		/**
-		 * The meta object literal for the '<em><b>Operator</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute BOOLEAN_OR_EXP__OPERATOR = eINSTANCE.getBooleanOrExp_Operator();
+		EAttribute BOOLEAN_OR_EXP__OPERATORS = eINSTANCE.getBooleanOrExp_Operators();
 
 		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.impl.BooleanOrExpChildImpl <em>Boolean Or Exp Child</em>}' class.
@@ -5581,28 +5723,20 @@ public interface MorelPackage extends EPackage {
 		EClass BOOLEAN_AND_EXP = eINSTANCE.getBooleanAndExp();
 
 		/**
-		 * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Children</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference BOOLEAN_AND_EXP__LEFT = eINSTANCE.getBooleanAndExp_Left();
+		EReference BOOLEAN_AND_EXP__CHILDREN = eINSTANCE.getBooleanAndExp_Children();
 
 		/**
-		 * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Operators</b></em>' attribute list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference BOOLEAN_AND_EXP__RIGHT = eINSTANCE.getBooleanAndExp_Right();
-
-		/**
-		 * The meta object literal for the '<em><b>Operator</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute BOOLEAN_AND_EXP__OPERATOR = eINSTANCE.getBooleanAndExp_Operator();
+		EAttribute BOOLEAN_AND_EXP__OPERATORS = eINSTANCE.getBooleanAndExp_Operators();
 
 		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.impl.BooleanAndExpChildImpl <em>Boolean And Exp Child</em>}' class.
@@ -6037,6 +6171,16 @@ public interface MorelPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum SECTION_TYPE = eINSTANCE.getSectionType();
+
+		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.UndefinedLiteral <em>Undefined Literal</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.morel.UndefinedLiteral
+		 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getUndefinedLiteral()
+		 * @generated
+		 */
+		EEnum UNDEFINED_LITERAL = eINSTANCE.getUndefinedLiteral();
 
 		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.OperationSeparator <em>Operation Separator</em>}' enum.

@@ -148,6 +148,14 @@ public class MorelAdapterFactory extends AdapterFactoryImpl {
 				return createBooleanLiteralExpAdapter();
 			}
 			@Override
+			public Adapter caseUndefinedLiteralExp(UndefinedLiteralExp object) {
+				return createUndefinedLiteralExpAdapter();
+			}
+			@Override
+			public Adapter caseTypeLiteralExp(TypeLiteralExp object) {
+				return createTypeLiteralExpAdapter();
+			}
+			@Override
 			public Adapter caseVariableExp(VariableExp object) {
 				return createVariableExpAdapter();
 			}
@@ -610,6 +618,34 @@ public class MorelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createBooleanLiteralExpAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.morel.UndefinedLiteralExp <em>Undefined Literal Exp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.morel.UndefinedLiteralExp
+	 * @generated
+	 */
+	public Adapter createUndefinedLiteralExpAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.morel.TypeLiteralExp <em>Type Literal Exp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.morel.TypeLiteralExp
+	 * @generated
+	 */
+	public Adapter createTypeLiteralExpAdapter() {
 		return null;
 	}
 

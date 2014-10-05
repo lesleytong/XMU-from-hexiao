@@ -503,13 +503,11 @@ public class ContextImpl extends MinimalEObjectImpl.Container implements Context
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append('{');
-		for(Map.Entry<Variable, Object> entry : getBindingMap().entrySet()){
-			result.append(entry.getKey());
-			result.append('=');
-			result.append(entry.getValue());
-		}
-		result.append('}');
+		result.append(" (bindingMap: ");
+		result.append(bindingMap);
+		result.append(", host: ");
+		result.append(host);
+		result.append(')');
 		return result.toString();
 	}
 	

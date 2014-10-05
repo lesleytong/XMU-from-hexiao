@@ -16,6 +16,7 @@ import edu.ustb.sei.mde.emg.runtime.datatype.OclOrderedSet;
 import edu.ustb.sei.mde.emg.runtime.datatype.OclSequence;
 import edu.ustb.sei.mde.emg.runtime.datatype.OclSet;
 import edu.ustb.sei.mde.emg.runtime.datatype.OclUndefined;
+import edu.ustb.sei.mde.modeling.ui.ConsoleUtil;
 import edu.ustb.sei.mde.morel.AdditiveExp;
 import edu.ustb.sei.mde.morel.AdditiveOperator;
 import edu.ustb.sei.mde.morel.BagType;
@@ -29,6 +30,7 @@ import edu.ustb.sei.mde.morel.CallPathExp;
 import edu.ustb.sei.mde.morel.Clause;
 import edu.ustb.sei.mde.morel.CollectionType;
 import edu.ustb.sei.mde.morel.ConditionExp;
+import edu.ustb.sei.mde.morel.DeclarativeStatement;
 import edu.ustb.sei.mde.morel.Expression;
 import edu.ustb.sei.mde.morel.FeaturePathExp;
 import edu.ustb.sei.mde.morel.ForStatement;
@@ -50,6 +52,8 @@ import edu.ustb.sei.mde.morel.OperationPathExp;
 import edu.ustb.sei.mde.morel.OrderedSetType;
 import edu.ustb.sei.mde.morel.PrimitiveVariable;
 import edu.ustb.sei.mde.morel.PrimitiveVariableWithInit;
+import edu.ustb.sei.mde.morel.Query;
+import edu.ustb.sei.mde.morel.QueryModel;
 import edu.ustb.sei.mde.morel.RealLiteralExp;
 import edu.ustb.sei.mde.morel.RelationalExp;
 import edu.ustb.sei.mde.morel.RelationalOperator;
@@ -57,17 +61,93 @@ import edu.ustb.sei.mde.morel.SequenceType;
 import edu.ustb.sei.mde.morel.SetType;
 import edu.ustb.sei.mde.morel.Statement;
 import edu.ustb.sei.mde.morel.StringLiteralExp;
+import edu.ustb.sei.mde.morel.TypeLiteralExp;
 import edu.ustb.sei.mde.morel.UnaryExp;
 import edu.ustb.sei.mde.morel.UnaryOperator;
+import edu.ustb.sei.mde.morel.UndefinedLiteral;
+import edu.ustb.sei.mde.morel.UndefinedLiteralExp;
 import edu.ustb.sei.mde.morel.Variable;
 import edu.ustb.sei.mde.morel.VariableExp;
 import edu.ustb.sei.mde.morel.VariableWithInit;
+import edu.ustb.sei.mde.morel.resource.morel.execution.primitives.Match;
 import edu.ustb.sei.mde.morel.resource.morel.util.AbstractMorelInterpreter;
 
 public class OclInterpreter extends
 		AbstractMorelInterpreter<Object, Context> {
 	
 	protected OclStandardLibrary library = new OclStandardLibrary(null);
+
+	@Override
+	public Object interprete(EObject object, Context context) {
+		// TODO Auto-generated method stub
+		Object result = null;
+		if(object instanceof LinkConstraint) {
+			result = this.interprete_edu_ustb_sei_mde_morel_LinkConstraint((LinkConstraint) object, context);
+		} else if(object instanceof StringLiteralExp) {
+			result = this.interprete_edu_ustb_sei_mde_morel_StringLiteralExp((StringLiteralExp)object, context);
+		} else if(object instanceof IntegerLiteralExp) {
+			result = this.interprete_edu_ustb_sei_mde_morel_IntegerLiteralExp((IntegerLiteralExp)object, context);
+		} else if(object instanceof RealLiteralExp) {
+			result = this.interprete_edu_ustb_sei_mde_morel_RealLiteralExp((RealLiteralExp)object, context);
+		} else if(object instanceof BooleanLiteralExp) {
+			result = this.interprete_edu_ustb_sei_mde_morel_BooleanLiteralExp((BooleanLiteralExp)object, context);
+		} else if(object instanceof VariableExp) {
+			result = this.interprete_edu_ustb_sei_mde_morel_VariableExp((VariableExp)object, context);
+		} else if(object instanceof NestedExp) {
+			result = this.interprete_edu_ustb_sei_mde_morel_NestedExp((NestedExp)object, context);
+		} else if(object instanceof LetExp) {
+			result = this.interprete_edu_ustb_sei_mde_morel_LetExp((LetExp)object, context);
+		} else if(object instanceof ConditionExp) {
+			result = this.interprete_edu_ustb_sei_mde_morel_ConditionExp((ConditionExp)object, context);
+		} else if(object instanceof BooleanImpliesExp) {
+			result = this.interprete_edu_ustb_sei_mde_morel_BooleanImpliesExp((BooleanImpliesExp)object, context);
+		} else if(object instanceof BooleanOrExp) {
+			result = this.interprete_edu_ustb_sei_mde_morel_BooleanOrExp((BooleanOrExp)object, context);
+		} else if(object instanceof BooleanAndExp) {
+			result = this.interprete_edu_ustb_sei_mde_morel_BooleanAndExp((BooleanAndExp)object, context);
+		} else if(object instanceof AdditiveExp) {
+			result = this.interprete_edu_ustb_sei_mde_morel_AdditiveExp((AdditiveExp)object, context);
+		} else if(object instanceof MultiplicativeExp) {
+			result = this.interprete_edu_ustb_sei_mde_morel_MultiplicativeExp((MultiplicativeExp)object, context);
+		} else if(object instanceof UnaryExp) {
+			result = this.interprete_edu_ustb_sei_mde_morel_UnaryExp((UnaryExp)object, context);
+		} else if(object instanceof BindExp) {
+			result = this.interprete_edu_ustb_sei_mde_morel_BindExp((BindExp)object, context);
+		} else if(object instanceof IfStatement) {
+			result = this.interprete_edu_ustb_sei_mde_morel_IfStatement((IfStatement)object, context);
+		} else if(object instanceof ForStatement) {
+			result = this.interprete_edu_ustb_sei_mde_morel_ForStatement((ForStatement)object, context);
+		} else if(object instanceof BlockStatement) {
+			result = this.interprete_edu_ustb_sei_mde_morel_BlockStatement((BlockStatement)object, context);
+		} else if(object instanceof Variable) {
+			result = this.interprete_edu_ustb_sei_mde_morel_Variable((Variable)object, context);
+		} else if(object instanceof VariableWithInit) {
+			result = this.interprete_edu_ustb_sei_mde_morel_VariableWithInit((VariableWithInit)object, context);
+		}
+		
+		if(result!=null) return result;
+		else return super.interprete(object, context);
+	}
+	
+	
+
+	public Object interprete_edu_ustb_sei_mde_morel_Query(Query query,
+			Context context) {
+		Match match = new Match();
+		context.setHost(query);
+		context.initWithHost();
+		for(Variable v : query.getVariables()) {
+			if(v instanceof VariableWithInit) {
+				Object val = this.interprete((VariableWithInit)v, context);
+				context.putValue(v, val);
+			}
+		}
+		List<Context> result = match.match(query, context, this, context.getEnviroment());
+		
+		return result;
+	}
+
+
 
 	@Override
 	public Boolean interprete_edu_ustb_sei_mde_morel_LinkConstraint(
@@ -406,41 +486,61 @@ public class OclInterpreter extends
 			return OclUndefined.INVALIDED;
 		}
 		Boolean iv = (Boolean)i;
-		if(iv){
-			return this.interprete(booleanImpliesExp.getRight(),context);
-		} else 
-			return true;
+		
+		if(booleanImpliesExp.getRight()!=null) {
+			if(iv){
+				return this.interprete(booleanImpliesExp.getRight(),context);
+			} else 
+				return true;
+		} else return iv;
 	}
 
 	@Override
 	public Object interprete_edu_ustb_sei_mde_morel_BooleanOrExp(
 			BooleanOrExp booleanOrExp, Context context) {
-		Object i = this.interprete(booleanOrExp.getLeft(),context);
-		if(!(i instanceof Boolean)) 
-			return this.interprete(booleanOrExp.getRight(),context);
-		else {
-			Boolean iv = (Boolean)i;
-			if(!iv){
-				return this.interprete(booleanOrExp.getRight(),context);
-			} else 
-				return true;
+		int size = booleanOrExp.getOperators().size();
+		
+		Object result = this.interprete(booleanOrExp.getChildren().get(0), context);
+		
+		for(int i = 0;i<size;i++) {
+			if(result instanceof Boolean) {
+				if(result==Boolean.TRUE) return true;
+				else {
+					Object add = this.interprete(booleanOrExp.getChildren().get(i+1), context);
+					result = library.execute("or", result, add);
+				}
+			} else if(result==OclUndefined.INVALIDED || result==OclUndefined.NULL){
+				Object add = this.interprete(booleanOrExp.getChildren().get(i+1), context);
+				if(add==Boolean.TRUE) 
+					return true;
+			} else return OclUndefined.INVALIDED;
 		}
+		
+		return result;
 	}
 
 	@Override
 	public Object interprete_edu_ustb_sei_mde_morel_BooleanAndExp(
 			BooleanAndExp booleanAndExp, Context context) {
-		Object i = this.interprete(booleanAndExp.getLeft(),context);
+		int size = booleanAndExp.getOperators().size();
 		
-		if(!(i instanceof Boolean)) 
-			return OclUndefined.INVALIDED;
-		else {
-			Boolean iv = (Boolean)i;
-			if(iv){
-				return this.interprete(booleanAndExp.getRight(),context);
-			} else 
-				return false;
+		Object result = this.interprete(booleanAndExp.getChildren().get(0), context);
+		
+		for(int i = 0;i<size;i++) {
+			if(result instanceof Boolean) {
+				if(result==Boolean.TRUE) return true;
+				else {
+					Object add = this.interprete(booleanAndExp.getChildren().get(i+1), context);
+					result = library.execute("and", result, add);
+				}
+			} else if(result==OclUndefined.INVALIDED || result==OclUndefined.NULL){
+				Object add = this.interprete(booleanAndExp.getChildren().get(i+1), context);
+				if(add==Boolean.FALSE) 
+					return false;
+			} else return OclUndefined.INVALIDED;
 		}
+		
+		return result;
 	}
 
 	@Override
@@ -620,4 +720,32 @@ public class OclInterpreter extends
 		return true;
 	}
 
+
+
+	@Override
+	public Object interprete_edu_ustb_sei_mde_morel_DeclarativeStatement(
+			DeclarativeStatement declarativeStatement, Context context) {
+		// TODO Auto-generated method stub
+		return this.interprete(declarativeStatement.getExpression(), context);
+	}
+
+
+
+	@Override
+	public Object interprete_edu_ustb_sei_mde_morel_UndefinedLiteralExp(
+			UndefinedLiteralExp undefinedLiteralExp, Context context) {
+		Object value = undefinedLiteralExp.getValue()==UndefinedLiteral.NULL ? null : OclUndefined.INVALIDED;
+		return interprete_edu_ustb_sei_mde_morel_CallPathExp(value, undefinedLiteralExp.getPath(), context);
+	}
+
+
+
+	@Override
+	public Object interprete_edu_ustb_sei_mde_morel_TypeLiteralExp(
+			TypeLiteralExp typeLiteralExp, Context context) {
+		return interprete_edu_ustb_sei_mde_morel_CallPathExp(typeLiteralExp.getValue(), typeLiteralExp.getPath(), context);
+
+	}
+	
+	
 }

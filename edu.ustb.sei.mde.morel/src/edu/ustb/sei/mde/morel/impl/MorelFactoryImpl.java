@@ -69,6 +69,8 @@ public class MorelFactoryImpl extends EFactoryImpl implements MorelFactory {
 			case MorelPackage.INTEGER_LITERAL_EXP: return createIntegerLiteralExp();
 			case MorelPackage.REAL_LITERAL_EXP: return createRealLiteralExp();
 			case MorelPackage.BOOLEAN_LITERAL_EXP: return createBooleanLiteralExp();
+			case MorelPackage.UNDEFINED_LITERAL_EXP: return createUndefinedLiteralExp();
+			case MorelPackage.TYPE_LITERAL_EXP: return createTypeLiteralExp();
 			case MorelPackage.VARIABLE_EXP: return createVariableExp();
 			case MorelPackage.NESTED_EXP: return createNestedExp();
 			case MorelPackage.FEATURE_PATH_EXP: return createFeaturePathExp();
@@ -111,6 +113,8 @@ public class MorelFactoryImpl extends EFactoryImpl implements MorelFactory {
 		switch (eDataType.getClassifierID()) {
 			case MorelPackage.SECTION_TYPE:
 				return createSectionTypeFromString(eDataType, initialValue);
+			case MorelPackage.UNDEFINED_LITERAL:
+				return createUndefinedLiteralFromString(eDataType, initialValue);
 			case MorelPackage.OPERATION_SEPARATOR:
 				return createOperationSeparatorFromString(eDataType, initialValue);
 			case MorelPackage.ITERATOR_TYPE:
@@ -140,6 +144,8 @@ public class MorelFactoryImpl extends EFactoryImpl implements MorelFactory {
 		switch (eDataType.getClassifierID()) {
 			case MorelPackage.SECTION_TYPE:
 				return convertSectionTypeToString(eDataType, instanceValue);
+			case MorelPackage.UNDEFINED_LITERAL:
+				return convertUndefinedLiteralToString(eDataType, instanceValue);
 			case MorelPackage.OPERATION_SEPARATOR:
 				return convertOperationSeparatorToString(eDataType, instanceValue);
 			case MorelPackage.ITERATOR_TYPE:
@@ -277,6 +283,26 @@ public class MorelFactoryImpl extends EFactoryImpl implements MorelFactory {
 	public BooleanLiteralExp createBooleanLiteralExp() {
 		BooleanLiteralExpImpl booleanLiteralExp = new BooleanLiteralExpImpl();
 		return booleanLiteralExp;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public UndefinedLiteralExp createUndefinedLiteralExp() {
+		UndefinedLiteralExpImpl undefinedLiteralExp = new UndefinedLiteralExpImpl();
+		return undefinedLiteralExp;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TypeLiteralExp createTypeLiteralExp() {
+		TypeLiteralExpImpl typeLiteralExp = new TypeLiteralExpImpl();
+		return typeLiteralExp;
 	}
 
 	/**
@@ -566,6 +592,26 @@ public class MorelFactoryImpl extends EFactoryImpl implements MorelFactory {
 	 * @generated
 	 */
 	public String convertSectionTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public UndefinedLiteral createUndefinedLiteralFromString(EDataType eDataType, String initialValue) {
+		UndefinedLiteral result = UndefinedLiteral.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertUndefinedLiteralToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
