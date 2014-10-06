@@ -157,6 +157,15 @@ public interface MorelFactory extends EFactory {
 	VariableExp createVariableExp();
 
 	/**
+	 * Returns a new object of class '<em>Predefined Variable Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Predefined Variable Exp</em>'.
+	 * @generated
+	 */
+	PredefinedVariableExp createPredefinedVariableExp();
+
+	/**
 	 * Returns a new object of class '<em>Nested Exp</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -335,6 +344,15 @@ public interface MorelFactory extends EFactory {
 	 * @generated
 	 */
 	BindExp createBindExp();
+
+	/**
+	 * Returns a new object of class '<em>Predefined Bind Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Predefined Bind Exp</em>'.
+	 * @generated
+	 */
+	PredefinedBindExp createPredefinedBindExp();
 
 	/**
 	 * Returns a new object of class '<em>If Statement</em>'.

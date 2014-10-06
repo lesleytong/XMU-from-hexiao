@@ -72,6 +72,7 @@ public class MorelFactoryImpl extends EFactoryImpl implements MorelFactory {
 			case MorelPackage.UNDEFINED_LITERAL_EXP: return createUndefinedLiteralExp();
 			case MorelPackage.TYPE_LITERAL_EXP: return createTypeLiteralExp();
 			case MorelPackage.VARIABLE_EXP: return createVariableExp();
+			case MorelPackage.PREDEFINED_VARIABLE_EXP: return createPredefinedVariableExp();
 			case MorelPackage.NESTED_EXP: return createNestedExp();
 			case MorelPackage.FEATURE_PATH_EXP: return createFeaturePathExp();
 			case MorelPackage.OPERATION_PATH_EXP: return createOperationPathExp();
@@ -92,6 +93,7 @@ public class MorelFactoryImpl extends EFactoryImpl implements MorelFactory {
 			case MorelPackage.SET_TYPE: return createSetType();
 			case MorelPackage.BAG_TYPE: return createBagType();
 			case MorelPackage.BIND_EXP: return createBindExp();
+			case MorelPackage.PREDEFINED_BIND_EXP: return createPredefinedBindExp();
 			case MorelPackage.IF_STATEMENT: return createIfStatement();
 			case MorelPackage.FOR_STATEMENT: return createForStatement();
 			case MorelPackage.BLOCK_STATEMENT: return createBlockStatement();
@@ -115,6 +117,8 @@ public class MorelFactoryImpl extends EFactoryImpl implements MorelFactory {
 				return createSectionTypeFromString(eDataType, initialValue);
 			case MorelPackage.UNDEFINED_LITERAL:
 				return createUndefinedLiteralFromString(eDataType, initialValue);
+			case MorelPackage.PREDEFINED_VARIABLE:
+				return createPredefinedVariableFromString(eDataType, initialValue);
 			case MorelPackage.OPERATION_SEPARATOR:
 				return createOperationSeparatorFromString(eDataType, initialValue);
 			case MorelPackage.ITERATOR_TYPE:
@@ -146,6 +150,8 @@ public class MorelFactoryImpl extends EFactoryImpl implements MorelFactory {
 				return convertSectionTypeToString(eDataType, instanceValue);
 			case MorelPackage.UNDEFINED_LITERAL:
 				return convertUndefinedLiteralToString(eDataType, instanceValue);
+			case MorelPackage.PREDEFINED_VARIABLE:
+				return convertPredefinedVariableToString(eDataType, instanceValue);
 			case MorelPackage.OPERATION_SEPARATOR:
 				return convertOperationSeparatorToString(eDataType, instanceValue);
 			case MorelPackage.ITERATOR_TYPE:
@@ -313,6 +319,16 @@ public class MorelFactoryImpl extends EFactoryImpl implements MorelFactory {
 	public VariableExp createVariableExp() {
 		VariableExpImpl variableExp = new VariableExpImpl();
 		return variableExp;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PredefinedVariableExp createPredefinedVariableExp() {
+		PredefinedVariableExpImpl predefinedVariableExp = new PredefinedVariableExpImpl();
+		return predefinedVariableExp;
 	}
 
 	/**
@@ -520,6 +536,16 @@ public class MorelFactoryImpl extends EFactoryImpl implements MorelFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public PredefinedBindExp createPredefinedBindExp() {
+		PredefinedBindExpImpl predefinedBindExp = new PredefinedBindExpImpl();
+		return predefinedBindExp;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfStatement createIfStatement() {
 		IfStatementImpl ifStatement = new IfStatementImpl();
 		return ifStatement;
@@ -612,6 +638,26 @@ public class MorelFactoryImpl extends EFactoryImpl implements MorelFactory {
 	 * @generated
 	 */
 	public String convertUndefinedLiteralToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PredefinedVariable createPredefinedVariableFromString(EDataType eDataType, String initialValue) {
+		PredefinedVariable result = PredefinedVariable.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertPredefinedVariableToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

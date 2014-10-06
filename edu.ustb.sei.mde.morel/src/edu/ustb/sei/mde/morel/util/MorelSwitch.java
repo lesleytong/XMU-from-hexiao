@@ -300,6 +300,21 @@ public class MorelSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MorelPackage.PREDEFINED_VARIABLE_EXP: {
+				PredefinedVariableExp predefinedVariableExp = (PredefinedVariableExp)theEObject;
+				T result = casePredefinedVariableExp(predefinedVariableExp);
+				if (result == null) result = caseAtomicExp(predefinedVariableExp);
+				if (result == null) result = caseUnaryExpChild(predefinedVariableExp);
+				if (result == null) result = caseMultiplicativeExpChild(predefinedVariableExp);
+				if (result == null) result = caseAdditiveExpChild(predefinedVariableExp);
+				if (result == null) result = caseRelationalExpChild(predefinedVariableExp);
+				if (result == null) result = caseBooleanAndExpChild(predefinedVariableExp);
+				if (result == null) result = caseBooleanOrExpChild(predefinedVariableExp);
+				if (result == null) result = caseBooleanImpliesExpChild(predefinedVariableExp);
+				if (result == null) result = caseExpression(predefinedVariableExp);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case MorelPackage.NESTED_EXP: {
 				NestedExp nestedExp = (NestedExp)theEObject;
 				T result = caseNestedExp(nestedExp);
@@ -599,6 +614,14 @@ public class MorelSwitch<T> extends Switch<T> {
 				T result = caseBindExp(bindExp);
 				if (result == null) result = caseImperativeExp(bindExp);
 				if (result == null) result = caseExpression(bindExp);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MorelPackage.PREDEFINED_BIND_EXP: {
+				PredefinedBindExp predefinedBindExp = (PredefinedBindExp)theEObject;
+				T result = casePredefinedBindExp(predefinedBindExp);
+				if (result == null) result = caseImperativeExp(predefinedBindExp);
+				if (result == null) result = caseExpression(predefinedBindExp);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -992,6 +1015,21 @@ public class MorelSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseVariableExp(VariableExp object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Predefined Variable Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Predefined Variable Exp</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePredefinedVariableExp(PredefinedVariableExp object) {
 		return null;
 	}
 
@@ -1472,6 +1510,21 @@ public class MorelSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseBindExp(BindExp object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Predefined Bind Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Predefined Bind Exp</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePredefinedBindExp(PredefinedBindExp object) {
 		return null;
 	}
 

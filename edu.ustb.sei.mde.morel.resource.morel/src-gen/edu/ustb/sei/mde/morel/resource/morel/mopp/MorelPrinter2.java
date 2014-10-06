@@ -300,32 +300,40 @@ public class MorelPrinter2 implements edu.ustb.sei.mde.morel.resource.morel.IMor
 			printInternal(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_28, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.morel.DeclarativeStatement) {
+		if (element instanceof edu.ustb.sei.mde.morel.PredefinedBindExp) {
 			printInternal(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_29, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.morel.IfStatement) {
+		if (element instanceof edu.ustb.sei.mde.morel.DeclarativeStatement) {
 			printInternal(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_30, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.morel.ForStatement) {
+		if (element instanceof edu.ustb.sei.mde.morel.IfStatement) {
 			printInternal(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_31, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.morel.BlockStatement) {
+		if (element instanceof edu.ustb.sei.mde.morel.ForStatement) {
 			printInternal(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_32, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.morel.TransformationModel) {
+		if (element instanceof edu.ustb.sei.mde.morel.BlockStatement) {
 			printInternal(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_33, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.morel.Rule) {
+		if (element instanceof edu.ustb.sei.mde.morel.TransformationModel) {
 			printInternal(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_34, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.morel.Pattern) {
+		if (element instanceof edu.ustb.sei.mde.morel.Rule) {
 			printInternal(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_35, foundFormattingElements);
+			return;
+		}
+		if (element instanceof edu.ustb.sei.mde.morel.Pattern) {
+			printInternal(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_36, foundFormattingElements);
+			return;
+		}
+		if (element instanceof edu.ustb.sei.mde.morel.PredefinedVariableExp) {
+			printInternal(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_37, foundFormattingElements);
 			return;
 		}
 		if (element instanceof edu.ustb.sei.mde.morel.ObjectVariable) {

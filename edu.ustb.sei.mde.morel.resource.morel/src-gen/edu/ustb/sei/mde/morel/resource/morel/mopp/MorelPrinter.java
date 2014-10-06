@@ -160,6 +160,10 @@ public class MorelPrinter implements edu.ustb.sei.mde.morel.resource.morel.IMore
 			print_edu_ustb_sei_mde_morel_BindExp((edu.ustb.sei.mde.morel.BindExp) element, globaltab, out);
 			return;
 		}
+		if (element instanceof edu.ustb.sei.mde.morel.PredefinedBindExp) {
+			print_edu_ustb_sei_mde_morel_PredefinedBindExp((edu.ustb.sei.mde.morel.PredefinedBindExp) element, globaltab, out);
+			return;
+		}
 		if (element instanceof edu.ustb.sei.mde.morel.DeclarativeStatement) {
 			print_edu_ustb_sei_mde_morel_DeclarativeStatement((edu.ustb.sei.mde.morel.DeclarativeStatement) element, globaltab, out);
 			return;
@@ -186,6 +190,10 @@ public class MorelPrinter implements edu.ustb.sei.mde.morel.resource.morel.IMore
 		}
 		if (element instanceof edu.ustb.sei.mde.morel.Pattern) {
 			print_edu_ustb_sei_mde_morel_Pattern((edu.ustb.sei.mde.morel.Pattern) element, globaltab, out);
+			return;
+		}
+		if (element instanceof edu.ustb.sei.mde.morel.PredefinedVariableExp) {
+			print_edu_ustb_sei_mde_morel_PredefinedVariableExp((edu.ustb.sei.mde.morel.PredefinedVariableExp) element, globaltab, out);
 			return;
 		}
 		if (element instanceof edu.ustb.sei.mde.morel.ObjectVariable) {
@@ -920,6 +928,7 @@ public class MorelPrinter implements edu.ustb.sei.mde.morel.resource.morel.IMore
 	
 	
 	public void print_edu_ustb_sei_mde_morel_LinkConstraint(edu.ustb.sei.mde.morel.LinkConstraint element, String outertab, java.io.PrintWriter out) {
+		String localtab = outertab;
 		// The printCountingMap contains a mapping from feature names to the number of
 		// remaining elements that still need to be printed. The map is initialized with
 		// the number of elements stored in each structural feature. For lists this is the
@@ -937,6 +946,9 @@ public class MorelPrinter implements edu.ustb.sei.mde.morel.resource.morel.IMore
 		printCountingMap.put("reference", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
+		java.io.StringWriter sWriter = null;
+		java.io.PrintWriter out1 = null;
+		java.util.Map<String, Integer> printCountingMap1 = null;
 		// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
 		count = printCountingMap.get("source");
 		if (count > 0) {
@@ -964,6 +976,19 @@ public class MorelPrinter implements edu.ustb.sei.mde.morel.resource.morel.IMore
 			}
 			printCountingMap.put("reference", count - 1);
 		}
+		// DEFINITION PART BEGINS (CompoundDefinition)
+		sWriter = new java.io.StringWriter();
+		out1 = new java.io.PrintWriter(sWriter);
+		printCountingMap1 = new java.util.LinkedHashMap<String, Integer>(printCountingMap);
+		print_edu_ustb_sei_mde_morel_LinkConstraint_0(element, localtab, out1, printCountingMap1);
+		if (printCountingMap.equals(printCountingMap1)) {
+			out1.close();
+		} else {
+			out1.flush();
+			out1.close();
+			out.print(sWriter.toString());
+			printCountingMap.putAll(printCountingMap1);
+		}
 		// DEFINITION PART BEGINS (CsString)
 		out.print("=");
 		out.print(" ");
@@ -979,6 +1004,26 @@ public class MorelPrinter implements edu.ustb.sei.mde.morel.resource.morel.IMore
 			}
 			printCountingMap.put("target", count - 1);
 		}
+	}
+	
+	public void print_edu_ustb_sei_mde_morel_LinkConstraint_0(edu.ustb.sei.mde.morel.LinkConstraint element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
+		String localtab = outertab;
+		int count;
+		// DEFINITION PART BEGINS (CsString)
+		out.print("[");
+		out.print(" ");
+		// DEFINITION PART BEGINS (Containment)
+		count = printCountingMap.get("id");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.LINK_CONSTRAINT__ID));
+			if (o != null) {
+				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
+			}
+			printCountingMap.put("id", count - 1);
+		}
+		// DEFINITION PART BEGINS (CsString)
+		out.print("]");
+		out.print(" ");
 	}
 	
 	
@@ -2475,6 +2520,45 @@ public class MorelPrinter implements edu.ustb.sei.mde.morel.resource.morel.IMore
 	}
 	
 	
+	public void print_edu_ustb_sei_mde_morel_PredefinedBindExp(edu.ustb.sei.mde.morel.PredefinedBindExp element, String outertab, java.io.PrintWriter out) {
+		String localtab = outertab;
+		// The printCountingMap contains a mapping from feature names to the number of
+		// remaining elements that still need to be printed. The map is initialized with
+		// the number of elements stored in each structural feature. For lists this is the
+		// list size. For non-multiple features it is either 1 (if the feature is set) or
+		// 0 (if the feature is null).
+		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(2);
+		Object temp;
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.PREDEFINED_BIND_EXP__SOURCE));
+		printCountingMap.put("source", temp == null ? 0 : 1);
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.PREDEFINED_BIND_EXP__VALUE_EXP));
+		printCountingMap.put("valueExp", temp == null ? 0 : 1);
+		// print collected hidden tokens
+		int count;
+		// DEFINITION PART BEGINS (Containment)
+		count = printCountingMap.get("source");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.PREDEFINED_BIND_EXP__SOURCE));
+			if (o != null) {
+				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
+			}
+			printCountingMap.put("source", count - 1);
+		}
+		// DEFINITION PART BEGINS (CsString)
+		out.print("<-");
+		out.print(" ");
+		// DEFINITION PART BEGINS (Containment)
+		count = printCountingMap.get("valueExp");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.PREDEFINED_BIND_EXP__VALUE_EXP));
+			if (o != null) {
+				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
+			}
+			printCountingMap.put("valueExp", count - 1);
+		}
+	}
+	
+	
 	public void print_edu_ustb_sei_mde_morel_DeclarativeStatement(edu.ustb.sei.mde.morel.DeclarativeStatement element, String outertab, java.io.PrintWriter out) {
 		String localtab = outertab;
 		// The printCountingMap contains a mapping from feature names to the number of
@@ -3133,6 +3217,62 @@ public class MorelPrinter implements edu.ustb.sei.mde.morel.resource.morel.IMore
 				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
 			}
 			printCountingMap.put("statements", count - 1);
+		}
+	}
+	
+	
+	public void print_edu_ustb_sei_mde_morel_PredefinedVariableExp(edu.ustb.sei.mde.morel.PredefinedVariableExp element, String outertab, java.io.PrintWriter out) {
+		String localtab = outertab;
+		// The printCountingMap contains a mapping from feature names to the number of
+		// remaining elements that still need to be printed. The map is initialized with
+		// the number of elements stored in each structural feature. For lists this is the
+		// list size. For non-multiple features it is either 1 (if the feature is set) or
+		// 0 (if the feature is null).
+		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(2);
+		Object temp;
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.PREDEFINED_VARIABLE_EXP__PATH));
+		printCountingMap.put("path", temp == null ? 0 : 1);
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.PREDEFINED_VARIABLE_EXP__VARIABLE));
+		printCountingMap.put("variable", temp == null ? 0 : 1);
+		// print collected hidden tokens
+		int count;
+		java.io.StringWriter sWriter = null;
+		java.io.PrintWriter out1 = null;
+		java.util.Map<String, Integer> printCountingMap1 = null;
+		// DEFINITION PART BEGINS (EnumTerminal)
+		count = printCountingMap.get("variable");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.PREDEFINED_VARIABLE_EXP__VARIABLE));
+			if (o != null) {
+			}
+			printCountingMap.put("variable", count - 1);
+		}
+		// DEFINITION PART BEGINS (CompoundDefinition)
+		sWriter = new java.io.StringWriter();
+		out1 = new java.io.PrintWriter(sWriter);
+		printCountingMap1 = new java.util.LinkedHashMap<String, Integer>(printCountingMap);
+		print_edu_ustb_sei_mde_morel_PredefinedVariableExp_0(element, localtab, out1, printCountingMap1);
+		if (printCountingMap.equals(printCountingMap1)) {
+			out1.close();
+		} else {
+			out1.flush();
+			out1.close();
+			out.print(sWriter.toString());
+			printCountingMap.putAll(printCountingMap1);
+		}
+	}
+	
+	public void print_edu_ustb_sei_mde_morel_PredefinedVariableExp_0(edu.ustb.sei.mde.morel.PredefinedVariableExp element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
+		String localtab = outertab;
+		int count;
+		// DEFINITION PART BEGINS (Containment)
+		count = printCountingMap.get("path");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.PREDEFINED_VARIABLE_EXP__PATH));
+			if (o != null) {
+				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
+			}
+			printCountingMap.put("path", count - 1);
 		}
 	}
 	

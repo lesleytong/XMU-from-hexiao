@@ -160,6 +160,10 @@ public class MorelAdapterFactory extends AdapterFactoryImpl {
 				return createVariableExpAdapter();
 			}
 			@Override
+			public Adapter casePredefinedVariableExp(PredefinedVariableExp object) {
+				return createPredefinedVariableExpAdapter();
+			}
+			@Override
 			public Adapter caseNestedExp(NestedExp object) {
 				return createNestedExpAdapter();
 			}
@@ -286,6 +290,10 @@ public class MorelAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseBindExp(BindExp object) {
 				return createBindExpAdapter();
+			}
+			@Override
+			public Adapter casePredefinedBindExp(PredefinedBindExp object) {
+				return createPredefinedBindExpAdapter();
 			}
 			@Override
 			public Adapter caseIfStatement(IfStatement object) {
@@ -660,6 +668,20 @@ public class MorelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createVariableExpAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.morel.PredefinedVariableExp <em>Predefined Variable Exp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.morel.PredefinedVariableExp
+	 * @generated
+	 */
+	public Adapter createPredefinedVariableExpAdapter() {
 		return null;
 	}
 
@@ -1108,6 +1130,20 @@ public class MorelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createBindExpAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.morel.PredefinedBindExp <em>Predefined Bind Exp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.morel.PredefinedBindExp
+	 * @generated
+	 */
+	public Adapter createPredefinedBindExpAdapter() {
 		return null;
 	}
 

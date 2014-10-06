@@ -2,6 +2,7 @@ package edu.ustb.sei.mde.morel.resource.morel.execution;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map.Entry;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -50,6 +51,9 @@ import edu.ustb.sei.mde.morel.ObjectVariable;
 import edu.ustb.sei.mde.morel.ObjectVariableWithInit;
 import edu.ustb.sei.mde.morel.OperationPathExp;
 import edu.ustb.sei.mde.morel.OrderedSetType;
+import edu.ustb.sei.mde.morel.PredefinedBindExp;
+import edu.ustb.sei.mde.morel.PredefinedVariable;
+import edu.ustb.sei.mde.morel.PredefinedVariableExp;
 import edu.ustb.sei.mde.morel.PrimitiveVariable;
 import edu.ustb.sei.mde.morel.PrimitiveVariableWithInit;
 import edu.ustb.sei.mde.morel.Query;
@@ -113,6 +117,8 @@ public class OclInterpreter extends
 			result = this.interprete_edu_ustb_sei_mde_morel_UnaryExp((UnaryExp)object, context);
 		} else if(object instanceof BindExp) {
 			result = this.interprete_edu_ustb_sei_mde_morel_BindExp((BindExp)object, context);
+		} else if(object instanceof PredefinedBindExp) {
+			result = this.interprete_edu_ustb_sei_mde_morel_PredefinedBindExp((PredefinedBindExp)object, context);
 		} else if(object instanceof IfStatement) {
 			result = this.interprete_edu_ustb_sei_mde_morel_IfStatement((IfStatement)object, context);
 		} else if(object instanceof ForStatement) {
@@ -123,6 +129,12 @@ public class OclInterpreter extends
 			result = this.interprete_edu_ustb_sei_mde_morel_Variable((Variable)object, context);
 		} else if(object instanceof VariableWithInit) {
 			result = this.interprete_edu_ustb_sei_mde_morel_VariableWithInit((VariableWithInit)object, context);
+		} else if(object instanceof UndefinedLiteralExp) {
+			result = this.interprete_edu_ustb_sei_mde_morel_UndefinedLiteralExp((UndefinedLiteralExp)object, context);
+		} else if(object instanceof TypeLiteralExp) {
+			result = this.interprete_edu_ustb_sei_mde_morel_TypeLiteralExp((TypeLiteralExp)object, context);
+		} else if(object instanceof PredefinedVariableExp) {
+			result = this.interprete_edu_ustb_sei_mde_morel_PredefinedVariableExp((PredefinedVariableExp)object, context);
 		}
 		
 		if(result!=null) return result;
@@ -133,7 +145,7 @@ public class OclInterpreter extends
 
 	public Object interprete_edu_ustb_sei_mde_morel_Query(Query query,
 			Context context) {
-		Match match = new Match();
+		Match match = Match.instance;
 		context.setHost(query);
 		context.initWithHost();
 		for(Variable v : query.getVariables()) {
@@ -157,9 +169,38 @@ public class OclInterpreter extends
 		EReference ref = linkConstraint.getReference();
 		if(ref.isMany()) {
 			List<?> list = (List<?>)s.eGet(ref);
-			return list.contains(t);
-		} else return s.eGet(ref)==t;
+			return list.contains(t) && checkLinkOrder(linkConstraint.getId(),s,t,ref,context);
+		} else return s.eGet(ref)==t && checkLinkOrder(linkConstraint.getId(),s,t,ref,context);
 	}
+
+	private boolean checkLinkOrder(Expression id, EObject s, EObject t,
+			EReference ref, Context context) {
+		if(id==null) return true;
+
+		Context innerCont = context.newScope();
+		PrimitiveVariable var = MorelFactory.eINSTANCE.createPrimitiveVariable();
+		var.setName(PredefinedVariable.ID.getLiteral());
+		var.setType(EcorePackage.eINSTANCE.getEIntegerObject());
+		innerCont.getBindingMap().put(var, OclUndefined.INVALIDED);
+		
+		try {
+			if(ref.isMany()) {
+				List<?> col = (List<?>) s.eGet(ref);
+				innerCont.putValue(var, (Integer)col.indexOf(t)+1);// 1-based
+			} else {
+				innerCont.putValue(var, 1);
+			}
+			
+			Object v = interprete(id, innerCont);
+			if(v!=Boolean.TRUE) return false;
+			
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
+
+
 
 	@Override
 	public Object interprete_edu_ustb_sei_mde_morel_StringLiteralExp(
@@ -654,6 +695,22 @@ public class OclInterpreter extends
 			return this.interprete_edu_ustb_sei_mde_morel_CallPathExp(s, exp.getPath(), context,true,v);
 		}
 	}
+	
+	
+
+	@Override
+	public Object interprete_edu_ustb_sei_mde_morel_PredefinedBindExp(
+			PredefinedBindExp predefinedBindExp, Context context) {
+		// TODO Auto-generated method stub
+		if(predefinedBindExp.getSource().getVariable()==PredefinedVariable.ID) {
+			//TODO 设置关系的序
+			return true;
+		} else
+			return super.interprete_edu_ustb_sei_mde_morel_PredefinedBindExp(
+				predefinedBindExp, context);
+	}
+
+
 
 	@Override
 	public Object interprete_edu_ustb_sei_mde_morel_IfStatement(
@@ -746,6 +803,20 @@ public class OclInterpreter extends
 		return interprete_edu_ustb_sei_mde_morel_CallPathExp(typeLiteralExp.getValue(), typeLiteralExp.getPath(), context);
 
 	}
-	
-	
+
+
+
+	@Override
+	public Object interprete_edu_ustb_sei_mde_morel_PredefinedVariableExp(
+			PredefinedVariableExp predefinedVariableExp, Context context) {
+		Object obj = null;
+		String vname = predefinedVariableExp.getVariable().getLiteral();
+		for(Entry<Variable,Object> e : context.getBindingMap().entrySet()) {
+			if(e.getKey().getName().equals(vname)){
+				obj = e.getValue();
+				break;
+			}
+		}
+		return interprete_edu_ustb_sei_mde_morel_CallPathExp(obj, predefinedVariableExp.getPath(), context);
+	}
 }

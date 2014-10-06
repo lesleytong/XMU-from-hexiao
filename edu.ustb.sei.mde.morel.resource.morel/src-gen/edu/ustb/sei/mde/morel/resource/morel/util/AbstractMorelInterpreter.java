@@ -178,6 +178,12 @@ public class AbstractMorelInterpreter<ResultType, ContextType> {
 		if (result != null) {
 			return result;
 		}
+		if (object instanceof edu.ustb.sei.mde.morel.PredefinedVariableExp) {
+			result = interprete_edu_ustb_sei_mde_morel_PredefinedVariableExp((edu.ustb.sei.mde.morel.PredefinedVariableExp) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
 		if (object instanceof edu.ustb.sei.mde.morel.NestedExp) {
 			result = interprete_edu_ustb_sei_mde_morel_NestedExp((edu.ustb.sei.mde.morel.NestedExp) object, context);
 		}
@@ -372,6 +378,12 @@ public class AbstractMorelInterpreter<ResultType, ContextType> {
 		}
 		if (object instanceof edu.ustb.sei.mde.morel.BindExp) {
 			result = interprete_edu_ustb_sei_mde_morel_BindExp((edu.ustb.sei.mde.morel.BindExp) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
+		if (object instanceof edu.ustb.sei.mde.morel.PredefinedBindExp) {
+			result = interprete_edu_ustb_sei_mde_morel_PredefinedBindExp((edu.ustb.sei.mde.morel.PredefinedBindExp) object, context);
 		}
 		if (result != null) {
 			return result;
@@ -641,6 +653,10 @@ public class AbstractMorelInterpreter<ResultType, ContextType> {
 		return null;
 	}
 	
+	public ResultType interprete_edu_ustb_sei_mde_morel_PredefinedVariableExp(edu.ustb.sei.mde.morel.PredefinedVariableExp predefinedVariableExp, ContextType context) {
+		return null;
+	}
+	
 	public ResultType interprete_edu_ustb_sei_mde_morel_NestedExp(edu.ustb.sei.mde.morel.NestedExp nestedExp, ContextType context) {
 		return null;
 	}
@@ -766,6 +782,10 @@ public class AbstractMorelInterpreter<ResultType, ContextType> {
 	}
 	
 	public ResultType interprete_edu_ustb_sei_mde_morel_BindExp(edu.ustb.sei.mde.morel.BindExp bindExp, ContextType context) {
+		return null;
+	}
+	
+	public ResultType interprete_edu_ustb_sei_mde_morel_PredefinedBindExp(edu.ustb.sei.mde.morel.PredefinedBindExp predefinedBindExp, ContextType context) {
 		return null;
 	}
 	

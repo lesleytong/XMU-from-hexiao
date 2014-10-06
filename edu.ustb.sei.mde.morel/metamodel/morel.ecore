@@ -96,6 +96,14 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="referredVariable" lowerBound="1"
         eType="#//Variable"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PredefinedVariableExp" eSuperTypes="#//AtomicExp">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="variable" lowerBound="1"
+        eType="#//PredefinedVariable"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="PredefinedVariable">
+    <eLiterals name="this" literal="@this"/>
+    <eLiterals name="id" value="1" literal="@id"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NestedExp" eSuperTypes="#//AtomicExp">
     <eStructuralFeatures xsi:type="ecore:EReference" name="expression" lowerBound="1"
         eType="#//Expression" containment="true"/>
@@ -251,6 +259,12 @@
   <eClassifiers xsi:type="ecore:EClass" name="BindExp" eSuperTypes="#//ImperativeExp">
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
         eType="#//VariableExp" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="valueExp" lowerBound="1"
+        eType="#//Expression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PredefinedBindExp" eSuperTypes="#//ImperativeExp">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
+        eType="#//PredefinedVariableExp" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="valueExp" lowerBound="1"
         eType="#//Expression" containment="true"/>
   </eClassifiers>

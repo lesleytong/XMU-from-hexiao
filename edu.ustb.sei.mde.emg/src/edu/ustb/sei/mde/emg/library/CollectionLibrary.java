@@ -406,7 +406,7 @@ public abstract class CollectionLibrary extends AnyLibrary {
 		try {
 			Integer s = (Integer)index;
 			List<?> col = (List<?>)self;
-			return col.get(s);
+			return col.get(s-1);
 		} catch (Exception e) {
 			return OclUndefined.INVALIDED;
 		}
@@ -414,7 +414,7 @@ public abstract class CollectionLibrary extends AnyLibrary {
 	public Object indexOf(Object self, Object obj) {
 		try {
 			List<?> col = (List<?>)self;
-			return col.indexOf(obj);
+			return col.indexOf(obj)+1;
 		} catch (Exception e) {
 			return OclUndefined.INVALIDED;
 		}

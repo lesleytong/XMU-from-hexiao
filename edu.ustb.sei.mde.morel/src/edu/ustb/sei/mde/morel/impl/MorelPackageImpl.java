@@ -48,6 +48,9 @@ import edu.ustb.sei.mde.morel.OperationPathExp;
 import edu.ustb.sei.mde.morel.OperationSeparator;
 import edu.ustb.sei.mde.morel.OrderedSetType;
 import edu.ustb.sei.mde.morel.Pattern;
+import edu.ustb.sei.mde.morel.PredefinedBindExp;
+import edu.ustb.sei.mde.morel.PredefinedVariable;
+import edu.ustb.sei.mde.morel.PredefinedVariableExp;
 import edu.ustb.sei.mde.morel.PrimitiveVariable;
 import edu.ustb.sei.mde.morel.PrimitiveVariableWithInit;
 import edu.ustb.sei.mde.morel.Query;
@@ -245,6 +248,13 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 * @generated
 	 */
 	private EClass variableExpEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass predefinedVariableExpEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -475,6 +485,13 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass predefinedBindExpEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass ifStatementEClass = null;
 
 	/**
@@ -539,6 +556,13 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 * @generated
 	 */
 	private EEnum undefinedLiteralEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum predefinedVariableEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1071,6 +1095,24 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 */
 	public EReference getVariableExp_ReferredVariable() {
 		return (EReference)variableExpEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getPredefinedVariableExp() {
+		return predefinedVariableExpEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPredefinedVariableExp_Variable() {
+		return (EAttribute)predefinedVariableExpEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1681,6 +1723,33 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getPredefinedBindExp() {
+		return predefinedBindExpEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPredefinedBindExp_Source() {
+		return (EReference)predefinedBindExpEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPredefinedBindExp_ValueExp() {
+		return (EReference)predefinedBindExpEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getIfStatement() {
 		return ifStatementEClass;
 	}
@@ -1870,6 +1939,15 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EEnum getPredefinedVariable() {
+		return predefinedVariableEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getOperationSeparator() {
 		return operationSeparatorEEnum;
 	}
@@ -2025,6 +2103,9 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		variableExpEClass = createEClass(VARIABLE_EXP);
 		createEReference(variableExpEClass, VARIABLE_EXP__REFERRED_VARIABLE);
 
+		predefinedVariableExpEClass = createEClass(PREDEFINED_VARIABLE_EXP);
+		createEAttribute(predefinedVariableExpEClass, PREDEFINED_VARIABLE_EXP__VARIABLE);
+
 		nestedExpEClass = createEClass(NESTED_EXP);
 		createEReference(nestedExpEClass, NESTED_EXP__EXPRESSION);
 
@@ -2124,6 +2205,10 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		createEReference(bindExpEClass, BIND_EXP__SOURCE);
 		createEReference(bindExpEClass, BIND_EXP__VALUE_EXP);
 
+		predefinedBindExpEClass = createEClass(PREDEFINED_BIND_EXP);
+		createEReference(predefinedBindExpEClass, PREDEFINED_BIND_EXP__SOURCE);
+		createEReference(predefinedBindExpEClass, PREDEFINED_BIND_EXP__VALUE_EXP);
+
 		ifStatementEClass = createEClass(IF_STATEMENT);
 		createEReference(ifStatementEClass, IF_STATEMENT__CONDITION);
 		createEReference(ifStatementEClass, IF_STATEMENT__THEN_STATEMENT);
@@ -2154,6 +2239,7 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		// Create enums
 		sectionTypeEEnum = createEEnum(SECTION_TYPE);
 		undefinedLiteralEEnum = createEEnum(UNDEFINED_LITERAL);
+		predefinedVariableEEnum = createEEnum(PREDEFINED_VARIABLE);
 		operationSeparatorEEnum = createEEnum(OPERATION_SEPARATOR);
 		iteratorTypeEEnum = createEEnum(ITERATOR_TYPE);
 		booleanOperatorEEnum = createEEnum(BOOLEAN_OPERATOR);
@@ -2209,6 +2295,7 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		undefinedLiteralExpEClass.getESuperTypes().add(this.getLiteralExp());
 		typeLiteralExpEClass.getESuperTypes().add(this.getLiteralExp());
 		variableExpEClass.getESuperTypes().add(this.getAtomicExp());
+		predefinedVariableExpEClass.getESuperTypes().add(this.getAtomicExp());
 		nestedExpEClass.getESuperTypes().add(this.getAtomicExp());
 		featurePathExpEClass.getESuperTypes().add(this.getCallPathExp());
 		operationPathExpEClass.getESuperTypes().add(this.getCallPathExp());
@@ -2243,6 +2330,7 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		bagTypeEClass.getESuperTypes().add(this.getCollectionType());
 		imperativeExpEClass.getESuperTypes().add(this.getExpression());
 		bindExpEClass.getESuperTypes().add(this.getImperativeExp());
+		predefinedBindExpEClass.getESuperTypes().add(this.getImperativeExp());
 		ifStatementEClass.getESuperTypes().add(this.getImperativeStatement());
 		forStatementEClass.getESuperTypes().add(this.getImperativeStatement());
 		blockStatementEClass.getESuperTypes().add(this.getImperativeStatement());
@@ -2323,6 +2411,9 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 
 		initEClass(variableExpEClass, VariableExp.class, "VariableExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getVariableExp_ReferredVariable(), this.getVariable(), null, "referredVariable", null, 1, 1, VariableExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(predefinedVariableExpEClass, PredefinedVariableExp.class, "PredefinedVariableExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getPredefinedVariableExp_Variable(), this.getPredefinedVariable(), "variable", null, 1, 1, PredefinedVariableExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(nestedExpEClass, NestedExp.class, "NestedExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getNestedExp_Expression(), this.getExpression(), null, "expression", null, 1, 1, NestedExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2423,6 +2514,10 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		initEReference(getBindExp_Source(), this.getVariableExp(), null, "source", null, 1, 1, BindExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getBindExp_ValueExp(), this.getExpression(), null, "valueExp", null, 1, 1, BindExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(predefinedBindExpEClass, PredefinedBindExp.class, "PredefinedBindExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPredefinedBindExp_Source(), this.getPredefinedVariableExp(), null, "source", null, 1, 1, PredefinedBindExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPredefinedBindExp_ValueExp(), this.getExpression(), null, "valueExp", null, 1, 1, PredefinedBindExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(ifStatementEClass, IfStatement.class, "IfStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getIfStatement_Condition(), this.getBooleanImpliesExp(), null, "condition", null, 1, 1, IfStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getIfStatement_ThenStatement(), this.getImperativeStatement(), null, "thenStatement", null, 1, 1, IfStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2462,6 +2557,10 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		initEEnum(undefinedLiteralEEnum, UndefinedLiteral.class, "UndefinedLiteral");
 		addEEnumLiteral(undefinedLiteralEEnum, UndefinedLiteral.NULL);
 		addEEnumLiteral(undefinedLiteralEEnum, UndefinedLiteral.INVALID);
+
+		initEEnum(predefinedVariableEEnum, PredefinedVariable.class, "PredefinedVariable");
+		addEEnumLiteral(predefinedVariableEEnum, PredefinedVariable.THIS);
+		addEEnumLiteral(predefinedVariableEEnum, PredefinedVariable.ID);
 
 		initEEnum(operationSeparatorEEnum, OperationSeparator.class, "OperationSeparator");
 		addEEnumLiteral(operationSeparatorEEnum, OperationSeparator.DOT);

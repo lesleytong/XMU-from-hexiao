@@ -47,7 +47,8 @@ public abstract class ReflectiveLibrary extends Library {
 	static private Method findMethod(Class<?> cls, String operation, Object... params) {
 		Method[] methods = cls.getMethods();
 		for(Method m : methods) {
-			if(m.getName().equals(operation) && m.getParameters().length==params.length) {
+			//JAVA API发生了迁移，原来是getParameters，现在是getParameterTypes
+			if(m.getName().equals(operation) && m.getParameterTypes().length==params.length) {
 				return m;
 			}
 		}

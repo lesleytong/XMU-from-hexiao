@@ -49,6 +49,9 @@ TOKENSTYLES {
 	"null" COLOR #ff0000;
 	"invalid" COLOR #ff0000;
 	
+	"@this" COLOR #0000ff;
+	"@id" COLOR #0000ff;
+	
 }
 
 RULES {
@@ -65,7 +68,7 @@ RULES {
 	
 	PrimitiveVariableWithInit ::=  name[IDENTIFIER] ":" type[DATA_TYPE] "=" initExp:LetExp, ConditionExp, BooleanImpliesExp;
 	
-	LinkConstraint ::= source[IDENTIFIER] "." reference[IDENTIFIER] "=" target[IDENTIFIER];
+	LinkConstraint ::= source[IDENTIFIER] "." reference[IDENTIFIER] ("[" id:PredefinedBindExp, BindExp, LetExp, ConditionExp, BooleanImpliesExp "]")? "=" target[IDENTIFIER];
 	
 	VariableExp ::= referredVariable[IDENTIFIER] (path)?;
 	
@@ -111,7 +114,9 @@ RULES {
 	
 	BindExp ::= source "<-" valueExp:LetExp, ConditionExp, BooleanImpliesExp;
 	
-	DeclarativeStatement ::= expression : BindExp, LetExp, ConditionExp, BooleanImpliesExp ";" ;
+	PredefinedBindExp ::= source "<-" valueExp:LetExp, ConditionExp, BooleanImpliesExp;
+	
+	DeclarativeStatement ::= expression : PredefinedBindExp, BindExp, LetExp, ConditionExp, BooleanImpliesExp ";" ;
 	
 	IfStatement ::= "if" "(" condition ")"  thenStatement  ("else"  elseStatement )? ;
 	
@@ -125,5 +130,5 @@ RULES {
 	
 	Pattern ::= type[LHS : "lhs", RHS : "rhs", NAC : "nac", PAC : "pac", PRE : "pre", POST : "post", LHS : ""] "{" "match" ":" (variables ("," variables)* ";")?  (linkConstraints ("," linkConstraints)* ";")? ("when" ":" (statements)+)? "}";
 	
-
+	PredefinedVariableExp ::= variable[this:"@this", id:"@id"] (path)?;
 }
