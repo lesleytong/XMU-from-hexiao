@@ -22,6 +22,8 @@ public class MorelReferenceResolverSwitch implements edu.ustb.sei.mde.morel.reso
 	protected edu.ustb.sei.mde.morel.resource.morel.analysis.LinkConstraintTargetReferenceResolver linkConstraintTargetReferenceResolver = new edu.ustb.sei.mde.morel.resource.morel.analysis.LinkConstraintTargetReferenceResolver();
 	protected edu.ustb.sei.mde.morel.resource.morel.analysis.VariableExpReferredVariableReferenceResolver variableExpReferredVariableReferenceResolver = new edu.ustb.sei.mde.morel.resource.morel.analysis.VariableExpReferredVariableReferenceResolver();
 	protected edu.ustb.sei.mde.morel.resource.morel.analysis.TypeLiteralExpValueReferenceResolver typeLiteralExpValueReferenceResolver = new edu.ustb.sei.mde.morel.resource.morel.analysis.TypeLiteralExpValueReferenceResolver();
+	protected edu.ustb.sei.mde.morel.resource.morel.analysis.EnumLiteralExpEnumTypeReferenceResolver enumLiteralExpEnumTypeReferenceResolver = new edu.ustb.sei.mde.morel.resource.morel.analysis.EnumLiteralExpEnumTypeReferenceResolver();
+	protected edu.ustb.sei.mde.morel.resource.morel.analysis.EnumLiteralExpEnumSymbolReferenceResolver enumLiteralExpEnumSymbolReferenceResolver = new edu.ustb.sei.mde.morel.resource.morel.analysis.EnumLiteralExpEnumSymbolReferenceResolver();
 	
 	public edu.ustb.sei.mde.morel.resource.morel.IMorelReferenceResolver<edu.ustb.sei.mde.morel.TypedModel, org.eclipse.emf.ecore.EPackage> getTypedModelPackageReferenceResolver() {
 		return getResolverChain(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getTypedModel_Package(), typedModelPackageReferenceResolver);
@@ -59,6 +61,14 @@ public class MorelReferenceResolverSwitch implements edu.ustb.sei.mde.morel.reso
 		return getResolverChain(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getTypeLiteralExp_Value(), typeLiteralExpValueReferenceResolver);
 	}
 	
+	public edu.ustb.sei.mde.morel.resource.morel.IMorelReferenceResolver<edu.ustb.sei.mde.morel.EnumLiteralExp, org.eclipse.emf.ecore.EEnum> getEnumLiteralExpEnumTypeReferenceResolver() {
+		return getResolverChain(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getEnumLiteralExp_EnumType(), enumLiteralExpEnumTypeReferenceResolver);
+	}
+	
+	public edu.ustb.sei.mde.morel.resource.morel.IMorelReferenceResolver<edu.ustb.sei.mde.morel.EnumLiteralExp, org.eclipse.emf.ecore.EEnumLiteral> getEnumLiteralExpEnumSymbolReferenceResolver() {
+		return getResolverChain(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getEnumLiteralExp_EnumSymbol(), enumLiteralExpEnumSymbolReferenceResolver);
+	}
+	
 	public void setOptions(java.util.Map<?, ?> options) {
 		if (options != null) {
 			this.options = new java.util.LinkedHashMap<Object, Object>();
@@ -73,6 +83,8 @@ public class MorelReferenceResolverSwitch implements edu.ustb.sei.mde.morel.reso
 		linkConstraintTargetReferenceResolver.setOptions(options);
 		variableExpReferredVariableReferenceResolver.setOptions(options);
 		typeLiteralExpValueReferenceResolver.setOptions(options);
+		enumLiteralExpEnumTypeReferenceResolver.setOptions(options);
+		enumLiteralExpEnumSymbolReferenceResolver.setOptions(options);
 	}
 	
 	public void resolveFuzzy(String identifier, org.eclipse.emf.ecore.EObject container, org.eclipse.emf.ecore.EReference reference, int position, edu.ustb.sei.mde.morel.resource.morel.IMorelReferenceResolveResult<org.eclipse.emf.ecore.EObject> result) {
@@ -151,6 +163,22 @@ public class MorelReferenceResolverSwitch implements edu.ustb.sei.mde.morel.reso
 				typeLiteralExpValueReferenceResolver.resolve(identifier, (edu.ustb.sei.mde.morel.TypeLiteralExp) container, (org.eclipse.emf.ecore.EReference) feature, position, true, frr);
 			}
 		}
+		if (edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getEnumLiteralExp().isInstance(container)) {
+			MorelFuzzyResolveResult<org.eclipse.emf.ecore.EEnum> frr = new MorelFuzzyResolveResult<org.eclipse.emf.ecore.EEnum>(result);
+			String referenceName = reference.getName();
+			org.eclipse.emf.ecore.EStructuralFeature feature = container.eClass().getEStructuralFeature(referenceName);
+			if (feature != null && feature instanceof org.eclipse.emf.ecore.EReference && referenceName != null && referenceName.equals("enumType")) {
+				enumLiteralExpEnumTypeReferenceResolver.resolve(identifier, (edu.ustb.sei.mde.morel.EnumLiteralExp) container, (org.eclipse.emf.ecore.EReference) feature, position, true, frr);
+			}
+		}
+		if (edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getEnumLiteralExp().isInstance(container)) {
+			MorelFuzzyResolveResult<org.eclipse.emf.ecore.EEnumLiteral> frr = new MorelFuzzyResolveResult<org.eclipse.emf.ecore.EEnumLiteral>(result);
+			String referenceName = reference.getName();
+			org.eclipse.emf.ecore.EStructuralFeature feature = container.eClass().getEStructuralFeature(referenceName);
+			if (feature != null && feature instanceof org.eclipse.emf.ecore.EReference && referenceName != null && referenceName.equals("enumSymbol")) {
+				enumLiteralExpEnumSymbolReferenceResolver.resolve(identifier, (edu.ustb.sei.mde.morel.EnumLiteralExp) container, (org.eclipse.emf.ecore.EReference) feature, position, true, frr);
+			}
+		}
 	}
 	
 	public edu.ustb.sei.mde.morel.resource.morel.IMorelReferenceResolver<? extends org.eclipse.emf.ecore.EObject, ? extends org.eclipse.emf.ecore.EObject> getResolver(org.eclipse.emf.ecore.EStructuralFeature reference) {
@@ -180,6 +208,12 @@ public class MorelReferenceResolverSwitch implements edu.ustb.sei.mde.morel.reso
 		}
 		if (reference == edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getTypeLiteralExp_Value()) {
 			return getResolverChain(reference, typeLiteralExpValueReferenceResolver);
+		}
+		if (reference == edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getEnumLiteralExp_EnumType()) {
+			return getResolverChain(reference, enumLiteralExpEnumTypeReferenceResolver);
+		}
+		if (reference == edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getEnumLiteralExp_EnumSymbol()) {
+			return getResolverChain(reference, enumLiteralExpEnumSymbolReferenceResolver);
 		}
 		return null;
 	}

@@ -36,6 +36,11 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="reference" lowerBound="1"
         eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EReference"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EnclosureLinkConstraint" eSuperTypes="#//LinkConstraint">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="forward" lowerBound="1"
+        upperBound="-1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EReference"
+        containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="SectionType">
     <eLiterals name="LHS"/>
     <eLiterals name="RHS" value="1"/>
@@ -86,6 +91,17 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UndefinedLiteralExp" eSuperTypes="#//LiteralExp">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="#//UndefinedLiteral"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CollectionLiteralExp" eSuperTypes="#//LiteralExp">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="literals" upperBound="-1"
+        eType="#//Expression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EnumLiteralExp" eSuperTypes="#//LiteralExp">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="enumType" lowerBound="1"
+        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EEnum"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="enumSymbol" lowerBound="1"
+        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EEnumLiteral"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="UndefinedLiteral">
     <eLiterals name="NULL"/>

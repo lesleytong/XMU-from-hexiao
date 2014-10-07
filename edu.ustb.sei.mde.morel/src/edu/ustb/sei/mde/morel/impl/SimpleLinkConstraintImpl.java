@@ -3,10 +3,8 @@
 package edu.ustb.sei.mde.morel.impl;
 
 import edu.ustb.sei.mde.morel.Expression;
-import edu.ustb.sei.mde.morel.LinkConstraint;
 import edu.ustb.sei.mde.morel.MorelPackage;
 import edu.ustb.sei.mde.morel.SimpleLinkConstraint;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;

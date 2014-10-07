@@ -23,6 +23,7 @@ public class MorelTokenResolverFactory implements edu.ustb.sei.mde.morel.resourc
 	public MorelTokenResolverFactory() {
 		tokenName2TokenResolver = new java.util.LinkedHashMap<String, edu.ustb.sei.mde.morel.resource.morel.IMorelTokenResolver>();
 		featureName2CollectInTokenResolver = new java.util.LinkedHashMap<String, edu.ustb.sei.mde.morel.resource.morel.IMorelTokenResolver>();
+		registerTokenResolver("COLLECTION", new edu.ustb.sei.mde.morel.resource.morel.analysis.MorelCOLLECTIONTokenResolver());
 		registerTokenResolver("DATA_TYPE", new edu.ustb.sei.mde.morel.resource.morel.analysis.MorelDATA_TYPETokenResolver());
 		registerTokenResolver("IDENTIFIER", new edu.ustb.sei.mde.morel.resource.morel.analysis.MorelIDENTIFIERTokenResolver());
 		registerTokenResolver("URINS", new edu.ustb.sei.mde.morel.resource.morel.analysis.MorelURINSTokenResolver());

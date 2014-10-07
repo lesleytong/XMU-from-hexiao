@@ -71,7 +71,7 @@ public class TypeResolver {
 		else if("Any".equals(type))
 			return (org.eclipse.emf.ecore.EcorePackage.eINSTANCE.getEJavaObject());
 		else {
-			return resolveClassType(type, unit);
+			return resolveClassifier(type, unit);
 		}
 	}
 
@@ -103,7 +103,11 @@ public class TypeResolver {
 		return null;
 	}
 	
-	static private EClass resolveClassType(String type, Unit unit) {
+	static public EClassifier resolveClassifier(String type, EObject unit) {
+		return resolveClassifier(type,getUnit(unit));
+	}
+	
+	static private EClassifier resolveClassifier(String type, Unit unit) {
 		int sep = type.indexOf('!');
 		if(sep!=-1) {
 			String modelName = type.substring(0, sep);
@@ -114,9 +118,9 @@ public class TypeResolver {
 					TreeIterator<EObject> it = m.getPackage().eAllContents();
 					while(it.hasNext()) {
 						EObject o = it.next();
-						if(o instanceof EClass) {
-							if(((EClass) o).getName().equals(typeName))
-								return (EClass) o;
+						if(o instanceof EClassifier) {
+							if(((EClassifier) o).getName().equals(typeName))
+								return (EClassifier) o;
 						}
 					}
 				}
@@ -126,9 +130,9 @@ public class TypeResolver {
 				TreeIterator<EObject> it = m.getPackage().eAllContents();
 				while(it.hasNext()) {
 					EObject o = it.next();
-					if(o instanceof EClass) {
-						if(((EClass) o).getName().equals(type))
-							return (EClass) o;
+					if(o instanceof EClassifier) {
+						if(((EClassifier) o).getName().equals(type))
+							return (EClassifier) o;
 					}
 				}
 			}

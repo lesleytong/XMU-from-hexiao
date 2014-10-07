@@ -24,7 +24,7 @@ TOKENS {
 	
 	DEFINE WHITESPACE $(' '|'\t'|'\f')$;
 
-	DEFINE FRAGMENT COLLECTION $('Sequence'|'Set'|'Bag'|'OrderedSet')$;
+	DEFINE COLLECTION $('Sequence'|'Set'|'Bag'|'OrderedSet')$;
 
 	DEFINE FRAGMENT TYPE  $'String'|'Integer'|'Boolean'|'Real'|'Char'|'Any'$;
 	
@@ -87,6 +87,10 @@ RULES {
 	UndefinedLiteralExp ::= value[NULL:"null", INVALID:"invalid"] (path)?;
 	
 	TypeLiteralExp ::= value[DATA_TYPE] (path)?;
+	
+	CollectionLiteralExp ::= type[COLLECTION] "{" ((literals:LetExp, ConditionExp, BooleanImpliesExp)( "," literals:LetExp, ConditionExp, BooleanImpliesExp)*)? "}" (path)?;
+	
+	EnumLiteralExp ::= enumType[DATA_TYPE] "::" enumSymbol[IDENTIFIER] (path)?;
 
 	FeaturePathExp ::= "." feature[IDENTIFIER] next?;
 	
@@ -94,6 +98,7 @@ RULES {
 	
 	IteratorPathExp ::= "->" type[forAll : "forAll", exists : "exists", select : "select", reject : "reject", collect : "collect", closure : "closure"] "(" firstVar ("," secondVar)? "|" bodyExp:LetExp, ConditionExp, BooleanImpliesExp ")" (next)?;
 	
+
 	LetExp ::= "let" variables ("," variables)* "in" inExp:LetExp, ConditionExp, BooleanImpliesExp ; 
 	
 	ConditionExp ::= "if" condition "then" thenBranch "else" elseBranch "endif";

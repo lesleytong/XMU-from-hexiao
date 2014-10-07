@@ -67,6 +67,15 @@ public interface MorelFactory extends EFactory {
 	SimpleLinkConstraint createSimpleLinkConstraint();
 
 	/**
+	 * Returns a new object of class '<em>Enclosure Link Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Enclosure Link Constraint</em>'.
+	 * @generated
+	 */
+	EnclosureLinkConstraint createEnclosureLinkConstraint();
+
+	/**
 	 * Returns a new object of class '<em>Query Model</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -137,6 +146,24 @@ public interface MorelFactory extends EFactory {
 	 * @generated
 	 */
 	UndefinedLiteralExp createUndefinedLiteralExp();
+
+	/**
+	 * Returns a new object of class '<em>Collection Literal Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Collection Literal Exp</em>'.
+	 * @generated
+	 */
+	CollectionLiteralExp createCollectionLiteralExp();
+
+	/**
+	 * Returns a new object of class '<em>Enum Literal Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Enum Literal Exp</em>'.
+	 * @generated
+	 */
+	EnumLiteralExp createEnumLiteralExp();
 
 	/**
 	 * Returns a new object of class '<em>Type Literal Exp</em>'.

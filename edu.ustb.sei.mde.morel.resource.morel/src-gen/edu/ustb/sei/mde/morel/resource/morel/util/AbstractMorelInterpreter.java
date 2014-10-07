@@ -106,6 +106,12 @@ public class AbstractMorelInterpreter<ResultType, ContextType> {
 		if (result != null) {
 			return result;
 		}
+		if (object instanceof edu.ustb.sei.mde.morel.EnclosureLinkConstraint) {
+			result = interprete_edu_ustb_sei_mde_morel_EnclosureLinkConstraint((edu.ustb.sei.mde.morel.EnclosureLinkConstraint) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
 		if (object instanceof edu.ustb.sei.mde.morel.LinkConstraint) {
 			result = interprete_edu_ustb_sei_mde_morel_LinkConstraint((edu.ustb.sei.mde.morel.LinkConstraint) object, context);
 		}
@@ -162,6 +168,18 @@ public class AbstractMorelInterpreter<ResultType, ContextType> {
 		}
 		if (object instanceof edu.ustb.sei.mde.morel.UndefinedLiteralExp) {
 			result = interprete_edu_ustb_sei_mde_morel_UndefinedLiteralExp((edu.ustb.sei.mde.morel.UndefinedLiteralExp) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
+		if (object instanceof edu.ustb.sei.mde.morel.CollectionLiteralExp) {
+			result = interprete_edu_ustb_sei_mde_morel_CollectionLiteralExp((edu.ustb.sei.mde.morel.CollectionLiteralExp) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
+		if (object instanceof edu.ustb.sei.mde.morel.EnumLiteralExp) {
+			result = interprete_edu_ustb_sei_mde_morel_EnumLiteralExp((edu.ustb.sei.mde.morel.EnumLiteralExp) object, context);
 		}
 		if (result != null) {
 			return result;
@@ -607,6 +625,10 @@ public class AbstractMorelInterpreter<ResultType, ContextType> {
 		return null;
 	}
 	
+	public ResultType interprete_edu_ustb_sei_mde_morel_EnclosureLinkConstraint(edu.ustb.sei.mde.morel.EnclosureLinkConstraint enclosureLinkConstraint, ContextType context) {
+		return null;
+	}
+	
 	public ResultType interprete_edu_ustb_sei_mde_morel_QueryModel(edu.ustb.sei.mde.morel.QueryModel queryModel, ContextType context) {
 		return null;
 	}
@@ -652,6 +674,14 @@ public class AbstractMorelInterpreter<ResultType, ContextType> {
 	}
 	
 	public ResultType interprete_edu_ustb_sei_mde_morel_UndefinedLiteralExp(edu.ustb.sei.mde.morel.UndefinedLiteralExp undefinedLiteralExp, ContextType context) {
+		return null;
+	}
+	
+	public ResultType interprete_edu_ustb_sei_mde_morel_CollectionLiteralExp(edu.ustb.sei.mde.morel.CollectionLiteralExp collectionLiteralExp, ContextType context) {
+		return null;
+	}
+	
+	public ResultType interprete_edu_ustb_sei_mde_morel_EnumLiteralExp(edu.ustb.sei.mde.morel.EnumLiteralExp enumLiteralExp, ContextType context) {
 		return null;
 	}
 	

@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map.Entry;
 
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -11,6 +12,7 @@ import org.eclipse.emf.ecore.EcorePackage;
 
 import edu.ustb.sei.mde.emg.library.OclStandardLibrary;
 import edu.ustb.sei.mde.emg.runtime.Context;
+import edu.ustb.sei.mde.emg.runtime.RuntimePackage;
 import edu.ustb.sei.mde.emg.runtime.datatype.OclBag;
 import edu.ustb.sei.mde.emg.runtime.datatype.OclCollection;
 import edu.ustb.sei.mde.emg.runtime.datatype.OclOrderedSet;
@@ -29,9 +31,11 @@ import edu.ustb.sei.mde.morel.BooleanLiteralExp;
 import edu.ustb.sei.mde.morel.BooleanOrExp;
 import edu.ustb.sei.mde.morel.CallPathExp;
 import edu.ustb.sei.mde.morel.Clause;
+import edu.ustb.sei.mde.morel.CollectionLiteralExp;
 import edu.ustb.sei.mde.morel.CollectionType;
 import edu.ustb.sei.mde.morel.ConditionExp;
 import edu.ustb.sei.mde.morel.DeclarativeStatement;
+import edu.ustb.sei.mde.morel.EnumLiteralExp;
 import edu.ustb.sei.mde.morel.Expression;
 import edu.ustb.sei.mde.morel.FeaturePathExp;
 import edu.ustb.sei.mde.morel.ForStatement;
@@ -140,6 +144,10 @@ public class OclInterpreter extends
 			result = this.interprete_edu_ustb_sei_mde_morel_PredefinedVariableExp((PredefinedVariableExp)object, context);
 		} else if(object instanceof DeclarativeStatement) {
 			result = this.interprete_edu_ustb_sei_mde_morel_DeclarativeStatement((DeclarativeStatement)object, context);
+		} else if(object instanceof CollectionLiteralExp) {
+			result = this.interprete_edu_ustb_sei_mde_morel_CollectionLiteralExp((CollectionLiteralExp)object, context);
+		} else if(object instanceof EnumLiteralExp) {
+			result = this.interprete_edu_ustb_sei_mde_morel_EnumLiteralExp((EnumLiteralExp)object, context);
 		}
 		
 		if(result!=null) return result;
@@ -508,7 +516,7 @@ public class OclInterpreter extends
 			Context context) {
 		Context c = context.newScope();
 		for(Variable v : letExp.getVariables()) {
-			c.putValue(v, OclUndefined.INVALIDED);
+			c.getBindingMap().put(v, OclUndefined.INVALIDED);
 			if(v instanceof VariableWithInit) {
 				c.putValue(v, this.interprete(((VariableWithInit)v).getInitExp(), c));
 			}
@@ -856,4 +864,64 @@ public class OclInterpreter extends
 		}
 		return interprete_edu_ustb_sei_mde_morel_CallPathExp(obj, predefinedVariableExp.getPath(), context);
 	}
+
+
+
+	@Override
+	public Object interprete_edu_ustb_sei_mde_morel_CollectionLiteralExp(
+			CollectionLiteralExp collectionLiteralExp, Context context) {
+		// TODO Auto-generated method stub
+		CollectionType type = null;
+		OclCollection col = null;
+		switch(collectionLiteralExp.getType()) {
+		case "Set":
+			type = MorelFactory.eINSTANCE.createSetType();
+			col = new OclSet();
+			break;
+		case "OrderedSet":
+			type = MorelFactory.eINSTANCE.createOrderedSetType();
+			col = new OclOrderedSet();
+			break;
+		case "Sequence":
+			type = MorelFactory.eINSTANCE.createSequenceType();
+			col = new OclSequence();
+			break;
+		case "Bag":
+			type = MorelFactory.eINSTANCE.createBagType();
+			col = new OclBag();
+			break;
+		default:
+			type = MorelFactory.eINSTANCE.createSequenceType();
+			col = new OclSequence();
+			break;
+		}
+		col.setType(type);
+		
+		EClassifier dataType = null;
+		
+		for(Expression e : collectionLiteralExp.getLiterals()) {
+			Object v = this.interprete(e, context);
+			col.add(v);
+			if(dataType==null) {
+				dataType = (EClassifier) library.oclType(v);
+				type.setElementType(dataType);
+			}
+		}
+		
+		if(dataType==null) {
+			col.setType(EcorePackage.eINSTANCE.getEJavaObject());
+		}
+		
+		return interprete_edu_ustb_sei_mde_morel_CallPathExp(col, collectionLiteralExp.getPath(), context);
+	}
+
+
+
+	@Override
+	public Object interprete_edu_ustb_sei_mde_morel_EnumLiteralExp(
+			EnumLiteralExp enumLiteralExp, Context context) {
+		return interprete_edu_ustb_sei_mde_morel_CallPathExp(enumLiteralExp.getEnumSymbol().getInstance(), enumLiteralExp.getPath(), context);
+	}
+	
+	
 }

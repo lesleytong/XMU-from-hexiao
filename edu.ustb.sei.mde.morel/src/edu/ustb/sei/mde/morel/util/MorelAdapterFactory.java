@@ -108,6 +108,10 @@ public class MorelAdapterFactory extends AdapterFactoryImpl {
 				return createSimpleLinkConstraintAdapter();
 			}
 			@Override
+			public Adapter caseEnclosureLinkConstraint(EnclosureLinkConstraint object) {
+				return createEnclosureLinkConstraintAdapter();
+			}
+			@Override
 			public Adapter caseQueryModel(QueryModel object) {
 				return createQueryModelAdapter();
 			}
@@ -154,6 +158,14 @@ public class MorelAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseUndefinedLiteralExp(UndefinedLiteralExp object) {
 				return createUndefinedLiteralExpAdapter();
+			}
+			@Override
+			public Adapter caseCollectionLiteralExp(CollectionLiteralExp object) {
+				return createCollectionLiteralExpAdapter();
+			}
+			@Override
+			public Adapter caseEnumLiteralExp(EnumLiteralExp object) {
+				return createEnumLiteralExpAdapter();
 			}
 			@Override
 			public Adapter caseTypeLiteralExp(TypeLiteralExp object) {
@@ -494,6 +506,20 @@ public class MorelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.morel.EnclosureLinkConstraint <em>Enclosure Link Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.morel.EnclosureLinkConstraint
+	 * @generated
+	 */
+	public Adapter createEnclosureLinkConstraintAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.morel.QueryModel <em>Query Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -658,6 +684,34 @@ public class MorelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createUndefinedLiteralExpAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.morel.CollectionLiteralExp <em>Collection Literal Exp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.morel.CollectionLiteralExp
+	 * @generated
+	 */
+	public Adapter createCollectionLiteralExpAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.morel.EnumLiteralExp <em>Enum Literal Exp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.morel.EnumLiteralExp
+	 * @generated
+	 */
+	public Adapter createEnumLiteralExpAdapter() {
 		return null;
 	}
 

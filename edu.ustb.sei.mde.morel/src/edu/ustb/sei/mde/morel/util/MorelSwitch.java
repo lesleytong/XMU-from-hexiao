@@ -132,6 +132,13 @@ public class MorelSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MorelPackage.ENCLOSURE_LINK_CONSTRAINT: {
+				EnclosureLinkConstraint enclosureLinkConstraint = (EnclosureLinkConstraint)theEObject;
+				T result = caseEnclosureLinkConstraint(enclosureLinkConstraint);
+				if (result == null) result = caseLinkConstraint(enclosureLinkConstraint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case MorelPackage.QUERY_MODEL: {
 				QueryModel queryModel = (QueryModel)theEObject;
 				T result = caseQueryModel(queryModel);
@@ -273,6 +280,38 @@ public class MorelSwitch<T> extends Switch<T> {
 				if (result == null) result = caseBooleanOrExpChild(undefinedLiteralExp);
 				if (result == null) result = caseBooleanImpliesExpChild(undefinedLiteralExp);
 				if (result == null) result = caseExpression(undefinedLiteralExp);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MorelPackage.COLLECTION_LITERAL_EXP: {
+				CollectionLiteralExp collectionLiteralExp = (CollectionLiteralExp)theEObject;
+				T result = caseCollectionLiteralExp(collectionLiteralExp);
+				if (result == null) result = caseLiteralExp(collectionLiteralExp);
+				if (result == null) result = caseAtomicExp(collectionLiteralExp);
+				if (result == null) result = caseUnaryExpChild(collectionLiteralExp);
+				if (result == null) result = caseMultiplicativeExpChild(collectionLiteralExp);
+				if (result == null) result = caseAdditiveExpChild(collectionLiteralExp);
+				if (result == null) result = caseRelationalExpChild(collectionLiteralExp);
+				if (result == null) result = caseBooleanAndExpChild(collectionLiteralExp);
+				if (result == null) result = caseBooleanOrExpChild(collectionLiteralExp);
+				if (result == null) result = caseBooleanImpliesExpChild(collectionLiteralExp);
+				if (result == null) result = caseExpression(collectionLiteralExp);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MorelPackage.ENUM_LITERAL_EXP: {
+				EnumLiteralExp enumLiteralExp = (EnumLiteralExp)theEObject;
+				T result = caseEnumLiteralExp(enumLiteralExp);
+				if (result == null) result = caseLiteralExp(enumLiteralExp);
+				if (result == null) result = caseAtomicExp(enumLiteralExp);
+				if (result == null) result = caseUnaryExpChild(enumLiteralExp);
+				if (result == null) result = caseMultiplicativeExpChild(enumLiteralExp);
+				if (result == null) result = caseAdditiveExpChild(enumLiteralExp);
+				if (result == null) result = caseRelationalExpChild(enumLiteralExp);
+				if (result == null) result = caseBooleanAndExpChild(enumLiteralExp);
+				if (result == null) result = caseBooleanOrExpChild(enumLiteralExp);
+				if (result == null) result = caseBooleanImpliesExpChild(enumLiteralExp);
+				if (result == null) result = caseExpression(enumLiteralExp);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -831,6 +870,21 @@ public class MorelSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Enclosure Link Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Enclosure Link Constraint</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEnclosureLinkConstraint(EnclosureLinkConstraint object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Query Model</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1007,6 +1061,36 @@ public class MorelSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseUndefinedLiteralExp(UndefinedLiteralExp object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Collection Literal Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Collection Literal Exp</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCollectionLiteralExp(CollectionLiteralExp object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Enum Literal Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Enum Literal Exp</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEnumLiteralExp(EnumLiteralExp object) {
 		return null;
 	}
 

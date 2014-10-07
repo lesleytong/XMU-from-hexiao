@@ -62,6 +62,7 @@ public class MorelFactoryImpl extends EFactoryImpl implements MorelFactory {
 			case MorelPackage.OBJECT_VARIABLE: return createObjectVariable();
 			case MorelPackage.PRIMITIVE_VARIABLE: return createPrimitiveVariable();
 			case MorelPackage.SIMPLE_LINK_CONSTRAINT: return createSimpleLinkConstraint();
+			case MorelPackage.ENCLOSURE_LINK_CONSTRAINT: return createEnclosureLinkConstraint();
 			case MorelPackage.QUERY_MODEL: return createQueryModel();
 			case MorelPackage.TYPED_MODEL: return createTypedModel();
 			case MorelPackage.QUERY: return createQuery();
@@ -70,6 +71,8 @@ public class MorelFactoryImpl extends EFactoryImpl implements MorelFactory {
 			case MorelPackage.REAL_LITERAL_EXP: return createRealLiteralExp();
 			case MorelPackage.BOOLEAN_LITERAL_EXP: return createBooleanLiteralExp();
 			case MorelPackage.UNDEFINED_LITERAL_EXP: return createUndefinedLiteralExp();
+			case MorelPackage.COLLECTION_LITERAL_EXP: return createCollectionLiteralExp();
+			case MorelPackage.ENUM_LITERAL_EXP: return createEnumLiteralExp();
 			case MorelPackage.TYPE_LITERAL_EXP: return createTypeLiteralExp();
 			case MorelPackage.VARIABLE_EXP: return createVariableExp();
 			case MorelPackage.PREDEFINED_VARIABLE_EXP: return createPredefinedVariableExp();
@@ -226,6 +229,16 @@ public class MorelFactoryImpl extends EFactoryImpl implements MorelFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EnclosureLinkConstraint createEnclosureLinkConstraint() {
+		EnclosureLinkConstraintImpl enclosureLinkConstraint = new EnclosureLinkConstraintImpl();
+		return enclosureLinkConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public QueryModel createQueryModel() {
 		QueryModelImpl queryModel = new QueryModelImpl();
 		return queryModel;
@@ -299,6 +312,26 @@ public class MorelFactoryImpl extends EFactoryImpl implements MorelFactory {
 	public UndefinedLiteralExp createUndefinedLiteralExp() {
 		UndefinedLiteralExpImpl undefinedLiteralExp = new UndefinedLiteralExpImpl();
 		return undefinedLiteralExp;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CollectionLiteralExp createCollectionLiteralExp() {
+		CollectionLiteralExpImpl collectionLiteralExp = new CollectionLiteralExpImpl();
+		return collectionLiteralExp;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EnumLiteralExp createEnumLiteralExp() {
+		EnumLiteralExpImpl enumLiteralExp = new EnumLiteralExpImpl();
+		return enumLiteralExp;
 	}
 
 	/**

@@ -19,9 +19,12 @@ import edu.ustb.sei.mde.morel.BooleanOrExp;
 import edu.ustb.sei.mde.morel.BooleanOrExpChild;
 import edu.ustb.sei.mde.morel.CallPathExp;
 import edu.ustb.sei.mde.morel.Clause;
+import edu.ustb.sei.mde.morel.CollectionLiteralExp;
 import edu.ustb.sei.mde.morel.CollectionType;
 import edu.ustb.sei.mde.morel.ConditionExp;
 import edu.ustb.sei.mde.morel.DeclarativeStatement;
+import edu.ustb.sei.mde.morel.EnclosureLinkConstraint;
+import edu.ustb.sei.mde.morel.EnumLiteralExp;
 import edu.ustb.sei.mde.morel.Expression;
 import edu.ustb.sei.mde.morel.FeaturePathExp;
 import edu.ustb.sei.mde.morel.ForStatement;
@@ -164,6 +167,13 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass enclosureLinkConstraintEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass queryModelEClass = null;
 
 	/**
@@ -242,6 +252,20 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 * @generated
 	 */
 	private EClass undefinedLiteralExpEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass collectionLiteralExpEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass enumLiteralExpEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -876,6 +900,24 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getEnclosureLinkConstraint() {
+		return enclosureLinkConstraintEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getEnclosureLinkConstraint_Forward() {
+		return (EReference)enclosureLinkConstraintEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getQueryModel() {
 		return queryModelEClass;
 	}
@@ -1076,6 +1118,60 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 */
 	public EAttribute getUndefinedLiteralExp_Value() {
 		return (EAttribute)undefinedLiteralExpEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getCollectionLiteralExp() {
+		return collectionLiteralExpEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getCollectionLiteralExp_Type() {
+		return (EAttribute)collectionLiteralExpEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCollectionLiteralExp_Literals() {
+		return (EReference)collectionLiteralExpEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getEnumLiteralExp() {
+		return enumLiteralExpEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getEnumLiteralExp_EnumType() {
+		return (EReference)enumLiteralExpEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getEnumLiteralExp_EnumSymbol() {
+		return (EReference)enumLiteralExpEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -2081,6 +2177,9 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		createEReference(simpleLinkConstraintEClass, SIMPLE_LINK_CONSTRAINT__ID);
 		createEReference(simpleLinkConstraintEClass, SIMPLE_LINK_CONSTRAINT__REFERENCE);
 
+		enclosureLinkConstraintEClass = createEClass(ENCLOSURE_LINK_CONSTRAINT);
+		createEReference(enclosureLinkConstraintEClass, ENCLOSURE_LINK_CONSTRAINT__FORWARD);
+
 		queryModelEClass = createEClass(QUERY_MODEL);
 		createEReference(queryModelEClass, QUERY_MODEL__QUERIES);
 
@@ -2115,6 +2214,14 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 
 		undefinedLiteralExpEClass = createEClass(UNDEFINED_LITERAL_EXP);
 		createEAttribute(undefinedLiteralExpEClass, UNDEFINED_LITERAL_EXP__VALUE);
+
+		collectionLiteralExpEClass = createEClass(COLLECTION_LITERAL_EXP);
+		createEAttribute(collectionLiteralExpEClass, COLLECTION_LITERAL_EXP__TYPE);
+		createEReference(collectionLiteralExpEClass, COLLECTION_LITERAL_EXP__LITERALS);
+
+		enumLiteralExpEClass = createEClass(ENUM_LITERAL_EXP);
+		createEReference(enumLiteralExpEClass, ENUM_LITERAL_EXP__ENUM_TYPE);
+		createEReference(enumLiteralExpEClass, ENUM_LITERAL_EXP__ENUM_SYMBOL);
 
 		typeLiteralExpEClass = createEClass(TYPE_LITERAL_EXP);
 		createEReference(typeLiteralExpEClass, TYPE_LITERAL_EXP__VALUE);
@@ -2302,6 +2409,7 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		objectVariableEClass.getESuperTypes().add(this.getVariable());
 		primitiveVariableEClass.getESuperTypes().add(this.getVariable());
 		simpleLinkConstraintEClass.getESuperTypes().add(this.getLinkConstraint());
+		enclosureLinkConstraintEClass.getESuperTypes().add(this.getLinkConstraint());
 		queryModelEClass.getESuperTypes().add(this.getUnit());
 		typedModelEClass.getESuperTypes().add(this.getNamedElement());
 		queryEClass.getESuperTypes().add(this.getPattern());
@@ -2313,6 +2421,8 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		realLiteralExpEClass.getESuperTypes().add(this.getLiteralExp());
 		booleanLiteralExpEClass.getESuperTypes().add(this.getLiteralExp());
 		undefinedLiteralExpEClass.getESuperTypes().add(this.getLiteralExp());
+		collectionLiteralExpEClass.getESuperTypes().add(this.getLiteralExp());
+		enumLiteralExpEClass.getESuperTypes().add(this.getLiteralExp());
 		typeLiteralExpEClass.getESuperTypes().add(this.getLiteralExp());
 		variableExpEClass.getESuperTypes().add(this.getAtomicExp());
 		predefinedVariableExpEClass.getESuperTypes().add(this.getAtomicExp());
@@ -2391,6 +2501,9 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		initEReference(getSimpleLinkConstraint_Id(), this.getExpression(), null, "id", null, 0, 1, SimpleLinkConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSimpleLinkConstraint_Reference(), ecorePackage.getEReference(), null, "reference", null, 1, 1, SimpleLinkConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(enclosureLinkConstraintEClass, EnclosureLinkConstraint.class, "EnclosureLinkConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getEnclosureLinkConstraint_Forward(), ecorePackage.getEReference(), null, "forward", null, 1, -1, EnclosureLinkConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(queryModelEClass, QueryModel.class, "QueryModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getQueryModel_Queries(), this.getQuery(), null, "queries", null, 0, -1, QueryModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -2427,6 +2540,14 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 
 		initEClass(undefinedLiteralExpEClass, UndefinedLiteralExp.class, "UndefinedLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getUndefinedLiteralExp_Value(), this.getUndefinedLiteral(), "value", null, 1, 1, UndefinedLiteralExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(collectionLiteralExpEClass, CollectionLiteralExp.class, "CollectionLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getCollectionLiteralExp_Type(), ecorePackage.getEString(), "type", null, 1, 1, CollectionLiteralExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCollectionLiteralExp_Literals(), this.getExpression(), null, "literals", null, 0, -1, CollectionLiteralExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(enumLiteralExpEClass, EnumLiteralExp.class, "EnumLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getEnumLiteralExp_EnumType(), ecorePackage.getEEnum(), null, "enumType", null, 1, 1, EnumLiteralExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEnumLiteralExp_EnumSymbol(), ecorePackage.getEEnumLiteral(), null, "enumSymbol", null, 1, 1, EnumLiteralExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(typeLiteralExpEClass, TypeLiteralExp.class, "TypeLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTypeLiteralExp_Value(), ecorePackage.getEClassifier(), null, "value", null, 1, 1, TypeLiteralExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

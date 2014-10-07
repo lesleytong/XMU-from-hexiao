@@ -26,6 +26,8 @@ public class MorelSyntaxCoverageInformationProvider {
 			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBooleanLiteralExp(),
 			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getUndefinedLiteralExp(),
 			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getTypeLiteralExp(),
+			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getCollectionLiteralExp(),
+			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getEnumLiteralExp(),
 			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getFeaturePathExp(),
 			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getOperationPathExp(),
 			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getIteratorPathExp(),
