@@ -38,8 +38,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EnclosureLinkConstraint" eSuperTypes="#//LinkConstraint">
     <eStructuralFeatures xsi:type="ecore:EReference" name="forward" lowerBound="1"
-        upperBound="-1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EReference"
-        containment="true"/>
+        upperBound="-1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EReference"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="SectionType">
     <eLiterals name="LHS"/>

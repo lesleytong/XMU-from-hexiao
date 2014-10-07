@@ -18,6 +18,7 @@ public class MorelSyntaxCoverageInformationProvider {
 			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getObjectVariableWithInit(),
 			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getPrimitiveVariableWithInit(),
 			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getSimpleLinkConstraint(),
+			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getEnclosureLinkConstraint(),
 			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getVariableExp(),
 			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getNestedExp(),
 			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getIntegerLiteralExp(),

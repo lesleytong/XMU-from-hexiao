@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.EReference;
  */
 public interface EnclosureLinkConstraint extends LinkConstraint {
 	/**
-	 * Returns the value of the '<em><b>Forward</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Forward</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.emf.ecore.EReference}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -32,9 +32,9 @@ public interface EnclosureLinkConstraint extends LinkConstraint {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Forward</em>' containment reference list.
+	 * @return the value of the '<em>Forward</em>' reference list.
 	 * @see edu.ustb.sei.mde.morel.MorelPackage#getEnclosureLinkConstraint_Forward()
-	 * @model containment="true" required="true"
+	 * @model required="true"
 	 * @generated
 	 */
 	EList<EReference> getForward();

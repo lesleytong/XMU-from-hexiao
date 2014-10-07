@@ -70,6 +70,8 @@ RULES {
 	
 	SimpleLinkConstraint ::= source[IDENTIFIER] "." reference[IDENTIFIER] ("[" id:PredefinedBindExp, BindExp, LetExp, ConditionExp, BooleanImpliesExp "]")? "=" target[IDENTIFIER];
 	
+	EnclosureLinkConstraint ::= source[IDENTIFIER] "." (forward[IDENTIFIER]("|" forward[IDENTIFIER])*) "*" "=" target[IDENTIFIER] ;
+	
 	VariableExp ::= referredVariable[IDENTIFIER] (path)?;
 	
 	NestedExp ::= "(" expression:LetExp, ConditionExp, BooleanImpliesExp ")" (path)?;

@@ -4,19 +4,11 @@ package edu.ustb.sei.mde.morel.impl;
 
 import edu.ustb.sei.mde.morel.EnclosureLinkConstraint;
 import edu.ustb.sei.mde.morel.MorelPackage;
-
 import java.util.Collection;
-
-import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,7 +25,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class EnclosureLinkConstraintImpl extends LinkConstraintImpl implements EnclosureLinkConstraint {
 	/**
-	 * The cached value of the '{@link #getForward() <em>Forward</em>}' containment reference list.
+	 * The cached value of the '{@link #getForward() <em>Forward</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getForward()
@@ -68,23 +60,9 @@ public class EnclosureLinkConstraintImpl extends LinkConstraintImpl implements E
 	 */
 	public EList<EReference> getForward() {
 		if (forward == null) {
-			forward = new EObjectContainmentEList<EReference>(EReference.class, this, MorelPackage.ENCLOSURE_LINK_CONSTRAINT__FORWARD);
+			forward = new EObjectResolvingEList<EReference>(EReference.class, this, MorelPackage.ENCLOSURE_LINK_CONSTRAINT__FORWARD);
 		}
 		return forward;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case MorelPackage.ENCLOSURE_LINK_CONSTRAINT__FORWARD:
-				return ((InternalEList<?>)getForward()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**

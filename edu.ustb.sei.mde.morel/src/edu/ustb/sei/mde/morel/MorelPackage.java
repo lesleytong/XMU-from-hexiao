@@ -511,7 +511,7 @@ public interface MorelPackage extends EPackage {
 	int ENCLOSURE_LINK_CONSTRAINT__TARGET = LINK_CONSTRAINT__TARGET;
 
 	/**
-	 * The feature id for the '<em><b>Forward</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Forward</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -4007,10 +4007,10 @@ public interface MorelPackage extends EPackage {
 	EClass getEnclosureLinkConstraint();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link edu.ustb.sei.mde.morel.EnclosureLinkConstraint#getForward <em>Forward</em>}'.
+	 * Returns the meta object for the reference list '{@link edu.ustb.sei.mde.morel.EnclosureLinkConstraint#getForward <em>Forward</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Forward</em>'.
+	 * @return the meta object for the reference list '<em>Forward</em>'.
 	 * @see edu.ustb.sei.mde.morel.EnclosureLinkConstraint#getForward()
 	 * @see #getEnclosureLinkConstraint()
 	 * @generated
@@ -5642,7 +5642,7 @@ public interface MorelPackage extends EPackage {
 		EClass ENCLOSURE_LINK_CONSTRAINT = eINSTANCE.getEnclosureLinkConstraint();
 
 		/**
-		 * The meta object literal for the '<em><b>Forward</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Forward</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

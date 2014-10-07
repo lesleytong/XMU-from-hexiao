@@ -22,7 +22,7 @@ public class PropLinkS_T extends Propagator<IntVar> {
 	private static final long serialVersionUID = -7064792404577803139L;
 	private IntVar source;
 	private IntVar target;
-	private EReference reference;
+	private List<EReference> references;
 	private Environment environment;
 	private IIntDeltaMonitor[] idms;
 	
@@ -31,7 +31,8 @@ public class PropLinkS_T extends Propagator<IntVar> {
 		
 		this.source = source;
 		this.target = target;
-		this.reference = reference;
+		this.references = new ArrayList<EReference>();
+		this.references.add(reference);
 		this.environment = environment;
 		
 		idms = new IIntDeltaMonitor[2];
@@ -50,20 +51,31 @@ public class PropLinkS_T extends Propagator<IntVar> {
 		
 		for(int s = source.getLB(); s<=source.getUB(); s = source.nextValue(s)) {
 			EObject so = ModelSpace.getElementByID(s);
+			boolean toBeDeleted = true;
 			
-			
-			if(reference.isMany()) {
-				Collection<? extends EObject> list = (Collection<? extends EObject>)so.eGet(reference);
-				if(list.size()==0) source.removeValue(s, aCause);
-				else {
-					tarList.addAll(list);
+			for(EReference ref : references) {
+				if(ref.isMany()) {
+					Collection<? extends EObject> list = (Collection<? extends EObject>)so.eGet(ref);
+					if(list.size()==0) //source.removeValue(s, aCause);
+						continue;
+					else {
+						toBeDeleted = false;
+						tarList.addAll(list);
+					}
+				} else {
+					if(so.eGet(ref)==null) {
+						//source.removeValue(s, aCause);
+						continue;
+					}
+					else{
+						toBeDeleted = false;
+						tarList.add((EObject) so.eGet(ref));
+					}
 				}
-			} else {
-				if(so.eGet(reference)==null)
-					source.removeValue(s, aCause);
-				else
-					tarList.add((EObject) so.eGet(reference));
 			}
+			
+			if(toBeDeleted)
+				source.removeValue(s, aCause);
 		}
 		
 		for(int t = target.getLB(); t<=target.getUB(); t=target.nextValue(t)) {
@@ -85,44 +97,62 @@ public class PropLinkS_T extends Propagator<IntVar> {
 	public void propagate(int idxVarInProp, int mask)
 			throws ContradictionException {
 		if (EventType.isInstantiate(mask)) {
-            if (idxVarInProp == 0) {
-                int s = source.getValue();
-                EObject so = ModelSpace.getElementByID(s);
-                
-                idms[1].freeze();
-    			if(reference.isMany()) {
-    				List<EObject> list = (List<EObject>)so.eGet(reference);
-    				
-    				for(int t = target.getLB(); t<=target.getUB(); t=target.nextValue(t)) {
-    					EObject to = ModelSpace.getElementByID(t);
-    					if(list.contains(to)==false)
-    						target.removeValue(t, aCause);
-    				}
-    			} else {
-    				if(so.eGet(reference)!=null) {
-    					EObject to = (EObject) so.eGet(reference);
-    					target.instantiateTo(ModelSpace.getElementID(to), aCause);
-    				}
-    			}
-    	        idms[1].unfreeze();
-            } else {
-            	int t = target.getValue();
-            	EObject to = ModelSpace.getElementByID(t);
-                idms[0].freeze();
-            	for(int s = source.getLB();s<=source.getUB();s=source.nextValue(s)) {
-            		EObject so = ModelSpace.getElementByID(s);
-            		if(reference.isMany()) {
-            			List<EObject> list = (List<EObject>)so.eGet(reference);
-            			if(list.contains(to)==false)
-            				source.removeValue(s, aCause);
-            		} else {
-            			if(to!=so.eGet(reference))
-            				source.removeValue(s, aCause);
-            		}
-            	}
-                idms[0].unfreeze();
-            }
-        }
+			if (idxVarInProp == 0) {
+				int s = source.getValue();
+				EObject so = ModelSpace.getElementByID(s);
+				for(int t = target.getLB(); t<=target.getUB(); t=target.nextValue(t)) {
+					EObject to = ModelSpace.getElementByID(t);
+					boolean toBeDeleted = true;
+					for(EReference ref : references) {
+						if(ref.isMany()) {
+							List<EObject> list = (List<EObject>)so.eGet(ref);
+							if(list.contains(to)) {
+								toBeDeleted = false;
+								break;
+							}
+						} else {
+							if(to==so.eGet(ref)) {
+								toBeDeleted = false;
+								break;
+							}
+						}
+					}
+					idms[1].freeze();
+					if(toBeDeleted) 
+						target.removeValue(t, aCause);
+					idms[1].unfreeze();					
+				}
+			} else {
+				int t = target.getValue();
+				EObject to = ModelSpace.getElementByID(t);
+				for(int s = source.getLB();s<=source.getUB();s=source.nextValue(s)) {
+					EObject so = ModelSpace.getElementByID(s);
+					boolean toBeDeleted = true;
+					for(EReference ref :references) {
+						if(ref.isMany()) {
+							List<EObject> list = (List<EObject>)so.eGet(ref);
+							if(list.contains(to)){
+								toBeDeleted = false;
+								break;
+							}
+//							source.removeValue(s, aCause);
+						} else {
+							if(to==so.eGet(ref)){
+								toBeDeleted = false;
+								break;
+							}
+						}
+					}
+					idms[0].freeze();
+					if(toBeDeleted)
+						source.removeValue(s, aCause);
+					idms[0].unfreeze();
+				}
+			}
+			if(source.isInstantiated()==false && source.getLB()==source.getUB()) source.instantiateTo(source.getLB(), aCause);
+			if(target.isInstantiated()==false && target.getLB()==target.getUB()) target.instantiateTo(target.getLB(), aCause);
+		}
+		
 		
 		if(source.isInstantiated() && target.isInstantiated()) {
 			setPassive();
@@ -135,19 +165,21 @@ public class PropLinkS_T extends Propagator<IntVar> {
 	public ESat isEntailed() {
 		for(int s = source.getLB(); s<= source.getUB(); s=source.nextValue(s)) {
 			EObject so = ModelSpace.getElementByID(s);
-			if(reference.isMany()) {
-				List<EObject> list = (List<EObject>)so.eGet(reference);
-				for(EObject to : list) {
-					int toi = ModelSpace.getElementID(to);
-					if(target.contains(toi))
-						return ESat.TRUE;
-				}
-			} else {
-				EObject to = (EObject)so.eGet(reference);
-				if(to!=null) {
-					int toi = ModelSpace.getElementID(to);
-					if(target.contains(toi))
-						return ESat.TRUE;
+			for(EReference ref : references) {
+				if(ref.isMany()) {
+					List<EObject> list = (List<EObject>)so.eGet(ref);
+					for(EObject to : list) {
+						int toi = ModelSpace.getElementID(to);
+						if(target.contains(toi))
+							return ESat.TRUE;
+					}
+				} else {
+					EObject to = (EObject)so.eGet(ref);
+					if(to!=null) {
+						int toi = ModelSpace.getElementID(to);
+						if(target.contains(toi))
+							return ESat.TRUE;
+					}
 				}
 			}
 		}
