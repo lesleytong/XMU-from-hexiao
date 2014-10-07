@@ -212,7 +212,7 @@ public class MorelPrinter2 implements edu.ustb.sei.mde.morel.resource.morel.IMor
 			printInternal(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_6, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.morel.LinkConstraint) {
+		if (element instanceof edu.ustb.sei.mde.morel.SimpleLinkConstraint) {
 			printInternal(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_7, foundFormattingElements);
 			return;
 		}

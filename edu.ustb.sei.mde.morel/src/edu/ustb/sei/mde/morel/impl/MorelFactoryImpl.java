@@ -61,7 +61,7 @@ public class MorelFactoryImpl extends EFactoryImpl implements MorelFactory {
 			case MorelPackage.CLAUSE: return createClause();
 			case MorelPackage.OBJECT_VARIABLE: return createObjectVariable();
 			case MorelPackage.PRIMITIVE_VARIABLE: return createPrimitiveVariable();
-			case MorelPackage.LINK_CONSTRAINT: return createLinkConstraint();
+			case MorelPackage.SIMPLE_LINK_CONSTRAINT: return createSimpleLinkConstraint();
 			case MorelPackage.QUERY_MODEL: return createQueryModel();
 			case MorelPackage.TYPED_MODEL: return createTypedModel();
 			case MorelPackage.QUERY: return createQuery();
@@ -216,9 +216,9 @@ public class MorelFactoryImpl extends EFactoryImpl implements MorelFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LinkConstraint createLinkConstraint() {
-		LinkConstraintImpl linkConstraint = new LinkConstraintImpl();
-		return linkConstraint;
+	public SimpleLinkConstraint createSimpleLinkConstraint() {
+		SimpleLinkConstraintImpl simpleLinkConstraint = new SimpleLinkConstraintImpl();
+		return simpleLinkConstraint;
 	}
 
 	/**

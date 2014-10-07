@@ -1547,13 +1547,13 @@ public class MorelLexer extends Lexer {
         try {
             int _type = LINEBREAK;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:8141:10: ( ( ( '\\r\\n' | '\\r' | '\\n' ) ) )
-            // Morel.g:8142:2: ( ( '\\r\\n' | '\\r' | '\\n' ) )
+            // Morel.g:8147:10: ( ( ( '\\r\\n' | '\\r' | '\\n' ) ) )
+            // Morel.g:8148:2: ( ( '\\r\\n' | '\\r' | '\\n' ) )
             {
-            // Morel.g:8142:2: ( ( '\\r\\n' | '\\r' | '\\n' ) )
-            // Morel.g:8142:3: ( '\\r\\n' | '\\r' | '\\n' )
+            // Morel.g:8148:2: ( ( '\\r\\n' | '\\r' | '\\n' ) )
+            // Morel.g:8148:3: ( '\\r\\n' | '\\r' | '\\n' )
             {
-            // Morel.g:8142:3: ( '\\r\\n' | '\\r' | '\\n' )
+            // Morel.g:8148:3: ( '\\r\\n' | '\\r' | '\\n' )
             int alt1=3;
             int LA1_0 = input.LA(1);
 
@@ -1579,7 +1579,7 @@ public class MorelLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // Morel.g:8142:4: '\\r\\n'
+                    // Morel.g:8148:4: '\\r\\n'
                     {
                     match("\r\n"); 
 
@@ -1588,14 +1588,14 @@ public class MorelLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // Morel.g:8142:11: '\\r'
+                    // Morel.g:8148:11: '\\r'
                     {
                     match('\r'); 
 
                     }
                     break;
                 case 3 :
-                    // Morel.g:8142:16: '\\n'
+                    // Morel.g:8148:16: '\\n'
                     {
                     match('\n'); 
 
@@ -1626,8 +1626,8 @@ public class MorelLexer extends Lexer {
         try {
             int _type = WHITESPACE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:8145:11: ( ( ( ' ' | '\\t' | '\\f' ) ) )
-            // Morel.g:8146:2: ( ( ' ' | '\\t' | '\\f' ) )
+            // Morel.g:8151:11: ( ( ( ' ' | '\\t' | '\\f' ) ) )
+            // Morel.g:8152:2: ( ( ' ' | '\\t' | '\\f' ) )
             {
             if ( input.LA(1)=='\t'||input.LA(1)=='\f'||input.LA(1)==' ' ) {
                 input.consume();
@@ -1657,17 +1657,17 @@ public class MorelLexer extends Lexer {
         try {
             int _type = DATA_TYPE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:8149:10: ( ( ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '(' )* ( 'String' | 'Integer' | 'Boolean' | 'Real' | 'Char' | 'Any' ) ( ')' )* | ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '(' )+ ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* ) ( ')' )+ ) )
-            // Morel.g:8150:2: ( ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '(' )* ( 'String' | 'Integer' | 'Boolean' | 'Real' | 'Char' | 'Any' ) ( ')' )* | ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '(' )+ ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* ) ( ')' )+ )
+            // Morel.g:8155:10: ( ( ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '(' )* ( 'String' | 'Integer' | 'Boolean' | 'Real' | 'Char' | 'Any' ) ( ')' )* | ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '(' )+ ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* ) ( ')' )+ ) )
+            // Morel.g:8156:2: ( ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '(' )* ( 'String' | 'Integer' | 'Boolean' | 'Real' | 'Char' | 'Any' ) ( ')' )* | ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '(' )+ ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* ) ( ')' )+ )
             {
-            // Morel.g:8150:2: ( ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '(' )* ( 'String' | 'Integer' | 'Boolean' | 'Real' | 'Char' | 'Any' ) ( ')' )* | ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '(' )+ ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* ) ( ')' )+ )
+            // Morel.g:8156:2: ( ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '(' )* ( 'String' | 'Integer' | 'Boolean' | 'Real' | 'Char' | 'Any' ) ( ')' )* | ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '(' )+ ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* ) ( ')' )+ )
             int alt10=2;
             alt10 = dfa10.predict(input);
             switch (alt10) {
                 case 1 :
-                    // Morel.g:8150:3: ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '(' )* ( 'String' | 'Integer' | 'Boolean' | 'Real' | 'Char' | 'Any' ) ( ')' )*
+                    // Morel.g:8156:3: ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '(' )* ( 'String' | 'Integer' | 'Boolean' | 'Real' | 'Char' | 'Any' ) ( ')' )*
                     {
-                    // Morel.g:8150:3: ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '(' )*
+                    // Morel.g:8156:3: ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '(' )*
                     loop3:
                     do {
                         int alt3=2;
@@ -1704,9 +1704,9 @@ public class MorelLexer extends Lexer {
 
                         switch (alt3) {
                     	case 1 :
-                    	    // Morel.g:8150:4: ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '('
+                    	    // Morel.g:8156:4: ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '('
                     	    {
-                    	    // Morel.g:8150:4: ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' )
+                    	    // Morel.g:8156:4: ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' )
                     	    int alt2=4;
                     	    switch ( input.LA(1) ) {
                     	    case 'S':
@@ -1759,7 +1759,7 @@ public class MorelLexer extends Lexer {
 
                     	    switch (alt2) {
                     	        case 1 :
-                    	            // Morel.g:8150:5: 'Sequence'
+                    	            // Morel.g:8156:5: 'Sequence'
                     	            {
                     	            match("Sequence"); 
 
@@ -1768,7 +1768,7 @@ public class MorelLexer extends Lexer {
                     	            }
                     	            break;
                     	        case 2 :
-                    	            // Morel.g:8150:16: 'Set'
+                    	            // Morel.g:8156:16: 'Set'
                     	            {
                     	            match("Set"); 
 
@@ -1777,7 +1777,7 @@ public class MorelLexer extends Lexer {
                     	            }
                     	            break;
                     	        case 3 :
-                    	            // Morel.g:8150:22: 'Bag'
+                    	            // Morel.g:8156:22: 'Bag'
                     	            {
                     	            match("Bag"); 
 
@@ -1786,7 +1786,7 @@ public class MorelLexer extends Lexer {
                     	            }
                     	            break;
                     	        case 4 :
-                    	            // Morel.g:8150:28: 'OrderedSet'
+                    	            // Morel.g:8156:28: 'OrderedSet'
                     	            {
                     	            match("OrderedSet"); 
 
@@ -1809,7 +1809,7 @@ public class MorelLexer extends Lexer {
                     } while (true);
 
 
-                    // Morel.g:8150:46: ( 'String' | 'Integer' | 'Boolean' | 'Real' | 'Char' | 'Any' )
+                    // Morel.g:8156:46: ( 'String' | 'Integer' | 'Boolean' | 'Real' | 'Char' | 'Any' )
                     int alt4=6;
                     switch ( input.LA(1) ) {
                     case 'S':
@@ -1852,7 +1852,7 @@ public class MorelLexer extends Lexer {
 
                     switch (alt4) {
                         case 1 :
-                            // Morel.g:8150:47: 'String'
+                            // Morel.g:8156:47: 'String'
                             {
                             match("String"); 
 
@@ -1861,7 +1861,7 @@ public class MorelLexer extends Lexer {
                             }
                             break;
                         case 2 :
-                            // Morel.g:8150:56: 'Integer'
+                            // Morel.g:8156:56: 'Integer'
                             {
                             match("Integer"); 
 
@@ -1870,7 +1870,7 @@ public class MorelLexer extends Lexer {
                             }
                             break;
                         case 3 :
-                            // Morel.g:8150:66: 'Boolean'
+                            // Morel.g:8156:66: 'Boolean'
                             {
                             match("Boolean"); 
 
@@ -1879,7 +1879,7 @@ public class MorelLexer extends Lexer {
                             }
                             break;
                         case 4 :
-                            // Morel.g:8150:76: 'Real'
+                            // Morel.g:8156:76: 'Real'
                             {
                             match("Real"); 
 
@@ -1888,7 +1888,7 @@ public class MorelLexer extends Lexer {
                             }
                             break;
                         case 5 :
-                            // Morel.g:8150:83: 'Char'
+                            // Morel.g:8156:83: 'Char'
                             {
                             match("Char"); 
 
@@ -1897,7 +1897,7 @@ public class MorelLexer extends Lexer {
                             }
                             break;
                         case 6 :
-                            // Morel.g:8150:90: 'Any'
+                            // Morel.g:8156:90: 'Any'
                             {
                             match("Any"); 
 
@@ -1909,7 +1909,7 @@ public class MorelLexer extends Lexer {
                     }
 
 
-                    // Morel.g:8150:96: ( ')' )*
+                    // Morel.g:8156:96: ( ')' )*
                     loop5:
                     do {
                         int alt5=2;
@@ -1922,7 +1922,7 @@ public class MorelLexer extends Lexer {
 
                         switch (alt5) {
                     	case 1 :
-                    	    // Morel.g:8150:96: ')'
+                    	    // Morel.g:8156:96: ')'
                     	    {
                     	    match(')'); 
 
@@ -1938,9 +1938,9 @@ public class MorelLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // Morel.g:8150:101: ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '(' )+ ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* ) ( ')' )+
+                    // Morel.g:8156:101: ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '(' )+ ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* ) ( ')' )+
                     {
-                    // Morel.g:8150:101: ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '(' )+
+                    // Morel.g:8156:101: ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '(' )+
                     int cnt7=0;
                     loop7:
                     do {
@@ -2101,9 +2101,9 @@ public class MorelLexer extends Lexer {
 
                         switch (alt7) {
                     	case 1 :
-                    	    // Morel.g:8150:102: ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '('
+                    	    // Morel.g:8156:102: ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '('
                     	    {
-                    	    // Morel.g:8150:102: ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' )
+                    	    // Morel.g:8156:102: ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' )
                     	    int alt6=4;
                     	    switch ( input.LA(1) ) {
                     	    case 'S':
@@ -2156,7 +2156,7 @@ public class MorelLexer extends Lexer {
 
                     	    switch (alt6) {
                     	        case 1 :
-                    	            // Morel.g:8150:103: 'Sequence'
+                    	            // Morel.g:8156:103: 'Sequence'
                     	            {
                     	            match("Sequence"); 
 
@@ -2165,7 +2165,7 @@ public class MorelLexer extends Lexer {
                     	            }
                     	            break;
                     	        case 2 :
-                    	            // Morel.g:8150:114: 'Set'
+                    	            // Morel.g:8156:114: 'Set'
                     	            {
                     	            match("Set"); 
 
@@ -2174,7 +2174,7 @@ public class MorelLexer extends Lexer {
                     	            }
                     	            break;
                     	        case 3 :
-                    	            // Morel.g:8150:120: 'Bag'
+                    	            // Morel.g:8156:120: 'Bag'
                     	            {
                     	            match("Bag"); 
 
@@ -2183,7 +2183,7 @@ public class MorelLexer extends Lexer {
                     	            }
                     	            break;
                     	        case 4 :
-                    	            // Morel.g:8150:126: 'OrderedSet'
+                    	            // Morel.g:8156:126: 'OrderedSet'
                     	            {
                     	            match("OrderedSet"); 
 
@@ -2210,8 +2210,8 @@ public class MorelLexer extends Lexer {
                     } while (true);
 
 
-                    // Morel.g:8150:144: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-                    // Morel.g:8150:145: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+                    // Morel.g:8156:144: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+                    // Morel.g:8156:145: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
                     {
                     if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||input.LA(1)=='_'||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
                         input.consume();
@@ -2223,7 +2223,7 @@ public class MorelLexer extends Lexer {
                     }
 
 
-                    // Morel.g:8150:168: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+                    // Morel.g:8156:168: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
                     loop8:
                     do {
                         int alt8=2;
@@ -2260,7 +2260,7 @@ public class MorelLexer extends Lexer {
                     }
 
 
-                    // Morel.g:8150:202: ( ')' )+
+                    // Morel.g:8156:202: ( ')' )+
                     int cnt9=0;
                     loop9:
                     do {
@@ -2274,7 +2274,7 @@ public class MorelLexer extends Lexer {
 
                         switch (alt9) {
                     	case 1 :
-                    	    // Morel.g:8150:202: ')'
+                    	    // Morel.g:8156:202: ')'
                     	    {
                     	    match(')'); 
 
@@ -2313,11 +2313,11 @@ public class MorelLexer extends Lexer {
         try {
             int _type = IDENTIFIER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:8152:11: ( ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* ) )
-            // Morel.g:8153:2: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // Morel.g:8158:11: ( ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* ) )
+            // Morel.g:8159:2: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
             {
-            // Morel.g:8153:2: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // Morel.g:8153:3: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // Morel.g:8159:2: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // Morel.g:8159:3: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
             if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||input.LA(1)=='_'||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
                 input.consume();
@@ -2329,7 +2329,7 @@ public class MorelLexer extends Lexer {
             }
 
 
-            // Morel.g:8153:26: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // Morel.g:8159:26: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop11:
             do {
                 int alt11=2;
@@ -2382,15 +2382,15 @@ public class MorelLexer extends Lexer {
         try {
             int _type = URINS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:8155:6: ( ( '#' ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '-' | '/' | ':' | '\\.' )+ '#' ) )
-            // Morel.g:8156:2: ( '#' ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '-' | '/' | ':' | '\\.' )+ '#' )
+            // Morel.g:8161:6: ( ( '#' ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '-' | '/' | ':' | '\\.' )+ '#' ) )
+            // Morel.g:8162:2: ( '#' ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '-' | '/' | ':' | '\\.' )+ '#' )
             {
-            // Morel.g:8156:2: ( '#' ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '-' | '/' | ':' | '\\.' )+ '#' )
-            // Morel.g:8156:3: '#' ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '-' | '/' | ':' | '\\.' )+ '#'
+            // Morel.g:8162:2: ( '#' ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '-' | '/' | ':' | '\\.' )+ '#' )
+            // Morel.g:8162:3: '#' ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '-' | '/' | ':' | '\\.' )+ '#'
             {
             match('#'); 
 
-            // Morel.g:8156:6: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '-' | '/' | ':' | '\\.' )+
+            // Morel.g:8162:6: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '-' | '/' | ':' | '\\.' )+
             int cnt12=0;
             loop12:
             do {
@@ -2450,11 +2450,11 @@ public class MorelLexer extends Lexer {
         try {
             int _type = INUMBER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:8158:8: ( ( ( '0' .. '9' ) ( '0' .. '1' )* ) )
-            // Morel.g:8159:2: ( ( '0' .. '9' ) ( '0' .. '1' )* )
+            // Morel.g:8164:8: ( ( ( '0' .. '9' ) ( '0' .. '1' )* ) )
+            // Morel.g:8165:2: ( ( '0' .. '9' ) ( '0' .. '1' )* )
             {
-            // Morel.g:8159:2: ( ( '0' .. '9' ) ( '0' .. '1' )* )
-            // Morel.g:8159:3: ( '0' .. '9' ) ( '0' .. '1' )*
+            // Morel.g:8165:2: ( ( '0' .. '9' ) ( '0' .. '1' )* )
+            // Morel.g:8165:3: ( '0' .. '9' ) ( '0' .. '1' )*
             {
             if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
                 input.consume();
@@ -2466,7 +2466,7 @@ public class MorelLexer extends Lexer {
             }
 
 
-            // Morel.g:8159:13: ( '0' .. '1' )*
+            // Morel.g:8165:13: ( '0' .. '1' )*
             loop13:
             do {
                 int alt13=2;
@@ -2519,13 +2519,13 @@ public class MorelLexer extends Lexer {
         try {
             int _type = RNUMBER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:8161:8: ( ( ( '0' .. '9' )+ '\\.' ( '0' .. '9' )+ ) )
-            // Morel.g:8162:2: ( ( '0' .. '9' )+ '\\.' ( '0' .. '9' )+ )
+            // Morel.g:8167:8: ( ( ( '0' .. '9' )+ '\\.' ( '0' .. '9' )+ ) )
+            // Morel.g:8168:2: ( ( '0' .. '9' )+ '\\.' ( '0' .. '9' )+ )
             {
-            // Morel.g:8162:2: ( ( '0' .. '9' )+ '\\.' ( '0' .. '9' )+ )
-            // Morel.g:8162:3: ( '0' .. '9' )+ '\\.' ( '0' .. '9' )+
+            // Morel.g:8168:2: ( ( '0' .. '9' )+ '\\.' ( '0' .. '9' )+ )
+            // Morel.g:8168:3: ( '0' .. '9' )+ '\\.' ( '0' .. '9' )+
             {
-            // Morel.g:8162:3: ( '0' .. '9' )+
+            // Morel.g:8168:3: ( '0' .. '9' )+
             int cnt14=0;
             loop14:
             do {
@@ -2566,7 +2566,7 @@ public class MorelLexer extends Lexer {
 
             match('.'); 
 
-            // Morel.g:8162:18: ( '0' .. '9' )+
+            // Morel.g:8168:18: ( '0' .. '9' )+
             int cnt15=0;
             loop15:
             do {
@@ -2624,21 +2624,21 @@ public class MorelLexer extends Lexer {
         try {
             int _type = QUOTED_39_39_92;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:8164:16: ( ( ( '\\'' ) ( ( '\\\\' '\\'' ) | ( '\\\\' '\\\\' ) | (~ ( '\\'' | '\\\\' ) ) )* ( '\\'' ) ) )
-            // Morel.g:8165:2: ( ( '\\'' ) ( ( '\\\\' '\\'' ) | ( '\\\\' '\\\\' ) | (~ ( '\\'' | '\\\\' ) ) )* ( '\\'' ) )
+            // Morel.g:8170:16: ( ( ( '\\'' ) ( ( '\\\\' '\\'' ) | ( '\\\\' '\\\\' ) | (~ ( '\\'' | '\\\\' ) ) )* ( '\\'' ) ) )
+            // Morel.g:8171:2: ( ( '\\'' ) ( ( '\\\\' '\\'' ) | ( '\\\\' '\\\\' ) | (~ ( '\\'' | '\\\\' ) ) )* ( '\\'' ) )
             {
-            // Morel.g:8165:2: ( ( '\\'' ) ( ( '\\\\' '\\'' ) | ( '\\\\' '\\\\' ) | (~ ( '\\'' | '\\\\' ) ) )* ( '\\'' ) )
-            // Morel.g:8165:3: ( '\\'' ) ( ( '\\\\' '\\'' ) | ( '\\\\' '\\\\' ) | (~ ( '\\'' | '\\\\' ) ) )* ( '\\'' )
+            // Morel.g:8171:2: ( ( '\\'' ) ( ( '\\\\' '\\'' ) | ( '\\\\' '\\\\' ) | (~ ( '\\'' | '\\\\' ) ) )* ( '\\'' ) )
+            // Morel.g:8171:3: ( '\\'' ) ( ( '\\\\' '\\'' ) | ( '\\\\' '\\\\' ) | (~ ( '\\'' | '\\\\' ) ) )* ( '\\'' )
             {
-            // Morel.g:8165:3: ( '\\'' )
-            // Morel.g:8165:4: '\\''
+            // Morel.g:8171:3: ( '\\'' )
+            // Morel.g:8171:4: '\\''
             {
             match('\''); 
 
             }
 
 
-            // Morel.g:8165:9: ( ( '\\\\' '\\'' ) | ( '\\\\' '\\\\' ) | (~ ( '\\'' | '\\\\' ) ) )*
+            // Morel.g:8171:9: ( ( '\\\\' '\\'' ) | ( '\\\\' '\\\\' ) | (~ ( '\\'' | '\\\\' ) ) )*
             loop16:
             do {
                 int alt16=4;
@@ -2663,10 +2663,10 @@ public class MorelLexer extends Lexer {
 
                 switch (alt16) {
             	case 1 :
-            	    // Morel.g:8165:10: ( '\\\\' '\\'' )
+            	    // Morel.g:8171:10: ( '\\\\' '\\'' )
             	    {
-            	    // Morel.g:8165:10: ( '\\\\' '\\'' )
-            	    // Morel.g:8165:11: '\\\\' '\\''
+            	    // Morel.g:8171:10: ( '\\\\' '\\'' )
+            	    // Morel.g:8171:11: '\\\\' '\\''
             	    {
             	    match('\\'); 
 
@@ -2678,10 +2678,10 @@ public class MorelLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // Morel.g:8165:21: ( '\\\\' '\\\\' )
+            	    // Morel.g:8171:21: ( '\\\\' '\\\\' )
             	    {
-            	    // Morel.g:8165:21: ( '\\\\' '\\\\' )
-            	    // Morel.g:8165:22: '\\\\' '\\\\'
+            	    // Morel.g:8171:21: ( '\\\\' '\\\\' )
+            	    // Morel.g:8171:22: '\\\\' '\\\\'
             	    {
             	    match('\\'); 
 
@@ -2693,7 +2693,7 @@ public class MorelLexer extends Lexer {
             	    }
             	    break;
             	case 3 :
-            	    // Morel.g:8165:32: (~ ( '\\'' | '\\\\' ) )
+            	    // Morel.g:8171:32: (~ ( '\\'' | '\\\\' ) )
             	    {
             	    if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '&')||(input.LA(1) >= '(' && input.LA(1) <= '[')||(input.LA(1) >= ']' && input.LA(1) <= '\uFFFF') ) {
             	        input.consume();
@@ -2714,8 +2714,8 @@ public class MorelLexer extends Lexer {
             } while (true);
 
 
-            // Morel.g:8165:48: ( '\\'' )
-            // Morel.g:8165:49: '\\''
+            // Morel.g:8171:48: ( '\\'' )
+            // Morel.g:8171:49: '\\''
             {
             match('\''); 
 
@@ -3501,7 +3501,7 @@ public class MorelLexer extends Lexer {
             this.transition = DFA10_transition;
         }
         public String getDescription() {
-            return "8150:2: ( ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '(' )* ( 'String' | 'Integer' | 'Boolean' | 'Real' | 'Char' | 'Any' ) ( ')' )* | ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '(' )+ ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* ) ( ')' )+ )";
+            return "8156:2: ( ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '(' )* ( 'String' | 'Integer' | 'Boolean' | 'Real' | 'Char' | 'Any' ) ( ')' )* | ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '(' )+ ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* ) ( ')' )+ )";
         }
     }
     static final String DFA17_eotS =

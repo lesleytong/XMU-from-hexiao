@@ -125,6 +125,13 @@ public class MorelSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MorelPackage.SIMPLE_LINK_CONSTRAINT: {
+				SimpleLinkConstraint simpleLinkConstraint = (SimpleLinkConstraint)theEObject;
+				T result = caseSimpleLinkConstraint(simpleLinkConstraint);
+				if (result == null) result = caseLinkConstraint(simpleLinkConstraint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case MorelPackage.QUERY_MODEL: {
 				QueryModel queryModel = (QueryModel)theEObject;
 				T result = caseQueryModel(queryModel);
@@ -805,6 +812,21 @@ public class MorelSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseLinkConstraint(LinkConstraint object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Simple Link Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Simple Link Constraint</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSimpleLinkConstraint(SimpleLinkConstraint object) {
 		return null;
 	}
 

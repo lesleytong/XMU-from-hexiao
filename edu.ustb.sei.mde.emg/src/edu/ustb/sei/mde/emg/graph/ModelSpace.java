@@ -22,12 +22,10 @@ public class ModelSpace extends NamedElement {
 	
 	static private BidirectionalMap<Integer, EObject> idObjMap  = new BidirectionalMap<Integer,EObject>();
 	
-	
-	
 	private List<ModelSpace> instanceSpaces;
 	private ObjectAdapter elementAdapter = null;
 	
-	private PairHashMap<EObject, EReference, int[]> elemRelMap;
+	static private PairHashMap<EObject, EReference, int[]> elemRelMap = new PairHashMap<EObject, EReference, int[]>();
 	
 	private HashMap<EObject, List<EObject>> typeToAllElementsMap = null;
 	private HashMap<EObject, int[]> typeToAllElementIDMap = null;
@@ -72,7 +70,7 @@ public class ModelSpace extends NamedElement {
 
 		instanceSpaces = new ArrayList<ModelSpace>();
 		
-		elemRelMap = new PairHashMap<EObject, EReference, int[]>();
+		//elemRelMap = new PairHashMap<EObject, EReference, int[]>();
 		
 		typeToAllElementsMap = new HashMap<EObject, List<EObject>>();
 		typeToAllElementIDMap =  new HashMap<EObject, int[]>();
@@ -290,7 +288,7 @@ public class ModelSpace extends NamedElement {
 	 * @param ref
 	 * @return
 	 */
-	public int[] getElementRelationship(EObject source, EReference ref) {
+	static public int[] getElementRelationship(EObject source, EReference ref) {
 		int[] array = elemRelMap.get(source, ref);
 		if(array==null) {
 			if(ref.isMany()) {

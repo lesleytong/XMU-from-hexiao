@@ -100,6 +100,12 @@ public class AbstractMorelInterpreter<ResultType, ContextType> {
 		if (result != null) {
 			return result;
 		}
+		if (object instanceof edu.ustb.sei.mde.morel.SimpleLinkConstraint) {
+			result = interprete_edu_ustb_sei_mde_morel_SimpleLinkConstraint((edu.ustb.sei.mde.morel.SimpleLinkConstraint) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
 		if (object instanceof edu.ustb.sei.mde.morel.LinkConstraint) {
 			result = interprete_edu_ustb_sei_mde_morel_LinkConstraint((edu.ustb.sei.mde.morel.LinkConstraint) object, context);
 		}
@@ -594,6 +600,10 @@ public class AbstractMorelInterpreter<ResultType, ContextType> {
 	}
 	
 	public ResultType interprete_edu_ustb_sei_mde_morel_LinkConstraint(edu.ustb.sei.mde.morel.LinkConstraint linkConstraint, ContextType context) {
+		return null;
+	}
+	
+	public ResultType interprete_edu_ustb_sei_mde_morel_SimpleLinkConstraint(edu.ustb.sei.mde.morel.SimpleLinkConstraint simpleLinkConstraint, ContextType context) {
 		return null;
 	}
 	

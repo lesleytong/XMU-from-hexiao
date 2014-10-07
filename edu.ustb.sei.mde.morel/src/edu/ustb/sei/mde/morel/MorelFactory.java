@@ -58,13 +58,13 @@ public interface MorelFactory extends EFactory {
 	PrimitiveVariable createPrimitiveVariable();
 
 	/**
-	 * Returns a new object of class '<em>Link Constraint</em>'.
+	 * Returns a new object of class '<em>Simple Link Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Link Constraint</em>'.
+	 * @return a new object of class '<em>Simple Link Constraint</em>'.
 	 * @generated
 	 */
-	LinkConstraint createLinkConstraint();
+	SimpleLinkConstraint createSimpleLinkConstraint();
 
 	/**
 	 * Returns a new object of class '<em>Query Model</em>'.

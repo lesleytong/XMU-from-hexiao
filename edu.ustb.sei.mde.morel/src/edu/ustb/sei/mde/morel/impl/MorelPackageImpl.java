@@ -64,6 +64,7 @@ import edu.ustb.sei.mde.morel.Section;
 import edu.ustb.sei.mde.morel.SectionType;
 import edu.ustb.sei.mde.morel.SequenceType;
 import edu.ustb.sei.mde.morel.SetType;
+import edu.ustb.sei.mde.morel.SimpleLinkConstraint;
 import edu.ustb.sei.mde.morel.Statement;
 import edu.ustb.sei.mde.morel.StringLiteralExp;
 import edu.ustb.sei.mde.morel.TransformationModel;
@@ -150,6 +151,13 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 * @generated
 	 */
 	private EClass linkConstraintEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass simpleLinkConstraintEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -841,8 +849,8 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLinkConstraint_Id() {
-		return (EReference)linkConstraintEClass.getEStructuralFeatures().get(2);
+	public EClass getSimpleLinkConstraint() {
+		return simpleLinkConstraintEClass;
 	}
 
 	/**
@@ -850,8 +858,17 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLinkConstraint_Reference() {
-		return (EReference)linkConstraintEClass.getEStructuralFeatures().get(3);
+	public EReference getSimpleLinkConstraint_Id() {
+		return (EReference)simpleLinkConstraintEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSimpleLinkConstraint_Reference() {
+		return (EReference)simpleLinkConstraintEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -2059,8 +2076,10 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		linkConstraintEClass = createEClass(LINK_CONSTRAINT);
 		createEReference(linkConstraintEClass, LINK_CONSTRAINT__SOURCE);
 		createEReference(linkConstraintEClass, LINK_CONSTRAINT__TARGET);
-		createEReference(linkConstraintEClass, LINK_CONSTRAINT__ID);
-		createEReference(linkConstraintEClass, LINK_CONSTRAINT__REFERENCE);
+
+		simpleLinkConstraintEClass = createEClass(SIMPLE_LINK_CONSTRAINT);
+		createEReference(simpleLinkConstraintEClass, SIMPLE_LINK_CONSTRAINT__ID);
+		createEReference(simpleLinkConstraintEClass, SIMPLE_LINK_CONSTRAINT__REFERENCE);
 
 		queryModelEClass = createEClass(QUERY_MODEL);
 		createEReference(queryModelEClass, QUERY_MODEL__QUERIES);
@@ -2282,6 +2301,7 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		variableEClass.getESuperTypes().add(this.getNamedElement());
 		objectVariableEClass.getESuperTypes().add(this.getVariable());
 		primitiveVariableEClass.getESuperTypes().add(this.getVariable());
+		simpleLinkConstraintEClass.getESuperTypes().add(this.getLinkConstraint());
 		queryModelEClass.getESuperTypes().add(this.getUnit());
 		typedModelEClass.getESuperTypes().add(this.getNamedElement());
 		queryEClass.getESuperTypes().add(this.getPattern());
@@ -2363,11 +2383,13 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		initEClass(primitiveVariableEClass, PrimitiveVariable.class, "PrimitiveVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPrimitiveVariable_Type(), ecorePackage.getEDataType(), null, "type", null, 1, 1, PrimitiveVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(linkConstraintEClass, LinkConstraint.class, "LinkConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(linkConstraintEClass, LinkConstraint.class, "LinkConstraint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getLinkConstraint_Source(), this.getObjectVariable(), null, "source", null, 1, 1, LinkConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getLinkConstraint_Target(), this.getObjectVariable(), null, "target", null, 1, 1, LinkConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getLinkConstraint_Id(), this.getExpression(), null, "id", null, 0, 1, LinkConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getLinkConstraint_Reference(), ecorePackage.getEReference(), null, "reference", null, 1, 1, LinkConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(simpleLinkConstraintEClass, SimpleLinkConstraint.class, "SimpleLinkConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSimpleLinkConstraint_Id(), this.getExpression(), null, "id", null, 0, 1, SimpleLinkConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSimpleLinkConstraint_Reference(), ecorePackage.getEReference(), null, "reference", null, 1, 1, SimpleLinkConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(queryModelEClass, QueryModel.class, "QueryModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getQueryModel_Queries(), this.getQuery(), null, "queries", null, 0, -1, QueryModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -255,8 +255,8 @@ options {
 			if (type.getInstanceClass() == edu.ustb.sei.mde.morel.PrimitiveVariableWithInit.class) {
 				return parse_edu_ustb_sei_mde_morel_PrimitiveVariableWithInit();
 			}
-			if (type.getInstanceClass() == edu.ustb.sei.mde.morel.LinkConstraint.class) {
-				return parse_edu_ustb_sei_mde_morel_LinkConstraint();
+			if (type.getInstanceClass() == edu.ustb.sei.mde.morel.SimpleLinkConstraint.class) {
+				return parse_edu_ustb_sei_mde_morel_SimpleLinkConstraint();
 			}
 			if (type.getInstanceClass() == edu.ustb.sei.mde.morel.VariableExp.class) {
 				return parse_edu_ustb_sei_mde_morel_VariableExp();
@@ -2140,7 +2140,7 @@ parse_edu_ustb_sei_mde_morel_PrimitiveVariableWithInit returns [edu.ustb.sei.mde
 	
 ;
 
-parse_edu_ustb_sei_mde_morel_LinkConstraint returns [edu.ustb.sei.mde.morel.LinkConstraint element = null]
+parse_edu_ustb_sei_mde_morel_SimpleLinkConstraint returns [edu.ustb.sei.mde.morel.SimpleLinkConstraint element = null]
 @init{
 }
 :
@@ -2151,14 +2151,14 @@ parse_edu_ustb_sei_mde_morel_LinkConstraint returns [edu.ustb.sei.mde.morel.Link
 				throw new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelTerminateParsingException();
 			}
 			if (element == null) {
-				element = edu.ustb.sei.mde.morel.MorelFactory.eINSTANCE.createLinkConstraint();
+				element = edu.ustb.sei.mde.morel.MorelFactory.eINSTANCE.createSimpleLinkConstraint();
 				startIncompleteElement(element);
 			}
 			if (a0 != null) {
 				edu.ustb.sei.mde.morel.resource.morel.IMorelTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("IDENTIFIER");
 				tokenResolver.setOptions(getOptions());
 				edu.ustb.sei.mde.morel.resource.morel.IMorelTokenResolveResult result = getFreshTokenResolveResult();
-				tokenResolver.resolve(a0.getText(), element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.LINK_CONSTRAINT__SOURCE), result);
+				tokenResolver.resolve(a0.getText(), element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.SIMPLE_LINK_CONSTRAINT__SOURCE), result);
 				Object resolvedObject = result.getResolvedToken();
 				if (resolvedObject == null) {
 					addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a0).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a0).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a0).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a0).getStopIndex());
@@ -2166,10 +2166,10 @@ parse_edu_ustb_sei_mde_morel_LinkConstraint returns [edu.ustb.sei.mde.morel.Link
 				String resolved = (String) resolvedObject;
 				edu.ustb.sei.mde.morel.ObjectVariable proxy = edu.ustb.sei.mde.morel.MorelFactory.eINSTANCE.createObjectVariable();
 				collectHiddenTokens(element);
-				registerContextDependentProxy(new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelContextDependentURIFragmentFactory<edu.ustb.sei.mde.morel.LinkConstraint, edu.ustb.sei.mde.morel.ObjectVariable>(getReferenceResolverSwitch() == null ? null : getReferenceResolverSwitch().getLinkConstraintSourceReferenceResolver()), element, (org.eclipse.emf.ecore.EReference) element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.LINK_CONSTRAINT__SOURCE), resolved, proxy);
+				registerContextDependentProxy(new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelContextDependentURIFragmentFactory<edu.ustb.sei.mde.morel.LinkConstraint, edu.ustb.sei.mde.morel.ObjectVariable>(getReferenceResolverSwitch() == null ? null : getReferenceResolverSwitch().getLinkConstraintSourceReferenceResolver()), element, (org.eclipse.emf.ecore.EReference) element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.SIMPLE_LINK_CONSTRAINT__SOURCE), resolved, proxy);
 				if (proxy != null) {
 					Object value = proxy;
-					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.LINK_CONSTRAINT__SOURCE), value);
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.SIMPLE_LINK_CONSTRAINT__SOURCE), value);
 					completedElement(value, false);
 				}
 				collectHiddenTokens(element);
@@ -2186,7 +2186,7 @@ parse_edu_ustb_sei_mde_morel_LinkConstraint returns [edu.ustb.sei.mde.morel.Link
 	
 	a1 = '.' {
 		if (element == null) {
-			element = edu.ustb.sei.mde.morel.MorelFactory.eINSTANCE.createLinkConstraint();
+			element = edu.ustb.sei.mde.morel.MorelFactory.eINSTANCE.createSimpleLinkConstraint();
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
@@ -2205,14 +2205,14 @@ parse_edu_ustb_sei_mde_morel_LinkConstraint returns [edu.ustb.sei.mde.morel.Link
 				throw new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelTerminateParsingException();
 			}
 			if (element == null) {
-				element = edu.ustb.sei.mde.morel.MorelFactory.eINSTANCE.createLinkConstraint();
+				element = edu.ustb.sei.mde.morel.MorelFactory.eINSTANCE.createSimpleLinkConstraint();
 				startIncompleteElement(element);
 			}
 			if (a2 != null) {
 				edu.ustb.sei.mde.morel.resource.morel.IMorelTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("IDENTIFIER");
 				tokenResolver.setOptions(getOptions());
 				edu.ustb.sei.mde.morel.resource.morel.IMorelTokenResolveResult result = getFreshTokenResolveResult();
-				tokenResolver.resolve(a2.getText(), element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.LINK_CONSTRAINT__REFERENCE), result);
+				tokenResolver.resolve(a2.getText(), element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.SIMPLE_LINK_CONSTRAINT__REFERENCE), result);
 				Object resolvedObject = result.getResolvedToken();
 				if (resolvedObject == null) {
 					addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a2).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStopIndex());
@@ -2220,10 +2220,10 @@ parse_edu_ustb_sei_mde_morel_LinkConstraint returns [edu.ustb.sei.mde.morel.Link
 				String resolved = (String) resolvedObject;
 				org.eclipse.emf.ecore.EReference proxy = org.eclipse.emf.ecore.EcoreFactory.eINSTANCE.createEReference();
 				collectHiddenTokens(element);
-				registerContextDependentProxy(new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelContextDependentURIFragmentFactory<edu.ustb.sei.mde.morel.LinkConstraint, org.eclipse.emf.ecore.EReference>(getReferenceResolverSwitch() == null ? null : getReferenceResolverSwitch().getLinkConstraintReferenceReferenceResolver()), element, (org.eclipse.emf.ecore.EReference) element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.LINK_CONSTRAINT__REFERENCE), resolved, proxy);
+				registerContextDependentProxy(new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelContextDependentURIFragmentFactory<edu.ustb.sei.mde.morel.SimpleLinkConstraint, org.eclipse.emf.ecore.EReference>(getReferenceResolverSwitch() == null ? null : getReferenceResolverSwitch().getSimpleLinkConstraintReferenceReferenceResolver()), element, (org.eclipse.emf.ecore.EReference) element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.SIMPLE_LINK_CONSTRAINT__REFERENCE), resolved, proxy);
 				if (proxy != null) {
 					Object value = proxy;
-					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.LINK_CONSTRAINT__REFERENCE), value);
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.SIMPLE_LINK_CONSTRAINT__REFERENCE), value);
 					completedElement(value, false);
 				}
 				collectHiddenTokens(element);
@@ -2243,7 +2243,7 @@ parse_edu_ustb_sei_mde_morel_LinkConstraint returns [edu.ustb.sei.mde.morel.Link
 		(
 			a3 = '[' {
 				if (element == null) {
-					element = edu.ustb.sei.mde.morel.MorelFactory.eINSTANCE.createLinkConstraint();
+					element = edu.ustb.sei.mde.morel.MorelFactory.eINSTANCE.createSimpleLinkConstraint();
 					startIncompleteElement(element);
 				}
 				collectHiddenTokens(element);
@@ -2252,18 +2252,18 @@ parse_edu_ustb_sei_mde_morel_LinkConstraint returns [edu.ustb.sei.mde.morel.Link
 			}
 			{
 				// expected elements (follow set)
-				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getLinkConstraint(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[179]);
-				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getLinkConstraint(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[180]);
-				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getLinkConstraint(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[181]);
-				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getLinkConstraint(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[182]);
-				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getLinkConstraint(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[183]);
-				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getLinkConstraint(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[184]);
-				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getLinkConstraint(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[185]);
-				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getLinkConstraint(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[186]);
-				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getLinkConstraint(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[187]);
-				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getLinkConstraint(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[188]);
-				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getLinkConstraint(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[189]);
-				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getLinkConstraint(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[190]);
+				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getSimpleLinkConstraint(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[179]);
+				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getSimpleLinkConstraint(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[180]);
+				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getSimpleLinkConstraint(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[181]);
+				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getSimpleLinkConstraint(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[182]);
+				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getSimpleLinkConstraint(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[183]);
+				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getSimpleLinkConstraint(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[184]);
+				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getSimpleLinkConstraint(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[185]);
+				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getSimpleLinkConstraint(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[186]);
+				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getSimpleLinkConstraint(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[187]);
+				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getSimpleLinkConstraint(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[188]);
+				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getSimpleLinkConstraint(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[189]);
+				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getSimpleLinkConstraint(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[190]);
 			}
 			
 			(
@@ -2272,13 +2272,13 @@ parse_edu_ustb_sei_mde_morel_LinkConstraint returns [edu.ustb.sei.mde.morel.Link
 						throw new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelTerminateParsingException();
 					}
 					if (element == null) {
-						element = edu.ustb.sei.mde.morel.MorelFactory.eINSTANCE.createLinkConstraint();
+						element = edu.ustb.sei.mde.morel.MorelFactory.eINSTANCE.createSimpleLinkConstraint();
 						startIncompleteElement(element);
 					}
 					if (a4_0 != null) {
 						if (a4_0 != null) {
 							Object value = a4_0;
-							element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.LINK_CONSTRAINT__ID), value);
+							element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.SIMPLE_LINK_CONSTRAINT__ID), value);
 							completedElement(value, true);
 						}
 						collectHiddenTokens(element);
@@ -2291,13 +2291,13 @@ parse_edu_ustb_sei_mde_morel_LinkConstraint returns [edu.ustb.sei.mde.morel.Link
 						throw new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelTerminateParsingException();
 					}
 					if (element == null) {
-						element = edu.ustb.sei.mde.morel.MorelFactory.eINSTANCE.createLinkConstraint();
+						element = edu.ustb.sei.mde.morel.MorelFactory.eINSTANCE.createSimpleLinkConstraint();
 						startIncompleteElement(element);
 					}
 					if (a4_1 != null) {
 						if (a4_1 != null) {
 							Object value = a4_1;
-							element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.LINK_CONSTRAINT__ID), value);
+							element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.SIMPLE_LINK_CONSTRAINT__ID), value);
 							completedElement(value, true);
 						}
 						collectHiddenTokens(element);
@@ -2310,13 +2310,13 @@ parse_edu_ustb_sei_mde_morel_LinkConstraint returns [edu.ustb.sei.mde.morel.Link
 						throw new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelTerminateParsingException();
 					}
 					if (element == null) {
-						element = edu.ustb.sei.mde.morel.MorelFactory.eINSTANCE.createLinkConstraint();
+						element = edu.ustb.sei.mde.morel.MorelFactory.eINSTANCE.createSimpleLinkConstraint();
 						startIncompleteElement(element);
 					}
 					if (a4_2 != null) {
 						if (a4_2 != null) {
 							Object value = a4_2;
-							element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.LINK_CONSTRAINT__ID), value);
+							element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.SIMPLE_LINK_CONSTRAINT__ID), value);
 							completedElement(value, true);
 						}
 						collectHiddenTokens(element);
@@ -2329,13 +2329,13 @@ parse_edu_ustb_sei_mde_morel_LinkConstraint returns [edu.ustb.sei.mde.morel.Link
 						throw new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelTerminateParsingException();
 					}
 					if (element == null) {
-						element = edu.ustb.sei.mde.morel.MorelFactory.eINSTANCE.createLinkConstraint();
+						element = edu.ustb.sei.mde.morel.MorelFactory.eINSTANCE.createSimpleLinkConstraint();
 						startIncompleteElement(element);
 					}
 					if (a4_3 != null) {
 						if (a4_3 != null) {
 							Object value = a4_3;
-							element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.LINK_CONSTRAINT__ID), value);
+							element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.SIMPLE_LINK_CONSTRAINT__ID), value);
 							completedElement(value, true);
 						}
 						collectHiddenTokens(element);
@@ -2348,13 +2348,13 @@ parse_edu_ustb_sei_mde_morel_LinkConstraint returns [edu.ustb.sei.mde.morel.Link
 						throw new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelTerminateParsingException();
 					}
 					if (element == null) {
-						element = edu.ustb.sei.mde.morel.MorelFactory.eINSTANCE.createLinkConstraint();
+						element = edu.ustb.sei.mde.morel.MorelFactory.eINSTANCE.createSimpleLinkConstraint();
 						startIncompleteElement(element);
 					}
 					if (a4_4 != null) {
 						if (a4_4 != null) {
 							Object value = a4_4;
-							element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.LINK_CONSTRAINT__ID), value);
+							element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.SIMPLE_LINK_CONSTRAINT__ID), value);
 							completedElement(value, true);
 						}
 						collectHiddenTokens(element);
@@ -2370,7 +2370,7 @@ parse_edu_ustb_sei_mde_morel_LinkConstraint returns [edu.ustb.sei.mde.morel.Link
 			
 			a5 = ']' {
 				if (element == null) {
-					element = edu.ustb.sei.mde.morel.MorelFactory.eINSTANCE.createLinkConstraint();
+					element = edu.ustb.sei.mde.morel.MorelFactory.eINSTANCE.createSimpleLinkConstraint();
 					startIncompleteElement(element);
 				}
 				collectHiddenTokens(element);
@@ -2391,7 +2391,7 @@ parse_edu_ustb_sei_mde_morel_LinkConstraint returns [edu.ustb.sei.mde.morel.Link
 	
 	a6 = '=' {
 		if (element == null) {
-			element = edu.ustb.sei.mde.morel.MorelFactory.eINSTANCE.createLinkConstraint();
+			element = edu.ustb.sei.mde.morel.MorelFactory.eINSTANCE.createSimpleLinkConstraint();
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
@@ -2410,14 +2410,14 @@ parse_edu_ustb_sei_mde_morel_LinkConstraint returns [edu.ustb.sei.mde.morel.Link
 				throw new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelTerminateParsingException();
 			}
 			if (element == null) {
-				element = edu.ustb.sei.mde.morel.MorelFactory.eINSTANCE.createLinkConstraint();
+				element = edu.ustb.sei.mde.morel.MorelFactory.eINSTANCE.createSimpleLinkConstraint();
 				startIncompleteElement(element);
 			}
 			if (a7 != null) {
 				edu.ustb.sei.mde.morel.resource.morel.IMorelTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("IDENTIFIER");
 				tokenResolver.setOptions(getOptions());
 				edu.ustb.sei.mde.morel.resource.morel.IMorelTokenResolveResult result = getFreshTokenResolveResult();
-				tokenResolver.resolve(a7.getText(), element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.LINK_CONSTRAINT__TARGET), result);
+				tokenResolver.resolve(a7.getText(), element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.SIMPLE_LINK_CONSTRAINT__TARGET), result);
 				Object resolvedObject = result.getResolvedToken();
 				if (resolvedObject == null) {
 					addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a7).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a7).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a7).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a7).getStopIndex());
@@ -2425,10 +2425,10 @@ parse_edu_ustb_sei_mde_morel_LinkConstraint returns [edu.ustb.sei.mde.morel.Link
 				String resolved = (String) resolvedObject;
 				edu.ustb.sei.mde.morel.ObjectVariable proxy = edu.ustb.sei.mde.morel.MorelFactory.eINSTANCE.createObjectVariable();
 				collectHiddenTokens(element);
-				registerContextDependentProxy(new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelContextDependentURIFragmentFactory<edu.ustb.sei.mde.morel.LinkConstraint, edu.ustb.sei.mde.morel.ObjectVariable>(getReferenceResolverSwitch() == null ? null : getReferenceResolverSwitch().getLinkConstraintTargetReferenceResolver()), element, (org.eclipse.emf.ecore.EReference) element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.LINK_CONSTRAINT__TARGET), resolved, proxy);
+				registerContextDependentProxy(new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelContextDependentURIFragmentFactory<edu.ustb.sei.mde.morel.LinkConstraint, edu.ustb.sei.mde.morel.ObjectVariable>(getReferenceResolverSwitch() == null ? null : getReferenceResolverSwitch().getLinkConstraintTargetReferenceResolver()), element, (org.eclipse.emf.ecore.EReference) element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.SIMPLE_LINK_CONSTRAINT__TARGET), resolved, proxy);
 				if (proxy != null) {
 					Object value = proxy;
-					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.LINK_CONSTRAINT__TARGET), value);
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.SIMPLE_LINK_CONSTRAINT__TARGET), value);
 					completedElement(value, false);
 				}
 				collectHiddenTokens(element);
@@ -8049,6 +8049,12 @@ parse_edu_ustb_sei_mde_morel_Variable returns [edu.ustb.sei.mde.morel.Variable e
 	|	c1 = parse_edu_ustb_sei_mde_morel_PrimitiveVariable{ element = c1; /* this is a subclass or primitive expression choice */ }
 	|	c2 = parse_edu_ustb_sei_mde_morel_ObjectVariableWithInit{ element = c2; /* this is a subclass or primitive expression choice */ }
 	|	c3 = parse_edu_ustb_sei_mde_morel_PrimitiveVariableWithInit{ element = c3; /* this is a subclass or primitive expression choice */ }
+	
+;
+
+parse_edu_ustb_sei_mde_morel_LinkConstraint returns [edu.ustb.sei.mde.morel.LinkConstraint element = null]
+:
+	c0 = parse_edu_ustb_sei_mde_morel_SimpleLinkConstraint{ element = c0; /* this is a subclass or primitive expression choice */ }
 	
 ;
 

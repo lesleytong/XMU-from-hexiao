@@ -21,11 +21,14 @@ import edu.ustb.sei.mde.morel.ObjectVariable;
 import edu.ustb.sei.mde.morel.Pattern;
 import edu.ustb.sei.mde.morel.PredefinedVariable;
 import edu.ustb.sei.mde.morel.PrimitiveVariable;
+import edu.ustb.sei.mde.morel.SimpleLinkConstraint;
 import edu.ustb.sei.mde.morel.Statement;
 import edu.ustb.sei.mde.morel.Variable;
 import edu.ustb.sei.mde.morel.resource.morel.execution.OclInterpreter;
+import edu.ustb.sei.mde.morel.resource.morel.execution.constraints.PropLinkS_T;
 import edu.ustb.sei.mde.morel.resource.morel.util.AbstractMorelInterpreter;
 import solver.Solver;
+import solver.constraints.Constraint;
 import solver.constraints.ICF;
 import solver.constraints.extension.Tuples;
 import solver.variables.IntVar;
@@ -58,13 +61,16 @@ public class Match {
 			IntVar s = varMap.forward(l.getSource());
 			IntVar t = varMap.forward(l.getTarget());
 			
-			ModelSpace space = (ModelSpace)env.getModelSpaces().get(l.getSource().getModel());
-			List<int[]> arcs = space.getAllTupleIDByReference(l.getReference(), true);
-			Tuples tuple = new Tuples(true);
-			for(int[] arc : arcs) {
-				tuple.add(arc);
+//			ModelSpace space = (ModelSpace)env.getModelSpaces().get(l.getSource().getModel());
+//			List<int[]> arcs = space.getAllTupleIDByReference(l.getReference(), true);
+//			Tuples tuple = new Tuples(true);
+//			for(int[] arc : arcs) {
+//				tuple.add(arc);
+//			}
+//			solver.post(ICF.table(s, t, tuple, "AC3"));
+			if(l instanceof SimpleLinkConstraint) {
+				solver.post(new Constraint("LinkConstraint", new PropLinkS_T(s,t,((SimpleLinkConstraint)l).getReference(),env)));				
 			}
-			solver.post(ICF.table(s, t, tuple, "AC3"));
 		}
 		
 		return new Pair<BidirectionalMap<ObjectVariable, IntVar>,Solver>(varMap,solver);
@@ -121,28 +127,31 @@ public class Match {
 		innerCont.getBindingMap().put(var, OclUndefined.INVALIDED);
 
 		for(LinkConstraint l : pattern.getLinkConstraints()) {
-			if(l.getId()==null) continue;
-			
-			try {
-				EObject src = (EObject)innerCont.getValue(l.getSource());
-				EObject tar = (EObject)innerCont.getValue(l.getTarget());
+			if(l instanceof SimpleLinkConstraint) {
+				SimpleLinkConstraint sl = (SimpleLinkConstraint)l;
+				if(sl.getId()==null) continue;
 				
-				if(l.getReference().isMany()) {
-					List<?> col = (List<?>) src.eGet(l.getReference());
-					innerCont.putValue(var, (Integer)col.indexOf(tar)+1);// 1-based
-				} else {
-					innerCont.putValue(var, 1);
+				try {
+					EObject src = (EObject)innerCont.getValue(l.getSource());
+					EObject tar = (EObject)innerCont.getValue(l.getTarget());
+					
+					if(sl.getReference().isMany()) {
+						List<?> col = (List<?>) src.eGet(sl.getReference());
+						innerCont.putValue(var, (Integer)col.indexOf(tar)+1);// 1-based
+					} else {
+						innerCont.putValue(var, 1);
+					}
+					
+					Object v = interpreter.interprete(sl.getId(), innerCont);
+					if(partial==false) {
+						if(v!=Boolean.TRUE) return false;
+					} else {
+						if(v==Boolean.FALSE) return false;
+					}
+				} catch (Exception e) {
+					if(partial) continue;
+					else return false;
 				}
-				
-				Object v = interpreter.interprete(l.getId(), innerCont);
-				if(partial==false) {
-					if(v!=Boolean.TRUE) return false;
-				} else {
-					if(v==Boolean.FALSE) return false;
-				}
-			} catch (Exception e) {
-				if(partial) continue;
-				else return false;
 			}
 		}
 		return true;

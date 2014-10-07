@@ -85,8 +85,10 @@
     <genClasses ecoreClass="morel.ecore#//LinkConstraint">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//LinkConstraint/source"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//LinkConstraint/target"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//LinkConstraint/id"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference morel.ecore#//LinkConstraint/reference"/>
+    </genClasses>
+    <genClasses ecoreClass="morel.ecore#//SimpleLinkConstraint">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//SimpleLinkConstraint/id"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference morel.ecore#//SimpleLinkConstraint/reference"/>
     </genClasses>
     <genClasses ecoreClass="morel.ecore#//QueryModel">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//QueryModel/queries"/>

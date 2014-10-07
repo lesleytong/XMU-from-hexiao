@@ -24,11 +24,13 @@
   <eClassifiers xsi:type="ecore:EClass" name="PrimitiveVariable" eSuperTypes="#//Variable">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EDataType"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LinkConstraint">
+  <eClassifiers xsi:type="ecore:EClass" name="LinkConstraint" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
         eType="#//ObjectVariable"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
         eType="#//ObjectVariable"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SimpleLinkConstraint" eSuperTypes="#//LinkConstraint">
     <eStructuralFeatures xsi:type="ecore:EReference" name="id" eType="#//Expression"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="reference" lowerBound="1"
