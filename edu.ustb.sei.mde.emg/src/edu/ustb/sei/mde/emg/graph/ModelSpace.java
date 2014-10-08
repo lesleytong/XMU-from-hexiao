@@ -132,7 +132,10 @@ public class ModelSpace extends NamedElement {
 			return objectID;
 		allElements.add(object);
 		objectID = EIdentifiable.getNextID();
-		object.eAdapters().add(elementAdapter);
+		
+		if(!object.eAdapters().contains(elementAdapter))
+			object.eAdapters().add(elementAdapter);
+		
 		idObjMap.put(objectID, object);
 		
 		addToAllElementsMap(object.eClass(),object);

@@ -151,12 +151,12 @@ public class PropLinkS_T extends Propagator<IntVar> {
 			}
 			if(source.isInstantiated()==false && source.getLB()==source.getUB()) source.instantiateTo(source.getLB(), aCause);
 			if(target.isInstantiated()==false && target.getLB()==target.getUB()) target.instantiateTo(target.getLB(), aCause);
+			if(source.isInstantiated() && target.isInstantiated()) {
+				setPassive();
+			}
 		}
 		
 		
-		if(source.isInstantiated() && target.isInstantiated()) {
-			setPassive();
-		}
 	}
 
 

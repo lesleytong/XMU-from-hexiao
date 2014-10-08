@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.morel.impl.EnclosureLinkConstraintImpl#getForward <em>Forward</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.morel.impl.EnclosureLinkConstraintImpl#getTypes <em>Types</em>}</li>
  * </ul>
  * </p>
  *
@@ -33,6 +34,16 @@ public class EnclosureLinkConstraintImpl extends LinkConstraintImpl implements E
 	 * @ordered
 	 */
 	protected EList<EReference> forward;
+
+	/**
+	 * The cached value of the '{@link #getTypes() <em>Types</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTypes()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<EClass> types;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -70,11 +81,25 @@ public class EnclosureLinkConstraintImpl extends LinkConstraintImpl implements E
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<EClass> getTypes() {
+		if (types == null) {
+			types = new EObjectResolvingEList<EClass>(EClass.class, this, MorelPackage.ENCLOSURE_LINK_CONSTRAINT__TYPES);
+		}
+		return types;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case MorelPackage.ENCLOSURE_LINK_CONSTRAINT__FORWARD:
 				return getForward();
+			case MorelPackage.ENCLOSURE_LINK_CONSTRAINT__TYPES:
+				return getTypes();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -92,6 +117,10 @@ public class EnclosureLinkConstraintImpl extends LinkConstraintImpl implements E
 				getForward().clear();
 				getForward().addAll((Collection<? extends EReference>)newValue);
 				return;
+			case MorelPackage.ENCLOSURE_LINK_CONSTRAINT__TYPES:
+				getTypes().clear();
+				getTypes().addAll((Collection<? extends EClass>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -107,6 +136,9 @@ public class EnclosureLinkConstraintImpl extends LinkConstraintImpl implements E
 			case MorelPackage.ENCLOSURE_LINK_CONSTRAINT__FORWARD:
 				getForward().clear();
 				return;
+			case MorelPackage.ENCLOSURE_LINK_CONSTRAINT__TYPES:
+				getTypes().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -121,6 +153,8 @@ public class EnclosureLinkConstraintImpl extends LinkConstraintImpl implements E
 		switch (featureID) {
 			case MorelPackage.ENCLOSURE_LINK_CONSTRAINT__FORWARD:
 				return forward != null && !forward.isEmpty();
+			case MorelPackage.ENCLOSURE_LINK_CONSTRAINT__TYPES:
+				return types != null && !types.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

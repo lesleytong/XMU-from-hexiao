@@ -15,6 +15,7 @@ import edu.ustb.sei.mde.emg.graph.ModelSpace;
 import edu.ustb.sei.mde.emg.runtime.Context;
 import edu.ustb.sei.mde.emg.runtime.Environment;
 import edu.ustb.sei.mde.emg.runtime.datatype.OclUndefined;
+import edu.ustb.sei.mde.morel.EnclosureLinkConstraint;
 import edu.ustb.sei.mde.morel.LinkConstraint;
 import edu.ustb.sei.mde.morel.MorelFactory;
 import edu.ustb.sei.mde.morel.ObjectVariable;
@@ -25,6 +26,7 @@ import edu.ustb.sei.mde.morel.SimpleLinkConstraint;
 import edu.ustb.sei.mde.morel.Statement;
 import edu.ustb.sei.mde.morel.Variable;
 import edu.ustb.sei.mde.morel.resource.morel.execution.OclInterpreter;
+import edu.ustb.sei.mde.morel.resource.morel.execution.constraints.PropEnclosureLinkS_T;
 import edu.ustb.sei.mde.morel.resource.morel.execution.constraints.PropLinkS_T;
 import edu.ustb.sei.mde.morel.resource.morel.util.AbstractMorelInterpreter;
 import solver.Solver;
@@ -61,15 +63,17 @@ public class Match {
 			IntVar s = varMap.forward(l.getSource());
 			IntVar t = varMap.forward(l.getTarget());
 			
-//			ModelSpace space = (ModelSpace)env.getModelSpaces().get(l.getSource().getModel());
-//			List<int[]> arcs = space.getAllTupleIDByReference(l.getReference(), true);
-//			Tuples tuple = new Tuples(true);
-//			for(int[] arc : arcs) {
-//				tuple.add(arc);
-//			}
-//			solver.post(ICF.table(s, t, tuple, "AC3"));
 			if(l instanceof SimpleLinkConstraint) {
-				solver.post(new Constraint("LinkConstraint", new PropLinkS_T(s,t,((SimpleLinkConstraint)l).getReference(),env)));				
+				ModelSpace space = (ModelSpace)env.getModelSpaces().get(l.getSource().getModel());
+				List<int[]> arcs = space.getAllTupleIDByReference(((SimpleLinkConstraint)l).getReference(), true);
+				Tuples tuple = new Tuples(true);
+				for(int[] arc : arcs) {
+					tuple.add(arc);
+				}
+				solver.post(ICF.table(s, t, tuple, "AC3"));
+				//solver.post(new Constraint("LinkConstraint", new PropLinkS_T(s,t,((SimpleLinkConstraint)l).getReference(),env)));				
+			} else if(l instanceof EnclosureLinkConstraint) {
+				solver.post(new Constraint("EnclosureLinkConstraint", new PropEnclosureLinkS_T(s,t,((EnclosureLinkConstraint)l).getForward(), ((EnclosureLinkConstraint)l).getTypes(),env)));
 			}
 		}
 		

@@ -70,7 +70,7 @@ RULES {
 	
 	SimpleLinkConstraint ::= source[IDENTIFIER] "." reference[IDENTIFIER] ("[" id:PredefinedBindExp, BindExp, LetExp, ConditionExp, BooleanImpliesExp "]")? "=" target[IDENTIFIER];
 	
-	EnclosureLinkConstraint ::= source[IDENTIFIER] "." (forward[IDENTIFIER]("|" forward[IDENTIFIER])*) "*" "=" target[IDENTIFIER] ;
+	EnclosureLinkConstraint ::= source[IDENTIFIER] "." (forward[IDENTIFIER]("|" forward[IDENTIFIER])*) (":" (types[DATA_TYPE])("," types[DATA_TYPE])*)? "*" "=" target[IDENTIFIER] ;
 	
 	VariableExp ::= referredVariable[IDENTIFIER] (path)?;
 	

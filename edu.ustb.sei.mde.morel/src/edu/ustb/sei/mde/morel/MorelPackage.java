@@ -520,13 +520,22 @@ public interface MorelPackage extends EPackage {
 	int ENCLOSURE_LINK_CONSTRAINT__FORWARD = LINK_CONSTRAINT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Types</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENCLOSURE_LINK_CONSTRAINT__TYPES = LINK_CONSTRAINT_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Enclosure Link Constraint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ENCLOSURE_LINK_CONSTRAINT_FEATURE_COUNT = LINK_CONSTRAINT_FEATURE_COUNT + 1;
+	int ENCLOSURE_LINK_CONSTRAINT_FEATURE_COUNT = LINK_CONSTRAINT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Enclosure Link Constraint</em>' class.
@@ -4018,6 +4027,17 @@ public interface MorelPackage extends EPackage {
 	EReference getEnclosureLinkConstraint_Forward();
 
 	/**
+	 * Returns the meta object for the reference list '{@link edu.ustb.sei.mde.morel.EnclosureLinkConstraint#getTypes <em>Types</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Types</em>'.
+	 * @see edu.ustb.sei.mde.morel.EnclosureLinkConstraint#getTypes()
+	 * @see #getEnclosureLinkConstraint()
+	 * @generated
+	 */
+	EReference getEnclosureLinkConstraint_Types();
+
+	/**
 	 * Returns the meta object for class '{@link edu.ustb.sei.mde.morel.QueryModel <em>Query Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5648,6 +5668,14 @@ public interface MorelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference ENCLOSURE_LINK_CONSTRAINT__FORWARD = eINSTANCE.getEnclosureLinkConstraint_Forward();
+
+		/**
+		 * The meta object literal for the '<em><b>Types</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ENCLOSURE_LINK_CONSTRAINT__TYPES = eINSTANCE.getEnclosureLinkConstraint_Types();
 
 		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.impl.QueryModelImpl <em>Query Model</em>}' class.

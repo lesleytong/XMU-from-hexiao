@@ -99,6 +99,14 @@ public class EnvironmentImpl extends MinimalEObjectImpl.Container implements Env
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void resetCache() {
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -165,6 +173,9 @@ public class EnvironmentImpl extends MinimalEObjectImpl.Container implements Env
 		switch (operationID) {
 			case RuntimePackage.ENVIRONMENT___CREATE_CONTEXT:
 				return createContext();
+			case RuntimePackage.ENVIRONMENT___RESET_CACHE:
+				resetCache();
+				return null;
 		}
 		return super.eInvoke(operationID, arguments);
 	}

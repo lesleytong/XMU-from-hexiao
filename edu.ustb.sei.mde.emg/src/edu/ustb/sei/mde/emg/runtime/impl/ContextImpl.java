@@ -369,6 +369,15 @@ public class ContextImpl extends MinimalEObjectImpl.Container implements Context
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void registerVariable(Variable var) {
+		this.getBindingMap().put(var, OclUndefined.INVALIDED);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -488,6 +497,9 @@ public class ContextImpl extends MinimalEObjectImpl.Container implements Context
 				return null;
 			case RuntimePackage.CONTEXT___GET_COPY__CONTEXT:
 				getCopy((Context)arguments.get(0));
+				return null;
+			case RuntimePackage.CONTEXT___REGISTER_VARIABLE__VARIABLE:
+				registerVariable((Variable)arguments.get(0));
 				return null;
 		}
 		return super.eInvoke(operationID, arguments);

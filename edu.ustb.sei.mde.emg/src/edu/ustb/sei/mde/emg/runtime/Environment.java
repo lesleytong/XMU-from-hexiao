@@ -58,4 +58,12 @@ public interface Environment extends EObject {
 	 */
 	Context createContext();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	void resetCache();
+
 } // Environment

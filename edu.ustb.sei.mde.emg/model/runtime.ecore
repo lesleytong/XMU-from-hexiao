@@ -15,6 +15,9 @@
     <eOperations name="getCopy">
       <eParameters name="copy" eType="#//Context"/>
     </eOperations>
+    <eOperations name="registerVariable">
+      <eParameters name="var" eType="ecore:EClass ../../edu.ustb.sei.mde.morel/metamodel/morel.ecore#//Variable"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="bindingMap" transient="true">
       <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
         <eTypeArguments eClassifier="ecore:EClass ../../edu.ustb.sei.mde.morel/metamodel/morel.ecore#//Variable"/>
@@ -29,6 +32,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Environment">
     <eOperations name="createContext" eType="#//Context"/>
+    <eOperations name="resetCache"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="modelSpaces" transient="true">
       <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
         <eTypeArguments eClassifier="ecore:EClass ../../edu.ustb.sei.mde.morel/metamodel/morel.ecore#//TypedModel"/>

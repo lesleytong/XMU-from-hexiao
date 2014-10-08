@@ -197,4 +197,12 @@ public interface Context extends EObject {
 	 */
 	void getCopy(Context copy);
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	void registerVariable(Variable var);
+
 } // Context

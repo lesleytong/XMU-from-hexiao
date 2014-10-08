@@ -35,6 +35,15 @@ public class EnclosureLinkConstraintForwardReferenceResolver implements edu.ustb
 				return;
 			}
 		}
+		
+		for(EClass c : container.getTypes()) {
+			if(c==null) continue;
+			EStructuralFeature feature = (c.getEStructuralFeature(identifier));
+			if(feature!=null && feature instanceof EReference) {
+				result.addMapping(identifier, (EReference) feature);
+				return;
+			}
+		}
 	}
 	
 	public String deResolve(org.eclipse.emf.ecore.EReference element, edu.ustb.sei.mde.morel.EnclosureLinkConstraint container, org.eclipse.emf.ecore.EReference reference) {

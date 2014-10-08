@@ -27,10 +27,14 @@
       <genOperations ecoreOperation="runtime.ecore#//Context/getCopy">
         <genParameters ecoreParameter="runtime.ecore#//Context/getCopy/copy"/>
       </genOperations>
+      <genOperations ecoreOperation="runtime.ecore#//Context/registerVariable">
+        <genParameters ecoreParameter="runtime.ecore#//Context/registerVariable/var"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="runtime.ecore#//Environment">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute runtime.ecore#//Environment/modelSpaces"/>
       <genOperations ecoreOperation="runtime.ecore#//Environment/createContext"/>
+      <genOperations ecoreOperation="runtime.ecore#//Environment/resetCache"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

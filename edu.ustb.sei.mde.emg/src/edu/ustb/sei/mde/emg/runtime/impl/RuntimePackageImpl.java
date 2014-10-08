@@ -216,6 +216,15 @@ public class RuntimePackageImpl extends EPackageImpl implements RuntimePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getContext__RegisterVariable__Variable() {
+		return contextEClass.getEOperations().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getEnvironment() {
 		return environmentEClass;
 	}
@@ -236,6 +245,15 @@ public class RuntimePackageImpl extends EPackageImpl implements RuntimePackage {
 	 */
 	public EOperation getEnvironment__CreateContext() {
 		return environmentEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getEnvironment__ResetCache() {
+		return environmentEClass.getEOperations().get(1);
 	}
 
 	/**
@@ -286,10 +304,12 @@ public class RuntimePackageImpl extends EPackageImpl implements RuntimePackage {
 		createEOperation(contextEClass, CONTEXT___GET_VALUE__VARIABLE);
 		createEOperation(contextEClass, CONTEXT___PUT_VALUE__VARIABLE_OBJECT);
 		createEOperation(contextEClass, CONTEXT___GET_COPY__CONTEXT);
+		createEOperation(contextEClass, CONTEXT___REGISTER_VARIABLE__VARIABLE);
 
 		environmentEClass = createEClass(ENVIRONMENT);
 		createEAttribute(environmentEClass, ENVIRONMENT__MODEL_SPACES);
 		createEOperation(environmentEClass, ENVIRONMENT___CREATE_CONTEXT);
+		createEOperation(environmentEClass, ENVIRONMENT___RESET_CACHE);
 
 		// Create data types
 		modelSpaceEDataType = createEDataType(MODEL_SPACE);
@@ -354,6 +374,9 @@ public class RuntimePackageImpl extends EPackageImpl implements RuntimePackage {
 		op = initEOperation(getContext__GetCopy__Context(), null, "getCopy", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getContext(), "copy", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		op = initEOperation(getContext__RegisterVariable__Variable(), null, "registerVariable", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMorelPackage.getVariable(), "var", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(environmentEClass, Environment.class, "Environment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(theMorelPackage.getTypedModel());
@@ -363,6 +386,8 @@ public class RuntimePackageImpl extends EPackageImpl implements RuntimePackage {
 		initEAttribute(getEnvironment_ModelSpaces(), g1, "modelSpaces", null, 0, 1, Environment.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getEnvironment__CreateContext(), this.getContext(), "createContext", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getEnvironment__ResetCache(), null, "resetCache", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		// Initialize data types
 		initEDataType(modelSpaceEDataType, ModelSpace.class, "ModelSpace", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);

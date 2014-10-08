@@ -78,12 +78,20 @@ import edu.ustb.sei.mde.morel.UndefinedLiteralExp;
 import edu.ustb.sei.mde.morel.Variable;
 import edu.ustb.sei.mde.morel.VariableExp;
 import edu.ustb.sei.mde.morel.VariableWithInit;
+import edu.ustb.sei.mde.morel.resource.morel.execution.primitives.Initialize;
 import edu.ustb.sei.mde.morel.resource.morel.execution.primitives.Match;
 import edu.ustb.sei.mde.morel.resource.morel.util.AbstractMorelInterpreter;
 
 public class OclInterpreter extends
 		AbstractMorelInterpreter<Object, Context> {
 	
+	public OclInterpreter() {
+		super();
+		Initialize.instance.initialize();
+	}
+
+
+
 	protected OclStandardLibrary library = new OclStandardLibrary(null);
 
 	@Override

@@ -168,13 +168,22 @@ public interface RuntimePackage extends EPackage {
 	int CONTEXT___GET_COPY__CONTEXT = 4;
 
 	/**
+	 * The operation id for the '<em>Register Variable</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTEXT___REGISTER_VARIABLE__VARIABLE = 5;
+
+	/**
 	 * The number of operations of the '<em>Context</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTEXT_OPERATION_COUNT = 5;
+	int CONTEXT_OPERATION_COUNT = 6;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.emg.runtime.impl.EnvironmentImpl <em>Environment</em>}' class.
@@ -214,13 +223,22 @@ public interface RuntimePackage extends EPackage {
 	int ENVIRONMENT___CREATE_CONTEXT = 0;
 
 	/**
+	 * The operation id for the '<em>Reset Cache</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENVIRONMENT___RESET_CACHE = 1;
+
+	/**
 	 * The number of operations of the '<em>Environment</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ENVIRONMENT_OPERATION_COUNT = 1;
+	int ENVIRONMENT_OPERATION_COUNT = 2;
 
 
 	/**
@@ -350,6 +368,16 @@ public interface RuntimePackage extends EPackage {
 	EOperation getContext__GetCopy__Context();
 
 	/**
+	 * Returns the meta object for the '{@link edu.ustb.sei.mde.emg.runtime.Context#registerVariable(edu.ustb.sei.mde.morel.Variable) <em>Register Variable</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Register Variable</em>' operation.
+	 * @see edu.ustb.sei.mde.emg.runtime.Context#registerVariable(edu.ustb.sei.mde.morel.Variable)
+	 * @generated
+	 */
+	EOperation getContext__RegisterVariable__Variable();
+
+	/**
 	 * Returns the meta object for class '{@link edu.ustb.sei.mde.emg.runtime.Environment <em>Environment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -379,6 +407,16 @@ public interface RuntimePackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getEnvironment__CreateContext();
+
+	/**
+	 * Returns the meta object for the '{@link edu.ustb.sei.mde.emg.runtime.Environment#resetCache() <em>Reset Cache</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Reset Cache</em>' operation.
+	 * @see edu.ustb.sei.mde.emg.runtime.Environment#resetCache()
+	 * @generated
+	 */
+	EOperation getEnvironment__ResetCache();
 
 	/**
 	 * Returns the meta object for data type '{@link edu.ustb.sei.mde.emg.graph.ModelSpace <em>Model Space</em>}'.
@@ -505,6 +543,14 @@ public interface RuntimePackage extends EPackage {
 		EOperation CONTEXT___GET_COPY__CONTEXT = eINSTANCE.getContext__GetCopy__Context();
 
 		/**
+		 * The meta object literal for the '<em><b>Register Variable</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation CONTEXT___REGISTER_VARIABLE__VARIABLE = eINSTANCE.getContext__RegisterVariable__Variable();
+
+		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.emg.runtime.impl.EnvironmentImpl <em>Environment</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -529,6 +575,14 @@ public interface RuntimePackage extends EPackage {
 		 * @generated
 		 */
 		EOperation ENVIRONMENT___CREATE_CONTEXT = eINSTANCE.getEnvironment__CreateContext();
+
+		/**
+		 * The meta object literal for the '<em><b>Reset Cache</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation ENVIRONMENT___RESET_CACHE = eINSTANCE.getEnvironment__ResetCache();
 
 		/**
 		 * The meta object literal for the '<em>Model Space</em>' data type.

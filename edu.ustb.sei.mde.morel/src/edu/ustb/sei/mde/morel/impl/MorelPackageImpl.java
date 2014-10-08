@@ -918,6 +918,15 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getEnclosureLinkConstraint_Types() {
+		return (EReference)enclosureLinkConstraintEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getQueryModel() {
 		return queryModelEClass;
 	}
@@ -2179,6 +2188,7 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 
 		enclosureLinkConstraintEClass = createEClass(ENCLOSURE_LINK_CONSTRAINT);
 		createEReference(enclosureLinkConstraintEClass, ENCLOSURE_LINK_CONSTRAINT__FORWARD);
+		createEReference(enclosureLinkConstraintEClass, ENCLOSURE_LINK_CONSTRAINT__TYPES);
 
 		queryModelEClass = createEClass(QUERY_MODEL);
 		createEReference(queryModelEClass, QUERY_MODEL__QUERIES);
@@ -2503,6 +2513,7 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 
 		initEClass(enclosureLinkConstraintEClass, EnclosureLinkConstraint.class, "EnclosureLinkConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getEnclosureLinkConstraint_Forward(), ecorePackage.getEReference(), null, "forward", null, 1, -1, EnclosureLinkConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEnclosureLinkConstraint_Types(), ecorePackage.getEClass(), null, "types", null, 0, -1, EnclosureLinkConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(queryModelEClass, QueryModel.class, "QueryModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getQueryModel_Queries(), this.getQuery(), null, "queries", null, 0, -1, QueryModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
