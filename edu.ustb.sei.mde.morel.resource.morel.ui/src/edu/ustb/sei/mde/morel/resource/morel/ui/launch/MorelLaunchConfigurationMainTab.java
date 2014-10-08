@@ -234,7 +234,8 @@ public class MorelLaunchConfigurationMainTab extends org.eclipse.debug.ui.Abstra
 		dialog.setText("Select models");
 		String result = dialog.open();
 		if (result != null) {
-			modelUriText.setText(modelUriText.getText()+";"+org.eclipse.emf.common.util.URI.createFileURI(result).toString());
+			//String cur = modelUriText.getText();
+			modelUriText.setText(modelUriText.getText()+org.eclipse.emf.common.util.URI.createFileURI(result).toString());
 		}
 	}
 	
