@@ -4,7 +4,9 @@ package edu.ustb.sei.mde.morel.impl;
 
 import edu.ustb.sei.mde.morel.EnclosureLinkConstraint;
 import edu.ustb.sei.mde.morel.MorelPackage;
+
 import java.util.Collection;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
@@ -158,5 +160,28 @@ public class EnclosureLinkConstraintImpl extends LinkConstraintImpl implements E
 		}
 		return super.eIsSet(featureID);
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 65536;
+		int result = 1;
+		result = prime * result + ((source == null) ? 0 : source.hashCode());
+		result = prime * result + ((target == null) ? 0 : target.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof EnclosureLinkConstraint) {
+			EnclosureLinkConstraint elc = (EnclosureLinkConstraint)obj;
+			if(source!=elc.getSource() || target!= elc.getTarget()) return false;
+			if(!(getForward().containsAll(elc.getForward()) && elc.getForward().containsAll(getForward()))) return false;
+			if(!(getTypes().containsAll(elc.getTypes())&&elc.getTypes().containsAll(getTypes()))) return false;
+			return true;
+		} else 
+			return false;
+	}
+	
+	
 
 } //EnclosureLinkConstraintImpl

@@ -60,16 +60,19 @@ public class MorelLaunchConfigurationHelper {
 			if(root instanceof QueryModel) {
 				
 
-				Query query = ((QueryModel) root).getQueries().get(0);
 				//Match match = new Match();
 				Context init = env.createContext();
 				OclInterpreter interpreter = new OclInterpreter();
 
-				@SuppressWarnings("unchecked")
-				List<Context> result = (List<Context>) interpreter.interprete_edu_ustb_sei_mde_morel_Query(query, init);
-				
-				for(Context c : result){
-					ConsoleUtil.printToConsole(c.toString(), MOREL_TITLE, true);
+//				Query query = ((QueryModel) root).getQueries().get(0);
+				for(Query query : ((QueryModel) root).getQueries()) {
+					@SuppressWarnings("unchecked")
+					List<Context> result = (List<Context>) interpreter.interprete_edu_ustb_sei_mde_morel_Query(query, init);
+					
+					ConsoleUtil.printToConsole(query.getName(), MOREL_TITLE, true);
+					for(Context c : result){
+						ConsoleUtil.printToConsole(c.toString(), MOREL_TITLE, true);
+					}
 				}
 				
 			} else if(root instanceof TransformationModel) {

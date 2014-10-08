@@ -38,6 +38,7 @@ public class MorelBracketInformationProvider {
 		java.util.Collection<edu.ustb.sei.mde.morel.resource.morel.IMorelBracketPair> result = new java.util.ArrayList<edu.ustb.sei.mde.morel.resource.morel.IMorelBracketPair>();
 		result.add(new BracketPair("{", "}", true));
 		result.add(new BracketPair("[", "]", true));
+		result.add(new BracketPair("<", ">", true));
 		result.add(new BracketPair("(", ")", true));
 		result.add(new BracketPair("'", "'", false));
 		return result;

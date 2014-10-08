@@ -2,6 +2,7 @@ package edu.ustb.sei.mde.morel.resource.morel.execution.primitives;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
@@ -39,49 +40,99 @@ import solver.variables.VF;
 public class Match {
 	public final static Match instance = new Match();
 	
-	private Pair<BidirectionalMap<ObjectVariable, IntVar>,Solver> makeModel(Pattern pattern, Context context, Environment env) {
+	private Pair<BidirectionalMap<ObjectVariable, IntVar>,Solver> makeModel(List<Pattern> patterns, Context context, Environment env) {
 		BidirectionalMap<ObjectVariable, IntVar> varMap = new BidirectionalMap<ObjectVariable, IntVar>();
+		HashSet<LinkConstraint> linkSet = new HashSet<LinkConstraint>();
 		
 		Solver solver = new Solver();
-		for(Variable v : pattern.getVariables()) {
-			if(v instanceof ObjectVariable) {
-				if(varMap.forward((ObjectVariable)v)!=null) continue;				
-				ModelSpace space = (ModelSpace)env.getModelSpaces().get(((ObjectVariable) v).getModel());
-				
-				if(context.getValue(v)!=OclUndefined.INVALIDED) {
-					int id = ModelSpace.getElementID((EObject)context.getValue(v));
-					IntVar iv = VF.fixed(id, solver);
-					varMap.put((ObjectVariable)v, iv);
-				} else {
-					IntVar iv = VF.enumerated(v.getName(), space.getAllElementIDByType(((ObjectVariable) v).getType()), solver);
-					varMap.put((ObjectVariable)v, iv);				
+		for(Pattern pattern : patterns) {
+			for(Variable v : pattern.getVariables()) {
+				if(v instanceof ObjectVariable) {
+					if(varMap.forward((ObjectVariable)v)!=null) continue;				
+					ModelSpace space = (ModelSpace)env.getModelSpaces().get(((ObjectVariable) v).getModel());
+					
+					if(context.getValue(v)!=OclUndefined.INVALIDED) {
+						int id = ModelSpace.getElementID((EObject)context.getValue(v));
+						IntVar iv = VF.fixed(id, solver);
+						varMap.put((ObjectVariable)v, iv);
+					} else {
+						IntVar iv = VF.enumerated(v.getName(), space.getAllElementIDByType(((ObjectVariable) v).getType()), solver);
+						varMap.put((ObjectVariable)v, iv);				
+					}
 				}
 			}
-		}
-		
-		for(LinkConstraint l : pattern.getLinkConstraints()) {
-			IntVar s = varMap.forward(l.getSource());
-			IntVar t = varMap.forward(l.getTarget());
 			
-			if(l instanceof SimpleLinkConstraint) {
-				ModelSpace space = (ModelSpace)env.getModelSpaces().get(l.getSource().getModel());
-				List<int[]> arcs = space.getAllTupleIDByReference(((SimpleLinkConstraint)l).getReference(), true);
-				Tuples tuple = new Tuples(true);
-				for(int[] arc : arcs) {
-					tuple.add(arc);
+			for(LinkConstraint l : pattern.getLinkConstraints()) {
+				if(linkSet.contains(l)) continue;
+				linkSet.add(l);
+				
+				IntVar s = varMap.forward(l.getSource());
+				IntVar t = varMap.forward(l.getTarget());
+				
+				if(l instanceof SimpleLinkConstraint) {
+					ModelSpace space = (ModelSpace)env.getModelSpaces().get(l.getSource().getModel());
+					List<int[]> arcs = space.getAllTupleIDByReference(((SimpleLinkConstraint)l).getReference(), true);
+					Tuples tuple = new Tuples(true);
+					for(int[] arc : arcs) {
+						tuple.add(arc);
+					}
+					solver.post(ICF.table(s, t, tuple, "AC3"));
+					//solver.post(new Constraint("LinkConstraint", new PropLinkS_T(s,t,((SimpleLinkConstraint)l).getReference(),env)));				
+				} else if(l instanceof EnclosureLinkConstraint) {
+					solver.post(new Constraint("EnclosureLinkConstraint", new PropEnclosureLinkS_T(s,t,((EnclosureLinkConstraint)l).getForward(), ((EnclosureLinkConstraint)l).getTypes(),env)));
 				}
-				solver.post(ICF.table(s, t, tuple, "AC3"));
-				//solver.post(new Constraint("LinkConstraint", new PropLinkS_T(s,t,((SimpleLinkConstraint)l).getReference(),env)));				
-			} else if(l instanceof EnclosureLinkConstraint) {
-				solver.post(new Constraint("EnclosureLinkConstraint", new PropEnclosureLinkS_T(s,t,((EnclosureLinkConstraint)l).getForward(), ((EnclosureLinkConstraint)l).getTypes(),env)));
 			}
 		}
 		
 		return new Pair<BidirectionalMap<ObjectVariable, IntVar>,Solver>(varMap,solver);
 	}
 	
-	public List<Context> match(Pattern pattern, Context context, OclInterpreter interpreter, Environment env) {
-		Pair<BidirectionalMap<ObjectVariable, IntVar>,Solver> pair = makeModel(pattern,context,env);
+	private Pair<BidirectionalMap<ObjectVariable, IntVar>,Solver> makeModel(Pattern pattern, Context context, Environment env) {
+//		BidirectionalMap<ObjectVariable, IntVar> varMap = new BidirectionalMap<ObjectVariable, IntVar>();
+//		
+//		Solver solver = new Solver();
+//		for(Variable v : pattern.getVariables()) {
+//			if(v instanceof ObjectVariable) {
+//				if(varMap.forward((ObjectVariable)v)!=null) continue;				
+//				ModelSpace space = (ModelSpace)env.getModelSpaces().get(((ObjectVariable) v).getModel());
+//				
+//				if(context.getValue(v)!=OclUndefined.INVALIDED) {
+//					int id = ModelSpace.getElementID((EObject)context.getValue(v));
+//					IntVar iv = VF.fixed(id, solver);
+//					varMap.put((ObjectVariable)v, iv);
+//				} else {
+//					IntVar iv = VF.enumerated(v.getName(), space.getAllElementIDByType(((ObjectVariable) v).getType()), solver);
+//					varMap.put((ObjectVariable)v, iv);				
+//				}
+//			}
+//		}
+//		
+//		for(LinkConstraint l : pattern.getLinkConstraints()) {
+//			IntVar s = varMap.forward(l.getSource());
+//			IntVar t = varMap.forward(l.getTarget());
+//			
+//			if(l instanceof SimpleLinkConstraint) {
+//				ModelSpace space = (ModelSpace)env.getModelSpaces().get(l.getSource().getModel());
+//				List<int[]> arcs = space.getAllTupleIDByReference(((SimpleLinkConstraint)l).getReference(), true);
+//				Tuples tuple = new Tuples(true);
+//				for(int[] arc : arcs) {
+//					tuple.add(arc);
+//				}
+//				solver.post(ICF.table(s, t, tuple, "AC3"));
+//				//solver.post(new Constraint("LinkConstraint", new PropLinkS_T(s,t,((SimpleLinkConstraint)l).getReference(),env)));				
+//			} else if(l instanceof EnclosureLinkConstraint) {
+//				solver.post(new Constraint("EnclosureLinkConstraint", new PropEnclosureLinkS_T(s,t,((EnclosureLinkConstraint)l).getForward(), ((EnclosureLinkConstraint)l).getTypes(),env)));
+//			}
+//		}
+//		
+//		return new Pair<BidirectionalMap<ObjectVariable, IntVar>,Solver>(varMap,solver);
+		List<Pattern> patterns = new ArrayList<Pattern>();
+		patterns.add(pattern);
+		return makeModel(patterns, context, env);
+	}
+	
+	public List<Context> match(List<Pattern> patterns, Context context, OclInterpreter interpreter, Environment env) {
+		Pair<BidirectionalMap<ObjectVariable, IntVar>,Solver> pair = makeModel(patterns,context,env);
 		
 		boolean flag = pair.getSecond().findSolution();
 		List<Context> result = new ArrayList<Context>();
@@ -90,25 +141,77 @@ public class Match {
 			Context newContext = env.createContext();
 			context.getCopy(newContext);
 			
-			for(Variable v : pattern.getVariables()) {
-				if(v instanceof ObjectVariable) {
-					ObjectVariable ov = (ObjectVariable)v;
-					
-					if(newContext.getValue(v)==OclUndefined.INVALIDED){
-						newContext.putValue(v, ModelSpace.getElementByID(pair.getFirst().forward(ov).getValue()));
+			for(Pattern pattern : patterns) {
+				for(Variable v : pattern.getVariables()) {
+					if(v instanceof ObjectVariable) {
+						ObjectVariable ov = (ObjectVariable)v;
+						
+						if(newContext.getValue(v)==OclUndefined.INVALIDED){
+							newContext.putValue(v, ModelSpace.getElementByID(pair.getFirst().forward(ov).getValue()));
+						}
 					}
 				}
 			}
 			
 			
-			if(checkLinkOrderCondition(pattern,newContext,interpreter,false) 
-					&& checkCondition(pattern,newContext,interpreter,false))
+			if(checkLinkOrderCondition(patterns,newContext,interpreter,false) 
+					&& checkCondition(patterns,newContext,interpreter,false))
 				result.add(newContext);
 			
 			flag = pair.getSecond().nextSolution();
 		}
 		
 		return result;
+	}
+	
+	public List<Context> match(Pattern pattern, Context context, OclInterpreter interpreter, Environment env) {
+//		Pair<BidirectionalMap<ObjectVariable, IntVar>,Solver> pair = makeModel(pattern,context,env);
+//		
+//		boolean flag = pair.getSecond().findSolution();
+//		List<Context> result = new ArrayList<Context>();
+//		
+//		while(flag) {
+//			Context newContext = env.createContext();
+//			context.getCopy(newContext);
+//			
+//			for(Variable v : pattern.getVariables()) {
+//				if(v instanceof ObjectVariable) {
+//					ObjectVariable ov = (ObjectVariable)v;
+//					
+//					if(newContext.getValue(v)==OclUndefined.INVALIDED){
+//						newContext.putValue(v, ModelSpace.getElementByID(pair.getFirst().forward(ov).getValue()));
+//					}
+//				}
+//			}
+//			
+//			
+//			if(checkLinkOrderCondition(pattern,newContext,interpreter,false) 
+//					&& checkCondition(pattern,newContext,interpreter,false))
+//				result.add(newContext);
+//			
+//			flag = pair.getSecond().nextSolution();
+//		}
+//		
+//		return result;
+		List<Pattern> patterns = new ArrayList<Pattern>();
+		patterns.add(pattern);
+		return match(patterns,context,interpreter,env);
+	}
+	
+	private boolean checkCondition(List<Pattern> patterns, Context context,OclInterpreter interpreter, boolean partial) {
+		for(Pattern p : patterns) {
+			if(!checkCondition(p,context,interpreter,partial))
+				return false;
+		}
+		return true;
+	}
+	
+	private boolean checkLinkOrderCondition(List<Pattern> patterns, Context context,OclInterpreter interpreter, boolean partial) {
+		for(Pattern p : patterns) {
+			if(!checkLinkOrderCondition(p,context,interpreter,partial))
+				return false;
+		}
+		return true;
 	}
 
 	private boolean checkCondition(Pattern pattern, Context newContext,OclInterpreter interpreter, boolean partial) {
