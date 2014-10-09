@@ -1190,7 +1190,7 @@ public class MorelPrinter implements edu.ustb.sei.mde.morel.resource.morel.IMore
 		java.io.PrintWriter out1 = null;
 		java.util.Map<String, Integer> printCountingMap1 = null;
 		// DEFINITION PART BEGINS (CsString)
-		out.print("<");
+		out.print(":");
 		out.print(" ");
 		// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
 		count = printCountingMap.get("types");
@@ -1228,9 +1228,6 @@ public class MorelPrinter implements edu.ustb.sei.mde.morel.resource.morel.IMore
 				printCountingMap.putAll(printCountingMap1);
 			}
 		}
-		// DEFINITION PART BEGINS (CsString)
-		out.print(">");
-		out.print(" ");
 	}
 	
 	public void print_edu_ustb_sei_mde_morel_EnclosureLinkConstraint_1_0(edu.ustb.sei.mde.morel.EnclosureLinkConstraint element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {

@@ -32,7 +32,7 @@ import edu.ustb.sei.mde.morel.resource.morel.execution.primitives.Match;
  */
 public class MorelLaunchConfigurationHelper {
 	
-	private static final String MOREL_TITLE = "Morel";
+	public static final String MOREL_TITLE = "Morel";
 	public static class SystemOutInterpreter extends edu.ustb.sei.mde.morel.resource.morel.util.AbstractMorelInterpreter<Void,Void> {
 		
 		@Override		
@@ -58,25 +58,11 @@ public class MorelLaunchConfigurationHelper {
 		
 		try {
 			if(root instanceof QueryModel) {
-				
-
-				//Match match = new Match();
-				Context init = env.createContext();
 				OclInterpreter interpreter = new OclInterpreter();
-
-//				Query query = ((QueryModel) root).getQueries().get(0);
-				for(Query query : ((QueryModel) root).getQueries()) {
-					@SuppressWarnings("unchecked")
-					List<Context> result = (List<Context>) interpreter.interprete_edu_ustb_sei_mde_morel_Query(query, init);
-					
-					ConsoleUtil.printToConsole(query.getName(), MOREL_TITLE, true);
-					for(Context c : result){
-						ConsoleUtil.printToConsole(c.toString(), MOREL_TITLE, true);
-					}
-				}
-				
+				interpreter.interprete_edu_ustb_sei_mde_morel_QueryModel((QueryModel) root, env.createContext());
 			} else if(root instanceof TransformationModel) {
-				
+				OclInterpreter interpreter = new OclInterpreter();
+				interpreter.interprete_edu_ustb_sei_mde_morel_TransformationModel((TransformationModel) root, env.createContext());
 			} else {
 				SystemOutInterpreter delegate = new SystemOutInterpreter();
 				delegate.addObjectTreeToInterpreteTopDown(root);

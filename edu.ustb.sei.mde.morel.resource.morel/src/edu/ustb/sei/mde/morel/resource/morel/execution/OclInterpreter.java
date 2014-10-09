@@ -55,6 +55,7 @@ import edu.ustb.sei.mde.morel.ObjectVariable;
 import edu.ustb.sei.mde.morel.ObjectVariableWithInit;
 import edu.ustb.sei.mde.morel.OperationPathExp;
 import edu.ustb.sei.mde.morel.OrderedSetType;
+import edu.ustb.sei.mde.morel.Pattern;
 import edu.ustb.sei.mde.morel.PredefinedBindExp;
 import edu.ustb.sei.mde.morel.PredefinedVariable;
 import edu.ustb.sei.mde.morel.PredefinedVariableExp;
@@ -65,11 +66,14 @@ import edu.ustb.sei.mde.morel.QueryModel;
 import edu.ustb.sei.mde.morel.RealLiteralExp;
 import edu.ustb.sei.mde.morel.RelationalExp;
 import edu.ustb.sei.mde.morel.RelationalOperator;
+import edu.ustb.sei.mde.morel.Rule;
+import edu.ustb.sei.mde.morel.SectionType;
 import edu.ustb.sei.mde.morel.SequenceType;
 import edu.ustb.sei.mde.morel.SetType;
 import edu.ustb.sei.mde.morel.SimpleLinkConstraint;
 import edu.ustb.sei.mde.morel.Statement;
 import edu.ustb.sei.mde.morel.StringLiteralExp;
+import edu.ustb.sei.mde.morel.TransformationModel;
 import edu.ustb.sei.mde.morel.TypeLiteralExp;
 import edu.ustb.sei.mde.morel.UnaryExp;
 import edu.ustb.sei.mde.morel.UnaryOperator;
@@ -78,6 +82,7 @@ import edu.ustb.sei.mde.morel.UndefinedLiteralExp;
 import edu.ustb.sei.mde.morel.Variable;
 import edu.ustb.sei.mde.morel.VariableExp;
 import edu.ustb.sei.mde.morel.VariableWithInit;
+import edu.ustb.sei.mde.morel.resource.morel.execution.primitives.Apply;
 import edu.ustb.sei.mde.morel.resource.morel.execution.primitives.Initialize;
 import edu.ustb.sei.mde.morel.resource.morel.execution.primitives.Match;
 import edu.ustb.sei.mde.morel.resource.morel.util.AbstractMorelInterpreter;
@@ -172,7 +177,7 @@ public class OclInterpreter extends
 		Match match = Match.instance;
 		context.setHost(query);
 		context.initWithHost();
-		for(Variable v : query.getVariables()) {
+		for(Variable v : query.getVariables()) {//初始化
 			if(v instanceof VariableWithInit) {
 				Object val = this.interprete((VariableWithInit)v, context);
 				context.putValue(v, val);
@@ -181,6 +186,36 @@ public class OclInterpreter extends
 		List<Context> result = match.match(query, context, this, context.getEnviroment());
 		
 		return result;
+	}
+
+
+
+	@Override
+	public Object interprete_edu_ustb_sei_mde_morel_Rule(Rule rule,
+			Context context) {
+		Match match = Match.instance;
+		Apply apply = Apply.instance;
+		
+		context.setHost(rule);
+		context.initWithHost();
+		
+		for(Pattern p : rule.getPatterns()) {
+			if(p.getType()==SectionType.LHS || p.getType()==SectionType.RHS) {
+				for(Variable v : p.getVariables()) {//初始化
+					if(v instanceof VariableWithInit) {
+						Object val = this.interprete((VariableWithInit)v, context);
+						context.putValue(v, val);
+					}
+				}
+			}
+		}
+		
+		List<Pattern> lhs = Apply.getPatterns(rule, SectionType.LHS);
+		List<Context> lhsMatches = match.match(lhs, context, this, context.getEnviroment());
+		
+		// TODO
+		
+		return true;
 	}
 
 
@@ -930,6 +965,52 @@ public class OclInterpreter extends
 			EnumLiteralExp enumLiteralExp, Context context) {
 		return interprete_edu_ustb_sei_mde_morel_CallPathExp(enumLiteralExp.getEnumSymbol().getInstance(), enumLiteralExp.getPath(), context);
 	}
+
+
+
+	@Override
+	public Object interprete_edu_ustb_sei_mde_morel_QueryModel(
+			QueryModel queryModel, Context context) {
+		
+		try {
+			Context init = context.newScope();
+			for(Query query : queryModel.getQueries()) {
+				@SuppressWarnings("unchecked")
+				List<Context> result = (List<Context>) this.interprete_edu_ustb_sei_mde_morel_Query(query, init);
+				
+				ConsoleUtil.printToConsole(query.getName(), MorelLaunchConfigurationHelper.MOREL_TITLE, true);
+				for(Context c : result){
+					ConsoleUtil.printToConsole(c.toString(), MorelLaunchConfigurationHelper.MOREL_TITLE, true);
+				}
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return true;
+	}
+
+
+
+	@Override
+	public Object interprete_edu_ustb_sei_mde_morel_TransformationModel(
+			TransformationModel transformationModel, Context context) {
+		try {
+			Context init = context.newScope();
+			for(Rule rule : transformationModel.getRules()) {
+				this.interprete_edu_ustb_sei_mde_morel_Rule(rule, init);
+			}
+			ConsoleUtil.printToConsole("Transformation is finished.", MorelLaunchConfigurationHelper.MOREL_TITLE, true);
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return true;
+	}
+	
 	
 	
 }

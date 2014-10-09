@@ -7,13 +7,16 @@ import edu.ustb.sei.mde.emg.runtime.Environment;
 import edu.ustb.sei.mde.emg.runtime.RuntimeFactory;
 import edu.ustb.sei.mde.emg.runtime.RuntimePackage;
 import edu.ustb.sei.mde.emg.runtime.datatype.OclUndefined;
+import edu.ustb.sei.mde.morel.Pattern;
 import edu.ustb.sei.mde.morel.Query;
 import edu.ustb.sei.mde.morel.Rule;
+import edu.ustb.sei.mde.morel.SectionType;
 import edu.ustb.sei.mde.morel.Variable;
 import edu.ustb.sei.mde.morel.VariableWithInit;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -288,8 +291,8 @@ public class ContextImpl extends MinimalEObjectImpl.Container implements Context
 		Object host = getHost();
 		Map<Variable,Object> map = this.getBindingMap();
 		
-		if(host instanceof Query) {
-			Query query = (Query)host;
+		if(host instanceof Pattern) {
+			Pattern query = (Pattern)host;
 			for(Variable v : query.getVariables()) {
 				if(map.containsKey(v)) continue;
 				else {
@@ -301,7 +304,21 @@ public class ContextImpl extends MinimalEObjectImpl.Container implements Context
 				}
 			}
 		} else if(host instanceof Rule) {
-			
+			Rule rule = (Rule)host;
+			for(Pattern p : rule.getPatterns()) {
+				if(p.getType()==SectionType.LHS || p.getType()==SectionType.RHS) {
+					for(Variable v : p.getVariables()) {
+						if(map.containsKey(v)) continue;
+						else {
+							if(v instanceof VariableWithInit) {
+								Object value = OclUndefined.INVALIDED;
+								map.put(v, value);
+							} else 
+								map.put(v, OclUndefined.INVALIDED);
+						}
+					}
+				}
+			}
 		}
 	}
 
@@ -311,10 +328,14 @@ public class ContextImpl extends MinimalEObjectImpl.Container implements Context
 	 * @generated NOT
 	 */
 	public Context newScope() {
-		Context context = RuntimeFactory.eINSTANCE.createContext();
+		Context context = instanceContext();
 		context.setEnviroment(this.getEnviroment());
 		context.setParentScope(this);
 		return context;
+	}
+
+	protected Context instanceContext() {
+		return RuntimeFactory.eINSTANCE.createContext();
 	}
 
 	/**
