@@ -297,7 +297,7 @@ public class MorelLaunchConfigurationMainTab extends org.eclipse.debug.ui.Abstra
 		});
 		if (dialog.open() == org.eclipse.jface.window.Window.OK) {
 			org.eclipse.core.resources.IFile file = (org.eclipse.core.resources.IFile) dialog.getFirstResult();
-			modelUriText.setText(modelUriText.getText()+";"+org.eclipse.emf.common.util.URI.createPlatformResourceURI(file.getFullPath().makeRelative().toString(), true).toString());
+			modelUriText.setText(modelUriText.getText()+org.eclipse.emf.common.util.URI.createPlatformResourceURI(file.getFullPath().makeRelative().toString(), true).toString());
 		}
 	}
 	

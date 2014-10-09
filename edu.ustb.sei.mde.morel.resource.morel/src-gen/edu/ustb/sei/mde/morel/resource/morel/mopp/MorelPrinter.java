@@ -419,9 +419,6 @@ public class MorelPrinter implements edu.ustb.sei.mde.morel.resource.morel.IMore
 		// DEFINITION PART BEGINS (CsString)
 		out.print("match");
 		out.print(" ");
-		// DEFINITION PART BEGINS (CsString)
-		out.print(":");
-		out.print(" ");
 		// DEFINITION PART BEGINS (CompoundDefinition)
 		sWriter = new java.io.StringWriter();
 		out1 = new java.io.PrintWriter(sWriter);
@@ -611,10 +608,7 @@ public class MorelPrinter implements edu.ustb.sei.mde.morel.resource.morel.IMore
 		java.io.PrintWriter out1 = null;
 		java.util.Map<String, Integer> printCountingMap1 = null;
 		// DEFINITION PART BEGINS (CsString)
-		out.print("when");
-		out.print(" ");
-		// DEFINITION PART BEGINS (CsString)
-		out.print(":");
+		out.print("where");
 		out.print(" ");
 		// DEFINITION PART BEGINS (CompoundDefinition)
 		print_edu_ustb_sei_mde_morel_Query_2_0(element, localtab, out, printCountingMap);
@@ -3442,9 +3436,6 @@ public class MorelPrinter implements edu.ustb.sei.mde.morel.resource.morel.IMore
 		// DEFINITION PART BEGINS (CsString)
 		out.print("match");
 		out.print(" ");
-		// DEFINITION PART BEGINS (CsString)
-		out.print(":");
-		out.print(" ");
 		// DEFINITION PART BEGINS (CompoundDefinition)
 		sWriter = new java.io.StringWriter();
 		out1 = new java.io.PrintWriter(sWriter);
@@ -3634,10 +3625,7 @@ public class MorelPrinter implements edu.ustb.sei.mde.morel.resource.morel.IMore
 		java.io.PrintWriter out1 = null;
 		java.util.Map<String, Integer> printCountingMap1 = null;
 		// DEFINITION PART BEGINS (CsString)
-		out.print("when");
-		out.print(" ");
-		// DEFINITION PART BEGINS (CsString)
-		out.print(":");
+		out.print("where");
 		out.print(" ");
 		// DEFINITION PART BEGINS (CompoundDefinition)
 		print_edu_ustb_sei_mde_morel_Pattern_2_0(element, localtab, out, printCountingMap);

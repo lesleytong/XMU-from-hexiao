@@ -3,6 +3,7 @@
 package edu.ustb.sei.mde.emg.runtime.impl;
 
 import edu.ustb.sei.mde.emg.graph.ModelSpace;
+import edu.ustb.sei.mde.emg.graph.ModelUniverse;
 import edu.ustb.sei.mde.emg.runtime.Context;
 import edu.ustb.sei.mde.emg.runtime.Environment;
 import edu.ustb.sei.mde.emg.runtime.RuntimeFactory;
@@ -47,6 +48,13 @@ public class RuntimePackageImpl extends EPackageImpl implements RuntimePackage {
 	 * @generated
 	 */
 	private EDataType modelSpaceEDataType = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType modelUniverseEDataType = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -207,7 +215,7 @@ public class RuntimePackageImpl extends EPackageImpl implements RuntimePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getContext__GetCopy__Context() {
+	public EOperation getContext__GetCopy() {
 		return contextEClass.getEOperations().get(4);
 	}
 
@@ -218,6 +226,15 @@ public class RuntimePackageImpl extends EPackageImpl implements RuntimePackage {
 	 */
 	public EOperation getContext__RegisterVariable__Variable() {
 		return contextEClass.getEOperations().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getContext__ContainVariable__Variable() {
+		return contextEClass.getEOperations().get(6);
 	}
 
 	/**
@@ -236,6 +253,15 @@ public class RuntimePackageImpl extends EPackageImpl implements RuntimePackage {
 	 */
 	public EAttribute getEnvironment_ModelSpaces() {
 		return (EAttribute)environmentEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEnvironment_ModelUniverse() {
+		return (EAttribute)environmentEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -263,6 +289,15 @@ public class RuntimePackageImpl extends EPackageImpl implements RuntimePackage {
 	 */
 	public EDataType getModelSpace() {
 		return modelSpaceEDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EDataType getModelUniverse() {
+		return modelUniverseEDataType;
 	}
 
 	/**
@@ -303,16 +338,19 @@ public class RuntimePackageImpl extends EPackageImpl implements RuntimePackage {
 		createEOperation(contextEClass, CONTEXT___NEW_SCOPE);
 		createEOperation(contextEClass, CONTEXT___GET_VALUE__VARIABLE);
 		createEOperation(contextEClass, CONTEXT___PUT_VALUE__VARIABLE_OBJECT);
-		createEOperation(contextEClass, CONTEXT___GET_COPY__CONTEXT);
+		createEOperation(contextEClass, CONTEXT___GET_COPY);
 		createEOperation(contextEClass, CONTEXT___REGISTER_VARIABLE__VARIABLE);
+		createEOperation(contextEClass, CONTEXT___CONTAIN_VARIABLE__VARIABLE);
 
 		environmentEClass = createEClass(ENVIRONMENT);
 		createEAttribute(environmentEClass, ENVIRONMENT__MODEL_SPACES);
+		createEAttribute(environmentEClass, ENVIRONMENT__MODEL_UNIVERSE);
 		createEOperation(environmentEClass, ENVIRONMENT___CREATE_CONTEXT);
 		createEOperation(environmentEClass, ENVIRONMENT___RESET_CACHE);
 
 		// Create data types
 		modelSpaceEDataType = createEDataType(MODEL_SPACE);
+		modelUniverseEDataType = createEDataType(MODEL_UNIVERSE);
 	}
 
 	/**
@@ -371,10 +409,12 @@ public class RuntimePackageImpl extends EPackageImpl implements RuntimePackage {
 		addEParameter(op, theMorelPackage.getVariable(), "var", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEJavaObject(), "value", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getContext__GetCopy__Context(), null, "getCopy", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getContext(), "copy", 0, 1, IS_UNIQUE, IS_ORDERED);
+		initEOperation(getContext__GetCopy(), this.getContext(), "getCopy", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = initEOperation(getContext__RegisterVariable__Variable(), null, "registerVariable", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMorelPackage.getVariable(), "var", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getContext__ContainVariable__Variable(), ecorePackage.getEBoolean(), "containVariable", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMorelPackage.getVariable(), "var", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(environmentEClass, Environment.class, "Environment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -384,6 +424,7 @@ public class RuntimePackageImpl extends EPackageImpl implements RuntimePackage {
 		g2 = createEGenericType(this.getModelSpace());
 		g1.getETypeArguments().add(g2);
 		initEAttribute(getEnvironment_ModelSpaces(), g1, "modelSpaces", null, 0, 1, Environment.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEnvironment_ModelUniverse(), this.getModelUniverse(), "modelUniverse", null, 1, 1, Environment.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getEnvironment__CreateContext(), this.getContext(), "createContext", 0, 1, IS_UNIQUE, IS_ORDERED);
 
@@ -391,6 +432,7 @@ public class RuntimePackageImpl extends EPackageImpl implements RuntimePackage {
 
 		// Initialize data types
 		initEDataType(modelSpaceEDataType, ModelSpace.class, "ModelSpace", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+		initEDataType(modelUniverseEDataType, ModelUniverse.class, "ModelUniverse", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

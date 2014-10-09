@@ -3,6 +3,7 @@
 package edu.ustb.sei.mde.emg.runtime.impl;
 
 import edu.ustb.sei.mde.emg.graph.ModelSpace;
+import edu.ustb.sei.mde.emg.graph.ModelUniverse;
 import edu.ustb.sei.mde.emg.runtime.Context;
 import edu.ustb.sei.mde.emg.runtime.Environment;
 import edu.ustb.sei.mde.emg.runtime.RuntimeFactory;
@@ -27,6 +28,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.emg.runtime.impl.EnvironmentImpl#getModelSpaces <em>Model Spaces</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.emg.runtime.impl.EnvironmentImpl#getModelUniverse <em>Model Universe</em>}</li>
  * </ul>
  * </p>
  *
@@ -43,12 +45,31 @@ public class EnvironmentImpl extends MinimalEObjectImpl.Container implements Env
 	 */
 	protected Map<TypedModel, ModelSpace> modelSpaces;
 	/**
+	 * The default value of the '{@link #getModelUniverse() <em>Model Universe</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see #getModelUniverse()
 	 * @generated
+	 * @ordered
+	 */
+	protected static final ModelUniverse MODEL_UNIVERSE_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getModelUniverse() <em>Model Universe</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getModelUniverse()
+	 * @generated
+	 * @ordered
+	 */
+	protected ModelUniverse modelUniverse = MODEL_UNIVERSE_EDEFAULT;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
 	 */
 	protected EnvironmentImpl() {
 		super();
+		modelUniverse = new ModelUniverse();
 	}
 
 	/**
@@ -88,6 +109,27 @@ public class EnvironmentImpl extends MinimalEObjectImpl.Container implements Env
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ModelUniverse getModelUniverse() {
+		return modelUniverse;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setModelUniverse(ModelUniverse newModelUniverse) {
+		ModelUniverse oldModelUniverse = modelUniverse;
+		modelUniverse = newModelUniverse;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RuntimePackage.ENVIRONMENT__MODEL_UNIVERSE, oldModelUniverse, modelUniverse));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public Context createContext() {
@@ -114,6 +156,8 @@ public class EnvironmentImpl extends MinimalEObjectImpl.Container implements Env
 		switch (featureID) {
 			case RuntimePackage.ENVIRONMENT__MODEL_SPACES:
 				return getModelSpaces();
+			case RuntimePackage.ENVIRONMENT__MODEL_UNIVERSE:
+				return getModelUniverse();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -130,6 +174,9 @@ public class EnvironmentImpl extends MinimalEObjectImpl.Container implements Env
 			case RuntimePackage.ENVIRONMENT__MODEL_SPACES:
 				setModelSpaces((Map<TypedModel, ModelSpace>)newValue);
 				return;
+			case RuntimePackage.ENVIRONMENT__MODEL_UNIVERSE:
+				setModelUniverse((ModelUniverse)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -145,6 +192,9 @@ public class EnvironmentImpl extends MinimalEObjectImpl.Container implements Env
 			case RuntimePackage.ENVIRONMENT__MODEL_SPACES:
 				setModelSpaces((Map<TypedModel, ModelSpace>)null);
 				return;
+			case RuntimePackage.ENVIRONMENT__MODEL_UNIVERSE:
+				setModelUniverse(MODEL_UNIVERSE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -159,6 +209,8 @@ public class EnvironmentImpl extends MinimalEObjectImpl.Container implements Env
 		switch (featureID) {
 			case RuntimePackage.ENVIRONMENT__MODEL_SPACES:
 				return modelSpaces != null;
+			case RuntimePackage.ENVIRONMENT__MODEL_UNIVERSE:
+				return MODEL_UNIVERSE_EDEFAULT == null ? modelUniverse != null : !MODEL_UNIVERSE_EDEFAULT.equals(modelUniverse);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -192,6 +244,8 @@ public class EnvironmentImpl extends MinimalEObjectImpl.Container implements Env
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (modelSpaces: ");
 		result.append(modelSpaces);
+		result.append(", modelUniverse: ");
+		result.append(modelUniverse);
 		result.append(')');
 		return result.toString();
 	}

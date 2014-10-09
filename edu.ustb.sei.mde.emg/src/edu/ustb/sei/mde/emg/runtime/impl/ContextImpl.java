@@ -8,17 +8,13 @@ import edu.ustb.sei.mde.emg.runtime.RuntimeFactory;
 import edu.ustb.sei.mde.emg.runtime.RuntimePackage;
 import edu.ustb.sei.mde.emg.runtime.datatype.OclUndefined;
 import edu.ustb.sei.mde.morel.Pattern;
-import edu.ustb.sei.mde.morel.Query;
 import edu.ustb.sei.mde.morel.Rule;
 import edu.ustb.sei.mde.morel.SectionType;
 import edu.ustb.sei.mde.morel.Variable;
 import edu.ustb.sei.mde.morel.VariableWithInit;
-
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -289,18 +285,18 @@ public class ContextImpl extends MinimalEObjectImpl.Container implements Context
 	 */
 	public void initWithHost() {
 		Object host = getHost();
-		Map<Variable,Object> map = this.getBindingMap();
 		
 		if(host instanceof Pattern) {
 			Pattern query = (Pattern)host;
 			for(Variable v : query.getVariables()) {
-				if(map.containsKey(v)) continue;
+				if(this.containVariable(v)) continue;
 				else {
 					if(v instanceof VariableWithInit) {
 						Object value = OclUndefined.INVALIDED;
-						map.put(v, value);
+						this.registerVariable(v);
 					} else 
-						map.put(v, OclUndefined.INVALIDED);
+						this.registerVariable(v);
+						//map.put(v, OclUndefined.INVALIDED);
 				}
 			}
 		} else if(host instanceof Rule) {
@@ -308,13 +304,13 @@ public class ContextImpl extends MinimalEObjectImpl.Container implements Context
 			for(Pattern p : rule.getPatterns()) {
 				if(p.getType()==SectionType.LHS || p.getType()==SectionType.RHS) {
 					for(Variable v : p.getVariables()) {
-						if(map.containsKey(v)) continue;
+						if(this.containVariable(v)) continue;
 						else {
 							if(v instanceof VariableWithInit) {
 								Object value = OclUndefined.INVALIDED;
-								map.put(v, value);
+								this.registerVariable(v);
 							} else 
-								map.put(v, OclUndefined.INVALIDED);
+								this.registerVariable(v);
 						}
 					}
 				}
@@ -375,7 +371,8 @@ public class ContextImpl extends MinimalEObjectImpl.Container implements Context
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public void getCopy(Context copy) {
+	public Context getCopy() {
+		Context copy = this.instanceContext();
 		copy.setEnviroment(this.getEnviroment());
 		copy.setParentContext(this.getParentContext());
 		copy.setParentScope(this.getParentScope());
@@ -385,6 +382,8 @@ public class ContextImpl extends MinimalEObjectImpl.Container implements Context
 		for(Map.Entry<Variable, Object> entry : this.getBindingMap().entrySet()){
 			copy.putValue(entry.getKey(), entry.getValue());
 		}
+		
+		return copy;
 	}
 
 	/**
@@ -394,6 +393,19 @@ public class ContextImpl extends MinimalEObjectImpl.Container implements Context
 	 */
 	public void registerVariable(Variable var) {
 		this.getBindingMap().put(var, OclUndefined.INVALIDED);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean containVariable(Variable var) {
+		if(this.getBindingMap().containsKey(var))
+			return true;
+		else if(this.getParentScope()!=null&&this.getParentScope()!=this)
+			return getParentScope().containVariable(var);
+		else return false;
 	}
 
 	/**
@@ -516,12 +528,13 @@ public class ContextImpl extends MinimalEObjectImpl.Container implements Context
 			case RuntimePackage.CONTEXT___PUT_VALUE__VARIABLE_OBJECT:
 				putValue((Variable)arguments.get(0), arguments.get(1));
 				return null;
-			case RuntimePackage.CONTEXT___GET_COPY__CONTEXT:
-				getCopy((Context)arguments.get(0));
-				return null;
+			case RuntimePackage.CONTEXT___GET_COPY:
+				return getCopy();
 			case RuntimePackage.CONTEXT___REGISTER_VARIABLE__VARIABLE:
 				registerVariable((Variable)arguments.get(0));
 				return null;
+			case RuntimePackage.CONTEXT___CONTAIN_VARIABLE__VARIABLE:
+				return containVariable((Variable)arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

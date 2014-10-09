@@ -165,7 +165,7 @@ public interface RuntimePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTEXT___GET_COPY__CONTEXT = 4;
+	int CONTEXT___GET_COPY = 4;
 
 	/**
 	 * The operation id for the '<em>Register Variable</em>' operation.
@@ -177,13 +177,22 @@ public interface RuntimePackage extends EPackage {
 	int CONTEXT___REGISTER_VARIABLE__VARIABLE = 5;
 
 	/**
+	 * The operation id for the '<em>Contain Variable</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTEXT___CONTAIN_VARIABLE__VARIABLE = 6;
+
+	/**
 	 * The number of operations of the '<em>Context</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTEXT_OPERATION_COUNT = 6;
+	int CONTEXT_OPERATION_COUNT = 7;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.emg.runtime.impl.EnvironmentImpl <em>Environment</em>}' class.
@@ -205,13 +214,22 @@ public interface RuntimePackage extends EPackage {
 	int ENVIRONMENT__MODEL_SPACES = 0;
 
 	/**
+	 * The feature id for the '<em><b>Model Universe</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENVIRONMENT__MODEL_UNIVERSE = 1;
+
+	/**
 	 * The number of structural features of the '<em>Environment</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ENVIRONMENT_FEATURE_COUNT = 1;
+	int ENVIRONMENT_FEATURE_COUNT = 2;
 
 	/**
 	 * The operation id for the '<em>Create Context</em>' operation.
@@ -250,6 +268,17 @@ public interface RuntimePackage extends EPackage {
 	 * @generated
 	 */
 	int MODEL_SPACE = 2;
+
+
+	/**
+	 * The meta object id for the '<em>Model Universe</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.emg.graph.ModelUniverse
+	 * @see edu.ustb.sei.mde.emg.runtime.impl.RuntimePackageImpl#getModelUniverse()
+	 * @generated
+	 */
+	int MODEL_UNIVERSE = 3;
 
 
 	/**
@@ -358,14 +387,14 @@ public interface RuntimePackage extends EPackage {
 	EOperation getContext__PutValue__Variable_Object();
 
 	/**
-	 * Returns the meta object for the '{@link edu.ustb.sei.mde.emg.runtime.Context#getCopy(edu.ustb.sei.mde.emg.runtime.Context) <em>Get Copy</em>}' operation.
+	 * Returns the meta object for the '{@link edu.ustb.sei.mde.emg.runtime.Context#getCopy() <em>Get Copy</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Get Copy</em>' operation.
-	 * @see edu.ustb.sei.mde.emg.runtime.Context#getCopy(edu.ustb.sei.mde.emg.runtime.Context)
+	 * @see edu.ustb.sei.mde.emg.runtime.Context#getCopy()
 	 * @generated
 	 */
-	EOperation getContext__GetCopy__Context();
+	EOperation getContext__GetCopy();
 
 	/**
 	 * Returns the meta object for the '{@link edu.ustb.sei.mde.emg.runtime.Context#registerVariable(edu.ustb.sei.mde.morel.Variable) <em>Register Variable</em>}' operation.
@@ -376,6 +405,16 @@ public interface RuntimePackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getContext__RegisterVariable__Variable();
+
+	/**
+	 * Returns the meta object for the '{@link edu.ustb.sei.mde.emg.runtime.Context#containVariable(edu.ustb.sei.mde.morel.Variable) <em>Contain Variable</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Contain Variable</em>' operation.
+	 * @see edu.ustb.sei.mde.emg.runtime.Context#containVariable(edu.ustb.sei.mde.morel.Variable)
+	 * @generated
+	 */
+	EOperation getContext__ContainVariable__Variable();
 
 	/**
 	 * Returns the meta object for class '{@link edu.ustb.sei.mde.emg.runtime.Environment <em>Environment</em>}'.
@@ -397,6 +436,17 @@ public interface RuntimePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getEnvironment_ModelSpaces();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.emg.runtime.Environment#getModelUniverse <em>Model Universe</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Model Universe</em>'.
+	 * @see edu.ustb.sei.mde.emg.runtime.Environment#getModelUniverse()
+	 * @see #getEnvironment()
+	 * @generated
+	 */
+	EAttribute getEnvironment_ModelUniverse();
 
 	/**
 	 * Returns the meta object for the '{@link edu.ustb.sei.mde.emg.runtime.Environment#createContext() <em>Create Context</em>}' operation.
@@ -428,6 +478,17 @@ public interface RuntimePackage extends EPackage {
 	 * @generated
 	 */
 	EDataType getModelSpace();
+
+	/**
+	 * Returns the meta object for data type '{@link edu.ustb.sei.mde.emg.graph.ModelUniverse <em>Model Universe</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>Model Universe</em>'.
+	 * @see edu.ustb.sei.mde.emg.graph.ModelUniverse
+	 * @model instanceClass="edu.ustb.sei.mde.emg.graph.ModelUniverse"
+	 * @generated
+	 */
+	EDataType getModelUniverse();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -540,7 +601,7 @@ public interface RuntimePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation CONTEXT___GET_COPY__CONTEXT = eINSTANCE.getContext__GetCopy__Context();
+		EOperation CONTEXT___GET_COPY = eINSTANCE.getContext__GetCopy();
 
 		/**
 		 * The meta object literal for the '<em><b>Register Variable</b></em>' operation.
@@ -549,6 +610,14 @@ public interface RuntimePackage extends EPackage {
 		 * @generated
 		 */
 		EOperation CONTEXT___REGISTER_VARIABLE__VARIABLE = eINSTANCE.getContext__RegisterVariable__Variable();
+
+		/**
+		 * The meta object literal for the '<em><b>Contain Variable</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation CONTEXT___CONTAIN_VARIABLE__VARIABLE = eINSTANCE.getContext__ContainVariable__Variable();
 
 		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.emg.runtime.impl.EnvironmentImpl <em>Environment</em>}' class.
@@ -567,6 +636,14 @@ public interface RuntimePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ENVIRONMENT__MODEL_SPACES = eINSTANCE.getEnvironment_ModelSpaces();
+
+		/**
+		 * The meta object literal for the '<em><b>Model Universe</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ENVIRONMENT__MODEL_UNIVERSE = eINSTANCE.getEnvironment_ModelUniverse();
 
 		/**
 		 * The meta object literal for the '<em><b>Create Context</b></em>' operation.
@@ -593,6 +670,16 @@ public interface RuntimePackage extends EPackage {
 		 * @generated
 		 */
 		EDataType MODEL_SPACE = eINSTANCE.getModelSpace();
+
+		/**
+		 * The meta object literal for the '<em>Model Universe</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.emg.graph.ModelUniverse
+		 * @see edu.ustb.sei.mde.emg.runtime.impl.RuntimePackageImpl#getModelUniverse()
+		 * @generated
+		 */
+		EDataType MODEL_UNIVERSE = eINSTANCE.getModelUniverse();
 
 	}
 

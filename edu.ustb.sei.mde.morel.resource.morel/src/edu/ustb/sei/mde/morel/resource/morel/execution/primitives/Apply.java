@@ -34,6 +34,7 @@ public class Apply {
 		for(ObjectVariable v : variablesToBeCreated) {
 			if(context.getValue(v)==OclUndefined.INVALIDED) {
 				EObject obj = EcoreUtil.create(v.getType());
+				context.putValue(v, obj);
 				env.getModelSpaces().get(v.getModel()).addElement(obj);
 			}
 		}

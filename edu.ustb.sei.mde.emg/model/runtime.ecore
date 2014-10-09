@@ -12,10 +12,11 @@
       <eParameters name="var" eType="ecore:EClass ../../edu.ustb.sei.mde.morel/metamodel/morel.ecore#//Variable"/>
       <eParameters name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
     </eOperations>
-    <eOperations name="getCopy">
-      <eParameters name="copy" eType="#//Context"/>
-    </eOperations>
+    <eOperations name="getCopy" eType="#//Context"/>
     <eOperations name="registerVariable">
+      <eParameters name="var" eType="ecore:EClass ../../edu.ustb.sei.mde.morel/metamodel/morel.ecore#//Variable"/>
+    </eOperations>
+    <eOperations name="containVariable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eParameters name="var" eType="ecore:EClass ../../edu.ustb.sei.mde.morel/metamodel/morel.ecore#//Variable"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="bindingMap" transient="true">
@@ -39,6 +40,9 @@
         <eTypeArguments eClassifier="#//ModelSpace"/>
       </eGenericType>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="modelUniverse" lowerBound="1"
+        eType="#//ModelUniverse" transient="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="ModelSpace" instanceClassName="edu.ustb.sei.mde.emg.graph.ModelSpace"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="ModelUniverse" instanceClassName="edu.ustb.sei.mde.emg.graph.ModelUniverse"/>
 </ecore:EPackage>

@@ -7,9 +7,12 @@
 package edu.ustb.sei.mde.morel.resource.morel.execution;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.ILaunchConfiguration;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
@@ -63,6 +66,7 @@ public class MorelLaunchConfigurationHelper {
 			} else if(root instanceof TransformationModel) {
 				OclInterpreter interpreter = new OclInterpreter();
 				interpreter.interprete_edu_ustb_sei_mde_morel_TransformationModel((TransformationModel) root, env.createContext());
+				saveModelSpace(root, env);
 			} else {
 				SystemOutInterpreter delegate = new SystemOutInterpreter();
 				delegate.addObjectTreeToInterpreteTopDown(root);
@@ -75,7 +79,13 @@ public class MorelLaunchConfigurationHelper {
 		
 	}
 
-
+	private void saveModelSpace(org.eclipse.emf.ecore.EObject root, Environment env) {
+		Map<TypedModel, ModelSpace> map = env.getModelSpaces();
+		for(Entry<TypedModel,ModelSpace> entry : map.entrySet()) {
+			entry.getValue().save();
+		}
+		
+	}
 
 	private void initModelSpace(org.eclipse.emf.ecore.EObject root,
 			String[] uris, Environment env) {
@@ -95,14 +105,24 @@ public class MorelLaunchConfigurationHelper {
 					ConsoleUtil.printToConsole("Wrong URI format: "+u,MOREL_TITLE, true);
 					return;
 				} else {
-					Resource res = resSet.getResource(org.eclipse.emf.common.util.URI.createURI(buf[1]), true);
+					Resource res = null;
+					
+					URI createURI = org.eclipse.emf.common.util.URI.createURI(buf[1]);
+					
+					
+					try {
+						res = resSet.getResource(createURI, true);
+					} catch (Exception e) {
+						res = resSet.createResource(createURI);
+					}
+					
 					ConsoleUtil.printToConsole("Load "+res.getURI(), MOREL_TITLE, true);
 					TypedModel typedModel = queryModel.getTypedModel(buf[0]);
 					if(typedModel==null) {
 						ConsoleUtil.printToConsole("Wrong Model Name: "+u,MOREL_TITLE, true);
 						return;
 					}
-					ModelSpace space = new ModelSpace();
+					ModelSpace space = env.getModelUniverse().createModelSpace();
 					space.initWithResource(res, typedModel.getPackage());
 					env.getModelSpaces().put(typedModel, space);
 				}

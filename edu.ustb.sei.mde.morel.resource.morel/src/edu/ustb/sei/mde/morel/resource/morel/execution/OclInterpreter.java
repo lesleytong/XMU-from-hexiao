@@ -1,6 +1,8 @@
 package edu.ustb.sei.mde.morel.resource.morel.execution;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map.Entry;
 
@@ -177,12 +179,14 @@ public class OclInterpreter extends
 		Match match = Match.instance;
 		context.setHost(query);
 		context.initWithHost();
-		for(Variable v : query.getVariables()) {//³õÊ¼»¯
-			if(v instanceof VariableWithInit) {
-				Object val = this.interprete((VariableWithInit)v, context);
-				context.putValue(v, val);
-			}
-		}
+		initVariable(query,context);
+		
+//		for(Variable v : query.getVariables()) {//ï¿½ï¿½Ê¼ï¿½ï¿½
+//			if(v instanceof VariableWithInit) {
+//				Object val = this.interprete((VariableWithInit)v, context);
+//				context.putValue(v, val);
+//			}
+//		}
 		List<Context> result = match.match(query, context, this, context.getEnviroment());
 		
 		return result;
@@ -193,28 +197,81 @@ public class OclInterpreter extends
 	@Override
 	public Object interprete_edu_ustb_sei_mde_morel_Rule(Rule rule,
 			Context context) {
-		Match match = Match.instance;
-		Apply apply = Apply.instance;
-		
-		context.setHost(rule);
-		context.initWithHost();
-		
-		for(Pattern p : rule.getPatterns()) {
-			if(p.getType()==SectionType.LHS || p.getType()==SectionType.RHS) {
-				for(Variable v : p.getVariables()) {//³õÊ¼»¯
-					if(v instanceof VariableWithInit) {
-						Object val = this.interprete((VariableWithInit)v, context);
-						context.putValue(v, val);
-					}
+		try {
+			Match match = Match.instance;
+			Apply apply = Apply.instance;
+			
+			context.setHost(rule);
+			context.initWithHost();
+			
+			for(Pattern p : rule.getPatterns()) {
+				initVariable(p, context);
+			}
+			
+			List<Pattern> lhs = Apply.getPatterns(rule, SectionType.LHS);
+			List<Pattern> rhs = Apply.getPatterns(rule, SectionType.RHS);
+			List<Pattern> nac = Apply.getPatterns(rule, SectionType.NAC);
+			List<Pattern> pac = Apply.getPatterns(rule, SectionType.PAC);
+			
+			List<Context> lhsMatches = match.match(lhs, context, this, context.getEnviroment());
+			
+			List<Context> successfulContexts = new ArrayList<Context>();
+			
+			for(Context c : lhsMatches) {
+				if(checkNAC(c, nac, match)==false) continue;
+				if(checkPAC(c,pac,match)==false) continue;
+				apply.apply(rhs, lhs, c, this, c.getEnviroment());
+				successfulContexts.add(c);
+			}
+			
+			return successfulContexts;
+		} catch (Exception e) {
+			ConsoleUtil.printToConsole(e.toString(), null, true);
+			e.printStackTrace();
+			return Collections.EMPTY_LIST;
+		}
+	}
+
+
+
+	public void initVariable(Pattern p, Context context) {
+		if(p.getType()==SectionType.LHS || p.getType()==SectionType.RHS) {
+			for(Variable v : p.getVariables()) {//ï¿½ï¿½Ê¼ï¿½ï¿½
+				if(v instanceof VariableWithInit) {
+					Object val = this.interprete((VariableWithInit)v, context);
+					context.putValue(v, val);
 				}
 			}
 		}
-		
-		List<Pattern> lhs = Apply.getPatterns(rule, SectionType.LHS);
-		List<Context> lhsMatches = match.match(lhs, context, this, context.getEnviroment());
-		
-		// TODO
-		
+	}
+
+
+
+	private boolean checkPAC(Context c, List<Pattern> pac, Match match) {
+		for(Pattern np : pac) {
+			Context nc = c.newScope();
+			nc.setHost(np);
+			nc.initWithHost();
+			initVariable(np,nc);
+			
+			List<Context> nacMatches = match.match(pac, nc, this, c.getEnviroment());
+			if(nacMatches.isEmpty()) return false;
+		}
+		return true;
+	}
+
+
+
+	private boolean checkNAC(Context c, List<Pattern> nac, Match match) {
+		for(Pattern np : nac) {
+			Context nc = c.newScope();
+			nc.setHost(np);
+			nc.initWithHost();
+			initVariable(np,nc);
+			
+			List<Context> nacMatches = match.match(nac, nc, this, c.getEnviroment());
+			if(nacMatches.isEmpty()==false) return false;
+		}
 		return true;
 	}
 
@@ -999,7 +1056,7 @@ public class OclInterpreter extends
 		try {
 			Context init = context.newScope();
 			for(Rule rule : transformationModel.getRules()) {
-				this.interprete_edu_ustb_sei_mde_morel_Rule(rule, init);
+				List<Context> matches = (List<Context>)this.interprete_edu_ustb_sei_mde_morel_Rule(rule, init);
 			}
 			ConsoleUtil.printToConsole("Transformation is finished.", MorelLaunchConfigurationHelper.MOREL_TITLE, true);
 			

@@ -2,6 +2,7 @@ package edu.ustb.sei.mde.morel.resource.morel.execution.primitives;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.HashMap;
@@ -13,6 +14,7 @@ import org.eclipse.emf.ecore.EcorePackage;
 import edu.ustb.sei.commonutil.util.BidirectionalMap;
 import edu.ustb.sei.commonutil.util.Pair;
 import edu.ustb.sei.mde.emg.graph.ModelSpace;
+import edu.ustb.sei.mde.emg.graph.ModelUniverse;
 import edu.ustb.sei.mde.emg.runtime.Context;
 import edu.ustb.sei.mde.emg.runtime.Environment;
 import edu.ustb.sei.mde.emg.runtime.datatype.OclUndefined;
@@ -52,12 +54,15 @@ public class Match {
 					ModelSpace space = (ModelSpace)env.getModelSpaces().get(((ObjectVariable) v).getModel());
 					
 					if(context.getValue(v)!=OclUndefined.INVALIDED) {
-						int id = ModelSpace.getElementID((EObject)context.getValue(v));
+						int id = env.getModelUniverse().getElementID((EObject)context.getValue(v));
 						IntVar iv = VF.fixed(id, solver);
 						varMap.put((ObjectVariable)v, iv);
 					} else {
-						IntVar iv = VF.enumerated(v.getName(), space.getAllElementIDByType(((ObjectVariable) v).getType()), solver);
-						varMap.put((ObjectVariable)v, iv);				
+						int[] elemID = space.getAllElementIDByType(((ObjectVariable) v).getType());
+						if(elemID.length==0) return null;
+						
+						IntVar iv = VF.enumerated(v.getName(), elemID, solver);
+						varMap.put((ObjectVariable)v, iv);
 					}
 				}
 			}
@@ -72,6 +77,7 @@ public class Match {
 				if(l instanceof SimpleLinkConstraint) {
 					ModelSpace space = (ModelSpace)env.getModelSpaces().get(l.getSource().getModel());
 					List<int[]> arcs = space.getAllTupleIDByReference(((SimpleLinkConstraint)l).getReference(), true);
+					if(arcs.size()==0) return null;
 					Tuples tuple = new Tuples(true);
 					for(int[] arc : arcs) {
 						tuple.add(arc);
@@ -133,13 +139,13 @@ public class Match {
 	
 	public List<Context> match(List<Pattern> patterns, Context context, OclInterpreter interpreter, Environment env) {
 		Pair<BidirectionalMap<ObjectVariable, IntVar>,Solver> pair = makeModel(patterns,context,env);
+		if(pair==null) return Collections.emptyList();
 		
 		boolean flag = pair.getSecond().findSolution();
 		List<Context> result = new ArrayList<Context>();
 		
 		while(flag) {
-			Context newContext = env.createContext();
-			context.getCopy(newContext);
+			Context newContext = context.getCopy();
 			
 			for(Pattern pattern : patterns) {
 				for(Variable v : pattern.getVariables()) {
@@ -147,7 +153,7 @@ public class Match {
 						ObjectVariable ov = (ObjectVariable)v;
 						
 						if(newContext.getValue(v)==OclUndefined.INVALIDED){
-							newContext.putValue(v, ModelSpace.getElementByID(pair.getFirst().forward(ov).getValue()));
+							newContext.putValue(v, env.getModelUniverse().getElementByID(pair.getFirst().forward(ov).getValue()));
 						}
 					}
 				}

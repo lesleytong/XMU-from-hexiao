@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 import edu.ustb.sei.commonutil.util.MultipleHashMap;
 import edu.ustb.sei.commonutil.util.PairHashMap;
-import edu.ustb.sei.mde.emg.graph.ModelSpace;
+import edu.ustb.sei.mde.emg.graph.ModelUniverse;
 import edu.ustb.sei.mde.emg.runtime.Environment;
 import solver.constraints.Propagator;
 import solver.constraints.PropagatorPriority;
@@ -40,6 +40,7 @@ public class PropEnclosureLinkS_T extends Propagator<IntVar> {
 	private List<EClass> types;
 	
 	private Environment environment;
+	private ModelUniverse modelUniverse;
 	
 	private IIntDeltaMonitor[] idms;
 	
@@ -54,6 +55,7 @@ public class PropEnclosureLinkS_T extends Propagator<IntVar> {
 		this.target = target;
 		this.references = references;
 		this.environment = environment;
+		modelUniverse = environment.getModelUniverse();
 		this.types = types;
 		
 		idms = new IIntDeltaMonitor[2];
@@ -66,7 +68,7 @@ public class PropEnclosureLinkS_T extends Propagator<IntVar> {
 		for(int s = source.getLB(); s<= source.getUB(); s=source.nextValue(s)) {
 			List<EObject> list = collect(s);
 			for(EObject to : list) {
-				int toi = ModelSpace.getElementID(to);
+				int toi = modelUniverse.getElementID(to);
 				if(target.contains(toi))
 					return ESat.TRUE;
 			}
@@ -91,7 +93,7 @@ public class PropEnclosureLinkS_T extends Propagator<IntVar> {
         }
         
         for(int t = target.getLB(); t<=target.getUB(); t=target.nextValue(t)) {
-			EObject to = ModelSpace.getElementByID(t);
+			EObject to = modelUniverse.getElementByID(t);
 			if(tarList.contains(to)==false)
 				target.removeValue(t, aCause);
 		}
@@ -113,7 +115,7 @@ public class PropEnclosureLinkS_T extends Propagator<IntVar> {
 	}
 	
 	private List<EObject> collect(int s) {
-		EObject so = ModelSpace.getElementByID(s);
+		EObject so = modelUniverse.getElementByID(s);
 		
 		UniqueEList<EObject> list = objectReachableList.get(so, references);
 		if(list==null) {
@@ -192,7 +194,7 @@ public class PropEnclosureLinkS_T extends Propagator<IntVar> {
 				List<EObject> list = collect(s);
 				
 				for(int t = target.getLB(); t<=target.getUB(); t=target.nextValue(t)) {
-					EObject to = ModelSpace.getElementByID(t);
+					EObject to = modelUniverse.getElementByID(t);
 					if(!list.contains(to)) {
 						idms[1].freeze();
 						target.removeValue(t, aCause);
@@ -201,7 +203,7 @@ public class PropEnclosureLinkS_T extends Propagator<IntVar> {
 				}
 			} else {
 				int t = target.getValue();
-				EObject to = ModelSpace.getElementByID(t);
+				EObject to = modelUniverse.getElementByID(t);
 				for(int s = source.getLB();s<=source.getUB();s=source.nextValue(s)) {
 					List<EObject> list = collect(s);
 					if(!list.contains(to)) {

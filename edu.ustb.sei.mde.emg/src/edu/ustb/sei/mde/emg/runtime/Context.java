@@ -192,10 +192,10 @@ public interface Context extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model
+	 * @model kind="operation"
 	 * @generated
 	 */
-	void getCopy(Context copy);
+	Context getCopy();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -204,5 +204,13 @@ public interface Context extends EObject {
 	 * @generated
 	 */
 	void registerVariable(Variable var);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	boolean containVariable(Variable var);
 
 } // Context

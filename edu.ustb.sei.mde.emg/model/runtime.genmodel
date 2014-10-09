@@ -9,6 +9,7 @@
   <genPackages prefix="Runtime" basePackage="edu.ustb.sei.mde.emg" disposableProviderFactory="true"
       ecorePackage="runtime.ecore#/">
     <genDataTypes ecoreDataType="runtime.ecore#//ModelSpace"/>
+    <genDataTypes ecoreDataType="runtime.ecore#//ModelUniverse"/>
     <genClasses ecoreClass="runtime.ecore#//Context">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute runtime.ecore#//Context/bindingMap"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute runtime.ecore#//Context/host"/>
@@ -24,15 +25,17 @@
         <genParameters ecoreParameter="runtime.ecore#//Context/putValue/var"/>
         <genParameters ecoreParameter="runtime.ecore#//Context/putValue/value"/>
       </genOperations>
-      <genOperations ecoreOperation="runtime.ecore#//Context/getCopy">
-        <genParameters ecoreParameter="runtime.ecore#//Context/getCopy/copy"/>
-      </genOperations>
+      <genOperations ecoreOperation="runtime.ecore#//Context/getCopy"/>
       <genOperations ecoreOperation="runtime.ecore#//Context/registerVariable">
         <genParameters ecoreParameter="runtime.ecore#//Context/registerVariable/var"/>
+      </genOperations>
+      <genOperations ecoreOperation="runtime.ecore#//Context/containVariable">
+        <genParameters ecoreParameter="runtime.ecore#//Context/containVariable/var"/>
       </genOperations>
     </genClasses>
     <genClasses ecoreClass="runtime.ecore#//Environment">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute runtime.ecore#//Environment/modelSpaces"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute runtime.ecore#//Environment/modelUniverse"/>
       <genOperations ecoreOperation="runtime.ecore#//Environment/createContext"/>
       <genOperations ecoreOperation="runtime.ecore#//Environment/resetCache"/>
     </genClasses>

@@ -3,6 +3,7 @@
 package edu.ustb.sei.mde.emg.runtime;
 
 import edu.ustb.sei.mde.emg.graph.ModelSpace;
+import edu.ustb.sei.mde.emg.graph.ModelUniverse;
 import edu.ustb.sei.mde.morel.TypedModel;
 import java.util.Map;
 import org.eclipse.emf.ecore.EObject;
@@ -16,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.emg.runtime.Environment#getModelSpaces <em>Model Spaces</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.emg.runtime.Environment#getModelUniverse <em>Model Universe</em>}</li>
  * </ul>
  * </p>
  *
@@ -49,6 +51,32 @@ public interface Environment extends EObject {
 	 * @generated
 	 */
 	void setModelSpaces(Map<TypedModel, ModelSpace> value);
+
+	/**
+	 * Returns the value of the '<em><b>Model Universe</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Model Universe</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Model Universe</em>' attribute.
+	 * @see #setModelUniverse(ModelUniverse)
+	 * @see edu.ustb.sei.mde.emg.runtime.RuntimePackage#getEnvironment_ModelUniverse()
+	 * @model dataType="edu.ustb.sei.mde.emg.runtime.ModelUniverse" required="true" transient="true"
+	 * @generated
+	 */
+	ModelUniverse getModelUniverse();
+
+	/**
+	 * Sets the value of the '{@link edu.ustb.sei.mde.emg.runtime.Environment#getModelUniverse <em>Model Universe</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Model Universe</em>' attribute.
+	 * @see #getModelUniverse()
+	 * @generated
+	 */
+	void setModelUniverse(ModelUniverse value);
 
 	/**
 	 * <!-- begin-user-doc -->

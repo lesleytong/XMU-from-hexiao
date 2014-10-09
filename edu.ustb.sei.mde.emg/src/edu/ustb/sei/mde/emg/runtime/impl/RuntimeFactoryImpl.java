@@ -3,6 +3,7 @@
 package edu.ustb.sei.mde.emg.runtime.impl;
 
 import edu.ustb.sei.mde.emg.graph.ModelSpace;
+import edu.ustb.sei.mde.emg.graph.ModelUniverse;
 import edu.ustb.sei.mde.emg.runtime.*;
 
 import org.eclipse.emf.ecore.EClass;
@@ -75,6 +76,8 @@ public class RuntimeFactoryImpl extends EFactoryImpl implements RuntimeFactory {
 		switch (eDataType.getClassifierID()) {
 			case RuntimePackage.MODEL_SPACE:
 				return createModelSpaceFromString(eDataType, initialValue);
+			case RuntimePackage.MODEL_UNIVERSE:
+				return createModelUniverseFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -90,6 +93,8 @@ public class RuntimeFactoryImpl extends EFactoryImpl implements RuntimeFactory {
 		switch (eDataType.getClassifierID()) {
 			case RuntimePackage.MODEL_SPACE:
 				return convertModelSpaceToString(eDataType, instanceValue);
+			case RuntimePackage.MODEL_UNIVERSE:
+				return convertModelUniverseToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -130,6 +135,24 @@ public class RuntimeFactoryImpl extends EFactoryImpl implements RuntimeFactory {
 	 * @generated
 	 */
 	public String convertModelSpaceToString(EDataType eDataType, Object instanceValue) {
+		return super.convertToString(eDataType, instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ModelUniverse createModelUniverseFromString(EDataType eDataType, String initialValue) {
+		return (ModelUniverse)super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertModelUniverseToString(EDataType eDataType, Object instanceValue) {
 		return super.convertToString(eDataType, instanceValue);
 	}
 

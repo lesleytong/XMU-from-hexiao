@@ -59,7 +59,7 @@ RULES {
 	QueryModel ::= "querymodel" models+ queries*;
 	TypedModel ::= "type" name[IDENTIFIER] "<-"  package[URINS];
 	
-	Query ::= "query" type[LHS : "lhs", RHS : "rhs", NAC : "nac", PAC : "pac", PRE : "pre", POST : "post", LHS : ""] name[IDENTIFIER] "{" "match" ":" (variables ("," variables)* ";")?  (linkConstraints ("," linkConstraints)* ";")? ("when" ":" (statements)+)?"}";
+	Query ::= "query" type[LHS : "lhs", RHS : "rhs", NAC : "nac", PAC : "pac", PRE : "pre", POST : "post", LHS : ""] name[IDENTIFIER] "{" "match" (variables ("," variables)* ";")?  (linkConstraints ("," linkConstraints)* ";")? ("where" (statements)+)?"}";
 	
 	ObjectVariable ::= name[IDENTIFIER] ":" (model[IDENTIFIER] "!")? type[IDENTIFIER];
 	
@@ -136,7 +136,7 @@ RULES {
 	
 	Rule ::= "rule" name[IDENTIFIER] "{" (patterns:Pattern)* "}" ;
 	
-	Pattern ::= type[LHS : "lhs", RHS : "rhs", NAC : "nac", PAC : "pac", PRE : "pre", POST : "post", LHS : ""] "{" "match" ":" (variables ("," variables)* ";")?  (linkConstraints ("," linkConstraints)* ";")? ("when" ":" (statements)+)? "}";
+	Pattern ::= type[LHS : "lhs", RHS : "rhs", NAC : "nac", PAC : "pac", PRE : "pre", POST : "post", LHS : ""] "{" "match" (variables ("," variables)* ";")?  (linkConstraints ("," linkConstraints)* ";")? ("where"  (statements)+)? "}";
 	
 	PredefinedVariableExp ::= variable[this:"@this", id:"@id"] (path)?;
 }
