@@ -12,8 +12,10 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 
+import edu.ustb.sei.mde.emg.graph.ModelUniverse;
 import edu.ustb.sei.mde.emg.library.OclStandardLibrary;
 import edu.ustb.sei.mde.emg.runtime.Context;
+import edu.ustb.sei.mde.emg.runtime.Environment;
 import edu.ustb.sei.mde.emg.runtime.RuntimePackage;
 import edu.ustb.sei.mde.emg.runtime.datatype.OclBag;
 import edu.ustb.sei.mde.emg.runtime.datatype.OclCollection;
@@ -37,6 +39,7 @@ import edu.ustb.sei.mde.morel.CollectionLiteralExp;
 import edu.ustb.sei.mde.morel.CollectionType;
 import edu.ustb.sei.mde.morel.ConditionExp;
 import edu.ustb.sei.mde.morel.DeclarativeStatement;
+import edu.ustb.sei.mde.morel.EnclosureLinkConstraint;
 import edu.ustb.sei.mde.morel.EnumLiteralExp;
 import edu.ustb.sei.mde.morel.Expression;
 import edu.ustb.sei.mde.morel.FeaturePathExp;
@@ -84,6 +87,7 @@ import edu.ustb.sei.mde.morel.UndefinedLiteralExp;
 import edu.ustb.sei.mde.morel.Variable;
 import edu.ustb.sei.mde.morel.VariableExp;
 import edu.ustb.sei.mde.morel.VariableWithInit;
+import edu.ustb.sei.mde.morel.resource.morel.execution.constraints.PropEnclosureLinkS_T;
 import edu.ustb.sei.mde.morel.resource.morel.execution.primitives.Apply;
 import edu.ustb.sei.mde.morel.resource.morel.execution.primitives.Initialize;
 import edu.ustb.sei.mde.morel.resource.morel.execution.primitives.Match;
@@ -218,6 +222,8 @@ public class OclInterpreter extends
 			List<Context> successfulContexts = new ArrayList<Context>();
 			
 			for(Context c : lhsMatches) {
+				if(recheckMatch(lhs, c)==false) continue;
+				
 				if(checkNAC(c, nac, match)==false) continue;
 				if(checkPAC(c,pac,match)==false) continue;
 				apply.apply(rhs, lhs, c, this, c.getEnviroment());
@@ -275,6 +281,40 @@ public class OclInterpreter extends
 		return true;
 	}
 
+	private boolean recheckMatch(List<Pattern> patterns, Context context) {
+		Environment env = context.getEnviroment();
+		ModelUniverse universe = env.getModelUniverse();
+		
+		for(Pattern p : patterns) {
+			for(Variable v : p.getVariables()) {
+				if(v instanceof ObjectVariable) {
+					Object value = context.getValue(v);
+					if(value==OclUndefined.INVALIDED || value==null)  
+						continue;//It means that this variable was not matched during the previous matching process.
+					
+					if(OclUndefined.isOclUndefined(universe.getElementID((EObject)value))) {
+						return false;
+					}
+				}
+			}
+			
+			for(LinkConstraint l : p.getLinkConstraints()) {
+				if(l instanceof SimpleLinkConstraint) {
+					if(interprete_edu_ustb_sei_mde_morel_SimpleLinkConstraint((SimpleLinkConstraint) l,context)==false)
+						return false;
+				} else if(l instanceof EnclosureLinkConstraint) {
+					if(interprete_edu_ustb_sei_mde_morel_EnclosureLinkConstraint((EnclosureLinkConstraint) l,context)==false)
+						return false;
+				} else {
+					
+				}
+			}
+		}
+		
+		if(Match.instance.checkCondition(patterns,context,this,false)==false) return false;
+		
+		return true;
+	}
 
 
 	@Override
@@ -287,6 +327,18 @@ public class OclInterpreter extends
 			List<?> list = (List<?>)s.eGet(ref);
 			return list.contains(t) && checkLinkOrder(linkConstraint.getId(),s,t,ref,context);
 		} else return s.eGet(ref)==t && checkLinkOrder(linkConstraint.getId(),s,t,ref,context);
+	}
+	
+	@Override
+	public Boolean interprete_edu_ustb_sei_mde_morel_EnclosureLinkConstraint(
+			EnclosureLinkConstraint linkConstraint, Context context) {
+		EObject s = (EObject) context.getValue(linkConstraint.getSource());
+		EObject t = (EObject) context.getValue(linkConstraint.getTarget());
+		
+		ModelUniverse modelUniverse = context.getEnviroment().getModelUniverse();
+		List<EObject> objs = modelUniverse.collectReachable(s, linkConstraint.getForward(), linkConstraint.getTypes(), PropEnclosureLinkS_T.listenerType);
+		
+		return (objs.contains(t));
 	}
 
 	private boolean checkLinkOrder(Expression id, EObject s, EObject t,

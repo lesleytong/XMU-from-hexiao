@@ -1,22 +1,15 @@
 package edu.ustb.sei.mde.morel.resource.morel.execution.constraints;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.Adapter;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
 
-import edu.ustb.sei.commonutil.util.MultipleHashMap;
-import edu.ustb.sei.commonutil.util.PairHashMap;
 import edu.ustb.sei.mde.emg.graph.ModelUniverse;
 import edu.ustb.sei.mde.emg.runtime.Environment;
 import solver.constraints.Propagator;
@@ -44,6 +37,8 @@ public class PropEnclosureLinkS_T extends Propagator<IntVar> {
 	
 	private IIntDeltaMonitor[] idms;
 	
+	private ReferenceChangeListener listener = null;
+	
 	private boolean emptyAllowed = false;
 	private int maxLength = -1;
 	
@@ -57,6 +52,9 @@ public class PropEnclosureLinkS_T extends Propagator<IntVar> {
 		this.environment = environment;
 		modelUniverse = environment.getModelUniverse();
 		this.types = types;
+		
+		listener = (ReferenceChangeListener) modelUniverse.getUnveriseRelatedObject(ReferenceChangeListener.class);
+
 		
 		idms = new IIntDeltaMonitor[2];
 		idms[0] = vars[0].monitorDelta(this);
@@ -105,26 +103,18 @@ public class PropEnclosureLinkS_T extends Propagator<IntVar> {
 			setPassive();
 		}
 	}
-	
-	static protected PairHashMap<EObject, List<EReference>, UniqueEList<EObject>> objectReachableList = new PairHashMap<EObject, List<EReference>, UniqueEList<EObject>>();
-	static protected MultipleHashMap<EObject, EObject> prefixObjects = new MultipleHashMap<EObject, EObject>(false);
-	
-	static public void resetCache() {
-		objectReachableList.reset();
-		prefixObjects.reset();
-	}
-	
+	/////////////////////////MAY BE REPLACED///////////////////////////
 	private List<EObject> collect(int s) {
 		EObject so = modelUniverse.getElementByID(s);
 		
-		UniqueEList<EObject> list = objectReachableList.get(so, references);
+		UniqueEList<EObject> list = modelUniverse.getObjectReachableList().get(so, references);
 		if(list==null) {
 
-			if(so.eAdapters().contains(ReferenceChangeListener.instance))
-				so.eAdapters().add(ReferenceChangeListener.instance);
+			if(so.eAdapters().contains(listener))
+				so.eAdapters().add(listener);
 			
 			list = new UniqueEList<EObject>();
-			objectReachableList.put(so, references, list);
+			modelUniverse.getObjectReachableList().put(so, references, list);
 			int oldSize = 0;
 			int pace = 0;			
 			list.add(so);
@@ -159,7 +149,7 @@ public class PropEnclosureLinkS_T extends Propagator<IntVar> {
 				for(EObject o : col) {
 					if(checkType(o)) {
 						list.add(o);
-						prefixObjects.put(o, s);
+						modelUniverse.getPrefixObjects().put(o, s);
 					}
 				}
 			} else {
@@ -167,7 +157,7 @@ public class PropEnclosureLinkS_T extends Propagator<IntVar> {
 					EObject obj = (EObject) s.eGet(r);
 					if(checkType(obj)){
 						list.add(obj);
-						prefixObjects.put(obj, s);
+						modelUniverse.getPrefixObjects().put(obj, s);
 					}
 				}
 			}
@@ -183,6 +173,7 @@ public class PropEnclosureLinkS_T extends Propagator<IntVar> {
 		}
 		return false;
 	}
+	///////////////////////////////////////////////////////////
 	
 
 	@Override
@@ -221,50 +212,7 @@ public class PropEnclosureLinkS_T extends Propagator<IntVar> {
 			}
 		}
 	}
+
+	final static public Class<? extends Adapter> listenerType =  ReferenceChangeListener.class;
 }
 
-
-class ReferenceChangeListener implements Adapter {
-	
-	public static final ReferenceChangeListener instance = new ReferenceChangeListener();
-
-	@Override
-	public void notifyChanged(Notification notification) {
-		EObject source = (EObject) notification.getNotifier();
-		EStructuralFeature feature = (EStructuralFeature) notification.getFeature();
-		if(feature instanceof EReference) {
-			PropEnclosureLinkS_T.objectReachableList.remove(source);
-			visited.clear();
-			clearPrefix(source);
-		}
-	}
-	
-	private HashSet<EObject> visited = new HashSet<EObject>();
-	private void clearPrefix(EObject o) {
-		if(visited.contains(o)) return;
-		visited.add(o);
-		
-		Collection<EObject> col = PropEnclosureLinkS_T.prefixObjects.get(o);
-		for(EObject no : col) {
-			PropEnclosureLinkS_T.objectReachableList.remove(no);
-			clearPrefix(no);
-		}
-	}
-
-	@Override
-	public Notifier getTarget() {
-		return null;
-	}
-
-	@Override
-	public void setTarget(Notifier newTarget) {
-	}
-
-	@Override
-	public boolean isAdapterForType(Object type) {
-		if(type instanceof EObject)
-			return true;
-		else return false;
-	}
-	
-}

@@ -204,7 +204,7 @@ public class Match {
 		return match(patterns,context,interpreter,env);
 	}
 	
-	private boolean checkCondition(List<Pattern> patterns, Context context,OclInterpreter interpreter, boolean partial) {
+	public boolean checkCondition(List<Pattern> patterns, Context context,OclInterpreter interpreter, boolean partial) {
 		for(Pattern p : patterns) {
 			if(!checkCondition(p,context,interpreter,partial))
 				return false;
