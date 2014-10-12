@@ -22,6 +22,7 @@ import edu.ustb.sei.mde.morel.EnclosureLinkConstraint;
 import edu.ustb.sei.mde.morel.LinkConstraint;
 import edu.ustb.sei.mde.morel.MorelFactory;
 import edu.ustb.sei.mde.morel.ObjectVariable;
+import edu.ustb.sei.mde.morel.PathConstraint;
 import edu.ustb.sei.mde.morel.Pattern;
 import edu.ustb.sei.mde.morel.PredefinedVariable;
 import edu.ustb.sei.mde.morel.PrimitiveVariable;
@@ -31,6 +32,7 @@ import edu.ustb.sei.mde.morel.Variable;
 import edu.ustb.sei.mde.morel.resource.morel.execution.OclInterpreter;
 import edu.ustb.sei.mde.morel.resource.morel.execution.constraints.PropEnclosureLinkS_T;
 import edu.ustb.sei.mde.morel.resource.morel.execution.constraints.PropLinkS_T;
+import edu.ustb.sei.mde.morel.resource.morel.execution.variable.PathArray;
 import edu.ustb.sei.mde.morel.resource.morel.util.AbstractMorelInterpreter;
 import solver.Solver;
 import solver.constraints.Constraint;
@@ -42,8 +44,8 @@ import solver.variables.VF;
 public class Match {
 	public final static Match instance = new Match();
 	
-	private Pair<BidirectionalMap<ObjectVariable, IntVar>,Solver> makeModel(List<Pattern> patterns, Context context, Environment env) {
-		BidirectionalMap<ObjectVariable, IntVar> varMap = new BidirectionalMap<ObjectVariable, IntVar>();
+	private Pair<BidirectionalMap<Variable, Object>,Solver> makeModel(List<Pattern> patterns, Context context, Environment env) {
+		BidirectionalMap<Variable, Object> varMap = new BidirectionalMap<Variable, Object>();
 		HashSet<LinkConstraint> linkSet = new HashSet<LinkConstraint>();
 		
 		Solver solver = new Solver();
@@ -71,8 +73,8 @@ public class Match {
 				if(linkSet.contains(l)) continue;
 				linkSet.add(l);
 				
-				IntVar s = varMap.forward(l.getSource());
-				IntVar t = varMap.forward(l.getTarget());
+				IntVar s = (IntVar)varMap.forward(l.getSource());
+				IntVar t = (IntVar)varMap.forward(l.getTarget());
 				
 				if(l instanceof SimpleLinkConstraint) {
 					ModelSpace space = (ModelSpace)env.getModelSpaces().get(l.getSource().getModel());
@@ -86,14 +88,18 @@ public class Match {
 					//solver.post(new Constraint("LinkConstraint", new PropLinkS_T(s,t,((SimpleLinkConstraint)l).getReference(),env)));				
 				} else if(l instanceof EnclosureLinkConstraint) {
 					solver.post(new Constraint("EnclosureLinkConstraint", new PropEnclosureLinkS_T(s,t,((EnclosureLinkConstraint)l).getForward(), ((EnclosureLinkConstraint)l).getTypes(),env)));
+				} else if(l instanceof PathConstraint) {
+					PathArray pArray = new PathArray(s,t,((PathConstraint)l).getPathVariable(),((PathConstraint)l).getMaxLength());
+					pArray.post(solver, ((PathConstraint)l).getReferences(), ((PathConstraint)l).getTypes(), env);
+					varMap.put(((PathConstraint)l).getPathVariable(), pArray);
 				}
 			}
 		}
 		
-		return new Pair<BidirectionalMap<ObjectVariable, IntVar>,Solver>(varMap,solver);
+		return new Pair<BidirectionalMap<Variable, Object>,Solver>(varMap,solver);
 	}
 	
-	private Pair<BidirectionalMap<ObjectVariable, IntVar>,Solver> makeModel(Pattern pattern, Context context, Environment env) {
+	private Pair<BidirectionalMap<Variable, Object>,Solver> makeModel(Pattern pattern, Context context, Environment env) {
 //		BidirectionalMap<ObjectVariable, IntVar> varMap = new BidirectionalMap<ObjectVariable, IntVar>();
 //		
 //		Solver solver = new Solver();
@@ -138,7 +144,7 @@ public class Match {
 	}
 	
 	public List<Context> match(List<Pattern> patterns, Context context, OclInterpreter interpreter, Environment env) {
-		Pair<BidirectionalMap<ObjectVariable, IntVar>,Solver> pair = makeModel(patterns,context,env);
+		Pair<BidirectionalMap<Variable, Object>,Solver> pair = makeModel(patterns,context,env);
 		if(pair==null) return Collections.emptyList();
 		
 		boolean flag = pair.getSecond().findSolution();
@@ -153,7 +159,13 @@ public class Match {
 						ObjectVariable ov = (ObjectVariable)v;
 						
 						if(newContext.getValue(v)==OclUndefined.INVALIDED){
-							newContext.putValue(v, env.getModelUniverse().getElementByID(pair.getFirst().forward(ov).getValue()));
+							newContext.putValue(v, env.getModelUniverse().getElementByID(((IntVar) pair.getFirst().forward(ov)).getValue()));
+						}
+					} else {
+						Object o =pair.getFirst().forward(v);
+						if(o!=null&&o instanceof PathArray) {
+							PathArray p = (PathArray)o;
+							newContext.putValue(v, p.collectPath(env));
 						}
 					}
 				}

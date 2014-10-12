@@ -76,6 +76,15 @@ public interface MorelFactory extends EFactory {
 	EnclosureLinkConstraint createEnclosureLinkConstraint();
 
 	/**
+	 * Returns a new object of class '<em>Path Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Path Constraint</em>'.
+	 * @generated
+	 */
+	PathConstraint createPathConstraint();
+
+	/**
 	 * Returns a new object of class '<em>Query Model</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -139,6 +139,13 @@ public class MorelSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MorelPackage.PATH_CONSTRAINT: {
+				PathConstraint pathConstraint = (PathConstraint)theEObject;
+				T result = casePathConstraint(pathConstraint);
+				if (result == null) result = caseLinkConstraint(pathConstraint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case MorelPackage.QUERY_MODEL: {
 				QueryModel queryModel = (QueryModel)theEObject;
 				T result = caseQueryModel(queryModel);
@@ -881,6 +888,21 @@ public class MorelSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseEnclosureLinkConstraint(EnclosureLinkConstraint object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Path Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Path Constraint</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePathConstraint(PathConstraint object) {
 		return null;
 	}
 

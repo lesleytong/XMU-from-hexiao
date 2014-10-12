@@ -2,6 +2,10 @@ package edu.ustb.sei.mde.emg.graph;
 
 public class EIdentifiable {
 	
+	static public boolean isValid(int s) {
+		return s>NULL_ID;
+	}
+	
 	public EIdentifiable() {
 		setID(getNextID());
 	}

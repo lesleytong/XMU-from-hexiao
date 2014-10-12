@@ -2,6 +2,7 @@ package edu.ustb.sei.mde.emg.graph;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -59,6 +60,7 @@ public class ModelUniverse {
 		try {
 			return getIdObjMap().backward(object);
 		} catch(Exception e) {
+			System.out.println("Exception when returning ID of "+object);
 			return EIdentifiable.INVALID_ID;
 		}
 	}
@@ -121,36 +123,46 @@ public class ModelUniverse {
 		return collectReachable(so,references,types,listenerClass,false,-1);
 	}
 	public List<EObject> collectReachable(EObject so, List<EReference> references, List<EClass> types,Class<? extends Adapter> listenerClass, boolean emptyAllowed, int maxLength) {
-		Adapter listener = getUnveriseRelatedObject(listenerClass);
+		
 		UniqueEList<EObject> list = this.getObjectReachableList().get(so, references);
 		if(list==null) {
 
-			if(so.eAdapters().contains(listener))
-				so.eAdapters().add(listener);
-			
-			list = new UniqueEList<EObject>();
-			getObjectReachableList().put(so, references, list);
-			int oldSize = 0;
-			int pace = 0;			
-			list.add(so);
-			do {
-				int currSize = list.size();
-				if(oldSize==currSize) break;
-				int ni = oldSize;
-				
-				oldSize = list.size();
-				
-				for(;ni<currSize;ni++) {
-					EObject nso = list.get(ni);
-					for(EReference r : references) {
-						collectReachableImpl(nso,r,list,types);
-					}
-				}
-				pace++;
-			} while((maxLength<0||pace<=maxLength));
-			if(!emptyAllowed) list.remove(0);
+			list = collectEnclosureReachable(so, references, types,
+					emptyAllowed, maxLength, listenerClass);
 		}
 		
+		return list;
+	}
+
+	public UniqueEList<EObject> collectEnclosureReachable(EObject so,
+			List<EReference> references, List<EClass> types,
+			boolean emptyAllowed,int maxLength, Class<? extends Adapter> listenerClass) {
+		Adapter listener = getUnveriseRelatedObject(listenerClass);
+		UniqueEList<EObject> list;
+		if(so.eAdapters().contains(listener))
+			so.eAdapters().add(listener);
+		
+		list = new UniqueEList<EObject>();
+		getObjectReachableList().put(so, references, list);
+		int oldSize = 0;
+		int pace = 0;			
+		list.add(so);
+		do {
+			int currSize = list.size();
+			if(oldSize==currSize) break;
+			int ni = oldSize;
+			
+			oldSize = list.size();
+			
+			for(;ni<currSize;ni++) {
+				EObject nso = list.get(ni);
+				for(EReference r : references) {
+					collectReachableImpl(nso,r,list,types);
+				}
+			}
+			pace++;
+		} while((maxLength<0||pace<maxLength));
+		if(!emptyAllowed) list.remove(0);
 		return list;
 	}
 	
@@ -177,6 +189,14 @@ public class ModelUniverse {
 				}
 			}
 		}
+	}
+	
+	public List<EObject> collectDirectReachables(EObject s, List<EReference> refs, List<EClass> types) {
+		List<EObject> objs = new ArrayList<EObject>();
+		for(EReference r : refs) {
+			collectReachableImpl(s, r, objs, types);
+		}
+		return objs;
 	}
 	
 	private boolean checkType(EObject o,List<EClass> types) {

@@ -50,6 +50,7 @@ import edu.ustb.sei.mde.morel.ObjectVariableWithInit;
 import edu.ustb.sei.mde.morel.OperationPathExp;
 import edu.ustb.sei.mde.morel.OperationSeparator;
 import edu.ustb.sei.mde.morel.OrderedSetType;
+import edu.ustb.sei.mde.morel.PathConstraint;
 import edu.ustb.sei.mde.morel.Pattern;
 import edu.ustb.sei.mde.morel.PredefinedBindExp;
 import edu.ustb.sei.mde.morel.PredefinedVariable;
@@ -168,6 +169,13 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 * @generated
 	 */
 	private EClass enclosureLinkConstraintEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass pathConstraintEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -920,6 +928,51 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 */
 	public EReference getEnclosureLinkConstraint_Types() {
 		return (EReference)enclosureLinkConstraintEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getPathConstraint() {
+		return pathConstraintEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPathConstraint_MaxLength() {
+		return (EAttribute)pathConstraintEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPathConstraint_PathVariable() {
+		return (EReference)pathConstraintEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPathConstraint_References() {
+		return (EReference)pathConstraintEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPathConstraint_Types() {
+		return (EReference)pathConstraintEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -2190,6 +2243,12 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		createEReference(enclosureLinkConstraintEClass, ENCLOSURE_LINK_CONSTRAINT__FORWARD);
 		createEReference(enclosureLinkConstraintEClass, ENCLOSURE_LINK_CONSTRAINT__TYPES);
 
+		pathConstraintEClass = createEClass(PATH_CONSTRAINT);
+		createEAttribute(pathConstraintEClass, PATH_CONSTRAINT__MAX_LENGTH);
+		createEReference(pathConstraintEClass, PATH_CONSTRAINT__PATH_VARIABLE);
+		createEReference(pathConstraintEClass, PATH_CONSTRAINT__REFERENCES);
+		createEReference(pathConstraintEClass, PATH_CONSTRAINT__TYPES);
+
 		queryModelEClass = createEClass(QUERY_MODEL);
 		createEReference(queryModelEClass, QUERY_MODEL__QUERIES);
 
@@ -2420,6 +2479,7 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		primitiveVariableEClass.getESuperTypes().add(this.getVariable());
 		simpleLinkConstraintEClass.getESuperTypes().add(this.getLinkConstraint());
 		enclosureLinkConstraintEClass.getESuperTypes().add(this.getLinkConstraint());
+		pathConstraintEClass.getESuperTypes().add(this.getLinkConstraint());
 		queryModelEClass.getESuperTypes().add(this.getUnit());
 		typedModelEClass.getESuperTypes().add(this.getNamedElement());
 		queryEClass.getESuperTypes().add(this.getPattern());
@@ -2514,6 +2574,12 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		initEClass(enclosureLinkConstraintEClass, EnclosureLinkConstraint.class, "EnclosureLinkConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getEnclosureLinkConstraint_Forward(), ecorePackage.getEReference(), null, "forward", null, 1, -1, EnclosureLinkConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getEnclosureLinkConstraint_Types(), ecorePackage.getEClass(), null, "types", null, 0, -1, EnclosureLinkConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(pathConstraintEClass, PathConstraint.class, "PathConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getPathConstraint_MaxLength(), ecorePackage.getEInt(), "maxLength", null, 0, 1, PathConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPathConstraint_PathVariable(), this.getVariable(), null, "pathVariable", null, 1, 1, PathConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPathConstraint_References(), ecorePackage.getEReference(), null, "references", null, 1, -1, PathConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPathConstraint_Types(), ecorePackage.getEClass(), null, "types", null, 0, -1, PathConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(queryModelEClass, QueryModel.class, "QueryModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getQueryModel_Queries(), this.getQuery(), null, "queries", null, 0, -1, QueryModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

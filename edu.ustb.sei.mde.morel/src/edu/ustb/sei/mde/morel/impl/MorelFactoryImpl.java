@@ -63,6 +63,7 @@ public class MorelFactoryImpl extends EFactoryImpl implements MorelFactory {
 			case MorelPackage.PRIMITIVE_VARIABLE: return createPrimitiveVariable();
 			case MorelPackage.SIMPLE_LINK_CONSTRAINT: return createSimpleLinkConstraint();
 			case MorelPackage.ENCLOSURE_LINK_CONSTRAINT: return createEnclosureLinkConstraint();
+			case MorelPackage.PATH_CONSTRAINT: return createPathConstraint();
 			case MorelPackage.QUERY_MODEL: return createQueryModel();
 			case MorelPackage.TYPED_MODEL: return createTypedModel();
 			case MorelPackage.QUERY: return createQuery();
@@ -232,6 +233,16 @@ public class MorelFactoryImpl extends EFactoryImpl implements MorelFactory {
 	public EnclosureLinkConstraint createEnclosureLinkConstraint() {
 		EnclosureLinkConstraintImpl enclosureLinkConstraint = new EnclosureLinkConstraintImpl();
 		return enclosureLinkConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PathConstraint createPathConstraint() {
+		PathConstraintImpl pathConstraint = new PathConstraintImpl();
+		return pathConstraint;
 	}
 
 	/**

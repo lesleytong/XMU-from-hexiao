@@ -112,6 +112,10 @@ public class MorelAdapterFactory extends AdapterFactoryImpl {
 				return createEnclosureLinkConstraintAdapter();
 			}
 			@Override
+			public Adapter casePathConstraint(PathConstraint object) {
+				return createPathConstraintAdapter();
+			}
+			@Override
 			public Adapter caseQueryModel(QueryModel object) {
 				return createQueryModelAdapter();
 			}
@@ -516,6 +520,20 @@ public class MorelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createEnclosureLinkConstraintAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.morel.PathConstraint <em>Path Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.morel.PathConstraint
+	 * @generated
+	 */
+	public Adapter createPathConstraintAdapter() {
 		return null;
 	}
 
