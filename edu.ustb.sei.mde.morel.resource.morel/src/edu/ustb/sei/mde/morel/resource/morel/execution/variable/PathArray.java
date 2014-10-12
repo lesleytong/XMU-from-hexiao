@@ -54,8 +54,9 @@ public class PathArray {
 				if(c>0&&candidates.contains(c)==false)
 					candidates.add(c);
 			}
+			System.out.println(so);
+			System.out.println(objs);
 		}
-		
 		
 		
 		int[] VALUES = new int[candidates.size()];
