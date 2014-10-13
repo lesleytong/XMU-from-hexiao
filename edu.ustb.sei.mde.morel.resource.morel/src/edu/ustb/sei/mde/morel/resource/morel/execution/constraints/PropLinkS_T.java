@@ -67,8 +67,6 @@ public class PropLinkS_T extends Propagator<IntVar> {
         idms[1].freeze();
 		
 		for(int s = source.getLB(); s<=source.getUB(); s = source.nextValue(s)) {
-			if(EIdentifiable.isValid(s)==false) continue;
-			
 			EObject so = modelUniverse.getElementByID(s);
 			boolean toBeDeleted = true;
 			
@@ -85,7 +83,6 @@ public class PropLinkS_T extends Propagator<IntVar> {
 						}
 					} else {
 						if(so.eGet(ref)==null) {
-							//source.removeValue(s, aCause);
 							continue;
 						}
 						else{
@@ -101,8 +98,6 @@ public class PropLinkS_T extends Propagator<IntVar> {
 		}
 		
 		for(int t = target.getLB(); t<=target.getUB(); t=target.nextValue(t)) {
-			if(EIdentifiable.isValid(t)==false) continue;
-			
 			EObject to = modelUniverse.getElementByID(t);
 			if(tarList.contains(to)==false)
 				target.removeValue(t, aCause);
@@ -123,42 +118,36 @@ public class PropLinkS_T extends Propagator<IntVar> {
 		if (EventType.isInstantiate(mask)) {
 			if (idxVarInProp == 0) {
 				int s = source.getValue();
-				if(EIdentifiable.isValid(s)==false) {
-					target.isInstantiatedTo(0);
-				} else {
-					EObject so = modelUniverse.getElementByID(s);
-					for(int t = target.getLB(); t<=target.getUB(); t=target.nextValue(t)) {
-						if(EIdentifiable.isValid(t)==false) continue;
-						EObject to = modelUniverse.getElementByID(t);
-						boolean toBeDeleted = true;
-						EList<EReference> eAllReferences = so.eClass().getEAllReferences();
-						for(EReference ref : references) {
-							if(eAllReferences.contains(ref)) {
-								if(ref.isMany()) {
-									List<EObject> list = (List<EObject>)so.eGet(ref);
-									if(list.contains(to)) {
-										toBeDeleted = false;
-										break;
-									}
-								} else {
-									if(to==so.eGet(ref)) {
-										toBeDeleted = false;
-										break;
-									}
+				EObject so = modelUniverse.getElementByID(s);
+				for(int t = target.getLB(); t<=target.getUB(); t=target.nextValue(t)) {
+					EObject to = modelUniverse.getElementByID(t);
+					boolean toBeDeleted = true;
+					EList<EReference> eAllReferences = so.eClass().getEAllReferences();
+					for(EReference ref : references) {
+						if(eAllReferences.contains(ref)) {
+							if(ref.isMany()) {
+								List<EObject> list = (List<EObject>)so.eGet(ref);
+								if(list.contains(to)) {
+									toBeDeleted = false;
+									break;
+								}
+							} else {
+								if(to==so.eGet(ref)) {
+									toBeDeleted = false;
+									break;
 								}
 							}
 						}
-						idms[1].freeze();
-						if(toBeDeleted) 
-							target.removeValue(t, aCause);
-						idms[1].unfreeze();					
 					}
+					idms[1].freeze();
+					if(toBeDeleted) 
+						target.removeValue(t, aCause);
+					idms[1].unfreeze();					
 				}
 			} else {
 				int t = target.getValue();
 				EObject to = modelUniverse.getElementByID(t);
 				for(int s = source.getLB();s<=source.getUB();s=source.nextValue(s)) {
-					if(EIdentifiable.isValid(s)==false) continue;
 					EObject so = modelUniverse.getElementByID(s);
 					boolean toBeDeleted = true;
 					EList<EReference> eAllReferences = so.eClass().getEAllReferences();
@@ -170,7 +159,6 @@ public class PropLinkS_T extends Propagator<IntVar> {
 									toBeDeleted = false;
 									break;
 								}
-//							source.removeValue(s, aCause);
 							} else {
 								if(to==so.eGet(ref)){
 									toBeDeleted = false;
@@ -200,7 +188,6 @@ public class PropLinkS_T extends Propagator<IntVar> {
 	@Override
 	public ESat isEntailed() {
 		for(int s = source.getLB(); s<= source.getUB(); s=source.nextValue(s)) {
-			if(EIdentifiable.isValid(s)==false) continue;
 			EObject so = modelUniverse.getElementByID(s);
 			for(EReference ref : references) {
 				if(ref.isMany()) {

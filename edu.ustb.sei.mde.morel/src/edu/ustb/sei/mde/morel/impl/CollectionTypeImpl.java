@@ -155,8 +155,10 @@ public abstract class CollectionTypeImpl extends EDataTypeImpl implements Collec
 		if(object == null) return false;
 		if(this==object) return true;
 		if(object instanceof CollectionType) {
-			if(this.getClass() == object.getClass()) 
+			if(this.getClass() == object.getClass()) {
+				if(getElementType()==null) return false;
 				return this.getElementType().equals(((CollectionType) object).getElementType());
+			}
 			else return false;
 		} else 
 			return false;

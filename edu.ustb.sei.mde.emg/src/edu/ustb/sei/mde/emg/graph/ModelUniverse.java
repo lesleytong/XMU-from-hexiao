@@ -60,7 +60,7 @@ public class ModelUniverse {
 		try {
 			return getIdObjMap().backward(object);
 		} catch(Exception e) {
-			System.out.println("Exception when returning ID of "+object);
+			//System.out.println("Exception when returning ID of "+object);
 			return EIdentifiable.INVALID_ID;
 		}
 	}
@@ -126,28 +126,27 @@ public class ModelUniverse {
 		
 		UniqueEList<EObject> list = this.getObjectReachableList().get(so, references);
 		if(list==null) {
-
+			Adapter listener = getUnveriseRelatedObject(listenerClass);
+			if(so.eAdapters().contains(listener))
+				so.eAdapters().add(listener);
 			list = collectEnclosureReachable(so, references, types,
-					emptyAllowed, maxLength, listenerClass);
+					emptyAllowed, maxLength);
+			getObjectReachableList().put(so, references, list);
 		}
-		
 		return list;
 	}
 
 	public UniqueEList<EObject> collectEnclosureReachable(EObject so,
 			List<EReference> references, List<EClass> types,
-			boolean emptyAllowed,int maxLength, Class<? extends Adapter> listenerClass) {
-		Adapter listener = getUnveriseRelatedObject(listenerClass);
-		UniqueEList<EObject> list;
-		if(so.eAdapters().contains(listener))
-			so.eAdapters().add(listener);
+			boolean emptyAllowed,int maxLength) {
 		
+		UniqueEList<EObject> list;
 		list = new UniqueEList<EObject>();
-		getObjectReachableList().put(so, references, list);
+		
 		int oldSize = 0;
 		int pace = 0;			
 		list.add(so);
-		do {
+		while((maxLength<0||pace<maxLength)) {
 			int currSize = list.size();
 			if(oldSize==currSize) break;
 			int ni = oldSize;
@@ -161,7 +160,7 @@ public class ModelUniverse {
 				}
 			}
 			pace++;
-		} while((maxLength<0||pace<maxLength));
+		}
 		if(!emptyAllowed) list.remove(0);
 		return list;
 	}

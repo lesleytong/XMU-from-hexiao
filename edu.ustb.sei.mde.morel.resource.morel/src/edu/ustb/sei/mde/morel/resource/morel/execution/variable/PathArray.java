@@ -29,7 +29,8 @@ import solver.variables.VF;
 public class PathArray {
 	private IntVar source;
 	private IntVar target;
-	public IntVar[] path;
+	private IntVar size;
+	private IntVar[] path;
 	private int maxLength;
 	private Variable variable;
 	
@@ -42,20 +43,18 @@ public class PathArray {
 	}
 		
 	public void post(Solver solver, List<EReference> references, List<EClass> types, Environment environment) {
+		
 		ArrayList<Integer> candidates = new ArrayList<Integer>();
 		int max = 0;
-		candidates.add(EIdentifiable.NULL_ID);
 		for(int s = source.getLB();s<source.getUB();s=source.nextValue(s)) {
 			EObject so = environment.getModelUniverse().getElementByID(s);
-			List<EObject> objs = environment.getModelUniverse().collectEnclosureReachable(so, references, types,false,-1, ReferenceChangeListener.class);
+			List<EObject> objs = environment.getModelUniverse().collectEnclosureReachable(so, references, types, false, -1);
 			if(max<objs.size()) max = objs.size();
 			for(EObject co : objs) {
 				int c = environment.getModelUniverse().getElementID(co);
 				if(c>0&&candidates.contains(c)==false)
 					candidates.add(c);
 			}
-			System.out.println(so);
-			System.out.println(objs);
 		}
 		
 		
@@ -65,29 +64,57 @@ public class PathArray {
 		}
 		
 		if(maxLength<=0) maxLength = max;
+
+		size = VF.bounded(variable.getName()+"_size", 0, maxLength, solver);
 		path = new IntVar[maxLength];
 		
 		for(int i=0;i<path.length;i++) {
 			path[i] = VF.enumerated(variable.getName()+"_"+i, VALUES, solver);
 		}
 		
-		for(int i = 0;i<path.length-1;i++) {
-			solver.post(LCF.ifThen(ICF.arithm(path[i], "=", EIdentifiable.NULL_ID), ICF.arithm(path[i+1], "=", EIdentifiable.NULL_ID)));
-		}
+//		solver.post(new Constraint("SimpleLinkConstraint", new PropLinkS_T(source,path[0],references,environment)));
+//		
+//		solver.post(new Constraint("SimpleLinkConstraint", new PropLinkS_T(path[path.length-1],target,references,environment)));
+
 		
-		solver.post(LCF.ifThenElse(ICF.arithm(path[0], "=", EIdentifiable.NULL_ID), 
-				new Constraint("SimpleLinkConstraint", new PropLinkS_T(source,target,references,environment)),
+		
+		solver.post(LCF.ifThen(ICF.arithm(size, "=", 0), 
+				new Constraint("SimpleLinkConstraint", new PropLinkS_T(source,target,references,environment))));
+		
+		solver.post(LCF.ifThen(ICF.arithm(size, "=", 0), ICF.arithm(path[0], "=", VALUES[0])));
+
+		solver.post(LCF.ifThen(ICF.arithm(size, "=", 1), 
 				new Constraint("SimpleLinkConstraint", new PropLinkS_T(source,path[0],references,environment))));
-		solver.post(LCF.ifThen(ICF.arithm(path[path.length-1], ">", EIdentifiable.NULL_ID), new Constraint("SimpleLinkConstraint", new PropLinkS_T(path[path.length-1],target,references,environment))));
+
+		solver.post(LCF.ifThen(ICF.arithm(size, "=", 1), 
+				new Constraint("SimpleLinkConstraint", new PropLinkS_T(path[0],target,references,environment))));
+
 		
-		for(int i = 0;i<path.length-1;i++) {
-			solver.post(
-					LCF.ifThen(ICF.arithm(path[i], ">", EIdentifiable.NULL_ID), 
-							LCF.ifThenElse(ICF.arithm(path[i+1], "=", EIdentifiable.NULL_ID),
-									new Constraint("SimpleLinkConstraint", new PropLinkS_T(path[i],target,references,environment)),
-									new Constraint("SimpleLinkConstraint", new PropLinkS_T(path[i],path[i+1],references,environment)) 
-							)));
-		}
+//		
+//		for(int i=0;i<path.length;i++) {
+//			solver.post(LCF.ifThen(ICF.arithm(size, "=", i+1), new Constraint("SimpleLinkConstraint", new PropLinkS_T(path[i],target,references,environment))));
+//			if(i>=1) {
+//				solver.post(LCF.ifThen(ICF.arithm(size, ">", i), new Constraint("SimpleLinkConstraint", new PropLinkS_T(path[i-1],path[i],references,environment))));
+//			}
+//		}
+		
+//		for(int i = 0;i<path.length-1;i++) {
+//			solver.post(LCF.ifThen(ICF.arithm(path[i], "=", EIdentifiable.NULL_ID), ICF.arithm(path[i+1], "=", EIdentifiable.NULL_ID)));
+//		}
+//		
+//		solver.post(LCF.ifThenElse(ICF.arithm(path[0], "=", EIdentifiable.NULL_ID), 
+//				new Constraint("SimpleLinkConstraint", new PropLinkS_T(source,target,references,environment)),
+//				new Constraint("SimpleLinkConstraint", new PropLinkS_T(source,path[0],references,environment))));
+//		solver.post(LCF.ifThen(ICF.arithm(path[path.length-1], ">", EIdentifiable.NULL_ID), new Constraint("SimpleLinkConstraint", new PropLinkS_T(path[path.length-1],target,references,environment))));
+//		
+//		for(int i = 0;i<path.length-1;i++) {
+//			solver.post(
+//					LCF.ifThen(ICF.arithm(path[i], ">", EIdentifiable.NULL_ID), 
+//							LCF.ifThenElse(ICF.arithm(path[i+1], "=", EIdentifiable.NULL_ID),
+//									new Constraint("SimpleLinkConstraint", new PropLinkS_T(path[i],target,references,environment)),
+//									new Constraint("SimpleLinkConstraint", new PropLinkS_T(path[i],path[i+1],references,environment)) 
+//							)));
+//		}
 	}
 
 	static final private SequenceType SEQ_TYPE;
@@ -98,10 +125,10 @@ public class PathArray {
 
 	public Object collectPath(Environment env) {
 		// TODO Auto-generated method stub
+		System.out.println("path length:"+size.getValue());
 		OclSequence seq = new OclSequence();
 		seq.setType(SEQ_TYPE);
-		for(int i = 0 ; i<path.length ; i++) {
-			if(path[i].getValue()==0) break;
+		for(int i = 0 ; i<size.getValue() ; i++) {
 			seq.add(env.getModelUniverse().getElementByID(path[i].getValue()));
 		}
 		return seq;
