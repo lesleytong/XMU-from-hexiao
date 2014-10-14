@@ -2,7 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="src-gen"/>
-	<classpathentry exported="true" kind="lib" path="choco-solver-3.2.0-jar-with-dependencies.jar" sourcepath="/Users/hexiao/百度云同步盘/Model Checking/Choco/choco-3.2.0/choco-solver-3.2.0-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="choco-solver-3.2.0-jar-with-dependencies.jar" sourcepath="D:/百度云/Model Checking/Choco/choco-3.2.0/choco-solver-3.2.0-sources.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="output" path="bin"/>

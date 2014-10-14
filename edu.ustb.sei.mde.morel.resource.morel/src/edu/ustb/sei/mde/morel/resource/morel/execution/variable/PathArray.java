@@ -18,6 +18,7 @@ import edu.ustb.sei.mde.emg.runtime.datatype.OclSequence;
 import edu.ustb.sei.mde.morel.MorelFactory;
 import edu.ustb.sei.mde.morel.SequenceType;
 import edu.ustb.sei.mde.morel.Variable;
+import edu.ustb.sei.mde.morel.resource.morel.execution.constraints.CustomConstraint;
 import edu.ustb.sei.mde.morel.resource.morel.execution.constraints.PropLinkS_T;
 import edu.ustb.sei.mde.morel.resource.morel.execution.constraints.ReferenceChangeListener;
 import solver.Solver;
@@ -90,27 +91,41 @@ public class PathArray {
 		
 //		if(maxLength<=0) maxLength = max;
 
-		size = VF.bounded(variable.getName()+"_size", 0, maxLength, solver);
+		size = VF.bounded(variable.getName()+"_size", 1, maxLength, solver);
 		path = new IntVar[maxLength];
 		
 		for(int i=0;i<path.length;i++) {
 			path[i] = VF.enumerated(variable.getName()+"_"+i, VALUES, solver);
 		}
 		
-//		solver.post(new Constraint("SimpleLinkConstraint", new PropLinkS_T(source,path[0],references,environment)));
+//		solver.post(CustomConstraint.table(source, path[0], tuples, "FC"));
 //		
-//		solver.post(new Constraint("SimpleLinkConstraint", new PropLinkS_T(path[path.length-1],target,references,environment)));
+//		solver.post(CustomConstraint.table(path[0], target, tuples, "FC"));
 
 		
 		
 		solver.post(LCF.ifThen(ICF.arithm(size, "=", 0), 
-				LCF.and(ICF.table(source, target, tuples, "FC"),ICF.arithm(path[0], "=", VALUES[0]))));
-		solver.post(LCF.ifThen(ICF.arithm(size, "=", 1), 
-				LCF.and(ICF.table(source, path[0], tuples, "FC"),ICF.table(path[0], target, tuples, "FC"))));
+				CustomConstraint.table(source, target, tuples, "FC")));
+//		solver.post(LCF.ifThen(ICF.arithm(size, ">", 0), 
+//				CustomConstraint.table(source, path[0], tuples, "FC")));
+//		solver.post(LCF.ifThen(ICF.arithm(size, "=", 0), 
+//				ICF.arithm(path[0], "=", VALUES[0])));
 //		solver.post(LCF.ifThen(ICF.arithm(size, "=", 1), 
-//				ICF.table(path[0], target, tuples, "FC")));
-		
+//				CustomConstraint.table(source, path[0], tuples, "FC")));
+//		solver.post(LCF.ifThen(ICF.arithm(size, "=", 1), 
+//				CustomConstraint.table(path[0], target, tuples, "FC")));
 
+		
+		for(int i=0;i<path.length;i++) {
+			solver.post(LCF.ifThen(ICF.arithm(size, "=", i+1), CustomConstraint.table(path[i], target, tuples, "FC")));
+			solver.post(LCF.ifThen(ICF.arithm(size, "<", i+1), ICF.arithm(path[i], "=", VALUES[0])));
+			if(i>=1) {
+				solver.post(LCF.ifThen(ICF.arithm(size, ">=", i+1), CustomConstraint.table(path[i-1], path[i], tuples, "FC")));
+			}
+		}
+
+		solver.post(LCF.ifThen(ICF.arithm(size, "=", maxLength), 
+				CustomConstraint.table(path[path.length-1], target, tuples, "FC")));
 //		solver.post(ICF.table(source, path[0], tuples, "AC3"));
 //		solver.post(ICF.table(path[0], target, tuples, "AC3"));
 		
@@ -118,12 +133,6 @@ public class PathArray {
 
 		
 //		
-//		for(int i=0;i<path.length;i++) {
-//			solver.post(LCF.ifThen(ICF.arithm(size, "=", i+1), new Constraint("SimpleLinkConstraint", new PropLinkS_T(path[i],target,references,environment))));
-//			if(i>=1) {
-//				solver.post(LCF.ifThen(ICF.arithm(size, ">", i), new Constraint("SimpleLinkConstraint", new PropLinkS_T(path[i-1],path[i],references,environment))));
-//			}
-//		}
 		
 //		for(int i = 0;i<path.length-1;i++) {
 //			solver.post(LCF.ifThen(ICF.arithm(path[i], "=", EIdentifiable.NULL_ID), ICF.arithm(path[i+1], "=", EIdentifiable.NULL_ID)));
@@ -152,7 +161,6 @@ public class PathArray {
 
 	public Object collectPath(Environment env) {
 		// TODO Auto-generated method stub
-		System.out.println("path length:"+size.getValue());
 		OclSequence seq = new OclSequence();
 		seq.setType(SEQ_TYPE);
 		for(int i = 0 ; i<size.getValue() ; i++) {
