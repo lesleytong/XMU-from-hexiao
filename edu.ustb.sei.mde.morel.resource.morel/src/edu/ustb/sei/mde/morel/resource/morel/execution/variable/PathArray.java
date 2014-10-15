@@ -1,6 +1,7 @@
 package edu.ustb.sei.mde.morel.resource.morel.execution.variable;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
@@ -9,6 +10,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 
+import edu.ustb.sei.commonutil.util.PairHashSet;
 import edu.ustb.sei.commonutil.util.UniqueArrayList;
 import edu.ustb.sei.mde.emg.graph.EIdentifiable;
 import edu.ustb.sei.mde.emg.graph.ModelUniverse;
@@ -32,15 +34,20 @@ import solver.variables.VF;
 public class PathArray {
 	private IntVar source;
 	private IntVar target;
+	
 	private IntVar size;
+	private IntVar start;
 	private IntVar[] path;
+	private IntVar end;
+	
 	private int maxLength;
-	private Variable variable;
+	
+	private Variable seqVariable;
 	
 	public PathArray(IntVar source, IntVar target, Variable var, int maxPath) {
 		this.source = source;
 		this.target = target;
-		this.variable = var;
+		this.seqVariable = var;
 		//path = new IntVar[maxPath];
 		this.maxLength = maxPath;
 	}
@@ -63,6 +70,55 @@ public class PathArray {
 			
 		}
 	}
+	
+	private void fillTuple(int s, List<EReference> references, List<EClass> types, PairHashSet<Integer,Integer> table, HashSet<Integer> visited, Environment environment) {
+		if(visited.contains(s)) return;
+		if(EIdentifiable.isValid(s)==false) return;
+		
+		visited.add(s);
+		EObject o = environment.getModelUniverse().getElementByID(s);
+		for(EReference ref : references) {
+			int[] targets = environment.getModelUniverse().getElementRelationship(o, ref);
+			for(int t : targets) {
+				if(EIdentifiable.isValid(t)==false) continue;
+				EObject to = environment.getModelUniverse().getElementByID(t);
+				if(checkTypes(to,types)==false) continue;
+				table.add(s,t);
+				fillTuple(t,references,types,table,visited,environment);
+			}
+			
+		}
+	}
+	
+//	private void fillVars(int s, List<EReference> references, List<EClass> types, HashSet<Integer> visited, HashMap<Integer,Integer> objIdToVarId, List<IntVar> vars, Environment environment, Solver solver) {
+//		if(visited.contains(s)) return;
+//		if(EIdentifiable.isValid(s)==false) return;
+//		visited.add(s);
+//		
+//		int vid = vars.size();
+//		objIdToVarId.put(s, vid);
+//		vars.add(VF.zero(solver));//place holder
+//		
+////		objIdToVars.put(s, )
+//		EObject o = environment.getModelUniverse().getElementByID(s);
+//		List<Integer> succ = new ArrayList<Integer>();
+//		for(EReference ref : references) {
+//			int[] targets = environment.getModelUniverse().getElementRelationship(o, ref);
+//			for(int t : targets) {
+//				if(EIdentifiable.isValid(t)==false) continue;
+//				EObject to = environment.getModelUniverse().getElementByID(t);
+//				if(checkTypes(to,types)==false) continue;
+//				fillVars(t,references,types,visited,objIdToVarId,vars,environment,solver);
+//				succ.add(objIdToVarId.get(t));
+//			}			
+//		}
+//		int[] succArr = new int[succ.size()];
+//		for(int i=0;i<succArr.length;i++) {
+//			succArr[i] = succ.get(i);
+//		}
+//		IntVar var = VF.enumerated(seqVariable.getName()+"_"+vid, succArr, solver);
+//		vars.set(vid, var);
+//	}
 		
 	private boolean checkTypes(EObject to, List<EClass> types) {
 		if(types.size()==0) return true;
@@ -91,18 +147,17 @@ public class PathArray {
 		
 //		if(maxLength<=0) maxLength = max;
 
-		size = VF.bounded(variable.getName()+"_size", 0, maxLength, solver);
+		size = VF.bounded(seqVariable.getName()+"_size", 0, maxLength, solver);
 		path = new IntVar[maxLength];
 		
 		for(int i=0;i<path.length;i++) {
-			path[i] = VF.enumerated(variable.getName()+"_"+i, VALUES, solver);
+			path[i] = VF.enumerated(seqVariable.getName()+"_"+i, VALUES, solver);
 		}
 		
 //		solver.post(CustomConstraint.table(source, path[0], tuples, "FC"));
 //		
 //		solver.post(CustomConstraint.table(path[0], target, tuples, "FC"));
 
-		
 		
 		solver.post(LCF.ifThen(ICF.arithm(size, "=", 0), 
 				CustomConstraint.table(source, target, tuples, "FC")));
@@ -123,34 +178,6 @@ public class PathArray {
 				solver.post(LCF.ifThen(ICF.arithm(size, ">=", i+1), CustomConstraint.table(path[i-1], path[i], tuples, "FC")));
 			}
 		}
-
-//		solver.post(LCF.ifThen(ICF.arithm(size, "=", maxLength), 
-//				CustomConstraint.table(path[path.length-1], target, tuples, "FC")));
-//		solver.post(ICF.table(source, path[0], tuples, "AC3"));
-//		solver.post(ICF.table(path[0], target, tuples, "AC3"));
-		
-		
-
-		
-//		
-		
-//		for(int i = 0;i<path.length-1;i++) {
-//			solver.post(LCF.ifThen(ICF.arithm(path[i], "=", EIdentifiable.NULL_ID), ICF.arithm(path[i+1], "=", EIdentifiable.NULL_ID)));
-//		}
-//		
-//		solver.post(LCF.ifThenElse(ICF.arithm(path[0], "=", EIdentifiable.NULL_ID), 
-//				new Constraint("SimpleLinkConstraint", new PropLinkS_T(source,target,references,environment)),
-//				new Constraint("SimpleLinkConstraint", new PropLinkS_T(source,path[0],references,environment))));
-//		solver.post(LCF.ifThen(ICF.arithm(path[path.length-1], ">", EIdentifiable.NULL_ID), new Constraint("SimpleLinkConstraint", new PropLinkS_T(path[path.length-1],target,references,environment))));
-//		
-//		for(int i = 0;i<path.length-1;i++) {
-//			solver.post(
-//					LCF.ifThen(ICF.arithm(path[i], ">", EIdentifiable.NULL_ID), 
-//							LCF.ifThenElse(ICF.arithm(path[i+1], "=", EIdentifiable.NULL_ID),
-//									new Constraint("SimpleLinkConstraint", new PropLinkS_T(path[i],target,references,environment)),
-//									new Constraint("SimpleLinkConstraint", new PropLinkS_T(path[i],path[i+1],references,environment)) 
-//							)));
-//		}
 	}
 
 	static final private SequenceType SEQ_TYPE;
