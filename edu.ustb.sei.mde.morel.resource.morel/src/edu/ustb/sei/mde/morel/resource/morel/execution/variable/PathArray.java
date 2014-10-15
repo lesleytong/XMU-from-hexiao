@@ -76,7 +76,7 @@ public class PathArray {
 		
 		HashSet<Integer> reachables = new HashSet<Integer>();
 		Tuples tuples = new Tuples(true);
-		for(int s = source.getLB();s<source.getUB();s=source.nextValue(s)){
+		for(int s = source.getLB();s<=source.getUB();s=source.nextValue(s)){
 			EObject so = environment.getModelUniverse().getElementByID(s);
 			if(checkTypes(so,types)==false) continue;
 			fillTuple(s,references,types,tuples,reachables,environment);
@@ -91,7 +91,7 @@ public class PathArray {
 		
 //		if(maxLength<=0) maxLength = max;
 
-		size = VF.bounded(variable.getName()+"_size", 1, maxLength, solver);
+		size = VF.bounded(variable.getName()+"_size", 0, maxLength, solver);
 		path = new IntVar[maxLength];
 		
 		for(int i=0;i<path.length;i++) {
@@ -106,8 +106,8 @@ public class PathArray {
 		
 		solver.post(LCF.ifThen(ICF.arithm(size, "=", 0), 
 				CustomConstraint.table(source, target, tuples, "FC")));
-//		solver.post(LCF.ifThen(ICF.arithm(size, ">", 0), 
-//				CustomConstraint.table(source, path[0], tuples, "FC")));
+		solver.post(LCF.ifThen(ICF.arithm(size, ">", 0), 
+				CustomConstraint.table(source, path[0], tuples, "FC")));
 //		solver.post(LCF.ifThen(ICF.arithm(size, "=", 0), 
 //				ICF.arithm(path[0], "=", VALUES[0])));
 //		solver.post(LCF.ifThen(ICF.arithm(size, "=", 1), 
@@ -124,8 +124,8 @@ public class PathArray {
 			}
 		}
 
-		solver.post(LCF.ifThen(ICF.arithm(size, "=", maxLength), 
-				CustomConstraint.table(path[path.length-1], target, tuples, "FC")));
+//		solver.post(LCF.ifThen(ICF.arithm(size, "=", maxLength), 
+//				CustomConstraint.table(path[path.length-1], target, tuples, "FC")));
 //		solver.post(ICF.table(source, path[0], tuples, "AC3"));
 //		solver.post(ICF.table(path[0], target, tuples, "AC3"));
 		
