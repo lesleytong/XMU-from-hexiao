@@ -11,12 +11,13 @@ import util.ESat;
 import util.tools.ArrayUtils;
 
 public class PropPathS_C_T extends Propagator<IntVar> {
-	
+	private static final long serialVersionUID = 5730502659674889423L;
+
 	public PropPathS_C_T(IntVar source, IntVar target,
 			IntVar size, IntVar[] path,
 			PairHashSet<Integer, Integer> table,
 			PropagatorPriority priority, boolean reactToFineEvt) {
-		super(ArrayUtils.append(new IntVar[]{source,target,size},path),priority,reactToFineEvt);
+		super(ArrayUtils.append(new IntVar[]{source},path, new IntVar[]{target,size}),priority,reactToFineEvt);
 		this.source = source;
 		this.target = target;
 		this.size = size;
@@ -25,7 +26,6 @@ public class PropPathS_C_T extends Propagator<IntVar> {
 	}
 	
 	private IntVar source;
-
 	private IntVar target;
 	private IntVar size;
 	private IntVar[] path;
@@ -34,78 +34,147 @@ public class PropPathS_C_T extends Propagator<IntVar> {
 	@Override
 	public void propagate(int evtmask) throws ContradictionException {
 		// TODO Auto-generated method stub
-		
+		filterPath(0);
+		filterTarget();
+		for(int i = 1; i<vars.length-2;i++)
+			filterSize(i);
 	}
 	
-	private void filterForward(int id) throws ContradictionException {
-		if(id==1 || id==2)//target or size
-			return;
+	
+	
+	@Override
+	public void propagate(int idxVarInProp, int mask)
+			throws ContradictionException {
+		if(idxVarInProp<vars.length-2){
+			filterPath(idxVarInProp);
+			filterPathBackward(idxVarInProp);
+		} else if(idxVarInProp==vars.length-1)
+			propSize();
 		
-		IntVar[] allVars = getVars();
-		int nextID = getNextID(id);
+		filterTarget();
+	}
+
+	private void filterPathBackward(int id) throws ContradictionException {
+		if(id<=1) return;
 		
-		IntVar s = allVars[id];
+		IntVar t = vars[id];
+		int prevID = id-1;
+		IntVar s = vars[prevID];
 		
-		if(s.isInstantiated()==false) 
-			return;
-		
-		IntVar t = allVars[nextID];
-		
-		
-		if(s.isInstantiatedTo(EIdentifiable.NULL_ID)) {
-			// assert(source.contains(0)==false);
-			// assert(target.contains(0)==false);
-			size.removeValue(id-2, aCause);
-			if(nextID!=1){
-				t.instantiateTo(EIdentifiable.NULL_ID, aCause);
-				filterForward(nextID);				
-			}
-		} else {
-			//STEP 1 test if there exists i in s and j in target that make (i,j) in table held
-			//if no, remove id-2 from size;
-			
-			//STEP 2 test nextID
-			
-			if(t.isInstantiatedTo(EIdentifiable.NULL_ID)) {
-				nextID = 1;
-				t = allVars[1];
-			}
-			
-			int si = s.getValue();
-			if(EIdentifiable.isValid(si)==false) return;
-			for(int ti = t.getLB(); ti<=t.getUB();ti=t.nextValue(ti)){
+		for(int si = s.getLB();si<=s.getUB();si = s.nextValue(si)) {
+			if(EIdentifiable.isValid(si)==false) continue;
+			boolean fs = false;
+			for(int ti = t.getLB();ti<=t.getUB();ti=t.nextValue(ti)) {
 				if(EIdentifiable.isValid(ti)==false) continue;
-				if(table.contains(si, ti)==false) {
-					t.removeValue(ti,aCause);
+				if(table.contains(si, ti)) {
+					fs = true;
+					break;
 				}
 			}
-			if(t.isInstantiated())
-				filterForward(nextID);
+			if(!fs) {
+				if(s.removeValue(si, aCause))
+					filterPathBackward(prevID);
+			}
 		}
 	}
 
-	protected int getNextID(int id) {
-		IntVar[] allVars = getVars();
-		int nextID = -1;
-		if(id==0) nextID = 3;
-		else nextID = id+1;
+	private void filterTarget() throws ContradictionException {
+		IntVar[] vars = this.getVars();
 		
-		if(nextID>=allVars.length) nextID = 1;
-		return nextID;
+		for(int ti = target.getLB(); ti<=target.getUB(); ti = target.nextValue(ti)) {
+			boolean ft = false;
+			TEST_EXIST:
+				for(int i = 0;i<vars.length-2;i++) {
+					for(int si = vars[i].getLB(); si <= vars[i].getUB(); si = vars[i].nextValue(si)) {
+						if(EIdentifiable.isValid(si)==false) continue;
+						if(table.contains(si, ti)) {
+							ft = true;
+							break TEST_EXIST;
+						}
+					}
+				}
+			if(!ft) 
+				target.removeValue(ti, aCause);
+		}
 	}
-
-	protected int getPrevID(int id) {
-		IntVar[] allVars = getVars();
-		int prevID = -1;
-		if(id==1) prevID = allVars.length-1;
-		else prevID = id-1;
-		if(prevID==2) prevID = 0;
-		return prevID;
+	
+	private void filterSize(int id) throws ContradictionException{
+		IntVar[] vars = this.getVars();
+		if(id==0 || id>=vars.length-2) return;
+		
+		boolean ft = false;
+		
+		TEST_EXIST:
+			for(int si = vars[id].getLB(); si<=vars[id].getUB(); si = vars[id].nextValue(si)) {
+				if(EIdentifiable.isValid(si)==false) continue;
+				for(int ti = target.getLB(); ti <= target.getUB(); ti = target.nextValue(ti)) {
+					if(table.contains(si, ti)) {
+						ft = true;
+						break TEST_EXIST;
+					}
+				}
+			}
+		if(!ft) {
+			size.removeValue(id, aCause);
+			//vars[id+1].removeValue(0, aCause);
+		}
+	}
+	
+	private void filterPath(int id) throws ContradictionException {
+		IntVar[] vars = this.getVars();
+		IntVar s = vars[id];
+		int nextID = id +1;
+		if(nextID>=vars.length-2) return;
+		IntVar t = vars[nextID];
+		
+		if(s.isInstantiatedTo(0)) {
+			if(t.instantiateTo(0, aCause)) {
+				this.filterPath(nextID);
+			}
+			size.removeValue(id, aCause);
+		} else {
+			boolean changed = false;
+			for(int ti = t.getLB(); ti<=t.getUB(); ti = t.nextValue(ti)) {
+				if(EIdentifiable.isValid(ti)==false) continue;
+				boolean ft = false;
+				for(int si = s.getLB(); si<=s.getUB(); si = s.nextValue(si)) {
+					if(EIdentifiable.isValid(si)==false) continue;
+					if(table.contains(si, ti)){
+						ft = true;
+						break;
+					}
+				}
+				if(!ft) {
+					changed = changed || t.removeValue(ti, aCause);
+				}
+			}
+			if(changed) 
+				this.filterPath(nextID);
+		}
+	}
+	
+	private void propSize() throws ContradictionException {
+		if(size.isInstantiated()) {
+			int v = size.getValue();
+			for(int i = 1;i<vars.length-2;i++){
+				if(i<=v)
+					vars[i].removeValue(0, aCause);
+				else
+					vars[i].instantiateTo(0, aCause);
+			}
+		} else {
+			for(int i=1;i<vars.length-2;i++) {
+				if(size.contains(i)) continue;
+				vars[i].removeValue(0, aCause);
+			}
+		}
 	}
 
 	@Override
 	public ESat isEntailed() {
-		// TODO Auto-generated method stub
+		for(int s = size.getLB();s<=size.getUB();s=size.nextValue(s)) {
+			
+		}
 		return null;
 	}
 
