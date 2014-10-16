@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link edu.ustb.sei.mde.morel.impl.PathConstraintImpl#getMinLength <em>Min Length</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.morel.impl.PathConstraintImpl#getMaxLength <em>Max Length</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.morel.impl.PathConstraintImpl#getPathVariable <em>Path Variable</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.morel.impl.PathConstraintImpl#getReferences <em>References</em>}</li>
@@ -38,6 +39,26 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  */
 public class PathConstraintImpl extends LinkConstraintImpl implements PathConstraint {
 	/**
+	 * The default value of the '{@link #getMinLength() <em>Min Length</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMinLength()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int MIN_LENGTH_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getMinLength() <em>Min Length</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMinLength()
+	 * @generated
+	 * @ordered
+	 */
+	protected int minLength = MIN_LENGTH_EDEFAULT;
+
+	/**
 	 * The default value of the '{@link #getMaxLength() <em>Max Length</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -45,7 +66,7 @@ public class PathConstraintImpl extends LinkConstraintImpl implements PathConstr
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int MAX_LENGTH_EDEFAULT = 0;
+	protected static final int MAX_LENGTH_EDEFAULT = -1;
 
 	/**
 	 * The cached value of the '{@link #getMaxLength() <em>Max Length</em>}' attribute.
@@ -104,6 +125,27 @@ public class PathConstraintImpl extends LinkConstraintImpl implements PathConstr
 	@Override
 	protected EClass eStaticClass() {
 		return MorelPackage.Literals.PATH_CONSTRAINT;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getMinLength() {
+		return minLength;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMinLength(int newMinLength) {
+		int oldMinLength = minLength;
+		minLength = newMinLength;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MorelPackage.PATH_CONSTRAINT__MIN_LENGTH, oldMinLength, minLength));
 	}
 
 	/**
@@ -197,6 +239,8 @@ public class PathConstraintImpl extends LinkConstraintImpl implements PathConstr
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case MorelPackage.PATH_CONSTRAINT__MIN_LENGTH:
+				return getMinLength();
 			case MorelPackage.PATH_CONSTRAINT__MAX_LENGTH:
 				return getMaxLength();
 			case MorelPackage.PATH_CONSTRAINT__PATH_VARIABLE:
@@ -219,6 +263,9 @@ public class PathConstraintImpl extends LinkConstraintImpl implements PathConstr
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case MorelPackage.PATH_CONSTRAINT__MIN_LENGTH:
+				setMinLength((Integer)newValue);
+				return;
 			case MorelPackage.PATH_CONSTRAINT__MAX_LENGTH:
 				setMaxLength((Integer)newValue);
 				return;
@@ -245,6 +292,9 @@ public class PathConstraintImpl extends LinkConstraintImpl implements PathConstr
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case MorelPackage.PATH_CONSTRAINT__MIN_LENGTH:
+				setMinLength(MIN_LENGTH_EDEFAULT);
+				return;
 			case MorelPackage.PATH_CONSTRAINT__MAX_LENGTH:
 				setMaxLength(MAX_LENGTH_EDEFAULT);
 				return;
@@ -269,6 +319,8 @@ public class PathConstraintImpl extends LinkConstraintImpl implements PathConstr
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case MorelPackage.PATH_CONSTRAINT__MIN_LENGTH:
+				return minLength != MIN_LENGTH_EDEFAULT;
 			case MorelPackage.PATH_CONSTRAINT__MAX_LENGTH:
 				return maxLength != MAX_LENGTH_EDEFAULT;
 			case MorelPackage.PATH_CONSTRAINT__PATH_VARIABLE:
@@ -291,7 +343,9 @@ public class PathConstraintImpl extends LinkConstraintImpl implements PathConstr
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (maxLength: ");
+		result.append(" (minLength: ");
+		result.append(minLength);
+		result.append(", maxLength: ");
 		result.append(maxLength);
 		result.append(')');
 		return result.toString();

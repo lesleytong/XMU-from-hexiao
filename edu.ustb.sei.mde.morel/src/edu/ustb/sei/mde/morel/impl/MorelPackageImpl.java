@@ -944,7 +944,7 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPathConstraint_MaxLength() {
+	public EAttribute getPathConstraint_MinLength() {
 		return (EAttribute)pathConstraintEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -953,8 +953,8 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPathConstraint_PathVariable() {
-		return (EReference)pathConstraintEClass.getEStructuralFeatures().get(1);
+	public EAttribute getPathConstraint_MaxLength() {
+		return (EAttribute)pathConstraintEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -962,7 +962,7 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPathConstraint_References() {
+	public EReference getPathConstraint_PathVariable() {
 		return (EReference)pathConstraintEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -971,8 +971,17 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPathConstraint_Types() {
+	public EReference getPathConstraint_References() {
 		return (EReference)pathConstraintEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPathConstraint_Types() {
+		return (EReference)pathConstraintEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -2244,6 +2253,7 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		createEReference(enclosureLinkConstraintEClass, ENCLOSURE_LINK_CONSTRAINT__TYPES);
 
 		pathConstraintEClass = createEClass(PATH_CONSTRAINT);
+		createEAttribute(pathConstraintEClass, PATH_CONSTRAINT__MIN_LENGTH);
 		createEAttribute(pathConstraintEClass, PATH_CONSTRAINT__MAX_LENGTH);
 		createEReference(pathConstraintEClass, PATH_CONSTRAINT__PATH_VARIABLE);
 		createEReference(pathConstraintEClass, PATH_CONSTRAINT__REFERENCES);
@@ -2576,7 +2586,8 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		initEReference(getEnclosureLinkConstraint_Types(), ecorePackage.getEClass(), null, "types", null, 0, -1, EnclosureLinkConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(pathConstraintEClass, PathConstraint.class, "PathConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getPathConstraint_MaxLength(), ecorePackage.getEInt(), "maxLength", null, 0, 1, PathConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPathConstraint_MinLength(), ecorePackage.getEInt(), "minLength", "0", 0, 1, PathConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPathConstraint_MaxLength(), ecorePackage.getEInt(), "maxLength", "-1", 0, 1, PathConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPathConstraint_PathVariable(), this.getVariable(), null, "pathVariable", null, 1, 1, PathConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPathConstraint_References(), ecorePackage.getEReference(), null, "references", null, 1, -1, PathConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPathConstraint_Types(), ecorePackage.getEClass(), null, "types", null, 0, -1, PathConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

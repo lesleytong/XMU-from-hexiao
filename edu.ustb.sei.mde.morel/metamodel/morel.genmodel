@@ -95,6 +95,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference morel.ecore#//EnclosureLinkConstraint/types"/>
     </genClasses>
     <genClasses ecoreClass="morel.ecore#//PathConstraint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute morel.ecore#//PathConstraint/minLength"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute morel.ecore#//PathConstraint/maxLength"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference morel.ecore#//PathConstraint/pathVariable"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference morel.ecore#//PathConstraint/references"/>

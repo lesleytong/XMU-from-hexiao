@@ -1262,12 +1262,14 @@ public class MorelPrinter implements edu.ustb.sei.mde.morel.resource.morel.IMore
 		// the number of elements stored in each structural feature. For lists this is the
 		// list size. For non-multiple features it is either 1 (if the feature is set) or
 		// 0 (if the feature is null).
-		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(6);
+		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(7);
 		Object temp;
 		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.PATH_CONSTRAINT__SOURCE));
 		printCountingMap.put("source", temp == null ? 0 : 1);
 		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.PATH_CONSTRAINT__TARGET));
 		printCountingMap.put("target", temp == null ? 0 : 1);
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.PATH_CONSTRAINT__MIN_LENGTH));
+		printCountingMap.put("minLength", temp == null ? 0 : 1);
 		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.PATH_CONSTRAINT__MAX_LENGTH));
 		printCountingMap.put("maxLength", temp == null ? 0 : 1);
 		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.PATH_CONSTRAINT__PATH_VARIABLE));
@@ -1505,6 +1507,21 @@ public class MorelPrinter implements edu.ustb.sei.mde.morel.resource.morel.IMore
 		int count;
 		// DEFINITION PART BEGINS (CsString)
 		out.print("[");
+		out.print(" ");
+		// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
+		count = printCountingMap.get("minLength");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.PATH_CONSTRAINT__MIN_LENGTH));
+			if (o != null) {
+				edu.ustb.sei.mde.morel.resource.morel.IMorelTokenResolver resolver = tokenResolverFactory.createTokenResolver("INUMBER");
+				resolver.setOptions(getOptions());
+				out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.PATH_CONSTRAINT__MIN_LENGTH), element));
+				out.print(" ");
+			}
+			printCountingMap.put("minLength", count - 1);
+		}
+		// DEFINITION PART BEGINS (CsString)
+		out.print("..");
 		out.print(" ");
 		// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
 		count = printCountingMap.get("maxLength");

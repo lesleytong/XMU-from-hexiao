@@ -6,6 +6,7 @@ import edu.ustb.sei.mde.emg.graph.EIdentifiable;
 import solver.constraints.Propagator;
 import solver.constraints.PropagatorPriority;
 import solver.exception.ContradictionException;
+import solver.variables.EventType;
 import solver.variables.IntVar;
 import util.ESat;
 import util.tools.ArrayUtils;
@@ -18,6 +19,7 @@ public class PropPathS_C_T extends Propagator<IntVar> {
 			PairHashSet<Integer, Integer> table,
 			PropagatorPriority priority, boolean reactToFineEvt) {
 		super(ArrayUtils.append(new IntVar[]{source},path, new IntVar[]{target,size}),priority,reactToFineEvt);
+		
 		this.source = source;
 		this.target = target;
 		this.size = size;
@@ -44,14 +46,28 @@ public class PropPathS_C_T extends Propagator<IntVar> {
 	
 	@Override
 	public void propagate(int idxVarInProp, int mask)
-			throws ContradictionException {
-		if(idxVarInProp<vars.length-2){
-			filterPath(idxVarInProp);
-			filterPathBackward(idxVarInProp);
-		} else if(idxVarInProp==vars.length-1)
-			propSize();
-		
-		filterTarget();
+			throws ContradictionException {		
+		//if(EventType.anInstantiationEvent(mask)) {
+			if(idxVarInProp<vars.length-2){
+				filterPath(idxVarInProp);
+				filterPathBackward(idxVarInProp);
+			} else if(idxVarInProp==vars.length-1){
+				propSize();
+			}
+			filterTarget();
+			if(allInstantiated()){
+				this.setPassive();
+			}
+		//}
+	}
+
+
+
+	protected boolean allInstantiated() {
+		for(IntVar v : vars) {
+			if(v.isInstantiated()==false) return false;
+		}
+		return true;
 	}
 
 	private void filterPathBackward(int id) throws ContradictionException {
@@ -85,6 +101,7 @@ public class PropPathS_C_T extends Propagator<IntVar> {
 			boolean ft = false;
 			TEST_EXIST:
 				for(int i = 0;i<vars.length-2;i++) {
+					if(size.contains(i)==false) continue;
 					for(int si = vars[i].getLB(); si <= vars[i].getUB(); si = vars[i].nextValue(si)) {
 						if(EIdentifiable.isValid(si)==false) continue;
 						if(table.contains(si, ti)) {
@@ -124,7 +141,9 @@ public class PropPathS_C_T extends Propagator<IntVar> {
 		IntVar[] vars = this.getVars();
 		IntVar s = vars[id];
 		int nextID = id +1;
-		if(nextID>=vars.length-2) return;
+		if(nextID==vars.length-1) return;
+		if(nextID==vars.length-2 && s.contains(0)) return;
+		
 		IntVar t = vars[nextID];
 		
 		if(s.isInstantiatedTo(0)) {
@@ -145,7 +164,7 @@ public class PropPathS_C_T extends Propagator<IntVar> {
 					}
 				}
 				if(!ft) {
-					changed = changed || t.removeValue(ti, aCause);
+					changed = t.removeValue(ti, aCause) || changed;
 				}
 			}
 			if(changed) 
@@ -163,19 +182,53 @@ public class PropPathS_C_T extends Propagator<IntVar> {
 					vars[i].instantiateTo(0, aCause);
 			}
 		} else {
-			for(int i=1;i<vars.length-2;i++) {
-				if(size.contains(i)) continue;
-				vars[i].removeValue(0, aCause);
-			}
+//			for(int i=1;i<=size.getLB()+1;i++) {
+//				if(size.contains(i)) continue;
+//				vars[i].removeValue(0, aCause);
+//			}
 		}
 	}
 
 	@Override
 	public ESat isEntailed() {
-		for(int s = size.getLB();s<=size.getUB();s=size.nextValue(s)) {
-			
+		int prev = 0;
+		final int tar = vars.length-2;
+		
+		for(int cur = 0;cur<vars.length-2;cur++){
+			if(isConnective(prev,cur)==false) 
+				return ESat.FALSE;
+			else {
+				prev = cur;
+				if(isConnective(cur,tar) && isTerminable(cur+1))
+					return ESat.TRUE;
+			}
 		}
-		return null;
+		return ESat.FALSE;
+	}
+	
+	private boolean isConnective(int prev, int cur) {
+		if(prev==cur) return true;
+		else {
+			IntVar prevNode = vars[prev];
+			IntVar curNode = vars[cur];
+			
+			for(int s = prevNode.getLB(); s<= prevNode.getUB(); s=prevNode.nextValue(s)) {
+				if(EIdentifiable.isValid(s)==false) continue;
+				for(int t = curNode.getLB(); t<= curNode.getUB(); t=curNode.nextValue(t)) {
+					if(EIdentifiable.isValid(t)==false) continue;
+					if(table.contains(s, t)) return true;
+				}
+			}
+			return false;
+		}
+	}
+
+	private boolean isTerminable(int cur) {
+		if(cur==vars.length-2) return true;
+		IntVar var = vars[cur];
+		if(var.contains(0) && size.contains(cur))
+			return true;
+		return false;
 	}
 
 }

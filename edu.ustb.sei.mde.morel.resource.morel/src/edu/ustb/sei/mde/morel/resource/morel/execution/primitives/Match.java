@@ -89,9 +89,12 @@ public class Match {
 				} else if(l instanceof EnclosureLinkConstraint) {
 					solver.post(new Constraint("EnclosureLinkConstraint", new PropEnclosureLinkS_T(s,t,((EnclosureLinkConstraint)l).getForward(), ((EnclosureLinkConstraint)l).getTypes(),env)));
 				} else if(l instanceof PathConstraint) {
-					PathArray pArray = new PathArray(s,t,((PathConstraint)l).getPathVariable(),((PathConstraint)l).getMaxLength());
-					pArray.post(solver, ((PathConstraint)l).getReferences(), ((PathConstraint)l).getTypes(), env);
-					varMap.put(((PathConstraint)l).getPathVariable(), pArray);
+					PathConstraint pathConstraint = (PathConstraint)l;
+					PathArray pArray = new PathArray(s,t,pathConstraint.getPathVariable(),pathConstraint.getMinLength(),pathConstraint.getMaxLength());
+					Constraint c = pArray.post(solver, pathConstraint.getReferences(), pathConstraint.getTypes(), env);
+					if(c==null) return null;
+					solver.post(c);
+					varMap.put(pathConstraint.getPathVariable(), pArray);
 				}
 			}
 		}

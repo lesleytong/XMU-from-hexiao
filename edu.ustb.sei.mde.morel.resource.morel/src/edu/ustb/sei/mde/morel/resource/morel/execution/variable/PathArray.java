@@ -43,14 +43,16 @@ public class PathArray {
 	private IntVar end;
 	
 	private int maxLength;
+	private int minLength;
 	
 	private Variable seqVariable;
 	
-	public PathArray(IntVar source, IntVar target, Variable var, int maxPath) {
+	public PathArray(IntVar source, IntVar target, Variable var, int minPath, int maxPath) {
 		this.source = source;
 		this.target = target;
 		this.seqVariable = var;
 		//path = new IntVar[maxPath];
+		this.minLength = minPath;
 		this.maxLength = maxPath;
 	}
 	
@@ -135,7 +137,7 @@ public class PathArray {
 		return false;
 	}
 
-	public void post(Solver solver, List<EReference> references, List<EClass> types, Environment environment) {
+	public Constraint post(Solver solver, List<EReference> references, List<EClass> types, Environment environment) {
 		
 		PairHashSet<Integer,Integer> table = new PairHashSet<Integer,Integer>();
 		HashSet<Integer> reachables = new HashSet<Integer>();
@@ -147,6 +149,8 @@ public class PathArray {
 			if(max<cMax) max = cMax;
 		}
 		
+		if(table.isEmpty()) return null;
+		
 		int[] VALUES = new int[reachables.size()+1];
 		VALUES[0] = 0;
 		int id = 1;
@@ -156,15 +160,17 @@ public class PathArray {
 		}
 		
 		if(maxLength<0) maxLength = max;
+		if(minLength<0) minLength = 0;
+		if(minLength>maxLength) minLength = maxLength;
 
-		size = VF.bounded(seqVariable.getName()+"_size", 0, maxLength, solver);
+		size = VF.bounded(seqVariable.getName()+"_size", minLength, maxLength, solver);
 		path = new IntVar[maxLength];
 		
 		for(int i=0;i<path.length;i++) {
 			path[i] = VF.enumerated(seqVariable.getName()+"_"+i, VALUES, solver);
 		}
 		
-		solver.post(new Constraint("PropPathS_C_T",new PropPathS_C_T(source,target,size,path,table,PropagatorPriority.BINARY,true)));
+		return new Constraint("PropPathS_C_T",new PropPathS_C_T(source,target,size,path,table,PropagatorPriority.BINARY,true));
 	}
 
 	static final private SequenceType SEQ_TYPE;

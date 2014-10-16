@@ -73,7 +73,7 @@ RULES {
 	
 	EnclosureLinkConstraint ::= source[IDENTIFIER] "." (forward[IDENTIFIER]("|" forward[IDENTIFIER])*) (":" types[IDENTIFIER]("," types[IDENTIFIER])*)? "*" "=" target[IDENTIFIER] ;
 	
-	PathConstraint ::= source[IDENTIFIER] "." pathVariable[IDENTIFIER] "@" (references[IDENTIFIER]("|" references[IDENTIFIER])*) (":" types[IDENTIFIER]("," types[IDENTIFIER])*)? ("[" maxLength[INUMBER] "]")? "=" target[IDENTIFIER] ;
+	PathConstraint ::= source[IDENTIFIER] "." pathVariable[IDENTIFIER] "@" (references[IDENTIFIER]("|" references[IDENTIFIER])*) (":" types[IDENTIFIER]("," types[IDENTIFIER])*)? ("[" minLength[INUMBER] ".." maxLength[INUMBER] "]")? "=" target[IDENTIFIER] ;
 	
 	
 	VariableExp ::= referredVariable[IDENTIFIER] (path)?;

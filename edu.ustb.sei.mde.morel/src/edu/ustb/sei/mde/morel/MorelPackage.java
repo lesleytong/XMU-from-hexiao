@@ -575,13 +575,22 @@ public interface MorelPackage extends EPackage {
 	int PATH_CONSTRAINT__TARGET = LINK_CONSTRAINT__TARGET;
 
 	/**
+	 * The feature id for the '<em><b>Min Length</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATH_CONSTRAINT__MIN_LENGTH = LINK_CONSTRAINT_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Max Length</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PATH_CONSTRAINT__MAX_LENGTH = LINK_CONSTRAINT_FEATURE_COUNT + 0;
+	int PATH_CONSTRAINT__MAX_LENGTH = LINK_CONSTRAINT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Path Variable</b></em>' reference.
@@ -590,7 +599,7 @@ public interface MorelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PATH_CONSTRAINT__PATH_VARIABLE = LINK_CONSTRAINT_FEATURE_COUNT + 1;
+	int PATH_CONSTRAINT__PATH_VARIABLE = LINK_CONSTRAINT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>References</b></em>' reference list.
@@ -599,7 +608,7 @@ public interface MorelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PATH_CONSTRAINT__REFERENCES = LINK_CONSTRAINT_FEATURE_COUNT + 2;
+	int PATH_CONSTRAINT__REFERENCES = LINK_CONSTRAINT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Types</b></em>' reference list.
@@ -608,7 +617,7 @@ public interface MorelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PATH_CONSTRAINT__TYPES = LINK_CONSTRAINT_FEATURE_COUNT + 3;
+	int PATH_CONSTRAINT__TYPES = LINK_CONSTRAINT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Path Constraint</em>' class.
@@ -617,7 +626,7 @@ public interface MorelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PATH_CONSTRAINT_FEATURE_COUNT = LINK_CONSTRAINT_FEATURE_COUNT + 4;
+	int PATH_CONSTRAINT_FEATURE_COUNT = LINK_CONSTRAINT_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>Path Constraint</em>' class.
@@ -4130,6 +4139,17 @@ public interface MorelPackage extends EPackage {
 	EClass getPathConstraint();
 
 	/**
+	 * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.morel.PathConstraint#getMinLength <em>Min Length</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Min Length</em>'.
+	 * @see edu.ustb.sei.mde.morel.PathConstraint#getMinLength()
+	 * @see #getPathConstraint()
+	 * @generated
+	 */
+	EAttribute getPathConstraint_MinLength();
+
+	/**
 	 * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.morel.PathConstraint#getMaxLength <em>Max Length</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5822,6 +5842,14 @@ public interface MorelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass PATH_CONSTRAINT = eINSTANCE.getPathConstraint();
+
+		/**
+		 * The meta object literal for the '<em><b>Min Length</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PATH_CONSTRAINT__MIN_LENGTH = eINSTANCE.getPathConstraint_MinLength();
 
 		/**
 		 * The meta object literal for the '<em><b>Max Length</b></em>' attribute feature.

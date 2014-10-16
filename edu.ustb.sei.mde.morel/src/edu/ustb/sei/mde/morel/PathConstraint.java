@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EReference;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link edu.ustb.sei.mde.morel.PathConstraint#getMinLength <em>Min Length</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.morel.PathConstraint#getMaxLength <em>Max Length</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.morel.PathConstraint#getPathVariable <em>Path Variable</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.morel.PathConstraint#getReferences <em>References</em>}</li>
@@ -28,7 +29,35 @@ import org.eclipse.emf.ecore.EReference;
  */
 public interface PathConstraint extends LinkConstraint {
 	/**
+	 * Returns the value of the '<em><b>Min Length</b></em>' attribute.
+	 * The default value is <code>"0"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Min Length</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Min Length</em>' attribute.
+	 * @see #setMinLength(int)
+	 * @see edu.ustb.sei.mde.morel.MorelPackage#getPathConstraint_MinLength()
+	 * @model default="0"
+	 * @generated
+	 */
+	int getMinLength();
+
+	/**
+	 * Sets the value of the '{@link edu.ustb.sei.mde.morel.PathConstraint#getMinLength <em>Min Length</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Min Length</em>' attribute.
+	 * @see #getMinLength()
+	 * @generated
+	 */
+	void setMinLength(int value);
+
+	/**
 	 * Returns the value of the '<em><b>Max Length</b></em>' attribute.
+	 * The default value is <code>"-1"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Max Length</em>' attribute isn't clear,
@@ -38,7 +67,7 @@ public interface PathConstraint extends LinkConstraint {
 	 * @return the value of the '<em>Max Length</em>' attribute.
 	 * @see #setMaxLength(int)
 	 * @see edu.ustb.sei.mde.morel.MorelPackage#getPathConstraint_MaxLength()
-	 * @model
+	 * @model default="-1"
 	 * @generated
 	 */
 	int getMaxLength();
