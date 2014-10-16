@@ -11,6 +11,7 @@ OPTIONS {
 	usePredefinedTokens="false";
 	reloadGeneratorModel="true";
 	generateCodeFromGeneratorModel = "false";
+	//overrideProposalPostProcessor = "false";
 	//disableTokenSorting = "true";
 	overrideLaunchConfigurationMainTab = "false";
 	overrideLaunchConfigurationDelegate ="false";
@@ -22,6 +23,10 @@ OPTIONS {
 TOKENS {
 	
 	DEFINE LINEBREAK $('\r\n'|'\r'|'\n')$; 
+	
+	DEFINE SL_COMMENT $ '--'(~('\n'|'\r'|'\uffff'))* $;
+	
+	DEFINE ML_COMMENT $ '/*'.*'*/'$;
 	
 	DEFINE WHITESPACE $(' '|'\t'|'\f')$;
  
@@ -53,13 +58,15 @@ TOKENSTYLES {
 	"@this" COLOR #0000ff;
 	"@id" COLOR #0000ff;
 	
+	"SL_COMMENT" COLOR #008000, ITALIC;
+	"ML_COMMENT" COLOR #008000, ITALIC;
 }
 
 RULES {
 	QueryModel ::= "querymodel" models+ queries*;
 	TypedModel ::= "type" name[IDENTIFIER] "<-"  package[URINS];
 	
-	Query ::= "query" type[LHS : "lhs", RHS : "rhs", NAC : "nac", PAC : "pac", PRE : "pre", POST : "post", LHS : ""] name[IDENTIFIER] "{" "match" (variables ("," variables)* ";")?  (linkConstraints ("," linkConstraints)* ";")? ("where" (statements)+)?"}";
+	Query ::= "query" type[LHS : "lhs", RHS : "rhs", NAC : "nac", PAC : "pac", PRE : "pre", POST : "post", LHS : ""] name[IDENTIFIER] "{" "match" (variables ("," variables)*)?  (linkConstraints ("," linkConstraints)*)? ("where" (statements)+)?"}";
 	
 	ObjectVariable ::= name[IDENTIFIER] ":" (model[IDENTIFIER] "!")? type[IDENTIFIER];
 	
@@ -73,7 +80,7 @@ RULES {
 	
 	EnclosureLinkConstraint ::= source[IDENTIFIER] "." (forward[IDENTIFIER]("|" forward[IDENTIFIER])*) (":" types[IDENTIFIER]("," types[IDENTIFIER])*)? "*" "=" target[IDENTIFIER] ;
 	
-	PathConstraint ::= source[IDENTIFIER] "." pathVariable[IDENTIFIER] "@" (references[IDENTIFIER]("|" references[IDENTIFIER])*) (":" types[IDENTIFIER]("," types[IDENTIFIER])*)? ("[" minLength[INUMBER] ".." maxLength[INUMBER] "]")? "=" target[IDENTIFIER] ;
+	PathConstraint ::= source[IDENTIFIER] "." (references[IDENTIFIER]("|" references[IDENTIFIER])*) (":" types[IDENTIFIER]("," types[IDENTIFIER])*)? "in" pathVariable[IDENTIFIER] ("[" minLength[INUMBER] ".." maxLength[INUMBER] "]")? "=" target[IDENTIFIER] ;
 	
 	
 	VariableExp ::= referredVariable[IDENTIFIER] (path)?;
@@ -139,7 +146,7 @@ RULES {
 	
 	Rule ::= "rule" name[IDENTIFIER] "{" (patterns:Pattern)* "}" ;
 	
-	Pattern ::= type[LHS : "lhs", RHS : "rhs", NAC : "nac", PAC : "pac", PRE : "pre", POST : "post", LHS : ""] "{" "match" (variables ("," variables)* ";")?  (linkConstraints ("," linkConstraints)* ";")? ("where"  (statements)+)? "}";
+	Pattern ::= type[LHS : "lhs", RHS : "rhs", NAC : "nac", PAC : "pac", PRE : "pre", POST : "post", LHS : ""] "{" "match" (variables ("," variables)*)?  (linkConstraints ("," linkConstraints)*)? ("where"  (statements)+)? "}";
 	
 	PredefinedVariableExp ::= variable[this:"@this", id:"@id"] (path)?;
 }

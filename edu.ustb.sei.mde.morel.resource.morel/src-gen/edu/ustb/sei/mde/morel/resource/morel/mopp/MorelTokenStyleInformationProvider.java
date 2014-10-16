@@ -32,6 +32,12 @@ public class MorelTokenStyleInformationProvider {
 		if ("@id".equals(tokenName)) {
 			return new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelTokenStyle(new int[] {0x00, 0x00, 0xff}, null, false, false, false, false);
 		}
+		if ("SL_COMMENT".equals(tokenName)) {
+			return new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelTokenStyle(new int[] {0x00, 0x80, 0x00}, null, false, true, false, false);
+		}
+		if ("ML_COMMENT".equals(tokenName)) {
+			return new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelTokenStyle(new int[] {0x00, 0x80, 0x00}, null, false, true, false, false);
+		}
 		if ("querymodel".equals(tokenName)) {
 			return new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelTokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
 		}
@@ -65,6 +71,9 @@ public class MorelTokenStyleInformationProvider {
 		if ("where".equals(tokenName)) {
 			return new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelTokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
 		}
+		if ("in".equals(tokenName)) {
+			return new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelTokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
+		}
 		if ("forAll".equals(tokenName)) {
 			return new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelTokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
 		}
@@ -84,9 +93,6 @@ public class MorelTokenStyleInformationProvider {
 			return new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelTokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
 		}
 		if ("let".equals(tokenName)) {
-			return new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelTokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
-		}
-		if ("in".equals(tokenName)) {
 			return new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelTokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
 		}
 		if ("if".equals(tokenName)) {

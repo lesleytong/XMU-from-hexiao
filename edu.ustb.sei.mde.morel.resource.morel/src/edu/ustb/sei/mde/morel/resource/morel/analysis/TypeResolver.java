@@ -108,36 +108,40 @@ public class TypeResolver {
 	}
 	
 	static private EClassifier resolveClassifier(String type, Unit unit) {
-		int sep = type.indexOf('!');
-		if(sep!=-1) {
-			String modelName = type.substring(0, sep);
-			String typeName = type.substring(sep+1);
-			
-			for(TypedModel m : unit.getModels()) {
-				if(m.getName().equals(modelName)) {
+		try {
+			int sep = type.indexOf('!');
+			if(sep!=-1) {
+				String modelName = type.substring(0, sep);
+				String typeName = type.substring(sep+1);
+				
+				for(TypedModel m : unit.getModels()) {
+					if(m.getName().equals(modelName)) {
+						TreeIterator<EObject> it = m.getPackage().eAllContents();
+						while(it.hasNext()) {
+							EObject o = it.next();
+							if(o instanceof EClassifier) {
+								if(((EClassifier) o).getName().equals(typeName))
+									return (EClassifier) o;
+							}
+						}
+					}
+				}
+			} else {
+				for(TypedModel m : unit.getModels()) {
 					TreeIterator<EObject> it = m.getPackage().eAllContents();
 					while(it.hasNext()) {
 						EObject o = it.next();
 						if(o instanceof EClassifier) {
-							if(((EClassifier) o).getName().equals(typeName))
+							if(((EClassifier) o).getName().equals(type))
 								return (EClassifier) o;
 						}
 					}
 				}
+			
 			}
-		} else {
-			for(TypedModel m : unit.getModels()) {
-				TreeIterator<EObject> it = m.getPackage().eAllContents();
-				while(it.hasNext()) {
-					EObject o = it.next();
-					if(o instanceof EClassifier) {
-						if(((EClassifier) o).getName().equals(type))
-							return (EClassifier) o;
-					}
-				}
-			}
-		
+			return null;
+		} catch (Exception e) {
+			return null;
 		}
-		return null;
 	}
 }

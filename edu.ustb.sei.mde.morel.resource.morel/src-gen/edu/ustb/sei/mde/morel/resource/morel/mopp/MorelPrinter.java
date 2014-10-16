@@ -507,9 +507,6 @@ public class MorelPrinter implements edu.ustb.sei.mde.morel.resource.morel.IMore
 				printCountingMap.putAll(printCountingMap1);
 			}
 		}
-		// DEFINITION PART BEGINS (CsString)
-		out.print(";");
-		out.print(" ");
 	}
 	
 	public void print_edu_ustb_sei_mde_morel_Query_0_0(edu.ustb.sei.mde.morel.Query element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
@@ -576,9 +573,6 @@ public class MorelPrinter implements edu.ustb.sei.mde.morel.resource.morel.IMore
 				printCountingMap.putAll(printCountingMap1);
 			}
 		}
-		// DEFINITION PART BEGINS (CsString)
-		out.print(";");
-		out.print(" ");
 	}
 	
 	public void print_edu_ustb_sei_mde_morel_Query_1_0(edu.ustb.sei.mde.morel.Query element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
@@ -1298,21 +1292,6 @@ public class MorelPrinter implements edu.ustb.sei.mde.morel.resource.morel.IMore
 		// DEFINITION PART BEGINS (CsString)
 		out.print(".");
 		out.print(" ");
-		// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
-		count = printCountingMap.get("pathVariable");
-		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.PATH_CONSTRAINT__PATH_VARIABLE));
-			if (o != null) {
-				edu.ustb.sei.mde.morel.resource.morel.IMorelTokenResolver resolver = tokenResolverFactory.createTokenResolver("IDENTIFIER");
-				resolver.setOptions(getOptions());
-				out.print(resolver.deResolve(getReferenceResolverSwitch() == null ? null : getReferenceResolverSwitch().getPathConstraintPathVariableReferenceResolver().deResolve((edu.ustb.sei.mde.morel.Variable) o, element, (org.eclipse.emf.ecore.EReference) element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.PATH_CONSTRAINT__PATH_VARIABLE)), element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.PATH_CONSTRAINT__PATH_VARIABLE), element));
-				out.print(" ");
-			}
-			printCountingMap.put("pathVariable", count - 1);
-		}
-		// DEFINITION PART BEGINS (CsString)
-		out.print("@");
-		out.print(" ");
 		// DEFINITION PART BEGINS (CompoundDefinition)
 		print_edu_ustb_sei_mde_morel_PathConstraint_0(element, localtab, out, printCountingMap);
 		// DEFINITION PART BEGINS (CompoundDefinition)
@@ -1327,6 +1306,21 @@ public class MorelPrinter implements edu.ustb.sei.mde.morel.resource.morel.IMore
 			out1.close();
 			out.print(sWriter.toString());
 			printCountingMap.putAll(printCountingMap1);
+		}
+		// DEFINITION PART BEGINS (CsString)
+		out.print("in");
+		out.print(" ");
+		// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
+		count = printCountingMap.get("pathVariable");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.PATH_CONSTRAINT__PATH_VARIABLE));
+			if (o != null) {
+				edu.ustb.sei.mde.morel.resource.morel.IMorelTokenResolver resolver = tokenResolverFactory.createTokenResolver("IDENTIFIER");
+				resolver.setOptions(getOptions());
+				out.print(resolver.deResolve(getReferenceResolverSwitch() == null ? null : getReferenceResolverSwitch().getPathConstraintPathVariableReferenceResolver().deResolve((edu.ustb.sei.mde.morel.Variable) o, element, (org.eclipse.emf.ecore.EReference) element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.PATH_CONSTRAINT__PATH_VARIABLE)), element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.PATH_CONSTRAINT__PATH_VARIABLE), element));
+				out.print(" ");
+			}
+			printCountingMap.put("pathVariable", count - 1);
 		}
 		// DEFINITION PART BEGINS (CompoundDefinition)
 		sWriter = new java.io.StringWriter();
@@ -3810,9 +3804,6 @@ public class MorelPrinter implements edu.ustb.sei.mde.morel.resource.morel.IMore
 				printCountingMap.putAll(printCountingMap1);
 			}
 		}
-		// DEFINITION PART BEGINS (CsString)
-		out.print(";");
-		out.print(" ");
 	}
 	
 	public void print_edu_ustb_sei_mde_morel_Pattern_0_0(edu.ustb.sei.mde.morel.Pattern element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
@@ -3879,9 +3870,6 @@ public class MorelPrinter implements edu.ustb.sei.mde.morel.resource.morel.IMore
 				printCountingMap.putAll(printCountingMap1);
 			}
 		}
-		// DEFINITION PART BEGINS (CsString)
-		out.print(";");
-		out.print(" ");
 	}
 	
 	public void print_edu_ustb_sei_mde_morel_Pattern_1_0(edu.ustb.sei.mde.morel.Pattern element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {

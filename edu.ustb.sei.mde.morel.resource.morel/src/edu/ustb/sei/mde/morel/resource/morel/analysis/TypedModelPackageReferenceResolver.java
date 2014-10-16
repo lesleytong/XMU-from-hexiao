@@ -24,27 +24,32 @@ public class TypedModelPackageReferenceResolver implements edu.ustb.sei.mde.more
 	
 	public void resolve(String identifier, edu.ustb.sei.mde.morel.TypedModel container, org.eclipse.emf.ecore.EReference reference, int position, boolean resolveFuzzy, final edu.ustb.sei.mde.morel.resource.morel.IMorelReferenceResolveResult<org.eclipse.emf.ecore.EPackage> result) {
 		if(resolveFuzzy){
-			Resource resource = container.eResource();
-			if(resource==null) return;
-			ResourceSet set = resource.getResourceSet();
-			
-			
-			String uri = null;
-			
-			if(identifier.charAt(identifier.length()-1)=='#')
-				identifier.substring(1,identifier.length()-1);
-			else uri = identifier.substring(1);
-			
-			 Map<String, URI> map = EcorePlugin.getEPackageNsURIToGenModelLocationMap(false);
-			 for(Entry<String,URI> uriEntry : map.entrySet()) {
-				 if(StringUtil.fuzzyCompare(uriEntry.getKey(), uri)) {
-//					 Resource res = resourceSet.getResource(uriEntry.getValue(), true);
-//					 EcorePlugin.getDefaultRegistryImplementation().getEFactory(uriEntry.getKey())
-					 EObject target = set.getEObject(uriEntry.getValue(), true);
-					result.addQuickFix(new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelChangeReferenceQuickFix("Replace with " + uri, 
-							 "IMG_TOOL_FORWARD", container, reference, (EObject)container.eGet(reference), target));
-				 }
-			 }
+//			try {
+//				Resource resource = container.eResource();
+//				if(resource==null) return;
+//				ResourceSet set = resource.getResourceSet();
+//				
+//				
+//				String uri = null;
+//				
+//				if(identifier.charAt(identifier.length()-1)=='#')
+//					uri = identifier.substring(1,identifier.length()-1);
+//				else uri = identifier.substring(1);
+//				
+//				 Map<String, URI> map = EcorePlugin.getEPackageNsURIToGenModelLocationMap(false);
+//				 for(Entry<String,URI> uriEntry : map.entrySet()) {
+//					 if(uriEntry.getKey().indexOf(uri)!=-1) {
+//						URI u = URI.createURI(uriEntry.getKey());
+//						Resource res = set.getResource(u, true);
+//						EObject target = res.getContents().get(0);
+//						
+//						result.addQuickFix(new edu.ustb.sei.mde.morel.resource.morel.mopp.SetPackageReferenceQuickFix("Replace with " + uri, 
+//								 "IMG_TOOL_FORWARD", container, reference, target));
+//					 }
+//				 }
+//			} catch (Exception e) {
+//				
+//			}
 		} else {
 			String uri = identifier.substring(1, identifier.length()-1);
 			delegate.resolve(uri, container, reference, position, resolveFuzzy, result);

@@ -38,6 +38,7 @@ public abstract class VariableImpl extends NamedElementImpl implements Variable 
 
 	public boolean equals(Object o) {
 		if(o==null || !(o instanceof Variable)) return false;
+		if(this.getName()==null) return false;
 		return this.getName().equals(((Variable)o).getName());		
 	}
 	
