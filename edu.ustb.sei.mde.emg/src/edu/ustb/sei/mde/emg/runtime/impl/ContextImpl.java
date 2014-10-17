@@ -12,9 +12,12 @@ import edu.ustb.sei.mde.morel.Rule;
 import edu.ustb.sei.mde.morel.SectionType;
 import edu.ustb.sei.mde.morel.Variable;
 import edu.ustb.sei.mde.morel.VariableWithInit;
+
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -316,6 +319,8 @@ public class ContextImpl extends MinimalEObjectImpl.Container implements Context
 				}
 			}
 		}
+		
+		reloadValue();
 	}
 
 	/**
@@ -350,6 +355,21 @@ public class ContextImpl extends MinimalEObjectImpl.Container implements Context
 		}
 		return null;
 	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Object get(String name) {
+		if(null==null) return null;
+		Variable v = this.findVariable(name);
+		if(v==null)
+			return null;
+		return this.getValue(v);
+	}
+	
+	
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -406,6 +426,20 @@ public class ContextImpl extends MinimalEObjectImpl.Container implements Context
 		else if(this.getParentScope()!=null&&this.getParentScope()!=this)
 			return getParentScope().containVariable(var);
 		else return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Variable findVariable(String name) {
+		Map<Variable, Object> map = this.getBindingMap();
+		for(Entry<Variable,Object> e : map.entrySet()) {
+			if(e.getKey().getName().equals(name)) return e.getKey();
+		}
+		if(this.getParentScope()==null) return null;
+		else return this.getParentScope().findVariable(name);
 	}
 
 	/**
@@ -525,6 +559,8 @@ public class ContextImpl extends MinimalEObjectImpl.Container implements Context
 				return newScope();
 			case RuntimePackage.CONTEXT___GET_VALUE__VARIABLE:
 				return getValue((Variable)arguments.get(0));
+			case RuntimePackage.CONTEXT___GET__STRING:
+				return get((String)arguments.get(0));
 			case RuntimePackage.CONTEXT___PUT_VALUE__VARIABLE_OBJECT:
 				putValue((Variable)arguments.get(0), arguments.get(1));
 				return null;
@@ -535,6 +571,8 @@ public class ContextImpl extends MinimalEObjectImpl.Container implements Context
 				return null;
 			case RuntimePackage.CONTEXT___CONTAIN_VARIABLE__VARIABLE:
 				return containVariable((Variable)arguments.get(0));
+			case RuntimePackage.CONTEXT___FIND_VARIABLE__STRING:
+				return findVariable((String)arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
 	}
@@ -557,5 +595,23 @@ public class ContextImpl extends MinimalEObjectImpl.Container implements Context
 		return result.toString();
 	}
 	
+	
+
+	private Map<String, Object> map;
+	@Override
+	public void registerValueMap(Map<String,Object> map) {
+		// TODO Auto-generated method stub
+		this.map = map;
+	}
+	
+	protected void reloadValue() {
+		if(map==null) return;
+		for(Entry<String,Object> entry : map.entrySet()) {
+			Variable v = this.findVariable(entry.getKey());
+			if(v!=null) {
+				this.putValue(v, entry.getValue());
+			}
+		}
+	}
 
 } //ContextImpl

@@ -3,7 +3,10 @@
 package edu.ustb.sei.mde.emg.runtime;
 
 import edu.ustb.sei.mde.morel.Variable;
+
 import java.util.Map;
+import java.util.Map.Entry;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -187,6 +190,14 @@ public interface Context extends EObject {
 	 * @model
 	 * @generated
 	 */
+	Object get(String name);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
 	void putValue(Variable var, Object value);
 
 	/**
@@ -213,4 +224,14 @@ public interface Context extends EObject {
 	 */
 	boolean containVariable(Variable var);
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	Variable findVariable(String name);
+
+	
+	void registerValueMap(Map<String, Object> map);
 } // Context

@@ -15,6 +15,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link edu.ustb.sei.mde.morel.OperationPathExp#getSeparator <em>Separator</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.morel.OperationPathExp#getOperation <em>Operation</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.morel.OperationPathExp#getParameters <em>Parameters</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.morel.OperationPathExp#getMode <em>Mode</em>}</li>
  * </ul>
  * </p>
  *
@@ -93,5 +94,35 @@ public interface OperationPathExp extends CallPathExp {
 	 * @generated
 	 */
 	EList<Expression> getParameters();
+
+	/**
+	 * Returns the value of the '<em><b>Mode</b></em>' attribute.
+	 * The default value is <code>"default"</code>.
+	 * The literals are from the enumeration {@link edu.ustb.sei.mde.morel.ExecutionMode}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Mode</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Mode</em>' attribute.
+	 * @see edu.ustb.sei.mde.morel.ExecutionMode
+	 * @see #setMode(ExecutionMode)
+	 * @see edu.ustb.sei.mde.morel.MorelPackage#getOperationPathExp_Mode()
+	 * @model default="default"
+	 * @generated
+	 */
+	ExecutionMode getMode();
+
+	/**
+	 * Sets the value of the '{@link edu.ustb.sei.mde.morel.OperationPathExp#getMode <em>Mode</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Mode</em>' attribute.
+	 * @see edu.ustb.sei.mde.morel.ExecutionMode
+	 * @see #getMode()
+	 * @generated
+	 */
+	void setMode(ExecutionMode value);
 
 } // OperationPathExp

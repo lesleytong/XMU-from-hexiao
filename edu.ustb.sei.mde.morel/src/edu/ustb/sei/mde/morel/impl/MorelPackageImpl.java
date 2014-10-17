@@ -5,6 +5,7 @@ package edu.ustb.sei.mde.morel.impl;
 import edu.ustb.sei.mde.morel.AdditiveExp;
 import edu.ustb.sei.mde.morel.AdditiveExpChild;
 import edu.ustb.sei.mde.morel.AdditiveOperator;
+import edu.ustb.sei.mde.morel.ArrayLiteralExp;
 import edu.ustb.sei.mde.morel.AtomicExp;
 import edu.ustb.sei.mde.morel.BagType;
 import edu.ustb.sei.mde.morel.BindExp;
@@ -25,6 +26,8 @@ import edu.ustb.sei.mde.morel.ConditionExp;
 import edu.ustb.sei.mde.morel.DeclarativeStatement;
 import edu.ustb.sei.mde.morel.EnclosureLinkConstraint;
 import edu.ustb.sei.mde.morel.EnumLiteralExp;
+import edu.ustb.sei.mde.morel.Executeable;
+import edu.ustb.sei.mde.morel.ExecutionMode;
 import edu.ustb.sei.mde.morel.Expression;
 import edu.ustb.sei.mde.morel.FeaturePathExp;
 import edu.ustb.sei.mde.morel.ForStatement;
@@ -60,6 +63,7 @@ import edu.ustb.sei.mde.morel.PrimitiveVariableWithInit;
 import edu.ustb.sei.mde.morel.Query;
 import edu.ustb.sei.mde.morel.QueryModel;
 import edu.ustb.sei.mde.morel.RealLiteralExp;
+import edu.ustb.sei.mde.morel.ReflectiveVariableExp;
 import edu.ustb.sei.mde.morel.RelationalExp;
 import edu.ustb.sei.mde.morel.RelationalExpChild;
 import edu.ustb.sei.mde.morel.RelationalOperator;
@@ -588,6 +592,27 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass reflectiveVariableExpEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass arrayLiteralExpEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass executeableEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum sectionTypeEEnum = null;
 
 	/**
@@ -652,6 +677,13 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 * @generated
 	 */
 	private EEnum unaryOperatorEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum executionModeEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -1394,6 +1426,15 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getOperationPathExp_Mode() {
+		return (EAttribute)operationPathExpEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getLoopPathExp() {
 		return loopPathExpEClass;
 	}
@@ -2105,6 +2146,60 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getReflectiveVariableExp() {
+		return reflectiveVariableExpEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getReflectiveVariableExp_Variable() {
+		return (EReference)reflectiveVariableExpEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getArrayLiteralExp() {
+		return arrayLiteralExpEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getArrayLiteralExp_Elements() {
+		return (EReference)arrayLiteralExpEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getExecuteable() {
+		return executeableEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getExecuteable_Active() {
+		return (EAttribute)executeableEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getSectionType() {
 		return sectionTypeEEnum;
 	}
@@ -2188,6 +2283,15 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 */
 	public EEnum getUnaryOperator() {
 		return unaryOperatorEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getExecutionMode() {
+		return executionModeEEnum;
 	}
 
 	/**
@@ -2324,6 +2428,7 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		createEAttribute(operationPathExpEClass, OPERATION_PATH_EXP__SEPARATOR);
 		createEAttribute(operationPathExpEClass, OPERATION_PATH_EXP__OPERATION);
 		createEReference(operationPathExpEClass, OPERATION_PATH_EXP__PARAMETERS);
+		createEAttribute(operationPathExpEClass, OPERATION_PATH_EXP__MODE);
 
 		loopPathExpEClass = createEClass(LOOP_PATH_EXP);
 
@@ -2441,6 +2546,15 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 
 		imperativeStatementEClass = createEClass(IMPERATIVE_STATEMENT);
 
+		reflectiveVariableExpEClass = createEClass(REFLECTIVE_VARIABLE_EXP);
+		createEReference(reflectiveVariableExpEClass, REFLECTIVE_VARIABLE_EXP__VARIABLE);
+
+		arrayLiteralExpEClass = createEClass(ARRAY_LITERAL_EXP);
+		createEReference(arrayLiteralExpEClass, ARRAY_LITERAL_EXP__ELEMENTS);
+
+		executeableEClass = createEClass(EXECUTEABLE);
+		createEAttribute(executeableEClass, EXECUTEABLE__ACTIVE);
+
 		// Create enums
 		sectionTypeEEnum = createEEnum(SECTION_TYPE);
 		undefinedLiteralEEnum = createEEnum(UNDEFINED_LITERAL);
@@ -2452,6 +2566,7 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		additiveOperatorEEnum = createEEnum(ADDITIVE_OPERATOR);
 		multiplicativeOperatorEEnum = createEEnum(MULTIPLICATIVE_OPERATOR);
 		unaryOperatorEEnum = createEEnum(UNARY_OPERATOR);
+		executionModeEEnum = createEEnum(EXECUTION_MODE);
 	}
 
 	/**
@@ -2494,6 +2609,7 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		typedModelEClass.getESuperTypes().add(this.getNamedElement());
 		queryEClass.getESuperTypes().add(this.getPattern());
 		queryEClass.getESuperTypes().add(this.getNamedElement());
+		queryEClass.getESuperTypes().add(this.getExecuteable());
 		atomicExpEClass.getESuperTypes().add(this.getUnaryExpChild());
 		literalExpEClass.getESuperTypes().add(this.getAtomicExp());
 		stringLiteralExpEClass.getESuperTypes().add(this.getLiteralExp());
@@ -2547,8 +2663,11 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		transformationModelEClass.getESuperTypes().add(this.getUnit());
 		transformationModelEClass.getESuperTypes().add(this.getNamedElement());
 		ruleEClass.getESuperTypes().add(this.getNamedElement());
+		ruleEClass.getESuperTypes().add(this.getExecuteable());
 		declarativeStatementEClass.getESuperTypes().add(this.getStatement());
 		imperativeStatementEClass.getESuperTypes().add(this.getStatement());
+		reflectiveVariableExpEClass.getESuperTypes().add(this.getExpression());
+		arrayLiteralExpEClass.getESuperTypes().add(this.getLiteralExp());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(namedElementEClass, NamedElement.class, "NamedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2659,6 +2778,7 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		initEAttribute(getOperationPathExp_Separator(), this.getOperationSeparator(), "separator", null, 1, 1, OperationPathExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getOperationPathExp_Operation(), ecorePackage.getEString(), "operation", null, 1, 1, OperationPathExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getOperationPathExp_Parameters(), this.getExpression(), null, "parameters", null, 0, -1, OperationPathExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getOperationPathExp_Mode(), this.getExecutionMode(), "mode", "default", 0, 1, OperationPathExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(loopPathExpEClass, LoopPathExp.class, "LoopPathExp", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -2776,6 +2896,15 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 
 		initEClass(imperativeStatementEClass, ImperativeStatement.class, "ImperativeStatement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
+		initEClass(reflectiveVariableExpEClass, ReflectiveVariableExp.class, "ReflectiveVariableExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getReflectiveVariableExp_Variable(), this.getVariable(), null, "variable", null, 1, 1, ReflectiveVariableExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(arrayLiteralExpEClass, ArrayLiteralExp.class, "ArrayLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getArrayLiteralExp_Elements(), this.getExpression(), null, "elements", null, 0, -1, ArrayLiteralExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(executeableEClass, Executeable.class, "Executeable", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getExecuteable_Active(), ecorePackage.getEBoolean(), "active", "true", 0, 1, Executeable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		// Initialize enums and add enum literals
 		initEEnum(sectionTypeEEnum, SectionType.class, "SectionType");
 		addEEnumLiteral(sectionTypeEEnum, SectionType.LHS);
@@ -2831,6 +2960,11 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		addEEnumLiteral(unaryOperatorEEnum, UnaryOperator.PLUS);
 		addEEnumLiteral(unaryOperatorEEnum, UnaryOperator.MINUS);
 		addEEnumLiteral(unaryOperatorEEnum, UnaryOperator.NOT);
+
+		initEEnum(executionModeEEnum, ExecutionMode.class, "ExecutionMode");
+		addEEnumLiteral(executionModeEEnum, ExecutionMode.DEFAULT);
+		addEEnumLiteral(executionModeEEnum, ExecutionMode.FIND_ONE);
+		addEEnumLiteral(executionModeEEnum, ExecutionMode.DO_ALL);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -13,6 +13,7 @@ import java.util.Map.Entry;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
@@ -21,6 +22,9 @@ import edu.ustb.sei.mde.emg.runtime.Context;
 import edu.ustb.sei.mde.emg.runtime.Environment;
 import edu.ustb.sei.mde.emg.runtime.RuntimeFactory;
 import edu.ustb.sei.mde.modeling.ui.ConsoleUtil;
+import edu.ustb.sei.mde.morel.MorelFactory;
+import edu.ustb.sei.mde.morel.PredefinedVariable;
+import edu.ustb.sei.mde.morel.PrimitiveVariable;
 import edu.ustb.sei.mde.morel.Query;
 import edu.ustb.sei.mde.morel.QueryModel;
 import edu.ustb.sei.mde.morel.TransformationModel;
@@ -56,16 +60,29 @@ public class MorelLaunchConfigurationHelper {
 		String[] uris = getModelURIs(configuration);
 		// replace this delegate with your actual interpreter
 		
-		Environment env = RuntimeFactory.eINSTANCE.createEnvironment();				
+		Environment env = RuntimeFactory.eINSTANCE.createEnvironment();
+		
 		initModelSpace(root, uris, env);
 		
+		
 		try {
+			Context createContext = env.createContext();
+			
+			PrimitiveVariable var = MorelFactory.eINSTANCE.createPrimitiveVariable();
+			var.setName(PredefinedVariable.THIS.getLiteral());
+			var.setType(EcorePackage.eINSTANCE.getEJavaObject());
+			
+			OclInterpreter interpreter = new OclInterpreter();
+			createContext.registerVariable(var);
+			
+			
+			createContext.putValue(var, new ModuleProvider((Unit) root, interpreter));
+			
 			if(root instanceof QueryModel) {
-				OclInterpreter interpreter = new OclInterpreter();
-				interpreter.interprete_edu_ustb_sei_mde_morel_QueryModel((QueryModel) root, env.createContext());
+				interpreter.interprete_edu_ustb_sei_mde_morel_QueryModel((QueryModel) root, createContext);
 			} else if(root instanceof TransformationModel) {
-				OclInterpreter interpreter = new OclInterpreter();
-				interpreter.interprete_edu_ustb_sei_mde_morel_TransformationModel((TransformationModel) root, env.createContext());
+//				OclInterpreter interpreter = new OclInterpreter();
+				interpreter.interprete_edu_ustb_sei_mde_morel_TransformationModel((TransformationModel) root, createContext);
 				saveModelSpace(root, env);
 			} else {
 				SystemOutInterpreter delegate = new SystemOutInterpreter();
@@ -84,7 +101,6 @@ public class MorelLaunchConfigurationHelper {
 		for(Entry<TypedModel,ModelSpace> entry : map.entrySet()) {
 			entry.getValue().save();
 		}
-		
 	}
 
 	private void initModelSpace(org.eclipse.emf.ecore.EObject root,

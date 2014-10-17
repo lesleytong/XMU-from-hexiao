@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -17,7 +18,9 @@ import edu.ustb.sei.mde.emg.graph.ModelUniverse;
 import edu.ustb.sei.mde.emg.runtime.Environment;
 import edu.ustb.sei.mde.emg.runtime.datatype.OclCollection;
 import edu.ustb.sei.mde.emg.runtime.datatype.OclSequence;
+import edu.ustb.sei.mde.morel.CollectionType;
 import edu.ustb.sei.mde.morel.MorelFactory;
+import edu.ustb.sei.mde.morel.PrimitiveVariable;
 import edu.ustb.sei.mde.morel.SequenceType;
 import edu.ustb.sei.mde.morel.Variable;
 import edu.ustb.sei.mde.morel.resource.morel.execution.constraints.CustomConstraint;
@@ -180,12 +183,24 @@ public class PathArray {
 	}
 
 	public Object collectPath(Environment env) {
-		// TODO Auto-generated method stub
-		OclSequence seq = new OclSequence();
-		seq.setType(SEQ_TYPE);
-		for(int i = 0 ; i<size.getValue() ; i++) {
-			seq.add(env.getModelUniverse().getElementByID(path[i].getValue()));
+		try {
+			EClassifier type = null;
+			if(seqVariable instanceof PrimitiveVariable) {
+				type = ((PrimitiveVariable) seqVariable).getType();
+				OclCollection col = OclCollection.createCollection((CollectionType) type);
+				
+				for(int i = 0 ; i<size.getValue() ; i++) {
+					col.add(env.getModelUniverse().getElementByID(path[i].getValue()));
+				}
+				return col;
+			} else {
+				if(0<size.getValue()) {
+					return env.getModelUniverse().getElementByID(path[0].getValue());
+				}
+				return null;
+			}
+		} catch (Exception e) {
+			return null;
 		}
-		return seq;
 	}
 }

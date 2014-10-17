@@ -62,6 +62,11 @@
       <genEnumLiterals ecoreEnumLiteral="morel.ecore#//UnaryOperator/minus"/>
       <genEnumLiterals ecoreEnumLiteral="morel.ecore#//UnaryOperator/not"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="morel.ecore#//ExecutionMode">
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//ExecutionMode/default"/>
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//ExecutionMode/findOne"/>
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//ExecutionMode/doAll"/>
+    </genEnums>
     <genClasses image="false" ecoreClass="morel.ecore#//NamedElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute morel.ecore#//NamedElement/name"/>
     </genClasses>
@@ -165,6 +170,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute morel.ecore#//OperationPathExp/separator"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute morel.ecore#//OperationPathExp/operation"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//OperationPathExp/parameters"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute morel.ecore#//OperationPathExp/mode"/>
     </genClasses>
     <genClasses image="false" ecoreClass="morel.ecore#//LoopPathExp"/>
     <genClasses ecoreClass="morel.ecore#//IteratorPathExp">
@@ -265,5 +271,14 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//DeclarativeStatement/expression"/>
     </genClasses>
     <genClasses ecoreClass="morel.ecore#//ImperativeStatement"/>
+    <genClasses ecoreClass="morel.ecore#//ReflectiveVariableExp">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference morel.ecore#//ReflectiveVariableExp/variable"/>
+    </genClasses>
+    <genClasses ecoreClass="morel.ecore#//ArrayLiteralExp">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//ArrayLiteralExp/elements"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="morel.ecore#//Executeable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute morel.ecore#//Executeable/active"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

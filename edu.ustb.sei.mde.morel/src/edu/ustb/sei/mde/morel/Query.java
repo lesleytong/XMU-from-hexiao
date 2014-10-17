@@ -13,5 +13,5 @@ package edu.ustb.sei.mde.morel;
  * @model
  * @generated
  */
-public interface Query extends Pattern, NamedElement {
+public interface Query extends Pattern, NamedElement, Executeable {
 } // Query

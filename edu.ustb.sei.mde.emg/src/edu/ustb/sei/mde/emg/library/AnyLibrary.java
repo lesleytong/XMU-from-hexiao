@@ -121,7 +121,9 @@ public class AnyLibrary extends ReflectiveLibrary {
 		}
 		else if(self instanceof EObject){
 			return ((EObject)self).eClass();
-		} else 
+		} else if(self instanceof IModuleProvider)
+			return IModuleProvider.class;
+		else 
 			return EcorePackage.eINSTANCE.getEJavaObject();//OclAny
 	}
 }

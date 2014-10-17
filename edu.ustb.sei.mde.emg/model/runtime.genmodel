@@ -21,6 +21,9 @@
       <genOperations ecoreOperation="runtime.ecore#//Context/getValue">
         <genParameters ecoreParameter="runtime.ecore#//Context/getValue/var"/>
       </genOperations>
+      <genOperations ecoreOperation="runtime.ecore#//Context/get">
+        <genParameters ecoreParameter="runtime.ecore#//Context/get/name"/>
+      </genOperations>
       <genOperations ecoreOperation="runtime.ecore#//Context/putValue">
         <genParameters ecoreParameter="runtime.ecore#//Context/putValue/var"/>
         <genParameters ecoreParameter="runtime.ecore#//Context/putValue/value"/>
@@ -32,12 +35,22 @@
       <genOperations ecoreOperation="runtime.ecore#//Context/containVariable">
         <genParameters ecoreParameter="runtime.ecore#//Context/containVariable/var"/>
       </genOperations>
+      <genOperations ecoreOperation="runtime.ecore#//Context/findVariable">
+        <genParameters ecoreParameter="runtime.ecore#//Context/findVariable/name"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="runtime.ecore#//Environment">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute runtime.ecore#//Environment/modelSpaces"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute runtime.ecore#//Environment/modelUniverse"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference runtime.ecore#//Environment/executor"/>
       <genOperations ecoreOperation="runtime.ecore#//Environment/createContext"/>
       <genOperations ecoreOperation="runtime.ecore#//Environment/resetCache"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="runtime.ecore#//IModuleProvider">
+      <genOperations ecoreOperation="runtime.ecore#//IModuleProvider/executeFunction">
+        <genParameters ecoreParameter="runtime.ecore#//IModuleProvider/executeFunction/name"/>
+        <genParameters ecoreParameter="runtime.ecore#//IModuleProvider/executeFunction/parameters"/>
+      </genOperations>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

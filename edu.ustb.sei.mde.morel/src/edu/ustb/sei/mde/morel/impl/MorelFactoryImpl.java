@@ -104,6 +104,8 @@ public class MorelFactoryImpl extends EFactoryImpl implements MorelFactory {
 			case MorelPackage.TRANSFORMATION_MODEL: return createTransformationModel();
 			case MorelPackage.RULE: return createRule();
 			case MorelPackage.DECLARATIVE_STATEMENT: return createDeclarativeStatement();
+			case MorelPackage.REFLECTIVE_VARIABLE_EXP: return createReflectiveVariableExp();
+			case MorelPackage.ARRAY_LITERAL_EXP: return createArrayLiteralExp();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -137,6 +139,8 @@ public class MorelFactoryImpl extends EFactoryImpl implements MorelFactory {
 				return createMultiplicativeOperatorFromString(eDataType, initialValue);
 			case MorelPackage.UNARY_OPERATOR:
 				return createUnaryOperatorFromString(eDataType, initialValue);
+			case MorelPackage.EXECUTION_MODE:
+				return createExecutionModeFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -170,6 +174,8 @@ public class MorelFactoryImpl extends EFactoryImpl implements MorelFactory {
 				return convertMultiplicativeOperatorToString(eDataType, instanceValue);
 			case MorelPackage.UNARY_OPERATOR:
 				return convertUnaryOperatorToString(eDataType, instanceValue);
+			case MorelPackage.EXECUTION_MODE:
+				return convertExecutionModeToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -650,6 +656,26 @@ public class MorelFactoryImpl extends EFactoryImpl implements MorelFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ReflectiveVariableExp createReflectiveVariableExp() {
+		ReflectiveVariableExpImpl reflectiveVariableExp = new ReflectiveVariableExpImpl();
+		return reflectiveVariableExp;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ArrayLiteralExp createArrayLiteralExp() {
+		ArrayLiteralExpImpl arrayLiteralExp = new ArrayLiteralExpImpl();
+		return arrayLiteralExp;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public SectionType createSectionTypeFromString(EDataType eDataType, String initialValue) {
 		SectionType result = SectionType.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
@@ -842,6 +868,26 @@ public class MorelFactoryImpl extends EFactoryImpl implements MorelFactory {
 	 * @generated
 	 */
 	public String convertUnaryOperatorToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ExecutionMode createExecutionModeFromString(EDataType eDataType, String initialValue) {
+		ExecutionMode result = ExecutionMode.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertExecutionModeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

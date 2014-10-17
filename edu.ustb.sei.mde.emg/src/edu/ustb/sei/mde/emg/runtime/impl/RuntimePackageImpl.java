@@ -8,9 +8,7 @@ import edu.ustb.sei.mde.emg.runtime.Context;
 import edu.ustb.sei.mde.emg.runtime.Environment;
 import edu.ustb.sei.mde.emg.runtime.RuntimeFactory;
 import edu.ustb.sei.mde.emg.runtime.RuntimePackage;
-
 import edu.ustb.sei.mde.morel.MorelPackage;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -18,7 +16,6 @@ import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
@@ -206,7 +203,7 @@ public class RuntimePackageImpl extends EPackageImpl implements RuntimePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getContext__PutValue__Variable_Object() {
+	public EOperation getContext__Get__String() {
 		return contextEClass.getEOperations().get(3);
 	}
 
@@ -215,7 +212,7 @@ public class RuntimePackageImpl extends EPackageImpl implements RuntimePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getContext__GetCopy() {
+	public EOperation getContext__PutValue__Variable_Object() {
 		return contextEClass.getEOperations().get(4);
 	}
 
@@ -224,7 +221,7 @@ public class RuntimePackageImpl extends EPackageImpl implements RuntimePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getContext__RegisterVariable__Variable() {
+	public EOperation getContext__GetCopy() {
 		return contextEClass.getEOperations().get(5);
 	}
 
@@ -233,8 +230,26 @@ public class RuntimePackageImpl extends EPackageImpl implements RuntimePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getContext__ContainVariable__Variable() {
+	public EOperation getContext__RegisterVariable__Variable() {
 		return contextEClass.getEOperations().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getContext__ContainVariable__Variable() {
+		return contextEClass.getEOperations().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getContext__FindVariable__String() {
+		return contextEClass.getEOperations().get(8);
 	}
 
 	/**
@@ -337,10 +352,12 @@ public class RuntimePackageImpl extends EPackageImpl implements RuntimePackage {
 		createEOperation(contextEClass, CONTEXT___INIT_WITH_HOST);
 		createEOperation(contextEClass, CONTEXT___NEW_SCOPE);
 		createEOperation(contextEClass, CONTEXT___GET_VALUE__VARIABLE);
+		createEOperation(contextEClass, CONTEXT___GET__STRING);
 		createEOperation(contextEClass, CONTEXT___PUT_VALUE__VARIABLE_OBJECT);
 		createEOperation(contextEClass, CONTEXT___GET_COPY);
 		createEOperation(contextEClass, CONTEXT___REGISTER_VARIABLE__VARIABLE);
 		createEOperation(contextEClass, CONTEXT___CONTAIN_VARIABLE__VARIABLE);
+		createEOperation(contextEClass, CONTEXT___FIND_VARIABLE__STRING);
 
 		environmentEClass = createEClass(ENVIRONMENT);
 		createEAttribute(environmentEClass, ENVIRONMENT__MODEL_SPACES);
@@ -405,6 +422,9 @@ public class RuntimePackageImpl extends EPackageImpl implements RuntimePackage {
 		EOperation op = initEOperation(getContext__GetValue__Variable(), ecorePackage.getEJavaObject(), "getValue", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMorelPackage.getVariable(), "var", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		op = initEOperation(getContext__Get__String(), ecorePackage.getEJavaObject(), "get", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "name", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		op = initEOperation(getContext__PutValue__Variable_Object(), null, "putValue", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMorelPackage.getVariable(), "var", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEJavaObject(), "value", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -416,6 +436,9 @@ public class RuntimePackageImpl extends EPackageImpl implements RuntimePackage {
 
 		op = initEOperation(getContext__ContainVariable__Variable(), ecorePackage.getEBoolean(), "containVariable", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMorelPackage.getVariable(), "var", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getContext__FindVariable__String(), theMorelPackage.getVariable(), "findVariable", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "name", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(environmentEClass, Environment.class, "Environment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		g1 = createEGenericType(ecorePackage.getEMap());

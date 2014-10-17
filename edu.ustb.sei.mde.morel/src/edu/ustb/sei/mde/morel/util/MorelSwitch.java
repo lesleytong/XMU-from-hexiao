@@ -165,6 +165,7 @@ public class MorelSwitch<T> extends Switch<T> {
 				T result = caseQuery(query);
 				if (result == null) result = casePattern(query);
 				if (result == null) result = caseNamedElement(query);
+				if (result == null) result = caseExecuteable(query);
 				if (result == null) result = caseSection(query);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -714,6 +715,7 @@ public class MorelSwitch<T> extends Switch<T> {
 				Rule rule = (Rule)theEObject;
 				T result = caseRule(rule);
 				if (result == null) result = caseNamedElement(rule);
+				if (result == null) result = caseExecuteable(rule);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -734,6 +736,35 @@ public class MorelSwitch<T> extends Switch<T> {
 				ImperativeStatement imperativeStatement = (ImperativeStatement)theEObject;
 				T result = caseImperativeStatement(imperativeStatement);
 				if (result == null) result = caseStatement(imperativeStatement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MorelPackage.REFLECTIVE_VARIABLE_EXP: {
+				ReflectiveVariableExp reflectiveVariableExp = (ReflectiveVariableExp)theEObject;
+				T result = caseReflectiveVariableExp(reflectiveVariableExp);
+				if (result == null) result = caseExpression(reflectiveVariableExp);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MorelPackage.ARRAY_LITERAL_EXP: {
+				ArrayLiteralExp arrayLiteralExp = (ArrayLiteralExp)theEObject;
+				T result = caseArrayLiteralExp(arrayLiteralExp);
+				if (result == null) result = caseLiteralExp(arrayLiteralExp);
+				if (result == null) result = caseAtomicExp(arrayLiteralExp);
+				if (result == null) result = caseUnaryExpChild(arrayLiteralExp);
+				if (result == null) result = caseMultiplicativeExpChild(arrayLiteralExp);
+				if (result == null) result = caseAdditiveExpChild(arrayLiteralExp);
+				if (result == null) result = caseRelationalExpChild(arrayLiteralExp);
+				if (result == null) result = caseBooleanAndExpChild(arrayLiteralExp);
+				if (result == null) result = caseBooleanOrExpChild(arrayLiteralExp);
+				if (result == null) result = caseBooleanImpliesExpChild(arrayLiteralExp);
+				if (result == null) result = caseExpression(arrayLiteralExp);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MorelPackage.EXECUTEABLE: {
+				Executeable executeable = (Executeable)theEObject;
+				T result = caseExecuteable(executeable);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1773,6 +1804,51 @@ public class MorelSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseImperativeStatement(ImperativeStatement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Reflective Variable Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Reflective Variable Exp</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseReflectiveVariableExp(ReflectiveVariableExp object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Array Literal Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Array Literal Exp</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseArrayLiteralExp(ArrayLiteralExp object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Executeable</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Executeable</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseExecuteable(Executeable object) {
 		return null;
 	}
 

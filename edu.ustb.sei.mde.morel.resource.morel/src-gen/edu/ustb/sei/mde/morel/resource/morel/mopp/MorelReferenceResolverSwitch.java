@@ -29,6 +29,7 @@ public class MorelReferenceResolverSwitch implements edu.ustb.sei.mde.morel.reso
 	protected edu.ustb.sei.mde.morel.resource.morel.analysis.TypeLiteralExpValueReferenceResolver typeLiteralExpValueReferenceResolver = new edu.ustb.sei.mde.morel.resource.morel.analysis.TypeLiteralExpValueReferenceResolver();
 	protected edu.ustb.sei.mde.morel.resource.morel.analysis.EnumLiteralExpEnumTypeReferenceResolver enumLiteralExpEnumTypeReferenceResolver = new edu.ustb.sei.mde.morel.resource.morel.analysis.EnumLiteralExpEnumTypeReferenceResolver();
 	protected edu.ustb.sei.mde.morel.resource.morel.analysis.EnumLiteralExpEnumSymbolReferenceResolver enumLiteralExpEnumSymbolReferenceResolver = new edu.ustb.sei.mde.morel.resource.morel.analysis.EnumLiteralExpEnumSymbolReferenceResolver();
+	protected edu.ustb.sei.mde.morel.resource.morel.analysis.ReflectiveVariableExpVariableReferenceResolver reflectiveVariableExpVariableReferenceResolver = new edu.ustb.sei.mde.morel.resource.morel.analysis.ReflectiveVariableExpVariableReferenceResolver();
 	
 	public edu.ustb.sei.mde.morel.resource.morel.IMorelReferenceResolver<edu.ustb.sei.mde.morel.TypedModel, org.eclipse.emf.ecore.EPackage> getTypedModelPackageReferenceResolver() {
 		return getResolverChain(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getTypedModel_Package(), typedModelPackageReferenceResolver);
@@ -94,6 +95,10 @@ public class MorelReferenceResolverSwitch implements edu.ustb.sei.mde.morel.reso
 		return getResolverChain(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getEnumLiteralExp_EnumSymbol(), enumLiteralExpEnumSymbolReferenceResolver);
 	}
 	
+	public edu.ustb.sei.mde.morel.resource.morel.IMorelReferenceResolver<edu.ustb.sei.mde.morel.ReflectiveVariableExp, edu.ustb.sei.mde.morel.Variable> getReflectiveVariableExpVariableReferenceResolver() {
+		return getResolverChain(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getReflectiveVariableExp_Variable(), reflectiveVariableExpVariableReferenceResolver);
+	}
+	
 	public void setOptions(java.util.Map<?, ?> options) {
 		if (options != null) {
 			this.options = new java.util.LinkedHashMap<Object, Object>();
@@ -115,6 +120,7 @@ public class MorelReferenceResolverSwitch implements edu.ustb.sei.mde.morel.reso
 		typeLiteralExpValueReferenceResolver.setOptions(options);
 		enumLiteralExpEnumTypeReferenceResolver.setOptions(options);
 		enumLiteralExpEnumSymbolReferenceResolver.setOptions(options);
+		reflectiveVariableExpVariableReferenceResolver.setOptions(options);
 	}
 	
 	public void resolveFuzzy(String identifier, org.eclipse.emf.ecore.EObject container, org.eclipse.emf.ecore.EReference reference, int position, edu.ustb.sei.mde.morel.resource.morel.IMorelReferenceResolveResult<org.eclipse.emf.ecore.EObject> result) {
@@ -249,6 +255,14 @@ public class MorelReferenceResolverSwitch implements edu.ustb.sei.mde.morel.reso
 				enumLiteralExpEnumSymbolReferenceResolver.resolve(identifier, (edu.ustb.sei.mde.morel.EnumLiteralExp) container, (org.eclipse.emf.ecore.EReference) feature, position, true, frr);
 			}
 		}
+		if (edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getReflectiveVariableExp().isInstance(container)) {
+			MorelFuzzyResolveResult<edu.ustb.sei.mde.morel.Variable> frr = new MorelFuzzyResolveResult<edu.ustb.sei.mde.morel.Variable>(result);
+			String referenceName = reference.getName();
+			org.eclipse.emf.ecore.EStructuralFeature feature = container.eClass().getEStructuralFeature(referenceName);
+			if (feature != null && feature instanceof org.eclipse.emf.ecore.EReference && referenceName != null && referenceName.equals("variable")) {
+				reflectiveVariableExpVariableReferenceResolver.resolve(identifier, (edu.ustb.sei.mde.morel.ReflectiveVariableExp) container, (org.eclipse.emf.ecore.EReference) feature, position, true, frr);
+			}
+		}
 	}
 	
 	public edu.ustb.sei.mde.morel.resource.morel.IMorelReferenceResolver<? extends org.eclipse.emf.ecore.EObject, ? extends org.eclipse.emf.ecore.EObject> getResolver(org.eclipse.emf.ecore.EStructuralFeature reference) {
@@ -299,6 +313,9 @@ public class MorelReferenceResolverSwitch implements edu.ustb.sei.mde.morel.reso
 		}
 		if (reference == edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getEnumLiteralExp_EnumSymbol()) {
 			return getResolverChain(reference, enumLiteralExpEnumSymbolReferenceResolver);
+		}
+		if (reference == edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getReflectiveVariableExp_Variable()) {
+			return getResolverChain(reference, reflectiveVariableExpVariableReferenceResolver);
 		}
 		return null;
 	}

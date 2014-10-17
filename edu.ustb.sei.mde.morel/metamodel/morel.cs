@@ -66,7 +66,7 @@ RULES {
 	QueryModel ::= "querymodel" models+ queries*;
 	TypedModel ::= "type" name[IDENTIFIER] "<-"  package[URINS];
 	
-	Query ::= "query" type[LHS : "lhs", RHS : "rhs", NAC : "nac", PAC : "pac", PRE : "pre", POST : "post", LHS : ""] name[IDENTIFIER] "{" "match" (variables ("," variables)*)?  (linkConstraints ("," linkConstraints)*)? ("where" (statements)+)?"}";
+	Query ::= (active["active":"passive"])? "query" type[LHS : "lhs", RHS : "rhs", NAC : "nac", PAC : "pac", PRE : "pre", POST : "post", LHS : ""] name[IDENTIFIER] "{" "match" (variables ("," variables)*)?  (linkConstraints ("," linkConstraints)*)? ("where" (statements)+)?"}";
 	
 	ObjectVariable ::= name[IDENTIFIER] ":" (model[IDENTIFIER] "!")? type[IDENTIFIER];
 	
@@ -104,10 +104,12 @@ RULES {
 	CollectionLiteralExp ::= type[COLLECTION] "{" ((literals:LetExp, ConditionExp, BooleanImpliesExp)( "," literals:LetExp, ConditionExp, BooleanImpliesExp)*)? "}" (path)?;
 	
 	EnumLiteralExp ::= enumType[DATA_TYPE] "::" enumSymbol[IDENTIFIER] (path)?;
+	
+	ArrayLiteralExp ::= "<" (elements:LetExp, ConditionExp, BooleanImpliesExp, ReflectiveVariableExp ("," elements:LetExp, ConditionExp, BooleanImpliesExp, ReflectiveVariableExp)*)? ">";
 
 	FeaturePathExp ::= "." feature[IDENTIFIER] next?;
 	
-	OperationPathExp ::= separator[dot:"." , arrow:"->"] operation[IDENTIFIER] "(" (parameters:LetExp, ConditionExp, BooleanImpliesExp ("," parameters:LetExp, ConditionExp, BooleanImpliesExp)*)? ")" next?;
+	OperationPathExp ::= separator[dot:"." , arrow:"->"] operation[IDENTIFIER] ("[" mode[default:"", findOne:"findOne", doAll : "doAll"] "]")? "(" (parameters:ReflectiveVariableExp, LetExp, ConditionExp, BooleanImpliesExp ("," parameters:ReflectiveVariableExp, LetExp, ConditionExp, BooleanImpliesExp)*)? ")" next?;
 	
 	IteratorPathExp ::= "->" type[forAll : "forAll", exists : "exists", select : "select", reject : "reject", collect : "collect", closure : "closure"] "(" firstVar ("," secondVar)? "|" bodyExp:LetExp, ConditionExp, BooleanImpliesExp ")" (next)?;
 	
@@ -134,7 +136,7 @@ RULES {
 	
 	PredefinedBindExp ::= source "<-" valueExp:LetExp, ConditionExp, BooleanImpliesExp;
 	
-	DeclarativeStatement ::= expression : PredefinedBindExp, BindExp, LetExp, ConditionExp, BooleanImpliesExp ";" ;
+	DeclarativeStatement ::= expression : PredefinedBindExp, BindExp, LetExp, ConditionExp, BooleanImpliesExp, ReflectiveVariableExp ";" ;
 	
 	IfStatement ::= "if" "(" condition ")"  thenStatement  ("else"  elseStatement )? ;
 	
@@ -144,9 +146,11 @@ RULES {
 	
 	TransformationModel ::= "transformation" name[IDENTIFIER] models+ rules* ;
 	
-	Rule ::= "rule" name[IDENTIFIER] "{" (patterns:Pattern)* "}" ;
+	Rule ::= (active["active":"passive"])? "rule" name[IDENTIFIER] "{" (patterns:Pattern)* "}" ;
 	
 	Pattern ::= type[LHS : "lhs", RHS : "rhs", NAC : "nac", PAC : "pac", PRE : "pre", POST : "post", LHS : ""] "{" "match" (variables ("," variables)*)?  (linkConstraints ("," linkConstraints)*)? ("where"  (statements)+)? "}";
 	
 	PredefinedVariableExp ::= variable[this:"@this", id:"@id"] (path)?;
+	
+	ReflectiveVariableExp ::= "&" variable[IDENTIFIER];
 }

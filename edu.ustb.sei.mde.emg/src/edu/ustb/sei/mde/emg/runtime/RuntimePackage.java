@@ -150,13 +150,22 @@ public interface RuntimePackage extends EPackage {
 	int CONTEXT___GET_VALUE__VARIABLE = 2;
 
 	/**
+	 * The operation id for the '<em>Get</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTEXT___GET__STRING = 3;
+
+	/**
 	 * The operation id for the '<em>Put Value</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTEXT___PUT_VALUE__VARIABLE_OBJECT = 3;
+	int CONTEXT___PUT_VALUE__VARIABLE_OBJECT = 4;
 
 	/**
 	 * The operation id for the '<em>Get Copy</em>' operation.
@@ -165,7 +174,7 @@ public interface RuntimePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTEXT___GET_COPY = 4;
+	int CONTEXT___GET_COPY = 5;
 
 	/**
 	 * The operation id for the '<em>Register Variable</em>' operation.
@@ -174,7 +183,7 @@ public interface RuntimePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTEXT___REGISTER_VARIABLE__VARIABLE = 5;
+	int CONTEXT___REGISTER_VARIABLE__VARIABLE = 6;
 
 	/**
 	 * The operation id for the '<em>Contain Variable</em>' operation.
@@ -183,7 +192,16 @@ public interface RuntimePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTEXT___CONTAIN_VARIABLE__VARIABLE = 6;
+	int CONTEXT___CONTAIN_VARIABLE__VARIABLE = 7;
+
+	/**
+	 * The operation id for the '<em>Find Variable</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTEXT___FIND_VARIABLE__STRING = 8;
 
 	/**
 	 * The number of operations of the '<em>Context</em>' class.
@@ -192,7 +210,7 @@ public interface RuntimePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTEXT_OPERATION_COUNT = 7;
+	int CONTEXT_OPERATION_COUNT = 9;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.emg.runtime.impl.EnvironmentImpl <em>Environment</em>}' class.
@@ -377,6 +395,16 @@ public interface RuntimePackage extends EPackage {
 	EOperation getContext__GetValue__Variable();
 
 	/**
+	 * Returns the meta object for the '{@link edu.ustb.sei.mde.emg.runtime.Context#get(java.lang.String) <em>Get</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get</em>' operation.
+	 * @see edu.ustb.sei.mde.emg.runtime.Context#get(java.lang.String)
+	 * @generated
+	 */
+	EOperation getContext__Get__String();
+
+	/**
 	 * Returns the meta object for the '{@link edu.ustb.sei.mde.emg.runtime.Context#putValue(edu.ustb.sei.mde.morel.Variable, java.lang.Object) <em>Put Value</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -415,6 +443,16 @@ public interface RuntimePackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getContext__ContainVariable__Variable();
+
+	/**
+	 * Returns the meta object for the '{@link edu.ustb.sei.mde.emg.runtime.Context#findVariable(java.lang.String) <em>Find Variable</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Find Variable</em>' operation.
+	 * @see edu.ustb.sei.mde.emg.runtime.Context#findVariable(java.lang.String)
+	 * @generated
+	 */
+	EOperation getContext__FindVariable__String();
 
 	/**
 	 * Returns the meta object for class '{@link edu.ustb.sei.mde.emg.runtime.Environment <em>Environment</em>}'.
@@ -588,6 +626,14 @@ public interface RuntimePackage extends EPackage {
 		EOperation CONTEXT___GET_VALUE__VARIABLE = eINSTANCE.getContext__GetValue__Variable();
 
 		/**
+		 * The meta object literal for the '<em><b>Get</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation CONTEXT___GET__STRING = eINSTANCE.getContext__Get__String();
+
+		/**
 		 * The meta object literal for the '<em><b>Put Value</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -618,6 +664,14 @@ public interface RuntimePackage extends EPackage {
 		 * @generated
 		 */
 		EOperation CONTEXT___CONTAIN_VARIABLE__VARIABLE = eINSTANCE.getContext__ContainVariable__Variable();
+
+		/**
+		 * The meta object literal for the '<em><b>Find Variable</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation CONTEXT___FIND_VARIABLE__STRING = eINSTANCE.getContext__FindVariable__String();
 
 		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.emg.runtime.impl.EnvironmentImpl <em>Environment</em>}' class.

@@ -348,6 +348,18 @@ public class MorelAdapterFactory extends AdapterFactoryImpl {
 				return createImperativeStatementAdapter();
 			}
 			@Override
+			public Adapter caseReflectiveVariableExp(ReflectiveVariableExp object) {
+				return createReflectiveVariableExpAdapter();
+			}
+			@Override
+			public Adapter caseArrayLiteralExp(ArrayLiteralExp object) {
+				return createArrayLiteralExpAdapter();
+			}
+			@Override
+			public Adapter caseExecuteable(Executeable object) {
+				return createExecuteableAdapter();
+			}
+			@Override
 			public Adapter caseEModelElement(EModelElement object) {
 				return createEModelElementAdapter();
 			}
@@ -1346,6 +1358,48 @@ public class MorelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createImperativeStatementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.morel.ReflectiveVariableExp <em>Reflective Variable Exp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.morel.ReflectiveVariableExp
+	 * @generated
+	 */
+	public Adapter createReflectiveVariableExpAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.morel.ArrayLiteralExp <em>Array Literal Exp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.morel.ArrayLiteralExp
+	 * @generated
+	 */
+	public Adapter createArrayLiteralExpAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.morel.Executeable <em>Executeable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.morel.Executeable
+	 * @generated
+	 */
+	public Adapter createExecuteableAdapter() {
 		return null;
 	}
 

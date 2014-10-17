@@ -39,6 +39,7 @@ public class MorelBracketInformationProvider {
 		result.add(new BracketPair("{", "}", true));
 		result.add(new BracketPair("[", "]", true));
 		result.add(new BracketPair("(", ")", true));
+		result.add(new BracketPair("<", ">", true));
 		result.add(new BracketPair("'", "'", false));
 		return result;
 	}

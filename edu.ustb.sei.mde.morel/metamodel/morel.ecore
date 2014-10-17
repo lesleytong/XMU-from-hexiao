@@ -70,7 +70,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="package" lowerBound="1"
         eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Query" eSuperTypes="#//Pattern #//NamedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Query" eSuperTypes="#//Pattern #//NamedElement #//Executeable"/>
   <eClassifiers xsi:type="ecore:EClass" name="Unit" abstract="true">
     <eOperations name="getTypedModel" eType="#//TypedModel">
       <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -154,6 +154,8 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
         eType="#//Expression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mode" eType="#//ExecutionMode"
+        defaultValueLiteral="default"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="OperationSeparator">
     <eLiterals name="dot"/>
@@ -325,7 +327,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="rules" upperBound="-1"
         eType="#//Rule" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Rule" eSuperTypes="#//NamedElement">
+  <eClassifiers xsi:type="ecore:EClass" name="Rule" eSuperTypes="#//NamedElement #//Executeable">
     <eStructuralFeatures xsi:type="ecore:EReference" name="patterns" upperBound="-1"
         eType="#//Pattern" containment="true"/>
   </eClassifiers>
@@ -336,4 +338,21 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ImperativeStatement" abstract="true"
       eSuperTypes="#//Statement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ReflectiveVariableExp" eSuperTypes="#//Expression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" lowerBound="1"
+        eType="#//Variable"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ExecutionMode">
+    <eLiterals name="default"/>
+    <eLiterals name="findOne" value="1"/>
+    <eLiterals name="doAll" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ArrayLiteralExp" eSuperTypes="#//LiteralExp">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
+        eType="#//Expression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Executeable" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="active" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="true"/>
+  </eClassifiers>
 </ecore:EPackage>

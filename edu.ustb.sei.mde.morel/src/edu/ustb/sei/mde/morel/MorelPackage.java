@@ -858,13 +858,22 @@ public interface MorelPackage extends EPackage {
 	int QUERY__NAME = PATTERN_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Active</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY__ACTIVE = PATTERN_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Query</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int QUERY_FEATURE_COUNT = PATTERN_FEATURE_COUNT + 1;
+	int QUERY_FEATURE_COUNT = PATTERN_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Query</em>' class.
@@ -1827,13 +1836,22 @@ public interface MorelPackage extends EPackage {
 	int OPERATION_PATH_EXP__PARAMETERS = CALL_PATH_EXP_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Mode</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_PATH_EXP__MODE = CALL_PATH_EXP_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Operation Path Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_PATH_EXP_FEATURE_COUNT = CALL_PATH_EXP_FEATURE_COUNT + 3;
+	int OPERATION_PATH_EXP_FEATURE_COUNT = CALL_PATH_EXP_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Operation Path Exp</em>' class.
@@ -3710,13 +3728,22 @@ public interface MorelPackage extends EPackage {
 	int RULE__NAME = NAMED_ELEMENT__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Active</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RULE__ACTIVE = NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Patterns</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RULE__PATTERNS = NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int RULE__PATTERNS = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Rule</em>' class.
@@ -3725,7 +3752,7 @@ public interface MorelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RULE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int RULE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Rule</em>' class.
@@ -3774,6 +3801,126 @@ public interface MorelPackage extends EPackage {
 	int DECLARATIVE_STATEMENT_OPERATION_COUNT = STATEMENT_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.impl.ReflectiveVariableExpImpl <em>Reflective Variable Exp</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.morel.impl.ReflectiveVariableExpImpl
+	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getReflectiveVariableExp()
+	 * @generated
+	 */
+	int REFLECTIVE_VARIABLE_EXP = 69;
+
+	/**
+	 * The feature id for the '<em><b>Variable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFLECTIVE_VARIABLE_EXP__VARIABLE = EXPRESSION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Reflective Variable Exp</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFLECTIVE_VARIABLE_EXP_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Reflective Variable Exp</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFLECTIVE_VARIABLE_EXP_OPERATION_COUNT = EXPRESSION_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.impl.ArrayLiteralExpImpl <em>Array Literal Exp</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.morel.impl.ArrayLiteralExpImpl
+	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getArrayLiteralExp()
+	 * @generated
+	 */
+	int ARRAY_LITERAL_EXP = 70;
+
+	/**
+	 * The feature id for the '<em><b>Path</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARRAY_LITERAL_EXP__PATH = LITERAL_EXP__PATH;
+
+	/**
+	 * The feature id for the '<em><b>Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARRAY_LITERAL_EXP__ELEMENTS = LITERAL_EXP_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Array Literal Exp</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARRAY_LITERAL_EXP_FEATURE_COUNT = LITERAL_EXP_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Array Literal Exp</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARRAY_LITERAL_EXP_OPERATION_COUNT = LITERAL_EXP_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.impl.ExecuteableImpl <em>Executeable</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.morel.impl.ExecuteableImpl
+	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getExecuteable()
+	 * @generated
+	 */
+	int EXECUTEABLE = 71;
+
+	/**
+	 * The feature id for the '<em><b>Active</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXECUTEABLE__ACTIVE = 0;
+
+	/**
+	 * The number of structural features of the '<em>Executeable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXECUTEABLE_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Executeable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXECUTEABLE_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.SectionType <em>Section Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3781,7 +3928,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getSectionType()
 	 * @generated
 	 */
-	int SECTION_TYPE = 69;
+	int SECTION_TYPE = 72;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.UndefinedLiteral <em>Undefined Literal</em>}' enum.
@@ -3791,7 +3938,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getUndefinedLiteral()
 	 * @generated
 	 */
-	int UNDEFINED_LITERAL = 70;
+	int UNDEFINED_LITERAL = 73;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.PredefinedVariable <em>Predefined Variable</em>}' enum.
@@ -3801,7 +3948,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getPredefinedVariable()
 	 * @generated
 	 */
-	int PREDEFINED_VARIABLE = 71;
+	int PREDEFINED_VARIABLE = 74;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.OperationSeparator <em>Operation Separator</em>}' enum.
@@ -3811,7 +3958,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getOperationSeparator()
 	 * @generated
 	 */
-	int OPERATION_SEPARATOR = 72;
+	int OPERATION_SEPARATOR = 75;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.IteratorType <em>Iterator Type</em>}' enum.
@@ -3821,7 +3968,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getIteratorType()
 	 * @generated
 	 */
-	int ITERATOR_TYPE = 73;
+	int ITERATOR_TYPE = 76;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.BooleanOperator <em>Boolean Operator</em>}' enum.
@@ -3831,7 +3978,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getBooleanOperator()
 	 * @generated
 	 */
-	int BOOLEAN_OPERATOR = 74;
+	int BOOLEAN_OPERATOR = 77;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.RelationalOperator <em>Relational Operator</em>}' enum.
@@ -3841,7 +3988,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getRelationalOperator()
 	 * @generated
 	 */
-	int RELATIONAL_OPERATOR = 75;
+	int RELATIONAL_OPERATOR = 78;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.AdditiveOperator <em>Additive Operator</em>}' enum.
@@ -3851,7 +3998,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getAdditiveOperator()
 	 * @generated
 	 */
-	int ADDITIVE_OPERATOR = 76;
+	int ADDITIVE_OPERATOR = 79;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.MultiplicativeOperator <em>Multiplicative Operator</em>}' enum.
@@ -3861,7 +4008,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getMultiplicativeOperator()
 	 * @generated
 	 */
-	int MULTIPLICATIVE_OPERATOR = 77;
+	int MULTIPLICATIVE_OPERATOR = 80;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.UnaryOperator <em>Unary Operator</em>}' enum.
@@ -3871,7 +4018,18 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getUnaryOperator()
 	 * @generated
 	 */
-	int UNARY_OPERATOR = 78;
+	int UNARY_OPERATOR = 81;
+
+
+	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.ExecutionMode <em>Execution Mode</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.morel.ExecutionMode
+	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getExecutionMode()
+	 * @generated
+	 */
+	int EXECUTION_MODE = 82;
 
 
 	/**
@@ -4665,6 +4823,17 @@ public interface MorelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getOperationPathExp_Parameters();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.morel.OperationPathExp#getMode <em>Mode</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Mode</em>'.
+	 * @see edu.ustb.sei.mde.morel.OperationPathExp#getMode()
+	 * @see #getOperationPathExp()
+	 * @generated
+	 */
+	EAttribute getOperationPathExp_Mode();
 
 	/**
 	 * Returns the meta object for class '{@link edu.ustb.sei.mde.morel.LoopPathExp <em>Loop Path Exp</em>}'.
@@ -5499,6 +5668,69 @@ public interface MorelPackage extends EPackage {
 	EClass getImperativeStatement();
 
 	/**
+	 * Returns the meta object for class '{@link edu.ustb.sei.mde.morel.ReflectiveVariableExp <em>Reflective Variable Exp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Reflective Variable Exp</em>'.
+	 * @see edu.ustb.sei.mde.morel.ReflectiveVariableExp
+	 * @generated
+	 */
+	EClass getReflectiveVariableExp();
+
+	/**
+	 * Returns the meta object for the reference '{@link edu.ustb.sei.mde.morel.ReflectiveVariableExp#getVariable <em>Variable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Variable</em>'.
+	 * @see edu.ustb.sei.mde.morel.ReflectiveVariableExp#getVariable()
+	 * @see #getReflectiveVariableExp()
+	 * @generated
+	 */
+	EReference getReflectiveVariableExp_Variable();
+
+	/**
+	 * Returns the meta object for class '{@link edu.ustb.sei.mde.morel.ArrayLiteralExp <em>Array Literal Exp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Array Literal Exp</em>'.
+	 * @see edu.ustb.sei.mde.morel.ArrayLiteralExp
+	 * @generated
+	 */
+	EClass getArrayLiteralExp();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link edu.ustb.sei.mde.morel.ArrayLiteralExp#getElements <em>Elements</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Elements</em>'.
+	 * @see edu.ustb.sei.mde.morel.ArrayLiteralExp#getElements()
+	 * @see #getArrayLiteralExp()
+	 * @generated
+	 */
+	EReference getArrayLiteralExp_Elements();
+
+	/**
+	 * Returns the meta object for class '{@link edu.ustb.sei.mde.morel.Executeable <em>Executeable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Executeable</em>'.
+	 * @see edu.ustb.sei.mde.morel.Executeable
+	 * @generated
+	 */
+	EClass getExecuteable();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.morel.Executeable#isActive <em>Active</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Active</em>'.
+	 * @see edu.ustb.sei.mde.morel.Executeable#isActive()
+	 * @see #getExecuteable()
+	 * @generated
+	 */
+	EAttribute getExecuteable_Active();
+
+	/**
 	 * Returns the meta object for enum '{@link edu.ustb.sei.mde.morel.SectionType <em>Section Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5597,6 +5829,16 @@ public interface MorelPackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getUnaryOperator();
+
+	/**
+	 * Returns the meta object for enum '{@link edu.ustb.sei.mde.morel.ExecutionMode <em>Execution Mode</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Execution Mode</em>'.
+	 * @see edu.ustb.sei.mde.morel.ExecutionMode
+	 * @generated
+	 */
+	EEnum getExecutionMode();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -6284,6 +6526,14 @@ public interface MorelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference OPERATION_PATH_EXP__PARAMETERS = eINSTANCE.getOperationPathExp_Parameters();
+
+		/**
+		 * The meta object literal for the '<em><b>Mode</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OPERATION_PATH_EXP__MODE = eINSTANCE.getOperationPathExp_Mode();
 
 		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.impl.LoopPathExpImpl <em>Loop Path Exp</em>}' class.
@@ -6992,6 +7242,60 @@ public interface MorelPackage extends EPackage {
 		EClass IMPERATIVE_STATEMENT = eINSTANCE.getImperativeStatement();
 
 		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.impl.ReflectiveVariableExpImpl <em>Reflective Variable Exp</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.morel.impl.ReflectiveVariableExpImpl
+		 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getReflectiveVariableExp()
+		 * @generated
+		 */
+		EClass REFLECTIVE_VARIABLE_EXP = eINSTANCE.getReflectiveVariableExp();
+
+		/**
+		 * The meta object literal for the '<em><b>Variable</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REFLECTIVE_VARIABLE_EXP__VARIABLE = eINSTANCE.getReflectiveVariableExp_Variable();
+
+		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.impl.ArrayLiteralExpImpl <em>Array Literal Exp</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.morel.impl.ArrayLiteralExpImpl
+		 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getArrayLiteralExp()
+		 * @generated
+		 */
+		EClass ARRAY_LITERAL_EXP = eINSTANCE.getArrayLiteralExp();
+
+		/**
+		 * The meta object literal for the '<em><b>Elements</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ARRAY_LITERAL_EXP__ELEMENTS = eINSTANCE.getArrayLiteralExp_Elements();
+
+		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.impl.ExecuteableImpl <em>Executeable</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.morel.impl.ExecuteableImpl
+		 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getExecuteable()
+		 * @generated
+		 */
+		EClass EXECUTEABLE = eINSTANCE.getExecuteable();
+
+		/**
+		 * The meta object literal for the '<em><b>Active</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXECUTEABLE__ACTIVE = eINSTANCE.getExecuteable_Active();
+
+		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.SectionType <em>Section Type</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -7090,6 +7394,16 @@ public interface MorelPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum UNARY_OPERATOR = eINSTANCE.getUnaryOperator();
+
+		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.ExecutionMode <em>Execution Mode</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.morel.ExecutionMode
+		 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getExecutionMode()
+		 * @generated
+		 */
+		EEnum EXECUTION_MODE = eINSTANCE.getExecutionMode();
 
 	}
 

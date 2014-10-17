@@ -2,6 +2,7 @@
  */
 package edu.ustb.sei.mde.morel.impl;
 
+import edu.ustb.sei.mde.morel.ExecutionMode;
 import edu.ustb.sei.mde.morel.Expression;
 import edu.ustb.sei.mde.morel.MorelPackage;
 import edu.ustb.sei.mde.morel.OperationPathExp;
@@ -32,6 +33,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link edu.ustb.sei.mde.morel.impl.OperationPathExpImpl#getSeparator <em>Separator</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.morel.impl.OperationPathExpImpl#getOperation <em>Operation</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.morel.impl.OperationPathExpImpl#getParameters <em>Parameters</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.morel.impl.OperationPathExpImpl#getMode <em>Mode</em>}</li>
  * </ul>
  * </p>
  *
@@ -87,6 +89,26 @@ public class OperationPathExpImpl extends CallPathExpImpl implements OperationPa
 	 * @ordered
 	 */
 	protected EList<Expression> parameters;
+
+	/**
+	 * The default value of the '{@link #getMode() <em>Mode</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMode()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final ExecutionMode MODE_EDEFAULT = ExecutionMode.DEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getMode() <em>Mode</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMode()
+	 * @generated
+	 * @ordered
+	 */
+	protected ExecutionMode mode = MODE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -166,6 +188,27 @@ public class OperationPathExpImpl extends CallPathExpImpl implements OperationPa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ExecutionMode getMode() {
+		return mode;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMode(ExecutionMode newMode) {
+		ExecutionMode oldMode = mode;
+		mode = newMode == null ? MODE_EDEFAULT : newMode;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MorelPackage.OPERATION_PATH_EXP__MODE, oldMode, mode));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -189,6 +232,8 @@ public class OperationPathExpImpl extends CallPathExpImpl implements OperationPa
 				return getOperation();
 			case MorelPackage.OPERATION_PATH_EXP__PARAMETERS:
 				return getParameters();
+			case MorelPackage.OPERATION_PATH_EXP__MODE:
+				return getMode();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -212,6 +257,9 @@ public class OperationPathExpImpl extends CallPathExpImpl implements OperationPa
 				getParameters().clear();
 				getParameters().addAll((Collection<? extends Expression>)newValue);
 				return;
+			case MorelPackage.OPERATION_PATH_EXP__MODE:
+				setMode((ExecutionMode)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -233,6 +281,9 @@ public class OperationPathExpImpl extends CallPathExpImpl implements OperationPa
 			case MorelPackage.OPERATION_PATH_EXP__PARAMETERS:
 				getParameters().clear();
 				return;
+			case MorelPackage.OPERATION_PATH_EXP__MODE:
+				setMode(MODE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -251,6 +302,8 @@ public class OperationPathExpImpl extends CallPathExpImpl implements OperationPa
 				return OPERATION_EDEFAULT == null ? operation != null : !OPERATION_EDEFAULT.equals(operation);
 			case MorelPackage.OPERATION_PATH_EXP__PARAMETERS:
 				return parameters != null && !parameters.isEmpty();
+			case MorelPackage.OPERATION_PATH_EXP__MODE:
+				return mode != MODE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -269,6 +322,8 @@ public class OperationPathExpImpl extends CallPathExpImpl implements OperationPa
 		result.append(separator);
 		result.append(", operation: ");
 		result.append(operation);
+		result.append(", mode: ");
+		result.append(mode);
 		result.append(')');
 		return result.toString();
 	}

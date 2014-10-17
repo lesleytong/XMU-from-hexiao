@@ -147,6 +147,10 @@ public class Match {
 	}
 	
 	public List<Context> match(List<Pattern> patterns, Context context, OclInterpreter interpreter, Environment env) {
+		return match(patterns,context,interpreter,env,false);
+	}
+	
+	public List<Context> match(List<Pattern> patterns, Context context, OclInterpreter interpreter, Environment env, boolean justCheck) {
 		Pair<BidirectionalMap<Variable, Object>,Solver> pair = makeModel(patterns,context,env);
 		if(pair==null) return Collections.emptyList();
 		
@@ -176,8 +180,10 @@ public class Match {
 			
 			
 			if(checkLinkOrderCondition(patterns,newContext,interpreter,false) 
-					&& checkCondition(patterns,newContext,interpreter,false))
+					&& checkCondition(patterns,newContext,interpreter,false)) {
 				result.add(newContext);
+				if(justCheck) break;
+			}
 			
 			flag = pair.getSecond().nextSolution();
 		}
@@ -185,7 +191,11 @@ public class Match {
 		return result;
 	}
 	
-	public List<Context> match(Pattern pattern, Context context, OclInterpreter interpreter, Environment env) {
+	public List<Context> match(Pattern pattern, Context context, OclInterpreter interpreter, Environment env){
+		return match(pattern,context,interpreter,env,false);
+	}
+	
+	public List<Context> match(Pattern pattern, Context context, OclInterpreter interpreter, Environment env,boolean justCheck) {
 //		Pair<BidirectionalMap<ObjectVariable, IntVar>,Solver> pair = makeModel(pattern,context,env);
 //		
 //		boolean flag = pair.getSecond().findSolution();
@@ -216,7 +226,7 @@ public class Match {
 //		return result;
 		List<Pattern> patterns = new ArrayList<Pattern>();
 		patterns.add(pattern);
-		return match(patterns,context,interpreter,env);
+		return match(patterns,context,interpreter,env,justCheck);
 	}
 	
 	public boolean checkCondition(List<Pattern> patterns, Context context,OclInterpreter interpreter, boolean partial) {

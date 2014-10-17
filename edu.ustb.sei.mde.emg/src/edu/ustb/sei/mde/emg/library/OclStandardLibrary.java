@@ -13,6 +13,7 @@ public class OclStandardLibrary extends LibrarySpace {
 		this.getLibraries().add(new OrderedSetLibrary(this));
 		this.getLibraries().add(new BagLibrary(this));
 		this.getLibraries().add(new SequenceLibrary(this));
+		this.getLibraries().add(new ModuleLibrary(this));
 		this.getLibraries().add(new AnyLibrary(this));
 	}
 

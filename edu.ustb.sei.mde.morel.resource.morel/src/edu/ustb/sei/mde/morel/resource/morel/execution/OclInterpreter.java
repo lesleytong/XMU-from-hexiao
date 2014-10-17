@@ -26,6 +26,7 @@ import edu.ustb.sei.mde.emg.runtime.datatype.OclUndefined;
 import edu.ustb.sei.mde.modeling.ui.ConsoleUtil;
 import edu.ustb.sei.mde.morel.AdditiveExp;
 import edu.ustb.sei.mde.morel.AdditiveOperator;
+import edu.ustb.sei.mde.morel.ArrayLiteralExp;
 import edu.ustb.sei.mde.morel.BagType;
 import edu.ustb.sei.mde.morel.BindExp;
 import edu.ustb.sei.mde.morel.BlockStatement;
@@ -41,6 +42,7 @@ import edu.ustb.sei.mde.morel.ConditionExp;
 import edu.ustb.sei.mde.morel.DeclarativeStatement;
 import edu.ustb.sei.mde.morel.EnclosureLinkConstraint;
 import edu.ustb.sei.mde.morel.EnumLiteralExp;
+import edu.ustb.sei.mde.morel.ExecutionMode;
 import edu.ustb.sei.mde.morel.Expression;
 import edu.ustb.sei.mde.morel.FeaturePathExp;
 import edu.ustb.sei.mde.morel.ForStatement;
@@ -69,6 +71,7 @@ import edu.ustb.sei.mde.morel.PrimitiveVariableWithInit;
 import edu.ustb.sei.mde.morel.Query;
 import edu.ustb.sei.mde.morel.QueryModel;
 import edu.ustb.sei.mde.morel.RealLiteralExp;
+import edu.ustb.sei.mde.morel.ReflectiveVariableExp;
 import edu.ustb.sei.mde.morel.RelationalExp;
 import edu.ustb.sei.mde.morel.RelationalOperator;
 import edu.ustb.sei.mde.morel.Rule;
@@ -167,6 +170,10 @@ public class OclInterpreter extends
 			result = this.interprete_edu_ustb_sei_mde_morel_CollectionLiteralExp((CollectionLiteralExp)object, context);
 		} else if(object instanceof EnumLiteralExp) {
 			result = this.interprete_edu_ustb_sei_mde_morel_EnumLiteralExp((EnumLiteralExp)object, context);
+		} else if(object instanceof ReflectiveVariableExp) {
+			result = this.interprete_edu_ustb_sei_mde_morel_ReflectiveVariableExp((ReflectiveVariableExp) object, context);
+		} else if(object instanceof ArrayLiteralExp) {
+			result = this.interprete_edu_ustb_sei_mde_morel_ArrayLiteralExp((ArrayLiteralExp) object, context);
 		}
 		
 		if(result!=null) return result;
@@ -194,6 +201,29 @@ public class OclInterpreter extends
 		List<Context> result = match.match(query, context, this, context.getEnviroment());
 		
 		return result;
+	}
+	
+	public Object doQuery(Query query,
+			Context context, ExecutionMode mode) {
+		Match match = Match.instance;
+		context.setHost(query);
+		context.initWithHost();
+		initVariable(query,context);
+		
+//		for(Variable v : query.getVariables()) {//��ʼ��
+//			if(v instanceof VariableWithInit) {
+//				Object val = this.interprete((VariableWithInit)v, context);
+//				context.putValue(v, val);
+//			}
+//		}
+		if(mode==ExecutionMode.DEFAULT || mode==ExecutionMode.DO_ALL) {
+			List<Context> result = match.match(query, context, this, context.getEnviroment());
+			return result;
+		} else if(mode==ExecutionMode.FIND_ONE){
+			List<Context> result = match.match(query, context, this, context.getEnviroment(),true);
+			return result;
+		}
+		return OclUndefined.INVALIDED;
 	}
 
 
@@ -475,8 +505,14 @@ public class OclInterpreter extends
 			Expression exp = operationPathExp.getParameters().get(i);
 			params[i] = this.interprete(exp, context);
 		}
-		Object obj = library.execute(operationPathExp.getOperation(), point, params);
-		return this.interprete_edu_ustb_sei_mde_morel_CallPathExp(obj,operationPathExp.getNext(),context, bindValue, value);
+		ExecutionMode mode = operationPathExp.getMode();
+		if(mode==ExecutionMode.DEFAULT || mode==null) {
+			Object obj = library.execute(operationPathExp.getOperation(), point, params);
+			return this.interprete_edu_ustb_sei_mde_morel_CallPathExp(obj,operationPathExp.getNext(),context, bindValue, value);			
+		} else {
+			Object obj = library.execute(operationPathExp.getOperation(), mode, point, params);
+			return this.interprete_edu_ustb_sei_mde_morel_CallPathExp(obj,operationPathExp.getNext(),context, bindValue, value);
+		}
 	}
 
 	protected Object interprete_edu_ustb_sei_mde_morel_LoopPathExp(
@@ -1084,6 +1120,7 @@ public class OclInterpreter extends
 		try {
 			Context init = context.newScope();
 			for(Query query : queryModel.getQueries()) {
+				if(query.isActive()==false) continue;
 				@SuppressWarnings("unchecked")
 				List<Context> result = (List<Context>) this.interprete_edu_ustb_sei_mde_morel_Query(query, init);
 				
@@ -1108,6 +1145,7 @@ public class OclInterpreter extends
 		try {
 			Context init = context.newScope();
 			for(Rule rule : transformationModel.getRules()) {
+				if(rule.isActive()==false) continue;
 				List<Context> matches = (List<Context>)this.interprete_edu_ustb_sei_mde_morel_Rule(rule, init);
 			}
 			ConsoleUtil.printToConsole("Transformation is finished.", MorelLaunchConfigurationHelper.MOREL_TITLE, true);
@@ -1118,6 +1156,29 @@ public class OclInterpreter extends
 		}
 		
 		return true;
+	}
+
+
+
+	@Override
+	public Object interprete_edu_ustb_sei_mde_morel_ReflectiveVariableExp(
+			ReflectiveVariableExp reflectiveVariableExp, Context context) {
+		return reflectiveVariableExp.getVariable();
+	}
+
+
+
+	@Override
+	public Object interprete_edu_ustb_sei_mde_morel_ArrayLiteralExp(
+			ArrayLiteralExp arrayLiteralExp, Context context) {
+		int size = arrayLiteralExp.getElements().size();
+		Object[] arr = new Object[size];
+		
+		for(int i = 0;i<size;i++) {
+			arr[i] = this.interprete(arrayLiteralExp.getElements().get(i), context);
+		}
+		
+		return arr;
 	}
 	
 	

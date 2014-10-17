@@ -30,6 +30,7 @@ public class MorelSyntaxCoverageInformationProvider {
 			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getTypeLiteralExp(),
 			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getCollectionLiteralExp(),
 			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getEnumLiteralExp(),
+			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getArrayLiteralExp(),
 			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getFeaturePathExp(),
 			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getOperationPathExp(),
 			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getIteratorPathExp(),
@@ -52,6 +53,7 @@ public class MorelSyntaxCoverageInformationProvider {
 			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getRule(),
 			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getPattern(),
 			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getPredefinedVariableExp(),
+			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getReflectiveVariableExp(),
 		};
 	}
 	

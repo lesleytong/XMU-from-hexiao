@@ -445,6 +445,24 @@ public interface MorelFactory extends EFactory {
 	DeclarativeStatement createDeclarativeStatement();
 
 	/**
+	 * Returns a new object of class '<em>Reflective Variable Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Reflective Variable Exp</em>'.
+	 * @generated
+	 */
+	ReflectiveVariableExp createReflectiveVariableExp();
+
+	/**
+	 * Returns a new object of class '<em>Array Literal Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Array Literal Exp</em>'.
+	 * @generated
+	 */
+	ArrayLiteralExp createArrayLiteralExp();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -370,12 +370,6 @@ public class AbstractMorelInterpreter<ResultType, ContextType> {
 		if (result != null) {
 			return result;
 		}
-		if (object instanceof edu.ustb.sei.mde.morel.Expression) {
-			result = interprete_edu_ustb_sei_mde_morel_Expression((edu.ustb.sei.mde.morel.Expression) object, context);
-		}
-		if (result != null) {
-			return result;
-		}
 		if (object instanceof edu.ustb.sei.mde.morel.OrderedSetType) {
 			result = interprete_edu_ustb_sei_mde_morel_OrderedSetType((edu.ustb.sei.mde.morel.OrderedSetType) object, context);
 		}
@@ -424,6 +418,12 @@ public class AbstractMorelInterpreter<ResultType, ContextType> {
 		if (result != null) {
 			return result;
 		}
+		if (object instanceof edu.ustb.sei.mde.morel.Expression) {
+			result = interprete_edu_ustb_sei_mde_morel_Expression((edu.ustb.sei.mde.morel.Expression) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
 		if (object instanceof edu.ustb.sei.mde.morel.IfStatement) {
 			result = interprete_edu_ustb_sei_mde_morel_IfStatement((edu.ustb.sei.mde.morel.IfStatement) object, context);
 		}
@@ -468,6 +468,24 @@ public class AbstractMorelInterpreter<ResultType, ContextType> {
 		}
 		if (object instanceof edu.ustb.sei.mde.morel.Statement) {
 			result = interprete_edu_ustb_sei_mde_morel_Statement((edu.ustb.sei.mde.morel.Statement) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
+		if (object instanceof edu.ustb.sei.mde.morel.ReflectiveVariableExp) {
+			result = interprete_edu_ustb_sei_mde_morel_ReflectiveVariableExp((edu.ustb.sei.mde.morel.ReflectiveVariableExp) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
+		if (object instanceof edu.ustb.sei.mde.morel.ArrayLiteralExp) {
+			result = interprete_edu_ustb_sei_mde_morel_ArrayLiteralExp((edu.ustb.sei.mde.morel.ArrayLiteralExp) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
+		if (object instanceof edu.ustb.sei.mde.morel.Executeable) {
+			result = interprete_edu_ustb_sei_mde_morel_Executeable((edu.ustb.sei.mde.morel.Executeable) object, context);
 		}
 		if (result != null) {
 			return result;
@@ -868,6 +886,18 @@ public class AbstractMorelInterpreter<ResultType, ContextType> {
 	}
 	
 	public ResultType interprete_edu_ustb_sei_mde_morel_ImperativeStatement(edu.ustb.sei.mde.morel.ImperativeStatement imperativeStatement, ContextType context) {
+		return null;
+	}
+	
+	public ResultType interprete_edu_ustb_sei_mde_morel_ReflectiveVariableExp(edu.ustb.sei.mde.morel.ReflectiveVariableExp reflectiveVariableExp, ContextType context) {
+		return null;
+	}
+	
+	public ResultType interprete_edu_ustb_sei_mde_morel_ArrayLiteralExp(edu.ustb.sei.mde.morel.ArrayLiteralExp arrayLiteralExp, ContextType context) {
+		return null;
+	}
+	
+	public ResultType interprete_edu_ustb_sei_mde_morel_Executeable(edu.ustb.sei.mde.morel.Executeable executeable, ContextType context) {
 		return null;
 	}
 	
