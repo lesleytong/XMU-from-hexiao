@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EcorePackage;
 
 import edu.ustb.sei.commonutil.util.BidirectionalMap;
 import edu.ustb.sei.commonutil.util.Pair;
+import edu.ustb.sei.commonutil.util.PairHashSet;
 import edu.ustb.sei.mde.emg.graph.ModelSpace;
 import edu.ustb.sei.mde.emg.graph.ModelUniverse;
 import edu.ustb.sei.mde.emg.runtime.Context;
@@ -32,6 +33,7 @@ import edu.ustb.sei.mde.morel.Variable;
 import edu.ustb.sei.mde.morel.resource.morel.execution.OclInterpreter;
 import edu.ustb.sei.mde.morel.resource.morel.execution.constraints.PropEnclosureLinkS_T;
 import edu.ustb.sei.mde.morel.resource.morel.execution.constraints.PropLinkS_T;
+import edu.ustb.sei.mde.morel.resource.morel.execution.constraints.PropTableConstraint;
 import edu.ustb.sei.mde.morel.resource.morel.execution.variable.PathArray;
 import edu.ustb.sei.mde.morel.resource.morel.util.AbstractMorelInterpreter;
 import solver.Solver;
@@ -80,11 +82,12 @@ public class Match {
 					ModelSpace space = (ModelSpace)env.getModelSpaces().get(l.getSource().getModel());
 					List<int[]> arcs = space.getAllTupleIDByReference(((SimpleLinkConstraint)l).getReference(), true);
 					if(arcs.size()==0) return null;
-					Tuples tuple = new Tuples(true);
+					PairHashSet<Integer,Integer> tuple = new PairHashSet<Integer,Integer>();
 					for(int[] arc : arcs) {
-						tuple.add(arc);
+						tuple.add(arc[0],arc[1]);
 					}
-					solver.post(ICF.table(s, t, tuple, "AC3"));
+					Constraint c = new Constraint("PropTableConstraint",new PropTableConstraint(s,t,tuple));
+					solver.post(c);
 					//solver.post(new Constraint("LinkConstraint", new PropLinkS_T(s,t,((SimpleLinkConstraint)l).getReference(),env)));				
 				} else if(l instanceof EnclosureLinkConstraint) {
 					solver.post(new Constraint("EnclosureLinkConstraint", new PropEnclosureLinkS_T(s,t,((EnclosureLinkConstraint)l).getForward(), ((EnclosureLinkConstraint)l).getTypes(),env)));
@@ -165,9 +168,10 @@ public class Match {
 					if(v instanceof ObjectVariable) {
 						ObjectVariable ov = (ObjectVariable)v;
 						
-						if(newContext.getValue(v)==OclUndefined.INVALIDED){
-							newContext.putValue(v, env.getModelUniverse().getElementByID(((IntVar) pair.getFirst().forward(ov)).getValue()));
-						}
+						int value = ((IntVar) pair.getFirst().forward(ov)).getValue();
+						newContext.putValue(v, env.getModelUniverse().getElementByID(value));
+//						if(newContext.getValue(v)==OclUndefined.INVALIDED){
+//						}
 					} else {
 						Object o =pair.getFirst().forward(v);
 						if(o!=null&&o instanceof PathArray) {

@@ -16,6 +16,9 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
 import edu.ustb.sei.mde.emg.graph.ModelSpace;
 import edu.ustb.sei.mde.emg.runtime.Context;
@@ -71,11 +74,9 @@ public class MorelLaunchConfigurationHelper {
 			PrimitiveVariable var = MorelFactory.eINSTANCE.createPrimitiveVariable();
 			var.setName(PredefinedVariable.THIS.getLiteral());
 			var.setType(EcorePackage.eINSTANCE.getEJavaObject());
-			
-			OclInterpreter interpreter = new OclInterpreter();
 			createContext.registerVariable(var);
 			
-			
+			OclInterpreter interpreter = new OclInterpreter();			
 			createContext.putValue(var, new ModuleProvider((Unit) root, interpreter));
 			
 			if(root instanceof QueryModel) {
@@ -105,8 +106,12 @@ public class MorelLaunchConfigurationHelper {
 
 	private void initModelSpace(org.eclipse.emf.ecore.EObject root,
 			String[] uris, Environment env) {
-		ResourceSet resSet = root.eResource().getResourceSet();
+		ResourceSet resSet = new ResourceSetImpl();
+		resSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(
+			    Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
+		
 		Unit queryModel = (Unit) root;
+		
 		for(TypedModel m : queryModel.getModels()){
 			resSet.getPackageRegistry().put(m.getPackage().getNsURI(), m.getPackage());
 		}

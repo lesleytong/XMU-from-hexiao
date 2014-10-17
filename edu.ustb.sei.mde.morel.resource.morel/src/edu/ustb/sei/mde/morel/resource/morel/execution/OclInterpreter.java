@@ -99,6 +99,20 @@ import edu.ustb.sei.mde.morel.resource.morel.util.AbstractMorelInterpreter;
 public class OclInterpreter extends
 		AbstractMorelInterpreter<Object, Context> {
 	
+	private ModuleProvider module;
+	
+	public ModuleProvider getModule() {
+		return module;
+	}
+
+
+
+	public void setModule(ModuleProvider module) {
+		this.module = module;
+	}
+
+
+
 	public OclInterpreter() {
 		super();
 		Initialize.instance.initialize();
@@ -506,13 +520,21 @@ public class OclInterpreter extends
 			params[i] = this.interprete(exp, context);
 		}
 		ExecutionMode mode = operationPathExp.getMode();
+		
+		if(module!=null) 
+			module.pushParentContext(context);
+		Object obj = null;
+		
 		if(mode==ExecutionMode.DEFAULT || mode==null) {
-			Object obj = library.execute(operationPathExp.getOperation(), point, params);
-			return this.interprete_edu_ustb_sei_mde_morel_CallPathExp(obj,operationPathExp.getNext(),context, bindValue, value);			
+			obj = library.execute(operationPathExp.getOperation(), point, params);
 		} else {
-			Object obj = library.execute(operationPathExp.getOperation(), mode, point, params);
-			return this.interprete_edu_ustb_sei_mde_morel_CallPathExp(obj,operationPathExp.getNext(),context, bindValue, value);
+			obj = library.execute(operationPathExp.getOperation(), mode, point, params);
 		}
+		
+		if(module!=null)
+			module.popParentContext();
+		
+		return this.interprete_edu_ustb_sei_mde_morel_CallPathExp(obj,operationPathExp.getNext(),context, bindValue, value);
 	}
 
 	protected Object interprete_edu_ustb_sei_mde_morel_LoopPathExp(
@@ -1044,12 +1066,7 @@ public class OclInterpreter extends
 			PredefinedVariableExp predefinedVariableExp, Context context) {
 		Object obj = null;
 		String vname = predefinedVariableExp.getVariable().getLiteral();
-		for(Entry<Variable,Object> e : context.getBindingMap().entrySet()) {
-			if(e.getKey().getName().equals(vname)){
-				obj = e.getValue();
-				break;
-			}
-		}
+		obj = context.get(vname);
 		return interprete_edu_ustb_sei_mde_morel_CallPathExp(obj, predefinedVariableExp.getPath(), context);
 	}
 

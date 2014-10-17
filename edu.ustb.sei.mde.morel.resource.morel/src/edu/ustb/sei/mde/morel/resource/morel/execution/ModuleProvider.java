@@ -31,6 +31,7 @@ public class ModuleProvider implements IModuleProvider {
 		super();
 		this.model = model;
 		this.interpreter = interpreter;
+		interpreter.setModule(this);
 		
 		contextStack = new Stack<Context>();
 	}
@@ -81,7 +82,7 @@ public class ModuleProvider implements IModuleProvider {
 				if(mode==ExecutionMode.DO_ALL)
 					return interpreter.interprete_edu_ustb_sei_mde_morel_Query((Query) unit, c);
 				else 
-					return null;
+					return interpreter.doQuery((Query) unit, c, mode);
 			} else if(unit instanceof Rule) {
 				return interpreter.interprete_edu_ustb_sei_mde_morel_Rule((Rule) unit, c);
 			}

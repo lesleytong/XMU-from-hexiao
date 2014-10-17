@@ -362,7 +362,7 @@ public class ContextImpl extends MinimalEObjectImpl.Container implements Context
 	 * @generated NOT
 	 */
 	public Object get(String name) {
-		if(null==null) return null;
+		if(name==null) return null;
 		Variable v = this.findVariable(name);
 		if(v==null)
 			return null;
