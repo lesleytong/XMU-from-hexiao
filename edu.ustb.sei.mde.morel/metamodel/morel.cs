@@ -66,7 +66,7 @@ RULES {
 	QueryModel ::= "querymodel" models+ queries*;
 	TypedModel ::= "type" name[IDENTIFIER] "<-"  package[URINS];
 	
-	Query ::= (active["active":"passive"])? "query" type[LHS : "lhs", RHS : "rhs", NAC : "nac", PAC : "pac", PRE : "pre", POST : "post", LHS : ""] name[IDENTIFIER] "{" "match" (variables ("," variables)*)?  (linkConstraints ("," linkConstraints)*)? ("where" (statements)+)?"}";
+	Query ::= (active["active":"passive"])? "query" type[LHS : "lhs", RHS : "rhs", NAC : "nac", PAC : "pac", PRE : "pre", POST : "post", LHS : ""] name[IDENTIFIER] ("("parameters[IDENTIFIER] ("," parameters[IDENTIFIER])*")")? "{" "match" (variables ("," variables)*)?  (linkConstraints ("," linkConstraints)*)? ("where" (statements)+)?"}";
 	
 	ObjectVariable ::= name[IDENTIFIER] ":" (model[IDENTIFIER] "!")? type[IDENTIFIER];
 	
@@ -80,7 +80,7 @@ RULES {
 	
 	EnclosureLinkConstraint ::= source[IDENTIFIER] "." (forward[IDENTIFIER]("|" forward[IDENTIFIER])*) (":" types[IDENTIFIER]("," types[IDENTIFIER])*)? "*" "=" target[IDENTIFIER] ;
 	
-	PathConstraint ::= source[IDENTIFIER] "." (references[IDENTIFIER]("|" references[IDENTIFIER])*) (":" types[IDENTIFIER]("," types[IDENTIFIER])*)? "in" pathVariable[IDENTIFIER] ("[" minLength[INUMBER] ".." maxLength[INUMBER] "]")? "=" target[IDENTIFIER] ;
+	PathConstraint ::= source[IDENTIFIER] "." (references[IDENTIFIER]("|" references[IDENTIFIER])*) (":" types[IDENTIFIER]("," types[IDENTIFIER])*)? "in" pathVariable[IDENTIFIER] ("[" maxLength[INUMBER] "]")? "=" target[IDENTIFIER] ;
 	
 	
 	VariableExp ::= referredVariable[IDENTIFIER] (path)?;
@@ -146,7 +146,7 @@ RULES {
 	
 	TransformationModel ::= "transformation" name[IDENTIFIER] models+ rules* ;
 	
-	Rule ::= (active["active":"passive"])? "rule" name[IDENTIFIER] "{" (patterns:Pattern)* "}" ;
+	Rule ::= (active["active":"passive"])? "rule" name[IDENTIFIER] ("("parameters[IDENTIFIER] ("," parameters[IDENTIFIER])*")")? "{" (patterns:Pattern)* "}" ;
 	
 	Pattern ::= type[LHS : "lhs", RHS : "rhs", NAC : "nac", PAC : "pac", PRE : "pre", POST : "post", LHS : ""] "{" "match" (variables ("," variables)*)?  (linkConstraints ("," linkConstraints)*)? ("where"  (statements)+)? "}";
 	

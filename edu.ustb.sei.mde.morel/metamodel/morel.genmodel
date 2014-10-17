@@ -277,8 +277,9 @@
     <genClasses ecoreClass="morel.ecore#//ArrayLiteralExp">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//ArrayLiteralExp/elements"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="morel.ecore#//Executeable">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute morel.ecore#//Executeable/active"/>
+    <genClasses image="false" ecoreClass="morel.ecore#//Executable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute morel.ecore#//Executable/active"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute morel.ecore#//Executable/parameters"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

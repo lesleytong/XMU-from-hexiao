@@ -2,22 +2,18 @@
  */
 package edu.ustb.sei.mde.morel.impl;
 
-import edu.ustb.sei.mde.morel.Executeable;
+import edu.ustb.sei.mde.morel.Executable;
 import edu.ustb.sei.mde.morel.MorelPackage;
 import edu.ustb.sei.mde.morel.Pattern;
 import edu.ustb.sei.mde.morel.Rule;
-
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -29,6 +25,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.morel.impl.RuleImpl#isActive <em>Active</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.morel.impl.RuleImpl#getParameters <em>Parameters</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.morel.impl.RuleImpl#getPatterns <em>Patterns</em>}</li>
  * </ul>
  * </p>
@@ -54,6 +51,15 @@ public class RuleImpl extends NamedElementImpl implements Rule {
 	 * @ordered
 	 */
 	protected boolean active = ACTIVE_EDEFAULT;
+	/**
+	 * The cached value of the '{@link #getParameters() <em>Parameters</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getParameters()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<String> parameters;
 	/**
 	 * The cached value of the '{@link #getPatterns() <em>Patterns</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -109,6 +115,18 @@ public class RuleImpl extends NamedElementImpl implements Rule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<String> getParameters() {
+		if (parameters == null) {
+			parameters = new EDataTypeUniqueEList<String>(String.class, this, MorelPackage.RULE__PARAMETERS);
+		}
+		return parameters;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList<Pattern> getPatterns() {
 		if (patterns == null) {
 			patterns = new EObjectContainmentEList<Pattern>(Pattern.class, this, MorelPackage.RULE__PATTERNS);
@@ -140,6 +158,8 @@ public class RuleImpl extends NamedElementImpl implements Rule {
 		switch (featureID) {
 			case MorelPackage.RULE__ACTIVE:
 				return isActive();
+			case MorelPackage.RULE__PARAMETERS:
+				return getParameters();
 			case MorelPackage.RULE__PATTERNS:
 				return getPatterns();
 		}
@@ -157,6 +177,10 @@ public class RuleImpl extends NamedElementImpl implements Rule {
 		switch (featureID) {
 			case MorelPackage.RULE__ACTIVE:
 				setActive((Boolean)newValue);
+				return;
+			case MorelPackage.RULE__PARAMETERS:
+				getParameters().clear();
+				getParameters().addAll((Collection<? extends String>)newValue);
 				return;
 			case MorelPackage.RULE__PATTERNS:
 				getPatterns().clear();
@@ -177,6 +201,9 @@ public class RuleImpl extends NamedElementImpl implements Rule {
 			case MorelPackage.RULE__ACTIVE:
 				setActive(ACTIVE_EDEFAULT);
 				return;
+			case MorelPackage.RULE__PARAMETERS:
+				getParameters().clear();
+				return;
 			case MorelPackage.RULE__PATTERNS:
 				getPatterns().clear();
 				return;
@@ -194,6 +221,8 @@ public class RuleImpl extends NamedElementImpl implements Rule {
 		switch (featureID) {
 			case MorelPackage.RULE__ACTIVE:
 				return active != ACTIVE_EDEFAULT;
+			case MorelPackage.RULE__PARAMETERS:
+				return parameters != null && !parameters.isEmpty();
 			case MorelPackage.RULE__PATTERNS:
 				return patterns != null && !patterns.isEmpty();
 		}
@@ -207,9 +236,10 @@ public class RuleImpl extends NamedElementImpl implements Rule {
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == Executeable.class) {
+		if (baseClass == Executable.class) {
 			switch (derivedFeatureID) {
-				case MorelPackage.RULE__ACTIVE: return MorelPackage.EXECUTEABLE__ACTIVE;
+				case MorelPackage.RULE__ACTIVE: return MorelPackage.EXECUTABLE__ACTIVE;
+				case MorelPackage.RULE__PARAMETERS: return MorelPackage.EXECUTABLE__PARAMETERS;
 				default: return -1;
 			}
 		}
@@ -223,9 +253,10 @@ public class RuleImpl extends NamedElementImpl implements Rule {
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == Executeable.class) {
+		if (baseClass == Executable.class) {
 			switch (baseFeatureID) {
-				case MorelPackage.EXECUTEABLE__ACTIVE: return MorelPackage.RULE__ACTIVE;
+				case MorelPackage.EXECUTABLE__ACTIVE: return MorelPackage.RULE__ACTIVE;
+				case MorelPackage.EXECUTABLE__PARAMETERS: return MorelPackage.RULE__PARAMETERS;
 				default: return -1;
 			}
 		}
@@ -244,6 +275,8 @@ public class RuleImpl extends NamedElementImpl implements Rule {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (active: ");
 		result.append(active);
+		result.append(", parameters: ");
+		result.append(parameters);
 		result.append(')');
 		return result.toString();
 	}

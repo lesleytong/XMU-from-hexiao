@@ -356,8 +356,8 @@ public class MorelAdapterFactory extends AdapterFactoryImpl {
 				return createArrayLiteralExpAdapter();
 			}
 			@Override
-			public Adapter caseExecuteable(Executeable object) {
-				return createExecuteableAdapter();
+			public Adapter caseExecutable(Executable object) {
+				return createExecutableAdapter();
 			}
 			@Override
 			public Adapter caseEModelElement(EModelElement object) {
@@ -1390,16 +1390,16 @@ public class MorelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.morel.Executeable <em>Executeable</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.morel.Executable <em>Executable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see edu.ustb.sei.mde.morel.Executeable
+	 * @see edu.ustb.sei.mde.morel.Executable
 	 * @generated
 	 */
-	public Adapter createExecuteableAdapter() {
+	public Adapter createExecutableAdapter() {
 		return null;
 	}
 

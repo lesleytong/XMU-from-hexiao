@@ -162,7 +162,7 @@ public class PathArray {
 			id++;
 		}
 		
-		if(maxLength<0) maxLength = max;
+		if(maxLength<0||maxLength>max) maxLength = max;
 		if(minLength<0) minLength = 0;
 		if(minLength>maxLength) minLength = maxLength;
 

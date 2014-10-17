@@ -17,8 +17,7 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+
 
 import edu.ustb.sei.mde.emg.graph.ModelSpace;
 import edu.ustb.sei.mde.emg.runtime.Context;
@@ -106,9 +105,9 @@ public class MorelLaunchConfigurationHelper {
 
 	private void initModelSpace(org.eclipse.emf.ecore.EObject root,
 			String[] uris, Environment env) {
-		ResourceSet resSet = new ResourceSetImpl();
-		resSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(
-			    Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
+		ResourceSet resSet = root.eResource().getResourceSet();
+//		resSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(
+//			    Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
 		
 		Unit queryModel = (Unit) root;
 		

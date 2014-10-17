@@ -484,8 +484,8 @@ public class AbstractMorelInterpreter<ResultType, ContextType> {
 		if (result != null) {
 			return result;
 		}
-		if (object instanceof edu.ustb.sei.mde.morel.Executeable) {
-			result = interprete_edu_ustb_sei_mde_morel_Executeable((edu.ustb.sei.mde.morel.Executeable) object, context);
+		if (object instanceof edu.ustb.sei.mde.morel.Executable) {
+			result = interprete_edu_ustb_sei_mde_morel_Executable((edu.ustb.sei.mde.morel.Executable) object, context);
 		}
 		if (result != null) {
 			return result;
@@ -897,7 +897,7 @@ public class AbstractMorelInterpreter<ResultType, ContextType> {
 		return null;
 	}
 	
-	public ResultType interprete_edu_ustb_sei_mde_morel_Executeable(edu.ustb.sei.mde.morel.Executeable executeable, ContextType context) {
+	public ResultType interprete_edu_ustb_sei_mde_morel_Executable(edu.ustb.sei.mde.morel.Executable executable, ContextType context) {
 		return null;
 	}
 	

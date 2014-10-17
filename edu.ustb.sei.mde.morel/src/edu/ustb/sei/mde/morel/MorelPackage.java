@@ -867,13 +867,22 @@ public interface MorelPackage extends EPackage {
 	int QUERY__ACTIVE = PATTERN_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Parameters</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY__PARAMETERS = PATTERN_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Query</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int QUERY_FEATURE_COUNT = PATTERN_FEATURE_COUNT + 2;
+	int QUERY_FEATURE_COUNT = PATTERN_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Query</em>' class.
@@ -3737,13 +3746,22 @@ public interface MorelPackage extends EPackage {
 	int RULE__ACTIVE = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Parameters</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RULE__PARAMETERS = NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The feature id for the '<em><b>Patterns</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RULE__PATTERNS = NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int RULE__PATTERNS = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Rule</em>' class.
@@ -3752,7 +3770,7 @@ public interface MorelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RULE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int RULE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Rule</em>' class.
@@ -3884,14 +3902,14 @@ public interface MorelPackage extends EPackage {
 	int ARRAY_LITERAL_EXP_OPERATION_COUNT = LITERAL_EXP_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.impl.ExecuteableImpl <em>Executeable</em>}' class.
+	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.impl.ExecutableImpl <em>Executable</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see edu.ustb.sei.mde.morel.impl.ExecuteableImpl
-	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getExecuteable()
+	 * @see edu.ustb.sei.mde.morel.impl.ExecutableImpl
+	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getExecutable()
 	 * @generated
 	 */
-	int EXECUTEABLE = 71;
+	int EXECUTABLE = 71;
 
 	/**
 	 * The feature id for the '<em><b>Active</b></em>' attribute.
@@ -3900,25 +3918,34 @@ public interface MorelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXECUTEABLE__ACTIVE = 0;
+	int EXECUTABLE__ACTIVE = 0;
 
 	/**
-	 * The number of structural features of the '<em>Executeable</em>' class.
+	 * The feature id for the '<em><b>Parameters</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXECUTEABLE_FEATURE_COUNT = 1;
+	int EXECUTABLE__PARAMETERS = 1;
 
 	/**
-	 * The number of operations of the '<em>Executeable</em>' class.
+	 * The number of structural features of the '<em>Executable</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXECUTEABLE_OPERATION_COUNT = 0;
+	int EXECUTABLE_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Executable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXECUTABLE_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.SectionType <em>Section Type</em>}' enum.
@@ -5710,25 +5737,36 @@ public interface MorelPackage extends EPackage {
 	EReference getArrayLiteralExp_Elements();
 
 	/**
-	 * Returns the meta object for class '{@link edu.ustb.sei.mde.morel.Executeable <em>Executeable</em>}'.
+	 * Returns the meta object for class '{@link edu.ustb.sei.mde.morel.Executable <em>Executable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Executeable</em>'.
-	 * @see edu.ustb.sei.mde.morel.Executeable
+	 * @return the meta object for class '<em>Executable</em>'.
+	 * @see edu.ustb.sei.mde.morel.Executable
 	 * @generated
 	 */
-	EClass getExecuteable();
+	EClass getExecutable();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.morel.Executeable#isActive <em>Active</em>}'.
+	 * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.morel.Executable#isActive <em>Active</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Active</em>'.
-	 * @see edu.ustb.sei.mde.morel.Executeable#isActive()
-	 * @see #getExecuteable()
+	 * @see edu.ustb.sei.mde.morel.Executable#isActive()
+	 * @see #getExecutable()
 	 * @generated
 	 */
-	EAttribute getExecuteable_Active();
+	EAttribute getExecutable_Active();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link edu.ustb.sei.mde.morel.Executable#getParameters <em>Parameters</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Parameters</em>'.
+	 * @see edu.ustb.sei.mde.morel.Executable#getParameters()
+	 * @see #getExecutable()
+	 * @generated
+	 */
+	EAttribute getExecutable_Parameters();
 
 	/**
 	 * Returns the meta object for enum '{@link edu.ustb.sei.mde.morel.SectionType <em>Section Type</em>}'.
@@ -7278,14 +7316,14 @@ public interface MorelPackage extends EPackage {
 		EReference ARRAY_LITERAL_EXP__ELEMENTS = eINSTANCE.getArrayLiteralExp_Elements();
 
 		/**
-		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.impl.ExecuteableImpl <em>Executeable</em>}' class.
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.impl.ExecutableImpl <em>Executable</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see edu.ustb.sei.mde.morel.impl.ExecuteableImpl
-		 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getExecuteable()
+		 * @see edu.ustb.sei.mde.morel.impl.ExecutableImpl
+		 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getExecutable()
 		 * @generated
 		 */
-		EClass EXECUTEABLE = eINSTANCE.getExecuteable();
+		EClass EXECUTABLE = eINSTANCE.getExecutable();
 
 		/**
 		 * The meta object literal for the '<em><b>Active</b></em>' attribute feature.
@@ -7293,7 +7331,15 @@ public interface MorelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute EXECUTEABLE__ACTIVE = eINSTANCE.getExecuteable_Active();
+		EAttribute EXECUTABLE__ACTIVE = eINSTANCE.getExecutable_Active();
+
+		/**
+		 * The meta object literal for the '<em><b>Parameters</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXECUTABLE__PARAMETERS = eINSTANCE.getExecutable_Parameters();
 
 		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.SectionType <em>Section Type</em>}' enum.

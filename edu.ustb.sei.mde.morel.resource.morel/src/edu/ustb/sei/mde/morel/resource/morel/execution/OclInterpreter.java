@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map.Entry;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -62,6 +63,7 @@ import edu.ustb.sei.mde.morel.ObjectVariable;
 import edu.ustb.sei.mde.morel.ObjectVariableWithInit;
 import edu.ustb.sei.mde.morel.OperationPathExp;
 import edu.ustb.sei.mde.morel.OrderedSetType;
+import edu.ustb.sei.mde.morel.PathConstraint;
 import edu.ustb.sei.mde.morel.Pattern;
 import edu.ustb.sei.mde.morel.PredefinedBindExp;
 import edu.ustb.sei.mde.morel.PredefinedVariable;
@@ -349,8 +351,9 @@ public class OclInterpreter extends
 				} else if(l instanceof EnclosureLinkConstraint) {
 					if(interprete_edu_ustb_sei_mde_morel_EnclosureLinkConstraint((EnclosureLinkConstraint) l,context)==false)
 						return false;
-				} else {
-					
+				} else if(l instanceof PathConstraint){
+					if(interprete_edu_ustb_sei_mde_morel_PathConstraint((PathConstraint) l,context)==false)
+						return false;
 				}
 			}
 		}
@@ -359,6 +362,50 @@ public class OclInterpreter extends
 		
 		return true;
 	}
+
+
+	@Override
+	public Boolean interprete_edu_ustb_sei_mde_morel_PathConstraint(
+			PathConstraint pathConstraint, Context context) {
+		Variable s = pathConstraint.getSource();
+		Variable path = pathConstraint.getPathVariable();
+		Variable t = pathConstraint.getTarget();
+		
+		EObject so = (EObject) context.getValue(s);
+		OclCollection col = (OclCollection) context.getValue(path);
+		EObject to = (EObject) context.getValue(t);
+		
+		EObject[] arr = new EObject[col.size()+2];
+		arr[0] = so;
+		for(int i= 0; i<col.size();i++) {
+			arr[i+1] = (EObject) col.get(i);
+		}
+		arr[arr.length-1] = to;
+		
+		for(int i=0;i<arr.length-1;i++) {
+			if(checkConnective(arr[i],arr[i+1],pathConstraint.getReferences())==false)
+				return false;
+		}
+		
+		return true;
+	}
+
+
+
+	private boolean checkConnective(EObject eObject, EObject eObject2,
+			EList<EReference> references) {
+		for(EReference ref : references) {
+			if(ref.isMany()) {
+				Collection<?> list = (Collection<?>)eObject.eGet(ref);
+				if(list.contains(eObject2)) return true;
+			} else {
+				if(eObject2==eObject.eGet(ref)) return true;
+			}
+		}
+		return false;
+		
+	}
+
 
 
 	@Override

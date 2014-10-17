@@ -43,6 +43,7 @@ public class TypedModelPackageReferenceResolver implements edu.ustb.sei.mde.more
 //						Resource res = set.getResource(u, true);
 //						EObject target = res.getContents().get(0);
 //						
+//						
 //						result.addQuickFix(new edu.ustb.sei.mde.morel.resource.morel.mopp.SetPackageReferenceQuickFix("Replace with " + uri, 
 //								 "IMG_TOOL_FORWARD", container, reference, target));
 //					 }
@@ -51,6 +52,8 @@ public class TypedModelPackageReferenceResolver implements edu.ustb.sei.mde.more
 //				
 //			}
 		} else {
+//			Map<String,URI> map = EcorePlugin.getEPackageNsURIToGenModelLocationMap(false);
+			
 			String uri = identifier.substring(1, identifier.length()-1);
 			delegate.resolve(uri, container, reference, position, resolveFuzzy, result);
 		}

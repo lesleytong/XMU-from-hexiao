@@ -26,7 +26,7 @@ import edu.ustb.sei.mde.morel.ConditionExp;
 import edu.ustb.sei.mde.morel.DeclarativeStatement;
 import edu.ustb.sei.mde.morel.EnclosureLinkConstraint;
 import edu.ustb.sei.mde.morel.EnumLiteralExp;
-import edu.ustb.sei.mde.morel.Executeable;
+import edu.ustb.sei.mde.morel.Executable;
 import edu.ustb.sei.mde.morel.ExecutionMode;
 import edu.ustb.sei.mde.morel.Expression;
 import edu.ustb.sei.mde.morel.FeaturePathExp;
@@ -87,14 +87,12 @@ import edu.ustb.sei.mde.morel.Unit;
 import edu.ustb.sei.mde.morel.Variable;
 import edu.ustb.sei.mde.morel.VariableExp;
 import edu.ustb.sei.mde.morel.VariableWithInit;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
@@ -606,7 +604,7 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass executeableEClass = null;
+	private EClass executableEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -2182,8 +2180,8 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getExecuteable() {
-		return executeableEClass;
+	public EClass getExecutable() {
+		return executableEClass;
 	}
 
 	/**
@@ -2191,8 +2189,17 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getExecuteable_Active() {
-		return (EAttribute)executeableEClass.getEStructuralFeatures().get(0);
+	public EAttribute getExecutable_Active() {
+		return (EAttribute)executableEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getExecutable_Parameters() {
+		return (EAttribute)executableEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -2552,8 +2559,9 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		arrayLiteralExpEClass = createEClass(ARRAY_LITERAL_EXP);
 		createEReference(arrayLiteralExpEClass, ARRAY_LITERAL_EXP__ELEMENTS);
 
-		executeableEClass = createEClass(EXECUTEABLE);
-		createEAttribute(executeableEClass, EXECUTEABLE__ACTIVE);
+		executableEClass = createEClass(EXECUTABLE);
+		createEAttribute(executableEClass, EXECUTABLE__ACTIVE);
+		createEAttribute(executableEClass, EXECUTABLE__PARAMETERS);
 
 		// Create enums
 		sectionTypeEEnum = createEEnum(SECTION_TYPE);
@@ -2609,7 +2617,7 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		typedModelEClass.getESuperTypes().add(this.getNamedElement());
 		queryEClass.getESuperTypes().add(this.getPattern());
 		queryEClass.getESuperTypes().add(this.getNamedElement());
-		queryEClass.getESuperTypes().add(this.getExecuteable());
+		queryEClass.getESuperTypes().add(this.getExecutable());
 		atomicExpEClass.getESuperTypes().add(this.getUnaryExpChild());
 		literalExpEClass.getESuperTypes().add(this.getAtomicExp());
 		stringLiteralExpEClass.getESuperTypes().add(this.getLiteralExp());
@@ -2663,7 +2671,7 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		transformationModelEClass.getESuperTypes().add(this.getUnit());
 		transformationModelEClass.getESuperTypes().add(this.getNamedElement());
 		ruleEClass.getESuperTypes().add(this.getNamedElement());
-		ruleEClass.getESuperTypes().add(this.getExecuteable());
+		ruleEClass.getESuperTypes().add(this.getExecutable());
 		declarativeStatementEClass.getESuperTypes().add(this.getStatement());
 		imperativeStatementEClass.getESuperTypes().add(this.getStatement());
 		reflectiveVariableExpEClass.getESuperTypes().add(this.getExpression());
@@ -2902,8 +2910,9 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		initEClass(arrayLiteralExpEClass, ArrayLiteralExp.class, "ArrayLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getArrayLiteralExp_Elements(), this.getExpression(), null, "elements", null, 0, -1, ArrayLiteralExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(executeableEClass, Executeable.class, "Executeable", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getExecuteable_Active(), ecorePackage.getEBoolean(), "active", "true", 0, 1, Executeable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(executableEClass, Executable.class, "Executable", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getExecutable_Active(), ecorePackage.getEBoolean(), "active", "true", 0, 1, Executable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getExecutable_Parameters(), ecorePackage.getEString(), "parameters", null, 0, -1, Executable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(sectionTypeEEnum, SectionType.class, "SectionType");

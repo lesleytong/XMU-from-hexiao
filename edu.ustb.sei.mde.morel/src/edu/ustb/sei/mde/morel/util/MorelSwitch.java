@@ -165,7 +165,7 @@ public class MorelSwitch<T> extends Switch<T> {
 				T result = caseQuery(query);
 				if (result == null) result = casePattern(query);
 				if (result == null) result = caseNamedElement(query);
-				if (result == null) result = caseExecuteable(query);
+				if (result == null) result = caseExecutable(query);
 				if (result == null) result = caseSection(query);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -715,7 +715,7 @@ public class MorelSwitch<T> extends Switch<T> {
 				Rule rule = (Rule)theEObject;
 				T result = caseRule(rule);
 				if (result == null) result = caseNamedElement(rule);
-				if (result == null) result = caseExecuteable(rule);
+				if (result == null) result = caseExecutable(rule);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -762,9 +762,9 @@ public class MorelSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MorelPackage.EXECUTEABLE: {
-				Executeable executeable = (Executeable)theEObject;
-				T result = caseExecuteable(executeable);
+			case MorelPackage.EXECUTABLE: {
+				Executable executable = (Executable)theEObject;
+				T result = caseExecutable(executable);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1838,17 +1838,17 @@ public class MorelSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Executeable</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Executable</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Executeable</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Executable</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseExecuteable(Executeable object) {
+	public T caseExecutable(Executable object) {
 		return null;
 	}
 

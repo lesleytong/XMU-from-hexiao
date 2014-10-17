@@ -2,16 +2,16 @@
  */
 package edu.ustb.sei.mde.morel.impl;
 
-import edu.ustb.sei.mde.morel.Executeable;
+import edu.ustb.sei.mde.morel.Executable;
 import edu.ustb.sei.mde.morel.MorelPackage;
 import edu.ustb.sei.mde.morel.NamedElement;
 import edu.ustb.sei.mde.morel.Query;
-
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
-
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.morel.impl.QueryImpl#getName <em>Name</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.morel.impl.QueryImpl#isActive <em>Active</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.morel.impl.QueryImpl#getParameters <em>Parameters</em>}</li>
  * </ul>
  * </p>
  *
@@ -67,6 +68,16 @@ public class QueryImpl extends PatternImpl implements Query {
 	 * @ordered
 	 */
 	protected boolean active = ACTIVE_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getParameters() <em>Parameters</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getParameters()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<String> parameters;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -134,6 +145,18 @@ public class QueryImpl extends PatternImpl implements Query {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<String> getParameters() {
+		if (parameters == null) {
+			parameters = new EDataTypeUniqueEList<String>(String.class, this, MorelPackage.QUERY__PARAMETERS);
+		}
+		return parameters;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -141,6 +164,8 @@ public class QueryImpl extends PatternImpl implements Query {
 				return getName();
 			case MorelPackage.QUERY__ACTIVE:
 				return isActive();
+			case MorelPackage.QUERY__PARAMETERS:
+				return getParameters();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -150,6 +175,7 @@ public class QueryImpl extends PatternImpl implements Query {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -158,6 +184,10 @@ public class QueryImpl extends PatternImpl implements Query {
 				return;
 			case MorelPackage.QUERY__ACTIVE:
 				setActive((Boolean)newValue);
+				return;
+			case MorelPackage.QUERY__PARAMETERS:
+				getParameters().clear();
+				getParameters().addAll((Collection<? extends String>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -177,6 +207,9 @@ public class QueryImpl extends PatternImpl implements Query {
 			case MorelPackage.QUERY__ACTIVE:
 				setActive(ACTIVE_EDEFAULT);
 				return;
+			case MorelPackage.QUERY__PARAMETERS:
+				getParameters().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -193,6 +226,8 @@ public class QueryImpl extends PatternImpl implements Query {
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case MorelPackage.QUERY__ACTIVE:
 				return active != ACTIVE_EDEFAULT;
+			case MorelPackage.QUERY__PARAMETERS:
+				return parameters != null && !parameters.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -210,9 +245,10 @@ public class QueryImpl extends PatternImpl implements Query {
 				default: return -1;
 			}
 		}
-		if (baseClass == Executeable.class) {
+		if (baseClass == Executable.class) {
 			switch (derivedFeatureID) {
-				case MorelPackage.QUERY__ACTIVE: return MorelPackage.EXECUTEABLE__ACTIVE;
+				case MorelPackage.QUERY__ACTIVE: return MorelPackage.EXECUTABLE__ACTIVE;
+				case MorelPackage.QUERY__PARAMETERS: return MorelPackage.EXECUTABLE__PARAMETERS;
 				default: return -1;
 			}
 		}
@@ -232,9 +268,10 @@ public class QueryImpl extends PatternImpl implements Query {
 				default: return -1;
 			}
 		}
-		if (baseClass == Executeable.class) {
+		if (baseClass == Executable.class) {
 			switch (baseFeatureID) {
-				case MorelPackage.EXECUTEABLE__ACTIVE: return MorelPackage.QUERY__ACTIVE;
+				case MorelPackage.EXECUTABLE__ACTIVE: return MorelPackage.QUERY__ACTIVE;
+				case MorelPackage.EXECUTABLE__PARAMETERS: return MorelPackage.QUERY__PARAMETERS;
 				default: return -1;
 			}
 		}
@@ -255,6 +292,8 @@ public class QueryImpl extends PatternImpl implements Query {
 		result.append(name);
 		result.append(", active: ");
 		result.append(active);
+		result.append(", parameters: ");
+		result.append(parameters);
 		result.append(')');
 		return result.toString();
 	}

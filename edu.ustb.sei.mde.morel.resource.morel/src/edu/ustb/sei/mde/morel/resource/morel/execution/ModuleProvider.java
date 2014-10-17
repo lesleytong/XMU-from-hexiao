@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EObject;
 import edu.ustb.sei.mde.emg.library.IModuleProvider;
 import edu.ustb.sei.mde.emg.runtime.Context;
 import edu.ustb.sei.mde.emg.runtime.datatype.OclUndefined;
+import edu.ustb.sei.mde.morel.Executable;
 import edu.ustb.sei.mde.morel.ExecutionMode;
 import edu.ustb.sei.mde.morel.PredefinedVariable;
 import edu.ustb.sei.mde.morel.Query;
@@ -37,7 +38,7 @@ public class ModuleProvider implements IModuleProvider {
 	}
 
 	@Override
-	public EObject find(String name) {
+	public Executable find(String name) {
 		if(model instanceof QueryModel)
 			return find(name,(QueryModel)model);
 		else if(model instanceof TransformationModel)
@@ -45,7 +46,7 @@ public class ModuleProvider implements IModuleProvider {
 		return null;
 	}
 	
-	private EObject find(String name, QueryModel model) {
+	private Executable find(String name, QueryModel model) {
 		for(Query q : model.getQueries()) {
 			if(q.getName().equals(name))
 				return q;
@@ -53,7 +54,7 @@ public class ModuleProvider implements IModuleProvider {
 		return null;
 	}
 	
-	private EObject find(String name, TransformationModel model) {
+	private Executable find(String name, TransformationModel model) {
 		for(Rule r : model.getRules()) {
 			if(r.getName().equals(name))
 				return r;
@@ -65,7 +66,7 @@ public class ModuleProvider implements IModuleProvider {
 	public Object execute(String name, ExecutionMode mode, Object... parameters) {
 		
 		try {
-			EObject unit = find(name);
+			Executable unit = find(name);
 			if(unit==null) return null;
 			
 			Context parent = contextStack.peek();
@@ -76,7 +77,7 @@ public class ModuleProvider implements IModuleProvider {
 			c.registerVariable(thisVar);
 			c.putValue(thisVar, parent.getValue(thisVar));
 			
-			initParameter(c,parameters);
+			initParameter(unit, c,parameters);
 			
 			if(unit instanceof Query) {
 				if(mode==ExecutionMode.DO_ALL)
@@ -95,17 +96,32 @@ public class ModuleProvider implements IModuleProvider {
 	
 	
 
-	private void initParameter(Context c, Object[] parameters) {
+	private void initParameter(Executable unit, Context c, Object[] parameters) {
 		// TODO Auto-generated method stub
 		Map<String,Object> map = new HashMap<String,Object>();
-		for(Object o : parameters) {
-			if(o instanceof Object[]){
+		
+		if(allTuples(parameters)) {
+			for(Object o : parameters) {
 				Object[] arr = (Object[])o;
 				map.put((String) arr[0], arr[1]);
+			}			
+		} else {
+			for(int i = 0 ; i< parameters.length;i++) {
+				String pn = unit.getParameters().get(i);
+				Object o = parameters[i];
+				map.put(pn, o);
 			}
 		}
 
 		c.registerValueMap(map);
+	}
+
+	private boolean allTuples(Object[] parameters) {
+		for(Object o : parameters) {
+			if(!(o instanceof Object[]))
+				return false;
+		}
+		return true;
 	}
 
 	@Override
