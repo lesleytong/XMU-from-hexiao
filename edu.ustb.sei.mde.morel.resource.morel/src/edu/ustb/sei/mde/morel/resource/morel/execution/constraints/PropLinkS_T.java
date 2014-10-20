@@ -14,9 +14,9 @@ import edu.ustb.sei.mde.emg.runtime.Environment;
 import solver.constraints.Propagator;
 import solver.constraints.PropagatorPriority;
 import solver.exception.ContradictionException;
-import solver.variables.EventType;
 import solver.variables.IntVar;
 import solver.variables.delta.IIntDeltaMonitor;
+import solver.variables.events.IntEventType;
 import util.ESat;
 import util.tools.ArrayUtils;
 
@@ -115,7 +115,7 @@ public class PropLinkS_T extends Propagator<IntVar> {
 	@Override
 	public void propagate(int idxVarInProp, int mask)
 			throws ContradictionException {
-		if (EventType.isInstantiate(mask)) {
+		if (IntEventType.isInstantiate(mask)) {
 			if (idxVarInProp == 0) {
 				int s = source.getValue();
 				EObject so = modelUniverse.getElementByID(s);

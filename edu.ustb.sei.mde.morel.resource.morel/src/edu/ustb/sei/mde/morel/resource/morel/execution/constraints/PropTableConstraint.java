@@ -5,8 +5,8 @@ import edu.ustb.sei.mde.emg.graph.EIdentifiable;
 import solver.constraints.Propagator;
 import solver.constraints.PropagatorPriority;
 import solver.exception.ContradictionException;
-import solver.variables.EventType;
 import solver.variables.IntVar;
+import solver.variables.events.IntEventType;
 import util.ESat;
 import util.tools.ArrayUtils;
 
@@ -75,7 +75,7 @@ public class PropTableConstraint extends Propagator<IntVar> {
 	@Override
 	public void propagate(int idxVarInProp, int mask)
 			throws ContradictionException {
-		if(EventType.anInstantiationEvent(mask)) {
+		if(IntEventType.isInstantiate(mask)) {
 			if(idxVarInProp==0)
 				filterFromSrc();
 			else filterFromTar();

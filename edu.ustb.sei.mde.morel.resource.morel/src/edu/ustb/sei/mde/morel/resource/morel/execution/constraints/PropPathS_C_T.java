@@ -6,7 +6,6 @@ import edu.ustb.sei.mde.emg.graph.EIdentifiable;
 import solver.constraints.Propagator;
 import solver.constraints.PropagatorPriority;
 import solver.exception.ContradictionException;
-import solver.variables.EventType;
 import solver.variables.IntVar;
 import util.ESat;
 import util.tools.ArrayUtils;

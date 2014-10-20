@@ -21,7 +21,12 @@ public class TestChoco {
 		tables.add(5,3);
 		tables.add(7,2);
 		
-		solver.post(new Constraint("",new PropTableConstraint(v1,v2,tables)));
+		//solver.post(new Constraint("",new PropTableConstraint(v1,v2,tables)));
+		Tuples tuples = new Tuples(true);
+		tuples.add(3,2);
+		tuples.add(5,3);
+		tuples.add(7,2);
+		solver.post(ICF.table(v1, v2, tuples, "AC3"));
 		
 		
 		boolean flag = solver.findSolution();
