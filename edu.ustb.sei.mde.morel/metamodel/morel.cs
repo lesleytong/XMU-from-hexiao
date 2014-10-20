@@ -17,7 +17,7 @@ OPTIONS {
 	overrideLaunchConfigurationDelegate ="false";
 	additionalDependencies = "edu.ustb.sei.mde.emg, org.eclipse.ui.console, edu.ustb.sei.mde.modeling,edu.ustb.sei.commonutil";
 	additionalExports = "edu.ustb.sei.mde.morel.resource.morel.execution";
-	additionalLibraries = "choco-solver-3.2.0-jar-with-dependencies.jar";
+	additionalLibraries = "choco-solver-3.2.1.jar";
 }
 
 TOKENS {
@@ -80,7 +80,7 @@ RULES {
 	
 	EnclosureLinkConstraint ::= source[IDENTIFIER] "." (forward[IDENTIFIER]("|" forward[IDENTIFIER])*) (":" types[IDENTIFIER]("," types[IDENTIFIER])*)? "*" "=" target[IDENTIFIER] ;
 	
-	PathConstraint ::= source[IDENTIFIER] "." (references[IDENTIFIER]("|" references[IDENTIFIER])*) (":" types[IDENTIFIER]("," types[IDENTIFIER])*)? "in" pathVariable[IDENTIFIER] ("[" maxLength[INUMBER] "]")? "=" target[IDENTIFIER] ;
+	PathConstraint ::= source[IDENTIFIER] "." (references[IDENTIFIER]("|" references[IDENTIFIER])*) (":" types[IDENTIFIER]("," types[IDENTIFIER])*)? "in" pathVariable[IDENTIFIER] ("[" (minLength[INUMBER] ",")? maxLength[INUMBER] "]")? "=" target[IDENTIFIER] ;
 	
 	
 	VariableExp ::= referredVariable[IDENTIFIER] (path)?;

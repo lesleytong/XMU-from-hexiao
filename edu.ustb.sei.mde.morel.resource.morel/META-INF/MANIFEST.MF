@@ -28,4 +28,4 @@ Export-Package: edu.ustb.sei.mde.morel.resource.morel,
   edu.ustb.sei.mde.morel.resource.morel.execution
 Bundle-Activator: edu.ustb.sei.mde.morel.resource.morel.mopp.MorelPlugin
 Bundle-ClassPath: .,
- choco-solver-3.2.1.jar
+  choco-solver-3.2.1.jar
