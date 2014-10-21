@@ -26,15 +26,7 @@ public class SimpleLinkConstraintReferenceReferenceResolver implements edu.ustb.
 			
 			List<EReference> list = srcType.getEAllReferences();
 			for(EReference ref : list) {
-				if(ref.getName().indexOf(identifier)!=-1) {
-					ObjectVariable target = container.getTarget();
-					if(target==null||target.getType()==null) {
-						result.addMapping(ref.getName(), ref);
-					} else {
-						if(ref.getEReferenceType().isSuperTypeOf(target.getType()))
-							result.addMapping(ref.getName(), ref);
-					}
-				}
+				result.addMapping(ref.getName(), ref);
 			}
 			
 		} else {

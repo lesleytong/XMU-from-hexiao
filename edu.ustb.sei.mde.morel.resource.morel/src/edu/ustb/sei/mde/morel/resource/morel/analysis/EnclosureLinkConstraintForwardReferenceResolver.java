@@ -22,7 +22,7 @@ public class EnclosureLinkConstraintForwardReferenceResolver implements edu.ustb
 	private void findFeature(String partial, EClass c, IMorelReferenceResolveResult<EReference> result) {
 		List<EReference> refs = c.getEAllReferences();
 		for(EReference ref : refs) {
-			if(ref.getName().indexOf(partial)==-1) continue;
+			//if(ref.getName().indexOf(partial)==-1) continue;
 			result.addMapping(ref.getName(), ref);
 		}
 	}
