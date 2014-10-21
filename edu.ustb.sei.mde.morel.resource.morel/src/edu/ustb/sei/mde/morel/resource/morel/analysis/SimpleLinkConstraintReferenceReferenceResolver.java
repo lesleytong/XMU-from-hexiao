@@ -18,21 +18,42 @@ public class SimpleLinkConstraintReferenceReferenceResolver implements edu.ustb.
 	private edu.ustb.sei.mde.morel.resource.morel.analysis.MorelDefaultResolverDelegate<edu.ustb.sei.mde.morel.SimpleLinkConstraint, org.eclipse.emf.ecore.EReference> delegate = new edu.ustb.sei.mde.morel.resource.morel.analysis.MorelDefaultResolverDelegate<edu.ustb.sei.mde.morel.SimpleLinkConstraint, org.eclipse.emf.ecore.EReference>();
 	
 	public void resolve(String identifier, edu.ustb.sei.mde.morel.SimpleLinkConstraint container, org.eclipse.emf.ecore.EReference reference, int position, boolean resolveFuzzy, final edu.ustb.sei.mde.morel.resource.morel.IMorelReferenceResolveResult<org.eclipse.emf.ecore.EReference> result) {
-		ObjectVariable source = container.getSource();
-		if(source==null) return;
-		EClass srcType = source.getType();
-		if(srcType==null) return;
-		List<EReference> list = srcType.getEAllReferences();
-		for(EReference ref : list) {
-			if(ref.getName().equals(identifier)) {
-				ObjectVariable target = container.getTarget();
-				if(target==null||target.getType()==null) {
-					result.addMapping(identifier, ref);
-				} else {
-					if(ref.getEReferenceType().isSuperTypeOf(target.getType()))
-						result.addMapping(identifier, ref);
+		if(resolveFuzzy) {
+			ObjectVariable source = container.getSource();
+			if(source==null) return;
+			EClass srcType = source.getType();
+			if(srcType==null) return;
+			
+			List<EReference> list = srcType.getEAllReferences();
+			for(EReference ref : list) {
+				if(ref.getName().indexOf(identifier)!=-1) {
+					ObjectVariable target = container.getTarget();
+					if(target==null||target.getType()==null) {
+						result.addMapping(ref.getName(), ref);
+					} else {
+						if(ref.getEReferenceType().isSuperTypeOf(target.getType()))
+							result.addMapping(ref.getName(), ref);
+					}
 				}
 			}
+			
+		} else {
+			ObjectVariable source = container.getSource();
+			if(source==null) return;
+			EClass srcType = source.getType();
+			if(srcType==null) return;
+			List<EReference> list = srcType.getEAllReferences();
+			for(EReference ref : list) {
+				if(ref.getName().equals(identifier)) {
+					ObjectVariable target = container.getTarget();
+					if(target==null||target.getType()==null) {
+						result.addMapping(identifier, ref);
+					} else {
+						if(ref.getEReferenceType().isSuperTypeOf(target.getType()))
+							result.addMapping(identifier, ref);
+					}
+				}
+			}		
 		}
 	}
 	

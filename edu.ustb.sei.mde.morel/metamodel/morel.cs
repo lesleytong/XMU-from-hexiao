@@ -40,7 +40,7 @@ TOKENS {
     
     //DEFINE PATHNAME IDENTIFIER+$($+$':'$+IDENTIFIER+$)*$;
     
-    DEFINE URINS $'#'('a'..'z'|'A'..'Z'|'0'..'9'|'_'|'-'|'/'|':'|'\.')+'#'$;
+    DEFINE URINS $'@'('a'..'z'|'A'..'Z'|'0'..'9'|'_'|'-'|'/'|':'|'\.')+$;
         
     DEFINE INUMBER $('0'..'9')('0'..'1')*$;
     

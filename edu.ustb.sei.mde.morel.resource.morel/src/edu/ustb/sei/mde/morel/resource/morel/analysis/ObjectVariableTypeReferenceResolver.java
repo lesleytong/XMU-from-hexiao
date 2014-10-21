@@ -9,41 +9,54 @@ package edu.ustb.sei.mde.morel.resource.morel.analysis;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import edu.ustb.sei.mde.morel.TypedModel;
 import edu.ustb.sei.mde.morel.Unit;
+import edu.ustb.sei.mde.morel.resource.morel.IMorelReferenceResolveResult;
 
 public class ObjectVariableTypeReferenceResolver implements edu.ustb.sei.mde.morel.resource.morel.IMorelReferenceResolver<edu.ustb.sei.mde.morel.ObjectVariable, org.eclipse.emf.ecore.EClass> {
 	
 	private edu.ustb.sei.mde.morel.resource.morel.analysis.MorelDefaultResolverDelegate<EPackage, org.eclipse.emf.ecore.EClass> delegate = new edu.ustb.sei.mde.morel.resource.morel.analysis.MorelDefaultResolverDelegate<EPackage, org.eclipse.emf.ecore.EClass>();
 	
 	public void resolve(String identifier, edu.ustb.sei.mde.morel.ObjectVariable container, org.eclipse.emf.ecore.EReference reference, int position, boolean resolveFuzzy, final edu.ustb.sei.mde.morel.resource.morel.IMorelReferenceResolveResult<org.eclipse.emf.ecore.EClass> result) {
+		
 		Unit unit = getUnit(container);
 		if(unit==null) return;
 		else {
 			String modelType = container.getModel()==null?null:container.getModel().getName();
 			String typeName = identifier;
 			
-			for(TypedModel mt : unit.getModels()) {
-				if(mt.getName().equals(modelType)) {
-					delegate.resolve(typeName, mt.getPackage(), reference, position, resolveFuzzy, result);						
-				}
+			if(resolveFuzzy) {
+				for(TypedModel mt : unit.getModels()) {
+					if(mt.getName().equals(modelType)) {
+						collect(typeName,mt.getPackage(),result);						
+					}
+				}		
+			} else {
+				for(TypedModel mt : unit.getModels()) {
+					if(mt.getName().equals(modelType)) {
+						delegate.resolve(typeName, mt.getPackage(), reference, position, resolveFuzzy, result);						
+					}
+				}			
 			}
 		}
 	}
 	
-	private EPackage getSubpackageByPath(EPackage package1, String[] buf, int i) {
-		if(package1.getName().equals(buf[i])) {
-			if(i==buf.length-2) return package1;
-			
-			for(EPackage pkg : package1.getESubpackages()) {
-				EPackage ret = getSubpackageByPath(pkg,buf,i+2);
-				if(ret!=null) return ret;
+	private void collect(String typeName, EPackage pkg,
+			IMorelReferenceResolveResult<EClass> result) {
+		TreeIterator<EObject> it = pkg.eAllContents();
+		
+		while(it.hasNext()) {
+			EObject o = it.next();
+			if(o instanceof EClass) {
+				if(((EClass) o).getName().indexOf(typeName)==-1) continue;
+				result.addMapping(((EClass) o).getName(), (EClass) o);
 			}
 		}
-		return null;
 	}
 
 	private Unit getUnit(EObject container) {
