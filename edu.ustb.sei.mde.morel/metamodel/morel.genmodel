@@ -77,6 +77,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//Pattern/variables"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//Pattern/linkConstraints"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//Pattern/statements"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//Pattern/additionalConstraints"/>
     </genClasses>
     <genClasses ecoreClass="morel.ecore#//Clause"/>
     <genClasses ecoreClass="morel.ecore#//Variable"/>
@@ -281,5 +282,14 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute morel.ecore#//Executable/active"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute morel.ecore#//Executable/parameters"/>
     </genClasses>
+    <genClasses image="false" ecoreClass="morel.ecore#//AdditionalConstraint">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference morel.ecore#//AdditionalConstraint/variables"/>
+    </genClasses>
+    <genClasses ecoreClass="morel.ecore#//OrderConstraint">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference morel.ecore#//OrderConstraint/base"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference morel.ecore#//OrderConstraint/references"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference morel.ecore#//OrderConstraint/types"/>
+    </genClasses>
+    <genClasses ecoreClass="morel.ecore#//AllDifferentConstraint"/>
   </genPackages>
 </genmodel:GenModel>

@@ -2,6 +2,7 @@
  */
 package edu.ustb.sei.mde.morel.impl;
 
+import edu.ustb.sei.mde.morel.AdditionalConstraint;
 import edu.ustb.sei.mde.morel.LinkConstraint;
 import edu.ustb.sei.mde.morel.MorelPackage;
 import edu.ustb.sei.mde.morel.Pattern;
@@ -30,6 +31,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link edu.ustb.sei.mde.morel.impl.PatternImpl#getVariables <em>Variables</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.morel.impl.PatternImpl#getLinkConstraints <em>Link Constraints</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.morel.impl.PatternImpl#getStatements <em>Statements</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.morel.impl.PatternImpl#getAdditionalConstraints <em>Additional Constraints</em>}</li>
  * </ul>
  * </p>
  *
@@ -65,6 +67,16 @@ public class PatternImpl extends SectionImpl implements Pattern {
 	 * @ordered
 	 */
 	protected EList<Statement> statements;
+
+	/**
+	 * The cached value of the '{@link #getAdditionalConstraints() <em>Additional Constraints</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAdditionalConstraints()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<AdditionalConstraint> additionalConstraints;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -126,6 +138,18 @@ public class PatternImpl extends SectionImpl implements Pattern {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<AdditionalConstraint> getAdditionalConstraints() {
+		if (additionalConstraints == null) {
+			additionalConstraints = new EObjectContainmentEList<AdditionalConstraint>(AdditionalConstraint.class, this, MorelPackage.PATTERN__ADDITIONAL_CONSTRAINTS);
+		}
+		return additionalConstraints;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -135,6 +159,8 @@ public class PatternImpl extends SectionImpl implements Pattern {
 				return ((InternalEList<?>)getLinkConstraints()).basicRemove(otherEnd, msgs);
 			case MorelPackage.PATTERN__STATEMENTS:
 				return ((InternalEList<?>)getStatements()).basicRemove(otherEnd, msgs);
+			case MorelPackage.PATTERN__ADDITIONAL_CONSTRAINTS:
+				return ((InternalEList<?>)getAdditionalConstraints()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -153,6 +179,8 @@ public class PatternImpl extends SectionImpl implements Pattern {
 				return getLinkConstraints();
 			case MorelPackage.PATTERN__STATEMENTS:
 				return getStatements();
+			case MorelPackage.PATTERN__ADDITIONAL_CONSTRAINTS:
+				return getAdditionalConstraints();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -178,6 +206,10 @@ public class PatternImpl extends SectionImpl implements Pattern {
 				getStatements().clear();
 				getStatements().addAll((Collection<? extends Statement>)newValue);
 				return;
+			case MorelPackage.PATTERN__ADDITIONAL_CONSTRAINTS:
+				getAdditionalConstraints().clear();
+				getAdditionalConstraints().addAll((Collection<? extends AdditionalConstraint>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -199,6 +231,9 @@ public class PatternImpl extends SectionImpl implements Pattern {
 			case MorelPackage.PATTERN__STATEMENTS:
 				getStatements().clear();
 				return;
+			case MorelPackage.PATTERN__ADDITIONAL_CONSTRAINTS:
+				getAdditionalConstraints().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -217,6 +252,8 @@ public class PatternImpl extends SectionImpl implements Pattern {
 				return linkConstraints != null && !linkConstraints.isEmpty();
 			case MorelPackage.PATTERN__STATEMENTS:
 				return statements != null && !statements.isEmpty();
+			case MorelPackage.PATTERN__ADDITIONAL_CONSTRAINTS:
+				return additionalConstraints != null && !additionalConstraints.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

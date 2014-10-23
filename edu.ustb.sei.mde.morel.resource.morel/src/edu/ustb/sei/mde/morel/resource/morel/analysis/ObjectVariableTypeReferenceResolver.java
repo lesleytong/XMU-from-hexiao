@@ -24,7 +24,7 @@ public class ObjectVariableTypeReferenceResolver implements edu.ustb.sei.mde.mor
 	
 	public void resolve(String identifier, edu.ustb.sei.mde.morel.ObjectVariable container, org.eclipse.emf.ecore.EReference reference, int position, boolean resolveFuzzy, final edu.ustb.sei.mde.morel.resource.morel.IMorelReferenceResolveResult<org.eclipse.emf.ecore.EClass> result) {
 		
-		Unit unit = getUnit(container);
+		Unit unit = TypeResolver.getUnit(container);
 		if(unit==null) return;
 		else {
 			String modelType = container.getModel()==null?null:container.getModel().getName();
@@ -33,7 +33,7 @@ public class ObjectVariableTypeReferenceResolver implements edu.ustb.sei.mde.mor
 			if(resolveFuzzy) {
 				for(TypedModel mt : unit.getModels()) {
 					if(mt.getName().equals(modelType)) {
-						collect(typeName,mt.getPackage(),result);						
+						TypeResolver.collectContained(typeName,mt.getPackage(),result);						
 					}
 				}		
 			} else {
@@ -46,28 +46,7 @@ public class ObjectVariableTypeReferenceResolver implements edu.ustb.sei.mde.mor
 		}
 	}
 	
-	private void collect(String typeName, EPackage pkg,
-			IMorelReferenceResolveResult<EClass> result) {
-		TreeIterator<EObject> it = pkg.eAllContents();
-		
-		while(it.hasNext()) {
-			EObject o = it.next();
-			if(o instanceof EClass) {
-				if(((EClass) o).getName().indexOf(typeName)==-1) continue;
-				result.addMapping(((EClass) o).getName(), (EClass) o);
-			}
-		}
-	}
-
-	private Unit getUnit(EObject container) {
-		while(container instanceof EObject) {
-			if(container instanceof Unit) {
-				return (Unit) container;
-			}
-			container = container.eContainer();
-		}
-		return null;
-	}
+	
 	
 	public String deResolve(org.eclipse.emf.ecore.EClass element, edu.ustb.sei.mde.morel.ObjectVariable container, org.eclipse.emf.ecore.EReference reference) {
 //		StringBuilder sb = new StringBuilder();

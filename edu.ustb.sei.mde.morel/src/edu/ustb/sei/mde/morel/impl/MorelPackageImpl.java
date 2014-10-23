@@ -2,9 +2,11 @@
  */
 package edu.ustb.sei.mde.morel.impl;
 
+import edu.ustb.sei.mde.morel.AdditionalConstraint;
 import edu.ustb.sei.mde.morel.AdditiveExp;
 import edu.ustb.sei.mde.morel.AdditiveExpChild;
 import edu.ustb.sei.mde.morel.AdditiveOperator;
+import edu.ustb.sei.mde.morel.AllDifferentConstraint;
 import edu.ustb.sei.mde.morel.ArrayLiteralExp;
 import edu.ustb.sei.mde.morel.AtomicExp;
 import edu.ustb.sei.mde.morel.BagType;
@@ -52,6 +54,7 @@ import edu.ustb.sei.mde.morel.ObjectVariable;
 import edu.ustb.sei.mde.morel.ObjectVariableWithInit;
 import edu.ustb.sei.mde.morel.OperationPathExp;
 import edu.ustb.sei.mde.morel.OperationSeparator;
+import edu.ustb.sei.mde.morel.OrderConstraint;
 import edu.ustb.sei.mde.morel.OrderedSetType;
 import edu.ustb.sei.mde.morel.PathConstraint;
 import edu.ustb.sei.mde.morel.Pattern;
@@ -611,6 +614,27 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass additionalConstraintEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass orderConstraintEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass allDifferentConstraintEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum sectionTypeEEnum = null;
 
 	/**
@@ -814,6 +838,15 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 */
 	public EReference getPattern_Statements() {
 		return (EReference)patternEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPattern_AdditionalConstraints() {
+		return (EReference)patternEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -2207,6 +2240,69 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getAdditionalConstraint() {
+		return additionalConstraintEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAdditionalConstraint_Variables() {
+		return (EReference)additionalConstraintEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getOrderConstraint() {
+		return orderConstraintEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getOrderConstraint_Base() {
+		return (EReference)orderConstraintEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getOrderConstraint_References() {
+		return (EReference)orderConstraintEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getOrderConstraint_Types() {
+		return (EReference)orderConstraintEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getAllDifferentConstraint() {
+		return allDifferentConstraintEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getSectionType() {
 		return sectionTypeEEnum;
 	}
@@ -2339,6 +2435,7 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		createEReference(patternEClass, PATTERN__VARIABLES);
 		createEReference(patternEClass, PATTERN__LINK_CONSTRAINTS);
 		createEReference(patternEClass, PATTERN__STATEMENTS);
+		createEReference(patternEClass, PATTERN__ADDITIONAL_CONSTRAINTS);
 
 		clauseEClass = createEClass(CLAUSE);
 
@@ -2563,6 +2660,16 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		createEAttribute(executableEClass, EXECUTABLE__ACTIVE);
 		createEAttribute(executableEClass, EXECUTABLE__PARAMETERS);
 
+		additionalConstraintEClass = createEClass(ADDITIONAL_CONSTRAINT);
+		createEReference(additionalConstraintEClass, ADDITIONAL_CONSTRAINT__VARIABLES);
+
+		orderConstraintEClass = createEClass(ORDER_CONSTRAINT);
+		createEReference(orderConstraintEClass, ORDER_CONSTRAINT__BASE);
+		createEReference(orderConstraintEClass, ORDER_CONSTRAINT__REFERENCES);
+		createEReference(orderConstraintEClass, ORDER_CONSTRAINT__TYPES);
+
+		allDifferentConstraintEClass = createEClass(ALL_DIFFERENT_CONSTRAINT);
+
 		// Create enums
 		sectionTypeEEnum = createEEnum(SECTION_TYPE);
 		undefinedLiteralEEnum = createEEnum(UNDEFINED_LITERAL);
@@ -2676,6 +2783,8 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		imperativeStatementEClass.getESuperTypes().add(this.getStatement());
 		reflectiveVariableExpEClass.getESuperTypes().add(this.getExpression());
 		arrayLiteralExpEClass.getESuperTypes().add(this.getLiteralExp());
+		orderConstraintEClass.getESuperTypes().add(this.getAdditionalConstraint());
+		allDifferentConstraintEClass.getESuperTypes().add(this.getAdditionalConstraint());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(namedElementEClass, NamedElement.class, "NamedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2688,6 +2797,7 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		initEReference(getPattern_Variables(), this.getVariable(), null, "variables", null, 0, -1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPattern_LinkConstraints(), this.getLinkConstraint(), null, "linkConstraints", null, 0, -1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPattern_Statements(), this.getStatement(), null, "statements", null, 0, -1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPattern_AdditionalConstraints(), this.getAdditionalConstraint(), null, "additionalConstraints", null, 0, -1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(clauseEClass, Clause.class, "Clause", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -2913,6 +3023,16 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		initEClass(executableEClass, Executable.class, "Executable", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getExecutable_Active(), ecorePackage.getEBoolean(), "active", "true", 0, 1, Executable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getExecutable_Parameters(), ecorePackage.getEString(), "parameters", null, 0, -1, Executable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(additionalConstraintEClass, AdditionalConstraint.class, "AdditionalConstraint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAdditionalConstraint_Variables(), this.getVariable(), null, "variables", null, 0, -1, AdditionalConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(orderConstraintEClass, OrderConstraint.class, "OrderConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getOrderConstraint_Base(), this.getObjectVariable(), null, "base", null, 1, 1, OrderConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getOrderConstraint_References(), ecorePackage.getEReference(), null, "references", null, 1, -1, OrderConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getOrderConstraint_Types(), ecorePackage.getEClass(), null, "types", null, 1, -1, OrderConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(allDifferentConstraintEClass, AllDifferentConstraint.class, "AllDifferentConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize enums and add enum literals
 		initEEnum(sectionTypeEEnum, SectionType.class, "SectionType");

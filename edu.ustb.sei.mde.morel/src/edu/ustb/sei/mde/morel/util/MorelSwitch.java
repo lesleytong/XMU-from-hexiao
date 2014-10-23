@@ -768,6 +768,26 @@ public class MorelSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MorelPackage.ADDITIONAL_CONSTRAINT: {
+				AdditionalConstraint additionalConstraint = (AdditionalConstraint)theEObject;
+				T result = caseAdditionalConstraint(additionalConstraint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MorelPackage.ORDER_CONSTRAINT: {
+				OrderConstraint orderConstraint = (OrderConstraint)theEObject;
+				T result = caseOrderConstraint(orderConstraint);
+				if (result == null) result = caseAdditionalConstraint(orderConstraint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MorelPackage.ALL_DIFFERENT_CONSTRAINT: {
+				AllDifferentConstraint allDifferentConstraint = (AllDifferentConstraint)theEObject;
+				T result = caseAllDifferentConstraint(allDifferentConstraint);
+				if (result == null) result = caseAdditionalConstraint(allDifferentConstraint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -1849,6 +1869,51 @@ public class MorelSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseExecutable(Executable object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Additional Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Additional Constraint</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAdditionalConstraint(AdditionalConstraint object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Order Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Order Constraint</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOrderConstraint(OrderConstraint object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>All Different Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>All Different Constraint</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAllDifferentConstraint(AllDifferentConstraint object) {
 		return null;
 	}
 

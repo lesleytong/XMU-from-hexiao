@@ -370,6 +370,12 @@ public class AbstractMorelInterpreter<ResultType, ContextType> {
 		if (result != null) {
 			return result;
 		}
+		if (object instanceof edu.ustb.sei.mde.morel.Expression) {
+			result = interprete_edu_ustb_sei_mde_morel_Expression((edu.ustb.sei.mde.morel.Expression) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
 		if (object instanceof edu.ustb.sei.mde.morel.OrderedSetType) {
 			result = interprete_edu_ustb_sei_mde_morel_OrderedSetType((edu.ustb.sei.mde.morel.OrderedSetType) object, context);
 		}
@@ -414,12 +420,6 @@ public class AbstractMorelInterpreter<ResultType, ContextType> {
 		}
 		if (object instanceof edu.ustb.sei.mde.morel.ImperativeExp) {
 			result = interprete_edu_ustb_sei_mde_morel_ImperativeExp((edu.ustb.sei.mde.morel.ImperativeExp) object, context);
-		}
-		if (result != null) {
-			return result;
-		}
-		if (object instanceof edu.ustb.sei.mde.morel.Expression) {
-			result = interprete_edu_ustb_sei_mde_morel_Expression((edu.ustb.sei.mde.morel.Expression) object, context);
 		}
 		if (result != null) {
 			return result;
@@ -486,6 +486,24 @@ public class AbstractMorelInterpreter<ResultType, ContextType> {
 		}
 		if (object instanceof edu.ustb.sei.mde.morel.Executable) {
 			result = interprete_edu_ustb_sei_mde_morel_Executable((edu.ustb.sei.mde.morel.Executable) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
+		if (object instanceof edu.ustb.sei.mde.morel.OrderConstraint) {
+			result = interprete_edu_ustb_sei_mde_morel_OrderConstraint((edu.ustb.sei.mde.morel.OrderConstraint) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
+		if (object instanceof edu.ustb.sei.mde.morel.AllDifferentConstraint) {
+			result = interprete_edu_ustb_sei_mde_morel_AllDifferentConstraint((edu.ustb.sei.mde.morel.AllDifferentConstraint) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
+		if (object instanceof edu.ustb.sei.mde.morel.AdditionalConstraint) {
+			result = interprete_edu_ustb_sei_mde_morel_AdditionalConstraint((edu.ustb.sei.mde.morel.AdditionalConstraint) object, context);
 		}
 		if (result != null) {
 			return result;
@@ -898,6 +916,18 @@ public class AbstractMorelInterpreter<ResultType, ContextType> {
 	}
 	
 	public ResultType interprete_edu_ustb_sei_mde_morel_Executable(edu.ustb.sei.mde.morel.Executable executable, ContextType context) {
+		return null;
+	}
+	
+	public ResultType interprete_edu_ustb_sei_mde_morel_AdditionalConstraint(edu.ustb.sei.mde.morel.AdditionalConstraint additionalConstraint, ContextType context) {
+		return null;
+	}
+	
+	public ResultType interprete_edu_ustb_sei_mde_morel_OrderConstraint(edu.ustb.sei.mde.morel.OrderConstraint orderConstraint, ContextType context) {
+		return null;
+	}
+	
+	public ResultType interprete_edu_ustb_sei_mde_morel_AllDifferentConstraint(edu.ustb.sei.mde.morel.AllDifferentConstraint allDifferentConstraint, ContextType context) {
 		return null;
 	}
 	

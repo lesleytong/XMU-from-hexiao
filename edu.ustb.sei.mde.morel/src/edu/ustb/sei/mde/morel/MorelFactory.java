@@ -463,6 +463,24 @@ public interface MorelFactory extends EFactory {
 	ArrayLiteralExp createArrayLiteralExp();
 
 	/**
+	 * Returns a new object of class '<em>Order Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Order Constraint</em>'.
+	 * @generated
+	 */
+	OrderConstraint createOrderConstraint();
+
+	/**
+	 * Returns a new object of class '<em>All Different Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>All Different Constraint</em>'.
+	 * @generated
+	 */
+	AllDifferentConstraint createAllDifferentConstraint();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

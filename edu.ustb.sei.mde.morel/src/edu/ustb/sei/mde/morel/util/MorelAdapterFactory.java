@@ -360,6 +360,18 @@ public class MorelAdapterFactory extends AdapterFactoryImpl {
 				return createExecutableAdapter();
 			}
 			@Override
+			public Adapter caseAdditionalConstraint(AdditionalConstraint object) {
+				return createAdditionalConstraintAdapter();
+			}
+			@Override
+			public Adapter caseOrderConstraint(OrderConstraint object) {
+				return createOrderConstraintAdapter();
+			}
+			@Override
+			public Adapter caseAllDifferentConstraint(AllDifferentConstraint object) {
+				return createAllDifferentConstraintAdapter();
+			}
+			@Override
 			public Adapter caseEModelElement(EModelElement object) {
 				return createEModelElementAdapter();
 			}
@@ -1400,6 +1412,48 @@ public class MorelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createExecutableAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.morel.AdditionalConstraint <em>Additional Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.morel.AdditionalConstraint
+	 * @generated
+	 */
+	public Adapter createAdditionalConstraintAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.morel.OrderConstraint <em>Order Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.morel.OrderConstraint
+	 * @generated
+	 */
+	public Adapter createOrderConstraintAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.morel.AllDifferentConstraint <em>All Different Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.morel.AllDifferentConstraint
+	 * @generated
+	 */
+	public Adapter createAllDifferentConstraintAdapter() {
 		return null;
 	}
 

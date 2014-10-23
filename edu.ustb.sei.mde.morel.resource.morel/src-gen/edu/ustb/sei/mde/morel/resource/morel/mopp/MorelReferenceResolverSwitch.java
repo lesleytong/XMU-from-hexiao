@@ -30,6 +30,10 @@ public class MorelReferenceResolverSwitch implements edu.ustb.sei.mde.morel.reso
 	protected edu.ustb.sei.mde.morel.resource.morel.analysis.EnumLiteralExpEnumTypeReferenceResolver enumLiteralExpEnumTypeReferenceResolver = new edu.ustb.sei.mde.morel.resource.morel.analysis.EnumLiteralExpEnumTypeReferenceResolver();
 	protected edu.ustb.sei.mde.morel.resource.morel.analysis.EnumLiteralExpEnumSymbolReferenceResolver enumLiteralExpEnumSymbolReferenceResolver = new edu.ustb.sei.mde.morel.resource.morel.analysis.EnumLiteralExpEnumSymbolReferenceResolver();
 	protected edu.ustb.sei.mde.morel.resource.morel.analysis.ReflectiveVariableExpVariableReferenceResolver reflectiveVariableExpVariableReferenceResolver = new edu.ustb.sei.mde.morel.resource.morel.analysis.ReflectiveVariableExpVariableReferenceResolver();
+	protected edu.ustb.sei.mde.morel.resource.morel.analysis.OrderConstraintBaseReferenceResolver orderConstraintBaseReferenceResolver = new edu.ustb.sei.mde.morel.resource.morel.analysis.OrderConstraintBaseReferenceResolver();
+	protected edu.ustb.sei.mde.morel.resource.morel.analysis.AdditionalConstraintVariablesReferenceResolver additionalConstraintVariablesReferenceResolver = new edu.ustb.sei.mde.morel.resource.morel.analysis.AdditionalConstraintVariablesReferenceResolver();
+	protected edu.ustb.sei.mde.morel.resource.morel.analysis.OrderConstraintTypesReferenceResolver orderConstraintTypesReferenceResolver = new edu.ustb.sei.mde.morel.resource.morel.analysis.OrderConstraintTypesReferenceResolver();
+	protected edu.ustb.sei.mde.morel.resource.morel.analysis.OrderConstraintReferencesReferenceResolver orderConstraintReferencesReferenceResolver = new edu.ustb.sei.mde.morel.resource.morel.analysis.OrderConstraintReferencesReferenceResolver();
 	
 	public edu.ustb.sei.mde.morel.resource.morel.IMorelReferenceResolver<edu.ustb.sei.mde.morel.TypedModel, org.eclipse.emf.ecore.EPackage> getTypedModelPackageReferenceResolver() {
 		return getResolverChain(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getTypedModel_Package(), typedModelPackageReferenceResolver);
@@ -99,6 +103,22 @@ public class MorelReferenceResolverSwitch implements edu.ustb.sei.mde.morel.reso
 		return getResolverChain(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getReflectiveVariableExp_Variable(), reflectiveVariableExpVariableReferenceResolver);
 	}
 	
+	public edu.ustb.sei.mde.morel.resource.morel.IMorelReferenceResolver<edu.ustb.sei.mde.morel.OrderConstraint, edu.ustb.sei.mde.morel.ObjectVariable> getOrderConstraintBaseReferenceResolver() {
+		return getResolverChain(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getOrderConstraint_Base(), orderConstraintBaseReferenceResolver);
+	}
+	
+	public edu.ustb.sei.mde.morel.resource.morel.IMorelReferenceResolver<edu.ustb.sei.mde.morel.AdditionalConstraint, edu.ustb.sei.mde.morel.Variable> getAdditionalConstraintVariablesReferenceResolver() {
+		return getResolverChain(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getAdditionalConstraint_Variables(), additionalConstraintVariablesReferenceResolver);
+	}
+	
+	public edu.ustb.sei.mde.morel.resource.morel.IMorelReferenceResolver<edu.ustb.sei.mde.morel.OrderConstraint, org.eclipse.emf.ecore.EClass> getOrderConstraintTypesReferenceResolver() {
+		return getResolverChain(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getOrderConstraint_Types(), orderConstraintTypesReferenceResolver);
+	}
+	
+	public edu.ustb.sei.mde.morel.resource.morel.IMorelReferenceResolver<edu.ustb.sei.mde.morel.OrderConstraint, org.eclipse.emf.ecore.EReference> getOrderConstraintReferencesReferenceResolver() {
+		return getResolverChain(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getOrderConstraint_References(), orderConstraintReferencesReferenceResolver);
+	}
+	
 	public void setOptions(java.util.Map<?, ?> options) {
 		if (options != null) {
 			this.options = new java.util.LinkedHashMap<Object, Object>();
@@ -121,6 +141,10 @@ public class MorelReferenceResolverSwitch implements edu.ustb.sei.mde.morel.reso
 		enumLiteralExpEnumTypeReferenceResolver.setOptions(options);
 		enumLiteralExpEnumSymbolReferenceResolver.setOptions(options);
 		reflectiveVariableExpVariableReferenceResolver.setOptions(options);
+		orderConstraintBaseReferenceResolver.setOptions(options);
+		additionalConstraintVariablesReferenceResolver.setOptions(options);
+		orderConstraintTypesReferenceResolver.setOptions(options);
+		orderConstraintReferencesReferenceResolver.setOptions(options);
 	}
 	
 	public void resolveFuzzy(String identifier, org.eclipse.emf.ecore.EObject container, org.eclipse.emf.ecore.EReference reference, int position, edu.ustb.sei.mde.morel.resource.morel.IMorelReferenceResolveResult<org.eclipse.emf.ecore.EObject> result) {
@@ -263,6 +287,38 @@ public class MorelReferenceResolverSwitch implements edu.ustb.sei.mde.morel.reso
 				reflectiveVariableExpVariableReferenceResolver.resolve(identifier, (edu.ustb.sei.mde.morel.ReflectiveVariableExp) container, (org.eclipse.emf.ecore.EReference) feature, position, true, frr);
 			}
 		}
+		if (edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getOrderConstraint().isInstance(container)) {
+			MorelFuzzyResolveResult<edu.ustb.sei.mde.morel.ObjectVariable> frr = new MorelFuzzyResolveResult<edu.ustb.sei.mde.morel.ObjectVariable>(result);
+			String referenceName = reference.getName();
+			org.eclipse.emf.ecore.EStructuralFeature feature = container.eClass().getEStructuralFeature(referenceName);
+			if (feature != null && feature instanceof org.eclipse.emf.ecore.EReference && referenceName != null && referenceName.equals("base")) {
+				orderConstraintBaseReferenceResolver.resolve(identifier, (edu.ustb.sei.mde.morel.OrderConstraint) container, (org.eclipse.emf.ecore.EReference) feature, position, true, frr);
+			}
+		}
+		if (edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getAdditionalConstraint().isInstance(container)) {
+			MorelFuzzyResolveResult<edu.ustb.sei.mde.morel.Variable> frr = new MorelFuzzyResolveResult<edu.ustb.sei.mde.morel.Variable>(result);
+			String referenceName = reference.getName();
+			org.eclipse.emf.ecore.EStructuralFeature feature = container.eClass().getEStructuralFeature(referenceName);
+			if (feature != null && feature instanceof org.eclipse.emf.ecore.EReference && referenceName != null && referenceName.equals("variables")) {
+				additionalConstraintVariablesReferenceResolver.resolve(identifier, (edu.ustb.sei.mde.morel.AdditionalConstraint) container, (org.eclipse.emf.ecore.EReference) feature, position, true, frr);
+			}
+		}
+		if (edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getOrderConstraint().isInstance(container)) {
+			MorelFuzzyResolveResult<org.eclipse.emf.ecore.EClass> frr = new MorelFuzzyResolveResult<org.eclipse.emf.ecore.EClass>(result);
+			String referenceName = reference.getName();
+			org.eclipse.emf.ecore.EStructuralFeature feature = container.eClass().getEStructuralFeature(referenceName);
+			if (feature != null && feature instanceof org.eclipse.emf.ecore.EReference && referenceName != null && referenceName.equals("types")) {
+				orderConstraintTypesReferenceResolver.resolve(identifier, (edu.ustb.sei.mde.morel.OrderConstraint) container, (org.eclipse.emf.ecore.EReference) feature, position, true, frr);
+			}
+		}
+		if (edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getOrderConstraint().isInstance(container)) {
+			MorelFuzzyResolveResult<org.eclipse.emf.ecore.EReference> frr = new MorelFuzzyResolveResult<org.eclipse.emf.ecore.EReference>(result);
+			String referenceName = reference.getName();
+			org.eclipse.emf.ecore.EStructuralFeature feature = container.eClass().getEStructuralFeature(referenceName);
+			if (feature != null && feature instanceof org.eclipse.emf.ecore.EReference && referenceName != null && referenceName.equals("references")) {
+				orderConstraintReferencesReferenceResolver.resolve(identifier, (edu.ustb.sei.mde.morel.OrderConstraint) container, (org.eclipse.emf.ecore.EReference) feature, position, true, frr);
+			}
+		}
 	}
 	
 	public edu.ustb.sei.mde.morel.resource.morel.IMorelReferenceResolver<? extends org.eclipse.emf.ecore.EObject, ? extends org.eclipse.emf.ecore.EObject> getResolver(org.eclipse.emf.ecore.EStructuralFeature reference) {
@@ -316,6 +372,18 @@ public class MorelReferenceResolverSwitch implements edu.ustb.sei.mde.morel.reso
 		}
 		if (reference == edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getReflectiveVariableExp_Variable()) {
 			return getResolverChain(reference, reflectiveVariableExpVariableReferenceResolver);
+		}
+		if (reference == edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getOrderConstraint_Base()) {
+			return getResolverChain(reference, orderConstraintBaseReferenceResolver);
+		}
+		if (reference == edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getAdditionalConstraint_Variables()) {
+			return getResolverChain(reference, additionalConstraintVariablesReferenceResolver);
+		}
+		if (reference == edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getOrderConstraint_Types()) {
+			return getResolverChain(reference, orderConstraintTypesReferenceResolver);
+		}
+		if (reference == edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getOrderConstraint_References()) {
+			return getResolverChain(reference, orderConstraintReferencesReferenceResolver);
 		}
 		return null;
 	}

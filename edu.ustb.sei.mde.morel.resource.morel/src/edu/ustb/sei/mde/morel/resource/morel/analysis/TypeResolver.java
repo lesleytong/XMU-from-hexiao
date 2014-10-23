@@ -6,12 +6,14 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import edu.ustb.sei.mde.morel.CollectionType;
 import edu.ustb.sei.mde.morel.MorelPackage;
 import edu.ustb.sei.mde.morel.TypedModel;
 import edu.ustb.sei.mde.morel.Unit;
+import edu.ustb.sei.mde.morel.resource.morel.IMorelReferenceResolveResult;
 
 public class TypeResolver {
 	static public EClassifier resolve(String type, EObject obj) {
@@ -93,7 +95,7 @@ public class TypeResolver {
 		else return element.getName();
 	}
 
-	static private Unit getUnit(EObject container) {
+	static public Unit getUnit(EObject container) {
 		while(container instanceof EObject) {
 			if(container instanceof Unit) {
 				return (Unit) container;
@@ -101,6 +103,19 @@ public class TypeResolver {
 			container = container.eContainer();
 		}
 		return null;
+	}
+	
+	static public void collectContained(String partialName, EPackage pkg,
+			IMorelReferenceResolveResult<EClass> result) {
+		TreeIterator<EObject> it = pkg.eAllContents();
+		
+		while(it.hasNext()) {
+			EObject o = it.next();
+			if(o instanceof EClass) {
+				if(((EClass) o).getName().indexOf(partialName)==-1) continue;
+				result.addMapping(((EClass) o).getName(), (EClass) o);
+			}
+		}
 	}
 	
 	static public EClassifier resolveClassifier(String type, EObject unit) {

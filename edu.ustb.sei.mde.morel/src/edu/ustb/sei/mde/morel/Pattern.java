@@ -15,6 +15,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link edu.ustb.sei.mde.morel.Pattern#getVariables <em>Variables</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.morel.Pattern#getLinkConstraints <em>Link Constraints</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.morel.Pattern#getStatements <em>Statements</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.morel.Pattern#getAdditionalConstraints <em>Additional Constraints</em>}</li>
  * </ul>
  * </p>
  *
@@ -70,5 +71,21 @@ public interface Pattern extends Section {
 	 * @generated
 	 */
 	EList<Statement> getStatements();
+
+	/**
+	 * Returns the value of the '<em><b>Additional Constraints</b></em>' containment reference list.
+	 * The list contents are of type {@link edu.ustb.sei.mde.morel.AdditionalConstraint}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Additional Constraints</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Additional Constraints</em>' containment reference list.
+	 * @see edu.ustb.sei.mde.morel.MorelPackage#getPattern_AdditionalConstraints()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<AdditionalConstraint> getAdditionalConstraints();
 
 } // Pattern

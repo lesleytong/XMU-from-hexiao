@@ -14,6 +14,8 @@
         eType="#//LinkConstraint" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="statements" upperBound="-1"
         eType="#//Statement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="additionalConstraints"
+        upperBound="-1" eType="#//AdditionalConstraint" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Clause" eSuperTypes="#//Section"/>
   <eClassifiers xsi:type="ecore:EClass" name="Variable" abstract="true" eSuperTypes="#//NamedElement"/>
@@ -357,4 +359,16 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="parameters" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AdditionalConstraint" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variables" upperBound="-1"
+        eType="#//Variable"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OrderConstraint" eSuperTypes="#//AdditionalConstraint">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base" lowerBound="1" eType="#//ObjectVariable"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="references" lowerBound="1"
+        upperBound="-1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EReference"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="types" unique="false" lowerBound="1"
+        upperBound="-1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AllDifferentConstraint" eSuperTypes="#//AdditionalConstraint"/>
 </ecore:EPackage>

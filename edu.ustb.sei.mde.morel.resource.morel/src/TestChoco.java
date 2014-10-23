@@ -28,7 +28,6 @@ public class TestChoco {
 		tuples.add(7,2);
 		solver.post(ICF.table(v1, v2, tuples, "AC3"));
 		
-		
 		boolean flag = solver.findSolution();
 		if(flag==false) System.out.println("no solution");
 		while(flag) {

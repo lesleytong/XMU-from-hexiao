@@ -220,6 +220,10 @@ public class MorelPrinter implements edu.ustb.sei.mde.morel.resource.morel.IMore
 			print_edu_ustb_sei_mde_morel_ReflectiveVariableExp((edu.ustb.sei.mde.morel.ReflectiveVariableExp) element, globaltab, out);
 			return;
 		}
+		if (element instanceof edu.ustb.sei.mde.morel.OrderConstraint) {
+			print_edu_ustb_sei_mde_morel_OrderConstraint((edu.ustb.sei.mde.morel.OrderConstraint) element, globaltab, out);
+			return;
+		}
 		if (element instanceof edu.ustb.sei.mde.morel.ObjectVariable) {
 			print_edu_ustb_sei_mde_morel_ObjectVariable((edu.ustb.sei.mde.morel.ObjectVariable) element, globaltab, out);
 			return;
@@ -385,7 +389,7 @@ public class MorelPrinter implements edu.ustb.sei.mde.morel.resource.morel.IMore
 		// the number of elements stored in each structural feature. For lists this is the
 		// list size. For non-multiple features it is either 1 (if the feature is set) or
 		// 0 (if the feature is null).
-		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(7);
+		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(8);
 		Object temp;
 		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.QUERY__TYPE));
 		printCountingMap.put("type", temp == null ? 0 : 1);
@@ -395,6 +399,8 @@ public class MorelPrinter implements edu.ustb.sei.mde.morel.resource.morel.IMore
 		printCountingMap.put("linkConstraints", temp == null ? 0 : ((java.util.Collection<?>) temp).size());
 		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.QUERY__STATEMENTS));
 		printCountingMap.put("statements", temp == null ? 0 : ((java.util.Collection<?>) temp).size());
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.QUERY__ADDITIONAL_CONSTRAINTS));
+		printCountingMap.put("additionalConstraints", temp == null ? 0 : ((java.util.Collection<?>) temp).size());
 		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.QUERY__NAME));
 		printCountingMap.put("name", temp == null ? 0 : 1);
 		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.QUERY__ACTIVE));
@@ -492,6 +498,19 @@ public class MorelPrinter implements edu.ustb.sei.mde.morel.resource.morel.IMore
 		out1 = new java.io.PrintWriter(sWriter);
 		printCountingMap1 = new java.util.LinkedHashMap<String, Integer>(printCountingMap);
 		print_edu_ustb_sei_mde_morel_Query_4(element, localtab, out1, printCountingMap1);
+		if (printCountingMap.equals(printCountingMap1)) {
+			out1.close();
+		} else {
+			out1.flush();
+			out1.close();
+			out.print(sWriter.toString());
+			printCountingMap.putAll(printCountingMap1);
+		}
+		// DEFINITION PART BEGINS (CompoundDefinition)
+		sWriter = new java.io.StringWriter();
+		out1 = new java.io.PrintWriter(sWriter);
+		printCountingMap1 = new java.util.LinkedHashMap<String, Integer>(printCountingMap);
+		print_edu_ustb_sei_mde_morel_Query_5(element, localtab, out1, printCountingMap1);
 		if (printCountingMap.equals(printCountingMap1)) {
 			out1.close();
 		} else {
@@ -728,15 +747,28 @@ public class MorelPrinter implements edu.ustb.sei.mde.morel.resource.morel.IMore
 	
 	public void print_edu_ustb_sei_mde_morel_Query_4(edu.ustb.sei.mde.morel.Query element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
 		String localtab = outertab;
+		int count;
 		boolean iterate = true;
 		java.io.StringWriter sWriter = null;
 		java.io.PrintWriter out1 = null;
 		java.util.Map<String, Integer> printCountingMap1 = null;
-		// DEFINITION PART BEGINS (CsString)
-		out.print("where");
-		out.print(" ");
+		// DEFINITION PART BEGINS (Containment)
+		count = printCountingMap.get("additionalConstraints");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.QUERY__ADDITIONAL_CONSTRAINTS));
+			java.util.List<?> list = (java.util.List<?>) o;
+			int index = list.size() - count;
+			if (index >= 0) {
+				o = list.get(index);
+			} else {
+				o = null;
+			}
+			if (o != null) {
+				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
+			}
+			printCountingMap.put("additionalConstraints", count - 1);
+		}
 		// DEFINITION PART BEGINS (CompoundDefinition)
-		print_edu_ustb_sei_mde_morel_Query_4_0(element, localtab, out, printCountingMap);
 		iterate = true;
 		while (iterate) {
 			sWriter = new java.io.StringWriter();
@@ -756,6 +788,59 @@ public class MorelPrinter implements edu.ustb.sei.mde.morel.resource.morel.IMore
 	}
 	
 	public void print_edu_ustb_sei_mde_morel_Query_4_0(edu.ustb.sei.mde.morel.Query element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
+		String localtab = outertab;
+		int count;
+		// DEFINITION PART BEGINS (CsString)
+		out.print(",");
+		out.print(" ");
+		// DEFINITION PART BEGINS (Containment)
+		count = printCountingMap.get("additionalConstraints");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.QUERY__ADDITIONAL_CONSTRAINTS));
+			java.util.List<?> list = (java.util.List<?>) o;
+			int index = list.size() - count;
+			if (index >= 0) {
+				o = list.get(index);
+			} else {
+				o = null;
+			}
+			if (o != null) {
+				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
+			}
+			printCountingMap.put("additionalConstraints", count - 1);
+		}
+	}
+	
+	public void print_edu_ustb_sei_mde_morel_Query_5(edu.ustb.sei.mde.morel.Query element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
+		String localtab = outertab;
+		boolean iterate = true;
+		java.io.StringWriter sWriter = null;
+		java.io.PrintWriter out1 = null;
+		java.util.Map<String, Integer> printCountingMap1 = null;
+		// DEFINITION PART BEGINS (CsString)
+		out.print("where");
+		out.print(" ");
+		// DEFINITION PART BEGINS (CompoundDefinition)
+		print_edu_ustb_sei_mde_morel_Query_5_0(element, localtab, out, printCountingMap);
+		iterate = true;
+		while (iterate) {
+			sWriter = new java.io.StringWriter();
+			out1 = new java.io.PrintWriter(sWriter);
+			printCountingMap1 = new java.util.LinkedHashMap<String, Integer>(printCountingMap);
+			print_edu_ustb_sei_mde_morel_Query_5_0(element, localtab, out1, printCountingMap1);
+			if (printCountingMap.equals(printCountingMap1)) {
+				iterate = false;
+				out1.close();
+			} else {
+				out1.flush();
+				out1.close();
+				out.print(sWriter.toString());
+				printCountingMap.putAll(printCountingMap1);
+			}
+		}
+	}
+	
+	public void print_edu_ustb_sei_mde_morel_Query_5_0(edu.ustb.sei.mde.morel.Query element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
 		String localtab = outertab;
 		int count;
 		// DEFINITION PART BEGINS (Containment)
@@ -4096,7 +4181,7 @@ public class MorelPrinter implements edu.ustb.sei.mde.morel.resource.morel.IMore
 		// the number of elements stored in each structural feature. For lists this is the
 		// list size. For non-multiple features it is either 1 (if the feature is set) or
 		// 0 (if the feature is null).
-		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(4);
+		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(5);
 		Object temp;
 		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.PATTERN__TYPE));
 		printCountingMap.put("type", temp == null ? 0 : 1);
@@ -4106,6 +4191,8 @@ public class MorelPrinter implements edu.ustb.sei.mde.morel.resource.morel.IMore
 		printCountingMap.put("linkConstraints", temp == null ? 0 : ((java.util.Collection<?>) temp).size());
 		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.PATTERN__STATEMENTS));
 		printCountingMap.put("statements", temp == null ? 0 : ((java.util.Collection<?>) temp).size());
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.PATTERN__ADDITIONAL_CONSTRAINTS));
+		printCountingMap.put("additionalConstraints", temp == null ? 0 : ((java.util.Collection<?>) temp).size());
 		// print collected hidden tokens
 		int count;
 		java.io.StringWriter sWriter = null;
@@ -4156,6 +4243,19 @@ public class MorelPrinter implements edu.ustb.sei.mde.morel.resource.morel.IMore
 		out1 = new java.io.PrintWriter(sWriter);
 		printCountingMap1 = new java.util.LinkedHashMap<String, Integer>(printCountingMap);
 		print_edu_ustb_sei_mde_morel_Pattern_2(element, localtab, out1, printCountingMap1);
+		if (printCountingMap.equals(printCountingMap1)) {
+			out1.close();
+		} else {
+			out1.flush();
+			out1.close();
+			out.print(sWriter.toString());
+			printCountingMap.putAll(printCountingMap1);
+		}
+		// DEFINITION PART BEGINS (CompoundDefinition)
+		sWriter = new java.io.StringWriter();
+		out1 = new java.io.PrintWriter(sWriter);
+		printCountingMap1 = new java.util.LinkedHashMap<String, Integer>(printCountingMap);
+		print_edu_ustb_sei_mde_morel_Pattern_3(element, localtab, out1, printCountingMap1);
 		if (printCountingMap.equals(printCountingMap1)) {
 			out1.close();
 		} else {
@@ -4303,15 +4403,28 @@ public class MorelPrinter implements edu.ustb.sei.mde.morel.resource.morel.IMore
 	
 	public void print_edu_ustb_sei_mde_morel_Pattern_2(edu.ustb.sei.mde.morel.Pattern element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
 		String localtab = outertab;
+		int count;
 		boolean iterate = true;
 		java.io.StringWriter sWriter = null;
 		java.io.PrintWriter out1 = null;
 		java.util.Map<String, Integer> printCountingMap1 = null;
-		// DEFINITION PART BEGINS (CsString)
-		out.print("where");
-		out.print(" ");
+		// DEFINITION PART BEGINS (Containment)
+		count = printCountingMap.get("additionalConstraints");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.PATTERN__ADDITIONAL_CONSTRAINTS));
+			java.util.List<?> list = (java.util.List<?>) o;
+			int index = list.size() - count;
+			if (index >= 0) {
+				o = list.get(index);
+			} else {
+				o = null;
+			}
+			if (o != null) {
+				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
+			}
+			printCountingMap.put("additionalConstraints", count - 1);
+		}
 		// DEFINITION PART BEGINS (CompoundDefinition)
-		print_edu_ustb_sei_mde_morel_Pattern_2_0(element, localtab, out, printCountingMap);
 		iterate = true;
 		while (iterate) {
 			sWriter = new java.io.StringWriter();
@@ -4331,6 +4444,59 @@ public class MorelPrinter implements edu.ustb.sei.mde.morel.resource.morel.IMore
 	}
 	
 	public void print_edu_ustb_sei_mde_morel_Pattern_2_0(edu.ustb.sei.mde.morel.Pattern element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
+		String localtab = outertab;
+		int count;
+		// DEFINITION PART BEGINS (CsString)
+		out.print(",");
+		out.print(" ");
+		// DEFINITION PART BEGINS (Containment)
+		count = printCountingMap.get("additionalConstraints");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.PATTERN__ADDITIONAL_CONSTRAINTS));
+			java.util.List<?> list = (java.util.List<?>) o;
+			int index = list.size() - count;
+			if (index >= 0) {
+				o = list.get(index);
+			} else {
+				o = null;
+			}
+			if (o != null) {
+				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
+			}
+			printCountingMap.put("additionalConstraints", count - 1);
+		}
+	}
+	
+	public void print_edu_ustb_sei_mde_morel_Pattern_3(edu.ustb.sei.mde.morel.Pattern element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
+		String localtab = outertab;
+		boolean iterate = true;
+		java.io.StringWriter sWriter = null;
+		java.io.PrintWriter out1 = null;
+		java.util.Map<String, Integer> printCountingMap1 = null;
+		// DEFINITION PART BEGINS (CsString)
+		out.print("where");
+		out.print(" ");
+		// DEFINITION PART BEGINS (CompoundDefinition)
+		print_edu_ustb_sei_mde_morel_Pattern_3_0(element, localtab, out, printCountingMap);
+		iterate = true;
+		while (iterate) {
+			sWriter = new java.io.StringWriter();
+			out1 = new java.io.PrintWriter(sWriter);
+			printCountingMap1 = new java.util.LinkedHashMap<String, Integer>(printCountingMap);
+			print_edu_ustb_sei_mde_morel_Pattern_3_0(element, localtab, out1, printCountingMap1);
+			if (printCountingMap.equals(printCountingMap1)) {
+				iterate = false;
+				out1.close();
+			} else {
+				out1.flush();
+				out1.close();
+				out.print(sWriter.toString());
+				printCountingMap.putAll(printCountingMap1);
+			}
+		}
+	}
+	
+	public void print_edu_ustb_sei_mde_morel_Pattern_3_0(edu.ustb.sei.mde.morel.Pattern element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
 		String localtab = outertab;
 		int count;
 		// DEFINITION PART BEGINS (Containment)
@@ -4434,6 +4600,258 @@ public class MorelPrinter implements edu.ustb.sei.mde.morel.resource.morel.IMore
 				out.print(" ");
 			}
 			printCountingMap.put("variable", count - 1);
+		}
+	}
+	
+	
+	public void print_edu_ustb_sei_mde_morel_OrderConstraint(edu.ustb.sei.mde.morel.OrderConstraint element, String outertab, java.io.PrintWriter out) {
+		String localtab = outertab;
+		// The printCountingMap contains a mapping from feature names to the number of
+		// remaining elements that still need to be printed. The map is initialized with
+		// the number of elements stored in each structural feature. For lists this is the
+		// list size. For non-multiple features it is either 1 (if the feature is set) or
+		// 0 (if the feature is null).
+		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(4);
+		Object temp;
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.ORDER_CONSTRAINT__VARIABLES));
+		printCountingMap.put("variables", temp == null ? 0 : ((java.util.Collection<?>) temp).size());
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.ORDER_CONSTRAINT__BASE));
+		printCountingMap.put("base", temp == null ? 0 : 1);
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.ORDER_CONSTRAINT__REFERENCES));
+		printCountingMap.put("references", temp == null ? 0 : ((java.util.Collection<?>) temp).size());
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.ORDER_CONSTRAINT__TYPES));
+		printCountingMap.put("types", temp == null ? 0 : ((java.util.Collection<?>) temp).size());
+		// print collected hidden tokens
+		int count;
+		boolean iterate = true;
+		java.io.StringWriter sWriter = null;
+		java.io.PrintWriter out1 = null;
+		java.util.Map<String, Integer> printCountingMap1 = null;
+		// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
+		count = printCountingMap.get("base");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.ORDER_CONSTRAINT__BASE));
+			if (o != null) {
+				edu.ustb.sei.mde.morel.resource.morel.IMorelTokenResolver resolver = tokenResolverFactory.createTokenResolver("IDENTIFIER");
+				resolver.setOptions(getOptions());
+				out.print(resolver.deResolve(getReferenceResolverSwitch() == null ? null : getReferenceResolverSwitch().getOrderConstraintBaseReferenceResolver().deResolve((edu.ustb.sei.mde.morel.ObjectVariable) o, element, (org.eclipse.emf.ecore.EReference) element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.ORDER_CONSTRAINT__BASE)), element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.ORDER_CONSTRAINT__BASE), element));
+				out.print(" ");
+			}
+			printCountingMap.put("base", count - 1);
+		}
+		// DEFINITION PART BEGINS (CsString)
+		out.print("^");
+		out.print(" ");
+		// DEFINITION PART BEGINS (CsString)
+		out.print("<");
+		out.print(" ");
+		// DEFINITION PART BEGINS (CompoundDefinition)
+		sWriter = new java.io.StringWriter();
+		out1 = new java.io.PrintWriter(sWriter);
+		printCountingMap1 = new java.util.LinkedHashMap<String, Integer>(printCountingMap);
+		print_edu_ustb_sei_mde_morel_OrderConstraint_0(element, localtab, out1, printCountingMap1);
+		if (printCountingMap.equals(printCountingMap1)) {
+			out1.close();
+		} else {
+			out1.flush();
+			out1.close();
+			out.print(sWriter.toString());
+			printCountingMap.putAll(printCountingMap1);
+		}
+		// DEFINITION PART BEGINS (CsString)
+		out.print(">");
+		out.print(" ");
+		// DEFINITION PART BEGINS (CsString)
+		out.print(":");
+		out.print(" ");
+		// DEFINITION PART BEGINS (CsString)
+		out.print("<");
+		out.print(" ");
+		// DEFINITION PART BEGINS (CompoundDefinition)
+		print_edu_ustb_sei_mde_morel_OrderConstraint_1(element, localtab, out, printCountingMap);
+		// DEFINITION PART BEGINS (CompoundDefinition)
+		iterate = true;
+		while (iterate) {
+			sWriter = new java.io.StringWriter();
+			out1 = new java.io.PrintWriter(sWriter);
+			printCountingMap1 = new java.util.LinkedHashMap<String, Integer>(printCountingMap);
+			print_edu_ustb_sei_mde_morel_OrderConstraint_2(element, localtab, out1, printCountingMap1);
+			if (printCountingMap.equals(printCountingMap1)) {
+				iterate = false;
+				out1.close();
+			} else {
+				out1.flush();
+				out1.close();
+				out.print(sWriter.toString());
+				printCountingMap.putAll(printCountingMap1);
+			}
+		}
+		// DEFINITION PART BEGINS (CsString)
+		out.print(">");
+		out.print(" ");
+	}
+	
+	public void print_edu_ustb_sei_mde_morel_OrderConstraint_0(edu.ustb.sei.mde.morel.OrderConstraint element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
+		String localtab = outertab;
+		int count;
+		boolean iterate = true;
+		java.io.StringWriter sWriter = null;
+		java.io.PrintWriter out1 = null;
+		java.util.Map<String, Integer> printCountingMap1 = null;
+		// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
+		count = printCountingMap.get("variables");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.ORDER_CONSTRAINT__VARIABLES));
+			java.util.List<?> list = (java.util.List<?>) o;
+			int index = list.size() - count;
+			if (index >= 0) {
+				o = list.get(index);
+			} else {
+				o = null;
+			}
+			if (o != null) {
+				edu.ustb.sei.mde.morel.resource.morel.IMorelTokenResolver resolver = tokenResolverFactory.createTokenResolver("IDENTIFIER");
+				resolver.setOptions(getOptions());
+				out.print(resolver.deResolve(getReferenceResolverSwitch() == null ? null : getReferenceResolverSwitch().getAdditionalConstraintVariablesReferenceResolver().deResolve((edu.ustb.sei.mde.morel.Variable) o, element, (org.eclipse.emf.ecore.EReference) element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.ORDER_CONSTRAINT__VARIABLES)), element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.ORDER_CONSTRAINT__VARIABLES), element));
+				out.print(" ");
+			}
+			printCountingMap.put("variables", count - 1);
+		}
+		// DEFINITION PART BEGINS (CompoundDefinition)
+		iterate = true;
+		while (iterate) {
+			sWriter = new java.io.StringWriter();
+			out1 = new java.io.PrintWriter(sWriter);
+			printCountingMap1 = new java.util.LinkedHashMap<String, Integer>(printCountingMap);
+			print_edu_ustb_sei_mde_morel_OrderConstraint_0_0(element, localtab, out1, printCountingMap1);
+			if (printCountingMap.equals(printCountingMap1)) {
+				iterate = false;
+				out1.close();
+			} else {
+				out1.flush();
+				out1.close();
+				out.print(sWriter.toString());
+				printCountingMap.putAll(printCountingMap1);
+			}
+		}
+	}
+	
+	public void print_edu_ustb_sei_mde_morel_OrderConstraint_0_0(edu.ustb.sei.mde.morel.OrderConstraint element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
+		int count;
+		// DEFINITION PART BEGINS (CsString)
+		out.print(",");
+		out.print(" ");
+		// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
+		count = printCountingMap.get("variables");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.ORDER_CONSTRAINT__VARIABLES));
+			java.util.List<?> list = (java.util.List<?>) o;
+			int index = list.size() - count;
+			if (index >= 0) {
+				o = list.get(index);
+			} else {
+				o = null;
+			}
+			if (o != null) {
+				edu.ustb.sei.mde.morel.resource.morel.IMorelTokenResolver resolver = tokenResolverFactory.createTokenResolver("IDENTIFIER");
+				resolver.setOptions(getOptions());
+				out.print(resolver.deResolve(getReferenceResolverSwitch() == null ? null : getReferenceResolverSwitch().getAdditionalConstraintVariablesReferenceResolver().deResolve((edu.ustb.sei.mde.morel.Variable) o, element, (org.eclipse.emf.ecore.EReference) element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.ORDER_CONSTRAINT__VARIABLES)), element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.ORDER_CONSTRAINT__VARIABLES), element));
+				out.print(" ");
+			}
+			printCountingMap.put("variables", count - 1);
+		}
+	}
+	
+	public void print_edu_ustb_sei_mde_morel_OrderConstraint_1(edu.ustb.sei.mde.morel.OrderConstraint element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
+		int count;
+		// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
+		count = printCountingMap.get("types");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.ORDER_CONSTRAINT__TYPES));
+			java.util.List<?> list = (java.util.List<?>) o;
+			int index = list.size() - count;
+			if (index >= 0) {
+				o = list.get(index);
+			} else {
+				o = null;
+			}
+			if (o != null) {
+				edu.ustb.sei.mde.morel.resource.morel.IMorelTokenResolver resolver = tokenResolverFactory.createTokenResolver("IDENTIFIER");
+				resolver.setOptions(getOptions());
+				out.print(resolver.deResolve(getReferenceResolverSwitch() == null ? null : getReferenceResolverSwitch().getOrderConstraintTypesReferenceResolver().deResolve((org.eclipse.emf.ecore.EClass) o, element, (org.eclipse.emf.ecore.EReference) element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.ORDER_CONSTRAINT__TYPES)), element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.ORDER_CONSTRAINT__TYPES), element));
+				out.print(" ");
+			}
+			printCountingMap.put("types", count - 1);
+		}
+		// DEFINITION PART BEGINS (CsString)
+		out.print(".");
+		out.print(" ");
+		// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
+		count = printCountingMap.get("references");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.ORDER_CONSTRAINT__REFERENCES));
+			java.util.List<?> list = (java.util.List<?>) o;
+			int index = list.size() - count;
+			if (index >= 0) {
+				o = list.get(index);
+			} else {
+				o = null;
+			}
+			if (o != null) {
+				edu.ustb.sei.mde.morel.resource.morel.IMorelTokenResolver resolver = tokenResolverFactory.createTokenResolver("IDENTIFIER");
+				resolver.setOptions(getOptions());
+				out.print(resolver.deResolve(getReferenceResolverSwitch() == null ? null : getReferenceResolverSwitch().getOrderConstraintReferencesReferenceResolver().deResolve((org.eclipse.emf.ecore.EReference) o, element, (org.eclipse.emf.ecore.EReference) element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.ORDER_CONSTRAINT__REFERENCES)), element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.ORDER_CONSTRAINT__REFERENCES), element));
+				out.print(" ");
+			}
+			printCountingMap.put("references", count - 1);
+		}
+	}
+	
+	public void print_edu_ustb_sei_mde_morel_OrderConstraint_2(edu.ustb.sei.mde.morel.OrderConstraint element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
+		int count;
+		// DEFINITION PART BEGINS (CsString)
+		out.print(",");
+		out.print(" ");
+		// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
+		count = printCountingMap.get("types");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.ORDER_CONSTRAINT__TYPES));
+			java.util.List<?> list = (java.util.List<?>) o;
+			int index = list.size() - count;
+			if (index >= 0) {
+				o = list.get(index);
+			} else {
+				o = null;
+			}
+			if (o != null) {
+				edu.ustb.sei.mde.morel.resource.morel.IMorelTokenResolver resolver = tokenResolverFactory.createTokenResolver("IDENTIFIER");
+				resolver.setOptions(getOptions());
+				out.print(resolver.deResolve(getReferenceResolverSwitch() == null ? null : getReferenceResolverSwitch().getOrderConstraintTypesReferenceResolver().deResolve((org.eclipse.emf.ecore.EClass) o, element, (org.eclipse.emf.ecore.EReference) element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.ORDER_CONSTRAINT__TYPES)), element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.ORDER_CONSTRAINT__TYPES), element));
+				out.print(" ");
+			}
+			printCountingMap.put("types", count - 1);
+		}
+		// DEFINITION PART BEGINS (CsString)
+		out.print(".");
+		out.print(" ");
+		// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
+		count = printCountingMap.get("references");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.ORDER_CONSTRAINT__REFERENCES));
+			java.util.List<?> list = (java.util.List<?>) o;
+			int index = list.size() - count;
+			if (index >= 0) {
+				o = list.get(index);
+			} else {
+				o = null;
+			}
+			if (o != null) {
+				edu.ustb.sei.mde.morel.resource.morel.IMorelTokenResolver resolver = tokenResolverFactory.createTokenResolver("IDENTIFIER");
+				resolver.setOptions(getOptions());
+				out.print(resolver.deResolve(getReferenceResolverSwitch() == null ? null : getReferenceResolverSwitch().getOrderConstraintReferencesReferenceResolver().deResolve((org.eclipse.emf.ecore.EReference) o, element, (org.eclipse.emf.ecore.EReference) element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.ORDER_CONSTRAINT__REFERENCES)), element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.ORDER_CONSTRAINT__REFERENCES), element));
+				out.print(" ");
+			}
+			printCountingMap.put("references", count - 1);
 		}
 	}
 	

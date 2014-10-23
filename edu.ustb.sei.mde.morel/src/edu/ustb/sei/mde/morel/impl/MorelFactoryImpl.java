@@ -106,6 +106,8 @@ public class MorelFactoryImpl extends EFactoryImpl implements MorelFactory {
 			case MorelPackage.DECLARATIVE_STATEMENT: return createDeclarativeStatement();
 			case MorelPackage.REFLECTIVE_VARIABLE_EXP: return createReflectiveVariableExp();
 			case MorelPackage.ARRAY_LITERAL_EXP: return createArrayLiteralExp();
+			case MorelPackage.ORDER_CONSTRAINT: return createOrderConstraint();
+			case MorelPackage.ALL_DIFFERENT_CONSTRAINT: return createAllDifferentConstraint();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -669,6 +671,26 @@ public class MorelFactoryImpl extends EFactoryImpl implements MorelFactory {
 	public ArrayLiteralExp createArrayLiteralExp() {
 		ArrayLiteralExpImpl arrayLiteralExp = new ArrayLiteralExpImpl();
 		return arrayLiteralExp;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OrderConstraint createOrderConstraint() {
+		OrderConstraintImpl orderConstraint = new OrderConstraintImpl();
+		return orderConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AllDifferentConstraint createAllDifferentConstraint() {
+		AllDifferentConstraintImpl allDifferentConstraint = new AllDifferentConstraintImpl();
+		return allDifferentConstraint;
 	}
 
 	/**

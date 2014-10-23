@@ -180,13 +180,22 @@ public interface MorelPackage extends EPackage {
 	int PATTERN__STATEMENTS = SECTION_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Additional Constraints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATTERN__ADDITIONAL_CONSTRAINTS = SECTION_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Pattern</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PATTERN_FEATURE_COUNT = SECTION_FEATURE_COUNT + 3;
+	int PATTERN_FEATURE_COUNT = SECTION_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Pattern</em>' class.
@@ -847,6 +856,15 @@ public interface MorelPackage extends EPackage {
 	 * @ordered
 	 */
 	int QUERY__STATEMENTS = PATTERN__STATEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Additional Constraints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY__ADDITIONAL_CONSTRAINTS = PATTERN__ADDITIONAL_CONSTRAINTS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3948,6 +3966,144 @@ public interface MorelPackage extends EPackage {
 	int EXECUTABLE_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.impl.AdditionalConstraintImpl <em>Additional Constraint</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.morel.impl.AdditionalConstraintImpl
+	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getAdditionalConstraint()
+	 * @generated
+	 */
+	int ADDITIONAL_CONSTRAINT = 72;
+
+	/**
+	 * The feature id for the '<em><b>Variables</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ADDITIONAL_CONSTRAINT__VARIABLES = 0;
+
+	/**
+	 * The number of structural features of the '<em>Additional Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ADDITIONAL_CONSTRAINT_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Additional Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ADDITIONAL_CONSTRAINT_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.impl.OrderConstraintImpl <em>Order Constraint</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.morel.impl.OrderConstraintImpl
+	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getOrderConstraint()
+	 * @generated
+	 */
+	int ORDER_CONSTRAINT = 73;
+
+	/**
+	 * The feature id for the '<em><b>Variables</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDER_CONSTRAINT__VARIABLES = ADDITIONAL_CONSTRAINT__VARIABLES;
+
+	/**
+	 * The feature id for the '<em><b>Base</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDER_CONSTRAINT__BASE = ADDITIONAL_CONSTRAINT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDER_CONSTRAINT__REFERENCES = ADDITIONAL_CONSTRAINT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Types</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDER_CONSTRAINT__TYPES = ADDITIONAL_CONSTRAINT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Order Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDER_CONSTRAINT_FEATURE_COUNT = ADDITIONAL_CONSTRAINT_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of operations of the '<em>Order Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDER_CONSTRAINT_OPERATION_COUNT = ADDITIONAL_CONSTRAINT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.impl.AllDifferentConstraintImpl <em>All Different Constraint</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.morel.impl.AllDifferentConstraintImpl
+	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getAllDifferentConstraint()
+	 * @generated
+	 */
+	int ALL_DIFFERENT_CONSTRAINT = 74;
+
+	/**
+	 * The feature id for the '<em><b>Variables</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALL_DIFFERENT_CONSTRAINT__VARIABLES = ADDITIONAL_CONSTRAINT__VARIABLES;
+
+	/**
+	 * The number of structural features of the '<em>All Different Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALL_DIFFERENT_CONSTRAINT_FEATURE_COUNT = ADDITIONAL_CONSTRAINT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>All Different Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALL_DIFFERENT_CONSTRAINT_OPERATION_COUNT = ADDITIONAL_CONSTRAINT_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.SectionType <em>Section Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3955,7 +4111,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getSectionType()
 	 * @generated
 	 */
-	int SECTION_TYPE = 72;
+	int SECTION_TYPE = 75;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.UndefinedLiteral <em>Undefined Literal</em>}' enum.
@@ -3965,7 +4121,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getUndefinedLiteral()
 	 * @generated
 	 */
-	int UNDEFINED_LITERAL = 73;
+	int UNDEFINED_LITERAL = 76;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.PredefinedVariable <em>Predefined Variable</em>}' enum.
@@ -3975,7 +4131,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getPredefinedVariable()
 	 * @generated
 	 */
-	int PREDEFINED_VARIABLE = 74;
+	int PREDEFINED_VARIABLE = 77;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.OperationSeparator <em>Operation Separator</em>}' enum.
@@ -3985,7 +4141,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getOperationSeparator()
 	 * @generated
 	 */
-	int OPERATION_SEPARATOR = 75;
+	int OPERATION_SEPARATOR = 78;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.IteratorType <em>Iterator Type</em>}' enum.
@@ -3995,7 +4151,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getIteratorType()
 	 * @generated
 	 */
-	int ITERATOR_TYPE = 76;
+	int ITERATOR_TYPE = 79;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.BooleanOperator <em>Boolean Operator</em>}' enum.
@@ -4005,7 +4161,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getBooleanOperator()
 	 * @generated
 	 */
-	int BOOLEAN_OPERATOR = 77;
+	int BOOLEAN_OPERATOR = 80;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.RelationalOperator <em>Relational Operator</em>}' enum.
@@ -4015,7 +4171,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getRelationalOperator()
 	 * @generated
 	 */
-	int RELATIONAL_OPERATOR = 78;
+	int RELATIONAL_OPERATOR = 81;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.AdditiveOperator <em>Additive Operator</em>}' enum.
@@ -4025,7 +4181,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getAdditiveOperator()
 	 * @generated
 	 */
-	int ADDITIVE_OPERATOR = 79;
+	int ADDITIVE_OPERATOR = 82;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.MultiplicativeOperator <em>Multiplicative Operator</em>}' enum.
@@ -4035,7 +4191,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getMultiplicativeOperator()
 	 * @generated
 	 */
-	int MULTIPLICATIVE_OPERATOR = 80;
+	int MULTIPLICATIVE_OPERATOR = 83;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.UnaryOperator <em>Unary Operator</em>}' enum.
@@ -4045,7 +4201,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getUnaryOperator()
 	 * @generated
 	 */
-	int UNARY_OPERATOR = 81;
+	int UNARY_OPERATOR = 84;
 
 
 	/**
@@ -4056,7 +4212,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getExecutionMode()
 	 * @generated
 	 */
-	int EXECUTION_MODE = 82;
+	int EXECUTION_MODE = 85;
 
 
 	/**
@@ -4143,6 +4299,17 @@ public interface MorelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getPattern_Statements();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link edu.ustb.sei.mde.morel.Pattern#getAdditionalConstraints <em>Additional Constraints</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Additional Constraints</em>'.
+	 * @see edu.ustb.sei.mde.morel.Pattern#getAdditionalConstraints()
+	 * @see #getPattern()
+	 * @generated
+	 */
+	EReference getPattern_AdditionalConstraints();
 
 	/**
 	 * Returns the meta object for class '{@link edu.ustb.sei.mde.morel.Clause <em>Clause</em>}'.
@@ -5769,6 +5936,80 @@ public interface MorelPackage extends EPackage {
 	EAttribute getExecutable_Parameters();
 
 	/**
+	 * Returns the meta object for class '{@link edu.ustb.sei.mde.morel.AdditionalConstraint <em>Additional Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Additional Constraint</em>'.
+	 * @see edu.ustb.sei.mde.morel.AdditionalConstraint
+	 * @generated
+	 */
+	EClass getAdditionalConstraint();
+
+	/**
+	 * Returns the meta object for the reference list '{@link edu.ustb.sei.mde.morel.AdditionalConstraint#getVariables <em>Variables</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Variables</em>'.
+	 * @see edu.ustb.sei.mde.morel.AdditionalConstraint#getVariables()
+	 * @see #getAdditionalConstraint()
+	 * @generated
+	 */
+	EReference getAdditionalConstraint_Variables();
+
+	/**
+	 * Returns the meta object for class '{@link edu.ustb.sei.mde.morel.OrderConstraint <em>Order Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Order Constraint</em>'.
+	 * @see edu.ustb.sei.mde.morel.OrderConstraint
+	 * @generated
+	 */
+	EClass getOrderConstraint();
+
+	/**
+	 * Returns the meta object for the reference '{@link edu.ustb.sei.mde.morel.OrderConstraint#getBase <em>Base</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Base</em>'.
+	 * @see edu.ustb.sei.mde.morel.OrderConstraint#getBase()
+	 * @see #getOrderConstraint()
+	 * @generated
+	 */
+	EReference getOrderConstraint_Base();
+
+	/**
+	 * Returns the meta object for the reference list '{@link edu.ustb.sei.mde.morel.OrderConstraint#getReferences <em>References</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>References</em>'.
+	 * @see edu.ustb.sei.mde.morel.OrderConstraint#getReferences()
+	 * @see #getOrderConstraint()
+	 * @generated
+	 */
+	EReference getOrderConstraint_References();
+
+	/**
+	 * Returns the meta object for the reference list '{@link edu.ustb.sei.mde.morel.OrderConstraint#getTypes <em>Types</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Types</em>'.
+	 * @see edu.ustb.sei.mde.morel.OrderConstraint#getTypes()
+	 * @see #getOrderConstraint()
+	 * @generated
+	 */
+	EReference getOrderConstraint_Types();
+
+	/**
+	 * Returns the meta object for class '{@link edu.ustb.sei.mde.morel.AllDifferentConstraint <em>All Different Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>All Different Constraint</em>'.
+	 * @see edu.ustb.sei.mde.morel.AllDifferentConstraint
+	 * @generated
+	 */
+	EClass getAllDifferentConstraint();
+
+	/**
 	 * Returns the meta object for enum '{@link edu.ustb.sei.mde.morel.SectionType <em>Section Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5970,6 +6211,14 @@ public interface MorelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PATTERN__STATEMENTS = eINSTANCE.getPattern_Statements();
+
+		/**
+		 * The meta object literal for the '<em><b>Additional Constraints</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PATTERN__ADDITIONAL_CONSTRAINTS = eINSTANCE.getPattern_AdditionalConstraints();
 
 		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.impl.ClauseImpl <em>Clause</em>}' class.
@@ -7340,6 +7589,68 @@ public interface MorelPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute EXECUTABLE__PARAMETERS = eINSTANCE.getExecutable_Parameters();
+
+		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.impl.AdditionalConstraintImpl <em>Additional Constraint</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.morel.impl.AdditionalConstraintImpl
+		 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getAdditionalConstraint()
+		 * @generated
+		 */
+		EClass ADDITIONAL_CONSTRAINT = eINSTANCE.getAdditionalConstraint();
+
+		/**
+		 * The meta object literal for the '<em><b>Variables</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ADDITIONAL_CONSTRAINT__VARIABLES = eINSTANCE.getAdditionalConstraint_Variables();
+
+		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.impl.OrderConstraintImpl <em>Order Constraint</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.morel.impl.OrderConstraintImpl
+		 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getOrderConstraint()
+		 * @generated
+		 */
+		EClass ORDER_CONSTRAINT = eINSTANCE.getOrderConstraint();
+
+		/**
+		 * The meta object literal for the '<em><b>Base</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ORDER_CONSTRAINT__BASE = eINSTANCE.getOrderConstraint_Base();
+
+		/**
+		 * The meta object literal for the '<em><b>References</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ORDER_CONSTRAINT__REFERENCES = eINSTANCE.getOrderConstraint_References();
+
+		/**
+		 * The meta object literal for the '<em><b>Types</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ORDER_CONSTRAINT__TYPES = eINSTANCE.getOrderConstraint_Types();
+
+		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.impl.AllDifferentConstraintImpl <em>All Different Constraint</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.morel.impl.AllDifferentConstraintImpl
+		 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getAllDifferentConstraint()
+		 * @generated
+		 */
+		EClass ALL_DIFFERENT_CONSTRAINT = eINSTANCE.getAllDifferentConstraint();
 
 		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.SectionType <em>Section Type</em>}' enum.

@@ -66,7 +66,7 @@ RULES {
 	QueryModel ::= "querymodel" models+ queries*;
 	TypedModel ::= "type" name[IDENTIFIER] "<-"  package[URINS];
 	
-	Query ::= (active["active":"passive"])? "query" type[LHS : "lhs", RHS : "rhs", NAC : "nac", PAC : "pac", PRE : "pre", POST : "post", LHS : ""] name[IDENTIFIER] ("("parameters[IDENTIFIER] ("," parameters[IDENTIFIER])*")")? "{" "match" (variables ("," variables)*)?  (linkConstraints ("," linkConstraints)*)? ("where" (statements)+)?"}";
+	Query ::= (active["active":"passive"])? "query" type[LHS : "lhs", RHS : "rhs", NAC : "nac", PAC : "pac", PRE : "pre", POST : "post", LHS : ""] name[IDENTIFIER] ("("parameters[IDENTIFIER] ("," parameters[IDENTIFIER])*")")? "{" "match" (variables ("," variables)*)?  (linkConstraints ("," linkConstraints)*)? (additionalConstraints ("," additionalConstraints)*)? ("where" (statements)+)?"}";
 	
 	ObjectVariable ::= name[IDENTIFIER] ":" (model[IDENTIFIER] "!")? type[IDENTIFIER];
 	
@@ -148,9 +148,11 @@ RULES {
 	
 	Rule ::= (active["active":"passive"])? "rule" name[IDENTIFIER] ("("parameters[IDENTIFIER] ("," parameters[IDENTIFIER])*")")? "{" (patterns:Pattern)* "}" ;
 	
-	Pattern ::= type[LHS : "lhs", RHS : "rhs", NAC : "nac", PAC : "pac", PRE : "pre", POST : "post", LHS : ""] "{" "match" (variables ("," variables)*)?  (linkConstraints ("," linkConstraints)*)? ("where"  (statements)+)? "}";
+	Pattern ::= type[LHS : "lhs", RHS : "rhs", NAC : "nac", PAC : "pac", PRE : "pre", POST : "post", LHS : ""] "{" "match" (variables ("," variables)*)?  (linkConstraints ("," linkConstraints)*)? (additionalConstraints ("," additionalConstraints)*)? ("where"  (statements)+)? "}";
 	
 	PredefinedVariableExp ::= variable[this:"@this", id:"@id"] (path)?;
 	
 	ReflectiveVariableExp ::= "&" variable[IDENTIFIER];
+	
+	OrderConstraint ::= base[IDENTIFIER] "^" "<" (variables[IDENTIFIER] ("," variables[IDENTIFIER])*)? ">" ":" "<" (types[IDENTIFIER] "." references[IDENTIFIER]) ("," types[IDENTIFIER] "." references[IDENTIFIER])* ">";
 }
