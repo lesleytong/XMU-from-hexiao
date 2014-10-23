@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Morel Model Processer
+Bundle-SymbolicName: edu.ustb.sei.mde.morel.resource.processer;singleton:=true
+Bundle-Version: 1.0.0.1
+Bundle-Activator: edu.ustb.sei.mde.morel.resource.processer.Activator
+Bundle-Vendor: He Xiao
+Require-Bundle: org.eclipse.core.runtime,
+ edu.ustb.sei.mde.morel.resource.morel;bundle-version="1.0.0",
+ edu.ustb.sei.mde.morel;bundle-version="1.0.1"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-ActivationPolicy: lazy
