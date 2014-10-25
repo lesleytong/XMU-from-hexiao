@@ -39,8 +39,12 @@ public class StringLibrary extends AnyLibrary {
 			return self;
 		case "toUpperCase":
 			return this.toUpperCase(self);
+		case "toUpperCaseFirst":
+			return this.toUpperCaseFirst(self);
 		case "toLowerCase":
 			return this.toLowerCase(self);
+		case "toLowerCaseFirst":
+			return this.toLowerCaseFirst(self);
 		case "indexOf":
 			return this.indexOf(self,params[0]);
 		case "equalsIgnoreCase":
@@ -60,6 +64,26 @@ public class StringLibrary extends AnyLibrary {
 		}
 	}
 	
+	public Object toUpperCaseFirst(Object self) {
+		try {
+			String str = self.toString();
+			if(str.isEmpty()) return "";
+			return Character.toUpperCase(str.charAt(0))+str.substring(1);
+		} catch (Exception e) {
+			return OclUndefined.INVALIDED;
+		}
+	}
+	
+	public Object toLowerCaseFirst(Object self) {
+		try {
+			String str = self.toString();
+			if(str.isEmpty()) return "";
+			return Character.toLowerCase(str.charAt(0))+str.substring(1);
+		} catch (Exception e) {
+			return OclUndefined.INVALIDED;
+		}
+	}
+
 	public Object concat(Object self, Object str) {
 		try {
 			return self.toString()+str.toString();

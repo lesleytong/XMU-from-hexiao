@@ -77,7 +77,7 @@ public class MorelLaunchConfigurationHelper {
 			
 			OclInterpreter interpreter = new OclInterpreter();			
 			createContext.putValue(var, new ModuleProvider((Unit) root, interpreter));
-			
+			interpreter.start();
 			if(root instanceof QueryModel) {
 				interpreter.interprete_edu_ustb_sei_mde_morel_QueryModel((QueryModel) root, createContext);
 			} else if(root instanceof TransformationModel) {

@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 
 import edu.ustb.sei.mde.emg.graph.ModelUniverse;
+import edu.ustb.sei.mde.emg.library.BooleanLibrary;
 import edu.ustb.sei.mde.emg.library.OclStandardLibrary;
 import edu.ustb.sei.mde.emg.runtime.Context;
 import edu.ustb.sei.mde.emg.runtime.Environment;
@@ -92,6 +93,7 @@ import edu.ustb.sei.mde.morel.UndefinedLiteralExp;
 import edu.ustb.sei.mde.morel.Variable;
 import edu.ustb.sei.mde.morel.VariableExp;
 import edu.ustb.sei.mde.morel.VariableWithInit;
+import edu.ustb.sei.mde.morel.resource.morel.execution.constraints.OrderConstraintExecutor;
 import edu.ustb.sei.mde.morel.resource.morel.execution.constraints.PropEnclosureLinkS_T;
 import edu.ustb.sei.mde.morel.resource.morel.execution.primitives.Apply;
 import edu.ustb.sei.mde.morel.resource.morel.execution.primitives.Initialize;
@@ -266,6 +268,8 @@ public class OclInterpreter extends
 			List<Context> lhsMatches = match.match(lhs, context, this, context.getEnviroment());
 			
 			List<Context> successfulContexts = new ArrayList<Context>();
+			
+			Match.resetCache();
 			
 			for(Context c : lhsMatches) {
 				if(recheckMatch(lhs, c)==false) continue;
@@ -451,7 +455,7 @@ public class OclInterpreter extends
 			}
 			
 			Object v = interprete(id, innerCont);
-			if(v!=Boolean.TRUE) return false;
+			if(!BooleanLibrary.isTrue(v)) return false;
 			
 		} catch (Exception e) {
 			return false;
@@ -820,14 +824,14 @@ public class OclInterpreter extends
 		
 		for(int i = 0;i<size;i++) {
 			if(result instanceof Boolean) {
-				if(result==Boolean.TRUE) return true;
+				if(BooleanLibrary.isTrue(result)) return true;
 				else {
 					Object add = this.interprete(booleanOrExp.getChildren().get(i+1), context);
 					result = library.execute("or", result, add);
 				}
 			} else if(result==OclUndefined.INVALIDED || result==OclUndefined.NULL){
 				Object add = this.interprete(booleanOrExp.getChildren().get(i+1), context);
-				if(add==Boolean.TRUE) 
+				if(BooleanLibrary.isTrue(add)) 
 					return true;
 			} else return OclUndefined.INVALIDED;
 		}
@@ -844,14 +848,14 @@ public class OclInterpreter extends
 		
 		for(int i = 0;i<size;i++) {
 			if(result instanceof Boolean) {
-				if(result==Boolean.TRUE) return true;
+				if(BooleanLibrary.isTrue(result)) return true;
 				else {
 					Object add = this.interprete(booleanAndExp.getChildren().get(i+1), context);
 					result = library.execute("and", result, add);
 				}
 			} else if(result==OclUndefined.INVALIDED || result==OclUndefined.NULL){
 				Object add = this.interprete(booleanAndExp.getChildren().get(i+1), context);
-				if(add==Boolean.FALSE) 
+				if(BooleanLibrary.isFalse(add)) 
 					return false;
 			} else return OclUndefined.INVALIDED;
 		}
@@ -1184,6 +1188,7 @@ public class OclInterpreter extends
 		try {
 			Context init = context.newScope();
 			for(Query query : queryModel.getQueries()) {
+				if(terminated) return true;
 				if(query.isActive()==false) continue;
 				@SuppressWarnings("unchecked")
 				List<Context> result = (List<Context>) this.interprete_edu_ustb_sei_mde_morel_Query(query, init);
@@ -1208,10 +1213,20 @@ public class OclInterpreter extends
 			TransformationModel transformationModel, Context context) {
 		try {
 			Context init = context.newScope();
-			for(Rule rule : transformationModel.getRules()) {
-				if(rule.isActive()==false) continue;
-				List<Context> matches = (List<Context>)this.interprete_edu_ustb_sei_mde_morel_Rule(rule, init);
+			Environment env = context.getEnviroment();
+			
+			do{
+				ConsoleUtil.printToConsole("next iteration", MorelLaunchConfigurationHelper.MOREL_TITLE, true);
+				env.getModelUniverse().resetChanged();
+				
+				for(Rule rule : transformationModel.getRules()) {
+					if(terminated) return true;
+					if(rule.isActive()==false) continue;
+					List<Context> matches = (List<Context>)this.interprete_edu_ustb_sei_mde_morel_Rule(rule, init);
+				}
 			}
+			while(terminated==false&&env.getModelUniverse().isChanged());
+			
 			ConsoleUtil.printToConsole("Transformation is finished.", MorelLaunchConfigurationHelper.MOREL_TITLE, true);
 			
 		} catch (Exception e) {
@@ -1220,6 +1235,19 @@ public class OclInterpreter extends
 		}
 		
 		return true;
+	}
+
+	protected boolean terminated = false;
+
+	@Override
+	public void terminate() {
+		// TODO Auto-generated method stub
+		super.terminate();
+		terminated = true;
+	}
+	
+	public void start() {
+		terminated = false;
 	}
 
 

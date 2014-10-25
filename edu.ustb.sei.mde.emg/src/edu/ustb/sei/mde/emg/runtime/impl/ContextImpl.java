@@ -17,6 +17,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
@@ -585,14 +586,34 @@ public class ContextImpl extends MinimalEObjectImpl.Container implements Context
 	@Override
 	public String toString() {
 		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (bindingMap: ");
-		result.append(bindingMap);
-		result.append(", host: ");
-		result.append(host);
-		result.append(')');
-		return result.toString();
+//
+//		StringBuffer result = new StringBuffer(super.toString());
+//		result.append(" (bindingMap: ");
+//		result.append(bindingMap);
+//		result.append(", host: ");
+//		result.append(host);
+//		result.append(')');
+//		return result.toString();
+		
+		StringBuilder builder = new StringBuilder();
+		builder.append("host=");
+		builder.append(this.getHost());
+		builder.append("{");
+		boolean first = true;
+		Set<Entry<Variable, Object>> entrySet = this.getBindingMap().entrySet();
+		for(Entry<Variable,Object> e : entrySet){
+			if(!first) {
+				builder.append(" ,");
+				first=false;
+			}
+			builder.append(e.getKey().getName());
+			builder.append("=");
+			builder.append(e.getValue());
+		}
+		
+		builder.append("}");
+		
+		return builder.toString();
 	}
 	
 	
@@ -613,5 +634,4 @@ public class ContextImpl extends MinimalEObjectImpl.Container implements Context
 			}
 		}
 	}
-
 } //ContextImpl

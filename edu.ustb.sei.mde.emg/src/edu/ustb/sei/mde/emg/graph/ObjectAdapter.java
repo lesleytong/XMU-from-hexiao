@@ -19,6 +19,7 @@ public class ObjectAdapter implements Adapter {
 	public void notifyChanged(Notification notification) {
 		EObject source = (EObject) notification.getNotifier();
 		EStructuralFeature feature = (EStructuralFeature) notification.getFeature();
+		
 		if(feature instanceof EReference) {
 			int eventType = notification.getEventType();
 			if(eventType==Notification.REMOVING_ADAPTER || eventType==Notification.RESOLVE)
@@ -26,7 +27,13 @@ public class ObjectAdapter implements Adapter {
 			System.out.println("remove relationship "+feature.getName()+" for "+eventType);
 			space.resetElementRelationshipMap(source,(EReference)feature);
 		}
-
+		
+		Object lv = notification.getOldValue();
+		Object rv = notification.getNewValue();
+		
+		if(lv==null && rv!=null) space.onChange();
+		else if(lv!=null && rv==null) space.onChange();
+		else if(lv.equals(rv)==false) space.onChange();
 	}
 
 	@Override

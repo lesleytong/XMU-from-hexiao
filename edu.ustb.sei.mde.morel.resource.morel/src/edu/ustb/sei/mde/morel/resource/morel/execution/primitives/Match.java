@@ -1,28 +1,34 @@
 package edu.ustb.sei.mde.morel.resource.morel.execution.primitives;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcorePackage;
 
+import solver.Solver;
+import solver.constraints.Constraint;
+import solver.constraints.ICF;
+import solver.variables.IntVar;
+import solver.variables.VF;
 import edu.ustb.sei.commonutil.util.BidirectionalMap;
 import edu.ustb.sei.commonutil.util.Pair;
 import edu.ustb.sei.commonutil.util.PairHashSet;
 import edu.ustb.sei.mde.emg.graph.ModelSpace;
-import edu.ustb.sei.mde.emg.graph.ModelUniverse;
+import edu.ustb.sei.mde.emg.library.BooleanLibrary;
 import edu.ustb.sei.mde.emg.runtime.Context;
 import edu.ustb.sei.mde.emg.runtime.Environment;
 import edu.ustb.sei.mde.emg.runtime.datatype.OclUndefined;
+import edu.ustb.sei.mde.morel.AdditionalConstraint;
+import edu.ustb.sei.mde.morel.AllDifferentConstraint;
 import edu.ustb.sei.mde.morel.EnclosureLinkConstraint;
 import edu.ustb.sei.mde.morel.LinkConstraint;
 import edu.ustb.sei.mde.morel.MorelFactory;
 import edu.ustb.sei.mde.morel.ObjectVariable;
+import edu.ustb.sei.mde.morel.OrderConstraint;
 import edu.ustb.sei.mde.morel.PathConstraint;
 import edu.ustb.sei.mde.morel.Pattern;
 import edu.ustb.sei.mde.morel.PredefinedVariable;
@@ -31,20 +37,31 @@ import edu.ustb.sei.mde.morel.SimpleLinkConstraint;
 import edu.ustb.sei.mde.morel.Statement;
 import edu.ustb.sei.mde.morel.Variable;
 import edu.ustb.sei.mde.morel.resource.morel.execution.OclInterpreter;
+import edu.ustb.sei.mde.morel.resource.morel.execution.constraints.AdditionalConstraintExecutor;
+import edu.ustb.sei.mde.morel.resource.morel.execution.constraints.OrderConstraintExecutor;
 import edu.ustb.sei.mde.morel.resource.morel.execution.constraints.PropEnclosureLinkS_T;
-import edu.ustb.sei.mde.morel.resource.morel.execution.constraints.PropLinkS_T;
 import edu.ustb.sei.mde.morel.resource.morel.execution.constraints.PropTableConstraint;
 import edu.ustb.sei.mde.morel.resource.morel.execution.variable.PathArray;
-import edu.ustb.sei.mde.morel.resource.morel.util.AbstractMorelInterpreter;
-import solver.Solver;
-import solver.constraints.Constraint;
-import solver.constraints.ICF;
-import solver.constraints.extension.Tuples;
-import solver.variables.IntVar;
-import solver.variables.VF;
 
 public class Match {
 	public final static Match instance = new Match();
+	
+	static private HashMap<AdditionalConstraint, AdditionalConstraintExecutor<?>> additionalConstraintExecutorMap = new HashMap<AdditionalConstraint, AdditionalConstraintExecutor<?>>();
+	
+	public static  AdditionalConstraintExecutor<?> getExecutor(AdditionalConstraint cons) {
+		AdditionalConstraintExecutor<?> exec = additionalConstraintExecutorMap.get(cons);
+		if(exec==null) {
+			if(cons instanceof OrderConstraint) {
+				exec = new OrderConstraintExecutor((OrderConstraint) cons);
+			}
+		}
+		
+		return exec;
+	}
+
+	static public void resetCache() {
+		additionalConstraintExecutorMap.clear();
+	}
 	
 	private Pair<BidirectionalMap<Variable, Object>,Solver> makeModel(List<Pattern> patterns, Context context, Environment env) {
 		BidirectionalMap<Variable, Object> varMap = new BidirectionalMap<Variable, Object>();
@@ -98,6 +115,16 @@ public class Match {
 					if(c==null) return null;
 					solver.post(c);
 					varMap.put(pathConstraint.getPathVariable(), pArray);
+				}
+			}
+			
+			for(AdditionalConstraint ac : pattern.getAdditionalConstraints()) {
+				if(ac instanceof AllDifferentConstraint) {
+					IntVar[] arr = new IntVar[ac.getVariables().size()];
+					for(int i = 0;i<arr.length;i++) {
+						arr[i] = (IntVar) varMap.forward(ac.getVariables().get(i));
+					}
+					solver.post(ICF.alldifferent(arr));
 				}
 			}
 		}
@@ -184,6 +211,7 @@ public class Match {
 			
 			
 			if(checkLinkOrderCondition(patterns,newContext,interpreter,false) 
+					&& checkAdditionalConstraint(patterns,newContext)
 					&& checkCondition(patterns,newContext,interpreter,false)) {
 				result.add(newContext);
 				if(justCheck) break;
@@ -195,6 +223,20 @@ public class Match {
 		return result;
 	}
 	
+	private boolean checkAdditionalConstraint(List<Pattern> patterns,
+			Context newContext) {
+		for(Pattern pattern : patterns) {
+			for(AdditionalConstraint ac : pattern.getAdditionalConstraints()) {
+				if(ac instanceof OrderConstraint) {
+					AdditionalConstraintExecutor<?> exec = Match.getExecutor(ac);
+					if(exec.evaluate(newContext)==false) 
+						return false;
+				}
+			}
+		}
+		return true;
+	}
+
 	public List<Context> match(Pattern pattern, Context context, OclInterpreter interpreter, Environment env){
 		return match(pattern,context,interpreter,env,false);
 	}
@@ -253,9 +295,9 @@ public class Match {
 		for(Statement statement : pattern.getStatements()){
 			Object v = interpreter.interprete(statement, newContext);
 			if(partial==false) {
-				if(v!=Boolean.TRUE) return false;
+				if(!BooleanLibrary.isTrue(v)) return false;
 			} else {
-				if(v==Boolean.FALSE) return false;
+				if(BooleanLibrary.isFalse(v)) return false;
 			}
 		}
 		return true;
@@ -286,9 +328,9 @@ public class Match {
 					
 					Object v = interpreter.interprete(sl.getId(), innerCont);
 					if(partial==false) {
-						if(v!=Boolean.TRUE) return false;
+						if(!BooleanLibrary.isTrue(v)) return false;
 					} else {
-						if(v==Boolean.FALSE) return false;
+						if(BooleanLibrary.isFalse(v)) return false;
 					}
 				} catch (Exception e) {
 					if(partial) continue;

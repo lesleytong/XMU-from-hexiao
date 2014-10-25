@@ -109,4 +109,12 @@ public class BooleanLibrary extends AnyLibrary {
 			return OclUndefined.INVALIDED;
 		}
 	}
+	
+	static public boolean isTrue(Object self) {
+		return Boolean.TRUE.equals(self);
+	}
+	
+	static public boolean isFalse(Object self) {
+		return Boolean.FALSE.equals(self);
+	}
 }

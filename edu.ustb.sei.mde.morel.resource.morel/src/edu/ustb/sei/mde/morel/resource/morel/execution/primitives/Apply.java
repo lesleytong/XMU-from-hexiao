@@ -36,6 +36,7 @@ public class Apply {
 				EObject obj = EcoreUtil.create(v.getType());
 				context.putValue(v, obj);
 				env.getModelSpaces().get(v.getModel()).addElement(obj);
+				env.getModelUniverse().onChange();
 			}
 		}
 		

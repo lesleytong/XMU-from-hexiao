@@ -619,6 +619,21 @@ public class MorelGrammarInformationProvider {
 	public final static edu.ustb.sei.mde.morel.resource.morel.grammar.MorelSequence MOREL_44_0_0 = new edu.ustb.sei.mde.morel.resource.morel.grammar.MorelSequence(edu.ustb.sei.mde.morel.resource.morel.grammar.MorelCardinality.ONE, MOREL_44_0_0_0, MOREL_44_0_0_1, MOREL_44_0_0_2, MOREL_44_0_0_3, MOREL_44_0_0_4, MOREL_44_0_0_5, MOREL_44_0_0_6, MOREL_44_0_0_7, MOREL_44_0_0_8, MOREL_44_0_0_9);
 	public final static edu.ustb.sei.mde.morel.resource.morel.grammar.MorelChoice MOREL_44_0 = new edu.ustb.sei.mde.morel.resource.morel.grammar.MorelChoice(edu.ustb.sei.mde.morel.resource.morel.grammar.MorelCardinality.ONE, MOREL_44_0_0);
 	public final static edu.ustb.sei.mde.morel.resource.morel.grammar.MorelRule MOREL_44 = new edu.ustb.sei.mde.morel.resource.morel.grammar.MorelRule(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getOrderConstraint(), MOREL_44_0, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelCardinality.ONE);
+	public final static edu.ustb.sei.mde.morel.resource.morel.grammar.MorelKeyword MOREL_45_0_0_0 = new edu.ustb.sei.mde.morel.resource.morel.grammar.MorelKeyword("<>", edu.ustb.sei.mde.morel.resource.morel.grammar.MorelCardinality.ONE);
+	public final static edu.ustb.sei.mde.morel.resource.morel.grammar.MorelKeyword MOREL_45_0_0_1 = new edu.ustb.sei.mde.morel.resource.morel.grammar.MorelKeyword("(", edu.ustb.sei.mde.morel.resource.morel.grammar.MorelCardinality.ONE);
+	public final static edu.ustb.sei.mde.morel.resource.morel.grammar.MorelPlaceholder MOREL_45_0_0_2_0_0_0 = new edu.ustb.sei.mde.morel.resource.morel.grammar.MorelPlaceholder(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getAllDifferentConstraint().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.ALL_DIFFERENT_CONSTRAINT__VARIABLES), "IDENTIFIER", edu.ustb.sei.mde.morel.resource.morel.grammar.MorelCardinality.ONE, 0);
+	public final static edu.ustb.sei.mde.morel.resource.morel.grammar.MorelKeyword MOREL_45_0_0_2_0_0_1_0_0_0 = new edu.ustb.sei.mde.morel.resource.morel.grammar.MorelKeyword(",", edu.ustb.sei.mde.morel.resource.morel.grammar.MorelCardinality.ONE);
+	public final static edu.ustb.sei.mde.morel.resource.morel.grammar.MorelPlaceholder MOREL_45_0_0_2_0_0_1_0_0_1 = new edu.ustb.sei.mde.morel.resource.morel.grammar.MorelPlaceholder(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getAllDifferentConstraint().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.ALL_DIFFERENT_CONSTRAINT__VARIABLES), "IDENTIFIER", edu.ustb.sei.mde.morel.resource.morel.grammar.MorelCardinality.ONE, 0);
+	public final static edu.ustb.sei.mde.morel.resource.morel.grammar.MorelSequence MOREL_45_0_0_2_0_0_1_0_0 = new edu.ustb.sei.mde.morel.resource.morel.grammar.MorelSequence(edu.ustb.sei.mde.morel.resource.morel.grammar.MorelCardinality.ONE, MOREL_45_0_0_2_0_0_1_0_0_0, MOREL_45_0_0_2_0_0_1_0_0_1);
+	public final static edu.ustb.sei.mde.morel.resource.morel.grammar.MorelChoice MOREL_45_0_0_2_0_0_1_0 = new edu.ustb.sei.mde.morel.resource.morel.grammar.MorelChoice(edu.ustb.sei.mde.morel.resource.morel.grammar.MorelCardinality.ONE, MOREL_45_0_0_2_0_0_1_0_0);
+	public final static edu.ustb.sei.mde.morel.resource.morel.grammar.MorelCompound MOREL_45_0_0_2_0_0_1 = new edu.ustb.sei.mde.morel.resource.morel.grammar.MorelCompound(MOREL_45_0_0_2_0_0_1_0, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelCardinality.STAR);
+	public final static edu.ustb.sei.mde.morel.resource.morel.grammar.MorelSequence MOREL_45_0_0_2_0_0 = new edu.ustb.sei.mde.morel.resource.morel.grammar.MorelSequence(edu.ustb.sei.mde.morel.resource.morel.grammar.MorelCardinality.ONE, MOREL_45_0_0_2_0_0_0, MOREL_45_0_0_2_0_0_1);
+	public final static edu.ustb.sei.mde.morel.resource.morel.grammar.MorelChoice MOREL_45_0_0_2_0 = new edu.ustb.sei.mde.morel.resource.morel.grammar.MorelChoice(edu.ustb.sei.mde.morel.resource.morel.grammar.MorelCardinality.ONE, MOREL_45_0_0_2_0_0);
+	public final static edu.ustb.sei.mde.morel.resource.morel.grammar.MorelCompound MOREL_45_0_0_2 = new edu.ustb.sei.mde.morel.resource.morel.grammar.MorelCompound(MOREL_45_0_0_2_0, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelCardinality.QUESTIONMARK);
+	public final static edu.ustb.sei.mde.morel.resource.morel.grammar.MorelKeyword MOREL_45_0_0_3 = new edu.ustb.sei.mde.morel.resource.morel.grammar.MorelKeyword(")", edu.ustb.sei.mde.morel.resource.morel.grammar.MorelCardinality.ONE);
+	public final static edu.ustb.sei.mde.morel.resource.morel.grammar.MorelSequence MOREL_45_0_0 = new edu.ustb.sei.mde.morel.resource.morel.grammar.MorelSequence(edu.ustb.sei.mde.morel.resource.morel.grammar.MorelCardinality.ONE, MOREL_45_0_0_0, MOREL_45_0_0_1, MOREL_45_0_0_2, MOREL_45_0_0_3);
+	public final static edu.ustb.sei.mde.morel.resource.morel.grammar.MorelChoice MOREL_45_0 = new edu.ustb.sei.mde.morel.resource.morel.grammar.MorelChoice(edu.ustb.sei.mde.morel.resource.morel.grammar.MorelCardinality.ONE, MOREL_45_0_0);
+	public final static edu.ustb.sei.mde.morel.resource.morel.grammar.MorelRule MOREL_45 = new edu.ustb.sei.mde.morel.resource.morel.grammar.MorelRule(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getAllDifferentConstraint(), MOREL_45_0, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelCardinality.ONE);
 	
 	public static String getSyntaxElementID(edu.ustb.sei.mde.morel.resource.morel.grammar.MorelSyntaxElement syntaxElement) {
 		if (syntaxElement == null) {
@@ -692,6 +707,7 @@ public class MorelGrammarInformationProvider {
 		MOREL_42,
 		MOREL_43,
 		MOREL_44,
+		MOREL_45,
 	};
 	
 	/**

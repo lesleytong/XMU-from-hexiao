@@ -30,6 +30,10 @@ public class ModelSpace extends NamedElement {
 	
 	private HashMap<EReference, List<int[]>> referenceToTupleID = new HashMap<EReference, List<int[]>>();
 	private HashMap<EObject, int[]> typeToAllElementIDMap = null;
+	
+	public void onChange() {
+		modelUniverse.onChange();
+	}
 
 
 	private HashMap<EObject, List<EObject>> typeToAllElementsMap = null;

@@ -155,4 +155,6 @@ RULES {
 	ReflectiveVariableExp ::= "&" variable[IDENTIFIER];
 	
 	OrderConstraint ::= base[IDENTIFIER] "^" "<" (variables[IDENTIFIER] ("," variables[IDENTIFIER])*)? ">" ":" "<" (types[IDENTIFIER] "." references[IDENTIFIER]) ("," types[IDENTIFIER] "." references[IDENTIFIER])* ">";
+	
+	AllDifferentConstraint ::= "<>" "(" (variables[IDENTIFIER] ("," variables[IDENTIFIER])*)? ")" ; 
 }

@@ -105,6 +105,20 @@ public class TypeResolver {
 		return null;
 	}
 	
+	static public EPackage getPackageFromUnit(String name, Unit unit) {
+		for(TypedModel tm : unit.getModels()) {
+			if(tm.getName().equals(name))
+				return tm.getPackage();
+		}
+		return null;
+	}
+	
+	static public void collectContained(String partialName, Unit unit, IMorelReferenceResolveResult<EClass> result) {
+		for(TypedModel tm : unit.getModels()) {
+			collectContained(partialName, tm.getPackage(), result);
+		}
+	}
+	
 	static public void collectContained(String partialName, EPackage pkg,
 			IMorelReferenceResolveResult<EClass> result) {
 		TreeIterator<EObject> it = pkg.eAllContents();

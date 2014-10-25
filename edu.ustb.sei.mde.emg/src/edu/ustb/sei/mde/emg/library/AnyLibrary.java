@@ -41,7 +41,7 @@ public class AnyLibrary extends ReflectiveLibrary {
 		case "=":
 			return equal(self,params[0]);
 		case "<>":
-			return equal(self,params[0]);
+			return notEqual(self,params[0]);
 		case "oclType":
 			return oclType(self);
 		case "println":

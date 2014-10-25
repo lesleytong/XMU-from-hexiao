@@ -23,6 +23,20 @@ public class ModelUniverse {
 	private BidirectionalMap<Integer, EObject> idObjMap  = new BidirectionalMap<Integer,EObject>();
 	private MultipleHashMap<EObject, EObject> prefixObjects = new MultipleHashMap<EObject, EObject>(false);
 	private PairHashMap<EObject, List<EReference>, UniqueEList<EObject>> objectReachableList = new PairHashMap<EObject, List<EReference>, UniqueEList<EObject>>();
+	
+	private boolean changed = false;
+	
+	public boolean isChanged() {
+		return changed;
+	}
+
+	public void resetChanged() {
+		changed = false;
+	}
+
+	public void onChange() {
+		changed = (true);
+	}
 
 	public ModelSpace createModelSpace() {
 		return new ModelSpace(this);
