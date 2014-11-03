@@ -71,6 +71,13 @@
   <eClassifiers xsi:type="ecore:EClass" name="TypedModel" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="package" lowerBound="1"
         eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//TypedModelAction"
+        defaultValueLiteral="normal"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="TypedModelAction">
+    <eLiterals name="normal"/>
+    <eLiterals name="readOnly" value="1"/>
+    <eLiterals name="transient" value="2"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Query" eSuperTypes="#//Pattern #//NamedElement #//Executable"/>
   <eClassifiers xsi:type="ecore:EClass" name="Unit" abstract="true">

@@ -794,13 +794,22 @@ public interface MorelPackage extends EPackage {
 	int TYPED_MODEL__PACKAGE = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_MODEL__TYPE = NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Typed Model</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_MODEL_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int TYPED_MODEL_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Typed Model</em>' class.
@@ -4114,6 +4123,16 @@ public interface MorelPackage extends EPackage {
 	int SECTION_TYPE = 75;
 
 	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.TypedModelAction <em>Typed Model Action</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.morel.TypedModelAction
+	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getTypedModelAction()
+	 * @generated
+	 */
+	int TYPED_MODEL_ACTION = 76;
+
+	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.UndefinedLiteral <em>Undefined Literal</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4121,7 +4140,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getUndefinedLiteral()
 	 * @generated
 	 */
-	int UNDEFINED_LITERAL = 76;
+	int UNDEFINED_LITERAL = 77;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.PredefinedVariable <em>Predefined Variable</em>}' enum.
@@ -4131,7 +4150,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getPredefinedVariable()
 	 * @generated
 	 */
-	int PREDEFINED_VARIABLE = 77;
+	int PREDEFINED_VARIABLE = 78;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.OperationSeparator <em>Operation Separator</em>}' enum.
@@ -4141,7 +4160,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getOperationSeparator()
 	 * @generated
 	 */
-	int OPERATION_SEPARATOR = 78;
+	int OPERATION_SEPARATOR = 79;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.IteratorType <em>Iterator Type</em>}' enum.
@@ -4151,7 +4170,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getIteratorType()
 	 * @generated
 	 */
-	int ITERATOR_TYPE = 79;
+	int ITERATOR_TYPE = 80;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.BooleanOperator <em>Boolean Operator</em>}' enum.
@@ -4161,7 +4180,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getBooleanOperator()
 	 * @generated
 	 */
-	int BOOLEAN_OPERATOR = 80;
+	int BOOLEAN_OPERATOR = 81;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.RelationalOperator <em>Relational Operator</em>}' enum.
@@ -4171,7 +4190,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getRelationalOperator()
 	 * @generated
 	 */
-	int RELATIONAL_OPERATOR = 81;
+	int RELATIONAL_OPERATOR = 82;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.AdditiveOperator <em>Additive Operator</em>}' enum.
@@ -4181,7 +4200,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getAdditiveOperator()
 	 * @generated
 	 */
-	int ADDITIVE_OPERATOR = 82;
+	int ADDITIVE_OPERATOR = 83;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.MultiplicativeOperator <em>Multiplicative Operator</em>}' enum.
@@ -4191,7 +4210,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getMultiplicativeOperator()
 	 * @generated
 	 */
-	int MULTIPLICATIVE_OPERATOR = 83;
+	int MULTIPLICATIVE_OPERATOR = 84;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.UnaryOperator <em>Unary Operator</em>}' enum.
@@ -4201,7 +4220,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getUnaryOperator()
 	 * @generated
 	 */
-	int UNARY_OPERATOR = 84;
+	int UNARY_OPERATOR = 85;
 
 
 	/**
@@ -4212,7 +4231,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getExecutionMode()
 	 * @generated
 	 */
-	int EXECUTION_MODE = 85;
+	int EXECUTION_MODE = 86;
 
 
 	/**
@@ -4586,6 +4605,17 @@ public interface MorelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getTypedModel_Package();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.morel.TypedModel#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see edu.ustb.sei.mde.morel.TypedModel#getType()
+	 * @see #getTypedModel()
+	 * @generated
+	 */
+	EAttribute getTypedModel_Type();
 
 	/**
 	 * Returns the meta object for class '{@link edu.ustb.sei.mde.morel.Query <em>Query</em>}'.
@@ -6020,6 +6050,16 @@ public interface MorelPackage extends EPackage {
 	EEnum getSectionType();
 
 	/**
+	 * Returns the meta object for enum '{@link edu.ustb.sei.mde.morel.TypedModelAction <em>Typed Model Action</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Typed Model Action</em>'.
+	 * @see edu.ustb.sei.mde.morel.TypedModelAction
+	 * @generated
+	 */
+	EEnum getTypedModelAction();
+
+	/**
 	 * Returns the meta object for enum '{@link edu.ustb.sei.mde.morel.UndefinedLiteral <em>Undefined Literal</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6447,6 +6487,14 @@ public interface MorelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference TYPED_MODEL__PACKAGE = eINSTANCE.getTypedModel_Package();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TYPED_MODEL__TYPE = eINSTANCE.getTypedModel_Type();
 
 		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.impl.QueryImpl <em>Query</em>}' class.
@@ -7661,6 +7709,16 @@ public interface MorelPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum SECTION_TYPE = eINSTANCE.getSectionType();
+
+		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.TypedModelAction <em>Typed Model Action</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.morel.TypedModelAction
+		 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getTypedModelAction()
+		 * @generated
+		 */
+		EEnum TYPED_MODEL_ACTION = eINSTANCE.getTypedModelAction();
 
 		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.UndefinedLiteral <em>Undefined Literal</em>}' enum.

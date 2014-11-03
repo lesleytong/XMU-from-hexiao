@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
-
 import edu.ustb.sei.mde.emg.graph.ModelSpace;
 import edu.ustb.sei.mde.emg.runtime.Context;
 import edu.ustb.sei.mde.emg.runtime.Environment;
@@ -31,6 +30,7 @@ import edu.ustb.sei.mde.morel.Query;
 import edu.ustb.sei.mde.morel.QueryModel;
 import edu.ustb.sei.mde.morel.TransformationModel;
 import edu.ustb.sei.mde.morel.TypedModel;
+import edu.ustb.sei.mde.morel.TypedModelAction;
 import edu.ustb.sei.mde.morel.Unit;
 import edu.ustb.sei.mde.morel.resource.morel.execution.primitives.Initialize;
 import edu.ustb.sei.mde.morel.resource.morel.execution.primitives.Match;
@@ -99,7 +99,8 @@ public class MorelLaunchConfigurationHelper {
 	private void saveModelSpace(org.eclipse.emf.ecore.EObject root, Environment env) {
 		Map<TypedModel, ModelSpace> map = env.getModelSpaces();
 		for(Entry<TypedModel,ModelSpace> entry : map.entrySet()) {
-			entry.getValue().save();
+			if(entry.getKey().getType()==TypedModelAction.NORMAL)
+				entry.getValue().save();
 		}
 	}
 
@@ -113,6 +114,8 @@ public class MorelLaunchConfigurationHelper {
 		
 		for(TypedModel m : queryModel.getModels()){
 			resSet.getPackageRegistry().put(m.getPackage().getNsURI(), m.getPackage());
+			if(m.getType()==TypedModelAction.TRANSIENT)
+				env.getModelSpaces().put(m, env.getModelUniverse().createModelSpace());
 		}
 		
 		if(uris.length!=queryModel.getModels().size()) {
@@ -125,11 +128,15 @@ public class MorelLaunchConfigurationHelper {
 					ConsoleUtil.printToConsole("Wrong URI format: "+u,MOREL_TITLE, true);
 					return;
 				} else {
+					TypedModel typedModel = queryModel.getTypedModel(buf[0]);
+					if(typedModel==null) {
+						ConsoleUtil.printToConsole("Wrong Model Name: "+u,MOREL_TITLE, true);
+						return;
+					}
+					if(typedModel.getType()==TypedModelAction.TRANSIENT) continue;
+
 					Resource res = null;
-					
 					URI createURI = org.eclipse.emf.common.util.URI.createURI(buf[1]);
-					
-					
 					try {
 						res = resSet.getResource(createURI, true);
 					} catch (Exception e) {
@@ -137,11 +144,7 @@ public class MorelLaunchConfigurationHelper {
 					}
 					
 					ConsoleUtil.printToConsole("Load "+res.getURI(), MOREL_TITLE, true);
-					TypedModel typedModel = queryModel.getTypedModel(buf[0]);
-					if(typedModel==null) {
-						ConsoleUtil.printToConsole("Wrong Model Name: "+u,MOREL_TITLE, true);
-						return;
-					}
+					
 					ModelSpace space = env.getModelUniverse().createModelSpace();
 					space.initWithResource(res, typedModel.getPackage());
 					env.getModelSpaces().put(typedModel, space);

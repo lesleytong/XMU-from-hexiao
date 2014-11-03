@@ -123,6 +123,8 @@ public class MorelFactoryImpl extends EFactoryImpl implements MorelFactory {
 		switch (eDataType.getClassifierID()) {
 			case MorelPackage.SECTION_TYPE:
 				return createSectionTypeFromString(eDataType, initialValue);
+			case MorelPackage.TYPED_MODEL_ACTION:
+				return createTypedModelActionFromString(eDataType, initialValue);
 			case MorelPackage.UNDEFINED_LITERAL:
 				return createUndefinedLiteralFromString(eDataType, initialValue);
 			case MorelPackage.PREDEFINED_VARIABLE:
@@ -158,6 +160,8 @@ public class MorelFactoryImpl extends EFactoryImpl implements MorelFactory {
 		switch (eDataType.getClassifierID()) {
 			case MorelPackage.SECTION_TYPE:
 				return convertSectionTypeToString(eDataType, instanceValue);
+			case MorelPackage.TYPED_MODEL_ACTION:
+				return convertTypedModelActionToString(eDataType, instanceValue);
 			case MorelPackage.UNDEFINED_LITERAL:
 				return convertUndefinedLiteralToString(eDataType, instanceValue);
 			case MorelPackage.PREDEFINED_VARIABLE:
@@ -710,6 +714,26 @@ public class MorelFactoryImpl extends EFactoryImpl implements MorelFactory {
 	 * @generated
 	 */
 	public String convertSectionTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TypedModelAction createTypedModelActionFromString(EDataType eDataType, String initialValue) {
+		TypedModelAction result = TypedModelAction.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertTypedModelActionToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

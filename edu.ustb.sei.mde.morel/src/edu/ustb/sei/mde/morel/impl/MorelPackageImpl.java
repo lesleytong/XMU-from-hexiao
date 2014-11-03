@@ -81,6 +81,7 @@ import edu.ustb.sei.mde.morel.StringLiteralExp;
 import edu.ustb.sei.mde.morel.TransformationModel;
 import edu.ustb.sei.mde.morel.TypeLiteralExp;
 import edu.ustb.sei.mde.morel.TypedModel;
+import edu.ustb.sei.mde.morel.TypedModelAction;
 import edu.ustb.sei.mde.morel.UnaryExp;
 import edu.ustb.sei.mde.morel.UnaryExpChild;
 import edu.ustb.sei.mde.morel.UnaryOperator;
@@ -642,6 +643,13 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EEnum typedModelActionEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum undefinedLiteralEEnum = null;
 
 	/**
@@ -1081,6 +1089,15 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 */
 	public EReference getTypedModel_Package() {
 		return (EReference)typedModelEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getTypedModel_Type() {
+		return (EAttribute)typedModelEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -2312,6 +2329,15 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EEnum getTypedModelAction() {
+		return typedModelActionEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getUndefinedLiteral() {
 		return undefinedLiteralEEnum;
 	}
@@ -2472,6 +2498,7 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 
 		typedModelEClass = createEClass(TYPED_MODEL);
 		createEReference(typedModelEClass, TYPED_MODEL__PACKAGE);
+		createEAttribute(typedModelEClass, TYPED_MODEL__TYPE);
 
 		queryEClass = createEClass(QUERY);
 
@@ -2672,6 +2699,7 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 
 		// Create enums
 		sectionTypeEEnum = createEEnum(SECTION_TYPE);
+		typedModelActionEEnum = createEEnum(TYPED_MODEL_ACTION);
 		undefinedLiteralEEnum = createEEnum(UNDEFINED_LITERAL);
 		predefinedVariableEEnum = createEEnum(PREDEFINED_VARIABLE);
 		operationSeparatorEEnum = createEEnum(OPERATION_SEPARATOR);
@@ -2834,6 +2862,7 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 
 		initEClass(typedModelEClass, TypedModel.class, "TypedModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTypedModel_Package(), ecorePackage.getEPackage(), null, "package", null, 1, 1, TypedModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTypedModel_Type(), this.getTypedModelAction(), "type", "normal", 1, 1, TypedModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(queryEClass, Query.class, "Query", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -3042,6 +3071,11 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		addEEnumLiteral(sectionTypeEEnum, SectionType.PAC);
 		addEEnumLiteral(sectionTypeEEnum, SectionType.PRE);
 		addEEnumLiteral(sectionTypeEEnum, SectionType.POST);
+
+		initEEnum(typedModelActionEEnum, TypedModelAction.class, "TypedModelAction");
+		addEEnumLiteral(typedModelActionEEnum, TypedModelAction.NORMAL);
+		addEEnumLiteral(typedModelActionEEnum, TypedModelAction.READ_ONLY);
+		addEEnumLiteral(typedModelActionEEnum, TypedModelAction.TRANSIENT);
 
 		initEEnum(undefinedLiteralEEnum, UndefinedLiteral.class, "UndefinedLiteral");
 		addEEnumLiteral(undefinedLiteralEEnum, UndefinedLiteral.NULL);

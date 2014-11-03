@@ -64,7 +64,7 @@ TOKENSTYLES {
 
 RULES {
 	QueryModel ::= "querymodel" models+ queries*;
-	TypedModel ::= "type" name[IDENTIFIER] "<-"  package[URINS];
+	TypedModel ::= "type" type[normal:"",readOnly:"readOnly",transient:"transient"] name[IDENTIFIER] "<-"  package[URINS];
 	
 	Query ::= (active["active":"passive"])? "query" type[LHS : "lhs", RHS : "rhs", NAC : "nac", PAC : "pac", PRE : "pre", POST : "post", LHS : ""] name[IDENTIFIER] ("("parameters[IDENTIFIER] ("," parameters[IDENTIFIER])*")")? "{" "match" (variables ("," variables)*)?  (linkConstraints ("," linkConstraints)*)? (additionalConstraints ("," additionalConstraints)*)? ("where" (statements)+)?"}";
 	
