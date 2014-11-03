@@ -783,6 +783,22 @@ parse_edu_ustb_sei_mde_morel_TypedModel returns [edu.ustb.sei.mde.morel.TypedMod
 				element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.TYPED_MODEL__TYPE), value);
 				completedElement(value, false);
 			}
+			|			a3 = 'view' {
+				if (element == null) {
+					element = edu.ustb.sei.mde.morel.MorelFactory.eINSTANCE.createTypedModel();
+					startIncompleteElement(element);
+					// initialize enumeration attribute
+					Object value = edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getTypedModelAction().getEEnumLiteral(edu.ustb.sei.mde.morel.TypedModelAction.NORMAL_VALUE).getInstance();
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.TYPED_MODEL__TYPE), value);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_1_0_0_1, null, true);
+				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a3, element);
+				// set value of enumeration attribute
+				Object value = edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getTypedModelAction().getEEnumLiteral(edu.ustb.sei.mde.morel.TypedModelAction.VIEW_ONLY_VALUE).getInstance();
+				element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.TYPED_MODEL__TYPE), value);
+				completedElement(value, false);
+			}
 		)?	)
 	{
 		// expected elements (follow set)
@@ -790,7 +806,7 @@ parse_edu_ustb_sei_mde_morel_TypedModel returns [edu.ustb.sei.mde.morel.TypedMod
 	}
 	
 	(
-		a5 = IDENTIFIER		
+		a6 = IDENTIFIER		
 		{
 			if (terminateParsing) {
 				throw new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelTerminateParsingException();
@@ -802,14 +818,14 @@ parse_edu_ustb_sei_mde_morel_TypedModel returns [edu.ustb.sei.mde.morel.TypedMod
 				Object value = edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getTypedModelAction().getEEnumLiteral(edu.ustb.sei.mde.morel.TypedModelAction.NORMAL_VALUE).getInstance();
 				element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.TYPED_MODEL__TYPE), value);
 			}
-			if (a5 != null) {
+			if (a6 != null) {
 				edu.ustb.sei.mde.morel.resource.morel.IMorelTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("IDENTIFIER");
 				tokenResolver.setOptions(getOptions());
 				edu.ustb.sei.mde.morel.resource.morel.IMorelTokenResolveResult result = getFreshTokenResolveResult();
-				tokenResolver.resolve(a5.getText(), element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.TYPED_MODEL__NAME), result);
+				tokenResolver.resolve(a6.getText(), element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.TYPED_MODEL__NAME), result);
 				Object resolvedObject = result.getResolvedToken();
 				if (resolvedObject == null) {
-					addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a5).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a5).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a5).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a5).getStopIndex());
+					addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a6).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a6).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a6).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a6).getStopIndex());
 				}
 				java.lang.String resolved = (java.lang.String) resolvedObject;
 				if (resolved != null) {
@@ -819,7 +835,7 @@ parse_edu_ustb_sei_mde_morel_TypedModel returns [edu.ustb.sei.mde.morel.TypedMod
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_1_0_0_2, resolved, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a5, element);
+				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a6, element);
 			}
 		}
 	)
@@ -828,7 +844,7 @@ parse_edu_ustb_sei_mde_morel_TypedModel returns [edu.ustb.sei.mde.morel.TypedMod
 		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[10]);
 	}
 	
-	a6 = '<-' {
+	a7 = '<-' {
 		if (element == null) {
 			element = edu.ustb.sei.mde.morel.MorelFactory.eINSTANCE.createTypedModel();
 			startIncompleteElement(element);
@@ -838,7 +854,7 @@ parse_edu_ustb_sei_mde_morel_TypedModel returns [edu.ustb.sei.mde.morel.TypedMod
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_1_0_0_3, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a6, element);
+		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a7, element);
 	}
 	{
 		// expected elements (follow set)
@@ -846,7 +862,7 @@ parse_edu_ustb_sei_mde_morel_TypedModel returns [edu.ustb.sei.mde.morel.TypedMod
 	}
 	
 	(
-		a7 = URINS		
+		a8 = URINS		
 		{
 			if (terminateParsing) {
 				throw new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelTerminateParsingException();
@@ -858,14 +874,14 @@ parse_edu_ustb_sei_mde_morel_TypedModel returns [edu.ustb.sei.mde.morel.TypedMod
 				Object value = edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getTypedModelAction().getEEnumLiteral(edu.ustb.sei.mde.morel.TypedModelAction.NORMAL_VALUE).getInstance();
 				element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.TYPED_MODEL__TYPE), value);
 			}
-			if (a7 != null) {
+			if (a8 != null) {
 				edu.ustb.sei.mde.morel.resource.morel.IMorelTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("URINS");
 				tokenResolver.setOptions(getOptions());
 				edu.ustb.sei.mde.morel.resource.morel.IMorelTokenResolveResult result = getFreshTokenResolveResult();
-				tokenResolver.resolve(a7.getText(), element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.TYPED_MODEL__PACKAGE), result);
+				tokenResolver.resolve(a8.getText(), element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.TYPED_MODEL__PACKAGE), result);
 				Object resolvedObject = result.getResolvedToken();
 				if (resolvedObject == null) {
-					addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a7).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a7).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a7).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a7).getStopIndex());
+					addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a8).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a8).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a8).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a8).getStopIndex());
 				}
 				String resolved = (String) resolvedObject;
 				org.eclipse.emf.ecore.EPackage proxy = org.eclipse.emf.ecore.EcoreFactory.eINSTANCE.createEPackage();
@@ -878,8 +894,8 @@ parse_edu_ustb_sei_mde_morel_TypedModel returns [edu.ustb.sei.mde.morel.TypedMod
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_1_0_0_4, proxy, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a7, element);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a7, proxy);
+				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a8, element);
+				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a8, proxy);
 			}
 		}
 	)

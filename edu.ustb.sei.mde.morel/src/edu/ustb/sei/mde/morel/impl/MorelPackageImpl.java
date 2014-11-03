@@ -3076,6 +3076,7 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		addEEnumLiteral(typedModelActionEEnum, TypedModelAction.NORMAL);
 		addEEnumLiteral(typedModelActionEEnum, TypedModelAction.READ_ONLY);
 		addEEnumLiteral(typedModelActionEEnum, TypedModelAction.TRANSIENT);
+		addEEnumLiteral(typedModelActionEEnum, TypedModelAction.VIEW_ONLY);
 
 		initEEnum(undefinedLiteralEEnum, UndefinedLiteral.class, "UndefinedLiteral");
 		addEEnumLiteral(undefinedLiteralEEnum, UndefinedLiteral.NULL);

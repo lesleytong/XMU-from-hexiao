@@ -46,7 +46,15 @@ public enum TypedModelAction implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	TRANSIENT(2, "transient", "transient");
+	TRANSIENT(2, "transient", "transient"), /**
+	 * The '<em><b>View Only</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #VIEW_ONLY_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	VIEW_ONLY(3, "viewOnly", "viewOnly");
 
 	/**
 	 * The '<em><b>Normal</b></em>' literal value.
@@ -94,6 +102,21 @@ public enum TypedModelAction implements Enumerator {
 	public static final int TRANSIENT_VALUE = 2;
 
 	/**
+	 * The '<em><b>View Only</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>View Only</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #VIEW_ONLY
+	 * @model name="viewOnly"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int VIEW_ONLY_VALUE = 3;
+
+	/**
 	 * An array of all the '<em><b>Typed Model Action</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -104,6 +127,7 @@ public enum TypedModelAction implements Enumerator {
 			NORMAL,
 			READ_ONLY,
 			TRANSIENT,
+			VIEW_ONLY,
 		};
 
 	/**
@@ -157,6 +181,7 @@ public enum TypedModelAction implements Enumerator {
 			case NORMAL_VALUE: return NORMAL;
 			case READ_ONLY_VALUE: return READ_ONLY;
 			case TRANSIENT_VALUE: return TRANSIENT;
+			case VIEW_ONLY_VALUE: return VIEW_ONLY;
 		}
 		return null;
 	}

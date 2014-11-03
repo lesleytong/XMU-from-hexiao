@@ -48,9 +48,35 @@ public class TypedModelPackageReferenceResolver implements edu.ustb.sei.mde.more
 			}
 		} else {
 //			Map<String,URI> map = EcorePlugin.getEPackageNsURIToGenModelLocationMap(false);
-			
 			String uri = identifier.substring(1);
-			delegate.resolve(uri, container, reference, position, resolveFuzzy, result);
+//			delegate.resolve(uri, container, reference, position, resolveFuzzy, result);
+			try {
+				Resource resource = container.eResource();
+				if(resource==null) return;
+				ResourceSet set = resource.getResourceSet();
+				
+				Map<String, URI> map = EcorePlugin.getEPackageNsURIToGenModelLocationMap(false);
+				for(Entry<String,URI> uriEntry : map.entrySet()) {
+					if(uriEntry.getKey().indexOf(uri)!=-1) {	
+						if(uri.equals(uriEntry.getKey())) {
+							URI u = URI.createURI(uriEntry.getKey());
+							Resource res = set.getResource(u, true);
+							EObject target = res.getContents().get(0);
+							result.addMapping("@"+uriEntry.getKey(), (EPackage)target);
+							return;
+						}
+					}
+				}
+				
+				URI u = URI.createURI(uri);
+				Resource res = set.getResource(u, true);
+				EObject target = res.getContents().get(0);
+				result.addMapping(identifier, (EPackage)target);
+				
+			} catch (Exception e) {
+				
+			}
+			
 		}
 	}
 	
