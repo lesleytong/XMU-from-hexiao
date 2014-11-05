@@ -18,8 +18,9 @@
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="morel.ecore#//TypedModelAction">
       <genEnumLiterals ecoreEnumLiteral="morel.ecore#//TypedModelAction/normal"/>
       <genEnumLiterals ecoreEnumLiteral="morel.ecore#//TypedModelAction/readOnly"/>
-      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//TypedModelAction/transient"/>
       <genEnumLiterals ecoreEnumLiteral="morel.ecore#//TypedModelAction/viewOnly"/>
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//TypedModelAction/createOnly"/>
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//TypedModelAction/transient"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="morel.ecore#//UndefinedLiteral">
       <genEnumLiterals ecoreEnumLiteral="morel.ecore#//UndefinedLiteral/NULL"/>

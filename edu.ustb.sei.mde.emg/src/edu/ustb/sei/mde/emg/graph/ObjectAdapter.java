@@ -31,7 +31,8 @@ public class ObjectAdapter implements Adapter {
 		Object lv = notification.getOldValue();
 		Object rv = notification.getNewValue();
 		
-		if(lv==null && rv!=null) space.onChange();
+		if(lv==rv) return;
+		else if(lv==null && rv!=null) space.onChange();
 		else if(lv!=null && rv==null) space.onChange();
 		else if(lv.equals(rv)==false) space.onChange();
 	}

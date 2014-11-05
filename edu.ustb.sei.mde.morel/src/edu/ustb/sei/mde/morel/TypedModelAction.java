@@ -39,14 +39,6 @@ public enum TypedModelAction implements Enumerator {
 	READ_ONLY(1, "readOnly", "readOnly"),
 
 	/**
-	 * The '<em><b>Transient</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TRANSIENT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TRANSIENT(2, "transient", "transient"), /**
 	 * The '<em><b>View Only</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -54,7 +46,23 @@ public enum TypedModelAction implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	VIEW_ONLY(3, "viewOnly", "viewOnly");
+	VIEW_ONLY(2, "viewOnly", "viewOnly"), /**
+	 * The '<em><b>Create Only</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #CREATE_ONLY_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	CREATE_ONLY(3, "createOnly", "createOnly"), /**
+	 * The '<em><b>Transient</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #TRANSIENT_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	TRANSIENT(4, "transient", "transient");
 
 	/**
 	 * The '<em><b>Normal</b></em>' literal value.
@@ -87,21 +95,6 @@ public enum TypedModelAction implements Enumerator {
 	public static final int READ_ONLY_VALUE = 1;
 
 	/**
-	 * The '<em><b>Transient</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>Transient</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #TRANSIENT
-	 * @model name="transient"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int TRANSIENT_VALUE = 2;
-
-	/**
 	 * The '<em><b>View Only</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -114,7 +107,37 @@ public enum TypedModelAction implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int VIEW_ONLY_VALUE = 3;
+	public static final int VIEW_ONLY_VALUE = 2;
+
+	/**
+	 * The '<em><b>Create Only</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Create Only</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #CREATE_ONLY
+	 * @model name="createOnly"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int CREATE_ONLY_VALUE = 3;
+
+	/**
+	 * The '<em><b>Transient</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Transient</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #TRANSIENT
+	 * @model name="transient"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int TRANSIENT_VALUE = 4;
 
 	/**
 	 * An array of all the '<em><b>Typed Model Action</b></em>' enumerators.
@@ -126,8 +149,9 @@ public enum TypedModelAction implements Enumerator {
 		new TypedModelAction[] {
 			NORMAL,
 			READ_ONLY,
-			TRANSIENT,
 			VIEW_ONLY,
+			CREATE_ONLY,
+			TRANSIENT,
 		};
 
 	/**
@@ -180,8 +204,9 @@ public enum TypedModelAction implements Enumerator {
 		switch (value) {
 			case NORMAL_VALUE: return NORMAL;
 			case READ_ONLY_VALUE: return READ_ONLY;
-			case TRANSIENT_VALUE: return TRANSIENT;
 			case VIEW_ONLY_VALUE: return VIEW_ONLY;
+			case CREATE_ONLY_VALUE: return CREATE_ONLY;
+			case TRANSIENT_VALUE: return TRANSIENT;
 		}
 		return null;
 	}

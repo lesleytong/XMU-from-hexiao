@@ -53,6 +53,9 @@ public class MorelTokenStyleInformationProvider {
 		if ("view".equals(tokenName)) {
 			return new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelTokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
 		}
+		if ("createOnly".equals(tokenName)) {
+			return new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelTokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
+		}
 		if ("active".equals(tokenName)) {
 			return new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelTokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
 		}
@@ -147,6 +150,9 @@ public class MorelTokenStyleInformationProvider {
 			return new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelTokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
 		}
 		if ("rule".equals(tokenName)) {
+			return new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelTokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
+		}
+		if ("allDiff".equals(tokenName)) {
 			return new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelTokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
 		}
 		if ("QUOTED_39_39_92".equals(tokenName)) {

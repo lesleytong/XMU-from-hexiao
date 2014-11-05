@@ -63,10 +63,11 @@ TOKENSTYLES {
 }
 
 RULES {
-	QueryModel ::= "querymodel" models+ queries*;
-	TypedModel ::= "type" type[normal:"",readOnly:"readOnly",transient:"transient", viewOnly:"view"] name[IDENTIFIER] "<-"  package[URINS];
+	QueryModel ::= "querymodel" !0 (models !0)+ !0 (queries !0)*;
 	
-	Query ::= (active["active":"passive"])? "query" type[LHS : "lhs", RHS : "rhs", NAC : "nac", PAC : "pac", PRE : "pre", POST : "post", LHS : ""] name[IDENTIFIER] ("("parameters[IDENTIFIER] ("," parameters[IDENTIFIER])*")")? "{" "match" (variables ("," variables)*)?  (linkConstraints ("," linkConstraints)*)? (additionalConstraints ("," additionalConstraints)*)? ("where" (statements)+)?"}";
+	TypedModel ::= "type" type[normal:"",readOnly:"readOnly",transient:"transient", viewOnly:"view",createOnly:"createOnly"] name[IDENTIFIER] #1 "<-" #1 package[URINS];
+	
+	Query ::= (active["active":"passive"])? "query" type[LHS : "lhs", RHS : "rhs", NAC : "nac", PAC : "pac", PRE : "pre", POST : "post", LHS : ""] name[IDENTIFIER] ("("parameters[IDENTIFIER] ("," #1 parameters[IDENTIFIER])*")")? "{" !2 "match" (!2 variables ("," !2 variables)*)?  (!2 linkConstraints ("," !2 linkConstraints)*)? (!2 additionalConstraints ("," !2 additionalConstraints)*)? (!2 "where" (!2 statements)+)?"}";
 	
 	ObjectVariable ::= name[IDENTIFIER] ":" (model[IDENTIFIER] "!")? type[IDENTIFIER];
 	
@@ -99,11 +100,11 @@ RULES {
 	
 	UndefinedLiteralExp ::= value[NULL:"null", INVALID:"invalid"] (path)?;
 	
-	TypeLiteralExp ::= value[DATA_TYPE] (path)?;
+	TypeLiteralExp ::= "@""("value[IDENTIFIER]")" (path)?;
 	
 	CollectionLiteralExp ::= type[COLLECTION] "{" ((literals:LetExp, ConditionExp, BooleanImpliesExp)( "," literals:LetExp, ConditionExp, BooleanImpliesExp)*)? "}" (path)?;
 	
-	EnumLiteralExp ::= enumType[DATA_TYPE] "::" enumSymbol[IDENTIFIER] (path)?;
+	EnumLiteralExp ::= "#" enumType[IDENTIFIER] "." enumSymbol[IDENTIFIER] (path)?;
 	
 	ArrayLiteralExp ::= "<" (elements:LetExp, ConditionExp, BooleanImpliesExp, ReflectiveVariableExp ("," elements:LetExp, ConditionExp, BooleanImpliesExp, ReflectiveVariableExp)*)? ">";
 
@@ -156,5 +157,5 @@ RULES {
 	
 	OrderConstraint ::= base[IDENTIFIER] "^" "<" (variables[IDENTIFIER] ("," variables[IDENTIFIER])*)? ">" ":" "<" (types[IDENTIFIER] "." references[IDENTIFIER]) ("," types[IDENTIFIER] "." references[IDENTIFIER])* ">";
 	
-	AllDifferentConstraint ::= "<>" "(" (variables[IDENTIFIER] ("," variables[IDENTIFIER])*)? ")" ; 
+	AllDifferentConstraint ::= "allDiff" "(" (variables[IDENTIFIER] ("," variables[IDENTIFIER])*)? ")" ;
 }

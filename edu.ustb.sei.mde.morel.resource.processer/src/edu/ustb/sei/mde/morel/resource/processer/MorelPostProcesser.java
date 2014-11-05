@@ -25,12 +25,14 @@ import edu.ustb.sei.mde.morel.RelationalExp;
 import edu.ustb.sei.mde.morel.SimpleLinkConstraint;
 import edu.ustb.sei.mde.morel.UnaryExp;
 import edu.ustb.sei.mde.morel.UnaryOperator;
+import edu.ustb.sei.mde.morel.VariableExp;
 import edu.ustb.sei.mde.morel.resource.morel.IMorelOptionProvider;
 import edu.ustb.sei.mde.morel.resource.morel.IMorelOptions;
 import edu.ustb.sei.mde.morel.resource.morel.IMorelResourcePostProcessor;
 import edu.ustb.sei.mde.morel.resource.morel.IMorelResourcePostProcessorProvider;
 import edu.ustb.sei.mde.morel.resource.morel.MorelEProblemSeverity;
 import edu.ustb.sei.mde.morel.resource.morel.MorelEProblemType;
+import edu.ustb.sei.mde.morel.resource.morel.analysis.TypeResolver;
 import edu.ustb.sei.mde.morel.resource.morel.mopp.MorelProblem;
 import edu.ustb.sei.mde.morel.resource.morel.mopp.MorelResource;
 
@@ -71,6 +73,7 @@ public class MorelPostProcesser implements IMorelResourcePostProcessor,
 			if(terminateFlag) return;
 			checkLinkConstraint(o,resource);
 			EObject no = simplify(o);
+			
 			if(no!=o) {
 				if(terminateFlag) return;
 				EObject container = o.eContainer();

@@ -77,8 +77,9 @@
   <eClassifiers xsi:type="ecore:EEnum" name="TypedModelAction">
     <eLiterals name="normal"/>
     <eLiterals name="readOnly" value="1"/>
-    <eLiterals name="transient" value="2"/>
-    <eLiterals name="viewOnly" value="3"/>
+    <eLiterals name="viewOnly" value="2"/>
+    <eLiterals name="createOnly" value="3"/>
+    <eLiterals name="transient" value="4"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Query" eSuperTypes="#//Pattern #//NamedElement #//Executable"/>
   <eClassifiers xsi:type="ecore:EClass" name="Unit" abstract="true">

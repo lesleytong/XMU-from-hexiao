@@ -13,6 +13,7 @@ import java.util.Map.Entry;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -99,9 +100,15 @@ public class MorelLaunchConfigurationHelper {
 	private void saveModelSpace(org.eclipse.emf.ecore.EObject root, Environment env) {
 		Map<TypedModel, ModelSpace> map = env.getModelSpaces();
 		for(Entry<TypedModel,ModelSpace> entry : map.entrySet()) {
-			if(entry.getKey().getType()==TypedModelAction.NORMAL)
+			if(entry.getKey().getType()==TypedModelAction.NORMAL||entry.getKey().getType()==TypedModelAction.CREATE_ONLY)
 				entry.getValue().save();
 		}
+	}
+	
+	private void registerPackage(EPackage.Registry reg, EPackage pkg) {
+		reg.put(pkg.getNsURI(), pkg);
+		for(EPackage sp : pkg.getESubpackages())
+			registerPackage(reg, sp);
 	}
 
 	private void initModelSpace(org.eclipse.emf.ecore.EObject root,
@@ -113,15 +120,18 @@ public class MorelLaunchConfigurationHelper {
 		Unit queryModel = (Unit) root;
 		
 		for(TypedModel m : queryModel.getModels()){
-			resSet.getPackageRegistry().put(m.getPackage().getNsURI(), m.getPackage());
+//			resSet.getPackageRegistry().put(m.getPackage().getNsURI(), m.getPackage());
+			registerPackage(resSet.getPackageRegistry(),m.getPackage());
+			
 			if(m.getType()==TypedModelAction.TRANSIENT)
 				env.getModelSpaces().put(m, env.getModelUniverse().createModelSpace());
 		}
 		
-		if(uris.length!=queryModel.getModels().size()) {
-			ConsoleUtil.printToConsole("Wrong Model Size", MOREL_TITLE, true);
-			return;
-		} else {
+//		if(uris.length!=queryModel.getModels().size()) {
+//			ConsoleUtil.printToConsole("Wrong Model Size", MOREL_TITLE, true);
+//			return;
+//		} else 
+		{
 			for(String u : uris) {
 				String buf[] = u.split("=");
 				if(buf.length!=2) {
@@ -138,7 +148,10 @@ public class MorelLaunchConfigurationHelper {
 					Resource res = null;
 					URI createURI = org.eclipse.emf.common.util.URI.createURI(buf[1]);
 					try {
-						res = resSet.getResource(createURI, true);
+						if(typedModel.getType()==TypedModelAction.CREATE_ONLY)
+							res = resSet.createResource(createURI);
+						else 
+							res = resSet.getResource(createURI, true);
 					} catch (Exception e) {
 						res = resSet.createResource(createURI);
 					}

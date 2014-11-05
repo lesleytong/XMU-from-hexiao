@@ -39,6 +39,14 @@ public class Apply {
 				env.getModelUniverse().onChange();
 			}
 		}
+
+		List<SimpleLinkConstraint> linksToBeDeleted = getLinks(lhs,rhs);
+		for(SimpleLinkConstraint l : linksToBeDeleted) {
+			EObject src = (EObject) context.getValue(l.getSource());
+			EObject tar = (EObject) context.getValue(l.getTarget());
+			ModelSpace modelSpace = env.getModelSpaces().get(l.getSource().getModel());
+			modelSpace.deleteRelationship(src, tar, l.getReference());
+		}
 		
 		List<SimpleLinkConstraint> linksToBeCreated = getLinks(rhs,lhs);
 		for(SimpleLinkConstraint l : linksToBeCreated) {
@@ -51,31 +59,21 @@ public class Apply {
 				modelSpace.addRelationship(src, tar, l.getReference());
 			}
 		}
+
+		List<ObjectVariable> variablesToBeDeleted = getVariables(lhs,rhs);
+		for(ObjectVariable v : variablesToBeDeleted) {
+			if(context.getValue(v)!=OclUndefined.INVALIDED) {
+				EObject obj = (EObject) context.getValue(v);
+				System.out.println("delete "+v.getName()+" = "+obj);
+				env.getModelSpaces().get(v.getModel()).deleteElementFromModel(obj);
+			}
+		}
 		
 		for(Pattern p : rhs) {
 			for(Statement s : p.getStatements()) {
 				interpreter.interprete(s, context);
 			}
 		}
-		
-		List<SimpleLinkConstraint> linksToBeDeleted = getLinks(lhs,rhs);
-		for(SimpleLinkConstraint l : linksToBeDeleted) {
-			EObject src = (EObject) context.getValue(l.getSource());
-			EObject tar = (EObject) context.getValue(l.getTarget());
-			ModelSpace modelSpace = env.getModelSpaces().get(l.getSource().getModel());
-			modelSpace.deleteRelationship(src, tar, l.getReference());
-		}
-
-		List<ObjectVariable> variablesToBeDeleted = getVariables(lhs,rhs);
-		for(ObjectVariable v : variablesToBeDeleted) {
-			if(context.getValue(v)!=OclUndefined.INVALIDED) {
-				EObject obj = EcoreUtil.create(v.getType());
-				env.getModelSpaces().get(v.getModel()).deleteElementFromModel(obj);
-			}
-		}
-		
-		
-		
 		
 		return true;
 	}

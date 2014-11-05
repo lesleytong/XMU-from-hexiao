@@ -222,8 +222,9 @@ public class ModelSpace extends NamedElement {
 	public void deleteRelationship(EObject source, EObject target, EReference ref) {
 		if(ref.isMany()) {
 			((EList<EObject>)source.eGet(ref)).remove(target);
-		} else 
+		} else {
 			source.eUnset(ref);
+		}
 	}
 	
 

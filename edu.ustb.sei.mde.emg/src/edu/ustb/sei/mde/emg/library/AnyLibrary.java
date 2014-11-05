@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.UniqueEList;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
@@ -44,11 +45,34 @@ public class AnyLibrary extends ReflectiveLibrary {
 			return notEqual(self,params[0]);
 		case "oclType":
 			return oclType(self);
+		case "oclIsTypeOf":
+			return oclIsTypeOf(self,params[0]);
+		case "oclIsKindOf":
+			return oclIsKindOf(self,params[0]);
 		case "println":
 			ConsoleUtil.printToConsole(self.toString(), "AnyLibrary", true);
 			return true;
 		default:
 			return super.execute(operation, self, params);
+		}
+	}
+
+	private Object oclIsKindOf(Object self, Object object) {
+		try {
+			EClassifier type = (EClassifier)object;
+			return type.isInstance(self);
+		} catch (Exception e) {
+			return OclUndefined.INVALIDED;
+		}
+	}
+
+	public Object oclIsTypeOf(Object self, Object object) {
+		try {
+			EClassifier type = (EClassifier)object;
+			EClassifier sType = (EClassifier)this.oclType(self);
+			return type.equals(sType);
+		} catch (Exception e) {
+			return false;
 		}
 	}
 
