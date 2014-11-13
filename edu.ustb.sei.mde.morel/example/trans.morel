@@ -1,0 +1,1049 @@
+transformation T1
+
+type view uml <- @platform:/plugin/edu.ustb.sei.mde.tuml/model/tUML.ecore
+type transient bridge <- @/test/umlbpelbridge.ecore
+type createOnly bpel <- @platform:/plugin/edu.ustb.sei.mde.vxbpel/model/vxbpel.ecore
+
+
+rule Process_rule
+{
+  -- ...
+  lhs {
+  match
+  	inode : uml!InitialNode, 
+  	c1:uml!ControlFlow,
+  	c2:uml!ControlFlow,
+  	fnode : uml!FinalNode,
+  	a : bridge!ActionBridge,
+  	b : bpel!BPELActivity,
+  	p : bpel!BPELProcess,
+  	act : uml!Activity,
+  	ubb : bridge!ActivityGroupBridge
+  	
+  	c1.source = inode,
+  	c1.target=a,
+  	a.bpel=b,
+  	c2.target=fnode,
+  	c2.source=a,
+  	ubb.uml=act,
+  	ubb.bpel=p,
+  	act.nodes=inode,
+  	act.nodes=fnode
+  }
+  rhs {
+  match
+  	b : bpel!BPELActivity,
+  	p : bpel!BPELProcess,
+  	act : uml!Activity,
+  	ubb : bridge!ActivityGroupBridge
+  	
+  	p.activity=b,
+  	ubb.uml=act,
+  	ubb.bpel=p
+  }
+}
+
+rule Activity_rule {
+	lhs {
+	match
+	ag : uml!Activity
+	}
+	rhs {
+	match
+	ag:uml!Activity,
+	ubb:bridge!ActivityGroupBridge,
+	p:bpel!VxBPELProcess
+	
+	ubb.uml=ag,
+	ubb.bpel=p
+	}
+	
+	nac {
+	match
+	ag : uml!Activity,
+	eubb:bridge!ActivityGroupBridge
+	
+	eubb.uml=ag
+	}
+}
+
+
+rule Sequence_rule
+{
+  -- ...
+  lhs {
+  match
+  ci : uml ! ControlFlow,
+  a1 : bridge ! ActionBridge,
+  a2 : bridge ! ActionBridge,
+  c : uml ! ControlFlow,
+  co : uml ! ControlFlow,
+  b1 : bpel ! BPELActivity,
+  b2 : bpel ! BPELActivity
+  
+  ci.target=a1, 
+  c.source=a1, 
+  c.target=a2, 
+  co.source=a2, 
+  a1.bpel=b1,
+  a2.bpel=b2
+  }
+
+  rhs {
+  match
+  ci : uml ! ControlFlow,
+  co : uml ! ControlFlow,
+  b1 : bpel ! BPELActivity,
+  b2 : bpel ! BPELActivity,
+  bs : bpel ! BPELSequence,
+  ubb : bridge ! ActionBridge
+
+  bs.activities=b1, 
+  bs.activities=b2, 
+  ubb.bpel=bs, 
+  ci.target=ubb, 
+  co.source=ubb
+  
+  }
+}
+
+
+rule CallAction_rule_without_input_without_output {
+  nac {
+    match
+   ofi : uml ! ObjectFlow,
+   a : uml! CallAction
+   
+    ofi.target=a
+  }
+  nac {
+    match
+   ofo : uml ! ObjectFlow,
+   a : uml! Action
+   
+    ofo.source=a
+
+  }
+  lhs {
+  match
+    ci : uml ! ControlFlow,
+  	a : uml! CallAction,
+  	co : uml! ControlFlow,
+  	an : String
+  	
+    ci.target=a, co.source=a
+    
+    where
+    a.name<>'assign';
+    an <- a.name;
+    --not a.oclIsTypeOf(@(ActionBridge)) and not a.oclIsTypeOf(@(VxAction));
+
+  }
+  rhs {
+  match
+    ci : uml ! ControlFlow,
+  	co : uml! ControlFlow,
+  	ubb : bridge ! ActionBridge,
+  	b : bpel ! BPELInvoke,
+  	an : String
+
+    ci.target=ubb, co.source=ubb, ubb.bpel=b
+    
+    where
+    b.name<-an;
+  }
+}
+
+rule CallAction_rule_with_input_without_output {
+  nac {
+    match
+   ofo : uml ! ObjectFlow,
+   a : uml! Action
+   
+    ofo.source=a
+
+  }
+  lhs {
+  match
+    ci : uml ! ControlFlow,
+  	a : uml! CallAction,
+  	co : uml! ControlFlow,
+  	ofi : uml ! ObjectFlow,
+  	oni : uml ! ObjectNode,
+  	an : String
+  	
+    ci.target=a, co.source=a,ofi.target=a,ofi.source=oni
+    
+    where
+    a.name<>'assign';
+    an <- a.name;
+    --not a.oclIsTypeOf(@(ActionBridge)) and not a.oclIsTypeOf(@(VxAction));
+
+  }
+  rhs {
+  match
+    ci : uml ! ControlFlow,
+  	co : uml! ControlFlow,
+  	ubb : bridge ! ActionBridge,
+  	oni : uml ! ObjectNode,
+  	b : bpel ! BPELInvoke,
+  	an : String
+
+    ci.target=ubb, co.source=ubb, ubb.bpel=b
+    
+    where
+    b.name<-an;
+    b.inputVariable <- oni.name;
+  }
+}
+
+rule CallAction_rule_without_input_with_output {
+  nac {
+    match
+   ofi : uml ! ObjectFlow,
+   a : uml! Action
+   
+    ofi.target=a
+
+  }
+  lhs {
+  match
+    ci : uml ! ControlFlow,
+  	a : uml! CallAction,
+  	co : uml! ControlFlow,
+  	ofo : uml ! ObjectFlow,
+  	ons : uml ! ObjectNode,
+  	an : String
+  	
+    ci.target=a, co.source=a,ofo.source=a,ofo.target=ons
+    
+    where
+    a.name<>'assign';
+    an <- a.name;
+    --not a.oclIsTypeOf(@(ActionBridge)) and not a.oclIsTypeOf(@(VxAction));
+
+  }
+  rhs {
+  match
+    ci : uml ! ControlFlow,
+  	co : uml! ControlFlow,
+  	ubb : bridge ! ActionBridge,
+  	ons : uml ! ObjectNode,
+  	b : bpel ! BPELInvoke,
+  	an : String
+
+    ci.target=ubb, co.source=ubb, ubb.bpel=b
+    
+    where
+    b.name<-an;
+    b.outputVariable <- ons.name;
+  }
+}
+
+rule CallAction_rule_with_input_with_output {
+  lhs {
+  match
+    ci : uml ! ControlFlow,
+  	a : uml! CallAction,
+  	co : uml! ControlFlow,
+  	ofi : uml ! ObjectFlow,
+  	oni : uml ! ObjectNode,
+  	ofo : uml ! ObjectFlow,
+  	ons : uml ! ObjectNode,
+  	an : String
+  	
+    ci.target=a, co.source=a,ofo.source=a,ofo.target=ons,ofi.target=a,ofi.source=oni
+    
+    where
+    a.name<>'assign';
+    an <- a.name;
+    --not a.oclIsTypeOf(@(ActionBridge)) and not a.oclIsTypeOf(@(VxAction));
+
+  }
+  rhs {
+  match
+    ci : uml ! ControlFlow,
+  	co : uml! ControlFlow,
+  	ubb : bridge ! ActionBridge,
+  	oni : uml ! ObjectNode,
+  	ons : uml ! ObjectNode,
+  	b : bpel ! BPELInvoke,
+  	an : String
+
+    ci.target=ubb, co.source=ubb, ubb.bpel=b
+    
+    where
+    b.name<-an;
+    b.inputVariable <- oni.name;
+    b.outputVariable <- ons.name;
+  }
+}
+
+rule Choice_rule
+{
+  lhs {
+  match
+  ci : uml ! ControlFlow,
+  dn : uml ! DecisionNode,
+  c1 : uml ! ControlFlow,
+  c2 : uml ! ControlFlow,
+  mn : uml ! MergeNode,
+  a1 : bridge ! ActionBridge,
+  a2 : bridge ! ActionBridge,
+  b1 : bpel ! BPELActivity,
+  b2 : bpel ! BPELActivity,
+  c3 : uml ! ControlFlow,
+  c4 : uml ! ControlFlow,
+  co : uml ! ControlFlow,
+  cn : String
+  
+  ci.target=dn, 
+  c1.source=dn, 
+  c1.target=a1, 
+  c2.source=dn, 
+  c2.target=a2, 
+  a2.bpel=b2, 
+  a1.bpel=b1, 
+  c3.source=a1, 
+  c3.target=mn, 
+  c4.source=a2, 
+  c4.target=mn, 
+  co.source=mn
+  
+  allDiff (c1,c2,c3,c4),
+  allDiff (a1,a2)
+  
+  where
+   c2.condition='else';
+   cn <- c1.condition ;
+  }
+  
+  rhs {
+  match
+  ci : uml ! ControlFlow,
+  b1 : bpel ! BPELActivity,
+  b2 : bpel ! BPELActivity,
+  co : uml ! ControlFlow,
+  ubb : bridge ! ActionBridge,
+  bif : bpel ! BPELIf,
+  bc : bpel ! BPELBoolExpression,
+  cn : String
+
+  bif.thenActivity=b1, 
+  bif.elseActivity=b2, 
+  ubb.bpel=bif, 
+  ci.target=ubb, 
+  co.source=ubb,
+  bif.condition = bc
+  where
+  bc.expression <- cn;
+  }
+}
+
+rule For_rule
+{ 
+  lhs {
+  match
+  ci : uml ! ControlFlow,
+  mn : uml ! MergeNode,
+  c1 : uml ! ControlFlow,
+  dn : uml ! DecisionNode,
+  c2 : uml ! ControlFlow,
+  a : bridge ! ActionBridge,
+  c3 : uml ! ControlFlow,
+  co : uml ! ControlFlow,
+  b : bpel ! BPELActivity,
+  cn : String
+    
+  ci.target=mn, 
+  c1.source=mn, 
+  c1.target=dn, 
+  c2.source=dn, 
+  c2.target=a, 
+  c3.source=a, 
+  c3.target=mn, 
+  co.source=dn, 
+  a.bpel=b
+  
+  allDiff(ci,co,c1,c2,c3)
+  
+  where
+  cn <- c2.condition;
+  }
+  
+  rhs {
+  match
+  ci : uml ! ControlFlow,
+  co : uml ! ControlFlow,
+  b : bpel ! BPELActivity,
+  ubb : bridge ! ActionBridge,
+  bf : bpel ! BPELWhile,
+  bc : bpel ! BPELBoolExpression,
+  cn : String
+  
+  bf.bodyActivity=b, 
+  ubb.bpel=bf,
+  ci.target=ubb, 
+  co.source=ubb,
+  bf.condition = bc
+  
+  where
+  co.condition<-'';
+  bc.expression <- cn;
+  }
+}
+
+rule Parallel_rule
+{
+-- this is just a proof-of-concept realization, we need split this rule into more subrules to support multi-branches
+  nac {
+  match
+  ci : uml ! ControlFlow,
+  a1 : bridge ! ActionBridge,
+  c1 : uml ! ControlFlow,
+  fn : uml ! ForkNode,
+  c2 : uml ! ControlFlow,
+  a2 : bridge ! ActionBridge,
+  b1 : bpel ! BPELActivity,
+  b2 : bpel ! BPELActivity,
+  c3 : uml ! ControlFlow,
+  c4 : uml ! ControlFlow,
+  jn : uml ! JoinNode,
+  co : uml ! ControlFlow,
+  bn : bpel ! BPELFlow,
+  ubbn : bridge ! ActionBridge
+  
+  a2.bpel=b2, 
+  a1.bpel=b1, 
+  ci.target=fn, 
+  c1.source=fn, 
+  c1.target=a1, 
+  c2.source=fn, 
+  c2.target=a2, 
+  c3.source=a1, 
+  c3.target=jn, 
+  c4.target=jn, 
+  c4.source=a2, 
+  co.source=jn, 
+  ubbn.bpel=bn, 
+  ci.target=ubbn, 
+  co.source=ubbn, 
+  bn.bodyActivities=b1, 
+  bn.bodyActivities=b2
+  }
+  
+  lhs {
+  match
+  ci : uml ! ControlFlow,
+  a1 : bridge ! ActionBridge,
+  c1 : uml ! ControlFlow,
+  fn : uml ! ForkNode,
+  c2 : uml ! ControlFlow,
+  a2 : bridge ! ActionBridge,
+  b1 : bpel ! BPELActivity,
+  b2 : bpel ! BPELActivity,
+  c3 : uml ! ControlFlow,
+  c4 : uml ! ControlFlow,
+  jn : uml ! JoinNode,
+  co : uml ! ControlFlow
+  
+  a2.bpel=b2, 
+  a1.bpel=b1, 
+  ci.target=fn, 
+  c1.source=fn, 
+  c1.target=a1, 
+  c2.source=fn, 
+  c2.target=a2, 
+  c3.source=a1, 
+  c3.target=jn, 
+  c4.target=jn, 
+  c4.source=a2, 
+  co.source=jn
+  
+  allDiff(c1,c2,c3,c4)
+  }
+  
+  rhs {
+  match
+  ci : uml ! ControlFlow,
+  b1 : bpel ! BPELActivity,
+  b2 : bpel ! BPELActivity,
+  co : uml ! ControlFlow,
+  b : bpel ! BPELFlow,
+  ubb : bridge ! ActionBridge
+  
+  ubb.bpel=b, 
+  ci.target=ubb, 
+  co.source=ubb, 
+  b.bodyActivities=b1, 
+  b.bodyActivities=b2
+  }
+}
+
+rule Variation_Point_first
+{
+  -- register variation point
+  nac {
+  match
+  vp : uml ! VariationPoint,
+  a : uml ! Activity,
+  p : bpel ! VxBPELProcess,
+  b : bridge ! ActivityGroupBridge,
+  cvpn : bpel !  VxBPELConfigurableVariationPoint,
+  ubbn : bridge ! VariationPointBridge
+  
+  b.uml=a, 
+  b.bpel=p, 
+  p.configurableVariationPoints=cvpn, 
+  ubbn.uml=vp, 
+  ubbn.bpel=cvpn
+  
+  where
+  cvpn.name=vp.name;
+  }
+  
+  lhs {
+  match
+  vp : uml ! VariationPoint,
+  a : uml ! Activity,
+  p : bpel ! VxBPELProcess,
+  b : bridge ! ActivityGroupBridge
+  
+  b.uml=a, 
+  b.bpel=p
+  }
+  
+  rhs {
+  match
+  vp : uml ! VariationPoint,
+  a : uml ! Activity,
+  p : bpel ! VxBPELProcess,
+  b : bridge ! ActivityGroupBridge,
+  cvp : bpel !  VxBPELConfigurableVariationPoint,
+  ubb : bridge ! VariationPointBridge
+    
+  b.uml=a, b.bpel=p, p.configurableVariationPoints=cvp, ubb.uml=vp, ubb.bpel=cvp
+  
+  where
+  cvp.name <- vp.name;
+  }
+}
+
+rule Variation_Point_second
+{
+  -- register variant
+  nac {
+  match
+  vp : uml ! VariationPoint,
+  u1 : bridge ! VariationPointBridge,
+  cvp : bpel ! VxBPELConfigurableVariationPoint,
+  v : uml ! Variation,
+  ubbn : bridge ! VariationBridge,
+  cvn : bpel ! VxBPELConfigurableVariant
+  
+  u1.uml=vp, 
+  u1.bpel=cvp, 
+  vp.variations=v, 
+  cvp.variants=cvn, 
+  ubbn.uml=v, 
+  ubbn.bpel=cvn
+  
+  where
+  cvn.name=v.name;
+  }
+  lhs {
+  match
+  vp : uml ! VariationPoint,
+  u1 : bridge ! VariationPointBridge,
+  cvp : bpel ! VxBPELConfigurableVariationPoint,
+  v : uml ! Variation
+  
+  u1.uml=vp, 
+  u1.bpel=cvp, 
+  vp.variations=v
+  }
+  
+  rhs {
+  match
+  vp : uml ! VariationPoint,
+  u1 : bridge ! VariationPointBridge,
+  cvp : bpel ! VxBPELConfigurableVariationPoint,
+  v : uml ! Variation,
+  ubb : bridge ! VariationBridge,
+  cv : bpel ! VxBPELConfigurableVariant
+
+  u1.uml=vp, 
+  u1.bpel=cvp, 
+  vp.variations=v, 
+  cvp.variants=cv, 
+  ubb.uml=v, 
+  ubb.bpel=cv
+  
+  where
+  cv.name <- v.name;
+  }
+}
+
+rule Variation_Point_third
+{
+  -- set up constraints
+  nac {
+    -- compact nacs
+  match
+  vp1 : uml ! VariationPoint,
+  vp2 : uml ! VariationPoint,
+  v1 : uml ! Variation,
+  v2 : uml ! Variation,
+  cs : uml ! Constraint,
+  br1 : bridge ! VariationPointBridge,
+  cvp : bpel ! VxBPELConfigurableVariationPoint,
+  br2 : bridge ! VariationBridge,
+  cv : bpel ! VxBPELConfigurableVariant,
+  chn : bpel ! VxBPELVariationPointPChoice,
+  ubbn : bridge ! ConstraintBridge
+  
+  vp1.variations=v1, 
+  vp2.variations=v2, 
+  cs.source=v1, 
+  cs.target=v2, 
+  br1.uml=vp1, 
+  br1.bpel=cvp, 
+  br2.uml=v1, 
+  br2.bpel=cv, 
+  cvp.variants=cv, 
+  cv.requiredVariants=chn, 
+  ubbn.uml=cs, 
+  ubbn.bpel=chn
+  
+  where
+  --cs.type=ConstraintType::require;
+  chn.vpname=vp2.name;
+  chn.variant=v2.name;
+  }
+  
+  lhs {
+  match
+  vp1 : uml ! VariationPoint,
+  vp2 : uml ! VariationPoint,
+  v1 : uml ! Variation,
+  v2 : uml ! Variation,
+  cs : uml ! Constraint,
+  br1 : bridge ! VariationPointBridge,
+  cvp : bpel ! VxBPELConfigurableVariationPoint,
+  br2 : bridge ! VariationBridge,
+  cv : bpel ! VxBPELConfigurableVariant
+  
+  vp1.variations=v1, vp2.variations=v2, cs.source=v1, cs.target=v2, br1.uml=vp1, br1.bpel=cvp, br2.uml=v1, br2.bpel=cv, cvp.variants=cv
+  
+  allDiff(v1,v2)
+  
+  where
+  cs._type=#ConstraintType.require;
+  }
+  
+  rhs {
+  match
+  vp1 : uml ! VariationPoint,
+  vp2 : uml ! VariationPoint,
+  v1 : uml ! Variation,
+  v2 : uml ! Variation,
+  cs : uml ! Constraint,
+  br1 : bridge ! VariationPointBridge,
+  cvp : bpel ! VxBPELConfigurableVariationPoint,
+  br2 : bridge ! VariationBridge,
+  cv : bpel ! VxBPELConfigurableVariant,
+  ch : bpel ! VxBPELVariationPointPChoice,
+  ubb : bridge ! ConstraintBridge
+  
+  vp1.variations=v1, vp2.variations=v2, cs.source=v1, cs.target=v2, br1.uml=vp1, br1.bpel=cvp, br2.uml=v1, br2.bpel=cv, cvp.variants=cv, cv.requiredVariants=ch, ubb.uml=cs, ubb.bpel=ch
+  
+  where
+  --cs.type=ConstraintType::require;
+  ch.vpname <- vp2.name;
+  ch.variant <- v2.name;
+  }
+}
+
+rule VxAction_first
+{
+-- register variation point
+  nac {
+    -- compact nacs
+    match
+    va : uml ! VxAction, 
+    bn : bridge ! VxActionBridge, 
+    vbn : bpel ! VxBPELVariationPoint
+    
+    bn.uml=va, bn.bpel=vbn
+  }
+  lhs {
+  match
+    va : uml ! VxAction
+  }
+  rhs {
+  match
+    va : uml ! VxAction, 
+    b : bridge ! VxActionBridge, 
+    vb : bpel ! VxBPELVariationPoint
+    
+    b.uml=va, b.bpel=vb
+  }
+}
+
+rule VxAction_second
+{
+-- register group bridge and bpel scope
+  nac {
+    -- compact nacs
+    match
+    va : uml ! VxAction, 
+    ci : uml ! ControlFlow, 
+    co : uml ! ControlFlow,  
+    v : uml ! VariationActivityFragment, 
+    ubbn : bridge ! ActivityGroupBridge, 
+    bsn : bpel ! BPELScope, 
+    bvn : bpel ! VxBPELVariant, 
+    vd : uml ! Variation, 
+    ab : bridge ! VxActionBridge, 
+    vb : bpel ! VxBPELVariationPoint
+    
+    ci.target=va, co.source=va, va.variantFragments=v, ubbn.uml=v, ubbn.bpel=bsn, bvn.bpelCode=bsn, v.variation=vd, ab.uml=va, ab.bpel=vb, vb.variants=bvn
+    
+    where
+    bvn.name=vd.name;
+  }
+  
+  lhs {
+  match
+    va : uml ! VxAction, 
+    ci : uml ! ControlFlow, 
+    co : uml ! ControlFlow,  
+    v : uml ! VariationActivityFragment, 
+    vd : uml ! Variation, 
+    ab : bridge ! VxActionBridge, 
+    vb : bpel ! VxBPELVariationPoint
+    
+    ci.target=va, co.source=va, va.variantFragments=v, v.variation=vd, ab.uml=va, ab.bpel=vb
+  }
+  
+  rhs {
+  match
+  	va : uml ! VxAction, 
+    ci : uml ! ControlFlow, 
+    co : uml ! ControlFlow,  
+    v : uml ! VariationActivityFragment, 
+    ubb : bridge ! ActivityGroupBridge, 
+    bs : bpel ! BPELScope, 
+    bv : bpel ! VxBPELVariant, 
+    vd : uml ! Variation, 
+    ab : bridge ! VxActionBridge, 
+    vb : bpel ! VxBPELVariationPoint
+    
+    ci.target=va, co.source=va, va.variantFragments=v, ubb.uml=v, ubb.bpel=bs, bv.bpelCode=bs, v.variation=vd, ab.uml=va, ab.bpel=vb, vb.variants=bv
+    
+  where
+    bv.name <- vd.name;
+  }
+}
+
+rule VxAction_third
+{
+--remove empty vx fragment
+  nac {
+    -- compact nacs
+    match
+  v : uml ! VariationActivityFragment,
+  va : uml ! VxAction,
+  ubb : bridge ! ActivityGroupBridge,
+  bs : bpel ! BPELScope,
+  vp : uml ! Variation,
+  an : uml ! ActivityNode
+  
+    va.variantFragments=v, v.nodes=an, ubb.uml=v, ubb.bpel=bs, v.variation=vp
+  }
+  lhs {
+  match
+  v : uml ! VariationActivityFragment,
+  va : uml ! VxAction,
+  ubb : bridge ! ActivityGroupBridge,
+  bs : bpel ! BPELScope,
+  vp : uml ! Variation
+  
+  va.variantFragments=v, ubb.uml=v, ubb.bpel=bs, v.variation=vp
+  }
+  rhs {
+  match
+  va : uml ! VxAction,
+  bs : bpel ! BPELScope,
+  vp : uml ! Variation
+  }
+}
+
+rule VxAction_fourth
+{
+-- remove empty vxaction
+  nac {
+    -- compact nacs
+    match
+  ci : uml ! ControlFlow,
+  co : uml ! ControlFlow,
+  va : uml ! VxAction,
+  b : bridge ! VxActionBridge,
+  vn : uml ! VariationActivityFragment
+  
+  va.variantFragments=vn, ci.target=va, co.source=va, b.uml=va
+  }
+  
+  lhs {
+  match
+  ci : uml ! ControlFlow,
+  co : uml ! ControlFlow,
+  va : uml ! VxAction,
+  b : bridge ! VxActionBridge
+  
+  ci.target=va, co.source=va, b.uml=va
+  }
+  
+  rhs {
+  match
+  ci : uml ! ControlFlow,
+  co : uml ! ControlFlow,
+  b : bridge ! VxActionBridge
+  
+  ci.target=b, co.source=b
+  }
+}
+
+rule VxActivityFragment_rule
+{
+  -- ...
+  lhs {
+  match
+  	inode : uml!InitialNode, 
+  	c1:uml!ControlFlow,
+  	c2:uml!ControlFlow,
+  	fnode : uml!FinalNode,
+  	a : bridge!ActionBridge,
+  	b : bpel!BPELActivity,
+  	p : bpel!BPELScope,
+  	act : uml!VariationActivityFragment,
+  	ubb : bridge!ActivityGroupBridge
+  	
+  	c1.source = inode,
+  	c1.target=a,
+  	a.bpel=b,
+  	c2.target=fnode,
+  	c2.source=a,
+  	ubb.uml=act,
+  	ubb.bpel=p,
+  	act.nodes=inode,
+  	act.nodes=fnode
+  }
+  rhs {
+  match
+  	b : bpel!BPELActivity,
+  	p : bpel!BPELScope,
+  	act : uml!VariationActivityFragment,
+  	ubb : bridge!ActivityGroupBridge
+  	
+  	p.activity=b,
+  	ubb.uml=act,
+  	ubb.bpel=p
+  }
+}
+
+rule Variables_first
+{
+--register variable
+  nac {
+    -- compact nacs
+    match
+  on : uml ! ObjectNode,
+  p : bpel ! BPELProcess,
+  t : uml ! Type,
+  v : bpel ! BPELVariable,
+  ubb : bridge ! ObjectNodeBridge
+  
+  on._type=t, p.variables=v, ubb.uml=on, ubb.bpel=v
+  
+  where
+    v.name=on.name;
+    v.messageType=t.name+'MT';
+  }
+  
+  lhs {
+  match
+  on : uml ! ObjectNode,
+  p : bpel ! BPELProcess,
+  t : uml ! Type
+  
+  on._type=t
+  }
+  
+  rhs {
+  match
+    on : uml ! ObjectNode,
+  p : bpel ! BPELProcess,
+  t : uml ! Type,
+  v : bpel ! BPELVariable,
+  ubb : bridge ! ObjectNodeBridge
+  
+  on._type=t, p.variables=v, ubb.uml=on, ubb.bpel=v
+  
+  where
+  v.name<-on.name;
+  v.messageType<-t.name+'MT';
+  'reg'.println();
+  }
+}
+
+rule Variables_second
+{
+--remove unused object node
+  nac {
+    -- normal nacs
+    match
+ on : uml ! ObjectNode,
+ ofi : uml ! ObjectFlow
+ ofi.target=on
+  }
+  nac {
+    -- normal nacs
+    match
+ on : uml ! ObjectNode,
+ ofo : uml ! ObjectFlow
+ ofo.source=on
+
+  }
+  lhs {
+  match
+    on : uml ! ObjectNode,
+    ubb : bridge ! ObjectNodeBridge
+    ubb.uml=on
+  }
+  rhs {
+  match
+  }
+}
+
+rule Assign_rule
+{
+
+  lhs {
+    match
+    a : uml ! CallAction,
+    ci : uml ! ControlFlow,
+    co : uml ! ControlFlow,
+    ofi : uml ! ObjectFlow,
+	oni : uml ! ObjectNode,
+	ofo : uml ! ObjectFlow,
+	ono : uml ! ObjectNode,
+	fm : String,
+	tm : String
+	
+    ci.target=a, co.source=a, ofi.target=a, ofi.source=oni, ofo.target=ono, ofo.source=a
+    
+    where
+    a.name='assign';
+    fm <- if ofi.mappings->isEmpty() then '' else ofi.mappings->at(1) endif;
+    tm <- if ofo.mappings->isEmpty() then '' else ofo.mappings->at(1) endif; 
+  }
+  rhs {
+    match
+    a : uml ! CallAction,
+    ci : uml ! ControlFlow,
+    co : uml ! ControlFlow,
+    oni : uml ! ObjectNode,
+    ono : uml ! ObjectNode,
+    b : bpel ! BPELAssign,
+	c : bpel ! BPELCopy,
+  	f : bpel ! BPELCopyFrom,
+  	t : bpel ! BPELCopyTo,
+  	ubb : bridge ! AssignBridge,
+  	fm : String,
+	tm : String
+    
+    ubb.bpel=b, ubb.uml=a, ci.target=ubb, co.source=ubb, b.parts=c, c.fromSpec=f, c.toSpec=t
+    
+    where
+    f.variable<-oni.name;
+    f.part<-fm;
+    t.variable<-ono.name;
+    t.part<-tm;
+  }
+}
+
+/*
+rule Assign_first
+{
+  lhs {
+    match
+    a : uml ! CallAction,
+    ci : uml ! ControlFlow,
+    co : uml ! ControlFlow
+    
+    ci.target=a, co.source=a
+    where
+    a.name='assign';
+  }
+  rhs {
+  match
+    a : uml ! CallAction,
+    ci : uml ! ControlFlow,
+    co : uml ! ControlFlow,
+    ubb : bridge ! AssignBridge,
+    b : bpel ! BPELAssign
+    
+    ubb.bpel=b, ubb.uml=a, ci.target=ubb, co.source=ubb
+  }
+}
+
+passive rule Assign_Detail(a,b) {
+	lhs {
+	match
+		a : uml ! CallAction,
+		ofi : uml ! ObjectFlow,
+		oni : uml ! ObjectNode,
+		b : bpel ! BPELAssign,
+		ofo : uml ! ObjectFlow,
+		ono : uml ! ObjectNode
+		
+		ofi.source = oni, ofi.target = a, ofo.target = ono, ofo.source = a
+	}
+	
+	rhs {
+	match
+	  a : uml ! CallAction,
+	  ofo : uml ! ObjectFlow,
+	  oni : uml ! ObjectNode,
+	  ono : uml ! ObjectNode,
+	  b : bpel ! BPELAssign,
+	  c : bpel ! BPELCopy,
+  	  f : bpel ! BPELCopyFrom,
+  	  t : bpel ! BPELCopyTo
+  	  
+  	  b.parts = c, c.fromSpec=f, c.toSpec=t, ofo.target = ono, ofo.source = a
+  	  
+  	  where
+  	  f.variable<-oni.name;
+      f.part<-oni.mappings;
+      t.variable<-ono.name;
+      t.part<-ono.mappings;
+	}
+}
+
+passive rule Assign_clearOutput(a) {
+	lhs {
+	match
+		a : uml ! CallAction,
+		ofi : uml ! ObjectFlow,
+		oni : uml ! ObjectNode,
+		b : bpel ! BPELAssign,
+		ofo : uml ! ObjectFlow,
+		ono : uml ! ObjectNode
+		
+		ofi.source = oni, ofi.target = a, ofo.target = ono, ofo.source = a
+	}
+}
+*/
+
