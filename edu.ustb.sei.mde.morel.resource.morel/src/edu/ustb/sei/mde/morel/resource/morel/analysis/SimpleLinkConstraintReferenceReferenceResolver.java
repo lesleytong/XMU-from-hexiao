@@ -34,18 +34,28 @@ public class SimpleLinkConstraintReferenceReferenceResolver implements edu.ustb.
 			if(source==null) return;
 			EClass srcType = source.getType();
 			if(srcType==null) return;
-			List<EReference> list = srcType.getEAllReferences();
-			for(EReference ref : list) {
-				if(ref.getName().equals(identifier)) {
-					ObjectVariable target = container.getTarget();
-					if(target==null||target.getType()==null) {
-						result.addMapping(identifier, ref);
-					} else {
-						if(ref.getEReferenceType().isSuperTypeOf(target.getType()))
-							result.addMapping(identifier, ref);
-					}
-				}
-			}		
+			
+			EReference ref = (EReference) FeatureResolver.getStructuralFeature(identifier, srcType);
+			if(ref==null) return;
+			ObjectVariable target = container.getTarget();
+			if(target==null || target.getType()==null) {
+				result.addMapping(identifier, ref);
+			} else {
+				if(ref.getEReferenceType().isSuperTypeOf(target.getType()))
+					result.addMapping(identifier, ref);
+			}
+			
+//			List<EReference> list = srcType.getEAllReferences();
+//			for(EReference ref : list) {
+//				if(ref.getName().equals(identifier)) {
+//					if(target==null||target.getType()==null) {
+//						result.addMapping(identifier, ref);
+//					} else {
+//						if(ref.getEReferenceType().isSuperTypeOf(target.getType()))
+//							result.addMapping(identifier, ref);
+//					}
+//				}
+//			}		
 		}
 	}
 	

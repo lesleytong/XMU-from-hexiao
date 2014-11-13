@@ -17,7 +17,7 @@ public class PathConstraintReferencesReferenceResolver implements edu.ustb.sei.m
 	public void resolve(String identifier, edu.ustb.sei.mde.morel.PathConstraint container, org.eclipse.emf.ecore.EReference reference, int position, boolean resolveFuzzy, final edu.ustb.sei.mde.morel.resource.morel.IMorelReferenceResolveResult<org.eclipse.emf.ecore.EReference> result) {
 		if(container.getSource()!=null) {
 			EClass c = container.getSource().getType();
-			EStructuralFeature feature = (c.getEStructuralFeature(identifier));
+			EStructuralFeature feature = FeatureResolver.getStructuralFeature(identifier, c);
 			if(feature!=null && feature instanceof EReference) {
 				result.addMapping(identifier, (EReference) feature);
 				return;
@@ -27,7 +27,7 @@ public class PathConstraintReferencesReferenceResolver implements edu.ustb.sei.m
 		for(EReference r: container.getReferences()) {
 			EClass c = r.getEReferenceType();
 			if(c==null) continue;
-			EStructuralFeature feature = (c.getEStructuralFeature(identifier));
+			EStructuralFeature feature = FeatureResolver.getStructuralFeature(identifier, c);
 			if(feature!=null && feature instanceof EReference) {
 				result.addMapping(identifier, (EReference) feature);
 				return;
@@ -36,7 +36,7 @@ public class PathConstraintReferencesReferenceResolver implements edu.ustb.sei.m
 		
 		for(EClass c : container.getTypes()) {
 			if(c==null) continue;
-			EStructuralFeature feature = (c.getEStructuralFeature(identifier));
+			EStructuralFeature feature = FeatureResolver.getStructuralFeature(identifier, c);
 			if(feature!=null && feature instanceof EReference) {
 				result.addMapping(identifier, (EReference) feature);
 				return;

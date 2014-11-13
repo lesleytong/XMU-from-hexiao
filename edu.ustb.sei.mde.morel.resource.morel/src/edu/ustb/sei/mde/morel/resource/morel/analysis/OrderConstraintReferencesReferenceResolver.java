@@ -24,11 +24,16 @@ public class OrderConstraintReferencesReferenceResolver implements edu.ustb.sei.
 				}				
 
 			} else {
-				for(EReference ref : cls.getEAllReferences()) {
-					if(ref.getName().equals(identifier)) {
-						result.addMapping(identifier, ref);
-					}
-				}				
+				EReference ref = (EReference) FeatureResolver.getStructuralFeature(identifier, cls);
+				if(ref!=null) {
+					result.addMapping(identifier, ref);
+				}
+//				
+//				for(EReference ref : cls.getEAllReferences()) {
+//					if(ref.getName().equals(identifier)) {
+//						result.addMapping(identifier, ref);
+//					}
+//				}				
 			}
 		} catch (Exception e) {
 		}

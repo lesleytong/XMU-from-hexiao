@@ -47,7 +47,7 @@ public class EnclosureLinkConstraintForwardReferenceResolver implements edu.ustb
 		} else {
 			if(container.getSource()!=null) {
 				EClass c = container.getSource().getType();
-				EStructuralFeature feature = (c.getEStructuralFeature(identifier));
+				EStructuralFeature feature = FeatureResolver.getStructuralFeature(identifier, c);
 				if(feature!=null && feature instanceof EReference) {
 					result.addMapping(identifier, (EReference) feature);
 					return;
@@ -57,7 +57,7 @@ public class EnclosureLinkConstraintForwardReferenceResolver implements edu.ustb
 			for(EReference r: container.getForward()) {
 				EClass c = r.getEReferenceType();
 				if(c==null) continue;
-				EStructuralFeature feature = (c.getEStructuralFeature(identifier));
+				EStructuralFeature feature = FeatureResolver.getStructuralFeature(identifier, c);
 				if(feature!=null && feature instanceof EReference) {
 					result.addMapping(identifier, (EReference) feature);
 					return;
@@ -66,7 +66,7 @@ public class EnclosureLinkConstraintForwardReferenceResolver implements edu.ustb
 			
 			for(EClass c : container.getTypes()) {
 				if(c==null) continue;
-				EStructuralFeature feature = (c.getEStructuralFeature(identifier));
+				EStructuralFeature feature = FeatureResolver.getStructuralFeature(identifier, c);
 				if(feature!=null && feature instanceof EReference) {
 					result.addMapping(identifier, (EReference) feature);
 					return;

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map.Entry;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -93,6 +94,7 @@ import edu.ustb.sei.mde.morel.UndefinedLiteralExp;
 import edu.ustb.sei.mde.morel.Variable;
 import edu.ustb.sei.mde.morel.VariableExp;
 import edu.ustb.sei.mde.morel.VariableWithInit;
+import edu.ustb.sei.mde.morel.resource.morel.analysis.FeatureResolver;
 import edu.ustb.sei.mde.morel.resource.morel.execution.constraints.OrderConstraintExecutor;
 import edu.ustb.sei.mde.morel.resource.morel.execution.constraints.PropEnclosureLinkS_T;
 import edu.ustb.sei.mde.morel.resource.morel.execution.primitives.Apply;
@@ -310,7 +312,7 @@ public class OclInterpreter extends
 			nc.initWithHost();
 			initVariable(np,nc);
 			
-			List<Context> nacMatches = match.match(pac, nc, this, c.getEnviroment());
+			List<Context> nacMatches = match.match(np, nc, this, c.getEnviroment());
 			if(nacMatches.isEmpty()) return false;
 		}
 		return true;
@@ -325,7 +327,7 @@ public class OclInterpreter extends
 			nc.initWithHost();
 			initVariable(np,nc);
 			
-			List<Context> nacMatches = match.match(nac, nc, this, c.getEnviroment());
+			List<Context> nacMatches = match.match(np, nc, this, c.getEnviroment());
 			if(nacMatches.isEmpty()==false) return false;
 		}
 		return true;
@@ -535,7 +537,8 @@ public class OclInterpreter extends
 		if(featurePathExp==null) return point;
 		else if(bindValue&&featurePathExp.getNext()==null) {
 			if(point instanceof EObject) {
-				EStructuralFeature feature = ((EObject)point).eClass().getEStructuralFeature(featurePathExp.getFeature());
+				EClass cls = ((EObject)point).eClass();
+				EStructuralFeature feature = FeatureResolver.getStructuralFeature(featurePathExp.getFeature(), cls);
 				if(feature.isMany()) {
 					@SuppressWarnings("unchecked")
 					Collection<Object> col = (Collection<Object>)(((EObject)point).eGet(feature));
@@ -554,7 +557,8 @@ public class OclInterpreter extends
 		else {
 			if(point instanceof EObject){
 				EObject eobj = (EObject)point;
-				EStructuralFeature feature = eobj.eClass().getEStructuralFeature(featurePathExp.getFeature());
+				EClass cls = eobj.eClass();
+				EStructuralFeature feature = FeatureResolver.getStructuralFeature(featurePathExp.getFeature(), cls);
 				return interprete_edu_ustb_sei_mde_morel_CallPathExp(eobj.eGet(feature), featurePathExp.getNext(), context, bindValue, value);				
 			} else throw new UnsupportedOperationException(featurePathExp.toString());
 		}

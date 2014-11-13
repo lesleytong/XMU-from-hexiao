@@ -21,9 +21,11 @@ public class EnumLiteralExpEnumSymbolReferenceResolver implements edu.ustb.sei.m
 					result.addMapping(lit.getLiteral(), lit);
 				}
 			} else {
-				EEnumLiteral literal = container.getEnumType().getEEnumLiteral(identifier);
-				if(literal!=null)
+				EEnumLiteral literal = FeatureResolver.getEnumLiteral(identifier, container.getEnumType());
+				
+				if(literal!=null) {
 					result.addMapping(identifier, literal);
+				}
 			}
 		}
 //		delegate.resolve(identifier, container, reference, position, resolveFuzzy, result);
