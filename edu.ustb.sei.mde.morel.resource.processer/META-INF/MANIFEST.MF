@@ -10,3 +10,5 @@ Require-Bundle: org.eclipse.core.runtime,
  edu.ustb.sei.mde.morel;bundle-version="1.0.1"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
+Import-Package: org.eclipse.core.expressions,
+ org.eclipse.ocl.expressions

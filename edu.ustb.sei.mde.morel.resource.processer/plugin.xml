@@ -8,5 +8,12 @@
             id="edu.ustb.sei.mde.morel.resource.processer.MorelPostProcesser">
       </provider>
    </extension>
+   <extension
+         point="edu.ustb.sei.mde.morel.resource.morel.default_load_options">
+      <provider
+            class="edu.ustb.sei.mde.morel.resource.processer.TypeCheckingProcesser"
+            id="edu.ustb.sei.mde.morel.resource.processer.TypeCheckingProcesser">
+      </provider>
+   </extension>
 
 </plugin>
