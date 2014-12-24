@@ -2,6 +2,7 @@ package edu.ustb.sei.mde.morel.resource.processer;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -45,9 +46,11 @@ import edu.ustb.sei.mde.morel.NestedExp;
 import edu.ustb.sei.mde.morel.ObjectVariable;
 import edu.ustb.sei.mde.morel.OperationPathExp;
 import edu.ustb.sei.mde.morel.PathConstraint;
+import edu.ustb.sei.mde.morel.Pattern;
 import edu.ustb.sei.mde.morel.PrimitiveVariable;
 import edu.ustb.sei.mde.morel.RealLiteralExp;
 import edu.ustb.sei.mde.morel.RelationalExp;
+import edu.ustb.sei.mde.morel.Rule;
 import edu.ustb.sei.mde.morel.SimpleLinkConstraint;
 import edu.ustb.sei.mde.morel.StringLiteralExp;
 import edu.ustb.sei.mde.morel.UnaryExp;
@@ -95,6 +98,37 @@ public class TypeCheckingProcesser implements IMorelResourcePostProcessor,
 		if (terminateFlag)
 			return;
 		for (EObject obj : objs) {
+			if(obj instanceof Rule) {
+				HashMap<String, Variable> vars = new HashMap<String, Variable>();
+				for(Pattern p : ((Rule) obj).getPatterns()) {
+					for(Variable v : p.getVariables()) {
+						Variable ev = vars.get(v.getName());
+						if(ev==null) {
+							vars.put(v.getName(), v);
+						} else {
+							if(v instanceof ObjectVariable && ev instanceof ObjectVariable) {
+								if(((ObjectVariable)v).getType()!=((ObjectVariable)ev).getType()){
+									resource.addWarning(
+											"The definition of this variable is different from the previous one.",
+											MorelEProblemType.ANALYSIS_PROBLEM, obj);
+								}
+							} else if(v instanceof PrimitiveVariable && ev instanceof PrimitiveVariable) {
+								if(!((PrimitiveVariable)v).getType().equals(((PrimitiveVariable)ev).getType())){
+									resource.addWarning(
+											"The definition of this variable is different from the previous one.",
+											MorelEProblemType.ANALYSIS_PROBLEM, obj);
+								}
+							} else {
+								resource.addWarning(
+										"The definition of this variable is different from the previous one.",
+										MorelEProblemType.ANALYSIS_PROBLEM, obj);
+							}
+						}
+					}
+				}
+				
+			} 	
+			
 			if (!checkExp(obj)) {
 				resource.addWarning(
 						"The expression does not pass the type check",
@@ -117,6 +151,8 @@ public class TypeCheckingProcesser implements IMorelResourcePostProcessor,
 			EClassifier c = calculateExpType(source);
 			Expression val = ((BindExp) obj).getValueExp();
 			EClassifier cls = calculateExpType((Expression) val);
+			if(cls == EcorePackage.eINSTANCE.getEObject())
+				return true;
 			if (c instanceof EDataType && cls instanceof EDataType) {
 				return checkDataType(c, cls);
 			} else if (c instanceof EClass && cls instanceof EClass) {
@@ -158,7 +194,7 @@ public class TypeCheckingProcesser implements IMorelResourcePostProcessor,
 				return checkType(((ObjectVariable) referredVariable).getType(),
 						((VariableExp) exp).getPath());
 			else
-				return EcorePackage.eINSTANCE.getEObject();// 表示成功
+				return ((PrimitiveVariable)referredVariable).getType();
 		}
 
 		else if (exp instanceof NestedExp) {

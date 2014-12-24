@@ -16,6 +16,7 @@ public class OrderConstraintBaseReferenceResolver implements edu.ustb.sei.mde.mo
 	
 	public void resolve(String identifier, edu.ustb.sei.mde.morel.OrderConstraint container, org.eclipse.emf.ecore.EReference reference, int position, boolean resolveFuzzy, final edu.ustb.sei.mde.morel.resource.morel.IMorelReferenceResolveResult<edu.ustb.sei.mde.morel.ObjectVariable> result) {
 		Pattern pattern = (Pattern)container.eContainer();
+		if(pattern==null) return;
 		for(Variable v : pattern.getVariables()) {
 			if(v.getName().equals(identifier) && v instanceof ObjectVariable) {
 				result.addMapping(identifier, (ObjectVariable)v);
