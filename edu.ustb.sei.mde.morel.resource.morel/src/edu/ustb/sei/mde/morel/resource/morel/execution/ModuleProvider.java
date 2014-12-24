@@ -13,11 +13,11 @@ import edu.ustb.sei.mde.emg.library.IModuleProvider;
 import edu.ustb.sei.mde.emg.runtime.Context;
 import edu.ustb.sei.mde.emg.runtime.datatype.OclUndefined;
 import edu.ustb.sei.mde.morel.Executable;
-import edu.ustb.sei.mde.morel.ExecutionMode;
 import edu.ustb.sei.mde.morel.PredefinedVariable;
 import edu.ustb.sei.mde.morel.Query;
 import edu.ustb.sei.mde.morel.QueryModel;
 import edu.ustb.sei.mde.morel.Rule;
+import edu.ustb.sei.mde.morel.RuleElement;
 import edu.ustb.sei.mde.morel.TransformationModel;
 import edu.ustb.sei.mde.morel.Unit;
 import edu.ustb.sei.mde.morel.Variable;
@@ -55,44 +55,46 @@ public class ModuleProvider implements IModuleProvider {
 	}
 	
 	private Executable find(String name, TransformationModel model) {
-		for(Rule r : model.getRules()) {
-			if(r.getName().equals(name))
-				return r;
+		for(RuleElement r : model.getRules()) {
+			if(r instanceof Rule) {
+				if(((Rule)r).getName().equals(name))
+					return (Executable)r;
+			}
 		}
 		return null;
 	}
 
-	@Override
-	public Object execute(String name, ExecutionMode mode, Object... parameters) {
-		
-		try {
-			Executable unit = find(name);
-			if(unit==null) return null;
-			
-			Context parent = contextStack.peek();
-			Context c = parent.getEnviroment().createContext();
-			
-			c.setParentContext(parent);
-			Variable thisVar = parent.findVariable(PredefinedVariable.THIS.getLiteral());
-			c.registerVariable(thisVar);
-			c.putValue(thisVar, parent.getValue(thisVar));
-			
-			initParameter(unit, c,parameters);
-			
-			if(unit instanceof Query) {
-				if(mode==ExecutionMode.DO_ALL)
-					return interpreter.interprete_edu_ustb_sei_mde_morel_Query((Query) unit, c);
-				else 
-					return interpreter.doQuery((Query) unit, c, mode);
-			} else if(unit instanceof Rule) {
-				return interpreter.interprete_edu_ustb_sei_mde_morel_Rule((Rule) unit, c);
-			}
-		} catch (Exception e) {
-			return OclUndefined.INVALIDED;
-		}
-		
-		return OclUndefined.INVALIDED;
-	}
+//	@Override
+//	public Object execute(String name, ExecutionMode mode, Object... parameters) {
+//		
+//		try {
+//			Executable unit = find(name);
+//			if(unit==null) return null;
+//			
+//			Context parent = contextStack.peek();
+//			Context c = parent.getEnviroment().createContext();
+//			
+//			c.setParentContext(parent);
+//			Variable thisVar = parent.findVariable(PredefinedVariable.THIS.getLiteral());
+//			c.registerVariable(thisVar);
+//			c.putValue(thisVar, parent.getValue(thisVar));
+//			
+//			initParameter(unit, c,parameters);
+//			
+//			if(unit instanceof Query) {
+//				if(mode==ExecutionMode.DO_ALL)
+//					return interpreter.interprete_edu_ustb_sei_mde_morel_Query((Query) unit, c);
+//				else 
+//					return interpreter.doQuery((Query) unit, c, mode);
+//			} else if(unit instanceof Rule) {
+//				return interpreter.interprete_edu_ustb_sei_mde_morel_Rule((Rule) unit, c);
+//			}
+//		} catch (Exception e) {
+//			return OclUndefined.INVALIDED;
+//		}
+//		
+//		return OclUndefined.INVALIDED;
+//	}
 	
 	
 
@@ -133,6 +135,34 @@ public class ModuleProvider implements IModuleProvider {
 	@Override
 	public Context popParentContext() {
 		return contextStack.pop();
+	}
+
+	@Override
+	public Object execute(String name, Object... parameters) {
+		try {
+		Executable unit = find(name);
+		if(unit==null) return null;
+		
+		Context parent = contextStack.peek();
+		Context c = parent.getEnviroment().createContext();
+		
+		c.setParentContext(parent);
+		Variable thisVar = parent.findVariable(PredefinedVariable.THIS.getLiteral());
+		c.registerVariable(thisVar);
+		c.putValue(thisVar, parent.getValue(thisVar));
+		
+		initParameter(unit, c,parameters);
+		
+		if(unit instanceof Query) {
+			return interpreter.interprete_edu_ustb_sei_mde_morel_Query((Query) unit, c);
+		} else if(unit instanceof Rule) {
+			return interpreter.interprete_edu_ustb_sei_mde_morel_Rule((Rule) unit, c);
+		}
+	} catch (Exception e) {
+		return OclUndefined.INVALIDED;
+	}
+	
+	return OclUndefined.INVALIDED;
 	}
 
 }

@@ -20,7 +20,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Rule extends NamedElement, Executable {
+public interface Rule extends RuleElement {
 	/**
 	 * Returns the value of the '<em><b>Patterns</b></em>' containment reference list.
 	 * The list contents are of type {@link edu.ustb.sei.mde.morel.Pattern}.

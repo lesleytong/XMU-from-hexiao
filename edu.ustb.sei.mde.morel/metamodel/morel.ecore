@@ -165,8 +165,6 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
         eType="#//Expression" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mode" eType="#//ExecutionMode"
-        defaultValueLiteral="default"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="OperationSeparator">
     <eLiterals name="dot"/>
@@ -336,11 +334,37 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TransformationModel" eSuperTypes="#//Unit #//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="rules" upperBound="-1"
-        eType="#//Rule" containment="true"/>
+        eType="#//RuleElement" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Rule" eSuperTypes="#//NamedElement #//Executable">
+  <eClassifiers xsi:type="ecore:EClass" name="RuleElement" abstract="true" eSuperTypes="#//NamedElement #//Executable"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Rule" eSuperTypes="#//RuleElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="patterns" upperBound="-1"
         eType="#//Pattern" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RuleGroup" eSuperTypes="#//RuleElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rules" upperBound="-1"
+        eType="#//Rule" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="scope" eType="#//ScopeType"
+        defaultValueLiteral="all"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="scopeSize" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="0"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="order" eType="#//OrderType"
+        defaultValueLiteral="arbitrary"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="iteration" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="0"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="repetition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="0"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ScopeType">
+    <eLiterals name="all"/>
+    <eLiterals name="staticRandom" value="1"/>
+    <eLiterals name="dynamicRandom" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="OrderType">
+    <eLiterals name="arbitrary"/>
+    <eLiterals name="sequential" value="1"/>
+    <eLiterals name="parallel" value="2"/>
+    <eLiterals name="random" value="3"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Statement" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="DeclarativeStatement" eSuperTypes="#//Statement">
@@ -352,11 +376,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="ReflectiveVariableExp" eSuperTypes="#//Expression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="variable" lowerBound="1"
         eType="#//Variable"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="ExecutionMode">
-    <eLiterals name="default"/>
-    <eLiterals name="findOne" value="1"/>
-    <eLiterals name="doAll" value="2"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ArrayLiteralExp" eSuperTypes="#//LiteralExp">
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"

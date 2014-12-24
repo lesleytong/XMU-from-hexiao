@@ -208,6 +208,10 @@ public class MorelPrinter implements edu.ustb.sei.mde.morel.resource.morel.IMore
 			print_edu_ustb_sei_mde_morel_Rule((edu.ustb.sei.mde.morel.Rule) element, globaltab, out);
 			return;
 		}
+		if (element instanceof edu.ustb.sei.mde.morel.RuleGroup) {
+			print_edu_ustb_sei_mde_morel_RuleGroup((edu.ustb.sei.mde.morel.RuleGroup) element, globaltab, out);
+			return;
+		}
 		if (element instanceof edu.ustb.sei.mde.morel.Pattern) {
 			print_edu_ustb_sei_mde_morel_Pattern((edu.ustb.sei.mde.morel.Pattern) element, globaltab, out);
 			return;
@@ -2754,7 +2758,7 @@ public class MorelPrinter implements edu.ustb.sei.mde.morel.resource.morel.IMore
 		// the number of elements stored in each structural feature. For lists this is the
 		// list size. For non-multiple features it is either 1 (if the feature is set) or
 		// 0 (if the feature is null).
-		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(5);
+		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(4);
 		Object temp;
 		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.OPERATION_PATH_EXP__NEXT));
 		printCountingMap.put("next", temp == null ? 0 : 1);
@@ -2764,8 +2768,6 @@ public class MorelPrinter implements edu.ustb.sei.mde.morel.resource.morel.IMore
 		printCountingMap.put("operation", temp == null ? 0 : 1);
 		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.OPERATION_PATH_EXP__PARAMETERS));
 		printCountingMap.put("parameters", temp == null ? 0 : ((java.util.Collection<?>) temp).size());
-		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.OPERATION_PATH_EXP__MODE));
-		printCountingMap.put("mode", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
 		java.io.StringWriter sWriter = null;
@@ -2791,19 +2793,6 @@ public class MorelPrinter implements edu.ustb.sei.mde.morel.resource.morel.IMore
 			}
 			printCountingMap.put("operation", count - 1);
 		}
-		// DEFINITION PART BEGINS (CompoundDefinition)
-		sWriter = new java.io.StringWriter();
-		out1 = new java.io.PrintWriter(sWriter);
-		printCountingMap1 = new java.util.LinkedHashMap<String, Integer>(printCountingMap);
-		print_edu_ustb_sei_mde_morel_OperationPathExp_0(element, localtab, out1, printCountingMap1);
-		if (printCountingMap.equals(printCountingMap1)) {
-			out1.close();
-		} else {
-			out1.flush();
-			out1.close();
-			out.print(sWriter.toString());
-			printCountingMap.putAll(printCountingMap1);
-		}
 		// DEFINITION PART BEGINS (CsString)
 		out.print("(");
 		out.print(" ");
@@ -2811,7 +2800,7 @@ public class MorelPrinter implements edu.ustb.sei.mde.morel.resource.morel.IMore
 		sWriter = new java.io.StringWriter();
 		out1 = new java.io.PrintWriter(sWriter);
 		printCountingMap1 = new java.util.LinkedHashMap<String, Integer>(printCountingMap);
-		print_edu_ustb_sei_mde_morel_OperationPathExp_1(element, localtab, out1, printCountingMap1);
+		print_edu_ustb_sei_mde_morel_OperationPathExp_0(element, localtab, out1, printCountingMap1);
 		if (printCountingMap.equals(printCountingMap1)) {
 			out1.close();
 		} else {
@@ -2835,24 +2824,6 @@ public class MorelPrinter implements edu.ustb.sei.mde.morel.resource.morel.IMore
 	}
 	
 	public void print_edu_ustb_sei_mde_morel_OperationPathExp_0(edu.ustb.sei.mde.morel.OperationPathExp element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
-		int count;
-		// DEFINITION PART BEGINS (CsString)
-		out.print("[");
-		out.print(" ");
-		// DEFINITION PART BEGINS (EnumTerminal)
-		count = printCountingMap.get("mode");
-		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.OPERATION_PATH_EXP__MODE));
-			if (o != null) {
-			}
-			printCountingMap.put("mode", count - 1);
-		}
-		// DEFINITION PART BEGINS (CsString)
-		out.print("]");
-		out.print(" ");
-	}
-	
-	public void print_edu_ustb_sei_mde_morel_OperationPathExp_1(edu.ustb.sei.mde.morel.OperationPathExp element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
 		String localtab = outertab;
 		int count;
 		boolean iterate = true;
@@ -2881,7 +2852,7 @@ public class MorelPrinter implements edu.ustb.sei.mde.morel.resource.morel.IMore
 			sWriter = new java.io.StringWriter();
 			out1 = new java.io.PrintWriter(sWriter);
 			printCountingMap1 = new java.util.LinkedHashMap<String, Integer>(printCountingMap);
-			print_edu_ustb_sei_mde_morel_OperationPathExp_1_0(element, localtab, out1, printCountingMap1);
+			print_edu_ustb_sei_mde_morel_OperationPathExp_0_0(element, localtab, out1, printCountingMap1);
 			if (printCountingMap.equals(printCountingMap1)) {
 				iterate = false;
 				out1.close();
@@ -2894,7 +2865,7 @@ public class MorelPrinter implements edu.ustb.sei.mde.morel.resource.morel.IMore
 		}
 	}
 	
-	public void print_edu_ustb_sei_mde_morel_OperationPathExp_1_0(edu.ustb.sei.mde.morel.OperationPathExp element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
+	public void print_edu_ustb_sei_mde_morel_OperationPathExp_0_0(edu.ustb.sei.mde.morel.OperationPathExp element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
 		String localtab = outertab;
 		int count;
 		// DEFINITION PART BEGINS (CsString)
@@ -4297,6 +4268,258 @@ public class MorelPrinter implements edu.ustb.sei.mde.morel.resource.morel.IMore
 				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
 			}
 			printCountingMap.put("patterns", count - 1);
+		}
+	}
+	
+	
+	public void print_edu_ustb_sei_mde_morel_RuleGroup(edu.ustb.sei.mde.morel.RuleGroup element, String outertab, java.io.PrintWriter out) {
+		String localtab = outertab;
+		// The printCountingMap contains a mapping from feature names to the number of
+		// remaining elements that still need to be printed. The map is initialized with
+		// the number of elements stored in each structural feature. For lists this is the
+		// list size. For non-multiple features it is either 1 (if the feature is set) or
+		// 0 (if the feature is null).
+		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(9);
+		Object temp;
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.RULE_GROUP__NAME));
+		printCountingMap.put("name", temp == null ? 0 : 1);
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.RULE_GROUP__ACTIVE));
+		printCountingMap.put("active", temp == null ? 0 : 1);
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.RULE_GROUP__PARAMETERS));
+		printCountingMap.put("parameters", temp == null ? 0 : ((java.util.Collection<?>) temp).size());
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.RULE_GROUP__RULES));
+		printCountingMap.put("rules", temp == null ? 0 : ((java.util.Collection<?>) temp).size());
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.RULE_GROUP__SCOPE));
+		printCountingMap.put("scope", temp == null ? 0 : 1);
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.RULE_GROUP__SCOPE_SIZE));
+		printCountingMap.put("scopeSize", temp == null ? 0 : 1);
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.RULE_GROUP__ORDER));
+		printCountingMap.put("order", temp == null ? 0 : 1);
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.RULE_GROUP__ITERATION));
+		printCountingMap.put("iteration", temp == null ? 0 : 1);
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.RULE_GROUP__REPETITION));
+		printCountingMap.put("repetition", temp == null ? 0 : 1);
+		// print collected hidden tokens
+		int count;
+		java.io.StringWriter sWriter = null;
+		java.io.PrintWriter out1 = null;
+		java.util.Map<String, Integer> printCountingMap1 = null;
+		// DEFINITION PART BEGINS (CompoundDefinition)
+		sWriter = new java.io.StringWriter();
+		out1 = new java.io.PrintWriter(sWriter);
+		printCountingMap1 = new java.util.LinkedHashMap<String, Integer>(printCountingMap);
+		print_edu_ustb_sei_mde_morel_RuleGroup_0(element, localtab, out1, printCountingMap1);
+		if (printCountingMap.equals(printCountingMap1)) {
+			out1.close();
+		} else {
+			out1.flush();
+			out1.close();
+			out.print(sWriter.toString());
+			printCountingMap.putAll(printCountingMap1);
+		}
+		// DEFINITION PART BEGINS (CsString)
+		out.print("group");
+		out.print(" ");
+		// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
+		count = printCountingMap.get("name");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.RULE_GROUP__NAME));
+			if (o != null) {
+				edu.ustb.sei.mde.morel.resource.morel.IMorelTokenResolver resolver = tokenResolverFactory.createTokenResolver("IDENTIFIER");
+				resolver.setOptions(getOptions());
+				out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.RULE_GROUP__NAME), element));
+				out.print(" ");
+			}
+			printCountingMap.put("name", count - 1);
+		}
+		// DEFINITION PART BEGINS (CompoundDefinition)
+		sWriter = new java.io.StringWriter();
+		out1 = new java.io.PrintWriter(sWriter);
+		printCountingMap1 = new java.util.LinkedHashMap<String, Integer>(printCountingMap);
+		print_edu_ustb_sei_mde_morel_RuleGroup_1(element, localtab, out1, printCountingMap1);
+		if (printCountingMap.equals(printCountingMap1)) {
+			out1.close();
+		} else {
+			out1.flush();
+			out1.close();
+			out.print(sWriter.toString());
+			printCountingMap.putAll(printCountingMap1);
+		}
+		// DEFINITION PART BEGINS (CompoundDefinition)
+		sWriter = new java.io.StringWriter();
+		out1 = new java.io.PrintWriter(sWriter);
+		printCountingMap1 = new java.util.LinkedHashMap<String, Integer>(printCountingMap);
+		print_edu_ustb_sei_mde_morel_RuleGroup_2(element, localtab, out1, printCountingMap1);
+		if (printCountingMap.equals(printCountingMap1)) {
+			out1.close();
+		} else {
+			out1.flush();
+			out1.close();
+			out.print(sWriter.toString());
+			printCountingMap.putAll(printCountingMap1);
+		}
+		// DEFINITION PART BEGINS (CompoundDefinition)
+		sWriter = new java.io.StringWriter();
+		out1 = new java.io.PrintWriter(sWriter);
+		printCountingMap1 = new java.util.LinkedHashMap<String, Integer>(printCountingMap);
+		print_edu_ustb_sei_mde_morel_RuleGroup_3(element, localtab, out1, printCountingMap1);
+		if (printCountingMap.equals(printCountingMap1)) {
+			out1.close();
+		} else {
+			out1.flush();
+			out1.close();
+			out.print(sWriter.toString());
+			printCountingMap.putAll(printCountingMap1);
+		}
+		// DEFINITION PART BEGINS (CompoundDefinition)
+		sWriter = new java.io.StringWriter();
+		out1 = new java.io.PrintWriter(sWriter);
+		printCountingMap1 = new java.util.LinkedHashMap<String, Integer>(printCountingMap);
+		print_edu_ustb_sei_mde_morel_RuleGroup_4(element, localtab, out1, printCountingMap1);
+		if (printCountingMap.equals(printCountingMap1)) {
+			out1.close();
+		} else {
+			out1.flush();
+			out1.close();
+			out.print(sWriter.toString());
+			printCountingMap.putAll(printCountingMap1);
+		}
+		// DEFINITION PART BEGINS (CsString)
+		out.print("{");
+		out.print(" ");
+		// DEFINITION PART BEGINS (Containment)
+		count = printCountingMap.get("rules");
+		if (count > 0) {
+			java.util.List<?> list = (java.util.List<?>)element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.RULE_GROUP__RULES));
+			int index  = list.size() - count;
+			if (index < 0) {
+				index = 0;
+			}
+			java.util.ListIterator<?> it  = list.listIterator(index);
+			while (it.hasNext()) {
+				Object o = it.next();
+				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
+			}
+			printCountingMap.put("rules", 0);
+		}
+		// DEFINITION PART BEGINS (CsString)
+		out.print("}");
+		out.print(" ");
+	}
+	
+	public void print_edu_ustb_sei_mde_morel_RuleGroup_0(edu.ustb.sei.mde.morel.RuleGroup element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
+		int count;
+		// DEFINITION PART BEGINS (BooleanTerminal)
+		count = printCountingMap.get("active");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.RULE_GROUP__ACTIVE));
+			if (o != null) {
+			}
+			printCountingMap.put("active", count - 1);
+		}
+	}
+	
+	public void print_edu_ustb_sei_mde_morel_RuleGroup_1(edu.ustb.sei.mde.morel.RuleGroup element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
+		String localtab = outertab;
+		int count;
+		java.io.StringWriter sWriter = null;
+		java.io.PrintWriter out1 = null;
+		java.util.Map<String, Integer> printCountingMap1 = null;
+		// DEFINITION PART BEGINS (CsString)
+		out.print("scope");
+		out.print(" ");
+		// DEFINITION PART BEGINS (EnumTerminal)
+		count = printCountingMap.get("scope");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.RULE_GROUP__SCOPE));
+			if (o != null) {
+			}
+			printCountingMap.put("scope", count - 1);
+		}
+		// DEFINITION PART BEGINS (CompoundDefinition)
+		sWriter = new java.io.StringWriter();
+		out1 = new java.io.PrintWriter(sWriter);
+		printCountingMap1 = new java.util.LinkedHashMap<String, Integer>(printCountingMap);
+		print_edu_ustb_sei_mde_morel_RuleGroup_1_0(element, localtab, out1, printCountingMap1);
+		if (printCountingMap.equals(printCountingMap1)) {
+			out1.close();
+		} else {
+			out1.flush();
+			out1.close();
+			out.print(sWriter.toString());
+			printCountingMap.putAll(printCountingMap1);
+		}
+	}
+	
+	public void print_edu_ustb_sei_mde_morel_RuleGroup_1_0(edu.ustb.sei.mde.morel.RuleGroup element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
+		int count;
+		// DEFINITION PART BEGINS (CsString)
+		out.print("for");
+		out.print(" ");
+		// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
+		count = printCountingMap.get("scopeSize");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.RULE_GROUP__SCOPE_SIZE));
+			if (o != null) {
+				edu.ustb.sei.mde.morel.resource.morel.IMorelTokenResolver resolver = tokenResolverFactory.createTokenResolver("INUMBER");
+				resolver.setOptions(getOptions());
+				out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.RULE_GROUP__SCOPE_SIZE), element));
+				out.print(" ");
+			}
+			printCountingMap.put("scopeSize", count - 1);
+		}
+	}
+	
+	public void print_edu_ustb_sei_mde_morel_RuleGroup_2(edu.ustb.sei.mde.morel.RuleGroup element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
+		int count;
+		// DEFINITION PART BEGINS (CsString)
+		out.print("order");
+		out.print(" ");
+		// DEFINITION PART BEGINS (EnumTerminal)
+		count = printCountingMap.get("order");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.RULE_GROUP__ORDER));
+			if (o != null) {
+			}
+			printCountingMap.put("order", count - 1);
+		}
+	}
+	
+	public void print_edu_ustb_sei_mde_morel_RuleGroup_3(edu.ustb.sei.mde.morel.RuleGroup element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
+		int count;
+		// DEFINITION PART BEGINS (CsString)
+		out.print("iterating");
+		out.print(" ");
+		// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
+		count = printCountingMap.get("iteration");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.RULE_GROUP__ITERATION));
+			if (o != null) {
+				edu.ustb.sei.mde.morel.resource.morel.IMorelTokenResolver resolver = tokenResolverFactory.createTokenResolver("INUMBER");
+				resolver.setOptions(getOptions());
+				out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.RULE_GROUP__ITERATION), element));
+				out.print(" ");
+			}
+			printCountingMap.put("iteration", count - 1);
+		}
+	}
+	
+	public void print_edu_ustb_sei_mde_morel_RuleGroup_4(edu.ustb.sei.mde.morel.RuleGroup element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
+		int count;
+		// DEFINITION PART BEGINS (CsString)
+		out.print("repeating");
+		out.print(" ");
+		// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
+		count = printCountingMap.get("repetition");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.RULE_GROUP__REPETITION));
+			if (o != null) {
+				edu.ustb.sei.mde.morel.resource.morel.IMorelTokenResolver resolver = tokenResolverFactory.createTokenResolver("INUMBER");
+				resolver.setOptions(getOptions());
+				out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.RULE_GROUP__REPETITION), element));
+				out.print(" ");
+			}
+			printCountingMap.put("repetition", count - 1);
 		}
 	}
 	

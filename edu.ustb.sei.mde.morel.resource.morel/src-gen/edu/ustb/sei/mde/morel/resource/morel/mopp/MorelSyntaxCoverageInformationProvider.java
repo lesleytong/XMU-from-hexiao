@@ -51,6 +51,7 @@ public class MorelSyntaxCoverageInformationProvider {
 			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBlockStatement(),
 			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getTransformationModel(),
 			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getRule(),
+			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getRuleGroup(),
 			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getPattern(),
 			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getPredefinedVariableExp(),
 			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getReflectiveVariableExp(),

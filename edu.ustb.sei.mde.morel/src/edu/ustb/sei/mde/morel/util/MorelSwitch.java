@@ -711,11 +711,29 @@ public class MorelSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MorelPackage.RULE_ELEMENT: {
+				RuleElement ruleElement = (RuleElement)theEObject;
+				T result = caseRuleElement(ruleElement);
+				if (result == null) result = caseNamedElement(ruleElement);
+				if (result == null) result = caseExecutable(ruleElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case MorelPackage.RULE: {
 				Rule rule = (Rule)theEObject;
 				T result = caseRule(rule);
+				if (result == null) result = caseRuleElement(rule);
 				if (result == null) result = caseNamedElement(rule);
 				if (result == null) result = caseExecutable(rule);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MorelPackage.RULE_GROUP: {
+				RuleGroup ruleGroup = (RuleGroup)theEObject;
+				T result = caseRuleGroup(ruleGroup);
+				if (result == null) result = caseRuleElement(ruleGroup);
+				if (result == null) result = caseNamedElement(ruleGroup);
+				if (result == null) result = caseExecutable(ruleGroup);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1768,6 +1786,21 @@ public class MorelSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Rule Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Rule Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRuleElement(RuleElement object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Rule</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1779,6 +1812,21 @@ public class MorelSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseRule(Rule object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Rule Group</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Rule Group</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRuleGroup(RuleGroup object) {
 		return null;
 	}
 

@@ -110,18 +110,18 @@ public class TypeCheckingProcesser implements IMorelResourcePostProcessor,
 								if(((ObjectVariable)v).getType()!=((ObjectVariable)ev).getType()){
 									resource.addWarning(
 											"The definition of this variable is different from the previous one.",
-											MorelEProblemType.ANALYSIS_PROBLEM, obj);
+											MorelEProblemType.ANALYSIS_PROBLEM, v);
 								}
 							} else if(v instanceof PrimitiveVariable && ev instanceof PrimitiveVariable) {
 								if(!((PrimitiveVariable)v).getType().equals(((PrimitiveVariable)ev).getType())){
 									resource.addWarning(
 											"The definition of this variable is different from the previous one.",
-											MorelEProblemType.ANALYSIS_PROBLEM, obj);
+											MorelEProblemType.ANALYSIS_PROBLEM, v);
 								}
 							} else {
 								resource.addWarning(
 										"The definition of this variable is different from the previous one.",
-										MorelEProblemType.ANALYSIS_PROBLEM, obj);
+										MorelEProblemType.ANALYSIS_PROBLEM, v);
 							}
 						}
 					}

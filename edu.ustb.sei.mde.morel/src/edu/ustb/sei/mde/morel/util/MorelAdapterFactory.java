@@ -332,8 +332,16 @@ public class MorelAdapterFactory extends AdapterFactoryImpl {
 				return createTransformationModelAdapter();
 			}
 			@Override
+			public Adapter caseRuleElement(RuleElement object) {
+				return createRuleElementAdapter();
+			}
+			@Override
 			public Adapter caseRule(Rule object) {
 				return createRuleAdapter();
+			}
+			@Override
+			public Adapter caseRuleGroup(RuleGroup object) {
+				return createRuleGroupAdapter();
 			}
 			@Override
 			public Adapter caseStatement(Statement object) {
@@ -1318,6 +1326,20 @@ public class MorelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.morel.RuleElement <em>Rule Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.morel.RuleElement
+	 * @generated
+	 */
+	public Adapter createRuleElementAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.morel.Rule <em>Rule</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1328,6 +1350,20 @@ public class MorelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createRuleAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.morel.RuleGroup <em>Rule Group</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.morel.RuleGroup
+	 * @generated
+	 */
+	public Adapter createRuleGroupAdapter() {
 		return null;
 	}
 

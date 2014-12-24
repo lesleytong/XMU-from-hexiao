@@ -1,7 +1,5 @@
 package edu.ustb.sei.mde.emg.library;
 
-import edu.ustb.sei.mde.morel.ExecutionMode;
-
 public class ModuleLibrary extends AnyLibrary {
 
 	public ModuleLibrary(LibrarySpace librarySpace) {
@@ -19,13 +17,7 @@ public class ModuleLibrary extends AnyLibrary {
 //		// TODO Auto-generated method stub
 //		return super.execute(operation, self, params);
 		IModuleProvider module = (IModuleProvider)self;
-		return module.execute(operation, ExecutionMode.DEFAULT, params);
+		return module.execute(operation, params);
 	}
 
-	public Object execute(String operation, ExecutionMode mode, Object self, Object... params) {
-//		// TODO Auto-generated method stub
-//		return super.execute(operation, self, params);
-		IModuleProvider module = (IModuleProvider)self;
-		return module.execute(operation, mode, params);
-	}
 }

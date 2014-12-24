@@ -23,7 +23,7 @@ import org.eclipse.emf.common.util.EList;
 public interface TransformationModel extends Unit, NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Rules</b></em>' containment reference list.
-	 * The list contents are of type {@link edu.ustb.sei.mde.morel.Rule}.
+	 * The list contents are of type {@link edu.ustb.sei.mde.morel.RuleElement}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Rules</em>' containment reference list isn't clear,
@@ -35,6 +35,6 @@ public interface TransformationModel extends Unit, NamedElement {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Rule> getRules();
+	EList<RuleElement> getRules();
 
 } // TransformationModel

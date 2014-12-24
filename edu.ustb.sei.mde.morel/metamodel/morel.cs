@@ -110,7 +110,7 @@ RULES {
 
 	FeaturePathExp ::= "." feature[IDENTIFIER] next?;
 	
-	OperationPathExp ::= separator[dot:"." , arrow:"->"] operation[IDENTIFIER] ("[" mode[default:"", findOne:"findOne", doAll : "doAll"] "]")? "(" (parameters:ReflectiveVariableExp, LetExp, ConditionExp, BooleanImpliesExp ("," parameters:ReflectiveVariableExp, LetExp, ConditionExp, BooleanImpliesExp)*)? ")" next?;
+	OperationPathExp ::= separator[dot:"." , arrow:"->"] operation[IDENTIFIER] "(" (parameters:ReflectiveVariableExp, LetExp, ConditionExp, BooleanImpliesExp ("," parameters:ReflectiveVariableExp, LetExp, ConditionExp, BooleanImpliesExp)*)? ")" next?;
 	
 	IteratorPathExp ::= "->" type[forAll : "forAll", exists : "exists", select : "select", reject : "reject", collect : "collect", closure : "closure"] "(" firstVar ("," secondVar)? "|" bodyExp:LetExp, ConditionExp, BooleanImpliesExp ")" (next)?;
 	
@@ -148,6 +148,8 @@ RULES {
 	TransformationModel ::= "transformation" name[IDENTIFIER] models+ rules* ;
 	
 	Rule ::= (active["active":"passive"])? "rule" name[IDENTIFIER] ("("parameters[IDENTIFIER] ("," parameters[IDENTIFIER])*")")? "{" (patterns:Pattern)* "}" ;
+	
+	RuleGroup ::= (active["active":"passive"])? "group" name[IDENTIFIER] ("scope" scope[all:"all", staticRandom: "random", dynamicRandom : "random*"] ("for" scopeSize[INUMBER])?)? ("order" order[arbitrary:"default",sequential:"sequential",parallel:"parallel", random:"any"])? ("iterating" iteration[INUMBER])? ("repeating" repetition[INUMBER])? "{" rules* "}";
 	
 	Pattern ::= type[LHS : "lhs", RHS : "rhs", NAC : "nac", PAC : "pac", PRE : "pre", POST : "post", LHS : ""] "{" "match" (variables ("," variables)*)?  (linkConstraints ("," linkConstraints)*)? (additionalConstraints ("," additionalConstraints)*)? ("where"  (statements)+)? "}";
 	

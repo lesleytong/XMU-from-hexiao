@@ -454,6 +454,18 @@ public class AbstractMorelInterpreter<ResultType, ContextType> {
 		if (result != null) {
 			return result;
 		}
+		if (object instanceof edu.ustb.sei.mde.morel.RuleGroup) {
+			result = interprete_edu_ustb_sei_mde_morel_RuleGroup((edu.ustb.sei.mde.morel.RuleGroup) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
+		if (object instanceof edu.ustb.sei.mde.morel.RuleElement) {
+			result = interprete_edu_ustb_sei_mde_morel_RuleElement((edu.ustb.sei.mde.morel.RuleElement) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
 		if (object instanceof edu.ustb.sei.mde.morel.DeclarativeStatement) {
 			result = interprete_edu_ustb_sei_mde_morel_DeclarativeStatement((edu.ustb.sei.mde.morel.DeclarativeStatement) object, context);
 		}
@@ -891,7 +903,15 @@ public class AbstractMorelInterpreter<ResultType, ContextType> {
 		return null;
 	}
 	
+	public ResultType interprete_edu_ustb_sei_mde_morel_RuleElement(edu.ustb.sei.mde.morel.RuleElement ruleElement, ContextType context) {
+		return null;
+	}
+	
 	public ResultType interprete_edu_ustb_sei_mde_morel_Rule(edu.ustb.sei.mde.morel.Rule rule, ContextType context) {
+		return null;
+	}
+	
+	public ResultType interprete_edu_ustb_sei_mde_morel_RuleGroup(edu.ustb.sei.mde.morel.RuleGroup ruleGroup, ContextType context) {
 		return null;
 	}
 	

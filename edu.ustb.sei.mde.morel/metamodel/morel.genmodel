@@ -69,10 +69,16 @@
       <genEnumLiterals ecoreEnumLiteral="morel.ecore#//UnaryOperator/minus"/>
       <genEnumLiterals ecoreEnumLiteral="morel.ecore#//UnaryOperator/not"/>
     </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="morel.ecore#//ExecutionMode">
-      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//ExecutionMode/default"/>
-      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//ExecutionMode/findOne"/>
-      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//ExecutionMode/doAll"/>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="morel.ecore#//ScopeType">
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//ScopeType/all"/>
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//ScopeType/staticRandom"/>
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//ScopeType/dynamicRandom"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="morel.ecore#//OrderType">
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//OrderType/arbitrary"/>
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//OrderType/sequential"/>
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//OrderType/parallel"/>
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//OrderType/random"/>
     </genEnums>
     <genClasses image="false" ecoreClass="morel.ecore#//NamedElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute morel.ecore#//NamedElement/name"/>
@@ -179,7 +185,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute morel.ecore#//OperationPathExp/separator"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute morel.ecore#//OperationPathExp/operation"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//OperationPathExp/parameters"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute morel.ecore#//OperationPathExp/mode"/>
     </genClasses>
     <genClasses image="false" ecoreClass="morel.ecore#//LoopPathExp"/>
     <genClasses ecoreClass="morel.ecore#//IteratorPathExp">
@@ -272,8 +277,17 @@
     <genClasses ecoreClass="morel.ecore#//TransformationModel">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//TransformationModel/rules"/>
     </genClasses>
+    <genClasses image="false" ecoreClass="morel.ecore#//RuleElement"/>
     <genClasses ecoreClass="morel.ecore#//Rule">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//Rule/patterns"/>
+    </genClasses>
+    <genClasses ecoreClass="morel.ecore#//RuleGroup">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//RuleGroup/rules"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute morel.ecore#//RuleGroup/scope"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute morel.ecore#//RuleGroup/scopeSize"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute morel.ecore#//RuleGroup/order"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute morel.ecore#//RuleGroup/iteration"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute morel.ecore#//RuleGroup/repetition"/>
     </genClasses>
     <genClasses image="false" ecoreClass="morel.ecore#//Statement"/>
     <genClasses ecoreClass="morel.ecore#//DeclarativeStatement">

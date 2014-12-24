@@ -103,6 +103,7 @@ public class MorelFactoryImpl extends EFactoryImpl implements MorelFactory {
 			case MorelPackage.BLOCK_STATEMENT: return createBlockStatement();
 			case MorelPackage.TRANSFORMATION_MODEL: return createTransformationModel();
 			case MorelPackage.RULE: return createRule();
+			case MorelPackage.RULE_GROUP: return createRuleGroup();
 			case MorelPackage.DECLARATIVE_STATEMENT: return createDeclarativeStatement();
 			case MorelPackage.REFLECTIVE_VARIABLE_EXP: return createReflectiveVariableExp();
 			case MorelPackage.ARRAY_LITERAL_EXP: return createArrayLiteralExp();
@@ -143,8 +144,10 @@ public class MorelFactoryImpl extends EFactoryImpl implements MorelFactory {
 				return createMultiplicativeOperatorFromString(eDataType, initialValue);
 			case MorelPackage.UNARY_OPERATOR:
 				return createUnaryOperatorFromString(eDataType, initialValue);
-			case MorelPackage.EXECUTION_MODE:
-				return createExecutionModeFromString(eDataType, initialValue);
+			case MorelPackage.SCOPE_TYPE:
+				return createScopeTypeFromString(eDataType, initialValue);
+			case MorelPackage.ORDER_TYPE:
+				return createOrderTypeFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -180,8 +183,10 @@ public class MorelFactoryImpl extends EFactoryImpl implements MorelFactory {
 				return convertMultiplicativeOperatorToString(eDataType, instanceValue);
 			case MorelPackage.UNARY_OPERATOR:
 				return convertUnaryOperatorToString(eDataType, instanceValue);
-			case MorelPackage.EXECUTION_MODE:
-				return convertExecutionModeToString(eDataType, instanceValue);
+			case MorelPackage.SCOPE_TYPE:
+				return convertScopeTypeToString(eDataType, instanceValue);
+			case MorelPackage.ORDER_TYPE:
+				return convertOrderTypeToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -652,6 +657,16 @@ public class MorelFactoryImpl extends EFactoryImpl implements MorelFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public RuleGroup createRuleGroup() {
+		RuleGroupImpl ruleGroup = new RuleGroupImpl();
+		return ruleGroup;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public DeclarativeStatement createDeclarativeStatement() {
 		DeclarativeStatementImpl declarativeStatement = new DeclarativeStatementImpl();
 		return declarativeStatement;
@@ -922,8 +937,8 @@ public class MorelFactoryImpl extends EFactoryImpl implements MorelFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExecutionMode createExecutionModeFromString(EDataType eDataType, String initialValue) {
-		ExecutionMode result = ExecutionMode.get(initialValue);
+	public ScopeType createScopeTypeFromString(EDataType eDataType, String initialValue) {
+		ScopeType result = ScopeType.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
@@ -933,7 +948,27 @@ public class MorelFactoryImpl extends EFactoryImpl implements MorelFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertExecutionModeToString(EDataType eDataType, Object instanceValue) {
+	public String convertScopeTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OrderType createOrderTypeFromString(EDataType eDataType, String initialValue) {
+		OrderType result = OrderType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertOrderTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

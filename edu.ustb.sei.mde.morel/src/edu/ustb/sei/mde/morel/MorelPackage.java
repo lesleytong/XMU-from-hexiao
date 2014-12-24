@@ -1872,22 +1872,13 @@ public interface MorelPackage extends EPackage {
 	int OPERATION_PATH_EXP__PARAMETERS = CALL_PATH_EXP_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Mode</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION_PATH_EXP__MODE = CALL_PATH_EXP_FEATURE_COUNT + 3;
-
-	/**
 	 * The number of structural features of the '<em>Operation Path Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_PATH_EXP_FEATURE_COUNT = CALL_PATH_EXP_FEATURE_COUNT + 4;
+	int OPERATION_PATH_EXP_FEATURE_COUNT = CALL_PATH_EXP_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Operation Path Exp</em>' class.
@@ -3467,7 +3458,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getStatement()
 	 * @generated
 	 */
-	int STATEMENT = 66;
+	int STATEMENT = 68;
 
 	/**
 	 * The number of structural features of the '<em>Statement</em>' class.
@@ -3495,7 +3486,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getImperativeStatement()
 	 * @generated
 	 */
-	int IMPERATIVE_STATEMENT = 68;
+	int IMPERATIVE_STATEMENT = 70;
 
 	/**
 	 * The number of structural features of the '<em>Imperative Statement</em>' class.
@@ -3745,14 +3736,14 @@ public interface MorelPackage extends EPackage {
 	int TRANSFORMATION_MODEL_OPERATION_COUNT = UNIT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.impl.RuleImpl <em>Rule</em>}' class.
+	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.impl.RuleElementImpl <em>Rule Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see edu.ustb.sei.mde.morel.impl.RuleImpl
-	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getRule()
+	 * @see edu.ustb.sei.mde.morel.impl.RuleElementImpl
+	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getRuleElement()
 	 * @generated
 	 */
-	int RULE = 65;
+	int RULE_ELEMENT = 65;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3761,7 +3752,7 @@ public interface MorelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RULE__NAME = NAMED_ELEMENT__NAME;
+	int RULE_ELEMENT__NAME = NAMED_ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Active</b></em>' attribute.
@@ -3770,7 +3761,7 @@ public interface MorelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RULE__ACTIVE = NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int RULE_ELEMENT__ACTIVE = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Parameters</b></em>' attribute list.
@@ -3779,7 +3770,62 @@ public interface MorelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RULE__PARAMETERS = NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int RULE_ELEMENT__PARAMETERS = NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Rule Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RULE_ELEMENT_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Rule Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RULE_ELEMENT_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.impl.RuleImpl <em>Rule</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.morel.impl.RuleImpl
+	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getRule()
+	 * @generated
+	 */
+	int RULE = 66;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RULE__NAME = RULE_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Active</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RULE__ACTIVE = RULE_ELEMENT__ACTIVE;
+
+	/**
+	 * The feature id for the '<em><b>Parameters</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RULE__PARAMETERS = RULE_ELEMENT__PARAMETERS;
 
 	/**
 	 * The feature id for the '<em><b>Patterns</b></em>' containment reference list.
@@ -3788,7 +3834,7 @@ public interface MorelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RULE__PATTERNS = NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int RULE__PATTERNS = RULE_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Rule</em>' class.
@@ -3797,7 +3843,7 @@ public interface MorelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RULE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 3;
+	int RULE_FEATURE_COUNT = RULE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Rule</em>' class.
@@ -3806,7 +3852,116 @@ public interface MorelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RULE_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
+	int RULE_OPERATION_COUNT = RULE_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.impl.RuleGroupImpl <em>Rule Group</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.morel.impl.RuleGroupImpl
+	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getRuleGroup()
+	 * @generated
+	 */
+	int RULE_GROUP = 67;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RULE_GROUP__NAME = RULE_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Active</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RULE_GROUP__ACTIVE = RULE_ELEMENT__ACTIVE;
+
+	/**
+	 * The feature id for the '<em><b>Parameters</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RULE_GROUP__PARAMETERS = RULE_ELEMENT__PARAMETERS;
+
+	/**
+	 * The feature id for the '<em><b>Rules</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RULE_GROUP__RULES = RULE_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Scope</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RULE_GROUP__SCOPE = RULE_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Scope Size</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RULE_GROUP__SCOPE_SIZE = RULE_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Order</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RULE_GROUP__ORDER = RULE_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Iteration</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RULE_GROUP__ITERATION = RULE_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Repetition</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RULE_GROUP__REPETITION = RULE_ELEMENT_FEATURE_COUNT + 5;
+
+	/**
+	 * The number of structural features of the '<em>Rule Group</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RULE_GROUP_FEATURE_COUNT = RULE_ELEMENT_FEATURE_COUNT + 6;
+
+	/**
+	 * The number of operations of the '<em>Rule Group</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RULE_GROUP_OPERATION_COUNT = RULE_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.impl.DeclarativeStatementImpl <em>Declarative Statement</em>}' class.
@@ -3816,7 +3971,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getDeclarativeStatement()
 	 * @generated
 	 */
-	int DECLARATIVE_STATEMENT = 67;
+	int DECLARATIVE_STATEMENT = 69;
 
 	/**
 	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
@@ -3853,7 +4008,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getReflectiveVariableExp()
 	 * @generated
 	 */
-	int REFLECTIVE_VARIABLE_EXP = 69;
+	int REFLECTIVE_VARIABLE_EXP = 71;
 
 	/**
 	 * The feature id for the '<em><b>Variable</b></em>' reference.
@@ -3890,7 +4045,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getArrayLiteralExp()
 	 * @generated
 	 */
-	int ARRAY_LITERAL_EXP = 70;
+	int ARRAY_LITERAL_EXP = 72;
 
 	/**
 	 * The feature id for the '<em><b>Path</b></em>' containment reference.
@@ -3936,7 +4091,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getExecutable()
 	 * @generated
 	 */
-	int EXECUTABLE = 71;
+	int EXECUTABLE = 73;
 
 	/**
 	 * The feature id for the '<em><b>Active</b></em>' attribute.
@@ -3982,7 +4137,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getAdditionalConstraint()
 	 * @generated
 	 */
-	int ADDITIONAL_CONSTRAINT = 72;
+	int ADDITIONAL_CONSTRAINT = 74;
 
 	/**
 	 * The feature id for the '<em><b>Variables</b></em>' reference list.
@@ -4019,7 +4174,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getOrderConstraint()
 	 * @generated
 	 */
-	int ORDER_CONSTRAINT = 73;
+	int ORDER_CONSTRAINT = 75;
 
 	/**
 	 * The feature id for the '<em><b>Variables</b></em>' reference list.
@@ -4083,7 +4238,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getAllDifferentConstraint()
 	 * @generated
 	 */
-	int ALL_DIFFERENT_CONSTRAINT = 74;
+	int ALL_DIFFERENT_CONSTRAINT = 76;
 
 	/**
 	 * The feature id for the '<em><b>Variables</b></em>' reference list.
@@ -4120,7 +4275,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getSectionType()
 	 * @generated
 	 */
-	int SECTION_TYPE = 75;
+	int SECTION_TYPE = 77;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.TypedModelAction <em>Typed Model Action</em>}' enum.
@@ -4130,7 +4285,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getTypedModelAction()
 	 * @generated
 	 */
-	int TYPED_MODEL_ACTION = 76;
+	int TYPED_MODEL_ACTION = 78;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.UndefinedLiteral <em>Undefined Literal</em>}' enum.
@@ -4140,7 +4295,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getUndefinedLiteral()
 	 * @generated
 	 */
-	int UNDEFINED_LITERAL = 77;
+	int UNDEFINED_LITERAL = 79;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.PredefinedVariable <em>Predefined Variable</em>}' enum.
@@ -4150,7 +4305,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getPredefinedVariable()
 	 * @generated
 	 */
-	int PREDEFINED_VARIABLE = 78;
+	int PREDEFINED_VARIABLE = 80;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.OperationSeparator <em>Operation Separator</em>}' enum.
@@ -4160,7 +4315,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getOperationSeparator()
 	 * @generated
 	 */
-	int OPERATION_SEPARATOR = 79;
+	int OPERATION_SEPARATOR = 81;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.IteratorType <em>Iterator Type</em>}' enum.
@@ -4170,7 +4325,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getIteratorType()
 	 * @generated
 	 */
-	int ITERATOR_TYPE = 80;
+	int ITERATOR_TYPE = 82;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.BooleanOperator <em>Boolean Operator</em>}' enum.
@@ -4180,7 +4335,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getBooleanOperator()
 	 * @generated
 	 */
-	int BOOLEAN_OPERATOR = 81;
+	int BOOLEAN_OPERATOR = 83;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.RelationalOperator <em>Relational Operator</em>}' enum.
@@ -4190,7 +4345,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getRelationalOperator()
 	 * @generated
 	 */
-	int RELATIONAL_OPERATOR = 82;
+	int RELATIONAL_OPERATOR = 84;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.AdditiveOperator <em>Additive Operator</em>}' enum.
@@ -4200,7 +4355,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getAdditiveOperator()
 	 * @generated
 	 */
-	int ADDITIVE_OPERATOR = 83;
+	int ADDITIVE_OPERATOR = 85;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.MultiplicativeOperator <em>Multiplicative Operator</em>}' enum.
@@ -4210,7 +4365,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getMultiplicativeOperator()
 	 * @generated
 	 */
-	int MULTIPLICATIVE_OPERATOR = 84;
+	int MULTIPLICATIVE_OPERATOR = 86;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.UnaryOperator <em>Unary Operator</em>}' enum.
@@ -4220,18 +4375,28 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getUnaryOperator()
 	 * @generated
 	 */
-	int UNARY_OPERATOR = 85;
+	int UNARY_OPERATOR = 87;
 
 
 	/**
-	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.ExecutionMode <em>Execution Mode</em>}' enum.
+	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.ScopeType <em>Scope Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see edu.ustb.sei.mde.morel.ExecutionMode
-	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getExecutionMode()
+	 * @see edu.ustb.sei.mde.morel.ScopeType
+	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getScopeType()
 	 * @generated
 	 */
-	int EXECUTION_MODE = 86;
+	int SCOPE_TYPE = 88;
+
+	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.OrderType <em>Order Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.morel.OrderType
+	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getOrderType()
+	 * @generated
+	 */
+	int ORDER_TYPE = 89;
 
 
 	/**
@@ -5049,17 +5214,6 @@ public interface MorelPackage extends EPackage {
 	EReference getOperationPathExp_Parameters();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.morel.OperationPathExp#getMode <em>Mode</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Mode</em>'.
-	 * @see edu.ustb.sei.mde.morel.OperationPathExp#getMode()
-	 * @see #getOperationPathExp()
-	 * @generated
-	 */
-	EAttribute getOperationPathExp_Mode();
-
-	/**
 	 * Returns the meta object for class '{@link edu.ustb.sei.mde.morel.LoopPathExp <em>Loop Path Exp</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5830,6 +5984,16 @@ public interface MorelPackage extends EPackage {
 	EReference getTransformationModel_Rules();
 
 	/**
+	 * Returns the meta object for class '{@link edu.ustb.sei.mde.morel.RuleElement <em>Rule Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Rule Element</em>'.
+	 * @see edu.ustb.sei.mde.morel.RuleElement
+	 * @generated
+	 */
+	EClass getRuleElement();
+
+	/**
 	 * Returns the meta object for class '{@link edu.ustb.sei.mde.morel.Rule <em>Rule</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5849,6 +6013,82 @@ public interface MorelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getRule_Patterns();
+
+	/**
+	 * Returns the meta object for class '{@link edu.ustb.sei.mde.morel.RuleGroup <em>Rule Group</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Rule Group</em>'.
+	 * @see edu.ustb.sei.mde.morel.RuleGroup
+	 * @generated
+	 */
+	EClass getRuleGroup();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link edu.ustb.sei.mde.morel.RuleGroup#getRules <em>Rules</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Rules</em>'.
+	 * @see edu.ustb.sei.mde.morel.RuleGroup#getRules()
+	 * @see #getRuleGroup()
+	 * @generated
+	 */
+	EReference getRuleGroup_Rules();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.morel.RuleGroup#getScope <em>Scope</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Scope</em>'.
+	 * @see edu.ustb.sei.mde.morel.RuleGroup#getScope()
+	 * @see #getRuleGroup()
+	 * @generated
+	 */
+	EAttribute getRuleGroup_Scope();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.morel.RuleGroup#getScopeSize <em>Scope Size</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Scope Size</em>'.
+	 * @see edu.ustb.sei.mde.morel.RuleGroup#getScopeSize()
+	 * @see #getRuleGroup()
+	 * @generated
+	 */
+	EAttribute getRuleGroup_ScopeSize();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.morel.RuleGroup#getOrder <em>Order</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Order</em>'.
+	 * @see edu.ustb.sei.mde.morel.RuleGroup#getOrder()
+	 * @see #getRuleGroup()
+	 * @generated
+	 */
+	EAttribute getRuleGroup_Order();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.morel.RuleGroup#getIteration <em>Iteration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Iteration</em>'.
+	 * @see edu.ustb.sei.mde.morel.RuleGroup#getIteration()
+	 * @see #getRuleGroup()
+	 * @generated
+	 */
+	EAttribute getRuleGroup_Iteration();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.morel.RuleGroup#getRepetition <em>Repetition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Repetition</em>'.
+	 * @see edu.ustb.sei.mde.morel.RuleGroup#getRepetition()
+	 * @see #getRuleGroup()
+	 * @generated
+	 */
+	EAttribute getRuleGroup_Repetition();
 
 	/**
 	 * Returns the meta object for class '{@link edu.ustb.sei.mde.morel.Statement <em>Statement</em>}'.
@@ -6150,14 +6390,24 @@ public interface MorelPackage extends EPackage {
 	EEnum getUnaryOperator();
 
 	/**
-	 * Returns the meta object for enum '{@link edu.ustb.sei.mde.morel.ExecutionMode <em>Execution Mode</em>}'.
+	 * Returns the meta object for enum '{@link edu.ustb.sei.mde.morel.ScopeType <em>Scope Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Execution Mode</em>'.
-	 * @see edu.ustb.sei.mde.morel.ExecutionMode
+	 * @return the meta object for enum '<em>Scope Type</em>'.
+	 * @see edu.ustb.sei.mde.morel.ScopeType
 	 * @generated
 	 */
-	EEnum getExecutionMode();
+	EEnum getScopeType();
+
+	/**
+	 * Returns the meta object for enum '{@link edu.ustb.sei.mde.morel.OrderType <em>Order Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Order Type</em>'.
+	 * @see edu.ustb.sei.mde.morel.OrderType
+	 * @generated
+	 */
+	EEnum getOrderType();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -6863,14 +7113,6 @@ public interface MorelPackage extends EPackage {
 		EReference OPERATION_PATH_EXP__PARAMETERS = eINSTANCE.getOperationPathExp_Parameters();
 
 		/**
-		 * The meta object literal for the '<em><b>Mode</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute OPERATION_PATH_EXP__MODE = eINSTANCE.getOperationPathExp_Mode();
-
-		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.impl.LoopPathExpImpl <em>Loop Path Exp</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -7521,6 +7763,16 @@ public interface MorelPackage extends EPackage {
 		EReference TRANSFORMATION_MODEL__RULES = eINSTANCE.getTransformationModel_Rules();
 
 		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.impl.RuleElementImpl <em>Rule Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.morel.impl.RuleElementImpl
+		 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getRuleElement()
+		 * @generated
+		 */
+		EClass RULE_ELEMENT = eINSTANCE.getRuleElement();
+
+		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.impl.RuleImpl <em>Rule</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -7537,6 +7789,64 @@ public interface MorelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference RULE__PATTERNS = eINSTANCE.getRule_Patterns();
+
+		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.impl.RuleGroupImpl <em>Rule Group</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.morel.impl.RuleGroupImpl
+		 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getRuleGroup()
+		 * @generated
+		 */
+		EClass RULE_GROUP = eINSTANCE.getRuleGroup();
+
+		/**
+		 * The meta object literal for the '<em><b>Rules</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference RULE_GROUP__RULES = eINSTANCE.getRuleGroup_Rules();
+
+		/**
+		 * The meta object literal for the '<em><b>Scope</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RULE_GROUP__SCOPE = eINSTANCE.getRuleGroup_Scope();
+
+		/**
+		 * The meta object literal for the '<em><b>Scope Size</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RULE_GROUP__SCOPE_SIZE = eINSTANCE.getRuleGroup_ScopeSize();
+
+		/**
+		 * The meta object literal for the '<em><b>Order</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RULE_GROUP__ORDER = eINSTANCE.getRuleGroup_Order();
+
+		/**
+		 * The meta object literal for the '<em><b>Iteration</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RULE_GROUP__ITERATION = eINSTANCE.getRuleGroup_Iteration();
+
+		/**
+		 * The meta object literal for the '<em><b>Repetition</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RULE_GROUP__REPETITION = eINSTANCE.getRuleGroup_Repetition();
 
 		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.impl.StatementImpl <em>Statement</em>}' class.
@@ -7811,14 +8121,24 @@ public interface MorelPackage extends EPackage {
 		EEnum UNARY_OPERATOR = eINSTANCE.getUnaryOperator();
 
 		/**
-		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.ExecutionMode <em>Execution Mode</em>}' enum.
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.ScopeType <em>Scope Type</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see edu.ustb.sei.mde.morel.ExecutionMode
-		 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getExecutionMode()
+		 * @see edu.ustb.sei.mde.morel.ScopeType
+		 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getScopeType()
 		 * @generated
 		 */
-		EEnum EXECUTION_MODE = eINSTANCE.getExecutionMode();
+		EEnum SCOPE_TYPE = eINSTANCE.getScopeType();
+
+		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.OrderType <em>Order Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.morel.OrderType
+		 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getOrderType()
+		 * @generated
+		 */
+		EEnum ORDER_TYPE = eINSTANCE.getOrderType();
 
 	}
 

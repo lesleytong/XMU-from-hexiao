@@ -279,8 +279,22 @@ rule CallAction_rule_with_input_with_output {
   }
 }
 
-rule Choice_rule
+-- identify choice structure
+-- transform branches
+-- remove choice structure
+
+rule Choice_first
 {
+  nac {
+  match
+  mn : uml ! MergeNode,
+  dn : uml ! DecisionNode,
+  ubbn : bridge ! StructureBridge
+  
+  ubbn.umlStart = dn,
+  ubbn.umlEnd = mn
+  }
+  
   lhs {
   match
   ci : uml ! ControlFlow,
@@ -323,22 +337,122 @@ rule Choice_rule
   ci : uml ! ControlFlow,
   b1 : bpel ! BPELActivity,
   b2 : bpel ! BPELActivity,
+  dn : uml ! DecisionNode,
+  mn : uml ! MergeNode,
   co : uml ! ControlFlow,
-  ubb : bridge ! ActionBridge,
+  ubb : bridge ! StructureBridge,
   bif : bpel ! BPELIf,
   bc : bpel ! BPELBoolExpression,
   cn : String
 
+  ci.target=dn,
+  co.source=mn,
   bif.thenActivity=b1, 
   bif.elseActivity=b2, 
-  ubb.bpel=bif, 
-  ci.target=ubb, 
-  co.source=ubb,
+  ubb.bpel=bif,
+  ubb.umlStart = dn,
+  ubb.umlEnd = mn, 
   bif.condition = bc
+  where
+  bc.expression <> 'else';
+  bc.expression <- cn;
+  }
+}
+
+-- need refine
+rule Choice_second
+{
+  lhs {
+  match
+  a : bridge ! ActionBridge,
+  b : bpel ! BPELActivity,
+  c1:uml ! ControlFlow,
+  c2:uml ! ControlFlow,
+  dn : uml ! DecisionNode,
+  mn : uml ! MergeNode,
+  ubb : bridge ! StructureBridge,
+  bif : bpel ! BPELIf,
+  cn : String
+
+  ubb.bpel=bif,
+  ubb.umlStart = dn,
+  ubb.umlEnd = mn, 
+  a.bpel = b,
+  c1.source = dn,
+  c1.target = a,
+  c2.source = a,
+  c2.target=mn
+  
+  where
+   cn <- c1.condition ;
+  }
+  
+  rhs {
+  match
+  b : bpel ! BPELActivity,
+  dn : uml ! DecisionNode,
+  mn : uml ! MergeNode,
+  ubb : bridge ! StructureBridge,
+  bif : bpel ! BPELIf,
+  beif : bpel ! BPELElseIf,
+  bc : bpel ! BPELBoolExpression,
+  cn : String
+
+  ubb.bpel=bif,
+  ubb.umlStart = dn,
+  ubb.umlEnd = mn, 
+  bif.elseIfActivity = beif,
+  beif.condition = bc,
+  beif.thenActivity = b
+  
   where
   bc.expression <- cn;
   }
 }
+
+rule Choice_third
+{
+  nac {
+  match
+  dn : uml ! DecisionNode,
+  cf : uml ! ControlFlow
+  
+  cf.source = dn
+  }
+  
+  nac {
+  match
+  mn : uml ! MergeNode,
+  cf : uml ! ControlFlow
+  
+  cf.target = mn
+  }
+  
+  lhs {
+  match
+  ci : uml ! ControlFlow,
+  co : uml ! ControlFlow,
+  mn : uml ! MergeNode,
+  dn : uml ! DecisionNode,
+  ubb : bridge ! StructureBridge
+  
+  ci.target = dn,
+  ubb.umlStart = dn,
+  ubb.umlEnd = mn,
+  co.source = mn
+  }
+  
+  rhs {
+  match
+  ci : uml ! ControlFlow,
+  co : uml ! ControlFlow,
+  ubb : bridge ! StructureBridge
+
+  ci.target = ubb,
+  co.source = ubb
+  }
+}
+
 
 rule For_rule
 { 
@@ -893,7 +1007,6 @@ rule Variables_first
   where
   v.name<-on.name;
   v.messageType<-t.name+'MT';
-  'reg'.println();
   }
 }
 

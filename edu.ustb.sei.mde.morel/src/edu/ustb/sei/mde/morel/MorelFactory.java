@@ -436,6 +436,15 @@ public interface MorelFactory extends EFactory {
 	Rule createRule();
 
 	/**
+	 * Returns a new object of class '<em>Rule Group</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Rule Group</em>'.
+	 * @generated
+	 */
+	RuleGroup createRuleGroup();
+
+	/**
 	 * Returns a new object of class '<em>Declarative Statement</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

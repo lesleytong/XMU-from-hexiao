@@ -1,10 +1,12 @@
 package edu.ustb.sei.mde.morel.resource.morel.execution;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.Random;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -30,6 +32,7 @@ import edu.ustb.sei.mde.modeling.ui.ConsoleUtil;
 import edu.ustb.sei.mde.morel.AdditiveExp;
 import edu.ustb.sei.mde.morel.AdditiveOperator;
 import edu.ustb.sei.mde.morel.ArrayLiteralExp;
+import edu.ustb.sei.mde.morel.AtomicExp;
 import edu.ustb.sei.mde.morel.BagType;
 import edu.ustb.sei.mde.morel.BindExp;
 import edu.ustb.sei.mde.morel.BlockStatement;
@@ -45,7 +48,6 @@ import edu.ustb.sei.mde.morel.ConditionExp;
 import edu.ustb.sei.mde.morel.DeclarativeStatement;
 import edu.ustb.sei.mde.morel.EnclosureLinkConstraint;
 import edu.ustb.sei.mde.morel.EnumLiteralExp;
-import edu.ustb.sei.mde.morel.ExecutionMode;
 import edu.ustb.sei.mde.morel.Expression;
 import edu.ustb.sei.mde.morel.FeaturePathExp;
 import edu.ustb.sei.mde.morel.ForStatement;
@@ -64,6 +66,7 @@ import edu.ustb.sei.mde.morel.NestedExp;
 import edu.ustb.sei.mde.morel.ObjectVariable;
 import edu.ustb.sei.mde.morel.ObjectVariableWithInit;
 import edu.ustb.sei.mde.morel.OperationPathExp;
+import edu.ustb.sei.mde.morel.OrderType;
 import edu.ustb.sei.mde.morel.OrderedSetType;
 import edu.ustb.sei.mde.morel.PathConstraint;
 import edu.ustb.sei.mde.morel.Pattern;
@@ -79,6 +82,9 @@ import edu.ustb.sei.mde.morel.ReflectiveVariableExp;
 import edu.ustb.sei.mde.morel.RelationalExp;
 import edu.ustb.sei.mde.morel.RelationalOperator;
 import edu.ustb.sei.mde.morel.Rule;
+import edu.ustb.sei.mde.morel.RuleElement;
+import edu.ustb.sei.mde.morel.RuleGroup;
+import edu.ustb.sei.mde.morel.ScopeType;
 import edu.ustb.sei.mde.morel.SectionType;
 import edu.ustb.sei.mde.morel.SequenceType;
 import edu.ustb.sei.mde.morel.SetType;
@@ -134,18 +140,34 @@ public class OclInterpreter extends
 		Object result = null;
 		if(object instanceof LinkConstraint) {
 			result = this.interprete_edu_ustb_sei_mde_morel_SimpleLinkConstraint((SimpleLinkConstraint) object, context);
-		} else if(object instanceof StringLiteralExp) {
-			result = this.interprete_edu_ustb_sei_mde_morel_StringLiteralExp((StringLiteralExp)object, context);
-		} else if(object instanceof IntegerLiteralExp) {
-			result = this.interprete_edu_ustb_sei_mde_morel_IntegerLiteralExp((IntegerLiteralExp)object, context);
-		} else if(object instanceof RealLiteralExp) {
-			result = this.interprete_edu_ustb_sei_mde_morel_RealLiteralExp((RealLiteralExp)object, context);
-		} else if(object instanceof BooleanLiteralExp) {
-			result = this.interprete_edu_ustb_sei_mde_morel_BooleanLiteralExp((BooleanLiteralExp)object, context);
-		} else if(object instanceof VariableExp) {
-			result = this.interprete_edu_ustb_sei_mde_morel_VariableExp((VariableExp)object, context);
-		} else if(object instanceof NestedExp) {
-			result = this.interprete_edu_ustb_sei_mde_morel_NestedExp((NestedExp)object, context);
+		} else if(object instanceof LiteralExp) {
+			if(object instanceof StringLiteralExp) {
+				result = this.interprete_edu_ustb_sei_mde_morel_StringLiteralExp((StringLiteralExp)object, context);
+			} else if(object instanceof IntegerLiteralExp) {
+				result = this.interprete_edu_ustb_sei_mde_morel_IntegerLiteralExp((IntegerLiteralExp)object, context);
+			} else if(object instanceof RealLiteralExp) {
+				result = this.interprete_edu_ustb_sei_mde_morel_RealLiteralExp((RealLiteralExp)object, context);
+			} else if(object instanceof BooleanLiteralExp) {
+				result = this.interprete_edu_ustb_sei_mde_morel_BooleanLiteralExp((BooleanLiteralExp)object, context);
+			} else if(object instanceof CollectionLiteralExp) {
+				result = this.interprete_edu_ustb_sei_mde_morel_CollectionLiteralExp((CollectionLiteralExp)object, context);
+			} else if(object instanceof EnumLiteralExp) {
+				result = this.interprete_edu_ustb_sei_mde_morel_EnumLiteralExp((EnumLiteralExp)object, context);
+			} else if(object instanceof UndefinedLiteralExp) {
+				result = this.interprete_edu_ustb_sei_mde_morel_UndefinedLiteralExp((UndefinedLiteralExp)object, context);
+			} else if(object instanceof TypeLiteralExp) {
+				result = this.interprete_edu_ustb_sei_mde_morel_TypeLiteralExp((TypeLiteralExp)object, context);
+			} else if(object instanceof ArrayLiteralExp) {
+				result = this.interprete_edu_ustb_sei_mde_morel_ArrayLiteralExp((ArrayLiteralExp) object, context);
+			}
+		} else if(object instanceof AtomicExp) {
+			if(object instanceof VariableExp) {
+				result = this.interprete_edu_ustb_sei_mde_morel_VariableExp((VariableExp)object, context);
+			} else if(object instanceof NestedExp) {
+				result = this.interprete_edu_ustb_sei_mde_morel_NestedExp((NestedExp)object, context);
+			} else if(object instanceof PredefinedVariableExp) {
+				result = this.interprete_edu_ustb_sei_mde_morel_PredefinedVariableExp((PredefinedVariableExp)object, context);
+			} 
 		} else if(object instanceof LetExp) {
 			result = this.interprete_edu_ustb_sei_mde_morel_LetExp((LetExp)object, context);
 		} else if(object instanceof ConditionExp) {
@@ -178,22 +200,10 @@ public class OclInterpreter extends
 			result = this.interprete_edu_ustb_sei_mde_morel_Variable((Variable)object, context);
 		} else if(object instanceof VariableWithInit) {
 			result = this.interprete_edu_ustb_sei_mde_morel_VariableWithInit((VariableWithInit)object, context);
-		} else if(object instanceof UndefinedLiteralExp) {
-			result = this.interprete_edu_ustb_sei_mde_morel_UndefinedLiteralExp((UndefinedLiteralExp)object, context);
-		} else if(object instanceof TypeLiteralExp) {
-			result = this.interprete_edu_ustb_sei_mde_morel_TypeLiteralExp((TypeLiteralExp)object, context);
-		} else if(object instanceof PredefinedVariableExp) {
-			result = this.interprete_edu_ustb_sei_mde_morel_PredefinedVariableExp((PredefinedVariableExp)object, context);
-		} else if(object instanceof DeclarativeStatement) {
+		}else if(object instanceof DeclarativeStatement) {
 			result = this.interprete_edu_ustb_sei_mde_morel_DeclarativeStatement((DeclarativeStatement)object, context);
-		} else if(object instanceof CollectionLiteralExp) {
-			result = this.interprete_edu_ustb_sei_mde_morel_CollectionLiteralExp((CollectionLiteralExp)object, context);
-		} else if(object instanceof EnumLiteralExp) {
-			result = this.interprete_edu_ustb_sei_mde_morel_EnumLiteralExp((EnumLiteralExp)object, context);
-		} else if(object instanceof ReflectiveVariableExp) {
+		}  else if(object instanceof ReflectiveVariableExp) {
 			result = this.interprete_edu_ustb_sei_mde_morel_ReflectiveVariableExp((ReflectiveVariableExp) object, context);
-		} else if(object instanceof ArrayLiteralExp) {
-			result = this.interprete_edu_ustb_sei_mde_morel_ArrayLiteralExp((ArrayLiteralExp) object, context);
 		}
 		
 		if(result!=null) return result;
@@ -223,28 +233,28 @@ public class OclInterpreter extends
 		return result;
 	}
 	
-	public Object doQuery(Query query,
-			Context context, ExecutionMode mode) {
-		Match match = Match.instance;
-		context.setHost(query);
-		context.initWithHost();
-		initVariable(query,context);
-		
-//		for(Variable v : query.getVariables()) {//��ʼ��
-//			if(v instanceof VariableWithInit) {
-//				Object val = this.interprete((VariableWithInit)v, context);
-//				context.putValue(v, val);
-//			}
+//	public Object doQuery(Query query,
+//			Context context, ExecutionMode mode) {
+//		Match match = Match.instance;
+//		context.setHost(query);
+//		context.initWithHost();
+//		initVariable(query,context);
+//		
+////		for(Variable v : query.getVariables()) {//��ʼ��
+////			if(v instanceof VariableWithInit) {
+////				Object val = this.interprete((VariableWithInit)v, context);
+////				context.putValue(v, val);
+////			}
+////		}
+//		if(mode==ExecutionMode.DEFAULT || mode==ExecutionMode.DO_ALL) {
+//			List<Context> result = match.match(query, context, this, context.getEnviroment());
+//			return result;
+//		} else if(mode==ExecutionMode.FIND_ONE){
+//			List<Context> result = match.match(query, context, this, context.getEnviroment(),true);
+//			return result;
 //		}
-		if(mode==ExecutionMode.DEFAULT || mode==ExecutionMode.DO_ALL) {
-			List<Context> result = match.match(query, context, this, context.getEnviroment());
-			return result;
-		} else if(mode==ExecutionMode.FIND_ONE){
-			List<Context> result = match.match(query, context, this, context.getEnviroment(),true);
-			return result;
-		}
-		return OclUndefined.INVALIDED;
-	}
+//		return OclUndefined.INVALIDED;
+//	}
 
 
 
@@ -291,6 +301,57 @@ public class OclInterpreter extends
 	}
 
 
+	private Object doRule(Rule rule, Context context, int repeat, Random random) {
+		try {
+			Match match = Match.instance;
+			Apply apply = Apply.instance;
+			
+			context.setHost(rule);
+			context.initWithHost();
+			
+			for(Pattern p : rule.getPatterns()) {
+				initVariable(p, context);
+			}
+			
+			List<Pattern> lhs = Apply.getPatterns(rule, SectionType.LHS);
+			List<Pattern> rhs = Apply.getPatterns(rule, SectionType.RHS);
+			List<Pattern> nac = Apply.getPatterns(rule, SectionType.NAC);
+			List<Pattern> pac = Apply.getPatterns(rule, SectionType.PAC);
+			
+			List<Context> lhsMatches = match.match(lhs, context, this, context.getEnviroment());
+			if(repeat==0) repeat = -1;
+			
+			List<Context> successfulContexts = new ArrayList<Context>();
+			Match.resetCache();
+			
+			if(repeat>0) {
+				while(repeat>0&&lhsMatches.isEmpty()==false) {
+					int id = random.nextInt(lhsMatches.size());
+					Context c = lhsMatches.remove(id);
+					if(recheckMatch(lhs, c)==false) continue;
+					if(checkNAC(c, nac, match)==false) continue;
+					if(checkPAC(c,pac,match)==false) continue;
+					repeat--;
+					apply.apply(rhs, lhs, c, this, c.getEnviroment());
+					successfulContexts.add(c);
+				}
+			} else {
+				for(Context c : lhsMatches) {
+					if(recheckMatch(lhs, c)==false) continue;
+					if(checkNAC(c, nac, match)==false) continue;
+					if(checkPAC(c,pac,match)==false) continue;
+					apply.apply(rhs, lhs, c, this, c.getEnviroment());
+					successfulContexts.add(c);
+				}
+			}
+			
+			return successfulContexts;
+		} catch (Exception e) {
+			ConsoleUtil.printToConsole(e.toString(), null, true);
+			e.printStackTrace();
+			return Collections.EMPTY_LIST;
+		}
+	}
 
 	public void initVariable(Pattern p, Context context) {
 		if(p.getType()==SectionType.LHS || p.getType()==SectionType.RHS) {
@@ -574,17 +635,17 @@ public class OclInterpreter extends
 			Expression exp = operationPathExp.getParameters().get(i);
 			params[i] = this.interprete(exp, context);
 		}
-		ExecutionMode mode = operationPathExp.getMode();
+		//ExecutionMode mode = operationPathExp.getMode();
 		
 		if(module!=null) 
 			module.pushParentContext(context);
 		Object obj = null;
 		
-		if(mode==ExecutionMode.DEFAULT || mode==null) {
+		//if(mode==ExecutionMode.DEFAULT || mode==null) {
 			obj = library.execute(operationPathExp.getOperation(), point, params);
-		} else {
-			obj = library.execute(operationPathExp.getOperation(), mode, point, params);
-		}
+		//} else {
+		//	obj = library.execute(operationPathExp.getOperation(), mode, point, params);
+		//}
 		
 		if(module!=null)
 			module.popParentContext();
@@ -1223,10 +1284,15 @@ public class OclInterpreter extends
 				ConsoleUtil.printToConsole("next iteration", MorelLaunchConfigurationHelper.MOREL_TITLE, true);
 				env.getModelUniverse().resetChanged();
 				
-				for(Rule rule : transformationModel.getRules()) {
+				for(RuleElement rule : transformationModel.getRules()) {
 					if(terminated) return true;
 					if(rule.isActive()==false) continue;
-					List<Context> matches = (List<Context>)this.interprete_edu_ustb_sei_mde_morel_Rule(rule, init);
+					
+					if(rule instanceof Rule) {
+						List<Context> matches = (List<Context>)this.interprete_edu_ustb_sei_mde_morel_Rule((Rule)rule, init);
+					} else if(rule instanceof RuleGroup) {
+						
+					}
 				}
 			}
 			while(terminated==false&&env.getModelUniverse().isChanged());
@@ -1275,6 +1341,59 @@ public class OclInterpreter extends
 		}
 		
 		return arr;
+	}
+
+
+
+	@Override
+	public Object interprete_edu_ustb_sei_mde_morel_RuleGroup(
+			RuleGroup ruleGroup, Context context) {
+		// TODO Auto-generated method stub
+		List<Rule> scope = new ArrayList<Rule>();
+		Random random = new Random(Calendar.getInstance().getTimeInMillis());
+		Context init = context.newScope();
+		Environment env = context.getEnviroment();
+		int iteration = ruleGroup.getIteration();
+		if(iteration==0) iteration=-1;
+		
+		
+		do {
+			if(scope.isEmpty()) {
+				scope.addAll(ruleGroup.getRules());
+				if(ruleGroup.getScope()!=ScopeType.ALL) {
+					int count = ruleGroup.getScopeSize();
+					if(count<=0) count=1;
+					if(count>scope.size()) count=scope.size();
+					while(scope.size()>count) {
+						int id = random.nextInt(scope.size());
+						scope.remove(id);
+					}
+				}
+			}
+			
+			env.getModelUniverse().resetChanged();
+			
+			if(ruleGroup.getOrder()==OrderType.RANDOM) {
+				//random order
+			}
+			
+			if(ruleGroup.getOrder()==OrderType.PARALLEL) {
+				
+			} else {
+				for(Rule rule : scope) {
+					if(terminated) return true;
+					if(rule.isActive()==false) continue;
+					List<Context> matches = (List<Context>)this.doRule((Rule)rule, init,ruleGroup.getRepetition(),random);
+				}				
+			}
+			
+			if(iteration>0) iteration--;
+			if(terminated||!env.getModelUniverse().isChanged()||iteration==0) break;
+			if(ruleGroup.getScope()==ScopeType.DYNAMIC_RANDOM)
+				scope.clear();
+		}while(true);
+		
+		return true;
 	}
 	
 	

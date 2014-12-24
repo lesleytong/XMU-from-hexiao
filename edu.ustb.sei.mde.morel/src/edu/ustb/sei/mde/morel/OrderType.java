@@ -10,119 +10,145 @@ import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>Execution Mode</b></em>',
+ * A representation of the literals of the enumeration '<em><b>Order Type</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see edu.ustb.sei.mde.morel.MorelPackage#getExecutionMode()
+ * @see edu.ustb.sei.mde.morel.MorelPackage#getOrderType()
  * @model
  * @generated
  */
-public enum ExecutionMode implements Enumerator {
+public enum OrderType implements Enumerator {
 	/**
-	 * The '<em><b>Default</b></em>' literal object.
+	 * The '<em><b>Arbitrary</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #DEFAULT_VALUE
+	 * @see #ARBITRARY_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	DEFAULT(0, "default", "default"),
+	ARBITRARY(0, "arbitrary", "arbitrary"),
 
 	/**
-	 * The '<em><b>Find One</b></em>' literal object.
+	 * The '<em><b>Sequential</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #FIND_ONE_VALUE
+	 * @see #SEQUENTIAL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	FIND_ONE(1, "findOne", "findOne"),
+	SEQUENTIAL(1, "sequential", "sequential"),
 
 	/**
-	 * The '<em><b>Do All</b></em>' literal object.
+	 * The '<em><b>Parallel</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #DO_ALL_VALUE
+	 * @see #PARALLEL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	DO_ALL(2, "doAll", "doAll");
+	PARALLEL(2, "parallel", "parallel"),
 
 	/**
-	 * The '<em><b>Default</b></em>' literal value.
+	 * The '<em><b>Random</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #RANDOM_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	RANDOM(3, "random", "random");
+
+	/**
+	 * The '<em><b>Arbitrary</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Default</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>Arbitrary</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DEFAULT
-	 * @model name="default"
+	 * @see #ARBITRARY
+	 * @model name="arbitrary"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DEFAULT_VALUE = 0;
+	public static final int ARBITRARY_VALUE = 0;
 
 	/**
-	 * The '<em><b>Find One</b></em>' literal value.
+	 * The '<em><b>Sequential</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Find One</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>Sequential</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #FIND_ONE
-	 * @model name="findOne"
+	 * @see #SEQUENTIAL
+	 * @model name="sequential"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FIND_ONE_VALUE = 1;
+	public static final int SEQUENTIAL_VALUE = 1;
 
 	/**
-	 * The '<em><b>Do All</b></em>' literal value.
+	 * The '<em><b>Parallel</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Do All</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>Parallel</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DO_ALL
-	 * @model name="doAll"
+	 * @see #PARALLEL
+	 * @model name="parallel"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DO_ALL_VALUE = 2;
+	public static final int PARALLEL_VALUE = 2;
 
 	/**
-	 * An array of all the '<em><b>Execution Mode</b></em>' enumerators.
+	 * The '<em><b>Random</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Random</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #RANDOM
+	 * @model name="random"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int RANDOM_VALUE = 3;
+
+	/**
+	 * An array of all the '<em><b>Order Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final ExecutionMode[] VALUES_ARRAY =
-		new ExecutionMode[] {
-			DEFAULT,
-			FIND_ONE,
-			DO_ALL,
+	private static final OrderType[] VALUES_ARRAY =
+		new OrderType[] {
+			ARBITRARY,
+			SEQUENTIAL,
+			PARALLEL,
+			RANDOM,
 		};
 
 	/**
-	 * A public read-only list of all the '<em><b>Execution Mode</b></em>' enumerators.
+	 * A public read-only list of all the '<em><b>Order Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<ExecutionMode> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<OrderType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Execution Mode</b></em>' literal with the specified literal value.
+	 * Returns the '<em><b>Order Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static ExecutionMode get(String literal) {
+	public static OrderType get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			ExecutionMode result = VALUES_ARRAY[i];
+			OrderType result = VALUES_ARRAY[i];
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -131,14 +157,14 @@ public enum ExecutionMode implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Execution Mode</b></em>' literal with the specified name.
+	 * Returns the '<em><b>Order Type</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static ExecutionMode getByName(String name) {
+	public static OrderType getByName(String name) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			ExecutionMode result = VALUES_ARRAY[i];
+			OrderType result = VALUES_ARRAY[i];
 			if (result.getName().equals(name)) {
 				return result;
 			}
@@ -147,16 +173,17 @@ public enum ExecutionMode implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Execution Mode</b></em>' literal with the specified integer value.
+	 * Returns the '<em><b>Order Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static ExecutionMode get(int value) {
+	public static OrderType get(int value) {
 		switch (value) {
-			case DEFAULT_VALUE: return DEFAULT;
-			case FIND_ONE_VALUE: return FIND_ONE;
-			case DO_ALL_VALUE: return DO_ALL;
+			case ARBITRARY_VALUE: return ARBITRARY;
+			case SEQUENTIAL_VALUE: return SEQUENTIAL;
+			case PARALLEL_VALUE: return PARALLEL;
+			case RANDOM_VALUE: return RANDOM;
 		}
 		return null;
 	}
@@ -188,7 +215,7 @@ public enum ExecutionMode implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ExecutionMode(int value, String name, String literal) {
+	private OrderType(int value, String name, String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;
@@ -232,4 +259,4 @@ public enum ExecutionMode implements Enumerator {
 		return literal;
 	}
 	
-} //ExecutionMode
+} //OrderType
