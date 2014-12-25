@@ -354,12 +354,10 @@ rule Choice_first
   ubb.umlEnd = mn, 
   bif.condition = bc
   where
-  bc.expression <> 'else';
   bc.expression <- cn;
   }
 }
 
--- need refine
 rule Choice_second
 {
   lhs {
@@ -507,6 +505,7 @@ rule For_rule
   }
 }
 
+/*
 rule Parallel_rule
 {
 -- this is just a proof-of-concept realization, we need split this rule into more subrules to support multi-branches
@@ -593,6 +592,160 @@ rule Parallel_rule
   b.bodyActivities=b2
   }
 }
+*/
+
+
+rule Parallel_first
+{
+  nac {
+  match
+  mn : uml ! JoinNode,
+  dn : uml ! ForkNode,
+  ubbn : bridge ! StructureBridge
+  
+  ubbn.umlStart = dn,
+  ubbn.umlEnd = mn
+  }
+  
+  lhs {
+  match
+  ci : uml ! ControlFlow,
+  dn : uml ! ForkNode,
+  c1 : uml ! ControlFlow,
+  c2 : uml ! ControlFlow,
+  mn : uml ! JoinNode,
+  a1 : bridge ! ActionBridge,
+  a2 : bridge ! ActionBridge,
+  b1 : bpel ! BPELActivity,
+  b2 : bpel ! BPELActivity,
+  c3 : uml ! ControlFlow,
+  c4 : uml ! ControlFlow,
+  co : uml ! ControlFlow,
+  cn : String
+  
+  ci.target=dn, 
+  c1.source=dn, 
+  c1.target=a1, 
+  c2.source=dn, 
+  c2.target=a2, 
+  a2.bpel=b2, 
+  a1.bpel=b1, 
+  c3.source=a1, 
+  c3.target=mn, 
+  c4.source=a2, 
+  c4.target=mn, 
+  co.source=mn
+  
+  allDiff (c1,c2,c3,c4),
+  allDiff (a1,a2)
+  
+  where
+   cn <- c1.condition ;
+  }
+  
+  rhs {
+  match
+  ci : uml ! ControlFlow,
+  b1 : bpel ! BPELActivity,
+  b2 : bpel ! BPELActivity,
+  dn : uml ! ForkNode,
+  mn : uml ! JoinNode,
+  co : uml ! ControlFlow,
+  ubb : bridge ! StructureBridge,
+  bf : bpel ! BPELFlow
+
+  ci.target=dn,
+  co.source=mn,
+  bf.bodyActivities=b1, 
+  bf.bodyActivities=b2, 
+  ubb.bpel=bf,
+  ubb.umlStart = dn,
+  ubb.umlEnd = mn
+  }
+}
+
+rule Parallel_second
+{
+  lhs {
+  match
+  a : bridge ! ActionBridge,
+  b : bpel ! BPELActivity,
+  c1:uml ! ControlFlow,
+  c2:uml ! ControlFlow,
+  dn : uml ! ForkNode,
+  mn : uml ! JoinNode,
+  ubb : bridge ! StructureBridge,
+  bf : bpel ! BPELFlow
+
+  ubb.bpel=bf,
+  ubb.umlStart = dn,
+  ubb.umlEnd = mn, 
+  a.bpel = b,
+  c1.source = dn,
+  c1.target = a,
+  c2.source = a,
+  c2.target=mn
+  }
+  
+  rhs {
+  match
+  b : bpel ! BPELActivity,
+  dn : uml ! ForkNode,
+  mn : uml ! JoinNode,
+  ubb : bridge ! StructureBridge,
+  bf : bpel ! BPELFlow
+
+  ubb.bpel=bf,
+  ubb.umlStart = dn,
+  ubb.umlEnd = mn, 
+  bf.bodyActivities= b
+
+  }
+}
+
+rule Parallel_third
+{
+  nac {
+  match
+  dn : uml ! ForkNode,
+  cf : uml ! ControlFlow
+  
+  cf.source = dn
+  }
+  
+  nac {
+  match
+  mn : uml ! JoinNode,
+  cf : uml ! ControlFlow
+  
+  cf.target = mn
+  }
+  
+  lhs {
+  match
+  ci : uml ! ControlFlow,
+  co : uml ! ControlFlow,
+  mn : uml ! JoinNode,
+  dn : uml ! ForkNode,
+  ubb : bridge ! StructureBridge
+  
+  ci.target = dn,
+  ubb.umlStart = dn,
+  ubb.umlEnd = mn,
+  co.source = mn
+  }
+  
+  rhs {
+  match
+  ci : uml ! ControlFlow,
+  co : uml ! ControlFlow,
+  ubb : bridge ! StructureBridge
+
+  ci.target = ubb,
+  co.source = ubb
+  }
+}
+
 
 rule Variation_Point_first
 {
@@ -614,6 +767,14 @@ rule Variation_Point_first
   
   where
   cvpn.name=vp.name;
+  }
+  
+  nac {
+  match
+  vp : uml ! VariationPoint,
+  va : uml ! VxAction
+  
+  va.variationPoint = vp
   }
   
   lhs {
@@ -922,6 +1083,7 @@ rule VxAction_fourth
   match
   ci : uml ! ControlFlow,
   co : uml ! ControlFlow,
+  va : uml ! VxAction,
   b : bridge ! VxActionBridge
   
   ci.target=b, co.source=b
