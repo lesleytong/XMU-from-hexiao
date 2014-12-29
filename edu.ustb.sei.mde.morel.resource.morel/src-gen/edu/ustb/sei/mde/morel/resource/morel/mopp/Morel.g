@@ -11811,7 +11811,7 @@ parse_edu_ustb_sei_mde_morel_PredefinedVariableExp returns [edu.ustb.sei.mde.mor
 :
 	(
 		(
-			a0 = '@this' {
+			a0 = '$this' {
 				if (element == null) {
 					element = edu.ustb.sei.mde.morel.MorelFactory.eINSTANCE.createPredefinedVariableExp();
 					startIncompleteElement(element);
@@ -11824,7 +11824,7 @@ parse_edu_ustb_sei_mde_morel_PredefinedVariableExp returns [edu.ustb.sei.mde.mor
 				element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.PREDEFINED_VARIABLE_EXP__VARIABLE), value);
 				completedElement(value, false);
 			}
-			|			a1 = '@id' {
+			|			a1 = '$id' {
 				if (element == null) {
 					element = edu.ustb.sei.mde.morel.MorelFactory.eINSTANCE.createPredefinedVariableExp();
 					startIncompleteElement(element);

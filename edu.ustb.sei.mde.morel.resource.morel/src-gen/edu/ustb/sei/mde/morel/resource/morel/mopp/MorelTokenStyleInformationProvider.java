@@ -26,10 +26,10 @@ public class MorelTokenStyleInformationProvider {
 		if ("invalid".equals(tokenName)) {
 			return new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelTokenStyle(new int[] {0xff, 0x00, 0x00}, null, false, false, false, false);
 		}
-		if ("@this".equals(tokenName)) {
+		if ("$this".equals(tokenName)) {
 			return new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelTokenStyle(new int[] {0x00, 0x00, 0xff}, null, false, false, false, false);
 		}
-		if ("@id".equals(tokenName)) {
+		if ("$id".equals(tokenName)) {
 			return new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelTokenStyle(new int[] {0x00, 0x00, 0xff}, null, false, false, false, false);
 		}
 		if ("SL_COMMENT".equals(tokenName)) {

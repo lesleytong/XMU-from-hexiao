@@ -190,14 +190,26 @@ public class StringLibrary extends AnyLibrary {
 	
 	public Object compare(String op, Object self, Object str) {
 		try {
-			Object result = compare(self,str);
-			Integer r = (Integer)result;
-			if(op=="=") return r==0;
-			else if(op=="<") return r<0;
-			else if(op==">") return r>0;
-			else if(op=="<=") return r<=0;
-			else if(op==">=") return r>=0;
-			else return OclUndefined.INVALIDED;
+			if(str==null) {
+				switch(op){
+				case "=": return false;
+				case "<":
+				case "<=": return false;
+				case ">":
+				case ">=": return true;
+				default:
+					return OclUndefined.INVALIDED;
+				}
+			} else {
+				Object result = compare(self,str);
+				Integer r = (Integer)result;
+				if(op=="=") return r==0;
+				else if(op=="<") return r<0;
+				else if(op==">") return r>0;
+				else if(op=="<=") return r<=0;
+				else if(op==">=") return r>=0;
+				else return OclUndefined.INVALIDED;
+			}
 		} catch (Exception e) {
 			return OclUndefined.INVALIDED;
 		}

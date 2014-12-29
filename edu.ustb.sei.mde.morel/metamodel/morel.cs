@@ -55,8 +55,8 @@ TOKENSTYLES {
 	"null" COLOR #ff0000;
 	"invalid" COLOR #ff0000;
 	
-	"@this" COLOR #0000ff;
-	"@id" COLOR #0000ff;
+	"$this" COLOR #0000ff;
+	"$id" COLOR #0000ff;
 	
 	"SL_COMMENT" COLOR #008000, ITALIC;
 	"ML_COMMENT" COLOR #008000, ITALIC;
@@ -153,7 +153,7 @@ RULES {
 	
 	Pattern ::= type[LHS : "lhs", RHS : "rhs", NAC : "nac", PAC : "pac", PRE : "pre", POST : "post", LHS : ""] "{" "match" (variables ("," variables)*)?  (linkConstraints ("," linkConstraints)*)? (additionalConstraints ("," additionalConstraints)*)? ("where"  (statements)+)? "}";
 	
-	PredefinedVariableExp ::= variable[this:"@this", id:"@id"] (path)?;
+	PredefinedVariableExp ::= variable[this:"$this", id:"$id"] (path)?;
 	
 	ReflectiveVariableExp ::= "&" variable[IDENTIFIER];
 	

@@ -107,6 +107,37 @@ rule Sequence_rule
   }
 }
 
+rule EmptyAction_rule {
+	lhs{
+		match
+		ci : uml ! ControlFlow,
+  		a : uml! EmptyAction,
+  		co : uml! ControlFlow,
+  		an : String
+  	
+    	ci.target=a, co.source=a
+    
+	    where
+	    a.name<>'assign';
+	    an <- a.name;
+	}
+	
+	rhs {
+	  match
+	    ci : uml ! ControlFlow,
+	  	co : uml! ControlFlow,
+	  	ubb : bridge ! ActionBridge,
+	  	b : bpel ! BPELEmpty,
+	  	an : String
+	
+	    ci.target=ubb, co.source=ubb, ubb.bpel=b
+	    
+	    where
+	    b.name<-an;
+  }
+}
+
+
 
 rule CallAction_rule_without_input_without_output {
   nac {
@@ -119,7 +150,7 @@ rule CallAction_rule_without_input_without_output {
   nac {
     match
    ofo : uml ! ObjectFlow,
-   a : uml! Action
+   a : uml! CallAction
    
     ofo.source=a
 
@@ -158,7 +189,7 @@ rule CallAction_rule_with_input_without_output {
   nac {
     match
    ofo : uml ! ObjectFlow,
-   a : uml! Action
+   a : uml! CallAction
    
     ofo.source=a
 
@@ -201,7 +232,7 @@ rule CallAction_rule_without_input_with_output {
   nac {
     match
    ofi : uml ! ObjectFlow,
-   a : uml! Action
+   a : uml! CallAction
    
     ofi.target=a
 
@@ -1201,6 +1232,77 @@ rule Variables_second
   }
 }
 
+rule Assign_rule {
+	lhs{
+	match
+		ci : uml ! ControlFlow,
+		co : uml ! ControlFlow,
+		an : uml ! AssignAction
+		
+		ci.target = an, co.source = an
+	}
+	
+	rhs {
+	match
+		ci : uml ! ControlFlow,
+		co : uml ! ControlFlow,
+		an : uml ! AssignAction,
+		ubb : bridge ! AssignBridge,
+		ba : bpel ! BPELAssign
+		
+		ci.target = ubb, co.source = ubb, ubb.bpel = ba, ubb.uml = an
+	
+	where
+		$this.Assign_copy(an,ba)->forAll(e:Any|true);
+	}
+}
+
+passive rule Assign_copy(an,ba) {
+	lhs {
+	match
+		an : uml ! AssignAction,
+		cp : uml ! CopyTask,
+		ba : bpel ! BPELAssign,
+		fn : String,
+		fe : String,
+		tn : String,
+		te : String
+		
+		an.copies = cp
+	
+	where
+		fn<-cp.fromVar;
+		fe<-cp.fromExpr;
+		tn<-cp.toVar;
+		te<-cp.toExpr;
+	}
+	
+	rhs {
+	match
+		an : uml ! AssignAction,
+		ba : bpel ! BPELAssign,
+		bcp : bpel ! BPELCopy,
+		cfp : bpel ! BPELCopyFrom,
+		cfpe: bpel ! BPELExpression,
+		ctp : bpel ! BPELCopyTo,
+		ctpe: bpel ! BPELExpression,
+		fn : String,
+		fe : String,
+		tn : String,
+		te : String
+		
+		ba.parts = bcp, bcp.fromSpec=cfp, bcp.toSpec = ctp,cfp.expression=cfpe, ctp.expression = ctpe
+		
+	where
+		cfp.variable <- (if fn='' or fn=null then '' else fn endif);
+		cfpe.expression <- (if fe='' or fe=null then '' else fe endif);
+		ctp.variable <- (if tn='' or tn=null then '' else tn endif);
+		ctpe.expression <- (if te='' or te=null then '' else te endif);
+	}
+}
+
+
+/*
 rule Assign_rule
 {
 
@@ -1247,6 +1349,7 @@ rule Assign_rule
     t.part<-tm;
   }
 }
+*/
 
 /*
 rule Assign_first
