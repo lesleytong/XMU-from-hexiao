@@ -10,14 +10,14 @@ import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>Order Type</b></em>',
+ * A representation of the literals of the enumeration '<em><b>Iteration Type</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see edu.ustb.sei.mde.morel.MorelPackage#getOrderType()
+ * @see edu.ustb.sei.mde.morel.MorelPackage#getIterationType()
  * @model
  * @generated
  */
-public enum OrderType implements Enumerator {
+public enum IterationType implements Enumerator {
 	/**
 	 * The '<em><b>Default</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -26,25 +26,17 @@ public enum OrderType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DEFAULT(0, "default", "default"), /**
-	 * The '<em><b>Sequential</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SEQUENTIAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SEQUENTIAL(1, "sequential", "sequential"),
+	DEFAULT(0, "default", "default"),
 
 	/**
-	 * The '<em><b>Parallel</b></em>' literal object.
+	 * The '<em><b>Shuffle</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #PARALLEL_VALUE
+	 * @see #SHUFFLE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PARALLEL(2, "parallel", "parallel");
+	SHUFFLE(1, "shuffle", "shuffle");
 
 	/**
 	 * The '<em><b>Default</b></em>' literal value.
@@ -62,65 +54,49 @@ public enum OrderType implements Enumerator {
 	public static final int DEFAULT_VALUE = 0;
 
 	/**
-	 * The '<em><b>Sequential</b></em>' literal value.
+	 * The '<em><b>Shuffle</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Sequential</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>Shuffle</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SEQUENTIAL
-	 * @model name="sequential"
+	 * @see #SHUFFLE
+	 * @model name="shuffle"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SEQUENTIAL_VALUE = 1;
+	public static final int SHUFFLE_VALUE = 1;
 
 	/**
-	 * The '<em><b>Parallel</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>Parallel</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #PARALLEL
-	 * @model name="parallel"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int PARALLEL_VALUE = 2;
-
-	/**
-	 * An array of all the '<em><b>Order Type</b></em>' enumerators.
+	 * An array of all the '<em><b>Iteration Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final OrderType[] VALUES_ARRAY =
-		new OrderType[] {
+	private static final IterationType[] VALUES_ARRAY =
+		new IterationType[] {
 			DEFAULT,
-			SEQUENTIAL,
-			PARALLEL,
+			SHUFFLE,
 		};
 
 	/**
-	 * A public read-only list of all the '<em><b>Order Type</b></em>' enumerators.
+	 * A public read-only list of all the '<em><b>Iteration Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<OrderType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IterationType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Order Type</b></em>' literal with the specified literal value.
+	 * Returns the '<em><b>Iteration Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static OrderType get(String literal) {
+	public static IterationType get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			OrderType result = VALUES_ARRAY[i];
+			IterationType result = VALUES_ARRAY[i];
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -129,14 +105,14 @@ public enum OrderType implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Order Type</b></em>' literal with the specified name.
+	 * Returns the '<em><b>Iteration Type</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static OrderType getByName(String name) {
+	public static IterationType getByName(String name) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			OrderType result = VALUES_ARRAY[i];
+			IterationType result = VALUES_ARRAY[i];
 			if (result.getName().equals(name)) {
 				return result;
 			}
@@ -145,16 +121,15 @@ public enum OrderType implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Order Type</b></em>' literal with the specified integer value.
+	 * Returns the '<em><b>Iteration Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static OrderType get(int value) {
+	public static IterationType get(int value) {
 		switch (value) {
 			case DEFAULT_VALUE: return DEFAULT;
-			case SEQUENTIAL_VALUE: return SEQUENTIAL;
-			case PARALLEL_VALUE: return PARALLEL;
+			case SHUFFLE_VALUE: return SHUFFLE;
 		}
 		return null;
 	}
@@ -186,7 +161,7 @@ public enum OrderType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private OrderType(int value, String name, String literal) {
+	private IterationType(int value, String name, String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;
@@ -230,4 +205,4 @@ public enum OrderType implements Enumerator {
 		return literal;
 	}
 	
-} //OrderType
+} //IterationType

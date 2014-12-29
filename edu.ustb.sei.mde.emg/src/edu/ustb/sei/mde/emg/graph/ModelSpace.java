@@ -15,6 +15,8 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
+import edu.ustb.sei.commonutil.util.BidirectionalMap;
+
 public class ModelSpace extends NamedElement {
 	private List<EObject> allElements;
 
@@ -41,7 +43,6 @@ public class ModelSpace extends NamedElement {
 
 	public ModelSpace(ModelUniverse modelUniverse) {
 		this.modelUniverse = modelUniverse;
-		
 		allElements = new ArrayList<EObject>();
 		elementAdapter = new ObjectAdapter(this);
 
@@ -60,20 +61,27 @@ public class ModelSpace extends NamedElement {
 	 * @return
 	 */
 	public int addElement(EObject object) {
-		//System.out.println("add "+object);
+		//System.out.println("add "+object);		
 		int objectID = modelUniverse.getElementID(object);
 		if(objectID!=EIdentifiable.INVALID_ID)
 			return objectID;
-		allElements.add(object);
+		
+		synchronized(allElements) {
+			allElements.add(object);
+		}
+		
 		objectID = EIdentifiable.getNextID();
 		
 		if(!object.eAdapters().contains(elementAdapter))
 			object.eAdapters().add(elementAdapter);
 		
-		modelUniverse.getIdObjMap().put(objectID, object);
+		BidirectionalMap<Integer, EObject> idObjMap = modelUniverse.getIdObjMap();
+		
+		synchronized(idObjMap){
+			idObjMap.put(objectID, object);
+		}
 		
 		addToAllElementsMap(object.eClass(),object);
-		
 		return objectID;
 	}
 
@@ -111,18 +119,22 @@ public class ModelSpace extends NamedElement {
 //	}
 
 	public void addRelationship(EObject source, EObject target, EReference ref) {
-		if(ref.isMany()) {
-			((EList<EObject>)source.eGet(ref)).add(target);
-		} else 
-			source.eSet(ref, target);
+		synchronized(source){
+			if(ref.isMany()) {
+				((EList<EObject>)source.eGet(ref)).add(target);
+			} else 
+				source.eSet(ref, target);
+		}
 	}
 	
 	
 	public void addRelationship(EObject source, EObject target, EReference ref, int index) {
-		if(ref.isMany()) {
-			((EList<EObject>)source.eGet(ref)).add(index, target);
-		} else 
-			source.eSet(ref, target);
+		synchronized(source) {
+			if(ref.isMany()) {
+				((EList<EObject>)source.eGet(ref)).add(index, target);
+			} else 
+				source.eSet(ref, target);
+		}
 	}
 	
 	/**
@@ -132,7 +144,11 @@ public class ModelSpace extends NamedElement {
 	 */
 	private void addToAllElementsMap(EObject type, EObject object) {
 		List<EObject> list = getAllElementsByType(type);
-		list.add(object);
+		
+		synchronized(list) {
+			list.add(object);
+		}
+		
 		typeToAllElementIDMap.put(type, null);
 		
 		for(EObject superType : ((EClass)type).getESuperTypes()) {
@@ -215,8 +231,10 @@ public class ModelSpace extends NamedElement {
 				deleteElementFromModel(c);
 			}
 		}
-		removeElement(object);
-		EcoreUtil.delete(object);
+		synchronized(object) {
+			removeElement(object);
+			EcoreUtil.delete(object);
+		}
 	}
 
 	public void deleteRelationship(EObject source, EObject target, EReference ref) {
@@ -233,7 +251,7 @@ public class ModelSpace extends NamedElement {
 	 * @param type
 	 * @return
 	 */
-	public int[] getAllElementIDByType(EObject type) {
+	synchronized public int[] getAllElementIDByType(EObject type) {
 		int[] ids = typeToAllElementIDMap.get(type);
 		if(ids == null) {
 			ids = collectAllElementIDList(getAllElementsByType(type));
@@ -247,7 +265,7 @@ public class ModelSpace extends NamedElement {
 	 * @param type
 	 * @return
 	 */
-	public List<EObject> getAllElementsByType(EObject type) {
+	synchronized public List<EObject> getAllElementsByType(EObject type) {
 		List<EObject> list = typeToAllElementsMap.get(type);
 		if(list==null) {
 			list = new ArrayList<EObject>();
@@ -262,12 +280,14 @@ public class ModelSpace extends NamedElement {
 			list = new ArrayList<int[]>();
 			referenceToTupleID.put(ref, list);
 			if(initOnDemand) {
-				for(EObject o : allElements) {
-					if(ref.getEContainingClass().isSuperTypeOf(o.eClass())){
-						int s = modelUniverse.getElementID(o);
-						int[] tars = modelUniverse.getElementRelationship(o, ref);
-						for(int t : tars) {
-							list.add(new int[]{s,t});
+				synchronized(allElements){
+					for(EObject o : allElements) {
+						if(ref.getEContainingClass().isSuperTypeOf(o.eClass())){
+							int s = modelUniverse.getElementID(o);
+							int[] tars = modelUniverse.getElementRelationship(o, ref);
+							for(int t : tars) {
+								list.add(new int[]{s,t});
+							}
 						}
 					}
 				}
@@ -306,9 +326,14 @@ public class ModelSpace extends NamedElement {
 	 * @param object
 	 */
 	public void removeElement(EObject object) {
-		allElements.remove(object);
-		modelUniverse.getIdObjMap().removeBackward(object);
-		object.eAdapters().remove(elementAdapter);
+		synchronized(allElements){
+			allElements.remove(object);
+		}
+		
+		synchronized(object) {
+			modelUniverse.getIdObjMap().removeBackward(object);
+			object.eAdapters().remove(elementAdapter);
+		}
 		removeFromAllElementsMap(object.eClass(),object);
 	}
 	
@@ -319,7 +344,9 @@ public class ModelSpace extends NamedElement {
 	 */
 	private void removeFromAllElementsMap(EObject type, EObject object) {
 		List<EObject> list = getAllElementsByType(type);
-		list.remove(object);
+		synchronized(list){
+			list.remove(object);
+		}
 		typeToAllElementIDMap.put(type, null);
 		
 		for(EObject superType : ((EClass)type).getESuperTypes()) {

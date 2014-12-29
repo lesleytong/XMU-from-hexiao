@@ -75,10 +75,18 @@
       <genEnumLiterals ecoreEnumLiteral="morel.ecore#//ScopeType/dynamicRandom"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="morel.ecore#//OrderType">
-      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//OrderType/arbitrary"/>
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//OrderType/default"/>
       <genEnumLiterals ecoreEnumLiteral="morel.ecore#//OrderType/sequential"/>
       <genEnumLiterals ecoreEnumLiteral="morel.ecore#//OrderType/parallel"/>
-      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//OrderType/random"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="morel.ecore#//IterationType">
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//IterationType/default"/>
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//IterationType/shuffle"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="morel.ecore#//RepetitionType">
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//RepetitionType/allMatches"/>
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//RepetitionType/first"/>
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//RepetitionType/randomOne"/>
     </genEnums>
     <genClasses image="false" ecoreClass="morel.ecore#//NamedElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute morel.ecore#//NamedElement/name"/>
@@ -287,6 +295,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute morel.ecore#//RuleGroup/scopeSize"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute morel.ecore#//RuleGroup/order"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute morel.ecore#//RuleGroup/iteration"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute morel.ecore#//RuleGroup/maxIteration"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute morel.ecore#//RuleGroup/repetition"/>
     </genClasses>
     <genClasses image="false" ecoreClass="morel.ecore#//Statement"/>

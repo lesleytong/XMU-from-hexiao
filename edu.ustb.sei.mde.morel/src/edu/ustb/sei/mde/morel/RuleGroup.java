@@ -17,6 +17,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link edu.ustb.sei.mde.morel.RuleGroup#getScopeSize <em>Scope Size</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.morel.RuleGroup#getOrder <em>Order</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.morel.RuleGroup#getIteration <em>Iteration</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.morel.RuleGroup#getMaxIteration <em>Max Iteration</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.morel.RuleGroup#getRepetition <em>Repetition</em>}</li>
  * </ul>
  * </p>
@@ -101,7 +102,7 @@ public interface RuleGroup extends RuleElement {
 
 	/**
 	 * Returns the value of the '<em><b>Order</b></em>' attribute.
-	 * The default value is <code>"arbitrary"</code>.
+	 * The default value is <code>"default"</code>.
 	 * The literals are from the enumeration {@link edu.ustb.sei.mde.morel.OrderType}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -113,7 +114,7 @@ public interface RuleGroup extends RuleElement {
 	 * @see edu.ustb.sei.mde.morel.OrderType
 	 * @see #setOrder(OrderType)
 	 * @see edu.ustb.sei.mde.morel.MorelPackage#getRuleGroup_Order()
-	 * @model default="arbitrary"
+	 * @model default="default"
 	 * @generated
 	 */
 	OrderType getOrder();
@@ -131,7 +132,8 @@ public interface RuleGroup extends RuleElement {
 
 	/**
 	 * Returns the value of the '<em><b>Iteration</b></em>' attribute.
-	 * The default value is <code>"0"</code>.
+	 * The default value is <code>"default"</code>.
+	 * The literals are from the enumeration {@link edu.ustb.sei.mde.morel.IterationType}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Iteration</em>' attribute isn't clear,
@@ -139,26 +141,56 @@ public interface RuleGroup extends RuleElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Iteration</em>' attribute.
-	 * @see #setIteration(int)
+	 * @see edu.ustb.sei.mde.morel.IterationType
+	 * @see #setIteration(IterationType)
 	 * @see edu.ustb.sei.mde.morel.MorelPackage#getRuleGroup_Iteration()
-	 * @model default="0"
+	 * @model default="default"
 	 * @generated
 	 */
-	int getIteration();
+	IterationType getIteration();
 
 	/**
 	 * Sets the value of the '{@link edu.ustb.sei.mde.morel.RuleGroup#getIteration <em>Iteration</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Iteration</em>' attribute.
+	 * @see edu.ustb.sei.mde.morel.IterationType
 	 * @see #getIteration()
 	 * @generated
 	 */
-	void setIteration(int value);
+	void setIteration(IterationType value);
+
+	/**
+	 * Returns the value of the '<em><b>Max Iteration</b></em>' attribute.
+	 * The default value is <code>"0"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Max Iteration</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Max Iteration</em>' attribute.
+	 * @see #setMaxIteration(int)
+	 * @see edu.ustb.sei.mde.morel.MorelPackage#getRuleGroup_MaxIteration()
+	 * @model default="0"
+	 * @generated
+	 */
+	int getMaxIteration();
+
+	/**
+	 * Sets the value of the '{@link edu.ustb.sei.mde.morel.RuleGroup#getMaxIteration <em>Max Iteration</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Max Iteration</em>' attribute.
+	 * @see #getMaxIteration()
+	 * @generated
+	 */
+	void setMaxIteration(int value);
 
 	/**
 	 * Returns the value of the '<em><b>Repetition</b></em>' attribute.
-	 * The default value is <code>"0"</code>.
+	 * The default value is <code>"allMatches"</code>.
+	 * The literals are from the enumeration {@link edu.ustb.sei.mde.morel.RepetitionType}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Repetition</em>' attribute isn't clear,
@@ -166,21 +198,23 @@ public interface RuleGroup extends RuleElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Repetition</em>' attribute.
-	 * @see #setRepetition(int)
+	 * @see edu.ustb.sei.mde.morel.RepetitionType
+	 * @see #setRepetition(RepetitionType)
 	 * @see edu.ustb.sei.mde.morel.MorelPackage#getRuleGroup_Repetition()
-	 * @model default="0"
+	 * @model default="allMatches"
 	 * @generated
 	 */
-	int getRepetition();
+	RepetitionType getRepetition();
 
 	/**
 	 * Sets the value of the '{@link edu.ustb.sei.mde.morel.RuleGroup#getRepetition <em>Repetition</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Repetition</em>' attribute.
+	 * @see edu.ustb.sei.mde.morel.RepetitionType
 	 * @see #getRepetition()
 	 * @generated
 	 */
-	void setRepetition(int value);
+	void setRepetition(RepetitionType value);
 
 } // RuleGroup

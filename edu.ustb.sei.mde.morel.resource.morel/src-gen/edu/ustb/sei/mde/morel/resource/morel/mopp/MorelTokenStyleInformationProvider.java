@@ -146,6 +146,15 @@ public class MorelTokenStyleInformationProvider {
 		if ("rule".equals(tokenName)) {
 			return new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelTokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
 		}
+		if ("default".equals(tokenName)) {
+			return new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelTokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
+		}
+		if ("sequence".equals(tokenName)) {
+			return new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelTokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
+		}
+		if ("parallel".equals(tokenName)) {
+			return new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelTokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
+		}
 		if ("group".equals(tokenName)) {
 			return new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelTokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
 		}
@@ -158,25 +167,16 @@ public class MorelTokenStyleInformationProvider {
 		if ("random".equals(tokenName)) {
 			return new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelTokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
 		}
-		if ("order".equals(tokenName)) {
+		if ("iterate".equals(tokenName)) {
 			return new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelTokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
 		}
-		if ("default".equals(tokenName)) {
+		if ("repeat".equals(tokenName)) {
 			return new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelTokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
 		}
-		if ("sequential".equals(tokenName)) {
+		if ("first".equals(tokenName)) {
 			return new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelTokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
 		}
-		if ("parallel".equals(tokenName)) {
-			return new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelTokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
-		}
-		if ("any".equals(tokenName)) {
-			return new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelTokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
-		}
-		if ("iterating".equals(tokenName)) {
-			return new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelTokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
-		}
-		if ("repeating".equals(tokenName)) {
+		if ("one".equals(tokenName)) {
 			return new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelTokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
 		}
 		if ("allDiff".equals(tokenName)) {

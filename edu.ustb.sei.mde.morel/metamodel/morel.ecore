@@ -349,11 +349,13 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="scopeSize" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
         defaultValueLiteral="0"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="order" eType="#//OrderType"
-        defaultValueLiteral="arbitrary"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="iteration" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="default"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="iteration" eType="#//IterationType"
+        defaultValueLiteral="default"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxIteration" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
         defaultValueLiteral="0"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="repetition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
-        defaultValueLiteral="0"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="repetition" eType="#//RepetitionType"
+        defaultValueLiteral="allMatches"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="ScopeType">
     <eLiterals name="all"/>
@@ -361,10 +363,18 @@
     <eLiterals name="dynamicRandom" value="2"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="OrderType">
-    <eLiterals name="arbitrary"/>
+    <eLiterals name="default"/>
     <eLiterals name="sequential" value="1"/>
     <eLiterals name="parallel" value="2"/>
-    <eLiterals name="random" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="IterationType">
+    <eLiterals name="default"/>
+    <eLiterals name="shuffle" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="RepetitionType">
+    <eLiterals name="allMatches"/>
+    <eLiterals name="first" value="1"/>
+    <eLiterals name="randomOne" value="2"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Statement" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="DeclarativeStatement" eSuperTypes="#//Statement">

@@ -36,6 +36,7 @@ import edu.ustb.sei.mde.morel.IfStatement;
 import edu.ustb.sei.mde.morel.ImperativeExp;
 import edu.ustb.sei.mde.morel.ImperativeStatement;
 import edu.ustb.sei.mde.morel.IntegerLiteralExp;
+import edu.ustb.sei.mde.morel.IterationType;
 import edu.ustb.sei.mde.morel.IteratorPathExp;
 import edu.ustb.sei.mde.morel.IteratorType;
 import edu.ustb.sei.mde.morel.LetExp;
@@ -70,6 +71,7 @@ import edu.ustb.sei.mde.morel.ReflectiveVariableExp;
 import edu.ustb.sei.mde.morel.RelationalExp;
 import edu.ustb.sei.mde.morel.RelationalExpChild;
 import edu.ustb.sei.mde.morel.RelationalOperator;
+import edu.ustb.sei.mde.morel.RepetitionType;
 import edu.ustb.sei.mde.morel.Rule;
 import edu.ustb.sei.mde.morel.RuleElement;
 import edu.ustb.sei.mde.morel.RuleGroup;
@@ -738,6 +740,20 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 * @generated
 	 */
 	private EEnum orderTypeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum iterationTypeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum repetitionTypeEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -2236,8 +2252,17 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getRuleGroup_Repetition() {
+	public EAttribute getRuleGroup_MaxIteration() {
 		return (EAttribute)ruleGroupEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getRuleGroup_Repetition() {
+		return (EAttribute)ruleGroupEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -2524,6 +2549,24 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EEnum getIterationType() {
+		return iterationTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getRepetitionType() {
+		return repetitionTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public MorelFactory getMorelFactory() {
 		return (MorelFactory)getEFactoryInstance();
 	}
@@ -2773,6 +2816,7 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		createEAttribute(ruleGroupEClass, RULE_GROUP__SCOPE_SIZE);
 		createEAttribute(ruleGroupEClass, RULE_GROUP__ORDER);
 		createEAttribute(ruleGroupEClass, RULE_GROUP__ITERATION);
+		createEAttribute(ruleGroupEClass, RULE_GROUP__MAX_ITERATION);
 		createEAttribute(ruleGroupEClass, RULE_GROUP__REPETITION);
 
 		statementEClass = createEClass(STATEMENT);
@@ -2816,6 +2860,8 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		unaryOperatorEEnum = createEEnum(UNARY_OPERATOR);
 		scopeTypeEEnum = createEEnum(SCOPE_TYPE);
 		orderTypeEEnum = createEEnum(ORDER_TYPE);
+		iterationTypeEEnum = createEEnum(ITERATION_TYPE);
+		repetitionTypeEEnum = createEEnum(REPETITION_TYPE);
 	}
 
 	/**
@@ -3149,9 +3195,10 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		initEReference(getRuleGroup_Rules(), this.getRule(), null, "rules", null, 0, -1, RuleGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getRuleGroup_Scope(), this.getScopeType(), "scope", "all", 0, 1, RuleGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getRuleGroup_ScopeSize(), ecorePackage.getEInt(), "scopeSize", "0", 0, 1, RuleGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getRuleGroup_Order(), this.getOrderType(), "order", "arbitrary", 0, 1, RuleGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getRuleGroup_Iteration(), ecorePackage.getEInt(), "iteration", "0", 0, 1, RuleGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getRuleGroup_Repetition(), ecorePackage.getEInt(), "repetition", "0", 0, 1, RuleGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRuleGroup_Order(), this.getOrderType(), "order", "default", 0, 1, RuleGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRuleGroup_Iteration(), this.getIterationType(), "iteration", "default", 0, 1, RuleGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRuleGroup_MaxIteration(), ecorePackage.getEInt(), "maxIteration", "0", 0, 1, RuleGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRuleGroup_Repetition(), this.getRepetitionType(), "repetition", "allMatches", 0, 1, RuleGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(statementEClass, Statement.class, "Statement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -3249,10 +3296,18 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		addEEnumLiteral(scopeTypeEEnum, ScopeType.DYNAMIC_RANDOM);
 
 		initEEnum(orderTypeEEnum, OrderType.class, "OrderType");
-		addEEnumLiteral(orderTypeEEnum, OrderType.ARBITRARY);
+		addEEnumLiteral(orderTypeEEnum, OrderType.DEFAULT);
 		addEEnumLiteral(orderTypeEEnum, OrderType.SEQUENTIAL);
 		addEEnumLiteral(orderTypeEEnum, OrderType.PARALLEL);
-		addEEnumLiteral(orderTypeEEnum, OrderType.RANDOM);
+
+		initEEnum(iterationTypeEEnum, IterationType.class, "IterationType");
+		addEEnumLiteral(iterationTypeEEnum, IterationType.DEFAULT);
+		addEEnumLiteral(iterationTypeEEnum, IterationType.SHUFFLE);
+
+		initEEnum(repetitionTypeEEnum, RepetitionType.class, "RepetitionType");
+		addEEnumLiteral(repetitionTypeEEnum, RepetitionType.ALL_MATCHES);
+		addEEnumLiteral(repetitionTypeEEnum, RepetitionType.FIRST);
+		addEEnumLiteral(repetitionTypeEEnum, RepetitionType.RANDOM_ONE);
 
 		// Create resource
 		createResource(eNS_URI);

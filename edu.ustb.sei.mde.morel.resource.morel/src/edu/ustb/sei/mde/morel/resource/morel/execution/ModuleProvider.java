@@ -18,6 +18,7 @@ import edu.ustb.sei.mde.morel.Query;
 import edu.ustb.sei.mde.morel.QueryModel;
 import edu.ustb.sei.mde.morel.Rule;
 import edu.ustb.sei.mde.morel.RuleElement;
+import edu.ustb.sei.mde.morel.RuleGroup;
 import edu.ustb.sei.mde.morel.TransformationModel;
 import edu.ustb.sei.mde.morel.Unit;
 import edu.ustb.sei.mde.morel.Variable;
@@ -58,6 +59,9 @@ public class ModuleProvider implements IModuleProvider {
 		for(RuleElement r : model.getRules()) {
 			if(r instanceof Rule) {
 				if(((Rule)r).getName().equals(name))
+					return (Executable)r;
+			} else if(r instanceof RuleGroup) {
+				if(((RuleGroup)r).getName().equals(name))
 					return (Executable)r;
 			}
 		}
@@ -157,6 +161,8 @@ public class ModuleProvider implements IModuleProvider {
 			return interpreter.interprete_edu_ustb_sei_mde_morel_Query((Query) unit, c);
 		} else if(unit instanceof Rule) {
 			return interpreter.interprete_edu_ustb_sei_mde_morel_Rule((Rule) unit, c);
+		} else if(unit instanceof RuleGroup) {
+			return interpreter.interprete_edu_ustb_sei_mde_morel_RuleGroup((RuleGroup) unit, c);
 		}
 	} catch (Exception e) {
 		return OclUndefined.INVALIDED;

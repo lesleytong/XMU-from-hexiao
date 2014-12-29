@@ -149,7 +149,7 @@ RULES {
 	
 	Rule ::= (active["active":"passive"])? "rule" name[IDENTIFIER] ("("parameters[IDENTIFIER] ("," parameters[IDENTIFIER])*")")? "{" (patterns:Pattern)* "}" ;
 	
-	RuleGroup ::= (active["active":"passive"])? "group" name[IDENTIFIER] ("scope" scope[all:"all", staticRandom: "random", dynamicRandom : "random*"] ("for" scopeSize[INUMBER])?)? ("order" order[arbitrary:"default",sequential:"sequential",parallel:"parallel", random:"any"])? ("iterating" iteration[INUMBER])? ("repeating" repetition[INUMBER])? "{" rules* "}";
+	RuleGroup ::= (active["active":"passive"])? order[default:"default",sequential:"sequence",parallel:"parallel"]? "group" name[IDENTIFIER] ("scope" scope[all:"all", staticRandom: "random", dynamicRandom : "random*"] (scopeSize[INUMBER])?)? ("iterate"  maxIteration[INUMBER]? iteration[default:"",shuffle:"*"]?)? ("repeat" repetition[allMatches:"all",first:"first",randomOne:"one"])? "{" rules* "}";
 	
 	Pattern ::= type[LHS : "lhs", RHS : "rhs", NAC : "nac", PAC : "pac", PRE : "pre", POST : "post", LHS : ""] "{" "match" (variables ("," variables)*)?  (linkConstraints ("," linkConstraints)*)? (additionalConstraints ("," additionalConstraints)*)? ("where"  (statements)+)? "}";
 	

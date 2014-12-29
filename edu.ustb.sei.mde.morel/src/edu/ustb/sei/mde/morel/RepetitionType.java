@@ -10,117 +10,119 @@ import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>Order Type</b></em>',
+ * A representation of the literals of the enumeration '<em><b>Repetition Type</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see edu.ustb.sei.mde.morel.MorelPackage#getOrderType()
+ * @see edu.ustb.sei.mde.morel.MorelPackage#getRepetitionType()
  * @model
  * @generated
  */
-public enum OrderType implements Enumerator {
+public enum RepetitionType implements Enumerator {
 	/**
-	 * The '<em><b>Default</b></em>' literal object.
+	 * The '<em><b>All Matches</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #DEFAULT_VALUE
+	 * @see #ALL_MATCHES_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	DEFAULT(0, "default", "default"), /**
-	 * The '<em><b>Sequential</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SEQUENTIAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SEQUENTIAL(1, "sequential", "sequential"),
+	ALL_MATCHES(0, "allMatches", "allMatches"),
 
 	/**
-	 * The '<em><b>Parallel</b></em>' literal object.
+	 * The '<em><b>First</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #PARALLEL_VALUE
+	 * @see #FIRST_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PARALLEL(2, "parallel", "parallel");
+	FIRST(1, "first", "first"),
 
 	/**
-	 * The '<em><b>Default</b></em>' literal value.
+	 * The '<em><b>Random One</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #RANDOM_ONE_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	RANDOM_ONE(2, "randomOne", "randomOne");
+
+	/**
+	 * The '<em><b>All Matches</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Default</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>All Matches</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DEFAULT
-	 * @model name="default"
+	 * @see #ALL_MATCHES
+	 * @model name="allMatches"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DEFAULT_VALUE = 0;
+	public static final int ALL_MATCHES_VALUE = 0;
 
 	/**
-	 * The '<em><b>Sequential</b></em>' literal value.
+	 * The '<em><b>First</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Sequential</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>First</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SEQUENTIAL
-	 * @model name="sequential"
+	 * @see #FIRST
+	 * @model name="first"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SEQUENTIAL_VALUE = 1;
+	public static final int FIRST_VALUE = 1;
 
 	/**
-	 * The '<em><b>Parallel</b></em>' literal value.
+	 * The '<em><b>Random One</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Parallel</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>Random One</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #PARALLEL
-	 * @model name="parallel"
+	 * @see #RANDOM_ONE
+	 * @model name="randomOne"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PARALLEL_VALUE = 2;
+	public static final int RANDOM_ONE_VALUE = 2;
 
 	/**
-	 * An array of all the '<em><b>Order Type</b></em>' enumerators.
+	 * An array of all the '<em><b>Repetition Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final OrderType[] VALUES_ARRAY =
-		new OrderType[] {
-			DEFAULT,
-			SEQUENTIAL,
-			PARALLEL,
+	private static final RepetitionType[] VALUES_ARRAY =
+		new RepetitionType[] {
+			ALL_MATCHES,
+			FIRST,
+			RANDOM_ONE,
 		};
 
 	/**
-	 * A public read-only list of all the '<em><b>Order Type</b></em>' enumerators.
+	 * A public read-only list of all the '<em><b>Repetition Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<OrderType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<RepetitionType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Order Type</b></em>' literal with the specified literal value.
+	 * Returns the '<em><b>Repetition Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static OrderType get(String literal) {
+	public static RepetitionType get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			OrderType result = VALUES_ARRAY[i];
+			RepetitionType result = VALUES_ARRAY[i];
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -129,14 +131,14 @@ public enum OrderType implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Order Type</b></em>' literal with the specified name.
+	 * Returns the '<em><b>Repetition Type</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static OrderType getByName(String name) {
+	public static RepetitionType getByName(String name) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			OrderType result = VALUES_ARRAY[i];
+			RepetitionType result = VALUES_ARRAY[i];
 			if (result.getName().equals(name)) {
 				return result;
 			}
@@ -145,16 +147,16 @@ public enum OrderType implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Order Type</b></em>' literal with the specified integer value.
+	 * Returns the '<em><b>Repetition Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static OrderType get(int value) {
+	public static RepetitionType get(int value) {
 		switch (value) {
-			case DEFAULT_VALUE: return DEFAULT;
-			case SEQUENTIAL_VALUE: return SEQUENTIAL;
-			case PARALLEL_VALUE: return PARALLEL;
+			case ALL_MATCHES_VALUE: return ALL_MATCHES;
+			case FIRST_VALUE: return FIRST;
+			case RANDOM_ONE_VALUE: return RANDOM_ONE;
 		}
 		return null;
 	}
@@ -186,7 +188,7 @@ public enum OrderType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private OrderType(int value, String name, String literal) {
+	private RepetitionType(int value, String name, String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;
@@ -230,4 +232,4 @@ public enum OrderType implements Enumerator {
 		return literal;
 	}
 	
-} //OrderType
+} //RepetitionType

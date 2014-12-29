@@ -3937,13 +3937,22 @@ public interface MorelPackage extends EPackage {
 	int RULE_GROUP__ITERATION = RULE_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
+	 * The feature id for the '<em><b>Max Iteration</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RULE_GROUP__MAX_ITERATION = RULE_ELEMENT_FEATURE_COUNT + 5;
+
+	/**
 	 * The feature id for the '<em><b>Repetition</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RULE_GROUP__REPETITION = RULE_ELEMENT_FEATURE_COUNT + 5;
+	int RULE_GROUP__REPETITION = RULE_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>Rule Group</em>' class.
@@ -3952,7 +3961,7 @@ public interface MorelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RULE_GROUP_FEATURE_COUNT = RULE_ELEMENT_FEATURE_COUNT + 6;
+	int RULE_GROUP_FEATURE_COUNT = RULE_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The number of operations of the '<em>Rule Group</em>' class.
@@ -4397,6 +4406,27 @@ public interface MorelPackage extends EPackage {
 	 * @generated
 	 */
 	int ORDER_TYPE = 89;
+
+
+	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.IterationType <em>Iteration Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.morel.IterationType
+	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getIterationType()
+	 * @generated
+	 */
+	int ITERATION_TYPE = 90;
+
+	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.RepetitionType <em>Repetition Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.morel.RepetitionType
+	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getRepetitionType()
+	 * @generated
+	 */
+	int REPETITION_TYPE = 91;
 
 
 	/**
@@ -6080,6 +6110,17 @@ public interface MorelPackage extends EPackage {
 	EAttribute getRuleGroup_Iteration();
 
 	/**
+	 * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.morel.RuleGroup#getMaxIteration <em>Max Iteration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Max Iteration</em>'.
+	 * @see edu.ustb.sei.mde.morel.RuleGroup#getMaxIteration()
+	 * @see #getRuleGroup()
+	 * @generated
+	 */
+	EAttribute getRuleGroup_MaxIteration();
+
+	/**
 	 * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.morel.RuleGroup#getRepetition <em>Repetition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6408,6 +6449,26 @@ public interface MorelPackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getOrderType();
+
+	/**
+	 * Returns the meta object for enum '{@link edu.ustb.sei.mde.morel.IterationType <em>Iteration Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Iteration Type</em>'.
+	 * @see edu.ustb.sei.mde.morel.IterationType
+	 * @generated
+	 */
+	EEnum getIterationType();
+
+	/**
+	 * Returns the meta object for enum '{@link edu.ustb.sei.mde.morel.RepetitionType <em>Repetition Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Repetition Type</em>'.
+	 * @see edu.ustb.sei.mde.morel.RepetitionType
+	 * @generated
+	 */
+	EEnum getRepetitionType();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -7841,6 +7902,14 @@ public interface MorelPackage extends EPackage {
 		EAttribute RULE_GROUP__ITERATION = eINSTANCE.getRuleGroup_Iteration();
 
 		/**
+		 * The meta object literal for the '<em><b>Max Iteration</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RULE_GROUP__MAX_ITERATION = eINSTANCE.getRuleGroup_MaxIteration();
+
+		/**
 		 * The meta object literal for the '<em><b>Repetition</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -8139,6 +8208,26 @@ public interface MorelPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum ORDER_TYPE = eINSTANCE.getOrderType();
+
+		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.IterationType <em>Iteration Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.morel.IterationType
+		 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getIterationType()
+		 * @generated
+		 */
+		EEnum ITERATION_TYPE = eINSTANCE.getIterationType();
+
+		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.RepetitionType <em>Repetition Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.morel.RepetitionType
+		 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getRepetitionType()
+		 * @generated
+		 */
+		EEnum REPETITION_TYPE = eINSTANCE.getRepetitionType();
 
 	}
 

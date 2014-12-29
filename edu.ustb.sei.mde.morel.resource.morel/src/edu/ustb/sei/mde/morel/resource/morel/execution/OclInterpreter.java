@@ -7,6 +7,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Random;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.Future;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -53,6 +56,7 @@ import edu.ustb.sei.mde.morel.FeaturePathExp;
 import edu.ustb.sei.mde.morel.ForStatement;
 import edu.ustb.sei.mde.morel.IfStatement;
 import edu.ustb.sei.mde.morel.IntegerLiteralExp;
+import edu.ustb.sei.mde.morel.IterationType;
 import edu.ustb.sei.mde.morel.IteratorPathExp;
 import edu.ustb.sei.mde.morel.IteratorType;
 import edu.ustb.sei.mde.morel.LetExp;
@@ -81,6 +85,7 @@ import edu.ustb.sei.mde.morel.RealLiteralExp;
 import edu.ustb.sei.mde.morel.ReflectiveVariableExp;
 import edu.ustb.sei.mde.morel.RelationalExp;
 import edu.ustb.sei.mde.morel.RelationalOperator;
+import edu.ustb.sei.mde.morel.RepetitionType;
 import edu.ustb.sei.mde.morel.Rule;
 import edu.ustb.sei.mde.morel.RuleElement;
 import edu.ustb.sei.mde.morel.RuleGroup;
@@ -301,7 +306,7 @@ public class OclInterpreter extends
 	}
 
 
-	private Object doRule(Rule rule, Context context, int repeat, Random random) {
+	private Object doRule(Rule rule, Context context, RepetitionType repeat, Random random) {
 		try {
 			Match match = Match.instance;
 			Apply apply = Apply.instance;
@@ -319,31 +324,31 @@ public class OclInterpreter extends
 			List<Pattern> pac = Apply.getPatterns(rule, SectionType.PAC);
 			
 			List<Context> lhsMatches = match.match(lhs, context, this, context.getEnviroment());
-			if(repeat==0) repeat = -1;
+			
 			
 			List<Context> successfulContexts = new ArrayList<Context>();
 			Match.resetCache();
 			
-			if(repeat>0) {
-				while(repeat>0&&lhsMatches.isEmpty()==false) {
-					int id = random.nextInt(lhsMatches.size());
-					Context c = lhsMatches.remove(id);
-					if(recheckMatch(lhs, c)==false) continue;
-					if(checkNAC(c, nac, match)==false) continue;
-					if(checkPAC(c,pac,match)==false) continue;
-					repeat--;
-					apply.apply(rhs, lhs, c, this, c.getEnviroment());
-					successfulContexts.add(c);
+				if(repeat==RepetitionType.ALL_MATCHES) {
+					for(Context c : lhsMatches) {
+						if(recheckMatch(lhs, c)==false) continue;
+						if(checkNAC(c, nac, match)==false) continue;
+						if(checkPAC(c,pac,match)==false) continue;
+						apply.apply(rhs, lhs, c, this, c.getEnviroment());
+						successfulContexts.add(c);
+					}
+				} else {
+					if(repeat==RepetitionType.RANDOM_ONE)
+						Collections.shuffle(lhsMatches);
+					for(Context c : lhsMatches) {
+						if(recheckMatch(lhs, c)==false) continue;
+						if(checkNAC(c, nac, match)==false) continue;
+						if(checkPAC(c,pac,match)==false) continue;
+						apply.apply(rhs, lhs, c, this, c.getEnviroment());
+						successfulContexts.add(c);
+						break;
+					}
 				}
-			} else {
-				for(Context c : lhsMatches) {
-					if(recheckMatch(lhs, c)==false) continue;
-					if(checkNAC(c, nac, match)==false) continue;
-					if(checkPAC(c,pac,match)==false) continue;
-					apply.apply(rhs, lhs, c, this, c.getEnviroment());
-					successfulContexts.add(c);
-				}
-			}
 			
 			return successfulContexts;
 		} catch (Exception e) {
@@ -1291,7 +1296,7 @@ public class OclInterpreter extends
 					if(rule instanceof Rule) {
 						List<Context> matches = (List<Context>)this.interprete_edu_ustb_sei_mde_morel_Rule((Rule)rule, init);
 					} else if(rule instanceof RuleGroup) {
-						
+						this.interprete_edu_ustb_sei_mde_morel_RuleGroup((RuleGroup)rule, init);
 					}
 				}
 			}
@@ -1353,7 +1358,7 @@ public class OclInterpreter extends
 		Random random = new Random(Calendar.getInstance().getTimeInMillis());
 		Context init = context.newScope();
 		Environment env = context.getEnviroment();
-		int iteration = ruleGroup.getIteration();
+		int iteration = ruleGroup.getMaxIteration();
 		if(iteration==0) iteration=-1;
 		
 		
@@ -1373,18 +1378,28 @@ public class OclInterpreter extends
 			
 			env.getModelUniverse().resetChanged();
 			
-			if(ruleGroup.getOrder()==OrderType.RANDOM) {
+			if(ruleGroup.getIteration()==IterationType.SHUFFLE) {
 				//random order
+				Collections.shuffle(scope, random);
 			}
 			
 			if(ruleGroup.getOrder()==OrderType.PARALLEL) {
+				ForkJoinPool p = getPool();
+				List<Callable<List<Context>>> list = new ArrayList<Callable<List<Context>>>();
 				
+				for(Rule rule : scope) {
+					if(rule.isActive()==false) continue;
+					list.add(new RuleExecutionTask(this,rule,init,ruleGroup.getRepetition(),random));
+				}
+				p.invokeAll(list);
+				
+
 			} else {
 				for(Rule rule : scope) {
 					if(terminated) return true;
 					if(rule.isActive()==false) continue;
 					List<Context> matches = (List<Context>)this.doRule((Rule)rule, init,ruleGroup.getRepetition(),random);
-				}				
+				}
 			}
 			
 			if(iteration>0) iteration--;
@@ -1396,6 +1411,36 @@ public class OclInterpreter extends
 		return true;
 	}
 	
+	private ForkJoinPool pool = null;
 	
+	public ForkJoinPool getPool() {
+		if(pool==null)
+			pool = new ForkJoinPool();
+		return pool;
+	}
 	
+	final class RuleExecutionTask implements Callable<List<Context>> {
+		private OclInterpreter ocl;
+		private Rule rule;
+		private Context init;
+		private RepetitionType repetitionType;
+		private Random random;
+		
+		public RuleExecutionTask(OclInterpreter ocl, Rule rule, Context init,
+				RepetitionType repetitionType, Random random) {
+			super();
+			this.ocl = ocl;
+			this.rule = rule;
+			this.init = init;
+			this.repetitionType = repetitionType;
+			this.random = random;
+		}
+
+		@Override
+		public List<Context> call() {
+			List<Context> matches = (List<Context>)ocl.doRule((Rule)rule, init,repetitionType,random);
+			return matches;
+		}
+		
+	}
 }

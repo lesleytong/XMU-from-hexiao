@@ -148,6 +148,10 @@ public class MorelFactoryImpl extends EFactoryImpl implements MorelFactory {
 				return createScopeTypeFromString(eDataType, initialValue);
 			case MorelPackage.ORDER_TYPE:
 				return createOrderTypeFromString(eDataType, initialValue);
+			case MorelPackage.ITERATION_TYPE:
+				return createIterationTypeFromString(eDataType, initialValue);
+			case MorelPackage.REPETITION_TYPE:
+				return createRepetitionTypeFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -187,6 +191,10 @@ public class MorelFactoryImpl extends EFactoryImpl implements MorelFactory {
 				return convertScopeTypeToString(eDataType, instanceValue);
 			case MorelPackage.ORDER_TYPE:
 				return convertOrderTypeToString(eDataType, instanceValue);
+			case MorelPackage.ITERATION_TYPE:
+				return convertIterationTypeToString(eDataType, instanceValue);
+			case MorelPackage.REPETITION_TYPE:
+				return convertRepetitionTypeToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -969,6 +977,46 @@ public class MorelFactoryImpl extends EFactoryImpl implements MorelFactory {
 	 * @generated
 	 */
 	public String convertOrderTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IterationType createIterationTypeFromString(EDataType eDataType, String initialValue) {
+		IterationType result = IterationType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertIterationTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RepetitionType createRepetitionTypeFromString(EDataType eDataType, String initialValue) {
+		RepetitionType result = RepetitionType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertRepetitionTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

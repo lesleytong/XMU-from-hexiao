@@ -2,8 +2,10 @@
  */
 package edu.ustb.sei.mde.morel.impl;
 
+import edu.ustb.sei.mde.morel.IterationType;
 import edu.ustb.sei.mde.morel.MorelPackage;
 import edu.ustb.sei.mde.morel.OrderType;
+import edu.ustb.sei.mde.morel.RepetitionType;
 import edu.ustb.sei.mde.morel.Rule;
 import edu.ustb.sei.mde.morel.RuleGroup;
 import edu.ustb.sei.mde.morel.ScopeType;
@@ -29,6 +31,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link edu.ustb.sei.mde.morel.impl.RuleGroupImpl#getScopeSize <em>Scope Size</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.morel.impl.RuleGroupImpl#getOrder <em>Order</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.morel.impl.RuleGroupImpl#getIteration <em>Iteration</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.morel.impl.RuleGroupImpl#getMaxIteration <em>Max Iteration</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.morel.impl.RuleGroupImpl#getRepetition <em>Repetition</em>}</li>
  * </ul>
  * </p>
@@ -94,7 +97,7 @@ public class RuleGroupImpl extends RuleElementImpl implements RuleGroup {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final OrderType ORDER_EDEFAULT = OrderType.ARBITRARY;
+	protected static final OrderType ORDER_EDEFAULT = OrderType.DEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getOrder() <em>Order</em>}' attribute.
@@ -114,7 +117,7 @@ public class RuleGroupImpl extends RuleElementImpl implements RuleGroup {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int ITERATION_EDEFAULT = 0;
+	protected static final IterationType ITERATION_EDEFAULT = IterationType.DEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getIteration() <em>Iteration</em>}' attribute.
@@ -124,7 +127,27 @@ public class RuleGroupImpl extends RuleElementImpl implements RuleGroup {
 	 * @generated
 	 * @ordered
 	 */
-	protected int iteration = ITERATION_EDEFAULT;
+	protected IterationType iteration = ITERATION_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getMaxIteration() <em>Max Iteration</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMaxIteration()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int MAX_ITERATION_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getMaxIteration() <em>Max Iteration</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMaxIteration()
+	 * @generated
+	 * @ordered
+	 */
+	protected int maxIteration = MAX_ITERATION_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getRepetition() <em>Repetition</em>}' attribute.
@@ -134,7 +157,7 @@ public class RuleGroupImpl extends RuleElementImpl implements RuleGroup {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int REPETITION_EDEFAULT = 0;
+	protected static final RepetitionType REPETITION_EDEFAULT = RepetitionType.ALL_MATCHES;
 
 	/**
 	 * The cached value of the '{@link #getRepetition() <em>Repetition</em>}' attribute.
@@ -144,7 +167,7 @@ public class RuleGroupImpl extends RuleElementImpl implements RuleGroup {
 	 * @generated
 	 * @ordered
 	 */
-	protected int repetition = REPETITION_EDEFAULT;
+	protected RepetitionType repetition = REPETITION_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -245,7 +268,7 @@ public class RuleGroupImpl extends RuleElementImpl implements RuleGroup {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getIteration() {
+	public IterationType getIteration() {
 		return iteration;
 	}
 
@@ -254,9 +277,9 @@ public class RuleGroupImpl extends RuleElementImpl implements RuleGroup {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIteration(int newIteration) {
-		int oldIteration = iteration;
-		iteration = newIteration;
+	public void setIteration(IterationType newIteration) {
+		IterationType oldIteration = iteration;
+		iteration = newIteration == null ? ITERATION_EDEFAULT : newIteration;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MorelPackage.RULE_GROUP__ITERATION, oldIteration, iteration));
 	}
@@ -266,7 +289,28 @@ public class RuleGroupImpl extends RuleElementImpl implements RuleGroup {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getRepetition() {
+	public int getMaxIteration() {
+		return maxIteration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMaxIteration(int newMaxIteration) {
+		int oldMaxIteration = maxIteration;
+		maxIteration = newMaxIteration;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MorelPackage.RULE_GROUP__MAX_ITERATION, oldMaxIteration, maxIteration));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RepetitionType getRepetition() {
 		return repetition;
 	}
 
@@ -275,9 +319,9 @@ public class RuleGroupImpl extends RuleElementImpl implements RuleGroup {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRepetition(int newRepetition) {
-		int oldRepetition = repetition;
-		repetition = newRepetition;
+	public void setRepetition(RepetitionType newRepetition) {
+		RepetitionType oldRepetition = repetition;
+		repetition = newRepetition == null ? REPETITION_EDEFAULT : newRepetition;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MorelPackage.RULE_GROUP__REPETITION, oldRepetition, repetition));
 	}
@@ -314,6 +358,8 @@ public class RuleGroupImpl extends RuleElementImpl implements RuleGroup {
 				return getOrder();
 			case MorelPackage.RULE_GROUP__ITERATION:
 				return getIteration();
+			case MorelPackage.RULE_GROUP__MAX_ITERATION:
+				return getMaxIteration();
 			case MorelPackage.RULE_GROUP__REPETITION:
 				return getRepetition();
 		}
@@ -343,10 +389,13 @@ public class RuleGroupImpl extends RuleElementImpl implements RuleGroup {
 				setOrder((OrderType)newValue);
 				return;
 			case MorelPackage.RULE_GROUP__ITERATION:
-				setIteration((Integer)newValue);
+				setIteration((IterationType)newValue);
+				return;
+			case MorelPackage.RULE_GROUP__MAX_ITERATION:
+				setMaxIteration((Integer)newValue);
 				return;
 			case MorelPackage.RULE_GROUP__REPETITION:
-				setRepetition((Integer)newValue);
+				setRepetition((RepetitionType)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -375,6 +424,9 @@ public class RuleGroupImpl extends RuleElementImpl implements RuleGroup {
 			case MorelPackage.RULE_GROUP__ITERATION:
 				setIteration(ITERATION_EDEFAULT);
 				return;
+			case MorelPackage.RULE_GROUP__MAX_ITERATION:
+				setMaxIteration(MAX_ITERATION_EDEFAULT);
+				return;
 			case MorelPackage.RULE_GROUP__REPETITION:
 				setRepetition(REPETITION_EDEFAULT);
 				return;
@@ -400,6 +452,8 @@ public class RuleGroupImpl extends RuleElementImpl implements RuleGroup {
 				return order != ORDER_EDEFAULT;
 			case MorelPackage.RULE_GROUP__ITERATION:
 				return iteration != ITERATION_EDEFAULT;
+			case MorelPackage.RULE_GROUP__MAX_ITERATION:
+				return maxIteration != MAX_ITERATION_EDEFAULT;
 			case MorelPackage.RULE_GROUP__REPETITION:
 				return repetition != REPETITION_EDEFAULT;
 		}
@@ -424,6 +478,8 @@ public class RuleGroupImpl extends RuleElementImpl implements RuleGroup {
 		result.append(order);
 		result.append(", iteration: ");
 		result.append(iteration);
+		result.append(", maxIteration: ");
+		result.append(maxIteration);
 		result.append(", repetition: ");
 		result.append(repetition);
 		result.append(')');
