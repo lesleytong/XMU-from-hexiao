@@ -8,7 +8,6 @@ import java.util.Map;
 
 import javax.lang.model.type.PrimitiveType;
 
-import org.eclipse.core.runtime.internal.adaptor.EclipseStorageHook;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
@@ -182,7 +181,7 @@ public class TypeCheckingProcesser implements IMorelResourcePostProcessor,
 	}
 
 	/*
-	 * ¼ÆËãexpµÄÀàÐÍ£¬Èç¹û·µ»Ønull±íÊ¾ÀàÐÍ´íÎó£¬Èç¹û·µ»ØEObject£¬±íÊ¾ÎÞ·¨¼ÌÐøÅÐ¶Ï
+	 * ï¿½ï¿½ï¿½ï¿½expï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½nullï¿½ï¿½Ê¾ï¿½ï¿½ï¿½Í´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½EObjectï¿½ï¿½ï¿½ï¿½Ê¾ï¿½Þ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½
 	 */
 	public EClassifier calculateExpType(Expression exp) {
 	
@@ -208,7 +207,7 @@ public class TypeCheckingProcesser implements IMorelResourcePostProcessor,
 			if(children.size()==1)
 			return calculateExpType(children.get(0)); 
 			else{
-				//ÅÐ¶ÏÀàÐÍ´óµÄ·µ»Ø
+				//ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½Í´ï¿½Ä·ï¿½ï¿½ï¿½
 			}
 		}else if(exp instanceof LiteralExp){
 			if(exp instanceof StringLiteralExp)
@@ -262,8 +261,8 @@ public class TypeCheckingProcesser implements IMorelResourcePostProcessor,
 	}
 
 	/*
-	 * ¼ÆËãcallPathExpÀàÐÍÊÇ·ñÕýÈ·£¬Èç¹û·µ»Ønull£¬±íÊ¾´íÎó£¬Èç¹û·µ»ØEObject£¬±íÊ¾ÎÞ·¨¼ÌÐø¼ÆËã
-	 * cls²»Ó¦ÎªnullÇÒclsÓ¦¸ÃÊÇEClass path¿ÉÄÜÎª¿Õ
+	 * ï¿½ï¿½ï¿½ï¿½callPathExpï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½È·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½nullï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½EObjectï¿½ï¿½ï¿½ï¿½Ê¾ï¿½Þ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	 * clsï¿½ï¿½Ó¦Îªnullï¿½ï¿½clsÓ¦ï¿½ï¿½ï¿½ï¿½EClass pathï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½
 	 */
 	public EClassifier checkType(EClassifier cls, CallPathExp path) {
 		if (cls instanceof EDataType)
@@ -281,7 +280,7 @@ public class TypeCheckingProcesser implements IMorelResourcePostProcessor,
 				return checkType(eStructuralFeature.getEType(), path.getNext());
 
 		} else if (path instanceof OperationPathExp) {
-			return EcorePackage.eINSTANCE.getEObject();// ´Ë´¦Îª³É¹¦·µ»Ønull;
+			return EcorePackage.eINSTANCE.getEObject();// ï¿½Ë´ï¿½Îªï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½null;
 		} else
 			return null;
 	}

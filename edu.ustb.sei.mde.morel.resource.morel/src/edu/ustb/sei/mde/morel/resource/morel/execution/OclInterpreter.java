@@ -387,7 +387,7 @@ public class OclInterpreter extends
 
 
 
-	private boolean checkNAC(Context c, List<Pattern> nac, Match match) {
+	protected boolean checkNAC(Context c, List<Pattern> nac, Match match) {
 		for(Pattern np : nac) {
 			Context nc = c.newScope();
 			nc.setHost(np);
@@ -400,7 +400,7 @@ public class OclInterpreter extends
 		return true;
 	}
 
-	private boolean recheckMatch(List<Pattern> patterns, Context context) {
+	protected boolean recheckMatch(List<Pattern> patterns, Context context) {
 		Environment env = context.getEnviroment();
 		ModelUniverse universe = env.getModelUniverse();
 		

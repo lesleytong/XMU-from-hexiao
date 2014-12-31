@@ -17,7 +17,7 @@ public class TranslateBXRules {
 	
 	static public void translate(BXRewritingRule bxrule, TransformationModel forward, TransformationModel backward) {
 		// forward
-		// 对于正向转换，从source出发，创建view，when和update子句中的等号表达式会被转换成赋值表达式，unmatchv和unmatchs中的内容将被忽略
+		// 锟斤拷锟斤拷锟斤拷锟斤拷转锟斤拷锟斤拷锟斤拷source锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷view锟斤拷when锟斤拷update锟接撅拷锟叫的等号憋拷锟绞斤拷岜蛔拷锟斤拷筛锟街碉拷锟斤拷式锟斤拷unmatchv锟斤拷unmatchs锟叫碉拷锟斤拷锟捷斤拷锟斤拷锟斤拷锟斤拷
 		
 		Rule fRule = MorelFactory.eINSTANCE.createRule();
 		fRule.setName(bxrule.getName()+"_forward");
