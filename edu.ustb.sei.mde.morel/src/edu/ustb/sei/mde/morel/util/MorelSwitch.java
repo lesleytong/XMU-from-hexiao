@@ -806,6 +806,43 @@ public class MorelSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MorelPackage.PRIMITIVE_CONSTRAINT: {
+				PrimitiveConstraint primitiveConstraint = (PrimitiveConstraint)theEObject;
+				T result = casePrimitiveConstraint(primitiveConstraint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MorelPackage.MULTI_VALUE_CONSTRAINT: {
+				MultiValueConstraint multiValueConstraint = (MultiValueConstraint)theEObject;
+				T result = caseMultiValueConstraint(multiValueConstraint);
+				if (result == null) result = casePrimitiveConstraint(multiValueConstraint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MorelPackage.VALUE_RANGE_CONSTRAINT: {
+				ValueRangeConstraint valueRangeConstraint = (ValueRangeConstraint)theEObject;
+				T result = caseValueRangeConstraint(valueRangeConstraint);
+				if (result == null) result = casePrimitiveConstraint(valueRangeConstraint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MorelPackage.BX_REWRITING_RULE: {
+				BXRewritingRule bxRewritingRule = (BXRewritingRule)theEObject;
+				T result = caseBXRewritingRule(bxRewritingRule);
+				if (result == null) result = caseRuleElement(bxRewritingRule);
+				if (result == null) result = caseNamedElement(bxRewritingRule);
+				if (result == null) result = caseExecutable(bxRewritingRule);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MorelPackage.BX_REWRITING_MODEL: {
+				BXRewritingModel bxRewritingModel = (BXRewritingModel)theEObject;
+				T result = caseBXRewritingModel(bxRewritingModel);
+				if (result == null) result = caseUnit(bxRewritingModel);
+				if (result == null) result = caseNamedElement(bxRewritingModel);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -1962,6 +1999,81 @@ public class MorelSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseAllDifferentConstraint(AllDifferentConstraint object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Primitive Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Primitive Constraint</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePrimitiveConstraint(PrimitiveConstraint object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Multi Value Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Multi Value Constraint</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMultiValueConstraint(MultiValueConstraint object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Value Range Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Value Range Constraint</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseValueRangeConstraint(ValueRangeConstraint object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>BX Rewriting Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>BX Rewriting Rule</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBXRewritingRule(BXRewritingRule object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>BX Rewriting Model</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>BX Rewriting Model</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBXRewritingModel(BXRewritingModel object) {
 		return null;
 	}
 

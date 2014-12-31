@@ -109,6 +109,10 @@ public class MorelFactoryImpl extends EFactoryImpl implements MorelFactory {
 			case MorelPackage.ARRAY_LITERAL_EXP: return createArrayLiteralExp();
 			case MorelPackage.ORDER_CONSTRAINT: return createOrderConstraint();
 			case MorelPackage.ALL_DIFFERENT_CONSTRAINT: return createAllDifferentConstraint();
+			case MorelPackage.MULTI_VALUE_CONSTRAINT: return createMultiValueConstraint();
+			case MorelPackage.VALUE_RANGE_CONSTRAINT: return createValueRangeConstraint();
+			case MorelPackage.BX_REWRITING_RULE: return createBXRewritingRule();
+			case MorelPackage.BX_REWRITING_MODEL: return createBXRewritingModel();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -718,6 +722,46 @@ public class MorelFactoryImpl extends EFactoryImpl implements MorelFactory {
 	public AllDifferentConstraint createAllDifferentConstraint() {
 		AllDifferentConstraintImpl allDifferentConstraint = new AllDifferentConstraintImpl();
 		return allDifferentConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MultiValueConstraint createMultiValueConstraint() {
+		MultiValueConstraintImpl multiValueConstraint = new MultiValueConstraintImpl();
+		return multiValueConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ValueRangeConstraint createValueRangeConstraint() {
+		ValueRangeConstraintImpl valueRangeConstraint = new ValueRangeConstraintImpl();
+		return valueRangeConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public BXRewritingRule createBXRewritingRule() {
+		BXRewritingRuleImpl bxRewritingRule = new BXRewritingRuleImpl();
+		return bxRewritingRule;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public BXRewritingModel createBXRewritingModel() {
+		BXRewritingModelImpl bxRewritingModel = new BXRewritingModelImpl();
+		return bxRewritingModel;
 	}
 
 	/**

@@ -11,11 +11,13 @@ import java.util.List;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EObject;
 
-
+import edu.ustb.sei.mde.morel.BXRewritingRule;
+import edu.ustb.sei.mde.morel.Clause;
 import edu.ustb.sei.mde.morel.ForStatement;
 import edu.ustb.sei.mde.morel.IteratorPathExp;
 import edu.ustb.sei.mde.morel.LetExp;
 import edu.ustb.sei.mde.morel.Pattern;
+import edu.ustb.sei.mde.morel.Unit;
 import edu.ustb.sei.mde.morel.Variable;
 import edu.ustb.sei.mde.morel.VariableExp;
 import edu.ustb.sei.mde.morel.VariableWithInit;
@@ -60,6 +62,16 @@ public class VariableExpReferredVariableReferenceResolver implements edu.ustb.se
 		if(current instanceof Pattern) {
 			vars.addAll(((Pattern) current).getVariables());
 		} 
+		
+		if(current instanceof Clause) {
+			EObject u = current.eContainer();
+			if(u instanceof BXRewritingRule) {
+				BXRewritingRule bxr = (BXRewritingRule)u;
+				
+				collectVariables(bxr.getSource(), vars);
+				collectVariables(bxr.getView(), vars);
+			}
+		}
 		
 		if(current instanceof ForStatement) {
 			vars.add(((ForStatement)current).getIterator());

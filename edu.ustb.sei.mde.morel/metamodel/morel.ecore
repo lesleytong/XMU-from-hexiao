@@ -17,7 +17,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="additionalConstraints"
         upperBound="-1" eType="#//AdditionalConstraint" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Clause" eSuperTypes="#//Section"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Clause" eSuperTypes="#//Section">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="statements" lowerBound="1"
+        upperBound="-1" eType="#//Statement" containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Variable" abstract="true" eSuperTypes="#//NamedElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="ObjectVariable" eSuperTypes="#//Variable">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
@@ -409,4 +412,38 @@
         upperBound="-1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AllDifferentConstraint" eSuperTypes="#//AdditionalConstraint"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PrimitiveConstraint" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" lowerBound="1"
+        eType="#//PrimitiveVariable"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MultiValueConstraint" eSuperTypes="#//PrimitiveConstraint">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="object" lowerBound="1"
+        eType="#//ObjectVariable"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" lowerBound="1"
+        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EAttribute"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ValueRangeConstraint" eSuperTypes="#//PrimitiveConstraint">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" lowerBound="1"
+        eType="#//Expression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BXRewritingRule" eSuperTypes="#//RuleElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nac" upperBound="-1" eType="#//Pattern"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//Pattern"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="view" eType="#//Pattern"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="when" eType="#//Clause"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="update" eType="#//Clause"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="unmatchSrc" eType="#//Pattern"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="unmatchView" eType="#//Pattern"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BXRewritingModel" eSuperTypes="#//Unit #//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rules" upperBound="-1"
+        eType="#//BXRewritingRule" containment="true"/>
+  </eClassifiers>
 </ecore:EPackage>

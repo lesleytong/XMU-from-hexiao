@@ -9,7 +9,7 @@ rule Process_rule
 {
   -- ...
   lhs {
-  match
+  
   	inode : uml!InitialNode, 
   	c1:uml!ControlFlow,
   	c2:uml!ControlFlow,
@@ -20,18 +20,18 @@ rule Process_rule
   	act : uml!Activity,
   	ubb : bridge!ActivityGroupBridge
   	
-  	c1.source = inode,
+  	c1._source = inode,
   	c1.target=a,
   	a.bpel=b,
   	c2.target=fnode,
-  	c2.source=a,
+  	c2._source=a,
   	ubb.uml=act,
   	ubb.bpel=p,
   	act.nodes=inode,
   	act.nodes=fnode
   }
   rhs {
-  match
+  
   	b : bpel!BPELActivity,
   	p : bpel!BPELProcess,
   	act : uml!Activity,
@@ -45,11 +45,11 @@ rule Process_rule
 
 rule Activity_rule {
 	lhs {
-	match
+	
 	ag : uml!Activity
 	}
 	rhs {
-	match
+	
 	ag:uml!Activity,
 	ubb:bridge!ActivityGroupBridge,
 	p:bpel!VxBPELProcess
@@ -59,7 +59,7 @@ rule Activity_rule {
 	}
 	
 	nac {
-	match
+	
 	ag : uml!Activity,
 	eubb:bridge!ActivityGroupBridge
 	
@@ -72,7 +72,7 @@ rule Sequence_rule
 {
   -- ...
   lhs {
-  match
+  
   ci : uml ! ControlFlow,
   a1 : bridge ! ActionBridge,
   a2 : bridge ! ActionBridge,
@@ -82,15 +82,15 @@ rule Sequence_rule
   b2 : bpel ! BPELActivity
   
   ci.target=a1, 
-  c.source=a1, 
+  c._source=a1, 
   c.target=a2, 
-  co.source=a2, 
+  co._source=a2, 
   a1.bpel=b1,
   a2.bpel=b2
   }
 
   rhs {
-  match
+  
   ci : uml ! ControlFlow,
   co : uml ! ControlFlow,
   b1 : bpel ! BPELActivity,
@@ -102,20 +102,20 @@ rule Sequence_rule
   bs.activities=b2, 
   ubb.bpel=bs, 
   ci.target=ubb, 
-  co.source=ubb
+  co._source=ubb
   
   }
 }
 
 rule EmptyAction_rule {
 	lhs{
-		match
+		
 		ci : uml ! ControlFlow,
   		a : uml! EmptyAction,
   		co : uml! ControlFlow,
   		an : String
   	
-    	ci.target=a, co.source=a
+    	ci.target=a, co._source=a
     
 	    where
 	    a.name<>'assign';
@@ -123,17 +123,85 @@ rule EmptyAction_rule {
 	}
 	
 	rhs {
-	  match
+	  
 	    ci : uml ! ControlFlow,
 	  	co : uml! ControlFlow,
 	  	ubb : bridge ! ActionBridge,
 	  	b : bpel ! BPELEmpty,
 	  	an : String
 	
-	    ci.target=ubb, co.source=ubb, ubb.bpel=b
+	    ci.target=ubb, co._source=ubb, ubb.bpel=b
 	    
 	    where
 	    b.name<-an;
+  }
+}
+
+rule AcceptAction_rule {
+  lhs {
+  
+    ci : uml ! ControlFlow,
+  	a : uml! AcceptAction,
+  	co : uml! ControlFlow,
+  	ofo : uml ! ObjectFlow,
+  	ons : uml ! ObjectNode,
+  	an : String
+  	
+    ci.target=a, co._source=a,ofo._source=a,ofo.target=ons
+    
+    where
+    an <- a.name;
+    --not a.oclIsTypeOf(@(ActionBridge)) and not a.oclIsTypeOf(@(VxAction));
+
+  }
+  rhs {
+  
+    ci : uml ! ControlFlow,
+  	co : uml! ControlFlow,
+  	ubb : bridge ! ActionBridge,
+  	ons : uml ! ObjectNode,
+  	b : bpel ! BPELReceive,
+  	an : String
+
+    ci.target=ubb, co._source=ubb, ubb.bpel=b
+    
+    where
+    b.name<-an;
+    b.variable <- ons.name;
+  }
+}
+
+rule SendAction_rule {
+  lhs {
+  
+    ci : uml ! ControlFlow,
+  	a : uml! SendAction,
+  	co : uml! ControlFlow,
+  	ofi : uml ! ObjectFlow,
+  	oni : uml ! ObjectNode,
+  	an : String
+  	
+    ci.target=a, co._source=a,ofi.target=a,ofi._source=oni
+    
+    where
+    an <- a.name;
+    --not a.oclIsTypeOf(@(ActionBridge)) and not a.oclIsTypeOf(@(VxAction));
+
+  }
+  rhs {
+  
+    ci : uml ! ControlFlow,
+  	co : uml! ControlFlow,
+  	ubb : bridge ! ActionBridge,
+  	oni : uml ! ObjectNode,
+  	b : bpel ! BPELReply,
+  	an : String
+
+    ci.target=ubb, co._source=ubb, ubb.bpel=b
+    
+    where
+    b.name<-an;
+    b.variable <- oni.name;
   }
 }
 
@@ -141,44 +209,43 @@ rule EmptyAction_rule {
 
 rule CallAction_rule_without_input_without_output {
   nac {
-    match
+    
    ofi : uml ! ObjectFlow,
    a : uml! CallAction
    
     ofi.target=a
   }
   nac {
-    match
+    
    ofo : uml ! ObjectFlow,
    a : uml! CallAction
    
-    ofo.source=a
+    ofo._source=a
 
   }
   lhs {
-  match
+  
     ci : uml ! ControlFlow,
   	a : uml! CallAction,
   	co : uml! ControlFlow,
   	an : String
   	
-    ci.target=a, co.source=a
+    ci.target=a, co._source=a
     
     where
-    a.name<>'assign';
     an <- a.name;
     --not a.oclIsTypeOf(@(ActionBridge)) and not a.oclIsTypeOf(@(VxAction));
 
   }
   rhs {
-  match
+  
     ci : uml ! ControlFlow,
   	co : uml! ControlFlow,
   	ubb : bridge ! ActionBridge,
   	b : bpel ! BPELInvoke,
   	an : String
 
-    ci.target=ubb, co.source=ubb, ubb.bpel=b
+    ci.target=ubb, co._source=ubb, ubb.bpel=b
     
     where
     b.name<-an;
@@ -187,15 +254,15 @@ rule CallAction_rule_without_input_without_output {
 
 rule CallAction_rule_with_input_without_output {
   nac {
-    match
+    
    ofo : uml ! ObjectFlow,
    a : uml! CallAction
    
-    ofo.source=a
+    ofo._source=a
 
   }
   lhs {
-  match
+  
     ci : uml ! ControlFlow,
   	a : uml! CallAction,
   	co : uml! ControlFlow,
@@ -203,16 +270,15 @@ rule CallAction_rule_with_input_without_output {
   	oni : uml ! ObjectNode,
   	an : String
   	
-    ci.target=a, co.source=a,ofi.target=a,ofi.source=oni
+    ci.target=a, co._source=a,ofi.target=a,ofi._source=oni
     
     where
-    a.name<>'assign';
     an <- a.name;
     --not a.oclIsTypeOf(@(ActionBridge)) and not a.oclIsTypeOf(@(VxAction));
 
   }
   rhs {
-  match
+  
     ci : uml ! ControlFlow,
   	co : uml! ControlFlow,
   	ubb : bridge ! ActionBridge,
@@ -220,7 +286,7 @@ rule CallAction_rule_with_input_without_output {
   	b : bpel ! BPELInvoke,
   	an : String
 
-    ci.target=ubb, co.source=ubb, ubb.bpel=b
+    ci.target=ubb, co._source=ubb, ubb.bpel=b
     
     where
     b.name<-an;
@@ -230,7 +296,7 @@ rule CallAction_rule_with_input_without_output {
 
 rule CallAction_rule_without_input_with_output {
   nac {
-    match
+    
    ofi : uml ! ObjectFlow,
    a : uml! CallAction
    
@@ -238,7 +304,7 @@ rule CallAction_rule_without_input_with_output {
 
   }
   lhs {
-  match
+  
     ci : uml ! ControlFlow,
   	a : uml! CallAction,
   	co : uml! ControlFlow,
@@ -246,16 +312,15 @@ rule CallAction_rule_without_input_with_output {
   	ons : uml ! ObjectNode,
   	an : String
   	
-    ci.target=a, co.source=a,ofo.source=a,ofo.target=ons
+    ci.target=a, co._source=a,ofo._source=a,ofo.target=ons
     
     where
-    a.name<>'assign';
     an <- a.name;
     --not a.oclIsTypeOf(@(ActionBridge)) and not a.oclIsTypeOf(@(VxAction));
 
   }
   rhs {
-  match
+  
     ci : uml ! ControlFlow,
   	co : uml! ControlFlow,
   	ubb : bridge ! ActionBridge,
@@ -263,7 +328,7 @@ rule CallAction_rule_without_input_with_output {
   	b : bpel ! BPELInvoke,
   	an : String
 
-    ci.target=ubb, co.source=ubb, ubb.bpel=b
+    ci.target=ubb, co._source=ubb, ubb.bpel=b
     
     where
     b.name<-an;
@@ -273,7 +338,7 @@ rule CallAction_rule_without_input_with_output {
 
 rule CallAction_rule_with_input_with_output {
   lhs {
-  match
+  
     ci : uml ! ControlFlow,
   	a : uml! CallAction,
   	co : uml! ControlFlow,
@@ -283,16 +348,15 @@ rule CallAction_rule_with_input_with_output {
   	ons : uml ! ObjectNode,
   	an : String
   	
-    ci.target=a, co.source=a,ofo.source=a,ofo.target=ons,ofi.target=a,ofi.source=oni
+    ci.target=a, co._source=a,ofo._source=a,ofo.target=ons,ofi.target=a,ofi._source=oni
     
     where
-    a.name<>'assign';
     an <- a.name;
     --not a.oclIsTypeOf(@(ActionBridge)) and not a.oclIsTypeOf(@(VxAction));
 
   }
   rhs {
-  match
+  
     ci : uml ! ControlFlow,
   	co : uml! ControlFlow,
   	ubb : bridge ! ActionBridge,
@@ -301,7 +365,7 @@ rule CallAction_rule_with_input_with_output {
   	b : bpel ! BPELInvoke,
   	an : String
 
-    ci.target=ubb, co.source=ubb, ubb.bpel=b
+    ci.target=ubb, co._source=ubb, ubb.bpel=b
     
     where
     b.name<-an;
@@ -317,7 +381,7 @@ rule CallAction_rule_with_input_with_output {
 rule Choice_first
 {
   nac {
-  match
+  
   mn : uml ! MergeNode,
   dn : uml ! DecisionNode,
   ubbn : bridge ! StructureBridge
@@ -327,7 +391,7 @@ rule Choice_first
   }
   
   lhs {
-  match
+  
   ci : uml ! ControlFlow,
   dn : uml ! DecisionNode,
   c1 : uml ! ControlFlow,
@@ -343,17 +407,17 @@ rule Choice_first
   cn : String
   
   ci.target=dn, 
-  c1.source=dn, 
+  c1._source=dn, 
   c1.target=a1, 
-  c2.source=dn, 
+  c2._source=dn, 
   c2.target=a2, 
   a2.bpel=b2, 
   a1.bpel=b1, 
-  c3.source=a1, 
+  c3._source=a1, 
   c3.target=mn, 
-  c4.source=a2, 
+  c4._source=a2, 
   c4.target=mn, 
-  co.source=mn
+  co._source=mn
   
   allDiff (c1,c2,c3,c4),
   allDiff (a1,a2)
@@ -364,7 +428,7 @@ rule Choice_first
   }
   
   rhs {
-  match
+  
   ci : uml ! ControlFlow,
   b1 : bpel ! BPELActivity,
   b2 : bpel ! BPELActivity,
@@ -377,7 +441,7 @@ rule Choice_first
   cn : String
 
   ci.target=dn,
-  co.source=mn,
+  co._source=mn,
   bif.thenActivity=b1, 
   bif.elseActivity=b2, 
   ubb.bpel=bif,
@@ -392,7 +456,7 @@ rule Choice_first
 rule Choice_second
 {
   lhs {
-  match
+  
   a : bridge ! ActionBridge,
   b : bpel ! BPELActivity,
   c1:uml ! ControlFlow,
@@ -407,9 +471,9 @@ rule Choice_second
   ubb.umlStart = dn,
   ubb.umlEnd = mn, 
   a.bpel = b,
-  c1.source = dn,
+  c1._source = dn,
   c1.target = a,
-  c2.source = a,
+  c2._source = a,
   c2.target=mn
   
   where
@@ -417,7 +481,7 @@ rule Choice_second
   }
   
   rhs {
-  match
+  
   b : bpel ! BPELActivity,
   dn : uml ! DecisionNode,
   mn : uml ! MergeNode,
@@ -442,15 +506,15 @@ rule Choice_second
 rule Choice_third
 {
   nac {
-  match
+  
   dn : uml ! DecisionNode,
   cf : uml ! ControlFlow
   
-  cf.source = dn
+  cf._source = dn
   }
   
   nac {
-  match
+  
   mn : uml ! MergeNode,
   cf : uml ! ControlFlow
   
@@ -458,7 +522,7 @@ rule Choice_third
   }
   
   lhs {
-  match
+  
   ci : uml ! ControlFlow,
   co : uml ! ControlFlow,
   mn : uml ! MergeNode,
@@ -468,17 +532,17 @@ rule Choice_third
   ci.target = dn,
   ubb.umlStart = dn,
   ubb.umlEnd = mn,
-  co.source = mn
+  co._source = mn
   }
   
   rhs {
-  match
+  
   ci : uml ! ControlFlow,
   co : uml ! ControlFlow,
   ubb : bridge ! StructureBridge
 
   ci.target = ubb,
-  co.source = ubb
+  co._source = ubb
   }
 }
 
@@ -486,7 +550,7 @@ rule Choice_third
 rule For_rule
 { 
   lhs {
-  match
+  
   ci : uml ! ControlFlow,
   mn : uml ! MergeNode,
   c1 : uml ! ControlFlow,
@@ -499,13 +563,13 @@ rule For_rule
   cn : String
     
   ci.target=mn, 
-  c1.source=mn, 
+  c1._source=mn, 
   c1.target=dn, 
-  c2.source=dn, 
+  c2._source=dn, 
   c2.target=a, 
-  c3.source=a, 
+  c3._source=a, 
   c3.target=mn, 
-  co.source=dn, 
+  co._source=dn, 
   a.bpel=b
   
   allDiff(ci,co,c1,c2,c3)
@@ -515,7 +579,7 @@ rule For_rule
   }
   
   rhs {
-  match
+  
   ci : uml ! ControlFlow,
   co : uml ! ControlFlow,
   b : bpel ! BPELActivity,
@@ -527,7 +591,7 @@ rule For_rule
   bf.bodyActivity=b, 
   ubb.bpel=bf,
   ci.target=ubb, 
-  co.source=ubb,
+  co._source=ubb,
   bf.condition = bc
   
   where
@@ -541,7 +605,7 @@ rule Parallel_rule
 {
 -- this is just a proof-of-concept realization, we need split this rule into more subrules to support multi-branches
   nac {
-  match
+  
   ci : uml ! ControlFlow,
   a1 : bridge ! ActionBridge,
   c1 : uml ! ControlFlow,
@@ -560,24 +624,24 @@ rule Parallel_rule
   a2.bpel=b2, 
   a1.bpel=b1, 
   ci.target=fn, 
-  c1.source=fn, 
+  c1._source=fn, 
   c1.target=a1, 
-  c2.source=fn, 
+  c2._source=fn, 
   c2.target=a2, 
-  c3.source=a1, 
+  c3._source=a1, 
   c3.target=jn, 
   c4.target=jn, 
-  c4.source=a2, 
-  co.source=jn, 
+  c4._source=a2, 
+  co._source=jn, 
   ubbn.bpel=bn, 
   ci.target=ubbn, 
-  co.source=ubbn, 
+  co._source=ubbn, 
   bn.bodyActivities=b1, 
   bn.bodyActivities=b2
   }
   
   lhs {
-  match
+  
   ci : uml ! ControlFlow,
   a1 : bridge ! ActionBridge,
   c1 : uml ! ControlFlow,
@@ -594,21 +658,21 @@ rule Parallel_rule
   a2.bpel=b2, 
   a1.bpel=b1, 
   ci.target=fn, 
-  c1.source=fn, 
+  c1._source=fn, 
   c1.target=a1, 
-  c2.source=fn, 
+  c2._source=fn, 
   c2.target=a2, 
-  c3.source=a1, 
+  c3._source=a1, 
   c3.target=jn, 
   c4.target=jn, 
-  c4.source=a2, 
-  co.source=jn
+  c4._source=a2, 
+  co._source=jn
   
   allDiff(c1,c2,c3,c4)
   }
   
   rhs {
-  match
+  
   ci : uml ! ControlFlow,
   b1 : bpel ! BPELActivity,
   b2 : bpel ! BPELActivity,
@@ -618,7 +682,7 @@ rule Parallel_rule
   
   ubb.bpel=b, 
   ci.target=ubb, 
-  co.source=ubb, 
+  co._source=ubb, 
   b.bodyActivities=b1, 
   b.bodyActivities=b2
   }
@@ -629,7 +693,7 @@ rule Parallel_rule
 rule Parallel_first
 {
   nac {
-  match
+  
   mn : uml ! JoinNode,
   dn : uml ! ForkNode,
   ubbn : bridge ! StructureBridge
@@ -639,7 +703,7 @@ rule Parallel_first
   }
   
   lhs {
-  match
+  
   ci : uml ! ControlFlow,
   dn : uml ! ForkNode,
   c1 : uml ! ControlFlow,
@@ -655,17 +719,17 @@ rule Parallel_first
   cn : String
   
   ci.target=dn, 
-  c1.source=dn, 
+  c1._source=dn, 
   c1.target=a1, 
-  c2.source=dn, 
+  c2._source=dn, 
   c2.target=a2, 
   a2.bpel=b2, 
   a1.bpel=b1, 
-  c3.source=a1, 
+  c3._source=a1, 
   c3.target=mn, 
-  c4.source=a2, 
+  c4._source=a2, 
   c4.target=mn, 
-  co.source=mn
+  co._source=mn
   
   allDiff (c1,c2,c3,c4),
   allDiff (a1,a2)
@@ -675,7 +739,7 @@ rule Parallel_first
   }
   
   rhs {
-  match
+  
   ci : uml ! ControlFlow,
   b1 : bpel ! BPELActivity,
   b2 : bpel ! BPELActivity,
@@ -686,7 +750,7 @@ rule Parallel_first
   bf : bpel ! BPELFlow
 
   ci.target=dn,
-  co.source=mn,
+  co._source=mn,
   bf.bodyActivities=b1, 
   bf.bodyActivities=b2, 
   ubb.bpel=bf,
@@ -698,7 +762,7 @@ rule Parallel_first
 rule Parallel_second
 {
   lhs {
-  match
+  
   a : bridge ! ActionBridge,
   b : bpel ! BPELActivity,
   c1:uml ! ControlFlow,
@@ -712,14 +776,14 @@ rule Parallel_second
   ubb.umlStart = dn,
   ubb.umlEnd = mn, 
   a.bpel = b,
-  c1.source = dn,
+  c1._source = dn,
   c1.target = a,
-  c2.source = a,
+  c2._source = a,
   c2.target=mn
   }
   
   rhs {
-  match
+  
   b : bpel ! BPELActivity,
   dn : uml ! ForkNode,
   mn : uml ! JoinNode,
@@ -737,15 +801,15 @@ rule Parallel_second
 rule Parallel_third
 {
   nac {
-  match
+  
   dn : uml ! ForkNode,
   cf : uml ! ControlFlow
   
-  cf.source = dn
+  cf._source = dn
   }
   
   nac {
-  match
+  
   mn : uml ! JoinNode,
   cf : uml ! ControlFlow
   
@@ -753,7 +817,7 @@ rule Parallel_third
   }
   
   lhs {
-  match
+  
   ci : uml ! ControlFlow,
   co : uml ! ControlFlow,
   mn : uml ! JoinNode,
@@ -763,17 +827,17 @@ rule Parallel_third
   ci.target = dn,
   ubb.umlStart = dn,
   ubb.umlEnd = mn,
-  co.source = mn
+  co._source = mn
   }
   
   rhs {
-  match
+  
   ci : uml ! ControlFlow,
   co : uml ! ControlFlow,
   ubb : bridge ! StructureBridge
 
   ci.target = ubb,
-  co.source = ubb
+  co._source = ubb
   }
 }
 
@@ -782,7 +846,7 @@ rule Variation_Point_first
 {
   -- register variation point
   nac {
-  match
+  
   vp : uml ! VariationPoint,
   a : uml ! Activity,
   p : bpel ! VxBPELProcess,
@@ -801,7 +865,7 @@ rule Variation_Point_first
   }
   
   nac {
-  match
+  
   vp : uml ! VariationPoint,
   va : uml ! VxAction
   
@@ -809,7 +873,7 @@ rule Variation_Point_first
   }
   
   lhs {
-  match
+  
   vp : uml ! VariationPoint,
   a : uml ! Activity,
   p : bpel ! VxBPELProcess,
@@ -820,7 +884,7 @@ rule Variation_Point_first
   }
   
   rhs {
-  match
+  
   vp : uml ! VariationPoint,
   a : uml ! Activity,
   p : bpel ! VxBPELProcess,
@@ -839,7 +903,7 @@ rule Variation_Point_second
 {
   -- register variant
   nac {
-  match
+  
   vp : uml ! VariationPoint,
   u1 : bridge ! VariationPointBridge,
   cvp : bpel ! VxBPELConfigurableVariationPoint,
@@ -858,7 +922,7 @@ rule Variation_Point_second
   cvn.name=v.name;
   }
   lhs {
-  match
+  
   vp : uml ! VariationPoint,
   u1 : bridge ! VariationPointBridge,
   cvp : bpel ! VxBPELConfigurableVariationPoint,
@@ -870,7 +934,7 @@ rule Variation_Point_second
   }
   
   rhs {
-  match
+  
   vp : uml ! VariationPoint,
   u1 : bridge ! VariationPointBridge,
   cvp : bpel ! VxBPELConfigurableVariationPoint,
@@ -895,7 +959,7 @@ rule Variation_Point_third
   -- set up constraints
   nac {
     -- compact nacs
-  match
+  
   vp1 : uml ! VariationPoint,
   vp2 : uml ! VariationPoint,
   v1 : uml ! Variation,
@@ -910,7 +974,7 @@ rule Variation_Point_third
   
   vp1.variations=v1, 
   vp2.variations=v2, 
-  cs.source=v1, 
+  cs._source=v1, 
   cs.target=v2, 
   br1.uml=vp1, 
   br1.bpel=cvp, 
@@ -928,7 +992,7 @@ rule Variation_Point_third
   }
   
   lhs {
-  match
+  
   vp1 : uml ! VariationPoint,
   vp2 : uml ! VariationPoint,
   v1 : uml ! Variation,
@@ -939,7 +1003,7 @@ rule Variation_Point_third
   br2 : bridge ! VariationBridge,
   cv : bpel ! VxBPELConfigurableVariant
   
-  vp1.variations=v1, vp2.variations=v2, cs.source=v1, cs.target=v2, br1.uml=vp1, br1.bpel=cvp, br2.uml=v1, br2.bpel=cv, cvp.variants=cv
+  vp1.variations=v1, vp2.variations=v2, cs._source=v1, cs.target=v2, br1.uml=vp1, br1.bpel=cvp, br2.uml=v1, br2.bpel=cv, cvp.variants=cv
   
   allDiff(v1,v2)
   
@@ -948,7 +1012,7 @@ rule Variation_Point_third
   }
   
   rhs {
-  match
+  
   vp1 : uml ! VariationPoint,
   vp2 : uml ! VariationPoint,
   v1 : uml ! Variation,
@@ -961,7 +1025,7 @@ rule Variation_Point_third
   ch : bpel ! VxBPELVariationPointPChoice,
   ubb : bridge ! ConstraintBridge
   
-  vp1.variations=v1, vp2.variations=v2, cs.source=v1, cs.target=v2, br1.uml=vp1, br1.bpel=cvp, br2.uml=v1, br2.bpel=cv, cvp.variants=cv, cv.requiredVariants=ch, ubb.uml=cs, ubb.bpel=ch
+  vp1.variations=v1, vp2.variations=v2, cs._source=v1, cs.target=v2, br1.uml=vp1, br1.bpel=cvp, br2.uml=v1, br2.bpel=cv, cvp.variants=cv, cv.requiredVariants=ch, ubb.uml=cs, ubb.bpel=ch
   
   where
   --cs.type=ConstraintType::require;
@@ -975,7 +1039,7 @@ rule VxAction_first
 -- register variation point
   nac {
     -- compact nacs
-    match
+    
     va : uml ! VxAction, 
     bn : bridge ! VxActionBridge, 
     vbn : bpel ! VxBPELVariationPoint
@@ -983,11 +1047,11 @@ rule VxAction_first
     bn.uml=va, bn.bpel=vbn
   }
   lhs {
-  match
+  
     va : uml ! VxAction
   }
   rhs {
-  match
+  
     va : uml ! VxAction, 
     b : bridge ! VxActionBridge, 
     vb : bpel ! VxBPELVariationPoint
@@ -1001,7 +1065,7 @@ rule VxAction_second
 -- register group bridge and bpel scope
   nac {
     -- compact nacs
-    match
+    
     va : uml ! VxAction, 
     ci : uml ! ControlFlow, 
     co : uml ! ControlFlow,  
@@ -1013,14 +1077,14 @@ rule VxAction_second
     ab : bridge ! VxActionBridge, 
     vb : bpel ! VxBPELVariationPoint
     
-    ci.target=va, co.source=va, va.variantFragments=v, ubbn.uml=v, ubbn.bpel=bsn, bvn.bpelCode=bsn, v.variation=vd, ab.uml=va, ab.bpel=vb, vb.variants=bvn
+    ci.target=va, co._source=va, va.variantFragments=v, ubbn.uml=v, ubbn.bpel=bsn, bvn.bpelCode=bsn, v.variation=vd, ab.uml=va, ab.bpel=vb, vb.variants=bvn
     
     where
     bvn.name=vd.name;
   }
   
   lhs {
-  match
+  
     va : uml ! VxAction, 
     ci : uml ! ControlFlow, 
     co : uml ! ControlFlow,  
@@ -1029,11 +1093,11 @@ rule VxAction_second
     ab : bridge ! VxActionBridge, 
     vb : bpel ! VxBPELVariationPoint
     
-    ci.target=va, co.source=va, va.variantFragments=v, v.variation=vd, ab.uml=va, ab.bpel=vb
+    ci.target=va, co._source=va, va.variantFragments=v, v.variation=vd, ab.uml=va, ab.bpel=vb
   }
   
   rhs {
-  match
+  
   	va : uml ! VxAction, 
     ci : uml ! ControlFlow, 
     co : uml ! ControlFlow,  
@@ -1045,7 +1109,7 @@ rule VxAction_second
     ab : bridge ! VxActionBridge, 
     vb : bpel ! VxBPELVariationPoint
     
-    ci.target=va, co.source=va, va.variantFragments=v, ubb.uml=v, ubb.bpel=bs, bv.bpelCode=bs, v.variation=vd, ab.uml=va, ab.bpel=vb, vb.variants=bv
+    ci.target=va, co._source=va, va.variantFragments=v, ubb.uml=v, ubb.bpel=bs, bv.bpelCode=bs, v.variation=vd, ab.uml=va, ab.bpel=vb, vb.variants=bv
     
   where
     bv.name <- vd.name;
@@ -1057,7 +1121,7 @@ rule VxAction_third
 --remove empty vx fragment
   nac {
     -- compact nacs
-    match
+    
   v : uml ! VariationActivityFragment,
   va : uml ! VxAction,
   ubb : bridge ! ActivityGroupBridge,
@@ -1068,7 +1132,7 @@ rule VxAction_third
     va.variantFragments=v, v.nodes=an, ubb.uml=v, ubb.bpel=bs, v.variation=vp
   }
   lhs {
-  match
+  
   v : uml ! VariationActivityFragment,
   va : uml ! VxAction,
   ubb : bridge ! ActivityGroupBridge,
@@ -1078,7 +1142,7 @@ rule VxAction_third
   va.variantFragments=v, ubb.uml=v, ubb.bpel=bs, v.variation=vp
   }
   rhs {
-  match
+  
   va : uml ! VxAction,
   bs : bpel ! BPELScope,
   vp : uml ! Variation
@@ -1090,34 +1154,34 @@ rule VxAction_fourth
 -- remove empty vxaction
   nac {
     -- compact nacs
-    match
+    
   ci : uml ! ControlFlow,
   co : uml ! ControlFlow,
   va : uml ! VxAction,
   b : bridge ! VxActionBridge,
   vn : uml ! VariationActivityFragment
   
-  va.variantFragments=vn, ci.target=va, co.source=va, b.uml=va
+  va.variantFragments=vn, ci.target=va, co._source=va, b.uml=va
   }
   
   lhs {
-  match
+  
   ci : uml ! ControlFlow,
   co : uml ! ControlFlow,
   va : uml ! VxAction,
   b : bridge ! VxActionBridge
   
-  ci.target=va, co.source=va, b.uml=va
+  ci.target=va, co._source=va, b.uml=va
   }
   
   rhs {
-  match
+  
   ci : uml ! ControlFlow,
   co : uml ! ControlFlow,
   va : uml ! VxAction,
   b : bridge ! VxActionBridge
   
-  ci.target=b, co.source=b
+  ci.target=b, co._source=b
   }
 }
 
@@ -1125,7 +1189,7 @@ rule VxActivityFragment_rule
 {
   -- ...
   lhs {
-  match
+  
   	inode : uml!InitialNode, 
   	c1:uml!ControlFlow,
   	c2:uml!ControlFlow,
@@ -1136,18 +1200,18 @@ rule VxActivityFragment_rule
   	act : uml!VariationActivityFragment,
   	ubb : bridge!ActivityGroupBridge
   	
-  	c1.source = inode,
+  	c1._source = inode,
   	c1.target=a,
   	a.bpel=b,
   	c2.target=fnode,
-  	c2.source=a,
+  	c2._source=a,
   	ubb.uml=act,
   	ubb.bpel=p,
   	act.nodes=inode,
   	act.nodes=fnode
   }
   rhs {
-  match
+  
   	b : bpel!BPELActivity,
   	p : bpel!BPELScope,
   	act : uml!VariationActivityFragment,
@@ -1164,7 +1228,7 @@ rule Variables_first
 --register variable
   nac {
     -- compact nacs
-    match
+    
   on : uml ! ObjectNode,
   p : bpel ! BPELProcess,
   t : uml ! Type,
@@ -1179,7 +1243,7 @@ rule Variables_first
   }
   
   lhs {
-  match
+  
   on : uml ! ObjectNode,
   p : bpel ! BPELProcess,
   t : uml ! Type
@@ -1188,7 +1252,7 @@ rule Variables_first
   }
   
   rhs {
-  match
+  
     on : uml ! ObjectNode,
   p : bpel ! BPELProcess,
   t : uml ! Type,
@@ -1208,58 +1272,58 @@ rule Variables_second
 --remove unused object node
   nac {
     -- normal nacs
-    match
+    
  on : uml ! ObjectNode,
  ofi : uml ! ObjectFlow
  ofi.target=on
   }
   nac {
     -- normal nacs
-    match
+    
  on : uml ! ObjectNode,
  ofo : uml ! ObjectFlow
- ofo.source=on
+ ofo._source=on
 
   }
   lhs {
-  match
+  
     on : uml ! ObjectNode,
     ubb : bridge ! ObjectNodeBridge
     ubb.uml=on
   }
   rhs {
-  match
+  
   }
 }
 
 rule Assign_rule {
 	lhs{
-	match
+	
 		ci : uml ! ControlFlow,
 		co : uml ! ControlFlow,
 		an : uml ! AssignAction
 		
-		ci.target = an, co.source = an
+		ci.target = an, co._source = an
 	}
 	
 	rhs {
-	match
+	
 		ci : uml ! ControlFlow,
 		co : uml ! ControlFlow,
 		an : uml ! AssignAction,
 		ubb : bridge ! AssignBridge,
 		ba : bpel ! BPELAssign
 		
-		ci.target = ubb, co.source = ubb, ubb.bpel = ba, ubb.uml = an
+		ci.target = ubb, co._source = ubb, ubb.bpel = ba, ubb.uml = an
 	
 	where
-		$this.Assign_copy(an,ba)->forAll(e:Any|true);
+		$this.Assign_copy(an,ba);
 	}
 }
 
 passive rule Assign_copy(an,ba) {
 	lhs {
-	match
+	
 		an : uml ! AssignAction,
 		cp : uml ! CopyTask,
 		ba : bpel ! BPELAssign,
@@ -1278,7 +1342,7 @@ passive rule Assign_copy(an,ba) {
 	}
 	
 	rhs {
-	match
+	
 		an : uml ! AssignAction,
 		ba : bpel ! BPELAssign,
 		bcp : bpel ! BPELCopy,
@@ -1307,7 +1371,7 @@ rule Assign_rule
 {
 
   lhs {
-    match
+    
     a : uml ! CallAction,
     ci : uml ! ControlFlow,
     co : uml ! ControlFlow,
@@ -1318,7 +1382,7 @@ rule Assign_rule
 	fm : String,
 	tm : String
 	
-    ci.target=a, co.source=a, ofi.target=a, ofi.source=oni, ofo.target=ono, ofo.source=a
+    ci.target=a, co._source=a, ofi.target=a, ofi._source=oni, ofo.target=ono, ofo._source=a
     
     where
     a.name='assign';
@@ -1326,7 +1390,7 @@ rule Assign_rule
     tm <- if ofo.mappings->isEmpty() then '' else ofo.mappings->at(1) endif; 
   }
   rhs {
-    match
+    
     a : uml ! CallAction,
     ci : uml ! ControlFlow,
     co : uml ! ControlFlow,
@@ -1340,7 +1404,7 @@ rule Assign_rule
   	fm : String,
 	tm : String
     
-    ubb.bpel=b, ubb.uml=a, ci.target=ubb, co.source=ubb, b.parts=c, c.fromSpec=f, c.toSpec=t
+    ubb.bpel=b, ubb.uml=a, ci.target=ubb, co._source=ubb, b.parts=c, c.fromSpec=f, c.toSpec=t
     
     where
     f.variable<-oni.name;
@@ -1355,30 +1419,30 @@ rule Assign_rule
 rule Assign_first
 {
   lhs {
-    match
+    
     a : uml ! CallAction,
     ci : uml ! ControlFlow,
     co : uml ! ControlFlow
     
-    ci.target=a, co.source=a
+    ci.target=a, co._source=a
     where
     a.name='assign';
   }
   rhs {
-  match
+  
     a : uml ! CallAction,
     ci : uml ! ControlFlow,
     co : uml ! ControlFlow,
     ubb : bridge ! AssignBridge,
     b : bpel ! BPELAssign
     
-    ubb.bpel=b, ubb.uml=a, ci.target=ubb, co.source=ubb
+    ubb.bpel=b, ubb.uml=a, ci.target=ubb, co._source=ubb
   }
 }
 
 passive rule Assign_Detail(a,b) {
 	lhs {
-	match
+	
 		a : uml ! CallAction,
 		ofi : uml ! ObjectFlow,
 		oni : uml ! ObjectNode,
@@ -1386,11 +1450,11 @@ passive rule Assign_Detail(a,b) {
 		ofo : uml ! ObjectFlow,
 		ono : uml ! ObjectNode
 		
-		ofi.source = oni, ofi.target = a, ofo.target = ono, ofo.source = a
+		ofi._source = oni, ofi.target = a, ofo.target = ono, ofo._source = a
 	}
 	
 	rhs {
-	match
+	
 	  a : uml ! CallAction,
 	  ofo : uml ! ObjectFlow,
 	  oni : uml ! ObjectNode,
@@ -1400,7 +1464,7 @@ passive rule Assign_Detail(a,b) {
   	  f : bpel ! BPELCopyFrom,
   	  t : bpel ! BPELCopyTo
   	  
-  	  b.parts = c, c.fromSpec=f, c.toSpec=t, ofo.target = ono, ofo.source = a
+  	  b.parts = c, c.fromSpec=f, c.toSpec=t, ofo.target = ono, ofo._source = a
   	  
   	  where
   	  f.variable<-oni.name;
@@ -1412,7 +1476,7 @@ passive rule Assign_Detail(a,b) {
 
 passive rule Assign_clearOutput(a) {
 	lhs {
-	match
+	
 		a : uml ! CallAction,
 		ofi : uml ! ObjectFlow,
 		oni : uml ! ObjectNode,
@@ -1420,7 +1484,7 @@ passive rule Assign_clearOutput(a) {
 		ofo : uml ! ObjectFlow,
 		ono : uml ! ObjectNode
 		
-		ofi.source = oni, ofi.target = a, ofo.target = ono, ofo.source = a
+		ofi._source = oni, ofi.target = a, ofo.target = ono, ofo._source = a
 	}
 }
 */

@@ -9,6 +9,8 @@ import edu.ustb.sei.mde.morel.AdditiveOperator;
 import edu.ustb.sei.mde.morel.AllDifferentConstraint;
 import edu.ustb.sei.mde.morel.ArrayLiteralExp;
 import edu.ustb.sei.mde.morel.AtomicExp;
+import edu.ustb.sei.mde.morel.BXRewritingModel;
+import edu.ustb.sei.mde.morel.BXRewritingRule;
 import edu.ustb.sei.mde.morel.BagType;
 import edu.ustb.sei.mde.morel.BindExp;
 import edu.ustb.sei.mde.morel.BlockStatement;
@@ -45,6 +47,7 @@ import edu.ustb.sei.mde.morel.LiteralExp;
 import edu.ustb.sei.mde.morel.LoopPathExp;
 import edu.ustb.sei.mde.morel.MorelFactory;
 import edu.ustb.sei.mde.morel.MorelPackage;
+import edu.ustb.sei.mde.morel.MultiValueConstraint;
 import edu.ustb.sei.mde.morel.MultiplicativeExp;
 import edu.ustb.sei.mde.morel.MultiplicativeExpChild;
 import edu.ustb.sei.mde.morel.MultiplicativeOperator;
@@ -62,6 +65,7 @@ import edu.ustb.sei.mde.morel.Pattern;
 import edu.ustb.sei.mde.morel.PredefinedBindExp;
 import edu.ustb.sei.mde.morel.PredefinedVariable;
 import edu.ustb.sei.mde.morel.PredefinedVariableExp;
+import edu.ustb.sei.mde.morel.PrimitiveConstraint;
 import edu.ustb.sei.mde.morel.PrimitiveVariable;
 import edu.ustb.sei.mde.morel.PrimitiveVariableWithInit;
 import edu.ustb.sei.mde.morel.Query;
@@ -93,6 +97,7 @@ import edu.ustb.sei.mde.morel.UnaryOperator;
 import edu.ustb.sei.mde.morel.UndefinedLiteral;
 import edu.ustb.sei.mde.morel.UndefinedLiteralExp;
 import edu.ustb.sei.mde.morel.Unit;
+import edu.ustb.sei.mde.morel.ValueRangeConstraint;
 import edu.ustb.sei.mde.morel.Variable;
 import edu.ustb.sei.mde.morel.VariableExp;
 import edu.ustb.sei.mde.morel.VariableWithInit;
@@ -655,6 +660,41 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass primitiveConstraintEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass multiValueConstraintEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass valueRangeConstraintEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass bxRewritingRuleEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass bxRewritingModelEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum sectionTypeEEnum = null;
 
 	/**
@@ -904,6 +944,15 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 */
 	public EClass getClause() {
 		return clauseEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getClause_Statements() {
+		return (EReference)clauseEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -2432,6 +2481,159 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getPrimitiveConstraint() {
+		return primitiveConstraintEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPrimitiveConstraint_Variable() {
+		return (EReference)primitiveConstraintEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getMultiValueConstraint() {
+		return multiValueConstraintEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getMultiValueConstraint_Object() {
+		return (EReference)multiValueConstraintEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getMultiValueConstraint_Attribute() {
+		return (EReference)multiValueConstraintEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getValueRangeConstraint() {
+		return valueRangeConstraintEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getValueRangeConstraint_Expression() {
+		return (EReference)valueRangeConstraintEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getBXRewritingRule() {
+		return bxRewritingRuleEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBXRewritingRule_Nac() {
+		return (EReference)bxRewritingRuleEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBXRewritingRule_Source() {
+		return (EReference)bxRewritingRuleEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBXRewritingRule_View() {
+		return (EReference)bxRewritingRuleEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBXRewritingRule_When() {
+		return (EReference)bxRewritingRuleEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBXRewritingRule_Update() {
+		return (EReference)bxRewritingRuleEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBXRewritingRule_UnmatchSrc() {
+		return (EReference)bxRewritingRuleEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBXRewritingRule_UnmatchView() {
+		return (EReference)bxRewritingRuleEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getBXRewritingModel() {
+		return bxRewritingModelEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBXRewritingModel_Rules() {
+		return (EReference)bxRewritingModelEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getSectionType() {
 		return sectionTypeEEnum;
 	}
@@ -2603,6 +2805,7 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		createEReference(patternEClass, PATTERN__ADDITIONAL_CONSTRAINTS);
 
 		clauseEClass = createEClass(CLAUSE);
+		createEReference(clauseEClass, CLAUSE__STATEMENTS);
 
 		variableEClass = createEClass(VARIABLE);
 
@@ -2846,6 +3049,28 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 
 		allDifferentConstraintEClass = createEClass(ALL_DIFFERENT_CONSTRAINT);
 
+		primitiveConstraintEClass = createEClass(PRIMITIVE_CONSTRAINT);
+		createEReference(primitiveConstraintEClass, PRIMITIVE_CONSTRAINT__VARIABLE);
+
+		multiValueConstraintEClass = createEClass(MULTI_VALUE_CONSTRAINT);
+		createEReference(multiValueConstraintEClass, MULTI_VALUE_CONSTRAINT__OBJECT);
+		createEReference(multiValueConstraintEClass, MULTI_VALUE_CONSTRAINT__ATTRIBUTE);
+
+		valueRangeConstraintEClass = createEClass(VALUE_RANGE_CONSTRAINT);
+		createEReference(valueRangeConstraintEClass, VALUE_RANGE_CONSTRAINT__EXPRESSION);
+
+		bxRewritingRuleEClass = createEClass(BX_REWRITING_RULE);
+		createEReference(bxRewritingRuleEClass, BX_REWRITING_RULE__NAC);
+		createEReference(bxRewritingRuleEClass, BX_REWRITING_RULE__SOURCE);
+		createEReference(bxRewritingRuleEClass, BX_REWRITING_RULE__VIEW);
+		createEReference(bxRewritingRuleEClass, BX_REWRITING_RULE__WHEN);
+		createEReference(bxRewritingRuleEClass, BX_REWRITING_RULE__UPDATE);
+		createEReference(bxRewritingRuleEClass, BX_REWRITING_RULE__UNMATCH_SRC);
+		createEReference(bxRewritingRuleEClass, BX_REWRITING_RULE__UNMATCH_VIEW);
+
+		bxRewritingModelEClass = createEClass(BX_REWRITING_MODEL);
+		createEReference(bxRewritingModelEClass, BX_REWRITING_MODEL__RULES);
+
 		// Create enums
 		sectionTypeEEnum = createEEnum(SECTION_TYPE);
 		typedModelActionEEnum = createEEnum(TYPED_MODEL_ACTION);
@@ -2967,6 +3192,11 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		arrayLiteralExpEClass.getESuperTypes().add(this.getLiteralExp());
 		orderConstraintEClass.getESuperTypes().add(this.getAdditionalConstraint());
 		allDifferentConstraintEClass.getESuperTypes().add(this.getAdditionalConstraint());
+		multiValueConstraintEClass.getESuperTypes().add(this.getPrimitiveConstraint());
+		valueRangeConstraintEClass.getESuperTypes().add(this.getPrimitiveConstraint());
+		bxRewritingRuleEClass.getESuperTypes().add(this.getRuleElement());
+		bxRewritingModelEClass.getESuperTypes().add(this.getUnit());
+		bxRewritingModelEClass.getESuperTypes().add(this.getNamedElement());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(namedElementEClass, NamedElement.class, "NamedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2982,6 +3212,7 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		initEReference(getPattern_AdditionalConstraints(), this.getAdditionalConstraint(), null, "additionalConstraints", null, 0, -1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(clauseEClass, Clause.class, "Clause", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getClause_Statements(), this.getStatement(), null, "statements", null, 1, -1, Clause.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(variableEClass, Variable.class, "Variable", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -3226,6 +3457,28 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		initEReference(getOrderConstraint_Types(), ecorePackage.getEClass(), null, "types", null, 1, -1, OrderConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(allDifferentConstraintEClass, AllDifferentConstraint.class, "AllDifferentConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(primitiveConstraintEClass, PrimitiveConstraint.class, "PrimitiveConstraint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPrimitiveConstraint_Variable(), this.getPrimitiveVariable(), null, "variable", null, 1, 1, PrimitiveConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(multiValueConstraintEClass, MultiValueConstraint.class, "MultiValueConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getMultiValueConstraint_Object(), this.getObjectVariable(), null, "object", null, 1, 1, MultiValueConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMultiValueConstraint_Attribute(), ecorePackage.getEAttribute(), null, "attribute", null, 1, 1, MultiValueConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(valueRangeConstraintEClass, ValueRangeConstraint.class, "ValueRangeConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getValueRangeConstraint_Expression(), this.getExpression(), null, "expression", null, 1, 1, ValueRangeConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(bxRewritingRuleEClass, BXRewritingRule.class, "BXRewritingRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getBXRewritingRule_Nac(), this.getPattern(), null, "nac", null, 0, -1, BXRewritingRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBXRewritingRule_Source(), this.getPattern(), null, "source", null, 0, 1, BXRewritingRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBXRewritingRule_View(), this.getPattern(), null, "view", null, 0, 1, BXRewritingRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBXRewritingRule_When(), this.getClause(), null, "when", null, 0, 1, BXRewritingRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBXRewritingRule_Update(), this.getClause(), null, "update", null, 0, 1, BXRewritingRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBXRewritingRule_UnmatchSrc(), this.getPattern(), null, "unmatchSrc", null, 0, 1, BXRewritingRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBXRewritingRule_UnmatchView(), this.getPattern(), null, "unmatchView", null, 0, 1, BXRewritingRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(bxRewritingModelEClass, BXRewritingModel.class, "BXRewritingModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getBXRewritingModel_Rules(), this.getBXRewritingRule(), null, "rules", null, 0, -1, BXRewritingModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(sectionTypeEEnum, SectionType.class, "SectionType");

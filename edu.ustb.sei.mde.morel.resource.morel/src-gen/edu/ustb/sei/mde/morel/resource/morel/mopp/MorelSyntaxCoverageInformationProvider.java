@@ -57,6 +57,9 @@ public class MorelSyntaxCoverageInformationProvider {
 			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getReflectiveVariableExp(),
 			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getOrderConstraint(),
 			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getAllDifferentConstraint(),
+			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingModel(),
+			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(),
+			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getClause(),
 		};
 	}
 	
@@ -64,6 +67,7 @@ public class MorelSyntaxCoverageInformationProvider {
 		return new org.eclipse.emf.ecore.EClass[] {
 			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getQueryModel(),
 			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getTransformationModel(),
+			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingModel(),
 		};
 	}
 	

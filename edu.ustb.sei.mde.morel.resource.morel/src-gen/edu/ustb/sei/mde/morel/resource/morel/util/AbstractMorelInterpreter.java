@@ -520,6 +520,36 @@ public class AbstractMorelInterpreter<ResultType, ContextType> {
 		if (result != null) {
 			return result;
 		}
+		if (object instanceof edu.ustb.sei.mde.morel.MultiValueConstraint) {
+			result = interprete_edu_ustb_sei_mde_morel_MultiValueConstraint((edu.ustb.sei.mde.morel.MultiValueConstraint) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
+		if (object instanceof edu.ustb.sei.mde.morel.ValueRangeConstraint) {
+			result = interprete_edu_ustb_sei_mde_morel_ValueRangeConstraint((edu.ustb.sei.mde.morel.ValueRangeConstraint) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
+		if (object instanceof edu.ustb.sei.mde.morel.PrimitiveConstraint) {
+			result = interprete_edu_ustb_sei_mde_morel_PrimitiveConstraint((edu.ustb.sei.mde.morel.PrimitiveConstraint) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
+		if (object instanceof edu.ustb.sei.mde.morel.BXRewritingRule) {
+			result = interprete_edu_ustb_sei_mde_morel_BXRewritingRule((edu.ustb.sei.mde.morel.BXRewritingRule) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
+		if (object instanceof edu.ustb.sei.mde.morel.BXRewritingModel) {
+			result = interprete_edu_ustb_sei_mde_morel_BXRewritingModel((edu.ustb.sei.mde.morel.BXRewritingModel) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
 		if (object instanceof org.eclipse.emf.ecore.EAttribute) {
 			result = interprete_org_eclipse_emf_ecore_EAttribute((org.eclipse.emf.ecore.EAttribute) object, context);
 		}
@@ -604,12 +634,6 @@ public class AbstractMorelInterpreter<ResultType, ContextType> {
 		if (result != null) {
 			return result;
 		}
-		if (object instanceof org.eclipse.emf.ecore.ETypeParameter) {
-			result = interprete_org_eclipse_emf_ecore_ETypeParameter((org.eclipse.emf.ecore.ETypeParameter) object, context);
-		}
-		if (result != null) {
-			return result;
-		}
 		if (object instanceof org.eclipse.emf.ecore.ENamedElement) {
 			result = interprete_org_eclipse_emf_ecore_ENamedElement((org.eclipse.emf.ecore.ENamedElement) object, context);
 		}
@@ -636,6 +660,12 @@ public class AbstractMorelInterpreter<ResultType, ContextType> {
 		}
 		if (object instanceof org.eclipse.emf.ecore.EGenericType) {
 			result = interprete_org_eclipse_emf_ecore_EGenericType((org.eclipse.emf.ecore.EGenericType) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
+		if (object instanceof org.eclipse.emf.ecore.ETypeParameter) {
+			result = interprete_org_eclipse_emf_ecore_ETypeParameter((org.eclipse.emf.ecore.ETypeParameter) object, context);
 		}
 		if (result != null) {
 			return result;
@@ -948,6 +978,26 @@ public class AbstractMorelInterpreter<ResultType, ContextType> {
 	}
 	
 	public ResultType interprete_edu_ustb_sei_mde_morel_AllDifferentConstraint(edu.ustb.sei.mde.morel.AllDifferentConstraint allDifferentConstraint, ContextType context) {
+		return null;
+	}
+	
+	public ResultType interprete_edu_ustb_sei_mde_morel_PrimitiveConstraint(edu.ustb.sei.mde.morel.PrimitiveConstraint primitiveConstraint, ContextType context) {
+		return null;
+	}
+	
+	public ResultType interprete_edu_ustb_sei_mde_morel_MultiValueConstraint(edu.ustb.sei.mde.morel.MultiValueConstraint multiValueConstraint, ContextType context) {
+		return null;
+	}
+	
+	public ResultType interprete_edu_ustb_sei_mde_morel_ValueRangeConstraint(edu.ustb.sei.mde.morel.ValueRangeConstraint valueRangeConstraint, ContextType context) {
+		return null;
+	}
+	
+	public ResultType interprete_edu_ustb_sei_mde_morel_BXRewritingRule(edu.ustb.sei.mde.morel.BXRewritingRule bXRewritingRule, ContextType context) {
+		return null;
+	}
+	
+	public ResultType interprete_edu_ustb_sei_mde_morel_BXRewritingModel(edu.ustb.sei.mde.morel.BXRewritingModel bXRewritingModel, ContextType context) {
 		return null;
 	}
 	

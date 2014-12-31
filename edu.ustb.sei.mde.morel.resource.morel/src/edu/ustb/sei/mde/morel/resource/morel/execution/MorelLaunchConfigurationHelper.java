@@ -33,8 +33,10 @@ import edu.ustb.sei.mde.morel.TransformationModel;
 import edu.ustb.sei.mde.morel.TypedModel;
 import edu.ustb.sei.mde.morel.TypedModelAction;
 import edu.ustb.sei.mde.morel.Unit;
+import edu.ustb.sei.mde.morel.resource.morel.conversion.SimplifyExpression;
 import edu.ustb.sei.mde.morel.resource.morel.execution.primitives.Initialize;
 import edu.ustb.sei.mde.morel.resource.morel.execution.primitives.Match;
+import edu.ustb.sei.mde.morel.resource.morel.mopp.MorelResource;
 
 /**
  * A class that provides common methods that are required by launch configuration
@@ -59,6 +61,9 @@ public class MorelLaunchConfigurationHelper {
 	 */
 	public void launch(org.eclipse.debug.core.ILaunchConfiguration configuration, String mode, org.eclipse.debug.core.ILaunch launch, org.eclipse.core.runtime.IProgressMonitor monitor) throws org.eclipse.core.runtime.CoreException {
 		org.eclipse.emf.ecore.EObject root = getModelRoot(configuration);
+		
+		SimplifyExpression.process((MorelResource) root.eResource());
+		
 		ConsoleUtil.printToConsole("Execute "+root.eResource().getURI(), MOREL_TITLE, true);
 		String[] uris = getModelURIs(configuration);
 		// replace this delegate with your actual interpreter

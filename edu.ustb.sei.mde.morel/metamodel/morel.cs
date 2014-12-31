@@ -1,6 +1,6 @@
 SYNTAXDEF morel
 FOR <http://www.ustb.edu.cn/sei/mde/morel> <morel.genmodel>
-START QueryModel, TransformationModel
+START QueryModel, TransformationModel, BXRewritingModel
 
 IMPORTS { 
     // imports go here 
@@ -16,7 +16,7 @@ OPTIONS {
 	overrideLaunchConfigurationMainTab = "false";
 	overrideLaunchConfigurationDelegate ="false";
 	additionalDependencies = "edu.ustb.sei.mde.emg, org.eclipse.ui.console, edu.ustb.sei.mde.modeling,edu.ustb.sei.commonutil";
-	additionalExports = "edu.ustb.sei.mde.morel.resource.morel.execution";
+	additionalExports = "edu.ustb.sei.mde.morel.resource.morel.execution,edu.ustb.sei.mde.morel.resource.morel.conversion";
 	additionalLibraries = "choco-solver-3.2.1.jar";
 }
 
@@ -67,7 +67,7 @@ RULES {
 	
 	TypedModel ::= "type" type[normal:"",readOnly:"readOnly",transient:"transient", viewOnly:"view",createOnly:"createOnly"] name[IDENTIFIER] #1 "<-" #1 package[URINS];
 	
-	Query ::= (active["active":"passive"])? "query" type[LHS : "lhs", RHS : "rhs", NAC : "nac", PAC : "pac", PRE : "pre", POST : "post", LHS : ""] name[IDENTIFIER] ("("parameters[IDENTIFIER] ("," #1 parameters[IDENTIFIER])*")")? "{" !2 "match" (!2 variables ("," !2 variables)*)?  (!2 linkConstraints ("," !2 linkConstraints)*)? (!2 additionalConstraints ("," !2 additionalConstraints)*)? (!2 "where" (!2 statements)+)?"}";
+	Query ::= (active["active":"passive"])? "query" type[LHS : "lhs", RHS : "rhs", NAC : "nac", PAC : "pac", PRE : "pre", POST : "post", LHS : ""] name[IDENTIFIER] ("("parameters[IDENTIFIER] ("," #1 parameters[IDENTIFIER])*")")? "{" (!2 variables ("," !2 variables)*)?  (!2 linkConstraints ("," !2 linkConstraints)*)? (!2 additionalConstraints ("," !2 additionalConstraints)*)? (!2 "where" (!2 statements)+)?"}";
 	
 	ObjectVariable ::= name[IDENTIFIER] ":" (model[IDENTIFIER] "!")? type[IDENTIFIER];
 	
@@ -151,7 +151,7 @@ RULES {
 	
 	RuleGroup ::= (active["active":"passive"])? order[default:"default",sequential:"sequence",parallel:"parallel"]? "group" name[IDENTIFIER] ("scope" scope[all:"all", staticRandom: "random", dynamicRandom : "random*"] (scopeSize[INUMBER])?)? ("iterate"  maxIteration[INUMBER]? iteration[default:"",shuffle:"*"]?)? ("repeat" repetition[allMatches:"all",first:"first",randomOne:"one"])? "{" rules* "}";
 	
-	Pattern ::= type[LHS : "lhs", RHS : "rhs", NAC : "nac", PAC : "pac", PRE : "pre", POST : "post", LHS : ""] "{" "match" (variables ("," variables)*)?  (linkConstraints ("," linkConstraints)*)? (additionalConstraints ("," additionalConstraints)*)? ("where"  (statements)+)? "}";
+	Pattern ::= type[LHS : "lhs", RHS : "rhs", NAC : "nac", PAC : "pac", PRE : "pre", POST : "post", LHS : ""] "{" (variables ("," variables)*)?  (linkConstraints ("," linkConstraints)*)? (additionalConstraints ("," additionalConstraints)*)? ("where"  (statements)+)? "}";
 	
 	PredefinedVariableExp ::= variable[this:"$this", id:"$id"] (path)?;
 	
@@ -160,4 +160,10 @@ RULES {
 	OrderConstraint ::= base[IDENTIFIER] "^" "<" (variables[IDENTIFIER] ("," variables[IDENTIFIER])*)? ">" ":" "<" (types[IDENTIFIER] "." references[IDENTIFIER]) ("," types[IDENTIFIER] "." references[IDENTIFIER])* ">";
 	
 	AllDifferentConstraint ::= "allDiff" "(" (variables[IDENTIFIER] ("," variables[IDENTIFIER])*)? ")" ;
+	
+	BXRewritingModel ::= "bxrewriting" name[IDENTIFIER] models+ rules* ;
+	
+	BXRewritingRule ::= (active["active":"passive"])? "rule" name[IDENTIFIER] ("("parameters[IDENTIFIER] ("," parameters[IDENTIFIER])*")")? "{" nac* ("when" when)? ("source" source)? ("view" view)?  ("update" update)? ("unmatchs" unmatchSrc)? ("unmatchv" unmatchView)? "}" ; 
+	
+	Clause ::= "{" (statements)+ "}";
 }

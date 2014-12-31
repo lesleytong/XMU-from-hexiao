@@ -33,6 +33,7 @@ import edu.ustb.sei.mde.morel.resource.morel.IMorelResourcePostProcessorProvider
 import edu.ustb.sei.mde.morel.resource.morel.MorelEProblemSeverity;
 import edu.ustb.sei.mde.morel.resource.morel.MorelEProblemType;
 import edu.ustb.sei.mde.morel.resource.morel.analysis.TypeResolver;
+import edu.ustb.sei.mde.morel.resource.morel.conversion.SimplifyExpression;
 import edu.ustb.sei.mde.morel.resource.morel.mopp.MorelProblem;
 import edu.ustb.sei.mde.morel.resource.morel.mopp.MorelResource;
 
@@ -72,13 +73,15 @@ public class MorelPostProcesser implements IMorelResourcePostProcessor,
 		for(EObject o : objs) {
 			if(terminateFlag) return;
 			checkLinkConstraint(o,resource);
-			EObject no = simplify(o);
+			EObject no = SimplifyExpression.simplify(o);
 			
 			if(no!=o) {
 				if(terminateFlag) return;
 				EObject container = o.eContainer();
 				EReference ref = o.eContainmentFeature();
-				EcoreUtil.replace(container, ref, o, no);
+				if(ref.getEReferenceType().isSuperTypeOf(no.eClass()))
+					EcoreUtil.replace(container, ref, o, no);
+				else no = o;
 			}
 			if(terminateFlag) return;
 			process(no.eContents(),resource);
@@ -373,39 +376,39 @@ public class MorelPostProcesser implements IMorelResourcePostProcessor,
 		return false;
 	}
 
-	protected EObject simplify(EObject o) {
-		if(o instanceof BooleanImpliesExp) {
-			if(((BooleanImpliesExp) o).getRight()==null) {
-				return simplify(((BooleanImpliesExp) o).getLeft());
-			}
-		} else if(o instanceof BooleanOrExp) {
-			if(((BooleanOrExp) o).getChildren().size()==1) {
-				return simplify(((BooleanOrExp) o).getChildren().get(0));
-			}
-		} else if(o instanceof BooleanAndExp) {
-			if(((BooleanAndExp) o).getChildren().size()==1) {
-				return simplify(((BooleanAndExp) o).getChildren().get(0));
-			}
-		} else if(o instanceof RelationalExp) {
-			if(((RelationalExp) o).getRight()==null) {
-				return simplify(((RelationalExp) o).getLeft());
-			}
-		} else if(o instanceof AdditiveExp) {
-			if(((AdditiveExp) o).getChildren().size()==1) {
-				return simplify(((AdditiveExp) o).getChildren().get(0));
-			}
-		} else if(o instanceof MultiplicativeExp) {
-			if(((MultiplicativeExp) o).getChildren().size()==1) {
-				return simplify(((MultiplicativeExp) o).getChildren().get(0));
-			}
-		} else if(o instanceof UnaryExp) {
-			if(((UnaryExp) o).getOperator()==UnaryOperator.PLUS) {
-				return simplify(((UnaryExp) o).getChild());
-			}
-		}
-		
-		return o;
-	}
+//	protected EObject simplify(EObject o) {
+//		if(o instanceof BooleanImpliesExp) {
+//			if(((BooleanImpliesExp) o).getRight()==null) {
+//				return simplify(((BooleanImpliesExp) o).getLeft());
+//			}
+//		} else if(o instanceof BooleanOrExp) {
+//			if(((BooleanOrExp) o).getChildren().size()==1) {
+//				return simplify(((BooleanOrExp) o).getChildren().get(0));
+//			}
+//		} else if(o instanceof BooleanAndExp) {
+//			if(((BooleanAndExp) o).getChildren().size()==1) {
+//				return simplify(((BooleanAndExp) o).getChildren().get(0));
+//			}
+//		} else if(o instanceof RelationalExp) {
+//			if(((RelationalExp) o).getRight()==null) {
+//				return simplify(((RelationalExp) o).getLeft());
+//			}
+//		} else if(o instanceof AdditiveExp) {
+//			if(((AdditiveExp) o).getChildren().size()==1) {
+//				return simplify(((AdditiveExp) o).getChildren().get(0));
+//			}
+//		} else if(o instanceof MultiplicativeExp) {
+//			if(((MultiplicativeExp) o).getChildren().size()==1) {
+//				return simplify(((MultiplicativeExp) o).getChildren().get(0));
+//			}
+//		} else if(o instanceof UnaryExp) {
+//			if(((UnaryExp) o).getOperator()==UnaryOperator.PLUS) {
+//				return simplify(((UnaryExp) o).getChild());
+//			}
+//		}
+//		
+//		return o;
+//	}
 
 	@Override
 	public void terminate() {

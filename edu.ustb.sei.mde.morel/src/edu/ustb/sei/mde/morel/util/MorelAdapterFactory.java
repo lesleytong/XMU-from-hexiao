@@ -380,6 +380,26 @@ public class MorelAdapterFactory extends AdapterFactoryImpl {
 				return createAllDifferentConstraintAdapter();
 			}
 			@Override
+			public Adapter casePrimitiveConstraint(PrimitiveConstraint object) {
+				return createPrimitiveConstraintAdapter();
+			}
+			@Override
+			public Adapter caseMultiValueConstraint(MultiValueConstraint object) {
+				return createMultiValueConstraintAdapter();
+			}
+			@Override
+			public Adapter caseValueRangeConstraint(ValueRangeConstraint object) {
+				return createValueRangeConstraintAdapter();
+			}
+			@Override
+			public Adapter caseBXRewritingRule(BXRewritingRule object) {
+				return createBXRewritingRuleAdapter();
+			}
+			@Override
+			public Adapter caseBXRewritingModel(BXRewritingModel object) {
+				return createBXRewritingModelAdapter();
+			}
+			@Override
 			public Adapter caseEModelElement(EModelElement object) {
 				return createEModelElementAdapter();
 			}
@@ -1490,6 +1510,76 @@ public class MorelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createAllDifferentConstraintAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.morel.PrimitiveConstraint <em>Primitive Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.morel.PrimitiveConstraint
+	 * @generated
+	 */
+	public Adapter createPrimitiveConstraintAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.morel.MultiValueConstraint <em>Multi Value Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.morel.MultiValueConstraint
+	 * @generated
+	 */
+	public Adapter createMultiValueConstraintAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.morel.ValueRangeConstraint <em>Value Range Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.morel.ValueRangeConstraint
+	 * @generated
+	 */
+	public Adapter createValueRangeConstraintAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.morel.BXRewritingRule <em>BX Rewriting Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.morel.BXRewritingRule
+	 * @generated
+	 */
+	public Adapter createBXRewritingRuleAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.morel.BXRewritingModel <em>BX Rewriting Model</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.morel.BXRewritingModel
+	 * @generated
+	 */
+	public Adapter createBXRewritingModelAdapter() {
 		return null;
 	}
 

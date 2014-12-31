@@ -372,6 +372,18 @@ public class MorelPrinter2 implements edu.ustb.sei.mde.morel.resource.morel.IMor
 			printInternal(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_46, foundFormattingElements);
 			return;
 		}
+		if (element instanceof edu.ustb.sei.mde.morel.BXRewritingModel) {
+			printInternal(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_47, foundFormattingElements);
+			return;
+		}
+		if (element instanceof edu.ustb.sei.mde.morel.BXRewritingRule) {
+			printInternal(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_48, foundFormattingElements);
+			return;
+		}
+		if (element instanceof edu.ustb.sei.mde.morel.Clause) {
+			printInternal(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_49, foundFormattingElements);
+			return;
+		}
 		if (element instanceof edu.ustb.sei.mde.morel.ObjectVariable) {
 			printInternal(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_3, foundFormattingElements);
 			return;

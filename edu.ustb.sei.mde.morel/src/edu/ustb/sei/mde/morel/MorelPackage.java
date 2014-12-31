@@ -226,13 +226,22 @@ public interface MorelPackage extends EPackage {
 	int CLAUSE__TYPE = SECTION__TYPE;
 
 	/**
+	 * The feature id for the '<em><b>Statements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLAUSE__STATEMENTS = SECTION_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Clause</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLAUSE_FEATURE_COUNT = SECTION_FEATURE_COUNT + 0;
+	int CLAUSE_FEATURE_COUNT = SECTION_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Clause</em>' class.
@@ -4277,6 +4286,335 @@ public interface MorelPackage extends EPackage {
 	int ALL_DIFFERENT_CONSTRAINT_OPERATION_COUNT = ADDITIONAL_CONSTRAINT_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.impl.PrimitiveConstraintImpl <em>Primitive Constraint</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.morel.impl.PrimitiveConstraintImpl
+	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getPrimitiveConstraint()
+	 * @generated
+	 */
+	int PRIMITIVE_CONSTRAINT = 77;
+
+	/**
+	 * The feature id for the '<em><b>Variable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_CONSTRAINT__VARIABLE = 0;
+
+	/**
+	 * The number of structural features of the '<em>Primitive Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_CONSTRAINT_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Primitive Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_CONSTRAINT_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.impl.MultiValueConstraintImpl <em>Multi Value Constraint</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.morel.impl.MultiValueConstraintImpl
+	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getMultiValueConstraint()
+	 * @generated
+	 */
+	int MULTI_VALUE_CONSTRAINT = 78;
+
+	/**
+	 * The feature id for the '<em><b>Variable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_VALUE_CONSTRAINT__VARIABLE = PRIMITIVE_CONSTRAINT__VARIABLE;
+
+	/**
+	 * The feature id for the '<em><b>Object</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_VALUE_CONSTRAINT__OBJECT = PRIMITIVE_CONSTRAINT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Attribute</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_VALUE_CONSTRAINT__ATTRIBUTE = PRIMITIVE_CONSTRAINT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Multi Value Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_VALUE_CONSTRAINT_FEATURE_COUNT = PRIMITIVE_CONSTRAINT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Multi Value Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_VALUE_CONSTRAINT_OPERATION_COUNT = PRIMITIVE_CONSTRAINT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.impl.ValueRangeConstraintImpl <em>Value Range Constraint</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.morel.impl.ValueRangeConstraintImpl
+	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getValueRangeConstraint()
+	 * @generated
+	 */
+	int VALUE_RANGE_CONSTRAINT = 79;
+
+	/**
+	 * The feature id for the '<em><b>Variable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_RANGE_CONSTRAINT__VARIABLE = PRIMITIVE_CONSTRAINT__VARIABLE;
+
+	/**
+	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_RANGE_CONSTRAINT__EXPRESSION = PRIMITIVE_CONSTRAINT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Value Range Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_RANGE_CONSTRAINT_FEATURE_COUNT = PRIMITIVE_CONSTRAINT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Value Range Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_RANGE_CONSTRAINT_OPERATION_COUNT = PRIMITIVE_CONSTRAINT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.impl.BXRewritingRuleImpl <em>BX Rewriting Rule</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.morel.impl.BXRewritingRuleImpl
+	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getBXRewritingRule()
+	 * @generated
+	 */
+	int BX_REWRITING_RULE = 80;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BX_REWRITING_RULE__NAME = RULE_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Active</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BX_REWRITING_RULE__ACTIVE = RULE_ELEMENT__ACTIVE;
+
+	/**
+	 * The feature id for the '<em><b>Parameters</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BX_REWRITING_RULE__PARAMETERS = RULE_ELEMENT__PARAMETERS;
+
+	/**
+	 * The feature id for the '<em><b>Nac</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BX_REWRITING_RULE__NAC = RULE_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BX_REWRITING_RULE__SOURCE = RULE_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>View</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BX_REWRITING_RULE__VIEW = RULE_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>When</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BX_REWRITING_RULE__WHEN = RULE_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Update</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BX_REWRITING_RULE__UPDATE = RULE_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Unmatch Src</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BX_REWRITING_RULE__UNMATCH_SRC = RULE_ELEMENT_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Unmatch View</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BX_REWRITING_RULE__UNMATCH_VIEW = RULE_ELEMENT_FEATURE_COUNT + 6;
+
+	/**
+	 * The number of structural features of the '<em>BX Rewriting Rule</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BX_REWRITING_RULE_FEATURE_COUNT = RULE_ELEMENT_FEATURE_COUNT + 7;
+
+	/**
+	 * The number of operations of the '<em>BX Rewriting Rule</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BX_REWRITING_RULE_OPERATION_COUNT = RULE_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.impl.BXRewritingModelImpl <em>BX Rewriting Model</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.morel.impl.BXRewritingModelImpl
+	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getBXRewritingModel()
+	 * @generated
+	 */
+	int BX_REWRITING_MODEL = 81;
+
+	/**
+	 * The feature id for the '<em><b>Models</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BX_REWRITING_MODEL__MODELS = UNIT__MODELS;
+
+	/**
+	 * The feature id for the '<em><b>Data Types</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BX_REWRITING_MODEL__DATA_TYPES = UNIT__DATA_TYPES;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BX_REWRITING_MODEL__NAME = UNIT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Rules</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BX_REWRITING_MODEL__RULES = UNIT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>BX Rewriting Model</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BX_REWRITING_MODEL_FEATURE_COUNT = UNIT_FEATURE_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>Get Typed Model</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BX_REWRITING_MODEL___GET_TYPED_MODEL__STRING = UNIT___GET_TYPED_MODEL__STRING;
+
+	/**
+	 * The number of operations of the '<em>BX Rewriting Model</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BX_REWRITING_MODEL_OPERATION_COUNT = UNIT_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.SectionType <em>Section Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4284,7 +4622,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getSectionType()
 	 * @generated
 	 */
-	int SECTION_TYPE = 77;
+	int SECTION_TYPE = 82;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.TypedModelAction <em>Typed Model Action</em>}' enum.
@@ -4294,7 +4632,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getTypedModelAction()
 	 * @generated
 	 */
-	int TYPED_MODEL_ACTION = 78;
+	int TYPED_MODEL_ACTION = 83;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.UndefinedLiteral <em>Undefined Literal</em>}' enum.
@@ -4304,7 +4642,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getUndefinedLiteral()
 	 * @generated
 	 */
-	int UNDEFINED_LITERAL = 79;
+	int UNDEFINED_LITERAL = 84;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.PredefinedVariable <em>Predefined Variable</em>}' enum.
@@ -4314,7 +4652,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getPredefinedVariable()
 	 * @generated
 	 */
-	int PREDEFINED_VARIABLE = 80;
+	int PREDEFINED_VARIABLE = 85;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.OperationSeparator <em>Operation Separator</em>}' enum.
@@ -4324,7 +4662,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getOperationSeparator()
 	 * @generated
 	 */
-	int OPERATION_SEPARATOR = 81;
+	int OPERATION_SEPARATOR = 86;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.IteratorType <em>Iterator Type</em>}' enum.
@@ -4334,7 +4672,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getIteratorType()
 	 * @generated
 	 */
-	int ITERATOR_TYPE = 82;
+	int ITERATOR_TYPE = 87;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.BooleanOperator <em>Boolean Operator</em>}' enum.
@@ -4344,7 +4682,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getBooleanOperator()
 	 * @generated
 	 */
-	int BOOLEAN_OPERATOR = 83;
+	int BOOLEAN_OPERATOR = 88;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.RelationalOperator <em>Relational Operator</em>}' enum.
@@ -4354,7 +4692,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getRelationalOperator()
 	 * @generated
 	 */
-	int RELATIONAL_OPERATOR = 84;
+	int RELATIONAL_OPERATOR = 89;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.AdditiveOperator <em>Additive Operator</em>}' enum.
@@ -4364,7 +4702,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getAdditiveOperator()
 	 * @generated
 	 */
-	int ADDITIVE_OPERATOR = 85;
+	int ADDITIVE_OPERATOR = 90;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.MultiplicativeOperator <em>Multiplicative Operator</em>}' enum.
@@ -4374,7 +4712,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getMultiplicativeOperator()
 	 * @generated
 	 */
-	int MULTIPLICATIVE_OPERATOR = 86;
+	int MULTIPLICATIVE_OPERATOR = 91;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.UnaryOperator <em>Unary Operator</em>}' enum.
@@ -4384,7 +4722,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getUnaryOperator()
 	 * @generated
 	 */
-	int UNARY_OPERATOR = 87;
+	int UNARY_OPERATOR = 92;
 
 
 	/**
@@ -4395,7 +4733,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getScopeType()
 	 * @generated
 	 */
-	int SCOPE_TYPE = 88;
+	int SCOPE_TYPE = 93;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.OrderType <em>Order Type</em>}' enum.
@@ -4405,7 +4743,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getOrderType()
 	 * @generated
 	 */
-	int ORDER_TYPE = 89;
+	int ORDER_TYPE = 94;
 
 
 	/**
@@ -4416,7 +4754,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getIterationType()
 	 * @generated
 	 */
-	int ITERATION_TYPE = 90;
+	int ITERATION_TYPE = 95;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.RepetitionType <em>Repetition Type</em>}' enum.
@@ -4426,7 +4764,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getRepetitionType()
 	 * @generated
 	 */
-	int REPETITION_TYPE = 91;
+	int REPETITION_TYPE = 96;
 
 
 	/**
@@ -4534,6 +4872,17 @@ public interface MorelPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getClause();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link edu.ustb.sei.mde.morel.Clause#getStatements <em>Statements</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Statements</em>'.
+	 * @see edu.ustb.sei.mde.morel.Clause#getStatements()
+	 * @see #getClause()
+	 * @generated
+	 */
+	EReference getClause_Statements();
 
 	/**
 	 * Returns the meta object for class '{@link edu.ustb.sei.mde.morel.Variable <em>Variable</em>}'.
@@ -6321,6 +6670,188 @@ public interface MorelPackage extends EPackage {
 	EClass getAllDifferentConstraint();
 
 	/**
+	 * Returns the meta object for class '{@link edu.ustb.sei.mde.morel.PrimitiveConstraint <em>Primitive Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Primitive Constraint</em>'.
+	 * @see edu.ustb.sei.mde.morel.PrimitiveConstraint
+	 * @generated
+	 */
+	EClass getPrimitiveConstraint();
+
+	/**
+	 * Returns the meta object for the reference '{@link edu.ustb.sei.mde.morel.PrimitiveConstraint#getVariable <em>Variable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Variable</em>'.
+	 * @see edu.ustb.sei.mde.morel.PrimitiveConstraint#getVariable()
+	 * @see #getPrimitiveConstraint()
+	 * @generated
+	 */
+	EReference getPrimitiveConstraint_Variable();
+
+	/**
+	 * Returns the meta object for class '{@link edu.ustb.sei.mde.morel.MultiValueConstraint <em>Multi Value Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Multi Value Constraint</em>'.
+	 * @see edu.ustb.sei.mde.morel.MultiValueConstraint
+	 * @generated
+	 */
+	EClass getMultiValueConstraint();
+
+	/**
+	 * Returns the meta object for the reference '{@link edu.ustb.sei.mde.morel.MultiValueConstraint#getObject <em>Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Object</em>'.
+	 * @see edu.ustb.sei.mde.morel.MultiValueConstraint#getObject()
+	 * @see #getMultiValueConstraint()
+	 * @generated
+	 */
+	EReference getMultiValueConstraint_Object();
+
+	/**
+	 * Returns the meta object for the reference '{@link edu.ustb.sei.mde.morel.MultiValueConstraint#getAttribute <em>Attribute</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Attribute</em>'.
+	 * @see edu.ustb.sei.mde.morel.MultiValueConstraint#getAttribute()
+	 * @see #getMultiValueConstraint()
+	 * @generated
+	 */
+	EReference getMultiValueConstraint_Attribute();
+
+	/**
+	 * Returns the meta object for class '{@link edu.ustb.sei.mde.morel.ValueRangeConstraint <em>Value Range Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Value Range Constraint</em>'.
+	 * @see edu.ustb.sei.mde.morel.ValueRangeConstraint
+	 * @generated
+	 */
+	EClass getValueRangeConstraint();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.morel.ValueRangeConstraint#getExpression <em>Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Expression</em>'.
+	 * @see edu.ustb.sei.mde.morel.ValueRangeConstraint#getExpression()
+	 * @see #getValueRangeConstraint()
+	 * @generated
+	 */
+	EReference getValueRangeConstraint_Expression();
+
+	/**
+	 * Returns the meta object for class '{@link edu.ustb.sei.mde.morel.BXRewritingRule <em>BX Rewriting Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>BX Rewriting Rule</em>'.
+	 * @see edu.ustb.sei.mde.morel.BXRewritingRule
+	 * @generated
+	 */
+	EClass getBXRewritingRule();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link edu.ustb.sei.mde.morel.BXRewritingRule#getNac <em>Nac</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Nac</em>'.
+	 * @see edu.ustb.sei.mde.morel.BXRewritingRule#getNac()
+	 * @see #getBXRewritingRule()
+	 * @generated
+	 */
+	EReference getBXRewritingRule_Nac();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.morel.BXRewritingRule#getSource <em>Source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Source</em>'.
+	 * @see edu.ustb.sei.mde.morel.BXRewritingRule#getSource()
+	 * @see #getBXRewritingRule()
+	 * @generated
+	 */
+	EReference getBXRewritingRule_Source();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.morel.BXRewritingRule#getView <em>View</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>View</em>'.
+	 * @see edu.ustb.sei.mde.morel.BXRewritingRule#getView()
+	 * @see #getBXRewritingRule()
+	 * @generated
+	 */
+	EReference getBXRewritingRule_View();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.morel.BXRewritingRule#getWhen <em>When</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>When</em>'.
+	 * @see edu.ustb.sei.mde.morel.BXRewritingRule#getWhen()
+	 * @see #getBXRewritingRule()
+	 * @generated
+	 */
+	EReference getBXRewritingRule_When();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.morel.BXRewritingRule#getUpdate <em>Update</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Update</em>'.
+	 * @see edu.ustb.sei.mde.morel.BXRewritingRule#getUpdate()
+	 * @see #getBXRewritingRule()
+	 * @generated
+	 */
+	EReference getBXRewritingRule_Update();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.morel.BXRewritingRule#getUnmatchSrc <em>Unmatch Src</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Unmatch Src</em>'.
+	 * @see edu.ustb.sei.mde.morel.BXRewritingRule#getUnmatchSrc()
+	 * @see #getBXRewritingRule()
+	 * @generated
+	 */
+	EReference getBXRewritingRule_UnmatchSrc();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.morel.BXRewritingRule#getUnmatchView <em>Unmatch View</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Unmatch View</em>'.
+	 * @see edu.ustb.sei.mde.morel.BXRewritingRule#getUnmatchView()
+	 * @see #getBXRewritingRule()
+	 * @generated
+	 */
+	EReference getBXRewritingRule_UnmatchView();
+
+	/**
+	 * Returns the meta object for class '{@link edu.ustb.sei.mde.morel.BXRewritingModel <em>BX Rewriting Model</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>BX Rewriting Model</em>'.
+	 * @see edu.ustb.sei.mde.morel.BXRewritingModel
+	 * @generated
+	 */
+	EClass getBXRewritingModel();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link edu.ustb.sei.mde.morel.BXRewritingModel#getRules <em>Rules</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Rules</em>'.
+	 * @see edu.ustb.sei.mde.morel.BXRewritingModel#getRules()
+	 * @see #getBXRewritingModel()
+	 * @generated
+	 */
+	EReference getBXRewritingModel_Rules();
+
+	/**
 	 * Returns the meta object for enum '{@link edu.ustb.sei.mde.morel.SectionType <em>Section Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6580,6 +7111,14 @@ public interface MorelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass CLAUSE = eINSTANCE.getClause();
+
+		/**
+		 * The meta object literal for the '<em><b>Statements</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLAUSE__STATEMENTS = eINSTANCE.getClause_Statements();
 
 		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.impl.VariableImpl <em>Variable</em>}' class.
@@ -8078,6 +8617,152 @@ public interface MorelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass ALL_DIFFERENT_CONSTRAINT = eINSTANCE.getAllDifferentConstraint();
+
+		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.impl.PrimitiveConstraintImpl <em>Primitive Constraint</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.morel.impl.PrimitiveConstraintImpl
+		 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getPrimitiveConstraint()
+		 * @generated
+		 */
+		EClass PRIMITIVE_CONSTRAINT = eINSTANCE.getPrimitiveConstraint();
+
+		/**
+		 * The meta object literal for the '<em><b>Variable</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PRIMITIVE_CONSTRAINT__VARIABLE = eINSTANCE.getPrimitiveConstraint_Variable();
+
+		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.impl.MultiValueConstraintImpl <em>Multi Value Constraint</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.morel.impl.MultiValueConstraintImpl
+		 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getMultiValueConstraint()
+		 * @generated
+		 */
+		EClass MULTI_VALUE_CONSTRAINT = eINSTANCE.getMultiValueConstraint();
+
+		/**
+		 * The meta object literal for the '<em><b>Object</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MULTI_VALUE_CONSTRAINT__OBJECT = eINSTANCE.getMultiValueConstraint_Object();
+
+		/**
+		 * The meta object literal for the '<em><b>Attribute</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MULTI_VALUE_CONSTRAINT__ATTRIBUTE = eINSTANCE.getMultiValueConstraint_Attribute();
+
+		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.impl.ValueRangeConstraintImpl <em>Value Range Constraint</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.morel.impl.ValueRangeConstraintImpl
+		 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getValueRangeConstraint()
+		 * @generated
+		 */
+		EClass VALUE_RANGE_CONSTRAINT = eINSTANCE.getValueRangeConstraint();
+
+		/**
+		 * The meta object literal for the '<em><b>Expression</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VALUE_RANGE_CONSTRAINT__EXPRESSION = eINSTANCE.getValueRangeConstraint_Expression();
+
+		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.impl.BXRewritingRuleImpl <em>BX Rewriting Rule</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.morel.impl.BXRewritingRuleImpl
+		 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getBXRewritingRule()
+		 * @generated
+		 */
+		EClass BX_REWRITING_RULE = eINSTANCE.getBXRewritingRule();
+
+		/**
+		 * The meta object literal for the '<em><b>Nac</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BX_REWRITING_RULE__NAC = eINSTANCE.getBXRewritingRule_Nac();
+
+		/**
+		 * The meta object literal for the '<em><b>Source</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BX_REWRITING_RULE__SOURCE = eINSTANCE.getBXRewritingRule_Source();
+
+		/**
+		 * The meta object literal for the '<em><b>View</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BX_REWRITING_RULE__VIEW = eINSTANCE.getBXRewritingRule_View();
+
+		/**
+		 * The meta object literal for the '<em><b>When</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BX_REWRITING_RULE__WHEN = eINSTANCE.getBXRewritingRule_When();
+
+		/**
+		 * The meta object literal for the '<em><b>Update</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BX_REWRITING_RULE__UPDATE = eINSTANCE.getBXRewritingRule_Update();
+
+		/**
+		 * The meta object literal for the '<em><b>Unmatch Src</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BX_REWRITING_RULE__UNMATCH_SRC = eINSTANCE.getBXRewritingRule_UnmatchSrc();
+
+		/**
+		 * The meta object literal for the '<em><b>Unmatch View</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BX_REWRITING_RULE__UNMATCH_VIEW = eINSTANCE.getBXRewritingRule_UnmatchView();
+
+		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.impl.BXRewritingModelImpl <em>BX Rewriting Model</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.morel.impl.BXRewritingModelImpl
+		 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getBXRewritingModel()
+		 * @generated
+		 */
+		EClass BX_REWRITING_MODEL = eINSTANCE.getBXRewritingModel();
+
+		/**
+		 * The meta object literal for the '<em><b>Rules</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BX_REWRITING_MODEL__RULES = eINSTANCE.getBXRewritingModel_Rules();
 
 		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.SectionType <em>Section Type</em>}' enum.

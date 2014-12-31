@@ -211,11 +211,12 @@ public class OclInterpreter extends
 			result = this.interprete_edu_ustb_sei_mde_morel_ReflectiveVariableExp((ReflectiveVariableExp) object, context);
 		}
 		
-		if(result!=null) return result;
-		else {
-			System.out.println("call super.interprete:"+object);
-			return super.interprete(object, context);
-		}
+//		if(result!=null) return result;
+//		else {
+//			System.out.println("call super.interprete:"+object);
+//			return super.interprete(object, context);
+//		}
+		return result;
 	}
 	
 	

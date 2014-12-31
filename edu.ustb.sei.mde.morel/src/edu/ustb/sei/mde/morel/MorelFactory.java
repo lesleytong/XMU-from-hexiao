@@ -490,6 +490,42 @@ public interface MorelFactory extends EFactory {
 	AllDifferentConstraint createAllDifferentConstraint();
 
 	/**
+	 * Returns a new object of class '<em>Multi Value Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Multi Value Constraint</em>'.
+	 * @generated
+	 */
+	MultiValueConstraint createMultiValueConstraint();
+
+	/**
+	 * Returns a new object of class '<em>Value Range Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Value Range Constraint</em>'.
+	 * @generated
+	 */
+	ValueRangeConstraint createValueRangeConstraint();
+
+	/**
+	 * Returns a new object of class '<em>BX Rewriting Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>BX Rewriting Rule</em>'.
+	 * @generated
+	 */
+	BXRewritingRule createBXRewritingRule();
+
+	/**
+	 * Returns a new object of class '<em>BX Rewriting Model</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>BX Rewriting Model</em>'.
+	 * @generated
+	 */
+	BXRewritingModel createBXRewritingModel();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

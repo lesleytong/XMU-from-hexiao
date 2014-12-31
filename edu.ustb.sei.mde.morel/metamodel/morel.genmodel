@@ -100,7 +100,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//Pattern/statements"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//Pattern/additionalConstraints"/>
     </genClasses>
-    <genClasses ecoreClass="morel.ecore#//Clause"/>
+    <genClasses ecoreClass="morel.ecore#//Clause">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//Clause/statements"/>
+    </genClasses>
     <genClasses ecoreClass="morel.ecore#//Variable"/>
     <genClasses ecoreClass="morel.ecore#//ObjectVariable">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference morel.ecore#//ObjectVariable/type"/>
@@ -322,5 +324,27 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference morel.ecore#//OrderConstraint/types"/>
     </genClasses>
     <genClasses ecoreClass="morel.ecore#//AllDifferentConstraint"/>
+    <genClasses image="false" ecoreClass="morel.ecore#//PrimitiveConstraint">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference morel.ecore#//PrimitiveConstraint/variable"/>
+    </genClasses>
+    <genClasses ecoreClass="morel.ecore#//MultiValueConstraint">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference morel.ecore#//MultiValueConstraint/object"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference morel.ecore#//MultiValueConstraint/attribute"/>
+    </genClasses>
+    <genClasses ecoreClass="morel.ecore#//ValueRangeConstraint">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//ValueRangeConstraint/expression"/>
+    </genClasses>
+    <genClasses ecoreClass="morel.ecore#//BXRewritingRule">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//BXRewritingRule/nac"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//BXRewritingRule/source"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//BXRewritingRule/view"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//BXRewritingRule/when"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//BXRewritingRule/update"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//BXRewritingRule/unmatchSrc"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//BXRewritingRule/unmatchView"/>
+    </genClasses>
+    <genClasses ecoreClass="morel.ecore#//BXRewritingModel">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//BXRewritingModel/rules"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

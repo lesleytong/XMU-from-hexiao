@@ -16,6 +16,7 @@ public class MorelNewFileContentProvider {
 		return getExampleContent(new org.eclipse.emf.ecore.EClass[] {
 			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getQueryModel(),
 			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getTransformationModel(),
+			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingModel(),
 		}, getMetaInformation().getClassesWithSyntax(), newFileName);
 	}
 	
