@@ -3372,13 +3372,13 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 
 		initEClass(booleanOrExpEClass, BooleanOrExp.class, "BooleanOrExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBooleanOrExp_Children(), this.getBooleanOrExpChild(), null, "children", null, 1, -1, BooleanOrExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBooleanOrExp_Operators(), this.getBooleanOperator(), "operators", null, 0, -1, BooleanOrExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBooleanOrExp_Operators(), this.getBooleanOperator(), "operators", null, 0, -1, BooleanOrExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(booleanOrExpChildEClass, BooleanOrExpChild.class, "BooleanOrExpChild", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(booleanAndExpEClass, BooleanAndExp.class, "BooleanAndExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBooleanAndExp_Children(), this.getBooleanAndExpChild(), null, "children", null, 1, -1, BooleanAndExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBooleanAndExp_Operators(), this.getBooleanOperator(), "operators", null, 0, -1, BooleanAndExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBooleanAndExp_Operators(), this.getBooleanOperator(), "operators", null, 0, -1, BooleanAndExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(booleanAndExpChildEClass, BooleanAndExpChild.class, "BooleanAndExpChild", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -3391,13 +3391,13 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 
 		initEClass(additiveExpEClass, AdditiveExp.class, "AdditiveExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAdditiveExp_Children(), this.getAdditiveExpChild(), null, "children", null, 1, -1, AdditiveExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAdditiveExp_Operators(), this.getAdditiveOperator(), "operators", null, 0, -1, AdditiveExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAdditiveExp_Operators(), this.getAdditiveOperator(), "operators", null, 0, -1, AdditiveExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(additiveExpChildEClass, AdditiveExpChild.class, "AdditiveExpChild", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(multiplicativeExpEClass, MultiplicativeExp.class, "MultiplicativeExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMultiplicativeExp_Children(), this.getMultiplicativeExpChild(), null, "children", null, 1, -1, MultiplicativeExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMultiplicativeExp_Operators(), this.getMultiplicativeOperator(), "operators", null, 0, -1, MultiplicativeExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMultiplicativeExp_Operators(), this.getMultiplicativeOperator(), "operators", null, 0, -1, MultiplicativeExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(multiplicativeExpChildEClass, MultiplicativeExpChild.class, "MultiplicativeExpChild", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

@@ -52,7 +52,7 @@ public interface BooleanOrExp extends BooleanImpliesExpChild {
 	 * @return the value of the '<em>Operators</em>' attribute list.
 	 * @see edu.ustb.sei.mde.morel.BooleanOperator
 	 * @see edu.ustb.sei.mde.morel.MorelPackage#getBooleanOrExp_Operators()
-	 * @model
+	 * @model unique="false"
 	 * @generated
 	 */
 	EList<BooleanOperator> getOperators();

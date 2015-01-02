@@ -11,7 +11,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+import org.eclipse.emf.ecore.util.EDataTypeEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -88,7 +88,7 @@ public class BooleanOrExpImpl extends BooleanImpliesExpChildImpl implements Bool
 	 */
 	public EList<BooleanOperator> getOperators() {
 		if (operators == null) {
-			operators = new EDataTypeUniqueEList<BooleanOperator>(BooleanOperator.class, this, MorelPackage.BOOLEAN_OR_EXP__OPERATORS);
+			operators = new EDataTypeEList<BooleanOperator>(BooleanOperator.class, this, MorelPackage.BOOLEAN_OR_EXP__OPERATORS);
 		}
 		return operators;
 	}

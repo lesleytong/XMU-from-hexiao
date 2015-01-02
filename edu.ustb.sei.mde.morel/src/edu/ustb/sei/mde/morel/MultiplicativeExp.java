@@ -51,7 +51,7 @@ public interface MultiplicativeExp extends AdditiveExpChild {
 	 * @return the value of the '<em>Operators</em>' attribute list.
 	 * @see edu.ustb.sei.mde.morel.MultiplicativeOperator
 	 * @see edu.ustb.sei.mde.morel.MorelPackage#getMultiplicativeExp_Operators()
-	 * @model
+	 * @model unique="false"
 	 * @generated
 	 */
 	EList<MultiplicativeOperator> getOperators();

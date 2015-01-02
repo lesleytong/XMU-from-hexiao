@@ -6,17 +6,12 @@ import edu.ustb.sei.mde.morel.MorelPackage;
 import edu.ustb.sei.mde.morel.MultiplicativeExp;
 import edu.ustb.sei.mde.morel.MultiplicativeExpChild;
 import edu.ustb.sei.mde.morel.MultiplicativeOperator;
-
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+import org.eclipse.emf.ecore.util.EDataTypeEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -93,7 +88,7 @@ public class MultiplicativeExpImpl extends AdditiveExpChildImpl implements Multi
 	 */
 	public EList<MultiplicativeOperator> getOperators() {
 		if (operators == null) {
-			operators = new EDataTypeUniqueEList<MultiplicativeOperator>(MultiplicativeOperator.class, this, MorelPackage.MULTIPLICATIVE_EXP__OPERATORS);
+			operators = new EDataTypeEList<MultiplicativeOperator>(MultiplicativeOperator.class, this, MorelPackage.MULTIPLICATIVE_EXP__OPERATORS);
 		}
 		return operators;
 	}

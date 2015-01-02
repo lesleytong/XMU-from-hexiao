@@ -145,7 +145,7 @@ RULES {
 	
 	BlockStatement ::= "{" statements* "}" ;
 	
-	TransformationModel ::= "transformation" name[IDENTIFIER] models+ rules* ;
+	TransformationModel ::= "transformation" name[IDENTIFIER] models+ rules:Rule,RuleGroup* ;
 	
 	Rule ::= (active["active":"passive"])? "rule" name[IDENTIFIER] ("("parameters[IDENTIFIER] ("," parameters[IDENTIFIER])*")")? "{" (patterns:Pattern)* "}" ;
 	

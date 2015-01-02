@@ -6,17 +6,12 @@ import edu.ustb.sei.mde.morel.AdditiveExp;
 import edu.ustb.sei.mde.morel.AdditiveExpChild;
 import edu.ustb.sei.mde.morel.AdditiveOperator;
 import edu.ustb.sei.mde.morel.MorelPackage;
-
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+import org.eclipse.emf.ecore.util.EDataTypeEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -93,7 +88,7 @@ public class AdditiveExpImpl extends RelationalExpChildImpl implements AdditiveE
 	 */
 	public EList<AdditiveOperator> getOperators() {
 		if (operators == null) {
-			operators = new EDataTypeUniqueEList<AdditiveOperator>(AdditiveOperator.class, this, MorelPackage.ADDITIVE_EXP__OPERATORS);
+			operators = new EDataTypeEList<AdditiveOperator>(AdditiveOperator.class, this, MorelPackage.ADDITIVE_EXP__OPERATORS);
 		}
 		return operators;
 	}

@@ -51,7 +51,7 @@ public interface AdditiveExp extends RelationalExpChild {
 	 * @return the value of the '<em>Operators</em>' attribute list.
 	 * @see edu.ustb.sei.mde.morel.AdditiveOperator
 	 * @see edu.ustb.sei.mde.morel.MorelPackage#getAdditiveExp_Operators()
-	 * @model
+	 * @model unique="false"
 	 * @generated
 	 */
 	EList<AdditiveOperator> getOperators();

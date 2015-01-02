@@ -223,15 +223,15 @@
   <eClassifiers xsi:type="ecore:EClass" name="BooleanOrExp" eSuperTypes="#//BooleanImpliesExpChild">
     <eStructuralFeatures xsi:type="ecore:EReference" name="children" lowerBound="1"
         upperBound="-1" eType="#//BooleanOrExpChild" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operators" upperBound="-1"
-        eType="#//BooleanOperator"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operators" unique="false"
+        upperBound="-1" eType="#//BooleanOperator"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BooleanOrExpChild" abstract="true" eSuperTypes="#//BooleanImpliesExpChild"/>
   <eClassifiers xsi:type="ecore:EClass" name="BooleanAndExp" eSuperTypes="#//BooleanOrExpChild">
     <eStructuralFeatures xsi:type="ecore:EReference" name="children" lowerBound="1"
         upperBound="-1" eType="#//BooleanAndExpChild" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operators" upperBound="-1"
-        eType="#//BooleanOperator"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operators" unique="false"
+        upperBound="-1" eType="#//BooleanOperator"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BooleanAndExpChild" abstract="true"
       eSuperTypes="#//BooleanOrExpChild"/>
@@ -261,8 +261,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="AdditiveExp" eSuperTypes="#//RelationalExpChild">
     <eStructuralFeatures xsi:type="ecore:EReference" name="children" lowerBound="1"
         upperBound="-1" eType="#//AdditiveExpChild" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operators" upperBound="-1"
-        eType="#//AdditiveOperator"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operators" unique="false"
+        upperBound="-1" eType="#//AdditiveOperator"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="AdditiveOperator">
     <eLiterals name="plus"/>
@@ -272,8 +272,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="MultiplicativeExp" eSuperTypes="#//AdditiveExpChild">
     <eStructuralFeatures xsi:type="ecore:EReference" name="children" lowerBound="1"
         upperBound="-1" eType="#//MultiplicativeExpChild" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operators" upperBound="-1"
-        eType="#//MultiplicativeOperator"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operators" unique="false"
+        upperBound="-1" eType="#//MultiplicativeOperator"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="MultiplicativeOperator">
     <eLiterals name="multi"/>
