@@ -3,9 +3,12 @@ package edu.ustb.sei.mde.morel.resource.morel.execution;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 import edu.ustb.sei.mde.emg.library.BooleanLibrary;
 import edu.ustb.sei.mde.emg.runtime.Context;
+import edu.ustb.sei.mde.emg.runtime.Environment;
+import edu.ustb.sei.mde.emg.runtime.datatype.OclUndefined;
 import edu.ustb.sei.mde.modeling.ui.ConsoleUtil;
 import edu.ustb.sei.mde.morel.BXRewritingModel;
 import edu.ustb.sei.mde.morel.BXRewritingRule;
@@ -17,6 +20,9 @@ import edu.ustb.sei.mde.morel.ImperativeStatement;
 import edu.ustb.sei.mde.morel.Pattern;
 import edu.ustb.sei.mde.morel.RelationalExp;
 import edu.ustb.sei.mde.morel.RelationalOperator;
+import edu.ustb.sei.mde.morel.Rule;
+import edu.ustb.sei.mde.morel.RuleElement;
+import edu.ustb.sei.mde.morel.RuleGroup;
 import edu.ustb.sei.mde.morel.Statement;
 import edu.ustb.sei.mde.morel.Variable;
 import edu.ustb.sei.mde.morel.VariableExp;
@@ -26,6 +32,37 @@ import edu.ustb.sei.mde.morel.resource.morel.execution.primitives.Update;
 public class BXUpdateInterpreter extends OclInterpreter {
 
 	public BXUpdateInterpreter() {
+	}
+	
+	private List<Context> contextRecord = new ArrayList<Context>();
+	
+	public void clearRecord() {
+		contextRecord.clear();
+	}
+	
+	public void addRecord(Context c) {
+		contextRecord.add(c);
+	}
+	
+	public boolean checkExists(Context c) {
+		for(Context ec : contextRecord) {
+			if(checkPartial(c,ec))
+				return true;
+		}
+		return false;
+	}
+	
+	protected boolean checkPartial(Context c, Context nc) {
+		if(c.getHost()!=nc.getHost()) return false;
+		
+		Set<Variable> vs = c.getBindingMap().keySet();
+		for(Variable v : vs) {
+			Object v1 = c.getValue(v);
+			Object v2 = nc.getValue(v);
+			if(OclUndefined.isOclUndefined(v1)) continue;
+			if(v1.equals(v2)==false) return false;
+		}
+		return true;
 	}
 
 	@Override
@@ -54,9 +91,11 @@ public class BXUpdateInterpreter extends OclInterpreter {
 			List<Pattern> lhsST = Collections.singletonList(lhs);
 			
 			for(Context c : lhsMatches) {
+				if(this.checkExists(c)) continue;
 				if(recheckMatch(lhsST, c)==false) continue;
 				Update.instance.create(rhs, bXRewritingRule.getParameters(), c, c.getEnviroment(), this);
 				Update.instance.updateClauses(rhs, c, this, when,update);
+				this.addRecord(c);
 			}
 			
 			
@@ -108,6 +147,7 @@ public class BXUpdateInterpreter extends OclInterpreter {
 		List<Pattern> lhsST = Collections.singletonList(lhs);
 		
 		for(Context c : lhsMatches) {
+			if(this.checkExists(c)) continue;
 			if(recheckMatch(lhsST, c)==false) continue;
 			if(checkAlign(nView,when,c,match)==false) {
 				// update rhs
@@ -119,6 +159,7 @@ public class BXUpdateInterpreter extends OclInterpreter {
 				
 				// enforce when and update
 				Update.instance.updateClauses(bXRewritingRule.getSource(), c, this, when);
+				this.addRecord(c);
 			}
 		}
 	}
@@ -146,6 +187,7 @@ public class BXUpdateInterpreter extends OclInterpreter {
 		List<Pattern> lhsST = Collections.singletonList(lhs);
 		
 		for(Context c : lhsMatches) {
+			if(this.checkExists(c)) continue;
 			if(recheckMatch(lhsST, c)==false) continue;
 			if(checkAlign(nView,when,c,match)==false) {
 				// update rhs
@@ -157,6 +199,7 @@ public class BXUpdateInterpreter extends OclInterpreter {
 				
 				// enforce when and update
 				Update.instance.updateClauses(bXRewritingRule.getSource(), c, this, when,update);
+				this.addRecord(c);
 			}
 		}
 	}
@@ -184,18 +227,19 @@ public class BXUpdateInterpreter extends OclInterpreter {
 		
 		List<Context> lhsMatches = match.match(lhs, context, this, context.getEnviroment());
 		
-		List<Context> successfulContexts = new ArrayList<Context>();
+		//List<Context> successfulContexts = new ArrayList<Context>();
 		
 		Match.resetCache();
 		
 		for(Context c : lhsMatches) {
+			if(this.checkExists(c)) continue;
 			if(recheckMatch(lhs, c)==false) continue;
 			if(checkClause(when,c)==false) continue;
 			if(checkNAC(c, nac, match)==false) continue;
 			
 			Update.instance.updateClauses(bXRewritingRule.getSource(), c, this, update);
 
-			successfulContexts.add(c);
+			this.addRecord(c);
 		}
 		
 		return;
@@ -213,9 +257,36 @@ public class BXUpdateInterpreter extends OclInterpreter {
 	@Override
 	public Object interprete_edu_ustb_sei_mde_morel_BXRewritingModel(
 			BXRewritingModel bXRewritingModel, Context context) {
-		// TODO Auto-generated method stub
-		return super.interprete_edu_ustb_sei_mde_morel_BXRewritingModel(
-				bXRewritingModel, context);
+		try {
+			Context init = context.newScope();
+			Environment env = context.getEnviroment();
+			
+			do{
+				ConsoleUtil.printToConsole("next iteration", MorelLaunchConfigurationHelper.MOREL_TITLE, true);
+				env.getModelUniverse().resetChanged();
+				
+				for(BXRewritingRule rule : bXRewritingModel.getRules()) {
+					if(terminated) return true;
+					if(rule.isActive()==false) continue;
+					
+					if(rule instanceof BXRewritingRule) {
+						this.interprete_edu_ustb_sei_mde_morel_BXRewritingRule(rule, init);
+					}
+//					else if(rule instanceof RuleGroup) {
+//						this.interprete_edu_ustb_sei_mde_morel_RuleGroup((RuleGroup)rule, init);
+//					}
+				}
+			}
+			while(terminated==false&&env.getModelUniverse().isChanged());
+			
+			ConsoleUtil.printToConsole("Transformation is finished.", MorelLaunchConfigurationHelper.MOREL_TITLE, true);
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return true;
 	}
 
 	public void updateStatement(Statement s, Context context) {
