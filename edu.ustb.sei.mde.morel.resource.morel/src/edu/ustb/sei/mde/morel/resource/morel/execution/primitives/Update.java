@@ -24,7 +24,11 @@ import edu.ustb.sei.mde.morel.Variable;
 import edu.ustb.sei.mde.morel.resource.morel.execution.BXUpdateInterpreter;
 
 public class Update {
-	static public final PrimitiveVariable DIRECTION = MorelFactory.eINSTANCE.createPrimitiveVariable();
+	static public final PrimitiveVariable DIRECTION;
+	static {
+		DIRECTION = MorelFactory.eINSTANCE.createPrimitiveVariable();
+		DIRECTION.setName("****DIRECTION****");
+	}
 	static public final Update instance = new Update();
 	
 	public void updateClauses(Pattern direction, Context context, BXUpdateInterpreter interpreter,Clause... clauses) {

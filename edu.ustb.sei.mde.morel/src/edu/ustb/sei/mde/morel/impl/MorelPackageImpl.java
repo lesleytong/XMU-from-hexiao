@@ -9,6 +9,7 @@ import edu.ustb.sei.mde.morel.AdditiveOperator;
 import edu.ustb.sei.mde.morel.AllDifferentConstraint;
 import edu.ustb.sei.mde.morel.ArrayLiteralExp;
 import edu.ustb.sei.mde.morel.AtomicExp;
+import edu.ustb.sei.mde.morel.BXMode;
 import edu.ustb.sei.mde.morel.BXRewritingModel;
 import edu.ustb.sei.mde.morel.BXRewritingRule;
 import edu.ustb.sei.mde.morel.BagType;
@@ -794,6 +795,13 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 * @generated
 	 */
 	private EEnum repetitionTypeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum bxModeEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -2634,6 +2642,15 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getBXRewritingModel_Mode() {
+		return (EAttribute)bxRewritingModelEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getSectionType() {
 		return sectionTypeEEnum;
 	}
@@ -2762,6 +2779,15 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 */
 	public EEnum getRepetitionType() {
 		return repetitionTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getBXMode() {
+		return bxModeEEnum;
 	}
 
 	/**
@@ -3070,6 +3096,7 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 
 		bxRewritingModelEClass = createEClass(BX_REWRITING_MODEL);
 		createEReference(bxRewritingModelEClass, BX_REWRITING_MODEL__RULES);
+		createEAttribute(bxRewritingModelEClass, BX_REWRITING_MODEL__MODE);
 
 		// Create enums
 		sectionTypeEEnum = createEEnum(SECTION_TYPE);
@@ -3087,6 +3114,7 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		orderTypeEEnum = createEEnum(ORDER_TYPE);
 		iterationTypeEEnum = createEEnum(ITERATION_TYPE);
 		repetitionTypeEEnum = createEEnum(REPETITION_TYPE);
+		bxModeEEnum = createEEnum(BX_MODE);
 	}
 
 	/**
@@ -3479,6 +3507,7 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 
 		initEClass(bxRewritingModelEClass, BXRewritingModel.class, "BXRewritingModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBXRewritingModel_Rules(), this.getBXRewritingRule(), null, "rules", null, 0, -1, BXRewritingModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBXRewritingModel_Mode(), this.getBXMode(), "mode", null, 1, 1, BXRewritingModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(sectionTypeEEnum, SectionType.class, "SectionType");
@@ -3561,6 +3590,10 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		addEEnumLiteral(repetitionTypeEEnum, RepetitionType.ALL_MATCHES);
 		addEEnumLiteral(repetitionTypeEEnum, RepetitionType.FIRST);
 		addEEnumLiteral(repetitionTypeEEnum, RepetitionType.RANDOM_ONE);
+
+		initEEnum(bxModeEEnum, BXMode.class, "BXMode");
+		addEEnumLiteral(bxModeEEnum, BXMode.GET);
+		addEEnumLiteral(bxModeEEnum, BXMode.PUT);
 
 		// Create resource
 		createResource(eNS_URI);

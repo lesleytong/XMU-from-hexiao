@@ -24,6 +24,8 @@ import edu.ustb.sei.mde.emg.runtime.Context;
 import edu.ustb.sei.mde.emg.runtime.Environment;
 import edu.ustb.sei.mde.emg.runtime.RuntimeFactory;
 import edu.ustb.sei.mde.modeling.ui.ConsoleUtil;
+import edu.ustb.sei.mde.morel.BXRewritingModel;
+import edu.ustb.sei.mde.morel.BXRewritingRule;
 import edu.ustb.sei.mde.morel.MorelFactory;
 import edu.ustb.sei.mde.morel.PredefinedVariable;
 import edu.ustb.sei.mde.morel.PrimitiveVariable;
@@ -81,7 +83,13 @@ public class MorelLaunchConfigurationHelper {
 			var.setType(EcorePackage.eINSTANCE.getEJavaObject());
 			createContext.registerVariable(var);
 			
-			OclInterpreter interpreter = new OclInterpreter();			
+			OclInterpreter interpreter = null;
+			
+			if(root instanceof BXRewritingModel)
+				interpreter = new BXUpdateInterpreter();
+			else 
+				interpreter = new OclInterpreter();
+			
 			createContext.putValue(var, new ModuleProvider((Unit) root, interpreter));
 			interpreter.start();
 			if(root instanceof QueryModel) {
@@ -89,6 +97,10 @@ public class MorelLaunchConfigurationHelper {
 			} else if(root instanceof TransformationModel) {
 //				OclInterpreter interpreter = new OclInterpreter();
 				interpreter.interprete_edu_ustb_sei_mde_morel_TransformationModel((TransformationModel) root, createContext);
+				saveModelSpace(root, env);
+			}  else if(root instanceof BXRewritingModel) {
+//				OclInterpreter interpreter = new OclInterpreter();
+				interpreter.interprete_edu_ustb_sei_mde_morel_BXRewritingModel((BXRewritingModel) root, createContext);
 				saveModelSpace(root, env);
 			} else {
 				SystemOutInterpreter delegate = new SystemOutInterpreter();

@@ -5310,7 +5310,7 @@ public class MorelPrinter implements edu.ustb.sei.mde.morel.resource.morel.IMore
 		// the number of elements stored in each structural feature. For lists this is the
 		// list size. For non-multiple features it is either 1 (if the feature is set) or
 		// 0 (if the feature is null).
-		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(4);
+		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(5);
 		Object temp;
 		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.BX_REWRITING_MODEL__MODELS));
 		printCountingMap.put("models", temp == null ? 0 : ((java.util.Collection<?>) temp).size());
@@ -5320,6 +5320,8 @@ public class MorelPrinter implements edu.ustb.sei.mde.morel.resource.morel.IMore
 		printCountingMap.put("name", temp == null ? 0 : 1);
 		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.BX_REWRITING_MODEL__RULES));
 		printCountingMap.put("rules", temp == null ? 0 : ((java.util.Collection<?>) temp).size());
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.BX_REWRITING_MODEL__MODE));
+		printCountingMap.put("mode", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
 		// DEFINITION PART BEGINS (CsString)
@@ -5336,6 +5338,14 @@ public class MorelPrinter implements edu.ustb.sei.mde.morel.resource.morel.IMore
 				out.print(" ");
 			}
 			printCountingMap.put("name", count - 1);
+		}
+		// DEFINITION PART BEGINS (EnumTerminal)
+		count = printCountingMap.get("mode");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.BX_REWRITING_MODEL__MODE));
+			if (o != null) {
+			}
+			printCountingMap.put("mode", count - 1);
 		}
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("models");

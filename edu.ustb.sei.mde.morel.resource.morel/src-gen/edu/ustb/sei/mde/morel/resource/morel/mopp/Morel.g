@@ -478,7 +478,7 @@ options {
 				break;
 			}
 		}
-		int followSetID = 397;
+		int followSetID = 398;
 		int i;
 		for (i = tokenIndexOfLastCompleteElement; i < tokenStream.size(); i++) {
 			org.antlr.runtime3_4_0.CommonToken nextToken = (org.antlr.runtime3_4_0.CommonToken) tokenStream.get(i);
@@ -12804,12 +12804,47 @@ parse_edu_ustb_sei_mde_morel_BXRewritingModel returns [edu.ustb.sei.mde.morel.BX
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingModel(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3366]);
+		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3366]);
 	}
 	
 	(
 		(
-			a2_0 = parse_edu_ustb_sei_mde_morel_TypedModel			{
+			a2 = 'get' {
+				if (element == null) {
+					element = edu.ustb.sei.mde.morel.MorelFactory.eINSTANCE.createBXRewritingModel();
+					startIncompleteElement(element);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_47_0_0_2, null, true);
+				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+				// set value of enumeration attribute
+				Object value = edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXMode().getEEnumLiteral(edu.ustb.sei.mde.morel.BXMode.GET_VALUE).getInstance();
+				element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.BX_REWRITING_MODEL__MODE), value);
+				completedElement(value, false);
+			}
+			|			a3 = 'put' {
+				if (element == null) {
+					element = edu.ustb.sei.mde.morel.MorelFactory.eINSTANCE.createBXRewritingModel();
+					startIncompleteElement(element);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_47_0_0_2, null, true);
+				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a3, element);
+				// set value of enumeration attribute
+				Object value = edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXMode().getEEnumLiteral(edu.ustb.sei.mde.morel.BXMode.PUT_VALUE).getInstance();
+				element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.BX_REWRITING_MODEL__MODE), value);
+				completedElement(value, false);
+			}
+		)
+	)
+	{
+		// expected elements (follow set)
+		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingModel(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3367]);
+	}
+	
+	(
+		(
+			a6_0 = parse_edu_ustb_sei_mde_morel_TypedModel			{
 				if (terminateParsing) {
 					throw new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelTerminateParsingException();
 				}
@@ -12817,29 +12852,29 @@ parse_edu_ustb_sei_mde_morel_BXRewritingModel returns [edu.ustb.sei.mde.morel.BX
 					element = edu.ustb.sei.mde.morel.MorelFactory.eINSTANCE.createBXRewritingModel();
 					startIncompleteElement(element);
 				}
-				if (a2_0 != null) {
-					if (a2_0 != null) {
-						Object value = a2_0;
+				if (a6_0 != null) {
+					if (a6_0 != null) {
+						Object value = a6_0;
 						addObjectToList(element, edu.ustb.sei.mde.morel.MorelPackage.BX_REWRITING_MODEL__MODELS, value);
 						completedElement(value, true);
 					}
 					collectHiddenTokens(element);
-					retrieveLayoutInformation(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_47_0_0_2, a2_0, true);
-					copyLocalizationInfos(a2_0, element);
+					retrieveLayoutInformation(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_47_0_0_3, a6_0, true);
+					copyLocalizationInfos(a6_0, element);
 				}
 			}
 		)
 		
 	)+	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingModel(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3367]);
 		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingModel(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3368]);
 		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingModel(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3369]);
+		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingModel(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3370]);
 	}
 	
 	(
 		(
-			a3_0 = parse_edu_ustb_sei_mde_morel_BXRewritingRule			{
+			a7_0 = parse_edu_ustb_sei_mde_morel_BXRewritingRule			{
 				if (terminateParsing) {
 					throw new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelTerminateParsingException();
 				}
@@ -12847,23 +12882,23 @@ parse_edu_ustb_sei_mde_morel_BXRewritingModel returns [edu.ustb.sei.mde.morel.BX
 					element = edu.ustb.sei.mde.morel.MorelFactory.eINSTANCE.createBXRewritingModel();
 					startIncompleteElement(element);
 				}
-				if (a3_0 != null) {
-					if (a3_0 != null) {
-						Object value = a3_0;
+				if (a7_0 != null) {
+					if (a7_0 != null) {
+						Object value = a7_0;
 						addObjectToList(element, edu.ustb.sei.mde.morel.MorelPackage.BX_REWRITING_MODEL__RULES, value);
 						completedElement(value, true);
 					}
 					collectHiddenTokens(element);
-					retrieveLayoutInformation(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_47_0_0_3, a3_0, true);
-					copyLocalizationInfos(a3_0, element);
+					retrieveLayoutInformation(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_47_0_0_4, a7_0, true);
+					copyLocalizationInfos(a7_0, element);
 				}
 			}
 		)
 		
 	)*	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingModel(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3370]);
 		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingModel(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3371]);
+		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingModel(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3372]);
 	}
 	
 ;
@@ -12906,14 +12941,14 @@ parse_edu_ustb_sei_mde_morel_BXRewritingRule returns [edu.ustb.sei.mde.morel.BXR
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3372]);
+				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3373]);
 			}
 			
 		)
 		
 	)?	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3373]);
+		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3374]);
 	}
 	
 	a3 = 'rule' {
@@ -12927,7 +12962,7 @@ parse_edu_ustb_sei_mde_morel_BXRewritingRule returns [edu.ustb.sei.mde.morel.BXR
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3374]);
+		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3375]);
 	}
 	
 	(
@@ -12963,8 +12998,8 @@ parse_edu_ustb_sei_mde_morel_BXRewritingRule returns [edu.ustb.sei.mde.morel.BXR
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3375]);
 		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3376]);
+		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3377]);
 	}
 	
 	(
@@ -12980,7 +13015,7 @@ parse_edu_ustb_sei_mde_morel_BXRewritingRule returns [edu.ustb.sei.mde.morel.BXR
 			}
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3377]);
+				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3378]);
 			}
 			
 			(
@@ -13016,8 +13051,8 @@ parse_edu_ustb_sei_mde_morel_BXRewritingRule returns [edu.ustb.sei.mde.morel.BXR
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3378]);
 				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3379]);
+				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3380]);
 			}
 			
 			(
@@ -13033,7 +13068,7 @@ parse_edu_ustb_sei_mde_morel_BXRewritingRule returns [edu.ustb.sei.mde.morel.BXR
 					}
 					{
 						// expected elements (follow set)
-						addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3380]);
+						addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3381]);
 					}
 					
 					(
@@ -13069,16 +13104,16 @@ parse_edu_ustb_sei_mde_morel_BXRewritingRule returns [edu.ustb.sei.mde.morel.BXR
 					)
 					{
 						// expected elements (follow set)
-						addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3381]);
 						addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3382]);
+						addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3383]);
 					}
 					
 				)
 				
 			)*			{
 				// expected elements (follow set)
-				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3383]);
 				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3384]);
+				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3385]);
 			}
 			
 			a9 = ')' {
@@ -13092,14 +13127,14 @@ parse_edu_ustb_sei_mde_morel_BXRewritingRule returns [edu.ustb.sei.mde.morel.BXR
 			}
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3385]);
+				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3386]);
 			}
 			
 		)
 		
 	)?	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3386]);
+		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3387]);
 	}
 	
 	a10 = '{' {
@@ -13113,16 +13148,16 @@ parse_edu_ustb_sei_mde_morel_BXRewritingRule returns [edu.ustb.sei.mde.morel.BXR
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3387]);
 		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3388]);
 		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3389]);
-		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3390]);
+		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3390]);
 		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3391]);
 		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3392]);
 		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3393]);
 		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3394]);
 		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3395]);
 		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3396]);
+		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3397]);
 	}
 	
 	(
@@ -13150,16 +13185,16 @@ parse_edu_ustb_sei_mde_morel_BXRewritingRule returns [edu.ustb.sei.mde.morel.BXR
 		
 	)*	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3397]);
 		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3398]);
 		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3399]);
-		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3400]);
+		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3400]);
 		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3401]);
 		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3402]);
 		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3403]);
 		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3404]);
 		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3405]);
 		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3406]);
+		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3407]);
 	}
 	
 	(
@@ -13175,7 +13210,7 @@ parse_edu_ustb_sei_mde_morel_BXRewritingRule returns [edu.ustb.sei.mde.morel.BXR
 			}
 			{
 				// expected elements (follow set)
-				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3407]);
+				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3408]);
 			}
 			
 			(
@@ -13201,24 +13236,24 @@ parse_edu_ustb_sei_mde_morel_BXRewritingRule returns [edu.ustb.sei.mde.morel.BXR
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3408]);
 				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3409]);
 				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3410]);
 				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3411]);
 				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3412]);
 				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3413]);
+				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3414]);
 			}
 			
 		)
 		
 	)?	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3414]);
 		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3415]);
 		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3416]);
 		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3417]);
 		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3418]);
 		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3419]);
+		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3420]);
 	}
 	
 	(
@@ -13234,9 +13269,9 @@ parse_edu_ustb_sei_mde_morel_BXRewritingRule returns [edu.ustb.sei.mde.morel.BXR
 			}
 			{
 				// expected elements (follow set)
-				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3420]);
 				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3421]);
 				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3422]);
+				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3423]);
 			}
 			
 			(
@@ -13262,22 +13297,22 @@ parse_edu_ustb_sei_mde_morel_BXRewritingRule returns [edu.ustb.sei.mde.morel.BXR
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3423]);
 				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3424]);
 				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3425]);
 				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3426]);
 				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3427]);
+				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3428]);
 			}
 			
 		)
 		
 	)?	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3428]);
 		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3429]);
 		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3430]);
 		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3431]);
 		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3432]);
+		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3433]);
 	}
 	
 	(
@@ -13293,9 +13328,9 @@ parse_edu_ustb_sei_mde_morel_BXRewritingRule returns [edu.ustb.sei.mde.morel.BXR
 			}
 			{
 				// expected elements (follow set)
-				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3433]);
 				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3434]);
 				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3435]);
+				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3436]);
 			}
 			
 			(
@@ -13321,20 +13356,20 @@ parse_edu_ustb_sei_mde_morel_BXRewritingRule returns [edu.ustb.sei.mde.morel.BXR
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3436]);
 				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3437]);
 				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3438]);
 				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3439]);
+				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3440]);
 			}
 			
 		)
 		
 	)?	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3440]);
 		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3441]);
 		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3442]);
 		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3443]);
+		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3444]);
 	}
 	
 	(
@@ -13350,7 +13385,7 @@ parse_edu_ustb_sei_mde_morel_BXRewritingRule returns [edu.ustb.sei.mde.morel.BXR
 			}
 			{
 				// expected elements (follow set)
-				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3444]);
+				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3445]);
 			}
 			
 			(
@@ -13376,18 +13411,18 @@ parse_edu_ustb_sei_mde_morel_BXRewritingRule returns [edu.ustb.sei.mde.morel.BXR
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3445]);
 				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3446]);
 				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3447]);
+				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3448]);
 			}
 			
 		)
 		
 	)?	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3448]);
 		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3449]);
 		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3450]);
+		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3451]);
 	}
 	
 	(
@@ -13403,9 +13438,9 @@ parse_edu_ustb_sei_mde_morel_BXRewritingRule returns [edu.ustb.sei.mde.morel.BXR
 			}
 			{
 				// expected elements (follow set)
-				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3451]);
 				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3452]);
 				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3453]);
+				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3454]);
 			}
 			
 			(
@@ -13431,16 +13466,16 @@ parse_edu_ustb_sei_mde_morel_BXRewritingRule returns [edu.ustb.sei.mde.morel.BXR
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3454]);
 				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3455]);
+				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3456]);
 			}
 			
 		)
 		
 	)?	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3456]);
 		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3457]);
+		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3458]);
 	}
 	
 	(
@@ -13456,9 +13491,9 @@ parse_edu_ustb_sei_mde_morel_BXRewritingRule returns [edu.ustb.sei.mde.morel.BXR
 			}
 			{
 				// expected elements (follow set)
-				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3458]);
 				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3459]);
 				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3460]);
+				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3461]);
 			}
 			
 			(
@@ -13484,14 +13519,14 @@ parse_edu_ustb_sei_mde_morel_BXRewritingRule returns [edu.ustb.sei.mde.morel.BXR
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3461]);
+				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3462]);
 			}
 			
 		)
 		
 	)?	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3462]);
+		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3463]);
 	}
 	
 	a24 = '}' {
@@ -13505,13 +13540,13 @@ parse_edu_ustb_sei_mde_morel_BXRewritingRule returns [edu.ustb.sei.mde.morel.BXR
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getTransformationModel(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3463]);
 		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getTransformationModel(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3464]);
 		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getTransformationModel(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3465]);
 		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getTransformationModel(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3466]);
 		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getTransformationModel(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3467]);
 		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getTransformationModel(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3468]);
 		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getTransformationModel(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3469]);
+		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getTransformationModel(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3470]);
 	}
 	
 ;
@@ -13531,7 +13566,6 @@ parse_edu_ustb_sei_mde_morel_Clause returns [edu.ustb.sei.mde.morel.Clause eleme
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getClause(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3470]);
 		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getClause(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3471]);
 		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getClause(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3472]);
 		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getClause(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3473]);
@@ -13550,6 +13584,7 @@ parse_edu_ustb_sei_mde_morel_Clause returns [edu.ustb.sei.mde.morel.Clause eleme
 		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getClause(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3486]);
 		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getClause(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3487]);
 		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getClause(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3488]);
+		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getClause(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3489]);
 	}
 	
 	(
@@ -13577,7 +13612,6 @@ parse_edu_ustb_sei_mde_morel_Clause returns [edu.ustb.sei.mde.morel.Clause eleme
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getClause(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3489]);
 				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getClause(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3490]);
 				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getClause(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3491]);
 				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getClause(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3492]);
@@ -13596,14 +13630,14 @@ parse_edu_ustb_sei_mde_morel_Clause returns [edu.ustb.sei.mde.morel.Clause eleme
 				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getClause(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3505]);
 				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getClause(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3506]);
 				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getClause(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3507]);
-				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3508]);
+				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getClause(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3508]);
+				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3509]);
 			}
 			
 		)
 		
 	)+	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getClause(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3509]);
 		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getClause(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3510]);
 		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getClause(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3511]);
 		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getClause(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3512]);
@@ -13622,7 +13656,8 @@ parse_edu_ustb_sei_mde_morel_Clause returns [edu.ustb.sei.mde.morel.Clause eleme
 		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getClause(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3525]);
 		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getClause(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3526]);
 		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getClause(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3527]);
-		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3528]);
+		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getClause(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3528]);
+		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3529]);
 	}
 	
 	a2 = '}' {
@@ -13636,12 +13671,12 @@ parse_edu_ustb_sei_mde_morel_Clause returns [edu.ustb.sei.mde.morel.Clause eleme
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3529]);
 		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3530]);
 		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3531]);
 		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3532]);
 		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3533]);
 		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3534]);
+		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3535]);
 	}
 	
 ;

@@ -103,6 +103,8 @@ public class MorelLexer extends Lexer {
     public static final int T__104=104;
     public static final int T__105=105;
     public static final int T__106=106;
+    public static final int T__107=107;
+    public static final int T__108=108;
     public static final int COLLECTION=4;
     public static final int DATA_TYPE=5;
     public static final int IDENTIFIER=6;
@@ -1162,10 +1164,10 @@ public class MorelLexer extends Lexer {
         try {
             int _type = T__61;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:61:7: ( 'group' )
-            // Morel.g:61:9: 'group'
+            // Morel.g:61:7: ( 'get' )
+            // Morel.g:61:9: 'get'
             {
-            match("group"); 
+            match("get"); 
 
 
 
@@ -1185,10 +1187,10 @@ public class MorelLexer extends Lexer {
         try {
             int _type = T__62;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:62:7: ( 'if' )
-            // Morel.g:62:9: 'if'
+            // Morel.g:62:7: ( 'group' )
+            // Morel.g:62:9: 'group'
             {
-            match("if"); 
+            match("group"); 
 
 
 
@@ -1208,10 +1210,10 @@ public class MorelLexer extends Lexer {
         try {
             int _type = T__63;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:63:7: ( 'implies' )
-            // Morel.g:63:9: 'implies'
+            // Morel.g:63:7: ( 'if' )
+            // Morel.g:63:9: 'if'
             {
-            match("implies"); 
+            match("if"); 
 
 
 
@@ -1231,10 +1233,10 @@ public class MorelLexer extends Lexer {
         try {
             int _type = T__64;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:64:7: ( 'in' )
-            // Morel.g:64:9: 'in'
+            // Morel.g:64:7: ( 'implies' )
+            // Morel.g:64:9: 'implies'
             {
-            match("in"); 
+            match("implies"); 
 
 
 
@@ -1254,10 +1256,10 @@ public class MorelLexer extends Lexer {
         try {
             int _type = T__65;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:65:7: ( 'invalid' )
-            // Morel.g:65:9: 'invalid'
+            // Morel.g:65:7: ( 'in' )
+            // Morel.g:65:9: 'in'
             {
-            match("invalid"); 
+            match("in"); 
 
 
 
@@ -1277,10 +1279,10 @@ public class MorelLexer extends Lexer {
         try {
             int _type = T__66;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:66:7: ( 'iterate' )
-            // Morel.g:66:9: 'iterate'
+            // Morel.g:66:7: ( 'invalid' )
+            // Morel.g:66:9: 'invalid'
             {
-            match("iterate"); 
+            match("invalid"); 
 
 
 
@@ -1300,10 +1302,10 @@ public class MorelLexer extends Lexer {
         try {
             int _type = T__67;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:67:7: ( 'let' )
-            // Morel.g:67:9: 'let'
+            // Morel.g:67:7: ( 'iterate' )
+            // Morel.g:67:9: 'iterate'
             {
-            match("let"); 
+            match("iterate"); 
 
 
 
@@ -1323,10 +1325,10 @@ public class MorelLexer extends Lexer {
         try {
             int _type = T__68;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:68:7: ( 'lhs' )
-            // Morel.g:68:9: 'lhs'
+            // Morel.g:68:7: ( 'let' )
+            // Morel.g:68:9: 'let'
             {
-            match("lhs"); 
+            match("let"); 
 
 
 
@@ -1346,10 +1348,10 @@ public class MorelLexer extends Lexer {
         try {
             int _type = T__69;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:69:7: ( 'nac' )
-            // Morel.g:69:9: 'nac'
+            // Morel.g:69:7: ( 'lhs' )
+            // Morel.g:69:9: 'lhs'
             {
-            match("nac"); 
+            match("lhs"); 
 
 
 
@@ -1369,10 +1371,10 @@ public class MorelLexer extends Lexer {
         try {
             int _type = T__70;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:70:7: ( 'not' )
-            // Morel.g:70:9: 'not'
+            // Morel.g:70:7: ( 'nac' )
+            // Morel.g:70:9: 'nac'
             {
-            match("not"); 
+            match("nac"); 
 
 
 
@@ -1392,10 +1394,10 @@ public class MorelLexer extends Lexer {
         try {
             int _type = T__71;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:71:7: ( 'null' )
-            // Morel.g:71:9: 'null'
+            // Morel.g:71:7: ( 'not' )
+            // Morel.g:71:9: 'not'
             {
-            match("null"); 
+            match("not"); 
 
 
 
@@ -1415,10 +1417,10 @@ public class MorelLexer extends Lexer {
         try {
             int _type = T__72;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:72:7: ( 'one' )
-            // Morel.g:72:9: 'one'
+            // Morel.g:72:7: ( 'null' )
+            // Morel.g:72:9: 'null'
             {
-            match("one"); 
+            match("null"); 
 
 
 
@@ -1438,10 +1440,10 @@ public class MorelLexer extends Lexer {
         try {
             int _type = T__73;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:73:7: ( 'or' )
-            // Morel.g:73:9: 'or'
+            // Morel.g:73:7: ( 'one' )
+            // Morel.g:73:9: 'one'
             {
-            match("or"); 
+            match("one"); 
 
 
 
@@ -1461,10 +1463,10 @@ public class MorelLexer extends Lexer {
         try {
             int _type = T__74;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:74:7: ( 'pac' )
-            // Morel.g:74:9: 'pac'
+            // Morel.g:74:7: ( 'or' )
+            // Morel.g:74:9: 'or'
             {
-            match("pac"); 
+            match("or"); 
 
 
 
@@ -1484,10 +1486,10 @@ public class MorelLexer extends Lexer {
         try {
             int _type = T__75;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:75:7: ( 'parallel' )
-            // Morel.g:75:9: 'parallel'
+            // Morel.g:75:7: ( 'pac' )
+            // Morel.g:75:9: 'pac'
             {
-            match("parallel"); 
+            match("pac"); 
 
 
 
@@ -1507,10 +1509,10 @@ public class MorelLexer extends Lexer {
         try {
             int _type = T__76;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:76:7: ( 'passive' )
-            // Morel.g:76:9: 'passive'
+            // Morel.g:76:7: ( 'parallel' )
+            // Morel.g:76:9: 'parallel'
             {
-            match("passive"); 
+            match("parallel"); 
 
 
 
@@ -1530,10 +1532,10 @@ public class MorelLexer extends Lexer {
         try {
             int _type = T__77;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:77:7: ( 'post' )
-            // Morel.g:77:9: 'post'
+            // Morel.g:77:7: ( 'passive' )
+            // Morel.g:77:9: 'passive'
             {
-            match("post"); 
+            match("passive"); 
 
 
 
@@ -1553,10 +1555,10 @@ public class MorelLexer extends Lexer {
         try {
             int _type = T__78;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:78:7: ( 'pre' )
-            // Morel.g:78:9: 'pre'
+            // Morel.g:78:7: ( 'post' )
+            // Morel.g:78:9: 'post'
             {
-            match("pre"); 
+            match("post"); 
 
 
 
@@ -1576,10 +1578,10 @@ public class MorelLexer extends Lexer {
         try {
             int _type = T__79;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:79:7: ( 'query' )
-            // Morel.g:79:9: 'query'
+            // Morel.g:79:7: ( 'pre' )
+            // Morel.g:79:9: 'pre'
             {
-            match("query"); 
+            match("pre"); 
 
 
 
@@ -1599,10 +1601,10 @@ public class MorelLexer extends Lexer {
         try {
             int _type = T__80;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:80:7: ( 'querymodel' )
-            // Morel.g:80:9: 'querymodel'
+            // Morel.g:80:7: ( 'put' )
+            // Morel.g:80:9: 'put'
             {
-            match("querymodel"); 
+            match("put"); 
 
 
 
@@ -1622,10 +1624,10 @@ public class MorelLexer extends Lexer {
         try {
             int _type = T__81;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:81:7: ( 'random' )
-            // Morel.g:81:9: 'random'
+            // Morel.g:81:7: ( 'query' )
+            // Morel.g:81:9: 'query'
             {
-            match("random"); 
+            match("query"); 
 
 
 
@@ -1645,10 +1647,10 @@ public class MorelLexer extends Lexer {
         try {
             int _type = T__82;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:82:7: ( 'random*' )
-            // Morel.g:82:9: 'random*'
+            // Morel.g:82:7: ( 'querymodel' )
+            // Morel.g:82:9: 'querymodel'
             {
-            match("random*"); 
+            match("querymodel"); 
 
 
 
@@ -1668,10 +1670,10 @@ public class MorelLexer extends Lexer {
         try {
             int _type = T__83;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:83:7: ( 'readOnly' )
-            // Morel.g:83:9: 'readOnly'
+            // Morel.g:83:7: ( 'random' )
+            // Morel.g:83:9: 'random'
             {
-            match("readOnly"); 
+            match("random"); 
 
 
 
@@ -1691,10 +1693,10 @@ public class MorelLexer extends Lexer {
         try {
             int _type = T__84;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:84:7: ( 'reject' )
-            // Morel.g:84:9: 'reject'
+            // Morel.g:84:7: ( 'random*' )
+            // Morel.g:84:9: 'random*'
             {
-            match("reject"); 
+            match("random*"); 
 
 
 
@@ -1714,10 +1716,10 @@ public class MorelLexer extends Lexer {
         try {
             int _type = T__85;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:85:7: ( 'repeat' )
-            // Morel.g:85:9: 'repeat'
+            // Morel.g:85:7: ( 'readOnly' )
+            // Morel.g:85:9: 'readOnly'
             {
-            match("repeat"); 
+            match("readOnly"); 
 
 
 
@@ -1737,10 +1739,10 @@ public class MorelLexer extends Lexer {
         try {
             int _type = T__86;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:86:7: ( 'rhs' )
-            // Morel.g:86:9: 'rhs'
+            // Morel.g:86:7: ( 'reject' )
+            // Morel.g:86:9: 'reject'
             {
-            match("rhs"); 
+            match("reject"); 
 
 
 
@@ -1760,10 +1762,10 @@ public class MorelLexer extends Lexer {
         try {
             int _type = T__87;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:87:7: ( 'rule' )
-            // Morel.g:87:9: 'rule'
+            // Morel.g:87:7: ( 'repeat' )
+            // Morel.g:87:9: 'repeat'
             {
-            match("rule"); 
+            match("repeat"); 
 
 
 
@@ -1783,10 +1785,10 @@ public class MorelLexer extends Lexer {
         try {
             int _type = T__88;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:88:7: ( 'scope' )
-            // Morel.g:88:9: 'scope'
+            // Morel.g:88:7: ( 'rhs' )
+            // Morel.g:88:9: 'rhs'
             {
-            match("scope"); 
+            match("rhs"); 
 
 
 
@@ -1806,10 +1808,10 @@ public class MorelLexer extends Lexer {
         try {
             int _type = T__89;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:89:7: ( 'select' )
-            // Morel.g:89:9: 'select'
+            // Morel.g:89:7: ( 'rule' )
+            // Morel.g:89:9: 'rule'
             {
-            match("select"); 
+            match("rule"); 
 
 
 
@@ -1829,10 +1831,10 @@ public class MorelLexer extends Lexer {
         try {
             int _type = T__90;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:90:7: ( 'sequence' )
-            // Morel.g:90:9: 'sequence'
+            // Morel.g:90:7: ( 'scope' )
+            // Morel.g:90:9: 'scope'
             {
-            match("sequence"); 
+            match("scope"); 
 
 
 
@@ -1852,10 +1854,10 @@ public class MorelLexer extends Lexer {
         try {
             int _type = T__91;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:91:7: ( 'source' )
-            // Morel.g:91:9: 'source'
+            // Morel.g:91:7: ( 'select' )
+            // Morel.g:91:9: 'select'
             {
-            match("source"); 
+            match("select"); 
 
 
 
@@ -1875,10 +1877,10 @@ public class MorelLexer extends Lexer {
         try {
             int _type = T__92;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:92:7: ( 'then' )
-            // Morel.g:92:9: 'then'
+            // Morel.g:92:7: ( 'sequence' )
+            // Morel.g:92:9: 'sequence'
             {
-            match("then"); 
+            match("sequence"); 
 
 
 
@@ -1898,10 +1900,10 @@ public class MorelLexer extends Lexer {
         try {
             int _type = T__93;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:93:7: ( 'transformation' )
-            // Morel.g:93:9: 'transformation'
+            // Morel.g:93:7: ( 'source' )
+            // Morel.g:93:9: 'source'
             {
-            match("transformation"); 
+            match("source"); 
 
 
 
@@ -1921,10 +1923,10 @@ public class MorelLexer extends Lexer {
         try {
             int _type = T__94;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:94:7: ( 'transient' )
-            // Morel.g:94:9: 'transient'
+            // Morel.g:94:7: ( 'then' )
+            // Morel.g:94:9: 'then'
             {
-            match("transient"); 
+            match("then"); 
 
 
 
@@ -1944,10 +1946,10 @@ public class MorelLexer extends Lexer {
         try {
             int _type = T__95;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:95:7: ( 'true' )
-            // Morel.g:95:9: 'true'
+            // Morel.g:95:7: ( 'transformation' )
+            // Morel.g:95:9: 'transformation'
             {
-            match("true"); 
+            match("transformation"); 
 
 
 
@@ -1967,10 +1969,10 @@ public class MorelLexer extends Lexer {
         try {
             int _type = T__96;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:96:7: ( 'type' )
-            // Morel.g:96:9: 'type'
+            // Morel.g:96:7: ( 'transient' )
+            // Morel.g:96:9: 'transient'
             {
-            match("type"); 
+            match("transient"); 
 
 
 
@@ -1990,10 +1992,10 @@ public class MorelLexer extends Lexer {
         try {
             int _type = T__97;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:97:7: ( 'unmatchs' )
-            // Morel.g:97:9: 'unmatchs'
+            // Morel.g:97:7: ( 'true' )
+            // Morel.g:97:9: 'true'
             {
-            match("unmatchs"); 
+            match("true"); 
 
 
 
@@ -2013,10 +2015,10 @@ public class MorelLexer extends Lexer {
         try {
             int _type = T__98;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:98:7: ( 'unmatchv' )
-            // Morel.g:98:9: 'unmatchv'
+            // Morel.g:98:7: ( 'type' )
+            // Morel.g:98:9: 'type'
             {
-            match("unmatchv"); 
+            match("type"); 
 
 
 
@@ -2036,10 +2038,10 @@ public class MorelLexer extends Lexer {
         try {
             int _type = T__99;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:99:7: ( 'update' )
-            // Morel.g:99:9: 'update'
+            // Morel.g:99:7: ( 'unmatchs' )
+            // Morel.g:99:9: 'unmatchs'
             {
-            match("update"); 
+            match("unmatchs"); 
 
 
 
@@ -2059,10 +2061,10 @@ public class MorelLexer extends Lexer {
         try {
             int _type = T__100;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:100:8: ( 'view' )
-            // Morel.g:100:10: 'view'
+            // Morel.g:100:8: ( 'unmatchv' )
+            // Morel.g:100:10: 'unmatchv'
             {
-            match("view"); 
+            match("unmatchv"); 
 
 
 
@@ -2082,10 +2084,10 @@ public class MorelLexer extends Lexer {
         try {
             int _type = T__101;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:101:8: ( 'when' )
-            // Morel.g:101:10: 'when'
+            // Morel.g:101:8: ( 'update' )
+            // Morel.g:101:10: 'update'
             {
-            match("when"); 
+            match("update"); 
 
 
 
@@ -2105,10 +2107,10 @@ public class MorelLexer extends Lexer {
         try {
             int _type = T__102;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:102:8: ( 'where' )
-            // Morel.g:102:10: 'where'
+            // Morel.g:102:8: ( 'view' )
+            // Morel.g:102:10: 'view'
             {
-            match("where"); 
+            match("view"); 
 
 
 
@@ -2128,10 +2130,12 @@ public class MorelLexer extends Lexer {
         try {
             int _type = T__103;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:103:8: ( '{' )
-            // Morel.g:103:10: '{'
+            // Morel.g:103:8: ( 'when' )
+            // Morel.g:103:10: 'when'
             {
-            match('{'); 
+            match("when"); 
+
+
 
             }
 
@@ -2149,10 +2153,12 @@ public class MorelLexer extends Lexer {
         try {
             int _type = T__104;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:104:8: ( '|' )
-            // Morel.g:104:10: '|'
+            // Morel.g:104:8: ( 'where' )
+            // Morel.g:104:10: 'where'
             {
-            match('|'); 
+            match("where"); 
+
+
 
             }
 
@@ -2170,12 +2176,10 @@ public class MorelLexer extends Lexer {
         try {
             int _type = T__105;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:105:8: ( '||' )
-            // Morel.g:105:10: '||'
+            // Morel.g:105:8: ( '{' )
+            // Morel.g:105:10: '{'
             {
-            match("||"); 
-
-
+            match('{'); 
 
             }
 
@@ -2193,10 +2197,10 @@ public class MorelLexer extends Lexer {
         try {
             int _type = T__106;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:106:8: ( '}' )
-            // Morel.g:106:10: '}'
+            // Morel.g:106:8: ( '|' )
+            // Morel.g:106:10: '|'
             {
-            match('}'); 
+            match('|'); 
 
             }
 
@@ -2209,18 +2213,62 @@ public class MorelLexer extends Lexer {
     }
     // $ANTLR end "T__106"
 
+    // $ANTLR start "T__107"
+    public final void mT__107() throws RecognitionException {
+        try {
+            int _type = T__107;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // Morel.g:107:8: ( '||' )
+            // Morel.g:107:10: '||'
+            {
+            match("||"); 
+
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        	// do for sure before leaving
+        }
+    }
+    // $ANTLR end "T__107"
+
+    // $ANTLR start "T__108"
+    public final void mT__108() throws RecognitionException {
+        try {
+            int _type = T__108;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // Morel.g:108:8: ( '}' )
+            // Morel.g:108:10: '}'
+            {
+            match('}'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        	// do for sure before leaving
+        }
+    }
+    // $ANTLR end "T__108"
+
     // $ANTLR start "LINEBREAK"
     public final void mLINEBREAK() throws RecognitionException {
         try {
             int _type = LINEBREAK;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:13777:10: ( ( ( '\\r\\n' | '\\r' | '\\n' ) ) )
-            // Morel.g:13778:2: ( ( '\\r\\n' | '\\r' | '\\n' ) )
+            // Morel.g:13812:10: ( ( ( '\\r\\n' | '\\r' | '\\n' ) ) )
+            // Morel.g:13813:2: ( ( '\\r\\n' | '\\r' | '\\n' ) )
             {
-            // Morel.g:13778:2: ( ( '\\r\\n' | '\\r' | '\\n' ) )
-            // Morel.g:13778:3: ( '\\r\\n' | '\\r' | '\\n' )
+            // Morel.g:13813:2: ( ( '\\r\\n' | '\\r' | '\\n' ) )
+            // Morel.g:13813:3: ( '\\r\\n' | '\\r' | '\\n' )
             {
-            // Morel.g:13778:3: ( '\\r\\n' | '\\r' | '\\n' )
+            // Morel.g:13813:3: ( '\\r\\n' | '\\r' | '\\n' )
             int alt1=3;
             int LA1_0 = input.LA(1);
 
@@ -2246,7 +2294,7 @@ public class MorelLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // Morel.g:13778:4: '\\r\\n'
+                    // Morel.g:13813:4: '\\r\\n'
                     {
                     match("\r\n"); 
 
@@ -2255,14 +2303,14 @@ public class MorelLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // Morel.g:13778:11: '\\r'
+                    // Morel.g:13813:11: '\\r'
                     {
                     match('\r'); 
 
                     }
                     break;
                 case 3 :
-                    // Morel.g:13778:16: '\\n'
+                    // Morel.g:13813:16: '\\n'
                     {
                     match('\n'); 
 
@@ -2293,17 +2341,17 @@ public class MorelLexer extends Lexer {
         try {
             int _type = SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:13781:11: ( ( '--' (~ ( '\\n' | '\\r' | '\\uffff' ) )* ) )
-            // Morel.g:13782:2: ( '--' (~ ( '\\n' | '\\r' | '\\uffff' ) )* )
+            // Morel.g:13816:11: ( ( '--' (~ ( '\\n' | '\\r' | '\\uffff' ) )* ) )
+            // Morel.g:13817:2: ( '--' (~ ( '\\n' | '\\r' | '\\uffff' ) )* )
             {
-            // Morel.g:13782:2: ( '--' (~ ( '\\n' | '\\r' | '\\uffff' ) )* )
-            // Morel.g:13782:4: '--' (~ ( '\\n' | '\\r' | '\\uffff' ) )*
+            // Morel.g:13817:2: ( '--' (~ ( '\\n' | '\\r' | '\\uffff' ) )* )
+            // Morel.g:13817:4: '--' (~ ( '\\n' | '\\r' | '\\uffff' ) )*
             {
             match("--"); 
 
 
 
-            // Morel.g:13782:8: (~ ( '\\n' | '\\r' | '\\uffff' ) )*
+            // Morel.g:13817:8: (~ ( '\\n' | '\\r' | '\\uffff' ) )*
             loop2:
             do {
                 int alt2=2;
@@ -2358,17 +2406,17 @@ public class MorelLexer extends Lexer {
         try {
             int _type = ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:13785:11: ( ( '/*' ( . )* '*/' ) )
-            // Morel.g:13786:2: ( '/*' ( . )* '*/' )
+            // Morel.g:13820:11: ( ( '/*' ( . )* '*/' ) )
+            // Morel.g:13821:2: ( '/*' ( . )* '*/' )
             {
-            // Morel.g:13786:2: ( '/*' ( . )* '*/' )
-            // Morel.g:13786:4: '/*' ( . )* '*/'
+            // Morel.g:13821:2: ( '/*' ( . )* '*/' )
+            // Morel.g:13821:4: '/*' ( . )* '*/'
             {
             match("/*"); 
 
 
 
-            // Morel.g:13786:8: ( . )*
+            // Morel.g:13821:8: ( . )*
             loop3:
             do {
                 int alt3=2;
@@ -2393,7 +2441,7 @@ public class MorelLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // Morel.g:13786:8: .
+            	    // Morel.g:13821:8: .
             	    {
             	    matchAny(); 
 
@@ -2431,8 +2479,8 @@ public class MorelLexer extends Lexer {
         try {
             int _type = WHITESPACE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:13789:11: ( ( ( ' ' | '\\t' | '\\f' ) ) )
-            // Morel.g:13790:2: ( ( ' ' | '\\t' | '\\f' ) )
+            // Morel.g:13824:11: ( ( ( ' ' | '\\t' | '\\f' ) ) )
+            // Morel.g:13825:2: ( ( ' ' | '\\t' | '\\f' ) )
             {
             if ( input.LA(1)=='\t'||input.LA(1)=='\f'||input.LA(1)==' ' ) {
                 input.consume();
@@ -2462,13 +2510,13 @@ public class MorelLexer extends Lexer {
         try {
             int _type = COLLECTION;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:13793:11: ( ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) ) )
-            // Morel.g:13794:2: ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) )
+            // Morel.g:13828:11: ( ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) ) )
+            // Morel.g:13829:2: ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) )
             {
-            // Morel.g:13794:2: ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) )
-            // Morel.g:13794:3: ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' )
+            // Morel.g:13829:2: ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) )
+            // Morel.g:13829:3: ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' )
             {
-            // Morel.g:13794:3: ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' )
+            // Morel.g:13829:3: ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' )
             int alt4=4;
             switch ( input.LA(1) ) {
             case 'S':
@@ -2521,7 +2569,7 @@ public class MorelLexer extends Lexer {
 
             switch (alt4) {
                 case 1 :
-                    // Morel.g:13794:4: 'Sequence'
+                    // Morel.g:13829:4: 'Sequence'
                     {
                     match("Sequence"); 
 
@@ -2530,7 +2578,7 @@ public class MorelLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // Morel.g:13794:15: 'Set'
+                    // Morel.g:13829:15: 'Set'
                     {
                     match("Set"); 
 
@@ -2539,7 +2587,7 @@ public class MorelLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // Morel.g:13794:21: 'Bag'
+                    // Morel.g:13829:21: 'Bag'
                     {
                     match("Bag"); 
 
@@ -2548,7 +2596,7 @@ public class MorelLexer extends Lexer {
                     }
                     break;
                 case 4 :
-                    // Morel.g:13794:27: 'OrderedSet'
+                    // Morel.g:13829:27: 'OrderedSet'
                     {
                     match("OrderedSet"); 
 
@@ -2579,17 +2627,17 @@ public class MorelLexer extends Lexer {
         try {
             int _type = DATA_TYPE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:13796:10: ( ( ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '(' )* ( 'String' | 'Integer' | 'Boolean' | 'Real' | 'Char' | 'Any' ) ( ')' )* | ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '(' )+ ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* ) ( ')' )+ ) )
-            // Morel.g:13797:2: ( ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '(' )* ( 'String' | 'Integer' | 'Boolean' | 'Real' | 'Char' | 'Any' ) ( ')' )* | ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '(' )+ ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* ) ( ')' )+ )
+            // Morel.g:13831:10: ( ( ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '(' )* ( 'String' | 'Integer' | 'Boolean' | 'Real' | 'Char' | 'Any' ) ( ')' )* | ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '(' )+ ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* ) ( ')' )+ ) )
+            // Morel.g:13832:2: ( ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '(' )* ( 'String' | 'Integer' | 'Boolean' | 'Real' | 'Char' | 'Any' ) ( ')' )* | ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '(' )+ ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* ) ( ')' )+ )
             {
-            // Morel.g:13797:2: ( ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '(' )* ( 'String' | 'Integer' | 'Boolean' | 'Real' | 'Char' | 'Any' ) ( ')' )* | ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '(' )+ ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* ) ( ')' )+ )
+            // Morel.g:13832:2: ( ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '(' )* ( 'String' | 'Integer' | 'Boolean' | 'Real' | 'Char' | 'Any' ) ( ')' )* | ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '(' )+ ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* ) ( ')' )+ )
             int alt13=2;
             alt13 = dfa13.predict(input);
             switch (alt13) {
                 case 1 :
-                    // Morel.g:13797:3: ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '(' )* ( 'String' | 'Integer' | 'Boolean' | 'Real' | 'Char' | 'Any' ) ( ')' )*
+                    // Morel.g:13832:3: ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '(' )* ( 'String' | 'Integer' | 'Boolean' | 'Real' | 'Char' | 'Any' ) ( ')' )*
                     {
-                    // Morel.g:13797:3: ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '(' )*
+                    // Morel.g:13832:3: ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '(' )*
                     loop6:
                     do {
                         int alt6=2;
@@ -2626,9 +2674,9 @@ public class MorelLexer extends Lexer {
 
                         switch (alt6) {
                     	case 1 :
-                    	    // Morel.g:13797:4: ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '('
+                    	    // Morel.g:13832:4: ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '('
                     	    {
-                    	    // Morel.g:13797:4: ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' )
+                    	    // Morel.g:13832:4: ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' )
                     	    int alt5=4;
                     	    switch ( input.LA(1) ) {
                     	    case 'S':
@@ -2681,7 +2729,7 @@ public class MorelLexer extends Lexer {
 
                     	    switch (alt5) {
                     	        case 1 :
-                    	            // Morel.g:13797:5: 'Sequence'
+                    	            // Morel.g:13832:5: 'Sequence'
                     	            {
                     	            match("Sequence"); 
 
@@ -2690,7 +2738,7 @@ public class MorelLexer extends Lexer {
                     	            }
                     	            break;
                     	        case 2 :
-                    	            // Morel.g:13797:16: 'Set'
+                    	            // Morel.g:13832:16: 'Set'
                     	            {
                     	            match("Set"); 
 
@@ -2699,7 +2747,7 @@ public class MorelLexer extends Lexer {
                     	            }
                     	            break;
                     	        case 3 :
-                    	            // Morel.g:13797:22: 'Bag'
+                    	            // Morel.g:13832:22: 'Bag'
                     	            {
                     	            match("Bag"); 
 
@@ -2708,7 +2756,7 @@ public class MorelLexer extends Lexer {
                     	            }
                     	            break;
                     	        case 4 :
-                    	            // Morel.g:13797:28: 'OrderedSet'
+                    	            // Morel.g:13832:28: 'OrderedSet'
                     	            {
                     	            match("OrderedSet"); 
 
@@ -2731,7 +2779,7 @@ public class MorelLexer extends Lexer {
                     } while (true);
 
 
-                    // Morel.g:13797:46: ( 'String' | 'Integer' | 'Boolean' | 'Real' | 'Char' | 'Any' )
+                    // Morel.g:13832:46: ( 'String' | 'Integer' | 'Boolean' | 'Real' | 'Char' | 'Any' )
                     int alt7=6;
                     switch ( input.LA(1) ) {
                     case 'S':
@@ -2774,7 +2822,7 @@ public class MorelLexer extends Lexer {
 
                     switch (alt7) {
                         case 1 :
-                            // Morel.g:13797:47: 'String'
+                            // Morel.g:13832:47: 'String'
                             {
                             match("String"); 
 
@@ -2783,7 +2831,7 @@ public class MorelLexer extends Lexer {
                             }
                             break;
                         case 2 :
-                            // Morel.g:13797:56: 'Integer'
+                            // Morel.g:13832:56: 'Integer'
                             {
                             match("Integer"); 
 
@@ -2792,7 +2840,7 @@ public class MorelLexer extends Lexer {
                             }
                             break;
                         case 3 :
-                            // Morel.g:13797:66: 'Boolean'
+                            // Morel.g:13832:66: 'Boolean'
                             {
                             match("Boolean"); 
 
@@ -2801,7 +2849,7 @@ public class MorelLexer extends Lexer {
                             }
                             break;
                         case 4 :
-                            // Morel.g:13797:76: 'Real'
+                            // Morel.g:13832:76: 'Real'
                             {
                             match("Real"); 
 
@@ -2810,7 +2858,7 @@ public class MorelLexer extends Lexer {
                             }
                             break;
                         case 5 :
-                            // Morel.g:13797:83: 'Char'
+                            // Morel.g:13832:83: 'Char'
                             {
                             match("Char"); 
 
@@ -2819,7 +2867,7 @@ public class MorelLexer extends Lexer {
                             }
                             break;
                         case 6 :
-                            // Morel.g:13797:90: 'Any'
+                            // Morel.g:13832:90: 'Any'
                             {
                             match("Any"); 
 
@@ -2831,7 +2879,7 @@ public class MorelLexer extends Lexer {
                     }
 
 
-                    // Morel.g:13797:96: ( ')' )*
+                    // Morel.g:13832:96: ( ')' )*
                     loop8:
                     do {
                         int alt8=2;
@@ -2844,7 +2892,7 @@ public class MorelLexer extends Lexer {
 
                         switch (alt8) {
                     	case 1 :
-                    	    // Morel.g:13797:96: ')'
+                    	    // Morel.g:13832:96: ')'
                     	    {
                     	    match(')'); 
 
@@ -2860,9 +2908,9 @@ public class MorelLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // Morel.g:13797:101: ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '(' )+ ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* ) ( ')' )+
+                    // Morel.g:13832:101: ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '(' )+ ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* ) ( ')' )+
                     {
-                    // Morel.g:13797:101: ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '(' )+
+                    // Morel.g:13832:101: ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '(' )+
                     int cnt10=0;
                     loop10:
                     do {
@@ -3023,9 +3071,9 @@ public class MorelLexer extends Lexer {
 
                         switch (alt10) {
                     	case 1 :
-                    	    // Morel.g:13797:102: ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '('
+                    	    // Morel.g:13832:102: ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '('
                     	    {
-                    	    // Morel.g:13797:102: ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' )
+                    	    // Morel.g:13832:102: ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' )
                     	    int alt9=4;
                     	    switch ( input.LA(1) ) {
                     	    case 'S':
@@ -3078,7 +3126,7 @@ public class MorelLexer extends Lexer {
 
                     	    switch (alt9) {
                     	        case 1 :
-                    	            // Morel.g:13797:103: 'Sequence'
+                    	            // Morel.g:13832:103: 'Sequence'
                     	            {
                     	            match("Sequence"); 
 
@@ -3087,7 +3135,7 @@ public class MorelLexer extends Lexer {
                     	            }
                     	            break;
                     	        case 2 :
-                    	            // Morel.g:13797:114: 'Set'
+                    	            // Morel.g:13832:114: 'Set'
                     	            {
                     	            match("Set"); 
 
@@ -3096,7 +3144,7 @@ public class MorelLexer extends Lexer {
                     	            }
                     	            break;
                     	        case 3 :
-                    	            // Morel.g:13797:120: 'Bag'
+                    	            // Morel.g:13832:120: 'Bag'
                     	            {
                     	            match("Bag"); 
 
@@ -3105,7 +3153,7 @@ public class MorelLexer extends Lexer {
                     	            }
                     	            break;
                     	        case 4 :
-                    	            // Morel.g:13797:126: 'OrderedSet'
+                    	            // Morel.g:13832:126: 'OrderedSet'
                     	            {
                     	            match("OrderedSet"); 
 
@@ -3132,8 +3180,8 @@ public class MorelLexer extends Lexer {
                     } while (true);
 
 
-                    // Morel.g:13797:144: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-                    // Morel.g:13797:145: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+                    // Morel.g:13832:144: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+                    // Morel.g:13832:145: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
                     {
                     if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||input.LA(1)=='_'||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
                         input.consume();
@@ -3145,7 +3193,7 @@ public class MorelLexer extends Lexer {
                     }
 
 
-                    // Morel.g:13797:168: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+                    // Morel.g:13832:168: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
                     loop11:
                     do {
                         int alt11=2;
@@ -3182,7 +3230,7 @@ public class MorelLexer extends Lexer {
                     }
 
 
-                    // Morel.g:13797:202: ( ')' )+
+                    // Morel.g:13832:202: ( ')' )+
                     int cnt12=0;
                     loop12:
                     do {
@@ -3196,7 +3244,7 @@ public class MorelLexer extends Lexer {
 
                         switch (alt12) {
                     	case 1 :
-                    	    // Morel.g:13797:202: ')'
+                    	    // Morel.g:13832:202: ')'
                     	    {
                     	    match(')'); 
 
@@ -3235,11 +3283,11 @@ public class MorelLexer extends Lexer {
         try {
             int _type = IDENTIFIER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:13799:11: ( ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* ) )
-            // Morel.g:13800:2: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // Morel.g:13834:11: ( ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* ) )
+            // Morel.g:13835:2: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
             {
-            // Morel.g:13800:2: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // Morel.g:13800:3: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // Morel.g:13835:2: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // Morel.g:13835:3: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
             if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||input.LA(1)=='_'||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
                 input.consume();
@@ -3251,7 +3299,7 @@ public class MorelLexer extends Lexer {
             }
 
 
-            // Morel.g:13800:26: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // Morel.g:13835:26: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop14:
             do {
                 int alt14=2;
@@ -3304,15 +3352,15 @@ public class MorelLexer extends Lexer {
         try {
             int _type = URINS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:13802:6: ( ( '@' ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '-' | '/' | ':' | '\\.' )+ ) )
-            // Morel.g:13803:2: ( '@' ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '-' | '/' | ':' | '\\.' )+ )
+            // Morel.g:13837:6: ( ( '@' ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '-' | '/' | ':' | '\\.' )+ ) )
+            // Morel.g:13838:2: ( '@' ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '-' | '/' | ':' | '\\.' )+ )
             {
-            // Morel.g:13803:2: ( '@' ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '-' | '/' | ':' | '\\.' )+ )
-            // Morel.g:13803:3: '@' ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '-' | '/' | ':' | '\\.' )+
+            // Morel.g:13838:2: ( '@' ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '-' | '/' | ':' | '\\.' )+ )
+            // Morel.g:13838:3: '@' ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '-' | '/' | ':' | '\\.' )+
             {
             match('@'); 
 
-            // Morel.g:13803:6: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '-' | '/' | ':' | '\\.' )+
+            // Morel.g:13838:6: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '-' | '/' | ':' | '\\.' )+
             int cnt15=0;
             loop15:
             do {
@@ -3370,11 +3418,11 @@ public class MorelLexer extends Lexer {
         try {
             int _type = INUMBER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:13805:8: ( ( ( '0' .. '9' ) ( '0' .. '1' )* ) )
-            // Morel.g:13806:2: ( ( '0' .. '9' ) ( '0' .. '1' )* )
+            // Morel.g:13840:8: ( ( ( '0' .. '9' ) ( '0' .. '1' )* ) )
+            // Morel.g:13841:2: ( ( '0' .. '9' ) ( '0' .. '1' )* )
             {
-            // Morel.g:13806:2: ( ( '0' .. '9' ) ( '0' .. '1' )* )
-            // Morel.g:13806:3: ( '0' .. '9' ) ( '0' .. '1' )*
+            // Morel.g:13841:2: ( ( '0' .. '9' ) ( '0' .. '1' )* )
+            // Morel.g:13841:3: ( '0' .. '9' ) ( '0' .. '1' )*
             {
             if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
                 input.consume();
@@ -3386,7 +3434,7 @@ public class MorelLexer extends Lexer {
             }
 
 
-            // Morel.g:13806:13: ( '0' .. '1' )*
+            // Morel.g:13841:13: ( '0' .. '1' )*
             loop16:
             do {
                 int alt16=2;
@@ -3439,13 +3487,13 @@ public class MorelLexer extends Lexer {
         try {
             int _type = RNUMBER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:13808:8: ( ( ( '0' .. '9' )+ '\\.' ( '0' .. '9' )+ ) )
-            // Morel.g:13809:2: ( ( '0' .. '9' )+ '\\.' ( '0' .. '9' )+ )
+            // Morel.g:13843:8: ( ( ( '0' .. '9' )+ '\\.' ( '0' .. '9' )+ ) )
+            // Morel.g:13844:2: ( ( '0' .. '9' )+ '\\.' ( '0' .. '9' )+ )
             {
-            // Morel.g:13809:2: ( ( '0' .. '9' )+ '\\.' ( '0' .. '9' )+ )
-            // Morel.g:13809:3: ( '0' .. '9' )+ '\\.' ( '0' .. '9' )+
+            // Morel.g:13844:2: ( ( '0' .. '9' )+ '\\.' ( '0' .. '9' )+ )
+            // Morel.g:13844:3: ( '0' .. '9' )+ '\\.' ( '0' .. '9' )+
             {
-            // Morel.g:13809:3: ( '0' .. '9' )+
+            // Morel.g:13844:3: ( '0' .. '9' )+
             int cnt17=0;
             loop17:
             do {
@@ -3486,7 +3534,7 @@ public class MorelLexer extends Lexer {
 
             match('.'); 
 
-            // Morel.g:13809:18: ( '0' .. '9' )+
+            // Morel.g:13844:18: ( '0' .. '9' )+
             int cnt18=0;
             loop18:
             do {
@@ -3544,21 +3592,21 @@ public class MorelLexer extends Lexer {
         try {
             int _type = QUOTED_39_39_92;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Morel.g:13811:16: ( ( ( '\\'' ) ( ( '\\\\' '\\'' ) | ( '\\\\' '\\\\' ) | (~ ( '\\'' | '\\\\' ) ) )* ( '\\'' ) ) )
-            // Morel.g:13812:2: ( ( '\\'' ) ( ( '\\\\' '\\'' ) | ( '\\\\' '\\\\' ) | (~ ( '\\'' | '\\\\' ) ) )* ( '\\'' ) )
+            // Morel.g:13846:16: ( ( ( '\\'' ) ( ( '\\\\' '\\'' ) | ( '\\\\' '\\\\' ) | (~ ( '\\'' | '\\\\' ) ) )* ( '\\'' ) ) )
+            // Morel.g:13847:2: ( ( '\\'' ) ( ( '\\\\' '\\'' ) | ( '\\\\' '\\\\' ) | (~ ( '\\'' | '\\\\' ) ) )* ( '\\'' ) )
             {
-            // Morel.g:13812:2: ( ( '\\'' ) ( ( '\\\\' '\\'' ) | ( '\\\\' '\\\\' ) | (~ ( '\\'' | '\\\\' ) ) )* ( '\\'' ) )
-            // Morel.g:13812:3: ( '\\'' ) ( ( '\\\\' '\\'' ) | ( '\\\\' '\\\\' ) | (~ ( '\\'' | '\\\\' ) ) )* ( '\\'' )
+            // Morel.g:13847:2: ( ( '\\'' ) ( ( '\\\\' '\\'' ) | ( '\\\\' '\\\\' ) | (~ ( '\\'' | '\\\\' ) ) )* ( '\\'' ) )
+            // Morel.g:13847:3: ( '\\'' ) ( ( '\\\\' '\\'' ) | ( '\\\\' '\\\\' ) | (~ ( '\\'' | '\\\\' ) ) )* ( '\\'' )
             {
-            // Morel.g:13812:3: ( '\\'' )
-            // Morel.g:13812:4: '\\''
+            // Morel.g:13847:3: ( '\\'' )
+            // Morel.g:13847:4: '\\''
             {
             match('\''); 
 
             }
 
 
-            // Morel.g:13812:9: ( ( '\\\\' '\\'' ) | ( '\\\\' '\\\\' ) | (~ ( '\\'' | '\\\\' ) ) )*
+            // Morel.g:13847:9: ( ( '\\\\' '\\'' ) | ( '\\\\' '\\\\' ) | (~ ( '\\'' | '\\\\' ) ) )*
             loop19:
             do {
                 int alt19=4;
@@ -3583,10 +3631,10 @@ public class MorelLexer extends Lexer {
 
                 switch (alt19) {
             	case 1 :
-            	    // Morel.g:13812:10: ( '\\\\' '\\'' )
+            	    // Morel.g:13847:10: ( '\\\\' '\\'' )
             	    {
-            	    // Morel.g:13812:10: ( '\\\\' '\\'' )
-            	    // Morel.g:13812:11: '\\\\' '\\''
+            	    // Morel.g:13847:10: ( '\\\\' '\\'' )
+            	    // Morel.g:13847:11: '\\\\' '\\''
             	    {
             	    match('\\'); 
 
@@ -3598,10 +3646,10 @@ public class MorelLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // Morel.g:13812:21: ( '\\\\' '\\\\' )
+            	    // Morel.g:13847:21: ( '\\\\' '\\\\' )
             	    {
-            	    // Morel.g:13812:21: ( '\\\\' '\\\\' )
-            	    // Morel.g:13812:22: '\\\\' '\\\\'
+            	    // Morel.g:13847:21: ( '\\\\' '\\\\' )
+            	    // Morel.g:13847:22: '\\\\' '\\\\'
             	    {
             	    match('\\'); 
 
@@ -3613,7 +3661,7 @@ public class MorelLexer extends Lexer {
             	    }
             	    break;
             	case 3 :
-            	    // Morel.g:13812:32: (~ ( '\\'' | '\\\\' ) )
+            	    // Morel.g:13847:32: (~ ( '\\'' | '\\\\' ) )
             	    {
             	    if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '&')||(input.LA(1) >= '(' && input.LA(1) <= '[')||(input.LA(1) >= ']' && input.LA(1) <= '\uFFFF') ) {
             	        input.consume();
@@ -3634,8 +3682,8 @@ public class MorelLexer extends Lexer {
             } while (true);
 
 
-            // Morel.g:13812:48: ( '\\'' )
-            // Morel.g:13812:49: '\\''
+            // Morel.g:13847:48: ( '\\'' )
+            // Morel.g:13847:49: '\\''
             {
             match('\''); 
 
@@ -3657,8 +3705,8 @@ public class MorelLexer extends Lexer {
     // $ANTLR end "QUOTED_39_39_92"
 
     public void mTokens() throws RecognitionException {
-        // Morel.g:1:8: ( T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | T__103 | T__104 | T__105 | T__106 | LINEBREAK | SL_COMMENT | ML_COMMENT | WHITESPACE | COLLECTION | DATA_TYPE | IDENTIFIER | URINS | INUMBER | RNUMBER | QUOTED_39_39_92 )
-        int alt20=103;
+        // Morel.g:1:8: ( T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | T__103 | T__104 | T__105 | T__106 | T__107 | T__108 | LINEBREAK | SL_COMMENT | ML_COMMENT | WHITESPACE | COLLECTION | DATA_TYPE | IDENTIFIER | URINS | INUMBER | RNUMBER | QUOTED_39_39_92 )
+        int alt20=105;
         alt20 = dfa20.predict(input);
         switch (alt20) {
             case 1 :
@@ -4398,87 +4446,103 @@ public class MorelLexer extends Lexer {
                 }
                 break;
             case 93 :
-                // Morel.g:1:569: LINEBREAK
+                // Morel.g:1:569: T__107
+                {
+                mT__107(); 
+
+
+                }
+                break;
+            case 94 :
+                // Morel.g:1:576: T__108
+                {
+                mT__108(); 
+
+
+                }
+                break;
+            case 95 :
+                // Morel.g:1:583: LINEBREAK
                 {
                 mLINEBREAK(); 
 
 
                 }
                 break;
-            case 94 :
-                // Morel.g:1:579: SL_COMMENT
+            case 96 :
+                // Morel.g:1:593: SL_COMMENT
                 {
                 mSL_COMMENT(); 
 
 
                 }
                 break;
-            case 95 :
-                // Morel.g:1:590: ML_COMMENT
+            case 97 :
+                // Morel.g:1:604: ML_COMMENT
                 {
                 mML_COMMENT(); 
 
 
                 }
                 break;
-            case 96 :
-                // Morel.g:1:601: WHITESPACE
+            case 98 :
+                // Morel.g:1:615: WHITESPACE
                 {
                 mWHITESPACE(); 
 
 
                 }
                 break;
-            case 97 :
-                // Morel.g:1:612: COLLECTION
+            case 99 :
+                // Morel.g:1:626: COLLECTION
                 {
                 mCOLLECTION(); 
 
 
                 }
                 break;
-            case 98 :
-                // Morel.g:1:623: DATA_TYPE
+            case 100 :
+                // Morel.g:1:637: DATA_TYPE
                 {
                 mDATA_TYPE(); 
 
 
                 }
                 break;
-            case 99 :
-                // Morel.g:1:633: IDENTIFIER
+            case 101 :
+                // Morel.g:1:647: IDENTIFIER
                 {
                 mIDENTIFIER(); 
 
 
                 }
                 break;
-            case 100 :
-                // Morel.g:1:644: URINS
+            case 102 :
+                // Morel.g:1:658: URINS
                 {
                 mURINS(); 
 
 
                 }
                 break;
-            case 101 :
-                // Morel.g:1:650: INUMBER
+            case 103 :
+                // Morel.g:1:664: INUMBER
                 {
                 mINUMBER(); 
 
 
                 }
                 break;
-            case 102 :
-                // Morel.g:1:658: RNUMBER
+            case 104 :
+                // Morel.g:1:672: RNUMBER
                 {
                 mRNUMBER(); 
 
 
                 }
                 break;
-            case 103 :
-                // Morel.g:1:666: QUOTED_39_39_92
+            case 105 :
+                // Morel.g:1:680: QUOTED_39_39_92
                 {
                 mQUOTED_39_39_92(); 
 
@@ -4669,117 +4733,118 @@ public class MorelLexer extends Lexer {
             this.transition = DFA13_transition;
         }
         public String getDescription() {
-            return "13797:2: ( ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '(' )* ( 'String' | 'Integer' | 'Boolean' | 'Real' | 'Char' | 'Any' ) ( ')' )* | ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '(' )+ ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* ) ( ')' )+ )";
+            return "13832:2: ( ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '(' )* ( 'String' | 'Integer' | 'Boolean' | 'Real' | 'Char' | 'Any' ) ( ')' )* | ( ( 'Sequence' | 'Set' | 'Bag' | 'OrderedSet' ) '(' )+ ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* ) ( ')' )+ )";
         }
     }
     static final String DFA20_eotS =
         "\1\uffff\1\71\2\uffff\1\75\5\uffff\1\100\1\uffff\1\102\2\uffff\1"+
-        "\106\1\110\1\112\1\113\3\uffff\23\65\1\uffff\1\172\3\uffff\7\65"+
-        "\1\uffff\1\u0085\26\uffff\17\65\1\u0096\1\65\1\u0099\7\65\1\u00a1"+
-        "\22\65\2\uffff\11\65\1\u0085\2\uffff\1\65\1\u00c6\1\u00c7\12\65"+
-        "\1\u00d3\1\65\1\uffff\2\65\1\uffff\1\65\1\u00d8\1\u00d9\1\u00da"+
-        "\1\u00db\1\65\1\u00dd\1\uffff\1\u00de\3\65\1\u00e2\5\65\1\u00e8"+
-        "\16\65\1\u00f8\1\65\1\u00f8\5\65\1\u00f9\2\65\2\uffff\5\65\1\u0107"+
-        "\5\65\1\uffff\4\65\4\uffff\1\u0111\2\uffff\2\65\1\u0114\1\uffff"+
-        "\5\65\1\uffff\1\u011a\4\65\1\u011f\1\65\1\u0121\1\u0122\2\65\1\u0125"+
-        "\1\u0126\2\65\2\uffff\4\65\2\u00f9\7\65\1\uffff\1\u0134\1\65\1\u0136"+
-        "\1\u0137\1\65\1\u0139\3\65\1\uffff\2\65\1\uffff\1\u0140\4\65\1\uffff"+
-        "\1\u0145\3\65\1\uffff\1\65\2\uffff\2\65\2\uffff\1\u014d\5\65\1\u0153"+
-        "\6\65\1\uffff\1\u015a\2\uffff\1\u015b\1\uffff\6\65\1\uffff\1\u0163"+
-        "\1\65\1\u0165\1\u0166\1\uffff\1\u0167\1\65\1\u0169\3\65\1\u016d"+
-        "\1\uffff\1\65\1\u00f9\3\65\1\uffff\1\u0172\1\65\1\u0174\1\u0175"+
-        "\1\65\1\u0177\2\uffff\1\u0178\1\u0179\1\u017a\1\65\1\u017c\1\65"+
-        "\2\uffff\1\65\3\uffff\1\65\1\uffff\3\65\1\uffff\1\65\1\u00f9\1\65"+
-        "\1\u00f9\1\uffff\1\65\2\uffff\1\65\4\uffff\1\u0188\1\uffff\1\65"+
-        "\1\u018a\1\u018b\2\65\1\u018e\1\u018f\1\u00f8\3\65\1\uffff\1\65"+
-        "\2\uffff\1\65\1\u0195\2\uffff\2\65\1\u0198\1\u0199\1\65\1\uffff"+
-        "\1\u00f8\1\u019b\2\uffff\1\65\1\uffff\2\65\1\u019f\1\uffff";
+        "\106\1\110\1\112\1\113\3\uffff\23\65\1\uffff\1\174\3\uffff\7\65"+
+        "\1\uffff\1\u0087\26\uffff\20\65\1\u0099\1\65\1\u009c\7\65\1\u00a4"+
+        "\23\65\2\uffff\11\65\1\u0087\2\uffff\1\65\1\u00ca\1\u00cb\12\65"+
+        "\1\u00d7\1\u00d8\1\65\1\uffff\2\65\1\uffff\1\65\1\u00dd\1\u00de"+
+        "\1\u00df\1\u00e0\1\65\1\u00e2\1\uffff\1\u00e3\3\65\1\u00e7\1\u00e8"+
+        "\5\65\1\u00ee\16\65\1\u00fe\1\65\1\u00fe\5\65\1\u00ff\2\65\2\uffff"+
+        "\5\65\1\u010d\5\65\2\uffff\4\65\4\uffff\1\u0117\2\uffff\2\65\1\u011a"+
+        "\2\uffff\5\65\1\uffff\1\u0120\4\65\1\u0125\1\65\1\u0127\1\u0128"+
+        "\2\65\1\u012b\1\u012c\2\65\2\uffff\4\65\2\u00ff\7\65\1\uffff\1\u013a"+
+        "\1\65\1\u013c\1\u013d\1\65\1\u013f\3\65\1\uffff\2\65\1\uffff\1\u0146"+
+        "\4\65\1\uffff\1\u014b\3\65\1\uffff\1\65\2\uffff\2\65\2\uffff\1\u0153"+
+        "\5\65\1\u0159\6\65\1\uffff\1\u0160\2\uffff\1\u0161\1\uffff\6\65"+
+        "\1\uffff\1\u0169\1\65\1\u016b\1\u016c\1\uffff\1\u016d\1\65\1\u016f"+
+        "\3\65\1\u0173\1\uffff\1\65\1\u00ff\3\65\1\uffff\1\u0178\1\65\1\u017a"+
+        "\1\u017b\1\65\1\u017d\2\uffff\1\u017e\1\u017f\1\u0180\1\65\1\u0182"+
+        "\1\65\2\uffff\1\65\3\uffff\1\65\1\uffff\3\65\1\uffff\1\65\1\u00ff"+
+        "\1\65\1\u00ff\1\uffff\1\65\2\uffff\1\65\4\uffff\1\u018e\1\uffff"+
+        "\1\65\1\u0190\1\u0191\2\65\1\u0194\1\u0195\1\u00fe\3\65\1\uffff"+
+        "\1\65\2\uffff\1\65\1\u019b\2\uffff\2\65\1\u019e\1\u019f\1\65\1\uffff"+
+        "\1\u00fe\1\u01a1\2\uffff\1\65\1\uffff\2\65\1\u01a5\1\uffff";
     static final String DFA20_eofS =
-        "\u01a0\uffff";
+        "\u01a6\uffff";
     static final String DFA20_minS =
         "\1\11\1\75\1\uffff\1\151\1\46\5\uffff\1\55\1\uffff\1\52\2\uffff"+
         "\1\55\1\76\1\75\1\55\3\uffff\1\143\1\170\1\154\1\145\1\154\1\141"+
-        "\1\162\1\146\1\145\1\141\1\156\1\141\1\165\1\141\1\143\1\150\1\156"+
+        "\1\145\1\146\1\145\1\141\1\156\1\141\1\165\1\141\1\143\1\150\1\156"+
         "\1\151\1\150\1\uffff\1\174\3\uffff\1\145\1\141\1\162\1\156\1\145"+
         "\1\150\1\156\1\uffff\1\56\26\uffff\1\164\1\154\1\144\1\162\1\157"+
-        "\1\154\1\145\1\146\1\163\1\144\1\151\1\154\2\162\1\157\1\60\1\160"+
-        "\1\60\1\145\1\164\1\163\1\143\1\164\1\154\1\145\1\60\1\143\1\163"+
-        "\2\145\1\156\1\141\1\163\1\154\1\157\1\154\1\165\1\145\1\141\1\160"+
-        "\1\155\1\144\2\145\2\uffff\1\161\1\162\1\147\1\157\1\144\1\164\2"+
-        "\141\1\171\1\56\2\uffff\1\151\2\60\1\145\1\163\1\154\2\141\1\145"+
-        "\1\151\3\163\1\60\1\165\1\uffff\1\154\1\141\1\uffff\1\162\4\60\1"+
-        "\154\1\60\1\uffff\1\60\1\141\1\163\1\164\1\60\1\162\2\144\2\145"+
-        "\1\60\1\145\1\160\1\145\1\165\1\162\2\156\2\145\2\141\1\167\1\156"+
-        "\1\165\1\50\1\151\1\50\1\154\2\145\1\154\1\162\1\60\1\166\1\151"+
-        "\2\uffff\1\167\1\165\1\145\1\164\1\165\1\60\1\146\1\164\1\145\1"+
-        "\164\1\154\1\uffff\1\160\1\151\1\154\1\141\4\uffff\1\60\2\uffff"+
-        "\1\154\1\151\1\60\1\uffff\1\171\1\157\1\117\1\143\1\141\1\uffff"+
-        "\1\60\1\145\1\143\1\145\1\143\1\60\1\163\2\60\2\164\2\60\2\145\2"+
-        "\uffff\1\156\1\145\1\162\1\147\2\60\1\145\1\146\2\162\1\143\1\145"+
-        "\1\154\1\uffff\1\60\1\163\2\60\1\154\1\60\1\145\1\151\1\164\1\uffff"+
-        "\1\154\1\166\1\uffff\1\60\1\155\1\156\2\164\1\uffff\1\60\1\164\1"+
-        "\156\1\145\1\uffff\1\146\2\uffff\1\143\1\145\2\uffff\1\60\1\156"+
-        "\1\147\1\141\2\145\1\60\1\146\1\151\1\145\1\164\1\117\1\164\1\uffff"+
-        "\1\60\2\uffff\1\60\1\uffff\1\163\1\144\3\145\1\157\1\uffff\1\52"+
-        "\1\154\2\60\1\uffff\1\60\1\143\1\60\1\157\1\145\1\150\1\60\1\uffff"+
-        "\1\143\1\60\1\156\1\144\1\162\1\uffff\1\60\1\164\2\60\1\156\1\60"+
-        "\2\uffff\3\60\1\154\1\60\1\144\2\uffff\1\171\3\uffff\1\145\1\uffff"+
-        "\1\162\1\156\1\163\1\uffff\1\145\1\60\1\123\1\60\1\uffff\1\151\2"+
-        "\uffff\1\154\4\uffff\1\60\1\uffff\1\145\2\60\1\155\1\164\2\60\1"+
-        "\50\1\145\1\156\1\171\1\uffff\1\154\2\uffff\1\141\1\60\2\uffff\1"+
-        "\164\1\147\2\60\1\164\1\uffff\1\50\1\60\2\uffff\1\151\1\uffff\1"+
-        "\157\1\156\1\60\1\uffff";
+        "\1\154\1\145\1\146\1\163\1\144\1\151\1\154\2\162\1\164\1\157\1\60"+
+        "\1\160\1\60\1\145\1\164\1\163\1\143\1\164\1\154\1\145\1\60\1\143"+
+        "\1\163\1\145\1\164\1\145\1\156\1\141\1\163\1\154\1\157\1\154\1\165"+
+        "\1\145\1\141\1\160\1\155\1\144\2\145\2\uffff\1\161\1\162\1\147\1"+
+        "\157\1\144\1\164\2\141\1\171\1\56\2\uffff\1\151\2\60\1\145\1\163"+
+        "\1\154\2\141\1\145\1\151\3\163\2\60\1\165\1\uffff\1\154\1\141\1"+
+        "\uffff\1\162\4\60\1\154\1\60\1\uffff\1\60\1\141\1\163\1\164\2\60"+
+        "\1\162\2\144\2\145\1\60\1\145\1\160\1\145\1\165\1\162\2\156\2\145"+
+        "\2\141\1\167\1\156\1\165\1\50\1\151\1\50\1\154\2\145\1\154\1\162"+
+        "\1\60\1\166\1\151\2\uffff\1\167\1\165\1\145\1\164\1\165\1\60\1\146"+
+        "\1\164\1\145\1\164\1\154\2\uffff\1\160\1\151\1\154\1\141\4\uffff"+
+        "\1\60\2\uffff\1\154\1\151\1\60\2\uffff\1\171\1\157\1\117\1\143\1"+
+        "\141\1\uffff\1\60\1\145\1\143\1\145\1\143\1\60\1\163\2\60\2\164"+
+        "\2\60\2\145\2\uffff\1\156\1\145\1\162\1\147\2\60\1\145\1\146\2\162"+
+        "\1\143\1\145\1\154\1\uffff\1\60\1\163\2\60\1\154\1\60\1\145\1\151"+
+        "\1\164\1\uffff\1\154\1\166\1\uffff\1\60\1\155\1\156\2\164\1\uffff"+
+        "\1\60\1\164\1\156\1\145\1\uffff\1\146\2\uffff\1\143\1\145\2\uffff"+
+        "\1\60\1\156\1\147\1\141\2\145\1\60\1\146\1\151\1\145\1\164\1\117"+
+        "\1\164\1\uffff\1\60\2\uffff\1\60\1\uffff\1\163\1\144\3\145\1\157"+
+        "\1\uffff\1\52\1\154\2\60\1\uffff\1\60\1\143\1\60\1\157\1\145\1\150"+
+        "\1\60\1\uffff\1\143\1\60\1\156\1\144\1\162\1\uffff\1\60\1\164\2"+
+        "\60\1\156\1\60\2\uffff\3\60\1\154\1\60\1\144\2\uffff\1\171\3\uffff"+
+        "\1\145\1\uffff\1\162\1\156\1\163\1\uffff\1\145\1\60\1\123\1\60\1"+
+        "\uffff\1\151\2\uffff\1\154\4\uffff\1\60\1\uffff\1\145\2\60\1\155"+
+        "\1\164\2\60\1\50\1\145\1\156\1\171\1\uffff\1\154\2\uffff\1\141\1"+
+        "\60\2\uffff\1\164\1\147\2\60\1\164\1\uffff\1\50\1\60\2\uffff\1\151"+
+        "\1\uffff\1\157\1\156\1\60\1\uffff";
     static final String DFA20_maxS =
         "\1\175\1\75\1\uffff\1\164\1\46\5\uffff\1\76\1\uffff\1\52\2\uffff"+
         "\2\76\1\75\1\172\3\uffff\1\156\1\170\1\162\1\145\1\170\1\157\1\162"+
-        "\1\164\1\150\1\165\2\162\2\165\1\157\1\171\1\160\1\151\1\150\1\uffff"+
+        "\1\164\1\150\1\165\1\162\3\165\1\157\1\171\1\160\1\151\1\150\1\uffff"+
         "\1\174\3\uffff\1\164\1\157\1\162\1\156\1\145\1\150\1\156\1\uffff"+
         "\1\71\26\uffff\1\164\1\154\1\144\1\162\1\157\1\154\1\145\1\146\1"+
-        "\163\1\144\1\151\1\154\2\162\1\157\1\172\1\160\1\172\1\145\1\164"+
-        "\1\163\1\143\1\164\1\154\1\145\1\172\2\163\2\145\1\156\1\160\1\163"+
-        "\1\154\1\157\1\161\1\165\1\145\1\165\1\160\1\155\1\144\2\145\2\uffff"+
-        "\1\164\1\162\1\147\1\157\1\144\1\164\2\141\1\171\1\71\2\uffff\1"+
-        "\151\2\172\1\145\1\163\1\154\2\141\1\145\1\151\3\163\1\172\1\165"+
-        "\1\uffff\1\154\1\141\1\uffff\1\162\4\172\1\154\1\172\1\uffff\1\172"+
-        "\1\141\1\163\1\164\1\172\1\162\2\144\2\145\1\172\1\145\1\160\1\145"+
-        "\1\165\1\162\2\156\2\145\2\141\1\167\1\162\1\165\1\172\1\151\1\172"+
-        "\1\154\2\145\1\154\1\162\1\172\1\166\1\151\2\uffff\1\167\1\165\1"+
-        "\145\1\164\1\165\1\172\1\146\1\164\1\145\1\164\1\154\1\uffff\1\160"+
-        "\1\151\1\154\1\141\4\uffff\1\172\2\uffff\1\154\1\151\1\172\1\uffff"+
-        "\1\171\1\157\1\117\1\143\1\141\1\uffff\1\172\1\145\1\143\1\145\1"+
-        "\143\1\172\1\163\2\172\2\164\2\172\2\145\2\uffff\1\156\1\145\1\162"+
-        "\1\147\2\172\1\145\1\146\2\162\1\143\1\145\1\154\1\uffff\1\172\1"+
-        "\163\2\172\1\154\1\172\1\145\1\151\1\164\1\uffff\1\154\1\166\1\uffff"+
-        "\1\172\1\155\1\156\2\164\1\uffff\1\172\1\164\1\156\1\145\1\uffff"+
-        "\1\151\2\uffff\1\143\1\145\2\uffff\1\172\1\156\1\147\1\141\2\145"+
-        "\1\172\1\146\1\151\1\145\1\164\1\117\1\164\1\uffff\1\172\2\uffff"+
-        "\1\172\1\uffff\1\163\1\144\3\145\1\157\1\uffff\1\172\1\154\2\172"+
-        "\1\uffff\1\172\1\143\1\172\1\157\1\145\1\150\1\172\1\uffff\1\143"+
-        "\1\172\1\156\1\144\1\162\1\uffff\1\172\1\164\2\172\1\156\1\172\2"+
-        "\uffff\3\172\1\154\1\172\1\144\2\uffff\1\171\3\uffff\1\145\1\uffff"+
-        "\1\162\1\156\1\166\1\uffff\1\145\1\172\1\123\1\172\1\uffff\1\151"+
-        "\2\uffff\1\154\4\uffff\1\172\1\uffff\1\145\2\172\1\155\1\164\3\172"+
-        "\1\145\1\156\1\171\1\uffff\1\154\2\uffff\1\141\1\172\2\uffff\1\164"+
-        "\1\147\2\172\1\164\1\uffff\2\172\2\uffff\1\151\1\uffff\1\157\1\156"+
-        "\1\172\1\uffff";
+        "\163\1\144\1\151\1\154\2\162\1\164\1\157\1\172\1\160\1\172\1\145"+
+        "\1\164\1\163\1\143\1\164\1\154\1\145\1\172\2\163\1\145\1\164\1\145"+
+        "\1\156\1\160\1\163\1\154\1\157\1\161\1\165\1\145\1\165\1\160\1\155"+
+        "\1\144\2\145\2\uffff\1\164\1\162\1\147\1\157\1\144\1\164\2\141\1"+
+        "\171\1\71\2\uffff\1\151\2\172\1\145\1\163\1\154\2\141\1\145\1\151"+
+        "\3\163\2\172\1\165\1\uffff\1\154\1\141\1\uffff\1\162\4\172\1\154"+
+        "\1\172\1\uffff\1\172\1\141\1\163\1\164\2\172\1\162\2\144\2\145\1"+
+        "\172\1\145\1\160\1\145\1\165\1\162\2\156\2\145\2\141\1\167\1\162"+
+        "\1\165\1\172\1\151\1\172\1\154\2\145\1\154\1\162\1\172\1\166\1\151"+
+        "\2\uffff\1\167\1\165\1\145\1\164\1\165\1\172\1\146\1\164\1\145\1"+
+        "\164\1\154\2\uffff\1\160\1\151\1\154\1\141\4\uffff\1\172\2\uffff"+
+        "\1\154\1\151\1\172\2\uffff\1\171\1\157\1\117\1\143\1\141\1\uffff"+
+        "\1\172\1\145\1\143\1\145\1\143\1\172\1\163\2\172\2\164\2\172\2\145"+
+        "\2\uffff\1\156\1\145\1\162\1\147\2\172\1\145\1\146\2\162\1\143\1"+
+        "\145\1\154\1\uffff\1\172\1\163\2\172\1\154\1\172\1\145\1\151\1\164"+
+        "\1\uffff\1\154\1\166\1\uffff\1\172\1\155\1\156\2\164\1\uffff\1\172"+
+        "\1\164\1\156\1\145\1\uffff\1\151\2\uffff\1\143\1\145\2\uffff\1\172"+
+        "\1\156\1\147\1\141\2\145\1\172\1\146\1\151\1\145\1\164\1\117\1\164"+
+        "\1\uffff\1\172\2\uffff\1\172\1\uffff\1\163\1\144\3\145\1\157\1\uffff"+
+        "\1\172\1\154\2\172\1\uffff\1\172\1\143\1\172\1\157\1\145\1\150\1"+
+        "\172\1\uffff\1\143\1\172\1\156\1\144\1\162\1\uffff\1\172\1\164\2"+
+        "\172\1\156\1\172\2\uffff\3\172\1\154\1\172\1\144\2\uffff\1\171\3"+
+        "\uffff\1\145\1\uffff\1\162\1\156\1\166\1\uffff\1\145\1\172\1\123"+
+        "\1\172\1\uffff\1\151\2\uffff\1\154\4\uffff\1\172\1\uffff\1\145\2"+
+        "\172\1\155\1\164\3\172\1\145\1\156\1\171\1\uffff\1\154\2\uffff\1"+
+        "\141\1\172\2\uffff\1\164\1\147\2\172\1\164\1\uffff\2\172\2\uffff"+
+        "\1\151\1\uffff\1\157\1\156\1\172\1\uffff";
     static final String DFA20_acceptS =
         "\2\uffff\1\3\2\uffff\1\10\1\11\1\12\1\13\1\14\1\uffff\1\17\1\uffff"+
-        "\1\21\1\22\4\uffff\1\34\1\35\1\36\23\uffff\1\131\1\uffff\1\134\1"+
-        "\135\1\140\7\uffff\1\143\1\uffff\1\147\1\2\1\1\1\4\1\5\1\6\1\7\1"+
-        "\16\1\136\1\15\1\137\1\20\1\24\1\25\1\26\1\23\1\30\1\27\1\32\1\31"+
-        "\1\33\1\144\54\uffff\1\133\1\132\12\uffff\1\145\1\146\17\uffff\1"+
-        "\60\2\uffff\1\62\7\uffff\1\73\44\uffff\1\40\1\42\13\uffff\1\55\4"+
-        "\uffff\1\65\1\66\1\67\1\70\1\uffff\1\72\1\74\3\uffff\1\100\5\uffff"+
-        "\1\110\17\uffff\1\141\1\142\15\uffff\1\50\11\uffff\1\71\2\uffff"+
-        "\1\77\5\uffff\1\111\4\uffff\1\116\1\uffff\1\121\1\122\2\uffff\1"+
-        "\126\1\127\15\uffff\1\51\1\uffff\1\53\1\54\1\uffff\1\57\6\uffff"+
-        "\1\101\4\uffff\1\112\7\uffff\1\130\5\uffff\1\37\6\uffff\1\52\1\56"+
-        "\6\uffff\1\104\1\103\1\uffff\1\106\1\107\1\113\1\uffff\1\115\3\uffff"+
-        "\1\125\4\uffff\1\41\1\uffff\1\44\1\45\1\uffff\1\47\1\61\1\63\1\64"+
-        "\1\uffff\1\76\13\uffff\1\75\1\uffff\1\105\1\114\2\uffff\1\123\1"+
-        "\124\5\uffff\1\120\2\uffff\1\46\1\102\1\uffff\1\43\3\uffff\1\117";
+        "\1\21\1\22\4\uffff\1\34\1\35\1\36\23\uffff\1\133\1\uffff\1\136\1"+
+        "\137\1\142\7\uffff\1\145\1\uffff\1\151\1\2\1\1\1\4\1\5\1\6\1\7\1"+
+        "\16\1\140\1\15\1\141\1\20\1\24\1\25\1\26\1\23\1\30\1\27\1\32\1\31"+
+        "\1\33\1\146\56\uffff\1\135\1\134\12\uffff\1\147\1\150\20\uffff\1"+
+        "\61\2\uffff\1\63\7\uffff\1\74\45\uffff\1\40\1\42\13\uffff\1\55\1"+
+        "\57\4\uffff\1\66\1\67\1\70\1\71\1\uffff\1\73\1\75\3\uffff\1\101"+
+        "\1\102\5\uffff\1\112\17\uffff\1\143\1\144\15\uffff\1\50\11\uffff"+
+        "\1\72\2\uffff\1\100\5\uffff\1\113\4\uffff\1\120\1\uffff\1\123\1"+
+        "\124\2\uffff\1\130\1\131\15\uffff\1\51\1\uffff\1\53\1\54\1\uffff"+
+        "\1\60\6\uffff\1\103\4\uffff\1\114\7\uffff\1\132\5\uffff\1\37\6\uffff"+
+        "\1\52\1\56\6\uffff\1\106\1\105\1\uffff\1\110\1\111\1\115\1\uffff"+
+        "\1\117\3\uffff\1\127\4\uffff\1\41\1\uffff\1\44\1\45\1\uffff\1\47"+
+        "\1\62\1\64\1\65\1\uffff\1\77\13\uffff\1\76\1\uffff\1\107\1\116\2"+
+        "\uffff\1\125\1\126\5\uffff\1\122\2\uffff\1\46\1\104\1\uffff\1\43"+
+        "\3\uffff\1\121";
     static final String DFA20_specialS =
-        "\u01a0\uffff}>";
+        "\u01a6\uffff}>";
     static final String[] DFA20_transitionS = {
             "\1\55\1\54\1\uffff\1\55\1\54\22\uffff\1\55\1\1\1\uffff\1\2\1"+
             "\3\1\uffff\1\4\1\67\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1\14\12"+
@@ -4815,37 +4880,33 @@ public class MorelLexer extends Lexer {
             "\1\124",
             "\1\125\1\uffff\1\126\11\uffff\1\127",
             "\1\130\7\uffff\1\131\5\uffff\1\132",
-            "\1\133",
-            "\1\134\6\uffff\1\135\1\136\5\uffff\1\137",
-            "\1\140\2\uffff\1\141",
-            "\1\142\15\uffff\1\143\5\uffff\1\144",
-            "\1\145\3\uffff\1\146",
-            "\1\147\15\uffff\1\150\2\uffff\1\151",
-            "\1\152",
-            "\1\153\3\uffff\1\154\2\uffff\1\155\14\uffff\1\156",
-            "\1\157\1\uffff\1\160\11\uffff\1\161",
-            "\1\162\11\uffff\1\163\6\uffff\1\164",
-            "\1\165\1\uffff\1\166",
-            "\1\167",
-            "\1\170",
-            "",
+            "\1\133\14\uffff\1\134",
+            "\1\135\6\uffff\1\136\1\137\5\uffff\1\140",
+            "\1\141\2\uffff\1\142",
+            "\1\143\15\uffff\1\144\5\uffff\1\145",
+            "\1\146\3\uffff\1\147",
+            "\1\150\15\uffff\1\151\2\uffff\1\152\2\uffff\1\153",
+            "\1\154",
+            "\1\155\3\uffff\1\156\2\uffff\1\157\14\uffff\1\160",
+            "\1\161\1\uffff\1\162\11\uffff\1\163",
+            "\1\164\11\uffff\1\165\6\uffff\1\166",
+            "\1\167\1\uffff\1\170",
             "\1\171",
+            "\1\172",
+            "",
+            "\1\173",
             "",
             "",
             "",
-            "\1\173\16\uffff\1\174",
-            "\1\175\15\uffff\1\176",
-            "\1\177",
-            "\1\u0080",
+            "\1\175\16\uffff\1\176",
+            "\1\177\15\uffff\1\u0080",
             "\1\u0081",
             "\1\u0082",
             "\1\u0083",
+            "\1\u0084",
+            "\1\u0085",
             "",
-            "\1\u0086\1\uffff\2\u0084\10\u0086",
-            "",
-            "",
-            "",
-            "",
+            "\1\u0088\1\uffff\2\u0086\10\u0088",
             "",
             "",
             "",
@@ -4864,8 +4925,10 @@ public class MorelLexer extends Lexer {
             "",
             "",
             "",
-            "\1\u0087",
-            "\1\u0088",
+            "",
+            "",
+            "",
+            "",
             "\1\u0089",
             "\1\u008a",
             "\1\u008b",
@@ -4879,334 +4942,342 @@ public class MorelLexer extends Lexer {
             "\1\u0093",
             "\1\u0094",
             "\1\u0095",
-            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
+            "\1\u0096",
             "\1\u0097",
-            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\25\65\1\u0098\4\65",
+            "\1\u0098",
+            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
             "\1\u009a",
-            "\1\u009b",
-            "\1\u009c",
+            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\25\65\1\u009b\4\65",
             "\1\u009d",
             "\1\u009e",
             "\1\u009f",
             "\1\u00a0",
+            "\1\u00a1",
+            "\1\u00a2",
+            "\1\u00a3",
             "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
-            "\1\u00a2\16\uffff\1\u00a3\1\u00a4",
-            "\1\u00a5",
-            "\1\u00a6",
-            "\1\u00a7",
+            "\1\u00a5\16\uffff\1\u00a6\1\u00a7",
             "\1\u00a8",
-            "\1\u00a9\10\uffff\1\u00aa\5\uffff\1\u00ab",
+            "\1\u00a9",
+            "\1\u00aa",
+            "\1\u00ab",
             "\1\u00ac",
-            "\1\u00ad",
-            "\1\u00ae",
-            "\1\u00af\4\uffff\1\u00b0",
+            "\1\u00ad\10\uffff\1\u00ae\5\uffff\1\u00af",
+            "\1\u00b0",
             "\1\u00b1",
             "\1\u00b2",
-            "\1\u00b3\23\uffff\1\u00b4",
+            "\1\u00b3\4\uffff\1\u00b4",
             "\1\u00b5",
             "\1\u00b6",
-            "\1\u00b7",
-            "\1\u00b8",
+            "\1\u00b7\23\uffff\1\u00b8",
             "\1\u00b9",
-            "",
-            "",
-            "\1\u00ba\2\uffff\1\u00bb",
+            "\1\u00ba",
+            "\1\u00bb",
             "\1\u00bc",
             "\1\u00bd",
-            "\1\u00be",
-            "\1\u00bf",
+            "",
+            "",
+            "\1\u00be\2\uffff\1\u00bf",
             "\1\u00c0",
             "\1\u00c1",
             "\1\u00c2",
             "\1\u00c3",
-            "\1\u0086\1\uffff\2\u0084\10\u0086",
-            "",
-            "",
             "\1\u00c4",
-            "\12\65\7\uffff\3\65\1\u00c5\26\65\4\uffff\1\65\1\uffff\32\65",
-            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
+            "\1\u00c5",
+            "\1\u00c6",
+            "\1\u00c7",
+            "\1\u0088\1\uffff\2\u0086\10\u0088",
+            "",
+            "",
             "\1\u00c8",
-            "\1\u00c9",
-            "\1\u00ca",
-            "\1\u00cb",
+            "\12\65\7\uffff\3\65\1\u00c9\26\65\4\uffff\1\65\1\uffff\32\65",
+            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
             "\1\u00cc",
             "\1\u00cd",
             "\1\u00ce",
             "\1\u00cf",
             "\1\u00d0",
             "\1\u00d1",
-            "\12\65\7\uffff\1\u00d2\31\65\4\uffff\1\65\1\uffff\32\65",
+            "\1\u00d2",
+            "\1\u00d3",
             "\1\u00d4",
-            "",
             "\1\u00d5",
-            "\1\u00d6",
+            "\12\65\7\uffff\1\u00d6\31\65\4\uffff\1\65\1\uffff\32\65",
+            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
+            "\1\u00d9",
             "",
-            "\1\u00d7",
-            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
-            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
-            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
-            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
+            "\1\u00da",
+            "\1\u00db",
+            "",
             "\1\u00dc",
             "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
-            "",
             "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
-            "\1\u00df",
-            "\1\u00e0",
+            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
+            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
             "\1\u00e1",
             "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
-            "\1\u00e3",
+            "",
+            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
             "\1\u00e4",
             "\1\u00e5",
             "\1\u00e6",
-            "\1\u00e7",
+            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
             "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
             "\1\u00e9",
             "\1\u00ea",
             "\1\u00eb",
             "\1\u00ec",
             "\1\u00ed",
-            "\1\u00ee",
+            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
             "\1\u00ef",
             "\1\u00f0",
             "\1\u00f1",
             "\1\u00f2",
             "\1\u00f3",
             "\1\u00f4",
-            "\1\u00f5\3\uffff\1\u00f6",
+            "\1\u00f5",
+            "\1\u00f6",
             "\1\u00f7",
-            "\1\u00f9\7\uffff\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32"+
-            "\65",
+            "\1\u00f8",
+            "\1\u00f9",
             "\1\u00fa",
-            "\1\u00f9\7\uffff\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32"+
-            "\65",
-            "\1\u00fb",
-            "\1\u00fc",
+            "\1\u00fb\3\uffff\1\u00fc",
             "\1\u00fd",
-            "\1\u00fe",
-            "\1\u00ff",
-            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
+            "\1\u00ff\7\uffff\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32"+
+            "\65",
             "\1\u0100",
+            "\1\u00ff\7\uffff\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32"+
+            "\65",
             "\1\u0101",
-            "",
-            "",
             "\1\u0102",
             "\1\u0103",
             "\1\u0104",
             "\1\u0105",
-            "\1\u0106",
             "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
+            "\1\u0106",
+            "\1\u0107",
+            "",
+            "",
             "\1\u0108",
             "\1\u0109",
             "\1\u010a",
             "\1\u010b",
             "\1\u010c",
-            "",
-            "\1\u010d",
+            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
             "\1\u010e",
             "\1\u010f",
             "\1\u0110",
-            "",
-            "",
-            "",
-            "",
-            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
-            "",
-            "",
+            "\1\u0111",
             "\1\u0112",
-            "\1\u0113",
-            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
             "",
+            "",
+            "\1\u0113",
+            "\1\u0114",
             "\1\u0115",
             "\1\u0116",
-            "\1\u0117",
-            "\1\u0118",
-            "\1\u0119",
+            "",
+            "",
+            "",
             "",
             "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
+            "",
+            "",
+            "\1\u0118",
+            "\1\u0119",
+            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
+            "",
+            "",
             "\1\u011b",
             "\1\u011c",
             "\1\u011d",
             "\1\u011e",
+            "\1\u011f",
+            "",
             "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
-            "\1\u0120",
-            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
-            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
+            "\1\u0121",
+            "\1\u0122",
             "\1\u0123",
             "\1\u0124",
             "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
+            "\1\u0126",
             "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
-            "\1\u0127",
-            "\1\u0128",
-            "",
-            "",
+            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
             "\1\u0129",
             "\1\u012a",
-            "\1\u012b",
-            "\1\u012c",
             "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
             "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
             "\1\u012d",
             "\1\u012e",
+            "",
+            "",
             "\1\u012f",
             "\1\u0130",
             "\1\u0131",
             "\1\u0132",
+            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
+            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
             "\1\u0133",
-            "",
-            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
+            "\1\u0134",
             "\1\u0135",
-            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
-            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
+            "\1\u0136",
+            "\1\u0137",
             "\1\u0138",
+            "\1\u0139",
+            "",
             "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
-            "\1\u013a",
             "\1\u013b",
-            "\1\u013c",
-            "",
-            "\1\u013d",
+            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
+            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
             "\1\u013e",
-            "",
-            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\14\65\1\u013f\15"+
-            "\65",
+            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
+            "\1\u0140",
             "\1\u0141",
             "\1\u0142",
+            "",
             "\1\u0143",
             "\1\u0144",
             "",
-            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
-            "\1\u0146",
+            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\14\65\1\u0145\15"+
+            "\65",
             "\1\u0147",
             "\1\u0148",
-            "",
-            "\1\u0149\2\uffff\1\u014a",
-            "",
-            "",
-            "\1\u014b",
-            "\1\u014c",
-            "",
+            "\1\u0149",
+            "\1\u014a",
             "",
             "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
+            "\1\u014c",
+            "\1\u014d",
             "\1\u014e",
-            "\1\u014f",
-            "\1\u0150",
+            "",
+            "\1\u014f\2\uffff\1\u0150",
+            "",
+            "",
             "\1\u0151",
             "\1\u0152",
+            "",
+            "",
             "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
             "\1\u0154",
             "\1\u0155",
             "\1\u0156",
             "\1\u0157",
             "\1\u0158",
-            "\1\u0159",
-            "",
             "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
-            "",
-            "",
-            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
-            "",
+            "\1\u015a",
+            "\1\u015b",
             "\1\u015c",
             "\1\u015d",
             "\1\u015e",
             "\1\u015f",
-            "\1\u0160",
-            "\1\u0161",
             "",
-            "\1\u0162\5\uffff\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32"+
-            "\65",
+            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
+            "",
+            "",
+            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
+            "",
+            "\1\u0162",
+            "\1\u0163",
             "\1\u0164",
-            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
-            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
+            "\1\u0165",
+            "\1\u0166",
+            "\1\u0167",
             "",
-            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
-            "\1\u0168",
-            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
+            "\1\u0168\5\uffff\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32"+
+            "\65",
             "\1\u016a",
-            "\1\u016b",
-            "\1\u016c",
+            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
             "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
             "",
+            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
             "\1\u016e",
             "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
-            "\1\u016f",
             "\1\u0170",
             "\1\u0171",
+            "\1\u0172",
+            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
             "",
+            "\1\u0174",
             "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
-            "\1\u0173",
-            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
-            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
+            "\1\u0175",
             "\1\u0176",
+            "\1\u0177",
+            "",
+            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
+            "\1\u0179",
+            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
+            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
+            "\1\u017c",
             "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
             "",
             "",
             "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
             "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
             "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
-            "\1\u017b",
-            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
-            "\1\u017d",
-            "",
-            "",
-            "\1\u017e",
-            "",
-            "",
-            "",
-            "\1\u017f",
-            "",
-            "\1\u0180",
             "\1\u0181",
-            "\1\u0182\2\uffff\1\u0183",
+            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
+            "\1\u0183",
+            "",
             "",
             "\1\u0184",
-            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
+            "",
+            "",
+            "",
             "\1\u0185",
-            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
             "",
             "\1\u0186",
-            "",
-            "",
             "\1\u0187",
+            "\1\u0188\2\uffff\1\u0189",
             "",
-            "",
-            "",
-            "",
+            "\1\u018a",
+            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
+            "\1\u018b",
             "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
             "",
-            "\1\u0189",
-            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
-            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
             "\1\u018c",
+            "",
+            "",
             "\1\u018d",
+            "",
+            "",
+            "",
+            "",
+            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
+            "",
+            "\1\u018f",
             "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
             "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
-            "\1\u00f9\7\uffff\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32"+
-            "\65",
-            "\1\u0190",
-            "\1\u0191",
             "\1\u0192",
-            "",
             "\1\u0193",
-            "",
-            "",
-            "\1\u0194",
             "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
-            "",
-            "",
+            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
+            "\1\u00ff\7\uffff\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32"+
+            "\65",
             "\1\u0196",
             "\1\u0197",
-            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
-            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
-            "\1\u019a",
+            "\1\u0198",
             "",
-            "\1\u00f9\7\uffff\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32"+
-            "\65",
+            "\1\u0199",
+            "",
+            "",
+            "\1\u019a",
             "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
             "",
             "",
             "\1\u019c",
-            "",
             "\1\u019d",
-            "\1\u019e",
+            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
+            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
+            "\1\u01a0",
+            "",
+            "\1\u00ff\7\uffff\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32"+
+            "\65",
+            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
+            "",
+            "",
+            "\1\u01a2",
+            "",
+            "\1\u01a3",
+            "\1\u01a4",
             "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
             ""
     };
@@ -5241,7 +5312,7 @@ public class MorelLexer extends Lexer {
             this.transition = DFA20_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | T__103 | T__104 | T__105 | T__106 | LINEBREAK | SL_COMMENT | ML_COMMENT | WHITESPACE | COLLECTION | DATA_TYPE | IDENTIFIER | URINS | INUMBER | RNUMBER | QUOTED_39_39_92 );";
+            return "1:1: Tokens : ( T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | T__103 | T__104 | T__105 | T__106 | T__107 | T__108 | LINEBREAK | SL_COMMENT | ML_COMMENT | WHITESPACE | COLLECTION | DATA_TYPE | IDENTIFIER | URINS | INUMBER | RNUMBER | QUOTED_39_39_92 );";
         }
     }
  

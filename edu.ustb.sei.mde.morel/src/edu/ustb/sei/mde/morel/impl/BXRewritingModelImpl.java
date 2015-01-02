@@ -2,6 +2,7 @@
  */
 package edu.ustb.sei.mde.morel.impl;
 
+import edu.ustb.sei.mde.morel.BXMode;
 import edu.ustb.sei.mde.morel.BXRewritingModel;
 import edu.ustb.sei.mde.morel.BXRewritingRule;
 import edu.ustb.sei.mde.morel.MorelPackage;
@@ -31,6 +32,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.morel.impl.BXRewritingModelImpl#getName <em>Name</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.morel.impl.BXRewritingModelImpl#getRules <em>Rules</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.morel.impl.BXRewritingModelImpl#getMode <em>Mode</em>}</li>
  * </ul>
  * </p>
  *
@@ -66,6 +68,26 @@ public class BXRewritingModelImpl extends UnitImpl implements BXRewritingModel {
 	 * @ordered
 	 */
 	protected EList<BXRewritingRule> rules;
+
+	/**
+	 * The default value of the '{@link #getMode() <em>Mode</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMode()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final BXMode MODE_EDEFAULT = BXMode.GET;
+
+	/**
+	 * The cached value of the '{@link #getMode() <em>Mode</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMode()
+	 * @generated
+	 * @ordered
+	 */
+	protected BXMode mode = MODE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -124,6 +146,27 @@ public class BXRewritingModelImpl extends UnitImpl implements BXRewritingModel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public BXMode getMode() {
+		return mode;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMode(BXMode newMode) {
+		BXMode oldMode = mode;
+		mode = newMode == null ? MODE_EDEFAULT : newMode;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MorelPackage.BX_REWRITING_MODEL__MODE, oldMode, mode));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -145,6 +188,8 @@ public class BXRewritingModelImpl extends UnitImpl implements BXRewritingModel {
 				return getName();
 			case MorelPackage.BX_REWRITING_MODEL__RULES:
 				return getRules();
+			case MorelPackage.BX_REWRITING_MODEL__MODE:
+				return getMode();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -165,6 +210,9 @@ public class BXRewritingModelImpl extends UnitImpl implements BXRewritingModel {
 				getRules().clear();
 				getRules().addAll((Collection<? extends BXRewritingRule>)newValue);
 				return;
+			case MorelPackage.BX_REWRITING_MODEL__MODE:
+				setMode((BXMode)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -183,6 +231,9 @@ public class BXRewritingModelImpl extends UnitImpl implements BXRewritingModel {
 			case MorelPackage.BX_REWRITING_MODEL__RULES:
 				getRules().clear();
 				return;
+			case MorelPackage.BX_REWRITING_MODEL__MODE:
+				setMode(MODE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -199,6 +250,8 @@ public class BXRewritingModelImpl extends UnitImpl implements BXRewritingModel {
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case MorelPackage.BX_REWRITING_MODEL__RULES:
 				return rules != null && !rules.isEmpty();
+			case MorelPackage.BX_REWRITING_MODEL__MODE:
+				return mode != MODE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -247,6 +300,8 @@ public class BXRewritingModelImpl extends UnitImpl implements BXRewritingModel {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (name: ");
 		result.append(name);
+		result.append(", mode: ");
+		result.append(mode);
 		result.append(')');
 		return result.toString();
 	}

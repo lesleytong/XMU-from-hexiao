@@ -5,11 +5,14 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.EObject;
+
 import edu.ustb.sei.mde.emg.library.BooleanLibrary;
 import edu.ustb.sei.mde.emg.runtime.Context;
 import edu.ustb.sei.mde.emg.runtime.Environment;
 import edu.ustb.sei.mde.emg.runtime.datatype.OclUndefined;
 import edu.ustb.sei.mde.modeling.ui.ConsoleUtil;
+import edu.ustb.sei.mde.morel.BXMode;
 import edu.ustb.sei.mde.morel.BXRewritingModel;
 import edu.ustb.sei.mde.morel.BXRewritingRule;
 import edu.ustb.sei.mde.morel.BindExp;
@@ -64,11 +67,30 @@ public class BXUpdateInterpreter extends OclInterpreter {
 		}
 		return true;
 	}
+	
+	public BXRewritingModel getRoot(RuleElement e) {
+		EObject c = e;
+		
+		while(c!=null) {
+			if(c instanceof BXRewritingModel) return (BXRewritingModel) c;
+			c = c.eContainer();
+		}
+		
+		return null;
+	}
 
 	@Override
 	public Object interprete_edu_ustb_sei_mde_morel_BXRewritingRule(
 			BXRewritingRule bXRewritingRule, Context context) {
-		return putRule(bXRewritingRule, context);
+		BXRewritingModel m = getRoot(bXRewritingRule);
+		switch(m.getMode()){
+		case GET:
+			return getRule(bXRewritingRule,context);
+		case PUT:
+			return putRule(bXRewritingRule, context);
+		default:
+			return OclUndefined.INVALIDED;
+		}
 	}
 	
 	protected Object getRule(BXRewritingRule bXRewritingRule, Context context) {
@@ -100,6 +122,7 @@ public class BXUpdateInterpreter extends OclInterpreter {
 			
 			
 		} catch(Exception e) {
+			e.printStackTrace();
 			return false;
 		}
 		return true;
@@ -154,7 +177,7 @@ public class BXUpdateInterpreter extends OclInterpreter {
 				if(rhs==null){
 					Update.instance.create(lhs,bXRewritingRule.getParameters(),c,c.getEnviroment(),this);
 				} else {
-					Update.instance.update(rhs,lhs,c,c.getEnviroment(),this);
+					Update.instance.create(rhs,bXRewritingRule.getParameters(),c,c.getEnviroment(),this);
 				}
 				
 				// enforce when and update
@@ -198,7 +221,7 @@ public class BXUpdateInterpreter extends OclInterpreter {
 				}
 				
 				// enforce when and update
-				Update.instance.updateClauses(bXRewritingRule.getSource(), c, this, when,update);
+				//Update.instance.updateClauses(bXRewritingRule.getSource(), c, this, when,update);
 				this.addRecord(c);
 			}
 		}

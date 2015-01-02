@@ -13,7 +13,7 @@ import java.util.HashMap;
 @SuppressWarnings({"all", "warnings", "unchecked"})
 public class MorelParser extends MorelANTLRParserBase {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "COLLECTION", "DATA_TYPE", "IDENTIFIER", "INUMBER", "LINEBREAK", "ML_COMMENT", "QUOTED_39_39_92", "RNUMBER", "SL_COMMENT", "URINS", "WHITESPACE", "'!'", "'!='", "'#'", "'$id'", "'$this'", "'&&'", "'&'", "'('", "')'", "'*'", "'+'", "','", "'-'", "'->'", "'.'", "'/'", "':'", "';'", "'<'", "'<-'", "'<='", "'<>'", "'='", "'=>'", "'>'", "'>='", "'@'", "'['", "']'", "'^'", "'active'", "'all'", "'allDiff'", "'and'", "'bxrewriting'", "'closure'", "'collect'", "'createOnly'", "'default'", "'else'", "'endif'", "'exists'", "'false'", "'first'", "'for'", "'forAll'", "'group'", "'if'", "'implies'", "'in'", "'invalid'", "'iterate'", "'let'", "'lhs'", "'nac'", "'not'", "'null'", "'one'", "'or'", "'pac'", "'parallel'", "'passive'", "'post'", "'pre'", "'query'", "'querymodel'", "'random'", "'random*'", "'readOnly'", "'reject'", "'repeat'", "'rhs'", "'rule'", "'scope'", "'select'", "'sequence'", "'source'", "'then'", "'transformation'", "'transient'", "'true'", "'type'", "'unmatchs'", "'unmatchv'", "'update'", "'view'", "'when'", "'where'", "'{'", "'|'", "'||'", "'}'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "COLLECTION", "DATA_TYPE", "IDENTIFIER", "INUMBER", "LINEBREAK", "ML_COMMENT", "QUOTED_39_39_92", "RNUMBER", "SL_COMMENT", "URINS", "WHITESPACE", "'!'", "'!='", "'#'", "'$id'", "'$this'", "'&&'", "'&'", "'('", "')'", "'*'", "'+'", "','", "'-'", "'->'", "'.'", "'/'", "':'", "';'", "'<'", "'<-'", "'<='", "'<>'", "'='", "'=>'", "'>'", "'>='", "'@'", "'['", "']'", "'^'", "'active'", "'all'", "'allDiff'", "'and'", "'bxrewriting'", "'closure'", "'collect'", "'createOnly'", "'default'", "'else'", "'endif'", "'exists'", "'false'", "'first'", "'for'", "'forAll'", "'get'", "'group'", "'if'", "'implies'", "'in'", "'invalid'", "'iterate'", "'let'", "'lhs'", "'nac'", "'not'", "'null'", "'one'", "'or'", "'pac'", "'parallel'", "'passive'", "'post'", "'pre'", "'put'", "'query'", "'querymodel'", "'random'", "'random*'", "'readOnly'", "'reject'", "'repeat'", "'rhs'", "'rule'", "'scope'", "'select'", "'sequence'", "'source'", "'then'", "'transformation'", "'transient'", "'true'", "'type'", "'unmatchs'", "'unmatchv'", "'update'", "'view'", "'when'", "'where'", "'{'", "'|'", "'||'", "'}'"
     };
 
     public static final int EOF=-1;
@@ -109,6 +109,8 @@ public class MorelParser extends MorelANTLRParserBase {
     public static final int T__104=104;
     public static final int T__105=105;
     public static final int T__106=106;
+    public static final int T__107=107;
+    public static final int T__108=108;
     public static final int COLLECTION=4;
     public static final int DATA_TYPE=5;
     public static final int IDENTIFIER=6;
@@ -134,7 +136,7 @@ public class MorelParser extends MorelANTLRParserBase {
     }
     public MorelParser(TokenStream input, RecognizerSharedState state) {
         super(input, state);
-        this.state.initializeRuleMemo(316 + 1);
+        this.state.initializeRuleMemo(317 + 1);
          
 
     }
@@ -597,7 +599,7 @@ public class MorelParser extends MorelANTLRParserBase {
     				break;
     			}
     		}
-    		int followSetID = 397;
+    		int followSetID = 398;
     		int i;
     		for (i = tokenIndexOfLastCompleteElement; i < tokenStream.size(); i++) {
     			org.antlr.runtime3_4_0.CommonToken nextToken = (org.antlr.runtime3_4_0.CommonToken) tokenStream.get(i);
@@ -794,12 +796,12 @@ public class MorelParser extends MorelANTLRParserBase {
             // Morel.g:655:2: (c0= parse_edu_ustb_sei_mde_morel_QueryModel |c1= parse_edu_ustb_sei_mde_morel_TransformationModel |c2= parse_edu_ustb_sei_mde_morel_BXRewritingModel )
             int alt1=3;
             switch ( input.LA(1) ) {
-            case 80:
+            case 82:
                 {
                 alt1=1;
                 }
                 break;
-            case 93:
+            case 95:
                 {
                 alt1=2;
                 }
@@ -908,7 +910,7 @@ public class MorelParser extends MorelANTLRParserBase {
             // Morel.g:669:2: (a0= 'querymodel' ( ( (a1_0= parse_edu_ustb_sei_mde_morel_TypedModel ) ) )+ ( ( (a2_0= parse_edu_ustb_sei_mde_morel_Query ) ) )* )
             // Morel.g:670:2: a0= 'querymodel' ( ( (a1_0= parse_edu_ustb_sei_mde_morel_TypedModel ) ) )+ ( ( (a2_0= parse_edu_ustb_sei_mde_morel_Query ) ) )*
             {
-            a0=(Token)match(input,80,FOLLOW_80_in_parse_edu_ustb_sei_mde_morel_QueryModel143); if (state.failed) return element;
+            a0=(Token)match(input,82,FOLLOW_82_in_parse_edu_ustb_sei_mde_morel_QueryModel143); if (state.failed) return element;
 
             if ( state.backtracking==0 ) {
             		if (element == null) {
@@ -932,7 +934,7 @@ public class MorelParser extends MorelANTLRParserBase {
                 int alt2=2;
                 int LA2_0 = input.LA(1);
 
-                if ( (LA2_0==96) ) {
+                if ( (LA2_0==98) ) {
                     alt2=1;
                 }
 
@@ -1013,7 +1015,7 @@ public class MorelParser extends MorelANTLRParserBase {
                 int alt3=2;
                 int LA3_0 = input.LA(1);
 
-                if ( (LA3_0==45||LA3_0==76||LA3_0==79) ) {
+                if ( (LA3_0==45||LA3_0==77||LA3_0==81) ) {
                     alt3=1;
                 }
 
@@ -1124,7 +1126,7 @@ public class MorelParser extends MorelANTLRParserBase {
             // Morel.g:765:2: (a0= 'type' ( (a1= 'readOnly' |a2= 'transient' |a3= 'view' |a4= 'createOnly' )? ) (a7= IDENTIFIER ) a8= '<-' (a9= URINS ) )
             // Morel.g:766:2: a0= 'type' ( (a1= 'readOnly' |a2= 'transient' |a3= 'view' |a4= 'createOnly' )? ) (a7= IDENTIFIER ) a8= '<-' (a9= URINS )
             {
-            a0=(Token)match(input,96,FOLLOW_96_in_parse_edu_ustb_sei_mde_morel_TypedModel284); if (state.failed) return element;
+            a0=(Token)match(input,98,FOLLOW_98_in_parse_edu_ustb_sei_mde_morel_TypedModel284); if (state.failed) return element;
 
             if ( state.backtracking==0 ) {
             		if (element == null) {
@@ -1150,17 +1152,17 @@ public class MorelParser extends MorelANTLRParserBase {
             // Morel.g:784:3: (a1= 'readOnly' |a2= 'transient' |a3= 'view' |a4= 'createOnly' )?
             int alt4=5;
             switch ( input.LA(1) ) {
-                case 83:
+                case 85:
                     {
                     alt4=1;
                     }
                     break;
-                case 94:
+                case 96:
                     {
                     alt4=2;
                     }
                     break;
-                case 100:
+                case 102:
                     {
                     alt4=3;
                     }
@@ -1176,7 +1178,7 @@ public class MorelParser extends MorelANTLRParserBase {
                 case 1 :
                     // Morel.g:785:4: a1= 'readOnly'
                     {
-                    a1=(Token)match(input,83,FOLLOW_83_in_parse_edu_ustb_sei_mde_morel_TypedModel307); if (state.failed) return element;
+                    a1=(Token)match(input,85,FOLLOW_85_in_parse_edu_ustb_sei_mde_morel_TypedModel307); if (state.failed) return element;
 
                     if ( state.backtracking==0 ) {
                     				if (element == null) {
@@ -1200,7 +1202,7 @@ public class MorelParser extends MorelANTLRParserBase {
                 case 2 :
                     // Morel.g:801:8: a2= 'transient'
                     {
-                    a2=(Token)match(input,94,FOLLOW_94_in_parse_edu_ustb_sei_mde_morel_TypedModel322); if (state.failed) return element;
+                    a2=(Token)match(input,96,FOLLOW_96_in_parse_edu_ustb_sei_mde_morel_TypedModel322); if (state.failed) return element;
 
                     if ( state.backtracking==0 ) {
                     				if (element == null) {
@@ -1224,7 +1226,7 @@ public class MorelParser extends MorelANTLRParserBase {
                 case 3 :
                     // Morel.g:817:8: a3= 'view'
                     {
-                    a3=(Token)match(input,100,FOLLOW_100_in_parse_edu_ustb_sei_mde_morel_TypedModel337); if (state.failed) return element;
+                    a3=(Token)match(input,102,FOLLOW_102_in_parse_edu_ustb_sei_mde_morel_TypedModel337); if (state.failed) return element;
 
                     if ( state.backtracking==0 ) {
                     				if (element == null) {
@@ -1478,7 +1480,7 @@ public class MorelParser extends MorelANTLRParserBase {
             int alt6=2;
             int LA6_0 = input.LA(1);
 
-            if ( (LA6_0==45||LA6_0==76) ) {
+            if ( (LA6_0==45||LA6_0==77) ) {
                 alt6=1;
             }
             switch (alt6) {
@@ -1498,7 +1500,7 @@ public class MorelParser extends MorelANTLRParserBase {
                     if ( (LA5_0==45) ) {
                         alt5=1;
                     }
-                    else if ( (LA5_0==76) ) {
+                    else if ( (LA5_0==77) ) {
                         alt5=2;
                     }
                     else {
@@ -1537,7 +1539,7 @@ public class MorelParser extends MorelANTLRParserBase {
                         case 2 :
                             // Morel.g:989:12: a1= 'passive'
                             {
-                            a1=(Token)match(input,76,FOLLOW_76_in_parse_edu_ustb_sei_mde_morel_Query493); if (state.failed) return element;
+                            a1=(Token)match(input,77,FOLLOW_77_in_parse_edu_ustb_sei_mde_morel_Query493); if (state.failed) return element;
 
                             if ( state.backtracking==0 ) {
                             						if (element == null) {
@@ -1584,7 +1586,7 @@ public class MorelParser extends MorelANTLRParserBase {
             		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[29]);
             	}
 
-            a3=(Token)match(input,79,FOLLOW_79_in_parse_edu_ustb_sei_mde_morel_Query537); if (state.failed) return element;
+            a3=(Token)match(input,81,FOLLOW_81_in_parse_edu_ustb_sei_mde_morel_Query537); if (state.failed) return element;
 
             if ( state.backtracking==0 ) {
             		if (element == null) {
@@ -1610,32 +1612,32 @@ public class MorelParser extends MorelANTLRParserBase {
             // Morel.g:1037:3: (a4= 'lhs' |a5= 'rhs' |a6= 'nac' |a7= 'pac' |a8= 'pre' |a9= 'post' )?
             int alt7=7;
             switch ( input.LA(1) ) {
-                case 68:
+                case 69:
                     {
                     alt7=1;
                     }
                     break;
-                case 86:
+                case 88:
                     {
                     alt7=2;
                     }
                     break;
-                case 69:
+                case 70:
                     {
                     alt7=3;
                     }
                     break;
-                case 74:
+                case 75:
                     {
                     alt7=4;
                     }
                     break;
-                case 78:
+                case 79:
                     {
                     alt7=5;
                     }
                     break;
-                case 77:
+                case 78:
                     {
                     alt7=6;
                     }
@@ -1646,7 +1648,7 @@ public class MorelParser extends MorelANTLRParserBase {
                 case 1 :
                     // Morel.g:1038:4: a4= 'lhs'
                     {
-                    a4=(Token)match(input,68,FOLLOW_68_in_parse_edu_ustb_sei_mde_morel_Query560); if (state.failed) return element;
+                    a4=(Token)match(input,69,FOLLOW_69_in_parse_edu_ustb_sei_mde_morel_Query560); if (state.failed) return element;
 
                     if ( state.backtracking==0 ) {
                     				if (element == null) {
@@ -1670,7 +1672,7 @@ public class MorelParser extends MorelANTLRParserBase {
                 case 2 :
                     // Morel.g:1054:8: a5= 'rhs'
                     {
-                    a5=(Token)match(input,86,FOLLOW_86_in_parse_edu_ustb_sei_mde_morel_Query575); if (state.failed) return element;
+                    a5=(Token)match(input,88,FOLLOW_88_in_parse_edu_ustb_sei_mde_morel_Query575); if (state.failed) return element;
 
                     if ( state.backtracking==0 ) {
                     				if (element == null) {
@@ -1694,7 +1696,7 @@ public class MorelParser extends MorelANTLRParserBase {
                 case 3 :
                     // Morel.g:1070:8: a6= 'nac'
                     {
-                    a6=(Token)match(input,69,FOLLOW_69_in_parse_edu_ustb_sei_mde_morel_Query590); if (state.failed) return element;
+                    a6=(Token)match(input,70,FOLLOW_70_in_parse_edu_ustb_sei_mde_morel_Query590); if (state.failed) return element;
 
                     if ( state.backtracking==0 ) {
                     				if (element == null) {
@@ -1718,7 +1720,7 @@ public class MorelParser extends MorelANTLRParserBase {
                 case 4 :
                     // Morel.g:1086:8: a7= 'pac'
                     {
-                    a7=(Token)match(input,74,FOLLOW_74_in_parse_edu_ustb_sei_mde_morel_Query605); if (state.failed) return element;
+                    a7=(Token)match(input,75,FOLLOW_75_in_parse_edu_ustb_sei_mde_morel_Query605); if (state.failed) return element;
 
                     if ( state.backtracking==0 ) {
                     				if (element == null) {
@@ -1742,7 +1744,7 @@ public class MorelParser extends MorelANTLRParserBase {
                 case 5 :
                     // Morel.g:1102:8: a8= 'pre'
                     {
-                    a8=(Token)match(input,78,FOLLOW_78_in_parse_edu_ustb_sei_mde_morel_Query620); if (state.failed) return element;
+                    a8=(Token)match(input,79,FOLLOW_79_in_parse_edu_ustb_sei_mde_morel_Query620); if (state.failed) return element;
 
                     if ( state.backtracking==0 ) {
                     				if (element == null) {
@@ -1766,7 +1768,7 @@ public class MorelParser extends MorelANTLRParserBase {
                 case 6 :
                     // Morel.g:1118:8: a9= 'post'
                     {
-                    a9=(Token)match(input,77,FOLLOW_77_in_parse_edu_ustb_sei_mde_morel_Query635); if (state.failed) return element;
+                    a9=(Token)match(input,78,FOLLOW_78_in_parse_edu_ustb_sei_mde_morel_Query635); if (state.failed) return element;
 
                     if ( state.backtracking==0 ) {
                     				if (element == null) {
@@ -2061,7 +2063,7 @@ public class MorelParser extends MorelANTLRParserBase {
             		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[43]);
             	}
 
-            a18=(Token)match(input,103,FOLLOW_103_in_parse_edu_ustb_sei_mde_morel_Query897); if (state.failed) return element;
+            a18=(Token)match(input,105,FOLLOW_105_in_parse_edu_ustb_sei_mde_morel_Query897); if (state.failed) return element;
 
             if ( state.backtracking==0 ) {
             		if (element == null) {
@@ -2647,7 +2649,7 @@ public class MorelParser extends MorelANTLRParserBase {
             int alt17=2;
             int LA17_0 = input.LA(1);
 
-            if ( (LA17_0==102) ) {
+            if ( (LA17_0==104) ) {
                 alt17=1;
             }
             switch (alt17) {
@@ -2657,7 +2659,7 @@ public class MorelParser extends MorelANTLRParserBase {
                     // Morel.g:1692:3: (a28= 'where' ( ( (a29_0= parse_edu_ustb_sei_mde_morel_Statement ) ) )+ )
                     // Morel.g:1693:4: a28= 'where' ( ( (a29_0= parse_edu_ustb_sei_mde_morel_Statement ) ) )+
                     {
-                    a28=(Token)match(input,102,FOLLOW_102_in_parse_edu_ustb_sei_mde_morel_Query1412); if (state.failed) return element;
+                    a28=(Token)match(input,104,FOLLOW_104_in_parse_edu_ustb_sei_mde_morel_Query1412); if (state.failed) return element;
 
                     if ( state.backtracking==0 ) {
                     				if (element == null) {
@@ -2702,7 +2704,7 @@ public class MorelParser extends MorelANTLRParserBase {
                         int alt16=2;
                         int LA16_0 = input.LA(1);
 
-                        if ( (LA16_0==COLLECTION||(LA16_0 >= IDENTIFIER && LA16_0 <= INUMBER)||(LA16_0 >= QUOTED_39_39_92 && LA16_0 <= RNUMBER)||LA16_0==15||(LA16_0 >= 17 && LA16_0 <= 19)||(LA16_0 >= 21 && LA16_0 <= 22)||LA16_0==25||LA16_0==27||LA16_0==33||LA16_0==41||LA16_0==57||LA16_0==59||LA16_0==62||LA16_0==65||LA16_0==67||(LA16_0 >= 70 && LA16_0 <= 71)||LA16_0==95||LA16_0==103) ) {
+                        if ( (LA16_0==COLLECTION||(LA16_0 >= IDENTIFIER && LA16_0 <= INUMBER)||(LA16_0 >= QUOTED_39_39_92 && LA16_0 <= RNUMBER)||LA16_0==15||(LA16_0 >= 17 && LA16_0 <= 19)||(LA16_0 >= 21 && LA16_0 <= 22)||LA16_0==25||LA16_0==27||LA16_0==33||LA16_0==41||LA16_0==57||LA16_0==59||LA16_0==63||LA16_0==66||LA16_0==68||(LA16_0 >= 71 && LA16_0 <= 72)||LA16_0==97||LA16_0==105) ) {
                             alt16=1;
                         }
 
@@ -2828,7 +2830,7 @@ public class MorelParser extends MorelANTLRParserBase {
             		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[184]);
             	}
 
-            a30=(Token)match(input,106,FOLLOW_106_in_parse_edu_ustb_sei_mde_morel_Query1527); if (state.failed) return element;
+            a30=(Token)match(input,108,FOLLOW_108_in_parse_edu_ustb_sei_mde_morel_Query1527); if (state.failed) return element;
 
             if ( state.backtracking==0 ) {
             		if (element == null) {
@@ -2916,7 +2918,7 @@ public class MorelParser extends MorelANTLRParserBase {
                             if ( (LA19_4==IDENTIFIER) ) {
                                 int LA19_7 = input.LA(6);
 
-                                if ( (LA19_7==EOF||LA19_7==IDENTIFIER||LA19_7==26||LA19_7==47||LA19_7==102||LA19_7==104||LA19_7==106) ) {
+                                if ( (LA19_7==EOF||LA19_7==IDENTIFIER||LA19_7==26||LA19_7==47||LA19_7==104||LA19_7==106||LA19_7==108) ) {
                                     alt19=1;
                                 }
                                 else if ( (LA19_7==37) ) {
@@ -2945,9 +2947,9 @@ public class MorelParser extends MorelANTLRParserBase {
                         case IDENTIFIER:
                         case 26:
                         case 47:
-                        case 102:
                         case 104:
                         case 106:
+                        case 108:
                             {
                             alt19=1;
                             }
@@ -3275,7 +3277,7 @@ public class MorelParser extends MorelANTLRParserBase {
                     if ( (LA20_2==DATA_TYPE) ) {
                         int LA20_3 = input.LA(4);
 
-                        if ( (LA20_3==EOF||LA20_3==IDENTIFIER||LA20_3==26||LA20_3==47||LA20_3==102||LA20_3==104||LA20_3==106) ) {
+                        if ( (LA20_3==EOF||LA20_3==IDENTIFIER||LA20_3==26||LA20_3==47||LA20_3==104||LA20_3==106||LA20_3==108) ) {
                             alt20=1;
                         }
                         else if ( (LA20_3==37) ) {
@@ -3734,12 +3736,12 @@ public class MorelParser extends MorelANTLRParserBase {
             // Morel.g:2314:2: (a6_0= parse_edu_ustb_sei_mde_morel_LetExp |a6_1= parse_edu_ustb_sei_mde_morel_ConditionExp |a6_2= parse_edu_ustb_sei_mde_morel_BooleanImpliesExp )
             int alt22=3;
             switch ( input.LA(1) ) {
-            case 67:
+            case 68:
                 {
                 alt22=1;
                 }
                 break;
-            case 62:
+            case 63:
                 {
                 alt22=2;
                 }
@@ -3759,10 +3761,10 @@ public class MorelParser extends MorelANTLRParserBase {
             case 33:
             case 41:
             case 57:
-            case 65:
-            case 70:
+            case 66:
             case 71:
-            case 95:
+            case 72:
+            case 97:
                 {
                 alt22=3;
                 }
@@ -4078,12 +4080,12 @@ public class MorelParser extends MorelANTLRParserBase {
             // Morel.g:2517:2: (a4_0= parse_edu_ustb_sei_mde_morel_LetExp |a4_1= parse_edu_ustb_sei_mde_morel_ConditionExp |a4_2= parse_edu_ustb_sei_mde_morel_BooleanImpliesExp )
             int alt23=3;
             switch ( input.LA(1) ) {
-            case 67:
+            case 68:
                 {
                 alt23=1;
                 }
                 break;
-            case 62:
+            case 63:
                 {
                 alt23=2;
                 }
@@ -4103,10 +4105,10 @@ public class MorelParser extends MorelANTLRParserBase {
             case 33:
             case 41:
             case 57:
-            case 65:
-            case 70:
+            case 66:
             case 71:
-            case 95:
+            case 72:
+            case 97:
                 {
                 alt23=3;
                 }
@@ -4508,12 +4510,12 @@ public class MorelParser extends MorelANTLRParserBase {
                         }
                         }
                         break;
-                    case 67:
+                    case 68:
                         {
                         alt24=3;
                         }
                         break;
-                    case 62:
+                    case 63:
                         {
                         alt24=4;
                         }
@@ -4530,10 +4532,10 @@ public class MorelParser extends MorelANTLRParserBase {
                     case 33:
                     case 41:
                     case 57:
-                    case 65:
-                    case 70:
+                    case 66:
                     case 71:
-                    case 95:
+                    case 72:
+                    case 97:
                         {
                         alt24=5;
                         }
@@ -4980,7 +4982,7 @@ public class MorelParser extends MorelANTLRParserBase {
                 int alt26=2;
                 int LA26_0 = input.LA(1);
 
-                if ( (LA26_0==104) ) {
+                if ( (LA26_0==106) ) {
                     alt26=1;
                 }
 
@@ -4992,7 +4994,7 @@ public class MorelParser extends MorelANTLRParserBase {
             	    // Morel.g:3015:4: (a3= '|' (a4= IDENTIFIER ) )
             	    // Morel.g:3016:5: a3= '|' (a4= IDENTIFIER )
             	    {
-            	    a3=(Token)match(input,104,FOLLOW_104_in_parse_edu_ustb_sei_mde_morel_EnclosureLinkConstraint2572); if (state.failed) return element;
+            	    a3=(Token)match(input,106,FOLLOW_106_in_parse_edu_ustb_sei_mde_morel_EnclosureLinkConstraint2572); if (state.failed) return element;
 
             	    if ( state.backtracking==0 ) {
             	    					if (element == null) {
@@ -5537,7 +5539,7 @@ public class MorelParser extends MorelANTLRParserBase {
                 int alt29=2;
                 int LA29_0 = input.LA(1);
 
-                if ( (LA29_0==104) ) {
+                if ( (LA29_0==106) ) {
                     alt29=1;
                 }
 
@@ -5549,7 +5551,7 @@ public class MorelParser extends MorelANTLRParserBase {
             	    // Morel.g:3396:4: (a3= '|' (a4= IDENTIFIER ) )
             	    // Morel.g:3397:5: a3= '|' (a4= IDENTIFIER )
             	    {
-            	    a3=(Token)match(input,104,FOLLOW_104_in_parse_edu_ustb_sei_mde_morel_PathConstraint3016); if (state.failed) return element;
+            	    a3=(Token)match(input,106,FOLLOW_106_in_parse_edu_ustb_sei_mde_morel_PathConstraint3016); if (state.failed) return element;
 
             	    if ( state.backtracking==0 ) {
             	    					if (element == null) {
@@ -5834,7 +5836,7 @@ public class MorelParser extends MorelANTLRParserBase {
             		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[388]);
             	}
 
-            a9=(Token)match(input,64,FOLLOW_64_in_parse_edu_ustb_sei_mde_morel_PathConstraint3306); if (state.failed) return element;
+            a9=(Token)match(input,65,FOLLOW_65_in_parse_edu_ustb_sei_mde_morel_PathConstraint3306); if (state.failed) return element;
 
             if ( state.backtracking==0 ) {
             		if (element == null) {
@@ -6491,12 +6493,12 @@ public class MorelParser extends MorelANTLRParserBase {
             // Morel.g:4061:2: (a1_0= parse_edu_ustb_sei_mde_morel_LetExp |a1_1= parse_edu_ustb_sei_mde_morel_ConditionExp |a1_2= parse_edu_ustb_sei_mde_morel_BooleanImpliesExp )
             int alt35=3;
             switch ( input.LA(1) ) {
-            case 67:
+            case 68:
                 {
                 alt35=1;
                 }
                 break;
-            case 62:
+            case 63:
                 {
                 alt35=2;
                 }
@@ -6516,10 +6518,10 @@ public class MorelParser extends MorelANTLRParserBase {
             case 33:
             case 41:
             case 57:
-            case 65:
-            case 70:
+            case 66:
             case 71:
-            case 95:
+            case 72:
+            case 97:
                 {
                 alt35=3;
                 }
@@ -7595,7 +7597,7 @@ public class MorelParser extends MorelANTLRParserBase {
             int alt40=2;
             int LA40_0 = input.LA(1);
 
-            if ( (LA40_0==95) ) {
+            if ( (LA40_0==97) ) {
                 alt40=1;
             }
             else if ( (LA40_0==57) ) {
@@ -7613,7 +7615,7 @@ public class MorelParser extends MorelANTLRParserBase {
                 case 1 :
                     // Morel.g:4809:4: a0= 'true'
                     {
-                    a0=(Token)match(input,95,FOLLOW_95_in_parse_edu_ustb_sei_mde_morel_BooleanLiteralExp4157); if (state.failed) return element;
+                    a0=(Token)match(input,97,FOLLOW_97_in_parse_edu_ustb_sei_mde_morel_BooleanLiteralExp4157); if (state.failed) return element;
 
                     if ( state.backtracking==0 ) {
                     				if (element == null) {
@@ -7874,10 +7876,10 @@ public class MorelParser extends MorelANTLRParserBase {
             int alt42=2;
             int LA42_0 = input.LA(1);
 
-            if ( (LA42_0==71) ) {
+            if ( (LA42_0==72) ) {
                 alt42=1;
             }
-            else if ( (LA42_0==65) ) {
+            else if ( (LA42_0==66) ) {
                 alt42=2;
             }
             else {
@@ -7892,7 +7894,7 @@ public class MorelParser extends MorelANTLRParserBase {
                 case 1 :
                     // Morel.g:4984:4: a0= 'null'
                     {
-                    a0=(Token)match(input,71,FOLLOW_71_in_parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp4273); if (state.failed) return element;
+                    a0=(Token)match(input,72,FOLLOW_72_in_parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp4273); if (state.failed) return element;
 
                     if ( state.backtracking==0 ) {
                     				if (element == null) {
@@ -7913,7 +7915,7 @@ public class MorelParser extends MorelANTLRParserBase {
                 case 2 :
                     // Morel.g:4997:8: a1= 'invalid'
                     {
-                    a1=(Token)match(input,65,FOLLOW_65_in_parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp4288); if (state.failed) return element;
+                    a1=(Token)match(input,66,FOLLOW_66_in_parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp4288); if (state.failed) return element;
 
                     if ( state.backtracking==0 ) {
                     				if (element == null) {
@@ -8504,7 +8506,7 @@ public class MorelParser extends MorelANTLRParserBase {
             		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[1244]);
             	}
 
-            a1=(Token)match(input,103,FOLLOW_103_in_parse_edu_ustb_sei_mde_morel_CollectionLiteralExp4543); if (state.failed) return element;
+            a1=(Token)match(input,105,FOLLOW_105_in_parse_edu_ustb_sei_mde_morel_CollectionLiteralExp4543); if (state.failed) return element;
 
             if ( state.backtracking==0 ) {
             		if (element == null) {
@@ -8540,7 +8542,7 @@ public class MorelParser extends MorelANTLRParserBase {
             int alt48=2;
             int LA48_0 = input.LA(1);
 
-            if ( (LA48_0==COLLECTION||(LA48_0 >= IDENTIFIER && LA48_0 <= INUMBER)||(LA48_0 >= QUOTED_39_39_92 && LA48_0 <= RNUMBER)||LA48_0==15||(LA48_0 >= 17 && LA48_0 <= 19)||LA48_0==22||LA48_0==25||LA48_0==27||LA48_0==33||LA48_0==41||LA48_0==57||LA48_0==62||LA48_0==65||LA48_0==67||(LA48_0 >= 70 && LA48_0 <= 71)||LA48_0==95) ) {
+            if ( (LA48_0==COLLECTION||(LA48_0 >= IDENTIFIER && LA48_0 <= INUMBER)||(LA48_0 >= QUOTED_39_39_92 && LA48_0 <= RNUMBER)||LA48_0==15||(LA48_0 >= 17 && LA48_0 <= 19)||LA48_0==22||LA48_0==25||LA48_0==27||LA48_0==33||LA48_0==41||LA48_0==57||LA48_0==63||LA48_0==66||LA48_0==68||(LA48_0 >= 71 && LA48_0 <= 72)||LA48_0==97) ) {
                 alt48=1;
             }
             switch (alt48) {
@@ -8556,12 +8558,12 @@ public class MorelParser extends MorelANTLRParserBase {
                     // Morel.g:5447:5: (a2_0= parse_edu_ustb_sei_mde_morel_LetExp |a2_1= parse_edu_ustb_sei_mde_morel_ConditionExp |a2_2= parse_edu_ustb_sei_mde_morel_BooleanImpliesExp )
                     int alt45=3;
                     switch ( input.LA(1) ) {
-                    case 67:
+                    case 68:
                         {
                         alt45=1;
                         }
                         break;
-                    case 62:
+                    case 63:
                         {
                         alt45=2;
                         }
@@ -8581,10 +8583,10 @@ public class MorelParser extends MorelANTLRParserBase {
                     case 33:
                     case 41:
                     case 57:
-                    case 65:
-                    case 70:
+                    case 66:
                     case 71:
-                    case 95:
+                    case 72:
+                    case 97:
                         {
                         alt45=3;
                         }
@@ -8763,12 +8765,12 @@ public class MorelParser extends MorelANTLRParserBase {
                     	    // Morel.g:5549:6: (a4_0= parse_edu_ustb_sei_mde_morel_LetExp |a4_1= parse_edu_ustb_sei_mde_morel_ConditionExp |a4_2= parse_edu_ustb_sei_mde_morel_BooleanImpliesExp )
                     	    int alt46=3;
                     	    switch ( input.LA(1) ) {
-                    	    case 67:
+                    	    case 68:
                     	        {
                     	        alt46=1;
                     	        }
                     	        break;
-                    	    case 62:
+                    	    case 63:
                     	        {
                     	        alt46=2;
                     	        }
@@ -8788,10 +8790,10 @@ public class MorelParser extends MorelANTLRParserBase {
                     	    case 33:
                     	    case 41:
                     	    case 57:
-                    	    case 65:
-                    	    case 70:
+                    	    case 66:
                     	    case 71:
-                    	    case 95:
+                    	    case 72:
+                    	    case 97:
                     	        {
                     	        alt46=3;
                     	        }
@@ -8941,7 +8943,7 @@ public class MorelParser extends MorelANTLRParserBase {
             		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[1284]);
             	}
 
-            a5=(Token)match(input,106,FOLLOW_106_in_parse_edu_ustb_sei_mde_morel_CollectionLiteralExp4844); if (state.failed) return element;
+            a5=(Token)match(input,108,FOLLOW_108_in_parse_edu_ustb_sei_mde_morel_CollectionLiteralExp4844); if (state.failed) return element;
 
             if ( state.backtracking==0 ) {
             		if (element == null) {
@@ -9544,7 +9546,7 @@ public class MorelParser extends MorelANTLRParserBase {
             int alt54=2;
             int LA54_0 = input.LA(1);
 
-            if ( (LA54_0==COLLECTION||(LA54_0 >= IDENTIFIER && LA54_0 <= INUMBER)||(LA54_0 >= QUOTED_39_39_92 && LA54_0 <= RNUMBER)||LA54_0==15||(LA54_0 >= 17 && LA54_0 <= 19)||(LA54_0 >= 21 && LA54_0 <= 22)||LA54_0==25||LA54_0==27||LA54_0==33||LA54_0==41||LA54_0==57||LA54_0==62||LA54_0==65||LA54_0==67||(LA54_0 >= 70 && LA54_0 <= 71)||LA54_0==95) ) {
+            if ( (LA54_0==COLLECTION||(LA54_0 >= IDENTIFIER && LA54_0 <= INUMBER)||(LA54_0 >= QUOTED_39_39_92 && LA54_0 <= RNUMBER)||LA54_0==15||(LA54_0 >= 17 && LA54_0 <= 19)||(LA54_0 >= 21 && LA54_0 <= 22)||LA54_0==25||LA54_0==27||LA54_0==33||LA54_0==41||LA54_0==57||LA54_0==63||LA54_0==66||LA54_0==68||(LA54_0 >= 71 && LA54_0 <= 72)||LA54_0==97) ) {
                 alt54=1;
             }
             switch (alt54) {
@@ -9557,12 +9559,12 @@ public class MorelParser extends MorelANTLRParserBase {
                     // Morel.g:6063:4: (a1_0= parse_edu_ustb_sei_mde_morel_LetExp |a1_1= parse_edu_ustb_sei_mde_morel_ConditionExp |a1_2= parse_edu_ustb_sei_mde_morel_BooleanImpliesExp |a1_3= parse_edu_ustb_sei_mde_morel_ReflectiveVariableExp )
                     int alt51=4;
                     switch ( input.LA(1) ) {
-                    case 67:
+                    case 68:
                         {
                         alt51=1;
                         }
                         break;
-                    case 62:
+                    case 63:
                         {
                         alt51=2;
                         }
@@ -9582,10 +9584,10 @@ public class MorelParser extends MorelANTLRParserBase {
                     case 33:
                     case 41:
                     case 57:
-                    case 65:
-                    case 70:
+                    case 66:
                     case 71:
-                    case 95:
+                    case 72:
+                    case 97:
                         {
                         alt51=3;
                         }
@@ -9792,12 +9794,12 @@ public class MorelParser extends MorelANTLRParserBase {
                     	    // Morel.g:6178:6: (a3_0= parse_edu_ustb_sei_mde_morel_LetExp |a3_1= parse_edu_ustb_sei_mde_morel_ConditionExp |a3_2= parse_edu_ustb_sei_mde_morel_BooleanImpliesExp |a3_3= parse_edu_ustb_sei_mde_morel_ReflectiveVariableExp )
                     	    int alt52=4;
                     	    switch ( input.LA(1) ) {
-                    	    case 67:
+                    	    case 68:
                     	        {
                     	        alt52=1;
                     	        }
                     	        break;
-                    	    case 62:
+                    	    case 63:
                     	        {
                     	        alt52=2;
                     	        }
@@ -9817,10 +9819,10 @@ public class MorelParser extends MorelANTLRParserBase {
                     	    case 33:
                     	    case 41:
                     	    case 57:
-                    	    case 65:
-                    	    case 70:
+                    	    case 66:
                     	    case 71:
-                    	    case 95:
+                    	    case 72:
+                    	    case 97:
                     	        {
                     	        alt52=3;
                     	        }
@@ -10488,7 +10490,7 @@ public class MorelParser extends MorelANTLRParserBase {
             int alt60=2;
             int LA60_0 = input.LA(1);
 
-            if ( (LA60_0==COLLECTION||(LA60_0 >= IDENTIFIER && LA60_0 <= INUMBER)||(LA60_0 >= QUOTED_39_39_92 && LA60_0 <= RNUMBER)||LA60_0==15||(LA60_0 >= 17 && LA60_0 <= 19)||(LA60_0 >= 21 && LA60_0 <= 22)||LA60_0==25||LA60_0==27||LA60_0==33||LA60_0==41||LA60_0==57||LA60_0==62||LA60_0==65||LA60_0==67||(LA60_0 >= 70 && LA60_0 <= 71)||LA60_0==95) ) {
+            if ( (LA60_0==COLLECTION||(LA60_0 >= IDENTIFIER && LA60_0 <= INUMBER)||(LA60_0 >= QUOTED_39_39_92 && LA60_0 <= RNUMBER)||LA60_0==15||(LA60_0 >= 17 && LA60_0 <= 19)||(LA60_0 >= 21 && LA60_0 <= 22)||LA60_0==25||LA60_0==27||LA60_0==33||LA60_0==41||LA60_0==57||LA60_0==63||LA60_0==66||LA60_0==68||(LA60_0 >= 71 && LA60_0 <= 72)||LA60_0==97) ) {
                 alt60=1;
             }
             switch (alt60) {
@@ -10506,12 +10508,12 @@ public class MorelParser extends MorelANTLRParserBase {
                         alt57=1;
                         }
                         break;
-                    case 67:
+                    case 68:
                         {
                         alt57=2;
                         }
                         break;
-                    case 62:
+                    case 63:
                         {
                         alt57=3;
                         }
@@ -10531,10 +10533,10 @@ public class MorelParser extends MorelANTLRParserBase {
                     case 33:
                     case 41:
                     case 57:
-                    case 65:
-                    case 70:
+                    case 66:
                     case 71:
-                    case 95:
+                    case 72:
+                    case 97:
                         {
                         alt57=4;
                         }
@@ -10741,12 +10743,12 @@ public class MorelParser extends MorelANTLRParserBase {
                     	        alt58=1;
                     	        }
                     	        break;
-                    	    case 67:
+                    	    case 68:
                     	        {
                     	        alt58=2;
                     	        }
                     	        break;
-                    	    case 62:
+                    	    case 63:
                     	        {
                     	        alt58=3;
                     	        }
@@ -10766,10 +10768,10 @@ public class MorelParser extends MorelANTLRParserBase {
                     	    case 33:
                     	    case 41:
                     	    case 57:
-                    	    case 65:
-                    	    case 70:
+                    	    case 66:
                     	    case 71:
-                    	    case 95:
+                    	    case 72:
+                    	    case 97:
                     	        {
                     	        alt58=4;
                     	        }
@@ -11179,12 +11181,12 @@ public class MorelParser extends MorelANTLRParserBase {
                 alt62=2;
                 }
                 break;
-            case 89:
+            case 91:
                 {
                 alt62=3;
                 }
                 break;
-            case 84:
+            case 86:
                 {
                 alt62=4;
                 }
@@ -11254,7 +11256,7 @@ public class MorelParser extends MorelANTLRParserBase {
                 case 3 :
                     // Morel.g:6954:8: a3= 'select'
                     {
-                    a3=(Token)match(input,89,FOLLOW_89_in_parse_edu_ustb_sei_mde_morel_IteratorPathExp6015); if (state.failed) return element;
+                    a3=(Token)match(input,91,FOLLOW_91_in_parse_edu_ustb_sei_mde_morel_IteratorPathExp6015); if (state.failed) return element;
 
                     if ( state.backtracking==0 ) {
                     				if (element == null) {
@@ -11275,7 +11277,7 @@ public class MorelParser extends MorelANTLRParserBase {
                 case 4 :
                     // Morel.g:6967:8: a4= 'reject'
                     {
-                    a4=(Token)match(input,84,FOLLOW_84_in_parse_edu_ustb_sei_mde_morel_IteratorPathExp6030); if (state.failed) return element;
+                    a4=(Token)match(input,86,FOLLOW_86_in_parse_edu_ustb_sei_mde_morel_IteratorPathExp6030); if (state.failed) return element;
 
                     if ( state.backtracking==0 ) {
                     				if (element == null) {
@@ -11490,7 +11492,7 @@ public class MorelParser extends MorelANTLRParserBase {
             		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[1759]);
             	}
 
-            a13=(Token)match(input,104,FOLLOW_104_in_parse_edu_ustb_sei_mde_morel_IteratorPathExp6193); if (state.failed) return element;
+            a13=(Token)match(input,106,FOLLOW_106_in_parse_edu_ustb_sei_mde_morel_IteratorPathExp6193); if (state.failed) return element;
 
             if ( state.backtracking==0 ) {
             		if (element == null) {
@@ -11524,12 +11526,12 @@ public class MorelParser extends MorelANTLRParserBase {
             // Morel.g:7137:2: (a14_0= parse_edu_ustb_sei_mde_morel_LetExp |a14_1= parse_edu_ustb_sei_mde_morel_ConditionExp |a14_2= parse_edu_ustb_sei_mde_morel_BooleanImpliesExp )
             int alt64=3;
             switch ( input.LA(1) ) {
-            case 67:
+            case 68:
                 {
                 alt64=1;
                 }
                 break;
-            case 62:
+            case 63:
                 {
                 alt64=2;
                 }
@@ -11549,10 +11551,10 @@ public class MorelParser extends MorelANTLRParserBase {
             case 33:
             case 41:
             case 57:
-            case 65:
-            case 70:
+            case 66:
             case 71:
-            case 95:
+            case 72:
+            case 97:
                 {
                 alt64=3;
                 }
@@ -11898,7 +11900,7 @@ public class MorelParser extends MorelANTLRParserBase {
             // Morel.g:7354:2: (a0= 'let' (a1_0= parse_edu_ustb_sei_mde_morel_VariableWithInit ) ( (a2= ',' (a3_0= parse_edu_ustb_sei_mde_morel_VariableWithInit ) ) )* a4= 'in' (a5_0= parse_edu_ustb_sei_mde_morel_LetExp |a5_1= parse_edu_ustb_sei_mde_morel_ConditionExp |a5_2= parse_edu_ustb_sei_mde_morel_BooleanImpliesExp ) )
             // Morel.g:7355:2: a0= 'let' (a1_0= parse_edu_ustb_sei_mde_morel_VariableWithInit ) ( (a2= ',' (a3_0= parse_edu_ustb_sei_mde_morel_VariableWithInit ) ) )* a4= 'in' (a5_0= parse_edu_ustb_sei_mde_morel_LetExp |a5_1= parse_edu_ustb_sei_mde_morel_ConditionExp |a5_2= parse_edu_ustb_sei_mde_morel_BooleanImpliesExp )
             {
-            a0=(Token)match(input,67,FOLLOW_67_in_parse_edu_ustb_sei_mde_morel_LetExp6342); if (state.failed) return element;
+            a0=(Token)match(input,68,FOLLOW_68_in_parse_edu_ustb_sei_mde_morel_LetExp6342); if (state.failed) return element;
 
             if ( state.backtracking==0 ) {
             		if (element == null) {
@@ -12046,7 +12048,7 @@ public class MorelParser extends MorelANTLRParserBase {
             		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[1887]);
             	}
 
-            a4=(Token)match(input,64,FOLLOW_64_in_parse_edu_ustb_sei_mde_morel_LetExp6454); if (state.failed) return element;
+            a4=(Token)match(input,65,FOLLOW_65_in_parse_edu_ustb_sei_mde_morel_LetExp6454); if (state.failed) return element;
 
             if ( state.backtracking==0 ) {
             		if (element == null) {
@@ -12080,12 +12082,12 @@ public class MorelParser extends MorelANTLRParserBase {
             // Morel.g:7477:2: (a5_0= parse_edu_ustb_sei_mde_morel_LetExp |a5_1= parse_edu_ustb_sei_mde_morel_ConditionExp |a5_2= parse_edu_ustb_sei_mde_morel_BooleanImpliesExp )
             int alt67=3;
             switch ( input.LA(1) ) {
-            case 67:
+            case 68:
                 {
                 alt67=1;
                 }
                 break;
-            case 62:
+            case 63:
                 {
                 alt67=2;
                 }
@@ -12105,10 +12107,10 @@ public class MorelParser extends MorelANTLRParserBase {
             case 33:
             case 41:
             case 57:
-            case 65:
-            case 70:
+            case 66:
             case 71:
-            case 95:
+            case 72:
+            case 97:
                 {
                 alt67=3;
                 }
@@ -12295,7 +12297,7 @@ public class MorelParser extends MorelANTLRParserBase {
             // Morel.g:7571:2: (a0= 'if' (a1_0= parse_edu_ustb_sei_mde_morel_BooleanImpliesExp ) a2= 'then' (a3_0= parse_edu_ustb_sei_mde_morel_Expression ) a4= 'else' (a5_0= parse_edu_ustb_sei_mde_morel_Expression ) a6= 'endif' )
             // Morel.g:7572:2: a0= 'if' (a1_0= parse_edu_ustb_sei_mde_morel_BooleanImpliesExp ) a2= 'then' (a3_0= parse_edu_ustb_sei_mde_morel_Expression ) a4= 'else' (a5_0= parse_edu_ustb_sei_mde_morel_Expression ) a6= 'endif'
             {
-            a0=(Token)match(input,62,FOLLOW_62_in_parse_edu_ustb_sei_mde_morel_ConditionExp6533); if (state.failed) return element;
+            a0=(Token)match(input,63,FOLLOW_63_in_parse_edu_ustb_sei_mde_morel_ConditionExp6533); if (state.failed) return element;
 
             if ( state.backtracking==0 ) {
             		if (element == null) {
@@ -12361,7 +12363,7 @@ public class MorelParser extends MorelANTLRParserBase {
             		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[1942]);
             	}
 
-            a2=(Token)match(input,92,FOLLOW_92_in_parse_edu_ustb_sei_mde_morel_ConditionExp6569); if (state.failed) return element;
+            a2=(Token)match(input,94,FOLLOW_94_in_parse_edu_ustb_sei_mde_morel_ConditionExp6569); if (state.failed) return element;
 
             if ( state.backtracking==0 ) {
             		if (element == null) {
@@ -12650,7 +12652,7 @@ public class MorelParser extends MorelANTLRParserBase {
             int alt69=2;
             int LA69_0 = input.LA(1);
 
-            if ( (LA69_0==38||LA69_0==63) ) {
+            if ( (LA69_0==38||LA69_0==64) ) {
                 alt69=1;
             }
             switch (alt69) {
@@ -12667,7 +12669,7 @@ public class MorelParser extends MorelANTLRParserBase {
                     int alt68=2;
                     int LA68_0 = input.LA(1);
 
-                    if ( (LA68_0==63) ) {
+                    if ( (LA68_0==64) ) {
                         alt68=1;
                     }
                     else if ( (LA68_0==38) ) {
@@ -12685,7 +12687,7 @@ public class MorelParser extends MorelANTLRParserBase {
                         case 1 :
                             // Morel.g:7836:6: a1= 'implies'
                             {
-                            a1=(Token)match(input,63,FOLLOW_63_in_parse_edu_ustb_sei_mde_morel_BooleanImpliesExp6714); if (state.failed) return element;
+                            a1=(Token)match(input,64,FOLLOW_64_in_parse_edu_ustb_sei_mde_morel_BooleanImpliesExp6714); if (state.failed) return element;
 
                             if ( state.backtracking==0 ) {
                             						if (element == null) {
@@ -12961,7 +12963,7 @@ public class MorelParser extends MorelANTLRParserBase {
             int alt71=2;
             int LA71_0 = input.LA(1);
 
-            if ( (LA71_0==73||LA71_0==105) ) {
+            if ( (LA71_0==74||LA71_0==107) ) {
                 alt71=1;
             }
             switch (alt71) {
@@ -12978,10 +12980,10 @@ public class MorelParser extends MorelANTLRParserBase {
                     int alt70=2;
                     int LA70_0 = input.LA(1);
 
-                    if ( (LA70_0==73) ) {
+                    if ( (LA70_0==74) ) {
                         alt70=1;
                     }
-                    else if ( (LA70_0==105) ) {
+                    else if ( (LA70_0==107) ) {
                         alt70=2;
                     }
                     else {
@@ -12996,7 +12998,7 @@ public class MorelParser extends MorelANTLRParserBase {
                         case 1 :
                             // Morel.g:8030:6: a1= 'or'
                             {
-                            a1=(Token)match(input,73,FOLLOW_73_in_parse_edu_ustb_sei_mde_morel_BooleanOrExp6870); if (state.failed) return element;
+                            a1=(Token)match(input,74,FOLLOW_74_in_parse_edu_ustb_sei_mde_morel_BooleanOrExp6870); if (state.failed) return element;
 
                             if ( state.backtracking==0 ) {
                             						if (element == null) {
@@ -13017,7 +13019,7 @@ public class MorelParser extends MorelANTLRParserBase {
                         case 2 :
                             // Morel.g:8043:12: a2= '||'
                             {
-                            a2=(Token)match(input,105,FOLLOW_105_in_parse_edu_ustb_sei_mde_morel_BooleanOrExp6889); if (state.failed) return element;
+                            a2=(Token)match(input,107,FOLLOW_107_in_parse_edu_ustb_sei_mde_morel_BooleanOrExp6889); if (state.failed) return element;
 
                             if ( state.backtracking==0 ) {
                             						if (element == null) {
@@ -14655,7 +14657,7 @@ public class MorelParser extends MorelANTLRParserBase {
             int alt81=2;
             int LA81_0 = input.LA(1);
 
-            if ( (LA81_0==15||LA81_0==25||LA81_0==27||LA81_0==70) ) {
+            if ( (LA81_0==15||LA81_0==25||LA81_0==27||LA81_0==71) ) {
                 alt81=1;
             }
             switch (alt81) {
@@ -14678,7 +14680,7 @@ public class MorelParser extends MorelANTLRParserBase {
                         alt80=2;
                         }
                         break;
-                    case 70:
+                    case 71:
                         {
                         alt80=3;
                         }
@@ -14743,7 +14745,7 @@ public class MorelParser extends MorelANTLRParserBase {
                         case 3 :
                             // Morel.g:9080:10: a2= 'not'
                             {
-                            a2=(Token)match(input,70,FOLLOW_70_in_parse_edu_ustb_sei_mde_morel_UnaryExp7750); if (state.failed) return element;
+                            a2=(Token)match(input,71,FOLLOW_71_in_parse_edu_ustb_sei_mde_morel_UnaryExp7750); if (state.failed) return element;
 
                             if ( state.backtracking==0 ) {
                             					if (element == null) {
@@ -14995,12 +14997,12 @@ public class MorelParser extends MorelANTLRParserBase {
             // Morel.g:9243:2: (a2_0= parse_edu_ustb_sei_mde_morel_LetExp |a2_1= parse_edu_ustb_sei_mde_morel_ConditionExp |a2_2= parse_edu_ustb_sei_mde_morel_BooleanImpliesExp )
             int alt82=3;
             switch ( input.LA(1) ) {
-            case 67:
+            case 68:
                 {
                 alt82=1;
                 }
                 break;
-            case 62:
+            case 63:
                 {
                 alt82=2;
                 }
@@ -15020,10 +15022,10 @@ public class MorelParser extends MorelANTLRParserBase {
             case 33:
             case 41:
             case 57:
-            case 65:
-            case 70:
+            case 66:
             case 71:
-            case 95:
+            case 72:
+            case 97:
                 {
                 alt82=3;
                 }
@@ -15257,12 +15259,12 @@ public class MorelParser extends MorelANTLRParserBase {
             // Morel.g:9369:2: (a2_0= parse_edu_ustb_sei_mde_morel_LetExp |a2_1= parse_edu_ustb_sei_mde_morel_ConditionExp |a2_2= parse_edu_ustb_sei_mde_morel_BooleanImpliesExp )
             int alt83=3;
             switch ( input.LA(1) ) {
-            case 67:
+            case 68:
                 {
                 alt83=1;
                 }
                 break;
-            case 62:
+            case 63:
                 {
                 alt83=2;
                 }
@@ -15282,10 +15284,10 @@ public class MorelParser extends MorelANTLRParserBase {
             case 33:
             case 41:
             case 57:
-            case 65:
-            case 70:
+            case 66:
             case 71:
-            case 95:
+            case 72:
+            case 97:
                 {
                 alt83=3;
                 }
@@ -15515,12 +15517,12 @@ public class MorelParser extends MorelANTLRParserBase {
                 }
                 }
                 break;
-            case 67:
+            case 68:
                 {
                 alt84=3;
                 }
                 break;
-            case 62:
+            case 63:
                 {
                 alt84=4;
                 }
@@ -15537,10 +15539,10 @@ public class MorelParser extends MorelANTLRParserBase {
             case 33:
             case 41:
             case 57:
-            case 65:
-            case 70:
+            case 66:
             case 71:
-            case 95:
+            case 72:
+            case 97:
                 {
                 alt84=5;
                 }
@@ -15839,7 +15841,7 @@ public class MorelParser extends MorelANTLRParserBase {
             // Morel.g:9603:2: (a0= 'if' a1= '(' (a2_0= parse_edu_ustb_sei_mde_morel_BooleanImpliesExp ) a3= ')' (a4_0= parse_edu_ustb_sei_mde_morel_ImperativeStatement ) ( (a5= 'else' (a6_0= parse_edu_ustb_sei_mde_morel_ImperativeStatement ) ) )? )
             // Morel.g:9604:2: a0= 'if' a1= '(' (a2_0= parse_edu_ustb_sei_mde_morel_BooleanImpliesExp ) a3= ')' (a4_0= parse_edu_ustb_sei_mde_morel_ImperativeStatement ) ( (a5= 'else' (a6_0= parse_edu_ustb_sei_mde_morel_ImperativeStatement ) ) )?
             {
-            a0=(Token)match(input,62,FOLLOW_62_in_parse_edu_ustb_sei_mde_morel_IfStatement8156); if (state.failed) return element;
+            a0=(Token)match(input,63,FOLLOW_63_in_parse_edu_ustb_sei_mde_morel_IfStatement8156); if (state.failed) return element;
 
             if ( state.backtracking==0 ) {
             		if (element == null) {
@@ -16361,7 +16363,7 @@ public class MorelParser extends MorelANTLRParserBase {
             int alt87=2;
             int LA87_0 = input.LA(1);
 
-            if ( (LA87_0==COLLECTION||(LA87_0 >= IDENTIFIER && LA87_0 <= INUMBER)||(LA87_0 >= QUOTED_39_39_92 && LA87_0 <= RNUMBER)||LA87_0==15||(LA87_0 >= 17 && LA87_0 <= 19)||LA87_0==22||LA87_0==25||LA87_0==27||LA87_0==33||LA87_0==41||LA87_0==57||LA87_0==62||LA87_0==65||LA87_0==67||(LA87_0 >= 70 && LA87_0 <= 71)||LA87_0==95) ) {
+            if ( (LA87_0==COLLECTION||(LA87_0 >= IDENTIFIER && LA87_0 <= INUMBER)||(LA87_0 >= QUOTED_39_39_92 && LA87_0 <= RNUMBER)||LA87_0==15||(LA87_0 >= 17 && LA87_0 <= 19)||LA87_0==22||LA87_0==25||LA87_0==27||LA87_0==33||LA87_0==41||LA87_0==57||LA87_0==63||LA87_0==66||LA87_0==68||(LA87_0 >= 71 && LA87_0 <= 72)||LA87_0==97) ) {
                 alt87=1;
             }
             switch (alt87) {
@@ -16374,12 +16376,12 @@ public class MorelParser extends MorelANTLRParserBase {
                     // Morel.g:9976:4: (a6_0= parse_edu_ustb_sei_mde_morel_LetExp |a6_1= parse_edu_ustb_sei_mde_morel_ConditionExp |a6_2= parse_edu_ustb_sei_mde_morel_BooleanImpliesExp )
                     int alt86=3;
                     switch ( input.LA(1) ) {
-                    case 67:
+                    case 68:
                         {
                         alt86=1;
                         }
                         break;
-                    case 62:
+                    case 63:
                         {
                         alt86=2;
                         }
@@ -16399,10 +16401,10 @@ public class MorelParser extends MorelANTLRParserBase {
                     case 33:
                     case 41:
                     case 57:
-                    case 65:
-                    case 70:
+                    case 66:
                     case 71:
-                    case 95:
+                    case 72:
+                    case 97:
                         {
                         alt86=3;
                         }
@@ -16651,7 +16653,7 @@ public class MorelParser extends MorelANTLRParserBase {
             // Morel.g:10117:2: (a0= '{' ( (a1_0= parse_edu_ustb_sei_mde_morel_Statement ) )* a2= '}' )
             // Morel.g:10118:2: a0= '{' ( (a1_0= parse_edu_ustb_sei_mde_morel_Statement ) )* a2= '}'
             {
-            a0=(Token)match(input,103,FOLLOW_103_in_parse_edu_ustb_sei_mde_morel_BlockStatement8580); if (state.failed) return element;
+            a0=(Token)match(input,105,FOLLOW_105_in_parse_edu_ustb_sei_mde_morel_BlockStatement8580); if (state.failed) return element;
 
             if ( state.backtracking==0 ) {
             		if (element == null) {
@@ -16693,7 +16695,7 @@ public class MorelParser extends MorelANTLRParserBase {
                 int alt88=2;
                 int LA88_0 = input.LA(1);
 
-                if ( (LA88_0==COLLECTION||(LA88_0 >= IDENTIFIER && LA88_0 <= INUMBER)||(LA88_0 >= QUOTED_39_39_92 && LA88_0 <= RNUMBER)||LA88_0==15||(LA88_0 >= 17 && LA88_0 <= 19)||(LA88_0 >= 21 && LA88_0 <= 22)||LA88_0==25||LA88_0==27||LA88_0==33||LA88_0==41||LA88_0==57||LA88_0==59||LA88_0==62||LA88_0==65||LA88_0==67||(LA88_0 >= 70 && LA88_0 <= 71)||LA88_0==95||LA88_0==103) ) {
+                if ( (LA88_0==COLLECTION||(LA88_0 >= IDENTIFIER && LA88_0 <= INUMBER)||(LA88_0 >= QUOTED_39_39_92 && LA88_0 <= RNUMBER)||LA88_0==15||(LA88_0 >= 17 && LA88_0 <= 19)||(LA88_0 >= 21 && LA88_0 <= 22)||LA88_0==25||LA88_0==27||LA88_0==33||LA88_0==41||LA88_0==57||LA88_0==59||LA88_0==63||LA88_0==66||LA88_0==68||(LA88_0 >= 71 && LA88_0 <= 72)||LA88_0==97||LA88_0==105) ) {
                     alt88=1;
                 }
 
@@ -16767,7 +16769,7 @@ public class MorelParser extends MorelANTLRParserBase {
             		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[2924]);
             	}
 
-            a2=(Token)match(input,106,FOLLOW_106_in_parse_edu_ustb_sei_mde_morel_BlockStatement8629); if (state.failed) return element;
+            a2=(Token)match(input,108,FOLLOW_108_in_parse_edu_ustb_sei_mde_morel_BlockStatement8629); if (state.failed) return element;
 
             if ( state.backtracking==0 ) {
             		if (element == null) {
@@ -16848,7 +16850,7 @@ public class MorelParser extends MorelANTLRParserBase {
             // Morel.g:10240:2: (a0= 'transformation' (a1= IDENTIFIER ) ( (a2_0= parse_edu_ustb_sei_mde_morel_TypedModel ) )+ ( (a3_0= parse_edu_ustb_sei_mde_morel_RuleElement ) )* )
             // Morel.g:10241:2: a0= 'transformation' (a1= IDENTIFIER ) ( (a2_0= parse_edu_ustb_sei_mde_morel_TypedModel ) )+ ( (a3_0= parse_edu_ustb_sei_mde_morel_RuleElement ) )*
             {
-            a0=(Token)match(input,93,FOLLOW_93_in_parse_edu_ustb_sei_mde_morel_TransformationModel8658); if (state.failed) return element;
+            a0=(Token)match(input,95,FOLLOW_95_in_parse_edu_ustb_sei_mde_morel_TransformationModel8658); if (state.failed) return element;
 
             if ( state.backtracking==0 ) {
             		if (element == null) {
@@ -16914,7 +16916,7 @@ public class MorelParser extends MorelANTLRParserBase {
                 int alt89=2;
                 int LA89_0 = input.LA(1);
 
-                if ( (LA89_0==96) ) {
+                if ( (LA89_0==98) ) {
                     alt89=1;
                 }
 
@@ -16987,7 +16989,7 @@ public class MorelParser extends MorelANTLRParserBase {
                 int alt90=2;
                 int LA90_0 = input.LA(1);
 
-                if ( (LA90_0==45||LA90_0==53||LA90_0==61||(LA90_0 >= 75 && LA90_0 <= 76)||LA90_0==87||LA90_0==90) ) {
+                if ( (LA90_0==45||LA90_0==53||LA90_0==62||(LA90_0 >= 76 && LA90_0 <= 77)||LA90_0==89||LA90_0==92) ) {
                     alt90=1;
                 }
 
@@ -17100,7 +17102,7 @@ public class MorelParser extends MorelANTLRParserBase {
             int alt92=2;
             int LA92_0 = input.LA(1);
 
-            if ( (LA92_0==45||LA92_0==76) ) {
+            if ( (LA92_0==45||LA92_0==77) ) {
                 alt92=1;
             }
             switch (alt92) {
@@ -17120,7 +17122,7 @@ public class MorelParser extends MorelANTLRParserBase {
                     if ( (LA91_0==45) ) {
                         alt91=1;
                     }
-                    else if ( (LA91_0==76) ) {
+                    else if ( (LA91_0==77) ) {
                         alt91=2;
                     }
                     else {
@@ -17156,7 +17158,7 @@ public class MorelParser extends MorelANTLRParserBase {
                         case 2 :
                             // Morel.g:10383:12: a1= 'passive'
                             {
-                            a1=(Token)match(input,76,FOLLOW_76_in_parse_edu_ustb_sei_mde_morel_Rule8823); if (state.failed) return element;
+                            a1=(Token)match(input,77,FOLLOW_77_in_parse_edu_ustb_sei_mde_morel_Rule8823); if (state.failed) return element;
 
                             if ( state.backtracking==0 ) {
                             						if (element == null) {
@@ -17200,7 +17202,7 @@ public class MorelParser extends MorelANTLRParserBase {
             		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[2967]);
             	}
 
-            a3=(Token)match(input,87,FOLLOW_87_in_parse_edu_ustb_sei_mde_morel_Rule8867); if (state.failed) return element;
+            a3=(Token)match(input,89,FOLLOW_89_in_parse_edu_ustb_sei_mde_morel_Rule8867); if (state.failed) return element;
 
             if ( state.backtracking==0 ) {
             		if (element == null) {
@@ -17461,7 +17463,7 @@ public class MorelParser extends MorelANTLRParserBase {
             		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[2980]);
             	}
 
-            a10=(Token)match(input,103,FOLLOW_103_in_parse_edu_ustb_sei_mde_morel_Rule9122); if (state.failed) return element;
+            a10=(Token)match(input,105,FOLLOW_105_in_parse_edu_ustb_sei_mde_morel_Rule9122); if (state.failed) return element;
 
             if ( state.backtracking==0 ) {
             		if (element == null) {
@@ -17487,7 +17489,7 @@ public class MorelParser extends MorelANTLRParserBase {
                 int alt95=2;
                 int LA95_0 = input.LA(1);
 
-                if ( (LA95_0==45||(LA95_0 >= 68 && LA95_0 <= 69)||LA95_0==74||(LA95_0 >= 76 && LA95_0 <= 79)||LA95_0==86||LA95_0==103) ) {
+                if ( (LA95_0==45||(LA95_0 >= 69 && LA95_0 <= 70)||LA95_0==75||(LA95_0 >= 77 && LA95_0 <= 79)||LA95_0==81||LA95_0==88||LA95_0==105) ) {
                     alt95=1;
                 }
 
@@ -17559,7 +17561,7 @@ public class MorelParser extends MorelANTLRParserBase {
             		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[2992]);
             	}
 
-            a12=(Token)match(input,106,FOLLOW_106_in_parse_edu_ustb_sei_mde_morel_Rule9192); if (state.failed) return element;
+            a12=(Token)match(input,108,FOLLOW_108_in_parse_edu_ustb_sei_mde_morel_Rule9192); if (state.failed) return element;
 
             if ( state.backtracking==0 ) {
             		if (element == null) {
@@ -17645,7 +17647,7 @@ public class MorelParser extends MorelANTLRParserBase {
             int alt97=2;
             int LA97_0 = input.LA(1);
 
-            if ( (LA97_0==45||LA97_0==76) ) {
+            if ( (LA97_0==45||LA97_0==77) ) {
                 alt97=1;
             }
             switch (alt97) {
@@ -17665,7 +17667,7 @@ public class MorelParser extends MorelANTLRParserBase {
                     if ( (LA96_0==45) ) {
                         alt96=1;
                     }
-                    else if ( (LA96_0==76) ) {
+                    else if ( (LA96_0==77) ) {
                         alt96=2;
                     }
                     else {
@@ -17704,7 +17706,7 @@ public class MorelParser extends MorelANTLRParserBase {
                         case 2 :
                             // Morel.g:10701:12: a1= 'passive'
                             {
-                            a1=(Token)match(input,76,FOLLOW_76_in_parse_edu_ustb_sei_mde_morel_RuleGroup9262); if (state.failed) return element;
+                            a1=(Token)match(input,77,FOLLOW_77_in_parse_edu_ustb_sei_mde_morel_RuleGroup9262); if (state.failed) return element;
 
                             if ( state.backtracking==0 ) {
                             						if (element == null) {
@@ -17757,7 +17759,7 @@ public class MorelParser extends MorelANTLRParserBase {
             int alt99=2;
             int LA99_0 = input.LA(1);
 
-            if ( (LA99_0==53||LA99_0==75||LA99_0==90) ) {
+            if ( (LA99_0==53||LA99_0==76||LA99_0==92) ) {
                 alt99=1;
             }
             switch (alt99) {
@@ -17775,12 +17777,12 @@ public class MorelParser extends MorelANTLRParserBase {
                         alt98=1;
                         }
                         break;
-                    case 90:
+                    case 92:
                         {
                         alt98=2;
                         }
                         break;
-                    case 75:
+                    case 76:
                         {
                         alt98=3;
                         }
@@ -17822,7 +17824,7 @@ public class MorelParser extends MorelANTLRParserBase {
                         case 2 :
                             // Morel.g:10752:10: a4= 'sequence'
                             {
-                            a4=(Token)match(input,90,FOLLOW_90_in_parse_edu_ustb_sei_mde_morel_RuleGroup9338); if (state.failed) return element;
+                            a4=(Token)match(input,92,FOLLOW_92_in_parse_edu_ustb_sei_mde_morel_RuleGroup9338); if (state.failed) return element;
 
                             if ( state.backtracking==0 ) {
                             					if (element == null) {
@@ -17846,7 +17848,7 @@ public class MorelParser extends MorelANTLRParserBase {
                         case 3 :
                             // Morel.g:10768:10: a5= 'parallel'
                             {
-                            a5=(Token)match(input,75,FOLLOW_75_in_parse_edu_ustb_sei_mde_morel_RuleGroup9355); if (state.failed) return element;
+                            a5=(Token)match(input,76,FOLLOW_76_in_parse_edu_ustb_sei_mde_morel_RuleGroup9355); if (state.failed) return element;
 
                             if ( state.backtracking==0 ) {
                             					if (element == null) {
@@ -17885,7 +17887,7 @@ public class MorelParser extends MorelANTLRParserBase {
             		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3005]);
             	}
 
-            a8=(Token)match(input,61,FOLLOW_61_in_parse_edu_ustb_sei_mde_morel_RuleGroup9384); if (state.failed) return element;
+            a8=(Token)match(input,62,FOLLOW_62_in_parse_edu_ustb_sei_mde_morel_RuleGroup9384); if (state.failed) return element;
 
             if ( state.backtracking==0 ) {
             		if (element == null) {
@@ -17957,7 +17959,7 @@ public class MorelParser extends MorelANTLRParserBase {
             int alt102=2;
             int LA102_0 = input.LA(1);
 
-            if ( (LA102_0==88) ) {
+            if ( (LA102_0==90) ) {
                 alt102=1;
             }
             switch (alt102) {
@@ -17967,7 +17969,7 @@ public class MorelParser extends MorelANTLRParserBase {
                     // Morel.g:10852:3: (a10= 'scope' ( (a11= 'all' |a12= 'random' |a13= 'random*' ) ) ( ( (a16= INUMBER ) ) )? )
                     // Morel.g:10853:4: a10= 'scope' ( (a11= 'all' |a12= 'random' |a13= 'random*' ) ) ( ( (a16= INUMBER ) ) )?
                     {
-                    a10=(Token)match(input,88,FOLLOW_88_in_parse_edu_ustb_sei_mde_morel_RuleGroup9432); if (state.failed) return element;
+                    a10=(Token)match(input,90,FOLLOW_90_in_parse_edu_ustb_sei_mde_morel_RuleGroup9432); if (state.failed) return element;
 
                     if ( state.backtracking==0 ) {
                     				if (element == null) {
@@ -17998,12 +18000,12 @@ public class MorelParser extends MorelANTLRParserBase {
                         alt100=1;
                         }
                         break;
-                    case 81:
+                    case 83:
                         {
                         alt100=2;
                         }
                         break;
-                    case 82:
+                    case 84:
                         {
                         alt100=3;
                         }
@@ -18045,7 +18047,7 @@ public class MorelParser extends MorelANTLRParserBase {
                         case 2 :
                             // Morel.g:10888:12: a12= 'random'
                             {
-                            a12=(Token)match(input,81,FOLLOW_81_in_parse_edu_ustb_sei_mde_morel_RuleGroup9484); if (state.failed) return element;
+                            a12=(Token)match(input,83,FOLLOW_83_in_parse_edu_ustb_sei_mde_morel_RuleGroup9484); if (state.failed) return element;
 
                             if ( state.backtracking==0 ) {
                             						if (element == null) {
@@ -18069,7 +18071,7 @@ public class MorelParser extends MorelANTLRParserBase {
                         case 3 :
                             // Morel.g:10904:12: a13= 'random*'
                             {
-                            a13=(Token)match(input,82,FOLLOW_82_in_parse_edu_ustb_sei_mde_morel_RuleGroup9503); if (state.failed) return element;
+                            a13=(Token)match(input,84,FOLLOW_84_in_parse_edu_ustb_sei_mde_morel_RuleGroup9503); if (state.failed) return element;
 
                             if ( state.backtracking==0 ) {
                             						if (element == null) {
@@ -18202,7 +18204,7 @@ public class MorelParser extends MorelANTLRParserBase {
             int alt105=2;
             int LA105_0 = input.LA(1);
 
-            if ( (LA105_0==66) ) {
+            if ( (LA105_0==67) ) {
                 alt105=1;
             }
             switch (alt105) {
@@ -18212,7 +18214,7 @@ public class MorelParser extends MorelANTLRParserBase {
                     // Morel.g:10992:3: (a17= 'iterate' ( (a18= INUMBER ) )? ( ( (a19= '*' ) ) )? )
                     // Morel.g:10993:4: a17= 'iterate' ( (a18= INUMBER ) )? ( ( (a19= '*' ) ) )?
                     {
-                    a17=(Token)match(input,66,FOLLOW_66_in_parse_edu_ustb_sei_mde_morel_RuleGroup9645); if (state.failed) return element;
+                    a17=(Token)match(input,67,FOLLOW_67_in_parse_edu_ustb_sei_mde_morel_RuleGroup9645); if (state.failed) return element;
 
                     if ( state.backtracking==0 ) {
                     				if (element == null) {
@@ -18372,7 +18374,7 @@ public class MorelParser extends MorelANTLRParserBase {
             int alt107=2;
             int LA107_0 = input.LA(1);
 
-            if ( (LA107_0==85) ) {
+            if ( (LA107_0==87) ) {
                 alt107=1;
             }
             switch (alt107) {
@@ -18382,7 +18384,7 @@ public class MorelParser extends MorelANTLRParserBase {
                     // Morel.g:11093:3: (a22= 'repeat' ( (a23= 'all' |a24= 'first' |a25= 'one' ) ) )
                     // Morel.g:11094:4: a22= 'repeat' ( (a23= 'all' |a24= 'first' |a25= 'one' ) )
                     {
-                    a22=(Token)match(input,85,FOLLOW_85_in_parse_edu_ustb_sei_mde_morel_RuleGroup9810); if (state.failed) return element;
+                    a22=(Token)match(input,87,FOLLOW_87_in_parse_edu_ustb_sei_mde_morel_RuleGroup9810); if (state.failed) return element;
 
                     if ( state.backtracking==0 ) {
                     				if (element == null) {
@@ -18418,7 +18420,7 @@ public class MorelParser extends MorelANTLRParserBase {
                         alt106=2;
                         }
                         break;
-                    case 72:
+                    case 73:
                         {
                         alt106=3;
                         }
@@ -18484,7 +18486,7 @@ public class MorelParser extends MorelANTLRParserBase {
                         case 3 :
                             // Morel.g:11145:12: a25= 'one'
                             {
-                            a25=(Token)match(input,72,FOLLOW_72_in_parse_edu_ustb_sei_mde_morel_RuleGroup9881); if (state.failed) return element;
+                            a25=(Token)match(input,73,FOLLOW_73_in_parse_edu_ustb_sei_mde_morel_RuleGroup9881); if (state.failed) return element;
 
                             if ( state.backtracking==0 ) {
                             						if (element == null) {
@@ -18531,7 +18533,7 @@ public class MorelParser extends MorelANTLRParserBase {
             		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3038]);
             	}
 
-            a28=(Token)match(input,103,FOLLOW_103_in_parse_edu_ustb_sei_mde_morel_RuleGroup9925); if (state.failed) return element;
+            a28=(Token)match(input,105,FOLLOW_105_in_parse_edu_ustb_sei_mde_morel_RuleGroup9925); if (state.failed) return element;
 
             if ( state.backtracking==0 ) {
             		if (element == null) {
@@ -18559,7 +18561,7 @@ public class MorelParser extends MorelANTLRParserBase {
                 int alt108=2;
                 int LA108_0 = input.LA(1);
 
-                if ( (LA108_0==45||LA108_0==76||LA108_0==87) ) {
+                if ( (LA108_0==45||LA108_0==77||LA108_0==89) ) {
                     alt108=1;
                 }
 
@@ -18619,7 +18621,7 @@ public class MorelParser extends MorelANTLRParserBase {
             		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3044]);
             	}
 
-            a30=(Token)match(input,106,FOLLOW_106_in_parse_edu_ustb_sei_mde_morel_RuleGroup9974); if (state.failed) return element;
+            a30=(Token)match(input,108,FOLLOW_108_in_parse_edu_ustb_sei_mde_morel_RuleGroup9974); if (state.failed) return element;
 
             if ( state.backtracking==0 ) {
             		if (element == null) {
@@ -18709,10 +18711,10 @@ public class MorelParser extends MorelANTLRParserBase {
             int alt118=2;
             int LA118_0 = input.LA(1);
 
-            if ( ((LA118_0 >= 68 && LA118_0 <= 69)||LA118_0==74||(LA118_0 >= 77 && LA118_0 <= 78)||LA118_0==86||LA118_0==103) ) {
+            if ( ((LA118_0 >= 69 && LA118_0 <= 70)||LA118_0==75||(LA118_0 >= 78 && LA118_0 <= 79)||LA118_0==88||LA118_0==105) ) {
                 alt118=1;
             }
-            else if ( (LA118_0==45||LA118_0==76||LA118_0==79) ) {
+            else if ( (LA118_0==45||LA118_0==77||LA118_0==81) ) {
                 alt118=2;
             }
             else {
@@ -18733,32 +18735,32 @@ public class MorelParser extends MorelANTLRParserBase {
                     // Morel.g:11257:3: (a0= 'lhs' |a1= 'rhs' |a2= 'nac' |a3= 'pac' |a4= 'pre' |a5= 'post' )?
                     int alt109=7;
                     switch ( input.LA(1) ) {
-                        case 68:
+                        case 69:
                             {
                             alt109=1;
                             }
                             break;
-                        case 86:
+                        case 88:
                             {
                             alt109=2;
                             }
                             break;
-                        case 69:
+                        case 70:
                             {
                             alt109=3;
                             }
                             break;
-                        case 74:
+                        case 75:
                             {
                             alt109=4;
                             }
                             break;
-                        case 78:
+                        case 79:
                             {
                             alt109=5;
                             }
                             break;
-                        case 77:
+                        case 78:
                             {
                             alt109=6;
                             }
@@ -18769,7 +18771,7 @@ public class MorelParser extends MorelANTLRParserBase {
                         case 1 :
                             // Morel.g:11258:4: a0= 'lhs'
                             {
-                            a0=(Token)match(input,68,FOLLOW_68_in_parse_edu_ustb_sei_mde_morel_Pattern10012); if (state.failed) return element;
+                            a0=(Token)match(input,69,FOLLOW_69_in_parse_edu_ustb_sei_mde_morel_Pattern10012); if (state.failed) return element;
 
                             if ( state.backtracking==0 ) {
                             				if (element == null) {
@@ -18793,7 +18795,7 @@ public class MorelParser extends MorelANTLRParserBase {
                         case 2 :
                             // Morel.g:11274:8: a1= 'rhs'
                             {
-                            a1=(Token)match(input,86,FOLLOW_86_in_parse_edu_ustb_sei_mde_morel_Pattern10027); if (state.failed) return element;
+                            a1=(Token)match(input,88,FOLLOW_88_in_parse_edu_ustb_sei_mde_morel_Pattern10027); if (state.failed) return element;
 
                             if ( state.backtracking==0 ) {
                             				if (element == null) {
@@ -18817,7 +18819,7 @@ public class MorelParser extends MorelANTLRParserBase {
                         case 3 :
                             // Morel.g:11290:8: a2= 'nac'
                             {
-                            a2=(Token)match(input,69,FOLLOW_69_in_parse_edu_ustb_sei_mde_morel_Pattern10042); if (state.failed) return element;
+                            a2=(Token)match(input,70,FOLLOW_70_in_parse_edu_ustb_sei_mde_morel_Pattern10042); if (state.failed) return element;
 
                             if ( state.backtracking==0 ) {
                             				if (element == null) {
@@ -18841,7 +18843,7 @@ public class MorelParser extends MorelANTLRParserBase {
                         case 4 :
                             // Morel.g:11306:8: a3= 'pac'
                             {
-                            a3=(Token)match(input,74,FOLLOW_74_in_parse_edu_ustb_sei_mde_morel_Pattern10057); if (state.failed) return element;
+                            a3=(Token)match(input,75,FOLLOW_75_in_parse_edu_ustb_sei_mde_morel_Pattern10057); if (state.failed) return element;
 
                             if ( state.backtracking==0 ) {
                             				if (element == null) {
@@ -18865,7 +18867,7 @@ public class MorelParser extends MorelANTLRParserBase {
                         case 5 :
                             // Morel.g:11322:8: a4= 'pre'
                             {
-                            a4=(Token)match(input,78,FOLLOW_78_in_parse_edu_ustb_sei_mde_morel_Pattern10072); if (state.failed) return element;
+                            a4=(Token)match(input,79,FOLLOW_79_in_parse_edu_ustb_sei_mde_morel_Pattern10072); if (state.failed) return element;
 
                             if ( state.backtracking==0 ) {
                             				if (element == null) {
@@ -18889,7 +18891,7 @@ public class MorelParser extends MorelANTLRParserBase {
                         case 6 :
                             // Morel.g:11338:8: a5= 'post'
                             {
-                            a5=(Token)match(input,77,FOLLOW_77_in_parse_edu_ustb_sei_mde_morel_Pattern10087); if (state.failed) return element;
+                            a5=(Token)match(input,78,FOLLOW_78_in_parse_edu_ustb_sei_mde_morel_Pattern10087); if (state.failed) return element;
 
                             if ( state.backtracking==0 ) {
                             				if (element == null) {
@@ -18922,7 +18924,7 @@ public class MorelParser extends MorelANTLRParserBase {
                     		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3052]);
                     	}
 
-                    a8=(Token)match(input,103,FOLLOW_103_in_parse_edu_ustb_sei_mde_morel_Pattern10108); if (state.failed) return element;
+                    a8=(Token)match(input,105,FOLLOW_105_in_parse_edu_ustb_sei_mde_morel_Pattern10108); if (state.failed) return element;
 
                     if ( state.backtracking==0 ) {
                     		if (element == null) {
@@ -19508,7 +19510,7 @@ public class MorelParser extends MorelANTLRParserBase {
                     int alt117=2;
                     int LA117_0 = input.LA(1);
 
-                    if ( (LA117_0==102) ) {
+                    if ( (LA117_0==104) ) {
                         alt117=1;
                     }
                     switch (alt117) {
@@ -19518,7 +19520,7 @@ public class MorelParser extends MorelANTLRParserBase {
                             // Morel.g:11722:3: (a18= 'where' ( ( (a19_0= parse_edu_ustb_sei_mde_morel_Statement ) ) )+ )
                             // Morel.g:11723:4: a18= 'where' ( ( (a19_0= parse_edu_ustb_sei_mde_morel_Statement ) ) )+
                             {
-                            a18=(Token)match(input,102,FOLLOW_102_in_parse_edu_ustb_sei_mde_morel_Pattern10623); if (state.failed) return element;
+                            a18=(Token)match(input,104,FOLLOW_104_in_parse_edu_ustb_sei_mde_morel_Pattern10623); if (state.failed) return element;
 
                             if ( state.backtracking==0 ) {
                             				if (element == null) {
@@ -19563,7 +19565,7 @@ public class MorelParser extends MorelANTLRParserBase {
                                 int alt116=2;
                                 int LA116_0 = input.LA(1);
 
-                                if ( (LA116_0==COLLECTION||(LA116_0 >= IDENTIFIER && LA116_0 <= INUMBER)||(LA116_0 >= QUOTED_39_39_92 && LA116_0 <= RNUMBER)||LA116_0==15||(LA116_0 >= 17 && LA116_0 <= 19)||(LA116_0 >= 21 && LA116_0 <= 22)||LA116_0==25||LA116_0==27||LA116_0==33||LA116_0==41||LA116_0==57||LA116_0==59||LA116_0==62||LA116_0==65||LA116_0==67||(LA116_0 >= 70 && LA116_0 <= 71)||LA116_0==95||LA116_0==103) ) {
+                                if ( (LA116_0==COLLECTION||(LA116_0 >= IDENTIFIER && LA116_0 <= INUMBER)||(LA116_0 >= QUOTED_39_39_92 && LA116_0 <= RNUMBER)||LA116_0==15||(LA116_0 >= 17 && LA116_0 <= 19)||(LA116_0 >= 21 && LA116_0 <= 22)||LA116_0==25||LA116_0==27||LA116_0==33||LA116_0==41||LA116_0==57||LA116_0==59||LA116_0==63||LA116_0==66||LA116_0==68||(LA116_0 >= 71 && LA116_0 <= 72)||LA116_0==97||LA116_0==105) ) {
                                     alt116=1;
                                 }
 
@@ -19689,7 +19691,7 @@ public class MorelParser extends MorelANTLRParserBase {
                     		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3193]);
                     	}
 
-                    a20=(Token)match(input,106,FOLLOW_106_in_parse_edu_ustb_sei_mde_morel_Pattern10738); if (state.failed) return element;
+                    a20=(Token)match(input,108,FOLLOW_108_in_parse_edu_ustb_sei_mde_morel_Pattern10738); if (state.failed) return element;
 
                     if ( state.backtracking==0 ) {
                     		if (element == null) {
@@ -21077,7 +21079,7 @@ public class MorelParser extends MorelANTLRParserBase {
 
 
     // $ANTLR start "parse_edu_ustb_sei_mde_morel_BXRewritingModel"
-    // Morel.g:12756:1: parse_edu_ustb_sei_mde_morel_BXRewritingModel returns [edu.ustb.sei.mde.morel.BXRewritingModel element = null] : a0= 'bxrewriting' (a1= IDENTIFIER ) ( (a2_0= parse_edu_ustb_sei_mde_morel_TypedModel ) )+ ( (a3_0= parse_edu_ustb_sei_mde_morel_BXRewritingRule ) )* ;
+    // Morel.g:12756:1: parse_edu_ustb_sei_mde_morel_BXRewritingModel returns [edu.ustb.sei.mde.morel.BXRewritingModel element = null] : a0= 'bxrewriting' (a1= IDENTIFIER ) ( (a2= 'get' |a3= 'put' ) ) ( (a6_0= parse_edu_ustb_sei_mde_morel_TypedModel ) )+ ( (a7_0= parse_edu_ustb_sei_mde_morel_BXRewritingRule ) )* ;
     public final edu.ustb.sei.mde.morel.BXRewritingModel parse_edu_ustb_sei_mde_morel_BXRewritingModel() throws RecognitionException {
         edu.ustb.sei.mde.morel.BXRewritingModel element =  null;
 
@@ -21085,9 +21087,11 @@ public class MorelParser extends MorelANTLRParserBase {
 
         Token a0=null;
         Token a1=null;
-        edu.ustb.sei.mde.morel.TypedModel a2_0 =null;
+        Token a2=null;
+        Token a3=null;
+        edu.ustb.sei.mde.morel.TypedModel a6_0 =null;
 
-        edu.ustb.sei.mde.morel.BXRewritingRule a3_0 =null;
+        edu.ustb.sei.mde.morel.BXRewritingRule a7_0 =null;
 
 
 
@@ -21095,8 +21099,8 @@ public class MorelParser extends MorelANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 49) ) { return element; }
 
-            // Morel.g:12759:2: (a0= 'bxrewriting' (a1= IDENTIFIER ) ( (a2_0= parse_edu_ustb_sei_mde_morel_TypedModel ) )+ ( (a3_0= parse_edu_ustb_sei_mde_morel_BXRewritingRule ) )* )
-            // Morel.g:12760:2: a0= 'bxrewriting' (a1= IDENTIFIER ) ( (a2_0= parse_edu_ustb_sei_mde_morel_TypedModel ) )+ ( (a3_0= parse_edu_ustb_sei_mde_morel_BXRewritingRule ) )*
+            // Morel.g:12759:2: (a0= 'bxrewriting' (a1= IDENTIFIER ) ( (a2= 'get' |a3= 'put' ) ) ( (a6_0= parse_edu_ustb_sei_mde_morel_TypedModel ) )+ ( (a7_0= parse_edu_ustb_sei_mde_morel_BXRewritingRule ) )* )
+            // Morel.g:12760:2: a0= 'bxrewriting' (a1= IDENTIFIER ) ( (a2= 'get' |a3= 'put' ) ) ( (a6_0= parse_edu_ustb_sei_mde_morel_TypedModel ) )+ ( (a7_0= parse_edu_ustb_sei_mde_morel_BXRewritingRule ) )*
             {
             a0=(Token)match(input,49,FOLLOW_49_in_parse_edu_ustb_sei_mde_morel_BXRewritingModel11717); if (state.failed) return element;
 
@@ -21154,98 +21158,106 @@ public class MorelParser extends MorelANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingModel(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3366]);
+            		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3366]);
             	}
 
-            // Morel.g:12810:2: ( (a2_0= parse_edu_ustb_sei_mde_morel_TypedModel ) )+
-            int cnt126=0;
-            loop126:
-            do {
-                int alt126=2;
-                int LA126_0 = input.LA(1);
+            // Morel.g:12810:2: ( (a2= 'get' |a3= 'put' ) )
+            // Morel.g:12811:3: (a2= 'get' |a3= 'put' )
+            {
+            // Morel.g:12811:3: (a2= 'get' |a3= 'put' )
+            int alt126=2;
+            int LA126_0 = input.LA(1);
 
-                if ( (LA126_0==96) ) {
-                    alt126=1;
-                }
+            if ( (LA126_0==61) ) {
+                alt126=1;
+            }
+            else if ( (LA126_0==80) ) {
+                alt126=2;
+            }
+            else {
+                if (state.backtracking>0) {state.failed=true; return element;}
+                NoViableAltException nvae =
+                    new NoViableAltException("", 126, 0, input);
+
+                throw nvae;
+
+            }
+            switch (alt126) {
+                case 1 :
+                    // Morel.g:12812:4: a2= 'get'
+                    {
+                    a2=(Token)match(input,61,FOLLOW_61_in_parse_edu_ustb_sei_mde_morel_BXRewritingModel11765); if (state.failed) return element;
+
+                    if ( state.backtracking==0 ) {
+                    				if (element == null) {
+                    					element = edu.ustb.sei.mde.morel.MorelFactory.eINSTANCE.createBXRewritingModel();
+                    					startIncompleteElement(element);
+                    				}
+                    				collectHiddenTokens(element);
+                    				retrieveLayoutInformation(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_47_0_0_2, null, true);
+                    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+                    				// set value of enumeration attribute
+                    				Object value = edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXMode().getEEnumLiteral(edu.ustb.sei.mde.morel.BXMode.GET_VALUE).getInstance();
+                    				element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.BX_REWRITING_MODEL__MODE), value);
+                    				completedElement(value, false);
+                    			}
+
+                    }
+                    break;
+                case 2 :
+                    // Morel.g:12825:8: a3= 'put'
+                    {
+                    a3=(Token)match(input,80,FOLLOW_80_in_parse_edu_ustb_sei_mde_morel_BXRewritingModel11780); if (state.failed) return element;
+
+                    if ( state.backtracking==0 ) {
+                    				if (element == null) {
+                    					element = edu.ustb.sei.mde.morel.MorelFactory.eINSTANCE.createBXRewritingModel();
+                    					startIncompleteElement(element);
+                    				}
+                    				collectHiddenTokens(element);
+                    				retrieveLayoutInformation(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_47_0_0_2, null, true);
+                    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a3, element);
+                    				// set value of enumeration attribute
+                    				Object value = edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXMode().getEEnumLiteral(edu.ustb.sei.mde.morel.BXMode.PUT_VALUE).getInstance();
+                    				element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.morel.MorelPackage.BX_REWRITING_MODEL__MODE), value);
+                    				completedElement(value, false);
+                    			}
+
+                    }
+                    break;
+
+            }
 
 
-                switch (alt126) {
-            	case 1 :
-            	    // Morel.g:12811:3: (a2_0= parse_edu_ustb_sei_mde_morel_TypedModel )
-            	    {
-            	    // Morel.g:12811:3: (a2_0= parse_edu_ustb_sei_mde_morel_TypedModel )
-            	    // Morel.g:12812:4: a2_0= parse_edu_ustb_sei_mde_morel_TypedModel
-            	    {
-            	    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_TypedModel_in_parse_edu_ustb_sei_mde_morel_BXRewritingModel11765);
-            	    a2_0=parse_edu_ustb_sei_mde_morel_TypedModel();
-
-            	    state._fsp--;
-            	    if (state.failed) return element;
-
-            	    if ( state.backtracking==0 ) {
-            	    				if (terminateParsing) {
-            	    					throw new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelTerminateParsingException();
-            	    				}
-            	    				if (element == null) {
-            	    					element = edu.ustb.sei.mde.morel.MorelFactory.eINSTANCE.createBXRewritingModel();
-            	    					startIncompleteElement(element);
-            	    				}
-            	    				if (a2_0 != null) {
-            	    					if (a2_0 != null) {
-            	    						Object value = a2_0;
-            	    						addObjectToList(element, edu.ustb.sei.mde.morel.MorelPackage.BX_REWRITING_MODEL__MODELS, value);
-            	    						completedElement(value, true);
-            	    					}
-            	    					collectHiddenTokens(element);
-            	    					retrieveLayoutInformation(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_47_0_0_2, a2_0, true);
-            	    					copyLocalizationInfos(a2_0, element);
-            	    				}
-            	    			}
-
-            	    }
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    if ( cnt126 >= 1 ) break loop126;
-            	    if (state.backtracking>0) {state.failed=true; return element;}
-                        EarlyExitException eee =
-                            new EarlyExitException(126, input);
-                        throw eee;
-                }
-                cnt126++;
-            } while (true);
+            }
 
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
             		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingModel(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3367]);
-            		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingModel(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3368]);
-            		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingModel(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3369]);
             	}
 
-            // Morel.g:12840:2: ( (a3_0= parse_edu_ustb_sei_mde_morel_BXRewritingRule ) )*
+            // Morel.g:12845:2: ( (a6_0= parse_edu_ustb_sei_mde_morel_TypedModel ) )+
+            int cnt127=0;
             loop127:
             do {
                 int alt127=2;
                 int LA127_0 = input.LA(1);
 
-                if ( (LA127_0==45||LA127_0==76||LA127_0==87) ) {
+                if ( (LA127_0==98) ) {
                     alt127=1;
                 }
 
 
                 switch (alt127) {
             	case 1 :
-            	    // Morel.g:12841:3: (a3_0= parse_edu_ustb_sei_mde_morel_BXRewritingRule )
+            	    // Morel.g:12846:3: (a6_0= parse_edu_ustb_sei_mde_morel_TypedModel )
             	    {
-            	    // Morel.g:12841:3: (a3_0= parse_edu_ustb_sei_mde_morel_BXRewritingRule )
-            	    // Morel.g:12842:4: a3_0= parse_edu_ustb_sei_mde_morel_BXRewritingRule
+            	    // Morel.g:12846:3: (a6_0= parse_edu_ustb_sei_mde_morel_TypedModel )
+            	    // Morel.g:12847:4: a6_0= parse_edu_ustb_sei_mde_morel_TypedModel
             	    {
-            	    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_BXRewritingRule_in_parse_edu_ustb_sei_mde_morel_BXRewritingModel11800);
-            	    a3_0=parse_edu_ustb_sei_mde_morel_BXRewritingRule();
+            	    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_TypedModel_in_parse_edu_ustb_sei_mde_morel_BXRewritingModel11810);
+            	    a6_0=parse_edu_ustb_sei_mde_morel_TypedModel();
 
             	    state._fsp--;
             	    if (state.failed) return element;
@@ -21258,15 +21270,15 @@ public class MorelParser extends MorelANTLRParserBase {
             	    					element = edu.ustb.sei.mde.morel.MorelFactory.eINSTANCE.createBXRewritingModel();
             	    					startIncompleteElement(element);
             	    				}
-            	    				if (a3_0 != null) {
-            	    					if (a3_0 != null) {
-            	    						Object value = a3_0;
-            	    						addObjectToList(element, edu.ustb.sei.mde.morel.MorelPackage.BX_REWRITING_MODEL__RULES, value);
+            	    				if (a6_0 != null) {
+            	    					if (a6_0 != null) {
+            	    						Object value = a6_0;
+            	    						addObjectToList(element, edu.ustb.sei.mde.morel.MorelPackage.BX_REWRITING_MODEL__MODELS, value);
             	    						completedElement(value, true);
             	    					}
             	    					collectHiddenTokens(element);
-            	    					retrieveLayoutInformation(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_47_0_0_3, a3_0, true);
-            	    					copyLocalizationInfos(a3_0, element);
+            	    					retrieveLayoutInformation(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_47_0_0_3, a6_0, true);
+            	    					copyLocalizationInfos(a6_0, element);
             	    				}
             	    			}
 
@@ -21277,15 +21289,83 @@ public class MorelParser extends MorelANTLRParserBase {
             	    break;
 
             	default :
-            	    break loop127;
+            	    if ( cnt127 >= 1 ) break loop127;
+            	    if (state.backtracking>0) {state.failed=true; return element;}
+                        EarlyExitException eee =
+                            new EarlyExitException(127, input);
+                        throw eee;
+                }
+                cnt127++;
+            } while (true);
+
+
+            if ( state.backtracking==0 ) {
+            		// expected elements (follow set)
+            		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingModel(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3368]);
+            		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingModel(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3369]);
+            		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingModel(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3370]);
+            	}
+
+            // Morel.g:12875:2: ( (a7_0= parse_edu_ustb_sei_mde_morel_BXRewritingRule ) )*
+            loop128:
+            do {
+                int alt128=2;
+                int LA128_0 = input.LA(1);
+
+                if ( (LA128_0==45||LA128_0==77||LA128_0==89) ) {
+                    alt128=1;
+                }
+
+
+                switch (alt128) {
+            	case 1 :
+            	    // Morel.g:12876:3: (a7_0= parse_edu_ustb_sei_mde_morel_BXRewritingRule )
+            	    {
+            	    // Morel.g:12876:3: (a7_0= parse_edu_ustb_sei_mde_morel_BXRewritingRule )
+            	    // Morel.g:12877:4: a7_0= parse_edu_ustb_sei_mde_morel_BXRewritingRule
+            	    {
+            	    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_BXRewritingRule_in_parse_edu_ustb_sei_mde_morel_BXRewritingModel11845);
+            	    a7_0=parse_edu_ustb_sei_mde_morel_BXRewritingRule();
+
+            	    state._fsp--;
+            	    if (state.failed) return element;
+
+            	    if ( state.backtracking==0 ) {
+            	    				if (terminateParsing) {
+            	    					throw new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelTerminateParsingException();
+            	    				}
+            	    				if (element == null) {
+            	    					element = edu.ustb.sei.mde.morel.MorelFactory.eINSTANCE.createBXRewritingModel();
+            	    					startIncompleteElement(element);
+            	    				}
+            	    				if (a7_0 != null) {
+            	    					if (a7_0 != null) {
+            	    						Object value = a7_0;
+            	    						addObjectToList(element, edu.ustb.sei.mde.morel.MorelPackage.BX_REWRITING_MODEL__RULES, value);
+            	    						completedElement(value, true);
+            	    					}
+            	    					collectHiddenTokens(element);
+            	    					retrieveLayoutInformation(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_47_0_0_4, a7_0, true);
+            	    					copyLocalizationInfos(a7_0, element);
+            	    				}
+            	    			}
+
+            	    }
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop128;
                 }
             } while (true);
 
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingModel(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3370]);
             		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingModel(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3371]);
+            		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingModel(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3372]);
             	}
 
             }
@@ -21308,7 +21388,7 @@ public class MorelParser extends MorelANTLRParserBase {
 
 
     // $ANTLR start "parse_edu_ustb_sei_mde_morel_BXRewritingRule"
-    // Morel.g:12871:1: parse_edu_ustb_sei_mde_morel_BXRewritingRule returns [edu.ustb.sei.mde.morel.BXRewritingRule element = null] : ( ( ( (a0= 'active' |a1= 'passive' ) ) ) )? a3= 'rule' (a4= IDENTIFIER ) ( (a5= '(' (a6= IDENTIFIER ) ( (a7= ',' (a8= IDENTIFIER ) ) )* a9= ')' ) )? a10= '{' ( (a11_0= parse_edu_ustb_sei_mde_morel_Pattern ) )* ( (a12= 'when' (a13_0= parse_edu_ustb_sei_mde_morel_Clause ) ) )? ( (a14= 'source' (a15_0= parse_edu_ustb_sei_mde_morel_Pattern ) ) )? ( (a16= 'view' (a17_0= parse_edu_ustb_sei_mde_morel_Pattern ) ) )? ( (a18= 'update' (a19_0= parse_edu_ustb_sei_mde_morel_Clause ) ) )? ( (a20= 'unmatchs' (a21_0= parse_edu_ustb_sei_mde_morel_Pattern ) ) )? ( (a22= 'unmatchv' (a23_0= parse_edu_ustb_sei_mde_morel_Pattern ) ) )? a24= '}' ;
+    // Morel.g:12906:1: parse_edu_ustb_sei_mde_morel_BXRewritingRule returns [edu.ustb.sei.mde.morel.BXRewritingRule element = null] : ( ( ( (a0= 'active' |a1= 'passive' ) ) ) )? a3= 'rule' (a4= IDENTIFIER ) ( (a5= '(' (a6= IDENTIFIER ) ( (a7= ',' (a8= IDENTIFIER ) ) )* a9= ')' ) )? a10= '{' ( (a11_0= parse_edu_ustb_sei_mde_morel_Pattern ) )* ( (a12= 'when' (a13_0= parse_edu_ustb_sei_mde_morel_Clause ) ) )? ( (a14= 'source' (a15_0= parse_edu_ustb_sei_mde_morel_Pattern ) ) )? ( (a16= 'view' (a17_0= parse_edu_ustb_sei_mde_morel_Pattern ) ) )? ( (a18= 'update' (a19_0= parse_edu_ustb_sei_mde_morel_Clause ) ) )? ( (a20= 'unmatchs' (a21_0= parse_edu_ustb_sei_mde_morel_Pattern ) ) )? ( (a22= 'unmatchv' (a23_0= parse_edu_ustb_sei_mde_morel_Pattern ) ) )? a24= '}' ;
     public final edu.ustb.sei.mde.morel.BXRewritingRule parse_edu_ustb_sei_mde_morel_BXRewritingRule() throws RecognitionException {
         edu.ustb.sei.mde.morel.BXRewritingRule element =  null;
 
@@ -21351,49 +21431,49 @@ public class MorelParser extends MorelANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 50) ) { return element; }
 
-            // Morel.g:12874:2: ( ( ( ( (a0= 'active' |a1= 'passive' ) ) ) )? a3= 'rule' (a4= IDENTIFIER ) ( (a5= '(' (a6= IDENTIFIER ) ( (a7= ',' (a8= IDENTIFIER ) ) )* a9= ')' ) )? a10= '{' ( (a11_0= parse_edu_ustb_sei_mde_morel_Pattern ) )* ( (a12= 'when' (a13_0= parse_edu_ustb_sei_mde_morel_Clause ) ) )? ( (a14= 'source' (a15_0= parse_edu_ustb_sei_mde_morel_Pattern ) ) )? ( (a16= 'view' (a17_0= parse_edu_ustb_sei_mde_morel_Pattern ) ) )? ( (a18= 'update' (a19_0= parse_edu_ustb_sei_mde_morel_Clause ) ) )? ( (a20= 'unmatchs' (a21_0= parse_edu_ustb_sei_mde_morel_Pattern ) ) )? ( (a22= 'unmatchv' (a23_0= parse_edu_ustb_sei_mde_morel_Pattern ) ) )? a24= '}' )
-            // Morel.g:12875:2: ( ( ( (a0= 'active' |a1= 'passive' ) ) ) )? a3= 'rule' (a4= IDENTIFIER ) ( (a5= '(' (a6= IDENTIFIER ) ( (a7= ',' (a8= IDENTIFIER ) ) )* a9= ')' ) )? a10= '{' ( (a11_0= parse_edu_ustb_sei_mde_morel_Pattern ) )* ( (a12= 'when' (a13_0= parse_edu_ustb_sei_mde_morel_Clause ) ) )? ( (a14= 'source' (a15_0= parse_edu_ustb_sei_mde_morel_Pattern ) ) )? ( (a16= 'view' (a17_0= parse_edu_ustb_sei_mde_morel_Pattern ) ) )? ( (a18= 'update' (a19_0= parse_edu_ustb_sei_mde_morel_Clause ) ) )? ( (a20= 'unmatchs' (a21_0= parse_edu_ustb_sei_mde_morel_Pattern ) ) )? ( (a22= 'unmatchv' (a23_0= parse_edu_ustb_sei_mde_morel_Pattern ) ) )? a24= '}'
+            // Morel.g:12909:2: ( ( ( ( (a0= 'active' |a1= 'passive' ) ) ) )? a3= 'rule' (a4= IDENTIFIER ) ( (a5= '(' (a6= IDENTIFIER ) ( (a7= ',' (a8= IDENTIFIER ) ) )* a9= ')' ) )? a10= '{' ( (a11_0= parse_edu_ustb_sei_mde_morel_Pattern ) )* ( (a12= 'when' (a13_0= parse_edu_ustb_sei_mde_morel_Clause ) ) )? ( (a14= 'source' (a15_0= parse_edu_ustb_sei_mde_morel_Pattern ) ) )? ( (a16= 'view' (a17_0= parse_edu_ustb_sei_mde_morel_Pattern ) ) )? ( (a18= 'update' (a19_0= parse_edu_ustb_sei_mde_morel_Clause ) ) )? ( (a20= 'unmatchs' (a21_0= parse_edu_ustb_sei_mde_morel_Pattern ) ) )? ( (a22= 'unmatchv' (a23_0= parse_edu_ustb_sei_mde_morel_Pattern ) ) )? a24= '}' )
+            // Morel.g:12910:2: ( ( ( (a0= 'active' |a1= 'passive' ) ) ) )? a3= 'rule' (a4= IDENTIFIER ) ( (a5= '(' (a6= IDENTIFIER ) ( (a7= ',' (a8= IDENTIFIER ) ) )* a9= ')' ) )? a10= '{' ( (a11_0= parse_edu_ustb_sei_mde_morel_Pattern ) )* ( (a12= 'when' (a13_0= parse_edu_ustb_sei_mde_morel_Clause ) ) )? ( (a14= 'source' (a15_0= parse_edu_ustb_sei_mde_morel_Pattern ) ) )? ( (a16= 'view' (a17_0= parse_edu_ustb_sei_mde_morel_Pattern ) ) )? ( (a18= 'update' (a19_0= parse_edu_ustb_sei_mde_morel_Clause ) ) )? ( (a20= 'unmatchs' (a21_0= parse_edu_ustb_sei_mde_morel_Pattern ) ) )? ( (a22= 'unmatchv' (a23_0= parse_edu_ustb_sei_mde_morel_Pattern ) ) )? a24= '}'
             {
-            // Morel.g:12875:2: ( ( ( (a0= 'active' |a1= 'passive' ) ) ) )?
-            int alt129=2;
-            int LA129_0 = input.LA(1);
+            // Morel.g:12910:2: ( ( ( (a0= 'active' |a1= 'passive' ) ) ) )?
+            int alt130=2;
+            int LA130_0 = input.LA(1);
 
-            if ( (LA129_0==45||LA129_0==76) ) {
-                alt129=1;
+            if ( (LA130_0==45||LA130_0==77) ) {
+                alt130=1;
             }
-            switch (alt129) {
+            switch (alt130) {
                 case 1 :
-                    // Morel.g:12876:3: ( ( (a0= 'active' |a1= 'passive' ) ) )
+                    // Morel.g:12911:3: ( ( (a0= 'active' |a1= 'passive' ) ) )
                     {
-                    // Morel.g:12876:3: ( ( (a0= 'active' |a1= 'passive' ) ) )
-                    // Morel.g:12877:4: ( (a0= 'active' |a1= 'passive' ) )
+                    // Morel.g:12911:3: ( ( (a0= 'active' |a1= 'passive' ) ) )
+                    // Morel.g:12912:4: ( (a0= 'active' |a1= 'passive' ) )
                     {
-                    // Morel.g:12877:4: ( (a0= 'active' |a1= 'passive' ) )
-                    // Morel.g:12878:5: (a0= 'active' |a1= 'passive' )
+                    // Morel.g:12912:4: ( (a0= 'active' |a1= 'passive' ) )
+                    // Morel.g:12913:5: (a0= 'active' |a1= 'passive' )
                     {
-                    // Morel.g:12878:5: (a0= 'active' |a1= 'passive' )
-                    int alt128=2;
-                    int LA128_0 = input.LA(1);
+                    // Morel.g:12913:5: (a0= 'active' |a1= 'passive' )
+                    int alt129=2;
+                    int LA129_0 = input.LA(1);
 
-                    if ( (LA128_0==45) ) {
-                        alt128=1;
+                    if ( (LA129_0==45) ) {
+                        alt129=1;
                     }
-                    else if ( (LA128_0==76) ) {
-                        alt128=2;
+                    else if ( (LA129_0==77) ) {
+                        alt129=2;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return element;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 128, 0, input);
+                            new NoViableAltException("", 129, 0, input);
 
                         throw nvae;
 
                     }
-                    switch (alt128) {
+                    switch (alt129) {
                         case 1 :
-                            // Morel.g:12879:6: a0= 'active'
+                            // Morel.g:12914:6: a0= 'active'
                             {
-                            a0=(Token)match(input,45,FOLLOW_45_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule11863); if (state.failed) return element;
+                            a0=(Token)match(input,45,FOLLOW_45_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule11908); if (state.failed) return element;
 
                             if ( state.backtracking==0 ) {
                             						if (element == null) {
@@ -21412,9 +21492,9 @@ public class MorelParser extends MorelANTLRParserBase {
                             }
                             break;
                         case 2 :
-                            // Morel.g:12892:12: a1= 'passive'
+                            // Morel.g:12927:12: a1= 'passive'
                             {
-                            a1=(Token)match(input,76,FOLLOW_76_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule11882); if (state.failed) return element;
+                            a1=(Token)match(input,77,FOLLOW_77_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule11927); if (state.failed) return element;
 
                             if ( state.backtracking==0 ) {
                             						if (element == null) {
@@ -21441,7 +21521,7 @@ public class MorelParser extends MorelANTLRParserBase {
 
                     if ( state.backtracking==0 ) {
                     				// expected elements (follow set)
-                    				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3372]);
+                    				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3373]);
                     			}
 
                     }
@@ -21455,10 +21535,10 @@ public class MorelParser extends MorelANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3373]);
+            		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3374]);
             	}
 
-            a3=(Token)match(input,87,FOLLOW_87_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule11926); if (state.failed) return element;
+            a3=(Token)match(input,89,FOLLOW_89_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule11971); if (state.failed) return element;
 
             if ( state.backtracking==0 ) {
             		if (element == null) {
@@ -21472,13 +21552,13 @@ public class MorelParser extends MorelANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3374]);
+            		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3375]);
             	}
 
-            // Morel.g:12933:2: (a4= IDENTIFIER )
-            // Morel.g:12934:3: a4= IDENTIFIER
+            // Morel.g:12968:2: (a4= IDENTIFIER )
+            // Morel.g:12969:3: a4= IDENTIFIER
             {
-            a4=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule11944); if (state.failed) return element;
+            a4=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule11989); if (state.failed) return element;
 
             if ( state.backtracking==0 ) {
             			if (terminateParsing) {
@@ -21514,25 +21594,25 @@ public class MorelParser extends MorelANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3375]);
             		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3376]);
+            		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3377]);
             	}
 
-            // Morel.g:12970:2: ( (a5= '(' (a6= IDENTIFIER ) ( (a7= ',' (a8= IDENTIFIER ) ) )* a9= ')' ) )?
-            int alt131=2;
-            int LA131_0 = input.LA(1);
+            // Morel.g:13005:2: ( (a5= '(' (a6= IDENTIFIER ) ( (a7= ',' (a8= IDENTIFIER ) ) )* a9= ')' ) )?
+            int alt132=2;
+            int LA132_0 = input.LA(1);
 
-            if ( (LA131_0==22) ) {
-                alt131=1;
+            if ( (LA132_0==22) ) {
+                alt132=1;
             }
-            switch (alt131) {
+            switch (alt132) {
                 case 1 :
-                    // Morel.g:12971:3: (a5= '(' (a6= IDENTIFIER ) ( (a7= ',' (a8= IDENTIFIER ) ) )* a9= ')' )
+                    // Morel.g:13006:3: (a5= '(' (a6= IDENTIFIER ) ( (a7= ',' (a8= IDENTIFIER ) ) )* a9= ')' )
                     {
-                    // Morel.g:12971:3: (a5= '(' (a6= IDENTIFIER ) ( (a7= ',' (a8= IDENTIFIER ) ) )* a9= ')' )
-                    // Morel.g:12972:4: a5= '(' (a6= IDENTIFIER ) ( (a7= ',' (a8= IDENTIFIER ) ) )* a9= ')'
+                    // Morel.g:13006:3: (a5= '(' (a6= IDENTIFIER ) ( (a7= ',' (a8= IDENTIFIER ) ) )* a9= ')' )
+                    // Morel.g:13007:4: a5= '(' (a6= IDENTIFIER ) ( (a7= ',' (a8= IDENTIFIER ) ) )* a9= ')'
                     {
-                    a5=(Token)match(input,22,FOLLOW_22_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule11974); if (state.failed) return element;
+                    a5=(Token)match(input,22,FOLLOW_22_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12019); if (state.failed) return element;
 
                     if ( state.backtracking==0 ) {
                     				if (element == null) {
@@ -21546,13 +21626,13 @@ public class MorelParser extends MorelANTLRParserBase {
 
                     if ( state.backtracking==0 ) {
                     				// expected elements (follow set)
-                    				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3377]);
+                    				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3378]);
                     			}
 
-                    // Morel.g:12986:4: (a6= IDENTIFIER )
-                    // Morel.g:12987:5: a6= IDENTIFIER
+                    // Morel.g:13021:4: (a6= IDENTIFIER )
+                    // Morel.g:13022:5: a6= IDENTIFIER
                     {
-                    a6=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12000); if (state.failed) return element;
+                    a6=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12045); if (state.failed) return element;
 
                     if ( state.backtracking==0 ) {
                     					if (terminateParsing) {
@@ -21588,29 +21668,29 @@ public class MorelParser extends MorelANTLRParserBase {
 
                     if ( state.backtracking==0 ) {
                     				// expected elements (follow set)
-                    				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3378]);
                     				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3379]);
+                    				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3380]);
                     			}
 
-                    // Morel.g:13023:4: ( (a7= ',' (a8= IDENTIFIER ) ) )*
-                    loop130:
+                    // Morel.g:13058:4: ( (a7= ',' (a8= IDENTIFIER ) ) )*
+                    loop131:
                     do {
-                        int alt130=2;
-                        int LA130_0 = input.LA(1);
+                        int alt131=2;
+                        int LA131_0 = input.LA(1);
 
-                        if ( (LA130_0==26) ) {
-                            alt130=1;
+                        if ( (LA131_0==26) ) {
+                            alt131=1;
                         }
 
 
-                        switch (alt130) {
+                        switch (alt131) {
                     	case 1 :
-                    	    // Morel.g:13024:5: (a7= ',' (a8= IDENTIFIER ) )
+                    	    // Morel.g:13059:5: (a7= ',' (a8= IDENTIFIER ) )
                     	    {
-                    	    // Morel.g:13024:5: (a7= ',' (a8= IDENTIFIER ) )
-                    	    // Morel.g:13025:6: a7= ',' (a8= IDENTIFIER )
+                    	    // Morel.g:13059:5: (a7= ',' (a8= IDENTIFIER ) )
+                    	    // Morel.g:13060:6: a7= ',' (a8= IDENTIFIER )
                     	    {
-                    	    a7=(Token)match(input,26,FOLLOW_26_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12046); if (state.failed) return element;
+                    	    a7=(Token)match(input,26,FOLLOW_26_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12091); if (state.failed) return element;
 
                     	    if ( state.backtracking==0 ) {
                     	    						if (element == null) {
@@ -21624,13 +21704,13 @@ public class MorelParser extends MorelANTLRParserBase {
 
                     	    if ( state.backtracking==0 ) {
                     	    						// expected elements (follow set)
-                    	    						addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3380]);
+                    	    						addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3381]);
                     	    					}
 
-                    	    // Morel.g:13039:6: (a8= IDENTIFIER )
-                    	    // Morel.g:13040:7: a8= IDENTIFIER
+                    	    // Morel.g:13074:6: (a8= IDENTIFIER )
+                    	    // Morel.g:13075:7: a8= IDENTIFIER
                     	    {
-                    	    a8=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12080); if (state.failed) return element;
+                    	    a8=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12125); if (state.failed) return element;
 
                     	    if ( state.backtracking==0 ) {
                     	    							if (terminateParsing) {
@@ -21666,8 +21746,8 @@ public class MorelParser extends MorelANTLRParserBase {
 
                     	    if ( state.backtracking==0 ) {
                     	    						// expected elements (follow set)
-                    	    						addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3381]);
                     	    						addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3382]);
+                    	    						addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3383]);
                     	    					}
 
                     	    }
@@ -21677,18 +21757,18 @@ public class MorelParser extends MorelANTLRParserBase {
                     	    break;
 
                     	default :
-                    	    break loop130;
+                    	    break loop131;
                         }
                     } while (true);
 
 
                     if ( state.backtracking==0 ) {
                     				// expected elements (follow set)
-                    				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3383]);
                     				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3384]);
+                    				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3385]);
                     			}
 
-                    a9=(Token)match(input,23,FOLLOW_23_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12148); if (state.failed) return element;
+                    a9=(Token)match(input,23,FOLLOW_23_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12193); if (state.failed) return element;
 
                     if ( state.backtracking==0 ) {
                     				if (element == null) {
@@ -21702,7 +21782,7 @@ public class MorelParser extends MorelANTLRParserBase {
 
                     if ( state.backtracking==0 ) {
                     				// expected elements (follow set)
-                    				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3385]);
+                    				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3386]);
                     			}
 
                     }
@@ -21716,10 +21796,10 @@ public class MorelParser extends MorelANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3386]);
+            		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3387]);
             	}
 
-            a10=(Token)match(input,103,FOLLOW_103_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12181); if (state.failed) return element;
+            a10=(Token)match(input,105,FOLLOW_105_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12226); if (state.failed) return element;
 
             if ( state.backtracking==0 ) {
             		if (element == null) {
@@ -21733,37 +21813,37 @@ public class MorelParser extends MorelANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3387]);
             		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3388]);
             		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3389]);
-            		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3390]);
+            		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3390]);
             		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3391]);
             		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3392]);
             		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3393]);
             		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3394]);
             		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3395]);
             		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3396]);
+            		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3397]);
             	}
 
-            // Morel.g:13128:2: ( (a11_0= parse_edu_ustb_sei_mde_morel_Pattern ) )*
-            loop132:
+            // Morel.g:13163:2: ( (a11_0= parse_edu_ustb_sei_mde_morel_Pattern ) )*
+            loop133:
             do {
-                int alt132=2;
-                int LA132_0 = input.LA(1);
+                int alt133=2;
+                int LA133_0 = input.LA(1);
 
-                if ( (LA132_0==45||(LA132_0 >= 68 && LA132_0 <= 69)||LA132_0==74||(LA132_0 >= 76 && LA132_0 <= 79)||LA132_0==86||LA132_0==103) ) {
-                    alt132=1;
+                if ( (LA133_0==45||(LA133_0 >= 69 && LA133_0 <= 70)||LA133_0==75||(LA133_0 >= 77 && LA133_0 <= 79)||LA133_0==81||LA133_0==88||LA133_0==105) ) {
+                    alt133=1;
                 }
 
 
-                switch (alt132) {
+                switch (alt133) {
             	case 1 :
-            	    // Morel.g:13129:3: (a11_0= parse_edu_ustb_sei_mde_morel_Pattern )
+            	    // Morel.g:13164:3: (a11_0= parse_edu_ustb_sei_mde_morel_Pattern )
             	    {
-            	    // Morel.g:13129:3: (a11_0= parse_edu_ustb_sei_mde_morel_Pattern )
-            	    // Morel.g:13130:4: a11_0= parse_edu_ustb_sei_mde_morel_Pattern
+            	    // Morel.g:13164:3: (a11_0= parse_edu_ustb_sei_mde_morel_Pattern )
+            	    // Morel.g:13165:4: a11_0= parse_edu_ustb_sei_mde_morel_Pattern
             	    {
-            	    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_Pattern_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12204);
+            	    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_Pattern_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12249);
             	    a11_0=parse_edu_ustb_sei_mde_morel_Pattern();
 
             	    state._fsp--;
@@ -21796,40 +21876,40 @@ public class MorelParser extends MorelANTLRParserBase {
             	    break;
 
             	default :
-            	    break loop132;
+            	    break loop133;
                 }
             } while (true);
 
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3397]);
             		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3398]);
             		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3399]);
-            		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3400]);
+            		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3400]);
             		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3401]);
             		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3402]);
             		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3403]);
             		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3404]);
             		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3405]);
             		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3406]);
+            		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3407]);
             	}
 
-            // Morel.g:13165:2: ( (a12= 'when' (a13_0= parse_edu_ustb_sei_mde_morel_Clause ) ) )?
-            int alt133=2;
-            int LA133_0 = input.LA(1);
+            // Morel.g:13200:2: ( (a12= 'when' (a13_0= parse_edu_ustb_sei_mde_morel_Clause ) ) )?
+            int alt134=2;
+            int LA134_0 = input.LA(1);
 
-            if ( (LA133_0==101) ) {
-                alt133=1;
+            if ( (LA134_0==103) ) {
+                alt134=1;
             }
-            switch (alt133) {
+            switch (alt134) {
                 case 1 :
-                    // Morel.g:13166:3: (a12= 'when' (a13_0= parse_edu_ustb_sei_mde_morel_Clause ) )
+                    // Morel.g:13201:3: (a12= 'when' (a13_0= parse_edu_ustb_sei_mde_morel_Clause ) )
                     {
-                    // Morel.g:13166:3: (a12= 'when' (a13_0= parse_edu_ustb_sei_mde_morel_Clause ) )
-                    // Morel.g:13167:4: a12= 'when' (a13_0= parse_edu_ustb_sei_mde_morel_Clause )
+                    // Morel.g:13201:3: (a12= 'when' (a13_0= parse_edu_ustb_sei_mde_morel_Clause ) )
+                    // Morel.g:13202:4: a12= 'when' (a13_0= parse_edu_ustb_sei_mde_morel_Clause )
                     {
-                    a12=(Token)match(input,101,FOLLOW_101_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12239); if (state.failed) return element;
+                    a12=(Token)match(input,103,FOLLOW_103_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12284); if (state.failed) return element;
 
                     if ( state.backtracking==0 ) {
                     				if (element == null) {
@@ -21843,13 +21923,13 @@ public class MorelParser extends MorelANTLRParserBase {
 
                     if ( state.backtracking==0 ) {
                     				// expected elements (follow set)
-                    				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3407]);
+                    				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3408]);
                     			}
 
-                    // Morel.g:13181:4: (a13_0= parse_edu_ustb_sei_mde_morel_Clause )
-                    // Morel.g:13182:5: a13_0= parse_edu_ustb_sei_mde_morel_Clause
+                    // Morel.g:13216:4: (a13_0= parse_edu_ustb_sei_mde_morel_Clause )
+                    // Morel.g:13217:5: a13_0= parse_edu_ustb_sei_mde_morel_Clause
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_Clause_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12265);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_Clause_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12310);
                     a13_0=parse_edu_ustb_sei_mde_morel_Clause();
 
                     state._fsp--;
@@ -21880,12 +21960,12 @@ public class MorelParser extends MorelANTLRParserBase {
 
                     if ( state.backtracking==0 ) {
                     				// expected elements (follow set)
-                    				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3408]);
                     				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3409]);
                     				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3410]);
                     				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3411]);
                     				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3412]);
                     				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3413]);
+                    				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3414]);
                     			}
 
                     }
@@ -21899,29 +21979,29 @@ public class MorelParser extends MorelANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3414]);
             		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3415]);
             		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3416]);
             		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3417]);
             		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3418]);
             		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3419]);
+            		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3420]);
             	}
 
-            // Morel.g:13224:2: ( (a14= 'source' (a15_0= parse_edu_ustb_sei_mde_morel_Pattern ) ) )?
-            int alt134=2;
-            int LA134_0 = input.LA(1);
+            // Morel.g:13259:2: ( (a14= 'source' (a15_0= parse_edu_ustb_sei_mde_morel_Pattern ) ) )?
+            int alt135=2;
+            int LA135_0 = input.LA(1);
 
-            if ( (LA134_0==91) ) {
-                alt134=1;
+            if ( (LA135_0==93) ) {
+                alt135=1;
             }
-            switch (alt134) {
+            switch (alt135) {
                 case 1 :
-                    // Morel.g:13225:3: (a14= 'source' (a15_0= parse_edu_ustb_sei_mde_morel_Pattern ) )
+                    // Morel.g:13260:3: (a14= 'source' (a15_0= parse_edu_ustb_sei_mde_morel_Pattern ) )
                     {
-                    // Morel.g:13225:3: (a14= 'source' (a15_0= parse_edu_ustb_sei_mde_morel_Pattern ) )
-                    // Morel.g:13226:4: a14= 'source' (a15_0= parse_edu_ustb_sei_mde_morel_Pattern )
+                    // Morel.g:13260:3: (a14= 'source' (a15_0= parse_edu_ustb_sei_mde_morel_Pattern ) )
+                    // Morel.g:13261:4: a14= 'source' (a15_0= parse_edu_ustb_sei_mde_morel_Pattern )
                     {
-                    a14=(Token)match(input,91,FOLLOW_91_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12315); if (state.failed) return element;
+                    a14=(Token)match(input,93,FOLLOW_93_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12360); if (state.failed) return element;
 
                     if ( state.backtracking==0 ) {
                     				if (element == null) {
@@ -21935,15 +22015,15 @@ public class MorelParser extends MorelANTLRParserBase {
 
                     if ( state.backtracking==0 ) {
                     				// expected elements (follow set)
-                    				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3420]);
                     				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3421]);
                     				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3422]);
+                    				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3423]);
                     			}
 
-                    // Morel.g:13242:4: (a15_0= parse_edu_ustb_sei_mde_morel_Pattern )
-                    // Morel.g:13243:5: a15_0= parse_edu_ustb_sei_mde_morel_Pattern
+                    // Morel.g:13277:4: (a15_0= parse_edu_ustb_sei_mde_morel_Pattern )
+                    // Morel.g:13278:5: a15_0= parse_edu_ustb_sei_mde_morel_Pattern
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_Pattern_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12341);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_Pattern_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12386);
                     a15_0=parse_edu_ustb_sei_mde_morel_Pattern();
 
                     state._fsp--;
@@ -21974,11 +22054,11 @@ public class MorelParser extends MorelANTLRParserBase {
 
                     if ( state.backtracking==0 ) {
                     				// expected elements (follow set)
-                    				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3423]);
                     				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3424]);
                     				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3425]);
                     				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3426]);
                     				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3427]);
+                    				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3428]);
                     			}
 
                     }
@@ -21992,28 +22072,28 @@ public class MorelParser extends MorelANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3428]);
             		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3429]);
             		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3430]);
             		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3431]);
             		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3432]);
+            		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3433]);
             	}
 
-            // Morel.g:13283:2: ( (a16= 'view' (a17_0= parse_edu_ustb_sei_mde_morel_Pattern ) ) )?
-            int alt135=2;
-            int LA135_0 = input.LA(1);
+            // Morel.g:13318:2: ( (a16= 'view' (a17_0= parse_edu_ustb_sei_mde_morel_Pattern ) ) )?
+            int alt136=2;
+            int LA136_0 = input.LA(1);
 
-            if ( (LA135_0==100) ) {
-                alt135=1;
+            if ( (LA136_0==102) ) {
+                alt136=1;
             }
-            switch (alt135) {
+            switch (alt136) {
                 case 1 :
-                    // Morel.g:13284:3: (a16= 'view' (a17_0= parse_edu_ustb_sei_mde_morel_Pattern ) )
+                    // Morel.g:13319:3: (a16= 'view' (a17_0= parse_edu_ustb_sei_mde_morel_Pattern ) )
                     {
-                    // Morel.g:13284:3: (a16= 'view' (a17_0= parse_edu_ustb_sei_mde_morel_Pattern ) )
-                    // Morel.g:13285:4: a16= 'view' (a17_0= parse_edu_ustb_sei_mde_morel_Pattern )
+                    // Morel.g:13319:3: (a16= 'view' (a17_0= parse_edu_ustb_sei_mde_morel_Pattern ) )
+                    // Morel.g:13320:4: a16= 'view' (a17_0= parse_edu_ustb_sei_mde_morel_Pattern )
                     {
-                    a16=(Token)match(input,100,FOLLOW_100_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12391); if (state.failed) return element;
+                    a16=(Token)match(input,102,FOLLOW_102_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12436); if (state.failed) return element;
 
                     if ( state.backtracking==0 ) {
                     				if (element == null) {
@@ -22027,15 +22107,15 @@ public class MorelParser extends MorelANTLRParserBase {
 
                     if ( state.backtracking==0 ) {
                     				// expected elements (follow set)
-                    				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3433]);
                     				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3434]);
                     				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3435]);
+                    				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3436]);
                     			}
 
-                    // Morel.g:13301:4: (a17_0= parse_edu_ustb_sei_mde_morel_Pattern )
-                    // Morel.g:13302:5: a17_0= parse_edu_ustb_sei_mde_morel_Pattern
+                    // Morel.g:13336:4: (a17_0= parse_edu_ustb_sei_mde_morel_Pattern )
+                    // Morel.g:13337:5: a17_0= parse_edu_ustb_sei_mde_morel_Pattern
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_Pattern_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12417);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_Pattern_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12462);
                     a17_0=parse_edu_ustb_sei_mde_morel_Pattern();
 
                     state._fsp--;
@@ -22066,10 +22146,10 @@ public class MorelParser extends MorelANTLRParserBase {
 
                     if ( state.backtracking==0 ) {
                     				// expected elements (follow set)
-                    				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3436]);
                     				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3437]);
                     				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3438]);
                     				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3439]);
+                    				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3440]);
                     			}
 
                     }
@@ -22083,27 +22163,27 @@ public class MorelParser extends MorelANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3440]);
             		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3441]);
             		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3442]);
             		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3443]);
+            		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3444]);
             	}
 
-            // Morel.g:13340:2: ( (a18= 'update' (a19_0= parse_edu_ustb_sei_mde_morel_Clause ) ) )?
-            int alt136=2;
-            int LA136_0 = input.LA(1);
+            // Morel.g:13375:2: ( (a18= 'update' (a19_0= parse_edu_ustb_sei_mde_morel_Clause ) ) )?
+            int alt137=2;
+            int LA137_0 = input.LA(1);
 
-            if ( (LA136_0==99) ) {
-                alt136=1;
+            if ( (LA137_0==101) ) {
+                alt137=1;
             }
-            switch (alt136) {
+            switch (alt137) {
                 case 1 :
-                    // Morel.g:13341:3: (a18= 'update' (a19_0= parse_edu_ustb_sei_mde_morel_Clause ) )
+                    // Morel.g:13376:3: (a18= 'update' (a19_0= parse_edu_ustb_sei_mde_morel_Clause ) )
                     {
-                    // Morel.g:13341:3: (a18= 'update' (a19_0= parse_edu_ustb_sei_mde_morel_Clause ) )
-                    // Morel.g:13342:4: a18= 'update' (a19_0= parse_edu_ustb_sei_mde_morel_Clause )
+                    // Morel.g:13376:3: (a18= 'update' (a19_0= parse_edu_ustb_sei_mde_morel_Clause ) )
+                    // Morel.g:13377:4: a18= 'update' (a19_0= parse_edu_ustb_sei_mde_morel_Clause )
                     {
-                    a18=(Token)match(input,99,FOLLOW_99_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12467); if (state.failed) return element;
+                    a18=(Token)match(input,101,FOLLOW_101_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12512); if (state.failed) return element;
 
                     if ( state.backtracking==0 ) {
                     				if (element == null) {
@@ -22117,13 +22197,13 @@ public class MorelParser extends MorelANTLRParserBase {
 
                     if ( state.backtracking==0 ) {
                     				// expected elements (follow set)
-                    				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3444]);
+                    				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3445]);
                     			}
 
-                    // Morel.g:13356:4: (a19_0= parse_edu_ustb_sei_mde_morel_Clause )
-                    // Morel.g:13357:5: a19_0= parse_edu_ustb_sei_mde_morel_Clause
+                    // Morel.g:13391:4: (a19_0= parse_edu_ustb_sei_mde_morel_Clause )
+                    // Morel.g:13392:5: a19_0= parse_edu_ustb_sei_mde_morel_Clause
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_Clause_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12493);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_Clause_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12538);
                     a19_0=parse_edu_ustb_sei_mde_morel_Clause();
 
                     state._fsp--;
@@ -22154,9 +22234,9 @@ public class MorelParser extends MorelANTLRParserBase {
 
                     if ( state.backtracking==0 ) {
                     				// expected elements (follow set)
-                    				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3445]);
                     				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3446]);
                     				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3447]);
+                    				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3448]);
                     			}
 
                     }
@@ -22170,26 +22250,26 @@ public class MorelParser extends MorelANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3448]);
             		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3449]);
             		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3450]);
+            		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3451]);
             	}
 
-            // Morel.g:13393:2: ( (a20= 'unmatchs' (a21_0= parse_edu_ustb_sei_mde_morel_Pattern ) ) )?
-            int alt137=2;
-            int LA137_0 = input.LA(1);
+            // Morel.g:13428:2: ( (a20= 'unmatchs' (a21_0= parse_edu_ustb_sei_mde_morel_Pattern ) ) )?
+            int alt138=2;
+            int LA138_0 = input.LA(1);
 
-            if ( (LA137_0==97) ) {
-                alt137=1;
+            if ( (LA138_0==99) ) {
+                alt138=1;
             }
-            switch (alt137) {
+            switch (alt138) {
                 case 1 :
-                    // Morel.g:13394:3: (a20= 'unmatchs' (a21_0= parse_edu_ustb_sei_mde_morel_Pattern ) )
+                    // Morel.g:13429:3: (a20= 'unmatchs' (a21_0= parse_edu_ustb_sei_mde_morel_Pattern ) )
                     {
-                    // Morel.g:13394:3: (a20= 'unmatchs' (a21_0= parse_edu_ustb_sei_mde_morel_Pattern ) )
-                    // Morel.g:13395:4: a20= 'unmatchs' (a21_0= parse_edu_ustb_sei_mde_morel_Pattern )
+                    // Morel.g:13429:3: (a20= 'unmatchs' (a21_0= parse_edu_ustb_sei_mde_morel_Pattern ) )
+                    // Morel.g:13430:4: a20= 'unmatchs' (a21_0= parse_edu_ustb_sei_mde_morel_Pattern )
                     {
-                    a20=(Token)match(input,97,FOLLOW_97_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12543); if (state.failed) return element;
+                    a20=(Token)match(input,99,FOLLOW_99_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12588); if (state.failed) return element;
 
                     if ( state.backtracking==0 ) {
                     				if (element == null) {
@@ -22203,15 +22283,15 @@ public class MorelParser extends MorelANTLRParserBase {
 
                     if ( state.backtracking==0 ) {
                     				// expected elements (follow set)
-                    				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3451]);
                     				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3452]);
                     				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3453]);
+                    				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3454]);
                     			}
 
-                    // Morel.g:13411:4: (a21_0= parse_edu_ustb_sei_mde_morel_Pattern )
-                    // Morel.g:13412:5: a21_0= parse_edu_ustb_sei_mde_morel_Pattern
+                    // Morel.g:13446:4: (a21_0= parse_edu_ustb_sei_mde_morel_Pattern )
+                    // Morel.g:13447:5: a21_0= parse_edu_ustb_sei_mde_morel_Pattern
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_Pattern_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12569);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_Pattern_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12614);
                     a21_0=parse_edu_ustb_sei_mde_morel_Pattern();
 
                     state._fsp--;
@@ -22242,8 +22322,8 @@ public class MorelParser extends MorelANTLRParserBase {
 
                     if ( state.backtracking==0 ) {
                     				// expected elements (follow set)
-                    				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3454]);
                     				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3455]);
+                    				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3456]);
                     			}
 
                     }
@@ -22257,25 +22337,25 @@ public class MorelParser extends MorelANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3456]);
             		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3457]);
+            		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3458]);
             	}
 
-            // Morel.g:13446:2: ( (a22= 'unmatchv' (a23_0= parse_edu_ustb_sei_mde_morel_Pattern ) ) )?
-            int alt138=2;
-            int LA138_0 = input.LA(1);
+            // Morel.g:13481:2: ( (a22= 'unmatchv' (a23_0= parse_edu_ustb_sei_mde_morel_Pattern ) ) )?
+            int alt139=2;
+            int LA139_0 = input.LA(1);
 
-            if ( (LA138_0==98) ) {
-                alt138=1;
+            if ( (LA139_0==100) ) {
+                alt139=1;
             }
-            switch (alt138) {
+            switch (alt139) {
                 case 1 :
-                    // Morel.g:13447:3: (a22= 'unmatchv' (a23_0= parse_edu_ustb_sei_mde_morel_Pattern ) )
+                    // Morel.g:13482:3: (a22= 'unmatchv' (a23_0= parse_edu_ustb_sei_mde_morel_Pattern ) )
                     {
-                    // Morel.g:13447:3: (a22= 'unmatchv' (a23_0= parse_edu_ustb_sei_mde_morel_Pattern ) )
-                    // Morel.g:13448:4: a22= 'unmatchv' (a23_0= parse_edu_ustb_sei_mde_morel_Pattern )
+                    // Morel.g:13482:3: (a22= 'unmatchv' (a23_0= parse_edu_ustb_sei_mde_morel_Pattern ) )
+                    // Morel.g:13483:4: a22= 'unmatchv' (a23_0= parse_edu_ustb_sei_mde_morel_Pattern )
                     {
-                    a22=(Token)match(input,98,FOLLOW_98_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12619); if (state.failed) return element;
+                    a22=(Token)match(input,100,FOLLOW_100_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12664); if (state.failed) return element;
 
                     if ( state.backtracking==0 ) {
                     				if (element == null) {
@@ -22289,15 +22369,15 @@ public class MorelParser extends MorelANTLRParserBase {
 
                     if ( state.backtracking==0 ) {
                     				// expected elements (follow set)
-                    				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3458]);
                     				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3459]);
                     				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3460]);
+                    				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3461]);
                     			}
 
-                    // Morel.g:13464:4: (a23_0= parse_edu_ustb_sei_mde_morel_Pattern )
-                    // Morel.g:13465:5: a23_0= parse_edu_ustb_sei_mde_morel_Pattern
+                    // Morel.g:13499:4: (a23_0= parse_edu_ustb_sei_mde_morel_Pattern )
+                    // Morel.g:13500:5: a23_0= parse_edu_ustb_sei_mde_morel_Pattern
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_Pattern_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12645);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_Pattern_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12690);
                     a23_0=parse_edu_ustb_sei_mde_morel_Pattern();
 
                     state._fsp--;
@@ -22328,7 +22408,7 @@ public class MorelParser extends MorelANTLRParserBase {
 
                     if ( state.backtracking==0 ) {
                     				// expected elements (follow set)
-                    				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3461]);
+                    				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3462]);
                     			}
 
                     }
@@ -22342,10 +22422,10 @@ public class MorelParser extends MorelANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3462]);
+            		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3463]);
             	}
 
-            a24=(Token)match(input,106,FOLLOW_106_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12686); if (state.failed) return element;
+            a24=(Token)match(input,108,FOLLOW_108_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12731); if (state.failed) return element;
 
             if ( state.backtracking==0 ) {
             		if (element == null) {
@@ -22359,13 +22439,13 @@ public class MorelParser extends MorelANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getTransformationModel(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3463]);
             		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getTransformationModel(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3464]);
             		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getTransformationModel(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3465]);
             		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getTransformationModel(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3466]);
             		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getTransformationModel(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3467]);
             		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getTransformationModel(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3468]);
             		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getTransformationModel(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3469]);
+            		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getTransformationModel(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3470]);
             	}
 
             }
@@ -22388,7 +22468,7 @@ public class MorelParser extends MorelANTLRParserBase {
 
 
     // $ANTLR start "parse_edu_ustb_sei_mde_morel_Clause"
-    // Morel.g:13519:1: parse_edu_ustb_sei_mde_morel_Clause returns [edu.ustb.sei.mde.morel.Clause element = null] : a0= '{' ( ( (a1_0= parse_edu_ustb_sei_mde_morel_Statement ) ) )+ a2= '}' ;
+    // Morel.g:13554:1: parse_edu_ustb_sei_mde_morel_Clause returns [edu.ustb.sei.mde.morel.Clause element = null] : a0= '{' ( ( (a1_0= parse_edu_ustb_sei_mde_morel_Statement ) ) )+ a2= '}' ;
     public final edu.ustb.sei.mde.morel.Clause parse_edu_ustb_sei_mde_morel_Clause() throws RecognitionException {
         edu.ustb.sei.mde.morel.Clause element =  null;
 
@@ -22404,10 +22484,10 @@ public class MorelParser extends MorelANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 51) ) { return element; }
 
-            // Morel.g:13522:2: (a0= '{' ( ( (a1_0= parse_edu_ustb_sei_mde_morel_Statement ) ) )+ a2= '}' )
-            // Morel.g:13523:2: a0= '{' ( ( (a1_0= parse_edu_ustb_sei_mde_morel_Statement ) ) )+ a2= '}'
+            // Morel.g:13557:2: (a0= '{' ( ( (a1_0= parse_edu_ustb_sei_mde_morel_Statement ) ) )+ a2= '}' )
+            // Morel.g:13558:2: a0= '{' ( ( (a1_0= parse_edu_ustb_sei_mde_morel_Statement ) ) )+ a2= '}'
             {
-            a0=(Token)match(input,103,FOLLOW_103_in_parse_edu_ustb_sei_mde_morel_Clause12715); if (state.failed) return element;
+            a0=(Token)match(input,105,FOLLOW_105_in_parse_edu_ustb_sei_mde_morel_Clause12760); if (state.failed) return element;
 
             if ( state.backtracking==0 ) {
             		if (element == null) {
@@ -22421,7 +22501,6 @@ public class MorelParser extends MorelANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getClause(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3470]);
             		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getClause(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3471]);
             		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getClause(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3472]);
             		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getClause(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3473]);
@@ -22440,31 +22519,32 @@ public class MorelParser extends MorelANTLRParserBase {
             		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getClause(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3486]);
             		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getClause(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3487]);
             		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getClause(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3488]);
+            		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getClause(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3489]);
             	}
 
-            // Morel.g:13555:2: ( ( (a1_0= parse_edu_ustb_sei_mde_morel_Statement ) ) )+
-            int cnt139=0;
-            loop139:
+            // Morel.g:13590:2: ( ( (a1_0= parse_edu_ustb_sei_mde_morel_Statement ) ) )+
+            int cnt140=0;
+            loop140:
             do {
-                int alt139=2;
-                int LA139_0 = input.LA(1);
+                int alt140=2;
+                int LA140_0 = input.LA(1);
 
-                if ( (LA139_0==COLLECTION||(LA139_0 >= IDENTIFIER && LA139_0 <= INUMBER)||(LA139_0 >= QUOTED_39_39_92 && LA139_0 <= RNUMBER)||LA139_0==15||(LA139_0 >= 17 && LA139_0 <= 19)||(LA139_0 >= 21 && LA139_0 <= 22)||LA139_0==25||LA139_0==27||LA139_0==33||LA139_0==41||LA139_0==57||LA139_0==59||LA139_0==62||LA139_0==65||LA139_0==67||(LA139_0 >= 70 && LA139_0 <= 71)||LA139_0==95||LA139_0==103) ) {
-                    alt139=1;
+                if ( (LA140_0==COLLECTION||(LA140_0 >= IDENTIFIER && LA140_0 <= INUMBER)||(LA140_0 >= QUOTED_39_39_92 && LA140_0 <= RNUMBER)||LA140_0==15||(LA140_0 >= 17 && LA140_0 <= 19)||(LA140_0 >= 21 && LA140_0 <= 22)||LA140_0==25||LA140_0==27||LA140_0==33||LA140_0==41||LA140_0==57||LA140_0==59||LA140_0==63||LA140_0==66||LA140_0==68||(LA140_0 >= 71 && LA140_0 <= 72)||LA140_0==97||LA140_0==105) ) {
+                    alt140=1;
                 }
 
 
-                switch (alt139) {
+                switch (alt140) {
             	case 1 :
-            	    // Morel.g:13556:3: ( (a1_0= parse_edu_ustb_sei_mde_morel_Statement ) )
+            	    // Morel.g:13591:3: ( (a1_0= parse_edu_ustb_sei_mde_morel_Statement ) )
             	    {
-            	    // Morel.g:13556:3: ( (a1_0= parse_edu_ustb_sei_mde_morel_Statement ) )
-            	    // Morel.g:13557:4: (a1_0= parse_edu_ustb_sei_mde_morel_Statement )
+            	    // Morel.g:13591:3: ( (a1_0= parse_edu_ustb_sei_mde_morel_Statement ) )
+            	    // Morel.g:13592:4: (a1_0= parse_edu_ustb_sei_mde_morel_Statement )
             	    {
-            	    // Morel.g:13557:4: (a1_0= parse_edu_ustb_sei_mde_morel_Statement )
-            	    // Morel.g:13558:5: a1_0= parse_edu_ustb_sei_mde_morel_Statement
+            	    // Morel.g:13592:4: (a1_0= parse_edu_ustb_sei_mde_morel_Statement )
+            	    // Morel.g:13593:5: a1_0= parse_edu_ustb_sei_mde_morel_Statement
             	    {
-            	    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_Statement_in_parse_edu_ustb_sei_mde_morel_Clause12744);
+            	    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_Statement_in_parse_edu_ustb_sei_mde_morel_Clause12789);
             	    a1_0=parse_edu_ustb_sei_mde_morel_Statement();
 
             	    state._fsp--;
@@ -22495,7 +22575,6 @@ public class MorelParser extends MorelANTLRParserBase {
 
             	    if ( state.backtracking==0 ) {
             	    				// expected elements (follow set)
-            	    				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getClause(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3489]);
             	    				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getClause(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3490]);
             	    				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getClause(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3491]);
             	    				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getClause(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3492]);
@@ -22514,7 +22593,8 @@ public class MorelParser extends MorelANTLRParserBase {
             	    				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getClause(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3505]);
             	    				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getClause(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3506]);
             	    				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getClause(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3507]);
-            	    				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3508]);
+            	    				addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getClause(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3508]);
+            	    				addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3509]);
             	    			}
 
             	    }
@@ -22524,19 +22604,18 @@ public class MorelParser extends MorelANTLRParserBase {
             	    break;
 
             	default :
-            	    if ( cnt139 >= 1 ) break loop139;
+            	    if ( cnt140 >= 1 ) break loop140;
             	    if (state.backtracking>0) {state.failed=true; return element;}
                         EarlyExitException eee =
-                            new EarlyExitException(139, input);
+                            new EarlyExitException(140, input);
                         throw eee;
                 }
-                cnt139++;
+                cnt140++;
             } while (true);
 
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getClause(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3509]);
             		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getClause(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3510]);
             		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getClause(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3511]);
             		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getClause(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3512]);
@@ -22555,10 +22634,11 @@ public class MorelParser extends MorelANTLRParserBase {
             		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getClause(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3525]);
             		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getClause(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3526]);
             		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getClause(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3527]);
-            		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3528]);
+            		addExpectedElement(edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getClause(), edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3528]);
+            		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3529]);
             	}
 
-            a2=(Token)match(input,106,FOLLOW_106_in_parse_edu_ustb_sei_mde_morel_Clause12785); if (state.failed) return element;
+            a2=(Token)match(input,108,FOLLOW_108_in_parse_edu_ustb_sei_mde_morel_Clause12830); if (state.failed) return element;
 
             if ( state.backtracking==0 ) {
             		if (element == null) {
@@ -22572,12 +22652,12 @@ public class MorelParser extends MorelANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3529]);
             		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3530]);
             		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3531]);
             		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3532]);
             		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3533]);
             		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3534]);
+            		addExpectedElement(null, edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectationConstants.EXPECTATIONS[3535]);
             	}
 
             }
@@ -22600,7 +22680,7 @@ public class MorelParser extends MorelANTLRParserBase {
 
 
     // $ANTLR start "parse_edu_ustb_sei_mde_morel_Variable"
-    // Morel.g:13649:1: parse_edu_ustb_sei_mde_morel_Variable returns [edu.ustb.sei.mde.morel.Variable element = null] : (c0= parse_edu_ustb_sei_mde_morel_ObjectVariable |c1= parse_edu_ustb_sei_mde_morel_PrimitiveVariable |c2= parse_edu_ustb_sei_mde_morel_ObjectVariableWithInit |c3= parse_edu_ustb_sei_mde_morel_PrimitiveVariableWithInit );
+    // Morel.g:13684:1: parse_edu_ustb_sei_mde_morel_Variable returns [edu.ustb.sei.mde.morel.Variable element = null] : (c0= parse_edu_ustb_sei_mde_morel_ObjectVariable |c1= parse_edu_ustb_sei_mde_morel_PrimitiveVariable |c2= parse_edu_ustb_sei_mde_morel_ObjectVariableWithInit |c3= parse_edu_ustb_sei_mde_morel_PrimitiveVariableWithInit );
     public final edu.ustb.sei.mde.morel.Variable parse_edu_ustb_sei_mde_morel_Variable() throws RecognitionException {
         edu.ustb.sei.mde.morel.Variable element =  null;
 
@@ -22618,29 +22698,29 @@ public class MorelParser extends MorelANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 52) ) { return element; }
 
-            // Morel.g:13650:2: (c0= parse_edu_ustb_sei_mde_morel_ObjectVariable |c1= parse_edu_ustb_sei_mde_morel_PrimitiveVariable |c2= parse_edu_ustb_sei_mde_morel_ObjectVariableWithInit |c3= parse_edu_ustb_sei_mde_morel_PrimitiveVariableWithInit )
-            int alt140=4;
-            int LA140_0 = input.LA(1);
+            // Morel.g:13685:2: (c0= parse_edu_ustb_sei_mde_morel_ObjectVariable |c1= parse_edu_ustb_sei_mde_morel_PrimitiveVariable |c2= parse_edu_ustb_sei_mde_morel_ObjectVariableWithInit |c3= parse_edu_ustb_sei_mde_morel_PrimitiveVariableWithInit )
+            int alt141=4;
+            int LA141_0 = input.LA(1);
 
-            if ( (LA140_0==IDENTIFIER) ) {
-                int LA140_1 = input.LA(2);
+            if ( (LA141_0==IDENTIFIER) ) {
+                int LA141_1 = input.LA(2);
 
-                if ( (synpred193_Morel()) ) {
-                    alt140=1;
-                }
-                else if ( (synpred194_Morel()) ) {
-                    alt140=2;
+                if ( (synpred194_Morel()) ) {
+                    alt141=1;
                 }
                 else if ( (synpred195_Morel()) ) {
-                    alt140=3;
+                    alt141=2;
+                }
+                else if ( (synpred196_Morel()) ) {
+                    alt141=3;
                 }
                 else if ( (true) ) {
-                    alt140=4;
+                    alt141=4;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 140, 1, input);
+                        new NoViableAltException("", 141, 1, input);
 
                     throw nvae;
 
@@ -22649,16 +22729,16 @@ public class MorelParser extends MorelANTLRParserBase {
             else {
                 if (state.backtracking>0) {state.failed=true; return element;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 140, 0, input);
+                    new NoViableAltException("", 141, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt140) {
+            switch (alt141) {
                 case 1 :
-                    // Morel.g:13651:2: c0= parse_edu_ustb_sei_mde_morel_ObjectVariable
+                    // Morel.g:13686:2: c0= parse_edu_ustb_sei_mde_morel_ObjectVariable
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_ObjectVariable_in_parse_edu_ustb_sei_mde_morel_Variable12810);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_ObjectVariable_in_parse_edu_ustb_sei_mde_morel_Variable12855);
                     c0=parse_edu_ustb_sei_mde_morel_ObjectVariable();
 
                     state._fsp--;
@@ -22669,9 +22749,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Morel.g:13652:4: c1= parse_edu_ustb_sei_mde_morel_PrimitiveVariable
+                    // Morel.g:13687:4: c1= parse_edu_ustb_sei_mde_morel_PrimitiveVariable
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_PrimitiveVariable_in_parse_edu_ustb_sei_mde_morel_Variable12820);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_PrimitiveVariable_in_parse_edu_ustb_sei_mde_morel_Variable12865);
                     c1=parse_edu_ustb_sei_mde_morel_PrimitiveVariable();
 
                     state._fsp--;
@@ -22682,9 +22762,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 3 :
-                    // Morel.g:13653:4: c2= parse_edu_ustb_sei_mde_morel_ObjectVariableWithInit
+                    // Morel.g:13688:4: c2= parse_edu_ustb_sei_mde_morel_ObjectVariableWithInit
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_ObjectVariableWithInit_in_parse_edu_ustb_sei_mde_morel_Variable12830);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_ObjectVariableWithInit_in_parse_edu_ustb_sei_mde_morel_Variable12875);
                     c2=parse_edu_ustb_sei_mde_morel_ObjectVariableWithInit();
 
                     state._fsp--;
@@ -22695,9 +22775,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 4 :
-                    // Morel.g:13654:4: c3= parse_edu_ustb_sei_mde_morel_PrimitiveVariableWithInit
+                    // Morel.g:13689:4: c3= parse_edu_ustb_sei_mde_morel_PrimitiveVariableWithInit
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_PrimitiveVariableWithInit_in_parse_edu_ustb_sei_mde_morel_Variable12840);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_PrimitiveVariableWithInit_in_parse_edu_ustb_sei_mde_morel_Variable12885);
                     c3=parse_edu_ustb_sei_mde_morel_PrimitiveVariableWithInit();
 
                     state._fsp--;
@@ -22727,7 +22807,7 @@ public class MorelParser extends MorelANTLRParserBase {
 
 
     // $ANTLR start "parse_edu_ustb_sei_mde_morel_LinkConstraint"
-    // Morel.g:13658:1: parse_edu_ustb_sei_mde_morel_LinkConstraint returns [edu.ustb.sei.mde.morel.LinkConstraint element = null] : (c0= parse_edu_ustb_sei_mde_morel_SimpleLinkConstraint |c1= parse_edu_ustb_sei_mde_morel_EnclosureLinkConstraint |c2= parse_edu_ustb_sei_mde_morel_PathConstraint );
+    // Morel.g:13693:1: parse_edu_ustb_sei_mde_morel_LinkConstraint returns [edu.ustb.sei.mde.morel.LinkConstraint element = null] : (c0= parse_edu_ustb_sei_mde_morel_SimpleLinkConstraint |c1= parse_edu_ustb_sei_mde_morel_EnclosureLinkConstraint |c2= parse_edu_ustb_sei_mde_morel_PathConstraint );
     public final edu.ustb.sei.mde.morel.LinkConstraint parse_edu_ustb_sei_mde_morel_LinkConstraint() throws RecognitionException {
         edu.ustb.sei.mde.morel.LinkConstraint element =  null;
 
@@ -22743,14 +22823,14 @@ public class MorelParser extends MorelANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 53) ) { return element; }
 
-            // Morel.g:13659:2: (c0= parse_edu_ustb_sei_mde_morel_SimpleLinkConstraint |c1= parse_edu_ustb_sei_mde_morel_EnclosureLinkConstraint |c2= parse_edu_ustb_sei_mde_morel_PathConstraint )
-            int alt141=3;
-            alt141 = dfa141.predict(input);
-            switch (alt141) {
+            // Morel.g:13694:2: (c0= parse_edu_ustb_sei_mde_morel_SimpleLinkConstraint |c1= parse_edu_ustb_sei_mde_morel_EnclosureLinkConstraint |c2= parse_edu_ustb_sei_mde_morel_PathConstraint )
+            int alt142=3;
+            alt142 = dfa142.predict(input);
+            switch (alt142) {
                 case 1 :
-                    // Morel.g:13660:2: c0= parse_edu_ustb_sei_mde_morel_SimpleLinkConstraint
+                    // Morel.g:13695:2: c0= parse_edu_ustb_sei_mde_morel_SimpleLinkConstraint
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_SimpleLinkConstraint_in_parse_edu_ustb_sei_mde_morel_LinkConstraint12861);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_SimpleLinkConstraint_in_parse_edu_ustb_sei_mde_morel_LinkConstraint12906);
                     c0=parse_edu_ustb_sei_mde_morel_SimpleLinkConstraint();
 
                     state._fsp--;
@@ -22761,9 +22841,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Morel.g:13661:4: c1= parse_edu_ustb_sei_mde_morel_EnclosureLinkConstraint
+                    // Morel.g:13696:4: c1= parse_edu_ustb_sei_mde_morel_EnclosureLinkConstraint
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_EnclosureLinkConstraint_in_parse_edu_ustb_sei_mde_morel_LinkConstraint12871);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_EnclosureLinkConstraint_in_parse_edu_ustb_sei_mde_morel_LinkConstraint12916);
                     c1=parse_edu_ustb_sei_mde_morel_EnclosureLinkConstraint();
 
                     state._fsp--;
@@ -22774,9 +22854,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 3 :
-                    // Morel.g:13662:4: c2= parse_edu_ustb_sei_mde_morel_PathConstraint
+                    // Morel.g:13697:4: c2= parse_edu_ustb_sei_mde_morel_PathConstraint
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_PathConstraint_in_parse_edu_ustb_sei_mde_morel_LinkConstraint12881);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_PathConstraint_in_parse_edu_ustb_sei_mde_morel_LinkConstraint12926);
                     c2=parse_edu_ustb_sei_mde_morel_PathConstraint();
 
                     state._fsp--;
@@ -22806,7 +22886,7 @@ public class MorelParser extends MorelANTLRParserBase {
 
 
     // $ANTLR start "parse_edu_ustb_sei_mde_morel_AdditionalConstraint"
-    // Morel.g:13666:1: parse_edu_ustb_sei_mde_morel_AdditionalConstraint returns [edu.ustb.sei.mde.morel.AdditionalConstraint element = null] : (c0= parse_edu_ustb_sei_mde_morel_OrderConstraint |c1= parse_edu_ustb_sei_mde_morel_AllDifferentConstraint );
+    // Morel.g:13701:1: parse_edu_ustb_sei_mde_morel_AdditionalConstraint returns [edu.ustb.sei.mde.morel.AdditionalConstraint element = null] : (c0= parse_edu_ustb_sei_mde_morel_OrderConstraint |c1= parse_edu_ustb_sei_mde_morel_AllDifferentConstraint );
     public final edu.ustb.sei.mde.morel.AdditionalConstraint parse_edu_ustb_sei_mde_morel_AdditionalConstraint() throws RecognitionException {
         edu.ustb.sei.mde.morel.AdditionalConstraint element =  null;
 
@@ -22820,29 +22900,29 @@ public class MorelParser extends MorelANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 54) ) { return element; }
 
-            // Morel.g:13667:2: (c0= parse_edu_ustb_sei_mde_morel_OrderConstraint |c1= parse_edu_ustb_sei_mde_morel_AllDifferentConstraint )
-            int alt142=2;
-            int LA142_0 = input.LA(1);
+            // Morel.g:13702:2: (c0= parse_edu_ustb_sei_mde_morel_OrderConstraint |c1= parse_edu_ustb_sei_mde_morel_AllDifferentConstraint )
+            int alt143=2;
+            int LA143_0 = input.LA(1);
 
-            if ( (LA142_0==IDENTIFIER) ) {
-                alt142=1;
+            if ( (LA143_0==IDENTIFIER) ) {
+                alt143=1;
             }
-            else if ( (LA142_0==47) ) {
-                alt142=2;
+            else if ( (LA143_0==47) ) {
+                alt143=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return element;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 142, 0, input);
+                    new NoViableAltException("", 143, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt142) {
+            switch (alt143) {
                 case 1 :
-                    // Morel.g:13668:2: c0= parse_edu_ustb_sei_mde_morel_OrderConstraint
+                    // Morel.g:13703:2: c0= parse_edu_ustb_sei_mde_morel_OrderConstraint
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_OrderConstraint_in_parse_edu_ustb_sei_mde_morel_AdditionalConstraint12902);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_OrderConstraint_in_parse_edu_ustb_sei_mde_morel_AdditionalConstraint12947);
                     c0=parse_edu_ustb_sei_mde_morel_OrderConstraint();
 
                     state._fsp--;
@@ -22853,9 +22933,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Morel.g:13669:4: c1= parse_edu_ustb_sei_mde_morel_AllDifferentConstraint
+                    // Morel.g:13704:4: c1= parse_edu_ustb_sei_mde_morel_AllDifferentConstraint
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_AllDifferentConstraint_in_parse_edu_ustb_sei_mde_morel_AdditionalConstraint12912);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_AllDifferentConstraint_in_parse_edu_ustb_sei_mde_morel_AdditionalConstraint12957);
                     c1=parse_edu_ustb_sei_mde_morel_AllDifferentConstraint();
 
                     state._fsp--;
@@ -22885,7 +22965,7 @@ public class MorelParser extends MorelANTLRParserBase {
 
 
     // $ANTLR start "parse_edu_ustb_sei_mde_morel_Statement"
-    // Morel.g:13673:1: parse_edu_ustb_sei_mde_morel_Statement returns [edu.ustb.sei.mde.morel.Statement element = null] : (c0= parse_edu_ustb_sei_mde_morel_DeclarativeStatement |c1= parse_edu_ustb_sei_mde_morel_IfStatement |c2= parse_edu_ustb_sei_mde_morel_ForStatement |c3= parse_edu_ustb_sei_mde_morel_BlockStatement );
+    // Morel.g:13708:1: parse_edu_ustb_sei_mde_morel_Statement returns [edu.ustb.sei.mde.morel.Statement element = null] : (c0= parse_edu_ustb_sei_mde_morel_DeclarativeStatement |c1= parse_edu_ustb_sei_mde_morel_IfStatement |c2= parse_edu_ustb_sei_mde_morel_ForStatement |c3= parse_edu_ustb_sei_mde_morel_BlockStatement );
     public final edu.ustb.sei.mde.morel.Statement parse_edu_ustb_sei_mde_morel_Statement() throws RecognitionException {
         edu.ustb.sei.mde.morel.Statement element =  null;
 
@@ -22903,8 +22983,8 @@ public class MorelParser extends MorelANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 55) ) { return element; }
 
-            // Morel.g:13674:2: (c0= parse_edu_ustb_sei_mde_morel_DeclarativeStatement |c1= parse_edu_ustb_sei_mde_morel_IfStatement |c2= parse_edu_ustb_sei_mde_morel_ForStatement |c3= parse_edu_ustb_sei_mde_morel_BlockStatement )
-            int alt143=4;
+            // Morel.g:13709:2: (c0= parse_edu_ustb_sei_mde_morel_DeclarativeStatement |c1= parse_edu_ustb_sei_mde_morel_IfStatement |c2= parse_edu_ustb_sei_mde_morel_ForStatement |c3= parse_edu_ustb_sei_mde_morel_BlockStatement )
+            int alt144=4;
             switch ( input.LA(1) ) {
             case COLLECTION:
             case IDENTIFIER:
@@ -22922,29 +23002,29 @@ public class MorelParser extends MorelANTLRParserBase {
             case 33:
             case 41:
             case 57:
-            case 65:
-            case 67:
-            case 70:
+            case 66:
+            case 68:
             case 71:
-            case 95:
+            case 72:
+            case 97:
                 {
-                alt143=1;
+                alt144=1;
                 }
                 break;
-            case 62:
+            case 63:
                 {
-                int LA143_5 = input.LA(2);
+                int LA144_5 = input.LA(2);
 
-                if ( (synpred199_Morel()) ) {
-                    alt143=1;
+                if ( (synpred200_Morel()) ) {
+                    alt144=1;
                 }
-                else if ( (synpred200_Morel()) ) {
-                    alt143=2;
+                else if ( (synpred201_Morel()) ) {
+                    alt144=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 143, 5, input);
+                        new NoViableAltException("", 144, 5, input);
 
                     throw nvae;
 
@@ -22953,28 +23033,28 @@ public class MorelParser extends MorelANTLRParserBase {
                 break;
             case 59:
                 {
-                alt143=3;
+                alt144=3;
                 }
                 break;
-            case 103:
+            case 105:
                 {
-                alt143=4;
+                alt144=4;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return element;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 143, 0, input);
+                    new NoViableAltException("", 144, 0, input);
 
                 throw nvae;
 
             }
 
-            switch (alt143) {
+            switch (alt144) {
                 case 1 :
-                    // Morel.g:13675:2: c0= parse_edu_ustb_sei_mde_morel_DeclarativeStatement
+                    // Morel.g:13710:2: c0= parse_edu_ustb_sei_mde_morel_DeclarativeStatement
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_DeclarativeStatement_in_parse_edu_ustb_sei_mde_morel_Statement12933);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_DeclarativeStatement_in_parse_edu_ustb_sei_mde_morel_Statement12978);
                     c0=parse_edu_ustb_sei_mde_morel_DeclarativeStatement();
 
                     state._fsp--;
@@ -22985,9 +23065,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Morel.g:13676:4: c1= parse_edu_ustb_sei_mde_morel_IfStatement
+                    // Morel.g:13711:4: c1= parse_edu_ustb_sei_mde_morel_IfStatement
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_IfStatement_in_parse_edu_ustb_sei_mde_morel_Statement12943);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_IfStatement_in_parse_edu_ustb_sei_mde_morel_Statement12988);
                     c1=parse_edu_ustb_sei_mde_morel_IfStatement();
 
                     state._fsp--;
@@ -22998,9 +23078,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 3 :
-                    // Morel.g:13677:4: c2= parse_edu_ustb_sei_mde_morel_ForStatement
+                    // Morel.g:13712:4: c2= parse_edu_ustb_sei_mde_morel_ForStatement
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_ForStatement_in_parse_edu_ustb_sei_mde_morel_Statement12953);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_ForStatement_in_parse_edu_ustb_sei_mde_morel_Statement12998);
                     c2=parse_edu_ustb_sei_mde_morel_ForStatement();
 
                     state._fsp--;
@@ -23011,9 +23091,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 4 :
-                    // Morel.g:13678:4: c3= parse_edu_ustb_sei_mde_morel_BlockStatement
+                    // Morel.g:13713:4: c3= parse_edu_ustb_sei_mde_morel_BlockStatement
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_BlockStatement_in_parse_edu_ustb_sei_mde_morel_Statement12963);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_BlockStatement_in_parse_edu_ustb_sei_mde_morel_Statement13008);
                     c3=parse_edu_ustb_sei_mde_morel_BlockStatement();
 
                     state._fsp--;
@@ -23043,7 +23123,7 @@ public class MorelParser extends MorelANTLRParserBase {
 
 
     // $ANTLR start "parse_edu_ustb_sei_mde_morel_CallPathExp"
-    // Morel.g:13682:1: parse_edu_ustb_sei_mde_morel_CallPathExp returns [edu.ustb.sei.mde.morel.CallPathExp element = null] : (c0= parse_edu_ustb_sei_mde_morel_FeaturePathExp |c1= parse_edu_ustb_sei_mde_morel_OperationPathExp |c2= parse_edu_ustb_sei_mde_morel_IteratorPathExp );
+    // Morel.g:13717:1: parse_edu_ustb_sei_mde_morel_CallPathExp returns [edu.ustb.sei.mde.morel.CallPathExp element = null] : (c0= parse_edu_ustb_sei_mde_morel_FeaturePathExp |c1= parse_edu_ustb_sei_mde_morel_OperationPathExp |c2= parse_edu_ustb_sei_mde_morel_IteratorPathExp );
     public final edu.ustb.sei.mde.morel.CallPathExp parse_edu_ustb_sei_mde_morel_CallPathExp() throws RecognitionException {
         edu.ustb.sei.mde.morel.CallPathExp element =  null;
 
@@ -23059,26 +23139,26 @@ public class MorelParser extends MorelANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 56) ) { return element; }
 
-            // Morel.g:13683:2: (c0= parse_edu_ustb_sei_mde_morel_FeaturePathExp |c1= parse_edu_ustb_sei_mde_morel_OperationPathExp |c2= parse_edu_ustb_sei_mde_morel_IteratorPathExp )
-            int alt144=3;
-            int LA144_0 = input.LA(1);
+            // Morel.g:13718:2: (c0= parse_edu_ustb_sei_mde_morel_FeaturePathExp |c1= parse_edu_ustb_sei_mde_morel_OperationPathExp |c2= parse_edu_ustb_sei_mde_morel_IteratorPathExp )
+            int alt145=3;
+            int LA145_0 = input.LA(1);
 
-            if ( (LA144_0==29) ) {
-                int LA144_1 = input.LA(2);
+            if ( (LA145_0==29) ) {
+                int LA145_1 = input.LA(2);
 
-                if ( (LA144_1==IDENTIFIER) ) {
-                    int LA144_3 = input.LA(3);
+                if ( (LA145_1==IDENTIFIER) ) {
+                    int LA145_3 = input.LA(3);
 
-                    if ( (LA144_3==EOF||LA144_3==IDENTIFIER||LA144_3==16||LA144_3==20||(LA144_3 >= 23 && LA144_3 <= 30)||(LA144_3 >= 32 && LA144_3 <= 40)||LA144_3==43||(LA144_3 >= 47 && LA144_3 <= 48)||(LA144_3 >= 54 && LA144_3 <= 55)||(LA144_3 >= 63 && LA144_3 <= 64)||LA144_3==73||LA144_3==92||LA144_3==102||(LA144_3 >= 104 && LA144_3 <= 106)) ) {
-                        alt144=1;
+                    if ( (LA145_3==EOF||LA145_3==IDENTIFIER||LA145_3==16||LA145_3==20||(LA145_3 >= 23 && LA145_3 <= 30)||(LA145_3 >= 32 && LA145_3 <= 40)||LA145_3==43||(LA145_3 >= 47 && LA145_3 <= 48)||(LA145_3 >= 54 && LA145_3 <= 55)||(LA145_3 >= 64 && LA145_3 <= 65)||LA145_3==74||LA145_3==94||LA145_3==104||(LA145_3 >= 106 && LA145_3 <= 108)) ) {
+                        alt145=1;
                     }
-                    else if ( (LA144_3==22) ) {
-                        alt144=2;
+                    else if ( (LA145_3==22) ) {
+                        alt145=2;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return element;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 144, 3, input);
+                            new NoViableAltException("", 145, 3, input);
 
                         throw nvae;
 
@@ -23087,25 +23167,25 @@ public class MorelParser extends MorelANTLRParserBase {
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 144, 1, input);
+                        new NoViableAltException("", 145, 1, input);
 
                     throw nvae;
 
                 }
             }
-            else if ( (LA144_0==28) ) {
-                int LA144_2 = input.LA(2);
+            else if ( (LA145_0==28) ) {
+                int LA145_2 = input.LA(2);
 
-                if ( (LA144_2==IDENTIFIER) ) {
-                    alt144=2;
+                if ( (LA145_2==IDENTIFIER) ) {
+                    alt145=2;
                 }
-                else if ( ((LA144_2 >= 50 && LA144_2 <= 51)||LA144_2==56||LA144_2==60||LA144_2==84||LA144_2==89) ) {
-                    alt144=3;
+                else if ( ((LA145_2 >= 50 && LA145_2 <= 51)||LA145_2==56||LA145_2==60||LA145_2==86||LA145_2==91) ) {
+                    alt145=3;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 144, 2, input);
+                        new NoViableAltException("", 145, 2, input);
 
                     throw nvae;
 
@@ -23114,16 +23194,16 @@ public class MorelParser extends MorelANTLRParserBase {
             else {
                 if (state.backtracking>0) {state.failed=true; return element;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 144, 0, input);
+                    new NoViableAltException("", 145, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt144) {
+            switch (alt145) {
                 case 1 :
-                    // Morel.g:13684:2: c0= parse_edu_ustb_sei_mde_morel_FeaturePathExp
+                    // Morel.g:13719:2: c0= parse_edu_ustb_sei_mde_morel_FeaturePathExp
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_FeaturePathExp_in_parse_edu_ustb_sei_mde_morel_CallPathExp12984);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_FeaturePathExp_in_parse_edu_ustb_sei_mde_morel_CallPathExp13029);
                     c0=parse_edu_ustb_sei_mde_morel_FeaturePathExp();
 
                     state._fsp--;
@@ -23134,9 +23214,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Morel.g:13685:4: c1= parse_edu_ustb_sei_mde_morel_OperationPathExp
+                    // Morel.g:13720:4: c1= parse_edu_ustb_sei_mde_morel_OperationPathExp
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_OperationPathExp_in_parse_edu_ustb_sei_mde_morel_CallPathExp12994);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_OperationPathExp_in_parse_edu_ustb_sei_mde_morel_CallPathExp13039);
                     c1=parse_edu_ustb_sei_mde_morel_OperationPathExp();
 
                     state._fsp--;
@@ -23147,9 +23227,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 3 :
-                    // Morel.g:13686:4: c2= parse_edu_ustb_sei_mde_morel_IteratorPathExp
+                    // Morel.g:13721:4: c2= parse_edu_ustb_sei_mde_morel_IteratorPathExp
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_IteratorPathExp_in_parse_edu_ustb_sei_mde_morel_CallPathExp13004);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_IteratorPathExp_in_parse_edu_ustb_sei_mde_morel_CallPathExp13049);
                     c2=parse_edu_ustb_sei_mde_morel_IteratorPathExp();
 
                     state._fsp--;
@@ -23179,7 +23259,7 @@ public class MorelParser extends MorelANTLRParserBase {
 
 
     // $ANTLR start "parse_edu_ustb_sei_mde_morel_VariableWithInit"
-    // Morel.g:13690:1: parse_edu_ustb_sei_mde_morel_VariableWithInit returns [edu.ustb.sei.mde.morel.VariableWithInit element = null] : (c0= parse_edu_ustb_sei_mde_morel_ObjectVariableWithInit |c1= parse_edu_ustb_sei_mde_morel_PrimitiveVariableWithInit );
+    // Morel.g:13725:1: parse_edu_ustb_sei_mde_morel_VariableWithInit returns [edu.ustb.sei.mde.morel.VariableWithInit element = null] : (c0= parse_edu_ustb_sei_mde_morel_ObjectVariableWithInit |c1= parse_edu_ustb_sei_mde_morel_PrimitiveVariableWithInit );
     public final edu.ustb.sei.mde.morel.VariableWithInit parse_edu_ustb_sei_mde_morel_VariableWithInit() throws RecognitionException {
         edu.ustb.sei.mde.morel.VariableWithInit element =  null;
 
@@ -23193,26 +23273,26 @@ public class MorelParser extends MorelANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 57) ) { return element; }
 
-            // Morel.g:13691:2: (c0= parse_edu_ustb_sei_mde_morel_ObjectVariableWithInit |c1= parse_edu_ustb_sei_mde_morel_PrimitiveVariableWithInit )
-            int alt145=2;
-            int LA145_0 = input.LA(1);
+            // Morel.g:13726:2: (c0= parse_edu_ustb_sei_mde_morel_ObjectVariableWithInit |c1= parse_edu_ustb_sei_mde_morel_PrimitiveVariableWithInit )
+            int alt146=2;
+            int LA146_0 = input.LA(1);
 
-            if ( (LA145_0==IDENTIFIER) ) {
-                int LA145_1 = input.LA(2);
+            if ( (LA146_0==IDENTIFIER) ) {
+                int LA146_1 = input.LA(2);
 
-                if ( (LA145_1==31) ) {
-                    int LA145_2 = input.LA(3);
+                if ( (LA146_1==31) ) {
+                    int LA146_2 = input.LA(3);
 
-                    if ( (LA145_2==IDENTIFIER) ) {
-                        alt145=1;
+                    if ( (LA146_2==IDENTIFIER) ) {
+                        alt146=1;
                     }
-                    else if ( (LA145_2==DATA_TYPE) ) {
-                        alt145=2;
+                    else if ( (LA146_2==DATA_TYPE) ) {
+                        alt146=2;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return element;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 145, 2, input);
+                            new NoViableAltException("", 146, 2, input);
 
                         throw nvae;
 
@@ -23221,7 +23301,7 @@ public class MorelParser extends MorelANTLRParserBase {
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 145, 1, input);
+                        new NoViableAltException("", 146, 1, input);
 
                     throw nvae;
 
@@ -23230,16 +23310,16 @@ public class MorelParser extends MorelANTLRParserBase {
             else {
                 if (state.backtracking>0) {state.failed=true; return element;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 145, 0, input);
+                    new NoViableAltException("", 146, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt145) {
+            switch (alt146) {
                 case 1 :
-                    // Morel.g:13692:2: c0= parse_edu_ustb_sei_mde_morel_ObjectVariableWithInit
+                    // Morel.g:13727:2: c0= parse_edu_ustb_sei_mde_morel_ObjectVariableWithInit
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_ObjectVariableWithInit_in_parse_edu_ustb_sei_mde_morel_VariableWithInit13025);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_ObjectVariableWithInit_in_parse_edu_ustb_sei_mde_morel_VariableWithInit13070);
                     c0=parse_edu_ustb_sei_mde_morel_ObjectVariableWithInit();
 
                     state._fsp--;
@@ -23250,9 +23330,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Morel.g:13693:4: c1= parse_edu_ustb_sei_mde_morel_PrimitiveVariableWithInit
+                    // Morel.g:13728:4: c1= parse_edu_ustb_sei_mde_morel_PrimitiveVariableWithInit
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_PrimitiveVariableWithInit_in_parse_edu_ustb_sei_mde_morel_VariableWithInit13035);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_PrimitiveVariableWithInit_in_parse_edu_ustb_sei_mde_morel_VariableWithInit13080);
                     c1=parse_edu_ustb_sei_mde_morel_PrimitiveVariableWithInit();
 
                     state._fsp--;
@@ -23282,7 +23362,7 @@ public class MorelParser extends MorelANTLRParserBase {
 
 
     // $ANTLR start "parse_edu_ustb_sei_mde_morel_Expression"
-    // Morel.g:13697:1: parse_edu_ustb_sei_mde_morel_Expression returns [edu.ustb.sei.mde.morel.Expression element = null] : (c0= parse_edu_ustb_sei_mde_morel_VariableExp |c1= parse_edu_ustb_sei_mde_morel_NestedExp |c2= parse_edu_ustb_sei_mde_morel_IntegerLiteralExp |c3= parse_edu_ustb_sei_mde_morel_RealLiteralExp |c4= parse_edu_ustb_sei_mde_morel_StringLiteralExp |c5= parse_edu_ustb_sei_mde_morel_BooleanLiteralExp |c6= parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp |c7= parse_edu_ustb_sei_mde_morel_TypeLiteralExp |c8= parse_edu_ustb_sei_mde_morel_CollectionLiteralExp |c9= parse_edu_ustb_sei_mde_morel_EnumLiteralExp |c10= parse_edu_ustb_sei_mde_morel_ArrayLiteralExp |c11= parse_edu_ustb_sei_mde_morel_LetExp |c12= parse_edu_ustb_sei_mde_morel_ConditionExp |c13= parse_edu_ustb_sei_mde_morel_BooleanImpliesExp |c14= parse_edu_ustb_sei_mde_morel_BooleanOrExp |c15= parse_edu_ustb_sei_mde_morel_BooleanAndExp |c16= parse_edu_ustb_sei_mde_morel_RelationalExp |c17= parse_edu_ustb_sei_mde_morel_AdditiveExp |c18= parse_edu_ustb_sei_mde_morel_MultiplicativeExp |c19= parse_edu_ustb_sei_mde_morel_UnaryExp |c20= parse_edu_ustb_sei_mde_morel_BindExp |c21= parse_edu_ustb_sei_mde_morel_PredefinedBindExp |c22= parse_edu_ustb_sei_mde_morel_PredefinedVariableExp |c23= parse_edu_ustb_sei_mde_morel_ReflectiveVariableExp );
+    // Morel.g:13732:1: parse_edu_ustb_sei_mde_morel_Expression returns [edu.ustb.sei.mde.morel.Expression element = null] : (c0= parse_edu_ustb_sei_mde_morel_VariableExp |c1= parse_edu_ustb_sei_mde_morel_NestedExp |c2= parse_edu_ustb_sei_mde_morel_IntegerLiteralExp |c3= parse_edu_ustb_sei_mde_morel_RealLiteralExp |c4= parse_edu_ustb_sei_mde_morel_StringLiteralExp |c5= parse_edu_ustb_sei_mde_morel_BooleanLiteralExp |c6= parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp |c7= parse_edu_ustb_sei_mde_morel_TypeLiteralExp |c8= parse_edu_ustb_sei_mde_morel_CollectionLiteralExp |c9= parse_edu_ustb_sei_mde_morel_EnumLiteralExp |c10= parse_edu_ustb_sei_mde_morel_ArrayLiteralExp |c11= parse_edu_ustb_sei_mde_morel_LetExp |c12= parse_edu_ustb_sei_mde_morel_ConditionExp |c13= parse_edu_ustb_sei_mde_morel_BooleanImpliesExp |c14= parse_edu_ustb_sei_mde_morel_BooleanOrExp |c15= parse_edu_ustb_sei_mde_morel_BooleanAndExp |c16= parse_edu_ustb_sei_mde_morel_RelationalExp |c17= parse_edu_ustb_sei_mde_morel_AdditiveExp |c18= parse_edu_ustb_sei_mde_morel_MultiplicativeExp |c19= parse_edu_ustb_sei_mde_morel_UnaryExp |c20= parse_edu_ustb_sei_mde_morel_BindExp |c21= parse_edu_ustb_sei_mde_morel_PredefinedBindExp |c22= parse_edu_ustb_sei_mde_morel_PredefinedVariableExp |c23= parse_edu_ustb_sei_mde_morel_ReflectiveVariableExp );
     public final edu.ustb.sei.mde.morel.Expression parse_edu_ustb_sei_mde_morel_Expression() throws RecognitionException {
         edu.ustb.sei.mde.morel.Expression element =  null;
 
@@ -23340,44 +23420,44 @@ public class MorelParser extends MorelANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 58) ) { return element; }
 
-            // Morel.g:13698:2: (c0= parse_edu_ustb_sei_mde_morel_VariableExp |c1= parse_edu_ustb_sei_mde_morel_NestedExp |c2= parse_edu_ustb_sei_mde_morel_IntegerLiteralExp |c3= parse_edu_ustb_sei_mde_morel_RealLiteralExp |c4= parse_edu_ustb_sei_mde_morel_StringLiteralExp |c5= parse_edu_ustb_sei_mde_morel_BooleanLiteralExp |c6= parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp |c7= parse_edu_ustb_sei_mde_morel_TypeLiteralExp |c8= parse_edu_ustb_sei_mde_morel_CollectionLiteralExp |c9= parse_edu_ustb_sei_mde_morel_EnumLiteralExp |c10= parse_edu_ustb_sei_mde_morel_ArrayLiteralExp |c11= parse_edu_ustb_sei_mde_morel_LetExp |c12= parse_edu_ustb_sei_mde_morel_ConditionExp |c13= parse_edu_ustb_sei_mde_morel_BooleanImpliesExp |c14= parse_edu_ustb_sei_mde_morel_BooleanOrExp |c15= parse_edu_ustb_sei_mde_morel_BooleanAndExp |c16= parse_edu_ustb_sei_mde_morel_RelationalExp |c17= parse_edu_ustb_sei_mde_morel_AdditiveExp |c18= parse_edu_ustb_sei_mde_morel_MultiplicativeExp |c19= parse_edu_ustb_sei_mde_morel_UnaryExp |c20= parse_edu_ustb_sei_mde_morel_BindExp |c21= parse_edu_ustb_sei_mde_morel_PredefinedBindExp |c22= parse_edu_ustb_sei_mde_morel_PredefinedVariableExp |c23= parse_edu_ustb_sei_mde_morel_ReflectiveVariableExp )
-            int alt146=24;
+            // Morel.g:13733:2: (c0= parse_edu_ustb_sei_mde_morel_VariableExp |c1= parse_edu_ustb_sei_mde_morel_NestedExp |c2= parse_edu_ustb_sei_mde_morel_IntegerLiteralExp |c3= parse_edu_ustb_sei_mde_morel_RealLiteralExp |c4= parse_edu_ustb_sei_mde_morel_StringLiteralExp |c5= parse_edu_ustb_sei_mde_morel_BooleanLiteralExp |c6= parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp |c7= parse_edu_ustb_sei_mde_morel_TypeLiteralExp |c8= parse_edu_ustb_sei_mde_morel_CollectionLiteralExp |c9= parse_edu_ustb_sei_mde_morel_EnumLiteralExp |c10= parse_edu_ustb_sei_mde_morel_ArrayLiteralExp |c11= parse_edu_ustb_sei_mde_morel_LetExp |c12= parse_edu_ustb_sei_mde_morel_ConditionExp |c13= parse_edu_ustb_sei_mde_morel_BooleanImpliesExp |c14= parse_edu_ustb_sei_mde_morel_BooleanOrExp |c15= parse_edu_ustb_sei_mde_morel_BooleanAndExp |c16= parse_edu_ustb_sei_mde_morel_RelationalExp |c17= parse_edu_ustb_sei_mde_morel_AdditiveExp |c18= parse_edu_ustb_sei_mde_morel_MultiplicativeExp |c19= parse_edu_ustb_sei_mde_morel_UnaryExp |c20= parse_edu_ustb_sei_mde_morel_BindExp |c21= parse_edu_ustb_sei_mde_morel_PredefinedBindExp |c22= parse_edu_ustb_sei_mde_morel_PredefinedVariableExp |c23= parse_edu_ustb_sei_mde_morel_ReflectiveVariableExp )
+            int alt147=24;
             switch ( input.LA(1) ) {
             case IDENTIFIER:
                 {
-                int LA146_1 = input.LA(2);
+                int LA147_1 = input.LA(2);
 
-                if ( (synpred205_Morel()) ) {
-                    alt146=1;
-                }
-                else if ( (synpred218_Morel()) ) {
-                    alt146=14;
+                if ( (synpred206_Morel()) ) {
+                    alt147=1;
                 }
                 else if ( (synpred219_Morel()) ) {
-                    alt146=15;
+                    alt147=14;
                 }
                 else if ( (synpred220_Morel()) ) {
-                    alt146=16;
+                    alt147=15;
                 }
                 else if ( (synpred221_Morel()) ) {
-                    alt146=17;
+                    alt147=16;
                 }
                 else if ( (synpred222_Morel()) ) {
-                    alt146=18;
+                    alt147=17;
                 }
                 else if ( (synpred223_Morel()) ) {
-                    alt146=19;
+                    alt147=18;
                 }
                 else if ( (synpred224_Morel()) ) {
-                    alt146=20;
+                    alt147=19;
                 }
                 else if ( (synpred225_Morel()) ) {
-                    alt146=21;
+                    alt147=20;
+                }
+                else if ( (synpred226_Morel()) ) {
+                    alt147=21;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 146, 1, input);
+                        new NoViableAltException("", 147, 1, input);
 
                     throw nvae;
 
@@ -23386,36 +23466,36 @@ public class MorelParser extends MorelANTLRParserBase {
                 break;
             case 22:
                 {
-                int LA146_2 = input.LA(2);
+                int LA147_2 = input.LA(2);
 
-                if ( (synpred206_Morel()) ) {
-                    alt146=2;
-                }
-                else if ( (synpred218_Morel()) ) {
-                    alt146=14;
+                if ( (synpred207_Morel()) ) {
+                    alt147=2;
                 }
                 else if ( (synpred219_Morel()) ) {
-                    alt146=15;
+                    alt147=14;
                 }
                 else if ( (synpred220_Morel()) ) {
-                    alt146=16;
+                    alt147=15;
                 }
                 else if ( (synpred221_Morel()) ) {
-                    alt146=17;
+                    alt147=16;
                 }
                 else if ( (synpred222_Morel()) ) {
-                    alt146=18;
+                    alt147=17;
                 }
                 else if ( (synpred223_Morel()) ) {
-                    alt146=19;
+                    alt147=18;
                 }
                 else if ( (synpred224_Morel()) ) {
-                    alt146=20;
+                    alt147=19;
+                }
+                else if ( (synpred225_Morel()) ) {
+                    alt147=20;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 146, 2, input);
+                        new NoViableAltException("", 147, 2, input);
 
                     throw nvae;
 
@@ -23424,36 +23504,36 @@ public class MorelParser extends MorelANTLRParserBase {
                 break;
             case INUMBER:
                 {
-                int LA146_3 = input.LA(2);
+                int LA147_3 = input.LA(2);
 
-                if ( (synpred207_Morel()) ) {
-                    alt146=3;
-                }
-                else if ( (synpred218_Morel()) ) {
-                    alt146=14;
+                if ( (synpred208_Morel()) ) {
+                    alt147=3;
                 }
                 else if ( (synpred219_Morel()) ) {
-                    alt146=15;
+                    alt147=14;
                 }
                 else if ( (synpred220_Morel()) ) {
-                    alt146=16;
+                    alt147=15;
                 }
                 else if ( (synpred221_Morel()) ) {
-                    alt146=17;
+                    alt147=16;
                 }
                 else if ( (synpred222_Morel()) ) {
-                    alt146=18;
+                    alt147=17;
                 }
                 else if ( (synpred223_Morel()) ) {
-                    alt146=19;
+                    alt147=18;
                 }
                 else if ( (synpred224_Morel()) ) {
-                    alt146=20;
+                    alt147=19;
+                }
+                else if ( (synpred225_Morel()) ) {
+                    alt147=20;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 146, 3, input);
+                        new NoViableAltException("", 147, 3, input);
 
                     throw nvae;
 
@@ -23462,36 +23542,36 @@ public class MorelParser extends MorelANTLRParserBase {
                 break;
             case RNUMBER:
                 {
-                int LA146_4 = input.LA(2);
+                int LA147_4 = input.LA(2);
 
-                if ( (synpred208_Morel()) ) {
-                    alt146=4;
-                }
-                else if ( (synpred218_Morel()) ) {
-                    alt146=14;
+                if ( (synpred209_Morel()) ) {
+                    alt147=4;
                 }
                 else if ( (synpred219_Morel()) ) {
-                    alt146=15;
+                    alt147=14;
                 }
                 else if ( (synpred220_Morel()) ) {
-                    alt146=16;
+                    alt147=15;
                 }
                 else if ( (synpred221_Morel()) ) {
-                    alt146=17;
+                    alt147=16;
                 }
                 else if ( (synpred222_Morel()) ) {
-                    alt146=18;
+                    alt147=17;
                 }
                 else if ( (synpred223_Morel()) ) {
-                    alt146=19;
+                    alt147=18;
                 }
                 else if ( (synpred224_Morel()) ) {
-                    alt146=20;
+                    alt147=19;
+                }
+                else if ( (synpred225_Morel()) ) {
+                    alt147=20;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 146, 4, input);
+                        new NoViableAltException("", 147, 4, input);
 
                     throw nvae;
 
@@ -23500,74 +23580,74 @@ public class MorelParser extends MorelANTLRParserBase {
                 break;
             case QUOTED_39_39_92:
                 {
-                int LA146_5 = input.LA(2);
+                int LA147_5 = input.LA(2);
 
-                if ( (synpred209_Morel()) ) {
-                    alt146=5;
-                }
-                else if ( (synpred218_Morel()) ) {
-                    alt146=14;
+                if ( (synpred210_Morel()) ) {
+                    alt147=5;
                 }
                 else if ( (synpred219_Morel()) ) {
-                    alt146=15;
+                    alt147=14;
                 }
                 else if ( (synpred220_Morel()) ) {
-                    alt146=16;
+                    alt147=15;
                 }
                 else if ( (synpred221_Morel()) ) {
-                    alt146=17;
+                    alt147=16;
                 }
                 else if ( (synpred222_Morel()) ) {
-                    alt146=18;
+                    alt147=17;
                 }
                 else if ( (synpred223_Morel()) ) {
-                    alt146=19;
+                    alt147=18;
                 }
                 else if ( (synpred224_Morel()) ) {
-                    alt146=20;
+                    alt147=19;
+                }
+                else if ( (synpred225_Morel()) ) {
+                    alt147=20;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 146, 5, input);
+                        new NoViableAltException("", 147, 5, input);
 
                     throw nvae;
 
                 }
                 }
                 break;
-            case 95:
+            case 97:
                 {
-                int LA146_6 = input.LA(2);
+                int LA147_6 = input.LA(2);
 
-                if ( (synpred210_Morel()) ) {
-                    alt146=6;
-                }
-                else if ( (synpred218_Morel()) ) {
-                    alt146=14;
+                if ( (synpred211_Morel()) ) {
+                    alt147=6;
                 }
                 else if ( (synpred219_Morel()) ) {
-                    alt146=15;
+                    alt147=14;
                 }
                 else if ( (synpred220_Morel()) ) {
-                    alt146=16;
+                    alt147=15;
                 }
                 else if ( (synpred221_Morel()) ) {
-                    alt146=17;
+                    alt147=16;
                 }
                 else if ( (synpred222_Morel()) ) {
-                    alt146=18;
+                    alt147=17;
                 }
                 else if ( (synpred223_Morel()) ) {
-                    alt146=19;
+                    alt147=18;
                 }
                 else if ( (synpred224_Morel()) ) {
-                    alt146=20;
+                    alt147=19;
+                }
+                else if ( (synpred225_Morel()) ) {
+                    alt147=20;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 146, 6, input);
+                        new NoViableAltException("", 147, 6, input);
 
                     throw nvae;
 
@@ -23576,112 +23656,112 @@ public class MorelParser extends MorelANTLRParserBase {
                 break;
             case 57:
                 {
-                int LA146_7 = input.LA(2);
+                int LA147_7 = input.LA(2);
 
-                if ( (synpred210_Morel()) ) {
-                    alt146=6;
-                }
-                else if ( (synpred218_Morel()) ) {
-                    alt146=14;
+                if ( (synpred211_Morel()) ) {
+                    alt147=6;
                 }
                 else if ( (synpred219_Morel()) ) {
-                    alt146=15;
+                    alt147=14;
                 }
                 else if ( (synpred220_Morel()) ) {
-                    alt146=16;
+                    alt147=15;
                 }
                 else if ( (synpred221_Morel()) ) {
-                    alt146=17;
+                    alt147=16;
                 }
                 else if ( (synpred222_Morel()) ) {
-                    alt146=18;
+                    alt147=17;
                 }
                 else if ( (synpred223_Morel()) ) {
-                    alt146=19;
+                    alt147=18;
                 }
                 else if ( (synpred224_Morel()) ) {
-                    alt146=20;
+                    alt147=19;
+                }
+                else if ( (synpred225_Morel()) ) {
+                    alt147=20;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 146, 7, input);
+                        new NoViableAltException("", 147, 7, input);
 
                     throw nvae;
 
                 }
                 }
                 break;
-            case 71:
+            case 72:
                 {
-                int LA146_8 = input.LA(2);
+                int LA147_8 = input.LA(2);
 
-                if ( (synpred211_Morel()) ) {
-                    alt146=7;
-                }
-                else if ( (synpred218_Morel()) ) {
-                    alt146=14;
+                if ( (synpred212_Morel()) ) {
+                    alt147=7;
                 }
                 else if ( (synpred219_Morel()) ) {
-                    alt146=15;
+                    alt147=14;
                 }
                 else if ( (synpred220_Morel()) ) {
-                    alt146=16;
+                    alt147=15;
                 }
                 else if ( (synpred221_Morel()) ) {
-                    alt146=17;
+                    alt147=16;
                 }
                 else if ( (synpred222_Morel()) ) {
-                    alt146=18;
+                    alt147=17;
                 }
                 else if ( (synpred223_Morel()) ) {
-                    alt146=19;
+                    alt147=18;
                 }
                 else if ( (synpred224_Morel()) ) {
-                    alt146=20;
+                    alt147=19;
+                }
+                else if ( (synpred225_Morel()) ) {
+                    alt147=20;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 146, 8, input);
+                        new NoViableAltException("", 147, 8, input);
 
                     throw nvae;
 
                 }
                 }
                 break;
-            case 65:
+            case 66:
                 {
-                int LA146_9 = input.LA(2);
+                int LA147_9 = input.LA(2);
 
-                if ( (synpred211_Morel()) ) {
-                    alt146=7;
-                }
-                else if ( (synpred218_Morel()) ) {
-                    alt146=14;
+                if ( (synpred212_Morel()) ) {
+                    alt147=7;
                 }
                 else if ( (synpred219_Morel()) ) {
-                    alt146=15;
+                    alt147=14;
                 }
                 else if ( (synpred220_Morel()) ) {
-                    alt146=16;
+                    alt147=15;
                 }
                 else if ( (synpred221_Morel()) ) {
-                    alt146=17;
+                    alt147=16;
                 }
                 else if ( (synpred222_Morel()) ) {
-                    alt146=18;
+                    alt147=17;
                 }
                 else if ( (synpred223_Morel()) ) {
-                    alt146=19;
+                    alt147=18;
                 }
                 else if ( (synpred224_Morel()) ) {
-                    alt146=20;
+                    alt147=19;
+                }
+                else if ( (synpred225_Morel()) ) {
+                    alt147=20;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 146, 9, input);
+                        new NoViableAltException("", 147, 9, input);
 
                     throw nvae;
 
@@ -23690,36 +23770,36 @@ public class MorelParser extends MorelANTLRParserBase {
                 break;
             case 41:
                 {
-                int LA146_10 = input.LA(2);
+                int LA147_10 = input.LA(2);
 
-                if ( (synpred212_Morel()) ) {
-                    alt146=8;
-                }
-                else if ( (synpred218_Morel()) ) {
-                    alt146=14;
+                if ( (synpred213_Morel()) ) {
+                    alt147=8;
                 }
                 else if ( (synpred219_Morel()) ) {
-                    alt146=15;
+                    alt147=14;
                 }
                 else if ( (synpred220_Morel()) ) {
-                    alt146=16;
+                    alt147=15;
                 }
                 else if ( (synpred221_Morel()) ) {
-                    alt146=17;
+                    alt147=16;
                 }
                 else if ( (synpred222_Morel()) ) {
-                    alt146=18;
+                    alt147=17;
                 }
                 else if ( (synpred223_Morel()) ) {
-                    alt146=19;
+                    alt147=18;
                 }
                 else if ( (synpred224_Morel()) ) {
-                    alt146=20;
+                    alt147=19;
+                }
+                else if ( (synpred225_Morel()) ) {
+                    alt147=20;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 146, 10, input);
+                        new NoViableAltException("", 147, 10, input);
 
                     throw nvae;
 
@@ -23728,36 +23808,36 @@ public class MorelParser extends MorelANTLRParserBase {
                 break;
             case COLLECTION:
                 {
-                int LA146_11 = input.LA(2);
+                int LA147_11 = input.LA(2);
 
-                if ( (synpred213_Morel()) ) {
-                    alt146=9;
-                }
-                else if ( (synpred218_Morel()) ) {
-                    alt146=14;
+                if ( (synpred214_Morel()) ) {
+                    alt147=9;
                 }
                 else if ( (synpred219_Morel()) ) {
-                    alt146=15;
+                    alt147=14;
                 }
                 else if ( (synpred220_Morel()) ) {
-                    alt146=16;
+                    alt147=15;
                 }
                 else if ( (synpred221_Morel()) ) {
-                    alt146=17;
+                    alt147=16;
                 }
                 else if ( (synpred222_Morel()) ) {
-                    alt146=18;
+                    alt147=17;
                 }
                 else if ( (synpred223_Morel()) ) {
-                    alt146=19;
+                    alt147=18;
                 }
                 else if ( (synpred224_Morel()) ) {
-                    alt146=20;
+                    alt147=19;
+                }
+                else if ( (synpred225_Morel()) ) {
+                    alt147=20;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 146, 11, input);
+                        new NoViableAltException("", 147, 11, input);
 
                     throw nvae;
 
@@ -23766,36 +23846,36 @@ public class MorelParser extends MorelANTLRParserBase {
                 break;
             case 17:
                 {
-                int LA146_12 = input.LA(2);
+                int LA147_12 = input.LA(2);
 
-                if ( (synpred214_Morel()) ) {
-                    alt146=10;
-                }
-                else if ( (synpred218_Morel()) ) {
-                    alt146=14;
+                if ( (synpred215_Morel()) ) {
+                    alt147=10;
                 }
                 else if ( (synpred219_Morel()) ) {
-                    alt146=15;
+                    alt147=14;
                 }
                 else if ( (synpred220_Morel()) ) {
-                    alt146=16;
+                    alt147=15;
                 }
                 else if ( (synpred221_Morel()) ) {
-                    alt146=17;
+                    alt147=16;
                 }
                 else if ( (synpred222_Morel()) ) {
-                    alt146=18;
+                    alt147=17;
                 }
                 else if ( (synpred223_Morel()) ) {
-                    alt146=19;
+                    alt147=18;
                 }
                 else if ( (synpred224_Morel()) ) {
-                    alt146=20;
+                    alt147=19;
+                }
+                else if ( (synpred225_Morel()) ) {
+                    alt147=20;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 146, 12, input);
+                        new NoViableAltException("", 147, 12, input);
 
                     throw nvae;
 
@@ -23804,81 +23884,81 @@ public class MorelParser extends MorelANTLRParserBase {
                 break;
             case 33:
                 {
-                int LA146_13 = input.LA(2);
+                int LA147_13 = input.LA(2);
 
-                if ( (synpred215_Morel()) ) {
-                    alt146=11;
-                }
-                else if ( (synpred218_Morel()) ) {
-                    alt146=14;
+                if ( (synpred216_Morel()) ) {
+                    alt147=11;
                 }
                 else if ( (synpred219_Morel()) ) {
-                    alt146=15;
+                    alt147=14;
                 }
                 else if ( (synpred220_Morel()) ) {
-                    alt146=16;
+                    alt147=15;
                 }
                 else if ( (synpred221_Morel()) ) {
-                    alt146=17;
+                    alt147=16;
                 }
                 else if ( (synpred222_Morel()) ) {
-                    alt146=18;
+                    alt147=17;
                 }
                 else if ( (synpred223_Morel()) ) {
-                    alt146=19;
+                    alt147=18;
                 }
                 else if ( (synpred224_Morel()) ) {
-                    alt146=20;
+                    alt147=19;
+                }
+                else if ( (synpred225_Morel()) ) {
+                    alt147=20;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 146, 13, input);
+                        new NoViableAltException("", 147, 13, input);
 
                     throw nvae;
 
                 }
                 }
                 break;
-            case 67:
+            case 68:
                 {
-                alt146=12;
+                alt147=12;
                 }
                 break;
-            case 62:
+            case 63:
                 {
-                alt146=13;
+                alt147=13;
                 }
                 break;
             case 25:
                 {
-                int LA146_16 = input.LA(2);
+                int LA147_16 = input.LA(2);
 
-                if ( (synpred218_Morel()) ) {
-                    alt146=14;
-                }
-                else if ( (synpred219_Morel()) ) {
-                    alt146=15;
+                if ( (synpred219_Morel()) ) {
+                    alt147=14;
                 }
                 else if ( (synpred220_Morel()) ) {
-                    alt146=16;
+                    alt147=15;
                 }
                 else if ( (synpred221_Morel()) ) {
-                    alt146=17;
+                    alt147=16;
                 }
                 else if ( (synpred222_Morel()) ) {
-                    alt146=18;
+                    alt147=17;
                 }
                 else if ( (synpred223_Morel()) ) {
-                    alt146=19;
+                    alt147=18;
                 }
                 else if ( (synpred224_Morel()) ) {
-                    alt146=20;
+                    alt147=19;
+                }
+                else if ( (synpred225_Morel()) ) {
+                    alt147=20;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 146, 16, input);
+                        new NoViableAltException("", 147, 16, input);
 
                     throw nvae;
 
@@ -23887,68 +23967,68 @@ public class MorelParser extends MorelANTLRParserBase {
                 break;
             case 27:
                 {
-                int LA146_17 = input.LA(2);
+                int LA147_17 = input.LA(2);
 
-                if ( (synpred218_Morel()) ) {
-                    alt146=14;
-                }
-                else if ( (synpred219_Morel()) ) {
-                    alt146=15;
+                if ( (synpred219_Morel()) ) {
+                    alt147=14;
                 }
                 else if ( (synpred220_Morel()) ) {
-                    alt146=16;
+                    alt147=15;
                 }
                 else if ( (synpred221_Morel()) ) {
-                    alt146=17;
+                    alt147=16;
                 }
                 else if ( (synpred222_Morel()) ) {
-                    alt146=18;
+                    alt147=17;
                 }
                 else if ( (synpred223_Morel()) ) {
-                    alt146=19;
+                    alt147=18;
                 }
                 else if ( (synpred224_Morel()) ) {
-                    alt146=20;
+                    alt147=19;
+                }
+                else if ( (synpred225_Morel()) ) {
+                    alt147=20;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 146, 17, input);
+                        new NoViableAltException("", 147, 17, input);
 
                     throw nvae;
 
                 }
                 }
                 break;
-            case 70:
+            case 71:
                 {
-                int LA146_18 = input.LA(2);
+                int LA147_18 = input.LA(2);
 
-                if ( (synpred218_Morel()) ) {
-                    alt146=14;
-                }
-                else if ( (synpred219_Morel()) ) {
-                    alt146=15;
+                if ( (synpred219_Morel()) ) {
+                    alt147=14;
                 }
                 else if ( (synpred220_Morel()) ) {
-                    alt146=16;
+                    alt147=15;
                 }
                 else if ( (synpred221_Morel()) ) {
-                    alt146=17;
+                    alt147=16;
                 }
                 else if ( (synpred222_Morel()) ) {
-                    alt146=18;
+                    alt147=17;
                 }
                 else if ( (synpred223_Morel()) ) {
-                    alt146=19;
+                    alt147=18;
                 }
                 else if ( (synpred224_Morel()) ) {
-                    alt146=20;
+                    alt147=19;
+                }
+                else if ( (synpred225_Morel()) ) {
+                    alt147=20;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 146, 18, input);
+                        new NoViableAltException("", 147, 18, input);
 
                     throw nvae;
 
@@ -23957,33 +24037,33 @@ public class MorelParser extends MorelANTLRParserBase {
                 break;
             case 15:
                 {
-                int LA146_19 = input.LA(2);
+                int LA147_19 = input.LA(2);
 
-                if ( (synpred218_Morel()) ) {
-                    alt146=14;
-                }
-                else if ( (synpred219_Morel()) ) {
-                    alt146=15;
+                if ( (synpred219_Morel()) ) {
+                    alt147=14;
                 }
                 else if ( (synpred220_Morel()) ) {
-                    alt146=16;
+                    alt147=15;
                 }
                 else if ( (synpred221_Morel()) ) {
-                    alt146=17;
+                    alt147=16;
                 }
                 else if ( (synpred222_Morel()) ) {
-                    alt146=18;
+                    alt147=17;
                 }
                 else if ( (synpred223_Morel()) ) {
-                    alt146=19;
+                    alt147=18;
                 }
                 else if ( (synpred224_Morel()) ) {
-                    alt146=20;
+                    alt147=19;
+                }
+                else if ( (synpred225_Morel()) ) {
+                    alt147=20;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 146, 19, input);
+                        new NoViableAltException("", 147, 19, input);
 
                     throw nvae;
 
@@ -23992,39 +24072,39 @@ public class MorelParser extends MorelANTLRParserBase {
                 break;
             case 19:
                 {
-                int LA146_20 = input.LA(2);
+                int LA147_20 = input.LA(2);
 
-                if ( (synpred218_Morel()) ) {
-                    alt146=14;
-                }
-                else if ( (synpred219_Morel()) ) {
-                    alt146=15;
+                if ( (synpred219_Morel()) ) {
+                    alt147=14;
                 }
                 else if ( (synpred220_Morel()) ) {
-                    alt146=16;
+                    alt147=15;
                 }
                 else if ( (synpred221_Morel()) ) {
-                    alt146=17;
+                    alt147=16;
                 }
                 else if ( (synpred222_Morel()) ) {
-                    alt146=18;
+                    alt147=17;
                 }
                 else if ( (synpred223_Morel()) ) {
-                    alt146=19;
+                    alt147=18;
                 }
                 else if ( (synpred224_Morel()) ) {
-                    alt146=20;
+                    alt147=19;
                 }
-                else if ( (synpred226_Morel()) ) {
-                    alt146=22;
+                else if ( (synpred225_Morel()) ) {
+                    alt147=20;
                 }
                 else if ( (synpred227_Morel()) ) {
-                    alt146=23;
+                    alt147=22;
+                }
+                else if ( (synpred228_Morel()) ) {
+                    alt147=23;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 146, 20, input);
+                        new NoViableAltException("", 147, 20, input);
 
                     throw nvae;
 
@@ -24033,39 +24113,39 @@ public class MorelParser extends MorelANTLRParserBase {
                 break;
             case 18:
                 {
-                int LA146_21 = input.LA(2);
+                int LA147_21 = input.LA(2);
 
-                if ( (synpred218_Morel()) ) {
-                    alt146=14;
-                }
-                else if ( (synpred219_Morel()) ) {
-                    alt146=15;
+                if ( (synpred219_Morel()) ) {
+                    alt147=14;
                 }
                 else if ( (synpred220_Morel()) ) {
-                    alt146=16;
+                    alt147=15;
                 }
                 else if ( (synpred221_Morel()) ) {
-                    alt146=17;
+                    alt147=16;
                 }
                 else if ( (synpred222_Morel()) ) {
-                    alt146=18;
+                    alt147=17;
                 }
                 else if ( (synpred223_Morel()) ) {
-                    alt146=19;
+                    alt147=18;
                 }
                 else if ( (synpred224_Morel()) ) {
-                    alt146=20;
+                    alt147=19;
                 }
-                else if ( (synpred226_Morel()) ) {
-                    alt146=22;
+                else if ( (synpred225_Morel()) ) {
+                    alt147=20;
                 }
                 else if ( (synpred227_Morel()) ) {
-                    alt146=23;
+                    alt147=22;
+                }
+                else if ( (synpred228_Morel()) ) {
+                    alt147=23;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 146, 21, input);
+                        new NoViableAltException("", 147, 21, input);
 
                     throw nvae;
 
@@ -24074,23 +24154,23 @@ public class MorelParser extends MorelANTLRParserBase {
                 break;
             case 21:
                 {
-                alt146=24;
+                alt147=24;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return element;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 146, 0, input);
+                    new NoViableAltException("", 147, 0, input);
 
                 throw nvae;
 
             }
 
-            switch (alt146) {
+            switch (alt147) {
                 case 1 :
-                    // Morel.g:13699:2: c0= parse_edu_ustb_sei_mde_morel_VariableExp
+                    // Morel.g:13734:2: c0= parse_edu_ustb_sei_mde_morel_VariableExp
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_VariableExp_in_parse_edu_ustb_sei_mde_morel_Expression13056);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_VariableExp_in_parse_edu_ustb_sei_mde_morel_Expression13101);
                     c0=parse_edu_ustb_sei_mde_morel_VariableExp();
 
                     state._fsp--;
@@ -24101,9 +24181,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Morel.g:13700:4: c1= parse_edu_ustb_sei_mde_morel_NestedExp
+                    // Morel.g:13735:4: c1= parse_edu_ustb_sei_mde_morel_NestedExp
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_NestedExp_in_parse_edu_ustb_sei_mde_morel_Expression13066);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_NestedExp_in_parse_edu_ustb_sei_mde_morel_Expression13111);
                     c1=parse_edu_ustb_sei_mde_morel_NestedExp();
 
                     state._fsp--;
@@ -24114,9 +24194,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 3 :
-                    // Morel.g:13701:4: c2= parse_edu_ustb_sei_mde_morel_IntegerLiteralExp
+                    // Morel.g:13736:4: c2= parse_edu_ustb_sei_mde_morel_IntegerLiteralExp
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_IntegerLiteralExp_in_parse_edu_ustb_sei_mde_morel_Expression13076);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_IntegerLiteralExp_in_parse_edu_ustb_sei_mde_morel_Expression13121);
                     c2=parse_edu_ustb_sei_mde_morel_IntegerLiteralExp();
 
                     state._fsp--;
@@ -24127,9 +24207,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 4 :
-                    // Morel.g:13702:4: c3= parse_edu_ustb_sei_mde_morel_RealLiteralExp
+                    // Morel.g:13737:4: c3= parse_edu_ustb_sei_mde_morel_RealLiteralExp
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_RealLiteralExp_in_parse_edu_ustb_sei_mde_morel_Expression13086);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_RealLiteralExp_in_parse_edu_ustb_sei_mde_morel_Expression13131);
                     c3=parse_edu_ustb_sei_mde_morel_RealLiteralExp();
 
                     state._fsp--;
@@ -24140,9 +24220,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 5 :
-                    // Morel.g:13703:4: c4= parse_edu_ustb_sei_mde_morel_StringLiteralExp
+                    // Morel.g:13738:4: c4= parse_edu_ustb_sei_mde_morel_StringLiteralExp
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_StringLiteralExp_in_parse_edu_ustb_sei_mde_morel_Expression13096);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_StringLiteralExp_in_parse_edu_ustb_sei_mde_morel_Expression13141);
                     c4=parse_edu_ustb_sei_mde_morel_StringLiteralExp();
 
                     state._fsp--;
@@ -24153,9 +24233,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 6 :
-                    // Morel.g:13704:4: c5= parse_edu_ustb_sei_mde_morel_BooleanLiteralExp
+                    // Morel.g:13739:4: c5= parse_edu_ustb_sei_mde_morel_BooleanLiteralExp
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanLiteralExp_in_parse_edu_ustb_sei_mde_morel_Expression13106);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanLiteralExp_in_parse_edu_ustb_sei_mde_morel_Expression13151);
                     c5=parse_edu_ustb_sei_mde_morel_BooleanLiteralExp();
 
                     state._fsp--;
@@ -24166,9 +24246,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 7 :
-                    // Morel.g:13705:4: c6= parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp
+                    // Morel.g:13740:4: c6= parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp_in_parse_edu_ustb_sei_mde_morel_Expression13116);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp_in_parse_edu_ustb_sei_mde_morel_Expression13161);
                     c6=parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp();
 
                     state._fsp--;
@@ -24179,9 +24259,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 8 :
-                    // Morel.g:13706:4: c7= parse_edu_ustb_sei_mde_morel_TypeLiteralExp
+                    // Morel.g:13741:4: c7= parse_edu_ustb_sei_mde_morel_TypeLiteralExp
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_TypeLiteralExp_in_parse_edu_ustb_sei_mde_morel_Expression13126);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_TypeLiteralExp_in_parse_edu_ustb_sei_mde_morel_Expression13171);
                     c7=parse_edu_ustb_sei_mde_morel_TypeLiteralExp();
 
                     state._fsp--;
@@ -24192,9 +24272,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 9 :
-                    // Morel.g:13707:4: c8= parse_edu_ustb_sei_mde_morel_CollectionLiteralExp
+                    // Morel.g:13742:4: c8= parse_edu_ustb_sei_mde_morel_CollectionLiteralExp
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_CollectionLiteralExp_in_parse_edu_ustb_sei_mde_morel_Expression13136);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_CollectionLiteralExp_in_parse_edu_ustb_sei_mde_morel_Expression13181);
                     c8=parse_edu_ustb_sei_mde_morel_CollectionLiteralExp();
 
                     state._fsp--;
@@ -24205,9 +24285,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 10 :
-                    // Morel.g:13708:4: c9= parse_edu_ustb_sei_mde_morel_EnumLiteralExp
+                    // Morel.g:13743:4: c9= parse_edu_ustb_sei_mde_morel_EnumLiteralExp
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_EnumLiteralExp_in_parse_edu_ustb_sei_mde_morel_Expression13146);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_EnumLiteralExp_in_parse_edu_ustb_sei_mde_morel_Expression13191);
                     c9=parse_edu_ustb_sei_mde_morel_EnumLiteralExp();
 
                     state._fsp--;
@@ -24218,9 +24298,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 11 :
-                    // Morel.g:13709:4: c10= parse_edu_ustb_sei_mde_morel_ArrayLiteralExp
+                    // Morel.g:13744:4: c10= parse_edu_ustb_sei_mde_morel_ArrayLiteralExp
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_ArrayLiteralExp_in_parse_edu_ustb_sei_mde_morel_Expression13156);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_ArrayLiteralExp_in_parse_edu_ustb_sei_mde_morel_Expression13201);
                     c10=parse_edu_ustb_sei_mde_morel_ArrayLiteralExp();
 
                     state._fsp--;
@@ -24231,9 +24311,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 12 :
-                    // Morel.g:13710:4: c11= parse_edu_ustb_sei_mde_morel_LetExp
+                    // Morel.g:13745:4: c11= parse_edu_ustb_sei_mde_morel_LetExp
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_LetExp_in_parse_edu_ustb_sei_mde_morel_Expression13166);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_LetExp_in_parse_edu_ustb_sei_mde_morel_Expression13211);
                     c11=parse_edu_ustb_sei_mde_morel_LetExp();
 
                     state._fsp--;
@@ -24244,9 +24324,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 13 :
-                    // Morel.g:13711:4: c12= parse_edu_ustb_sei_mde_morel_ConditionExp
+                    // Morel.g:13746:4: c12= parse_edu_ustb_sei_mde_morel_ConditionExp
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_ConditionExp_in_parse_edu_ustb_sei_mde_morel_Expression13176);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_ConditionExp_in_parse_edu_ustb_sei_mde_morel_Expression13221);
                     c12=parse_edu_ustb_sei_mde_morel_ConditionExp();
 
                     state._fsp--;
@@ -24257,9 +24337,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 14 :
-                    // Morel.g:13712:4: c13= parse_edu_ustb_sei_mde_morel_BooleanImpliesExp
+                    // Morel.g:13747:4: c13= parse_edu_ustb_sei_mde_morel_BooleanImpliesExp
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanImpliesExp_in_parse_edu_ustb_sei_mde_morel_Expression13186);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanImpliesExp_in_parse_edu_ustb_sei_mde_morel_Expression13231);
                     c13=parse_edu_ustb_sei_mde_morel_BooleanImpliesExp();
 
                     state._fsp--;
@@ -24270,9 +24350,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 15 :
-                    // Morel.g:13713:4: c14= parse_edu_ustb_sei_mde_morel_BooleanOrExp
+                    // Morel.g:13748:4: c14= parse_edu_ustb_sei_mde_morel_BooleanOrExp
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanOrExp_in_parse_edu_ustb_sei_mde_morel_Expression13196);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanOrExp_in_parse_edu_ustb_sei_mde_morel_Expression13241);
                     c14=parse_edu_ustb_sei_mde_morel_BooleanOrExp();
 
                     state._fsp--;
@@ -24283,9 +24363,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 16 :
-                    // Morel.g:13714:4: c15= parse_edu_ustb_sei_mde_morel_BooleanAndExp
+                    // Morel.g:13749:4: c15= parse_edu_ustb_sei_mde_morel_BooleanAndExp
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanAndExp_in_parse_edu_ustb_sei_mde_morel_Expression13206);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanAndExp_in_parse_edu_ustb_sei_mde_morel_Expression13251);
                     c15=parse_edu_ustb_sei_mde_morel_BooleanAndExp();
 
                     state._fsp--;
@@ -24296,9 +24376,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 17 :
-                    // Morel.g:13715:4: c16= parse_edu_ustb_sei_mde_morel_RelationalExp
+                    // Morel.g:13750:4: c16= parse_edu_ustb_sei_mde_morel_RelationalExp
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_RelationalExp_in_parse_edu_ustb_sei_mde_morel_Expression13216);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_RelationalExp_in_parse_edu_ustb_sei_mde_morel_Expression13261);
                     c16=parse_edu_ustb_sei_mde_morel_RelationalExp();
 
                     state._fsp--;
@@ -24309,9 +24389,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 18 :
-                    // Morel.g:13716:4: c17= parse_edu_ustb_sei_mde_morel_AdditiveExp
+                    // Morel.g:13751:4: c17= parse_edu_ustb_sei_mde_morel_AdditiveExp
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_AdditiveExp_in_parse_edu_ustb_sei_mde_morel_Expression13226);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_AdditiveExp_in_parse_edu_ustb_sei_mde_morel_Expression13271);
                     c17=parse_edu_ustb_sei_mde_morel_AdditiveExp();
 
                     state._fsp--;
@@ -24322,9 +24402,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 19 :
-                    // Morel.g:13717:4: c18= parse_edu_ustb_sei_mde_morel_MultiplicativeExp
+                    // Morel.g:13752:4: c18= parse_edu_ustb_sei_mde_morel_MultiplicativeExp
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_MultiplicativeExp_in_parse_edu_ustb_sei_mde_morel_Expression13236);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_MultiplicativeExp_in_parse_edu_ustb_sei_mde_morel_Expression13281);
                     c18=parse_edu_ustb_sei_mde_morel_MultiplicativeExp();
 
                     state._fsp--;
@@ -24335,9 +24415,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 20 :
-                    // Morel.g:13718:4: c19= parse_edu_ustb_sei_mde_morel_UnaryExp
+                    // Morel.g:13753:4: c19= parse_edu_ustb_sei_mde_morel_UnaryExp
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_UnaryExp_in_parse_edu_ustb_sei_mde_morel_Expression13246);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_UnaryExp_in_parse_edu_ustb_sei_mde_morel_Expression13291);
                     c19=parse_edu_ustb_sei_mde_morel_UnaryExp();
 
                     state._fsp--;
@@ -24348,9 +24428,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 21 :
-                    // Morel.g:13719:4: c20= parse_edu_ustb_sei_mde_morel_BindExp
+                    // Morel.g:13754:4: c20= parse_edu_ustb_sei_mde_morel_BindExp
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_BindExp_in_parse_edu_ustb_sei_mde_morel_Expression13256);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_BindExp_in_parse_edu_ustb_sei_mde_morel_Expression13301);
                     c20=parse_edu_ustb_sei_mde_morel_BindExp();
 
                     state._fsp--;
@@ -24361,9 +24441,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 22 :
-                    // Morel.g:13720:4: c21= parse_edu_ustb_sei_mde_morel_PredefinedBindExp
+                    // Morel.g:13755:4: c21= parse_edu_ustb_sei_mde_morel_PredefinedBindExp
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_PredefinedBindExp_in_parse_edu_ustb_sei_mde_morel_Expression13266);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_PredefinedBindExp_in_parse_edu_ustb_sei_mde_morel_Expression13311);
                     c21=parse_edu_ustb_sei_mde_morel_PredefinedBindExp();
 
                     state._fsp--;
@@ -24374,9 +24454,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 23 :
-                    // Morel.g:13721:4: c22= parse_edu_ustb_sei_mde_morel_PredefinedVariableExp
+                    // Morel.g:13756:4: c22= parse_edu_ustb_sei_mde_morel_PredefinedVariableExp
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_PredefinedVariableExp_in_parse_edu_ustb_sei_mde_morel_Expression13276);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_PredefinedVariableExp_in_parse_edu_ustb_sei_mde_morel_Expression13321);
                     c22=parse_edu_ustb_sei_mde_morel_PredefinedVariableExp();
 
                     state._fsp--;
@@ -24387,9 +24467,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 24 :
-                    // Morel.g:13722:4: c23= parse_edu_ustb_sei_mde_morel_ReflectiveVariableExp
+                    // Morel.g:13757:4: c23= parse_edu_ustb_sei_mde_morel_ReflectiveVariableExp
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_ReflectiveVariableExp_in_parse_edu_ustb_sei_mde_morel_Expression13286);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_ReflectiveVariableExp_in_parse_edu_ustb_sei_mde_morel_Expression13331);
                     c23=parse_edu_ustb_sei_mde_morel_ReflectiveVariableExp();
 
                     state._fsp--;
@@ -24419,7 +24499,7 @@ public class MorelParser extends MorelANTLRParserBase {
 
 
     // $ANTLR start "parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild"
-    // Morel.g:13726:1: parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild returns [edu.ustb.sei.mde.morel.MultiplicativeExpChild element = null] : (c0= parse_edu_ustb_sei_mde_morel_VariableExp |c1= parse_edu_ustb_sei_mde_morel_NestedExp |c2= parse_edu_ustb_sei_mde_morel_IntegerLiteralExp |c3= parse_edu_ustb_sei_mde_morel_RealLiteralExp |c4= parse_edu_ustb_sei_mde_morel_StringLiteralExp |c5= parse_edu_ustb_sei_mde_morel_BooleanLiteralExp |c6= parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp |c7= parse_edu_ustb_sei_mde_morel_TypeLiteralExp |c8= parse_edu_ustb_sei_mde_morel_CollectionLiteralExp |c9= parse_edu_ustb_sei_mde_morel_EnumLiteralExp |c10= parse_edu_ustb_sei_mde_morel_ArrayLiteralExp |c11= parse_edu_ustb_sei_mde_morel_UnaryExp |c12= parse_edu_ustb_sei_mde_morel_PredefinedVariableExp );
+    // Morel.g:13761:1: parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild returns [edu.ustb.sei.mde.morel.MultiplicativeExpChild element = null] : (c0= parse_edu_ustb_sei_mde_morel_VariableExp |c1= parse_edu_ustb_sei_mde_morel_NestedExp |c2= parse_edu_ustb_sei_mde_morel_IntegerLiteralExp |c3= parse_edu_ustb_sei_mde_morel_RealLiteralExp |c4= parse_edu_ustb_sei_mde_morel_StringLiteralExp |c5= parse_edu_ustb_sei_mde_morel_BooleanLiteralExp |c6= parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp |c7= parse_edu_ustb_sei_mde_morel_TypeLiteralExp |c8= parse_edu_ustb_sei_mde_morel_CollectionLiteralExp |c9= parse_edu_ustb_sei_mde_morel_EnumLiteralExp |c10= parse_edu_ustb_sei_mde_morel_ArrayLiteralExp |c11= parse_edu_ustb_sei_mde_morel_UnaryExp |c12= parse_edu_ustb_sei_mde_morel_PredefinedVariableExp );
     public final edu.ustb.sei.mde.morel.MultiplicativeExpChild parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild() throws RecognitionException {
         edu.ustb.sei.mde.morel.MultiplicativeExpChild element =  null;
 
@@ -24455,23 +24535,23 @@ public class MorelParser extends MorelANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 59) ) { return element; }
 
-            // Morel.g:13727:2: (c0= parse_edu_ustb_sei_mde_morel_VariableExp |c1= parse_edu_ustb_sei_mde_morel_NestedExp |c2= parse_edu_ustb_sei_mde_morel_IntegerLiteralExp |c3= parse_edu_ustb_sei_mde_morel_RealLiteralExp |c4= parse_edu_ustb_sei_mde_morel_StringLiteralExp |c5= parse_edu_ustb_sei_mde_morel_BooleanLiteralExp |c6= parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp |c7= parse_edu_ustb_sei_mde_morel_TypeLiteralExp |c8= parse_edu_ustb_sei_mde_morel_CollectionLiteralExp |c9= parse_edu_ustb_sei_mde_morel_EnumLiteralExp |c10= parse_edu_ustb_sei_mde_morel_ArrayLiteralExp |c11= parse_edu_ustb_sei_mde_morel_UnaryExp |c12= parse_edu_ustb_sei_mde_morel_PredefinedVariableExp )
-            int alt147=13;
+            // Morel.g:13762:2: (c0= parse_edu_ustb_sei_mde_morel_VariableExp |c1= parse_edu_ustb_sei_mde_morel_NestedExp |c2= parse_edu_ustb_sei_mde_morel_IntegerLiteralExp |c3= parse_edu_ustb_sei_mde_morel_RealLiteralExp |c4= parse_edu_ustb_sei_mde_morel_StringLiteralExp |c5= parse_edu_ustb_sei_mde_morel_BooleanLiteralExp |c6= parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp |c7= parse_edu_ustb_sei_mde_morel_TypeLiteralExp |c8= parse_edu_ustb_sei_mde_morel_CollectionLiteralExp |c9= parse_edu_ustb_sei_mde_morel_EnumLiteralExp |c10= parse_edu_ustb_sei_mde_morel_ArrayLiteralExp |c11= parse_edu_ustb_sei_mde_morel_UnaryExp |c12= parse_edu_ustb_sei_mde_morel_PredefinedVariableExp )
+            int alt148=13;
             switch ( input.LA(1) ) {
             case IDENTIFIER:
                 {
-                int LA147_1 = input.LA(2);
+                int LA148_1 = input.LA(2);
 
-                if ( (synpred228_Morel()) ) {
-                    alt147=1;
+                if ( (synpred229_Morel()) ) {
+                    alt148=1;
                 }
-                else if ( (synpred239_Morel()) ) {
-                    alt147=12;
+                else if ( (synpred240_Morel()) ) {
+                    alt148=12;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 147, 1, input);
+                        new NoViableAltException("", 148, 1, input);
 
                     throw nvae;
 
@@ -24480,18 +24560,18 @@ public class MorelParser extends MorelANTLRParserBase {
                 break;
             case 22:
                 {
-                int LA147_2 = input.LA(2);
+                int LA148_2 = input.LA(2);
 
-                if ( (synpred229_Morel()) ) {
-                    alt147=2;
+                if ( (synpred230_Morel()) ) {
+                    alt148=2;
                 }
-                else if ( (synpred239_Morel()) ) {
-                    alt147=12;
+                else if ( (synpred240_Morel()) ) {
+                    alt148=12;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 147, 2, input);
+                        new NoViableAltException("", 148, 2, input);
 
                     throw nvae;
 
@@ -24500,18 +24580,18 @@ public class MorelParser extends MorelANTLRParserBase {
                 break;
             case INUMBER:
                 {
-                int LA147_3 = input.LA(2);
+                int LA148_3 = input.LA(2);
 
-                if ( (synpred230_Morel()) ) {
-                    alt147=3;
+                if ( (synpred231_Morel()) ) {
+                    alt148=3;
                 }
-                else if ( (synpred239_Morel()) ) {
-                    alt147=12;
+                else if ( (synpred240_Morel()) ) {
+                    alt148=12;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 147, 3, input);
+                        new NoViableAltException("", 148, 3, input);
 
                     throw nvae;
 
@@ -24520,18 +24600,18 @@ public class MorelParser extends MorelANTLRParserBase {
                 break;
             case RNUMBER:
                 {
-                int LA147_4 = input.LA(2);
+                int LA148_4 = input.LA(2);
 
-                if ( (synpred231_Morel()) ) {
-                    alt147=4;
+                if ( (synpred232_Morel()) ) {
+                    alt148=4;
                 }
-                else if ( (synpred239_Morel()) ) {
-                    alt147=12;
+                else if ( (synpred240_Morel()) ) {
+                    alt148=12;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 147, 4, input);
+                        new NoViableAltException("", 148, 4, input);
 
                     throw nvae;
 
@@ -24540,38 +24620,38 @@ public class MorelParser extends MorelANTLRParserBase {
                 break;
             case QUOTED_39_39_92:
                 {
-                int LA147_5 = input.LA(2);
+                int LA148_5 = input.LA(2);
 
-                if ( (synpred232_Morel()) ) {
-                    alt147=5;
+                if ( (synpred233_Morel()) ) {
+                    alt148=5;
                 }
-                else if ( (synpred239_Morel()) ) {
-                    alt147=12;
+                else if ( (synpred240_Morel()) ) {
+                    alt148=12;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 147, 5, input);
+                        new NoViableAltException("", 148, 5, input);
 
                     throw nvae;
 
                 }
                 }
                 break;
-            case 95:
+            case 97:
                 {
-                int LA147_6 = input.LA(2);
+                int LA148_6 = input.LA(2);
 
-                if ( (synpred233_Morel()) ) {
-                    alt147=6;
+                if ( (synpred234_Morel()) ) {
+                    alt148=6;
                 }
-                else if ( (synpred239_Morel()) ) {
-                    alt147=12;
+                else if ( (synpred240_Morel()) ) {
+                    alt148=12;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 147, 6, input);
+                        new NoViableAltException("", 148, 6, input);
 
                     throw nvae;
 
@@ -24580,58 +24660,58 @@ public class MorelParser extends MorelANTLRParserBase {
                 break;
             case 57:
                 {
-                int LA147_7 = input.LA(2);
+                int LA148_7 = input.LA(2);
 
-                if ( (synpred233_Morel()) ) {
-                    alt147=6;
+                if ( (synpred234_Morel()) ) {
+                    alt148=6;
                 }
-                else if ( (synpred239_Morel()) ) {
-                    alt147=12;
+                else if ( (synpred240_Morel()) ) {
+                    alt148=12;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 147, 7, input);
+                        new NoViableAltException("", 148, 7, input);
 
                     throw nvae;
 
                 }
                 }
                 break;
-            case 71:
+            case 72:
                 {
-                int LA147_8 = input.LA(2);
+                int LA148_8 = input.LA(2);
 
-                if ( (synpred234_Morel()) ) {
-                    alt147=7;
+                if ( (synpred235_Morel()) ) {
+                    alt148=7;
                 }
-                else if ( (synpred239_Morel()) ) {
-                    alt147=12;
+                else if ( (synpred240_Morel()) ) {
+                    alt148=12;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 147, 8, input);
+                        new NoViableAltException("", 148, 8, input);
 
                     throw nvae;
 
                 }
                 }
                 break;
-            case 65:
+            case 66:
                 {
-                int LA147_9 = input.LA(2);
+                int LA148_9 = input.LA(2);
 
-                if ( (synpred234_Morel()) ) {
-                    alt147=7;
+                if ( (synpred235_Morel()) ) {
+                    alt148=7;
                 }
-                else if ( (synpred239_Morel()) ) {
-                    alt147=12;
+                else if ( (synpred240_Morel()) ) {
+                    alt148=12;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 147, 9, input);
+                        new NoViableAltException("", 148, 9, input);
 
                     throw nvae;
 
@@ -24640,18 +24720,18 @@ public class MorelParser extends MorelANTLRParserBase {
                 break;
             case 41:
                 {
-                int LA147_10 = input.LA(2);
+                int LA148_10 = input.LA(2);
 
-                if ( (synpred235_Morel()) ) {
-                    alt147=8;
+                if ( (synpred236_Morel()) ) {
+                    alt148=8;
                 }
-                else if ( (synpred239_Morel()) ) {
-                    alt147=12;
+                else if ( (synpred240_Morel()) ) {
+                    alt148=12;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 147, 10, input);
+                        new NoViableAltException("", 148, 10, input);
 
                     throw nvae;
 
@@ -24660,18 +24740,18 @@ public class MorelParser extends MorelANTLRParserBase {
                 break;
             case COLLECTION:
                 {
-                int LA147_11 = input.LA(2);
+                int LA148_11 = input.LA(2);
 
-                if ( (synpred236_Morel()) ) {
-                    alt147=9;
+                if ( (synpred237_Morel()) ) {
+                    alt148=9;
                 }
-                else if ( (synpred239_Morel()) ) {
-                    alt147=12;
+                else if ( (synpred240_Morel()) ) {
+                    alt148=12;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 147, 11, input);
+                        new NoViableAltException("", 148, 11, input);
 
                     throw nvae;
 
@@ -24680,18 +24760,18 @@ public class MorelParser extends MorelANTLRParserBase {
                 break;
             case 17:
                 {
-                int LA147_12 = input.LA(2);
+                int LA148_12 = input.LA(2);
 
-                if ( (synpred237_Morel()) ) {
-                    alt147=10;
+                if ( (synpred238_Morel()) ) {
+                    alt148=10;
                 }
-                else if ( (synpred239_Morel()) ) {
-                    alt147=12;
+                else if ( (synpred240_Morel()) ) {
+                    alt148=12;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 147, 12, input);
+                        new NoViableAltException("", 148, 12, input);
 
                     throw nvae;
 
@@ -24700,18 +24780,18 @@ public class MorelParser extends MorelANTLRParserBase {
                 break;
             case 33:
                 {
-                int LA147_13 = input.LA(2);
+                int LA148_13 = input.LA(2);
 
-                if ( (synpred238_Morel()) ) {
-                    alt147=11;
+                if ( (synpred239_Morel()) ) {
+                    alt148=11;
                 }
-                else if ( (synpred239_Morel()) ) {
-                    alt147=12;
+                else if ( (synpred240_Morel()) ) {
+                    alt148=12;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 147, 13, input);
+                        new NoViableAltException("", 148, 13, input);
 
                     throw nvae;
 
@@ -24721,25 +24801,25 @@ public class MorelParser extends MorelANTLRParserBase {
             case 15:
             case 25:
             case 27:
-            case 70:
+            case 71:
                 {
-                alt147=12;
+                alt148=12;
                 }
                 break;
             case 19:
                 {
-                int LA147_18 = input.LA(2);
+                int LA148_18 = input.LA(2);
 
-                if ( (synpred239_Morel()) ) {
-                    alt147=12;
+                if ( (synpred240_Morel()) ) {
+                    alt148=12;
                 }
                 else if ( (true) ) {
-                    alt147=13;
+                    alt148=13;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 147, 18, input);
+                        new NoViableAltException("", 148, 18, input);
 
                     throw nvae;
 
@@ -24748,18 +24828,18 @@ public class MorelParser extends MorelANTLRParserBase {
                 break;
             case 18:
                 {
-                int LA147_19 = input.LA(2);
+                int LA148_19 = input.LA(2);
 
-                if ( (synpred239_Morel()) ) {
-                    alt147=12;
+                if ( (synpred240_Morel()) ) {
+                    alt148=12;
                 }
                 else if ( (true) ) {
-                    alt147=13;
+                    alt148=13;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 147, 19, input);
+                        new NoViableAltException("", 148, 19, input);
 
                     throw nvae;
 
@@ -24769,17 +24849,17 @@ public class MorelParser extends MorelANTLRParserBase {
             default:
                 if (state.backtracking>0) {state.failed=true; return element;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 147, 0, input);
+                    new NoViableAltException("", 148, 0, input);
 
                 throw nvae;
 
             }
 
-            switch (alt147) {
+            switch (alt148) {
                 case 1 :
-                    // Morel.g:13728:2: c0= parse_edu_ustb_sei_mde_morel_VariableExp
+                    // Morel.g:13763:2: c0= parse_edu_ustb_sei_mde_morel_VariableExp
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_VariableExp_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild13307);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_VariableExp_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild13352);
                     c0=parse_edu_ustb_sei_mde_morel_VariableExp();
 
                     state._fsp--;
@@ -24790,9 +24870,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Morel.g:13729:4: c1= parse_edu_ustb_sei_mde_morel_NestedExp
+                    // Morel.g:13764:4: c1= parse_edu_ustb_sei_mde_morel_NestedExp
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_NestedExp_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild13317);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_NestedExp_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild13362);
                     c1=parse_edu_ustb_sei_mde_morel_NestedExp();
 
                     state._fsp--;
@@ -24803,9 +24883,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 3 :
-                    // Morel.g:13730:4: c2= parse_edu_ustb_sei_mde_morel_IntegerLiteralExp
+                    // Morel.g:13765:4: c2= parse_edu_ustb_sei_mde_morel_IntegerLiteralExp
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_IntegerLiteralExp_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild13327);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_IntegerLiteralExp_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild13372);
                     c2=parse_edu_ustb_sei_mde_morel_IntegerLiteralExp();
 
                     state._fsp--;
@@ -24816,9 +24896,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 4 :
-                    // Morel.g:13731:4: c3= parse_edu_ustb_sei_mde_morel_RealLiteralExp
+                    // Morel.g:13766:4: c3= parse_edu_ustb_sei_mde_morel_RealLiteralExp
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_RealLiteralExp_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild13337);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_RealLiteralExp_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild13382);
                     c3=parse_edu_ustb_sei_mde_morel_RealLiteralExp();
 
                     state._fsp--;
@@ -24829,9 +24909,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 5 :
-                    // Morel.g:13732:4: c4= parse_edu_ustb_sei_mde_morel_StringLiteralExp
+                    // Morel.g:13767:4: c4= parse_edu_ustb_sei_mde_morel_StringLiteralExp
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_StringLiteralExp_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild13347);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_StringLiteralExp_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild13392);
                     c4=parse_edu_ustb_sei_mde_morel_StringLiteralExp();
 
                     state._fsp--;
@@ -24842,9 +24922,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 6 :
-                    // Morel.g:13733:4: c5= parse_edu_ustb_sei_mde_morel_BooleanLiteralExp
+                    // Morel.g:13768:4: c5= parse_edu_ustb_sei_mde_morel_BooleanLiteralExp
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanLiteralExp_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild13357);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanLiteralExp_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild13402);
                     c5=parse_edu_ustb_sei_mde_morel_BooleanLiteralExp();
 
                     state._fsp--;
@@ -24855,9 +24935,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 7 :
-                    // Morel.g:13734:4: c6= parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp
+                    // Morel.g:13769:4: c6= parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild13367);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild13412);
                     c6=parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp();
 
                     state._fsp--;
@@ -24868,9 +24948,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 8 :
-                    // Morel.g:13735:4: c7= parse_edu_ustb_sei_mde_morel_TypeLiteralExp
+                    // Morel.g:13770:4: c7= parse_edu_ustb_sei_mde_morel_TypeLiteralExp
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_TypeLiteralExp_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild13377);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_TypeLiteralExp_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild13422);
                     c7=parse_edu_ustb_sei_mde_morel_TypeLiteralExp();
 
                     state._fsp--;
@@ -24881,9 +24961,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 9 :
-                    // Morel.g:13736:4: c8= parse_edu_ustb_sei_mde_morel_CollectionLiteralExp
+                    // Morel.g:13771:4: c8= parse_edu_ustb_sei_mde_morel_CollectionLiteralExp
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_CollectionLiteralExp_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild13387);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_CollectionLiteralExp_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild13432);
                     c8=parse_edu_ustb_sei_mde_morel_CollectionLiteralExp();
 
                     state._fsp--;
@@ -24894,9 +24974,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 10 :
-                    // Morel.g:13737:4: c9= parse_edu_ustb_sei_mde_morel_EnumLiteralExp
+                    // Morel.g:13772:4: c9= parse_edu_ustb_sei_mde_morel_EnumLiteralExp
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_EnumLiteralExp_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild13397);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_EnumLiteralExp_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild13442);
                     c9=parse_edu_ustb_sei_mde_morel_EnumLiteralExp();
 
                     state._fsp--;
@@ -24907,9 +24987,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 11 :
-                    // Morel.g:13738:4: c10= parse_edu_ustb_sei_mde_morel_ArrayLiteralExp
+                    // Morel.g:13773:4: c10= parse_edu_ustb_sei_mde_morel_ArrayLiteralExp
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_ArrayLiteralExp_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild13407);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_ArrayLiteralExp_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild13452);
                     c10=parse_edu_ustb_sei_mde_morel_ArrayLiteralExp();
 
                     state._fsp--;
@@ -24920,9 +25000,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 12 :
-                    // Morel.g:13739:4: c11= parse_edu_ustb_sei_mde_morel_UnaryExp
+                    // Morel.g:13774:4: c11= parse_edu_ustb_sei_mde_morel_UnaryExp
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_UnaryExp_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild13417);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_UnaryExp_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild13462);
                     c11=parse_edu_ustb_sei_mde_morel_UnaryExp();
 
                     state._fsp--;
@@ -24933,9 +25013,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 13 :
-                    // Morel.g:13740:4: c12= parse_edu_ustb_sei_mde_morel_PredefinedVariableExp
+                    // Morel.g:13775:4: c12= parse_edu_ustb_sei_mde_morel_PredefinedVariableExp
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_PredefinedVariableExp_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild13427);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_PredefinedVariableExp_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild13472);
                     c12=parse_edu_ustb_sei_mde_morel_PredefinedVariableExp();
 
                     state._fsp--;
@@ -24965,7 +25045,7 @@ public class MorelParser extends MorelANTLRParserBase {
 
 
     // $ANTLR start "parse_edu_ustb_sei_mde_morel_AtomicExp"
-    // Morel.g:13744:1: parse_edu_ustb_sei_mde_morel_AtomicExp returns [edu.ustb.sei.mde.morel.AtomicExp element = null] : (c0= parse_edu_ustb_sei_mde_morel_VariableExp |c1= parse_edu_ustb_sei_mde_morel_NestedExp |c2= parse_edu_ustb_sei_mde_morel_IntegerLiteralExp |c3= parse_edu_ustb_sei_mde_morel_RealLiteralExp |c4= parse_edu_ustb_sei_mde_morel_StringLiteralExp |c5= parse_edu_ustb_sei_mde_morel_BooleanLiteralExp |c6= parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp |c7= parse_edu_ustb_sei_mde_morel_TypeLiteralExp |c8= parse_edu_ustb_sei_mde_morel_CollectionLiteralExp |c9= parse_edu_ustb_sei_mde_morel_EnumLiteralExp |c10= parse_edu_ustb_sei_mde_morel_ArrayLiteralExp |c11= parse_edu_ustb_sei_mde_morel_PredefinedVariableExp );
+    // Morel.g:13779:1: parse_edu_ustb_sei_mde_morel_AtomicExp returns [edu.ustb.sei.mde.morel.AtomicExp element = null] : (c0= parse_edu_ustb_sei_mde_morel_VariableExp |c1= parse_edu_ustb_sei_mde_morel_NestedExp |c2= parse_edu_ustb_sei_mde_morel_IntegerLiteralExp |c3= parse_edu_ustb_sei_mde_morel_RealLiteralExp |c4= parse_edu_ustb_sei_mde_morel_StringLiteralExp |c5= parse_edu_ustb_sei_mde_morel_BooleanLiteralExp |c6= parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp |c7= parse_edu_ustb_sei_mde_morel_TypeLiteralExp |c8= parse_edu_ustb_sei_mde_morel_CollectionLiteralExp |c9= parse_edu_ustb_sei_mde_morel_EnumLiteralExp |c10= parse_edu_ustb_sei_mde_morel_ArrayLiteralExp |c11= parse_edu_ustb_sei_mde_morel_PredefinedVariableExp );
     public final edu.ustb.sei.mde.morel.AtomicExp parse_edu_ustb_sei_mde_morel_AtomicExp() throws RecognitionException {
         edu.ustb.sei.mde.morel.AtomicExp element =  null;
 
@@ -24999,86 +25079,86 @@ public class MorelParser extends MorelANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 60) ) { return element; }
 
-            // Morel.g:13745:2: (c0= parse_edu_ustb_sei_mde_morel_VariableExp |c1= parse_edu_ustb_sei_mde_morel_NestedExp |c2= parse_edu_ustb_sei_mde_morel_IntegerLiteralExp |c3= parse_edu_ustb_sei_mde_morel_RealLiteralExp |c4= parse_edu_ustb_sei_mde_morel_StringLiteralExp |c5= parse_edu_ustb_sei_mde_morel_BooleanLiteralExp |c6= parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp |c7= parse_edu_ustb_sei_mde_morel_TypeLiteralExp |c8= parse_edu_ustb_sei_mde_morel_CollectionLiteralExp |c9= parse_edu_ustb_sei_mde_morel_EnumLiteralExp |c10= parse_edu_ustb_sei_mde_morel_ArrayLiteralExp |c11= parse_edu_ustb_sei_mde_morel_PredefinedVariableExp )
-            int alt148=12;
+            // Morel.g:13780:2: (c0= parse_edu_ustb_sei_mde_morel_VariableExp |c1= parse_edu_ustb_sei_mde_morel_NestedExp |c2= parse_edu_ustb_sei_mde_morel_IntegerLiteralExp |c3= parse_edu_ustb_sei_mde_morel_RealLiteralExp |c4= parse_edu_ustb_sei_mde_morel_StringLiteralExp |c5= parse_edu_ustb_sei_mde_morel_BooleanLiteralExp |c6= parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp |c7= parse_edu_ustb_sei_mde_morel_TypeLiteralExp |c8= parse_edu_ustb_sei_mde_morel_CollectionLiteralExp |c9= parse_edu_ustb_sei_mde_morel_EnumLiteralExp |c10= parse_edu_ustb_sei_mde_morel_ArrayLiteralExp |c11= parse_edu_ustb_sei_mde_morel_PredefinedVariableExp )
+            int alt149=12;
             switch ( input.LA(1) ) {
             case IDENTIFIER:
                 {
-                alt148=1;
+                alt149=1;
                 }
                 break;
             case 22:
                 {
-                alt148=2;
+                alt149=2;
                 }
                 break;
             case INUMBER:
                 {
-                alt148=3;
+                alt149=3;
                 }
                 break;
             case RNUMBER:
                 {
-                alt148=4;
+                alt149=4;
                 }
                 break;
             case QUOTED_39_39_92:
                 {
-                alt148=5;
+                alt149=5;
                 }
                 break;
             case 57:
-            case 95:
+            case 97:
                 {
-                alt148=6;
+                alt149=6;
                 }
                 break;
-            case 65:
-            case 71:
+            case 66:
+            case 72:
                 {
-                alt148=7;
+                alt149=7;
                 }
                 break;
             case 41:
                 {
-                alt148=8;
+                alt149=8;
                 }
                 break;
             case COLLECTION:
                 {
-                alt148=9;
+                alt149=9;
                 }
                 break;
             case 17:
                 {
-                alt148=10;
+                alt149=10;
                 }
                 break;
             case 33:
                 {
-                alt148=11;
+                alt149=11;
                 }
                 break;
             case 18:
             case 19:
                 {
-                alt148=12;
+                alt149=12;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return element;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 148, 0, input);
+                    new NoViableAltException("", 149, 0, input);
 
                 throw nvae;
 
             }
 
-            switch (alt148) {
+            switch (alt149) {
                 case 1 :
-                    // Morel.g:13746:2: c0= parse_edu_ustb_sei_mde_morel_VariableExp
+                    // Morel.g:13781:2: c0= parse_edu_ustb_sei_mde_morel_VariableExp
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_VariableExp_in_parse_edu_ustb_sei_mde_morel_AtomicExp13448);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_VariableExp_in_parse_edu_ustb_sei_mde_morel_AtomicExp13493);
                     c0=parse_edu_ustb_sei_mde_morel_VariableExp();
 
                     state._fsp--;
@@ -25089,9 +25169,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Morel.g:13747:4: c1= parse_edu_ustb_sei_mde_morel_NestedExp
+                    // Morel.g:13782:4: c1= parse_edu_ustb_sei_mde_morel_NestedExp
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_NestedExp_in_parse_edu_ustb_sei_mde_morel_AtomicExp13458);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_NestedExp_in_parse_edu_ustb_sei_mde_morel_AtomicExp13503);
                     c1=parse_edu_ustb_sei_mde_morel_NestedExp();
 
                     state._fsp--;
@@ -25102,9 +25182,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 3 :
-                    // Morel.g:13748:4: c2= parse_edu_ustb_sei_mde_morel_IntegerLiteralExp
+                    // Morel.g:13783:4: c2= parse_edu_ustb_sei_mde_morel_IntegerLiteralExp
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_IntegerLiteralExp_in_parse_edu_ustb_sei_mde_morel_AtomicExp13468);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_IntegerLiteralExp_in_parse_edu_ustb_sei_mde_morel_AtomicExp13513);
                     c2=parse_edu_ustb_sei_mde_morel_IntegerLiteralExp();
 
                     state._fsp--;
@@ -25115,9 +25195,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 4 :
-                    // Morel.g:13749:4: c3= parse_edu_ustb_sei_mde_morel_RealLiteralExp
+                    // Morel.g:13784:4: c3= parse_edu_ustb_sei_mde_morel_RealLiteralExp
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_RealLiteralExp_in_parse_edu_ustb_sei_mde_morel_AtomicExp13478);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_RealLiteralExp_in_parse_edu_ustb_sei_mde_morel_AtomicExp13523);
                     c3=parse_edu_ustb_sei_mde_morel_RealLiteralExp();
 
                     state._fsp--;
@@ -25128,9 +25208,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 5 :
-                    // Morel.g:13750:4: c4= parse_edu_ustb_sei_mde_morel_StringLiteralExp
+                    // Morel.g:13785:4: c4= parse_edu_ustb_sei_mde_morel_StringLiteralExp
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_StringLiteralExp_in_parse_edu_ustb_sei_mde_morel_AtomicExp13488);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_StringLiteralExp_in_parse_edu_ustb_sei_mde_morel_AtomicExp13533);
                     c4=parse_edu_ustb_sei_mde_morel_StringLiteralExp();
 
                     state._fsp--;
@@ -25141,9 +25221,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 6 :
-                    // Morel.g:13751:4: c5= parse_edu_ustb_sei_mde_morel_BooleanLiteralExp
+                    // Morel.g:13786:4: c5= parse_edu_ustb_sei_mde_morel_BooleanLiteralExp
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanLiteralExp_in_parse_edu_ustb_sei_mde_morel_AtomicExp13498);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanLiteralExp_in_parse_edu_ustb_sei_mde_morel_AtomicExp13543);
                     c5=parse_edu_ustb_sei_mde_morel_BooleanLiteralExp();
 
                     state._fsp--;
@@ -25154,9 +25234,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 7 :
-                    // Morel.g:13752:4: c6= parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp
+                    // Morel.g:13787:4: c6= parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp_in_parse_edu_ustb_sei_mde_morel_AtomicExp13508);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp_in_parse_edu_ustb_sei_mde_morel_AtomicExp13553);
                     c6=parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp();
 
                     state._fsp--;
@@ -25167,9 +25247,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 8 :
-                    // Morel.g:13753:4: c7= parse_edu_ustb_sei_mde_morel_TypeLiteralExp
+                    // Morel.g:13788:4: c7= parse_edu_ustb_sei_mde_morel_TypeLiteralExp
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_TypeLiteralExp_in_parse_edu_ustb_sei_mde_morel_AtomicExp13518);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_TypeLiteralExp_in_parse_edu_ustb_sei_mde_morel_AtomicExp13563);
                     c7=parse_edu_ustb_sei_mde_morel_TypeLiteralExp();
 
                     state._fsp--;
@@ -25180,9 +25260,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 9 :
-                    // Morel.g:13754:4: c8= parse_edu_ustb_sei_mde_morel_CollectionLiteralExp
+                    // Morel.g:13789:4: c8= parse_edu_ustb_sei_mde_morel_CollectionLiteralExp
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_CollectionLiteralExp_in_parse_edu_ustb_sei_mde_morel_AtomicExp13528);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_CollectionLiteralExp_in_parse_edu_ustb_sei_mde_morel_AtomicExp13573);
                     c8=parse_edu_ustb_sei_mde_morel_CollectionLiteralExp();
 
                     state._fsp--;
@@ -25193,9 +25273,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 10 :
-                    // Morel.g:13755:4: c9= parse_edu_ustb_sei_mde_morel_EnumLiteralExp
+                    // Morel.g:13790:4: c9= parse_edu_ustb_sei_mde_morel_EnumLiteralExp
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_EnumLiteralExp_in_parse_edu_ustb_sei_mde_morel_AtomicExp13538);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_EnumLiteralExp_in_parse_edu_ustb_sei_mde_morel_AtomicExp13583);
                     c9=parse_edu_ustb_sei_mde_morel_EnumLiteralExp();
 
                     state._fsp--;
@@ -25206,9 +25286,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 11 :
-                    // Morel.g:13756:4: c10= parse_edu_ustb_sei_mde_morel_ArrayLiteralExp
+                    // Morel.g:13791:4: c10= parse_edu_ustb_sei_mde_morel_ArrayLiteralExp
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_ArrayLiteralExp_in_parse_edu_ustb_sei_mde_morel_AtomicExp13548);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_ArrayLiteralExp_in_parse_edu_ustb_sei_mde_morel_AtomicExp13593);
                     c10=parse_edu_ustb_sei_mde_morel_ArrayLiteralExp();
 
                     state._fsp--;
@@ -25219,9 +25299,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 12 :
-                    // Morel.g:13757:4: c11= parse_edu_ustb_sei_mde_morel_PredefinedVariableExp
+                    // Morel.g:13792:4: c11= parse_edu_ustb_sei_mde_morel_PredefinedVariableExp
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_PredefinedVariableExp_in_parse_edu_ustb_sei_mde_morel_AtomicExp13558);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_PredefinedVariableExp_in_parse_edu_ustb_sei_mde_morel_AtomicExp13603);
                     c11=parse_edu_ustb_sei_mde_morel_PredefinedVariableExp();
 
                     state._fsp--;
@@ -25251,7 +25331,7 @@ public class MorelParser extends MorelANTLRParserBase {
 
 
     // $ANTLR start "parse_edu_ustb_sei_mde_morel_ImperativeStatement"
-    // Morel.g:13761:1: parse_edu_ustb_sei_mde_morel_ImperativeStatement returns [edu.ustb.sei.mde.morel.ImperativeStatement element = null] : (c0= parse_edu_ustb_sei_mde_morel_IfStatement |c1= parse_edu_ustb_sei_mde_morel_ForStatement |c2= parse_edu_ustb_sei_mde_morel_BlockStatement );
+    // Morel.g:13796:1: parse_edu_ustb_sei_mde_morel_ImperativeStatement returns [edu.ustb.sei.mde.morel.ImperativeStatement element = null] : (c0= parse_edu_ustb_sei_mde_morel_IfStatement |c1= parse_edu_ustb_sei_mde_morel_ForStatement |c2= parse_edu_ustb_sei_mde_morel_BlockStatement );
     public final edu.ustb.sei.mde.morel.ImperativeStatement parse_edu_ustb_sei_mde_morel_ImperativeStatement() throws RecognitionException {
         edu.ustb.sei.mde.morel.ImperativeStatement element =  null;
 
@@ -25267,38 +25347,38 @@ public class MorelParser extends MorelANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 61) ) { return element; }
 
-            // Morel.g:13762:2: (c0= parse_edu_ustb_sei_mde_morel_IfStatement |c1= parse_edu_ustb_sei_mde_morel_ForStatement |c2= parse_edu_ustb_sei_mde_morel_BlockStatement )
-            int alt149=3;
+            // Morel.g:13797:2: (c0= parse_edu_ustb_sei_mde_morel_IfStatement |c1= parse_edu_ustb_sei_mde_morel_ForStatement |c2= parse_edu_ustb_sei_mde_morel_BlockStatement )
+            int alt150=3;
             switch ( input.LA(1) ) {
-            case 62:
+            case 63:
                 {
-                alt149=1;
+                alt150=1;
                 }
                 break;
             case 59:
                 {
-                alt149=2;
+                alt150=2;
                 }
                 break;
-            case 103:
+            case 105:
                 {
-                alt149=3;
+                alt150=3;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return element;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 149, 0, input);
+                    new NoViableAltException("", 150, 0, input);
 
                 throw nvae;
 
             }
 
-            switch (alt149) {
+            switch (alt150) {
                 case 1 :
-                    // Morel.g:13763:2: c0= parse_edu_ustb_sei_mde_morel_IfStatement
+                    // Morel.g:13798:2: c0= parse_edu_ustb_sei_mde_morel_IfStatement
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_IfStatement_in_parse_edu_ustb_sei_mde_morel_ImperativeStatement13579);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_IfStatement_in_parse_edu_ustb_sei_mde_morel_ImperativeStatement13624);
                     c0=parse_edu_ustb_sei_mde_morel_IfStatement();
 
                     state._fsp--;
@@ -25309,9 +25389,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Morel.g:13764:4: c1= parse_edu_ustb_sei_mde_morel_ForStatement
+                    // Morel.g:13799:4: c1= parse_edu_ustb_sei_mde_morel_ForStatement
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_ForStatement_in_parse_edu_ustb_sei_mde_morel_ImperativeStatement13589);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_ForStatement_in_parse_edu_ustb_sei_mde_morel_ImperativeStatement13634);
                     c1=parse_edu_ustb_sei_mde_morel_ForStatement();
 
                     state._fsp--;
@@ -25322,9 +25402,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 3 :
-                    // Morel.g:13765:4: c2= parse_edu_ustb_sei_mde_morel_BlockStatement
+                    // Morel.g:13800:4: c2= parse_edu_ustb_sei_mde_morel_BlockStatement
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_BlockStatement_in_parse_edu_ustb_sei_mde_morel_ImperativeStatement13599);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_BlockStatement_in_parse_edu_ustb_sei_mde_morel_ImperativeStatement13644);
                     c2=parse_edu_ustb_sei_mde_morel_BlockStatement();
 
                     state._fsp--;
@@ -25354,7 +25434,7 @@ public class MorelParser extends MorelANTLRParserBase {
 
 
     // $ANTLR start "parse_edu_ustb_sei_mde_morel_RuleElement"
-    // Morel.g:13769:1: parse_edu_ustb_sei_mde_morel_RuleElement returns [edu.ustb.sei.mde.morel.RuleElement element = null] : (c0= parse_edu_ustb_sei_mde_morel_Rule |c1= parse_edu_ustb_sei_mde_morel_RuleGroup |c2= parse_edu_ustb_sei_mde_morel_BXRewritingRule );
+    // Morel.g:13804:1: parse_edu_ustb_sei_mde_morel_RuleElement returns [edu.ustb.sei.mde.morel.RuleElement element = null] : (c0= parse_edu_ustb_sei_mde_morel_Rule |c1= parse_edu_ustb_sei_mde_morel_RuleGroup |c2= parse_edu_ustb_sei_mde_morel_BXRewritingRule );
     public final edu.ustb.sei.mde.morel.RuleElement parse_edu_ustb_sei_mde_morel_RuleElement() throws RecognitionException {
         edu.ustb.sei.mde.morel.RuleElement element =  null;
 
@@ -25370,69 +25450,69 @@ public class MorelParser extends MorelANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 62) ) { return element; }
 
-            // Morel.g:13770:2: (c0= parse_edu_ustb_sei_mde_morel_Rule |c1= parse_edu_ustb_sei_mde_morel_RuleGroup |c2= parse_edu_ustb_sei_mde_morel_BXRewritingRule )
-            int alt150=3;
+            // Morel.g:13805:2: (c0= parse_edu_ustb_sei_mde_morel_Rule |c1= parse_edu_ustb_sei_mde_morel_RuleGroup |c2= parse_edu_ustb_sei_mde_morel_BXRewritingRule )
+            int alt151=3;
             switch ( input.LA(1) ) {
             case 45:
                 {
-                int LA150_1 = input.LA(2);
+                int LA151_1 = input.LA(2);
 
-                if ( (synpred253_Morel()) ) {
-                    alt150=1;
+                if ( (synpred254_Morel()) ) {
+                    alt151=1;
                 }
-                else if ( (synpred254_Morel()) ) {
-                    alt150=2;
+                else if ( (synpred255_Morel()) ) {
+                    alt151=2;
                 }
                 else if ( (true) ) {
-                    alt150=3;
+                    alt151=3;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 150, 1, input);
+                        new NoViableAltException("", 151, 1, input);
 
                     throw nvae;
 
                 }
                 }
                 break;
-            case 76:
+            case 77:
                 {
-                int LA150_2 = input.LA(2);
+                int LA151_2 = input.LA(2);
 
-                if ( (synpred253_Morel()) ) {
-                    alt150=1;
+                if ( (synpred254_Morel()) ) {
+                    alt151=1;
                 }
-                else if ( (synpred254_Morel()) ) {
-                    alt150=2;
+                else if ( (synpred255_Morel()) ) {
+                    alt151=2;
                 }
                 else if ( (true) ) {
-                    alt150=3;
+                    alt151=3;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 150, 2, input);
+                        new NoViableAltException("", 151, 2, input);
 
                     throw nvae;
 
                 }
                 }
                 break;
-            case 87:
+            case 89:
                 {
-                int LA150_3 = input.LA(2);
+                int LA151_3 = input.LA(2);
 
-                if ( (synpred253_Morel()) ) {
-                    alt150=1;
+                if ( (synpred254_Morel()) ) {
+                    alt151=1;
                 }
                 else if ( (true) ) {
-                    alt150=3;
+                    alt151=3;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 150, 3, input);
+                        new NoViableAltException("", 151, 3, input);
 
                     throw nvae;
 
@@ -25440,27 +25520,27 @@ public class MorelParser extends MorelANTLRParserBase {
                 }
                 break;
             case 53:
-            case 61:
-            case 75:
-            case 90:
+            case 62:
+            case 76:
+            case 92:
                 {
-                alt150=2;
+                alt151=2;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return element;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 150, 0, input);
+                    new NoViableAltException("", 151, 0, input);
 
                 throw nvae;
 
             }
 
-            switch (alt150) {
+            switch (alt151) {
                 case 1 :
-                    // Morel.g:13771:2: c0= parse_edu_ustb_sei_mde_morel_Rule
+                    // Morel.g:13806:2: c0= parse_edu_ustb_sei_mde_morel_Rule
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_Rule_in_parse_edu_ustb_sei_mde_morel_RuleElement13620);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_Rule_in_parse_edu_ustb_sei_mde_morel_RuleElement13665);
                     c0=parse_edu_ustb_sei_mde_morel_Rule();
 
                     state._fsp--;
@@ -25471,9 +25551,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Morel.g:13772:4: c1= parse_edu_ustb_sei_mde_morel_RuleGroup
+                    // Morel.g:13807:4: c1= parse_edu_ustb_sei_mde_morel_RuleGroup
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_RuleGroup_in_parse_edu_ustb_sei_mde_morel_RuleElement13630);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_RuleGroup_in_parse_edu_ustb_sei_mde_morel_RuleElement13675);
                     c1=parse_edu_ustb_sei_mde_morel_RuleGroup();
 
                     state._fsp--;
@@ -25484,9 +25564,9 @@ public class MorelParser extends MorelANTLRParserBase {
                     }
                     break;
                 case 3 :
-                    // Morel.g:13773:4: c2= parse_edu_ustb_sei_mde_morel_BXRewritingRule
+                    // Morel.g:13808:4: c2= parse_edu_ustb_sei_mde_morel_BXRewritingRule
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_BXRewritingRule_in_parse_edu_ustb_sei_mde_morel_RuleElement13640);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_BXRewritingRule_in_parse_edu_ustb_sei_mde_morel_RuleElement13685);
                     c2=parse_edu_ustb_sei_mde_morel_BXRewritingRule();
 
                     state._fsp--;
@@ -25573,53 +25653,53 @@ public class MorelParser extends MorelANTLRParserBase {
         // Morel.g:8426:5: (a1= '=' |a2= '<>' |a3= '!=' |a4= '<' |a5= '<=' |a6= '>' |a7= '>=' )
         {
         // Morel.g:8426:5: (a1= '=' |a2= '<>' |a3= '!=' |a4= '<' |a5= '<=' |a6= '>' |a7= '>=' )
-        int alt177=7;
+        int alt178=7;
         switch ( input.LA(1) ) {
         case 37:
             {
-            alt177=1;
+            alt178=1;
             }
             break;
         case 36:
             {
-            alt177=2;
+            alt178=2;
             }
             break;
         case 16:
             {
-            alt177=3;
+            alt178=3;
             }
             break;
         case 33:
             {
-            alt177=4;
+            alt178=4;
             }
             break;
         case 35:
             {
-            alt177=5;
+            alt178=5;
             }
             break;
         case 39:
             {
-            alt177=6;
+            alt178=6;
             }
             break;
         case 40:
             {
-            alt177=7;
+            alt178=7;
             }
             break;
         default:
             if (state.backtracking>0) {state.failed=true; return ;}
             NoViableAltException nvae =
-                new NoViableAltException("", 177, 0, input);
+                new NoViableAltException("", 178, 0, input);
 
             throw nvae;
 
         }
 
-        switch (alt177) {
+        switch (alt178) {
             case 1 :
                 // Morel.g:8427:6: a1= '='
                 {
@@ -25787,35 +25867,16 @@ public class MorelParser extends MorelANTLRParserBase {
     }
     // $ANTLR end synpred129_Morel
 
-    // $ANTLR start synpred193_Morel
-    public final void synpred193_Morel_fragment() throws RecognitionException {
+    // $ANTLR start synpred194_Morel
+    public final void synpred194_Morel_fragment() throws RecognitionException {
         edu.ustb.sei.mde.morel.ObjectVariable c0 =null;
 
 
-        // Morel.g:13651:2: (c0= parse_edu_ustb_sei_mde_morel_ObjectVariable )
-        // Morel.g:13651:2: c0= parse_edu_ustb_sei_mde_morel_ObjectVariable
+        // Morel.g:13686:2: (c0= parse_edu_ustb_sei_mde_morel_ObjectVariable )
+        // Morel.g:13686:2: c0= parse_edu_ustb_sei_mde_morel_ObjectVariable
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_ObjectVariable_in_synpred193_Morel12810);
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_ObjectVariable_in_synpred194_Morel12855);
         c0=parse_edu_ustb_sei_mde_morel_ObjectVariable();
-
-        state._fsp--;
-        if (state.failed) return ;
-
-        }
-
-    }
-    // $ANTLR end synpred193_Morel
-
-    // $ANTLR start synpred194_Morel
-    public final void synpred194_Morel_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.morel.PrimitiveVariable c1 =null;
-
-
-        // Morel.g:13652:4: (c1= parse_edu_ustb_sei_mde_morel_PrimitiveVariable )
-        // Morel.g:13652:4: c1= parse_edu_ustb_sei_mde_morel_PrimitiveVariable
-        {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_PrimitiveVariable_in_synpred194_Morel12820);
-        c1=parse_edu_ustb_sei_mde_morel_PrimitiveVariable();
 
         state._fsp--;
         if (state.failed) return ;
@@ -25827,14 +25888,14 @@ public class MorelParser extends MorelANTLRParserBase {
 
     // $ANTLR start synpred195_Morel
     public final void synpred195_Morel_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.morel.ObjectVariableWithInit c2 =null;
+        edu.ustb.sei.mde.morel.PrimitiveVariable c1 =null;
 
 
-        // Morel.g:13653:4: (c2= parse_edu_ustb_sei_mde_morel_ObjectVariableWithInit )
-        // Morel.g:13653:4: c2= parse_edu_ustb_sei_mde_morel_ObjectVariableWithInit
+        // Morel.g:13687:4: (c1= parse_edu_ustb_sei_mde_morel_PrimitiveVariable )
+        // Morel.g:13687:4: c1= parse_edu_ustb_sei_mde_morel_PrimitiveVariable
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_ObjectVariableWithInit_in_synpred195_Morel12830);
-        c2=parse_edu_ustb_sei_mde_morel_ObjectVariableWithInit();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_PrimitiveVariable_in_synpred195_Morel12865);
+        c1=parse_edu_ustb_sei_mde_morel_PrimitiveVariable();
 
         state._fsp--;
         if (state.failed) return ;
@@ -25844,16 +25905,16 @@ public class MorelParser extends MorelANTLRParserBase {
     }
     // $ANTLR end synpred195_Morel
 
-    // $ANTLR start synpred199_Morel
-    public final void synpred199_Morel_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.morel.DeclarativeStatement c0 =null;
+    // $ANTLR start synpred196_Morel
+    public final void synpred196_Morel_fragment() throws RecognitionException {
+        edu.ustb.sei.mde.morel.ObjectVariableWithInit c2 =null;
 
 
-        // Morel.g:13675:2: (c0= parse_edu_ustb_sei_mde_morel_DeclarativeStatement )
-        // Morel.g:13675:2: c0= parse_edu_ustb_sei_mde_morel_DeclarativeStatement
+        // Morel.g:13688:4: (c2= parse_edu_ustb_sei_mde_morel_ObjectVariableWithInit )
+        // Morel.g:13688:4: c2= parse_edu_ustb_sei_mde_morel_ObjectVariableWithInit
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_DeclarativeStatement_in_synpred199_Morel12933);
-        c0=parse_edu_ustb_sei_mde_morel_DeclarativeStatement();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_ObjectVariableWithInit_in_synpred196_Morel12875);
+        c2=parse_edu_ustb_sei_mde_morel_ObjectVariableWithInit();
 
         state._fsp--;
         if (state.failed) return ;
@@ -25861,18 +25922,18 @@ public class MorelParser extends MorelANTLRParserBase {
         }
 
     }
-    // $ANTLR end synpred199_Morel
+    // $ANTLR end synpred196_Morel
 
     // $ANTLR start synpred200_Morel
     public final void synpred200_Morel_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.morel.IfStatement c1 =null;
+        edu.ustb.sei.mde.morel.DeclarativeStatement c0 =null;
 
 
-        // Morel.g:13676:4: (c1= parse_edu_ustb_sei_mde_morel_IfStatement )
-        // Morel.g:13676:4: c1= parse_edu_ustb_sei_mde_morel_IfStatement
+        // Morel.g:13710:2: (c0= parse_edu_ustb_sei_mde_morel_DeclarativeStatement )
+        // Morel.g:13710:2: c0= parse_edu_ustb_sei_mde_morel_DeclarativeStatement
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_IfStatement_in_synpred200_Morel12943);
-        c1=parse_edu_ustb_sei_mde_morel_IfStatement();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_DeclarativeStatement_in_synpred200_Morel12978);
+        c0=parse_edu_ustb_sei_mde_morel_DeclarativeStatement();
 
         state._fsp--;
         if (state.failed) return ;
@@ -25882,16 +25943,16 @@ public class MorelParser extends MorelANTLRParserBase {
     }
     // $ANTLR end synpred200_Morel
 
-    // $ANTLR start synpred205_Morel
-    public final void synpred205_Morel_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.morel.VariableExp c0 =null;
+    // $ANTLR start synpred201_Morel
+    public final void synpred201_Morel_fragment() throws RecognitionException {
+        edu.ustb.sei.mde.morel.IfStatement c1 =null;
 
 
-        // Morel.g:13699:2: (c0= parse_edu_ustb_sei_mde_morel_VariableExp )
-        // Morel.g:13699:2: c0= parse_edu_ustb_sei_mde_morel_VariableExp
+        // Morel.g:13711:4: (c1= parse_edu_ustb_sei_mde_morel_IfStatement )
+        // Morel.g:13711:4: c1= parse_edu_ustb_sei_mde_morel_IfStatement
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_VariableExp_in_synpred205_Morel13056);
-        c0=parse_edu_ustb_sei_mde_morel_VariableExp();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_IfStatement_in_synpred201_Morel12988);
+        c1=parse_edu_ustb_sei_mde_morel_IfStatement();
 
         state._fsp--;
         if (state.failed) return ;
@@ -25899,18 +25960,18 @@ public class MorelParser extends MorelANTLRParserBase {
         }
 
     }
-    // $ANTLR end synpred205_Morel
+    // $ANTLR end synpred201_Morel
 
     // $ANTLR start synpred206_Morel
     public final void synpred206_Morel_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.morel.NestedExp c1 =null;
+        edu.ustb.sei.mde.morel.VariableExp c0 =null;
 
 
-        // Morel.g:13700:4: (c1= parse_edu_ustb_sei_mde_morel_NestedExp )
-        // Morel.g:13700:4: c1= parse_edu_ustb_sei_mde_morel_NestedExp
+        // Morel.g:13734:2: (c0= parse_edu_ustb_sei_mde_morel_VariableExp )
+        // Morel.g:13734:2: c0= parse_edu_ustb_sei_mde_morel_VariableExp
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_NestedExp_in_synpred206_Morel13066);
-        c1=parse_edu_ustb_sei_mde_morel_NestedExp();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_VariableExp_in_synpred206_Morel13101);
+        c0=parse_edu_ustb_sei_mde_morel_VariableExp();
 
         state._fsp--;
         if (state.failed) return ;
@@ -25922,14 +25983,14 @@ public class MorelParser extends MorelANTLRParserBase {
 
     // $ANTLR start synpred207_Morel
     public final void synpred207_Morel_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.morel.IntegerLiteralExp c2 =null;
+        edu.ustb.sei.mde.morel.NestedExp c1 =null;
 
 
-        // Morel.g:13701:4: (c2= parse_edu_ustb_sei_mde_morel_IntegerLiteralExp )
-        // Morel.g:13701:4: c2= parse_edu_ustb_sei_mde_morel_IntegerLiteralExp
+        // Morel.g:13735:4: (c1= parse_edu_ustb_sei_mde_morel_NestedExp )
+        // Morel.g:13735:4: c1= parse_edu_ustb_sei_mde_morel_NestedExp
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_IntegerLiteralExp_in_synpred207_Morel13076);
-        c2=parse_edu_ustb_sei_mde_morel_IntegerLiteralExp();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_NestedExp_in_synpred207_Morel13111);
+        c1=parse_edu_ustb_sei_mde_morel_NestedExp();
 
         state._fsp--;
         if (state.failed) return ;
@@ -25941,14 +26002,14 @@ public class MorelParser extends MorelANTLRParserBase {
 
     // $ANTLR start synpred208_Morel
     public final void synpred208_Morel_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.morel.RealLiteralExp c3 =null;
+        edu.ustb.sei.mde.morel.IntegerLiteralExp c2 =null;
 
 
-        // Morel.g:13702:4: (c3= parse_edu_ustb_sei_mde_morel_RealLiteralExp )
-        // Morel.g:13702:4: c3= parse_edu_ustb_sei_mde_morel_RealLiteralExp
+        // Morel.g:13736:4: (c2= parse_edu_ustb_sei_mde_morel_IntegerLiteralExp )
+        // Morel.g:13736:4: c2= parse_edu_ustb_sei_mde_morel_IntegerLiteralExp
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_RealLiteralExp_in_synpred208_Morel13086);
-        c3=parse_edu_ustb_sei_mde_morel_RealLiteralExp();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_IntegerLiteralExp_in_synpred208_Morel13121);
+        c2=parse_edu_ustb_sei_mde_morel_IntegerLiteralExp();
 
         state._fsp--;
         if (state.failed) return ;
@@ -25960,14 +26021,14 @@ public class MorelParser extends MorelANTLRParserBase {
 
     // $ANTLR start synpred209_Morel
     public final void synpred209_Morel_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.morel.StringLiteralExp c4 =null;
+        edu.ustb.sei.mde.morel.RealLiteralExp c3 =null;
 
 
-        // Morel.g:13703:4: (c4= parse_edu_ustb_sei_mde_morel_StringLiteralExp )
-        // Morel.g:13703:4: c4= parse_edu_ustb_sei_mde_morel_StringLiteralExp
+        // Morel.g:13737:4: (c3= parse_edu_ustb_sei_mde_morel_RealLiteralExp )
+        // Morel.g:13737:4: c3= parse_edu_ustb_sei_mde_morel_RealLiteralExp
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_StringLiteralExp_in_synpred209_Morel13096);
-        c4=parse_edu_ustb_sei_mde_morel_StringLiteralExp();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_RealLiteralExp_in_synpred209_Morel13131);
+        c3=parse_edu_ustb_sei_mde_morel_RealLiteralExp();
 
         state._fsp--;
         if (state.failed) return ;
@@ -25979,14 +26040,14 @@ public class MorelParser extends MorelANTLRParserBase {
 
     // $ANTLR start synpred210_Morel
     public final void synpred210_Morel_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.morel.BooleanLiteralExp c5 =null;
+        edu.ustb.sei.mde.morel.StringLiteralExp c4 =null;
 
 
-        // Morel.g:13704:4: (c5= parse_edu_ustb_sei_mde_morel_BooleanLiteralExp )
-        // Morel.g:13704:4: c5= parse_edu_ustb_sei_mde_morel_BooleanLiteralExp
+        // Morel.g:13738:4: (c4= parse_edu_ustb_sei_mde_morel_StringLiteralExp )
+        // Morel.g:13738:4: c4= parse_edu_ustb_sei_mde_morel_StringLiteralExp
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanLiteralExp_in_synpred210_Morel13106);
-        c5=parse_edu_ustb_sei_mde_morel_BooleanLiteralExp();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_StringLiteralExp_in_synpred210_Morel13141);
+        c4=parse_edu_ustb_sei_mde_morel_StringLiteralExp();
 
         state._fsp--;
         if (state.failed) return ;
@@ -25998,14 +26059,14 @@ public class MorelParser extends MorelANTLRParserBase {
 
     // $ANTLR start synpred211_Morel
     public final void synpred211_Morel_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.morel.UndefinedLiteralExp c6 =null;
+        edu.ustb.sei.mde.morel.BooleanLiteralExp c5 =null;
 
 
-        // Morel.g:13705:4: (c6= parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp )
-        // Morel.g:13705:4: c6= parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp
+        // Morel.g:13739:4: (c5= parse_edu_ustb_sei_mde_morel_BooleanLiteralExp )
+        // Morel.g:13739:4: c5= parse_edu_ustb_sei_mde_morel_BooleanLiteralExp
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp_in_synpred211_Morel13116);
-        c6=parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanLiteralExp_in_synpred211_Morel13151);
+        c5=parse_edu_ustb_sei_mde_morel_BooleanLiteralExp();
 
         state._fsp--;
         if (state.failed) return ;
@@ -26017,14 +26078,14 @@ public class MorelParser extends MorelANTLRParserBase {
 
     // $ANTLR start synpred212_Morel
     public final void synpred212_Morel_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.morel.TypeLiteralExp c7 =null;
+        edu.ustb.sei.mde.morel.UndefinedLiteralExp c6 =null;
 
 
-        // Morel.g:13706:4: (c7= parse_edu_ustb_sei_mde_morel_TypeLiteralExp )
-        // Morel.g:13706:4: c7= parse_edu_ustb_sei_mde_morel_TypeLiteralExp
+        // Morel.g:13740:4: (c6= parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp )
+        // Morel.g:13740:4: c6= parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_TypeLiteralExp_in_synpred212_Morel13126);
-        c7=parse_edu_ustb_sei_mde_morel_TypeLiteralExp();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp_in_synpred212_Morel13161);
+        c6=parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp();
 
         state._fsp--;
         if (state.failed) return ;
@@ -26036,14 +26097,14 @@ public class MorelParser extends MorelANTLRParserBase {
 
     // $ANTLR start synpred213_Morel
     public final void synpred213_Morel_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.morel.CollectionLiteralExp c8 =null;
+        edu.ustb.sei.mde.morel.TypeLiteralExp c7 =null;
 
 
-        // Morel.g:13707:4: (c8= parse_edu_ustb_sei_mde_morel_CollectionLiteralExp )
-        // Morel.g:13707:4: c8= parse_edu_ustb_sei_mde_morel_CollectionLiteralExp
+        // Morel.g:13741:4: (c7= parse_edu_ustb_sei_mde_morel_TypeLiteralExp )
+        // Morel.g:13741:4: c7= parse_edu_ustb_sei_mde_morel_TypeLiteralExp
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_CollectionLiteralExp_in_synpred213_Morel13136);
-        c8=parse_edu_ustb_sei_mde_morel_CollectionLiteralExp();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_TypeLiteralExp_in_synpred213_Morel13171);
+        c7=parse_edu_ustb_sei_mde_morel_TypeLiteralExp();
 
         state._fsp--;
         if (state.failed) return ;
@@ -26055,14 +26116,14 @@ public class MorelParser extends MorelANTLRParserBase {
 
     // $ANTLR start synpred214_Morel
     public final void synpred214_Morel_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.morel.EnumLiteralExp c9 =null;
+        edu.ustb.sei.mde.morel.CollectionLiteralExp c8 =null;
 
 
-        // Morel.g:13708:4: (c9= parse_edu_ustb_sei_mde_morel_EnumLiteralExp )
-        // Morel.g:13708:4: c9= parse_edu_ustb_sei_mde_morel_EnumLiteralExp
+        // Morel.g:13742:4: (c8= parse_edu_ustb_sei_mde_morel_CollectionLiteralExp )
+        // Morel.g:13742:4: c8= parse_edu_ustb_sei_mde_morel_CollectionLiteralExp
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_EnumLiteralExp_in_synpred214_Morel13146);
-        c9=parse_edu_ustb_sei_mde_morel_EnumLiteralExp();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_CollectionLiteralExp_in_synpred214_Morel13181);
+        c8=parse_edu_ustb_sei_mde_morel_CollectionLiteralExp();
 
         state._fsp--;
         if (state.failed) return ;
@@ -26074,14 +26135,14 @@ public class MorelParser extends MorelANTLRParserBase {
 
     // $ANTLR start synpred215_Morel
     public final void synpred215_Morel_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.morel.ArrayLiteralExp c10 =null;
+        edu.ustb.sei.mde.morel.EnumLiteralExp c9 =null;
 
 
-        // Morel.g:13709:4: (c10= parse_edu_ustb_sei_mde_morel_ArrayLiteralExp )
-        // Morel.g:13709:4: c10= parse_edu_ustb_sei_mde_morel_ArrayLiteralExp
+        // Morel.g:13743:4: (c9= parse_edu_ustb_sei_mde_morel_EnumLiteralExp )
+        // Morel.g:13743:4: c9= parse_edu_ustb_sei_mde_morel_EnumLiteralExp
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_ArrayLiteralExp_in_synpred215_Morel13156);
-        c10=parse_edu_ustb_sei_mde_morel_ArrayLiteralExp();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_EnumLiteralExp_in_synpred215_Morel13191);
+        c9=parse_edu_ustb_sei_mde_morel_EnumLiteralExp();
 
         state._fsp--;
         if (state.failed) return ;
@@ -26091,16 +26152,16 @@ public class MorelParser extends MorelANTLRParserBase {
     }
     // $ANTLR end synpred215_Morel
 
-    // $ANTLR start synpred218_Morel
-    public final void synpred218_Morel_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.morel.BooleanImpliesExp c13 =null;
+    // $ANTLR start synpred216_Morel
+    public final void synpred216_Morel_fragment() throws RecognitionException {
+        edu.ustb.sei.mde.morel.ArrayLiteralExp c10 =null;
 
 
-        // Morel.g:13712:4: (c13= parse_edu_ustb_sei_mde_morel_BooleanImpliesExp )
-        // Morel.g:13712:4: c13= parse_edu_ustb_sei_mde_morel_BooleanImpliesExp
+        // Morel.g:13744:4: (c10= parse_edu_ustb_sei_mde_morel_ArrayLiteralExp )
+        // Morel.g:13744:4: c10= parse_edu_ustb_sei_mde_morel_ArrayLiteralExp
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanImpliesExp_in_synpred218_Morel13186);
-        c13=parse_edu_ustb_sei_mde_morel_BooleanImpliesExp();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_ArrayLiteralExp_in_synpred216_Morel13201);
+        c10=parse_edu_ustb_sei_mde_morel_ArrayLiteralExp();
 
         state._fsp--;
         if (state.failed) return ;
@@ -26108,18 +26169,18 @@ public class MorelParser extends MorelANTLRParserBase {
         }
 
     }
-    // $ANTLR end synpred218_Morel
+    // $ANTLR end synpred216_Morel
 
     // $ANTLR start synpred219_Morel
     public final void synpred219_Morel_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.morel.BooleanOrExp c14 =null;
+        edu.ustb.sei.mde.morel.BooleanImpliesExp c13 =null;
 
 
-        // Morel.g:13713:4: (c14= parse_edu_ustb_sei_mde_morel_BooleanOrExp )
-        // Morel.g:13713:4: c14= parse_edu_ustb_sei_mde_morel_BooleanOrExp
+        // Morel.g:13747:4: (c13= parse_edu_ustb_sei_mde_morel_BooleanImpliesExp )
+        // Morel.g:13747:4: c13= parse_edu_ustb_sei_mde_morel_BooleanImpliesExp
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanOrExp_in_synpred219_Morel13196);
-        c14=parse_edu_ustb_sei_mde_morel_BooleanOrExp();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanImpliesExp_in_synpred219_Morel13231);
+        c13=parse_edu_ustb_sei_mde_morel_BooleanImpliesExp();
 
         state._fsp--;
         if (state.failed) return ;
@@ -26131,14 +26192,14 @@ public class MorelParser extends MorelANTLRParserBase {
 
     // $ANTLR start synpred220_Morel
     public final void synpred220_Morel_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.morel.BooleanAndExp c15 =null;
+        edu.ustb.sei.mde.morel.BooleanOrExp c14 =null;
 
 
-        // Morel.g:13714:4: (c15= parse_edu_ustb_sei_mde_morel_BooleanAndExp )
-        // Morel.g:13714:4: c15= parse_edu_ustb_sei_mde_morel_BooleanAndExp
+        // Morel.g:13748:4: (c14= parse_edu_ustb_sei_mde_morel_BooleanOrExp )
+        // Morel.g:13748:4: c14= parse_edu_ustb_sei_mde_morel_BooleanOrExp
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanAndExp_in_synpred220_Morel13206);
-        c15=parse_edu_ustb_sei_mde_morel_BooleanAndExp();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanOrExp_in_synpred220_Morel13241);
+        c14=parse_edu_ustb_sei_mde_morel_BooleanOrExp();
 
         state._fsp--;
         if (state.failed) return ;
@@ -26150,14 +26211,14 @@ public class MorelParser extends MorelANTLRParserBase {
 
     // $ANTLR start synpred221_Morel
     public final void synpred221_Morel_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.morel.RelationalExp c16 =null;
+        edu.ustb.sei.mde.morel.BooleanAndExp c15 =null;
 
 
-        // Morel.g:13715:4: (c16= parse_edu_ustb_sei_mde_morel_RelationalExp )
-        // Morel.g:13715:4: c16= parse_edu_ustb_sei_mde_morel_RelationalExp
+        // Morel.g:13749:4: (c15= parse_edu_ustb_sei_mde_morel_BooleanAndExp )
+        // Morel.g:13749:4: c15= parse_edu_ustb_sei_mde_morel_BooleanAndExp
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_RelationalExp_in_synpred221_Morel13216);
-        c16=parse_edu_ustb_sei_mde_morel_RelationalExp();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanAndExp_in_synpred221_Morel13251);
+        c15=parse_edu_ustb_sei_mde_morel_BooleanAndExp();
 
         state._fsp--;
         if (state.failed) return ;
@@ -26169,14 +26230,14 @@ public class MorelParser extends MorelANTLRParserBase {
 
     // $ANTLR start synpred222_Morel
     public final void synpred222_Morel_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.morel.AdditiveExp c17 =null;
+        edu.ustb.sei.mde.morel.RelationalExp c16 =null;
 
 
-        // Morel.g:13716:4: (c17= parse_edu_ustb_sei_mde_morel_AdditiveExp )
-        // Morel.g:13716:4: c17= parse_edu_ustb_sei_mde_morel_AdditiveExp
+        // Morel.g:13750:4: (c16= parse_edu_ustb_sei_mde_morel_RelationalExp )
+        // Morel.g:13750:4: c16= parse_edu_ustb_sei_mde_morel_RelationalExp
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_AdditiveExp_in_synpred222_Morel13226);
-        c17=parse_edu_ustb_sei_mde_morel_AdditiveExp();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_RelationalExp_in_synpred222_Morel13261);
+        c16=parse_edu_ustb_sei_mde_morel_RelationalExp();
 
         state._fsp--;
         if (state.failed) return ;
@@ -26188,14 +26249,14 @@ public class MorelParser extends MorelANTLRParserBase {
 
     // $ANTLR start synpred223_Morel
     public final void synpred223_Morel_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.morel.MultiplicativeExp c18 =null;
+        edu.ustb.sei.mde.morel.AdditiveExp c17 =null;
 
 
-        // Morel.g:13717:4: (c18= parse_edu_ustb_sei_mde_morel_MultiplicativeExp )
-        // Morel.g:13717:4: c18= parse_edu_ustb_sei_mde_morel_MultiplicativeExp
+        // Morel.g:13751:4: (c17= parse_edu_ustb_sei_mde_morel_AdditiveExp )
+        // Morel.g:13751:4: c17= parse_edu_ustb_sei_mde_morel_AdditiveExp
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_MultiplicativeExp_in_synpred223_Morel13236);
-        c18=parse_edu_ustb_sei_mde_morel_MultiplicativeExp();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_AdditiveExp_in_synpred223_Morel13271);
+        c17=parse_edu_ustb_sei_mde_morel_AdditiveExp();
 
         state._fsp--;
         if (state.failed) return ;
@@ -26207,14 +26268,14 @@ public class MorelParser extends MorelANTLRParserBase {
 
     // $ANTLR start synpred224_Morel
     public final void synpred224_Morel_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.morel.UnaryExp c19 =null;
+        edu.ustb.sei.mde.morel.MultiplicativeExp c18 =null;
 
 
-        // Morel.g:13718:4: (c19= parse_edu_ustb_sei_mde_morel_UnaryExp )
-        // Morel.g:13718:4: c19= parse_edu_ustb_sei_mde_morel_UnaryExp
+        // Morel.g:13752:4: (c18= parse_edu_ustb_sei_mde_morel_MultiplicativeExp )
+        // Morel.g:13752:4: c18= parse_edu_ustb_sei_mde_morel_MultiplicativeExp
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_UnaryExp_in_synpred224_Morel13246);
-        c19=parse_edu_ustb_sei_mde_morel_UnaryExp();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_MultiplicativeExp_in_synpred224_Morel13281);
+        c18=parse_edu_ustb_sei_mde_morel_MultiplicativeExp();
 
         state._fsp--;
         if (state.failed) return ;
@@ -26226,14 +26287,14 @@ public class MorelParser extends MorelANTLRParserBase {
 
     // $ANTLR start synpred225_Morel
     public final void synpred225_Morel_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.morel.BindExp c20 =null;
+        edu.ustb.sei.mde.morel.UnaryExp c19 =null;
 
 
-        // Morel.g:13719:4: (c20= parse_edu_ustb_sei_mde_morel_BindExp )
-        // Morel.g:13719:4: c20= parse_edu_ustb_sei_mde_morel_BindExp
+        // Morel.g:13753:4: (c19= parse_edu_ustb_sei_mde_morel_UnaryExp )
+        // Morel.g:13753:4: c19= parse_edu_ustb_sei_mde_morel_UnaryExp
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_BindExp_in_synpred225_Morel13256);
-        c20=parse_edu_ustb_sei_mde_morel_BindExp();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_UnaryExp_in_synpred225_Morel13291);
+        c19=parse_edu_ustb_sei_mde_morel_UnaryExp();
 
         state._fsp--;
         if (state.failed) return ;
@@ -26245,14 +26306,14 @@ public class MorelParser extends MorelANTLRParserBase {
 
     // $ANTLR start synpred226_Morel
     public final void synpred226_Morel_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.morel.PredefinedBindExp c21 =null;
+        edu.ustb.sei.mde.morel.BindExp c20 =null;
 
 
-        // Morel.g:13720:4: (c21= parse_edu_ustb_sei_mde_morel_PredefinedBindExp )
-        // Morel.g:13720:4: c21= parse_edu_ustb_sei_mde_morel_PredefinedBindExp
+        // Morel.g:13754:4: (c20= parse_edu_ustb_sei_mde_morel_BindExp )
+        // Morel.g:13754:4: c20= parse_edu_ustb_sei_mde_morel_BindExp
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_PredefinedBindExp_in_synpred226_Morel13266);
-        c21=parse_edu_ustb_sei_mde_morel_PredefinedBindExp();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_BindExp_in_synpred226_Morel13301);
+        c20=parse_edu_ustb_sei_mde_morel_BindExp();
 
         state._fsp--;
         if (state.failed) return ;
@@ -26264,14 +26325,14 @@ public class MorelParser extends MorelANTLRParserBase {
 
     // $ANTLR start synpred227_Morel
     public final void synpred227_Morel_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.morel.PredefinedVariableExp c22 =null;
+        edu.ustb.sei.mde.morel.PredefinedBindExp c21 =null;
 
 
-        // Morel.g:13721:4: (c22= parse_edu_ustb_sei_mde_morel_PredefinedVariableExp )
-        // Morel.g:13721:4: c22= parse_edu_ustb_sei_mde_morel_PredefinedVariableExp
+        // Morel.g:13755:4: (c21= parse_edu_ustb_sei_mde_morel_PredefinedBindExp )
+        // Morel.g:13755:4: c21= parse_edu_ustb_sei_mde_morel_PredefinedBindExp
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_PredefinedVariableExp_in_synpred227_Morel13276);
-        c22=parse_edu_ustb_sei_mde_morel_PredefinedVariableExp();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_PredefinedBindExp_in_synpred227_Morel13311);
+        c21=parse_edu_ustb_sei_mde_morel_PredefinedBindExp();
 
         state._fsp--;
         if (state.failed) return ;
@@ -26283,14 +26344,14 @@ public class MorelParser extends MorelANTLRParserBase {
 
     // $ANTLR start synpred228_Morel
     public final void synpred228_Morel_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.morel.VariableExp c0 =null;
+        edu.ustb.sei.mde.morel.PredefinedVariableExp c22 =null;
 
 
-        // Morel.g:13728:2: (c0= parse_edu_ustb_sei_mde_morel_VariableExp )
-        // Morel.g:13728:2: c0= parse_edu_ustb_sei_mde_morel_VariableExp
+        // Morel.g:13756:4: (c22= parse_edu_ustb_sei_mde_morel_PredefinedVariableExp )
+        // Morel.g:13756:4: c22= parse_edu_ustb_sei_mde_morel_PredefinedVariableExp
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_VariableExp_in_synpred228_Morel13307);
-        c0=parse_edu_ustb_sei_mde_morel_VariableExp();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_PredefinedVariableExp_in_synpred228_Morel13321);
+        c22=parse_edu_ustb_sei_mde_morel_PredefinedVariableExp();
 
         state._fsp--;
         if (state.failed) return ;
@@ -26302,14 +26363,14 @@ public class MorelParser extends MorelANTLRParserBase {
 
     // $ANTLR start synpred229_Morel
     public final void synpred229_Morel_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.morel.NestedExp c1 =null;
+        edu.ustb.sei.mde.morel.VariableExp c0 =null;
 
 
-        // Morel.g:13729:4: (c1= parse_edu_ustb_sei_mde_morel_NestedExp )
-        // Morel.g:13729:4: c1= parse_edu_ustb_sei_mde_morel_NestedExp
+        // Morel.g:13763:2: (c0= parse_edu_ustb_sei_mde_morel_VariableExp )
+        // Morel.g:13763:2: c0= parse_edu_ustb_sei_mde_morel_VariableExp
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_NestedExp_in_synpred229_Morel13317);
-        c1=parse_edu_ustb_sei_mde_morel_NestedExp();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_VariableExp_in_synpred229_Morel13352);
+        c0=parse_edu_ustb_sei_mde_morel_VariableExp();
 
         state._fsp--;
         if (state.failed) return ;
@@ -26321,14 +26382,14 @@ public class MorelParser extends MorelANTLRParserBase {
 
     // $ANTLR start synpred230_Morel
     public final void synpred230_Morel_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.morel.IntegerLiteralExp c2 =null;
+        edu.ustb.sei.mde.morel.NestedExp c1 =null;
 
 
-        // Morel.g:13730:4: (c2= parse_edu_ustb_sei_mde_morel_IntegerLiteralExp )
-        // Morel.g:13730:4: c2= parse_edu_ustb_sei_mde_morel_IntegerLiteralExp
+        // Morel.g:13764:4: (c1= parse_edu_ustb_sei_mde_morel_NestedExp )
+        // Morel.g:13764:4: c1= parse_edu_ustb_sei_mde_morel_NestedExp
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_IntegerLiteralExp_in_synpred230_Morel13327);
-        c2=parse_edu_ustb_sei_mde_morel_IntegerLiteralExp();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_NestedExp_in_synpred230_Morel13362);
+        c1=parse_edu_ustb_sei_mde_morel_NestedExp();
 
         state._fsp--;
         if (state.failed) return ;
@@ -26340,14 +26401,14 @@ public class MorelParser extends MorelANTLRParserBase {
 
     // $ANTLR start synpred231_Morel
     public final void synpred231_Morel_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.morel.RealLiteralExp c3 =null;
+        edu.ustb.sei.mde.morel.IntegerLiteralExp c2 =null;
 
 
-        // Morel.g:13731:4: (c3= parse_edu_ustb_sei_mde_morel_RealLiteralExp )
-        // Morel.g:13731:4: c3= parse_edu_ustb_sei_mde_morel_RealLiteralExp
+        // Morel.g:13765:4: (c2= parse_edu_ustb_sei_mde_morel_IntegerLiteralExp )
+        // Morel.g:13765:4: c2= parse_edu_ustb_sei_mde_morel_IntegerLiteralExp
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_RealLiteralExp_in_synpred231_Morel13337);
-        c3=parse_edu_ustb_sei_mde_morel_RealLiteralExp();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_IntegerLiteralExp_in_synpred231_Morel13372);
+        c2=parse_edu_ustb_sei_mde_morel_IntegerLiteralExp();
 
         state._fsp--;
         if (state.failed) return ;
@@ -26359,14 +26420,14 @@ public class MorelParser extends MorelANTLRParserBase {
 
     // $ANTLR start synpred232_Morel
     public final void synpred232_Morel_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.morel.StringLiteralExp c4 =null;
+        edu.ustb.sei.mde.morel.RealLiteralExp c3 =null;
 
 
-        // Morel.g:13732:4: (c4= parse_edu_ustb_sei_mde_morel_StringLiteralExp )
-        // Morel.g:13732:4: c4= parse_edu_ustb_sei_mde_morel_StringLiteralExp
+        // Morel.g:13766:4: (c3= parse_edu_ustb_sei_mde_morel_RealLiteralExp )
+        // Morel.g:13766:4: c3= parse_edu_ustb_sei_mde_morel_RealLiteralExp
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_StringLiteralExp_in_synpred232_Morel13347);
-        c4=parse_edu_ustb_sei_mde_morel_StringLiteralExp();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_RealLiteralExp_in_synpred232_Morel13382);
+        c3=parse_edu_ustb_sei_mde_morel_RealLiteralExp();
 
         state._fsp--;
         if (state.failed) return ;
@@ -26378,14 +26439,14 @@ public class MorelParser extends MorelANTLRParserBase {
 
     // $ANTLR start synpred233_Morel
     public final void synpred233_Morel_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.morel.BooleanLiteralExp c5 =null;
+        edu.ustb.sei.mde.morel.StringLiteralExp c4 =null;
 
 
-        // Morel.g:13733:4: (c5= parse_edu_ustb_sei_mde_morel_BooleanLiteralExp )
-        // Morel.g:13733:4: c5= parse_edu_ustb_sei_mde_morel_BooleanLiteralExp
+        // Morel.g:13767:4: (c4= parse_edu_ustb_sei_mde_morel_StringLiteralExp )
+        // Morel.g:13767:4: c4= parse_edu_ustb_sei_mde_morel_StringLiteralExp
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanLiteralExp_in_synpred233_Morel13357);
-        c5=parse_edu_ustb_sei_mde_morel_BooleanLiteralExp();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_StringLiteralExp_in_synpred233_Morel13392);
+        c4=parse_edu_ustb_sei_mde_morel_StringLiteralExp();
 
         state._fsp--;
         if (state.failed) return ;
@@ -26397,14 +26458,14 @@ public class MorelParser extends MorelANTLRParserBase {
 
     // $ANTLR start synpred234_Morel
     public final void synpred234_Morel_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.morel.UndefinedLiteralExp c6 =null;
+        edu.ustb.sei.mde.morel.BooleanLiteralExp c5 =null;
 
 
-        // Morel.g:13734:4: (c6= parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp )
-        // Morel.g:13734:4: c6= parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp
+        // Morel.g:13768:4: (c5= parse_edu_ustb_sei_mde_morel_BooleanLiteralExp )
+        // Morel.g:13768:4: c5= parse_edu_ustb_sei_mde_morel_BooleanLiteralExp
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp_in_synpred234_Morel13367);
-        c6=parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanLiteralExp_in_synpred234_Morel13402);
+        c5=parse_edu_ustb_sei_mde_morel_BooleanLiteralExp();
 
         state._fsp--;
         if (state.failed) return ;
@@ -26416,14 +26477,14 @@ public class MorelParser extends MorelANTLRParserBase {
 
     // $ANTLR start synpred235_Morel
     public final void synpred235_Morel_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.morel.TypeLiteralExp c7 =null;
+        edu.ustb.sei.mde.morel.UndefinedLiteralExp c6 =null;
 
 
-        // Morel.g:13735:4: (c7= parse_edu_ustb_sei_mde_morel_TypeLiteralExp )
-        // Morel.g:13735:4: c7= parse_edu_ustb_sei_mde_morel_TypeLiteralExp
+        // Morel.g:13769:4: (c6= parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp )
+        // Morel.g:13769:4: c6= parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_TypeLiteralExp_in_synpred235_Morel13377);
-        c7=parse_edu_ustb_sei_mde_morel_TypeLiteralExp();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp_in_synpred235_Morel13412);
+        c6=parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp();
 
         state._fsp--;
         if (state.failed) return ;
@@ -26435,14 +26496,14 @@ public class MorelParser extends MorelANTLRParserBase {
 
     // $ANTLR start synpred236_Morel
     public final void synpred236_Morel_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.morel.CollectionLiteralExp c8 =null;
+        edu.ustb.sei.mde.morel.TypeLiteralExp c7 =null;
 
 
-        // Morel.g:13736:4: (c8= parse_edu_ustb_sei_mde_morel_CollectionLiteralExp )
-        // Morel.g:13736:4: c8= parse_edu_ustb_sei_mde_morel_CollectionLiteralExp
+        // Morel.g:13770:4: (c7= parse_edu_ustb_sei_mde_morel_TypeLiteralExp )
+        // Morel.g:13770:4: c7= parse_edu_ustb_sei_mde_morel_TypeLiteralExp
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_CollectionLiteralExp_in_synpred236_Morel13387);
-        c8=parse_edu_ustb_sei_mde_morel_CollectionLiteralExp();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_TypeLiteralExp_in_synpred236_Morel13422);
+        c7=parse_edu_ustb_sei_mde_morel_TypeLiteralExp();
 
         state._fsp--;
         if (state.failed) return ;
@@ -26454,14 +26515,14 @@ public class MorelParser extends MorelANTLRParserBase {
 
     // $ANTLR start synpred237_Morel
     public final void synpred237_Morel_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.morel.EnumLiteralExp c9 =null;
+        edu.ustb.sei.mde.morel.CollectionLiteralExp c8 =null;
 
 
-        // Morel.g:13737:4: (c9= parse_edu_ustb_sei_mde_morel_EnumLiteralExp )
-        // Morel.g:13737:4: c9= parse_edu_ustb_sei_mde_morel_EnumLiteralExp
+        // Morel.g:13771:4: (c8= parse_edu_ustb_sei_mde_morel_CollectionLiteralExp )
+        // Morel.g:13771:4: c8= parse_edu_ustb_sei_mde_morel_CollectionLiteralExp
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_EnumLiteralExp_in_synpred237_Morel13397);
-        c9=parse_edu_ustb_sei_mde_morel_EnumLiteralExp();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_CollectionLiteralExp_in_synpred237_Morel13432);
+        c8=parse_edu_ustb_sei_mde_morel_CollectionLiteralExp();
 
         state._fsp--;
         if (state.failed) return ;
@@ -26473,14 +26534,14 @@ public class MorelParser extends MorelANTLRParserBase {
 
     // $ANTLR start synpred238_Morel
     public final void synpred238_Morel_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.morel.ArrayLiteralExp c10 =null;
+        edu.ustb.sei.mde.morel.EnumLiteralExp c9 =null;
 
 
-        // Morel.g:13738:4: (c10= parse_edu_ustb_sei_mde_morel_ArrayLiteralExp )
-        // Morel.g:13738:4: c10= parse_edu_ustb_sei_mde_morel_ArrayLiteralExp
+        // Morel.g:13772:4: (c9= parse_edu_ustb_sei_mde_morel_EnumLiteralExp )
+        // Morel.g:13772:4: c9= parse_edu_ustb_sei_mde_morel_EnumLiteralExp
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_ArrayLiteralExp_in_synpred238_Morel13407);
-        c10=parse_edu_ustb_sei_mde_morel_ArrayLiteralExp();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_EnumLiteralExp_in_synpred238_Morel13442);
+        c9=parse_edu_ustb_sei_mde_morel_EnumLiteralExp();
 
         state._fsp--;
         if (state.failed) return ;
@@ -26492,14 +26553,14 @@ public class MorelParser extends MorelANTLRParserBase {
 
     // $ANTLR start synpred239_Morel
     public final void synpred239_Morel_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.morel.UnaryExp c11 =null;
+        edu.ustb.sei.mde.morel.ArrayLiteralExp c10 =null;
 
 
-        // Morel.g:13739:4: (c11= parse_edu_ustb_sei_mde_morel_UnaryExp )
-        // Morel.g:13739:4: c11= parse_edu_ustb_sei_mde_morel_UnaryExp
+        // Morel.g:13773:4: (c10= parse_edu_ustb_sei_mde_morel_ArrayLiteralExp )
+        // Morel.g:13773:4: c10= parse_edu_ustb_sei_mde_morel_ArrayLiteralExp
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_UnaryExp_in_synpred239_Morel13417);
-        c11=parse_edu_ustb_sei_mde_morel_UnaryExp();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_ArrayLiteralExp_in_synpred239_Morel13452);
+        c10=parse_edu_ustb_sei_mde_morel_ArrayLiteralExp();
 
         state._fsp--;
         if (state.failed) return ;
@@ -26509,16 +26570,16 @@ public class MorelParser extends MorelANTLRParserBase {
     }
     // $ANTLR end synpred239_Morel
 
-    // $ANTLR start synpred253_Morel
-    public final void synpred253_Morel_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.morel.Rule c0 =null;
+    // $ANTLR start synpred240_Morel
+    public final void synpred240_Morel_fragment() throws RecognitionException {
+        edu.ustb.sei.mde.morel.UnaryExp c11 =null;
 
 
-        // Morel.g:13771:2: (c0= parse_edu_ustb_sei_mde_morel_Rule )
-        // Morel.g:13771:2: c0= parse_edu_ustb_sei_mde_morel_Rule
+        // Morel.g:13774:4: (c11= parse_edu_ustb_sei_mde_morel_UnaryExp )
+        // Morel.g:13774:4: c11= parse_edu_ustb_sei_mde_morel_UnaryExp
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_Rule_in_synpred253_Morel13620);
-        c0=parse_edu_ustb_sei_mde_morel_Rule();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_UnaryExp_in_synpred240_Morel13462);
+        c11=parse_edu_ustb_sei_mde_morel_UnaryExp();
 
         state._fsp--;
         if (state.failed) return ;
@@ -26526,18 +26587,18 @@ public class MorelParser extends MorelANTLRParserBase {
         }
 
     }
-    // $ANTLR end synpred253_Morel
+    // $ANTLR end synpred240_Morel
 
     // $ANTLR start synpred254_Morel
     public final void synpred254_Morel_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.morel.RuleGroup c1 =null;
+        edu.ustb.sei.mde.morel.Rule c0 =null;
 
 
-        // Morel.g:13772:4: (c1= parse_edu_ustb_sei_mde_morel_RuleGroup )
-        // Morel.g:13772:4: c1= parse_edu_ustb_sei_mde_morel_RuleGroup
+        // Morel.g:13806:2: (c0= parse_edu_ustb_sei_mde_morel_Rule )
+        // Morel.g:13806:2: c0= parse_edu_ustb_sei_mde_morel_Rule
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_RuleGroup_in_synpred254_Morel13630);
-        c1=parse_edu_ustb_sei_mde_morel_RuleGroup();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_Rule_in_synpred254_Morel13665);
+        c0=parse_edu_ustb_sei_mde_morel_Rule();
 
         state._fsp--;
         if (state.failed) return ;
@@ -26547,22 +26608,27 @@ public class MorelParser extends MorelANTLRParserBase {
     }
     // $ANTLR end synpred254_Morel
 
+    // $ANTLR start synpred255_Morel
+    public final void synpred255_Morel_fragment() throws RecognitionException {
+        edu.ustb.sei.mde.morel.RuleGroup c1 =null;
+
+
+        // Morel.g:13807:4: (c1= parse_edu_ustb_sei_mde_morel_RuleGroup )
+        // Morel.g:13807:4: c1= parse_edu_ustb_sei_mde_morel_RuleGroup
+        {
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_morel_RuleGroup_in_synpred255_Morel13675);
+        c1=parse_edu_ustb_sei_mde_morel_RuleGroup();
+
+        state._fsp--;
+        if (state.failed) return ;
+
+        }
+
+    }
+    // $ANTLR end synpred255_Morel
+
     // Delegated rules
 
-    public final boolean synpred253_Morel() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred253_Morel_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
     public final boolean synpred223_Morel() {
         state.backtracking++;
         int start = input.mark();
@@ -26582,20 +26648,6 @@ public class MorelParser extends MorelANTLRParserBase {
         int start = input.mark();
         try {
             synpred195_Morel_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred205_Morel() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred205_Morel_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -26675,6 +26727,20 @@ public class MorelParser extends MorelANTLRParserBase {
         state.failed=false;
         return success;
     }
+    public final boolean synpred240_Morel() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred240_Morel_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
     public final boolean synpred227_Morel() {
         state.backtracking++;
         int start = input.mark();
@@ -26736,20 +26802,6 @@ public class MorelParser extends MorelANTLRParserBase {
         int start = input.mark();
         try {
             synpred209_Morel_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred218_Morel() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred218_Morel_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -26885,6 +26937,20 @@ public class MorelParser extends MorelANTLRParserBase {
         state.failed=false;
         return success;
     }
+    public final boolean synpred255_Morel() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred255_Morel_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
     public final boolean synpred235_Morel() {
         state.backtracking++;
         int start = input.mark();
@@ -26955,20 +27021,6 @@ public class MorelParser extends MorelANTLRParserBase {
         state.failed=false;
         return success;
     }
-    public final boolean synpred193_Morel() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred193_Morel_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
     public final boolean synpred234_Morel() {
         state.backtracking++;
         int start = input.mark();
@@ -27030,6 +27082,20 @@ public class MorelParser extends MorelANTLRParserBase {
         int start = input.mark();
         try {
             synpred194_Morel_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred216_Morel() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred216_Morel_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -27137,11 +27203,11 @@ public class MorelParser extends MorelANTLRParserBase {
         state.failed=false;
         return success;
     }
-    public final boolean synpred199_Morel() {
+    public final boolean synpred201_Morel() {
         state.backtracking++;
         int start = input.mark();
         try {
-            synpred199_Morel_fragment(); // can never throw exception
+            synpred201_Morel_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -27193,6 +27259,20 @@ public class MorelParser extends MorelANTLRParserBase {
         state.failed=false;
         return success;
     }
+    public final boolean synpred196_Morel() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred196_Morel_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
     public final boolean synpred219_Morel() {
         state.backtracking++;
         int start = input.mark();
@@ -27209,67 +27289,67 @@ public class MorelParser extends MorelANTLRParserBase {
     }
 
 
-    protected DFA141 dfa141 = new DFA141(this);
-    static final String DFA141_eotS =
+    protected DFA142 dfa142 = new DFA142(this);
+    static final String DFA142_eotS =
         "\15\uffff";
-    static final String DFA141_eofS =
+    static final String DFA142_eofS =
         "\15\uffff";
-    static final String DFA141_minS =
+    static final String DFA142_minS =
         "\1\6\1\35\1\6\1\30\1\uffff\2\6\2\uffff\2\30\1\6\1\30";
-    static final String DFA141_maxS =
-        "\1\6\1\35\1\6\1\150\1\uffff\2\6\2\uffff\1\150\1\100\1\6\1\100";
-    static final String DFA141_acceptS =
+    static final String DFA142_maxS =
+        "\1\6\1\35\1\6\1\152\1\uffff\2\6\2\uffff\1\152\1\101\1\6\1\101";
+    static final String DFA142_acceptS =
         "\4\uffff\1\1\2\uffff\1\2\1\3\4\uffff";
-    static final String DFA141_specialS =
+    static final String DFA142_specialS =
         "\15\uffff}>";
-    static final String[] DFA141_transitionS = {
+    static final String[] DFA142_transitionS = {
             "\1\1",
             "\1\2",
             "\1\3",
-            "\1\7\6\uffff\1\6\5\uffff\1\4\4\uffff\1\4\25\uffff\1\10\47\uffff"+
+            "\1\7\6\uffff\1\6\5\uffff\1\4\4\uffff\1\4\26\uffff\1\10\50\uffff"+
             "\1\5",
             "",
             "\1\11",
             "\1\12",
             "",
             "",
-            "\1\7\6\uffff\1\6\40\uffff\1\10\47\uffff\1\5",
-            "\1\7\1\uffff\1\13\45\uffff\1\10",
+            "\1\7\6\uffff\1\6\41\uffff\1\10\50\uffff\1\5",
+            "\1\7\1\uffff\1\13\46\uffff\1\10",
             "\1\14",
-            "\1\7\1\uffff\1\13\45\uffff\1\10"
+            "\1\7\1\uffff\1\13\46\uffff\1\10"
     };
 
-    static final short[] DFA141_eot = DFA.unpackEncodedString(DFA141_eotS);
-    static final short[] DFA141_eof = DFA.unpackEncodedString(DFA141_eofS);
-    static final char[] DFA141_min = DFA.unpackEncodedStringToUnsignedChars(DFA141_minS);
-    static final char[] DFA141_max = DFA.unpackEncodedStringToUnsignedChars(DFA141_maxS);
-    static final short[] DFA141_accept = DFA.unpackEncodedString(DFA141_acceptS);
-    static final short[] DFA141_special = DFA.unpackEncodedString(DFA141_specialS);
-    static final short[][] DFA141_transition;
+    static final short[] DFA142_eot = DFA.unpackEncodedString(DFA142_eotS);
+    static final short[] DFA142_eof = DFA.unpackEncodedString(DFA142_eofS);
+    static final char[] DFA142_min = DFA.unpackEncodedStringToUnsignedChars(DFA142_minS);
+    static final char[] DFA142_max = DFA.unpackEncodedStringToUnsignedChars(DFA142_maxS);
+    static final short[] DFA142_accept = DFA.unpackEncodedString(DFA142_acceptS);
+    static final short[] DFA142_special = DFA.unpackEncodedString(DFA142_specialS);
+    static final short[][] DFA142_transition;
 
     static {
-        int numStates = DFA141_transitionS.length;
-        DFA141_transition = new short[numStates][];
+        int numStates = DFA142_transitionS.length;
+        DFA142_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA141_transition[i] = DFA.unpackEncodedString(DFA141_transitionS[i]);
+            DFA142_transition[i] = DFA.unpackEncodedString(DFA142_transitionS[i]);
         }
     }
 
-    class DFA141 extends DFA {
+    class DFA142 extends DFA {
 
-        public DFA141(BaseRecognizer recognizer) {
+        public DFA142(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 141;
-            this.eot = DFA141_eot;
-            this.eof = DFA141_eof;
-            this.min = DFA141_min;
-            this.max = DFA141_max;
-            this.accept = DFA141_accept;
-            this.special = DFA141_special;
-            this.transition = DFA141_transition;
+            this.decisionNumber = 142;
+            this.eot = DFA142_eot;
+            this.eof = DFA142_eof;
+            this.min = DFA142_min;
+            this.max = DFA142_max;
+            this.accept = DFA142_accept;
+            this.special = DFA142_special;
+            this.transition = DFA142_transition;
         }
         public String getDescription() {
-            return "13658:1: parse_edu_ustb_sei_mde_morel_LinkConstraint returns [edu.ustb.sei.mde.morel.LinkConstraint element = null] : (c0= parse_edu_ustb_sei_mde_morel_SimpleLinkConstraint |c1= parse_edu_ustb_sei_mde_morel_EnclosureLinkConstraint |c2= parse_edu_ustb_sei_mde_morel_PathConstraint );";
+            return "13693:1: parse_edu_ustb_sei_mde_morel_LinkConstraint returns [edu.ustb.sei.mde.morel.LinkConstraint element = null] : (c0= parse_edu_ustb_sei_mde_morel_SimpleLinkConstraint |c1= parse_edu_ustb_sei_mde_morel_EnclosureLinkConstraint |c2= parse_edu_ustb_sei_mde_morel_PathConstraint );";
         }
     }
  
@@ -27278,45 +27358,45 @@ public class MorelParser extends MorelANTLRParserBase {
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_TransformationModel_in_start96 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BXRewritingModel_in_start110 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_start117 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_80_in_parse_edu_ustb_sei_mde_morel_QueryModel143 = new BitSet(new long[]{0x0000000000000000L,0x0000000100000000L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_TypedModel_in_parse_edu_ustb_sei_mde_morel_QueryModel172 = new BitSet(new long[]{0x0000200000000002L,0x0000000100009000L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_Query_in_parse_edu_ustb_sei_mde_morel_QueryModel228 = new BitSet(new long[]{0x0000200000000002L,0x0000000000009000L});
-    public static final BitSet FOLLOW_96_in_parse_edu_ustb_sei_mde_morel_TypedModel284 = new BitSet(new long[]{0x0010000000000040L,0x0000001040080000L});
-    public static final BitSet FOLLOW_83_in_parse_edu_ustb_sei_mde_morel_TypedModel307 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_94_in_parse_edu_ustb_sei_mde_morel_TypedModel322 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_100_in_parse_edu_ustb_sei_mde_morel_TypedModel337 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_82_in_parse_edu_ustb_sei_mde_morel_QueryModel143 = new BitSet(new long[]{0x0000000000000000L,0x0000000400000000L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_TypedModel_in_parse_edu_ustb_sei_mde_morel_QueryModel172 = new BitSet(new long[]{0x0000200000000002L,0x0000000400022000L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_Query_in_parse_edu_ustb_sei_mde_morel_QueryModel228 = new BitSet(new long[]{0x0000200000000002L,0x0000000000022000L});
+    public static final BitSet FOLLOW_98_in_parse_edu_ustb_sei_mde_morel_TypedModel284 = new BitSet(new long[]{0x0010000000000040L,0x0000004100200000L});
+    public static final BitSet FOLLOW_85_in_parse_edu_ustb_sei_mde_morel_TypedModel307 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_96_in_parse_edu_ustb_sei_mde_morel_TypedModel322 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_102_in_parse_edu_ustb_sei_mde_morel_TypedModel337 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_52_in_parse_edu_ustb_sei_mde_morel_TypedModel352 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_TypedModel377 = new BitSet(new long[]{0x0000000400000000L});
     public static final BitSet FOLLOW_34_in_parse_edu_ustb_sei_mde_morel_TypedModel398 = new BitSet(new long[]{0x0000000000002000L});
     public static final BitSet FOLLOW_URINS_in_parse_edu_ustb_sei_mde_morel_TypedModel416 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_45_in_parse_edu_ustb_sei_mde_morel_Query474 = new BitSet(new long[]{0x0000000000000000L,0x0000000000008000L});
-    public static final BitSet FOLLOW_76_in_parse_edu_ustb_sei_mde_morel_Query493 = new BitSet(new long[]{0x0000000000000000L,0x0000000000008000L});
-    public static final BitSet FOLLOW_79_in_parse_edu_ustb_sei_mde_morel_Query537 = new BitSet(new long[]{0x0000000000000040L,0x0000000000406430L});
-    public static final BitSet FOLLOW_68_in_parse_edu_ustb_sei_mde_morel_Query560 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_86_in_parse_edu_ustb_sei_mde_morel_Query575 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_69_in_parse_edu_ustb_sei_mde_morel_Query590 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_74_in_parse_edu_ustb_sei_mde_morel_Query605 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_78_in_parse_edu_ustb_sei_mde_morel_Query620 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_77_in_parse_edu_ustb_sei_mde_morel_Query635 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_Query660 = new BitSet(new long[]{0x0000000000400000L,0x0000008000000000L});
+    public static final BitSet FOLLOW_45_in_parse_edu_ustb_sei_mde_morel_Query474 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
+    public static final BitSet FOLLOW_77_in_parse_edu_ustb_sei_mde_morel_Query493 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
+    public static final BitSet FOLLOW_81_in_parse_edu_ustb_sei_mde_morel_Query537 = new BitSet(new long[]{0x0000000000000040L,0x000000000100C860L});
+    public static final BitSet FOLLOW_69_in_parse_edu_ustb_sei_mde_morel_Query560 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_88_in_parse_edu_ustb_sei_mde_morel_Query575 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_70_in_parse_edu_ustb_sei_mde_morel_Query590 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_75_in_parse_edu_ustb_sei_mde_morel_Query605 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_79_in_parse_edu_ustb_sei_mde_morel_Query620 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_78_in_parse_edu_ustb_sei_mde_morel_Query635 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_Query660 = new BitSet(new long[]{0x0000000000400000L,0x0000020000000000L});
     public static final BitSet FOLLOW_22_in_parse_edu_ustb_sei_mde_morel_Query690 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_Query716 = new BitSet(new long[]{0x0000000004800000L});
     public static final BitSet FOLLOW_26_in_parse_edu_ustb_sei_mde_morel_Query762 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_Query796 = new BitSet(new long[]{0x0000000004800000L});
-    public static final BitSet FOLLOW_23_in_parse_edu_ustb_sei_mde_morel_Query864 = new BitSet(new long[]{0x0000000000000000L,0x0000008000000000L});
-    public static final BitSet FOLLOW_103_in_parse_edu_ustb_sei_mde_morel_Query897 = new BitSet(new long[]{0x0000800000000040L,0x0000044000000000L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_Variable_in_parse_edu_ustb_sei_mde_morel_Query926 = new BitSet(new long[]{0x0000800004000040L,0x0000044000000000L});
+    public static final BitSet FOLLOW_23_in_parse_edu_ustb_sei_mde_morel_Query864 = new BitSet(new long[]{0x0000000000000000L,0x0000020000000000L});
+    public static final BitSet FOLLOW_105_in_parse_edu_ustb_sei_mde_morel_Query897 = new BitSet(new long[]{0x0000800000000040L,0x0000110000000000L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_Variable_in_parse_edu_ustb_sei_mde_morel_Query926 = new BitSet(new long[]{0x0000800004000040L,0x0000110000000000L});
     public static final BitSet FOLLOW_26_in_parse_edu_ustb_sei_mde_morel_Query967 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_Variable_in_parse_edu_ustb_sei_mde_morel_Query1001 = new BitSet(new long[]{0x0000800004000040L,0x0000044000000000L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_LinkConstraint_in_parse_edu_ustb_sei_mde_morel_Query1090 = new BitSet(new long[]{0x0000800004000040L,0x0000044000000000L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_Variable_in_parse_edu_ustb_sei_mde_morel_Query1001 = new BitSet(new long[]{0x0000800004000040L,0x0000110000000000L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_LinkConstraint_in_parse_edu_ustb_sei_mde_morel_Query1090 = new BitSet(new long[]{0x0000800004000040L,0x0000110000000000L});
     public static final BitSet FOLLOW_26_in_parse_edu_ustb_sei_mde_morel_Query1131 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_LinkConstraint_in_parse_edu_ustb_sei_mde_morel_Query1165 = new BitSet(new long[]{0x0000800004000040L,0x0000044000000000L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_AdditionalConstraint_in_parse_edu_ustb_sei_mde_morel_Query1254 = new BitSet(new long[]{0x0000000004000000L,0x0000044000000000L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_LinkConstraint_in_parse_edu_ustb_sei_mde_morel_Query1165 = new BitSet(new long[]{0x0000800004000040L,0x0000110000000000L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_AdditionalConstraint_in_parse_edu_ustb_sei_mde_morel_Query1254 = new BitSet(new long[]{0x0000000004000000L,0x0000110000000000L});
     public static final BitSet FOLLOW_26_in_parse_edu_ustb_sei_mde_morel_Query1295 = new BitSet(new long[]{0x0000800000000040L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_AdditionalConstraint_in_parse_edu_ustb_sei_mde_morel_Query1329 = new BitSet(new long[]{0x0000000004000000L,0x0000044000000000L});
-    public static final BitSet FOLLOW_102_in_parse_edu_ustb_sei_mde_morel_Query1412 = new BitSet(new long[]{0x4A0002020A6E8CD0L,0x00000080800000CAL});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_Statement_in_parse_edu_ustb_sei_mde_morel_Query1453 = new BitSet(new long[]{0x4A0002020A6E8CD0L,0x00000480800000CAL});
-    public static final BitSet FOLLOW_106_in_parse_edu_ustb_sei_mde_morel_Query1527 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_AdditionalConstraint_in_parse_edu_ustb_sei_mde_morel_Query1329 = new BitSet(new long[]{0x0000000004000000L,0x0000110000000000L});
+    public static final BitSet FOLLOW_104_in_parse_edu_ustb_sei_mde_morel_Query1412 = new BitSet(new long[]{0x8A0002020A6E8CD0L,0x0000020200000194L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_Statement_in_parse_edu_ustb_sei_mde_morel_Query1453 = new BitSet(new long[]{0x8A0002020A6E8CD0L,0x0000120200000194L});
+    public static final BitSet FOLLOW_108_in_parse_edu_ustb_sei_mde_morel_Query1527 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_ObjectVariable1560 = new BitSet(new long[]{0x0000000080000000L});
     public static final BitSet FOLLOW_31_in_parse_edu_ustb_sei_mde_morel_ObjectVariable1581 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_ObjectVariable1610 = new BitSet(new long[]{0x0000000000008000L});
@@ -27332,21 +27412,21 @@ public class MorelParser extends MorelANTLRParserBase {
     public static final BitSet FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_ObjectVariableWithInit1879 = new BitSet(new long[]{0x0000000000008000L});
     public static final BitSet FOLLOW_15_in_parse_edu_ustb_sei_mde_morel_ObjectVariableWithInit1912 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_ObjectVariableWithInit1949 = new BitSet(new long[]{0x0000002000000000L});
-    public static final BitSet FOLLOW_37_in_parse_edu_ustb_sei_mde_morel_ObjectVariableWithInit1970 = new BitSet(new long[]{0x420002020A4E8CD0L,0x00000000800000CAL});
+    public static final BitSet FOLLOW_37_in_parse_edu_ustb_sei_mde_morel_ObjectVariableWithInit1970 = new BitSet(new long[]{0x820002020A4E8CD0L,0x0000000200000194L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_LetExp_in_parse_edu_ustb_sei_mde_morel_ObjectVariableWithInit1988 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_ConditionExp_in_parse_edu_ustb_sei_mde_morel_ObjectVariableWithInit2002 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanImpliesExp_in_parse_edu_ustb_sei_mde_morel_ObjectVariableWithInit2016 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_PrimitiveVariableWithInit2053 = new BitSet(new long[]{0x0000000080000000L});
     public static final BitSet FOLLOW_31_in_parse_edu_ustb_sei_mde_morel_PrimitiveVariableWithInit2074 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_DATA_TYPE_in_parse_edu_ustb_sei_mde_morel_PrimitiveVariableWithInit2092 = new BitSet(new long[]{0x0000002000000000L});
-    public static final BitSet FOLLOW_37_in_parse_edu_ustb_sei_mde_morel_PrimitiveVariableWithInit2113 = new BitSet(new long[]{0x420002020A4E8CD0L,0x00000000800000CAL});
+    public static final BitSet FOLLOW_37_in_parse_edu_ustb_sei_mde_morel_PrimitiveVariableWithInit2113 = new BitSet(new long[]{0x820002020A4E8CD0L,0x0000000200000194L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_LetExp_in_parse_edu_ustb_sei_mde_morel_PrimitiveVariableWithInit2131 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_ConditionExp_in_parse_edu_ustb_sei_mde_morel_PrimitiveVariableWithInit2145 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanImpliesExp_in_parse_edu_ustb_sei_mde_morel_PrimitiveVariableWithInit2159 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_SimpleLinkConstraint2196 = new BitSet(new long[]{0x0000000020000000L});
     public static final BitSet FOLLOW_29_in_parse_edu_ustb_sei_mde_morel_SimpleLinkConstraint2217 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_SimpleLinkConstraint2235 = new BitSet(new long[]{0x0000042000000000L});
-    public static final BitSet FOLLOW_42_in_parse_edu_ustb_sei_mde_morel_SimpleLinkConstraint2265 = new BitSet(new long[]{0x420002020A4E8CD0L,0x00000000800000CAL});
+    public static final BitSet FOLLOW_42_in_parse_edu_ustb_sei_mde_morel_SimpleLinkConstraint2265 = new BitSet(new long[]{0x820002020A4E8CD0L,0x0000000200000194L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_PredefinedBindExp_in_parse_edu_ustb_sei_mde_morel_SimpleLinkConstraint2291 = new BitSet(new long[]{0x0000080000000000L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BindExp_in_parse_edu_ustb_sei_mde_morel_SimpleLinkConstraint2311 = new BitSet(new long[]{0x0000080000000000L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_LetExp_in_parse_edu_ustb_sei_mde_morel_SimpleLinkConstraint2331 = new BitSet(new long[]{0x0000080000000000L});
@@ -27357,9 +27437,9 @@ public class MorelParser extends MorelANTLRParserBase {
     public static final BitSet FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_SimpleLinkConstraint2450 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_EnclosureLinkConstraint2490 = new BitSet(new long[]{0x0000000020000000L});
     public static final BitSet FOLLOW_29_in_parse_edu_ustb_sei_mde_morel_EnclosureLinkConstraint2511 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_EnclosureLinkConstraint2534 = new BitSet(new long[]{0x0000000081000000L,0x0000010000000000L});
-    public static final BitSet FOLLOW_104_in_parse_edu_ustb_sei_mde_morel_EnclosureLinkConstraint2572 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_EnclosureLinkConstraint2602 = new BitSet(new long[]{0x0000000081000000L,0x0000010000000000L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_EnclosureLinkConstraint2534 = new BitSet(new long[]{0x0000000081000000L,0x0000040000000000L});
+    public static final BitSet FOLLOW_106_in_parse_edu_ustb_sei_mde_morel_EnclosureLinkConstraint2572 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_EnclosureLinkConstraint2602 = new BitSet(new long[]{0x0000000081000000L,0x0000040000000000L});
     public static final BitSet FOLLOW_31_in_parse_edu_ustb_sei_mde_morel_EnclosureLinkConstraint2675 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_EnclosureLinkConstraint2701 = new BitSet(new long[]{0x0000000005000000L});
     public static final BitSet FOLLOW_26_in_parse_edu_ustb_sei_mde_morel_EnclosureLinkConstraint2747 = new BitSet(new long[]{0x0000000000000040L});
@@ -27369,14 +27449,14 @@ public class MorelParser extends MorelANTLRParserBase {
     public static final BitSet FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_EnclosureLinkConstraint2894 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_PathConstraint2934 = new BitSet(new long[]{0x0000000020000000L});
     public static final BitSet FOLLOW_29_in_parse_edu_ustb_sei_mde_morel_PathConstraint2955 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_PathConstraint2978 = new BitSet(new long[]{0x0000000080000000L,0x0000010000000001L});
-    public static final BitSet FOLLOW_104_in_parse_edu_ustb_sei_mde_morel_PathConstraint3016 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_PathConstraint3046 = new BitSet(new long[]{0x0000000080000000L,0x0000010000000001L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_PathConstraint2978 = new BitSet(new long[]{0x0000000080000000L,0x0000040000000002L});
+    public static final BitSet FOLLOW_106_in_parse_edu_ustb_sei_mde_morel_PathConstraint3016 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_PathConstraint3046 = new BitSet(new long[]{0x0000000080000000L,0x0000040000000002L});
     public static final BitSet FOLLOW_31_in_parse_edu_ustb_sei_mde_morel_PathConstraint3119 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_PathConstraint3145 = new BitSet(new long[]{0x0000000004000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_PathConstraint3145 = new BitSet(new long[]{0x0000000004000000L,0x0000000000000002L});
     public static final BitSet FOLLOW_26_in_parse_edu_ustb_sei_mde_morel_PathConstraint3191 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_PathConstraint3225 = new BitSet(new long[]{0x0000000004000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_64_in_parse_edu_ustb_sei_mde_morel_PathConstraint3306 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_PathConstraint3225 = new BitSet(new long[]{0x0000000004000000L,0x0000000000000002L});
+    public static final BitSet FOLLOW_65_in_parse_edu_ustb_sei_mde_morel_PathConstraint3306 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_PathConstraint3324 = new BitSet(new long[]{0x0000042000000000L});
     public static final BitSet FOLLOW_42_in_parse_edu_ustb_sei_mde_morel_PathConstraint3354 = new BitSet(new long[]{0x0000000000000080L});
     public static final BitSet FOLLOW_INUMBER_in_parse_edu_ustb_sei_mde_morel_PathConstraint3395 = new BitSet(new long[]{0x0000000004000000L});
@@ -27387,7 +27467,7 @@ public class MorelParser extends MorelANTLRParserBase {
     public static final BitSet FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_PathConstraint3579 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_VariableExp3619 = new BitSet(new long[]{0x0000000030000002L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_CallPathExp_in_parse_edu_ustb_sei_mde_morel_VariableExp3655 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_22_in_parse_edu_ustb_sei_mde_morel_NestedExp3711 = new BitSet(new long[]{0x420002020A4E8CD0L,0x00000000800000CAL});
+    public static final BitSet FOLLOW_22_in_parse_edu_ustb_sei_mde_morel_NestedExp3711 = new BitSet(new long[]{0x820002020A4E8CD0L,0x0000000200000194L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_LetExp_in_parse_edu_ustb_sei_mde_morel_NestedExp3729 = new BitSet(new long[]{0x0000000000800000L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_ConditionExp_in_parse_edu_ustb_sei_mde_morel_NestedExp3743 = new BitSet(new long[]{0x0000000000800000L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanImpliesExp_in_parse_edu_ustb_sei_mde_morel_NestedExp3757 = new BitSet(new long[]{0x0000000000800000L});
@@ -27399,39 +27479,39 @@ public class MorelParser extends MorelANTLRParserBase {
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_CallPathExp_in_parse_edu_ustb_sei_mde_morel_RealLiteralExp3996 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_QUOTED_39_39_92_in_parse_edu_ustb_sei_mde_morel_StringLiteralExp4056 = new BitSet(new long[]{0x0000000030000002L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_CallPathExp_in_parse_edu_ustb_sei_mde_morel_StringLiteralExp4092 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_95_in_parse_edu_ustb_sei_mde_morel_BooleanLiteralExp4157 = new BitSet(new long[]{0x0000000030000002L});
+    public static final BitSet FOLLOW_97_in_parse_edu_ustb_sei_mde_morel_BooleanLiteralExp4157 = new BitSet(new long[]{0x0000000030000002L});
     public static final BitSet FOLLOW_57_in_parse_edu_ustb_sei_mde_morel_BooleanLiteralExp4172 = new BitSet(new long[]{0x0000000030000002L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_CallPathExp_in_parse_edu_ustb_sei_mde_morel_BooleanLiteralExp4208 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_71_in_parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp4273 = new BitSet(new long[]{0x0000000030000002L});
-    public static final BitSet FOLLOW_65_in_parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp4288 = new BitSet(new long[]{0x0000000030000002L});
+    public static final BitSet FOLLOW_72_in_parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp4273 = new BitSet(new long[]{0x0000000030000002L});
+    public static final BitSet FOLLOW_66_in_parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp4288 = new BitSet(new long[]{0x0000000030000002L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_CallPathExp_in_parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp4324 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_41_in_parse_edu_ustb_sei_mde_morel_TypeLiteralExp4380 = new BitSet(new long[]{0x0000000000400000L});
     public static final BitSet FOLLOW_22_in_parse_edu_ustb_sei_mde_morel_TypeLiteralExp4394 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_TypeLiteralExp4412 = new BitSet(new long[]{0x0000000000800000L});
     public static final BitSet FOLLOW_23_in_parse_edu_ustb_sei_mde_morel_TypeLiteralExp4433 = new BitSet(new long[]{0x0000000030000002L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_CallPathExp_in_parse_edu_ustb_sei_mde_morel_TypeLiteralExp4462 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_COLLECTION_in_parse_edu_ustb_sei_mde_morel_CollectionLiteralExp4522 = new BitSet(new long[]{0x0000000000000000L,0x0000008000000000L});
-    public static final BitSet FOLLOW_103_in_parse_edu_ustb_sei_mde_morel_CollectionLiteralExp4543 = new BitSet(new long[]{0x420002020A4E8CD0L,0x00000400800000CAL});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_LetExp_in_parse_edu_ustb_sei_mde_morel_CollectionLiteralExp4579 = new BitSet(new long[]{0x0000000004000000L,0x0000040000000000L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_ConditionExp_in_parse_edu_ustb_sei_mde_morel_CollectionLiteralExp4602 = new BitSet(new long[]{0x0000000004000000L,0x0000040000000000L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanImpliesExp_in_parse_edu_ustb_sei_mde_morel_CollectionLiteralExp4625 = new BitSet(new long[]{0x0000000004000000L,0x0000040000000000L});
-    public static final BitSet FOLLOW_26_in_parse_edu_ustb_sei_mde_morel_CollectionLiteralExp4684 = new BitSet(new long[]{0x420002020A4E8CD0L,0x00000000800000CAL});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_LetExp_in_parse_edu_ustb_sei_mde_morel_CollectionLiteralExp4718 = new BitSet(new long[]{0x0000000004000000L,0x0000040000000000L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_ConditionExp_in_parse_edu_ustb_sei_mde_morel_CollectionLiteralExp4744 = new BitSet(new long[]{0x0000000004000000L,0x0000040000000000L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanImpliesExp_in_parse_edu_ustb_sei_mde_morel_CollectionLiteralExp4770 = new BitSet(new long[]{0x0000000004000000L,0x0000040000000000L});
-    public static final BitSet FOLLOW_106_in_parse_edu_ustb_sei_mde_morel_CollectionLiteralExp4844 = new BitSet(new long[]{0x0000000030000002L});
+    public static final BitSet FOLLOW_COLLECTION_in_parse_edu_ustb_sei_mde_morel_CollectionLiteralExp4522 = new BitSet(new long[]{0x0000000000000000L,0x0000020000000000L});
+    public static final BitSet FOLLOW_105_in_parse_edu_ustb_sei_mde_morel_CollectionLiteralExp4543 = new BitSet(new long[]{0x820002020A4E8CD0L,0x0000100200000194L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_LetExp_in_parse_edu_ustb_sei_mde_morel_CollectionLiteralExp4579 = new BitSet(new long[]{0x0000000004000000L,0x0000100000000000L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_ConditionExp_in_parse_edu_ustb_sei_mde_morel_CollectionLiteralExp4602 = new BitSet(new long[]{0x0000000004000000L,0x0000100000000000L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanImpliesExp_in_parse_edu_ustb_sei_mde_morel_CollectionLiteralExp4625 = new BitSet(new long[]{0x0000000004000000L,0x0000100000000000L});
+    public static final BitSet FOLLOW_26_in_parse_edu_ustb_sei_mde_morel_CollectionLiteralExp4684 = new BitSet(new long[]{0x820002020A4E8CD0L,0x0000000200000194L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_LetExp_in_parse_edu_ustb_sei_mde_morel_CollectionLiteralExp4718 = new BitSet(new long[]{0x0000000004000000L,0x0000100000000000L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_ConditionExp_in_parse_edu_ustb_sei_mde_morel_CollectionLiteralExp4744 = new BitSet(new long[]{0x0000000004000000L,0x0000100000000000L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanImpliesExp_in_parse_edu_ustb_sei_mde_morel_CollectionLiteralExp4770 = new BitSet(new long[]{0x0000000004000000L,0x0000100000000000L});
+    public static final BitSet FOLLOW_108_in_parse_edu_ustb_sei_mde_morel_CollectionLiteralExp4844 = new BitSet(new long[]{0x0000000030000002L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_CallPathExp_in_parse_edu_ustb_sei_mde_morel_CollectionLiteralExp4873 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_17_in_parse_edu_ustb_sei_mde_morel_EnumLiteralExp4929 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_EnumLiteralExp4947 = new BitSet(new long[]{0x0000000020000000L});
     public static final BitSet FOLLOW_29_in_parse_edu_ustb_sei_mde_morel_EnumLiteralExp4968 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_EnumLiteralExp4986 = new BitSet(new long[]{0x0000000030000002L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_CallPathExp_in_parse_edu_ustb_sei_mde_morel_EnumLiteralExp5022 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_33_in_parse_edu_ustb_sei_mde_morel_ArrayLiteralExp5078 = new BitSet(new long[]{0x420002820A6E8CD0L,0x00000000800000CAL});
+    public static final BitSet FOLLOW_33_in_parse_edu_ustb_sei_mde_morel_ArrayLiteralExp5078 = new BitSet(new long[]{0x820002820A6E8CD0L,0x0000000200000194L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_LetExp_in_parse_edu_ustb_sei_mde_morel_ArrayLiteralExp5107 = new BitSet(new long[]{0x0000008004000000L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_ConditionExp_in_parse_edu_ustb_sei_mde_morel_ArrayLiteralExp5127 = new BitSet(new long[]{0x0000008004000000L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanImpliesExp_in_parse_edu_ustb_sei_mde_morel_ArrayLiteralExp5147 = new BitSet(new long[]{0x0000008004000000L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_ReflectiveVariableExp_in_parse_edu_ustb_sei_mde_morel_ArrayLiteralExp5167 = new BitSet(new long[]{0x0000008004000000L});
-    public static final BitSet FOLLOW_26_in_parse_edu_ustb_sei_mde_morel_ArrayLiteralExp5208 = new BitSet(new long[]{0x420002020A6E8CD0L,0x00000000800000CAL});
+    public static final BitSet FOLLOW_26_in_parse_edu_ustb_sei_mde_morel_ArrayLiteralExp5208 = new BitSet(new long[]{0x820002020A6E8CD0L,0x0000000200000194L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_LetExp_in_parse_edu_ustb_sei_mde_morel_ArrayLiteralExp5242 = new BitSet(new long[]{0x0000008004000000L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_ConditionExp_in_parse_edu_ustb_sei_mde_morel_ArrayLiteralExp5268 = new BitSet(new long[]{0x0000008004000000L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanImpliesExp_in_parse_edu_ustb_sei_mde_morel_ArrayLiteralExp5294 = new BitSet(new long[]{0x0000008004000000L});
@@ -27443,91 +27523,91 @@ public class MorelParser extends MorelANTLRParserBase {
     public static final BitSet FOLLOW_29_in_parse_edu_ustb_sei_mde_morel_OperationPathExp5521 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_28_in_parse_edu_ustb_sei_mde_morel_OperationPathExp5536 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_OperationPathExp5561 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_22_in_parse_edu_ustb_sei_mde_morel_OperationPathExp5582 = new BitSet(new long[]{0x420002020AEE8CD0L,0x00000000800000CAL});
+    public static final BitSet FOLLOW_22_in_parse_edu_ustb_sei_mde_morel_OperationPathExp5582 = new BitSet(new long[]{0x820002020AEE8CD0L,0x0000000200000194L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_ReflectiveVariableExp_in_parse_edu_ustb_sei_mde_morel_OperationPathExp5611 = new BitSet(new long[]{0x0000000004800000L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_LetExp_in_parse_edu_ustb_sei_mde_morel_OperationPathExp5631 = new BitSet(new long[]{0x0000000004800000L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_ConditionExp_in_parse_edu_ustb_sei_mde_morel_OperationPathExp5651 = new BitSet(new long[]{0x0000000004800000L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanImpliesExp_in_parse_edu_ustb_sei_mde_morel_OperationPathExp5671 = new BitSet(new long[]{0x0000000004800000L});
-    public static final BitSet FOLLOW_26_in_parse_edu_ustb_sei_mde_morel_OperationPathExp5712 = new BitSet(new long[]{0x420002020A6E8CD0L,0x00000000800000CAL});
+    public static final BitSet FOLLOW_26_in_parse_edu_ustb_sei_mde_morel_OperationPathExp5712 = new BitSet(new long[]{0x820002020A6E8CD0L,0x0000000200000194L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_ReflectiveVariableExp_in_parse_edu_ustb_sei_mde_morel_OperationPathExp5746 = new BitSet(new long[]{0x0000000004800000L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_LetExp_in_parse_edu_ustb_sei_mde_morel_OperationPathExp5772 = new BitSet(new long[]{0x0000000004800000L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_ConditionExp_in_parse_edu_ustb_sei_mde_morel_OperationPathExp5798 = new BitSet(new long[]{0x0000000004800000L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanImpliesExp_in_parse_edu_ustb_sei_mde_morel_OperationPathExp5824 = new BitSet(new long[]{0x0000000004800000L});
     public static final BitSet FOLLOW_23_in_parse_edu_ustb_sei_mde_morel_OperationPathExp5898 = new BitSet(new long[]{0x0000000030000002L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_CallPathExp_in_parse_edu_ustb_sei_mde_morel_OperationPathExp5921 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_28_in_parse_edu_ustb_sei_mde_morel_IteratorPathExp5962 = new BitSet(new long[]{0x110C000000000000L,0x0000000002100000L});
+    public static final BitSet FOLLOW_28_in_parse_edu_ustb_sei_mde_morel_IteratorPathExp5962 = new BitSet(new long[]{0x110C000000000000L,0x0000000008400000L});
     public static final BitSet FOLLOW_60_in_parse_edu_ustb_sei_mde_morel_IteratorPathExp5985 = new BitSet(new long[]{0x0000000000400000L});
     public static final BitSet FOLLOW_56_in_parse_edu_ustb_sei_mde_morel_IteratorPathExp6000 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_89_in_parse_edu_ustb_sei_mde_morel_IteratorPathExp6015 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_84_in_parse_edu_ustb_sei_mde_morel_IteratorPathExp6030 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_91_in_parse_edu_ustb_sei_mde_morel_IteratorPathExp6015 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_86_in_parse_edu_ustb_sei_mde_morel_IteratorPathExp6030 = new BitSet(new long[]{0x0000000000400000L});
     public static final BitSet FOLLOW_51_in_parse_edu_ustb_sei_mde_morel_IteratorPathExp6045 = new BitSet(new long[]{0x0000000000400000L});
     public static final BitSet FOLLOW_50_in_parse_edu_ustb_sei_mde_morel_IteratorPathExp6060 = new BitSet(new long[]{0x0000000000400000L});
     public static final BitSet FOLLOW_22_in_parse_edu_ustb_sei_mde_morel_IteratorPathExp6081 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_Variable_in_parse_edu_ustb_sei_mde_morel_IteratorPathExp6099 = new BitSet(new long[]{0x0000000004000000L,0x0000010000000000L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_Variable_in_parse_edu_ustb_sei_mde_morel_IteratorPathExp6099 = new BitSet(new long[]{0x0000000004000000L,0x0000040000000000L});
     public static final BitSet FOLLOW_26_in_parse_edu_ustb_sei_mde_morel_IteratorPathExp6126 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_Variable_in_parse_edu_ustb_sei_mde_morel_IteratorPathExp6152 = new BitSet(new long[]{0x0000000000000000L,0x0000010000000000L});
-    public static final BitSet FOLLOW_104_in_parse_edu_ustb_sei_mde_morel_IteratorPathExp6193 = new BitSet(new long[]{0x420002020A4E8CD0L,0x00000000800000CAL});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_Variable_in_parse_edu_ustb_sei_mde_morel_IteratorPathExp6152 = new BitSet(new long[]{0x0000000000000000L,0x0000040000000000L});
+    public static final BitSet FOLLOW_106_in_parse_edu_ustb_sei_mde_morel_IteratorPathExp6193 = new BitSet(new long[]{0x820002020A4E8CD0L,0x0000000200000194L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_LetExp_in_parse_edu_ustb_sei_mde_morel_IteratorPathExp6211 = new BitSet(new long[]{0x0000000000800000L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_ConditionExp_in_parse_edu_ustb_sei_mde_morel_IteratorPathExp6225 = new BitSet(new long[]{0x0000000000800000L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanImpliesExp_in_parse_edu_ustb_sei_mde_morel_IteratorPathExp6239 = new BitSet(new long[]{0x0000000000800000L});
     public static final BitSet FOLLOW_23_in_parse_edu_ustb_sei_mde_morel_IteratorPathExp6257 = new BitSet(new long[]{0x0000000030000002L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_CallPathExp_in_parse_edu_ustb_sei_mde_morel_IteratorPathExp6286 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_67_in_parse_edu_ustb_sei_mde_morel_LetExp6342 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_VariableWithInit_in_parse_edu_ustb_sei_mde_morel_LetExp6360 = new BitSet(new long[]{0x0000000004000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_68_in_parse_edu_ustb_sei_mde_morel_LetExp6342 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_VariableWithInit_in_parse_edu_ustb_sei_mde_morel_LetExp6360 = new BitSet(new long[]{0x0000000004000000L,0x0000000000000002L});
     public static final BitSet FOLLOW_26_in_parse_edu_ustb_sei_mde_morel_LetExp6387 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_VariableWithInit_in_parse_edu_ustb_sei_mde_morel_LetExp6413 = new BitSet(new long[]{0x0000000004000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_64_in_parse_edu_ustb_sei_mde_morel_LetExp6454 = new BitSet(new long[]{0x420002020A4E8CD0L,0x00000000800000CAL});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_VariableWithInit_in_parse_edu_ustb_sei_mde_morel_LetExp6413 = new BitSet(new long[]{0x0000000004000000L,0x0000000000000002L});
+    public static final BitSet FOLLOW_65_in_parse_edu_ustb_sei_mde_morel_LetExp6454 = new BitSet(new long[]{0x820002020A4E8CD0L,0x0000000200000194L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_LetExp_in_parse_edu_ustb_sei_mde_morel_LetExp6472 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_ConditionExp_in_parse_edu_ustb_sei_mde_morel_LetExp6486 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanImpliesExp_in_parse_edu_ustb_sei_mde_morel_LetExp6500 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_62_in_parse_edu_ustb_sei_mde_morel_ConditionExp6533 = new BitSet(new long[]{0x020002020A4E8CD0L,0x00000000800000C2L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanImpliesExp_in_parse_edu_ustb_sei_mde_morel_ConditionExp6551 = new BitSet(new long[]{0x0000000000000000L,0x0000000010000000L});
-    public static final BitSet FOLLOW_92_in_parse_edu_ustb_sei_mde_morel_ConditionExp6569 = new BitSet(new long[]{0x420002020A6E8CD0L,0x00000000800000CAL});
+    public static final BitSet FOLLOW_63_in_parse_edu_ustb_sei_mde_morel_ConditionExp6533 = new BitSet(new long[]{0x020002020A4E8CD0L,0x0000000200000184L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanImpliesExp_in_parse_edu_ustb_sei_mde_morel_ConditionExp6551 = new BitSet(new long[]{0x0000000000000000L,0x0000000040000000L});
+    public static final BitSet FOLLOW_94_in_parse_edu_ustb_sei_mde_morel_ConditionExp6569 = new BitSet(new long[]{0x820002020A6E8CD0L,0x0000000200000194L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_Expression_in_parse_edu_ustb_sei_mde_morel_ConditionExp6587 = new BitSet(new long[]{0x0040000000000000L});
-    public static final BitSet FOLLOW_54_in_parse_edu_ustb_sei_mde_morel_ConditionExp6605 = new BitSet(new long[]{0x420002020A6E8CD0L,0x00000000800000CAL});
+    public static final BitSet FOLLOW_54_in_parse_edu_ustb_sei_mde_morel_ConditionExp6605 = new BitSet(new long[]{0x820002020A6E8CD0L,0x0000000200000194L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_Expression_in_parse_edu_ustb_sei_mde_morel_ConditionExp6623 = new BitSet(new long[]{0x0080000000000000L});
     public static final BitSet FOLLOW_55_in_parse_edu_ustb_sei_mde_morel_ConditionExp6641 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanOrExp_in_parse_edu_ustb_sei_mde_morel_BooleanImpliesExp6674 = new BitSet(new long[]{0x8000004000000002L});
-    public static final BitSet FOLLOW_63_in_parse_edu_ustb_sei_mde_morel_BooleanImpliesExp6714 = new BitSet(new long[]{0x020002020A4E8CD0L,0x00000000800000C2L});
-    public static final BitSet FOLLOW_38_in_parse_edu_ustb_sei_mde_morel_BooleanImpliesExp6733 = new BitSet(new long[]{0x020002020A4E8CD0L,0x00000000800000C2L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanOrExp_in_parse_edu_ustb_sei_mde_morel_BooleanImpliesExp6674 = new BitSet(new long[]{0x0000004000000002L,0x0000000000000001L});
+    public static final BitSet FOLLOW_64_in_parse_edu_ustb_sei_mde_morel_BooleanImpliesExp6714 = new BitSet(new long[]{0x020002020A4E8CD0L,0x0000000200000184L});
+    public static final BitSet FOLLOW_38_in_parse_edu_ustb_sei_mde_morel_BooleanImpliesExp6733 = new BitSet(new long[]{0x020002020A4E8CD0L,0x0000000200000184L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanOrExp_in_parse_edu_ustb_sei_mde_morel_BooleanImpliesExp6770 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanAndExp_in_parse_edu_ustb_sei_mde_morel_BooleanOrExp6830 = new BitSet(new long[]{0x0000000000000002L,0x0000020000000200L});
-    public static final BitSet FOLLOW_73_in_parse_edu_ustb_sei_mde_morel_BooleanOrExp6870 = new BitSet(new long[]{0x020002020A4E8CD0L,0x00000000800000C2L});
-    public static final BitSet FOLLOW_105_in_parse_edu_ustb_sei_mde_morel_BooleanOrExp6889 = new BitSet(new long[]{0x020002020A4E8CD0L,0x00000000800000C2L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanAndExp_in_parse_edu_ustb_sei_mde_morel_BooleanOrExp6830 = new BitSet(new long[]{0x0000000000000002L,0x0000080000000400L});
+    public static final BitSet FOLLOW_74_in_parse_edu_ustb_sei_mde_morel_BooleanOrExp6870 = new BitSet(new long[]{0x020002020A4E8CD0L,0x0000000200000184L});
+    public static final BitSet FOLLOW_107_in_parse_edu_ustb_sei_mde_morel_BooleanOrExp6889 = new BitSet(new long[]{0x020002020A4E8CD0L,0x0000000200000184L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanAndExp_in_parse_edu_ustb_sei_mde_morel_BooleanOrExp6926 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_RelationalExp_in_parse_edu_ustb_sei_mde_morel_BooleanAndExp6986 = new BitSet(new long[]{0x0001000000100002L});
-    public static final BitSet FOLLOW_48_in_parse_edu_ustb_sei_mde_morel_BooleanAndExp7026 = new BitSet(new long[]{0x020002020A4E8CD0L,0x00000000800000C2L});
-    public static final BitSet FOLLOW_20_in_parse_edu_ustb_sei_mde_morel_BooleanAndExp7045 = new BitSet(new long[]{0x020002020A4E8CD0L,0x00000000800000C2L});
+    public static final BitSet FOLLOW_48_in_parse_edu_ustb_sei_mde_morel_BooleanAndExp7026 = new BitSet(new long[]{0x020002020A4E8CD0L,0x0000000200000184L});
+    public static final BitSet FOLLOW_20_in_parse_edu_ustb_sei_mde_morel_BooleanAndExp7045 = new BitSet(new long[]{0x020002020A4E8CD0L,0x0000000200000184L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_RelationalExp_in_parse_edu_ustb_sei_mde_morel_BooleanAndExp7082 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_AdditiveExp_in_parse_edu_ustb_sei_mde_morel_RelationalExp7142 = new BitSet(new long[]{0x000001BA00010002L});
-    public static final BitSet FOLLOW_37_in_parse_edu_ustb_sei_mde_morel_RelationalExp7182 = new BitSet(new long[]{0x020002020A4E8CD0L,0x00000000800000C2L});
-    public static final BitSet FOLLOW_36_in_parse_edu_ustb_sei_mde_morel_RelationalExp7201 = new BitSet(new long[]{0x020002020A4E8CD0L,0x00000000800000C2L});
-    public static final BitSet FOLLOW_16_in_parse_edu_ustb_sei_mde_morel_RelationalExp7220 = new BitSet(new long[]{0x020002020A4E8CD0L,0x00000000800000C2L});
-    public static final BitSet FOLLOW_33_in_parse_edu_ustb_sei_mde_morel_RelationalExp7239 = new BitSet(new long[]{0x020002020A4E8CD0L,0x00000000800000C2L});
-    public static final BitSet FOLLOW_35_in_parse_edu_ustb_sei_mde_morel_RelationalExp7258 = new BitSet(new long[]{0x020002020A4E8CD0L,0x00000000800000C2L});
-    public static final BitSet FOLLOW_39_in_parse_edu_ustb_sei_mde_morel_RelationalExp7277 = new BitSet(new long[]{0x020002020A4E8CD0L,0x00000000800000C2L});
-    public static final BitSet FOLLOW_40_in_parse_edu_ustb_sei_mde_morel_RelationalExp7296 = new BitSet(new long[]{0x020002020A4E8CD0L,0x00000000800000C2L});
+    public static final BitSet FOLLOW_37_in_parse_edu_ustb_sei_mde_morel_RelationalExp7182 = new BitSet(new long[]{0x020002020A4E8CD0L,0x0000000200000184L});
+    public static final BitSet FOLLOW_36_in_parse_edu_ustb_sei_mde_morel_RelationalExp7201 = new BitSet(new long[]{0x020002020A4E8CD0L,0x0000000200000184L});
+    public static final BitSet FOLLOW_16_in_parse_edu_ustb_sei_mde_morel_RelationalExp7220 = new BitSet(new long[]{0x020002020A4E8CD0L,0x0000000200000184L});
+    public static final BitSet FOLLOW_33_in_parse_edu_ustb_sei_mde_morel_RelationalExp7239 = new BitSet(new long[]{0x020002020A4E8CD0L,0x0000000200000184L});
+    public static final BitSet FOLLOW_35_in_parse_edu_ustb_sei_mde_morel_RelationalExp7258 = new BitSet(new long[]{0x020002020A4E8CD0L,0x0000000200000184L});
+    public static final BitSet FOLLOW_39_in_parse_edu_ustb_sei_mde_morel_RelationalExp7277 = new BitSet(new long[]{0x020002020A4E8CD0L,0x0000000200000184L});
+    public static final BitSet FOLLOW_40_in_parse_edu_ustb_sei_mde_morel_RelationalExp7296 = new BitSet(new long[]{0x020002020A4E8CD0L,0x0000000200000184L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_AdditiveExp_in_parse_edu_ustb_sei_mde_morel_RelationalExp7333 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_MultiplicativeExp_in_parse_edu_ustb_sei_mde_morel_AdditiveExp7393 = new BitSet(new long[]{0x000000000A000002L});
-    public static final BitSet FOLLOW_25_in_parse_edu_ustb_sei_mde_morel_AdditiveExp7433 = new BitSet(new long[]{0x020002020A4E8CD0L,0x00000000800000C2L});
-    public static final BitSet FOLLOW_27_in_parse_edu_ustb_sei_mde_morel_AdditiveExp7452 = new BitSet(new long[]{0x020002020A4E8CD0L,0x00000000800000C2L});
+    public static final BitSet FOLLOW_25_in_parse_edu_ustb_sei_mde_morel_AdditiveExp7433 = new BitSet(new long[]{0x020002020A4E8CD0L,0x0000000200000184L});
+    public static final BitSet FOLLOW_27_in_parse_edu_ustb_sei_mde_morel_AdditiveExp7452 = new BitSet(new long[]{0x020002020A4E8CD0L,0x0000000200000184L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_MultiplicativeExp_in_parse_edu_ustb_sei_mde_morel_AdditiveExp7489 = new BitSet(new long[]{0x000000000A000002L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExp7549 = new BitSet(new long[]{0x0000000041000002L});
-    public static final BitSet FOLLOW_24_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExp7589 = new BitSet(new long[]{0x020002020A4E8CD0L,0x00000000800000C2L});
-    public static final BitSet FOLLOW_30_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExp7608 = new BitSet(new long[]{0x020002020A4E8CD0L,0x00000000800000C2L});
+    public static final BitSet FOLLOW_24_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExp7589 = new BitSet(new long[]{0x020002020A4E8CD0L,0x0000000200000184L});
+    public static final BitSet FOLLOW_30_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExp7608 = new BitSet(new long[]{0x020002020A4E8CD0L,0x0000000200000184L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExp7645 = new BitSet(new long[]{0x0000000041000002L});
-    public static final BitSet FOLLOW_25_in_parse_edu_ustb_sei_mde_morel_UnaryExp7716 = new BitSet(new long[]{0x02000202004E0CD0L,0x0000000080000082L});
-    public static final BitSet FOLLOW_27_in_parse_edu_ustb_sei_mde_morel_UnaryExp7733 = new BitSet(new long[]{0x02000202004E0CD0L,0x0000000080000082L});
-    public static final BitSet FOLLOW_70_in_parse_edu_ustb_sei_mde_morel_UnaryExp7750 = new BitSet(new long[]{0x02000202004E0CD0L,0x0000000080000082L});
-    public static final BitSet FOLLOW_15_in_parse_edu_ustb_sei_mde_morel_UnaryExp7767 = new BitSet(new long[]{0x02000202004E0CD0L,0x0000000080000082L});
+    public static final BitSet FOLLOW_25_in_parse_edu_ustb_sei_mde_morel_UnaryExp7716 = new BitSet(new long[]{0x02000202004E0CD0L,0x0000000200000104L});
+    public static final BitSet FOLLOW_27_in_parse_edu_ustb_sei_mde_morel_UnaryExp7733 = new BitSet(new long[]{0x02000202004E0CD0L,0x0000000200000104L});
+    public static final BitSet FOLLOW_71_in_parse_edu_ustb_sei_mde_morel_UnaryExp7750 = new BitSet(new long[]{0x02000202004E0CD0L,0x0000000200000104L});
+    public static final BitSet FOLLOW_15_in_parse_edu_ustb_sei_mde_morel_UnaryExp7767 = new BitSet(new long[]{0x02000202004E0CD0L,0x0000000200000104L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_AtomicExp_in_parse_edu_ustb_sei_mde_morel_UnaryExp7800 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_VariableExp_in_parse_edu_ustb_sei_mde_morel_BindExp7837 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_34_in_parse_edu_ustb_sei_mde_morel_BindExp7855 = new BitSet(new long[]{0x420002020A4E8CD0L,0x00000000800000CAL});
+    public static final BitSet FOLLOW_34_in_parse_edu_ustb_sei_mde_morel_BindExp7855 = new BitSet(new long[]{0x820002020A4E8CD0L,0x0000000200000194L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_LetExp_in_parse_edu_ustb_sei_mde_morel_BindExp7873 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_ConditionExp_in_parse_edu_ustb_sei_mde_morel_BindExp7887 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanImpliesExp_in_parse_edu_ustb_sei_mde_morel_BindExp7901 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_PredefinedVariableExp_in_parse_edu_ustb_sei_mde_morel_PredefinedBindExp7938 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_34_in_parse_edu_ustb_sei_mde_morel_PredefinedBindExp7956 = new BitSet(new long[]{0x420002020A4E8CD0L,0x00000000800000CAL});
+    public static final BitSet FOLLOW_34_in_parse_edu_ustb_sei_mde_morel_PredefinedBindExp7956 = new BitSet(new long[]{0x820002020A4E8CD0L,0x0000000200000194L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_LetExp_in_parse_edu_ustb_sei_mde_morel_PredefinedBindExp7974 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_ConditionExp_in_parse_edu_ustb_sei_mde_morel_PredefinedBindExp7988 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanImpliesExp_in_parse_edu_ustb_sei_mde_morel_PredefinedBindExp8002 = new BitSet(new long[]{0x0000000000000002L});
@@ -27538,84 +27618,84 @@ public class MorelParser extends MorelANTLRParserBase {
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanImpliesExp_in_parse_edu_ustb_sei_mde_morel_DeclarativeStatement8095 = new BitSet(new long[]{0x0000000100000000L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_ReflectiveVariableExp_in_parse_edu_ustb_sei_mde_morel_DeclarativeStatement8109 = new BitSet(new long[]{0x0000000100000000L});
     public static final BitSet FOLLOW_32_in_parse_edu_ustb_sei_mde_morel_DeclarativeStatement8127 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_62_in_parse_edu_ustb_sei_mde_morel_IfStatement8156 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_22_in_parse_edu_ustb_sei_mde_morel_IfStatement8170 = new BitSet(new long[]{0x020002020A4E8CD0L,0x00000000800000C2L});
+    public static final BitSet FOLLOW_63_in_parse_edu_ustb_sei_mde_morel_IfStatement8156 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_22_in_parse_edu_ustb_sei_mde_morel_IfStatement8170 = new BitSet(new long[]{0x020002020A4E8CD0L,0x0000000200000184L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanImpliesExp_in_parse_edu_ustb_sei_mde_morel_IfStatement8188 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_23_in_parse_edu_ustb_sei_mde_morel_IfStatement8206 = new BitSet(new long[]{0x4800000000000000L,0x0000008000000000L});
+    public static final BitSet FOLLOW_23_in_parse_edu_ustb_sei_mde_morel_IfStatement8206 = new BitSet(new long[]{0x8800000000000000L,0x0000020000000000L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_ImperativeStatement_in_parse_edu_ustb_sei_mde_morel_IfStatement8224 = new BitSet(new long[]{0x0040000000000002L});
-    public static final BitSet FOLLOW_54_in_parse_edu_ustb_sei_mde_morel_IfStatement8251 = new BitSet(new long[]{0x4800000000000000L,0x0000008000000000L});
+    public static final BitSet FOLLOW_54_in_parse_edu_ustb_sei_mde_morel_IfStatement8251 = new BitSet(new long[]{0x8800000000000000L,0x0000020000000000L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_ImperativeStatement_in_parse_edu_ustb_sei_mde_morel_IfStatement8277 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_59_in_parse_edu_ustb_sei_mde_morel_ForStatement8333 = new BitSet(new long[]{0x0000000000400000L});
     public static final BitSet FOLLOW_22_in_parse_edu_ustb_sei_mde_morel_ForStatement8347 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_VariableWithInit_in_parse_edu_ustb_sei_mde_morel_ForStatement8365 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_32_in_parse_edu_ustb_sei_mde_morel_ForStatement8383 = new BitSet(new long[]{0x020002020A4E8CD0L,0x00000000800000C2L});
+    public static final BitSet FOLLOW_32_in_parse_edu_ustb_sei_mde_morel_ForStatement8383 = new BitSet(new long[]{0x020002020A4E8CD0L,0x0000000200000184L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanImpliesExp_in_parse_edu_ustb_sei_mde_morel_ForStatement8401 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_32_in_parse_edu_ustb_sei_mde_morel_ForStatement8419 = new BitSet(new long[]{0x420002020ACE8CD0L,0x00000000800000CAL});
+    public static final BitSet FOLLOW_32_in_parse_edu_ustb_sei_mde_morel_ForStatement8419 = new BitSet(new long[]{0x820002020ACE8CD0L,0x0000000200000194L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_LetExp_in_parse_edu_ustb_sei_mde_morel_ForStatement8448 = new BitSet(new long[]{0x0000000000800000L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_ConditionExp_in_parse_edu_ustb_sei_mde_morel_ForStatement8468 = new BitSet(new long[]{0x0000000000800000L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanImpliesExp_in_parse_edu_ustb_sei_mde_morel_ForStatement8488 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_23_in_parse_edu_ustb_sei_mde_morel_ForStatement8529 = new BitSet(new long[]{0x4800000000000000L,0x0000008000000000L});
+    public static final BitSet FOLLOW_23_in_parse_edu_ustb_sei_mde_morel_ForStatement8529 = new BitSet(new long[]{0x8800000000000000L,0x0000020000000000L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_ImperativeStatement_in_parse_edu_ustb_sei_mde_morel_ForStatement8547 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_103_in_parse_edu_ustb_sei_mde_morel_BlockStatement8580 = new BitSet(new long[]{0x4A0002020A6E8CD0L,0x00000480800000CAL});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_Statement_in_parse_edu_ustb_sei_mde_morel_BlockStatement8603 = new BitSet(new long[]{0x4A0002020A6E8CD0L,0x00000480800000CAL});
-    public static final BitSet FOLLOW_106_in_parse_edu_ustb_sei_mde_morel_BlockStatement8629 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_93_in_parse_edu_ustb_sei_mde_morel_TransformationModel8658 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_TransformationModel8676 = new BitSet(new long[]{0x0000000000000000L,0x0000000100000000L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_TypedModel_in_parse_edu_ustb_sei_mde_morel_TransformationModel8706 = new BitSet(new long[]{0x2020200000000002L,0x0000000104801800L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_RuleElement_in_parse_edu_ustb_sei_mde_morel_TransformationModel8741 = new BitSet(new long[]{0x2020200000000002L,0x0000000004801800L});
-    public static final BitSet FOLLOW_45_in_parse_edu_ustb_sei_mde_morel_Rule8804 = new BitSet(new long[]{0x0000000000000000L,0x0000000000800000L});
-    public static final BitSet FOLLOW_76_in_parse_edu_ustb_sei_mde_morel_Rule8823 = new BitSet(new long[]{0x0000000000000000L,0x0000000000800000L});
-    public static final BitSet FOLLOW_87_in_parse_edu_ustb_sei_mde_morel_Rule8867 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_Rule8885 = new BitSet(new long[]{0x0000000000400000L,0x0000008000000000L});
+    public static final BitSet FOLLOW_105_in_parse_edu_ustb_sei_mde_morel_BlockStatement8580 = new BitSet(new long[]{0x8A0002020A6E8CD0L,0x0000120200000194L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_Statement_in_parse_edu_ustb_sei_mde_morel_BlockStatement8603 = new BitSet(new long[]{0x8A0002020A6E8CD0L,0x0000120200000194L});
+    public static final BitSet FOLLOW_108_in_parse_edu_ustb_sei_mde_morel_BlockStatement8629 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_95_in_parse_edu_ustb_sei_mde_morel_TransformationModel8658 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_TransformationModel8676 = new BitSet(new long[]{0x0000000000000000L,0x0000000400000000L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_TypedModel_in_parse_edu_ustb_sei_mde_morel_TransformationModel8706 = new BitSet(new long[]{0x4020200000000002L,0x0000000412003000L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_RuleElement_in_parse_edu_ustb_sei_mde_morel_TransformationModel8741 = new BitSet(new long[]{0x4020200000000002L,0x0000000012003000L});
+    public static final BitSet FOLLOW_45_in_parse_edu_ustb_sei_mde_morel_Rule8804 = new BitSet(new long[]{0x0000000000000000L,0x0000000002000000L});
+    public static final BitSet FOLLOW_77_in_parse_edu_ustb_sei_mde_morel_Rule8823 = new BitSet(new long[]{0x0000000000000000L,0x0000000002000000L});
+    public static final BitSet FOLLOW_89_in_parse_edu_ustb_sei_mde_morel_Rule8867 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_Rule8885 = new BitSet(new long[]{0x0000000000400000L,0x0000020000000000L});
     public static final BitSet FOLLOW_22_in_parse_edu_ustb_sei_mde_morel_Rule8915 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_Rule8941 = new BitSet(new long[]{0x0000000004800000L});
     public static final BitSet FOLLOW_26_in_parse_edu_ustb_sei_mde_morel_Rule8987 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_Rule9021 = new BitSet(new long[]{0x0000000004800000L});
-    public static final BitSet FOLLOW_23_in_parse_edu_ustb_sei_mde_morel_Rule9089 = new BitSet(new long[]{0x0000000000000000L,0x0000008000000000L});
-    public static final BitSet FOLLOW_103_in_parse_edu_ustb_sei_mde_morel_Rule9122 = new BitSet(new long[]{0x0000200000000000L,0x000004800040F430L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_Pattern_in_parse_edu_ustb_sei_mde_morel_Rule9151 = new BitSet(new long[]{0x0000200000000000L,0x000004800040F430L});
-    public static final BitSet FOLLOW_106_in_parse_edu_ustb_sei_mde_morel_Rule9192 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_45_in_parse_edu_ustb_sei_mde_morel_RuleGroup9243 = new BitSet(new long[]{0x2020000000000000L,0x0000000004000800L});
-    public static final BitSet FOLLOW_76_in_parse_edu_ustb_sei_mde_morel_RuleGroup9262 = new BitSet(new long[]{0x2020000000000000L,0x0000000004000800L});
-    public static final BitSet FOLLOW_53_in_parse_edu_ustb_sei_mde_morel_RuleGroup9321 = new BitSet(new long[]{0x2000000000000000L});
-    public static final BitSet FOLLOW_90_in_parse_edu_ustb_sei_mde_morel_RuleGroup9338 = new BitSet(new long[]{0x2000000000000000L});
-    public static final BitSet FOLLOW_75_in_parse_edu_ustb_sei_mde_morel_RuleGroup9355 = new BitSet(new long[]{0x2000000000000000L});
-    public static final BitSet FOLLOW_61_in_parse_edu_ustb_sei_mde_morel_RuleGroup9384 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_RuleGroup9402 = new BitSet(new long[]{0x0000000000000000L,0x0000008001200004L});
-    public static final BitSet FOLLOW_88_in_parse_edu_ustb_sei_mde_morel_RuleGroup9432 = new BitSet(new long[]{0x0000400000000000L,0x0000000000060000L});
-    public static final BitSet FOLLOW_46_in_parse_edu_ustb_sei_mde_morel_RuleGroup9465 = new BitSet(new long[]{0x0000000000000080L,0x0000008000200004L});
-    public static final BitSet FOLLOW_81_in_parse_edu_ustb_sei_mde_morel_RuleGroup9484 = new BitSet(new long[]{0x0000000000000080L,0x0000008000200004L});
-    public static final BitSet FOLLOW_82_in_parse_edu_ustb_sei_mde_morel_RuleGroup9503 = new BitSet(new long[]{0x0000000000000080L,0x0000008000200004L});
-    public static final BitSet FOLLOW_INUMBER_in_parse_edu_ustb_sei_mde_morel_RuleGroup9555 = new BitSet(new long[]{0x0000000000000000L,0x0000008000200004L});
-    public static final BitSet FOLLOW_66_in_parse_edu_ustb_sei_mde_morel_RuleGroup9645 = new BitSet(new long[]{0x0000000001000080L,0x0000008000200000L});
-    public static final BitSet FOLLOW_INUMBER_in_parse_edu_ustb_sei_mde_morel_RuleGroup9678 = new BitSet(new long[]{0x0000000001000000L,0x0000008000200000L});
-    public static final BitSet FOLLOW_24_in_parse_edu_ustb_sei_mde_morel_RuleGroup9745 = new BitSet(new long[]{0x0000000000000000L,0x0000008000200000L});
-    public static final BitSet FOLLOW_85_in_parse_edu_ustb_sei_mde_morel_RuleGroup9810 = new BitSet(new long[]{0x0400400000000000L,0x0000000000000100L});
-    public static final BitSet FOLLOW_46_in_parse_edu_ustb_sei_mde_morel_RuleGroup9843 = new BitSet(new long[]{0x0000000000000000L,0x0000008000000000L});
-    public static final BitSet FOLLOW_58_in_parse_edu_ustb_sei_mde_morel_RuleGroup9862 = new BitSet(new long[]{0x0000000000000000L,0x0000008000000000L});
-    public static final BitSet FOLLOW_72_in_parse_edu_ustb_sei_mde_morel_RuleGroup9881 = new BitSet(new long[]{0x0000000000000000L,0x0000008000000000L});
-    public static final BitSet FOLLOW_103_in_parse_edu_ustb_sei_mde_morel_RuleGroup9925 = new BitSet(new long[]{0x0000200000000000L,0x0000040000801000L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_Rule_in_parse_edu_ustb_sei_mde_morel_RuleGroup9948 = new BitSet(new long[]{0x0000200000000000L,0x0000040000801000L});
-    public static final BitSet FOLLOW_106_in_parse_edu_ustb_sei_mde_morel_RuleGroup9974 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_68_in_parse_edu_ustb_sei_mde_morel_Pattern10012 = new BitSet(new long[]{0x0000000000000000L,0x0000008000000000L});
-    public static final BitSet FOLLOW_86_in_parse_edu_ustb_sei_mde_morel_Pattern10027 = new BitSet(new long[]{0x0000000000000000L,0x0000008000000000L});
-    public static final BitSet FOLLOW_69_in_parse_edu_ustb_sei_mde_morel_Pattern10042 = new BitSet(new long[]{0x0000000000000000L,0x0000008000000000L});
-    public static final BitSet FOLLOW_74_in_parse_edu_ustb_sei_mde_morel_Pattern10057 = new BitSet(new long[]{0x0000000000000000L,0x0000008000000000L});
-    public static final BitSet FOLLOW_78_in_parse_edu_ustb_sei_mde_morel_Pattern10072 = new BitSet(new long[]{0x0000000000000000L,0x0000008000000000L});
-    public static final BitSet FOLLOW_77_in_parse_edu_ustb_sei_mde_morel_Pattern10087 = new BitSet(new long[]{0x0000000000000000L,0x0000008000000000L});
-    public static final BitSet FOLLOW_103_in_parse_edu_ustb_sei_mde_morel_Pattern10108 = new BitSet(new long[]{0x0000800000000040L,0x0000044000000000L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_Variable_in_parse_edu_ustb_sei_mde_morel_Pattern10137 = new BitSet(new long[]{0x0000800004000040L,0x0000044000000000L});
+    public static final BitSet FOLLOW_23_in_parse_edu_ustb_sei_mde_morel_Rule9089 = new BitSet(new long[]{0x0000000000000000L,0x0000020000000000L});
+    public static final BitSet FOLLOW_105_in_parse_edu_ustb_sei_mde_morel_Rule9122 = new BitSet(new long[]{0x0000200000000000L,0x000012000102E860L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_Pattern_in_parse_edu_ustb_sei_mde_morel_Rule9151 = new BitSet(new long[]{0x0000200000000000L,0x000012000102E860L});
+    public static final BitSet FOLLOW_108_in_parse_edu_ustb_sei_mde_morel_Rule9192 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_45_in_parse_edu_ustb_sei_mde_morel_RuleGroup9243 = new BitSet(new long[]{0x4020000000000000L,0x0000000010001000L});
+    public static final BitSet FOLLOW_77_in_parse_edu_ustb_sei_mde_morel_RuleGroup9262 = new BitSet(new long[]{0x4020000000000000L,0x0000000010001000L});
+    public static final BitSet FOLLOW_53_in_parse_edu_ustb_sei_mde_morel_RuleGroup9321 = new BitSet(new long[]{0x4000000000000000L});
+    public static final BitSet FOLLOW_92_in_parse_edu_ustb_sei_mde_morel_RuleGroup9338 = new BitSet(new long[]{0x4000000000000000L});
+    public static final BitSet FOLLOW_76_in_parse_edu_ustb_sei_mde_morel_RuleGroup9355 = new BitSet(new long[]{0x4000000000000000L});
+    public static final BitSet FOLLOW_62_in_parse_edu_ustb_sei_mde_morel_RuleGroup9384 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_RuleGroup9402 = new BitSet(new long[]{0x0000000000000000L,0x0000020004800008L});
+    public static final BitSet FOLLOW_90_in_parse_edu_ustb_sei_mde_morel_RuleGroup9432 = new BitSet(new long[]{0x0000400000000000L,0x0000000000180000L});
+    public static final BitSet FOLLOW_46_in_parse_edu_ustb_sei_mde_morel_RuleGroup9465 = new BitSet(new long[]{0x0000000000000080L,0x0000020000800008L});
+    public static final BitSet FOLLOW_83_in_parse_edu_ustb_sei_mde_morel_RuleGroup9484 = new BitSet(new long[]{0x0000000000000080L,0x0000020000800008L});
+    public static final BitSet FOLLOW_84_in_parse_edu_ustb_sei_mde_morel_RuleGroup9503 = new BitSet(new long[]{0x0000000000000080L,0x0000020000800008L});
+    public static final BitSet FOLLOW_INUMBER_in_parse_edu_ustb_sei_mde_morel_RuleGroup9555 = new BitSet(new long[]{0x0000000000000000L,0x0000020000800008L});
+    public static final BitSet FOLLOW_67_in_parse_edu_ustb_sei_mde_morel_RuleGroup9645 = new BitSet(new long[]{0x0000000001000080L,0x0000020000800000L});
+    public static final BitSet FOLLOW_INUMBER_in_parse_edu_ustb_sei_mde_morel_RuleGroup9678 = new BitSet(new long[]{0x0000000001000000L,0x0000020000800000L});
+    public static final BitSet FOLLOW_24_in_parse_edu_ustb_sei_mde_morel_RuleGroup9745 = new BitSet(new long[]{0x0000000000000000L,0x0000020000800000L});
+    public static final BitSet FOLLOW_87_in_parse_edu_ustb_sei_mde_morel_RuleGroup9810 = new BitSet(new long[]{0x0400400000000000L,0x0000000000000200L});
+    public static final BitSet FOLLOW_46_in_parse_edu_ustb_sei_mde_morel_RuleGroup9843 = new BitSet(new long[]{0x0000000000000000L,0x0000020000000000L});
+    public static final BitSet FOLLOW_58_in_parse_edu_ustb_sei_mde_morel_RuleGroup9862 = new BitSet(new long[]{0x0000000000000000L,0x0000020000000000L});
+    public static final BitSet FOLLOW_73_in_parse_edu_ustb_sei_mde_morel_RuleGroup9881 = new BitSet(new long[]{0x0000000000000000L,0x0000020000000000L});
+    public static final BitSet FOLLOW_105_in_parse_edu_ustb_sei_mde_morel_RuleGroup9925 = new BitSet(new long[]{0x0000200000000000L,0x0000100002002000L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_Rule_in_parse_edu_ustb_sei_mde_morel_RuleGroup9948 = new BitSet(new long[]{0x0000200000000000L,0x0000100002002000L});
+    public static final BitSet FOLLOW_108_in_parse_edu_ustb_sei_mde_morel_RuleGroup9974 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_69_in_parse_edu_ustb_sei_mde_morel_Pattern10012 = new BitSet(new long[]{0x0000000000000000L,0x0000020000000000L});
+    public static final BitSet FOLLOW_88_in_parse_edu_ustb_sei_mde_morel_Pattern10027 = new BitSet(new long[]{0x0000000000000000L,0x0000020000000000L});
+    public static final BitSet FOLLOW_70_in_parse_edu_ustb_sei_mde_morel_Pattern10042 = new BitSet(new long[]{0x0000000000000000L,0x0000020000000000L});
+    public static final BitSet FOLLOW_75_in_parse_edu_ustb_sei_mde_morel_Pattern10057 = new BitSet(new long[]{0x0000000000000000L,0x0000020000000000L});
+    public static final BitSet FOLLOW_79_in_parse_edu_ustb_sei_mde_morel_Pattern10072 = new BitSet(new long[]{0x0000000000000000L,0x0000020000000000L});
+    public static final BitSet FOLLOW_78_in_parse_edu_ustb_sei_mde_morel_Pattern10087 = new BitSet(new long[]{0x0000000000000000L,0x0000020000000000L});
+    public static final BitSet FOLLOW_105_in_parse_edu_ustb_sei_mde_morel_Pattern10108 = new BitSet(new long[]{0x0000800000000040L,0x0000110000000000L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_Variable_in_parse_edu_ustb_sei_mde_morel_Pattern10137 = new BitSet(new long[]{0x0000800004000040L,0x0000110000000000L});
     public static final BitSet FOLLOW_26_in_parse_edu_ustb_sei_mde_morel_Pattern10178 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_Variable_in_parse_edu_ustb_sei_mde_morel_Pattern10212 = new BitSet(new long[]{0x0000800004000040L,0x0000044000000000L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_LinkConstraint_in_parse_edu_ustb_sei_mde_morel_Pattern10301 = new BitSet(new long[]{0x0000800004000040L,0x0000044000000000L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_Variable_in_parse_edu_ustb_sei_mde_morel_Pattern10212 = new BitSet(new long[]{0x0000800004000040L,0x0000110000000000L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_LinkConstraint_in_parse_edu_ustb_sei_mde_morel_Pattern10301 = new BitSet(new long[]{0x0000800004000040L,0x0000110000000000L});
     public static final BitSet FOLLOW_26_in_parse_edu_ustb_sei_mde_morel_Pattern10342 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_LinkConstraint_in_parse_edu_ustb_sei_mde_morel_Pattern10376 = new BitSet(new long[]{0x0000800004000040L,0x0000044000000000L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_AdditionalConstraint_in_parse_edu_ustb_sei_mde_morel_Pattern10465 = new BitSet(new long[]{0x0000000004000000L,0x0000044000000000L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_LinkConstraint_in_parse_edu_ustb_sei_mde_morel_Pattern10376 = new BitSet(new long[]{0x0000800004000040L,0x0000110000000000L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_AdditionalConstraint_in_parse_edu_ustb_sei_mde_morel_Pattern10465 = new BitSet(new long[]{0x0000000004000000L,0x0000110000000000L});
     public static final BitSet FOLLOW_26_in_parse_edu_ustb_sei_mde_morel_Pattern10506 = new BitSet(new long[]{0x0000800000000040L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_AdditionalConstraint_in_parse_edu_ustb_sei_mde_morel_Pattern10540 = new BitSet(new long[]{0x0000000004000000L,0x0000044000000000L});
-    public static final BitSet FOLLOW_102_in_parse_edu_ustb_sei_mde_morel_Pattern10623 = new BitSet(new long[]{0x4A0002020A6E8CD0L,0x00000080800000CAL});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_Statement_in_parse_edu_ustb_sei_mde_morel_Pattern10664 = new BitSet(new long[]{0x4A0002020A6E8CD0L,0x00000480800000CAL});
-    public static final BitSet FOLLOW_106_in_parse_edu_ustb_sei_mde_morel_Pattern10738 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_AdditionalConstraint_in_parse_edu_ustb_sei_mde_morel_Pattern10540 = new BitSet(new long[]{0x0000000004000000L,0x0000110000000000L});
+    public static final BitSet FOLLOW_104_in_parse_edu_ustb_sei_mde_morel_Pattern10623 = new BitSet(new long[]{0x8A0002020A6E8CD0L,0x0000020200000194L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_Statement_in_parse_edu_ustb_sei_mde_morel_Pattern10664 = new BitSet(new long[]{0x8A0002020A6E8CD0L,0x0000120200000194L});
+    public static final BitSet FOLLOW_108_in_parse_edu_ustb_sei_mde_morel_Pattern10738 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_Query_in_parse_edu_ustb_sei_mde_morel_Pattern10757 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_19_in_parse_edu_ustb_sei_mde_morel_PredefinedVariableExp10791 = new BitSet(new long[]{0x0000000030000002L});
     public static final BitSet FOLLOW_18_in_parse_edu_ustb_sei_mde_morel_PredefinedVariableExp10806 = new BitSet(new long[]{0x0000000030000002L});
@@ -27646,163 +27726,165 @@ public class MorelParser extends MorelANTLRParserBase {
     public static final BitSet FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_AllDifferentConstraint11607 = new BitSet(new long[]{0x0000000004800000L});
     public static final BitSet FOLLOW_23_in_parse_edu_ustb_sei_mde_morel_AllDifferentConstraint11688 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_49_in_parse_edu_ustb_sei_mde_morel_BXRewritingModel11717 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_BXRewritingModel11735 = new BitSet(new long[]{0x0000000000000000L,0x0000000100000000L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_TypedModel_in_parse_edu_ustb_sei_mde_morel_BXRewritingModel11765 = new BitSet(new long[]{0x0000200000000002L,0x0000000100801000L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BXRewritingRule_in_parse_edu_ustb_sei_mde_morel_BXRewritingModel11800 = new BitSet(new long[]{0x0000200000000002L,0x0000000000801000L});
-    public static final BitSet FOLLOW_45_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule11863 = new BitSet(new long[]{0x0000000000000000L,0x0000000000800000L});
-    public static final BitSet FOLLOW_76_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule11882 = new BitSet(new long[]{0x0000000000000000L,0x0000000000800000L});
-    public static final BitSet FOLLOW_87_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule11926 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule11944 = new BitSet(new long[]{0x0000000000400000L,0x0000008000000000L});
-    public static final BitSet FOLLOW_22_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule11974 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12000 = new BitSet(new long[]{0x0000000004800000L});
-    public static final BitSet FOLLOW_26_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12046 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12080 = new BitSet(new long[]{0x0000000004800000L});
-    public static final BitSet FOLLOW_23_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12148 = new BitSet(new long[]{0x0000000000000000L,0x0000008000000000L});
-    public static final BitSet FOLLOW_103_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12181 = new BitSet(new long[]{0x0000200000000000L,0x000004BE0840F430L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_Pattern_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12204 = new BitSet(new long[]{0x0000200000000000L,0x000004BE0840F430L});
-    public static final BitSet FOLLOW_101_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12239 = new BitSet(new long[]{0x0000000000000000L,0x0000008000000000L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_Clause_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12265 = new BitSet(new long[]{0x0000000000000000L,0x0000041E08000000L});
-    public static final BitSet FOLLOW_91_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12315 = new BitSet(new long[]{0x0000200000000000L,0x000000800040F430L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_Pattern_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12341 = new BitSet(new long[]{0x0000000000000000L,0x0000041E00000000L});
-    public static final BitSet FOLLOW_100_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12391 = new BitSet(new long[]{0x0000200000000000L,0x000000800040F430L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_Pattern_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12417 = new BitSet(new long[]{0x0000000000000000L,0x0000040E00000000L});
-    public static final BitSet FOLLOW_99_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12467 = new BitSet(new long[]{0x0000000000000000L,0x0000008000000000L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_Clause_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12493 = new BitSet(new long[]{0x0000000000000000L,0x0000040600000000L});
-    public static final BitSet FOLLOW_97_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12543 = new BitSet(new long[]{0x0000200000000000L,0x000000800040F430L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_Pattern_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12569 = new BitSet(new long[]{0x0000000000000000L,0x0000040400000000L});
-    public static final BitSet FOLLOW_98_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12619 = new BitSet(new long[]{0x0000200000000000L,0x000000800040F430L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_Pattern_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12645 = new BitSet(new long[]{0x0000000000000000L,0x0000040000000000L});
-    public static final BitSet FOLLOW_106_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12686 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_103_in_parse_edu_ustb_sei_mde_morel_Clause12715 = new BitSet(new long[]{0x4A0002020A6E8CD0L,0x00000080800000CAL});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_Statement_in_parse_edu_ustb_sei_mde_morel_Clause12744 = new BitSet(new long[]{0x4A0002020A6E8CD0L,0x00000480800000CAL});
-    public static final BitSet FOLLOW_106_in_parse_edu_ustb_sei_mde_morel_Clause12785 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_ObjectVariable_in_parse_edu_ustb_sei_mde_morel_Variable12810 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_PrimitiveVariable_in_parse_edu_ustb_sei_mde_morel_Variable12820 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_ObjectVariableWithInit_in_parse_edu_ustb_sei_mde_morel_Variable12830 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_PrimitiveVariableWithInit_in_parse_edu_ustb_sei_mde_morel_Variable12840 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_SimpleLinkConstraint_in_parse_edu_ustb_sei_mde_morel_LinkConstraint12861 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_EnclosureLinkConstraint_in_parse_edu_ustb_sei_mde_morel_LinkConstraint12871 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_PathConstraint_in_parse_edu_ustb_sei_mde_morel_LinkConstraint12881 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_OrderConstraint_in_parse_edu_ustb_sei_mde_morel_AdditionalConstraint12902 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_AllDifferentConstraint_in_parse_edu_ustb_sei_mde_morel_AdditionalConstraint12912 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_DeclarativeStatement_in_parse_edu_ustb_sei_mde_morel_Statement12933 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_IfStatement_in_parse_edu_ustb_sei_mde_morel_Statement12943 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_ForStatement_in_parse_edu_ustb_sei_mde_morel_Statement12953 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BlockStatement_in_parse_edu_ustb_sei_mde_morel_Statement12963 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_FeaturePathExp_in_parse_edu_ustb_sei_mde_morel_CallPathExp12984 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_OperationPathExp_in_parse_edu_ustb_sei_mde_morel_CallPathExp12994 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_IteratorPathExp_in_parse_edu_ustb_sei_mde_morel_CallPathExp13004 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_ObjectVariableWithInit_in_parse_edu_ustb_sei_mde_morel_VariableWithInit13025 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_PrimitiveVariableWithInit_in_parse_edu_ustb_sei_mde_morel_VariableWithInit13035 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_VariableExp_in_parse_edu_ustb_sei_mde_morel_Expression13056 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_NestedExp_in_parse_edu_ustb_sei_mde_morel_Expression13066 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_IntegerLiteralExp_in_parse_edu_ustb_sei_mde_morel_Expression13076 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_RealLiteralExp_in_parse_edu_ustb_sei_mde_morel_Expression13086 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_StringLiteralExp_in_parse_edu_ustb_sei_mde_morel_Expression13096 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanLiteralExp_in_parse_edu_ustb_sei_mde_morel_Expression13106 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp_in_parse_edu_ustb_sei_mde_morel_Expression13116 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_TypeLiteralExp_in_parse_edu_ustb_sei_mde_morel_Expression13126 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_CollectionLiteralExp_in_parse_edu_ustb_sei_mde_morel_Expression13136 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_EnumLiteralExp_in_parse_edu_ustb_sei_mde_morel_Expression13146 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_ArrayLiteralExp_in_parse_edu_ustb_sei_mde_morel_Expression13156 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_LetExp_in_parse_edu_ustb_sei_mde_morel_Expression13166 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_ConditionExp_in_parse_edu_ustb_sei_mde_morel_Expression13176 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanImpliesExp_in_parse_edu_ustb_sei_mde_morel_Expression13186 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanOrExp_in_parse_edu_ustb_sei_mde_morel_Expression13196 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanAndExp_in_parse_edu_ustb_sei_mde_morel_Expression13206 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_RelationalExp_in_parse_edu_ustb_sei_mde_morel_Expression13216 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_AdditiveExp_in_parse_edu_ustb_sei_mde_morel_Expression13226 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_MultiplicativeExp_in_parse_edu_ustb_sei_mde_morel_Expression13236 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_UnaryExp_in_parse_edu_ustb_sei_mde_morel_Expression13246 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BindExp_in_parse_edu_ustb_sei_mde_morel_Expression13256 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_PredefinedBindExp_in_parse_edu_ustb_sei_mde_morel_Expression13266 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_PredefinedVariableExp_in_parse_edu_ustb_sei_mde_morel_Expression13276 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_ReflectiveVariableExp_in_parse_edu_ustb_sei_mde_morel_Expression13286 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_VariableExp_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild13307 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_NestedExp_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild13317 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_IntegerLiteralExp_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild13327 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_RealLiteralExp_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild13337 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_StringLiteralExp_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild13347 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanLiteralExp_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild13357 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild13367 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_TypeLiteralExp_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild13377 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_CollectionLiteralExp_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild13387 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_EnumLiteralExp_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild13397 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_ArrayLiteralExp_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild13407 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_UnaryExp_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild13417 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_PredefinedVariableExp_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild13427 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_VariableExp_in_parse_edu_ustb_sei_mde_morel_AtomicExp13448 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_NestedExp_in_parse_edu_ustb_sei_mde_morel_AtomicExp13458 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_IntegerLiteralExp_in_parse_edu_ustb_sei_mde_morel_AtomicExp13468 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_RealLiteralExp_in_parse_edu_ustb_sei_mde_morel_AtomicExp13478 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_StringLiteralExp_in_parse_edu_ustb_sei_mde_morel_AtomicExp13488 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanLiteralExp_in_parse_edu_ustb_sei_mde_morel_AtomicExp13498 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp_in_parse_edu_ustb_sei_mde_morel_AtomicExp13508 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_TypeLiteralExp_in_parse_edu_ustb_sei_mde_morel_AtomicExp13518 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_CollectionLiteralExp_in_parse_edu_ustb_sei_mde_morel_AtomicExp13528 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_EnumLiteralExp_in_parse_edu_ustb_sei_mde_morel_AtomicExp13538 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_ArrayLiteralExp_in_parse_edu_ustb_sei_mde_morel_AtomicExp13548 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_PredefinedVariableExp_in_parse_edu_ustb_sei_mde_morel_AtomicExp13558 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_IfStatement_in_parse_edu_ustb_sei_mde_morel_ImperativeStatement13579 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_ForStatement_in_parse_edu_ustb_sei_mde_morel_ImperativeStatement13589 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BlockStatement_in_parse_edu_ustb_sei_mde_morel_ImperativeStatement13599 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_Rule_in_parse_edu_ustb_sei_mde_morel_RuleElement13620 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_RuleGroup_in_parse_edu_ustb_sei_mde_morel_RuleElement13630 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BXRewritingRule_in_parse_edu_ustb_sei_mde_morel_RuleElement13640 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_BXRewritingModel11735 = new BitSet(new long[]{0x2000000000000000L,0x0000000000010000L});
+    public static final BitSet FOLLOW_61_in_parse_edu_ustb_sei_mde_morel_BXRewritingModel11765 = new BitSet(new long[]{0x0000000000000000L,0x0000000400000000L});
+    public static final BitSet FOLLOW_80_in_parse_edu_ustb_sei_mde_morel_BXRewritingModel11780 = new BitSet(new long[]{0x0000000000000000L,0x0000000400000000L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_TypedModel_in_parse_edu_ustb_sei_mde_morel_BXRewritingModel11810 = new BitSet(new long[]{0x0000200000000002L,0x0000000402002000L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BXRewritingRule_in_parse_edu_ustb_sei_mde_morel_BXRewritingModel11845 = new BitSet(new long[]{0x0000200000000002L,0x0000000002002000L});
+    public static final BitSet FOLLOW_45_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule11908 = new BitSet(new long[]{0x0000000000000000L,0x0000000002000000L});
+    public static final BitSet FOLLOW_77_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule11927 = new BitSet(new long[]{0x0000000000000000L,0x0000000002000000L});
+    public static final BitSet FOLLOW_89_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule11971 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule11989 = new BitSet(new long[]{0x0000000000400000L,0x0000020000000000L});
+    public static final BitSet FOLLOW_22_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12019 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12045 = new BitSet(new long[]{0x0000000004800000L});
+    public static final BitSet FOLLOW_26_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12091 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12125 = new BitSet(new long[]{0x0000000004800000L});
+    public static final BitSet FOLLOW_23_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12193 = new BitSet(new long[]{0x0000000000000000L,0x0000020000000000L});
+    public static final BitSet FOLLOW_105_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12226 = new BitSet(new long[]{0x0000200000000000L,0x000012F82102E860L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_Pattern_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12249 = new BitSet(new long[]{0x0000200000000000L,0x000012F82102E860L});
+    public static final BitSet FOLLOW_103_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12284 = new BitSet(new long[]{0x0000000000000000L,0x0000020000000000L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_Clause_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12310 = new BitSet(new long[]{0x0000000000000000L,0x0000107820000000L});
+    public static final BitSet FOLLOW_93_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12360 = new BitSet(new long[]{0x0000200000000000L,0x000002000102E860L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_Pattern_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12386 = new BitSet(new long[]{0x0000000000000000L,0x0000107800000000L});
+    public static final BitSet FOLLOW_102_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12436 = new BitSet(new long[]{0x0000200000000000L,0x000002000102E860L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_Pattern_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12462 = new BitSet(new long[]{0x0000000000000000L,0x0000103800000000L});
+    public static final BitSet FOLLOW_101_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12512 = new BitSet(new long[]{0x0000000000000000L,0x0000020000000000L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_Clause_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12538 = new BitSet(new long[]{0x0000000000000000L,0x0000101800000000L});
+    public static final BitSet FOLLOW_99_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12588 = new BitSet(new long[]{0x0000200000000000L,0x000002000102E860L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_Pattern_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12614 = new BitSet(new long[]{0x0000000000000000L,0x0000101000000000L});
+    public static final BitSet FOLLOW_100_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12664 = new BitSet(new long[]{0x0000200000000000L,0x000002000102E860L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_Pattern_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12690 = new BitSet(new long[]{0x0000000000000000L,0x0000100000000000L});
+    public static final BitSet FOLLOW_108_in_parse_edu_ustb_sei_mde_morel_BXRewritingRule12731 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_105_in_parse_edu_ustb_sei_mde_morel_Clause12760 = new BitSet(new long[]{0x8A0002020A6E8CD0L,0x0000020200000194L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_Statement_in_parse_edu_ustb_sei_mde_morel_Clause12789 = new BitSet(new long[]{0x8A0002020A6E8CD0L,0x0000120200000194L});
+    public static final BitSet FOLLOW_108_in_parse_edu_ustb_sei_mde_morel_Clause12830 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_ObjectVariable_in_parse_edu_ustb_sei_mde_morel_Variable12855 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_PrimitiveVariable_in_parse_edu_ustb_sei_mde_morel_Variable12865 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_ObjectVariableWithInit_in_parse_edu_ustb_sei_mde_morel_Variable12875 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_PrimitiveVariableWithInit_in_parse_edu_ustb_sei_mde_morel_Variable12885 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_SimpleLinkConstraint_in_parse_edu_ustb_sei_mde_morel_LinkConstraint12906 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_EnclosureLinkConstraint_in_parse_edu_ustb_sei_mde_morel_LinkConstraint12916 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_PathConstraint_in_parse_edu_ustb_sei_mde_morel_LinkConstraint12926 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_OrderConstraint_in_parse_edu_ustb_sei_mde_morel_AdditionalConstraint12947 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_AllDifferentConstraint_in_parse_edu_ustb_sei_mde_morel_AdditionalConstraint12957 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_DeclarativeStatement_in_parse_edu_ustb_sei_mde_morel_Statement12978 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_IfStatement_in_parse_edu_ustb_sei_mde_morel_Statement12988 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_ForStatement_in_parse_edu_ustb_sei_mde_morel_Statement12998 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BlockStatement_in_parse_edu_ustb_sei_mde_morel_Statement13008 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_FeaturePathExp_in_parse_edu_ustb_sei_mde_morel_CallPathExp13029 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_OperationPathExp_in_parse_edu_ustb_sei_mde_morel_CallPathExp13039 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_IteratorPathExp_in_parse_edu_ustb_sei_mde_morel_CallPathExp13049 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_ObjectVariableWithInit_in_parse_edu_ustb_sei_mde_morel_VariableWithInit13070 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_PrimitiveVariableWithInit_in_parse_edu_ustb_sei_mde_morel_VariableWithInit13080 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_VariableExp_in_parse_edu_ustb_sei_mde_morel_Expression13101 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_NestedExp_in_parse_edu_ustb_sei_mde_morel_Expression13111 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_IntegerLiteralExp_in_parse_edu_ustb_sei_mde_morel_Expression13121 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_RealLiteralExp_in_parse_edu_ustb_sei_mde_morel_Expression13131 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_StringLiteralExp_in_parse_edu_ustb_sei_mde_morel_Expression13141 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanLiteralExp_in_parse_edu_ustb_sei_mde_morel_Expression13151 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp_in_parse_edu_ustb_sei_mde_morel_Expression13161 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_TypeLiteralExp_in_parse_edu_ustb_sei_mde_morel_Expression13171 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_CollectionLiteralExp_in_parse_edu_ustb_sei_mde_morel_Expression13181 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_EnumLiteralExp_in_parse_edu_ustb_sei_mde_morel_Expression13191 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_ArrayLiteralExp_in_parse_edu_ustb_sei_mde_morel_Expression13201 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_LetExp_in_parse_edu_ustb_sei_mde_morel_Expression13211 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_ConditionExp_in_parse_edu_ustb_sei_mde_morel_Expression13221 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanImpliesExp_in_parse_edu_ustb_sei_mde_morel_Expression13231 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanOrExp_in_parse_edu_ustb_sei_mde_morel_Expression13241 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanAndExp_in_parse_edu_ustb_sei_mde_morel_Expression13251 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_RelationalExp_in_parse_edu_ustb_sei_mde_morel_Expression13261 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_AdditiveExp_in_parse_edu_ustb_sei_mde_morel_Expression13271 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_MultiplicativeExp_in_parse_edu_ustb_sei_mde_morel_Expression13281 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_UnaryExp_in_parse_edu_ustb_sei_mde_morel_Expression13291 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BindExp_in_parse_edu_ustb_sei_mde_morel_Expression13301 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_PredefinedBindExp_in_parse_edu_ustb_sei_mde_morel_Expression13311 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_PredefinedVariableExp_in_parse_edu_ustb_sei_mde_morel_Expression13321 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_ReflectiveVariableExp_in_parse_edu_ustb_sei_mde_morel_Expression13331 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_VariableExp_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild13352 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_NestedExp_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild13362 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_IntegerLiteralExp_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild13372 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_RealLiteralExp_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild13382 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_StringLiteralExp_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild13392 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanLiteralExp_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild13402 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild13412 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_TypeLiteralExp_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild13422 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_CollectionLiteralExp_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild13432 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_EnumLiteralExp_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild13442 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_ArrayLiteralExp_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild13452 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_UnaryExp_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild13462 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_PredefinedVariableExp_in_parse_edu_ustb_sei_mde_morel_MultiplicativeExpChild13472 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_VariableExp_in_parse_edu_ustb_sei_mde_morel_AtomicExp13493 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_NestedExp_in_parse_edu_ustb_sei_mde_morel_AtomicExp13503 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_IntegerLiteralExp_in_parse_edu_ustb_sei_mde_morel_AtomicExp13513 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_RealLiteralExp_in_parse_edu_ustb_sei_mde_morel_AtomicExp13523 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_StringLiteralExp_in_parse_edu_ustb_sei_mde_morel_AtomicExp13533 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanLiteralExp_in_parse_edu_ustb_sei_mde_morel_AtomicExp13543 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp_in_parse_edu_ustb_sei_mde_morel_AtomicExp13553 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_TypeLiteralExp_in_parse_edu_ustb_sei_mde_morel_AtomicExp13563 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_CollectionLiteralExp_in_parse_edu_ustb_sei_mde_morel_AtomicExp13573 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_EnumLiteralExp_in_parse_edu_ustb_sei_mde_morel_AtomicExp13583 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_ArrayLiteralExp_in_parse_edu_ustb_sei_mde_morel_AtomicExp13593 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_PredefinedVariableExp_in_parse_edu_ustb_sei_mde_morel_AtomicExp13603 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_IfStatement_in_parse_edu_ustb_sei_mde_morel_ImperativeStatement13624 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_ForStatement_in_parse_edu_ustb_sei_mde_morel_ImperativeStatement13634 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BlockStatement_in_parse_edu_ustb_sei_mde_morel_ImperativeStatement13644 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_Rule_in_parse_edu_ustb_sei_mde_morel_RuleElement13665 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_RuleGroup_in_parse_edu_ustb_sei_mde_morel_RuleElement13675 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BXRewritingRule_in_parse_edu_ustb_sei_mde_morel_RuleElement13685 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_PredefinedBindExp_in_synpred35_Morel2291 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BindExp_in_synpred36_Morel2311 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_37_in_synpred111_Morel7182 = new BitSet(new long[]{0x020002020A4E8CD0L,0x00000000800000C2L});
-    public static final BitSet FOLLOW_36_in_synpred111_Morel7201 = new BitSet(new long[]{0x020002020A4E8CD0L,0x00000000800000C2L});
-    public static final BitSet FOLLOW_16_in_synpred111_Morel7220 = new BitSet(new long[]{0x020002020A4E8CD0L,0x00000000800000C2L});
-    public static final BitSet FOLLOW_33_in_synpred111_Morel7239 = new BitSet(new long[]{0x020002020A4E8CD0L,0x00000000800000C2L});
-    public static final BitSet FOLLOW_35_in_synpred111_Morel7258 = new BitSet(new long[]{0x020002020A4E8CD0L,0x00000000800000C2L});
-    public static final BitSet FOLLOW_39_in_synpred111_Morel7277 = new BitSet(new long[]{0x020002020A4E8CD0L,0x00000000800000C2L});
-    public static final BitSet FOLLOW_40_in_synpred111_Morel7296 = new BitSet(new long[]{0x020002020A4E8CD0L,0x00000000800000C2L});
+    public static final BitSet FOLLOW_37_in_synpred111_Morel7182 = new BitSet(new long[]{0x020002020A4E8CD0L,0x0000000200000184L});
+    public static final BitSet FOLLOW_36_in_synpred111_Morel7201 = new BitSet(new long[]{0x020002020A4E8CD0L,0x0000000200000184L});
+    public static final BitSet FOLLOW_16_in_synpred111_Morel7220 = new BitSet(new long[]{0x020002020A4E8CD0L,0x0000000200000184L});
+    public static final BitSet FOLLOW_33_in_synpred111_Morel7239 = new BitSet(new long[]{0x020002020A4E8CD0L,0x0000000200000184L});
+    public static final BitSet FOLLOW_35_in_synpred111_Morel7258 = new BitSet(new long[]{0x020002020A4E8CD0L,0x0000000200000184L});
+    public static final BitSet FOLLOW_39_in_synpred111_Morel7277 = new BitSet(new long[]{0x020002020A4E8CD0L,0x0000000200000184L});
+    public static final BitSet FOLLOW_40_in_synpred111_Morel7296 = new BitSet(new long[]{0x020002020A4E8CD0L,0x0000000200000184L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_AdditiveExp_in_synpred111_Morel7333 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_PredefinedBindExp_in_synpred124_Morel8039 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BindExp_in_synpred125_Morel8053 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanImpliesExp_in_synpred128_Morel8095 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_54_in_synpred129_Morel8251 = new BitSet(new long[]{0x4800000000000000L,0x0000008000000000L});
+    public static final BitSet FOLLOW_54_in_synpred129_Morel8251 = new BitSet(new long[]{0x8800000000000000L,0x0000020000000000L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_ImperativeStatement_in_synpred129_Morel8277 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_ObjectVariable_in_synpred193_Morel12810 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_PrimitiveVariable_in_synpred194_Morel12820 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_ObjectVariableWithInit_in_synpred195_Morel12830 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_DeclarativeStatement_in_synpred199_Morel12933 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_IfStatement_in_synpred200_Morel12943 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_VariableExp_in_synpred205_Morel13056 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_NestedExp_in_synpred206_Morel13066 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_IntegerLiteralExp_in_synpred207_Morel13076 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_RealLiteralExp_in_synpred208_Morel13086 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_StringLiteralExp_in_synpred209_Morel13096 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanLiteralExp_in_synpred210_Morel13106 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp_in_synpred211_Morel13116 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_TypeLiteralExp_in_synpred212_Morel13126 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_CollectionLiteralExp_in_synpred213_Morel13136 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_EnumLiteralExp_in_synpred214_Morel13146 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_ArrayLiteralExp_in_synpred215_Morel13156 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanImpliesExp_in_synpred218_Morel13186 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanOrExp_in_synpred219_Morel13196 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanAndExp_in_synpred220_Morel13206 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_RelationalExp_in_synpred221_Morel13216 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_AdditiveExp_in_synpred222_Morel13226 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_MultiplicativeExp_in_synpred223_Morel13236 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_UnaryExp_in_synpred224_Morel13246 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BindExp_in_synpred225_Morel13256 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_PredefinedBindExp_in_synpred226_Morel13266 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_PredefinedVariableExp_in_synpred227_Morel13276 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_VariableExp_in_synpred228_Morel13307 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_NestedExp_in_synpred229_Morel13317 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_IntegerLiteralExp_in_synpred230_Morel13327 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_RealLiteralExp_in_synpred231_Morel13337 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_StringLiteralExp_in_synpred232_Morel13347 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanLiteralExp_in_synpred233_Morel13357 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp_in_synpred234_Morel13367 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_TypeLiteralExp_in_synpred235_Morel13377 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_CollectionLiteralExp_in_synpred236_Morel13387 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_EnumLiteralExp_in_synpred237_Morel13397 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_ArrayLiteralExp_in_synpred238_Morel13407 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_UnaryExp_in_synpred239_Morel13417 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_Rule_in_synpred253_Morel13620 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_RuleGroup_in_synpred254_Morel13630 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_ObjectVariable_in_synpred194_Morel12855 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_PrimitiveVariable_in_synpred195_Morel12865 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_ObjectVariableWithInit_in_synpred196_Morel12875 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_DeclarativeStatement_in_synpred200_Morel12978 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_IfStatement_in_synpred201_Morel12988 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_VariableExp_in_synpred206_Morel13101 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_NestedExp_in_synpred207_Morel13111 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_IntegerLiteralExp_in_synpred208_Morel13121 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_RealLiteralExp_in_synpred209_Morel13131 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_StringLiteralExp_in_synpred210_Morel13141 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanLiteralExp_in_synpred211_Morel13151 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp_in_synpred212_Morel13161 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_TypeLiteralExp_in_synpred213_Morel13171 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_CollectionLiteralExp_in_synpred214_Morel13181 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_EnumLiteralExp_in_synpred215_Morel13191 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_ArrayLiteralExp_in_synpred216_Morel13201 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanImpliesExp_in_synpred219_Morel13231 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanOrExp_in_synpred220_Morel13241 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanAndExp_in_synpred221_Morel13251 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_RelationalExp_in_synpred222_Morel13261 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_AdditiveExp_in_synpred223_Morel13271 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_MultiplicativeExp_in_synpred224_Morel13281 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_UnaryExp_in_synpred225_Morel13291 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BindExp_in_synpred226_Morel13301 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_PredefinedBindExp_in_synpred227_Morel13311 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_PredefinedVariableExp_in_synpred228_Morel13321 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_VariableExp_in_synpred229_Morel13352 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_NestedExp_in_synpred230_Morel13362 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_IntegerLiteralExp_in_synpred231_Morel13372 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_RealLiteralExp_in_synpred232_Morel13382 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_StringLiteralExp_in_synpred233_Morel13392 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_BooleanLiteralExp_in_synpred234_Morel13402 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_UndefinedLiteralExp_in_synpred235_Morel13412 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_TypeLiteralExp_in_synpred236_Morel13422 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_CollectionLiteralExp_in_synpred237_Morel13432 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_EnumLiteralExp_in_synpred238_Morel13442 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_ArrayLiteralExp_in_synpred239_Morel13452 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_UnaryExp_in_synpred240_Morel13462 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_Rule_in_synpred254_Morel13665 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_morel_RuleGroup_in_synpred255_Morel13675 = new BitSet(new long[]{0x0000000000000002L});
 
 }

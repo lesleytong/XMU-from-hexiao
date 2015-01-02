@@ -161,7 +161,7 @@ RULES {
 	
 	AllDifferentConstraint ::= "allDiff" "(" (variables[IDENTIFIER] ("," variables[IDENTIFIER])*)? ")" ;
 	
-	BXRewritingModel ::= "bxrewriting" name[IDENTIFIER] models+ rules* ;
+	BXRewritingModel ::= "bxrewriting" name[IDENTIFIER] mode[get:"get", put:"put"] models+ rules* ;
 	
 	BXRewritingRule ::= (active["active":"passive"])? "rule" name[IDENTIFIER] ("("parameters[IDENTIFIER] ("," parameters[IDENTIFIER])*")")? "{" nac* ("when" when)? ("source" source)? ("view" view)?  ("update" update)? ("unmatchs" unmatchSrc)? ("unmatchv" unmatchView)? "}" ; 
 	

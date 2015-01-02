@@ -4588,13 +4588,22 @@ public interface MorelPackage extends EPackage {
 	int BX_REWRITING_MODEL__RULES = UNIT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Mode</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BX_REWRITING_MODEL__MODE = UNIT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>BX Rewriting Model</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BX_REWRITING_MODEL_FEATURE_COUNT = UNIT_FEATURE_COUNT + 2;
+	int BX_REWRITING_MODEL_FEATURE_COUNT = UNIT_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Get Typed Model</em>' operation.
@@ -4765,6 +4774,17 @@ public interface MorelPackage extends EPackage {
 	 * @generated
 	 */
 	int REPETITION_TYPE = 96;
+
+
+	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.BXMode <em>BX Mode</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.morel.BXMode
+	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getBXMode()
+	 * @generated
+	 */
+	int BX_MODE = 97;
 
 
 	/**
@@ -6852,6 +6872,17 @@ public interface MorelPackage extends EPackage {
 	EReference getBXRewritingModel_Rules();
 
 	/**
+	 * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.morel.BXRewritingModel#getMode <em>Mode</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Mode</em>'.
+	 * @see edu.ustb.sei.mde.morel.BXRewritingModel#getMode()
+	 * @see #getBXRewritingModel()
+	 * @generated
+	 */
+	EAttribute getBXRewritingModel_Mode();
+
+	/**
 	 * Returns the meta object for enum '{@link edu.ustb.sei.mde.morel.SectionType <em>Section Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7000,6 +7031,16 @@ public interface MorelPackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getRepetitionType();
+
+	/**
+	 * Returns the meta object for enum '{@link edu.ustb.sei.mde.morel.BXMode <em>BX Mode</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>BX Mode</em>'.
+	 * @see edu.ustb.sei.mde.morel.BXMode
+	 * @generated
+	 */
+	EEnum getBXMode();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -8765,6 +8806,14 @@ public interface MorelPackage extends EPackage {
 		EReference BX_REWRITING_MODEL__RULES = eINSTANCE.getBXRewritingModel_Rules();
 
 		/**
+		 * The meta object literal for the '<em><b>Mode</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BX_REWRITING_MODEL__MODE = eINSTANCE.getBXRewritingModel_Mode();
+
+		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.SectionType <em>Section Type</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -8913,6 +8962,16 @@ public interface MorelPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum REPETITION_TYPE = eINSTANCE.getRepetitionType();
+
+		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.BXMode <em>BX Mode</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.morel.BXMode
+		 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getBXMode()
+		 * @generated
+		 */
+		EEnum BX_MODE = eINSTANCE.getBXMode();
 
 	}
 

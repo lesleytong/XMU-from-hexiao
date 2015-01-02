@@ -88,6 +88,10 @@
       <genEnumLiterals ecoreEnumLiteral="morel.ecore#//RepetitionType/first"/>
       <genEnumLiterals ecoreEnumLiteral="morel.ecore#//RepetitionType/randomOne"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="morel.ecore#//BXMode">
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//BXMode/get"/>
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//BXMode/put"/>
+    </genEnums>
     <genClasses image="false" ecoreClass="morel.ecore#//NamedElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute morel.ecore#//NamedElement/name"/>
     </genClasses>
@@ -345,6 +349,7 @@
     </genClasses>
     <genClasses ecoreClass="morel.ecore#//BXRewritingModel">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//BXRewritingModel/rules"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute morel.ecore#//BXRewritingModel/mode"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

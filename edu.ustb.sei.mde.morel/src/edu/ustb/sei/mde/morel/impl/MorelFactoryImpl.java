@@ -156,6 +156,8 @@ public class MorelFactoryImpl extends EFactoryImpl implements MorelFactory {
 				return createIterationTypeFromString(eDataType, initialValue);
 			case MorelPackage.REPETITION_TYPE:
 				return createRepetitionTypeFromString(eDataType, initialValue);
+			case MorelPackage.BX_MODE:
+				return createBXModeFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -199,6 +201,8 @@ public class MorelFactoryImpl extends EFactoryImpl implements MorelFactory {
 				return convertIterationTypeToString(eDataType, instanceValue);
 			case MorelPackage.REPETITION_TYPE:
 				return convertRepetitionTypeToString(eDataType, instanceValue);
+			case MorelPackage.BX_MODE:
+				return convertBXModeToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -1061,6 +1065,26 @@ public class MorelFactoryImpl extends EFactoryImpl implements MorelFactory {
 	 * @generated
 	 */
 	public String convertRepetitionTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public BXMode createBXModeFromString(EDataType eDataType, String initialValue) {
+		BXMode result = BXMode.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertBXModeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

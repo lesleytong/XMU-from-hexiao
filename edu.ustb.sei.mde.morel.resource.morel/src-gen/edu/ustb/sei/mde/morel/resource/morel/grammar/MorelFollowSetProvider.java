@@ -12,7 +12,7 @@ package edu.ustb.sei.mde.morel.resource.morel.grammar;
  */
 public class MorelFollowSetProvider {
 	
-	public final static edu.ustb.sei.mde.morel.resource.morel.IMorelExpectedElement TERMINALS[] = new edu.ustb.sei.mde.morel.resource.morel.IMorelExpectedElement[219];
+	public final static edu.ustb.sei.mde.morel.resource.morel.IMorelExpectedElement TERMINALS[] = new edu.ustb.sei.mde.morel.resource.morel.IMorelExpectedElement[220];
 	
 	public final static org.eclipse.emf.ecore.EStructuralFeature[] FEATURES = new org.eclipse.emf.ecore.EStructuralFeature[56];
 	
@@ -232,14 +232,15 @@ public class MorelFollowSetProvider {
 		TERMINALS[208] = new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectedCsString(edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_46_0_0_2_0_0_1_0_0_0);
 		TERMINALS[209] = new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectedStructuralFeature(edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_46_0_0_2_0_0_1_0_0_1);
 		TERMINALS[210] = new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectedStructuralFeature(edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_47_0_0_1);
-		TERMINALS[211] = new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectedStructuralFeature(edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_48_0_0_2);
-		TERMINALS[212] = new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectedCsString(edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_48_0_0_3_0_0_0);
-		TERMINALS[213] = new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectedCsString(edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_48_0_0_4);
-		TERMINALS[214] = new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectedStructuralFeature(edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_48_0_0_3_0_0_1);
-		TERMINALS[215] = new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectedCsString(edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_48_0_0_3_0_0_2_0_0_0);
-		TERMINALS[216] = new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectedCsString(edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_48_0_0_3_0_0_3);
-		TERMINALS[217] = new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectedStructuralFeature(edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_48_0_0_3_0_0_2_0_0_1);
-		TERMINALS[218] = new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectedCsString(edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_49_0_0_0);
+		TERMINALS[211] = new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectedEnumerationTerminal(edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_47_0_0_2);
+		TERMINALS[212] = new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectedStructuralFeature(edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_48_0_0_2);
+		TERMINALS[213] = new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectedCsString(edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_48_0_0_3_0_0_0);
+		TERMINALS[214] = new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectedCsString(edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_48_0_0_4);
+		TERMINALS[215] = new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectedStructuralFeature(edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_48_0_0_3_0_0_1);
+		TERMINALS[216] = new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectedCsString(edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_48_0_0_3_0_0_2_0_0_0);
+		TERMINALS[217] = new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectedCsString(edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_48_0_0_3_0_0_3);
+		TERMINALS[218] = new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectedStructuralFeature(edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_48_0_0_3_0_0_2_0_0_1);
+		TERMINALS[219] = new edu.ustb.sei.mde.morel.resource.morel.mopp.MorelExpectedCsString(edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_49_0_0_0);
 	}
 	
 	public static void initializeTerminals() {
