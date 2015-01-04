@@ -1,0 +1,58 @@
+bxrewriting test put
+type src <- @http://www.eclipse.org/emf/2002/Ecore
+type vw <- @http://www.eclipse.org/emf/2002/Ecore
+
+
+rule PackageToPackage {
+	when {
+		p.name=vp.name;
+	}
+	source {
+		p : src ! EPackage
+	}
+	view {
+		vp : vw ! EPackage
+	}
+	update {
+		p.nsPrefix = vp.nsPrefix;
+		p.nsURI = vp.nsURI;
+		$this.ClassToClass(p,vp);
+	}
+	unmatchv {
+		p : src ! EPackage
+	}	
+}
+
+
+passive rule ClassToClass(p,vp) {
+	when {
+		c.name = vc.name;
+	}
+	source {
+		p : src ! EPackage,
+		c : src ! EClass
+		p.eClassifiers = c
+		where
+		c.interface=false;
+	}
+	view {
+		vp : vw ! EPackage,
+		vc : vw ! EClass
+		vp.eClassifiers = vc
+	}
+	update {
+		c.abstract = vc.abstract;
+	}
+	unmatchs {
+		p : src ! EPackage,
+		c : src ! EClass
+		p.eClassifiers = c
+		where
+		c.interface=true;
+	}
+	unmatchv {
+		p : src ! EPackage,
+		c : src ! EClass
+		p.eClassifiers = c
+	}
+}

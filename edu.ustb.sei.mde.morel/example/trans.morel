@@ -43,6 +43,62 @@ rule Process_rule
   }
 }
 
+passive rule MyPartnerLink_rule(act,p) {
+	lhs {
+		act : uml ! Activity,
+		p : bpel ! BPELProcess,
+		mi : uml ! Interface
+		
+		where
+		act.name=mi.name;
+	}
+	
+	rhs {
+		act : uml ! Activity,
+		p : bpel ! BPELProcess,
+		mi : uml ! Interface,
+		pl : bpel ! BPELPartnerLink
+		
+		p.partnerLinks = pl
+		where
+		pl.name<-'process';
+		pl.myRole<-mi.name+'Provider';
+		pl.partnerLinkType<-mi.name+'PLT';
+	}
+}
+
+passive rule PartnerLink_rule(act,p) {
+	lhs {
+		act : uml ! Activity,
+		p : bpel ! BPELProcess,
+		mi : uml ! Interface,
+		i : uml ! Interface,
+		r : uml ! Reference
+		
+		r._source = mi, r.target=i
+		
+		where
+		act.name=mi.name;
+	}
+	rhs {
+		act : uml ! Activity,
+		p : bpel ! BPELProcess,
+		pl : bpel ! BPELPartnerLink,
+		mi : uml ! Interface,
+		i : uml ! Interface,
+		r : uml ! Reference
+		
+		r._source = mi, r.target=i, p.partnerLinks = pl
+		where
+		pl.name <- i.name+'PL';
+		pl.partnerRole <- r.name;
+		pl.partnerLinkType <- i.name+'PLT';
+		if (r.opposite<>null) {
+			pl.myRole<-r.opposite.name;
+		} 
+	}
+}
+
 rule Activity_rule {
 	lhs {
 	
@@ -56,6 +112,11 @@ rule Activity_rule {
 	
 	ubb.uml=ag,
 	ubb.bpel=p
+	
+	where
+	p.name<-ag.name;
+	$this.PartnerLink_rule(ag,p);
+	$this.MyPartnerLink_rule(ag,p);
 	}
 	
 	nac {
@@ -185,8 +246,6 @@ rule SendAction_rule {
     
     where
     an <- a.name;
-    --not a.oclIsTypeOf(@(ActionBridge)) and not a.oclIsTypeOf(@(VxAction));
-
   }
   rhs {
   
@@ -206,7 +265,125 @@ rule SendAction_rule {
 }
 
 
+passive rule InputNode_rule(a,b) {
+	lhs {
+		a : uml ! CallAction,
+		on : uml ! ObjectNode,
+		of : uml ! ObjectFlow,
+		b : bpel ! BPELInvoke
+		
+		of._source = on, of.target = a  
+	}
+	
+	rhs {
+		a : uml ! CallAction,
+		on : uml ! ObjectNode,
+		b : bpel ! BPELInvoke
+		
+		where
+		b.inputVariable <-on.name;
+	}
+}
 
+passive rule OutputNode_rule(a,b) {
+	lhs {
+		a : uml ! CallAction,
+		on : uml ! ObjectNode,
+		of : uml ! ObjectFlow,
+		b : bpel ! BPELInvoke
+		
+		of._source = a, of.target = on  
+	}
+	
+	rhs {
+		a : uml ! CallAction,
+		on : uml ! ObjectNode,
+		b : bpel ! BPELInvoke
+		
+		where
+		b.outputVariable <-on.name;
+	}
+}
+
+passive rule Operation_rule(a,b) {
+	lhs {
+		act : uml ! Activity,
+		a : uml ! CallAction,
+		b : bpel ! BPELInvoke,
+		o : uml ! Operation,
+		i : uml ! Interface,
+		r : uml ! Reference,
+		mi : uml ! Interface
+		
+		r._source = mi, r.target=i, a.method=o, i.ownedOperations=o, act.nodes|variantFragments:CallAction,VxAction,VariationActivityFragment*=a
+		
+		where
+		mi.name=act.name;
+	}
+	
+	rhs {
+		act : uml ! Activity,
+		a : uml ! CallAction,
+		b : bpel ! BPELInvoke,
+		o : uml ! Operation,
+		i : uml ! Interface,
+		r : uml ! Reference,
+		mi : uml ! Interface
+		
+		r._source = mi, r.target=i, a.method=o, i.ownedOperations=o
+		
+		where
+		b.operation<-o.name;
+		b.portType<-i.name;
+		b.partnerLink<-i.name+'PL';
+	}
+}
+
+passive rule clear_Action(a) {
+	lhs {
+		a : uml ! Action
+	}
+	
+	rhs {
+	}
+}
+
+
+
+rule CallAction_rule {
+  lhs {
+  
+    ci : uml ! ControlFlow,
+  	a : uml! CallAction,
+  	co : uml! ControlFlow,
+  	an : String
+  	
+    ci.target=a, co._source=a
+    
+    where
+    an <- a.name;
+  }
+  rhs {
+  
+    ci : uml ! ControlFlow,
+  	co : uml! ControlFlow,
+  	a : uml! CallAction,
+  	ubb : bridge ! ActionBridge,
+  	b : bpel ! BPELInvoke,
+  	an : String
+
+    ci.target=ubb, co._source=ubb, ubb.bpel=b
+    
+    where
+    b.name<-an;
+    $this.InputNode_rule(a,b);
+    $this.OutputNode_rule(a,b);
+    $this.Operation_rule(a,b);
+    $this.clear_Action(a);
+  }
+}
+
+/*
 rule CallAction_rule_without_input_without_output {
   nac {
     
@@ -373,6 +550,8 @@ rule CallAction_rule_with_input_with_output {
     b.outputVariable <- ons.name;
   }
 }
+*/
+
 
 -- identify choice structure
 -- transform branches
@@ -865,11 +1044,19 @@ rule Variation_Point_first
   }
   
   nac {
-  
+  --这个条件会在VxAction被删除后失效
   vp : uml ! VariationPoint,
   va : uml ! VxAction
   
   va.variationPoint = vp
+  }
+  
+  nac {
+  --这个条件用来修复第一个nac
+  vp : uml ! VariationPoint,
+  cm : bridge ! ConcreteVPMark
+  
+  cm.uml = vp
   }
   
   lhs {
@@ -1057,7 +1244,27 @@ rule VxAction_first
     vb : bpel ! VxBPELVariationPoint
     
     b.uml=va, b.bpel=vb
+    
+    where
+    $this.ConcreteVP_rule(va);
+--    va.name.println();
   }
+}
+
+passive rule ConcreteVP_rule(va) {
+	lhs {
+		va : uml ! VxAction,
+		vp : uml ! VariationPoint
+		
+		va.variationPoint=vp
+	}
+	rhs {
+		va : uml ! VxAction,
+		vp : uml ! VariationPoint,
+		cm : bridge ! ConcreteVPMark
+		
+		va.variationPoint=vp,cm.uml=vp
+	}
 }
 
 rule VxAction_second
@@ -1146,6 +1353,9 @@ rule VxAction_third
   va : uml ! VxAction,
   bs : bpel ! BPELScope,
   vp : uml ! Variation
+  
+--  where
+--  'remove empty vx fragment'.println();
   }
 }
 
@@ -1178,10 +1388,13 @@ rule VxAction_fourth
   
   ci : uml ! ControlFlow,
   co : uml ! ControlFlow,
-  va : uml ! VxAction,
+  --va : uml ! VxAction,
   b : bridge ! VxActionBridge
   
   ci.target=b, co._source=b
+  
+--  where
+--  'remove empty vxaction'.println();
   }
 }
 
