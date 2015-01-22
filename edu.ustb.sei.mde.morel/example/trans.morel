@@ -629,6 +629,7 @@ rule Choice_first
   bif.condition = bc
   where
   bc.expression <- cn;
+  'choice'.println();
   }
 }
 
@@ -1334,9 +1335,9 @@ rule VxAction_third
   ubb : bridge ! ActivityGroupBridge,
   bs : bpel ! BPELScope,
   vp : uml ! Variation,
-  an : uml ! ActivityNode
+  cf : uml ! ControlFlow
   
-    va.variantFragments=v, v.nodes=an, ubb.uml=v, ubb.bpel=bs, v.variation=vp
+    va.variantFragments=v, v.edges=cf, ubb.uml=v, ubb.bpel=bs, v.variation=vp
   }
   lhs {
   
@@ -1452,7 +1453,7 @@ rule Variables_first
   
   where
     v.name=on.name;
-    v.messageType=t.name+'MT';
+    v.messageType=t.name;
   }
   
   lhs {
@@ -1476,7 +1477,11 @@ rule Variables_first
   
   where
   v.name<-on.name;
-  v.messageType<-t.name+'MT';
+  if(t.oclIsKindOf(@(PrimitiveType))){
+  	v._type<-t.name;
+  } else {
+	  v.messageType<-t.name;
+  }
   }
 }
 
