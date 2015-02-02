@@ -167,10 +167,12 @@ public class ModuleProvider implements IModuleProvider {
 		Context parent = contextStack.peek();
 		Context c = parent.getEnviroment().createContext();
 		
+		
 		c.setParentContext(parent);
-		Variable thisVar = parent.findVariable(PredefinedVariable.THIS.getLiteral());
-		c.registerVariable(thisVar);
-		c.putValue(thisVar, parent.getValue(thisVar));
+		c.setGlobal(parent.getGlobal());
+//		Variable thisVar = parent.findVariable(PredefinedVariable.THIS.getLiteral());
+//		c.registerVariable(thisVar);
+//		c.putValue(thisVar, parent.getValue(thisVar));
 		
 		initParameter(unit, c,parameters);
 		

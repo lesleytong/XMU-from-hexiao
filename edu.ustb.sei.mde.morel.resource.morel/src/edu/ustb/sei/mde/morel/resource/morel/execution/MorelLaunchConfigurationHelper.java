@@ -76,12 +76,14 @@ public class MorelLaunchConfigurationHelper {
 		
 		
 		try {
+			Context global = env.createContext();
 			Context createContext = env.createContext();
+			createContext.setGlobal(global);
 			
 			PrimitiveVariable var = MorelFactory.eINSTANCE.createPrimitiveVariable();
 			var.setName(PredefinedVariable.THIS.getLiteral());
 			var.setType(EcorePackage.eINSTANCE.getEJavaObject());
-			createContext.registerVariable(var);
+			global.registerVariable(var);
 			
 			OclInterpreter interpreter = null;
 			
@@ -90,7 +92,7 @@ public class MorelLaunchConfigurationHelper {
 			else 
 				interpreter = new OclInterpreter();
 			
-			createContext.putValue(var, new ModuleProvider((Unit) root, interpreter));
+			global.putValue(var, new ModuleProvider((Unit) root, interpreter));
 			interpreter.start();
 			if(root instanceof QueryModel) {
 				interpreter.interprete_edu_ustb_sei_mde_morel_QueryModel((QueryModel) root, createContext);

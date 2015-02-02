@@ -3,10 +3,7 @@
 package edu.ustb.sei.mde.emg.runtime;
 
 import edu.ustb.sei.mde.morel.Variable;
-
 import java.util.Map;
-import java.util.Map.Entry;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -22,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link edu.ustb.sei.mde.emg.runtime.Context#getParentContext <em>Parent Context</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.emg.runtime.Context#getParentScope <em>Parent Scope</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.emg.runtime.Context#getEnviroment <em>Enviroment</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.emg.runtime.Context#getGlobal <em>Global</em>}</li>
  * </ul>
  * </p>
  *
@@ -159,6 +157,32 @@ public interface Context extends EObject {
 	 * @generated
 	 */
 	void setEnviroment(Environment value);
+
+	/**
+	 * Returns the value of the '<em><b>Global</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Global</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Global</em>' reference.
+	 * @see #setGlobal(Context)
+	 * @see edu.ustb.sei.mde.emg.runtime.RuntimePackage#getContext_Global()
+	 * @model
+	 * @generated
+	 */
+	Context getGlobal();
+
+	/**
+	 * Sets the value of the '{@link edu.ustb.sei.mde.emg.runtime.Context#getGlobal <em>Global</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Global</em>' reference.
+	 * @see #getGlobal()
+	 * @generated
+	 */
+	void setGlobal(Context value);
 
 	/**
 	 * <!-- begin-user-doc -->

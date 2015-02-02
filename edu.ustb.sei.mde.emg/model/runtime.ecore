@@ -36,6 +36,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="parentScope" eType="#//Context"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="enviroment" lowerBound="1"
         eType="#//Environment"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="global" eType="#//Context"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Environment">
     <eOperations name="createContext" eType="#//Context"/>

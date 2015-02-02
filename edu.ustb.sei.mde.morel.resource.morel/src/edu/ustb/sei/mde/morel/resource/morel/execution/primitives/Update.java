@@ -36,6 +36,7 @@ public class Update {
 		context.putValue(DIRECTION, direction);
 		
 		for(Clause clause : clauses) {
+			if(clause==null)  continue;
 			for(Statement s : clause.getStatements()) {
 				interpreter.updateStatement(s,context);
 			}

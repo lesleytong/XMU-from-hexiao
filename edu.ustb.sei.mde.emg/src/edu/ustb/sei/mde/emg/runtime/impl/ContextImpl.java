@@ -13,13 +13,10 @@ import edu.ustb.sei.mde.morel.Rule;
 import edu.ustb.sei.mde.morel.SectionType;
 import edu.ustb.sei.mde.morel.Variable;
 import edu.ustb.sei.mde.morel.VariableWithInit;
-
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -39,6 +36,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link edu.ustb.sei.mde.emg.runtime.impl.ContextImpl#getParentContext <em>Parent Context</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.emg.runtime.impl.ContextImpl#getParentScope <em>Parent Scope</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.emg.runtime.impl.ContextImpl#getEnviroment <em>Enviroment</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.emg.runtime.impl.ContextImpl#getGlobal <em>Global</em>}</li>
  * </ul>
  * </p>
  *
@@ -104,6 +102,16 @@ public class ContextImpl extends MinimalEObjectImpl.Container implements Context
 	 * @ordered
 	 */
 	protected Environment enviroment;
+
+	/**
+	 * The cached value of the '{@link #getGlobal() <em>Global</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getGlobal()
+	 * @generated
+	 * @ordered
+	 */
+	protected Context global;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -286,6 +294,44 @@ public class ContextImpl extends MinimalEObjectImpl.Container implements Context
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Context getGlobal() {
+		if (global != null && global.eIsProxy()) {
+			InternalEObject oldGlobal = (InternalEObject)global;
+			global = (Context)eResolveProxy(oldGlobal);
+			if (global != oldGlobal) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RuntimePackage.CONTEXT__GLOBAL, oldGlobal, global));
+			}
+		}
+		return global;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Context basicGetGlobal() {
+		return global;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setGlobal(Context newGlobal) {
+		Context oldGlobal = global;
+		global = newGlobal;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RuntimePackage.CONTEXT__GLOBAL, oldGlobal, global));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public void initWithHost() {
@@ -407,6 +453,7 @@ public class ContextImpl extends MinimalEObjectImpl.Container implements Context
 		Context context = instanceContext();
 		context.setEnviroment(this.getEnviroment());
 		context.setParentScope(this);
+		context.setGlobal(getGlobal());
 		return context;
 	}
 
@@ -427,6 +474,8 @@ public class ContextImpl extends MinimalEObjectImpl.Container implements Context
 		} else {
 			if(getParentScope()!=null)
 				return getParentScope().getValue(var);
+			else if(getGlobal()!=null)
+				return getGlobal().getValue(var);
 		}
 		return null;
 	}
@@ -458,6 +507,8 @@ public class ContextImpl extends MinimalEObjectImpl.Container implements Context
 		} else {
 			if(getParentScope()!=null)
 				getParentScope().putValue(var, value);
+			else if(getGlobal()!=null)
+				getGlobal().putValue(var, value);
 		}
 	}
 
@@ -473,10 +524,12 @@ public class ContextImpl extends MinimalEObjectImpl.Container implements Context
 		copy.setParentScope(this.getParentScope());
 		copy.setHost(this.getHost());
 		copy.initWithHost();
-		
+		// because $this is not defined in host, this will cause the lose of $this
 		for(Map.Entry<Variable, Object> entry : this.getBindingMap().entrySet()){
 			copy.putValue(entry.getKey(), entry.getValue());
 		}
+		
+		copy.setGlobal(getGlobal());
 		
 		return copy;
 	}
@@ -513,7 +566,12 @@ public class ContextImpl extends MinimalEObjectImpl.Container implements Context
 		for(Entry<Variable,Object> e : map.entrySet()) {
 			if(e.getKey().getName().equals(name)) return e.getKey();
 		}
-		if(this.getParentScope()==null) return null;
+		if(this.getParentScope()==null) {
+			if(getGlobal()!=null)
+				return getGlobal().findVariable(name);
+			else
+				return null;
+		}
 		else return this.getParentScope().findVariable(name);
 	}
 
@@ -538,6 +596,9 @@ public class ContextImpl extends MinimalEObjectImpl.Container implements Context
 			case RuntimePackage.CONTEXT__ENVIROMENT:
 				if (resolve) return getEnviroment();
 				return basicGetEnviroment();
+			case RuntimePackage.CONTEXT__GLOBAL:
+				if (resolve) return getGlobal();
+				return basicGetGlobal();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -566,6 +627,9 @@ public class ContextImpl extends MinimalEObjectImpl.Container implements Context
 			case RuntimePackage.CONTEXT__ENVIROMENT:
 				setEnviroment((Environment)newValue);
 				return;
+			case RuntimePackage.CONTEXT__GLOBAL:
+				setGlobal((Context)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -593,6 +657,9 @@ public class ContextImpl extends MinimalEObjectImpl.Container implements Context
 			case RuntimePackage.CONTEXT__ENVIROMENT:
 				setEnviroment((Environment)null);
 				return;
+			case RuntimePackage.CONTEXT__GLOBAL:
+				setGlobal((Context)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -615,6 +682,8 @@ public class ContextImpl extends MinimalEObjectImpl.Container implements Context
 				return parentScope != null;
 			case RuntimePackage.CONTEXT__ENVIROMENT:
 				return enviroment != null;
+			case RuntimePackage.CONTEXT__GLOBAL:
+				return global != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -660,34 +729,14 @@ public class ContextImpl extends MinimalEObjectImpl.Container implements Context
 	@Override
 	public String toString() {
 		if (eIsProxy()) return super.toString();
-//
-//		StringBuffer result = new StringBuffer(super.toString());
-//		result.append(" (bindingMap: ");
-//		result.append(bindingMap);
-//		result.append(", host: ");
-//		result.append(host);
-//		result.append(')');
-//		return result.toString();
-		
-		StringBuilder builder = new StringBuilder();
-		builder.append("host=");
-		builder.append(this.getHost());
-		builder.append("{");
-		boolean first = true;
-		Set<Entry<Variable, Object>> entrySet = this.getBindingMap().entrySet();
-		for(Entry<Variable,Object> e : entrySet){
-			if(!first) {
-				builder.append(" ,");
-				first=false;
-			}
-			builder.append(e.getKey().getName());
-			builder.append("=");
-			builder.append(e.getValue());
-		}
-		
-		builder.append("}");
-		
-		return builder.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (bindingMap: ");
+		result.append(bindingMap);
+		result.append(", host: ");
+		result.append(host);
+		result.append(')');
+		return result.toString();
 	}
 	
 	

@@ -21,11 +21,14 @@ import edu.ustb.sei.mde.morel.DeclarativeStatement;
 import edu.ustb.sei.mde.morel.Expression;
 import edu.ustb.sei.mde.morel.ImperativeStatement;
 import edu.ustb.sei.mde.morel.Pattern;
+import edu.ustb.sei.mde.morel.PredefinedBindExp;
+import edu.ustb.sei.mde.morel.PredefinedVariable;
 import edu.ustb.sei.mde.morel.RelationalExp;
 import edu.ustb.sei.mde.morel.RelationalOperator;
 import edu.ustb.sei.mde.morel.Rule;
 import edu.ustb.sei.mde.morel.RuleElement;
 import edu.ustb.sei.mde.morel.RuleGroup;
+import edu.ustb.sei.mde.morel.SimpleLinkConstraint;
 import edu.ustb.sei.mde.morel.Statement;
 import edu.ustb.sei.mde.morel.Variable;
 import edu.ustb.sei.mde.morel.VariableExp;
@@ -155,7 +158,7 @@ public class BXUpdateInterpreter extends OclInterpreter {
 		Pattern nView = bXRewritingRule.getSource();
 
 		Clause when = bXRewritingRule.getWhen();
-		//Clause update = bXRewritingRule.getUpdate();
+		Clause update = bXRewritingRule.getUpdate();
 
 		//List<Pattern> nac = bXRewritingRule.getNac();
 		
@@ -181,7 +184,7 @@ public class BXUpdateInterpreter extends OclInterpreter {
 				}
 				
 				// enforce when and update
-				Update.instance.updateClauses(bXRewritingRule.getSource(), c, this, when);
+				Update.instance.updateClauses(bXRewritingRule.getSource(), c, this, when, update);
 				this.addRecord(c);
 			}
 		}
@@ -270,6 +273,7 @@ public class BXUpdateInterpreter extends OclInterpreter {
 	}
 
 	protected boolean checkClause(Clause when, Context c) {
+		if(when==null) return true;
 		for(Statement statement : when.getStatements()){
 			Object v = interprete(statement, c);
 			if(!BooleanLibrary.isTrue(v)) return false;
@@ -368,5 +372,25 @@ public class BXUpdateInterpreter extends OclInterpreter {
 			return this.interprete_edu_ustb_sei_mde_morel_CallPathExp(s, exp.getPath(), context,true,v);
 		}
 	}
+
+//	@Override
+//	public Object interprete_edu_ustb_sei_mde_morel_PredefinedBindExp(
+//			PredefinedBindExp predefinedBindExp, Context context) {
+//				Expression valueExp = predefinedBindExp.getValueExp();
+//				if(predefinedBindExp.getSource().getVariable()==PredefinedVariable.ID && valueExp instanceof VariableExp) {
+//					if(OclUndefined.isOclUndefined(context.get(((VariableExp)valueExp).getReferredVariable().getName()))) {
+//						return super.interprete_edu_ustb_sei_mde_morel_PredefinedBindExp(predefinedBindExp, context);
+//					} else {
+//						Object l = this.interprete(predefinedBindExp.getSource(),context);
+//						Object r = this.interprete(valueExp, context);
+//						return library.execute("=", l, r);
+//						
+//					}
+//				} else
+//					return super.interprete_edu_ustb_sei_mde_morel_PredefinedBindExp(
+//						predefinedBindExp, context);
+//	}
+	
+	
 	
 }

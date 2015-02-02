@@ -114,13 +114,22 @@ public interface RuntimePackage extends EPackage {
 	int CONTEXT__ENVIROMENT = 4;
 
 	/**
+	 * The feature id for the '<em><b>Global</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTEXT__GLOBAL = 5;
+
+	/**
 	 * The number of structural features of the '<em>Context</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTEXT_FEATURE_COUNT = 5;
+	int CONTEXT_FEATURE_COUNT = 6;
 
 	/**
 	 * The operation id for the '<em>Init With Host</em>' operation.
@@ -365,6 +374,17 @@ public interface RuntimePackage extends EPackage {
 	EReference getContext_Enviroment();
 
 	/**
+	 * Returns the meta object for the reference '{@link edu.ustb.sei.mde.emg.runtime.Context#getGlobal <em>Global</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Global</em>'.
+	 * @see edu.ustb.sei.mde.emg.runtime.Context#getGlobal()
+	 * @see #getContext()
+	 * @generated
+	 */
+	EReference getContext_Global();
+
+	/**
 	 * Returns the meta object for the '{@link edu.ustb.sei.mde.emg.runtime.Context#initWithHost() <em>Init With Host</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -600,6 +620,14 @@ public interface RuntimePackage extends EPackage {
 		 * @generated
 		 */
 		EReference CONTEXT__ENVIROMENT = eINSTANCE.getContext_Enviroment();
+
+		/**
+		 * The meta object literal for the '<em><b>Global</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONTEXT__GLOBAL = eINSTANCE.getContext_Global();
 
 		/**
 		 * The meta object literal for the '<em><b>Init With Host</b></em>' operation.

@@ -176,6 +176,15 @@ public class RuntimePackageImpl extends EPackageImpl implements RuntimePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getContext_Global() {
+		return (EReference)contextEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getContext__InitWithHost() {
 		return contextEClass.getEOperations().get(0);
 	}
@@ -349,6 +358,7 @@ public class RuntimePackageImpl extends EPackageImpl implements RuntimePackage {
 		createEReference(contextEClass, CONTEXT__PARENT_CONTEXT);
 		createEReference(contextEClass, CONTEXT__PARENT_SCOPE);
 		createEReference(contextEClass, CONTEXT__ENVIROMENT);
+		createEReference(contextEClass, CONTEXT__GLOBAL);
 		createEOperation(contextEClass, CONTEXT___INIT_WITH_HOST);
 		createEOperation(contextEClass, CONTEXT___NEW_SCOPE);
 		createEOperation(contextEClass, CONTEXT___GET_VALUE__VARIABLE);
@@ -414,6 +424,7 @@ public class RuntimePackageImpl extends EPackageImpl implements RuntimePackage {
 		initEReference(getContext_ParentContext(), this.getContext(), null, "parentContext", null, 0, 1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getContext_ParentScope(), this.getContext(), null, "parentScope", null, 0, 1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getContext_Enviroment(), this.getEnvironment(), null, "enviroment", null, 1, 1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getContext_Global(), this.getContext(), null, "global", null, 0, 1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getContext__InitWithHost(), null, "initWithHost", 0, 1, IS_UNIQUE, IS_ORDERED);
 
