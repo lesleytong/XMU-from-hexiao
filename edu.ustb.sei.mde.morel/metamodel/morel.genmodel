@@ -92,6 +92,16 @@
       <genEnumLiterals ecoreEnumLiteral="morel.ecore#//BXMode/get"/>
       <genEnumLiterals ecoreEnumLiteral="morel.ecore#//BXMode/put"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="morel.ecore#//ActionElementType">
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//ActionElementType/keep"/>
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//ActionElementType/create"/>
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//ActionElementType/delete"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="morel.ecore#//BxModelAttribute">
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//BxModelAttribute/source"/>
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//BxModelAttribute/view"/>
+      <genEnumLiterals ecoreEnumLiteral="morel.ecore#//BxModelAttribute/context"/>
+    </genEnums>
     <genClasses image="false" ecoreClass="morel.ecore#//NamedElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute morel.ecore#//NamedElement/name"/>
     </genClasses>
@@ -350,6 +360,34 @@
     <genClasses ecoreClass="morel.ecore#//BXRewritingModel">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//BXRewritingModel/rules"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute morel.ecore#//BXRewritingModel/mode"/>
+    </genClasses>
+    <genClasses ecoreClass="morel.ecore#//BxMorelModel">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//BxMorelModel/rules"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute morel.ecore#//BxMorelModel/mode"/>
+    </genClasses>
+    <genClasses ecoreClass="morel.ecore#//BxMorelRule">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//BxMorelRule/source"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//BxMorelRule/view"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//BxMorelRule/when"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//BxMorelRule/match"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//BxMorelRule/unmatchSrc"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//BxMorelRule/unmatchView"/>
+    </genClasses>
+    <genClasses ecoreClass="morel.ecore#//Action"/>
+    <genClasses ecoreClass="morel.ecore#//CaseStatement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//CaseStatement/blocks"/>
+    </genClasses>
+    <genClasses ecoreClass="morel.ecore#//CaseBlock">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//CaseBlock/condition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//CaseBlock/action"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="morel.ecore#//ActionElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute morel.ecore#//ActionElement/actionType"/>
+    </genClasses>
+    <genClasses ecoreClass="morel.ecore#//ActionObjectVariable"/>
+    <genClasses ecoreClass="morel.ecore#//ActionSimpleLinkConstraint"/>
+    <genClasses ecoreClass="morel.ecore#//BxTypedModel">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute morel.ecore#//BxTypedModel/attribute"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

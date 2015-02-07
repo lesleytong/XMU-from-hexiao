@@ -2,6 +2,11 @@
  */
 package edu.ustb.sei.mde.morel.impl;
 
+import edu.ustb.sei.mde.morel.Action;
+import edu.ustb.sei.mde.morel.ActionElement;
+import edu.ustb.sei.mde.morel.ActionElementType;
+import edu.ustb.sei.mde.morel.ActionObjectVariable;
+import edu.ustb.sei.mde.morel.ActionSimpleLinkConstraint;
 import edu.ustb.sei.mde.morel.AdditionalConstraint;
 import edu.ustb.sei.mde.morel.AdditiveExp;
 import edu.ustb.sei.mde.morel.AdditiveExpChild;
@@ -23,7 +28,13 @@ import edu.ustb.sei.mde.morel.BooleanLiteralExp;
 import edu.ustb.sei.mde.morel.BooleanOperator;
 import edu.ustb.sei.mde.morel.BooleanOrExp;
 import edu.ustb.sei.mde.morel.BooleanOrExpChild;
+import edu.ustb.sei.mde.morel.BxModelAttribute;
+import edu.ustb.sei.mde.morel.BxMorelModel;
+import edu.ustb.sei.mde.morel.BxMorelRule;
+import edu.ustb.sei.mde.morel.BxTypedModel;
 import edu.ustb.sei.mde.morel.CallPathExp;
+import edu.ustb.sei.mde.morel.CaseBlock;
+import edu.ustb.sei.mde.morel.CaseStatement;
 import edu.ustb.sei.mde.morel.Clause;
 import edu.ustb.sei.mde.morel.CollectionLiteralExp;
 import edu.ustb.sei.mde.morel.CollectionType;
@@ -696,6 +707,69 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass bxMorelModelEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass bxMorelRuleEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass actionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass caseStatementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass caseBlockEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass actionElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass actionObjectVariableEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass actionSimpleLinkConstraintEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass bxTypedModelEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum sectionTypeEEnum = null;
 
 	/**
@@ -802,6 +876,20 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 * @generated
 	 */
 	private EEnum bxModeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum actionElementTypeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum bxModelAttributeEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -2651,6 +2739,204 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getBxMorelModel() {
+		return bxMorelModelEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBxMorelModel_Rules() {
+		return (EReference)bxMorelModelEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getBxMorelModel_Mode() {
+		return (EAttribute)bxMorelModelEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getBxMorelRule() {
+		return bxMorelRuleEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBxMorelRule_Source() {
+		return (EReference)bxMorelRuleEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBxMorelRule_View() {
+		return (EReference)bxMorelRuleEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBxMorelRule_When() {
+		return (EReference)bxMorelRuleEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBxMorelRule_Match() {
+		return (EReference)bxMorelRuleEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBxMorelRule_UnmatchSrc() {
+		return (EReference)bxMorelRuleEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBxMorelRule_UnmatchView() {
+		return (EReference)bxMorelRuleEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getAction() {
+		return actionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getCaseStatement() {
+		return caseStatementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCaseStatement_Blocks() {
+		return (EReference)caseStatementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getCaseBlock() {
+		return caseBlockEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCaseBlock_Condition() {
+		return (EReference)caseBlockEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCaseBlock_Action() {
+		return (EReference)caseBlockEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getActionElement() {
+		return actionElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getActionElement_ActionType() {
+		return (EAttribute)actionElementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getActionObjectVariable() {
+		return actionObjectVariableEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getActionSimpleLinkConstraint() {
+		return actionSimpleLinkConstraintEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getBxTypedModel() {
+		return bxTypedModelEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getBxTypedModel_Attribute() {
+		return (EAttribute)bxTypedModelEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getSectionType() {
 		return sectionTypeEEnum;
 	}
@@ -2788,6 +3074,24 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 */
 	public EEnum getBXMode() {
 		return bxModeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getActionElementType() {
+		return actionElementTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getBxModelAttribute() {
+		return bxModelAttributeEEnum;
 	}
 
 	/**
@@ -3098,6 +3402,37 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		createEReference(bxRewritingModelEClass, BX_REWRITING_MODEL__RULES);
 		createEAttribute(bxRewritingModelEClass, BX_REWRITING_MODEL__MODE);
 
+		bxMorelModelEClass = createEClass(BX_MOREL_MODEL);
+		createEReference(bxMorelModelEClass, BX_MOREL_MODEL__RULES);
+		createEAttribute(bxMorelModelEClass, BX_MOREL_MODEL__MODE);
+
+		bxMorelRuleEClass = createEClass(BX_MOREL_RULE);
+		createEReference(bxMorelRuleEClass, BX_MOREL_RULE__SOURCE);
+		createEReference(bxMorelRuleEClass, BX_MOREL_RULE__VIEW);
+		createEReference(bxMorelRuleEClass, BX_MOREL_RULE__WHEN);
+		createEReference(bxMorelRuleEClass, BX_MOREL_RULE__MATCH);
+		createEReference(bxMorelRuleEClass, BX_MOREL_RULE__UNMATCH_SRC);
+		createEReference(bxMorelRuleEClass, BX_MOREL_RULE__UNMATCH_VIEW);
+
+		actionEClass = createEClass(ACTION);
+
+		caseStatementEClass = createEClass(CASE_STATEMENT);
+		createEReference(caseStatementEClass, CASE_STATEMENT__BLOCKS);
+
+		caseBlockEClass = createEClass(CASE_BLOCK);
+		createEReference(caseBlockEClass, CASE_BLOCK__CONDITION);
+		createEReference(caseBlockEClass, CASE_BLOCK__ACTION);
+
+		actionElementEClass = createEClass(ACTION_ELEMENT);
+		createEAttribute(actionElementEClass, ACTION_ELEMENT__ACTION_TYPE);
+
+		actionObjectVariableEClass = createEClass(ACTION_OBJECT_VARIABLE);
+
+		actionSimpleLinkConstraintEClass = createEClass(ACTION_SIMPLE_LINK_CONSTRAINT);
+
+		bxTypedModelEClass = createEClass(BX_TYPED_MODEL);
+		createEAttribute(bxTypedModelEClass, BX_TYPED_MODEL__ATTRIBUTE);
+
 		// Create enums
 		sectionTypeEEnum = createEEnum(SECTION_TYPE);
 		typedModelActionEEnum = createEEnum(TYPED_MODEL_ACTION);
@@ -3115,6 +3450,8 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		iterationTypeEEnum = createEEnum(ITERATION_TYPE);
 		repetitionTypeEEnum = createEEnum(REPETITION_TYPE);
 		bxModeEEnum = createEEnum(BX_MODE);
+		actionElementTypeEEnum = createEEnum(ACTION_ELEMENT_TYPE);
+		bxModelAttributeEEnum = createEEnum(BX_MODEL_ATTRIBUTE);
 	}
 
 	/**
@@ -3225,6 +3562,17 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		bxRewritingRuleEClass.getESuperTypes().add(this.getRuleElement());
 		bxRewritingModelEClass.getESuperTypes().add(this.getUnit());
 		bxRewritingModelEClass.getESuperTypes().add(this.getNamedElement());
+		bxMorelModelEClass.getESuperTypes().add(this.getUnit());
+		bxMorelModelEClass.getESuperTypes().add(this.getNamedElement());
+		bxMorelRuleEClass.getESuperTypes().add(this.getRuleElement());
+		actionEClass.getESuperTypes().add(this.getPattern());
+		caseStatementEClass.getESuperTypes().add(this.getImperativeStatement());
+		caseBlockEClass.getESuperTypes().add(this.getImperativeExp());
+		actionObjectVariableEClass.getESuperTypes().add(this.getObjectVariable());
+		actionObjectVariableEClass.getESuperTypes().add(this.getActionElement());
+		actionSimpleLinkConstraintEClass.getESuperTypes().add(this.getSimpleLinkConstraint());
+		actionSimpleLinkConstraintEClass.getESuperTypes().add(this.getActionElement());
+		bxTypedModelEClass.getESuperTypes().add(this.getTypedModel());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(namedElementEClass, NamedElement.class, "NamedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -3509,6 +3857,37 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		initEReference(getBXRewritingModel_Rules(), this.getBXRewritingRule(), null, "rules", null, 0, -1, BXRewritingModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBXRewritingModel_Mode(), this.getBXMode(), "mode", null, 1, 1, BXRewritingModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(bxMorelModelEClass, BxMorelModel.class, "BxMorelModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getBxMorelModel_Rules(), this.getBxMorelRule(), null, "rules", null, 0, -1, BxMorelModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBxMorelModel_Mode(), this.getBXMode(), "mode", null, 1, 1, BxMorelModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(bxMorelRuleEClass, BxMorelRule.class, "BxMorelRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getBxMorelRule_Source(), this.getPattern(), null, "source", null, 0, 1, BxMorelRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBxMorelRule_View(), this.getPattern(), null, "view", null, 0, 1, BxMorelRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBxMorelRule_When(), this.getClause(), null, "when", null, 0, 1, BxMorelRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBxMorelRule_Match(), this.getAction(), null, "match", null, 0, 1, BxMorelRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBxMorelRule_UnmatchSrc(), this.getAction(), null, "unmatchSrc", null, 0, 1, BxMorelRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBxMorelRule_UnmatchView(), this.getAction(), null, "unmatchView", null, 0, 1, BxMorelRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(actionEClass, Action.class, "Action", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(caseStatementEClass, CaseStatement.class, "CaseStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCaseStatement_Blocks(), this.getCaseBlock(), null, "blocks", null, 1, -1, CaseStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(caseBlockEClass, CaseBlock.class, "CaseBlock", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCaseBlock_Condition(), this.getPattern(), null, "condition", null, 0, 1, CaseBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCaseBlock_Action(), this.getAction(), null, "action", null, 1, 1, CaseBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(actionElementEClass, ActionElement.class, "ActionElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getActionElement_ActionType(), this.getActionElementType(), "actionType", null, 0, 1, ActionElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(actionObjectVariableEClass, ActionObjectVariable.class, "ActionObjectVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(actionSimpleLinkConstraintEClass, ActionSimpleLinkConstraint.class, "ActionSimpleLinkConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(bxTypedModelEClass, BxTypedModel.class, "BxTypedModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getBxTypedModel_Attribute(), this.getBxModelAttribute(), "attribute", null, 1, 1, BxTypedModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		// Initialize enums and add enum literals
 		initEEnum(sectionTypeEEnum, SectionType.class, "SectionType");
 		addEEnumLiteral(sectionTypeEEnum, SectionType.LHS);
@@ -3594,6 +3973,16 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		initEEnum(bxModeEEnum, BXMode.class, "BXMode");
 		addEEnumLiteral(bxModeEEnum, BXMode.GET);
 		addEEnumLiteral(bxModeEEnum, BXMode.PUT);
+
+		initEEnum(actionElementTypeEEnum, ActionElementType.class, "ActionElementType");
+		addEEnumLiteral(actionElementTypeEEnum, ActionElementType.KEEP);
+		addEEnumLiteral(actionElementTypeEEnum, ActionElementType.CREATE);
+		addEEnumLiteral(actionElementTypeEEnum, ActionElementType.DELETE);
+
+		initEEnum(bxModelAttributeEEnum, BxModelAttribute.class, "BxModelAttribute");
+		addEEnumLiteral(bxModelAttributeEEnum, BxModelAttribute.SOURCE);
+		addEEnumLiteral(bxModelAttributeEEnum, BxModelAttribute.VIEW);
+		addEEnumLiteral(bxModelAttributeEEnum, BxModelAttribute.CONTEXT);
 
 		// Create resource
 		createResource(eNS_URI);

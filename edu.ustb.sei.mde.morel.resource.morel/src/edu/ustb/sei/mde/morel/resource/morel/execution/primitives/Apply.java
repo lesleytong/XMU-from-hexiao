@@ -27,25 +27,25 @@ import edu.ustb.sei.mde.morel.resource.morel.execution.OclInterpreter;
 public class Apply {
 	public static final Apply instance = new Apply();
 
-
-	@SuppressWarnings("unchecked")
 	public boolean apply(List<Pattern> rhs, List<Pattern> lhs, Context context, OclInterpreter interpreter,  Environment env) {
 		List<ObjectVariable> variablesToBeCreated = getVariables(rhs,lhs);
 		for(ObjectVariable v : variablesToBeCreated) {
 			if(context.getValue(v)==OclUndefined.INVALIDED) {
-				EObject obj = EcoreUtil.create(v.getType());
-				context.putValue(v, obj);
-				env.getModelSpaces().get(v.getModel()).addElement(obj);
+//				EObject obj = EcoreUtil.create(v.getType());
+//				context.putValue(v, obj);
+//				env.getModelSpaces().get(v.getModel()).addElement(obj);
+				Update.instance.createElement(v,context,env);
 				env.getModelUniverse().onChange();
 			}
 		}
 
 		List<SimpleLinkConstraint> linksToBeDeleted = getLinks(lhs,rhs);
 		for(SimpleLinkConstraint l : linksToBeDeleted) {
-			EObject src = (EObject) context.getValue(l.getSource());
-			EObject tar = (EObject) context.getValue(l.getTarget());
-			ModelSpace modelSpace = env.getModelSpaces().get(l.getSource().getModel());
-			modelSpace.deleteRelationship(src, tar, l.getReference());
+//			EObject src = (EObject) context.getValue(l.getSource());
+//			EObject tar = (EObject) context.getValue(l.getTarget());
+//			ModelSpace modelSpace = env.getModelSpaces().get(l.getSource().getModel());
+//			modelSpace.deleteRelationship(src, tar, l.getReference());
+			Update.instance.deleteRelationship(l, context, env);
 		}
 		
 		List<SimpleLinkConstraint> linksToBeCreated = getLinks(rhs,lhs);
@@ -53,19 +53,21 @@ public class Apply {
 			if(l.getId()!=null && l.getId() instanceof PredefinedBindExp) {
 				interpreter.interprete(l.getId(), context);
 			} else {
-				EObject src = (EObject) context.getValue(l.getSource());
-				EObject tar = (EObject) context.getValue(l.getTarget());
-				ModelSpace modelSpace = env.getModelSpaces().get(l.getSource().getModel());
-				modelSpace.addRelationship(src, tar, l.getReference());
+//				EObject src = (EObject) context.getValue(l.getSource());
+//				EObject tar = (EObject) context.getValue(l.getTarget());
+//				ModelSpace modelSpace = env.getModelSpaces().get(l.getSource().getModel());
+//				modelSpace.addRelationship(src, tar, l.getReference());
+				Update.instance.createRelationship(l, context, env, interpreter);
 			}
 		}
 
 		List<ObjectVariable> variablesToBeDeleted = getVariables(lhs,rhs);
 		for(ObjectVariable v : variablesToBeDeleted) {
 			if(context.getValue(v)!=OclUndefined.INVALIDED) {
-				EObject obj = (EObject) context.getValue(v);
-				System.out.println("delete "+v.getName()+" = "+obj);
-				env.getModelSpaces().get(v.getModel()).deleteElementFromModel(obj);
+//				EObject obj = (EObject) context.getValue(v);
+//				System.out.println("delete "+v.getName()+" = "+obj);
+//				env.getModelSpaces().get(v.getModel()).deleteElement(obj);
+				Update.instance.deleteElement(v, context, env);
 			}
 		}
 		

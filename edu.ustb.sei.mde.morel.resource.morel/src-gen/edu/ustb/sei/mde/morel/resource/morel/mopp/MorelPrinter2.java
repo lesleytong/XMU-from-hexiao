@@ -196,10 +196,6 @@ public class MorelPrinter2 implements edu.ustb.sei.mde.morel.resource.morel.IMor
 			printInternal(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_0, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.morel.TypedModel) {
-			printInternal(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_1, foundFormattingElements);
-			return;
-		}
 		if (element instanceof edu.ustb.sei.mde.morel.Query) {
 			printInternal(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_2, foundFormattingElements);
 			return;
@@ -210,10 +206,6 @@ public class MorelPrinter2 implements edu.ustb.sei.mde.morel.resource.morel.IMor
 		}
 		if (element instanceof edu.ustb.sei.mde.morel.PrimitiveVariableWithInit) {
 			printInternal(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_6, foundFormattingElements);
-			return;
-		}
-		if (element instanceof edu.ustb.sei.mde.morel.SimpleLinkConstraint) {
-			printInternal(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_7, foundFormattingElements);
 			return;
 		}
 		if (element instanceof edu.ustb.sei.mde.morel.EnclosureLinkConstraint) {
@@ -352,10 +344,6 @@ public class MorelPrinter2 implements edu.ustb.sei.mde.morel.resource.morel.IMor
 			printInternal(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_41, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.morel.Pattern) {
-			printInternal(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_42, foundFormattingElements);
-			return;
-		}
 		if (element instanceof edu.ustb.sei.mde.morel.PredefinedVariableExp) {
 			printInternal(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_43, foundFormattingElements);
 			return;
@@ -384,12 +372,56 @@ public class MorelPrinter2 implements edu.ustb.sei.mde.morel.resource.morel.IMor
 			printInternal(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_49, foundFormattingElements);
 			return;
 		}
+		if (element instanceof edu.ustb.sei.mde.morel.BxMorelModel) {
+			printInternal(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_50, foundFormattingElements);
+			return;
+		}
+		if (element instanceof edu.ustb.sei.mde.morel.BxMorelRule) {
+			printInternal(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_51, foundFormattingElements);
+			return;
+		}
+		if (element instanceof edu.ustb.sei.mde.morel.Action) {
+			printInternal(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_52, foundFormattingElements);
+			return;
+		}
+		if (element instanceof edu.ustb.sei.mde.morel.CaseStatement) {
+			printInternal(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_53, foundFormattingElements);
+			return;
+		}
+		if (element instanceof edu.ustb.sei.mde.morel.CaseBlock) {
+			printInternal(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_54, foundFormattingElements);
+			return;
+		}
+		if (element instanceof edu.ustb.sei.mde.morel.BxTypedModel) {
+			printInternal(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_55, foundFormattingElements);
+			return;
+		}
+		if (element instanceof edu.ustb.sei.mde.morel.ActionObjectVariable) {
+			printInternal(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_56, foundFormattingElements);
+			return;
+		}
+		if (element instanceof edu.ustb.sei.mde.morel.ActionSimpleLinkConstraint) {
+			printInternal(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_57, foundFormattingElements);
+			return;
+		}
+		if (element instanceof edu.ustb.sei.mde.morel.TypedModel) {
+			printInternal(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_1, foundFormattingElements);
+			return;
+		}
 		if (element instanceof edu.ustb.sei.mde.morel.ObjectVariable) {
 			printInternal(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_3, foundFormattingElements);
 			return;
 		}
 		if (element instanceof edu.ustb.sei.mde.morel.PrimitiveVariable) {
 			printInternal(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_4, foundFormattingElements);
+			return;
+		}
+		if (element instanceof edu.ustb.sei.mde.morel.SimpleLinkConstraint) {
+			printInternal(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_7, foundFormattingElements);
+			return;
+		}
+		if (element instanceof edu.ustb.sei.mde.morel.Pattern) {
+			printInternal(element, edu.ustb.sei.mde.morel.resource.morel.grammar.MorelGrammarInformationProvider.MOREL_42, foundFormattingElements);
 			return;
 		}
 		

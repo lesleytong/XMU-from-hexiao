@@ -17,6 +17,7 @@ public class MorelNewFileContentProvider {
 			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getQueryModel(),
 			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getTransformationModel(),
 			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingModel(),
+			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBxMorelModel(),
 		}, getMetaInformation().getClassesWithSyntax(), newFileName);
 	}
 	

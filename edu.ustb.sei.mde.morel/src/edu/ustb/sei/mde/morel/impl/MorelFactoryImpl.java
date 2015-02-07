@@ -113,6 +113,14 @@ public class MorelFactoryImpl extends EFactoryImpl implements MorelFactory {
 			case MorelPackage.VALUE_RANGE_CONSTRAINT: return createValueRangeConstraint();
 			case MorelPackage.BX_REWRITING_RULE: return createBXRewritingRule();
 			case MorelPackage.BX_REWRITING_MODEL: return createBXRewritingModel();
+			case MorelPackage.BX_MOREL_MODEL: return createBxMorelModel();
+			case MorelPackage.BX_MOREL_RULE: return createBxMorelRule();
+			case MorelPackage.ACTION: return createAction();
+			case MorelPackage.CASE_STATEMENT: return createCaseStatement();
+			case MorelPackage.CASE_BLOCK: return createCaseBlock();
+			case MorelPackage.ACTION_OBJECT_VARIABLE: return createActionObjectVariable();
+			case MorelPackage.ACTION_SIMPLE_LINK_CONSTRAINT: return createActionSimpleLinkConstraint();
+			case MorelPackage.BX_TYPED_MODEL: return createBxTypedModel();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -158,6 +166,10 @@ public class MorelFactoryImpl extends EFactoryImpl implements MorelFactory {
 				return createRepetitionTypeFromString(eDataType, initialValue);
 			case MorelPackage.BX_MODE:
 				return createBXModeFromString(eDataType, initialValue);
+			case MorelPackage.ACTION_ELEMENT_TYPE:
+				return createActionElementTypeFromString(eDataType, initialValue);
+			case MorelPackage.BX_MODEL_ATTRIBUTE:
+				return createBxModelAttributeFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -203,6 +215,10 @@ public class MorelFactoryImpl extends EFactoryImpl implements MorelFactory {
 				return convertRepetitionTypeToString(eDataType, instanceValue);
 			case MorelPackage.BX_MODE:
 				return convertBXModeToString(eDataType, instanceValue);
+			case MorelPackage.ACTION_ELEMENT_TYPE:
+				return convertActionElementTypeToString(eDataType, instanceValue);
+			case MorelPackage.BX_MODEL_ATTRIBUTE:
+				return convertBxModelAttributeToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -773,6 +789,86 @@ public class MorelFactoryImpl extends EFactoryImpl implements MorelFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public BxMorelModel createBxMorelModel() {
+		BxMorelModelImpl bxMorelModel = new BxMorelModelImpl();
+		return bxMorelModel;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public BxMorelRule createBxMorelRule() {
+		BxMorelRuleImpl bxMorelRule = new BxMorelRuleImpl();
+		return bxMorelRule;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Action createAction() {
+		ActionImpl action = new ActionImpl();
+		return action;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CaseStatement createCaseStatement() {
+		CaseStatementImpl caseStatement = new CaseStatementImpl();
+		return caseStatement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CaseBlock createCaseBlock() {
+		CaseBlockImpl caseBlock = new CaseBlockImpl();
+		return caseBlock;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ActionObjectVariable createActionObjectVariable() {
+		ActionObjectVariableImpl actionObjectVariable = new ActionObjectVariableImpl();
+		return actionObjectVariable;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ActionSimpleLinkConstraint createActionSimpleLinkConstraint() {
+		ActionSimpleLinkConstraintImpl actionSimpleLinkConstraint = new ActionSimpleLinkConstraintImpl();
+		return actionSimpleLinkConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public BxTypedModel createBxTypedModel() {
+		BxTypedModelImpl bxTypedModel = new BxTypedModelImpl();
+		return bxTypedModel;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public SectionType createSectionTypeFromString(EDataType eDataType, String initialValue) {
 		SectionType result = SectionType.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
@@ -1085,6 +1181,46 @@ public class MorelFactoryImpl extends EFactoryImpl implements MorelFactory {
 	 * @generated
 	 */
 	public String convertBXModeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ActionElementType createActionElementTypeFromString(EDataType eDataType, String initialValue) {
+		ActionElementType result = ActionElementType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertActionElementTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public BxModelAttribute createBxModelAttributeFromString(EDataType eDataType, String initialValue) {
+		BxModelAttribute result = BxModelAttribute.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertBxModelAttributeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

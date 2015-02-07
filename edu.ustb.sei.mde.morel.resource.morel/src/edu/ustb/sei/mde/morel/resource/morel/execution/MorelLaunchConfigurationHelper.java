@@ -13,6 +13,7 @@ import java.util.Map.Entry;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -24,8 +25,12 @@ import edu.ustb.sei.mde.emg.runtime.Context;
 import edu.ustb.sei.mde.emg.runtime.Environment;
 import edu.ustb.sei.mde.emg.runtime.RuntimeFactory;
 import edu.ustb.sei.mde.modeling.ui.ConsoleUtil;
+import edu.ustb.sei.mde.morel.BXMode;
 import edu.ustb.sei.mde.morel.BXRewritingModel;
 import edu.ustb.sei.mde.morel.BXRewritingRule;
+import edu.ustb.sei.mde.morel.BxModelAttribute;
+import edu.ustb.sei.mde.morel.BxMorelModel;
+import edu.ustb.sei.mde.morel.BxTypedModel;
 import edu.ustb.sei.mde.morel.MorelFactory;
 import edu.ustb.sei.mde.morel.PredefinedVariable;
 import edu.ustb.sei.mde.morel.PrimitiveVariable;
@@ -89,7 +94,13 @@ public class MorelLaunchConfigurationHelper {
 			
 			if(root instanceof BXRewritingModel)
 				interpreter = new BXUpdateInterpreter();
-			else 
+			else if(root instanceof BxMorelModel)
+			{
+				if(((BxMorelModel) root).getMode()==BXMode.PUT)
+					interpreter = new BxMorelPutInterpreter();
+				else 
+					throw new UnsupportedOperationException();
+			} else
 				interpreter = new OclInterpreter();
 			
 			global.putValue(var, new ModuleProvider((Unit) root, interpreter));
@@ -104,6 +115,10 @@ public class MorelLaunchConfigurationHelper {
 //				OclInterpreter interpreter = new OclInterpreter();
 				interpreter.interprete_edu_ustb_sei_mde_morel_BXRewritingModel((BXRewritingModel) root, createContext);
 				saveModelSpace(root, env);
+			} else if(root instanceof BxMorelModel) {
+//				OclInterpreter interpreter = new OclInterpreter();
+				interpreter.interprete_edu_ustb_sei_mde_morel_BxMorelModel((BxMorelModel) root, createContext);
+				saveBxModelSpace(root, ((BxMorelModel) root).getMode(), env);
 			} else {
 				SystemOutInterpreter delegate = new SystemOutInterpreter();
 				delegate.addObjectTreeToInterpreteTopDown(root);
@@ -114,6 +129,22 @@ public class MorelLaunchConfigurationHelper {
 			e.printStackTrace();
 		}
 		
+	}
+
+	private void saveBxModelSpace(EObject root, BXMode mode, Environment env) {
+		Map<TypedModel, ModelSpace> map = env.getModelSpaces();
+		
+		if(mode==BXMode.GET) {
+			
+		} else {
+			for(Entry<TypedModel,ModelSpace> entry : map.entrySet()) {
+				BxTypedModel m = (BxTypedModel) entry.getKey();
+				
+				if(m.getAttribute()==BxModelAttribute.SOURCE) {
+					entry.getValue().save();
+				}
+			}			
+		}
 	}
 
 	private void saveModelSpace(org.eclipse.emf.ecore.EObject root, Environment env) {

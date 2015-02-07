@@ -4624,6 +4624,591 @@ public interface MorelPackage extends EPackage {
 	int BX_REWRITING_MODEL_OPERATION_COUNT = UNIT_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.impl.BxMorelModelImpl <em>Bx Morel Model</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.morel.impl.BxMorelModelImpl
+	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getBxMorelModel()
+	 * @generated
+	 */
+	int BX_MOREL_MODEL = 82;
+
+	/**
+	 * The feature id for the '<em><b>Models</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BX_MOREL_MODEL__MODELS = UNIT__MODELS;
+
+	/**
+	 * The feature id for the '<em><b>Data Types</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BX_MOREL_MODEL__DATA_TYPES = UNIT__DATA_TYPES;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BX_MOREL_MODEL__NAME = UNIT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Rules</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BX_MOREL_MODEL__RULES = UNIT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Mode</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BX_MOREL_MODEL__MODE = UNIT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Bx Morel Model</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BX_MOREL_MODEL_FEATURE_COUNT = UNIT_FEATURE_COUNT + 3;
+
+	/**
+	 * The operation id for the '<em>Get Typed Model</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BX_MOREL_MODEL___GET_TYPED_MODEL__STRING = UNIT___GET_TYPED_MODEL__STRING;
+
+	/**
+	 * The number of operations of the '<em>Bx Morel Model</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BX_MOREL_MODEL_OPERATION_COUNT = UNIT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.impl.BxMorelRuleImpl <em>Bx Morel Rule</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.morel.impl.BxMorelRuleImpl
+	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getBxMorelRule()
+	 * @generated
+	 */
+	int BX_MOREL_RULE = 83;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BX_MOREL_RULE__NAME = RULE_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Active</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BX_MOREL_RULE__ACTIVE = RULE_ELEMENT__ACTIVE;
+
+	/**
+	 * The feature id for the '<em><b>Parameters</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BX_MOREL_RULE__PARAMETERS = RULE_ELEMENT__PARAMETERS;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BX_MOREL_RULE__SOURCE = RULE_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>View</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BX_MOREL_RULE__VIEW = RULE_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>When</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BX_MOREL_RULE__WHEN = RULE_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Match</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BX_MOREL_RULE__MATCH = RULE_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Unmatch Src</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BX_MOREL_RULE__UNMATCH_SRC = RULE_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Unmatch View</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BX_MOREL_RULE__UNMATCH_VIEW = RULE_ELEMENT_FEATURE_COUNT + 5;
+
+	/**
+	 * The number of structural features of the '<em>Bx Morel Rule</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BX_MOREL_RULE_FEATURE_COUNT = RULE_ELEMENT_FEATURE_COUNT + 6;
+
+	/**
+	 * The number of operations of the '<em>Bx Morel Rule</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BX_MOREL_RULE_OPERATION_COUNT = RULE_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.impl.ActionImpl <em>Action</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.morel.impl.ActionImpl
+	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getAction()
+	 * @generated
+	 */
+	int ACTION = 84;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION__TYPE = PATTERN__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Variables</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION__VARIABLES = PATTERN__VARIABLES;
+
+	/**
+	 * The feature id for the '<em><b>Link Constraints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION__LINK_CONSTRAINTS = PATTERN__LINK_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Statements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION__STATEMENTS = PATTERN__STATEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Additional Constraints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION__ADDITIONAL_CONSTRAINTS = PATTERN__ADDITIONAL_CONSTRAINTS;
+
+	/**
+	 * The number of structural features of the '<em>Action</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_FEATURE_COUNT = PATTERN_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Action</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_OPERATION_COUNT = PATTERN_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.impl.CaseStatementImpl <em>Case Statement</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.morel.impl.CaseStatementImpl
+	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getCaseStatement()
+	 * @generated
+	 */
+	int CASE_STATEMENT = 85;
+
+	/**
+	 * The feature id for the '<em><b>Blocks</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CASE_STATEMENT__BLOCKS = IMPERATIVE_STATEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Case Statement</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CASE_STATEMENT_FEATURE_COUNT = IMPERATIVE_STATEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Case Statement</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CASE_STATEMENT_OPERATION_COUNT = IMPERATIVE_STATEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.impl.CaseBlockImpl <em>Case Block</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.morel.impl.CaseBlockImpl
+	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getCaseBlock()
+	 * @generated
+	 */
+	int CASE_BLOCK = 86;
+
+	/**
+	 * The feature id for the '<em><b>Condition</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CASE_BLOCK__CONDITION = IMPERATIVE_EXP_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Action</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CASE_BLOCK__ACTION = IMPERATIVE_EXP_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Case Block</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CASE_BLOCK_FEATURE_COUNT = IMPERATIVE_EXP_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Case Block</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CASE_BLOCK_OPERATION_COUNT = IMPERATIVE_EXP_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.impl.ActionElementImpl <em>Action Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.morel.impl.ActionElementImpl
+	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getActionElement()
+	 * @generated
+	 */
+	int ACTION_ELEMENT = 87;
+
+	/**
+	 * The feature id for the '<em><b>Action Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_ELEMENT__ACTION_TYPE = 0;
+
+	/**
+	 * The number of structural features of the '<em>Action Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_ELEMENT_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Action Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_ELEMENT_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.impl.ActionObjectVariableImpl <em>Action Object Variable</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.morel.impl.ActionObjectVariableImpl
+	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getActionObjectVariable()
+	 * @generated
+	 */
+	int ACTION_OBJECT_VARIABLE = 88;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_OBJECT_VARIABLE__NAME = OBJECT_VARIABLE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_OBJECT_VARIABLE__TYPE = OBJECT_VARIABLE__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Model</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_OBJECT_VARIABLE__MODEL = OBJECT_VARIABLE__MODEL;
+
+	/**
+	 * The feature id for the '<em><b>Action Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_OBJECT_VARIABLE__ACTION_TYPE = OBJECT_VARIABLE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Action Object Variable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_OBJECT_VARIABLE_FEATURE_COUNT = OBJECT_VARIABLE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Action Object Variable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_OBJECT_VARIABLE_OPERATION_COUNT = OBJECT_VARIABLE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.impl.ActionSimpleLinkConstraintImpl <em>Action Simple Link Constraint</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.morel.impl.ActionSimpleLinkConstraintImpl
+	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getActionSimpleLinkConstraint()
+	 * @generated
+	 */
+	int ACTION_SIMPLE_LINK_CONSTRAINT = 89;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_SIMPLE_LINK_CONSTRAINT__SOURCE = SIMPLE_LINK_CONSTRAINT__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_SIMPLE_LINK_CONSTRAINT__TARGET = SIMPLE_LINK_CONSTRAINT__TARGET;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_SIMPLE_LINK_CONSTRAINT__ID = SIMPLE_LINK_CONSTRAINT__ID;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_SIMPLE_LINK_CONSTRAINT__REFERENCE = SIMPLE_LINK_CONSTRAINT__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Action Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_SIMPLE_LINK_CONSTRAINT__ACTION_TYPE = SIMPLE_LINK_CONSTRAINT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Action Simple Link Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_SIMPLE_LINK_CONSTRAINT_FEATURE_COUNT = SIMPLE_LINK_CONSTRAINT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Action Simple Link Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_SIMPLE_LINK_CONSTRAINT_OPERATION_COUNT = SIMPLE_LINK_CONSTRAINT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.impl.BxTypedModelImpl <em>Bx Typed Model</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.morel.impl.BxTypedModelImpl
+	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getBxTypedModel()
+	 * @generated
+	 */
+	int BX_TYPED_MODEL = 90;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BX_TYPED_MODEL__NAME = TYPED_MODEL__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Package</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BX_TYPED_MODEL__PACKAGE = TYPED_MODEL__PACKAGE;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BX_TYPED_MODEL__TYPE = TYPED_MODEL__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Attribute</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BX_TYPED_MODEL__ATTRIBUTE = TYPED_MODEL_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Bx Typed Model</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BX_TYPED_MODEL_FEATURE_COUNT = TYPED_MODEL_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Bx Typed Model</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BX_TYPED_MODEL_OPERATION_COUNT = TYPED_MODEL_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.SectionType <em>Section Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4631,7 +5216,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getSectionType()
 	 * @generated
 	 */
-	int SECTION_TYPE = 82;
+	int SECTION_TYPE = 91;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.TypedModelAction <em>Typed Model Action</em>}' enum.
@@ -4641,7 +5226,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getTypedModelAction()
 	 * @generated
 	 */
-	int TYPED_MODEL_ACTION = 83;
+	int TYPED_MODEL_ACTION = 92;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.UndefinedLiteral <em>Undefined Literal</em>}' enum.
@@ -4651,7 +5236,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getUndefinedLiteral()
 	 * @generated
 	 */
-	int UNDEFINED_LITERAL = 84;
+	int UNDEFINED_LITERAL = 93;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.PredefinedVariable <em>Predefined Variable</em>}' enum.
@@ -4661,7 +5246,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getPredefinedVariable()
 	 * @generated
 	 */
-	int PREDEFINED_VARIABLE = 85;
+	int PREDEFINED_VARIABLE = 94;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.OperationSeparator <em>Operation Separator</em>}' enum.
@@ -4671,7 +5256,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getOperationSeparator()
 	 * @generated
 	 */
-	int OPERATION_SEPARATOR = 86;
+	int OPERATION_SEPARATOR = 95;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.IteratorType <em>Iterator Type</em>}' enum.
@@ -4681,7 +5266,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getIteratorType()
 	 * @generated
 	 */
-	int ITERATOR_TYPE = 87;
+	int ITERATOR_TYPE = 96;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.BooleanOperator <em>Boolean Operator</em>}' enum.
@@ -4691,7 +5276,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getBooleanOperator()
 	 * @generated
 	 */
-	int BOOLEAN_OPERATOR = 88;
+	int BOOLEAN_OPERATOR = 97;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.RelationalOperator <em>Relational Operator</em>}' enum.
@@ -4701,7 +5286,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getRelationalOperator()
 	 * @generated
 	 */
-	int RELATIONAL_OPERATOR = 89;
+	int RELATIONAL_OPERATOR = 98;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.AdditiveOperator <em>Additive Operator</em>}' enum.
@@ -4711,7 +5296,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getAdditiveOperator()
 	 * @generated
 	 */
-	int ADDITIVE_OPERATOR = 90;
+	int ADDITIVE_OPERATOR = 99;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.MultiplicativeOperator <em>Multiplicative Operator</em>}' enum.
@@ -4721,7 +5306,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getMultiplicativeOperator()
 	 * @generated
 	 */
-	int MULTIPLICATIVE_OPERATOR = 91;
+	int MULTIPLICATIVE_OPERATOR = 100;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.UnaryOperator <em>Unary Operator</em>}' enum.
@@ -4731,8 +5316,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getUnaryOperator()
 	 * @generated
 	 */
-	int UNARY_OPERATOR = 92;
-
+	int UNARY_OPERATOR = 101;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.ScopeType <em>Scope Type</em>}' enum.
@@ -4742,7 +5326,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getScopeType()
 	 * @generated
 	 */
-	int SCOPE_TYPE = 93;
+	int SCOPE_TYPE = 102;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.OrderType <em>Order Type</em>}' enum.
@@ -4752,8 +5336,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getOrderType()
 	 * @generated
 	 */
-	int ORDER_TYPE = 94;
-
+	int ORDER_TYPE = 103;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.IterationType <em>Iteration Type</em>}' enum.
@@ -4763,7 +5346,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getIterationType()
 	 * @generated
 	 */
-	int ITERATION_TYPE = 95;
+	int ITERATION_TYPE = 104;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.RepetitionType <em>Repetition Type</em>}' enum.
@@ -4773,8 +5356,7 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getRepetitionType()
 	 * @generated
 	 */
-	int REPETITION_TYPE = 96;
-
+	int REPETITION_TYPE = 105;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.BXMode <em>BX Mode</em>}' enum.
@@ -4784,7 +5366,27 @@ public interface MorelPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getBXMode()
 	 * @generated
 	 */
-	int BX_MODE = 97;
+	int BX_MODE = 106;
+
+	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.ActionElementType <em>Action Element Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.morel.ActionElementType
+	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getActionElementType()
+	 * @generated
+	 */
+	int ACTION_ELEMENT_TYPE = 107;
+
+	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.morel.BxModelAttribute <em>Bx Model Attribute</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.morel.BxModelAttribute
+	 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getBxModelAttribute()
+	 * @generated
+	 */
+	int BX_MODEL_ATTRIBUTE = 108;
 
 
 	/**
@@ -6883,6 +7485,239 @@ public interface MorelPackage extends EPackage {
 	EAttribute getBXRewritingModel_Mode();
 
 	/**
+	 * Returns the meta object for class '{@link edu.ustb.sei.mde.morel.BxMorelModel <em>Bx Morel Model</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Bx Morel Model</em>'.
+	 * @see edu.ustb.sei.mde.morel.BxMorelModel
+	 * @generated
+	 */
+	EClass getBxMorelModel();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link edu.ustb.sei.mde.morel.BxMorelModel#getRules <em>Rules</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Rules</em>'.
+	 * @see edu.ustb.sei.mde.morel.BxMorelModel#getRules()
+	 * @see #getBxMorelModel()
+	 * @generated
+	 */
+	EReference getBxMorelModel_Rules();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.morel.BxMorelModel#getMode <em>Mode</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Mode</em>'.
+	 * @see edu.ustb.sei.mde.morel.BxMorelModel#getMode()
+	 * @see #getBxMorelModel()
+	 * @generated
+	 */
+	EAttribute getBxMorelModel_Mode();
+
+	/**
+	 * Returns the meta object for class '{@link edu.ustb.sei.mde.morel.BxMorelRule <em>Bx Morel Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Bx Morel Rule</em>'.
+	 * @see edu.ustb.sei.mde.morel.BxMorelRule
+	 * @generated
+	 */
+	EClass getBxMorelRule();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.morel.BxMorelRule#getSource <em>Source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Source</em>'.
+	 * @see edu.ustb.sei.mde.morel.BxMorelRule#getSource()
+	 * @see #getBxMorelRule()
+	 * @generated
+	 */
+	EReference getBxMorelRule_Source();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.morel.BxMorelRule#getView <em>View</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>View</em>'.
+	 * @see edu.ustb.sei.mde.morel.BxMorelRule#getView()
+	 * @see #getBxMorelRule()
+	 * @generated
+	 */
+	EReference getBxMorelRule_View();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.morel.BxMorelRule#getWhen <em>When</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>When</em>'.
+	 * @see edu.ustb.sei.mde.morel.BxMorelRule#getWhen()
+	 * @see #getBxMorelRule()
+	 * @generated
+	 */
+	EReference getBxMorelRule_When();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.morel.BxMorelRule#getMatch <em>Match</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Match</em>'.
+	 * @see edu.ustb.sei.mde.morel.BxMorelRule#getMatch()
+	 * @see #getBxMorelRule()
+	 * @generated
+	 */
+	EReference getBxMorelRule_Match();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.morel.BxMorelRule#getUnmatchSrc <em>Unmatch Src</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Unmatch Src</em>'.
+	 * @see edu.ustb.sei.mde.morel.BxMorelRule#getUnmatchSrc()
+	 * @see #getBxMorelRule()
+	 * @generated
+	 */
+	EReference getBxMorelRule_UnmatchSrc();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.morel.BxMorelRule#getUnmatchView <em>Unmatch View</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Unmatch View</em>'.
+	 * @see edu.ustb.sei.mde.morel.BxMorelRule#getUnmatchView()
+	 * @see #getBxMorelRule()
+	 * @generated
+	 */
+	EReference getBxMorelRule_UnmatchView();
+
+	/**
+	 * Returns the meta object for class '{@link edu.ustb.sei.mde.morel.Action <em>Action</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Action</em>'.
+	 * @see edu.ustb.sei.mde.morel.Action
+	 * @generated
+	 */
+	EClass getAction();
+
+	/**
+	 * Returns the meta object for class '{@link edu.ustb.sei.mde.morel.CaseStatement <em>Case Statement</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Case Statement</em>'.
+	 * @see edu.ustb.sei.mde.morel.CaseStatement
+	 * @generated
+	 */
+	EClass getCaseStatement();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link edu.ustb.sei.mde.morel.CaseStatement#getBlocks <em>Blocks</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Blocks</em>'.
+	 * @see edu.ustb.sei.mde.morel.CaseStatement#getBlocks()
+	 * @see #getCaseStatement()
+	 * @generated
+	 */
+	EReference getCaseStatement_Blocks();
+
+	/**
+	 * Returns the meta object for class '{@link edu.ustb.sei.mde.morel.CaseBlock <em>Case Block</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Case Block</em>'.
+	 * @see edu.ustb.sei.mde.morel.CaseBlock
+	 * @generated
+	 */
+	EClass getCaseBlock();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.morel.CaseBlock#getCondition <em>Condition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Condition</em>'.
+	 * @see edu.ustb.sei.mde.morel.CaseBlock#getCondition()
+	 * @see #getCaseBlock()
+	 * @generated
+	 */
+	EReference getCaseBlock_Condition();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.morel.CaseBlock#getAction <em>Action</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Action</em>'.
+	 * @see edu.ustb.sei.mde.morel.CaseBlock#getAction()
+	 * @see #getCaseBlock()
+	 * @generated
+	 */
+	EReference getCaseBlock_Action();
+
+	/**
+	 * Returns the meta object for class '{@link edu.ustb.sei.mde.morel.ActionElement <em>Action Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Action Element</em>'.
+	 * @see edu.ustb.sei.mde.morel.ActionElement
+	 * @generated
+	 */
+	EClass getActionElement();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.morel.ActionElement#getActionType <em>Action Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Action Type</em>'.
+	 * @see edu.ustb.sei.mde.morel.ActionElement#getActionType()
+	 * @see #getActionElement()
+	 * @generated
+	 */
+	EAttribute getActionElement_ActionType();
+
+	/**
+	 * Returns the meta object for class '{@link edu.ustb.sei.mde.morel.ActionObjectVariable <em>Action Object Variable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Action Object Variable</em>'.
+	 * @see edu.ustb.sei.mde.morel.ActionObjectVariable
+	 * @generated
+	 */
+	EClass getActionObjectVariable();
+
+	/**
+	 * Returns the meta object for class '{@link edu.ustb.sei.mde.morel.ActionSimpleLinkConstraint <em>Action Simple Link Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Action Simple Link Constraint</em>'.
+	 * @see edu.ustb.sei.mde.morel.ActionSimpleLinkConstraint
+	 * @generated
+	 */
+	EClass getActionSimpleLinkConstraint();
+
+	/**
+	 * Returns the meta object for class '{@link edu.ustb.sei.mde.morel.BxTypedModel <em>Bx Typed Model</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Bx Typed Model</em>'.
+	 * @see edu.ustb.sei.mde.morel.BxTypedModel
+	 * @generated
+	 */
+	EClass getBxTypedModel();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.morel.BxTypedModel#getAttribute <em>Attribute</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Attribute</em>'.
+	 * @see edu.ustb.sei.mde.morel.BxTypedModel#getAttribute()
+	 * @see #getBxTypedModel()
+	 * @generated
+	 */
+	EAttribute getBxTypedModel_Attribute();
+
+	/**
 	 * Returns the meta object for enum '{@link edu.ustb.sei.mde.morel.SectionType <em>Section Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7041,6 +7876,26 @@ public interface MorelPackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getBXMode();
+
+	/**
+	 * Returns the meta object for enum '{@link edu.ustb.sei.mde.morel.ActionElementType <em>Action Element Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Action Element Type</em>'.
+	 * @see edu.ustb.sei.mde.morel.ActionElementType
+	 * @generated
+	 */
+	EEnum getActionElementType();
+
+	/**
+	 * Returns the meta object for enum '{@link edu.ustb.sei.mde.morel.BxModelAttribute <em>Bx Model Attribute</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Bx Model Attribute</em>'.
+	 * @see edu.ustb.sei.mde.morel.BxModelAttribute
+	 * @generated
+	 */
+	EEnum getBxModelAttribute();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -8814,6 +9669,200 @@ public interface MorelPackage extends EPackage {
 		EAttribute BX_REWRITING_MODEL__MODE = eINSTANCE.getBXRewritingModel_Mode();
 
 		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.impl.BxMorelModelImpl <em>Bx Morel Model</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.morel.impl.BxMorelModelImpl
+		 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getBxMorelModel()
+		 * @generated
+		 */
+		EClass BX_MOREL_MODEL = eINSTANCE.getBxMorelModel();
+
+		/**
+		 * The meta object literal for the '<em><b>Rules</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BX_MOREL_MODEL__RULES = eINSTANCE.getBxMorelModel_Rules();
+
+		/**
+		 * The meta object literal for the '<em><b>Mode</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BX_MOREL_MODEL__MODE = eINSTANCE.getBxMorelModel_Mode();
+
+		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.impl.BxMorelRuleImpl <em>Bx Morel Rule</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.morel.impl.BxMorelRuleImpl
+		 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getBxMorelRule()
+		 * @generated
+		 */
+		EClass BX_MOREL_RULE = eINSTANCE.getBxMorelRule();
+
+		/**
+		 * The meta object literal for the '<em><b>Source</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BX_MOREL_RULE__SOURCE = eINSTANCE.getBxMorelRule_Source();
+
+		/**
+		 * The meta object literal for the '<em><b>View</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BX_MOREL_RULE__VIEW = eINSTANCE.getBxMorelRule_View();
+
+		/**
+		 * The meta object literal for the '<em><b>When</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BX_MOREL_RULE__WHEN = eINSTANCE.getBxMorelRule_When();
+
+		/**
+		 * The meta object literal for the '<em><b>Match</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BX_MOREL_RULE__MATCH = eINSTANCE.getBxMorelRule_Match();
+
+		/**
+		 * The meta object literal for the '<em><b>Unmatch Src</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BX_MOREL_RULE__UNMATCH_SRC = eINSTANCE.getBxMorelRule_UnmatchSrc();
+
+		/**
+		 * The meta object literal for the '<em><b>Unmatch View</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BX_MOREL_RULE__UNMATCH_VIEW = eINSTANCE.getBxMorelRule_UnmatchView();
+
+		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.impl.ActionImpl <em>Action</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.morel.impl.ActionImpl
+		 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getAction()
+		 * @generated
+		 */
+		EClass ACTION = eINSTANCE.getAction();
+
+		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.impl.CaseStatementImpl <em>Case Statement</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.morel.impl.CaseStatementImpl
+		 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getCaseStatement()
+		 * @generated
+		 */
+		EClass CASE_STATEMENT = eINSTANCE.getCaseStatement();
+
+		/**
+		 * The meta object literal for the '<em><b>Blocks</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CASE_STATEMENT__BLOCKS = eINSTANCE.getCaseStatement_Blocks();
+
+		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.impl.CaseBlockImpl <em>Case Block</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.morel.impl.CaseBlockImpl
+		 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getCaseBlock()
+		 * @generated
+		 */
+		EClass CASE_BLOCK = eINSTANCE.getCaseBlock();
+
+		/**
+		 * The meta object literal for the '<em><b>Condition</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CASE_BLOCK__CONDITION = eINSTANCE.getCaseBlock_Condition();
+
+		/**
+		 * The meta object literal for the '<em><b>Action</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CASE_BLOCK__ACTION = eINSTANCE.getCaseBlock_Action();
+
+		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.impl.ActionElementImpl <em>Action Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.morel.impl.ActionElementImpl
+		 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getActionElement()
+		 * @generated
+		 */
+		EClass ACTION_ELEMENT = eINSTANCE.getActionElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Action Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ACTION_ELEMENT__ACTION_TYPE = eINSTANCE.getActionElement_ActionType();
+
+		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.impl.ActionObjectVariableImpl <em>Action Object Variable</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.morel.impl.ActionObjectVariableImpl
+		 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getActionObjectVariable()
+		 * @generated
+		 */
+		EClass ACTION_OBJECT_VARIABLE = eINSTANCE.getActionObjectVariable();
+
+		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.impl.ActionSimpleLinkConstraintImpl <em>Action Simple Link Constraint</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.morel.impl.ActionSimpleLinkConstraintImpl
+		 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getActionSimpleLinkConstraint()
+		 * @generated
+		 */
+		EClass ACTION_SIMPLE_LINK_CONSTRAINT = eINSTANCE.getActionSimpleLinkConstraint();
+
+		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.impl.BxTypedModelImpl <em>Bx Typed Model</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.morel.impl.BxTypedModelImpl
+		 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getBxTypedModel()
+		 * @generated
+		 */
+		EClass BX_TYPED_MODEL = eINSTANCE.getBxTypedModel();
+
+		/**
+		 * The meta object literal for the '<em><b>Attribute</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BX_TYPED_MODEL__ATTRIBUTE = eINSTANCE.getBxTypedModel_Attribute();
+
+		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.SectionType <em>Section Type</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -8972,6 +10021,26 @@ public interface MorelPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum BX_MODE = eINSTANCE.getBXMode();
+
+		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.ActionElementType <em>Action Element Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.morel.ActionElementType
+		 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getActionElementType()
+		 * @generated
+		 */
+		EEnum ACTION_ELEMENT_TYPE = eINSTANCE.getActionElementType();
+
+		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.BxModelAttribute <em>Bx Model Attribute</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.morel.BxModelAttribute
+		 * @see edu.ustb.sei.mde.morel.impl.MorelPackageImpl#getBxModelAttribute()
+		 * @generated
+		 */
+		EEnum BX_MODEL_ATTRIBUTE = eINSTANCE.getBxModelAttribute();
 
 	}
 

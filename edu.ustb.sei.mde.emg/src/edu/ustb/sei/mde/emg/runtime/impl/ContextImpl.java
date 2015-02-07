@@ -8,15 +8,18 @@ import edu.ustb.sei.mde.emg.runtime.RuntimeFactory;
 import edu.ustb.sei.mde.emg.runtime.RuntimePackage;
 import edu.ustb.sei.mde.emg.runtime.datatype.OclUndefined;
 import edu.ustb.sei.mde.morel.BXRewritingRule;
+import edu.ustb.sei.mde.morel.BxMorelRule;
 import edu.ustb.sei.mde.morel.Pattern;
 import edu.ustb.sei.mde.morel.Rule;
 import edu.ustb.sei.mde.morel.SectionType;
 import edu.ustb.sei.mde.morel.Variable;
 import edu.ustb.sei.mde.morel.VariableWithInit;
+
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -439,6 +442,44 @@ public class ContextImpl extends MinimalEObjectImpl.Container implements Context
 					//}
 				}
 			}
+		} else if(host instanceof BxMorelRule) {
+			BxMorelRule rule = (BxMorelRule)host;
+			
+			{
+				Pattern p = rule.getSource();
+				if(p!=null){
+					//if(p.getType()==SectionType.LHS || p.getType()==SectionType.RHS) {
+					for(Variable v : p.getVariables()) {
+						if(this.containVariable(v)) continue;
+						else {
+							if(v instanceof VariableWithInit) {
+								Object value = OclUndefined.INVALIDED;
+								this.registerVariable(v);
+							} else 
+								this.registerVariable(v);
+						}
+					}
+					//}
+				}
+			}
+			
+			{
+				Pattern p = rule.getView();
+				if(p!=null) {
+					//if(p.getType()==SectionType.LHS || p.getType()==SectionType.RHS) {
+					for(Variable v : p.getVariables()) {
+						if(this.containVariable(v)) continue;
+						else {
+							if(v instanceof VariableWithInit) {
+								Object value = OclUndefined.INVALIDED;
+								this.registerVariable(v);
+							} else 
+								this.registerVariable(v);
+						}
+						//}
+					}
+				}
+			}
 		}
 		
 		reloadValue();
@@ -521,17 +562,28 @@ public class ContextImpl extends MinimalEObjectImpl.Container implements Context
 		Context copy = this.instanceContext();
 		copy.setEnviroment(this.getEnviroment());
 		copy.setParentContext(this.getParentContext());
+		
+		copy.setParentScope(this.getParentScope());
+		
+//		if(this.getParentScope()==null)
+//			copy.setParentScope(null);
+//		else copy.setParentScope(this.getParentScope().getCopy());
+		
 		copy.setParentScope(this.getParentScope());
 		copy.setHost(this.getHost());
 		copy.initWithHost();
 		// because $this is not defined in host, this will cause the lose of $this
-		for(Map.Entry<Variable, Object> entry : this.getBindingMap().entrySet()){
-			copy.putValue(entry.getKey(), entry.getValue());
-		}
+		copyBindings(copy);
 		
 		copy.setGlobal(getGlobal());
 		
 		return copy;
+	}
+
+	protected void copyBindings(Context copy) {
+		for(Map.Entry<Variable, Object> entry : this.getBindingMap().entrySet()){
+			copy.putValue(entry.getKey(), entry.getValue());
+		}	
 	}
 
 	/**

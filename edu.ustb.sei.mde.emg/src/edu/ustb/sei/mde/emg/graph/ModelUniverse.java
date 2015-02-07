@@ -3,22 +3,161 @@ package edu.ustb.sei.mde.emg.graph;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 import edu.ustb.sei.commonutil.util.BidirectionalMap;
 import edu.ustb.sei.commonutil.util.MultipleHashMap;
 import edu.ustb.sei.commonutil.util.PairHashMap;
+import edu.ustb.sei.mde.emg.graph.command.AddRelationshipCommand;
+import edu.ustb.sei.mde.emg.graph.command.AddRelationshipsCommand;
+import edu.ustb.sei.mde.emg.graph.command.AddValueCommand;
+import edu.ustb.sei.mde.emg.graph.command.AddValuesCommand;
+import edu.ustb.sei.mde.emg.graph.command.DeleteRelationshipCommand;
+import edu.ustb.sei.mde.emg.graph.command.DeleteRelationshipsCommand;
+import edu.ustb.sei.mde.emg.graph.command.DeleteValueCommand;
+import edu.ustb.sei.mde.emg.graph.command.DeleteValuesCommand;
+import edu.ustb.sei.mde.emg.graph.command.ModelCommand;
+import edu.ustb.sei.mde.emg.graph.command.ModelCommandStack;
 
 public class ModelUniverse {
+	
+	private boolean rollBack = false;;
+	
 
+	public boolean isRollBack() {
+		return rollBack;
+	}
+
+	public void setRollBack(boolean rollBack) {
+		this.rollBack = rollBack;
+	}
+	
+	private ModelCommandStack commandStack = new ModelCommandStack();
+	
+	public void pushScope(Object scope) {
+		commandStack.putScope(scope);
+	}
+	
+	public void pushCommand(ModelCommand cmd) {
+		if(this.isRollBack()) return;
+		commandStack.push(cmd);
+	}
+	public void pushNotification(Notification notification, ModelSpace space) {
+		//create a command
+		//pushCommand
+		if(this.isRollBack()) return;
+		
+		EObject source = (EObject) notification.getNotifier();
+		EStructuralFeature feature = (EStructuralFeature) notification.getFeature();
+		int eventType = notification.getEventType();
+		
+		if(feature instanceof EReference) {
+			if(feature.isMany()) {
+				switch(eventType) {
+				case Notification.ADD:
+				{
+					AddRelationshipCommand cmd = new AddRelationshipCommand(space,source,(EObject)notification.getNewValue(), (EReference)feature, notification.getPosition());
+					this.pushCommand(cmd);
+				}
+					return;
+				case Notification.ADD_MANY:
+				{
+					AddRelationshipsCommand cmd = new AddRelationshipsCommand(space,source,(Collection)notification.getNewValue(), (EReference)feature);
+					this.pushCommand(cmd);
+				}
+					return;
+				case Notification.REMOVE:
+				{
+					DeleteRelationshipCommand cmd = new DeleteRelationshipCommand(space,source,(EObject)notification.getOldValue(), (EReference)feature, notification.getPosition());
+					this.pushCommand(cmd);
+				}
+					return;
+				case Notification.REMOVE_MANY:
+				{
+					DeleteRelationshipsCommand cmd = new DeleteRelationshipsCommand(space,source,(Collection)notification.getOldValue(), (EReference)feature);
+					this.pushCommand(cmd);
+				}
+					return;
+				}
+			} else {
+				if(eventType==Notification.SET) {
+					if(notification.getNewValue()==null) {
+						DeleteRelationshipCommand cmd = new DeleteRelationshipCommand(space, source, (EObject)notification.getOldValue(), (EReference)feature, -1);
+						this.pushCommand(cmd);
+						return;
+					} else {
+						AddRelationshipCommand cmd = new AddRelationshipCommand(space, source, (EObject)notification.getNewValue(), (EReference)feature, -1);
+						this.pushCommand(cmd);
+						return;
+					}
+				} else if(eventType==Notification.UNSET) {
+					DeleteRelationshipCommand cmd = new DeleteRelationshipCommand(space, source, (EObject)notification.getOldValue(), (EReference)feature, -1);
+					this.pushCommand(cmd);
+					return;
+				}
+			}
+		} else {
+			if(feature.isMany()) {
+				switch(eventType) {
+				case Notification.ADD:
+				{
+					AddValueCommand cmd = new AddValueCommand(space,source,notification.getNewValue(), (EAttribute)feature, notification.getPosition());
+					
+					this.pushCommand(cmd);
+				}
+					return;
+				case Notification.ADD_MANY:
+				{
+					AddValuesCommand cmd = new AddValuesCommand(space,source,(Collection)notification.getNewValue(), (EAttribute)feature);
+					this.pushCommand(cmd);
+				}
+					return;
+				case Notification.REMOVE:
+				{
+					DeleteValueCommand cmd = new DeleteValueCommand(space,source,notification.getOldValue(), (EAttribute)feature, notification.getPosition());
+					this.pushCommand(cmd);
+				}
+					return;
+				case Notification.REMOVE_MANY:
+				{
+					DeleteValuesCommand cmd = new DeleteValuesCommand(space,source,(Collection)notification.getOldValue(), (EAttribute)feature);
+					this.pushCommand(cmd);
+				}
+					return;
+				}
+			} else {
+				if(eventType==Notification.SET) {
+					if(notification.getNewValue()==null) {
+						DeleteValueCommand cmd = new DeleteValueCommand(space, source, notification.getOldValue(), (EAttribute)feature, -1);
+						this.pushCommand(cmd);
+						return;
+					} else {
+						AddValueCommand cmd = new AddValueCommand(space, source, notification.getNewValue(), (EAttribute)feature,-1);
+						this.pushCommand(cmd);
+						return;
+					}
+				} else if(eventType==Notification.UNSET) {
+					DeleteValueCommand cmd = new DeleteValueCommand(space, source, notification.getOldValue(), (EAttribute)feature, -1);
+					this.pushCommand(cmd);
+					return;
+				}
+			}
+		}
+		
+		System.out.println("Unsupported Event:"+notification.getEventType());
+	}
 	private PairHashMap<EObject, EReference, int[]> elemRelMap = new PairHashMap<EObject, EReference, int[]>();
 	private BidirectionalMap<Integer, EObject> idObjMap  = new BidirectionalMap<Integer,EObject>();
 	private MultipleHashMap<EObject, EObject> prefixObjects = new MultipleHashMap<EObject, EObject>(false);
@@ -35,6 +174,7 @@ public class ModelUniverse {
 	}
 
 	public void onChange() {
+		if(this.isRollBack()) return;
 		changed = (true);
 	}
 

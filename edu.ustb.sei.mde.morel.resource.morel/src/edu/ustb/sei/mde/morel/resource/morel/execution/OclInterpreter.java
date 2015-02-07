@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Random;
 import java.util.concurrent.Callable;
@@ -19,6 +20,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 
+import edu.ustb.sei.mde.emg.graph.ModelSpace;
 import edu.ustb.sei.mde.emg.graph.ModelUniverse;
 import edu.ustb.sei.mde.emg.library.BooleanLibrary;
 import edu.ustb.sei.mde.emg.library.OclStandardLibrary;
@@ -98,6 +100,7 @@ import edu.ustb.sei.mde.morel.Statement;
 import edu.ustb.sei.mde.morel.StringLiteralExp;
 import edu.ustb.sei.mde.morel.TransformationModel;
 import edu.ustb.sei.mde.morel.TypeLiteralExp;
+import edu.ustb.sei.mde.morel.TypedModel;
 import edu.ustb.sei.mde.morel.UnaryExp;
 import edu.ustb.sei.mde.morel.UnaryOperator;
 import edu.ustb.sei.mde.morel.UndefinedLiteral;
@@ -115,6 +118,8 @@ import edu.ustb.sei.mde.morel.resource.morel.util.AbstractMorelInterpreter;
 
 public class OclInterpreter extends
 		AbstractMorelInterpreter<Object, Context> {
+	final static protected OclInterpreter checkInterpreter = new OclInterpreter();
+	
 	
 	private ModuleProvider module;
 	
@@ -606,18 +611,39 @@ public class OclInterpreter extends
 			if(point instanceof EObject) {
 				EClass cls = ((EObject)point).eClass();
 				EStructuralFeature feature = FeatureResolver.getStructuralFeature(featurePathExp.getFeature(), cls);
-				if(feature.isMany()) {
-					@SuppressWarnings("unchecked")
-					Collection<Object> col = (Collection<Object>)(((EObject)point).eGet(feature));
-					if(value instanceof Collection<?>)
-						col.addAll((Collection<?>)value);
-					else 
-						col.add(value);
-					return true;
-				} else {
-					((EObject)point).eSet(feature, value);
-					return true;
-				}
+
+//				Object oldValue = ((EObject) point).eGet(feature);
+//				Object newValue = value;
+//				
+//				if(oldValue==newValue) return true;
+//				if(oldValue!=null) {
+//					if(oldValue.equals(newValue))
+//						return true;
+//					if(feature.isMany()) {
+//						Collection<Object> col = (Collection<Object>)(((EObject)point).eGet(feature));
+//						if(col.size()==1 && col.contains(newValue))
+//							return true;
+//					}
+//				}
+				
+				//FIX ME: delete oldvalue, add new value
+				
+				((EObject)point).eSet(feature, value);
+				
+				return true;
+				
+//				if(feature.isMany()) {
+//					@SuppressWarnings("unchecked")
+//					Collection<Object> col = (Collection<Object>)(((EObject)point).eGet(feature));
+//					if(value instanceof Collection<?>)
+//						col.addAll((Collection<?>)value);
+//					else 
+//						col.add(value);
+//					return true;
+//				} else {
+//					((EObject)point).eSet(feature, value);
+//					return true;
+//				}
 			}
 			throw new UnsupportedOperationException(featurePathExp.toString());
 		}
@@ -870,7 +896,7 @@ public class OclInterpreter extends
 	@Override
 	public Object interprete_edu_ustb_sei_mde_morel_BooleanImpliesExp(
 			BooleanImpliesExp booleanImpliesExp, Context context) {
-		Object i = this.interprete(booleanImpliesExp.getLeft(),context);
+		Object i = checkInterpreter.interprete(booleanImpliesExp.getLeft(),context);
 		if(booleanImpliesExp.getRight()==null) return i;
 		
 		if(!(i instanceof Boolean)) {
@@ -1068,13 +1094,17 @@ public class OclInterpreter extends
 					@SuppressWarnings("rawtypes")
 					List col = (List)src.eGet(link.getReference());
 					if(i>=1&&i<=col.size()) {
-						col.add(i-1, tar);
+						//col.add(i-1, tar);
+						Map<TypedModel, ModelSpace> modelSpaces = context.getEnviroment().getModelSpaces();
+						modelSpaces.get(link.getSource().getModel()).addRelationship(src, tar, link.getReference(), i-1);
 						return true;
 					} else return false;
 					
 				} else {
 					if(i==1){
-						src.eSet(link.getReference(), tar);
+						Map<TypedModel, ModelSpace> modelSpaces = context.getEnviroment().getModelSpaces();
+						modelSpaces.get(link.getSource().getModel()).addRelationship(src, tar, link.getReference());
+						//src.eSet(link.getReference(), tar);
 						return true;
 					} else return false;
 				}
@@ -1093,7 +1123,7 @@ public class OclInterpreter extends
 	public Object interprete_edu_ustb_sei_mde_morel_IfStatement(
 			IfStatement ifStatement, Context context) {
 		// TODO Auto-generated method stub
-		Object v = this.interprete(ifStatement.getCondition(),context);
+		Object v =checkInterpreter.interprete(ifStatement.getCondition(),context);
 		if(v instanceof Boolean) {
 			if((Boolean)v) return this.interprete(ifStatement.getThenStatement(), context);
 			else if(ifStatement.getElseStatement()!=null) 

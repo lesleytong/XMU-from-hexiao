@@ -60,6 +60,14 @@ public class MorelSyntaxCoverageInformationProvider {
 			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingModel(),
 			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingRule(),
 			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getClause(),
+			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBxMorelModel(),
+			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBxMorelRule(),
+			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getAction(),
+			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getCaseStatement(),
+			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getCaseBlock(),
+			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBxTypedModel(),
+			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getActionObjectVariable(),
+			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getActionSimpleLinkConstraint(),
 		};
 	}
 	
@@ -68,6 +76,7 @@ public class MorelSyntaxCoverageInformationProvider {
 			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getQueryModel(),
 			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getTransformationModel(),
 			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBXRewritingModel(),
+			edu.ustb.sei.mde.morel.MorelPackage.eINSTANCE.getBxMorelModel(),
 		};
 	}
 	

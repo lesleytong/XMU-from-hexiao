@@ -451,4 +451,53 @@
     <eLiterals name="get"/>
     <eLiterals name="put" value="1"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BxMorelModel" eSuperTypes="#//Unit #//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rules" upperBound="-1"
+        eType="#//BxMorelRule" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mode" lowerBound="1" eType="#//BXMode"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BxMorelRule" eSuperTypes="#//RuleElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//Pattern"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="view" eType="#//Pattern"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="when" eType="#//Clause"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="match" eType="#//Action"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="unmatchSrc" eType="#//Action"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="unmatchView" eType="#//Action"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Action" eSuperTypes="#//Pattern"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CaseStatement" eSuperTypes="#//ImperativeStatement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="blocks" lowerBound="1"
+        upperBound="-1" eType="#//CaseBlock" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CaseBlock" eSuperTypes="#//ImperativeExp">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//Pattern"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="action" lowerBound="1"
+        eType="#//Action" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ActionElement" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="actionType" eType="#//ActionElementType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ActionElementType">
+    <eLiterals name="keep"/>
+    <eLiterals name="create" value="1"/>
+    <eLiterals name="delete" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ActionObjectVariable" eSuperTypes="#//ObjectVariable #//ActionElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ActionSimpleLinkConstraint" eSuperTypes="#//SimpleLinkConstraint #//ActionElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BxTypedModel" eSuperTypes="#//TypedModel">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="attribute" lowerBound="1"
+        eType="#//BxModelAttribute"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="BxModelAttribute">
+    <eLiterals name="source"/>
+    <eLiterals name="view" value="1"/>
+    <eLiterals name="context" value="2"/>
+  </eClassifiers>
 </ecore:EPackage>

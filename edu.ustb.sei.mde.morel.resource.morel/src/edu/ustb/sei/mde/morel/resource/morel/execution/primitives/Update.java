@@ -11,6 +11,8 @@ import edu.ustb.sei.mde.emg.graph.ModelSpace;
 import edu.ustb.sei.mde.emg.runtime.Context;
 import edu.ustb.sei.mde.emg.runtime.Environment;
 import edu.ustb.sei.mde.emg.runtime.datatype.OclUndefined;
+import edu.ustb.sei.mde.morel.ActionObjectVariable;
+import edu.ustb.sei.mde.morel.ActionSimpleLinkConstraint;
 import edu.ustb.sei.mde.morel.Clause;
 import edu.ustb.sei.mde.morel.LinkConstraint;
 import edu.ustb.sei.mde.morel.MorelFactory;
@@ -22,6 +24,7 @@ import edu.ustb.sei.mde.morel.SimpleLinkConstraint;
 import edu.ustb.sei.mde.morel.Statement;
 import edu.ustb.sei.mde.morel.Variable;
 import edu.ustb.sei.mde.morel.resource.morel.execution.BXUpdateInterpreter;
+import edu.ustb.sei.mde.morel.resource.morel.execution.OclInterpreter;
 
 public class Update {
 	static public final PrimitiveVariable DIRECTION;
@@ -64,7 +67,7 @@ public class Update {
 			if(context.getValue(v)!=OclUndefined.INVALIDED) {
 				EObject obj = (EObject) context.getValue(v);
 				System.out.println("delete "+v.getName()+" = "+obj);
-				env.getModelSpaces().get(((ObjectVariable)v).getModel()).deleteElementFromModel(obj);
+				env.getModelSpaces().get(((ObjectVariable)v).getModel()).deleteElement(obj);
 			}
 		}
 	}
@@ -139,7 +142,7 @@ public class Update {
 			if(context.getValue(v)!=OclUndefined.INVALIDED) {
 				EObject obj = (EObject) context.getValue(v);
 				System.out.println("delete "+v.getName()+" = "+obj);
-				env.getModelSpaces().get(v.getModel()).deleteElementFromModel(obj);
+				env.getModelSpaces().get(v.getModel()).deleteElement(obj);
 			}
 		}
 		
@@ -205,5 +208,43 @@ public class Update {
 	}
 
 
+	public void createElement(ObjectVariable var, Context c, Environment e) {
+		if(var.getType().isAbstract() || var.getType().isInterface()) return;
+		
+		EObject o = EcoreUtil.create(var.getType());
+		c.putValue(var, o);
+		e.getModelSpaces().get(var.getModel()).addElement(o);
+	}
 
+	public void deleteElement(ObjectVariable var, Context c,
+			Environment env) {
+		if(c.getValue(var)!=OclUndefined.INVALIDED) {
+			EObject obj = (EObject) c.getValue(var);
+			System.out.println("delete "+var.getName()+" = "+obj);
+			env.getModelSpaces().get(((ObjectVariable)var).getModel()).deleteElement(obj);
+		}
+	}
+
+	public void createRelationship(SimpleLinkConstraint l, Context context,
+			Environment env,OclInterpreter interpreter) {
+		if(l.getId()!=null && l.getId() instanceof PredefinedBindExp) {
+			interpreter.interprete(l.getId(), context);
+		} else {
+			EObject src = (EObject) context.getValue(l.getSource());
+			EObject tar = (EObject) context.getValue(l.getTarget());
+			
+			if(src==null || tar == null) return;
+			
+			ModelSpace modelSpace = env.getModelSpaces().get(l.getSource().getModel());
+			modelSpace.addRelationship(src, tar, l.getReference());
+		}
+	}
+
+	public void deleteRelationship(SimpleLinkConstraint l, Context context,
+			Environment env) {
+		EObject src = (EObject) context.getValue(l.getSource());
+		EObject tar = (EObject) context.getValue(l.getTarget());
+		ModelSpace modelSpace = env.getModelSpaces().get(l.getSource().getModel());
+		modelSpace.deleteRelationship(src, tar, l.getReference());
+	}
 }

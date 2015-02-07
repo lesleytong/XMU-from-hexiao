@@ -526,6 +526,78 @@ public interface MorelFactory extends EFactory {
 	BXRewritingModel createBXRewritingModel();
 
 	/**
+	 * Returns a new object of class '<em>Bx Morel Model</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Bx Morel Model</em>'.
+	 * @generated
+	 */
+	BxMorelModel createBxMorelModel();
+
+	/**
+	 * Returns a new object of class '<em>Bx Morel Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Bx Morel Rule</em>'.
+	 * @generated
+	 */
+	BxMorelRule createBxMorelRule();
+
+	/**
+	 * Returns a new object of class '<em>Action</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Action</em>'.
+	 * @generated
+	 */
+	Action createAction();
+
+	/**
+	 * Returns a new object of class '<em>Case Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Case Statement</em>'.
+	 * @generated
+	 */
+	CaseStatement createCaseStatement();
+
+	/**
+	 * Returns a new object of class '<em>Case Block</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Case Block</em>'.
+	 * @generated
+	 */
+	CaseBlock createCaseBlock();
+
+	/**
+	 * Returns a new object of class '<em>Action Object Variable</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Action Object Variable</em>'.
+	 * @generated
+	 */
+	ActionObjectVariable createActionObjectVariable();
+
+	/**
+	 * Returns a new object of class '<em>Action Simple Link Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Action Simple Link Constraint</em>'.
+	 * @generated
+	 */
+	ActionSimpleLinkConstraint createActionSimpleLinkConstraint();
+
+	/**
+	 * Returns a new object of class '<em>Bx Typed Model</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Bx Typed Model</em>'.
+	 * @generated
+	 */
+	BxTypedModel createBxTypedModel();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

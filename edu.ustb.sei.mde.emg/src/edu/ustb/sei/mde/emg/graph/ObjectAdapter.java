@@ -28,13 +28,19 @@ public class ObjectAdapter implements Adapter {
 			space.resetElementRelationshipMap(source,(EReference)feature);
 		}
 		
-		Object lv = notification.getOldValue();
-		Object rv = notification.getNewValue();
+		if(notification.isTouch()) return;
 		
-		if(lv==rv) return;
-		else if(lv==null && rv!=null) space.onChange();
-		else if(lv!=null && rv==null) space.onChange();
-		else if(lv.equals(rv)==false) space.onChange();
+		space.pushNotification(notification);
+		
+//		Object lv = notification.getOldValue();
+//		Object rv = notification.getNewValue();
+//		
+//		if(lv==rv) return;
+//		else if(lv==null && rv!=null) space.onChange();
+//		else if(lv!=null && rv==null) space.onChange();
+//		else if(lv.equals(rv)==false) space.onChange();
+		
+		space.onChange();
 	}
 
 	@Override

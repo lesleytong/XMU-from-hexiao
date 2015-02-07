@@ -13,6 +13,10 @@ public class OclUndefined {
 		return false;
 	}
 	
+	public static boolean isOclInvalid(Object self) {
+		return self==INVALIDED;
+	}
+	
 	public String toString(){
 		return name;
 	}

@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
@@ -16,6 +17,11 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import edu.ustb.sei.commonutil.util.BidirectionalMap;
+import edu.ustb.sei.mde.emg.graph.command.AddElementCommand;
+import edu.ustb.sei.mde.emg.graph.command.AddRelationshipCommand;
+import edu.ustb.sei.mde.emg.graph.command.DeleteElementCommand;
+import edu.ustb.sei.mde.emg.graph.command.DeleteRelationshipCommand;
+import edu.ustb.sei.mde.emg.graph.command.ModelCommand;
 
 public class ModelSpace extends NamedElement {
 	private List<EObject> allElements;
@@ -35,6 +41,13 @@ public class ModelSpace extends NamedElement {
 	
 	public void onChange() {
 		modelUniverse.onChange();
+	}
+	
+	public void pushCommand(ModelCommand cmd) {
+		modelUniverse.pushCommand(cmd);
+	}
+	public void pushNotification(Notification notification) {
+		modelUniverse.pushNotification(notification,this);
 	}
 
 
@@ -82,12 +95,17 @@ public class ModelSpace extends NamedElement {
 		}
 		
 		addToAllElementsMap(object.eClass(),object);
+		
+		AddElementCommand cmd = new AddElementCommand(this,object);
+		this.modelUniverse.pushCommand(cmd);
+		
 		return objectID;
 	}
 
 	/**
 	 * add an object to a model
 	 * @param object
+	 * @deprecated
 	 */
 	public void addElementToModel(EObject object) {
 //		EList<EReference> containmentReferences = object.eClass().getEAllContainments();
@@ -124,6 +142,9 @@ public class ModelSpace extends NamedElement {
 				((EList<EObject>)source.eGet(ref)).add(target);
 			} else 
 				source.eSet(ref, target);
+			
+			AddRelationshipCommand cmd = new AddRelationshipCommand(this,source,target,ref,-1);
+			this.modelUniverse.pushCommand(cmd);
 		}
 	}
 	
@@ -134,6 +155,9 @@ public class ModelSpace extends NamedElement {
 				((EList<EObject>)source.eGet(ref)).add(index, target);
 			} else 
 				source.eSet(ref, target);
+			
+//			AddRelationshipCommand cmd = new AddRelationshipCommand(this,source,target,ref,index);
+//			this.modelUniverse.pushCommand(cmd);
 		}
 	}
 	
@@ -217,23 +241,25 @@ public class ModelSpace extends NamedElement {
 	 * delete an object from a model as well as all the containing objects and relationships
 	 * @param object
 	 */
-	public void deleteElementFromModel(EObject object) {
+	public void deleteElement(EObject object) {
 		EList<EReference> containmentReferences = object.eClass().getEAllContainments();
 		for(EReference ref : containmentReferences) {
 			if(ref.isMany()) {
 				@SuppressWarnings("unchecked")
 				List<EObject> children = new ArrayList<EObject>((EList<EObject>) object.eGet(ref));
 				for(EObject c : children) {
-					deleteElementFromModel(c);
+					deleteElement(c);
 				}
 			} else {
 				EObject c = (EObject)object.eGet(ref);
-				deleteElementFromModel(c);
+				deleteElement(c);
 			}
 		}
 		synchronized(object) {
 			removeElement(object);
 			EcoreUtil.delete(object);
+			DeleteElementCommand cmd = new DeleteElementCommand(this,object);
+			this.modelUniverse.pushCommand(cmd);
 		}
 	}
 
@@ -243,6 +269,9 @@ public class ModelSpace extends NamedElement {
 		} else {
 			source.eUnset(ref);
 		}
+		
+//		DeleteRelationshipCommand cmd = new DeleteRelationshipCommand(this,source,target,ref,-1);
+//		this.modelUniverse.pushCommand(cmd);
 	}
 	
 
@@ -325,7 +354,7 @@ public class ModelSpace extends NamedElement {
 	 * remove an object from model space and clear the related cache data
 	 * @param object
 	 */
-	public void removeElement(EObject object) {
+	protected void removeElement(EObject object) {
 		synchronized(allElements){
 			allElements.remove(object);
 		}
