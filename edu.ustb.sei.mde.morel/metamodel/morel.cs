@@ -1,6 +1,6 @@
 SYNTAXDEF morel
 FOR <http://www.ustb.edu.cn/sei/mde/morel> <morel.genmodel>
-START QueryModel, TransformationModel, BXRewritingModel,BxMorelModel
+START QueryModel, TransformationModel//, BXRewritingModel,BxMorelModel
 
 IMPORTS { 
     // imports go here 
@@ -162,28 +162,28 @@ RULES {
 	AllDifferentConstraint ::= "allDiff" "(" (variables[IDENTIFIER] ("," variables[IDENTIFIER])*)? ")" ;
 	
 	// BxRewriting
+
+//	BXRewritingModel ::= "bxrewriting" name[IDENTIFIER] mode[get:"get", put:"put"] models+ rules* ;
 	
-	BXRewritingModel ::= "bxrewriting" name[IDENTIFIER] mode[get:"get", put:"put"] models+ rules* ;
-	
-	BXRewritingRule ::= (active["active":"passive"])? "rule" name[IDENTIFIER] ("("parameters[IDENTIFIER] ("," parameters[IDENTIFIER])*")")? "{" nac* ("when" when)? ("source" source)? ("view" view)?  ("update" update)? ("unmatchs" unmatchSrc)? ("unmatchv" unmatchView)? "}" ; 
+//	BXRewritingRule ::= (active["active":"passive"])? "rule" name[IDENTIFIER] ("("parameters[IDENTIFIER] ("," parameters[IDENTIFIER])*")")? "{" nac* ("when" when)? ("source" source)? ("view" view)?  ("update" update)? ("unmatchs" unmatchSrc)? ("unmatchv" unmatchView)? "}" ; 
 	
 	Clause ::= "{" (statements)+ "}";
 	
 	//BxMorel
 	
-	BxMorelModel ::= "bxupdate" name[IDENTIFIER] mode[get:"get", put:"put"] models:BxTypedModel+ rules* ;
+//	BxMorelModel ::= "bxupdate" name[IDENTIFIER] mode[get:"get", put:"put"] models:BxTypedModel+ rules* ;
 	
-	BxMorelRule ::= (active["active":"passive"])? "rule" name[IDENTIFIER]  ("("parameters[IDENTIFIER] ("," parameters[IDENTIFIER])*")")? "{" ("when" when)? ("source" source)? ("view" view)? ("update" match)? ("unmatchs" unmatchSrc)? ("unmatchv" unmatchView)? "}";
+//	BxMorelRule ::= (active["active":"passive"])? "rule" name[IDENTIFIER]  ("("parameters[IDENTIFIER] ("," parameters[IDENTIFIER])*")")? "{" ("when" when)? ("source" source)? ("view" view)? ("update" match)? ("unmatchs" unmatchSrc)? ("unmatchv" unmatchView)? "}";
 	
-	Action ::= "{" (variables:ActionObjectVariable,PrimitiveVariable ("," variables:ActionObjectVariable,PrimitiveVariable)*)?  (linkConstraints:ActionSimpleLinkConstraint ("," linkConstraints:ActionSimpleLinkConstraint)*)? ("where"  (statements)+)? "}" ;
+//	Action ::= "{" (variables:ActionObjectVariable,PrimitiveVariable ("," variables:ActionObjectVariable,PrimitiveVariable)*)?  (linkConstraints:ActionSimpleLinkConstraint ("," linkConstraints:ActionSimpleLinkConstraint)*)? ("where"  (statements)+)? "}" ;
 	
-	CaseStatement ::= "case" blocks+ ("otherwise" blocks)? ;
+//	CaseStatement ::= "case" blocks+ ("otherwise" blocks)? ;
 	
-	CaseBlock ::= condition? "->" action;
+//	CaseBlock ::= condition? "->" action;
 	
-	BxTypedModel ::= attribute[source:"source", view:"view", context:"context"] "type" type[normal:"",readOnly:"readOnly",transient:"transient", viewOnly:"view",createOnly:"createOnly"] name[IDENTIFIER] #1 "<-" #1 package[URINS];
+//	BxTypedModel ::= attribute[source:"source", view:"view", context:"context"] "type" type[normal:"",readOnly:"readOnly",transient:"transient", viewOnly:"view",createOnly:"createOnly"] name[IDENTIFIER] #1 "<-" #1 package[URINS];
 	
-	ActionObjectVariable ::= actionType[keep:"",create:"+",delete:"-"] name[IDENTIFIER] ":" (model[IDENTIFIER] "!")? type[IDENTIFIER];
+//	ActionObjectVariable ::= actionType[keep:"",create:"+",delete:"-"] name[IDENTIFIER] ":" (model[IDENTIFIER] "!")? type[IDENTIFIER];
 	
-	ActionSimpleLinkConstraint ::= actionType[keep:"",create:"+",delete:"-"] source[IDENTIFIER] "." reference[IDENTIFIER] ("[" id:PredefinedBindExp, BindExp, LetExp, ConditionExp, BooleanImpliesExp "]")? "=" target[IDENTIFIER];
+//	ActionSimpleLinkConstraint ::= actionType[keep:"",create:"+",delete:"-"] source[IDENTIFIER] "." reference[IDENTIFIER] ("[" id:PredefinedBindExp, BindExp, LetExp, ConditionExp, BooleanImpliesExp "]")? "=" target[IDENTIFIER];
 }

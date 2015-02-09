@@ -10,12 +10,12 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EObject;
-
-import edu.ustb.sei.mde.morel.Action;
-import edu.ustb.sei.mde.morel.BXRewritingRule;
-import edu.ustb.sei.mde.morel.BxMorelRule;
-import edu.ustb.sei.mde.morel.CaseBlock;
-import edu.ustb.sei.mde.morel.CaseStatement;
+//
+//import edu.ustb.sei.mde.morel.Action;
+//import edu.ustb.sei.mde.morel.BXRewritingRule;
+//import edu.ustb.sei.mde.morel.BxMorelRule;
+//import edu.ustb.sei.mde.morel.CaseBlock;
+//import edu.ustb.sei.mde.morel.CaseStatement;
 import edu.ustb.sei.mde.morel.Clause;
 import edu.ustb.sei.mde.morel.ForStatement;
 import edu.ustb.sei.mde.morel.IteratorPathExp;
@@ -63,44 +63,44 @@ public class VariableExpReferredVariableReferenceResolver implements edu.ustb.se
 			vars.addAll(((LetExp) current).getVariables());
 		}
 		
-		if(current instanceof CaseBlock) {
-			vars.addAll(((CaseBlock) current).getCondition().getVariables());
-		}
+//		if(current instanceof CaseBlock) {
+//			vars.addAll(((CaseBlock) current).getCondition().getVariables());
+//		}
 		
 		if(current instanceof Pattern) {
 			vars.addAll(((Pattern) current).getVariables());
 		}
 		
-		if(current instanceof Action) {
-			EObject u = current.eContainer();
-			if(u instanceof BxMorelRule) {
-				BxMorelRule bxr = (BxMorelRule)u;
-				if(bxr.getSource()!=null)
-					vars.addAll(bxr.getSource().getVariables());
-				if(bxr.getView()!=null)
-					vars.addAll(bxr.getView().getVariables());
-			}
-		}
+//		if(current instanceof Action) {
+//			EObject u = current.eContainer();
+//			if(u instanceof BxMorelRule) {
+//				BxMorelRule bxr = (BxMorelRule)u;
+//				if(bxr.getSource()!=null)
+//					vars.addAll(bxr.getSource().getVariables());
+//				if(bxr.getView()!=null)
+//					vars.addAll(bxr.getView().getVariables());
+//			}
+//		}
 		
-		if(current instanceof Clause) {
-			EObject u = current.eContainer();
-			if(u instanceof BXRewritingRule) {
-				BXRewritingRule bxr = (BXRewritingRule)u;
-				
-				vars.addAll(bxr.getSource().getVariables());
-				vars.addAll(bxr.getView().getVariables());
-			}
-			else if(u instanceof BxMorelRule) {
-				BxMorelRule bxr = (BxMorelRule)u;
-				
-				if(bxr.getSource()!=null)
-					vars.addAll(bxr.getSource().getVariables());
-				
-				if(bxr.getView()!=null)
-					vars.addAll(bxr.getView().getVariables());
-			}
-		}
-		
+//		if(current instanceof Clause) {
+//			EObject u = current.eContainer();
+//			if(u instanceof BXRewritingRule) {
+//				BXRewritingRule bxr = (BXRewritingRule)u;
+//				
+//				vars.addAll(bxr.getSource().getVariables());
+//				vars.addAll(bxr.getView().getVariables());
+//			}
+//			else if(u instanceof BxMorelRule) {
+//				BxMorelRule bxr = (BxMorelRule)u;
+//				
+//				if(bxr.getSource()!=null)
+//					vars.addAll(bxr.getSource().getVariables());
+//				
+//				if(bxr.getView()!=null)
+//					vars.addAll(bxr.getView().getVariables());
+//			}
+//		}
+//		
 		
 		
 		if(current instanceof ForStatement) {

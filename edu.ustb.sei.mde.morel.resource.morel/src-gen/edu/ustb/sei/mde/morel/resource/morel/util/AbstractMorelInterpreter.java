@@ -370,12 +370,6 @@ public class AbstractMorelInterpreter<ResultType, ContextType> {
 		if (result != null) {
 			return result;
 		}
-		if (object instanceof edu.ustb.sei.mde.morel.Expression) {
-			result = interprete_edu_ustb_sei_mde_morel_Expression((edu.ustb.sei.mde.morel.Expression) object, context);
-		}
-		if (result != null) {
-			return result;
-		}
 		if (object instanceof edu.ustb.sei.mde.morel.OrderedSetType) {
 			result = interprete_edu_ustb_sei_mde_morel_OrderedSetType((edu.ustb.sei.mde.morel.OrderedSetType) object, context);
 		}
@@ -420,6 +414,12 @@ public class AbstractMorelInterpreter<ResultType, ContextType> {
 		}
 		if (object instanceof edu.ustb.sei.mde.morel.ImperativeExp) {
 			result = interprete_edu_ustb_sei_mde_morel_ImperativeExp((edu.ustb.sei.mde.morel.ImperativeExp) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
+		if (object instanceof edu.ustb.sei.mde.morel.Expression) {
+			result = interprete_edu_ustb_sei_mde_morel_Expression((edu.ustb.sei.mde.morel.Expression) object, context);
 		}
 		if (result != null) {
 			return result;
@@ -534,72 +534,6 @@ public class AbstractMorelInterpreter<ResultType, ContextType> {
 		}
 		if (object instanceof edu.ustb.sei.mde.morel.PrimitiveConstraint) {
 			result = interprete_edu_ustb_sei_mde_morel_PrimitiveConstraint((edu.ustb.sei.mde.morel.PrimitiveConstraint) object, context);
-		}
-		if (result != null) {
-			return result;
-		}
-		if (object instanceof edu.ustb.sei.mde.morel.BXRewritingRule) {
-			result = interprete_edu_ustb_sei_mde_morel_BXRewritingRule((edu.ustb.sei.mde.morel.BXRewritingRule) object, context);
-		}
-		if (result != null) {
-			return result;
-		}
-		if (object instanceof edu.ustb.sei.mde.morel.BXRewritingModel) {
-			result = interprete_edu_ustb_sei_mde_morel_BXRewritingModel((edu.ustb.sei.mde.morel.BXRewritingModel) object, context);
-		}
-		if (result != null) {
-			return result;
-		}
-		if (object instanceof edu.ustb.sei.mde.morel.BxMorelModel) {
-			result = interprete_edu_ustb_sei_mde_morel_BxMorelModel((edu.ustb.sei.mde.morel.BxMorelModel) object, context);
-		}
-		if (result != null) {
-			return result;
-		}
-		if (object instanceof edu.ustb.sei.mde.morel.BxMorelRule) {
-			result = interprete_edu_ustb_sei_mde_morel_BxMorelRule((edu.ustb.sei.mde.morel.BxMorelRule) object, context);
-		}
-		if (result != null) {
-			return result;
-		}
-		if (object instanceof edu.ustb.sei.mde.morel.Action) {
-			result = interprete_edu_ustb_sei_mde_morel_Action((edu.ustb.sei.mde.morel.Action) object, context);
-		}
-		if (result != null) {
-			return result;
-		}
-		if (object instanceof edu.ustb.sei.mde.morel.CaseStatement) {
-			result = interprete_edu_ustb_sei_mde_morel_CaseStatement((edu.ustb.sei.mde.morel.CaseStatement) object, context);
-		}
-		if (result != null) {
-			return result;
-		}
-		if (object instanceof edu.ustb.sei.mde.morel.CaseBlock) {
-			result = interprete_edu_ustb_sei_mde_morel_CaseBlock((edu.ustb.sei.mde.morel.CaseBlock) object, context);
-		}
-		if (result != null) {
-			return result;
-		}
-		if (object instanceof edu.ustb.sei.mde.morel.ActionObjectVariable) {
-			result = interprete_edu_ustb_sei_mde_morel_ActionObjectVariable((edu.ustb.sei.mde.morel.ActionObjectVariable) object, context);
-		}
-		if (result != null) {
-			return result;
-		}
-		if (object instanceof edu.ustb.sei.mde.morel.ActionSimpleLinkConstraint) {
-			result = interprete_edu_ustb_sei_mde_morel_ActionSimpleLinkConstraint((edu.ustb.sei.mde.morel.ActionSimpleLinkConstraint) object, context);
-		}
-		if (result != null) {
-			return result;
-		}
-		if (object instanceof edu.ustb.sei.mde.morel.ActionElement) {
-			result = interprete_edu_ustb_sei_mde_morel_ActionElement((edu.ustb.sei.mde.morel.ActionElement) object, context);
-		}
-		if (result != null) {
-			return result;
-		}
-		if (object instanceof edu.ustb.sei.mde.morel.BxTypedModel) {
-			result = interprete_edu_ustb_sei_mde_morel_BxTypedModel((edu.ustb.sei.mde.morel.BxTypedModel) object, context);
 		}
 		if (result != null) {
 			return result;
@@ -1044,50 +978,6 @@ public class AbstractMorelInterpreter<ResultType, ContextType> {
 	}
 	
 	public ResultType interprete_edu_ustb_sei_mde_morel_ValueRangeConstraint(edu.ustb.sei.mde.morel.ValueRangeConstraint valueRangeConstraint, ContextType context) {
-		return null;
-	}
-	
-	public ResultType interprete_edu_ustb_sei_mde_morel_BXRewritingRule(edu.ustb.sei.mde.morel.BXRewritingRule bXRewritingRule, ContextType context) {
-		return null;
-	}
-	
-	public ResultType interprete_edu_ustb_sei_mde_morel_BXRewritingModel(edu.ustb.sei.mde.morel.BXRewritingModel bXRewritingModel, ContextType context) {
-		return null;
-	}
-	
-	public ResultType interprete_edu_ustb_sei_mde_morel_BxMorelModel(edu.ustb.sei.mde.morel.BxMorelModel bxMorelModel, ContextType context) {
-		return null;
-	}
-	
-	public ResultType interprete_edu_ustb_sei_mde_morel_BxMorelRule(edu.ustb.sei.mde.morel.BxMorelRule bxMorelRule, ContextType context) {
-		return null;
-	}
-	
-	public ResultType interprete_edu_ustb_sei_mde_morel_Action(edu.ustb.sei.mde.morel.Action action, ContextType context) {
-		return null;
-	}
-	
-	public ResultType interprete_edu_ustb_sei_mde_morel_CaseStatement(edu.ustb.sei.mde.morel.CaseStatement caseStatement, ContextType context) {
-		return null;
-	}
-	
-	public ResultType interprete_edu_ustb_sei_mde_morel_CaseBlock(edu.ustb.sei.mde.morel.CaseBlock caseBlock, ContextType context) {
-		return null;
-	}
-	
-	public ResultType interprete_edu_ustb_sei_mde_morel_ActionElement(edu.ustb.sei.mde.morel.ActionElement actionElement, ContextType context) {
-		return null;
-	}
-	
-	public ResultType interprete_edu_ustb_sei_mde_morel_ActionObjectVariable(edu.ustb.sei.mde.morel.ActionObjectVariable actionObjectVariable, ContextType context) {
-		return null;
-	}
-	
-	public ResultType interprete_edu_ustb_sei_mde_morel_ActionSimpleLinkConstraint(edu.ustb.sei.mde.morel.ActionSimpleLinkConstraint actionSimpleLinkConstraint, ContextType context) {
-		return null;
-	}
-	
-	public ResultType interprete_edu_ustb_sei_mde_morel_BxTypedModel(edu.ustb.sei.mde.morel.BxTypedModel bxTypedModel, ContextType context) {
 		return null;
 	}
 	

@@ -7,8 +7,6 @@ import edu.ustb.sei.mde.emg.runtime.Environment;
 import edu.ustb.sei.mde.emg.runtime.RuntimeFactory;
 import edu.ustb.sei.mde.emg.runtime.RuntimePackage;
 import edu.ustb.sei.mde.emg.runtime.datatype.OclUndefined;
-import edu.ustb.sei.mde.morel.BXRewritingRule;
-import edu.ustb.sei.mde.morel.BxMorelRule;
 import edu.ustb.sei.mde.morel.Pattern;
 import edu.ustb.sei.mde.morel.Rule;
 import edu.ustb.sei.mde.morel.SectionType;
@@ -369,118 +367,119 @@ public class ContextImpl extends MinimalEObjectImpl.Container implements Context
 					}
 				}
 			}
-		} else if(host instanceof BXRewritingRule) {
-			BXRewritingRule rule = (BXRewritingRule)host;
-			{
-				Pattern p = rule.getSource();
-				if(p!=null){
-					//if(p.getType()==SectionType.LHS || p.getType()==SectionType.RHS) {
-					for(Variable v : p.getVariables()) {
-						if(this.containVariable(v)) continue;
-						else {
-							if(v instanceof VariableWithInit) {
-								Object value = OclUndefined.INVALIDED;
-								this.registerVariable(v);
-							} else 
-								this.registerVariable(v);
-						}
-					}
-					//}
-				}
-			}
-			
-			{
-				Pattern p = rule.getView();
-				if(p!=null) {
-					//if(p.getType()==SectionType.LHS || p.getType()==SectionType.RHS) {
-					for(Variable v : p.getVariables()) {
-						if(this.containVariable(v)) continue;
-						else {
-							if(v instanceof VariableWithInit) {
-								Object value = OclUndefined.INVALIDED;
-								this.registerVariable(v);
-							} else 
-								this.registerVariable(v);
-						}
-						//}
-					}
-				}
-			}
-			
-			{
-				Pattern p = rule.getUnmatchSrc();
-				if(p!=null) {
-					//if(p.getType()==SectionType.LHS || p.getType()==SectionType.RHS) {
-					for(Variable v : p.getVariables()) {
-						if(this.containVariable(v)) continue;
-						else {
-							if(v instanceof VariableWithInit) {
-								Object value = OclUndefined.INVALIDED;
-								this.registerVariable(v);
-							} else 
-								this.registerVariable(v);
-						}
-					}
-					//}
-				}
-			}
-			
-			{
-				Pattern p = rule.getUnmatchView();
-				if(p!=null) {
-					//if(p.getType()==SectionType.LHS || p.getType()==SectionType.RHS) {
-					for(Variable v : p.getVariables()) {
-						if(this.containVariable(v)) continue;
-						else {
-							if(v instanceof VariableWithInit) {
-								Object value = OclUndefined.INVALIDED;
-								this.registerVariable(v);
-							} else 
-								this.registerVariable(v);
-						}
-					}
-					//}
-				}
-			}
-		} else if(host instanceof BxMorelRule) {
-			BxMorelRule rule = (BxMorelRule)host;
-			
-			{
-				Pattern p = rule.getSource();
-				if(p!=null){
-					//if(p.getType()==SectionType.LHS || p.getType()==SectionType.RHS) {
-					for(Variable v : p.getVariables()) {
-						if(this.containVariable(v)) continue;
-						else {
-							if(v instanceof VariableWithInit) {
-								Object value = OclUndefined.INVALIDED;
-								this.registerVariable(v);
-							} else 
-								this.registerVariable(v);
-						}
-					}
-					//}
-				}
-			}
-			
-			{
-				Pattern p = rule.getView();
-				if(p!=null) {
-					//if(p.getType()==SectionType.LHS || p.getType()==SectionType.RHS) {
-					for(Variable v : p.getVariables()) {
-						if(this.containVariable(v)) continue;
-						else {
-							if(v instanceof VariableWithInit) {
-								Object value = OclUndefined.INVALIDED;
-								this.registerVariable(v);
-							} else 
-								this.registerVariable(v);
-						}
-						//}
-					}
-				}
-			}
-		}
+		} 
+//		else if(host instanceof BXRewritingRule) {
+//			BXRewritingRule rule = (BXRewritingRule)host;
+//			{
+//				Pattern p = rule.getSource();
+//				if(p!=null){
+//					//if(p.getType()==SectionType.LHS || p.getType()==SectionType.RHS) {
+//					for(Variable v : p.getVariables()) {
+//						if(this.containVariable(v)) continue;
+//						else {
+//							if(v instanceof VariableWithInit) {
+//								Object value = OclUndefined.INVALIDED;
+//								this.registerVariable(v);
+//							} else 
+//								this.registerVariable(v);
+//						}
+//					}
+//					//}
+//				}
+//			}
+//			
+//			{
+//				Pattern p = rule.getView();
+//				if(p!=null) {
+//					//if(p.getType()==SectionType.LHS || p.getType()==SectionType.RHS) {
+//					for(Variable v : p.getVariables()) {
+//						if(this.containVariable(v)) continue;
+//						else {
+//							if(v instanceof VariableWithInit) {
+//								Object value = OclUndefined.INVALIDED;
+//								this.registerVariable(v);
+//							} else 
+//								this.registerVariable(v);
+//						}
+//						//}
+//					}
+//				}
+//			}
+//			
+//			{
+//				Pattern p = rule.getUnmatchSrc();
+//				if(p!=null) {
+//					//if(p.getType()==SectionType.LHS || p.getType()==SectionType.RHS) {
+//					for(Variable v : p.getVariables()) {
+//						if(this.containVariable(v)) continue;
+//						else {
+//							if(v instanceof VariableWithInit) {
+//								Object value = OclUndefined.INVALIDED;
+//								this.registerVariable(v);
+//							} else 
+//								this.registerVariable(v);
+//						}
+//					}
+//					//}
+//				}
+//			}
+//			
+//			{
+//				Pattern p = rule.getUnmatchView();
+//				if(p!=null) {
+//					//if(p.getType()==SectionType.LHS || p.getType()==SectionType.RHS) {
+//					for(Variable v : p.getVariables()) {
+//						if(this.containVariable(v)) continue;
+//						else {
+//							if(v instanceof VariableWithInit) {
+//								Object value = OclUndefined.INVALIDED;
+//								this.registerVariable(v);
+//							} else 
+//								this.registerVariable(v);
+//						}
+//					}
+//					//}
+//				}
+//			}
+//		} else if(host instanceof BxMorelRule) {
+//			BxMorelRule rule = (BxMorelRule)host;
+//			
+//			{
+//				Pattern p = rule.getSource();
+//				if(p!=null){
+//					//if(p.getType()==SectionType.LHS || p.getType()==SectionType.RHS) {
+//					for(Variable v : p.getVariables()) {
+//						if(this.containVariable(v)) continue;
+//						else {
+//							if(v instanceof VariableWithInit) {
+//								Object value = OclUndefined.INVALIDED;
+//								this.registerVariable(v);
+//							} else 
+//								this.registerVariable(v);
+//						}
+//					}
+//					//}
+//				}
+//			}
+//			
+//			{
+//				Pattern p = rule.getView();
+//				if(p!=null) {
+//					//if(p.getType()==SectionType.LHS || p.getType()==SectionType.RHS) {
+//					for(Variable v : p.getVariables()) {
+//						if(this.containVariable(v)) continue;
+//						else {
+//							if(v instanceof VariableWithInit) {
+//								Object value = OclUndefined.INVALIDED;
+//								this.registerVariable(v);
+//							} else 
+//								this.registerVariable(v);
+//						}
+//						//}
+//					}
+//				}
+//			}
+//		}
 		
 		reloadValue();
 	}

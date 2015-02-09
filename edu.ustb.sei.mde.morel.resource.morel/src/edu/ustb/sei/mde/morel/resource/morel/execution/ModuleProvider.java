@@ -12,10 +12,10 @@ import org.eclipse.emf.ecore.EObject;
 import edu.ustb.sei.mde.emg.library.IModuleProvider;
 import edu.ustb.sei.mde.emg.runtime.Context;
 import edu.ustb.sei.mde.emg.runtime.datatype.OclUndefined;
-import edu.ustb.sei.mde.morel.BXRewritingModel;
-import edu.ustb.sei.mde.morel.BXRewritingRule;
-import edu.ustb.sei.mde.morel.BxMorelModel;
-import edu.ustb.sei.mde.morel.BxMorelRule;
+//import edu.ustb.sei.mde.morel.BXRewritingModel;
+//import edu.ustb.sei.mde.morel.BXRewritingRule;
+//import edu.ustb.sei.mde.morel.BxMorelModel;
+//import edu.ustb.sei.mde.morel.BxMorelRule;
 import edu.ustb.sei.mde.morel.Executable;
 import edu.ustb.sei.mde.morel.PredefinedVariable;
 import edu.ustb.sei.mde.morel.Query;
@@ -48,38 +48,38 @@ public class ModuleProvider implements IModuleProvider {
 			return find(name,(QueryModel)model);
 		else if(model instanceof TransformationModel)
 			return find(name,(TransformationModel)model);
-		else if(model instanceof BXRewritingModel)
-			return find(name,(BXRewritingModel)model);
-		else if(model instanceof BxMorelModel)
-			return find(name,(BxMorelModel)model);
+//		else if(model instanceof BXRewritingModel)
+//			return find(name,(BXRewritingModel)model);
+//		else if(model instanceof BxMorelModel)
+//			return find(name,(BxMorelModel)model);
 		return null;
 	}
 	
-	private Executable find(String name, BxMorelModel model) {
-		for(RuleElement r : model.getRules()) {
-			if(r instanceof BxMorelRule) {
-				if(((BxMorelRule)r).getName().equals(name))
-					return (Executable)r;
-			} else if(r instanceof RuleGroup) {
-				if(((RuleGroup)r).getName().equals(name))
-					return (Executable)r;
-			}
-		}
-		return null;
-	}
-	
-	private Executable find(String name, BXRewritingModel model) {
-		for(RuleElement r : model.getRules()) {
-			if(r instanceof BXRewritingRule) {
-				if(((BXRewritingRule)r).getName().equals(name))
-					return (Executable)r;
-			} else if(r instanceof RuleGroup) {
-				if(((RuleGroup)r).getName().equals(name))
-					return (Executable)r;
-			}
-		}
-		return null;
-	}
+//	private Executable find(String name, BxMorelModel model) {
+//		for(RuleElement r : model.getRules()) {
+//			if(r instanceof BxMorelRule) {
+//				if(((BxMorelRule)r).getName().equals(name))
+//					return (Executable)r;
+//			} else if(r instanceof RuleGroup) {
+//				if(((RuleGroup)r).getName().equals(name))
+//					return (Executable)r;
+//			}
+//		}
+//		return null;
+//	}
+//	
+//	private Executable find(String name, BXRewritingModel model) {
+//		for(RuleElement r : model.getRules()) {
+//			if(r instanceof BXRewritingRule) {
+//				if(((BXRewritingRule)r).getName().equals(name))
+//					return (Executable)r;
+//			} else if(r instanceof RuleGroup) {
+//				if(((RuleGroup)r).getName().equals(name))
+//					return (Executable)r;
+//			}
+//		}
+//		return null;
+//	}
 
 	private Executable find(String name, QueryModel model) {
 		for(Query q : model.getQueries()) {
@@ -199,11 +199,12 @@ public class ModuleProvider implements IModuleProvider {
 			return interpreter.interprete_edu_ustb_sei_mde_morel_Rule((Rule) unit, c);
 		} else if(unit instanceof RuleGroup) {
 			return interpreter.interprete_edu_ustb_sei_mde_morel_RuleGroup((RuleGroup) unit, c);
-		} else if(unit instanceof BXRewritingRule) {
-			return interpreter.interprete_edu_ustb_sei_mde_morel_BXRewritingRule((BXRewritingRule) unit, c);
-		} else if(unit instanceof BxMorelRule) {
-			return interpreter.interprete_edu_ustb_sei_mde_morel_BxMorelRule((BxMorelRule) unit, c);
-		}
+		} 
+//		else if(unit instanceof BXRewritingRule) {
+//			return interpreter.interprete_edu_ustb_sei_mde_morel_BXRewritingRule((BXRewritingRule) unit, c);
+//		} else if(unit instanceof BxMorelRule) {
+//			return interpreter.interprete_edu_ustb_sei_mde_morel_BxMorelRule((BxMorelRule) unit, c);
+//		}
 	} catch (Exception e) {
 		return OclUndefined.INVALIDED;
 	}
