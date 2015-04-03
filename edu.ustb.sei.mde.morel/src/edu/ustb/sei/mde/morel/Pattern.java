@@ -26,7 +26,7 @@ import org.eclipse.emf.common.util.EList;
 public interface Pattern extends Section {
 	/**
 	 * Returns the value of the '<em><b>Variables</b></em>' containment reference list.
-	 * The list contents are of type {@link edu.ustb.sei.mde.morel.Variable}.
+	 * The list contents are of type {@link edu.ustb.sei.mde.morel.ObjectVariable}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Variables</em>' containment reference list isn't clear,
@@ -38,7 +38,7 @@ public interface Pattern extends Section {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Variable> getVariables();
+	EList<ObjectVariable> getVariables();
 
 	/**
 	 * Returns the value of the '<em><b>Link Constraints</b></em>' containment reference list.

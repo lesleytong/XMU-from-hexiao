@@ -4,13 +4,18 @@ package edu.ustb.sei.mde.morel.impl;
 
 import edu.ustb.sei.mde.morel.Executable;
 import edu.ustb.sei.mde.morel.MorelPackage;
+import edu.ustb.sei.mde.morel.PrimitiveVariable;
 import edu.ustb.sei.mde.morel.RuleElement;
 import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,6 +26,7 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.morel.impl.RuleElementImpl#isActive <em>Active</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.morel.impl.RuleElementImpl#getParameters <em>Parameters</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.morel.impl.RuleElementImpl#getPrimitiveVariables <em>Primitive Variables</em>}</li>
  * </ul>
  * </p>
  *
@@ -54,6 +60,16 @@ public abstract class RuleElementImpl extends NamedElementImpl implements RuleEl
 	 * @ordered
 	 */
 	protected EList<String> parameters;
+
+	/**
+	 * The cached value of the '{@link #getPrimitiveVariables() <em>Primitive Variables</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPrimitiveVariables()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<PrimitiveVariable> primitiveVariables;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -112,6 +128,32 @@ public abstract class RuleElementImpl extends NamedElementImpl implements RuleEl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<PrimitiveVariable> getPrimitiveVariables() {
+		if (primitiveVariables == null) {
+			primitiveVariables = new EObjectContainmentEList<PrimitiveVariable>(PrimitiveVariable.class, this, MorelPackage.RULE_ELEMENT__PRIMITIVE_VARIABLES);
+		}
+		return primitiveVariables;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case MorelPackage.RULE_ELEMENT__PRIMITIVE_VARIABLES:
+				return ((InternalEList<?>)getPrimitiveVariables()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -119,6 +161,8 @@ public abstract class RuleElementImpl extends NamedElementImpl implements RuleEl
 				return isActive();
 			case MorelPackage.RULE_ELEMENT__PARAMETERS:
 				return getParameters();
+			case MorelPackage.RULE_ELEMENT__PRIMITIVE_VARIABLES:
+				return getPrimitiveVariables();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -139,6 +183,10 @@ public abstract class RuleElementImpl extends NamedElementImpl implements RuleEl
 				getParameters().clear();
 				getParameters().addAll((Collection<? extends String>)newValue);
 				return;
+			case MorelPackage.RULE_ELEMENT__PRIMITIVE_VARIABLES:
+				getPrimitiveVariables().clear();
+				getPrimitiveVariables().addAll((Collection<? extends PrimitiveVariable>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -157,6 +205,9 @@ public abstract class RuleElementImpl extends NamedElementImpl implements RuleEl
 			case MorelPackage.RULE_ELEMENT__PARAMETERS:
 				getParameters().clear();
 				return;
+			case MorelPackage.RULE_ELEMENT__PRIMITIVE_VARIABLES:
+				getPrimitiveVariables().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -173,6 +224,8 @@ public abstract class RuleElementImpl extends NamedElementImpl implements RuleEl
 				return active != ACTIVE_EDEFAULT;
 			case MorelPackage.RULE_ELEMENT__PARAMETERS:
 				return parameters != null && !parameters.isEmpty();
+			case MorelPackage.RULE_ELEMENT__PRIMITIVE_VARIABLES:
+				return primitiveVariables != null && !primitiveVariables.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -188,6 +241,7 @@ public abstract class RuleElementImpl extends NamedElementImpl implements RuleEl
 			switch (derivedFeatureID) {
 				case MorelPackage.RULE_ELEMENT__ACTIVE: return MorelPackage.EXECUTABLE__ACTIVE;
 				case MorelPackage.RULE_ELEMENT__PARAMETERS: return MorelPackage.EXECUTABLE__PARAMETERS;
+				case MorelPackage.RULE_ELEMENT__PRIMITIVE_VARIABLES: return MorelPackage.EXECUTABLE__PRIMITIVE_VARIABLES;
 				default: return -1;
 			}
 		}
@@ -205,6 +259,7 @@ public abstract class RuleElementImpl extends NamedElementImpl implements RuleEl
 			switch (baseFeatureID) {
 				case MorelPackage.EXECUTABLE__ACTIVE: return MorelPackage.RULE_ELEMENT__ACTIVE;
 				case MorelPackage.EXECUTABLE__PARAMETERS: return MorelPackage.RULE_ELEMENT__PARAMETERS;
+				case MorelPackage.EXECUTABLE__PRIMITIVE_VARIABLES: return MorelPackage.RULE_ELEMENT__PRIMITIVE_VARIABLES;
 				default: return -1;
 			}
 		}

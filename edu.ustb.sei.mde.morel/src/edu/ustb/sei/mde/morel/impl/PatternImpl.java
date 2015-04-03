@@ -5,19 +5,14 @@ package edu.ustb.sei.mde.morel.impl;
 import edu.ustb.sei.mde.morel.AdditionalConstraint;
 import edu.ustb.sei.mde.morel.LinkConstraint;
 import edu.ustb.sei.mde.morel.MorelPackage;
+import edu.ustb.sei.mde.morel.ObjectVariable;
 import edu.ustb.sei.mde.morel.Pattern;
 import edu.ustb.sei.mde.morel.Statement;
-import edu.ustb.sei.mde.morel.Variable;
-
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -46,7 +41,7 @@ public class PatternImpl extends SectionImpl implements Pattern {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Variable> variables;
+	protected EList<ObjectVariable> variables;
 
 	/**
 	 * The cached value of the '{@link #getLinkConstraints() <em>Link Constraints</em>}' containment reference list.
@@ -102,9 +97,9 @@ public class PatternImpl extends SectionImpl implements Pattern {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Variable> getVariables() {
+	public EList<ObjectVariable> getVariables() {
 		if (variables == null) {
-			variables = new EObjectContainmentEList<Variable>(Variable.class, this, MorelPackage.PATTERN__VARIABLES);
+			variables = new EObjectContainmentEList<ObjectVariable>(ObjectVariable.class, this, MorelPackage.PATTERN__VARIABLES);
 		}
 		return variables;
 	}
@@ -196,7 +191,7 @@ public class PatternImpl extends SectionImpl implements Pattern {
 		switch (featureID) {
 			case MorelPackage.PATTERN__VARIABLES:
 				getVariables().clear();
-				getVariables().addAll((Collection<? extends Variable>)newValue);
+				getVariables().addAll((Collection<? extends ObjectVariable>)newValue);
 				return;
 			case MorelPackage.PATTERN__LINK_CONSTRAINTS:
 				getLinkConstraints().clear();

@@ -5,18 +5,23 @@ package edu.ustb.sei.mde.morel.impl;
 import edu.ustb.sei.mde.morel.Executable;
 import edu.ustb.sei.mde.morel.MorelPackage;
 
+import edu.ustb.sei.mde.morel.PrimitiveVariable;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,6 +32,7 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.morel.impl.ExecutableImpl#isActive <em>Active</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.morel.impl.ExecutableImpl#getParameters <em>Parameters</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.morel.impl.ExecutableImpl#getPrimitiveVariables <em>Primitive Variables</em>}</li>
  * </ul>
  * </p>
  *
@@ -62,6 +68,16 @@ public abstract class ExecutableImpl extends MinimalEObjectImpl.Container implem
 	 * @ordered
 	 */
 	protected EList<String> parameters;
+
+	/**
+	 * The cached value of the '{@link #getPrimitiveVariables() <em>Primitive Variables</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPrimitiveVariables()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<PrimitiveVariable> primitiveVariables;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -120,6 +136,32 @@ public abstract class ExecutableImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<PrimitiveVariable> getPrimitiveVariables() {
+		if (primitiveVariables == null) {
+			primitiveVariables = new EObjectContainmentEList<PrimitiveVariable>(PrimitiveVariable.class, this, MorelPackage.EXECUTABLE__PRIMITIVE_VARIABLES);
+		}
+		return primitiveVariables;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case MorelPackage.EXECUTABLE__PRIMITIVE_VARIABLES:
+				return ((InternalEList<?>)getPrimitiveVariables()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -127,6 +169,8 @@ public abstract class ExecutableImpl extends MinimalEObjectImpl.Container implem
 				return isActive();
 			case MorelPackage.EXECUTABLE__PARAMETERS:
 				return getParameters();
+			case MorelPackage.EXECUTABLE__PRIMITIVE_VARIABLES:
+				return getPrimitiveVariables();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -147,6 +191,10 @@ public abstract class ExecutableImpl extends MinimalEObjectImpl.Container implem
 				getParameters().clear();
 				getParameters().addAll((Collection<? extends String>)newValue);
 				return;
+			case MorelPackage.EXECUTABLE__PRIMITIVE_VARIABLES:
+				getPrimitiveVariables().clear();
+				getPrimitiveVariables().addAll((Collection<? extends PrimitiveVariable>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -165,6 +213,9 @@ public abstract class ExecutableImpl extends MinimalEObjectImpl.Container implem
 			case MorelPackage.EXECUTABLE__PARAMETERS:
 				getParameters().clear();
 				return;
+			case MorelPackage.EXECUTABLE__PRIMITIVE_VARIABLES:
+				getPrimitiveVariables().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -181,6 +232,8 @@ public abstract class ExecutableImpl extends MinimalEObjectImpl.Container implem
 				return active != ACTIVE_EDEFAULT;
 			case MorelPackage.EXECUTABLE__PARAMETERS:
 				return parameters != null && !parameters.isEmpty();
+			case MorelPackage.EXECUTABLE__PRIMITIVE_VARIABLES:
+				return primitiveVariables != null && !primitiveVariables.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

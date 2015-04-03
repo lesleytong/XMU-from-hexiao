@@ -912,13 +912,22 @@ public interface MorelPackage extends EPackage {
 	int QUERY__PARAMETERS = PATTERN_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Primitive Variables</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY__PRIMITIVE_VARIABLES = PATTERN_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Query</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int QUERY_FEATURE_COUNT = PATTERN_FEATURE_COUNT + 3;
+	int QUERY_FEATURE_COUNT = PATTERN_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Query</em>' class.
@@ -3782,13 +3791,22 @@ public interface MorelPackage extends EPackage {
 	int RULE_ELEMENT__PARAMETERS = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Primitive Variables</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RULE_ELEMENT__PRIMITIVE_VARIABLES = NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Rule Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RULE_ELEMENT_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int RULE_ELEMENT_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Rule Element</em>' class.
@@ -3835,6 +3853,15 @@ public interface MorelPackage extends EPackage {
 	 * @ordered
 	 */
 	int RULE__PARAMETERS = RULE_ELEMENT__PARAMETERS;
+
+	/**
+	 * The feature id for the '<em><b>Primitive Variables</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RULE__PRIMITIVE_VARIABLES = RULE_ELEMENT__PRIMITIVE_VARIABLES;
 
 	/**
 	 * The feature id for the '<em><b>Patterns</b></em>' containment reference list.
@@ -3899,6 +3926,15 @@ public interface MorelPackage extends EPackage {
 	 * @ordered
 	 */
 	int RULE_GROUP__PARAMETERS = RULE_ELEMENT__PARAMETERS;
+
+	/**
+	 * The feature id for the '<em><b>Primitive Variables</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RULE_GROUP__PRIMITIVE_VARIABLES = RULE_ELEMENT__PRIMITIVE_VARIABLES;
 
 	/**
 	 * The feature id for the '<em><b>Rules</b></em>' containment reference list.
@@ -4130,13 +4166,22 @@ public interface MorelPackage extends EPackage {
 	int EXECUTABLE__PARAMETERS = 1;
 
 	/**
+	 * The feature id for the '<em><b>Primitive Variables</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXECUTABLE__PRIMITIVE_VARIABLES = 2;
+
+	/**
 	 * The number of structural features of the '<em>Executable</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXECUTABLE_FEATURE_COUNT = 2;
+	int EXECUTABLE_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Executable</em>' class.
@@ -6402,6 +6447,17 @@ public interface MorelPackage extends EPackage {
 	EAttribute getExecutable_Parameters();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link edu.ustb.sei.mde.morel.Executable#getPrimitiveVariables <em>Primitive Variables</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Primitive Variables</em>'.
+	 * @see edu.ustb.sei.mde.morel.Executable#getPrimitiveVariables()
+	 * @see #getExecutable()
+	 * @generated
+	 */
+	EReference getExecutable_PrimitiveVariables();
+
+	/**
 	 * Returns the meta object for class '{@link edu.ustb.sei.mde.morel.AdditionalConstraint <em>Additional Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8253,6 +8309,14 @@ public interface MorelPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute EXECUTABLE__PARAMETERS = eINSTANCE.getExecutable_Parameters();
+
+		/**
+		 * The meta object literal for the '<em><b>Primitive Variables</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXECUTABLE__PRIMITIVE_VARIABLES = eINSTANCE.getExecutable_PrimitiveVariables();
 
 		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.morel.impl.AdditionalConstraintImpl <em>Additional Constraint</em>}' class.

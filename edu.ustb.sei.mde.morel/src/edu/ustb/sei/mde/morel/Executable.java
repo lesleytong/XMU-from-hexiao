@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.morel.Executable#isActive <em>Active</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.morel.Executable#getParameters <em>Parameters</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.morel.Executable#getPrimitiveVariables <em>Primitive Variables</em>}</li>
  * </ul>
  * </p>
  *
@@ -66,5 +67,21 @@ public interface Executable extends EObject {
 	 * @generated
 	 */
 	EList<String> getParameters();
+
+	/**
+	 * Returns the value of the '<em><b>Primitive Variables</b></em>' containment reference list.
+	 * The list contents are of type {@link edu.ustb.sei.mde.morel.PrimitiveVariable}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Primitive Variables</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Primitive Variables</em>' containment reference list.
+	 * @see edu.ustb.sei.mde.morel.MorelPackage#getExecutable_PrimitiveVariables()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<PrimitiveVariable> getPrimitiveVariables();
 
 } // Executable
