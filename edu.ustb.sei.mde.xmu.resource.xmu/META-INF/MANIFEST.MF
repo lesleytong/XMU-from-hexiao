@@ -1,0 +1,27 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: EMFText Parser Plugin: xmu
+Bundle-SymbolicName: edu.ustb.sei.mde.xmu.resource.xmu;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Vendor: Software Technology Group - TU Dresden Germany
+Require-Bundle: org.eclipse.core.runtime;resolution:=optional,
+  org.eclipse.emf.ecore,
+  org.eclipse.emf.ecore.change,
+  org.eclipse.emf.validation;resolution:=optional,
+  org.emftext.access;resolution:=optional,
+  org.eclipse.debug.core;resolution:=optional,
+  edu.ustb.sei.commonutil,
+  org.eclipse.emf.ecore.xmi,
+  edu.ustb.sei.mde.modeling,
+  org.emftext.commons.antlr3_4_0,
+  edu.ustb.sei.mde.xmu
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: edu.ustb.sei.mde.xmu.resource.xmu,
+  edu.ustb.sei.mde.xmu.resource.xmu.analysis,
+  edu.ustb.sei.mde.xmu.resource.xmu.mopp,
+  edu.ustb.sei.mde.xmu.resource.xmu.debug,
+  edu.ustb.sei.mde.xmu.resource.xmu.launch,
+  edu.ustb.sei.mde.xmu.resource.xmu.grammar,
+  edu.ustb.sei.mde.xmu.resource.xmu.util
+Bundle-Activator: edu.ustb.sei.mde.xmu.resource.xmu.mopp.XmuPlugin

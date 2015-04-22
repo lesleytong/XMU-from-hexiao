@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+	<extension point="org.emftext.access.syntax.ui">
+		<metaInformationProvider class="edu.ustb.sei.mde.xmu.resource.xmu.ui.XmuUIMetaInformation" id="edu.ustb.sei.mde.xmu.resource.xmu.ui.XmuUIMetaInformation">
+		</metaInformationProvider>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editors">
+		<editor class="edu.ustb.sei.mde.xmu.resource.xmu.ui.XmuEditor" contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor" extensions="xmu" icon="icons/editor_icon.gif" id="edu.ustb.sei.mde.xmu.resource.xmu.ui.XmuEditor" name="EMFText xmu Editor">
+			<contentTypeBinding contentTypeId="edu.ustb.sei.mde.xmu.resource.xmu">
+			</contentTypeBinding>
+		</editor>
+	</extension>
+	
+	<extension point="org.eclipse.core.runtime.preferences">
+		<initializer class="edu.ustb.sei.mde.xmu.resource.xmu.ui.XmuPreferenceInitializer">
+		</initializer>
+	</extension>
+	
+	<extension point="org.eclipse.ui.preferencePages">
+		<page name="Xmu Text Editor" id="edu.ustb.sei.mde.xmu.resource.xmu.ui.XmuPreferencePage" class="edu.ustb.sei.mde.xmu.resource.xmu.ui.XmuPreferencePage" category="org.eclipse.ui.preferencePages.GeneralTextEditor">
+		</page>
+		<page name="Syntax Coloring" id="edu.ustb.sei.mde.xmu.resource.xmu.ui.XmuSyntaxColoringPreferencePage" class="edu.ustb.sei.mde.xmu.resource.xmu.ui.XmuSyntaxColoringPreferencePage" category="edu.ustb.sei.mde.xmu.resource.xmu.ui.XmuPreferencePage">
+		</page>
+		<page name="Brackets" id="edu.ustb.sei.mde.xmu.resource.xmu.ui.XmuBracketPreferencePage" class="edu.ustb.sei.mde.xmu.resource.xmu.ui.XmuBracketPreferencePage" category="edu.ustb.sei.mde.xmu.resource.xmu.ui.XmuPreferencePage">
+		</page>
+	</extension>
+	
+	<extension point="org.eclipse.ui.newWizards">
+		<category id="org.emftext.runtime.ui.EMFTextFileCategory" name="EMFText File">
+		</category>
+		<wizard category="org.emftext.runtime.ui.EMFTextFileCategory" icon="/icons/default_new_icon.gif" class="edu.ustb.sei.mde.xmu.resource.xmu.ui.XmuNewFileWizard" id="edu.ustb.sei.mde.xmu.resource.xmu.ui.XmuNewFileWizard" name="EMFText .xmu file">
+		</wizard>
+		<category id="org.emftext.runtime.ui.EMFTextProjectCategory" name="EMFText Project">
+		</category>
+		<wizard category="org.emftext.runtime.ui.EMFTextProjectCategory" icon="/icons/default_new_icon.gif" class="edu.ustb.sei.mde.xmu.resource.xmu.ui.XmuNewProjectWizard" id="edu.ustb.sei.mde.xmu.resource.xmu.ui.XmuNewProjectWizard" name="EMFText xmu project" project="true">
+		</wizard>
+	</extension>
+	
+	<extension point="org.eclipse.ui.ide.markerResolution">
+		<markerResolutionGenerator class="edu.ustb.sei.mde.xmu.resource.xmu.ui.XmuMarkerResolutionGenerator" markerType="edu.ustb.sei.mde.xmu.resource.xmu.problem">
+		</markerResolutionGenerator>
+	</extension>
+	
+	<extension point="org.eclipse.core.filebuffers.annotationModelCreation">
+		<factory class="edu.ustb.sei.mde.xmu.resource.xmu.ui.XmuAnnotationModelFactory" extensions="xmu">
+		</factory>
+	</extension>
+	
+	<extension point="org.eclipse.core.contenttype.contentTypes">
+		<content-type id="edu.ustb.sei.mde.xmu.resource.xmu" name=".xmu File" base-type="org.eclipse.core.runtime.text" file-extensions="xmu">
+		</content-type>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editors.documentProviders">
+		<provider class="org.eclipse.ui.editors.text.TextFileDocumentProvider" extensions="xmu" id="edu.ustb.sei.mde.xmu.resource.xmu.ui.provider">
+		</provider>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editors.annotationTypes">
+		<type name="edu.ustb.sei.mde.xmu.resource.xmu.ui.occurences">
+		</type>
+		<type name="edu.ustb.sei.mde.xmu.resource.xmu.ui.occurences.declaration" super="edu.ustb.sei.mde.xmu.resource.xmu.ui.occurences">
+		</type>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editors.markerAnnotationSpecification">
+		<specification annotationType="edu.ustb.sei.mde.xmu.resource.xmu.ui.occurences" label="Occurrences (in .xmu files)" icon="/icons/occurrence_icon.gif" textPreferenceKey="xmu.occurrenceIndication" textPreferenceValue="false" highlightPreferenceKey="xmu.occurrenceHighlighting" highlightPreferenceValue="true" contributesToHeader="false" overviewRulerPreferenceKey="xmu.occurrenceIndicationInOverviewRuler" overviewRulerPreferenceValue="true" verticalRulerPreferenceKey="xmu.occurrenceIndicationInVerticalRuler" verticalRulerPreferenceValue="false" colorPreferenceKey="xmu.occurrenceIndicationColor" colorPreferenceValue="212,212,212" presentationLayer="4" showInNextPrevDropdownToolbarActionKey="xmu.showOccurrenceInNextPrevDropdownToolbarAction" showInNextPrevDropdownToolbarAction="true" isGoToNextNavigationTargetKey="xmu.isOccurrenceGoToNextNavigationTarget" isGoToNextNavigationTarget="false" isGoToPreviousNavigationTargetKey="xmu.isOccurrenceGoToPreviousNavigationTarget" isGoToPreviousNavigationTarget="false" textStylePreferenceKey="xmu.occurrenceTextStyle" textStylePreferenceValue="NONE">
+		</specification>
+		<specification annotationType="edu.ustb.sei.mde.xmu.resource.xmu.ui.occurences.declaration" label="Declarations (in .xmu files)" textPreferenceKey="xmu.declarationIndication" textPreferenceValue="false" highlightPreferenceKey="xmu.declarationHighlighting" highlightPreferenceValue="true" overviewRulerPreferenceKey="xmu.declarationIndicationInOverviewRuler" overviewRulerPreferenceValue="true" verticalRulerPreferenceKey="xmu.declarationIndicationInVerticalRuler" verticalRulerPreferenceValue="false" colorPreferenceKey="xmu.declarationIndicationColor" colorPreferenceValue="240,216,168" presentationLayer="4" textStylePreferenceKey="xmu.declarationTextStyle" textStylePreferenceValue="NONE">
+		</specification>
+	</extension>
+	
+	<extension point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+		<launchConfigurationTypeImage icon="/icons/launch_type_icon.gif" configTypeID="edu.ustb.sei.mde.xmu.resource.xmu.ui.launchConfigurationType" id="edu.ustb.sei.mde.xmu.launchImage">
+		</launchConfigurationTypeImage>
+	</extension>
+	
+	<extension point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+		<launchConfigurationTabGroup type="edu.ustb.sei.mde.xmu.resource.xmu.ui.launchConfigurationType" class="edu.ustb.sei.mde.xmu.resource.xmu.ui.launch.XmuLaunchConfigurationTabGroup" id="edu.ustb.sei.mde.xmu.launchConfigurationTabGroup" helpContextId="edu.ustb.sei.mde.xmu.launchConfigHelpContext">
+			<launchMode mode="debug" perspective="org.eclipse.debug.ui.DebugPerspective" description="Debug xmu model.">
+			</launchMode>
+			<launchMode mode="run" description="Run xmu model.">
+			</launchMode>
+		</launchConfigurationTabGroup>
+	</extension>
+	
+	<extension point="org.eclipse.debug.ui.launchShortcuts">
+		<shortcut label="xmu Application" icon="/icons/launch_shortcut_icon.gif" helpContextId="edu.ustb.sei.mde.xmu.launch" modes="run,debug" class="edu.ustb.sei.mde.xmu.resource.xmu.ui.launch.XmuLaunchShortcut" description="Launch a xmu model" id="edu.ustb.sei.mde.xmu.launchShortcut">
+			<description description="Run xmu model" mode="run">
+			</description>
+			<description description="Debug xmu model" mode="debug">
+			</description>
+			<contextualLaunch>
+				<enablement>
+					<with variable="selection">
+						<count value="1">
+						</count>
+						<iterate>
+							<test property="edu.ustb.sei.mde.xmu.isLaunchable">
+							</test>
+						</iterate>
+					</with>
+				</enablement>
+			</contextualLaunch>
+			<configurationType id="edu.ustb.sei.mde.xmu.resource.xmu.ui.launchConfigurationType">
+			</configurationType>
+		</shortcut>
+	</extension>
+	
+	<extension point="org.eclipse.core.expressions.propertyTesters">
+		<propertyTester id="edu.ustb.sei.mde.xmu.PropertyTester" type="java.lang.Object" namespace="edu.ustb.sei.mde.xmu" properties="isLaunchable" class="edu.ustb.sei.mde.xmu.resource.xmu.ui.XmuPropertyTester">
+		</propertyTester>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editors.annotationTypes">
+		<type name="edu.ustb.sei.mde.xmu.resource.xmu.ui.debug.lineBreakpoint" markerType="edu.ustb.sei.mde.xmu.resource.xmu.debug.lineBreakpoint.marker" super="org.eclipse.debug.core.breakpoint">
+		</type>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editors.markerAnnotationSpecification">
+		<specification annotationType="edu.ustb.sei.mde.xmu.resource.xmu.ui.debug.lineBreakpoint" label="Breakpoints (in .xmu files)" icon="/icons/breakpoint_icon.gif" textPreferenceKey="edu.ustb.sei.mde.xmu.resource.xmu.ui.lineBreakpoint" textPreferenceValue="false" highlightPreferenceKey="edu.ustb.sei.mde.xmu.resource.xmu.ui.lineBreakpointHighlighting" highlightPreferenceValue="true" contributesToHeader="false" overviewRulerPreferenceKey="edu.ustb.sei.mde.xmu.resource.xmu.ui.lineBreakpointIndicationInOverviewRuler" overviewRulerPreferenceValue="true" verticalRulerPreferenceKey="edu.ustb.sei.mde.xmu.resource.xmu.ui.lineBreakpointIndicationInVerticalRuler" verticalRulerPreferenceValue="false" colorPreferenceKey="edu.ustb.sei.mde.xmu.resource.xmu.ui.lineBreakpointColor" colorPreferenceValue="212,212,212" presentationLayer="4" showInNextPrevDropdownToolbarActionKey="edu.ustb.sei.mde.xmu.resource.xmu.ui.showLineBreakpointInNextPrevDropdownToolbarAction" showInNextPrevDropdownToolbarAction="true" isGoToNextNavigationTargetKey="edu.ustb.sei.mde.xmu.resource.xmu.ui.isLineBreakpointGoToNextNavigationTarget" isGoToNextNavigationTarget="false" isGoToPreviousNavigationTargetKey="edu.ustb.sei.mde.xmu.resource.xmu.ui.isLineBreakpointGoToPreviousNavigationTarget" isGoToPreviousNavigationTarget="false" textStylePreferenceKey="edu.ustb.sei.mde.xmu.resource.xmu.ui.lineBreakpointTextStyle" textStylePreferenceValue="NONE">
+		</specification>
+	</extension>
+	
+	<extension point="org.eclipse.core.runtime.adapters">
+		<factory adaptableType="edu.ustb.sei.mde.xmu.resource.xmu.ui.XmuEditor" class="edu.ustb.sei.mde.xmu.resource.xmu.ui.debug.XmuAdapterFactory">
+			<adapter type="org.eclipse.debug.ui.actions.IToggleBreakpointsTarget">
+			</adapter>
+		</factory>
+		<factory adaptableType="edu.ustb.sei.mde.xmu.resource.xmu.debug.XmuDebugVariable" class="edu.ustb.sei.mde.xmu.resource.xmu.ui.debug.XmuAdapterFactory">
+			<adapter type="org.eclipse.debug.internal.ui.viewers.model.provisional.IElementLabelProvider">
+			</adapter>
+		</factory>
+		<factory adaptableType="edu.ustb.sei.mde.xmu.resource.xmu.debug.XmuDebugVariable" class="edu.ustb.sei.mde.xmu.resource.xmu.ui.debug.XmuAdapterFactory">
+			<adapter type="org.eclipse.debug.internal.ui.viewers.model.provisional.IElementContentProvider">
+			</adapter>
+		</factory>
+	</extension>
+	
+	<extension point="org.eclipse.ui.popupMenus">
+		<viewerContribution id="edu.ustb.sei.mde.xmu.resource.xmu.ui.RulerPopupActions" targetID="edu.ustb.sei.mde.xmu.resource.xmu.EditorRuler">
+			<action id="edu.ustb.sei.mde.xmu.resource.xmu.ui.toggleBreakpointAction" icon="icons/breakpoint_icon.gif" label="Toggle Breakpoint" class="org.eclipse.debug.ui.actions.RulerToggleBreakpointActionDelegate" menubarPath="debug">
+			</action>
+		</viewerContribution>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editorActions">
+		<editorContribution targetID="edu.ustb.sei.mde.xmu.resource.xmu.ui.XmuEditor" id="edu.ustb.sei.mde.xmu.resource.xmu.ui.BreakpointRulerActions">
+			<action id="edu.ustb.sei.mde.xmu.resource.xmu.ui.debug.RulerToggleBreakpointAction" label="Add breakpoint" class="org.eclipse.debug.ui.actions.RulerToggleBreakpointActionDelegate" actionID="RulerDoubleClick">
+			</action>
+		</editorContribution>
+	</extension>
+	
+	<extension point="org.eclipse.debug.ui.debugModelPresentations">
+		<debugModelPresentation id="edu.ustb.sei.mde.xmu.resource.xmu.debugModel" class="edu.ustb.sei.mde.xmu.resource.xmu.ui.debug.XmuDebugModelPresentation">
+		</debugModelPresentation>
+	</extension>
+	
+</plugin>

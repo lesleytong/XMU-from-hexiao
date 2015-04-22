@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/edu.ustb.sei.mde.xmu/src-gen" modelPluginID="edu.ustb.sei.mde.xmu"
+    modelName="Xmu" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="7.0" copyrightFields="false"
+    language="" operationReflection="true" importOrganizing="true">
+  <foreignModel>xmu.ecore</foreignModel>
+  <genPackages prefix="Xmu" basePackage="edu.ustb.sei.mde" disposableProviderFactory="true"
+      ecorePackage="xmu.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="xmu.ecore#//VariableFlag">
+      <genEnumLiterals ecoreEnumLiteral="xmu.ecore#//VariableFlag/normal"/>
+      <genEnumLiterals ecoreEnumLiteral="xmu.ecore#//VariableFlag/source"/>
+      <genEnumLiterals ecoreEnumLiteral="xmu.ecore#//VariableFlag/view"/>
+      <genEnumLiterals ecoreEnumLiteral="xmu.ecore#//VariableFlag/context"/>
+      <genEnumLiterals ecoreEnumLiteral="xmu.ecore#//VariableFlag/source_post"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="xmu.ecore#//RelationalOperator">
+      <genEnumLiterals ecoreEnumLiteral="xmu.ecore#//RelationalOperator/equal"/>
+      <genEnumLiterals ecoreEnumLiteral="xmu.ecore#//RelationalOperator/less"/>
+      <genEnumLiterals ecoreEnumLiteral="xmu.ecore#//RelationalOperator/lessEqual"/>
+      <genEnumLiterals ecoreEnumLiteral="xmu.ecore#//RelationalOperator/greater"/>
+      <genEnumLiterals ecoreEnumLiteral="xmu.ecore#//RelationalOperator/greaterEqual"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="xmu.ecore#//EmptyType">
+      <genEnumLiterals ecoreEnumLiteral="xmu.ecore#//EmptyType/NullValue"/>
+      <genEnumLiterals ecoreEnumLiteral="xmu.ecore#//EmptyType/EmptyValue"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="xmu.ecore#//VStmtType">
+      <genEnumLiterals ecoreEnumLiteral="xmu.ecore#//VStmtType/match"/>
+      <genEnumLiterals ecoreEnumLiteral="xmu.ecore#//VStmtType/unmatchv"/>
+      <genEnumLiterals ecoreEnumLiteral="xmu.ecore#//VStmtType/unmatchs"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="xmu.ecore#//AdditiveOperator">
+      <genEnumLiterals ecoreEnumLiteral="xmu.ecore#//AdditiveOperator/add"/>
+      <genEnumLiterals ecoreEnumLiteral="xmu.ecore#//AdditiveOperator/sub"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="xmu.ecore#//MultiplicativeOperator">
+      <genEnumLiterals ecoreEnumLiteral="xmu.ecore#//MultiplicativeOperator/mul"/>
+      <genEnumLiterals ecoreEnumLiteral="xmu.ecore#//MultiplicativeOperator/div"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="xmu.ecore#//UnaryOperator">
+      <genEnumLiterals ecoreEnumLiteral="xmu.ecore#//UnaryOperator/not"/>
+      <genEnumLiterals ecoreEnumLiteral="xmu.ecore#//UnaryOperator/minus"/>
+    </genEnums>
+    <genClasses image="false" ecoreClass="xmu.ecore#//NamedElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmu.ecore#//NamedElement/name"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="xmu.ecore#//Variable"/>
+    <genClasses ecoreClass="xmu.ecore#//ObjectVariable"/>
+    <genClasses ecoreClass="xmu.ecore#//PrimitiveVariable">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xmu.ecore#//PrimitiveVariable/type"/>
+    </genClasses>
+    <genClasses ecoreClass="xmu.ecore#//Rule">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//Rule/nVars"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//Rule/sVars"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//Rule/spVars"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//Rule/vVars"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//Rule/statement"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//Rule/parameters"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="xmu.ecore#//Statement"/>
+    <genClasses ecoreClass="xmu.ecore#//ForStatement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//ForStatement/sPattern"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//ForStatement/vPattern"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//ForStatement/actions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//ForStatement/when"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="xmu.ecore#//Update"/>
+    <genClasses ecoreClass="xmu.ecore#//DeleteNode">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xmu.ecore#//DeleteNode/variable"/>
+    </genClasses>
+    <genClasses ecoreClass="xmu.ecore#//DeleteLink">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xmu.ecore#//DeleteLink/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xmu.ecore#//DeleteLink/target"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xmu.ecore#//DeleteLink/feature"/>
+    </genClasses>
+    <genClasses ecoreClass="xmu.ecore#//UpdatePattern"/>
+    <genClasses ecoreClass="xmu.ecore#//Pattern">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//Pattern/root"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//Pattern/guard"/>
+    </genClasses>
+    <genClasses ecoreClass="xmu.ecore#//PatternNode">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xmu.ecore#//PatternNode/variable"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xmu.ecore#//PatternNode/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//PatternNode/expr"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="xmu.ecore#//PatternExpr"/>
+    <genClasses ecoreClass="xmu.ecore#//PatternReferenceExpr">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xmu.ecore#//PatternReferenceExpr/reference"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//PatternReferenceExpr/node"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//PatternReferenceExpr/pos"/>
+    </genClasses>
+    <genClasses ecoreClass="xmu.ecore#//PatternEqualExpr">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xmu.ecore#//PatternEqualExpr/feature"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//PatternEqualExpr/value"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//PatternEqualExpr/pos"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="xmu.ecore#//Expr"/>
+    <genClasses ecoreClass="xmu.ecore#//VariableExp">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xmu.ecore#//VariableExp/var"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//VariableExp/path"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="xmu.ecore#//ConstantExpr"/>
+    <genClasses ecoreClass="xmu.ecore#//EmptyLiteral">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmu.ecore#//EmptyLiteral/value"/>
+    </genClasses>
+    <genClasses ecoreClass="xmu.ecore#//StringLiteral">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmu.ecore#//StringLiteral/value"/>
+    </genClasses>
+    <genClasses ecoreClass="xmu.ecore#//IntegerLiteral">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmu.ecore#//IntegerLiteral/value"/>
+    </genClasses>
+    <genClasses ecoreClass="xmu.ecore#//BooleanLiteral">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmu.ecore#//BooleanLiteral/value"/>
+    </genClasses>
+    <genClasses ecoreClass="xmu.ecore#//EnumLiteral">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xmu.ecore#//EnumLiteral/type"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xmu.ecore#//EnumLiteral/value"/>
+    </genClasses>
+    <genClasses ecoreClass="xmu.ecore#//VStatement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmu.ecore#//VStatement/tag"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//VStatement/statement"/>
+    </genClasses>
+    <genClasses ecoreClass="xmu.ecore#//BlockStatement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//BlockStatement/statements"/>
+    </genClasses>
+    <genClasses ecoreClass="xmu.ecore#//SwitchStatement">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xmu.ecore#//SwitchStatement/var"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//SwitchStatement/cases"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//SwitchStatement/when"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="xmu.ecore#//TaggedElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmu.ecore#//TaggedElement/tag"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="xmu.ecore#//CaseSubStatement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//CaseSubStatement/statement"/>
+    </genClasses>
+    <genClasses ecoreClass="xmu.ecore#//CasePatternStatement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//CasePatternStatement/pattern"/>
+    </genClasses>
+    <genClasses ecoreClass="xmu.ecore#//CaseValueStatement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//CaseValueStatement/expression"/>
+    </genClasses>
+    <genClasses ecoreClass="xmu.ecore#//XMUModel">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//XMUModel/rules"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xmu.ecore#//XMUModel/packages"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//XMUModel/start"/>
+    </genClasses>
+    <genClasses ecoreClass="xmu.ecore#//Parameter">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xmu.ecore#//Parameter/variable"/>
+    </genClasses>
+    <genClasses ecoreClass="xmu.ecore#//RuleCallStatement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//RuleCallStatement/actualParameters"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xmu.ecore#//RuleCallStatement/rule"/>
+    </genClasses>
+    <genClasses ecoreClass="xmu.ecore#//UpdatedStatement">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xmu.ecore#//UpdatedStatement/sVar"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xmu.ecore#//UpdatedStatement/vVar"/>
+    </genClasses>
+    <genClasses ecoreClass="xmu.ecore#//BooleanOrExpr">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//BooleanOrExpr/operands"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="xmu.ecore#//BooleanOrExprChild"/>
+    <genClasses ecoreClass="xmu.ecore#//BooleanAndExpr">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//BooleanAndExpr/operands"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="xmu.ecore#//BooleanAndExprChild"/>
+    <genClasses ecoreClass="xmu.ecore#//RelationalExpr">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//RelationalExpr/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//RelationalExpr/right"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmu.ecore#//RelationalExpr/operator"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="xmu.ecore#//RelationalExprChild"/>
+    <genClasses ecoreClass="xmu.ecore#//AdditiveExpr">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//AdditiveExpr/operands"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmu.ecore#//AdditiveExpr/operators"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="xmu.ecore#//AdditiveExprChild"/>
+    <genClasses ecoreClass="xmu.ecore#//MultiplicativeExpr">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//MultiplicativeExpr/operands"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmu.ecore#//MultiplicativeExpr/operators"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="xmu.ecore#//MultiplicativeExprChild"/>
+    <genClasses ecoreClass="xmu.ecore#//UnaryExpr">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//UnaryExpr/body"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmu.ecore#//UnaryExpr/operator"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="xmu.ecore#//UnaryExprChild"/>
+    <genClasses image="false" ecoreClass="xmu.ecore#//AtomicExpr"/>
+    <genClasses ecoreClass="xmu.ecore#//ParenExpr">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//ParenExpr/body"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="xmu.ecore#//Path"/>
+    <genClasses ecoreClass="xmu.ecore#//FeaturePath">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmu.ecore#//FeaturePath/feature"/>
+    </genClasses>
+    <genClasses ecoreClass="xmu.ecore#//OperationPath">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmu.ecore#//OperationPath/operation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//OperationPath/parameters"/>
+    </genClasses>
+    <genClasses ecoreClass="xmu.ecore#//StartStatement">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xmu.ecore#//StartStatement/rule"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//StartStatement/root"/>
+    </genClasses>
+    <genClasses ecoreClass="xmu.ecore#//StartRoot">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmu.ecore#//StartRoot/id"/>
+    </genClasses>
+    <genClasses ecoreClass="xmu.ecore#//EResource">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xmu.ecore#//EResource/content"/>
+    </genClasses>
+    <genClasses ecoreClass="xmu.ecore#//PrintStatement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//PrintStatement/expr"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="edu.ustb.sei.mde.xmu.resource.xmu.default_load_options">
+      <provider
+            class="edu.ustb.sei.mde.xmu.postprocessor.ModelCleaner"
+            id="edu.ustb.sei.mde.xmu.postprocessor.modelclean"
+            name="Model Clearner">
+      </provider>
+   </extension>
+
+</plugin>

@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: XMU Model PostProcessor
+Bundle-SymbolicName: edu.ustb.sei.mde.xmu.postprocessor;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: edu.ustb.sei.mde.xmu.postprocessor.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ edu.ustb.sei.mde.xmu.resource.xmu;bundle-version="1.0.0",
+ edu.ustb.sei.mde.xmu;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-ActivationPolicy: lazy
