@@ -9,7 +9,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Pattern" eSuperTypes="#//Section">
     <eStructuralFeatures xsi:type="ecore:EReference" name="variables" upperBound="-1"
-        eType="#//Variable" containment="true"/>
+        eType="#//ObjectVariable" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="linkConstraints" upperBound="-1"
         eType="#//LinkConstraint" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="statements" upperBound="-1"
@@ -399,6 +399,8 @@
         defaultValueLiteral="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="parameters" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="primitiveVariables" upperBound="-1"
+        eType="#//PrimitiveVariable" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AdditionalConstraint" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="variables" upperBound="-1"

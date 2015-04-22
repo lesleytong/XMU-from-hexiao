@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EObject;
+
 //
 //import edu.ustb.sei.mde.morel.Action;
 //import edu.ustb.sei.mde.morel.BXRewritingRule;
@@ -17,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 //import edu.ustb.sei.mde.morel.CaseBlock;
 //import edu.ustb.sei.mde.morel.CaseStatement;
 import edu.ustb.sei.mde.morel.Clause;
+import edu.ustb.sei.mde.morel.Executable;
 import edu.ustb.sei.mde.morel.ForStatement;
 import edu.ustb.sei.mde.morel.IteratorPathExp;
 import edu.ustb.sei.mde.morel.LetExp;
@@ -69,6 +71,10 @@ public class VariableExpReferredVariableReferenceResolver implements edu.ustb.se
 		
 		if(current instanceof Pattern) {
 			vars.addAll(((Pattern) current).getVariables());
+		}
+		
+		if(current instanceof Executable) {
+			vars.addAll(((Executable) current).getPrimitiveVariables());
 		}
 		
 //		if(current instanceof Action) {

@@ -7,6 +7,7 @@ import edu.ustb.sei.mde.emg.runtime.Environment;
 import edu.ustb.sei.mde.emg.runtime.RuntimeFactory;
 import edu.ustb.sei.mde.emg.runtime.RuntimePackage;
 import edu.ustb.sei.mde.emg.runtime.datatype.OclUndefined;
+import edu.ustb.sei.mde.morel.Executable;
 import edu.ustb.sei.mde.morel.Pattern;
 import edu.ustb.sei.mde.morel.Rule;
 import edu.ustb.sei.mde.morel.SectionType;
@@ -480,7 +481,19 @@ public class ContextImpl extends MinimalEObjectImpl.Container implements Context
 //				}
 //			}
 //		}
-		
+		if(host instanceof Executable) {
+			Executable exec = (Executable)host;
+			for(Variable v : exec.getPrimitiveVariables()) {
+				if(this.containVariable(v)) continue;
+				else {
+					if(v instanceof VariableWithInit) {
+						Object value = OclUndefined.INVALIDED;
+						this.registerVariable(v);
+					} else 
+						this.registerVariable(v);
+				}
+			}
+		}
 		reloadValue();
 	}
 

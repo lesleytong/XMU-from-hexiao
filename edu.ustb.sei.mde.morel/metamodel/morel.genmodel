@@ -314,6 +314,7 @@
     <genClasses image="false" ecoreClass="morel.ecore#//Executable">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute morel.ecore#//Executable/active"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute morel.ecore#//Executable/parameters"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference morel.ecore#//Executable/primitiveVariables"/>
     </genClasses>
     <genClasses image="false" ecoreClass="morel.ecore#//AdditionalConstraint">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference morel.ecore#//AdditionalConstraint/variables"/>

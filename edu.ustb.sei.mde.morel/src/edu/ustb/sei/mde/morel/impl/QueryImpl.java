@@ -5,13 +5,18 @@ package edu.ustb.sei.mde.morel.impl;
 import edu.ustb.sei.mde.morel.Executable;
 import edu.ustb.sei.mde.morel.MorelPackage;
 import edu.ustb.sei.mde.morel.NamedElement;
+import edu.ustb.sei.mde.morel.PrimitiveVariable;
 import edu.ustb.sei.mde.morel.Query;
 import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,6 +28,7 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
  *   <li>{@link edu.ustb.sei.mde.morel.impl.QueryImpl#getName <em>Name</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.morel.impl.QueryImpl#isActive <em>Active</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.morel.impl.QueryImpl#getParameters <em>Parameters</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.morel.impl.QueryImpl#getPrimitiveVariables <em>Primitive Variables</em>}</li>
  * </ul>
  * </p>
  *
@@ -78,6 +84,16 @@ public class QueryImpl extends PatternImpl implements Query {
 	 * @ordered
 	 */
 	protected EList<String> parameters;
+
+	/**
+	 * The cached value of the '{@link #getPrimitiveVariables() <em>Primitive Variables</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPrimitiveVariables()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<PrimitiveVariable> primitiveVariables;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -157,6 +173,32 @@ public class QueryImpl extends PatternImpl implements Query {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<PrimitiveVariable> getPrimitiveVariables() {
+		if (primitiveVariables == null) {
+			primitiveVariables = new EObjectContainmentEList<PrimitiveVariable>(PrimitiveVariable.class, this, MorelPackage.QUERY__PRIMITIVE_VARIABLES);
+		}
+		return primitiveVariables;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case MorelPackage.QUERY__PRIMITIVE_VARIABLES:
+				return ((InternalEList<?>)getPrimitiveVariables()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -166,6 +208,8 @@ public class QueryImpl extends PatternImpl implements Query {
 				return isActive();
 			case MorelPackage.QUERY__PARAMETERS:
 				return getParameters();
+			case MorelPackage.QUERY__PRIMITIVE_VARIABLES:
+				return getPrimitiveVariables();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -189,6 +233,10 @@ public class QueryImpl extends PatternImpl implements Query {
 				getParameters().clear();
 				getParameters().addAll((Collection<? extends String>)newValue);
 				return;
+			case MorelPackage.QUERY__PRIMITIVE_VARIABLES:
+				getPrimitiveVariables().clear();
+				getPrimitiveVariables().addAll((Collection<? extends PrimitiveVariable>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -210,6 +258,9 @@ public class QueryImpl extends PatternImpl implements Query {
 			case MorelPackage.QUERY__PARAMETERS:
 				getParameters().clear();
 				return;
+			case MorelPackage.QUERY__PRIMITIVE_VARIABLES:
+				getPrimitiveVariables().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -228,6 +279,8 @@ public class QueryImpl extends PatternImpl implements Query {
 				return active != ACTIVE_EDEFAULT;
 			case MorelPackage.QUERY__PARAMETERS:
 				return parameters != null && !parameters.isEmpty();
+			case MorelPackage.QUERY__PRIMITIVE_VARIABLES:
+				return primitiveVariables != null && !primitiveVariables.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -249,6 +302,7 @@ public class QueryImpl extends PatternImpl implements Query {
 			switch (derivedFeatureID) {
 				case MorelPackage.QUERY__ACTIVE: return MorelPackage.EXECUTABLE__ACTIVE;
 				case MorelPackage.QUERY__PARAMETERS: return MorelPackage.EXECUTABLE__PARAMETERS;
+				case MorelPackage.QUERY__PRIMITIVE_VARIABLES: return MorelPackage.EXECUTABLE__PRIMITIVE_VARIABLES;
 				default: return -1;
 			}
 		}
@@ -272,6 +326,7 @@ public class QueryImpl extends PatternImpl implements Query {
 			switch (baseFeatureID) {
 				case MorelPackage.EXECUTABLE__ACTIVE: return MorelPackage.QUERY__ACTIVE;
 				case MorelPackage.EXECUTABLE__PARAMETERS: return MorelPackage.QUERY__PARAMETERS;
+				case MorelPackage.EXECUTABLE__PRIMITIVE_VARIABLES: return MorelPackage.QUERY__PRIMITIVE_VARIABLES;
 				default: return -1;
 			}
 		}

@@ -25,7 +25,7 @@ Require-Bundle: org.eclipse.core.resources,
   org.emftext.commons.antlr3_4_0,
   edu.ustb.sei.mde.morel
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: edu.ustb.sei.mde.morel.resource.morel.ui
 Bundle-Activator: edu.ustb.sei.mde.morel.resource.morel.ui.MorelUIPlugin
 Import-Package: org.eclipse.ui.texteditor.spelling

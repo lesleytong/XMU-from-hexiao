@@ -2402,6 +2402,15 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getExecutable_PrimitiveVariables() {
+		return (EReference)executableEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getAdditionalConstraint() {
 		return additionalConstraintEClass;
 	}
@@ -2932,6 +2941,7 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		executableEClass = createEClass(EXECUTABLE);
 		createEAttribute(executableEClass, EXECUTABLE__ACTIVE);
 		createEAttribute(executableEClass, EXECUTABLE__PARAMETERS);
+		createEReference(executableEClass, EXECUTABLE__PRIMITIVE_VARIABLES);
 
 		additionalConstraintEClass = createEClass(ADDITIONAL_CONSTRAINT);
 		createEReference(additionalConstraintEClass, ADDITIONAL_CONSTRAINT__VARIABLES);
@@ -3085,7 +3095,7 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		initEAttribute(getSection_Type(), this.getSectionType(), "type", null, 1, 1, Section.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(patternEClass, Pattern.class, "Pattern", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPattern_Variables(), this.getVariable(), null, "variables", null, 0, -1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPattern_Variables(), this.getObjectVariable(), null, "variables", null, 0, -1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPattern_LinkConstraints(), this.getLinkConstraint(), null, "linkConstraints", null, 0, -1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPattern_Statements(), this.getStatement(), null, "statements", null, 0, -1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPattern_AdditionalConstraints(), this.getAdditionalConstraint(), null, "additionalConstraints", null, 0, -1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3326,6 +3336,7 @@ public class MorelPackageImpl extends EPackageImpl implements MorelPackage {
 		initEClass(executableEClass, Executable.class, "Executable", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getExecutable_Active(), ecorePackage.getEBoolean(), "active", "true", 0, 1, Executable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getExecutable_Parameters(), ecorePackage.getEString(), "parameters", null, 0, -1, Executable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getExecutable_PrimitiveVariables(), this.getPrimitiveVariable(), null, "primitiveVariables", null, 0, -1, Executable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(additionalConstraintEClass, AdditionalConstraint.class, "AdditionalConstraint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAdditionalConstraint_Variables(), this.getVariable(), null, "variables", null, 0, -1, AdditionalConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
