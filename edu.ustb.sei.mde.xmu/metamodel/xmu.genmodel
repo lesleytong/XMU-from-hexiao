@@ -33,6 +33,7 @@
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="xmu.ecore#//AdditiveOperator">
       <genEnumLiterals ecoreEnumLiteral="xmu.ecore#//AdditiveOperator/add"/>
       <genEnumLiterals ecoreEnumLiteral="xmu.ecore#//AdditiveOperator/sub"/>
+      <genEnumLiterals ecoreEnumLiteral="xmu.ecore#//AdditiveOperator/append"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="xmu.ecore#//MultiplicativeOperator">
       <genEnumLiterals ecoreEnumLiteral="xmu.ecore#//MultiplicativeOperator/mul"/>
