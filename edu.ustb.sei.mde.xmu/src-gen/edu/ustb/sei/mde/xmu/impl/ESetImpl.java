@@ -2,35 +2,36 @@
  */
 package edu.ustb.sei.mde.xmu.impl;
 
-import edu.ustb.sei.mde.xmu.EResource;
+import edu.ustb.sei.mde.xmu.ESet;
 import edu.ustb.sei.mde.xmu.XmuPackage;
+
 import java.util.Collection;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-import org.eclipse.emf.ecore.resource.Resource;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>EResource</b></em>'.
+ * An implementation of the model object '<em><b>ESet</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link edu.ustb.sei.mde.xmu.impl.EResourceImpl#getContent <em>Content</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.xmu.impl.ESetImpl#getContent <em>Content</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class EResourceImpl extends MinimalEObjectImpl.Container implements EResource {
+public class ESetImpl extends MinimalEObjectImpl.Container implements ESet {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EResourceImpl() {
+	protected ESetImpl() {
 		super();
 	}
 
@@ -41,16 +42,20 @@ public class EResourceImpl extends MinimalEObjectImpl.Container implements EReso
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return XmuPackage.Literals.ERESOURCE;
+		return XmuPackage.Literals.ESET;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public EList<EObject> getContent() {
-		return resource.getContents();
+		// TODO: implement this method to return the 'Content' reference list
+		// Ensure that you remove @generated or mark it @generated NOT
+		// The list is expected to implement org.eclipse.emf.ecore.util.InternalEList and org.eclipse.emf.ecore.EStructuralFeature.Setting
+		// so it's likely that an appropriate subclass of org.eclipse.emf.ecore.util.EcoreEList should be used.
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -61,7 +66,7 @@ public class EResourceImpl extends MinimalEObjectImpl.Container implements EReso
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case XmuPackage.ERESOURCE__CONTENT:
+			case XmuPackage.ESET__CONTENT:
 				return getContent();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -76,7 +81,7 @@ public class EResourceImpl extends MinimalEObjectImpl.Container implements EReso
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case XmuPackage.ERESOURCE__CONTENT:
+			case XmuPackage.ESET__CONTENT:
 				getContent().clear();
 				getContent().addAll((Collection<? extends EObject>)newValue);
 				return;
@@ -92,7 +97,7 @@ public class EResourceImpl extends MinimalEObjectImpl.Container implements EReso
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case XmuPackage.ERESOURCE__CONTENT:
+			case XmuPackage.ESET__CONTENT:
 				getContent().clear();
 				return;
 		}
@@ -107,18 +112,18 @@ public class EResourceImpl extends MinimalEObjectImpl.Container implements EReso
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case XmuPackage.ERESOURCE__CONTENT:
+			case XmuPackage.ESET__CONTENT:
 				return !getContent().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
-
-	private Resource resource = null;
 	
+	private EList<EObject> collection;
+
 	@Override
-	public void setResource(Resource res) {
+	public void setEList(EList<EObject> collection) {
 		// TODO Auto-generated method stub
-		resource = res;
+		this.collection = collection;
 	}
 
-} //EResourceImpl
+} //ESetImpl

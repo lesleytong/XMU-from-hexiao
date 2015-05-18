@@ -364,6 +364,12 @@ public class AbstractXmuInterpreter<ResultType, ContextType> {
 		if (result != null) {
 			return result;
 		}
+		if (object instanceof edu.ustb.sei.mde.xmu.LoopPath) {
+			result = interprete_edu_ustb_sei_mde_xmu_LoopPath((edu.ustb.sei.mde.xmu.LoopPath) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
 		if (object instanceof edu.ustb.sei.mde.xmu.Path) {
 			result = interprete_edu_ustb_sei_mde_xmu_Path((edu.ustb.sei.mde.xmu.Path) object, context);
 		}
@@ -390,6 +396,18 @@ public class AbstractXmuInterpreter<ResultType, ContextType> {
 		}
 		if (object instanceof edu.ustb.sei.mde.xmu.PrintStatement) {
 			result = interprete_edu_ustb_sei_mde_xmu_PrintStatement((edu.ustb.sei.mde.xmu.PrintStatement) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
+		if (object instanceof edu.ustb.sei.mde.xmu.AllInstanceExpr) {
+			result = interprete_edu_ustb_sei_mde_xmu_AllInstanceExpr((edu.ustb.sei.mde.xmu.AllInstanceExpr) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
+		if (object instanceof edu.ustb.sei.mde.xmu.ESet) {
+			result = interprete_edu_ustb_sei_mde_xmu_ESet((edu.ustb.sei.mde.xmu.ESet) object, context);
 		}
 		if (result != null) {
 			return result;
@@ -725,6 +743,10 @@ public class AbstractXmuInterpreter<ResultType, ContextType> {
 		return null;
 	}
 	
+	public ResultType interprete_edu_ustb_sei_mde_xmu_LoopPath(edu.ustb.sei.mde.xmu.LoopPath loopPath, ContextType context) {
+		return null;
+	}
+	
 	public ResultType interprete_edu_ustb_sei_mde_xmu_StartStatement(edu.ustb.sei.mde.xmu.StartStatement startStatement, ContextType context) {
 		return null;
 	}
@@ -738,6 +760,14 @@ public class AbstractXmuInterpreter<ResultType, ContextType> {
 	}
 	
 	public ResultType interprete_edu_ustb_sei_mde_xmu_PrintStatement(edu.ustb.sei.mde.xmu.PrintStatement printStatement, ContextType context) {
+		return null;
+	}
+	
+	public ResultType interprete_edu_ustb_sei_mde_xmu_AllInstanceExpr(edu.ustb.sei.mde.xmu.AllInstanceExpr allInstanceExpr, ContextType context) {
+		return null;
+	}
+	
+	public ResultType interprete_edu_ustb_sei_mde_xmu_ESet(edu.ustb.sei.mde.xmu.ESet eSet, ContextType context) {
 		return null;
 	}
 	

@@ -337,6 +337,15 @@ public interface XmuFactory extends EFactory {
 	OperationPath createOperationPath();
 
 	/**
+	 * Returns a new object of class '<em>Loop Path</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Loop Path</em>'.
+	 * @generated
+	 */
+	LoopPath createLoopPath();
+
+	/**
 	 * Returns a new object of class '<em>Start Statement</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -371,6 +380,24 @@ public interface XmuFactory extends EFactory {
 	 * @generated
 	 */
 	PrintStatement createPrintStatement();
+
+	/**
+	 * Returns a new object of class '<em>All Instance Expr</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>All Instance Expr</em>'.
+	 * @generated
+	 */
+	AllInstanceExpr createAllInstanceExpr();
+
+	/**
+	 * Returns a new object of class '<em>ESet</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>ESet</em>'.
+	 * @generated
+	 */
+	ESet createESet();
 
 	/**
 	 * Returns the package supported by this factory.

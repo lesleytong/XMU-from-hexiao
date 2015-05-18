@@ -61,11 +61,13 @@ RULES {
 	
 	PatternEqualExpr ::= feature[NAME] ("[" pos "]")? "=" value;
 	
-	VariableExp ::= var[NAME] ("." path)*;
+	VariableExp ::= var[NAME] (path)*;
 	
-	FeaturePath ::= feature[NAME];
+	FeaturePath ::= "." feature[NAME];
 	
-	OperationPath ::= operation[NAME] "(" (parameters ("," parameters)*)? ")";
+	LoopPath ::= "->" operator[select:"select", forAll:"forAll", exists:"exists"] "(" variable "|" body : BooleanOrExpr, BooleanAndExpr,RelationalExpr,AdditiveExpr,MultiplicativeExpr,UnaryExpr,AtomicExpr ")";
+	
+	OperationPath ::= "." operation[NAME] "(" (parameters ("," parameters)*)? ")";
 	
 	StringLiteral ::= value['\'','\'','\\'];
 	
@@ -99,7 +101,7 @@ RULES {
 	
 	RelationalExpr ::= left:AdditiveExpr,MultiplicativeExpr,UnaryExpr,AtomicExpr operator[equal:"=",less:"<",lessEqual:"<=",greater:">",greaterEqual:">="] right:AdditiveExpr,MultiplicativeExpr,UnaryExpr,AtomicExpr;
 	
-	AdditiveExpr ::= operands:MultiplicativeExpr,UnaryExpr,AtomicExpr (operators[add:"+",sub:"-"] operands:MultiplicativeExpr,UnaryExpr,AtomicExpr)+;
+	AdditiveExpr ::= operands:MultiplicativeExpr,UnaryExpr,AtomicExpr (operators[add:"+",sub:"-",append:"++"] operands:MultiplicativeExpr,UnaryExpr,AtomicExpr)+;
 	
 	MultiplicativeExpr ::= operands:UnaryExpr,AtomicExpr (operators[mul:"*",div:"/"] operands:UnaryExpr,AtomicExpr)+;
 	
@@ -108,4 +110,6 @@ RULES {
 	UnaryExpr ::= operator[not:"not",minus:"-"] body:AtomicExpr;
 	
 	PrintStatement ::= "print" expr:BooleanOrExpr, BooleanAndExpr,RelationalExpr,AdditiveExpr,MultiplicativeExpr,UnaryExpr,AtomicExpr ;
+	
+	AllInstanceExpr ::= root "//" type[NAME] ;
 }

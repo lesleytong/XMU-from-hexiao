@@ -10,117 +10,119 @@ import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>Additive Operator</b></em>',
+ * A representation of the literals of the enumeration '<em><b>Loop Operator</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see edu.ustb.sei.mde.xmu.XmuPackage#getAdditiveOperator()
+ * @see edu.ustb.sei.mde.xmu.XmuPackage#getLoopOperator()
  * @model
  * @generated
  */
-public enum AdditiveOperator implements Enumerator {
+public enum LoopOperator implements Enumerator {
 	/**
-	 * The '<em><b>Add</b></em>' literal object.
+	 * The '<em><b>Select</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ADD_VALUE
+	 * @see #SELECT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ADD(0, "add", "add"),
+	SELECT(0, "select", "select"),
 
 	/**
-	 * The '<em><b>Sub</b></em>' literal object.
+	 * The '<em><b>For All</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SUB_VALUE
+	 * @see #FOR_ALL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SUB(1, "sub", "sub"), /**
-	 * The '<em><b>Append</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #APPEND_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	APPEND(2, "append", "append");
+	FOR_ALL(1, "forAll", "forAll"),
 
 	/**
-	 * The '<em><b>Add</b></em>' literal value.
+	 * The '<em><b>Exists</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #EXISTS_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	EXISTS(2, "exists", "exists");
+
+	/**
+	 * The '<em><b>Select</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Add</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>Select</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ADD
-	 * @model name="add"
+	 * @see #SELECT
+	 * @model name="select"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ADD_VALUE = 0;
+	public static final int SELECT_VALUE = 0;
 
 	/**
-	 * The '<em><b>Sub</b></em>' literal value.
+	 * The '<em><b>For All</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Sub</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>For All</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SUB
-	 * @model name="sub"
+	 * @see #FOR_ALL
+	 * @model name="forAll"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SUB_VALUE = 1;
+	public static final int FOR_ALL_VALUE = 1;
 
 	/**
-	 * The '<em><b>Append</b></em>' literal value.
+	 * The '<em><b>Exists</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Append</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>Exists</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #APPEND
-	 * @model name="append"
+	 * @see #EXISTS
+	 * @model name="exists"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int APPEND_VALUE = 2;
+	public static final int EXISTS_VALUE = 2;
 
 	/**
-	 * An array of all the '<em><b>Additive Operator</b></em>' enumerators.
+	 * An array of all the '<em><b>Loop Operator</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final AdditiveOperator[] VALUES_ARRAY =
-		new AdditiveOperator[] {
-			ADD,
-			SUB,
-			APPEND,
+	private static final LoopOperator[] VALUES_ARRAY =
+		new LoopOperator[] {
+			SELECT,
+			FOR_ALL,
+			EXISTS,
 		};
 
 	/**
-	 * A public read-only list of all the '<em><b>Additive Operator</b></em>' enumerators.
+	 * A public read-only list of all the '<em><b>Loop Operator</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<AdditiveOperator> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<LoopOperator> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Additive Operator</b></em>' literal with the specified literal value.
+	 * Returns the '<em><b>Loop Operator</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static AdditiveOperator get(String literal) {
+	public static LoopOperator get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			AdditiveOperator result = VALUES_ARRAY[i];
+			LoopOperator result = VALUES_ARRAY[i];
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -129,14 +131,14 @@ public enum AdditiveOperator implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Additive Operator</b></em>' literal with the specified name.
+	 * Returns the '<em><b>Loop Operator</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static AdditiveOperator getByName(String name) {
+	public static LoopOperator getByName(String name) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			AdditiveOperator result = VALUES_ARRAY[i];
+			LoopOperator result = VALUES_ARRAY[i];
 			if (result.getName().equals(name)) {
 				return result;
 			}
@@ -145,16 +147,16 @@ public enum AdditiveOperator implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Additive Operator</b></em>' literal with the specified integer value.
+	 * Returns the '<em><b>Loop Operator</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static AdditiveOperator get(int value) {
+	public static LoopOperator get(int value) {
 		switch (value) {
-			case ADD_VALUE: return ADD;
-			case SUB_VALUE: return SUB;
-			case APPEND_VALUE: return APPEND;
+			case SELECT_VALUE: return SELECT;
+			case FOR_ALL_VALUE: return FOR_ALL;
+			case EXISTS_VALUE: return EXISTS;
 		}
 		return null;
 	}
@@ -186,7 +188,7 @@ public enum AdditiveOperator implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private AdditiveOperator(int value, String name, String literal) {
+	private LoopOperator(int value, String name, String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;
@@ -230,4 +232,4 @@ public enum AdditiveOperator implements Enumerator {
 		return literal;
 	}
 	
-} //AdditiveOperator
+} //LoopOperator

@@ -185,6 +185,7 @@ public class ContextUtil {
 
 	static public List<XmuContext> match(Pattern pattern, XmuContext base) {
 		if(pattern==null) return null;
+		SafeType v = base.getSafeTypeValue(pattern.getRoot().getVariable());
 		List<XmuContext> contexts = matchNode(pattern.getRoot(),base);
 		List<XmuContext> result = new ArrayList<XmuContext>();
 		for(XmuContext c : contexts) {
@@ -195,7 +196,7 @@ public class ContextUtil {
 				System.out.println("guard:"+r);
 			}
 		}
-		return result;
+		return result;	
 	}
 	
 	static protected List<XmuContext> matchNodeOnce(PatternNode node, XmuContext base) {
@@ -453,11 +454,17 @@ public class ContextUtil {
 						
 						if(pos==null) {
 							if(nValue.isUndefined()) {
-								for(int i = 0;i<candidate.size();i++) {
+								if(candidate.size()!=0) {
+									for(int i = 0;i<candidate.size();i++) {
+										XmuContext nc = current.getCopy();
+										if(XmuModelCheck.MODEL_CHECK.enforceAtomicExpr(right, nc, SafeType.createFromValue((candidate.get(i)))))
+											res.add(nc);
+										else continue;
+									}
+								} else {
 									XmuContext nc = current.getCopy();
-									if(XmuModelCheck.MODEL_CHECK.enforceAtomicExpr(right, nc, SafeType.createFromValue((candidate.get(i)))))
+									if(XmuModelCheck.MODEL_CHECK.enforceAtomicExpr(right, nc, SafeType.getNull()))
 										res.add(nc);
-									else continue;
 								}
 							} else {
 								// set pos

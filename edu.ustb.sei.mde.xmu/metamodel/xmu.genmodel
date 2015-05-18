@@ -42,6 +42,11 @@
       <genEnumLiterals ecoreEnumLiteral="xmu.ecore#//UnaryOperator/not"/>
       <genEnumLiterals ecoreEnumLiteral="xmu.ecore#//UnaryOperator/minus"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="xmu.ecore#//LoopOperator">
+      <genEnumLiterals ecoreEnumLiteral="xmu.ecore#//LoopOperator/select"/>
+      <genEnumLiterals ecoreEnumLiteral="xmu.ecore#//LoopOperator/forAll"/>
+      <genEnumLiterals ecoreEnumLiteral="xmu.ecore#//LoopOperator/exists"/>
+    </genEnums>
     <genClasses image="false" ecoreClass="xmu.ecore#//NamedElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmu.ecore#//NamedElement/name"/>
     </genClasses>
@@ -198,6 +203,11 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmu.ecore#//OperationPath/operation"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//OperationPath/parameters"/>
     </genClasses>
+    <genClasses ecoreClass="xmu.ecore#//LoopPath">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmu.ecore#//LoopPath/operator"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//LoopPath/variable"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//LoopPath/body"/>
+    </genClasses>
     <genClasses ecoreClass="xmu.ecore#//StartStatement">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xmu.ecore#//StartStatement/rule"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//StartStatement/root"/>
@@ -210,6 +220,13 @@
     </genClasses>
     <genClasses ecoreClass="xmu.ecore#//PrintStatement">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//PrintStatement/expr"/>
+    </genClasses>
+    <genClasses ecoreClass="xmu.ecore#//AllInstanceExpr">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//AllInstanceExpr/root"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xmu.ecore#//AllInstanceExpr/type"/>
+    </genClasses>
+    <genClasses ecoreClass="xmu.ecore#//ESet">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xmu.ecore#//ESet/content"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

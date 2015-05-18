@@ -5,6 +5,7 @@ package edu.ustb.sei.mde.xmu.impl;
 import edu.ustb.sei.mde.xmu.AdditiveExpr;
 import edu.ustb.sei.mde.xmu.AdditiveExprChild;
 import edu.ustb.sei.mde.xmu.AdditiveOperator;
+import edu.ustb.sei.mde.xmu.AllInstanceExpr;
 import edu.ustb.sei.mde.xmu.AtomicExpr;
 import edu.ustb.sei.mde.xmu.BlockStatement;
 import edu.ustb.sei.mde.xmu.BooleanAndExpr;
@@ -19,6 +20,7 @@ import edu.ustb.sei.mde.xmu.ConstantExpr;
 import edu.ustb.sei.mde.xmu.DeleteLink;
 import edu.ustb.sei.mde.xmu.DeleteNode;
 import edu.ustb.sei.mde.xmu.EResource;
+import edu.ustb.sei.mde.xmu.ESet;
 import edu.ustb.sei.mde.xmu.EmptyLiteral;
 import edu.ustb.sei.mde.xmu.EmptyType;
 import edu.ustb.sei.mde.xmu.EnumLiteral;
@@ -26,6 +28,8 @@ import edu.ustb.sei.mde.xmu.Expr;
 import edu.ustb.sei.mde.xmu.FeaturePath;
 import edu.ustb.sei.mde.xmu.ForStatement;
 import edu.ustb.sei.mde.xmu.IntegerLiteral;
+import edu.ustb.sei.mde.xmu.LoopOperator;
+import edu.ustb.sei.mde.xmu.LoopPath;
 import edu.ustb.sei.mde.xmu.MultiplicativeExpr;
 import edu.ustb.sei.mde.xmu.MultiplicativeExprChild;
 import edu.ustb.sei.mde.xmu.MultiplicativeOperator;
@@ -450,6 +454,13 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass loopPathEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass startStatementEClass = null;
 
 	/**
@@ -472,6 +483,20 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 	 * @generated
 	 */
 	private EClass printStatementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass allInstanceExprEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass eSetEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -521,6 +546,13 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 	 * @generated
 	 */
 	private EEnum unaryOperatorEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum loopOperatorEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -1668,6 +1700,42 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getLoopPath() {
+		return loopPathEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLoopPath_Operator() {
+		return (EAttribute)loopPathEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getLoopPath_Variable() {
+		return (EReference)loopPathEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getLoopPath_Body() {
+		return (EReference)loopPathEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getStartStatement() {
 		return startStatementEClass;
 	}
@@ -1749,6 +1817,51 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getAllInstanceExpr() {
+		return allInstanceExprEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAllInstanceExpr_Root() {
+		return (EReference)allInstanceExprEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAllInstanceExpr_Type() {
+		return (EReference)allInstanceExprEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getESet() {
+		return eSetEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getESet_Content() {
+		return (EReference)eSetEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getVariableFlag() {
 		return variableFlagEEnum;
 	}
@@ -1805,6 +1918,15 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 	 */
 	public EEnum getUnaryOperator() {
 		return unaryOperatorEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getLoopOperator() {
+		return loopOperatorEEnum;
 	}
 
 	/**
@@ -2007,6 +2129,11 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 		createEAttribute(operationPathEClass, OPERATION_PATH__OPERATION);
 		createEReference(operationPathEClass, OPERATION_PATH__PARAMETERS);
 
+		loopPathEClass = createEClass(LOOP_PATH);
+		createEAttribute(loopPathEClass, LOOP_PATH__OPERATOR);
+		createEReference(loopPathEClass, LOOP_PATH__VARIABLE);
+		createEReference(loopPathEClass, LOOP_PATH__BODY);
+
 		startStatementEClass = createEClass(START_STATEMENT);
 		createEReference(startStatementEClass, START_STATEMENT__RULE);
 		createEReference(startStatementEClass, START_STATEMENT__ROOT);
@@ -2020,6 +2147,13 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 		printStatementEClass = createEClass(PRINT_STATEMENT);
 		createEReference(printStatementEClass, PRINT_STATEMENT__EXPR);
 
+		allInstanceExprEClass = createEClass(ALL_INSTANCE_EXPR);
+		createEReference(allInstanceExprEClass, ALL_INSTANCE_EXPR__ROOT);
+		createEReference(allInstanceExprEClass, ALL_INSTANCE_EXPR__TYPE);
+
+		eSetEClass = createEClass(ESET);
+		createEReference(eSetEClass, ESET__CONTENT);
+
 		// Create enums
 		variableFlagEEnum = createEEnum(VARIABLE_FLAG);
 		relationalOperatorEEnum = createEEnum(RELATIONAL_OPERATOR);
@@ -2028,6 +2162,7 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 		additiveOperatorEEnum = createEEnum(ADDITIVE_OPERATOR);
 		multiplicativeOperatorEEnum = createEEnum(MULTIPLICATIVE_OPERATOR);
 		unaryOperatorEEnum = createEEnum(UNARY_OPERATOR);
+		loopOperatorEEnum = createEEnum(LOOP_OPERATOR);
 	}
 
 	/**
@@ -2103,8 +2238,10 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 		parenExprEClass.getESuperTypes().add(this.getAtomicExpr());
 		featurePathEClass.getESuperTypes().add(this.getPath());
 		operationPathEClass.getESuperTypes().add(this.getPath());
+		loopPathEClass.getESuperTypes().add(this.getPath());
 		startRootEClass.getESuperTypes().add(this.getTaggedElement());
 		printStatementEClass.getESuperTypes().add(this.getStatement());
+		allInstanceExprEClass.getESuperTypes().add(this.getExpr());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(namedElementEClass, NamedElement.class, "NamedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2279,6 +2416,11 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 		initEAttribute(getOperationPath_Operation(), ecorePackage.getEString(), "operation", null, 1, 1, OperationPath.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getOperationPath_Parameters(), this.getExpr(), null, "parameters", null, 0, -1, OperationPath.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(loopPathEClass, LoopPath.class, "LoopPath", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getLoopPath_Operator(), this.getLoopOperator(), "operator", null, 1, 1, LoopPath.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLoopPath_Variable(), this.getVariable(), null, "variable", null, 1, 1, LoopPath.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLoopPath_Body(), this.getExpr(), null, "body", null, 1, 1, LoopPath.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(startStatementEClass, StartStatement.class, "StartStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getStartStatement_Rule(), this.getRule(), null, "rule", null, 1, 1, StartStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getStartStatement_Root(), this.getStartRoot(), null, "root", null, 1, -1, StartStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2291,6 +2433,13 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 
 		initEClass(printStatementEClass, PrintStatement.class, "PrintStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPrintStatement_Expr(), this.getExpr(), null, "expr", null, 1, 1, PrintStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(allInstanceExprEClass, AllInstanceExpr.class, "AllInstanceExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAllInstanceExpr_Root(), this.getStartRoot(), null, "root", null, 1, 1, AllInstanceExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAllInstanceExpr_Type(), ecorePackage.getEClass(), null, "type", null, 1, 1, AllInstanceExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(eSetEClass, ESet.class, "ESet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getESet_Content(), ecorePackage.getEObject(), null, "content", null, 0, -1, ESet.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(variableFlagEEnum, VariableFlag.class, "VariableFlag");
@@ -2319,6 +2468,7 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 		initEEnum(additiveOperatorEEnum, AdditiveOperator.class, "AdditiveOperator");
 		addEEnumLiteral(additiveOperatorEEnum, AdditiveOperator.ADD);
 		addEEnumLiteral(additiveOperatorEEnum, AdditiveOperator.SUB);
+		addEEnumLiteral(additiveOperatorEEnum, AdditiveOperator.APPEND);
 
 		initEEnum(multiplicativeOperatorEEnum, MultiplicativeOperator.class, "MultiplicativeOperator");
 		addEEnumLiteral(multiplicativeOperatorEEnum, MultiplicativeOperator.MUL);
@@ -2327,6 +2477,11 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 		initEEnum(unaryOperatorEEnum, UnaryOperator.class, "UnaryOperator");
 		addEEnumLiteral(unaryOperatorEEnum, UnaryOperator.NOT);
 		addEEnumLiteral(unaryOperatorEEnum, UnaryOperator.MINUS);
+
+		initEEnum(loopOperatorEEnum, LoopOperator.class, "LoopOperator");
+		addEEnumLiteral(loopOperatorEEnum, LoopOperator.SELECT);
+		addEEnumLiteral(loopOperatorEEnum, LoopOperator.FOR_ALL);
+		addEEnumLiteral(loopOperatorEEnum, LoopOperator.EXISTS);
 
 		// Create resource
 		createResource(eNS_URI);

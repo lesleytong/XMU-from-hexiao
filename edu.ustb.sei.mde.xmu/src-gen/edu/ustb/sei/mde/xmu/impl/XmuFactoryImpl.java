@@ -92,10 +92,13 @@ public class XmuFactoryImpl extends EFactoryImpl implements XmuFactory {
 			case XmuPackage.PAREN_EXPR: return createParenExpr();
 			case XmuPackage.FEATURE_PATH: return createFeaturePath();
 			case XmuPackage.OPERATION_PATH: return createOperationPath();
+			case XmuPackage.LOOP_PATH: return createLoopPath();
 			case XmuPackage.START_STATEMENT: return createStartStatement();
 			case XmuPackage.START_ROOT: return createStartRoot();
 			case XmuPackage.ERESOURCE: return createEResource();
 			case XmuPackage.PRINT_STATEMENT: return createPrintStatement();
+			case XmuPackage.ALL_INSTANCE_EXPR: return createAllInstanceExpr();
+			case XmuPackage.ESET: return createESet();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -123,6 +126,8 @@ public class XmuFactoryImpl extends EFactoryImpl implements XmuFactory {
 				return createMultiplicativeOperatorFromString(eDataType, initialValue);
 			case XmuPackage.UNARY_OPERATOR:
 				return createUnaryOperatorFromString(eDataType, initialValue);
+			case XmuPackage.LOOP_OPERATOR:
+				return createLoopOperatorFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -150,6 +155,8 @@ public class XmuFactoryImpl extends EFactoryImpl implements XmuFactory {
 				return convertMultiplicativeOperatorToString(eDataType, instanceValue);
 			case XmuPackage.UNARY_OPERATOR:
 				return convertUnaryOperatorToString(eDataType, instanceValue);
+			case XmuPackage.LOOP_OPERATOR:
+				return convertLoopOperatorToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -510,6 +517,16 @@ public class XmuFactoryImpl extends EFactoryImpl implements XmuFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public LoopPath createLoopPath() {
+		LoopPathImpl loopPath = new LoopPathImpl();
+		return loopPath;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public StartStatement createStartStatement() {
 		StartStatementImpl startStatement = new StartStatementImpl();
 		return startStatement;
@@ -543,6 +560,26 @@ public class XmuFactoryImpl extends EFactoryImpl implements XmuFactory {
 	public PrintStatement createPrintStatement() {
 		PrintStatementImpl printStatement = new PrintStatementImpl();
 		return printStatement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AllInstanceExpr createAllInstanceExpr() {
+		AllInstanceExprImpl allInstanceExpr = new AllInstanceExprImpl();
+		return allInstanceExpr;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ESet createESet() {
+		ESetImpl eSet = new ESetImpl();
+		return eSet;
 	}
 
 	/**
@@ -682,6 +719,26 @@ public class XmuFactoryImpl extends EFactoryImpl implements XmuFactory {
 	 * @generated
 	 */
 	public String convertUnaryOperatorToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LoopOperator createLoopOperatorFromString(EDataType eDataType, String initialValue) {
+		LoopOperator result = LoopOperator.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertLoopOperatorToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

@@ -3,8 +3,11 @@ package edu.ustb.sei.mde.xmu.resource.xmu.interpret;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.*;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import edu.ustb.sei.mde.modeling.ui.ConsoleUtil;
@@ -272,6 +275,40 @@ public class XmuExpressionCheck extends
 	}
 
 	@Override
+	public SafeType interprete_edu_ustb_sei_mde_xmu_AllInstanceExpr(
+			AllInstanceExpr allInstanceExpr, XmuContext context) {
+		Resource res = null;
+		
+		StartRoot root = allInstanceExpr.getRoot();
+		
+		switch(root.getTag()) {
+		case SOURCE:
+			res = context.getEnvironment().getSources().get(root.getId());
+			break;
+		case VIEW:
+			res = context.getEnvironment().getViews().get(root.getId());
+			break;
+			default:
+				res = null;
+		}
+		
+		if(res==null) return SafeType.getNull();
+		
+		ESet set = XmuFactory.eINSTANCE.createESet();
+		EList<EObject> objs = new BasicEList<EObject>();
+		set.setEList(objs);
+		
+		TreeIterator<EObject> it = res.getAllContents();
+		
+		while(it.hasNext()) {
+			EObject o = it.next();
+			if(allInstanceExpr.getType().isInstance(o)) objs.add(o);
+		}
+		
+		return SafeType.createFromValue(set);
+	}
+
+	@Override
 	public SafeType interprete_edu_ustb_sei_mde_xmu_RuleCallStatement(
 			RuleCallStatement ruleCallStatement, XmuContext context) {
 		XmuContext newContext = new XmuContext(context.getEnvironment());
@@ -288,7 +325,7 @@ public class XmuExpressionCheck extends
 			newContext.putValue(fp.getVariable(), value);
 			
 			if(fp.getTag()==VariableFlag.SOURCE) {
-				if(!(ap instanceof VariableExp)) return SafeType.getInvalid(); // you are not allowed to pass a derived value to a source variable
+				if(!(ap instanceof VariableExp) || !(ap instanceof AllInstanceExpr)) return SafeType.getInvalid(); // you are not allowed to pass a derived value to a source variable
 				Variable spV = context.getVariable(((VariableExp)ap).getVar().getName()+Util.POST_FLAG);
 				SafeType spValue = context.getSafeTypeValue(spV);
 				Variable fspv = newContext.getVariable(fp.getVariable().getName()+Util.POST_FLAG);

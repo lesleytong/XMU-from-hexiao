@@ -526,6 +526,13 @@ public class XmuSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case XmuPackage.LOOP_PATH: {
+				LoopPath loopPath = (LoopPath)theEObject;
+				T result = caseLoopPath(loopPath);
+				if (result == null) result = casePath(loopPath);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case XmuPackage.START_STATEMENT: {
 				StartStatement startStatement = (StartStatement)theEObject;
 				T result = caseStartStatement(startStatement);
@@ -549,6 +556,19 @@ public class XmuSwitch<T> extends Switch<T> {
 				PrintStatement printStatement = (PrintStatement)theEObject;
 				T result = casePrintStatement(printStatement);
 				if (result == null) result = caseStatement(printStatement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case XmuPackage.ALL_INSTANCE_EXPR: {
+				AllInstanceExpr allInstanceExpr = (AllInstanceExpr)theEObject;
+				T result = caseAllInstanceExpr(allInstanceExpr);
+				if (result == null) result = caseExpr(allInstanceExpr);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case XmuPackage.ESET: {
+				ESet eSet = (ESet)theEObject;
+				T result = caseESet(eSet);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1337,6 +1357,21 @@ public class XmuSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Loop Path</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Loop Path</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLoopPath(LoopPath object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Start Statement</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1393,6 +1428,36 @@ public class XmuSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T casePrintStatement(PrintStatement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>All Instance Expr</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>All Instance Expr</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAllInstanceExpr(AllInstanceExpr object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>ESet</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>ESet</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseESet(ESet object) {
 		return null;
 	}
 

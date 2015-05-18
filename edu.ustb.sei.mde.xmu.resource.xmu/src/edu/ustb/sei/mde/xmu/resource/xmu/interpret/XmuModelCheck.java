@@ -14,6 +14,10 @@ import org.eclipse.emf.ecore.resource.Resource;
 import edu.ustb.sei.commonutil.util.Pair;
 import edu.ustb.sei.mde.xmu.*;
 import edu.ustb.sei.mde.xmu.resource.xmu.analysis.Util;
+import edu.ustb.sei.mde.xmu.resource.xmu.interpret.internal.StringConstant;
+import edu.ustb.sei.mde.xmu.resource.xmu.interpret.internal.StringPattern;
+import edu.ustb.sei.mde.xmu.resource.xmu.interpret.internal.StringPatternElement;
+import edu.ustb.sei.mde.xmu.resource.xmu.interpret.internal.StringVariable;
 
 /**
  * Subclasses should be split for put and get respectively
@@ -116,6 +120,65 @@ public class XmuModelCheck extends XmuExpressionCheck {
 		}
 	}
 	
+	protected boolean enforceStringPattern(String expectString, StringPattern pattern, XmuContext context) {
+		
+		List<StringPatternElement> patternDef = pattern.getPattern();
+		int fromIndex = 0;
+		StringVariable lastUnsolved = null;
+		
+		for(int i=0;i<patternDef.size();i++) {
+			StringPatternElement elem = patternDef.get(i);
+			
+			if(elem instanceof StringConstant) {
+				int lastCount = 0;
+				if(((StringConstant) elem).isFirst()==false) {
+					for(int j=i;j<patternDef.size();j++) {
+						StringPatternElement spe = patternDef.get(j);
+						if(spe instanceof StringConstant) {
+							if(((StringConstant) spe).getConstant().equals(((StringConstant) elem).getConstant()))
+								lastCount++;
+						}
+					}
+				}
+				
+				int id = getPosition(expectString,fromIndex,pattern,i,lastCount);
+				if(id==-1) return false;// expected string does not match the pattern
+				
+				if(lastUnsolved==null && fromIndex!=id) 
+					return false;// expected string does not match the pattern
+				else {
+					String subStr = expectString.substring(fromIndex, id);
+					if(enforceExpr(lastUnsolved.getUndefined(),context,SafeType.createFromValue(subStr))==false) 
+						return false;
+					lastUnsolved = null;
+				}
+				fromIndex = id + ((StringConstant) elem).getConstant().length();
+			} else if(elem instanceof StringVariable)
+				lastUnsolved = (StringVariable) elem;
+			else return false;
+		}
+
+		return true;
+	}
+	
+	protected int getPosition(String expectString, int fromIndex, StringPattern pattern, int elemIndex, int lastCount) {
+		StringConstant elem = (StringConstant) pattern.getPattern().get(elemIndex);
+		
+		if(lastCount==0) 
+			return expectString.indexOf(elem.getConstant(),fromIndex);
+		else {
+			int id = 0;
+			int endIndex = expectString.length();
+			while(lastCount>0) {
+				id = expectString.lastIndexOf(elem.getConstant(), endIndex);
+				if(id==-1) break;
+				endIndex = id;
+				lastCount--;
+			}
+			return id;
+		}
+	}
+	
 	protected boolean enforceAdditiveExpr(AdditiveExpr expr, XmuContext context, SafeType expect) {
 		// ...+undefined+... = expect
 		SafeType headValid = null;
@@ -125,60 +188,68 @@ public class XmuModelCheck extends XmuExpressionCheck {
 			return false;
 		} else {
 			if(expect.isString()) {
-				int index = 0;
-				int invalidAt = 0;
+				// collect String pattern
+				// match pattern
 				
-				for(;index<expr.getOperands().size();index++) {
-					AdditiveExprChild child = expr.getOperands().get(index);
-					SafeType value = EXPRESSION_CHECK.interprete(child,context);
-					if(value.isUndefined()) {
-						invalidAt = index;
-						break;
-					}
-					if(headValid==null) headValid = value;
-					else {
-						AdditiveOperator op = expr.getOperators().get(index-1);
-						headValid = EvaluationUtil.additive(op, headValid, value);
-					}
-				}
+				StringPattern pattern = StringPattern.getStringPattern(expr, context);
+				if(pattern==null) return false;
+				if(enforceStringPattern(expect.getStringValue(), pattern, context)==false) return false;
+				else return true;
 				
-				index ++;
-				
-				for(;index<expr.getOperands().size();index++) {
-					AdditiveExprChild child = expr.getOperands().get(index);
-					SafeType value = EXPRESSION_CHECK.interprete(child,context);
-					if(tailValid==null) tailValid = value;
-					else {
-						AdditiveOperator op = expr.getOperators().get(index-1);
-						tailValid = EvaluationUtil.additive(op, tailValid, value);
-					}
-				}
-				
-				AdditiveExprChild invalid = expr.getOperands().get(invalidAt);
-				
-				String wholeString = expect.getStringValue();
-				String headString = headValid == null ? null : headValid.getStringValue();
-				String tailString = tailValid == null ? null : tailValid.getStringValue();
-				
-				SafeType realExpect = null;
-				
-				if(headString == null && tailString == null) {
-					return enforceExpr(invalid,context,expect);
-				} else if(headString != null && tailString == null) {
-					if(wholeString.startsWith(headString))
-						realExpect = SafeType.createFromValue(wholeString.substring(headString.length()));
-				} else if(headString == null && tailString != null) {
-					if(wholeString.endsWith(tailString))
-						realExpect = SafeType.createFromValue(wholeString.substring(0,wholeString.length()-tailString.length()));
-				} else if(headString != null && tailString != null) {
-					if(wholeString.startsWith(headString) && wholeString.endsWith(tailString) && wholeString.length()>headString.length()+tailString.length())
-						realExpect = SafeType.createFromValue(wholeString.substring(headString.length(), wholeString.length()-tailString.length()));
-				} else {
-					throw new RuntimeErrorException(null, "Unexpected Control Flow");
-				}
-				
-				if(realExpect == null) return false;
-				return enforceExpr(invalid,context,realExpect);
+//				int index = 0;
+//				int invalidAt = 0;
+//				
+//				for(;index<expr.getOperands().size();index++) {
+//					AdditiveExprChild child = expr.getOperands().get(index);
+//					SafeType value = EXPRESSION_CHECK.interprete(child,context);
+//					if(value.isUndefined()) {
+//						invalidAt = index;
+//						break;
+//					}
+//					if(headValid==null) headValid = value;
+//					else {
+//						AdditiveOperator op = expr.getOperators().get(index-1);
+//						headValid = EvaluationUtil.additive(op, headValid, value);
+//					}
+//				}
+//				
+//				index ++;
+//				
+//				for(;index<expr.getOperands().size();index++) {
+//					AdditiveExprChild child = expr.getOperands().get(index);
+//					SafeType value = EXPRESSION_CHECK.interprete(child,context);
+//					if(tailValid==null) tailValid = value;
+//					else {
+//						AdditiveOperator op = expr.getOperators().get(index-1);
+//						tailValid = EvaluationUtil.additive(op, tailValid, value);
+//					}
+//				}
+//				
+//				AdditiveExprChild invalid = expr.getOperands().get(invalidAt);
+//				
+//				String wholeString = expect.getStringValue();
+//				String headString = headValid == null ? null : headValid.getStringValue();
+//				String tailString = tailValid == null ? null : tailValid.getStringValue();
+//				
+//				SafeType realExpect = null;
+//				
+//				if(headString == null && tailString == null) {
+//					return enforceExpr(invalid,context,expect);
+//				} else if(headString != null && tailString == null) {
+//					if(wholeString.startsWith(headString))
+//						realExpect = SafeType.createFromValue(wholeString.substring(headString.length()));
+//				} else if(headString == null && tailString != null) {
+//					if(wholeString.endsWith(tailString))
+//						realExpect = SafeType.createFromValue(wholeString.substring(0,wholeString.length()-tailString.length()));
+//				} else if(headString != null && tailString != null) {
+//					if(wholeString.startsWith(headString) && wholeString.endsWith(tailString) && wholeString.length()>headString.length()+tailString.length())
+//						realExpect = SafeType.createFromValue(wholeString.substring(headString.length(), wholeString.length()-tailString.length()));
+//				} else {
+//					throw new RuntimeErrorException(null, "Unexpected Control Flow");
+//				}
+//				
+//				if(realExpect == null) return false;
+//				return enforceExpr(invalid,context,realExpect);
 				
 			} else {
 				//数值型
@@ -359,7 +430,8 @@ public class XmuModelCheck extends XmuExpressionCheck {
 			SafeType right = this.interprete(relationalExpr.getRight(),context);
 			
 			if(left.isUndefined() && right.isUndefined()) return SafeType.getInvalid();
-			else if(left.isUndefined() || right.isUndefined()) {
+			else if((left.isUndefined() || right.isUndefined())
+					||((left.isString() || right.isString()) && (left.isInvalid() || right.isInvalid()))) {
 				if(left.isUndefined()) {
 					if(enforceExpr(relationalExpr.getLeft(),context,right))
 						return Just.TRUE;

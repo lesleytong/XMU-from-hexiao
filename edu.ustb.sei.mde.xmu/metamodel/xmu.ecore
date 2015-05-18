@@ -207,6 +207,7 @@
   <eClassifiers xsi:type="ecore:EEnum" name="AdditiveOperator">
     <eLiterals name="add"/>
     <eLiterals name="sub" value="1"/>
+    <eLiterals name="append" value="2"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AdditiveExprChild" abstract="true" eSuperTypes="#//RelationalExprChild"/>
   <eClassifiers xsi:type="ecore:EClass" name="MultiplicativeExpr" eSuperTypes="#//AdditiveExprChild">
@@ -248,6 +249,19 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
         eType="#//Expr" containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LoopPath" eSuperTypes="#//Path">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" lowerBound="1"
+        eType="#//LoopOperator"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" lowerBound="1"
+        eType="#//Variable" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="body" lowerBound="1" eType="#//Expr"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="LoopOperator">
+    <eLiterals name="select"/>
+    <eLiterals name="forAll" value="1"/>
+    <eLiterals name="exists" value="2"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StartStatement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="rule" lowerBound="1" eType="#//Rule"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="root" lowerBound="1" upperBound="-1"
@@ -265,5 +279,15 @@
   <eClassifiers xsi:type="ecore:EClass" name="PrintStatement" eSuperTypes="#//Statement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="expr" lowerBound="1" eType="#//Expr"
         containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AllInstanceExpr" eSuperTypes="#//Expr">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="root" lowerBound="1" eType="#//StartRoot"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ESet">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="content" upperBound="-1"
+        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" volatile="true"
+        transient="true"/>
   </eClassifiers>
 </ecore:EPackage>

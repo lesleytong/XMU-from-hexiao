@@ -1,6 +1,5 @@
 package edu.ustb.sei.mde.xmu.resource.xmu.analysis;
 
-import java.awt.image.CropImageFilter;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
@@ -9,11 +8,9 @@ import java.util.Map.Entry;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -23,7 +20,6 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.util.EcoreUtil.CrossReferencer;
 
 import edu.ustb.sei.mde.xmu.CasePatternStatement;
 import edu.ustb.sei.mde.xmu.CaseSubStatement;
@@ -35,11 +31,9 @@ import edu.ustb.sei.mde.xmu.Rule;
 import edu.ustb.sei.mde.xmu.Statement;
 import edu.ustb.sei.mde.xmu.SwitchStatement;
 import edu.ustb.sei.mde.xmu.TaggedElement;
-import edu.ustb.sei.mde.xmu.Update;
 import edu.ustb.sei.mde.xmu.Variable;
 import edu.ustb.sei.mde.xmu.XMUModel;
 import edu.ustb.sei.mde.xmu.XmuFactory;
-import edu.ustb.sei.mde.xmu.XmuPackage;
 
 public class Util {
 	static public final String POST_FLAG = "@post";

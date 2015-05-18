@@ -248,92 +248,100 @@ public class XmuPrinter2 implements edu.ustb.sei.mde.xmu.resource.xmu.IXmuTextPr
 			printInternal(element, edu.ustb.sei.mde.xmu.resource.xmu.grammar.XmuGrammarInformationProvider.XMU_14, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu.OperationPath) {
+		if (element instanceof edu.ustb.sei.mde.xmu.LoopPath) {
 			printInternal(element, edu.ustb.sei.mde.xmu.resource.xmu.grammar.XmuGrammarInformationProvider.XMU_15, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu.StringLiteral) {
+		if (element instanceof edu.ustb.sei.mde.xmu.OperationPath) {
 			printInternal(element, edu.ustb.sei.mde.xmu.resource.xmu.grammar.XmuGrammarInformationProvider.XMU_16, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu.EmptyLiteral) {
+		if (element instanceof edu.ustb.sei.mde.xmu.StringLiteral) {
 			printInternal(element, edu.ustb.sei.mde.xmu.resource.xmu.grammar.XmuGrammarInformationProvider.XMU_17, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu.IntegerLiteral) {
+		if (element instanceof edu.ustb.sei.mde.xmu.EmptyLiteral) {
 			printInternal(element, edu.ustb.sei.mde.xmu.resource.xmu.grammar.XmuGrammarInformationProvider.XMU_18, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu.BooleanLiteral) {
+		if (element instanceof edu.ustb.sei.mde.xmu.IntegerLiteral) {
 			printInternal(element, edu.ustb.sei.mde.xmu.resource.xmu.grammar.XmuGrammarInformationProvider.XMU_19, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu.EnumLiteral) {
+		if (element instanceof edu.ustb.sei.mde.xmu.BooleanLiteral) {
 			printInternal(element, edu.ustb.sei.mde.xmu.resource.xmu.grammar.XmuGrammarInformationProvider.XMU_20, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu.BlockStatement) {
+		if (element instanceof edu.ustb.sei.mde.xmu.EnumLiteral) {
 			printInternal(element, edu.ustb.sei.mde.xmu.resource.xmu.grammar.XmuGrammarInformationProvider.XMU_21, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu.SwitchStatement) {
+		if (element instanceof edu.ustb.sei.mde.xmu.BlockStatement) {
 			printInternal(element, edu.ustb.sei.mde.xmu.resource.xmu.grammar.XmuGrammarInformationProvider.XMU_22, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu.CasePatternStatement) {
+		if (element instanceof edu.ustb.sei.mde.xmu.SwitchStatement) {
 			printInternal(element, edu.ustb.sei.mde.xmu.resource.xmu.grammar.XmuGrammarInformationProvider.XMU_23, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu.CaseValueStatement) {
+		if (element instanceof edu.ustb.sei.mde.xmu.CasePatternStatement) {
 			printInternal(element, edu.ustb.sei.mde.xmu.resource.xmu.grammar.XmuGrammarInformationProvider.XMU_24, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu.RuleCallStatement) {
+		if (element instanceof edu.ustb.sei.mde.xmu.CaseValueStatement) {
 			printInternal(element, edu.ustb.sei.mde.xmu.resource.xmu.grammar.XmuGrammarInformationProvider.XMU_25, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu.UpdatePattern) {
+		if (element instanceof edu.ustb.sei.mde.xmu.RuleCallStatement) {
 			printInternal(element, edu.ustb.sei.mde.xmu.resource.xmu.grammar.XmuGrammarInformationProvider.XMU_26, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu.DeleteNode) {
+		if (element instanceof edu.ustb.sei.mde.xmu.UpdatePattern) {
 			printInternal(element, edu.ustb.sei.mde.xmu.resource.xmu.grammar.XmuGrammarInformationProvider.XMU_27, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu.DeleteLink) {
+		if (element instanceof edu.ustb.sei.mde.xmu.DeleteNode) {
 			printInternal(element, edu.ustb.sei.mde.xmu.resource.xmu.grammar.XmuGrammarInformationProvider.XMU_28, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu.BooleanOrExpr) {
+		if (element instanceof edu.ustb.sei.mde.xmu.DeleteLink) {
 			printInternal(element, edu.ustb.sei.mde.xmu.resource.xmu.grammar.XmuGrammarInformationProvider.XMU_29, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu.BooleanAndExpr) {
+		if (element instanceof edu.ustb.sei.mde.xmu.BooleanOrExpr) {
 			printInternal(element, edu.ustb.sei.mde.xmu.resource.xmu.grammar.XmuGrammarInformationProvider.XMU_30, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu.RelationalExpr) {
+		if (element instanceof edu.ustb.sei.mde.xmu.BooleanAndExpr) {
 			printInternal(element, edu.ustb.sei.mde.xmu.resource.xmu.grammar.XmuGrammarInformationProvider.XMU_31, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu.AdditiveExpr) {
+		if (element instanceof edu.ustb.sei.mde.xmu.RelationalExpr) {
 			printInternal(element, edu.ustb.sei.mde.xmu.resource.xmu.grammar.XmuGrammarInformationProvider.XMU_32, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu.MultiplicativeExpr) {
+		if (element instanceof edu.ustb.sei.mde.xmu.AdditiveExpr) {
 			printInternal(element, edu.ustb.sei.mde.xmu.resource.xmu.grammar.XmuGrammarInformationProvider.XMU_33, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu.ParenExpr) {
+		if (element instanceof edu.ustb.sei.mde.xmu.MultiplicativeExpr) {
 			printInternal(element, edu.ustb.sei.mde.xmu.resource.xmu.grammar.XmuGrammarInformationProvider.XMU_34, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu.UnaryExpr) {
+		if (element instanceof edu.ustb.sei.mde.xmu.ParenExpr) {
 			printInternal(element, edu.ustb.sei.mde.xmu.resource.xmu.grammar.XmuGrammarInformationProvider.XMU_35, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu.PrintStatement) {
+		if (element instanceof edu.ustb.sei.mde.xmu.UnaryExpr) {
 			printInternal(element, edu.ustb.sei.mde.xmu.resource.xmu.grammar.XmuGrammarInformationProvider.XMU_36, foundFormattingElements);
+			return;
+		}
+		if (element instanceof edu.ustb.sei.mde.xmu.PrintStatement) {
+			printInternal(element, edu.ustb.sei.mde.xmu.resource.xmu.grammar.XmuGrammarInformationProvider.XMU_37, foundFormattingElements);
+			return;
+		}
+		if (element instanceof edu.ustb.sei.mde.xmu.AllInstanceExpr) {
+			printInternal(element, edu.ustb.sei.mde.xmu.resource.xmu.grammar.XmuGrammarInformationProvider.XMU_38, foundFormattingElements);
 			return;
 		}
 		if (element instanceof edu.ustb.sei.mde.xmu.Pattern) {

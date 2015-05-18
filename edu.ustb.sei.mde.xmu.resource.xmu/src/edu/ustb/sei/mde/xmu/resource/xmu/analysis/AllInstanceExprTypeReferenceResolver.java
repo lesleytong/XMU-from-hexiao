@@ -12,11 +12,11 @@ import org.eclipse.emf.ecore.EcorePackage;
 import edu.ustb.sei.mde.xmu.XMUModel;
 import edu.ustb.sei.mde.xmu.XmuPackage;
 
-public class PatternNodeTypeReferenceResolver implements edu.ustb.sei.mde.xmu.resource.xmu.IXmuReferenceResolver<edu.ustb.sei.mde.xmu.PatternNode, org.eclipse.emf.ecore.EClass> {
+public class AllInstanceExprTypeReferenceResolver implements edu.ustb.sei.mde.xmu.resource.xmu.IXmuReferenceResolver<edu.ustb.sei.mde.xmu.AllInstanceExpr, org.eclipse.emf.ecore.EClass> {
 	
-	private edu.ustb.sei.mde.xmu.resource.xmu.analysis.XmuDefaultResolverDelegate<edu.ustb.sei.mde.xmu.PatternNode, org.eclipse.emf.ecore.EClass> delegate = new edu.ustb.sei.mde.xmu.resource.xmu.analysis.XmuDefaultResolverDelegate<edu.ustb.sei.mde.xmu.PatternNode, org.eclipse.emf.ecore.EClass>();
+	private edu.ustb.sei.mde.xmu.resource.xmu.analysis.XmuDefaultResolverDelegate<edu.ustb.sei.mde.xmu.AllInstanceExpr, org.eclipse.emf.ecore.EClass> delegate = new edu.ustb.sei.mde.xmu.resource.xmu.analysis.XmuDefaultResolverDelegate<edu.ustb.sei.mde.xmu.AllInstanceExpr, org.eclipse.emf.ecore.EClass>();
 	
-	public void resolve(String identifier, edu.ustb.sei.mde.xmu.PatternNode container, org.eclipse.emf.ecore.EReference reference, int position, boolean resolveFuzzy, final edu.ustb.sei.mde.xmu.resource.xmu.IXmuReferenceResolveResult<org.eclipse.emf.ecore.EClass> result) {
+	public void resolve(String identifier, edu.ustb.sei.mde.xmu.AllInstanceExpr container, org.eclipse.emf.ecore.EReference reference, int position, boolean resolveFuzzy, final edu.ustb.sei.mde.xmu.resource.xmu.IXmuReferenceResolveResult<org.eclipse.emf.ecore.EClass> result) {
 		if(identifier==null || container==null) {
 			return;
 		}
@@ -43,13 +43,11 @@ public class PatternNodeTypeReferenceResolver implements edu.ustb.sei.mde.xmu.re
 		result.addMapping(identifier, cls);
 	}
 	
-	public String deResolve(org.eclipse.emf.ecore.EClass element, edu.ustb.sei.mde.xmu.PatternNode container, org.eclipse.emf.ecore.EReference reference) {
-//		
+	public String deResolve(org.eclipse.emf.ecore.EClass element, edu.ustb.sei.mde.xmu.AllInstanceExpr container, org.eclipse.emf.ecore.EReference reference) {
 		if(element==EcorePackage.eINSTANCE.getEObject()) return "Any";
 		else if(element==XmuPackage.eINSTANCE.getEResource()) return "Resource";
 		else if(element==XmuPackage.eINSTANCE.getESet()) return "Set";
 		else return element.getName();
-//		return delegate.deResolve(element, container, reference);
 	}
 	
 	public void setOptions(java.util.Map<?,?> options) {

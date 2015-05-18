@@ -108,6 +108,10 @@ public class XmuPrinter implements edu.ustb.sei.mde.xmu.resource.xmu.IXmuTextPri
 			print_edu_ustb_sei_mde_xmu_FeaturePath((edu.ustb.sei.mde.xmu.FeaturePath) element, globaltab, out);
 			return;
 		}
+		if (element instanceof edu.ustb.sei.mde.xmu.LoopPath) {
+			print_edu_ustb_sei_mde_xmu_LoopPath((edu.ustb.sei.mde.xmu.LoopPath) element, globaltab, out);
+			return;
+		}
 		if (element instanceof edu.ustb.sei.mde.xmu.OperationPath) {
 			print_edu_ustb_sei_mde_xmu_OperationPath((edu.ustb.sei.mde.xmu.OperationPath) element, globaltab, out);
 			return;
@@ -194,6 +198,10 @@ public class XmuPrinter implements edu.ustb.sei.mde.xmu.resource.xmu.IXmuTextPri
 		}
 		if (element instanceof edu.ustb.sei.mde.xmu.PrintStatement) {
 			print_edu_ustb_sei_mde_xmu_PrintStatement((edu.ustb.sei.mde.xmu.PrintStatement) element, globaltab, out);
+			return;
+		}
+		if (element instanceof edu.ustb.sei.mde.xmu.AllInstanceExpr) {
+			print_edu_ustb_sei_mde_xmu_AllInstanceExpr((edu.ustb.sei.mde.xmu.AllInstanceExpr) element, globaltab, out);
 			return;
 		}
 		if (element instanceof edu.ustb.sei.mde.xmu.Pattern) {
@@ -1555,9 +1563,6 @@ public class XmuPrinter implements edu.ustb.sei.mde.xmu.resource.xmu.IXmuTextPri
 	public void print_edu_ustb_sei_mde_xmu_VariableExp_0(edu.ustb.sei.mde.xmu.VariableExp element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
 		String localtab = outertab;
 		int count;
-		// DEFINITION PART BEGINS (CsString)
-		out.print(".");
-		out.print(" ");
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("path");
 		if (count > 0) {
@@ -1589,6 +1594,9 @@ public class XmuPrinter implements edu.ustb.sei.mde.xmu.resource.xmu.IXmuTextPri
 		printCountingMap.put("feature", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
+		// DEFINITION PART BEGINS (CsString)
+		out.print(".");
+		out.print(" ");
 		// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
 		count = printCountingMap.get("feature");
 		if (count > 0) {
@@ -1601,6 +1609,64 @@ public class XmuPrinter implements edu.ustb.sei.mde.xmu.resource.xmu.IXmuTextPri
 			}
 			printCountingMap.put("feature", count - 1);
 		}
+	}
+	
+	
+	public void print_edu_ustb_sei_mde_xmu_LoopPath(edu.ustb.sei.mde.xmu.LoopPath element, String outertab, java.io.PrintWriter out) {
+		String localtab = outertab;
+		// The printCountingMap contains a mapping from feature names to the number of
+		// remaining elements that still need to be printed. The map is initialized with
+		// the number of elements stored in each structural feature. For lists this is the
+		// list size. For non-multiple features it is either 1 (if the feature is set) or
+		// 0 (if the feature is null).
+		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(3);
+		Object temp;
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu.XmuPackage.LOOP_PATH__OPERATOR));
+		printCountingMap.put("operator", temp == null ? 0 : 1);
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu.XmuPackage.LOOP_PATH__VARIABLE));
+		printCountingMap.put("variable", temp == null ? 0 : 1);
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu.XmuPackage.LOOP_PATH__BODY));
+		printCountingMap.put("body", temp == null ? 0 : 1);
+		// print collected hidden tokens
+		int count;
+		// DEFINITION PART BEGINS (CsString)
+		out.print("->");
+		out.print(" ");
+		// DEFINITION PART BEGINS (EnumTerminal)
+		count = printCountingMap.get("operator");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu.XmuPackage.LOOP_PATH__OPERATOR));
+			if (o != null) {
+			}
+			printCountingMap.put("operator", count - 1);
+		}
+		// DEFINITION PART BEGINS (CsString)
+		out.print("(");
+		out.print(" ");
+		// DEFINITION PART BEGINS (Containment)
+		count = printCountingMap.get("variable");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu.XmuPackage.LOOP_PATH__VARIABLE));
+			if (o != null) {
+				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
+			}
+			printCountingMap.put("variable", count - 1);
+		}
+		// DEFINITION PART BEGINS (CsString)
+		out.print("|");
+		out.print(" ");
+		// DEFINITION PART BEGINS (Containment)
+		count = printCountingMap.get("body");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu.XmuPackage.LOOP_PATH__BODY));
+			if (o != null) {
+				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
+			}
+			printCountingMap.put("body", count - 1);
+		}
+		// DEFINITION PART BEGINS (CsString)
+		out.print(")");
+		out.print(" ");
 	}
 	
 	
@@ -1622,6 +1688,9 @@ public class XmuPrinter implements edu.ustb.sei.mde.xmu.resource.xmu.IXmuTextPri
 		java.io.StringWriter sWriter = null;
 		java.io.PrintWriter out1 = null;
 		java.util.Map<String, Integer> printCountingMap1 = null;
+		// DEFINITION PART BEGINS (CsString)
+		out.print(".");
+		out.print(" ");
 		// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
 		count = printCountingMap.get("operation");
 		if (count > 0) {
@@ -2922,6 +2991,48 @@ public class XmuPrinter implements edu.ustb.sei.mde.xmu.resource.xmu.IXmuTextPri
 				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
 			}
 			printCountingMap.put("expr", count - 1);
+		}
+	}
+	
+	
+	public void print_edu_ustb_sei_mde_xmu_AllInstanceExpr(edu.ustb.sei.mde.xmu.AllInstanceExpr element, String outertab, java.io.PrintWriter out) {
+		String localtab = outertab;
+		// The printCountingMap contains a mapping from feature names to the number of
+		// remaining elements that still need to be printed. The map is initialized with
+		// the number of elements stored in each structural feature. For lists this is the
+		// list size. For non-multiple features it is either 1 (if the feature is set) or
+		// 0 (if the feature is null).
+		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(2);
+		Object temp;
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu.XmuPackage.ALL_INSTANCE_EXPR__ROOT));
+		printCountingMap.put("root", temp == null ? 0 : 1);
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu.XmuPackage.ALL_INSTANCE_EXPR__TYPE));
+		printCountingMap.put("type", temp == null ? 0 : 1);
+		// print collected hidden tokens
+		int count;
+		// DEFINITION PART BEGINS (Containment)
+		count = printCountingMap.get("root");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu.XmuPackage.ALL_INSTANCE_EXPR__ROOT));
+			if (o != null) {
+				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
+			}
+			printCountingMap.put("root", count - 1);
+		}
+		// DEFINITION PART BEGINS (CsString)
+		out.print("//");
+		out.print(" ");
+		// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
+		count = printCountingMap.get("type");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu.XmuPackage.ALL_INSTANCE_EXPR__TYPE));
+			if (o != null) {
+				edu.ustb.sei.mde.xmu.resource.xmu.IXmuTokenResolver resolver = tokenResolverFactory.createTokenResolver("NAME");
+				resolver.setOptions(getOptions());
+				out.print(resolver.deResolve(getReferenceResolverSwitch() == null ? null : getReferenceResolverSwitch().getAllInstanceExprTypeReferenceResolver().deResolve((org.eclipse.emf.ecore.EClass) o, element, (org.eclipse.emf.ecore.EReference) element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu.XmuPackage.ALL_INSTANCE_EXPR__TYPE)), element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu.XmuPackage.ALL_INSTANCE_EXPR__TYPE), element));
+				out.print(" ");
+			}
+			printCountingMap.put("type", count - 1);
 		}
 	}
 	

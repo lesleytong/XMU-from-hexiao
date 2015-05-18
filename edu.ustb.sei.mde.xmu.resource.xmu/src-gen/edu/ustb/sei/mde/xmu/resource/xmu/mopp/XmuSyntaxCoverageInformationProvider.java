@@ -25,6 +25,7 @@ public class XmuSyntaxCoverageInformationProvider {
 			edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getPatternEqualExpr(),
 			edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getVariableExp(),
 			edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getFeaturePath(),
+			edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getLoopPath(),
 			edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getOperationPath(),
 			edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getStringLiteral(),
 			edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getEmptyLiteral(),
@@ -47,6 +48,7 @@ public class XmuSyntaxCoverageInformationProvider {
 			edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getParenExpr(),
 			edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getUnaryExpr(),
 			edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getPrintStatement(),
+			edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getAllInstanceExpr(),
 		};
 	}
 	

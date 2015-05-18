@@ -2242,6 +2242,61 @@ public interface XmuPackage extends EPackage {
 	int OPERATION_PATH_OPERATION_COUNT = PATH_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu.impl.LoopPathImpl <em>Loop Path</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.xmu.impl.LoopPathImpl
+	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getLoopPath()
+	 * @generated
+	 */
+	int LOOP_PATH = 52;
+
+	/**
+	 * The feature id for the '<em><b>Operator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOOP_PATH__OPERATOR = PATH_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Variable</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOOP_PATH__VARIABLE = PATH_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Body</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOOP_PATH__BODY = PATH_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Loop Path</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOOP_PATH_FEATURE_COUNT = PATH_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of operations of the '<em>Loop Path</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOOP_PATH_OPERATION_COUNT = PATH_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu.impl.StartStatementImpl <em>Start Statement</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2249,7 +2304,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getStartStatement()
 	 * @generated
 	 */
-	int START_STATEMENT = 52;
+	int START_STATEMENT = 53;
 
 	/**
 	 * The feature id for the '<em><b>Rule</b></em>' reference.
@@ -2295,7 +2350,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getStartRoot()
 	 * @generated
 	 */
-	int START_ROOT = 53;
+	int START_ROOT = 54;
 
 	/**
 	 * The feature id for the '<em><b>Tag</b></em>' attribute.
@@ -2334,6 +2389,16 @@ public interface XmuPackage extends EPackage {
 	int START_ROOT_OPERATION_COUNT = TAGGED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu.impl.ESetImpl <em>ESet</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.xmu.impl.ESetImpl
+	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getESet()
+	 * @generated
+	 */
+	int ESET = 58;
+
+	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu.impl.EResourceImpl <em>EResource</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2341,7 +2406,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getEResource()
 	 * @generated
 	 */
-	int ERESOURCE = 54;
+	int ERESOURCE = 55;
 
 	/**
 	 * The feature id for the '<em><b>Content</b></em>' reference list.
@@ -2378,7 +2443,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getPrintStatement()
 	 * @generated
 	 */
-	int PRINT_STATEMENT = 55;
+	int PRINT_STATEMENT = 56;
 
 	/**
 	 * The feature id for the '<em><b>Expr</b></em>' containment reference.
@@ -2408,6 +2473,79 @@ public interface XmuPackage extends EPackage {
 	int PRINT_STATEMENT_OPERATION_COUNT = STATEMENT_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu.impl.AllInstanceExprImpl <em>All Instance Expr</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.xmu.impl.AllInstanceExprImpl
+	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getAllInstanceExpr()
+	 * @generated
+	 */
+	int ALL_INSTANCE_EXPR = 57;
+
+	/**
+	 * The feature id for the '<em><b>Root</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALL_INSTANCE_EXPR__ROOT = EXPR_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALL_INSTANCE_EXPR__TYPE = EXPR_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>All Instance Expr</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALL_INSTANCE_EXPR_FEATURE_COUNT = EXPR_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>All Instance Expr</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALL_INSTANCE_EXPR_OPERATION_COUNT = EXPR_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Content</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ESET__CONTENT = 0;
+
+	/**
+	 * The number of structural features of the '<em>ESet</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ESET_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>ESet</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ESET_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu.VariableFlag <em>Variable Flag</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2415,7 +2553,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getVariableFlag()
 	 * @generated
 	 */
-	int VARIABLE_FLAG = 56;
+	int VARIABLE_FLAG = 59;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu.RelationalOperator <em>Relational Operator</em>}' enum.
@@ -2425,7 +2563,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getRelationalOperator()
 	 * @generated
 	 */
-	int RELATIONAL_OPERATOR = 57;
+	int RELATIONAL_OPERATOR = 60;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu.EmptyType <em>Empty Type</em>}' enum.
@@ -2435,7 +2573,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getEmptyType()
 	 * @generated
 	 */
-	int EMPTY_TYPE = 58;
+	int EMPTY_TYPE = 61;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu.VStmtType <em>VStmt Type</em>}' enum.
@@ -2445,7 +2583,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getVStmtType()
 	 * @generated
 	 */
-	int VSTMT_TYPE = 59;
+	int VSTMT_TYPE = 62;
 
 
 	/**
@@ -2456,7 +2594,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getAdditiveOperator()
 	 * @generated
 	 */
-	int ADDITIVE_OPERATOR = 60;
+	int ADDITIVE_OPERATOR = 63;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu.MultiplicativeOperator <em>Multiplicative Operator</em>}' enum.
@@ -2466,7 +2604,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getMultiplicativeOperator()
 	 * @generated
 	 */
-	int MULTIPLICATIVE_OPERATOR = 61;
+	int MULTIPLICATIVE_OPERATOR = 64;
 
 
 	/**
@@ -2477,7 +2615,18 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getUnaryOperator()
 	 * @generated
 	 */
-	int UNARY_OPERATOR = 62;
+	int UNARY_OPERATOR = 65;
+
+
+	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu.LoopOperator <em>Loop Operator</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.xmu.LoopOperator
+	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getLoopOperator()
+	 * @generated
+	 */
+	int LOOP_OPERATOR = 66;
 
 
 	/**
@@ -3749,6 +3898,49 @@ public interface XmuPackage extends EPackage {
 	EReference getOperationPath_Parameters();
 
 	/**
+	 * Returns the meta object for class '{@link edu.ustb.sei.mde.xmu.LoopPath <em>Loop Path</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Loop Path</em>'.
+	 * @see edu.ustb.sei.mde.xmu.LoopPath
+	 * @generated
+	 */
+	EClass getLoopPath();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.xmu.LoopPath#getOperator <em>Operator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Operator</em>'.
+	 * @see edu.ustb.sei.mde.xmu.LoopPath#getOperator()
+	 * @see #getLoopPath()
+	 * @generated
+	 */
+	EAttribute getLoopPath_Operator();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.xmu.LoopPath#getVariable <em>Variable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Variable</em>'.
+	 * @see edu.ustb.sei.mde.xmu.LoopPath#getVariable()
+	 * @see #getLoopPath()
+	 * @generated
+	 */
+	EReference getLoopPath_Variable();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.xmu.LoopPath#getBody <em>Body</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Body</em>'.
+	 * @see edu.ustb.sei.mde.xmu.LoopPath#getBody()
+	 * @see #getLoopPath()
+	 * @generated
+	 */
+	EReference getLoopPath_Body();
+
+	/**
 	 * Returns the meta object for class '{@link edu.ustb.sei.mde.xmu.StartStatement <em>Start Statement</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3844,6 +4036,59 @@ public interface XmuPackage extends EPackage {
 	EReference getPrintStatement_Expr();
 
 	/**
+	 * Returns the meta object for class '{@link edu.ustb.sei.mde.xmu.AllInstanceExpr <em>All Instance Expr</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>All Instance Expr</em>'.
+	 * @see edu.ustb.sei.mde.xmu.AllInstanceExpr
+	 * @generated
+	 */
+	EClass getAllInstanceExpr();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.xmu.AllInstanceExpr#getRoot <em>Root</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Root</em>'.
+	 * @see edu.ustb.sei.mde.xmu.AllInstanceExpr#getRoot()
+	 * @see #getAllInstanceExpr()
+	 * @generated
+	 */
+	EReference getAllInstanceExpr_Root();
+
+	/**
+	 * Returns the meta object for the reference '{@link edu.ustb.sei.mde.xmu.AllInstanceExpr#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Type</em>'.
+	 * @see edu.ustb.sei.mde.xmu.AllInstanceExpr#getType()
+	 * @see #getAllInstanceExpr()
+	 * @generated
+	 */
+	EReference getAllInstanceExpr_Type();
+
+	/**
+	 * Returns the meta object for class '{@link edu.ustb.sei.mde.xmu.ESet <em>ESet</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>ESet</em>'.
+	 * @see edu.ustb.sei.mde.xmu.ESet
+	 * @generated
+	 */
+	EClass getESet();
+
+	/**
+	 * Returns the meta object for the reference list '{@link edu.ustb.sei.mde.xmu.ESet#getContent <em>Content</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Content</em>'.
+	 * @see edu.ustb.sei.mde.xmu.ESet#getContent()
+	 * @see #getESet()
+	 * @generated
+	 */
+	EReference getESet_Content();
+
+	/**
 	 * Returns the meta object for enum '{@link edu.ustb.sei.mde.xmu.VariableFlag <em>Variable Flag</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3912,6 +4157,16 @@ public interface XmuPackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getUnaryOperator();
+
+	/**
+	 * Returns the meta object for enum '{@link edu.ustb.sei.mde.xmu.LoopOperator <em>Loop Operator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Loop Operator</em>'.
+	 * @see edu.ustb.sei.mde.xmu.LoopOperator
+	 * @generated
+	 */
+	EEnum getLoopOperator();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -5000,6 +5255,40 @@ public interface XmuPackage extends EPackage {
 		EReference OPERATION_PATH__PARAMETERS = eINSTANCE.getOperationPath_Parameters();
 
 		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu.impl.LoopPathImpl <em>Loop Path</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.xmu.impl.LoopPathImpl
+		 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getLoopPath()
+		 * @generated
+		 */
+		EClass LOOP_PATH = eINSTANCE.getLoopPath();
+
+		/**
+		 * The meta object literal for the '<em><b>Operator</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LOOP_PATH__OPERATOR = eINSTANCE.getLoopPath_Operator();
+
+		/**
+		 * The meta object literal for the '<em><b>Variable</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LOOP_PATH__VARIABLE = eINSTANCE.getLoopPath_Variable();
+
+		/**
+		 * The meta object literal for the '<em><b>Body</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LOOP_PATH__BODY = eINSTANCE.getLoopPath_Body();
+
+		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu.impl.StartStatementImpl <em>Start Statement</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -5080,6 +5369,50 @@ public interface XmuPackage extends EPackage {
 		EReference PRINT_STATEMENT__EXPR = eINSTANCE.getPrintStatement_Expr();
 
 		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu.impl.AllInstanceExprImpl <em>All Instance Expr</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.xmu.impl.AllInstanceExprImpl
+		 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getAllInstanceExpr()
+		 * @generated
+		 */
+		EClass ALL_INSTANCE_EXPR = eINSTANCE.getAllInstanceExpr();
+
+		/**
+		 * The meta object literal for the '<em><b>Root</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ALL_INSTANCE_EXPR__ROOT = eINSTANCE.getAllInstanceExpr_Root();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ALL_INSTANCE_EXPR__TYPE = eINSTANCE.getAllInstanceExpr_Type();
+
+		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu.impl.ESetImpl <em>ESet</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.xmu.impl.ESetImpl
+		 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getESet()
+		 * @generated
+		 */
+		EClass ESET = eINSTANCE.getESet();
+
+		/**
+		 * The meta object literal for the '<em><b>Content</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ESET__CONTENT = eINSTANCE.getESet_Content();
+
+		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu.VariableFlag <em>Variable Flag</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -5148,6 +5481,16 @@ public interface XmuPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum UNARY_OPERATOR = eINSTANCE.getUnaryOperator();
+
+		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu.LoopOperator <em>Loop Operator</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.xmu.LoopOperator
+		 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getLoopOperator()
+		 * @generated
+		 */
+		EEnum LOOP_OPERATOR = eINSTANCE.getLoopOperator();
 
 	}
 

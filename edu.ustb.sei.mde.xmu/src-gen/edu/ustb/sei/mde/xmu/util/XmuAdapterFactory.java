@@ -276,6 +276,10 @@ public class XmuAdapterFactory extends AdapterFactoryImpl {
 				return createOperationPathAdapter();
 			}
 			@Override
+			public Adapter caseLoopPath(LoopPath object) {
+				return createLoopPathAdapter();
+			}
+			@Override
 			public Adapter caseStartStatement(StartStatement object) {
 				return createStartStatementAdapter();
 			}
@@ -290,6 +294,14 @@ public class XmuAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter casePrintStatement(PrintStatement object) {
 				return createPrintStatementAdapter();
+			}
+			@Override
+			public Adapter caseAllInstanceExpr(AllInstanceExpr object) {
+				return createAllInstanceExprAdapter();
+			}
+			@Override
+			public Adapter caseESet(ESet object) {
+				return createESetAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -1040,6 +1052,20 @@ public class XmuAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.xmu.LoopPath <em>Loop Path</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.xmu.LoopPath
+	 * @generated
+	 */
+	public Adapter createLoopPathAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.xmu.StartStatement <em>Start Statement</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1092,6 +1118,34 @@ public class XmuAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createPrintStatementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.xmu.AllInstanceExpr <em>All Instance Expr</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.xmu.AllInstanceExpr
+	 * @generated
+	 */
+	public Adapter createAllInstanceExprAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.xmu.ESet <em>ESet</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.xmu.ESet
+	 * @generated
+	 */
+	public Adapter createESetAdapter() {
 		return null;
 	}
 
