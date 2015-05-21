@@ -58,8 +58,13 @@ public class StringPattern {
 					String lc = ((StringConstant) last).getConstant();
 					boolean lf = ((StringConstant) last).isFirst();
 					
-					((StringConstant) last).setConstant(lc+cc);
-					((StringConstant) last).setFirst(lf && cf);
+					if(cf && lf) {
+						((StringConstant) last).setConstant(lc+cc);
+						((StringConstant) last).setFirst(true);						
+					} else {
+						pattern.add(elem);
+					}
+					
 					return true;
 				}
 				else {

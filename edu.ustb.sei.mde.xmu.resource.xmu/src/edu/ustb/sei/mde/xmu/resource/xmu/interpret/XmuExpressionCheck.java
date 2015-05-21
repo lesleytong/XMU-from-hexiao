@@ -325,7 +325,7 @@ public class XmuExpressionCheck extends
 			newContext.putValue(fp.getVariable(), value);
 			
 			if(fp.getTag()==VariableFlag.SOURCE) {
-				if(!(ap instanceof VariableExp) || !(ap instanceof AllInstanceExpr)) return SafeType.getInvalid(); // you are not allowed to pass a derived value to a source variable
+				if(!(ap instanceof VariableExp || ap instanceof AllInstanceExpr)) return SafeType.getInvalid(); // you are not allowed to pass a derived value to a source variable
 				Variable spV = context.getVariable(((VariableExp)ap).getVar().getName()+Util.POST_FLAG);
 				SafeType spValue = context.getSafeTypeValue(spV);
 				Variable fspv = newContext.getVariable(fp.getVariable().getName()+Util.POST_FLAG);

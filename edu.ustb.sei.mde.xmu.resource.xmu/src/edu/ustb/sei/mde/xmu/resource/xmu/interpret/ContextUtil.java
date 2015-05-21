@@ -11,6 +11,7 @@ import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EcorePackage;
 
 import edu.ustb.sei.commonutil.util.Pair;
 import edu.ustb.sei.mde.xmu.*;
@@ -453,7 +454,7 @@ public class ContextUtil {
 						List<Object> candidate = current.getEnvironment().getFeatureAsCollection(obj.getObjectValue(), feature);
 						
 						if(pos==null) {
-							if(nValue.isUndefined()) {
+							if(nValue.isUndefined() || (nValue.isValue() == false && feature.getEType()==EcorePackage.eINSTANCE.getEString())) {
 								if(candidate.size()!=0) {
 									for(int i = 0;i<candidate.size();i++) {
 										XmuContext nc = current.getCopy();

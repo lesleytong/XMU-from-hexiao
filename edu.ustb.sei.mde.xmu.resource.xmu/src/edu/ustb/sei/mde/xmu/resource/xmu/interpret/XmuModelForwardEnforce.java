@@ -85,7 +85,7 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 				boolean flag = false;
 				SafeType value = null;
 				
-				boolean start = this.startRuleCallPending();
+				boolean start = (pending.size()!=0) && this.startRuleCallPending(forStatement);
 				for(VStatement stmt : forStatement.getActions()) {
 					if(stmt.getTag() == VStmtType.MATCH) {
 						value =  this.interprete(stmt.getStatement(), c);
@@ -153,7 +153,7 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 			for(CaseSubStatement css : switchStatement.getCases()) {
 				XmuContext nc = context.getCopy();
 				if(css instanceof CasePatternStatement) {
-					boolean start = this.startRuleCallPending();
+					boolean start = this.startRuleCallPending(switchStatement);
 					SafeType c = this.interprete(css.getStatement(), nc);
 					List<RuleCallStatement> pending = null;
 					if(start) 
@@ -184,13 +184,27 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 	}
 	
 	protected List<RuleCallStatement> ruleCallPending = null;
+	protected EObject pendingReason = null;
 	
-	protected boolean startRuleCallPending() {
+	protected boolean startRuleCallPending(EObject reason) {
 		if(ruleCallPending==null) {
 			ruleCallPending = new ArrayList<RuleCallStatement>();
+			pendingReason = reason;
 			return true;
 		}
 		return false;
+	}
+	
+	protected boolean shouldPendingThisCall(RuleCallStatement call) {
+		if(ruleCallPending==null) return false;
+		else {
+			EObject r = call;
+			while(r!=null && r!=pendingReason) {
+				if(r instanceof ForStatement) return false;
+				r = r.eContainer();
+			}
+			return r==pendingReason;
+		}
 	}
 	
 	protected List<RuleCallStatement> closeRuleCallPending() {
@@ -346,7 +360,7 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 	@Override
 	public SafeType interprete_edu_ustb_sei_mde_xmu_RuleCallStatement(
 			RuleCallStatement ruleCallStatement, XmuContext context) {
-		if(ruleCallPending!=null) {
+		if(shouldPendingThisCall(ruleCallStatement)) {
 			ruleCallPending.add(ruleCallStatement);
 			return Just.TRUE;//maybe unknown
 		} else {

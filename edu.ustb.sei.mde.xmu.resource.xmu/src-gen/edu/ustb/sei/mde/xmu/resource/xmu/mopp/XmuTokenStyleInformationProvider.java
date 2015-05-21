@@ -21,10 +21,10 @@ public class XmuTokenStyleInformationProvider {
 			return new edu.ustb.sei.mde.xmu.resource.xmu.mopp.XmuTokenStyle(new int[] {0xff, 0x00, 0x00}, null, false, false, false, false);
 		}
 		if ("SL_COMMENT".equals(tokenName)) {
-			return new edu.ustb.sei.mde.xmu.resource.xmu.mopp.XmuTokenStyle(new int[] {0x00, 0xff, 0x00}, null, false, false, false, false);
+			return new edu.ustb.sei.mde.xmu.resource.xmu.mopp.XmuTokenStyle(new int[] {0x00, 0x80, 0x00}, null, false, false, false, false);
 		}
 		if ("ML_COMMENT".equals(tokenName)) {
-			return new edu.ustb.sei.mde.xmu.resource.xmu.mopp.XmuTokenStyle(new int[] {0x00, 0xff, 0x00}, null, false, false, false, false);
+			return new edu.ustb.sei.mde.xmu.resource.xmu.mopp.XmuTokenStyle(new int[] {0x00, 0x80, 0x00}, null, false, false, false, false);
 		}
 		if ("import".equals(tokenName)) {
 			return new edu.ustb.sei.mde.xmu.resource.xmu.mopp.XmuTokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);

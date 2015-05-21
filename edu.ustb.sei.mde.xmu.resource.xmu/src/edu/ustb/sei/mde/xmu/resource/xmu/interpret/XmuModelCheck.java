@@ -144,9 +144,10 @@ public class XmuModelCheck extends XmuExpressionCheck {
 				int id = getPosition(expectString,fromIndex,pattern,i,lastCount);
 				if(id==-1) return false;// expected string does not match the pattern
 				
-				if(lastUnsolved==null && fromIndex!=id) 
-					return false;// expected string does not match the pattern
-				else {
+				if(lastUnsolved==null) {
+					if(fromIndex!=id)
+						return false;// expected string does not match the pattern
+				} else {
 					String subStr = expectString.substring(fromIndex, id);
 					if(enforceExpr(lastUnsolved.getUndefined(),context,SafeType.createFromValue(subStr))==false) 
 						return false;
@@ -156,6 +157,15 @@ public class XmuModelCheck extends XmuExpressionCheck {
 			} else if(elem instanceof StringVariable)
 				lastUnsolved = (StringVariable) elem;
 			else return false;
+		}
+		
+		if(lastUnsolved == null) {
+			if(fromIndex!=expectString.length()) 
+				return false;
+		} else {
+			String subStr = expectString.substring(fromIndex);
+			if(enforceExpr(lastUnsolved.getUndefined(),context,SafeType.createFromValue(subStr))==false) 
+				return false;
 		}
 
 		return true;

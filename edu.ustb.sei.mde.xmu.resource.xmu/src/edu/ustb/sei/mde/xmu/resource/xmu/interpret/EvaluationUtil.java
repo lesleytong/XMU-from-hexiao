@@ -14,7 +14,7 @@ public class EvaluationUtil {
 			String ls = left.isNull()?"":left.getStringValue();
 			String rs = right.isNull()?"":right.getStringValue();
 			
-			if(oper==AdditiveOperator.ADD) return SafeType.createFromValue(ls+rs);
+			if(oper==AdditiveOperator.ADD || oper == AdditiveOperator.APPEND) return SafeType.createFromValue(ls+rs);
 			return SafeType.getInvalid();
 			
 		} else {
