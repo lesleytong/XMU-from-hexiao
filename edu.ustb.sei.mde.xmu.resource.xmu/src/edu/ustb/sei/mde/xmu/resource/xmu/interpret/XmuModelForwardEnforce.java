@@ -3,6 +3,7 @@ package edu.ustb.sei.mde.xmu.resource.xmu.interpret;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -10,6 +11,9 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import edu.ustb.sei.mde.xmu.*;
+import edu.ustb.sei.mde.xmu.impl.CaseSubStatementImpl;
+import edu.ustb.sei.mde.xmu.resource.xmu.mopp.XmuPrinter;
+import edu.ustb.sei.mde.xmu.resource.xmu.mopp.XmuPrinter2;
 import edu.ustb.sei.mde.xmu.resource.xmu.util.AbstractXmuInterpreter;
 
 
@@ -149,20 +153,22 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 			}
 			return SafeType.getInvalid();
 		} else {
+			//switch view
 			//
+			
 			for(CaseSubStatement css : switchStatement.getCases()) {
 				XmuContext nc = context.getCopy();
 				if(css instanceof CasePatternStatement) {
 					boolean start = this.startRuleCallPending(switchStatement);
-					SafeType c = this.interprete(css.getStatement(), nc);
+					SafeType c = this.interprete(css.getStatement(), nc);//check
 					List<RuleCallStatement> pending = null;
 					if(start) 
 						pending = this.closeRuleCallPending();
 					
 					if(c.getValue()==Boolean.TRUE) {
 						ContextUtil.merge(context, nc);
-						SafeType ret = this.enforcePattern(((CasePatternStatement) css).getPattern(),context,null);
-						if(ret==Just.TRUE) {
+						SafeType ret = this.enforcePattern(((CasePatternStatement) css).getPattern(),context,null);//enforce
+						if(ret==Just.TRUE) {//update
 							if(start){
 								for(RuleCallStatement rc : pending) {
 									ret = this.interprete_edu_ustb_sei_mde_xmu_RuleCallStatement(rc, context);
@@ -180,6 +186,111 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 				}
 			}
 			return SafeType.getInvalid();
+		}
+	}
+	
+	class SwitchVReordering {
+		public SwitchStatement reason;
+		
+		public ArrayList<Pattern> enforceV = new ArrayList<Pattern>();
+		public ArrayList<Statement> updates = new ArrayList<Statement>();
+		public ArrayList<Pattern> checkV = new ArrayList<Pattern>();
+	}
+	
+	//这个方法主要用于动态计算switchV的执行顺序，应该具有以下原则：对于checkS或checkN有关的条件，直接进行计算；对于其余条件，分解成enforceV，updates，和checkV
+	//先执行enforceV，为updates提供必要的数据，最后在checkV，检查后置条件。
+	//updates中包含的语句为rule call和for statement。按照出现顺序存储。
+	//enforceV和checkV都只包含switchV中的pattern，可强制的pattern放入enforceV，不可强制的pattern放入checkV
+	protected SwitchVReordering collectSwitchVReordering(SwitchStatement statement, XmuContext context) {
+		SwitchVReordering ordering = new SwitchVReordering();
+		ordering.reason = statement;
+		if(collectReorderedPath(statement, ordering, context)) return ordering;
+		return null;
+	}
+	
+	protected boolean collectReorderedPath(Statement statement,SwitchVReordering reorder, XmuContext context) {
+		if(statement instanceof SwitchStatement) {
+			EList<CaseSubStatement> cases = ((SwitchStatement) statement).getCases();
+
+			if(((SwitchStatement) statement).getTag()==VariableFlag.VIEW) {
+				for(CaseSubStatement c : cases) {
+					if(c instanceof CasePatternStatement) {
+						if(collectReorderedPath(c.getStatement(),reorder,context)) {
+							if(isEnforceable(((CasePatternStatement) c).getPattern().getRoot(),context)) {
+								reorder.enforceV.add(((CasePatternStatement) c).getPattern());
+							} else
+								reorder.checkV.add(((CasePatternStatement) c).getPattern());
+							return true;								
+						}
+					} else if(c instanceof CaseValueStatement) {
+						SafeType check = XmuModelCheck.MODEL_CHECK.interprete(((CaseValueStatement) c).getExpression(), context);
+						if(check == Just.TRUE) {
+							if(collectReorderedPath(c.getStatement(),reorder,context)) {
+								return true;								
+							}
+						}
+					}
+				}
+				return false;
+			} else {
+				for(CaseSubStatement c : cases) {
+					if(c instanceof CasePatternStatement) {
+						XmuContext nc = context.getCopy();
+						SafeType check = XmuModelCheck.MODEL_CHECK.interprete_edu_ustb_sei_mde_xmu_Pattern(((CasePatternStatement) c).getPattern(), nc);
+						if(check==Just.TRUE) {
+							if(collectReorderedPath(c.getStatement(),reorder,nc)) {
+								ContextUtil.merge(context, nc);
+								return true;								
+							}
+						}
+					} else if(c instanceof CaseValueStatement) {
+						SafeType check = XmuModelCheck.MODEL_CHECK.interprete(((CaseValueStatement) c).getExpression(), context);
+						if(check == Just.TRUE) {
+							if(collectReorderedPath(c.getStatement(),reorder,context)) {
+								return true;								
+							}
+						}
+					}
+				}
+				return false;
+			}
+		} else if(statement instanceof ForStatement) {
+			reorder.updates.add(statement);
+			return true;
+		} else if(statement instanceof RuleCallStatement) {
+			reorder.updates.add(statement);
+			return true;
+		} else if(statement instanceof Update) {
+			XmuContext nc = context.getCopy();
+			SafeType check = XmuModelCheck.MODEL_CHECK.interprete(statement, nc);
+			if(check == Just.TRUE) {
+				ContextUtil.merge(context, nc);
+				return true;
+			} else return false;
+		} else if(statement instanceof BlockStatement) {
+			for(Statement s : ((BlockStatement) statement).getStatements()) {
+				if(collectReorderedPath(s, reorder, context) == false) {
+					return false;
+				}
+			}
+			return true;
+		} else {
+			System.out.println("unknown statement "+statement);
+			return false;
+		}
+	}
+	
+	protected boolean isEnforceable(PatternNode node, XmuContext context) {
+		if(node.getType().isAbstract()) 
+			return false;
+		else {
+			for(PatternExpr expr : node.getExpr() ) {
+				if(expr instanceof PatternReferenceExpr) {
+					if(isEnforceable(((PatternReferenceExpr) expr).getNode(),context)==false) 
+						return false;
+				}
+			}
+			return true;
 		}
 	}
 	
@@ -412,6 +523,7 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 		}
 		return Just.TRUE;		
 	}
+	
 	
 	
 }
