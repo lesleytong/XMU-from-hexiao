@@ -13,6 +13,8 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import edu.ustb.sei.mde.modeling.ui.ConsoleUtil;
 import edu.ustb.sei.mde.xmu.*;
 import edu.ustb.sei.mde.xmu.resource.xmu.analysis.Util;
+import edu.ustb.sei.mde.xmu.resource.xmu.mopp.XmuPrinter;
+import edu.ustb.sei.mde.xmu.resource.xmu.mopp.XmuPrinter2;
 import edu.ustb.sei.mde.xmu.resource.xmu.util.AbstractXmuInterpreter;
 
 /**
@@ -26,6 +28,8 @@ import edu.ustb.sei.mde.xmu.resource.xmu.util.AbstractXmuInterpreter;
  */
 public class XmuExpressionCheck extends
 		AbstractXmuInterpreter<SafeType, XmuContext> {
+	
+	protected XmuPrinter printer = new XmuPrinter(null, null);
 	
 	static public XmuExpressionCheck EXPRESSION_CHECK = new XmuExpressionCheck();
 

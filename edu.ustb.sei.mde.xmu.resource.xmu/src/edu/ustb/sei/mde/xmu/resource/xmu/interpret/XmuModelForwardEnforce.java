@@ -1,5 +1,6 @@
 package edu.ustb.sei.mde.xmu.resource.xmu.interpret;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,6 +65,59 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 		} else 
 			return v;
 	}
+	
+	class ForStatementVReordering {
+		public ForStatement reason;
+		public List<Statement> updates = new ArrayList<Statement>();
+		public List<PatternExpr> lazyEnforcedExpr = new ArrayList<PatternExpr>();
+		public List<Statement> lazyExecuted = new ArrayList<Statement>();
+	}
+	
+	protected ForStatementVReordering reorderForStatement(ForStatement statement, XmuContext context) {
+		ForStatementVReordering reorder = new ForStatementVReordering();
+		reorder.reason = statement;
+		if(collectLazyEnforcedPatternExprs(statement.getVPattern().getRoot(),context,reorder)==false) return null;
+		else {
+			if(reorderForStatement(statement,context,reorder)==false) return null;
+			else return reorder;
+		}
+	}
+	
+	protected boolean collectLazyEnforcedPatternExprs(PatternNode node, XmuContext context, ForStatementVReordering reorder) {
+		SafeType ret = enforceViewPatternNode(node,context,reorder.lazyEnforcedExpr);
+		return ret == Just.TRUE;
+	}
+	
+	protected boolean reorderForStatement(Statement statement, XmuContext context, ForStatementVReordering reorder) {
+		if(statement instanceof ForStatement) {
+			for(VStatement stmt : ((ForStatement) statement).getActions()) {
+				if(stmt.getTag() == VStmtType.MATCH) {
+					return reorderForStatement(stmt.getStatement(),context,reorder);
+				}
+			}
+			return false;
+		} else if(statement instanceof Update) {
+			reorder.updates.add(statement);
+			return true;
+		} else if(statement instanceof RuleCallStatement) {
+			reorder.lazyExecuted.add(statement);
+			return true;
+		} else if(statement instanceof BlockStatement){
+			for(Statement stmt : ((BlockStatement) statement).getStatements()) {
+				if(reorderForStatement(stmt, context, reorder)==false) return false;
+			}
+			return true;
+		} else if(statement instanceof SwitchStatement) {
+			reorder.updates.add(statement);
+			return true;
+		} else if(statement instanceof PrintStatement) {
+			reorder.updates.add(statement);
+			return true;
+		} else {
+			System.out.println("unknown statement "+statement);
+			return false;
+		}
+	}
 
 	@Override
 	public SafeType interprete_edu_ustb_sei_mde_xmu_ForStatement(
@@ -77,69 +131,144 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 					c.putValue(u.getVVar(), ret);
 				}
 			}
-			List<PatternExpr> pending = new ArrayList<PatternExpr>();
 			
-			SafeType ret = Just.TRUE; 
-			
-			if(forStatement.getVPattern()!=null) 
-				ret = this.enforcePattern(forStatement.getVPattern(), c,pending);
-			
-			if(ret==Just.TRUE) {
-				// do matches
-				boolean flag = false;
-				SafeType value = null;
+			//1. check if patternV is enforceable 
+			//2. if true, do normal logic
+			//3. otherwise, reorder forstatement
+			if(forStatement.getVPattern()==null || 
+					isEnforceable(forStatement.getVPattern().getRoot(), c)) {
+				SafeType ret = Just.TRUE; 
 				
-				boolean start = (pending.size()!=0) && this.startRuleCallPending(forStatement);
-				for(VStatement stmt : forStatement.getActions()) {
-					if(stmt.getTag() == VStmtType.MATCH) {
-						value =  this.interprete(stmt.getStatement(), c);
-						flag = true;
-						break;
+				if(forStatement.getVPattern()!=null) 
+					ret = this.enforcePattern(forStatement.getVPattern(),c,null);
+				
+				if(ret==Just.TRUE) {
+					boolean flag = false;
+					SafeType value = null;
+
+					for(VStatement stmt : forStatement.getActions()) {
+						if(stmt.getTag() == VStmtType.MATCH) {
+							value =  this.interprete(stmt.getStatement(), c);
+							flag = true;
+							break;
+						}
+					}
+					
+					if(flag==false) 
+						throw new RuntimeException("No corresponding action!");
+					else {
+						if(value.isInvalid() || value==Just.FALSE) 
+							throw new RuntimeException("model check fails");
+						else {
+							continue;
+						}
 					}
 				}
-				List<RuleCallStatement> rcPending = null;
-				if(start) 
-					rcPending = this.closeRuleCallPending();
-				
-				if(flag==false) 
-					throw new RuntimeException("No corresponding action!");
-				else {
-					if(value.isInvalid() || value==Just.FALSE) 
-						throw new RuntimeException("model check fails");
-					else {
-						for(PatternExpr p : pending) {
-							SafeType host = c.getSafeTypeValue(((PatternNode)(p.eContainer())).getVariable());
-							if(host.isUndefined()) 
-								throw new RuntimeException("host is undefined in pending");
-							
-							if(p instanceof PatternReferenceExpr) {
-								ret = this.enforceViewPatternReferenceExpr((PatternReferenceExpr)p, host, c, null);
-								if(ret!=Just.TRUE) return SafeType.getInvalid();
-							} else if(p instanceof PatternEqualExpr) {
-								ret = this.enforcePatternEqualExpr((PatternEqualExpr)p, host, c);
-								if(ret!=Just.TRUE) return SafeType.getInvalid();
-							}
+			} else {
+				ForStatementVReordering reorder = reorderForStatement(forStatement,c);
+				if(reorder==null) {
+					throw new RuntimeException("model check fails");
+				} else {
+					for(Statement u : reorder.updates) {
+						SafeType r = this.interprete(u, c);
+						if(r.isInvalid() || r==Just.FALSE) 
+							throw new RuntimeException("model check fails");
+						else {
+							continue;
 						}
+					}
+					
+					SafeType ret = Just.TRUE;
+					for(PatternExpr p : reorder.lazyEnforcedExpr) {
+						SafeType host = c.getSafeTypeValue(((PatternNode)(p.eContainer())).getVariable());
+						if(host.isUndefined()) 
+							throw new RuntimeException("host is undefined in pending");
 						
-						if(start) {
-							for(RuleCallStatement rc : rcPending) {
-								ret = this.interprete_edu_ustb_sei_mde_xmu_RuleCallStatement(rc, c);
-								if(ret!=Just.TRUE) return SafeType.getInvalid();
-							}
+						if(p instanceof PatternReferenceExpr) {
+							ret = this.enforceViewPatternReferenceExpr((PatternReferenceExpr)p, host, c, null);
+							if(ret!=Just.TRUE) return SafeType.getInvalid();
+						} else if(p instanceof PatternEqualExpr) {
+							ret = this.enforcePatternEqualExpr((PatternEqualExpr)p, host, c);
+							if(ret!=Just.TRUE) return SafeType.getInvalid();
 						}
+					}
+					
+					for(Statement s : reorder.lazyExecuted) {
+						ret = this.interprete(s, c);
+						if(ret!=Just.TRUE) return SafeType.getInvalid();
 					}
 				}
 			}
+			
+			
+//			List<PatternExpr> pending = new ArrayList<PatternExpr>();
+//			
+//			SafeType ret = Just.TRUE; 
+//			
+//			if(forStatement.getVPattern()!=null) 
+//				ret = this.enforcePattern(forStatement.getVPattern(), c,pending);
+//			
+//			if(ret==Just.TRUE) {
+//				// do matches
+//				boolean flag = false;
+//				SafeType value = null;
+//				
+//				//FIXME: fix, record rule call pending
+////				boolean start = (pending.size()!=0) && this.startRuleCallPending(forStatement);
+//				for(VStatement stmt : forStatement.getActions()) {
+//					if(stmt.getTag() == VStmtType.MATCH) {
+//						value =  this.interprete(stmt.getStatement(), c);
+//						flag = true;
+//						break;
+//					}
+//				}
+////				List<RuleCallStatement> rcPending = null;
+////				if(start) 
+////					rcPending = this.closeRuleCallPending();
+//				
+//				if(flag==false) 
+//					throw new RuntimeException("No corresponding action!");
+//				else {
+//					if(value.isInvalid() || value==Just.FALSE) 
+//						throw new RuntimeException("model check fails");
+//					else {
+//						for(PatternExpr p : pending) {
+//							SafeType host = c.getSafeTypeValue(((PatternNode)(p.eContainer())).getVariable());
+//							if(host.isUndefined()) 
+//								throw new RuntimeException("host is undefined in pending");
+//							
+//							if(p instanceof PatternReferenceExpr) {
+//								ret = this.enforceViewPatternReferenceExpr((PatternReferenceExpr)p, host, c, null);
+//								if(ret!=Just.TRUE) return SafeType.getInvalid();
+//							} else if(p instanceof PatternEqualExpr) {
+//								ret = this.enforcePatternEqualExpr((PatternEqualExpr)p, host, c);
+//								if(ret!=Just.TRUE) return SafeType.getInvalid();
+//							}
+//						}
+//						
+////						if(start) {
+////							for(RuleCallStatement rc : rcPending) {
+////								ret = this.interprete_edu_ustb_sei_mde_xmu_RuleCallStatement(rc, c);
+////								if(ret!=Just.TRUE) return SafeType.getInvalid();
+////							}
+////						}
+//					}
+//				}
+//			}
 		}
-		
+//		
 		return Just.TRUE;
 		
 	}
+	
+	
 
 	@Override
 	public SafeType interprete_edu_ustb_sei_mde_xmu_SwitchStatement(
 			SwitchStatement switchStatement, XmuContext context) {
-		if(switchStatement.getTag()==VariableFlag.SOURCE || switchStatement.getTag()==VariableFlag.SOURCE_POST || switchStatement.getTag()==VariableFlag.NORMAL) {
+		if(switchStatement.getTag()==VariableFlag.SOURCE 
+				|| switchStatement.getTag()==VariableFlag.SOURCE_POST 
+				|| switchStatement.getTag()==VariableFlag.NORMAL) {
 			for(CaseSubStatement css : switchStatement.getCases()) {
 				if(css instanceof CasePatternStatement) {
 					SafeType c = this.interprete_edu_ustb_sei_mde_xmu_Pattern(((CasePatternStatement) css).getPattern(), context);
@@ -154,38 +283,77 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 			return SafeType.getInvalid();
 		} else {
 			//switch view
-			//
 			
-			for(CaseSubStatement css : switchStatement.getCases()) {
-				XmuContext nc = context.getCopy();
-				if(css instanceof CasePatternStatement) {
-					boolean start = this.startRuleCallPending(switchStatement);
-					SafeType c = this.interprete(css.getStatement(), nc);//check
-					List<RuleCallStatement> pending = null;
-					if(start) 
-						pending = this.closeRuleCallPending();
-					
-					if(c.getValue()==Boolean.TRUE) {
-						ContextUtil.merge(context, nc);
-						SafeType ret = this.enforcePattern(((CasePatternStatement) css).getPattern(),context,null);//enforce
-						if(ret==Just.TRUE) {//update
-							if(start){
-								for(RuleCallStatement rc : pending) {
-									ret = this.interprete_edu_ustb_sei_mde_xmu_RuleCallStatement(rc, context);
-									if(ret==Just.TRUE) continue;
-									return ret;
-								}
-							}
-							return Just.TRUE;
-						}
+			SwitchVReordering newOrder = reorderSwitchStatement(switchStatement, context);
+			if(newOrder==null) {
+				System.out.println("Unable to reorder switchV:");
+				printer.print_edu_ustb_sei_mde_xmu_SwitchStatement(switchStatement, "", new PrintWriter(System.out));
+				return SafeType.getInvalid();
+			} else {
+				for(Pattern p : newOrder.enforceV) {
+					SafeType t = this.enforcePattern(p, context, null);
+					if(t==Just.TRUE) {
+						continue;
+					} else {
+						System.out.println("Unable to enforce reordered patternV with\n"+context);
+						return t;
 					}
-				} else if(css instanceof CaseValueStatement) {
-					SafeType c = this.interprete(((CaseValueStatement) css).getExpression(), context);
-					if(c.getValue()==Boolean.TRUE)
-						return this.interprete(css.getStatement(), context);
+				}
+				
+				for(Statement u : newOrder.updates) {
+					SafeType t = this.interprete(u, context);
+					if(t==Just.TRUE) {
+						continue;
+					} else {
+						System.out.println("Unable to enforce reordered update "+u);
+						return t;
+					}
+				}
+				
+				for(Pattern p : newOrder.checkV) {
+					SafeType t = XmuModelCheck.MODEL_CHECK.interprete_edu_ustb_sei_mde_xmu_Pattern(p, context);
+					if(t==Just.TRUE) {
+						continue;
+					} else {
+						System.out.println("Unable to check reordered patternV:");
+						printer.print_edu_ustb_sei_mde_xmu_Pattern(p, "", new PrintWriter(System.out));
+						return t;
+					}
 				}
 			}
-			return SafeType.getInvalid();
+			
+			return Just.TRUE;
+			
+//			for(CaseSubStatement css : switchStatement.getCases()) {
+//				XmuContext nc = context.getCopy();
+//				if(css instanceof CasePatternStatement) {
+//					boolean start = this.startRuleCallPending(switchStatement);
+//					SafeType c = this.interprete(css.getStatement(), nc);//check
+//					List<RuleCallStatement> pending = null;
+//					if(start) 
+//						pending = this.closeRuleCallPending();
+//					
+//					if(c.getValue()==Boolean.TRUE) {
+//						ContextUtil.merge(context, nc);
+//						SafeType ret = this.enforcePattern(((CasePatternStatement) css).getPattern(),context,null);//enforce
+//						if(ret==Just.TRUE) {//update
+//							if(start){
+//								for(RuleCallStatement rc : pending) {
+//									ret = this.interprete_edu_ustb_sei_mde_xmu_RuleCallStatement(rc, context);
+//									if(ret==Just.TRUE) continue;
+//									return ret;
+//								}
+//							}
+//							return Just.TRUE;
+//						}
+//					}
+//				} else if(css instanceof CaseValueStatement) {
+//					SafeType c = this.interprete(((CaseValueStatement) css).getExpression(), context);
+//					if(c.getValue()==Boolean.TRUE)
+//						return this.interprete(css.getStatement(), context);
+//				}
+//			}
+//			return SafeType.getInvalid();
 		}
 	}
 	
@@ -201,11 +369,23 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 	//先执行enforceV，为updates提供必要的数据，最后在checkV，检查后置条件。
 	//updates中包含的语句为rule call和for statement。按照出现顺序存储。
 	//enforceV和checkV都只包含switchV中的pattern，可强制的pattern放入enforceV，不可强制的pattern放入checkV
-	protected SwitchVReordering collectSwitchVReordering(SwitchStatement statement, XmuContext context) {
+	protected SwitchVReordering reorderSwitchStatement(SwitchStatement statement, XmuContext context) {
 		SwitchVReordering ordering = new SwitchVReordering();
 		ordering.reason = statement;
 		if(collectReorderedPath(statement, ordering, context)) return ordering;
 		return null;
+	}
+	
+	protected boolean isCheckable(PatternNode node, XmuContext context){
+		SafeType v = context.getSafeTypeValue(node.getVariable());
+		if(node.getType().isAbstract() && v.isUndefined()) return false;
+		for(PatternExpr expr : node.getExpr() ) {
+			if(expr instanceof PatternReferenceExpr) {
+				if(isCheckable(((PatternReferenceExpr) expr).getNode(),context)==false) 
+					return false;
+			}
+		}
+		return true;
 	}
 	
 	protected boolean collectReorderedPath(Statement statement,SwitchVReordering reorder, XmuContext context) {
@@ -213,24 +393,61 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 			EList<CaseSubStatement> cases = ((SwitchStatement) statement).getCases();
 
 			if(((SwitchStatement) statement).getTag()==VariableFlag.VIEW) {
+				// find any decidable cases
+				boolean allCheckable = true;
+				
 				for(CaseSubStatement c : cases) {
 					if(c instanceof CasePatternStatement) {
-						if(collectReorderedPath(c.getStatement(),reorder,context)) {
-							if(isEnforceable(((CasePatternStatement) c).getPattern().getRoot(),context)) {
-								reorder.enforceV.add(((CasePatternStatement) c).getPattern());
-							} else
-								reorder.checkV.add(((CasePatternStatement) c).getPattern());
-							return true;								
+						if(isCheckable(((CasePatternStatement) c).getPattern().getRoot(), context)==false) {
+							allCheckable = false;
 						}
-					} else if(c instanceof CaseValueStatement) {
-						SafeType check = XmuModelCheck.MODEL_CHECK.interprete(((CaseValueStatement) c).getExpression(), context);
-						if(check == Just.TRUE) {
+					}
+				}
+				
+				if(allCheckable) {
+					//if all branches can be checked now, just check it
+					for(CaseSubStatement c : cases) {
+						if(c instanceof CasePatternStatement) {
+							XmuContext nc = context.getCopy();
+							SafeType check = XmuModelCheck.MODEL_CHECK.interprete_edu_ustb_sei_mde_xmu_Pattern(((CasePatternStatement) c).getPattern(), nc);
+							if(check==Just.TRUE) {
+								if(collectReorderedPath(c.getStatement(),reorder,nc)) {
+									ContextUtil.merge(context, nc);
+									return true;								
+								}
+							}
+						} else if(c instanceof CaseValueStatement) {
+							SafeType check = XmuModelCheck.MODEL_CHECK.interprete(((CaseValueStatement) c).getExpression(), context);
+							if(check == Just.TRUE) {
+								if(collectReorderedPath(c.getStatement(),reorder,context)) {
+									return true;								
+								}
+							}
+						}
+					}
+					return false;
+				} else {
+					//if not, try to select a branch according to its content
+					for(CaseSubStatement c : cases) {
+						if(c instanceof CasePatternStatement) {
 							if(collectReorderedPath(c.getStatement(),reorder,context)) {
+								if(isEnforceable(((CasePatternStatement) c).getPattern().getRoot(),context)) {
+									reorder.enforceV.add(((CasePatternStatement) c).getPattern());
+								} else
+									reorder.checkV.add(((CasePatternStatement) c).getPattern());
 								return true;								
+							}
+						} else if(c instanceof CaseValueStatement) {
+							SafeType check = XmuModelCheck.MODEL_CHECK.interprete(((CaseValueStatement) c).getExpression(), context);
+							if(check == Just.TRUE) {
+								if(collectReorderedPath(c.getStatement(),reorder,context)) {
+									return true;								
+								}
 							}
 						}
 					}
 				}
+				
 				return false;
 			} else {
 				for(CaseSubStatement c : cases) {
@@ -274,19 +491,30 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 				}
 			}
 			return true;
-		} else {
+		} else if(statement instanceof PrintStatement) {
+			reorder.updates.add(statement);
+			return true;
+		}
+		else {
 			System.out.println("unknown statement "+statement);
 			return false;
 		}
 	}
 	
 	protected boolean isEnforceable(PatternNode node, XmuContext context) {
-		if(node.getType().isAbstract()) 
+		SafeType vv = context.getSafeTypeValue(node.getVariable());
+		
+		if(node.getType().isAbstract() && !vv.isValue()) 
 			return false;
 		else {
 			for(PatternExpr expr : node.getExpr() ) {
 				if(expr instanceof PatternReferenceExpr) {
 					if(isEnforceable(((PatternReferenceExpr) expr).getNode(),context)==false) 
+						return false;
+				} else if(expr instanceof PatternEqualExpr) {
+					Expr right = ((PatternEqualExpr) expr).getValue();
+					SafeType ret = XmuExpressionCheck.EXPRESSION_CHECK.interprete(right, context);
+					if(ret==SafeType.getInvalid() || ret==SafeType.getUndefined()) 
 						return false;
 				}
 			}
@@ -294,35 +522,35 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 		}
 	}
 	
-	protected List<RuleCallStatement> ruleCallPending = null;
-	protected EObject pendingReason = null;
+//	protected List<RuleCallStatement> ruleCallPending = null;
+//	protected EObject pendingReason = null;
+//	
+//	protected boolean startRuleCallPending(EObject reason) {
+//		if(ruleCallPending==null) {
+//			ruleCallPending = new ArrayList<RuleCallStatement>();
+//			pendingReason = reason;
+//			return true;
+//		}
+//		return false;
+//	}
 	
-	protected boolean startRuleCallPending(EObject reason) {
-		if(ruleCallPending==null) {
-			ruleCallPending = new ArrayList<RuleCallStatement>();
-			pendingReason = reason;
-			return true;
-		}
-		return false;
-	}
+//	protected boolean shouldPendingThisCall(RuleCallStatement call) {
+//		if(ruleCallPending==null) return false;
+//		else {
+//			EObject r = call;
+//			while(r!=null && r!=pendingReason) {
+//				if(r instanceof ForStatement) return false;
+//				r = r.eContainer();
+//			}
+//			return r==pendingReason;
+//		}
+//	}
 	
-	protected boolean shouldPendingThisCall(RuleCallStatement call) {
-		if(ruleCallPending==null) return false;
-		else {
-			EObject r = call;
-			while(r!=null && r!=pendingReason) {
-				if(r instanceof ForStatement) return false;
-				r = r.eContainer();
-			}
-			return r==pendingReason;
-		}
-	}
-	
-	protected List<RuleCallStatement> closeRuleCallPending() {
-		List<RuleCallStatement> ret = ruleCallPending;
-		ruleCallPending = null;
-		return ret;
-	}
+//	protected List<RuleCallStatement> closeRuleCallPending() {
+//		List<RuleCallStatement> ret = ruleCallPending;
+//		ruleCallPending = null;
+//		return ret;
+//	}
 
 	protected SafeType enforcePattern(Pattern pattern,
 			XmuContext context,List<PatternExpr> pending) {
@@ -471,13 +699,13 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 	@Override
 	public SafeType interprete_edu_ustb_sei_mde_xmu_RuleCallStatement(
 			RuleCallStatement ruleCallStatement, XmuContext context) {
-		if(shouldPendingThisCall(ruleCallStatement)) {
-			ruleCallPending.add(ruleCallStatement);
-			return Just.TRUE;//maybe unknown
-		} else {
+//		if(shouldPendingThisCall(ruleCallStatement)) {
+//			ruleCallPending.add(ruleCallStatement);
+//			return Just.TRUE;//maybe unknown
+//		} else {
 			return super.interprete_edu_ustb_sei_mde_xmu_RuleCallStatement(
 					ruleCallStatement, context);			
-		}
+//		}
 	}
 
 	protected SafeType enforceViewPatternReferenceExpr(PatternReferenceExpr expr,SafeType host, XmuContext context, List<PatternExpr> pending) {
