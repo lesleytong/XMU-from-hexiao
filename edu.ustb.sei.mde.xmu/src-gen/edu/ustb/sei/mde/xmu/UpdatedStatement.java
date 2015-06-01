@@ -4,6 +4,7 @@ package edu.ustb.sei.mde.xmu;
 
 
 
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Updated Statement</b></em>'.
@@ -31,12 +32,12 @@ public interface UpdatedStatement extends Statement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>SVar</em>' reference.
-	 * @see #setSVar(ObjectVariable)
+	 * @see #setSVar(Variable)
 	 * @see edu.ustb.sei.mde.xmu.XmuPackage#getUpdatedStatement_SVar()
 	 * @model required="true"
 	 * @generated
 	 */
-	ObjectVariable getSVar();
+	Variable getSVar();
 
 	/**
 	 * Sets the value of the '{@link edu.ustb.sei.mde.xmu.UpdatedStatement#getSVar <em>SVar</em>}' reference.
@@ -46,7 +47,7 @@ public interface UpdatedStatement extends Statement {
 	 * @see #getSVar()
 	 * @generated
 	 */
-	void setSVar(ObjectVariable value);
+	void setSVar(Variable value);
 
 	/**
 	 * Returns the value of the '<em><b>VVar</b></em>' reference.

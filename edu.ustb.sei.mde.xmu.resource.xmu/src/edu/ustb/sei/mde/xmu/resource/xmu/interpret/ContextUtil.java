@@ -569,7 +569,7 @@ public class ContextUtil {
 		return lookupViewVariable(o.eContainer(),sourcePost);
 	}
 	
-	static public ObjectVariable lookupSourceVariable(EObject o, ObjectVariable view) {
+	static public Variable lookupSourceVariable(EObject o, ObjectVariable view) {
 		if(o==null) return null;
 		if(o instanceof ForStatement) {
 			for(UpdatedStatement u : ((ForStatement) o).getWhen()) {

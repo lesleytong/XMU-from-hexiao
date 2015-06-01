@@ -74,7 +74,8 @@ public class XmuContext {
 	}
 	
 	public boolean putValue(Variable var, SafeType value) {
-		if(var==null) throw new RuntimeException("key is null");
+		if(var==null) 
+			throw new RuntimeException("key is null");
 		if(value==SafeType.getInvalid()) return false;
 		
 		//type check and conversion

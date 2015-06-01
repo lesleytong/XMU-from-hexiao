@@ -50,7 +50,7 @@ public class XmuReferenceResolverSwitch implements edu.ustb.sei.mde.xmu.resource
 		return getResolverChain(edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getPrimitiveVariable_Type(), primitiveVariableTypeReferenceResolver);
 	}
 	
-	public edu.ustb.sei.mde.xmu.resource.xmu.IXmuReferenceResolver<edu.ustb.sei.mde.xmu.UpdatedStatement, edu.ustb.sei.mde.xmu.ObjectVariable> getUpdatedStatementSVarReferenceResolver() {
+	public edu.ustb.sei.mde.xmu.resource.xmu.IXmuReferenceResolver<edu.ustb.sei.mde.xmu.UpdatedStatement, edu.ustb.sei.mde.xmu.Variable> getUpdatedStatementSVarReferenceResolver() {
 		return getResolverChain(edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getUpdatedStatement_SVar(), updatedStatementSVarReferenceResolver);
 	}
 	
@@ -178,7 +178,7 @@ public class XmuReferenceResolverSwitch implements edu.ustb.sei.mde.xmu.resource
 			}
 		}
 		if (edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getUpdatedStatement().isInstance(container)) {
-			XmuFuzzyResolveResult<edu.ustb.sei.mde.xmu.ObjectVariable> frr = new XmuFuzzyResolveResult<edu.ustb.sei.mde.xmu.ObjectVariable>(result);
+			XmuFuzzyResolveResult<edu.ustb.sei.mde.xmu.Variable> frr = new XmuFuzzyResolveResult<edu.ustb.sei.mde.xmu.Variable>(result);
 			String referenceName = reference.getName();
 			org.eclipse.emf.ecore.EStructuralFeature feature = container.eClass().getEStructuralFeature(referenceName);
 			if (feature != null && feature instanceof org.eclipse.emf.ecore.EReference && referenceName != null && referenceName.equals("sVar")) {

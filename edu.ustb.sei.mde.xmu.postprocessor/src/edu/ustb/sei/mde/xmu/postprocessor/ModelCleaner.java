@@ -29,9 +29,21 @@ public class ModelCleaner implements IXmuOptionProvider,
 			} catch(Exception e) {}
 			try {
 				check(rule,resource);
+				checkUndefinedPrimitiveVariable(rule,resource);
 			} catch(Exception e){}
 		}
 		
+	}
+	
+	private void checkUndefinedPrimitiveVariable(Rule rule,XmuResource resource) {
+		for(Parameter param : rule.getParameters()) {
+			if(param.getTag()==VariableFlag.NORMAL) {
+				PrimitiveVariable pv = (PrimitiveVariable) param.getVariable();
+				if(pv.getType()==null) {
+					resource.addWarning("missing declaration", XmuEProblemType.ANALYSIS_PROBLEM, param);
+				}
+			}
+		}
 	}
 	
 	

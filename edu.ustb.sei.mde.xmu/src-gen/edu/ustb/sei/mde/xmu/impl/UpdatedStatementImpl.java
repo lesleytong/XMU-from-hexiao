@@ -4,6 +4,7 @@ package edu.ustb.sei.mde.xmu.impl;
 
 import edu.ustb.sei.mde.xmu.ObjectVariable;
 import edu.ustb.sei.mde.xmu.UpdatedStatement;
+import edu.ustb.sei.mde.xmu.Variable;
 import edu.ustb.sei.mde.xmu.XmuPackage;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
@@ -33,7 +34,7 @@ public class UpdatedStatementImpl extends StatementImpl implements UpdatedStatem
 	 * @generated
 	 * @ordered
 	 */
-	protected ObjectVariable sVar;
+	protected Variable sVar;
 
 	/**
 	 * The cached value of the '{@link #getVVar() <em>VVar</em>}' reference.
@@ -69,10 +70,10 @@ public class UpdatedStatementImpl extends StatementImpl implements UpdatedStatem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ObjectVariable getSVar() {
+	public Variable getSVar() {
 		if (sVar != null && sVar.eIsProxy()) {
 			InternalEObject oldSVar = (InternalEObject)sVar;
-			sVar = (ObjectVariable)eResolveProxy(oldSVar);
+			sVar = (Variable)eResolveProxy(oldSVar);
 			if (sVar != oldSVar) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, XmuPackage.UPDATED_STATEMENT__SVAR, oldSVar, sVar));
@@ -86,7 +87,7 @@ public class UpdatedStatementImpl extends StatementImpl implements UpdatedStatem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ObjectVariable basicGetSVar() {
+	public Variable basicGetSVar() {
 		return sVar;
 	}
 
@@ -95,8 +96,8 @@ public class UpdatedStatementImpl extends StatementImpl implements UpdatedStatem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSVar(ObjectVariable newSVar) {
-		ObjectVariable oldSVar = sVar;
+	public void setSVar(Variable newSVar) {
+		Variable oldSVar = sVar;
 		sVar = newSVar;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, XmuPackage.UPDATED_STATEMENT__SVAR, oldSVar, sVar));
@@ -168,7 +169,7 @@ public class UpdatedStatementImpl extends StatementImpl implements UpdatedStatem
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case XmuPackage.UPDATED_STATEMENT__SVAR:
-				setSVar((ObjectVariable)newValue);
+				setSVar((Variable)newValue);
 				return;
 			case XmuPackage.UPDATED_STATEMENT__VVAR:
 				setVVar((ObjectVariable)newValue);
@@ -186,7 +187,7 @@ public class UpdatedStatementImpl extends StatementImpl implements UpdatedStatem
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case XmuPackage.UPDATED_STATEMENT__SVAR:
-				setSVar((ObjectVariable)null);
+				setSVar((Variable)null);
 				return;
 			case XmuPackage.UPDATED_STATEMENT__VVAR:
 				setVVar((ObjectVariable)null);

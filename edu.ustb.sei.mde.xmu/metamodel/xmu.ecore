@@ -173,7 +173,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="rule" lowerBound="1" eType="#//Rule"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UpdatedStatement" eSuperTypes="#//Statement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="sVar" lowerBound="1" eType="#//ObjectVariable"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sVar" lowerBound="1" eType="#//Variable"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="vVar" lowerBound="1" eType="#//ObjectVariable"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BooleanOrExpr" eSuperTypes="#//Expr">

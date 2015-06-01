@@ -1,5 +1,6 @@
 package edu.ustb.sei.mde.xmu.resource.xmu.interpret;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
@@ -32,8 +33,12 @@ public class XmuModelBackwardEnforce extends XmuModelEnforce {
 			
 			for(UpdatedStatement u : forStatement.getWhen()) {
 				SafeType ret = this.interprete(u, merge);
-				if(ret.isInvalid()==false && ret.isObject()) {
-					merge.putValue(merge.getVariable(u.getSVar().getName()+Util.POST_FLAG), ret);
+				if(ret.isInvalid()==false ) {
+					if(ret.isObject()) {
+						merge.putValue(merge.getVariable(u.getSVar().getName()+Util.POST_FLAG), ret);						
+					} else {
+						// there is no need to record primitive value @ post in backward
+					}
 				}
 			}
 			
@@ -44,10 +49,17 @@ public class XmuModelBackwardEnforce extends XmuModelEnforce {
 					if(sv.isNull()) {
 						//throw new RuntimeException("Source value is empty, while there is no updatedStatement for it.");
 						// this sp should be created
-						System.out.println("Source value is empty, while there is no updatedStatement for it.");
+						System.out.println("Source value is empty, while there is no updatedStatement for "+s.getName());
 						System.out.println(merge);
 					} else {
-						EObject spv = merge.getEnvironment().getTrace().getCorresponding(sv.getObjectValue());
+//						EObject spv = merge.getEnvironment().getTrace().getCorresponding(sv.getObjectValue());
+						// try to get a direct link
+						XmuTraceTuple backward = merge.getEnvironment().getTrace().getBackward(Collections.singletonList(sv.getObjectValue()));
+						EObject spv = null;
+						
+						if(backward==null || backward.getElements().length==0) spv = null;
+						else spv = (EObject) backward.get(0);
+						
 						merge.putValue(sp, SafeType.createFromValue(spv));
 					}
 				}
@@ -102,13 +114,28 @@ public class XmuModelBackwardEnforce extends XmuModelEnforce {
 			if(v.isNull() || v.isUndefined()) {
 				return SafeType.getInvalid();
 			} else {
-				EObject sp = context.getEnvironment().getTrace().getViewCorresponding(v.getObjectValue());
+//				EObject sp = context.getEnvironment().getTrace().getViewCorresponding(v.getObjectValue());
+				// try to get a full link, where source=null
+				XmuTraceTuple backward = context.getEnvironment().getTrace().getBackward(
+						null, 
+						Collections.singletonList(v.getObjectValue()));
+				if(backward==null || backward.getElements().length==0) return SafeType.getUndefined();
+				Object sp = backward.get(0);
 				if(sp==null) return SafeType.getUndefined();
 				return SafeType.createFromValue(sp);
 			}
 		} else {
-			EObject sp = context.getEnvironment().getTrace().getCorresponding(s.getObjectValue());
+//			EObject sp = context.getEnvironment().getTrace().getCorresponding(s.getObjectValue());
+			XmuTraceTuple backward = context.getEnvironment().getTrace().getBackward(
+					Collections.singletonList(s.getValue()),
+					Collections.singletonList(v.getValue()));
+			
+			if(backward==null || backward.getElements().length==0) return SafeType.getUndefined();
+			
+			Object sp = backward.get(0);
+			
 			if(sp==null) return SafeType.getUndefined();
+			
 			return SafeType.createFromValue(sp);
 		}
 	}

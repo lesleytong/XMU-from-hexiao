@@ -2,6 +2,7 @@ package edu.ustb.sei.mde.xmu.resource.xmu.interpret;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
@@ -59,7 +60,11 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 		
 		if(v.isUndefined() || v.isInvalid() || v.isNull()) {
 			if(s.isUndefined() || s.isInvalid() || s.isNull()) return SafeType.getInvalid();
-			EObject cv = context.getEnvironment().getTrace().getCorresponding(s.getObjectValue());
+//			EObject cv = context.getEnvironment().getTrace().getCorresponding(s.getObjectValue());
+			XmuTraceTuple forward = context.getEnvironment().getTrace().getForward(Collections.singletonList(s.getValue()));
+			if(forward==null || forward.getElements().length==0) return SafeType.getInvalid();
+			
+			EObject cv = (EObject) forward.get(0);
 			if(cv==null) return SafeType.getInvalid();
 			return SafeType.createFromValue(cv);
 		} else 
@@ -378,7 +383,7 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 	
 	protected boolean isCheckable(PatternNode node, XmuContext context){
 		SafeType v = context.getSafeTypeValue(node.getVariable());
-		if(node.getType().isAbstract() && v.isUndefined()) return false;
+		if(v.isUndefined()) return false;
 		for(PatternExpr expr : node.getExpr() ) {
 			if(expr instanceof PatternReferenceExpr) {
 				if(isCheckable(((PatternReferenceExpr) expr).getNode(),context)==false) 
@@ -572,11 +577,11 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 		SafeType vv = context.getSafeTypeValue(node.getVariable());
 		//SafeType spv = context.getSafeTypeValue(node.getVariable());
 		//SafeType vv = defaultView==null ? SafeType.getNull() : context.getSafeTypeValue(defaultView);
-		ObjectVariable source = ContextUtil.lookupSourceVariable(node, (ObjectVariable) (node.getVariable()));
+		Variable source = ContextUtil.lookupSourceVariable(node, (ObjectVariable) (node.getVariable()));
 		SafeType sv = source==null ? SafeType.getNull() : context.getSafeTypeValue(source);
 		
 		if(vv.isUndefined()) {
-			EObject o = context.getEnvironment().createViewElement(sv.getObjectValue(),node.getType());
+			EObject o = context.getEnvironment().createViewElement(sv.getValue(),node.getType());
 			if(o==null) {
 				//pending
 			} else {

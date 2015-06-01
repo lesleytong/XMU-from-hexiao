@@ -125,7 +125,8 @@ public class XmuEnvironment {
 		    while(it.hasNext()) {
 		    	EObject so = it.next();
 		    	EObject spo = copier.get(so);
-		    	trace.setCorresponding(so,spo);
+		    	//trace.setCorresponding(so,spo);
+		    	trace.putBackward(Collections.singletonList(so), Collections.singletonList(spo));
 		    	trace.getDefaultSource().put(spo, so);
 		    }
 		}
@@ -201,17 +202,29 @@ public class XmuEnvironment {
 		
 		EObject o = EcoreUtil.create(cls);
 		track.create(o);
-		if(source!=null)
-			trace.setCorresponding(source, o);
-		else if(view!=null)
-			trace.setViewCorresponding(view,o);
+//		if(source!=null)
+//			trace.setCorresponding(source, o);
+//		else if(view!=null)
+//			trace.setViewCorresponding(view,o);
+		
+		if(view==null){
+			if(source!=null) 
+				trace.putBackward(Collections.singletonList(source), Collections.singletonList(o));
+		} else
+			trace.putBackward((source==null ? null : Collections.singletonList(source)), 
+				Collections.singletonList(view), 
+				(Collections.singletonList(o)));
+		
 		return o;
 	}
 	
 	public SafeType removeSourcePostElement(EObject source, EObject sourcePost) {
 		if(track.canDelete(sourcePost)) {
 			track.delete(sourcePost);
-			trace.setCorresponding(source, null);
+			
+			//trace.setCorresponding(source, null);
+			trace.removeBackward(Collections.singletonList(source));
+			
 			EcoreUtil.delete(sourcePost);
 			return Just.TRUE;
 		}
@@ -467,16 +480,29 @@ public class XmuEnvironment {
 		}
 	}
 
-	public EObject createViewElement(EObject source, EClass type) {
+	public EObject createViewElement(Object source, EClass type) {
 		if(type.isAbstract()) return null;
 		
 		EObject o = EcoreUtil.create(type);
 		track.create(o);
-		if(source!=null)
-			trace.setCorresponding(source, o);
+		if(source!=null) {
+//			trace.setCorresponding(source, o);
+			trace.putForward(Collections.singletonList(source), 
+					Collections.singletonList(o));
+		}
 		return o;
 	}
 	
+//	public EObject createViewElement(EClass type, List<UpdatedStatement> statements, XmuContext context) {
+//		if(type.isAbstract()) return null;
+//		EObject o = EcoreUtil.create(type);
+//		track.create(o);
+//		
+//		for(UpdatedStatement u : statements) {
+//			List<Object> sources = new ArrayList<Object>();
+//			
+//		}
+//	}
 	
 	
 	
