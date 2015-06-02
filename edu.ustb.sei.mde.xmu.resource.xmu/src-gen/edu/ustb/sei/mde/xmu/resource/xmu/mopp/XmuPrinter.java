@@ -1068,9 +1068,9 @@ public class XmuPrinter implements edu.ustb.sei.mde.xmu.resource.xmu.IXmuTextPri
 		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(2);
 		Object temp;
 		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu.XmuPackage.UPDATED_STATEMENT__SVAR));
-		printCountingMap.put("sVar", temp == null ? 0 : 1);
+		printCountingMap.put("sVar", temp == null ? 0 : ((java.util.Collection<?>) temp).size());
 		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu.XmuPackage.UPDATED_STATEMENT__VVAR));
-		printCountingMap.put("vVar", temp == null ? 0 : 1);
+		printCountingMap.put("vVar", temp == null ? 0 : ((java.util.Collection<?>) temp).size());
 		// print collected hidden tokens
 		int count;
 		// DEFINITION PART BEGINS (CsString)
@@ -1082,14 +1082,20 @@ public class XmuPrinter implements edu.ustb.sei.mde.xmu.resource.xmu.IXmuTextPri
 		// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
 		count = printCountingMap.get("sVar");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu.XmuPackage.UPDATED_STATEMENT__SVAR));
-			if (o != null) {
+			java.util.List<?> list = (java.util.List<?>)element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu.XmuPackage.UPDATED_STATEMENT__SVAR));
+			int index  = list.size() - count;
+			if (index < 0) {
+				index = 0;
+			}
+			java.util.ListIterator<?> it  = list.listIterator(index);
+			while (it.hasNext()) {
+				Object o = it.next();
 				edu.ustb.sei.mde.xmu.resource.xmu.IXmuTokenResolver resolver = tokenResolverFactory.createTokenResolver("NAME");
 				resolver.setOptions(getOptions());
 				out.print(resolver.deResolve(getReferenceResolverSwitch() == null ? null : getReferenceResolverSwitch().getUpdatedStatementSVarReferenceResolver().deResolve((edu.ustb.sei.mde.xmu.Variable) o, element, (org.eclipse.emf.ecore.EReference) element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu.XmuPackage.UPDATED_STATEMENT__SVAR)), element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu.XmuPackage.UPDATED_STATEMENT__SVAR), element));
 				out.print(" ");
 			}
-			printCountingMap.put("sVar", count - 1);
+			printCountingMap.put("sVar", 0);
 		}
 		// DEFINITION PART BEGINS (CsString)
 		out.print(",");
@@ -1097,14 +1103,20 @@ public class XmuPrinter implements edu.ustb.sei.mde.xmu.resource.xmu.IXmuTextPri
 		// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
 		count = printCountingMap.get("vVar");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu.XmuPackage.UPDATED_STATEMENT__VVAR));
-			if (o != null) {
+			java.util.List<?> list = (java.util.List<?>)element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu.XmuPackage.UPDATED_STATEMENT__VVAR));
+			int index  = list.size() - count;
+			if (index < 0) {
+				index = 0;
+			}
+			java.util.ListIterator<?> it  = list.listIterator(index);
+			while (it.hasNext()) {
+				Object o = it.next();
 				edu.ustb.sei.mde.xmu.resource.xmu.IXmuTokenResolver resolver = tokenResolverFactory.createTokenResolver("NAME");
 				resolver.setOptions(getOptions());
 				out.print(resolver.deResolve(getReferenceResolverSwitch() == null ? null : getReferenceResolverSwitch().getUpdatedStatementVVarReferenceResolver().deResolve((edu.ustb.sei.mde.xmu.ObjectVariable) o, element, (org.eclipse.emf.ecore.EReference) element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu.XmuPackage.UPDATED_STATEMENT__VVAR)), element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu.XmuPackage.UPDATED_STATEMENT__VVAR), element));
 				out.print(" ");
 			}
-			printCountingMap.put("vVar", count - 1);
+			printCountingMap.put("vVar", 0);
 		}
 		// DEFINITION PART BEGINS (CsString)
 		out.print(")");

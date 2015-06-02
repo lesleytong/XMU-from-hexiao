@@ -1791,7 +1791,7 @@ public interface XmuPackage extends EPackage {
 	int UPDATED_STATEMENT = 34;
 
 	/**
-	 * The feature id for the '<em><b>SVar</b></em>' reference.
+	 * The feature id for the '<em><b>SVar</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1800,7 +1800,7 @@ public interface XmuPackage extends EPackage {
 	int UPDATED_STATEMENT__SVAR = STATEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>VVar</b></em>' reference.
+	 * The feature id for the '<em><b>VVar</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -3541,10 +3541,10 @@ public interface XmuPackage extends EPackage {
 	EClass getUpdatedStatement();
 
 	/**
-	 * Returns the meta object for the reference '{@link edu.ustb.sei.mde.xmu.UpdatedStatement#getSVar <em>SVar</em>}'.
+	 * Returns the meta object for the reference list '{@link edu.ustb.sei.mde.xmu.UpdatedStatement#getSVar <em>SVar</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>SVar</em>'.
+	 * @return the meta object for the reference list '<em>SVar</em>'.
 	 * @see edu.ustb.sei.mde.xmu.UpdatedStatement#getSVar()
 	 * @see #getUpdatedStatement()
 	 * @generated
@@ -3552,10 +3552,10 @@ public interface XmuPackage extends EPackage {
 	EReference getUpdatedStatement_SVar();
 
 	/**
-	 * Returns the meta object for the reference '{@link edu.ustb.sei.mde.xmu.UpdatedStatement#getVVar <em>VVar</em>}'.
+	 * Returns the meta object for the reference list '{@link edu.ustb.sei.mde.xmu.UpdatedStatement#getVVar <em>VVar</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>VVar</em>'.
+	 * @return the meta object for the reference list '<em>VVar</em>'.
 	 * @see edu.ustb.sei.mde.xmu.UpdatedStatement#getVVar()
 	 * @see #getUpdatedStatement()
 	 * @generated
@@ -4949,7 +4949,7 @@ public interface XmuPackage extends EPackage {
 		EClass UPDATED_STATEMENT = eINSTANCE.getUpdatedStatement();
 
 		/**
-		 * The meta object literal for the '<em><b>SVar</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>SVar</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -4957,7 +4957,7 @@ public interface XmuPackage extends EPackage {
 		EReference UPDATED_STATEMENT__SVAR = eINSTANCE.getUpdatedStatement_SVar();
 
 		/**
-		 * The meta object literal for the '<em><b>VVar</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>VVar</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

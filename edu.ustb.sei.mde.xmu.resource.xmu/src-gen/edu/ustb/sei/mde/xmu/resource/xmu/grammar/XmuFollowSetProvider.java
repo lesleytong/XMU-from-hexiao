@@ -959,8 +959,10 @@ public class XmuFollowSetProvider {
 		TERMINALS[38].addFollower(TERMINALS[41], new edu.ustb.sei.mde.xmu.resource.xmu.mopp.XmuContainedFeature[] {new edu.ustb.sei.mde.xmu.resource.xmu.mopp.XmuContainedFeature(edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getVStatement(), FEATURES[10]), });
 		TERMINALS[22].addFollower(TERMINALS[47], EMPTY_LINK_ARRAY);
 		TERMINALS[47].addFollower(TERMINALS[48], EMPTY_LINK_ARRAY);
+		TERMINALS[48].addFollower(TERMINALS[48], EMPTY_LINK_ARRAY);
 		TERMINALS[48].addFollower(TERMINALS[49], EMPTY_LINK_ARRAY);
 		TERMINALS[49].addFollower(TERMINALS[50], EMPTY_LINK_ARRAY);
+		TERMINALS[50].addFollower(TERMINALS[50], EMPTY_LINK_ARRAY);
 		TERMINALS[50].addFollower(TERMINALS[51], EMPTY_LINK_ARRAY);
 		TERMINALS[51].addFollower(TERMINALS[32], EMPTY_LINK_ARRAY);
 		TERMINALS[51].addFollower(TERMINALS[40], EMPTY_LINK_ARRAY);

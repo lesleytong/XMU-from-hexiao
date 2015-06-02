@@ -2,6 +2,8 @@
  */
 package edu.ustb.sei.mde.xmu;
 
+import org.eclipse.emf.common.util.EList;
+
 
 
 
@@ -24,55 +26,35 @@ package edu.ustb.sei.mde.xmu;
  */
 public interface UpdatedStatement extends Statement {
 	/**
-	 * Returns the value of the '<em><b>SVar</b></em>' reference.
+	 * Returns the value of the '<em><b>SVar</b></em>' reference list.
+	 * The list contents are of type {@link edu.ustb.sei.mde.xmu.Variable}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>SVar</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>SVar</em>' reference.
-	 * @see #setSVar(Variable)
+	 * @return the value of the '<em>SVar</em>' reference list.
 	 * @see edu.ustb.sei.mde.xmu.XmuPackage#getUpdatedStatement_SVar()
 	 * @model required="true"
 	 * @generated
 	 */
-	Variable getSVar();
+	EList<Variable> getSVar();
 
 	/**
-	 * Sets the value of the '{@link edu.ustb.sei.mde.xmu.UpdatedStatement#getSVar <em>SVar</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>SVar</em>' reference.
-	 * @see #getSVar()
-	 * @generated
-	 */
-	void setSVar(Variable value);
-
-	/**
-	 * Returns the value of the '<em><b>VVar</b></em>' reference.
+	 * Returns the value of the '<em><b>VVar</b></em>' reference list.
+	 * The list contents are of type {@link edu.ustb.sei.mde.xmu.ObjectVariable}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>VVar</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>VVar</em>' reference.
-	 * @see #setVVar(ObjectVariable)
+	 * @return the value of the '<em>VVar</em>' reference list.
 	 * @see edu.ustb.sei.mde.xmu.XmuPackage#getUpdatedStatement_VVar()
 	 * @model required="true"
 	 * @generated
 	 */
-	ObjectVariable getVVar();
-
-	/**
-	 * Sets the value of the '{@link edu.ustb.sei.mde.xmu.UpdatedStatement#getVVar <em>VVar</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>VVar</em>' reference.
-	 * @see #getVVar()
-	 * @generated
-	 */
-	void setVVar(ObjectVariable value);
+	EList<ObjectVariable> getVVar();
 
 } // UpdatedStatement

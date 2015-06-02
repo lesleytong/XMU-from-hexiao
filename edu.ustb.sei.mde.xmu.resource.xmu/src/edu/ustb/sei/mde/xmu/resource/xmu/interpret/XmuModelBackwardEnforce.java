@@ -1,12 +1,12 @@
 package edu.ustb.sei.mde.xmu.resource.xmu.interpret;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import edu.ustb.sei.commonutil.util.Pair;
 import edu.ustb.sei.mde.xmu.*;
 import edu.ustb.sei.mde.xmu.resource.xmu.analysis.Util;
@@ -34,10 +34,27 @@ public class XmuModelBackwardEnforce extends XmuModelEnforce {
 			for(UpdatedStatement u : forStatement.getWhen()) {
 				SafeType ret = this.interprete(u, merge);
 				if(ret.isInvalid()==false ) {
-					if(ret.isObject()) {
-						merge.putValue(merge.getVariable(u.getSVar().getName()+Util.POST_FLAG), ret);						
+//					if(ret.isObject()) {
+//						merge.putValue(merge.getVariable(u.getSVar().getName()+Util.POST_FLAG), ret);						
+//					} else {
+//						// there is no need to record primitive value @ post in backward
+//					}
+					Object[] spv = (Object[]) ret.getValue();
+					if(spv==null) {
+						
 					} else {
-						// there is no need to record primitive value @ post in backward
+						int size = u.getSVar().size();
+						
+						for(int i=0;i<size;i++) {
+							Variable v = u.getSVar().get(i);
+							if(v instanceof ObjectVariable) {
+								Variable pv = merge.getVariable(v.getName()+Util.POST_FLAG);
+								if(pv!=null) {
+									SafeType vp = SafeType.createFromValue(spv[i]);
+									merge.putValue(pv, vp);
+								}
+							}
+						}
 					}
 				}
 			}
@@ -106,37 +123,57 @@ public class XmuModelBackwardEnforce extends XmuModelEnforce {
 	public SafeType interprete_edu_ustb_sei_mde_xmu_UpdatedStatement(
 			UpdatedStatement updatedStatement, XmuContext context) {
 		// TODO Auto-generated method stub
-		SafeType s = context.getSafeTypeValue(updatedStatement.getSVar());
-		SafeType v = context.getSafeTypeValue(updatedStatement.getVVar());
+//		SafeType s = context.getSafeTypeValue(updatedStatement.getSVar());
+//		SafeType v = context.getSafeTypeValue(updatedStatement.getVVar());
+//		
+//		if(s.isInvalid() || v.isInvalid()) return SafeType.getInvalid();
+//		if(s.isNull() || s.isUndefined()) {
+//			if(v.isNull() || v.isUndefined()) {
+//				return SafeType.getInvalid();
+//			} else {
+////				EObject sp = context.getEnvironment().getTrace().getViewCorresponding(v.getObjectValue());
+//				// try to get a full link, where source=null
+//				XmuTraceTuple backward = context.getEnvironment().getTrace().getBackward(
+//						null, 
+//						Collections.singletonList(v.getObjectValue()));
+//				if(backward==null || backward.getElements().length==0) return SafeType.getUndefined();
+//				Object sp = backward.get(0);
+//				if(sp==null) return SafeType.getUndefined();
+//				return SafeType.createFromValue(sp);
+//			}
+//		} else {
+////			EObject sp = context.getEnvironment().getTrace().getCorresponding(s.getObjectValue());
+//			XmuTraceTuple backward = context.getEnvironment().getTrace().getBackward(
+//					Collections.singletonList(s.getValue()),
+//					Collections.singletonList(v.getValue()));
+//			
+//			if(backward==null || backward.getElements().length==0) return SafeType.getUndefined();
+//			
+//			Object sp = backward.get(0);
+//			
+//			if(sp==null) return SafeType.getUndefined();
+//			
+//			return SafeType.createFromValue(sp);
+//		}
+		List<Object> sv = new ArrayList<Object>();
+		List<Object> vv = new ArrayList<Object>();
 		
-		if(s.isInvalid() || v.isInvalid()) return SafeType.getInvalid();
-		if(s.isNull() || s.isUndefined()) {
-			if(v.isNull() || v.isUndefined()) {
-				return SafeType.getInvalid();
-			} else {
-//				EObject sp = context.getEnvironment().getTrace().getViewCorresponding(v.getObjectValue());
-				// try to get a full link, where source=null
-				XmuTraceTuple backward = context.getEnvironment().getTrace().getBackward(
-						null, 
-						Collections.singletonList(v.getObjectValue()));
-				if(backward==null || backward.getElements().length==0) return SafeType.getUndefined();
-				Object sp = backward.get(0);
-				if(sp==null) return SafeType.getUndefined();
-				return SafeType.createFromValue(sp);
-			}
-		} else {
-//			EObject sp = context.getEnvironment().getTrace().getCorresponding(s.getObjectValue());
-			XmuTraceTuple backward = context.getEnvironment().getTrace().getBackward(
-					Collections.singletonList(s.getValue()),
-					Collections.singletonList(v.getValue()));
-			
-			if(backward==null || backward.getElements().length==0) return SafeType.getUndefined();
-			
-			Object sp = backward.get(0);
-			
-			if(sp==null) return SafeType.getUndefined();
-			
-			return SafeType.createFromValue(sp);
+		for(Variable var : updatedStatement.getSVar()) {
+			SafeType val = context.getSafeTypeValue(var);
+			if(val.isInvalid() || val.isUndefined()) return SafeType.getInvalid();
+			sv.add(val.getValue());
+		}
+		
+		for(Variable var : updatedStatement.getVVar()) {
+			SafeType val = context.getSafeTypeValue(var);
+			if(val.isInvalid() || val.isUndefined()) return SafeType.getInvalid();
+			vv.add(val.getValue());
+		}
+		
+		XmuTraceTuple spv = context.getEnvironment().getTrace().getBackward(sv, vv);
+		if(spv==null) return SafeType.getUndefined();
+		else {
+			return SafeType.createFromValue(spv.getElements());
 		}
 	}
 
@@ -148,13 +185,13 @@ public class XmuModelBackwardEnforce extends XmuModelEnforce {
 		ObjectVariable spv = deleteNode.getVariable();
 		SafeType v = context.getSafeTypeValue(spv);
 		if(v.isUndefined() || v.isNull()) return Just.TRUE;
-		ObjectVariable vv = ContextUtil.lookupViewVariable(deleteNode, spv);
-		return deleteNode(spv, vv, context);
+		
+		
+		//ObjectVariable vv = ContextUtil.lookupViewVariable(deleteNode, spv);
+		return deleteNode(spv, context);
 	}
 
-	protected SafeType deleteNode(
-			ObjectVariable sourcePostVar, ObjectVariable defaultView,
-			XmuContext context) {
+	protected SafeType deleteNode(ObjectVariable sourcePostVar, XmuContext context) {
 		ObjectVariable sv = (ObjectVariable) context.getVariable(sourcePostVar.getName().substring(0,sourcePostVar.getName().length()-Util.POST_LENGTH));
 		
 		EObject s = context.getSafeTypeValue(sv).getObjectValue();
@@ -206,11 +243,15 @@ public class XmuModelBackwardEnforce extends XmuModelEnforce {
 		//SafeType vv = defaultView==null ? SafeType.getNull() : context.getSafeTypeValue(defaultView);
 		
 		if(spv.isUndefined()) {
-			ObjectVariable view = ContextUtil.lookupViewVariable(node, (ObjectVariable) node.getVariable());
-			SafeType vv = view==null ? SafeType.getNull() : context.getSafeTypeValue(view);
-			
-			EObject o = context.getEnvironment().createSourcePostElement(sv.getObjectValue(),vv.getObjectValue(),node.getType());
+//			ObjectVariable view = ContextUtil.lookupViewVariable(node, (ObjectVariable) node.getVariable());
+//			SafeType vv = view==null ? SafeType.getNull() : context.getSafeTypeValue(view);
+//			
+//			EObject o = context.getEnvironment().createSourcePostElement(sv.getObjectValue(),vv.getObjectValue(),node.getType());
+//			context.putValue(node.getVariable(), SafeType.createFromValue(o));
+			EObject o = context.getEnvironment().createSourcePostElement((ObjectVariable)node.getVariable(),
+					node.getType(),node, context);
 			context.putValue(node.getVariable(), SafeType.createFromValue(o));
+
 		} else {
 			EObject oldValue = spv.getObjectValue();
 			if(node.getType().isInstance(oldValue)==false) {
@@ -224,12 +265,15 @@ public class XmuModelBackwardEnforce extends XmuModelEnforce {
 				
 				SafeType ret = context.getEnvironment().removeSourcePostElement(sv.getObjectValue(), oldValue);
 				if(ret==Just.TRUE) {
-					ObjectVariable view = ContextUtil.lookupViewVariable(node, (ObjectVariable) node.getVariable());
-					SafeType vv = view==null ? SafeType.getNull() : context.getSafeTypeValue(view);
-					
-					EObject o = context.getEnvironment().createSourcePostElement(sv.getObjectValue(),vv.getObjectValue(),node.getType());
-					
-					context.putValue(node.getVariable(), SafeType.createFromValue(o));					
+//					ObjectVariable view = ContextUtil.lookupViewVariable(node, (ObjectVariable) node.getVariable());
+//					SafeType vv = view==null ? SafeType.getNull() : context.getSafeTypeValue(view);
+//					
+//					EObject o = context.getEnvironment().createSourcePostElement(sv.getObjectValue(),vv.getObjectValue(),node.getType());
+//					
+//					context.putValue(node.getVariable(), SafeType.createFromValue(o));	
+					EObject o = context.getEnvironment().createSourcePostElement((ObjectVariable)node.getVariable(),
+							node.getType(),node, context);
+					context.putValue(node.getVariable(), SafeType.createFromValue(o));
 				}
 				else return ret;
 			} else {

@@ -55,20 +55,48 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 	@Override
 	public SafeType interprete_edu_ustb_sei_mde_xmu_UpdatedStatement(
 			UpdatedStatement updatedStatement, XmuContext context) {
-		SafeType s = context.getSafeTypeValue(updatedStatement.getSVar());
-		SafeType v = context.getSafeTypeValue(updatedStatement.getVVar());
 		
-		if(v.isUndefined() || v.isInvalid() || v.isNull()) {
-			if(s.isUndefined() || s.isInvalid() || s.isNull()) return SafeType.getInvalid();
-//			EObject cv = context.getEnvironment().getTrace().getCorresponding(s.getObjectValue());
-			XmuTraceTuple forward = context.getEnvironment().getTrace().getForward(Collections.singletonList(s.getValue()));
-			if(forward==null || forward.getElements().length==0) return SafeType.getInvalid();
-			
-			EObject cv = (EObject) forward.get(0);
-			if(cv==null) return SafeType.getInvalid();
-			return SafeType.createFromValue(cv);
-		} else 
-			return v;
+		
+//		SafeType s = context.getSafeTypeValue(updatedStatement.getSVar());
+//		SafeType v = context.getSafeTypeValue(updatedStatement.getVVar());
+//		
+//		if(v.isUndefined() || v.isInvalid() || v.isNull()) {
+//			if(s.isUndefined() || s.isInvalid() || s.isNull()) return SafeType.getInvalid();
+////			EObject cv = context.getEnvironment().getTrace().getCorresponding(s.getObjectValue());
+//			XmuTraceTuple forward = context.getEnvironment().getTrace().getForward(Collections.singletonList(s.getValue()));
+//			if(forward==null || forward.getElements().length==0) return SafeType.getInvalid();
+//			
+//			EObject cv = (EObject) forward.get(0);
+//			if(cv==null) return SafeType.getInvalid();
+//			return SafeType.createFromValue(cv);
+//		} else 
+//			return v;
+		
+		List<Object> sv = new ArrayList<Object>();
+		List<Object> vv = new ArrayList<Object>();
+		
+		for(Variable var : updatedStatement.getSVar()) {
+			SafeType val = context.getSafeTypeValue(var);
+			if(val.isInvalid()) return SafeType.getInvalid();
+			sv.add(val.getValue());
+		}
+		
+		for(Variable var : updatedStatement.getVVar()) {
+			SafeType val = context.getSafeTypeValue(var);
+			if(val.isUndefined() || val.isInvalid()) 
+				break; 
+			vv.add(val.getValue());
+		}
+		
+		if(vv.size()==updatedStatement.getVVar().size()) {
+			return SafeType.createFromValue(vv.toArray());
+		} else {
+			if(sv.size()==updatedStatement.getSVar().size()) {
+				XmuTraceTuple forward = context.getEnvironment().getTrace().getForward(sv);
+				if(forward==null || forward.getElements().length==0) return SafeType.getInvalid();
+				return SafeType.createFromValue(forward.getElements());
+			} else return SafeType.getInvalid();
+		}
 	}
 	
 	class ForStatementVReordering {
@@ -132,8 +160,14 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 		for(XmuContext c : smatches) {
 			for(UpdatedStatement u : forStatement.getWhen()) {
 				SafeType ret = this.interprete(u, c);
-				if(ret.isInvalid()==false && ret.isObject()) {
-					c.putValue(u.getVVar(), ret);
+				if(ret.isInvalid()==false) {
+//					c.putValue(u.getVVar(), ret);
+					Object[] vals = (Object[])ret.getValue();
+					for(int i=0;i<u.getVVar().size();i++) {
+						Variable v = u.getVVar().get(i);
+						Object val = vals[i];
+						c.putValue(v, SafeType.createFromValue(val));
+					}
 				}
 			}
 			
@@ -162,8 +196,10 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 					if(flag==false) 
 						throw new RuntimeException("No corresponding action!");
 					else {
-						if(value.isInvalid() || value==Just.FALSE) 
+						if(value.isInvalid() || value==Just.FALSE) {
+							System.out.println(c);
 							throw new RuntimeException("model check fails");
+						}
 						else {
 							continue;
 						}
@@ -577,11 +613,13 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 		SafeType vv = context.getSafeTypeValue(node.getVariable());
 		//SafeType spv = context.getSafeTypeValue(node.getVariable());
 		//SafeType vv = defaultView==null ? SafeType.getNull() : context.getSafeTypeValue(defaultView);
-		Variable source = ContextUtil.lookupSourceVariable(node, (ObjectVariable) (node.getVariable()));
-		SafeType sv = source==null ? SafeType.getNull() : context.getSafeTypeValue(source);
+//		Variable source = ContextUtil.lookupSourceVariable(node, (ObjectVariable) (node.getVariable()));
+//		SafeType sv = source==null ? SafeType.getNull() : context.getSafeTypeValue(source);
 		
 		if(vv.isUndefined()) {
-			EObject o = context.getEnvironment().createViewElement(sv.getValue(),node.getType());
+//			EObject o = context.getEnvironment().createViewElement(sv.getValue(),node.getType());
+			EObject o = context.getEnvironment().createViewElement((ObjectVariable)node.getVariable(), node.getType(), node, context);
+			
 			if(o==null) {
 				//pending
 			} else {

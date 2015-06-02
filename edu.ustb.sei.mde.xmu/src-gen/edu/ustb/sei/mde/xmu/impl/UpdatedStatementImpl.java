@@ -6,10 +6,10 @@ import edu.ustb.sei.mde.xmu.ObjectVariable;
 import edu.ustb.sei.mde.xmu.UpdatedStatement;
 import edu.ustb.sei.mde.xmu.Variable;
 import edu.ustb.sei.mde.xmu.XmuPackage;
-import org.eclipse.emf.common.notify.Notification;
+import java.util.Collection;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,24 +27,24 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class UpdatedStatementImpl extends StatementImpl implements UpdatedStatement {
 	/**
-	 * The cached value of the '{@link #getSVar() <em>SVar</em>}' reference.
+	 * The cached value of the '{@link #getSVar() <em>SVar</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getSVar()
 	 * @generated
 	 * @ordered
 	 */
-	protected Variable sVar;
+	protected EList<Variable> sVar;
 
 	/**
-	 * The cached value of the '{@link #getVVar() <em>VVar</em>}' reference.
+	 * The cached value of the '{@link #getVVar() <em>VVar</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getVVar()
 	 * @generated
 	 * @ordered
 	 */
-	protected ObjectVariable vVar;
+	protected EList<ObjectVariable> vVar;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -70,14 +70,9 @@ public class UpdatedStatementImpl extends StatementImpl implements UpdatedStatem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Variable getSVar() {
-		if (sVar != null && sVar.eIsProxy()) {
-			InternalEObject oldSVar = (InternalEObject)sVar;
-			sVar = (Variable)eResolveProxy(oldSVar);
-			if (sVar != oldSVar) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, XmuPackage.UPDATED_STATEMENT__SVAR, oldSVar, sVar));
-			}
+	public EList<Variable> getSVar() {
+		if (sVar == null) {
+			sVar = new EObjectResolvingEList<Variable>(Variable.class, this, XmuPackage.UPDATED_STATEMENT__SVAR);
 		}
 		return sVar;
 	}
@@ -87,58 +82,11 @@ public class UpdatedStatementImpl extends StatementImpl implements UpdatedStatem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Variable basicGetSVar() {
-		return sVar;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setSVar(Variable newSVar) {
-		Variable oldSVar = sVar;
-		sVar = newSVar;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, XmuPackage.UPDATED_STATEMENT__SVAR, oldSVar, sVar));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ObjectVariable getVVar() {
-		if (vVar != null && vVar.eIsProxy()) {
-			InternalEObject oldVVar = (InternalEObject)vVar;
-			vVar = (ObjectVariable)eResolveProxy(oldVVar);
-			if (vVar != oldVVar) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, XmuPackage.UPDATED_STATEMENT__VVAR, oldVVar, vVar));
-			}
+	public EList<ObjectVariable> getVVar() {
+		if (vVar == null) {
+			vVar = new EObjectResolvingEList<ObjectVariable>(ObjectVariable.class, this, XmuPackage.UPDATED_STATEMENT__VVAR);
 		}
 		return vVar;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ObjectVariable basicGetVVar() {
-		return vVar;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setVVar(ObjectVariable newVVar) {
-		ObjectVariable oldVVar = vVar;
-		vVar = newVVar;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, XmuPackage.UPDATED_STATEMENT__VVAR, oldVVar, vVar));
 	}
 
 	/**
@@ -150,11 +98,9 @@ public class UpdatedStatementImpl extends StatementImpl implements UpdatedStatem
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case XmuPackage.UPDATED_STATEMENT__SVAR:
-				if (resolve) return getSVar();
-				return basicGetSVar();
+				return getSVar();
 			case XmuPackage.UPDATED_STATEMENT__VVAR:
-				if (resolve) return getVVar();
-				return basicGetVVar();
+				return getVVar();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -169,10 +115,12 @@ public class UpdatedStatementImpl extends StatementImpl implements UpdatedStatem
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case XmuPackage.UPDATED_STATEMENT__SVAR:
-				setSVar((Variable)newValue);
+				getSVar().clear();
+				getSVar().addAll((Collection<? extends Variable>)newValue);
 				return;
 			case XmuPackage.UPDATED_STATEMENT__VVAR:
-				setVVar((ObjectVariable)newValue);
+				getVVar().clear();
+				getVVar().addAll((Collection<? extends ObjectVariable>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -187,10 +135,10 @@ public class UpdatedStatementImpl extends StatementImpl implements UpdatedStatem
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case XmuPackage.UPDATED_STATEMENT__SVAR:
-				setSVar((Variable)null);
+				getSVar().clear();
 				return;
 			case XmuPackage.UPDATED_STATEMENT__VVAR:
-				setVVar((ObjectVariable)null);
+				getVVar().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -205,9 +153,9 @@ public class UpdatedStatementImpl extends StatementImpl implements UpdatedStatem
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case XmuPackage.UPDATED_STATEMENT__SVAR:
-				return sVar != null;
+				return sVar != null && !sVar.isEmpty();
 			case XmuPackage.UPDATED_STATEMENT__VVAR:
-				return vVar != null;
+				return vVar != null && !vVar.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

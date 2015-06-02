@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EcorePackage;
 
 import edu.ustb.sei.commonutil.util.Pair;
 import edu.ustb.sei.mde.xmu.*;
+import edu.ustb.sei.mde.xmu.resource.xmu.analysis.Util;
 
 public class ContextUtil {
 	static public List<Pair<XmuContext,XmuContext>> align(List<XmuContext> srcMatches,List<XmuContext> tarMatches) {
@@ -529,30 +530,72 @@ public class ContextUtil {
 		}		
 	}
 	
-	static public ObjectVariable lookupViewVariable(EObject o, ObjectVariable sourcePost) {
-		if(o==null) return null;
+	static public List<UpdatedStatement> lookupUpdatedStatementsFromSourcePost(EObject o, ObjectVariable sourcePost) {
+		List<UpdatedStatement> result = new ArrayList<UpdatedStatement>();
+		lookupUpdatedStatementsFromSourcePost(o,sourcePost,result);
+		//if(result.size()==0) return null;
+		return result;
+	}
+	
+	static private void lookupUpdatedStatementsFromSourcePost(EObject o, ObjectVariable sourcePost, List<UpdatedStatement> result) {
+		if(o==null) return;
 		if(o instanceof ForStatement) {
 			for(UpdatedStatement u : ((ForStatement) o).getWhen()) {
 				if(isCorrelated(u.getSVar(),sourcePost)) {
-					return u.getVVar();
+					result.add(u);
 				}
 			}
-			
-//			if(isCorrelated(((ForStatement) o).getSPattern().getRoot().getVariable(),sourcePost)) {
-//				return (ObjectVariable) ((ForStatement) o).getVPattern().getRoot();
-//			}
 		} else if(o instanceof SwitchStatement) {
 			for(UpdatedStatement u : ((SwitchStatement) o).getWhen()) {
 				if(isCorrelated(u.getSVar(),sourcePost)) {
-					return u.getVVar();
+					result.add(u);
+				}
+			}
+		} 
+		lookupUpdatedStatementsFromSourcePost(o.eContainer(),sourcePost,result);
+	}
+	
+	static public boolean isCorrelated(List<Variable> slist, Variable sp) {
+		for(Variable s : slist) {
+			if(sp.getName().startsWith(s.getName()) && sp.getName().length() == s.getName().length()+Util.POST_LENGTH) 
+				return true;			
+		}
+		return false;
+	}
+	
+	static public List<UpdatedStatement> lookupUpdatedStatementsFromView(EObject o, Variable view) {
+		List<UpdatedStatement> result = new ArrayList<UpdatedStatement>();
+		lookupUpdatedStatementsFromView(o,view,result);
+		//if(result.size()==0) return null;
+		return result;
+	}
+	
+	static private void lookupUpdatedStatementsFromView(EObject o, Variable view,List<UpdatedStatement> result) {
+		if(o==null) return;
+		if(o instanceof ForStatement) {
+			for(UpdatedStatement u : ((ForStatement) o).getWhen()) {
+				if(u.getVVar().contains(view)) {
+					result.add(u);
+				}
+			}
+			
+//			if(((ForStatement) o).getVPattern()!=null) {
+//				if(((ForStatement) o).getVPattern().getRoot().getVariable()==view) {
+//					return (ObjectVariable) ((ForStatement) o).getSPattern().getRoot().getVariable();
+//				}
+//			}
+		} else if(o instanceof SwitchStatement) {
+			for(UpdatedStatement u : ((SwitchStatement) o).getWhen()) {
+				if(u.getVVar()==view) {
+					result.add(u);
 				}
 			}
 		} else if(o instanceof Rule) {
 //			boolean flag = false;
 //			
 //			for(Parameter p : ((Rule) o).getParameters()) {
-//				if(p.getTag()==VariableFlag.SOURCE)
-//					if(isCorrelated(p.getVariable(),sourcePost)) {
+//				if(p.getTag()==VariableFlag.VIEW)
+//					if(p.getVariable()==view) {
 //						flag = true;
 //						break;
 //					}
@@ -560,60 +603,100 @@ public class ContextUtil {
 //			
 //			if(flag) {
 //				for(Parameter p : ((Rule) o).getParameters()) {
-//					if(p.getTag()==VariableFlag.VIEW)
+//					if(p.getTag()==VariableFlag.SOURCE)
 //						return (ObjectVariable) p.getVariable();
 //				}
 //			}
 		}
 		
-		return lookupViewVariable(o.eContainer(),sourcePost);
+		lookupUpdatedStatementsFromView(o.eContainer(),view,result);
 	}
 	
-	static public Variable lookupSourceVariable(EObject o, ObjectVariable view) {
-		if(o==null) return null;
-		if(o instanceof ForStatement) {
-			for(UpdatedStatement u : ((ForStatement) o).getWhen()) {
-				if(u.getVVar()==view) {
-					return u.getSVar();
-				}
-			}
-			
-			if(((ForStatement) o).getVPattern()!=null) {
-				if(((ForStatement) o).getVPattern().getRoot().getVariable()==view) {
-					return (ObjectVariable) ((ForStatement) o).getSPattern().getRoot().getVariable();
-				}
-			}
-		} else if(o instanceof SwitchStatement) {
-			for(UpdatedStatement u : ((SwitchStatement) o).getWhen()) {
-				if(u.getVVar()==view) {
-					return u.getSVar();
-				}
-			}
-		} else if(o instanceof Rule) {
-			boolean flag = false;
-			
-			for(Parameter p : ((Rule) o).getParameters()) {
-				if(p.getTag()==VariableFlag.VIEW)
-					if(p.getVariable()==view) {
-						flag = true;
-						break;
-					}
-			}
-			
-			if(flag) {
-				for(Parameter p : ((Rule) o).getParameters()) {
-					if(p.getTag()==VariableFlag.SOURCE)
-						return (ObjectVariable) p.getVariable();
-				}
-			}
-		}
-		
-		return lookupSourceVariable(o.eContainer(),view);
-	}
+//	static public ObjectVariable lookupViewVariable(EObject o, ObjectVariable sourcePost) {
+//		if(o==null) return null;
+//		if(o instanceof ForStatement) {
+//			for(UpdatedStatement u : ((ForStatement) o).getWhen()) {
+//				if(isCorrelated(u.getSVar(),sourcePost)) {
+//					return u.getVVar();
+//				}
+//			}
+//			
+////			if(isCorrelated(((ForStatement) o).getSPattern().getRoot().getVariable(),sourcePost)) {
+////				return (ObjectVariable) ((ForStatement) o).getVPattern().getRoot();
+////			}
+//		} else if(o instanceof SwitchStatement) {
+//			for(UpdatedStatement u : ((SwitchStatement) o).getWhen()) {
+//				if(isCorrelated(u.getSVar(),sourcePost)) {
+//					return u.getVVar();
+//				}
+//			}
+//		} else if(o instanceof Rule) {
+////			boolean flag = false;
+////			
+////			for(Parameter p : ((Rule) o).getParameters()) {
+////				if(p.getTag()==VariableFlag.SOURCE)
+////					if(isCorrelated(p.getVariable(),sourcePost)) {
+////						flag = true;
+////						break;
+////					}
+////			}
+////			
+////			if(flag) {
+////				for(Parameter p : ((Rule) o).getParameters()) {
+////					if(p.getTag()==VariableFlag.VIEW)
+////						return (ObjectVariable) p.getVariable();
+////				}
+////			}
+//		}
+//		
+//		return lookupViewVariable(o.eContainer(),sourcePost);
+//	}
 	
-	static public boolean isCorrelated(Variable s, Variable sp) {
-		return sp.getName().startsWith(s.getName()) && sp.getName().length() == s.getName().length()+5;
-	}
+//	static public Variable lookupSourceVariable(EObject o, ObjectVariable view) {
+//		if(o==null) return null;
+//		if(o instanceof ForStatement) {
+//			for(UpdatedStatement u : ((ForStatement) o).getWhen()) {
+//				if(u.getVVar()==view) {
+//					return u.getSVar();
+//				}
+//			}
+//			
+//			if(((ForStatement) o).getVPattern()!=null) {
+//				if(((ForStatement) o).getVPattern().getRoot().getVariable()==view) {
+//					return (ObjectVariable) ((ForStatement) o).getSPattern().getRoot().getVariable();
+//				}
+//			}
+//		} else if(o instanceof SwitchStatement) {
+//			for(UpdatedStatement u : ((SwitchStatement) o).getWhen()) {
+//				if(u.getVVar()==view) {
+//					return u.getSVar();
+//				}
+//			}
+//		} else if(o instanceof Rule) {
+//			boolean flag = false;
+//			
+//			for(Parameter p : ((Rule) o).getParameters()) {
+//				if(p.getTag()==VariableFlag.VIEW)
+//					if(p.getVariable()==view) {
+//						flag = true;
+//						break;
+//					}
+//			}
+//			
+//			if(flag) {
+//				for(Parameter p : ((Rule) o).getParameters()) {
+//					if(p.getTag()==VariableFlag.SOURCE)
+//						return (ObjectVariable) p.getVariable();
+//				}
+//			}
+//		}
+//		
+//		return lookupSourceVariable(o.eContainer(),view);
+//	}
+	
+//	static public boolean isCorrelated(Variable s, Variable sp) {
+//		return sp.getName().startsWith(s.getName()) && sp.getName().length() == s.getName().length()+5;
+//	}
 
 	public static void merge(XmuContext context, XmuContext xmuContext) {
 		// TODO Auto-generated method stub

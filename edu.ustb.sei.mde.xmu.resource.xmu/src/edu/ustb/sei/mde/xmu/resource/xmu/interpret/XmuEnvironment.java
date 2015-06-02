@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import edu.ustb.sei.commonutil.util.CacheMap;
 import edu.ustb.sei.commonutil.util.Triple;
 import edu.ustb.sei.mde.xmu.*;
+import edu.ustb.sei.mde.xmu.resource.xmu.analysis.Util;
 
 public class XmuEnvironment {
 	private ResourceSet resourceSet; 
@@ -197,23 +198,125 @@ public class XmuEnvironment {
 	private XmuTraceSystem trace = null;
 	private ModificationTrackSystem track = null;
 	
-	public EObject createSourcePostElement(EObject source,EObject view, EClass cls) {
-		System.out.println("create "+cls.getName());
+//	public EObject createSourcePostElement(EObject source,EObject view, EClass cls) {
+//		System.out.println("create "+cls.getName());
+//		
+//		EObject o = EcoreUtil.create(cls);
+//		track.create(o);
+////		if(source!=null)
+////			trace.setCorresponding(source, o);
+////		else if(view!=null)
+////			trace.setViewCorresponding(view,o);
+//		
+//		if(view==null){
+//			if(source!=null) 
+//				trace.putBackward(Collections.singletonList(source), Collections.singletonList(o));
+//		} else
+//			trace.putBackward((source==null ? null : Collections.singletonList(source)), 
+//				Collections.singletonList(view), 
+//				(Collections.singletonList(o)));
+//		
+//		return o;
+//	}
+	
+	public EObject createViewElement(ObjectVariable vv,EClass cls, EObject current, XmuContext context) {
+		if(cls.isAbstract()) return null;
 		
 		EObject o = EcoreUtil.create(cls);
 		track.create(o);
-//		if(source!=null)
-//			trace.setCorresponding(source, o);
-//		else if(view!=null)
-//			trace.setViewCorresponding(view,o);
 		
-		if(view==null){
-			if(source!=null) 
-				trace.putBackward(Collections.singletonList(source), Collections.singletonList(o));
-		} else
-			trace.putBackward((source==null ? null : Collections.singletonList(source)), 
-				Collections.singletonList(view), 
-				(Collections.singletonList(o)));
+		List<UpdatedStatement> updates = ContextUtil.lookupUpdatedStatementsFromView(current, vv);
+		
+		if(updates.size()!=0) {
+			
+			for(UpdatedStatement u : updates) {
+				List<Object> sVals = new ArrayList<Object>();
+				List<Object> vVals = new ArrayList<Object>();
+				for(Variable v : u.getSVar()) {
+					SafeType sv = context.getSafeTypeValue(v);
+					if(sv.isInvalid() || sv.isUndefined()) break;
+					sVals.add(sv.getValue());
+				}
+				if(sVals.size()!=u.getSVar().size()) continue;
+				
+				for(Variable v : u.getVVar()) {
+					if(v==vv) {
+						vVals.add(o);
+					} else {
+						SafeType sv = context.getSafeTypeValue(v);
+						if(sv.isInvalid() || sv.isUndefined()) break;
+						vVals.add(sv.getValue());
+					}
+				}
+				if(vVals.size()!=u.getVVar().size()) continue;
+				
+				trace.putForward(sVals,vVals);
+			}
+		}
+		return o;
+	}
+	
+	public EObject createSourcePostElement(ObjectVariable sp, EClass cls, EObject current,XmuContext context) {
+		if(cls.isAbstract()) return null;
+		
+		EObject o = EcoreUtil.create(cls);
+		track.create(o);
+		
+		List<UpdatedStatement> updates = ContextUtil.lookupUpdatedStatementsFromSourcePost(current, sp);
+		
+		if(updates.size()==0) {//updateStatement does not exist. try to put a direct link
+			Variable s = context.getVariable(sp.getName().substring(0, sp.getName().length()-Util.POST_LENGTH));
+			if(s!=null) {
+				SafeType sv = context.getSafeTypeValue(s);
+				if(sv.getValue()!=null) {
+					trace.putBackward(Collections.singletonList(sv.getValue()),
+							Collections.singletonList(o));
+				}
+			}
+		} else {
+			for(UpdatedStatement u : updates) {
+				List<Object> spv = new ArrayList<Object>();
+				List<Object> sv = new ArrayList<Object>();
+				
+				for(Variable var : u.getSVar()) {
+					if(var instanceof PrimitiveVariable) {
+						SafeType v = context.getSafeTypeValue(var);
+						sv.add(v.getValue());
+						spv.add(v.getValue());
+					} else {
+						SafeType v = context.getSafeTypeValue(var);
+						sv.add(v.getValue());
+						
+						Variable pv = context.getVariable(var.getName()+Util.POST_FLAG);
+						if(pv!=null) {
+							if(pv==sp) {
+								spv.add(o);
+							} else {
+								// in this case, some source post in the same tuple have not been created yet
+								SafeType vp = context.getSafeTypeValue(pv);
+								if(vp.isUndefined() || vp.isInvalid()){
+									break;
+								}
+								else 
+									spv.add(vp);								
+							}
+						} else {
+							spv.add(null);
+						}
+					}
+				}
+				
+				if(spv.size()!=sv.size()) continue;
+				
+				List<Object> vv = new ArrayList<Object>();
+				for(ObjectVariable var : u.getVVar()) {
+					SafeType v = context.getSafeTypeValue(var);
+					vv.add(v.getValue());
+				}
+				
+				trace.putBackward(sv, vv, spv);
+			}
+		}
 		
 		return o;
 	}
@@ -480,18 +583,18 @@ public class XmuEnvironment {
 		}
 	}
 
-	public EObject createViewElement(Object source, EClass type) {
-		if(type.isAbstract()) return null;
-		
-		EObject o = EcoreUtil.create(type);
-		track.create(o);
-		if(source!=null) {
-//			trace.setCorresponding(source, o);
-			trace.putForward(Collections.singletonList(source), 
-					Collections.singletonList(o));
-		}
-		return o;
-	}
+//	public EObject createViewElement(Object source, EClass type) {
+//		if(type.isAbstract()) return null;
+//		
+//		EObject o = EcoreUtil.create(type);
+//		track.create(o);
+//		if(source!=null) {
+////			trace.setCorresponding(source, o);
+//			trace.putForward(Collections.singletonList(source), 
+//					Collections.singletonList(o));
+//		}
+//		return o;
+//	}
 	
 //	public EObject createViewElement(EClass type, List<UpdatedStatement> statements, XmuContext context) {
 //		if(type.isAbstract()) return null;

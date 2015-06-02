@@ -49,7 +49,7 @@ RULES {
 	
 	ForStatement ::= "update" sPattern ("with" vPattern ("when" when (";" when)*)?)? "by" (actions (actions (actions)?)?) ;
 	
-	UpdatedStatement ::= "updated" "(" sVar[NAME] "," vVar[NAME] ")";
+	UpdatedStatement ::= "updated" "(" sVar[NAME]+ "," vVar[NAME]+ ")";
 	
 	VStatement ::= tag[match:"match", unmatchv:"unmatchv", unmatchs:"unmatchs"] "->" statement;
 	
