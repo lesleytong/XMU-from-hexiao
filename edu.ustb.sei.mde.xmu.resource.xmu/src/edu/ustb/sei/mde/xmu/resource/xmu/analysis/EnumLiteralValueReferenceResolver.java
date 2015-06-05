@@ -15,12 +15,29 @@ public class EnumLiteralValueReferenceResolver implements edu.ustb.sei.mde.xmu.r
 	private edu.ustb.sei.mde.xmu.resource.xmu.analysis.XmuDefaultResolverDelegate<edu.ustb.sei.mde.xmu.EnumLiteral, org.eclipse.emf.ecore.EEnumLiteral> delegate = new edu.ustb.sei.mde.xmu.resource.xmu.analysis.XmuDefaultResolverDelegate<edu.ustb.sei.mde.xmu.EnumLiteral, org.eclipse.emf.ecore.EEnumLiteral>();
 	
 	public void resolve(String identifier, edu.ustb.sei.mde.xmu.EnumLiteral container, org.eclipse.emf.ecore.EReference reference, int position, boolean resolveFuzzy, final edu.ustb.sei.mde.xmu.resource.xmu.IXmuReferenceResolveResult<org.eclipse.emf.ecore.EEnumLiteral> result) {
-		if(identifier == null || container==null) return;
-		EnumLiteral l = (EnumLiteral) container.eContainer();
-		if(l.getType()==null || l.getType().eIsProxy()) return;
-		EEnumLiteral lr = l.getType().getEEnumLiteral(identifier);
-		if(lr==null) return;
-		result.addMapping(identifier, lr);
+		if(resolveFuzzy) {
+			if(container==null) return;
+			EnumLiteral l = (EnumLiteral) container.eContainer();
+			if(l.getType()==null || l.getType().eIsProxy()) return;
+			
+			if(identifier==null) {
+				for(EEnumLiteral v : l.getType().getELiterals()) {
+					result.addMapping(v.getName(), v);
+				}
+			} else {
+				for(EEnumLiteral v : l.getType().getELiterals()) {
+					if(v.getName().startsWith(identifier))
+						result.addMapping(v.getName(), v);
+				}
+			}
+		} else {
+			if(identifier == null || container==null) return;
+			EnumLiteral l = (EnumLiteral) container.eContainer();
+			if(l.getType()==null || l.getType().eIsProxy()) return;
+			EEnumLiteral lr = l.getType().getEEnumLiteral(identifier);
+			if(lr==null) return;
+			result.addMapping(identifier, lr);		
+		}
 	}
 	
 	public String deResolve(org.eclipse.emf.ecore.EEnumLiteral element, edu.ustb.sei.mde.xmu.EnumLiteral container, org.eclipse.emf.ecore.EReference reference) {

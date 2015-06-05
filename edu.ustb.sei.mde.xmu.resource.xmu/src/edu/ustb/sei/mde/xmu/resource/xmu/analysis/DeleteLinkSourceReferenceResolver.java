@@ -6,6 +6,8 @@
  */
 package edu.ustb.sei.mde.xmu.resource.xmu.analysis;
 
+import java.util.List;
+
 import edu.ustb.sei.mde.xmu.ObjectVariable;
 import edu.ustb.sei.mde.xmu.PatternNode;
 import edu.ustb.sei.mde.xmu.Rule;
@@ -16,27 +18,44 @@ public class DeleteLinkSourceReferenceResolver implements edu.ustb.sei.mde.xmu.r
 	private edu.ustb.sei.mde.xmu.resource.xmu.analysis.XmuDefaultResolverDelegate<edu.ustb.sei.mde.xmu.DeleteLink, edu.ustb.sei.mde.xmu.ObjectVariable> delegate = new edu.ustb.sei.mde.xmu.resource.xmu.analysis.XmuDefaultResolverDelegate<edu.ustb.sei.mde.xmu.DeleteLink, edu.ustb.sei.mde.xmu.ObjectVariable>();
 	
 	public void resolve(String identifier, edu.ustb.sei.mde.xmu.DeleteLink container, org.eclipse.emf.ecore.EReference reference, int position, boolean resolveFuzzy, final edu.ustb.sei.mde.xmu.resource.xmu.IXmuReferenceResolveResult<edu.ustb.sei.mde.xmu.ObjectVariable> result) {
-		if(identifier==null || container==null) return;
-		
-		Rule rule = Util.getRule(container);
-		
-		if(rule==null) return;
-		
-//		ObjectVariable v = (ObjectVariable) (Util.getVariable(identifier, rule.getSpVars()));
-//		
-//		if(v==null) return;
-//		
-//		result.addMapping(identifier, v);
-		
-		if(identifier.endsWith(Util.POST_FLAG)) {
-			Variable var = Util.getVariable(identifier, rule.getSpVars());
-			if(var==null) return;
-			result.addMapping(identifier, (ObjectVariable) var);			
+		if(resolveFuzzy) {
+			if(container==null) return;
+			
+			Rule rule = Util.getRule(container);
+			
+			if(rule==null) return;
+			
+			if(identifier==null) {
+				List<ObjectVariable> lists = rule.getSpVars();
+				for(ObjectVariable v : lists) {
+					result.addMapping(v.getName(), v);
+				}
+			} else {
+				List<ObjectVariable> lists = rule.getSpVars();
+				for(ObjectVariable v : lists) {
+					if(v.getName().startsWith(identifier))
+						result.addMapping(v.getName(), v);
+				}
+			}
+
 		} else {
-			identifier = identifier.concat(Util.POST_FLAG);
-			Variable var = Util.getVariable(identifier, rule.getSpVars());
-			if(var==null) return;
-			result.addMapping(identifier, (ObjectVariable) var);
+			if(identifier==null || container==null) return;
+			
+			Rule rule = Util.getRule(container);
+			
+			if(rule==null) return;
+			
+			if(identifier.endsWith(Util.POST_FLAG)) {
+				Variable var = Util.getVariable(identifier, rule.getSpVars());
+				if(var==null) return;
+				result.addMapping(identifier, (ObjectVariable) var);			
+			} else {
+				identifier = identifier.concat(Util.POST_FLAG);
+				Variable var = Util.getVariable(identifier, rule.getSpVars());
+				if(var==null) return;
+				result.addMapping(identifier, (ObjectVariable) var);
+			}
+		
 		}
 	}
 	

@@ -87,6 +87,14 @@ public class XmuLaunchConfigurationHelper {
 			
 			base = new XmuContext(env);
 			
+			for(InitialMappingStatement s : model.getInitialMappings()) {
+				enforce.interprete(s, base);
+			}
+			
+			for(HelperMapping s : model.getHelperMappings()) {
+				enforce.interprete(s, base);
+			}
+			
 			for(StartStatement ss : model.getStart()) {
 				SafeType ret = enforce.interprete_edu_ustb_sei_mde_xmu_StartStatement(ss, base);
 				if(ret.getValue()!=Boolean.TRUE) {

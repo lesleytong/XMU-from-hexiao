@@ -106,7 +106,9 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xmu.ecore#//VariableExp/var"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//VariableExp/path"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="xmu.ecore#//ConstantExpr"/>
+    <genClasses image="false" ecoreClass="xmu.ecore#//ConstantExpr">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//ConstantExpr/path"/>
+    </genClasses>
     <genClasses ecoreClass="xmu.ecore#//EmptyLiteral">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmu.ecore#//EmptyLiteral/value"/>
     </genClasses>
@@ -148,6 +150,8 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//CaseValueStatement/expression"/>
     </genClasses>
     <genClasses ecoreClass="xmu.ecore#//XMUModel">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//XMUModel/initialMappings"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//XMUModel/helperMappings"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//XMUModel/rules"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xmu.ecore#//XMUModel/packages"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//XMUModel/start"/>
@@ -197,6 +201,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//ParenExpr/body"/>
     </genClasses>
     <genClasses image="false" ecoreClass="xmu.ecore#//Path"/>
+    <genClasses ecoreClass="xmu.ecore#//HelperPath">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xmu.ecore#//HelperPath/helper"/>
+    </genClasses>
     <genClasses ecoreClass="xmu.ecore#//FeaturePath">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmu.ecore#//FeaturePath/feature"/>
     </genClasses>
@@ -228,6 +235,17 @@
     </genClasses>
     <genClasses ecoreClass="xmu.ecore#//ESet">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xmu.ecore#//ESet/content"/>
+    </genClasses>
+    <genClasses ecoreClass="xmu.ecore#//ObjectPathExpr">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xmu.ecore#//ObjectPathExpr/object"/>
+    </genClasses>
+    <genClasses ecoreClass="xmu.ecore#//InitialMappingStatement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//InitialMappingStatement/source"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//InitialMappingStatement/target"/>
+    </genClasses>
+    <genClasses ecoreClass="xmu.ecore#//HelperMapping">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//HelperMapping/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//HelperMapping/right"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

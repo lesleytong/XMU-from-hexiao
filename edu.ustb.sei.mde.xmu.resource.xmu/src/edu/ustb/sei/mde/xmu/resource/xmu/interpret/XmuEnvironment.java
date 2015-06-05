@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
+import edu.ustb.sei.commonutil.util.BidirectionalMap;
 import edu.ustb.sei.commonutil.util.CacheMap;
 import edu.ustb.sei.commonutil.util.Triple;
 import edu.ustb.sei.mde.xmu.*;
@@ -43,6 +44,17 @@ public class XmuEnvironment {
 	
 	public boolean isForward() {
 		return isForward;
+	}
+	
+	protected HashMap<String,BidirectionalMap<Object, Object>> helperMappings = new  HashMap<String,BidirectionalMap<Object, Object>>();
+	
+	public BidirectionalMap<Object, Object> getHelperMappings(String name) {
+		BidirectionalMap<Object, Object> map = helperMappings.get(name);
+		if(map==null) {
+			map = new BidirectionalMap<Object, Object>();
+			helperMappings.put(name, map);
+		}
+		return map;
 	}
 
 	private XmuEnvironment(boolean forward) {
@@ -225,6 +237,8 @@ public class XmuEnvironment {
 		EObject o = EcoreUtil.create(cls);
 		track.create(o);
 		
+		System.out.println("create "+o+" when\n"+context);
+		
 		List<UpdatedStatement> updates = ContextUtil.lookupUpdatedStatementsFromView(current, vv);
 		
 		if(updates.size()!=0) {
@@ -403,45 +417,80 @@ public class XmuEnvironment {
 				return SafeType.getInvalid();
 		}
 		
-		if(feature.isMany()) {
-			List<Object> list = (List<Object>) obj.eGet(feature);
-			if(value instanceof List) {
-				if(feature instanceof EReference) {
-					for(Object tar : (List<?>)value) {
-						track.create(obj, (EReference)feature, (EObject)tar);
+		if(feature.isChangeable()) {
+			if(feature.isMany()) {
+				List<Object> list = (List<Object>) obj.eGet(feature);
+				if(value instanceof List) {
+					if(feature instanceof EReference) {
+						for(Object tar : (List<?>)value) {
+							track.create(obj, (EReference)feature, (EObject)tar);
+						}
+					} else {
+						for(Object tar : (List<?>)value) {
+							track.create(obj, (EAttribute)feature, tar);
+						}
 					}
-				} else {
-					for(Object tar : (List<?>)value) {
-						track.create(obj, (EAttribute)feature, tar);
+					list.addAll((List<?>)value);
+				} else{
+					if(feature instanceof EReference) {
+						track.create(obj, (EReference)feature, (EObject)value);
+					} else {
+						track.create(obj, (EAttribute)feature, value);
 					}
+					list.add(value);
 				}
-				list.addAll((List<?>)value);
-			} else{
-				if(feature instanceof EReference) {
-					track.create(obj, (EReference)feature, (EObject)value);
-				} else {
-					track.create(obj, (EAttribute)feature, value);
-				}
-				list.add(value);
-			}
-		} else {
-			if(value instanceof List) {
-				Object f = ((List<?>) value).get(0);
-				if(feature instanceof EReference) {
-					track.create(obj, (EReference)feature, (EObject)f);
-				} else {
-					track.create(obj, (EAttribute)feature, f);
-				}
-				obj.eSet(feature, f);
 			} else {
-				if(feature instanceof EReference) {
-					track.create(obj, (EReference)feature, (EObject)value);
+				if(value instanceof List) {
+					Object f = ((List<?>) value).get(0);
+					if(feature instanceof EReference) {
+						track.create(obj, (EReference)feature, (EObject)f);
+					} else {
+						track.create(obj, (EAttribute)feature, f);
+					}
+					obj.eSet(feature, f);
 				} else {
-					track.create(obj, (EAttribute)feature, value);
+					if(feature instanceof EReference) {
+						track.create(obj, (EReference)feature, (EObject)value);
+					} else {
+						track.create(obj, (EAttribute)feature, value);
+					}
+					obj.eSet(feature, value);
 				}
-				obj.eSet(feature, value);
+			}
+			
+		} else {
+			if(feature instanceof EAttribute) return SafeType.getInvalid();
+			else {
+				EReference ref = (EReference)feature;
+				if(ref.getEOpposite()!=null) {
+					ref = ref.getEOpposite();
+					if(value instanceof List) {
+						for(EObject src : (List<EObject>)value) {
+							if(ref.isMany()) {
+								List<Object> list = (List<Object>) src.eGet(ref);
+								track.create(src, ref, obj);
+								list.add(obj);
+							} else {
+								track.create(src, ref, obj);
+								src.eSet(ref, obj);
+							}
+						}
+					} else {
+						EObject src = (EObject)value;
+						if(ref.isMany()) {
+							List<Object> list = (List<Object>) src.eGet(ref);
+							track.create(src, ref, obj);
+							list.add(obj);
+						} else {
+							track.create(src, ref, obj);
+							src.eSet(ref, obj);
+						}
+						
+					}
+				} else return SafeType.getInvalid();
 			}
 		}
+		
 		
 		
 		
@@ -494,53 +543,86 @@ public class XmuEnvironment {
 	}
 	
 	public SafeType removeFeature(EObject sourcePost,EStructuralFeature feature, Object value) {
+		System.out.println("remove feature "+value);
 		if(feature instanceof EReference) {
 			if(track.canDelete(sourcePost, (EReference)feature, (EObject)value)==false) return SafeType.getInvalid();
 		} else if(feature instanceof EAttribute) {
 			if(track.canDelete(sourcePost, (EAttribute)feature, value)==false) return SafeType.getInvalid();
 		}
 		
-		if(feature.isMany()) {
-			List<Object> list = (List<Object>) sourcePost.eGet(feature);
-			if(value instanceof List) {
-				if(feature instanceof EReference) {
-					for(Object tar : (List<?>)value) {
-						track.delete(sourcePost, (EReference)feature, (EObject)tar);
-					}
-				} else {
-					for(Object tar : (List<?>)value) {
-						track.delete(sourcePost, (EAttribute)feature, tar);
-					}
-				}
-				list.removeAll((List<?>)value);
-			} else {
-				if(feature instanceof EReference) {
-					track.delete(sourcePost, (EReference)feature, (EObject)value);
-				} else {
-					track.delete(sourcePost, (EAttribute)feature, value);
-				}
-				list.remove(value);
-			}
-		} else {
-			if(value instanceof List) {
-				Object f = ((List<?>) value).get(0);
-				if(sourcePost.eGet(feature)==f) {
+		if(feature.isChangeable()) {
+			if(feature.isMany()) {
+				List<Object> list = (List<Object>) sourcePost.eGet(feature);
+				if(value instanceof List) {
 					if(feature instanceof EReference) {
-						track.delete(sourcePost, (EReference)feature, (EObject)f);
+						for(Object tar : (List<?>)value) {
+							track.delete(sourcePost, (EReference)feature, (EObject)tar);
+						}
 					} else {
-						track.delete(sourcePost, (EAttribute)feature, f);
+						for(Object tar : (List<?>)value) {
+							track.delete(sourcePost, (EAttribute)feature, tar);
+						}
 					}
-					sourcePost.eUnset(feature);
-				}
-			} else {
-				if(sourcePost.eGet(feature)==value) {
+					list.removeAll((List<?>)value);
+				} else {
 					if(feature instanceof EReference) {
 						track.delete(sourcePost, (EReference)feature, (EObject)value);
 					} else {
 						track.delete(sourcePost, (EAttribute)feature, value);
 					}
-					sourcePost.eUnset(feature);
+					list.remove(value);
 				}
+			} else {
+				if(value instanceof List) {
+					Object f = ((List<?>) value).get(0);
+					if(sourcePost.eGet(feature)==f) {
+						if(feature instanceof EReference) {
+							track.delete(sourcePost, (EReference)feature, (EObject)f);
+						} else {
+							track.delete(sourcePost, (EAttribute)feature, f);
+						}
+					}
+				} else {
+					if(sourcePost.eGet(feature)==value) {
+						if(feature instanceof EReference) {
+							track.delete(sourcePost, (EReference)feature, (EObject)value);
+						} else {
+							track.delete(sourcePost, (EAttribute)feature, value);
+						}
+						sourcePost.eSet(feature,null);
+					}
+				}
+			}
+		} else {
+			if(feature instanceof EAttribute) return SafeType.getInvalid();
+			else {
+				EReference ref = (EReference)feature;
+				if(ref.getEOpposite()!=null) {
+					ref = ref.getEOpposite();
+					if(value instanceof List) {
+						for(EObject src : (List<EObject>)value) {
+							if(ref.isMany()) {
+								List<Object> list = (List<Object>) src.eGet(ref);
+								track.delete(src, ref, sourcePost);
+								list.remove(sourcePost);
+							} else {
+								track.delete(src, ref, sourcePost);
+								src.eSet(ref, null);
+							}
+						}
+					} else {
+						EObject src = (EObject)value;
+						if(ref.isMany()) {
+							List<Object> list = (List<Object>) src.eGet(ref);
+							track.delete(src, ref, sourcePost);
+							list.remove(sourcePost);
+						} else {
+							track.delete(src, ref, sourcePost);
+							src.eSet(ref, null);
+						}
+						
+					}
+				} else return SafeType.getInvalid();
 			}
 		}
 		

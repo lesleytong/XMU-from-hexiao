@@ -319,6 +319,15 @@ public interface XmuFactory extends EFactory {
 	ParenExpr createParenExpr();
 
 	/**
+	 * Returns a new object of class '<em>Helper Path</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Helper Path</em>'.
+	 * @generated
+	 */
+	HelperPath createHelperPath();
+
+	/**
 	 * Returns a new object of class '<em>Feature Path</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -398,6 +407,33 @@ public interface XmuFactory extends EFactory {
 	 * @generated
 	 */
 	ESet createESet();
+
+	/**
+	 * Returns a new object of class '<em>Object Path Expr</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Object Path Expr</em>'.
+	 * @generated
+	 */
+	ObjectPathExpr createObjectPathExpr();
+
+	/**
+	 * Returns a new object of class '<em>Initial Mapping Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Initial Mapping Statement</em>'.
+	 * @generated
+	 */
+	InitialMappingStatement createInitialMappingStatement();
+
+	/**
+	 * Returns a new object of class '<em>Helper Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Helper Mapping</em>'.
+	 * @generated
+	 */
+	HelperMapping createHelperMapping();
 
 	/**
 	 * Returns the package supported by this factory.

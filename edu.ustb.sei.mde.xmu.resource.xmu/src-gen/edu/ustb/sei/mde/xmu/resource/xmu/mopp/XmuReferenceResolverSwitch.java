@@ -33,6 +33,8 @@ public class XmuReferenceResolverSwitch implements edu.ustb.sei.mde.xmu.resource
 	protected edu.ustb.sei.mde.xmu.resource.xmu.analysis.DeleteLinkFeatureReferenceResolver deleteLinkFeatureReferenceResolver = new edu.ustb.sei.mde.xmu.resource.xmu.analysis.DeleteLinkFeatureReferenceResolver();
 	protected edu.ustb.sei.mde.xmu.resource.xmu.analysis.DeleteLinkTargetReferenceResolver deleteLinkTargetReferenceResolver = new edu.ustb.sei.mde.xmu.resource.xmu.analysis.DeleteLinkTargetReferenceResolver();
 	protected edu.ustb.sei.mde.xmu.resource.xmu.analysis.AllInstanceExprTypeReferenceResolver allInstanceExprTypeReferenceResolver = new edu.ustb.sei.mde.xmu.resource.xmu.analysis.AllInstanceExprTypeReferenceResolver();
+	protected edu.ustb.sei.mde.xmu.resource.xmu.analysis.ObjectPathExprObjectReferenceResolver objectPathExprObjectReferenceResolver = new edu.ustb.sei.mde.xmu.resource.xmu.analysis.ObjectPathExprObjectReferenceResolver();
+	protected edu.ustb.sei.mde.xmu.resource.xmu.analysis.HelperPathHelperReferenceResolver helperPathHelperReferenceResolver = new edu.ustb.sei.mde.xmu.resource.xmu.analysis.HelperPathHelperReferenceResolver();
 	
 	public edu.ustb.sei.mde.xmu.resource.xmu.IXmuReferenceResolver<edu.ustb.sei.mde.xmu.XMUModel, org.eclipse.emf.ecore.EPackage> getXMUModelPackagesReferenceResolver() {
 		return getResolverChain(edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getXMUModel_Packages(), xMUModelPackagesReferenceResolver);
@@ -114,6 +116,14 @@ public class XmuReferenceResolverSwitch implements edu.ustb.sei.mde.xmu.resource
 		return getResolverChain(edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getAllInstanceExpr_Type(), allInstanceExprTypeReferenceResolver);
 	}
 	
+	public edu.ustb.sei.mde.xmu.resource.xmu.IXmuReferenceResolver<edu.ustb.sei.mde.xmu.ObjectPathExpr, org.eclipse.emf.ecore.EObject> getObjectPathExprObjectReferenceResolver() {
+		return getResolverChain(edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getObjectPathExpr_Object(), objectPathExprObjectReferenceResolver);
+	}
+	
+	public edu.ustb.sei.mde.xmu.resource.xmu.IXmuReferenceResolver<edu.ustb.sei.mde.xmu.HelperPath, edu.ustb.sei.mde.xmu.HelperMapping> getHelperPathHelperReferenceResolver() {
+		return getResolverChain(edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getHelperPath_Helper(), helperPathHelperReferenceResolver);
+	}
+	
 	public void setOptions(java.util.Map<?, ?> options) {
 		if (options != null) {
 			this.options = new java.util.LinkedHashMap<Object, Object>();
@@ -139,6 +149,8 @@ public class XmuReferenceResolverSwitch implements edu.ustb.sei.mde.xmu.resource
 		deleteLinkFeatureReferenceResolver.setOptions(options);
 		deleteLinkTargetReferenceResolver.setOptions(options);
 		allInstanceExprTypeReferenceResolver.setOptions(options);
+		objectPathExprObjectReferenceResolver.setOptions(options);
+		helperPathHelperReferenceResolver.setOptions(options);
 	}
 	
 	public void resolveFuzzy(String identifier, org.eclipse.emf.ecore.EObject container, org.eclipse.emf.ecore.EReference reference, int position, edu.ustb.sei.mde.xmu.resource.xmu.IXmuReferenceResolveResult<org.eclipse.emf.ecore.EObject> result) {
@@ -305,6 +317,22 @@ public class XmuReferenceResolverSwitch implements edu.ustb.sei.mde.xmu.resource
 				allInstanceExprTypeReferenceResolver.resolve(identifier, (edu.ustb.sei.mde.xmu.AllInstanceExpr) container, (org.eclipse.emf.ecore.EReference) feature, position, true, frr);
 			}
 		}
+		if (edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getObjectPathExpr().isInstance(container)) {
+			XmuFuzzyResolveResult<org.eclipse.emf.ecore.EObject> frr = new XmuFuzzyResolveResult<org.eclipse.emf.ecore.EObject>(result);
+			String referenceName = reference.getName();
+			org.eclipse.emf.ecore.EStructuralFeature feature = container.eClass().getEStructuralFeature(referenceName);
+			if (feature != null && feature instanceof org.eclipse.emf.ecore.EReference && referenceName != null && referenceName.equals("object")) {
+				objectPathExprObjectReferenceResolver.resolve(identifier, (edu.ustb.sei.mde.xmu.ObjectPathExpr) container, (org.eclipse.emf.ecore.EReference) feature, position, true, frr);
+			}
+		}
+		if (edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getHelperPath().isInstance(container)) {
+			XmuFuzzyResolveResult<edu.ustb.sei.mde.xmu.HelperMapping> frr = new XmuFuzzyResolveResult<edu.ustb.sei.mde.xmu.HelperMapping>(result);
+			String referenceName = reference.getName();
+			org.eclipse.emf.ecore.EStructuralFeature feature = container.eClass().getEStructuralFeature(referenceName);
+			if (feature != null && feature instanceof org.eclipse.emf.ecore.EReference && referenceName != null && referenceName.equals("helper")) {
+				helperPathHelperReferenceResolver.resolve(identifier, (edu.ustb.sei.mde.xmu.HelperPath) container, (org.eclipse.emf.ecore.EReference) feature, position, true, frr);
+			}
+		}
 	}
 	
 	public edu.ustb.sei.mde.xmu.resource.xmu.IXmuReferenceResolver<? extends org.eclipse.emf.ecore.EObject, ? extends org.eclipse.emf.ecore.EObject> getResolver(org.eclipse.emf.ecore.EStructuralFeature reference) {
@@ -367,6 +395,12 @@ public class XmuReferenceResolverSwitch implements edu.ustb.sei.mde.xmu.resource
 		}
 		if (reference == edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getAllInstanceExpr_Type()) {
 			return getResolverChain(reference, allInstanceExprTypeReferenceResolver);
+		}
+		if (reference == edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getObjectPathExpr_Object()) {
+			return getResolverChain(reference, objectPathExprObjectReferenceResolver);
+		}
+		if (reference == edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getHelperPath_Helper()) {
+			return getResolverChain(reference, helperPathHelperReferenceResolver);
 		}
 		return null;
 	}

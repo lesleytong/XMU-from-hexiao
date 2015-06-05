@@ -22,6 +22,7 @@ TOKENS {
   DEFINE NUMBER $('0'..'9')+$;
   DEFINE SL_COMMENT $ '//'(~('\n'|'\r'|'\uffff'))* $;
   DEFINE ML_COMMENT $ '/*'.*'*/'$;
+  DEFINE OBJ_URI $'@'('a'..'z'|'A'..'Z'|'0'..'9'|'_'|'-'|'/'|'\\'|'\.'|':'|'#')*$;
 //  DEFINE LITERAL $('a'..'z'|'A'..'Z'|'_')('0'..'9'|'a'..'z'|'A'..'Z'|'_')*'::'('a'..'z'|'A'..'Z'|'_')('0'..'9'|'a'..'z'|'A'..'Z'|'_')*$;
 }
 
@@ -31,11 +32,13 @@ TOKENSTYLES {
 	 "PRIMITIVE" COLOR #ff0000;
 	 "SL_COMMENT" COLOR #008000;
 	 "ML_COMMENT" COLOR #008000;
+	 "OBJ_URI" COLOR #4080C0;
+	 "URI" COLOR #4080C0, BOLD; 
 }
 
 
 RULES {
-	XMUModel ::= ("import" packages[URI])* start+ rules* ;
+	XMUModel ::= ("import" packages[URI])* ("mapping" initialMappings)* ("mapping" helperMappings)* start+ rules* ;
 	
 	StartStatement ::= "start" rule[NAME] "(" root ("," root)*")" ";" ;
 	
@@ -69,11 +72,11 @@ RULES {
 	
 	OperationPath ::= "." operation[NAME] "(" (parameters ("," parameters)*)? ")";
 	
-	StringLiteral ::= value['\'','\'','\\'];
+	StringLiteral ::= value['\'','\'','\\'] (path)*;
 	
 	EmptyLiteral ::= value[NullValue:"null", EmptyValue:"nil"];
 	
-	IntegerLiteral ::= value[NUMBER];
+	IntegerLiteral ::= value[NUMBER] (path)*;
 	
 	BooleanLiteral ::= value[BOOLEAN];
 	
@@ -112,4 +115,12 @@ RULES {
 	PrintStatement ::= "print" expr:BooleanOrExpr, BooleanAndExpr,RelationalExpr,AdditiveExpr,MultiplicativeExpr,UnaryExpr,AtomicExpr ;
 	
 	AllInstanceExpr ::= root "//" type[NAME] ;
+	
+	InitialMappingStatement ::= source:StringLiteral,IntegerLiteral,ObjectPathExpr+ "<->" target : ObjectPathExpr ;
+	
+	ObjectPathExpr::= object[OBJ_URI];
+	
+	HelperMapping ::= name[NAME] ":" (left:StringLiteral,IntegerLiteral,ObjectPathExpr "=" right:StringLiteral,IntegerLiteral,ObjectPathExpr)+ ";" ;
+	
+	HelperPath ::= "." "#" helper[NAME] ;
 }

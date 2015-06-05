@@ -42,6 +42,7 @@ public class Util {
 	
 	static public boolean identifierMatch(String identifier, String str) {
 		if(identifier.equals(str)) return true;
+		if(identifier.length()==0) return false;
 		if(identifier.charAt(0)=='_') {
 			if(identifier.substring(1).equals(str))
 				return true;

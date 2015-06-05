@@ -512,6 +512,13 @@ public class XmuSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case XmuPackage.HELPER_PATH: {
+				HelperPath helperPath = (HelperPath)theEObject;
+				T result = caseHelperPath(helperPath);
+				if (result == null) result = casePath(helperPath);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case XmuPackage.FEATURE_PATH: {
 				FeaturePath featurePath = (FeaturePath)theEObject;
 				T result = caseFeaturePath(featurePath);
@@ -569,6 +576,26 @@ public class XmuSwitch<T> extends Switch<T> {
 			case XmuPackage.ESET: {
 				ESet eSet = (ESet)theEObject;
 				T result = caseESet(eSet);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case XmuPackage.OBJECT_PATH_EXPR: {
+				ObjectPathExpr objectPathExpr = (ObjectPathExpr)theEObject;
+				T result = caseObjectPathExpr(objectPathExpr);
+				if (result == null) result = caseExpr(objectPathExpr);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case XmuPackage.INITIAL_MAPPING_STATEMENT: {
+				InitialMappingStatement initialMappingStatement = (InitialMappingStatement)theEObject;
+				T result = caseInitialMappingStatement(initialMappingStatement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case XmuPackage.HELPER_MAPPING: {
+				HelperMapping helperMapping = (HelperMapping)theEObject;
+				T result = caseHelperMapping(helperMapping);
+				if (result == null) result = caseNamedElement(helperMapping);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1327,6 +1354,21 @@ public class XmuSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Helper Path</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Helper Path</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseHelperPath(HelperPath object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Feature Path</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1458,6 +1500,51 @@ public class XmuSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseESet(ESet object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Object Path Expr</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Object Path Expr</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseObjectPathExpr(ObjectPathExpr object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Initial Mapping Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Initial Mapping Statement</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseInitialMappingStatement(InitialMappingStatement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Helper Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Helper Mapping</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseHelperMapping(HelperMapping object) {
 		return null;
 	}
 

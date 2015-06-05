@@ -49,6 +49,10 @@ public class XmuSyntaxCoverageInformationProvider {
 			edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getUnaryExpr(),
 			edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getPrintStatement(),
 			edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getAllInstanceExpr(),
+			edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getInitialMappingStatement(),
+			edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getObjectPathExpr(),
+			edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getHelperMapping(),
+			edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getHelperPath(),
 		};
 	}
 	

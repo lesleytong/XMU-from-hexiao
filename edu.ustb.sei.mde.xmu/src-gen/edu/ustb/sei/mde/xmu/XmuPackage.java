@@ -1137,13 +1137,22 @@ public interface XmuPackage extends EPackage {
 	int CONSTANT_EXPR = 18;
 
 	/**
+	 * The feature id for the '<em><b>Path</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTANT_EXPR__PATH = ATOMIC_EXPR_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Constant Expr</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTANT_EXPR_FEATURE_COUNT = ATOMIC_EXPR_FEATURE_COUNT + 0;
+	int CONSTANT_EXPR_FEATURE_COUNT = ATOMIC_EXPR_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Constant Expr</em>' class.
@@ -1163,6 +1172,15 @@ public interface XmuPackage extends EPackage {
 	 * @generated
 	 */
 	int EMPTY_LITERAL = 19;
+
+	/**
+	 * The feature id for the '<em><b>Path</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EMPTY_LITERAL__PATH = CONSTANT_EXPR__PATH;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1202,6 +1220,15 @@ public interface XmuPackage extends EPackage {
 	int STRING_LITERAL = 20;
 
 	/**
+	 * The feature id for the '<em><b>Path</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_LITERAL__PATH = CONSTANT_EXPR__PATH;
+
+	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1237,6 +1264,15 @@ public interface XmuPackage extends EPackage {
 	 * @generated
 	 */
 	int INTEGER_LITERAL = 21;
+
+	/**
+	 * The feature id for the '<em><b>Path</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTEGER_LITERAL__PATH = CONSTANT_EXPR__PATH;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1276,6 +1312,15 @@ public interface XmuPackage extends EPackage {
 	int BOOLEAN_LITERAL = 22;
 
 	/**
+	 * The feature id for the '<em><b>Path</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_LITERAL__PATH = CONSTANT_EXPR__PATH;
+
+	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1311,6 +1356,15 @@ public interface XmuPackage extends EPackage {
 	 * @generated
 	 */
 	int ENUM_LITERAL = 23;
+
+	/**
+	 * The feature id for the '<em><b>Path</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENUM_LITERAL__PATH = CONSTANT_EXPR__PATH;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -1635,13 +1689,31 @@ public interface XmuPackage extends EPackage {
 	int XMU_MODEL = 31;
 
 	/**
+	 * The feature id for the '<em><b>Initial Mappings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XMU_MODEL__INITIAL_MAPPINGS = 0;
+
+	/**
+	 * The feature id for the '<em><b>Helper Mappings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XMU_MODEL__HELPER_MAPPINGS = 1;
+
+	/**
 	 * The feature id for the '<em><b>Rules</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int XMU_MODEL__RULES = 0;
+	int XMU_MODEL__RULES = 2;
 
 	/**
 	 * The feature id for the '<em><b>Packages</b></em>' reference list.
@@ -1650,7 +1722,7 @@ public interface XmuPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int XMU_MODEL__PACKAGES = 1;
+	int XMU_MODEL__PACKAGES = 3;
 
 	/**
 	 * The feature id for the '<em><b>Start</b></em>' containment reference list.
@@ -1659,7 +1731,7 @@ public interface XmuPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int XMU_MODEL__START = 2;
+	int XMU_MODEL__START = 4;
 
 	/**
 	 * The number of structural features of the '<em>XMU Model</em>' class.
@@ -1668,7 +1740,7 @@ public interface XmuPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int XMU_MODEL_FEATURE_COUNT = 3;
+	int XMU_MODEL_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>XMU Model</em>' class.
@@ -2159,6 +2231,43 @@ public interface XmuPackage extends EPackage {
 	int PATH_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu.impl.HelperPathImpl <em>Helper Path</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.xmu.impl.HelperPathImpl
+	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getHelperPath()
+	 * @generated
+	 */
+	int HELPER_PATH = 50;
+
+	/**
+	 * The feature id for the '<em><b>Helper</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HELPER_PATH__HELPER = PATH_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Helper Path</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HELPER_PATH_FEATURE_COUNT = PATH_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Helper Path</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HELPER_PATH_OPERATION_COUNT = PATH_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu.impl.FeaturePathImpl <em>Feature Path</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2166,7 +2275,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getFeaturePath()
 	 * @generated
 	 */
-	int FEATURE_PATH = 50;
+	int FEATURE_PATH = 51;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' attribute.
@@ -2203,7 +2312,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getOperationPath()
 	 * @generated
 	 */
-	int OPERATION_PATH = 51;
+	int OPERATION_PATH = 52;
 
 	/**
 	 * The feature id for the '<em><b>Operation</b></em>' attribute.
@@ -2249,7 +2358,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getLoopPath()
 	 * @generated
 	 */
-	int LOOP_PATH = 52;
+	int LOOP_PATH = 53;
 
 	/**
 	 * The feature id for the '<em><b>Operator</b></em>' attribute.
@@ -2304,7 +2413,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getStartStatement()
 	 * @generated
 	 */
-	int START_STATEMENT = 53;
+	int START_STATEMENT = 54;
 
 	/**
 	 * The feature id for the '<em><b>Rule</b></em>' reference.
@@ -2350,7 +2459,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getStartRoot()
 	 * @generated
 	 */
-	int START_ROOT = 54;
+	int START_ROOT = 55;
 
 	/**
 	 * The feature id for the '<em><b>Tag</b></em>' attribute.
@@ -2396,7 +2505,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getESet()
 	 * @generated
 	 */
-	int ESET = 58;
+	int ESET = 59;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu.impl.EResourceImpl <em>EResource</em>}' class.
@@ -2406,7 +2515,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getEResource()
 	 * @generated
 	 */
-	int ERESOURCE = 55;
+	int ERESOURCE = 56;
 
 	/**
 	 * The feature id for the '<em><b>Content</b></em>' reference list.
@@ -2443,7 +2552,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getPrintStatement()
 	 * @generated
 	 */
-	int PRINT_STATEMENT = 56;
+	int PRINT_STATEMENT = 57;
 
 	/**
 	 * The feature id for the '<em><b>Expr</b></em>' containment reference.
@@ -2480,7 +2589,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getAllInstanceExpr()
 	 * @generated
 	 */
-	int ALL_INSTANCE_EXPR = 57;
+	int ALL_INSTANCE_EXPR = 58;
 
 	/**
 	 * The feature id for the '<em><b>Root</b></em>' containment reference.
@@ -2546,6 +2655,144 @@ public interface XmuPackage extends EPackage {
 	int ESET_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu.impl.ObjectPathExprImpl <em>Object Path Expr</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.xmu.impl.ObjectPathExprImpl
+	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getObjectPathExpr()
+	 * @generated
+	 */
+	int OBJECT_PATH_EXPR = 60;
+
+	/**
+	 * The feature id for the '<em><b>Object</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_PATH_EXPR__OBJECT = EXPR_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Object Path Expr</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_PATH_EXPR_FEATURE_COUNT = EXPR_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Object Path Expr</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_PATH_EXPR_OPERATION_COUNT = EXPR_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu.impl.InitialMappingStatementImpl <em>Initial Mapping Statement</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.xmu.impl.InitialMappingStatementImpl
+	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getInitialMappingStatement()
+	 * @generated
+	 */
+	int INITIAL_MAPPING_STATEMENT = 61;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INITIAL_MAPPING_STATEMENT__SOURCE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INITIAL_MAPPING_STATEMENT__TARGET = 1;
+
+	/**
+	 * The number of structural features of the '<em>Initial Mapping Statement</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INITIAL_MAPPING_STATEMENT_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Initial Mapping Statement</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INITIAL_MAPPING_STATEMENT_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu.impl.HelperMappingImpl <em>Helper Mapping</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.xmu.impl.HelperMappingImpl
+	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getHelperMapping()
+	 * @generated
+	 */
+	int HELPER_MAPPING = 62;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HELPER_MAPPING__NAME = NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Left</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HELPER_MAPPING__LEFT = NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Right</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HELPER_MAPPING__RIGHT = NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Helper Mapping</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HELPER_MAPPING_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Helper Mapping</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HELPER_MAPPING_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu.VariableFlag <em>Variable Flag</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2553,7 +2800,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getVariableFlag()
 	 * @generated
 	 */
-	int VARIABLE_FLAG = 59;
+	int VARIABLE_FLAG = 63;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu.RelationalOperator <em>Relational Operator</em>}' enum.
@@ -2563,7 +2810,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getRelationalOperator()
 	 * @generated
 	 */
-	int RELATIONAL_OPERATOR = 60;
+	int RELATIONAL_OPERATOR = 64;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu.EmptyType <em>Empty Type</em>}' enum.
@@ -2573,7 +2820,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getEmptyType()
 	 * @generated
 	 */
-	int EMPTY_TYPE = 61;
+	int EMPTY_TYPE = 65;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu.VStmtType <em>VStmt Type</em>}' enum.
@@ -2583,7 +2830,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getVStmtType()
 	 * @generated
 	 */
-	int VSTMT_TYPE = 62;
+	int VSTMT_TYPE = 66;
 
 
 	/**
@@ -2594,7 +2841,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getAdditiveOperator()
 	 * @generated
 	 */
-	int ADDITIVE_OPERATOR = 63;
+	int ADDITIVE_OPERATOR = 67;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu.MultiplicativeOperator <em>Multiplicative Operator</em>}' enum.
@@ -2604,7 +2851,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getMultiplicativeOperator()
 	 * @generated
 	 */
-	int MULTIPLICATIVE_OPERATOR = 64;
+	int MULTIPLICATIVE_OPERATOR = 68;
 
 
 	/**
@@ -2615,7 +2862,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getUnaryOperator()
 	 * @generated
 	 */
-	int UNARY_OPERATOR = 65;
+	int UNARY_OPERATOR = 69;
 
 
 	/**
@@ -2626,7 +2873,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getLoopOperator()
 	 * @generated
 	 */
-	int LOOP_OPERATOR = 66;
+	int LOOP_OPERATOR = 70;
 
 
 	/**
@@ -3139,6 +3386,17 @@ public interface XmuPackage extends EPackage {
 	EClass getConstantExpr();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link edu.ustb.sei.mde.xmu.ConstantExpr#getPath <em>Path</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Path</em>'.
+	 * @see edu.ustb.sei.mde.xmu.ConstantExpr#getPath()
+	 * @see #getConstantExpr()
+	 * @generated
+	 */
+	EReference getConstantExpr_Path();
+
+	/**
 	 * Returns the meta object for class '{@link edu.ustb.sei.mde.xmu.EmptyLiteral <em>Empty Literal</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3443,6 +3701,28 @@ public interface XmuPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getXMUModel();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link edu.ustb.sei.mde.xmu.XMUModel#getInitialMappings <em>Initial Mappings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Initial Mappings</em>'.
+	 * @see edu.ustb.sei.mde.xmu.XMUModel#getInitialMappings()
+	 * @see #getXMUModel()
+	 * @generated
+	 */
+	EReference getXMUModel_InitialMappings();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link edu.ustb.sei.mde.xmu.XMUModel#getHelperMappings <em>Helper Mappings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Helper Mappings</em>'.
+	 * @see edu.ustb.sei.mde.xmu.XMUModel#getHelperMappings()
+	 * @see #getXMUModel()
+	 * @generated
+	 */
+	EReference getXMUModel_HelperMappings();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link edu.ustb.sei.mde.xmu.XMUModel#getRules <em>Rules</em>}'.
@@ -3845,6 +4125,27 @@ public interface XmuPackage extends EPackage {
 	EClass getPath();
 
 	/**
+	 * Returns the meta object for class '{@link edu.ustb.sei.mde.xmu.HelperPath <em>Helper Path</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Helper Path</em>'.
+	 * @see edu.ustb.sei.mde.xmu.HelperPath
+	 * @generated
+	 */
+	EClass getHelperPath();
+
+	/**
+	 * Returns the meta object for the reference '{@link edu.ustb.sei.mde.xmu.HelperPath#getHelper <em>Helper</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Helper</em>'.
+	 * @see edu.ustb.sei.mde.xmu.HelperPath#getHelper()
+	 * @see #getHelperPath()
+	 * @generated
+	 */
+	EReference getHelperPath_Helper();
+
+	/**
 	 * Returns the meta object for class '{@link edu.ustb.sei.mde.xmu.FeaturePath <em>Feature Path</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4087,6 +4388,91 @@ public interface XmuPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getESet_Content();
+
+	/**
+	 * Returns the meta object for class '{@link edu.ustb.sei.mde.xmu.ObjectPathExpr <em>Object Path Expr</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Object Path Expr</em>'.
+	 * @see edu.ustb.sei.mde.xmu.ObjectPathExpr
+	 * @generated
+	 */
+	EClass getObjectPathExpr();
+
+	/**
+	 * Returns the meta object for the reference '{@link edu.ustb.sei.mde.xmu.ObjectPathExpr#getObject <em>Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Object</em>'.
+	 * @see edu.ustb.sei.mde.xmu.ObjectPathExpr#getObject()
+	 * @see #getObjectPathExpr()
+	 * @generated
+	 */
+	EReference getObjectPathExpr_Object();
+
+	/**
+	 * Returns the meta object for class '{@link edu.ustb.sei.mde.xmu.InitialMappingStatement <em>Initial Mapping Statement</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Initial Mapping Statement</em>'.
+	 * @see edu.ustb.sei.mde.xmu.InitialMappingStatement
+	 * @generated
+	 */
+	EClass getInitialMappingStatement();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link edu.ustb.sei.mde.xmu.InitialMappingStatement#getSource <em>Source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Source</em>'.
+	 * @see edu.ustb.sei.mde.xmu.InitialMappingStatement#getSource()
+	 * @see #getInitialMappingStatement()
+	 * @generated
+	 */
+	EReference getInitialMappingStatement_Source();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.xmu.InitialMappingStatement#getTarget <em>Target</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Target</em>'.
+	 * @see edu.ustb.sei.mde.xmu.InitialMappingStatement#getTarget()
+	 * @see #getInitialMappingStatement()
+	 * @generated
+	 */
+	EReference getInitialMappingStatement_Target();
+
+	/**
+	 * Returns the meta object for class '{@link edu.ustb.sei.mde.xmu.HelperMapping <em>Helper Mapping</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Helper Mapping</em>'.
+	 * @see edu.ustb.sei.mde.xmu.HelperMapping
+	 * @generated
+	 */
+	EClass getHelperMapping();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link edu.ustb.sei.mde.xmu.HelperMapping#getLeft <em>Left</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Left</em>'.
+	 * @see edu.ustb.sei.mde.xmu.HelperMapping#getLeft()
+	 * @see #getHelperMapping()
+	 * @generated
+	 */
+	EReference getHelperMapping_Left();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link edu.ustb.sei.mde.xmu.HelperMapping#getRight <em>Right</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Right</em>'.
+	 * @see edu.ustb.sei.mde.xmu.HelperMapping#getRight()
+	 * @see #getHelperMapping()
+	 * @generated
+	 */
+	EReference getHelperMapping_Right();
 
 	/**
 	 * Returns the meta object for enum '{@link edu.ustb.sei.mde.xmu.VariableFlag <em>Variable Flag</em>}'.
@@ -4613,6 +4999,14 @@ public interface XmuPackage extends EPackage {
 		EClass CONSTANT_EXPR = eINSTANCE.getConstantExpr();
 
 		/**
+		 * The meta object literal for the '<em><b>Path</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONSTANT_EXPR__PATH = eINSTANCE.getConstantExpr_Path();
+
+		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu.impl.EmptyLiteralImpl <em>Empty Literal</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -4869,6 +5263,22 @@ public interface XmuPackage extends EPackage {
 		 * @generated
 		 */
 		EClass XMU_MODEL = eINSTANCE.getXMUModel();
+
+		/**
+		 * The meta object literal for the '<em><b>Initial Mappings</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XMU_MODEL__INITIAL_MAPPINGS = eINSTANCE.getXMUModel_InitialMappings();
+
+		/**
+		 * The meta object literal for the '<em><b>Helper Mappings</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XMU_MODEL__HELPER_MAPPINGS = eINSTANCE.getXMUModel_HelperMappings();
 
 		/**
 		 * The meta object literal for the '<em><b>Rules</b></em>' containment reference list feature.
@@ -5211,6 +5621,24 @@ public interface XmuPackage extends EPackage {
 		EClass PATH = eINSTANCE.getPath();
 
 		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu.impl.HelperPathImpl <em>Helper Path</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.xmu.impl.HelperPathImpl
+		 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getHelperPath()
+		 * @generated
+		 */
+		EClass HELPER_PATH = eINSTANCE.getHelperPath();
+
+		/**
+		 * The meta object literal for the '<em><b>Helper</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference HELPER_PATH__HELPER = eINSTANCE.getHelperPath_Helper();
+
+		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu.impl.FeaturePathImpl <em>Feature Path</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -5411,6 +5839,76 @@ public interface XmuPackage extends EPackage {
 		 * @generated
 		 */
 		EReference ESET__CONTENT = eINSTANCE.getESet_Content();
+
+		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu.impl.ObjectPathExprImpl <em>Object Path Expr</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.xmu.impl.ObjectPathExprImpl
+		 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getObjectPathExpr()
+		 * @generated
+		 */
+		EClass OBJECT_PATH_EXPR = eINSTANCE.getObjectPathExpr();
+
+		/**
+		 * The meta object literal for the '<em><b>Object</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OBJECT_PATH_EXPR__OBJECT = eINSTANCE.getObjectPathExpr_Object();
+
+		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu.impl.InitialMappingStatementImpl <em>Initial Mapping Statement</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.xmu.impl.InitialMappingStatementImpl
+		 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getInitialMappingStatement()
+		 * @generated
+		 */
+		EClass INITIAL_MAPPING_STATEMENT = eINSTANCE.getInitialMappingStatement();
+
+		/**
+		 * The meta object literal for the '<em><b>Source</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INITIAL_MAPPING_STATEMENT__SOURCE = eINSTANCE.getInitialMappingStatement_Source();
+
+		/**
+		 * The meta object literal for the '<em><b>Target</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INITIAL_MAPPING_STATEMENT__TARGET = eINSTANCE.getInitialMappingStatement_Target();
+
+		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu.impl.HelperMappingImpl <em>Helper Mapping</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.xmu.impl.HelperMappingImpl
+		 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getHelperMapping()
+		 * @generated
+		 */
+		EClass HELPER_MAPPING = eINSTANCE.getHelperMapping();
+
+		/**
+		 * The meta object literal for the '<em><b>Left</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference HELPER_MAPPING__LEFT = eINSTANCE.getHelperMapping_Left();
+
+		/**
+		 * The meta object literal for the '<em><b>Right</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference HELPER_MAPPING__RIGHT = eINSTANCE.getHelperMapping_Right();
 
 		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu.VariableFlag <em>Variable Flag</em>}' enum.

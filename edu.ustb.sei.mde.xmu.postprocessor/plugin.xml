@@ -5,8 +5,15 @@
          point="edu.ustb.sei.mde.xmu.resource.xmu.default_load_options">
       <provider
             class="edu.ustb.sei.mde.xmu.postprocessor.ModelCleaner"
-            id="edu.ustb.sei.mde.xmu.postprocessor.modelclean"
+            id="edu.ustb.sei.mde.xmu.postprocessor.modelcleaner"
             name="Model Clearner">
+      </provider>
+   </extension>
+   <extension
+         point="edu.ustb.sei.mde.xmu.resource.xmu.default_load_options">
+      <provider
+            class="edu.ustb.sei.mde.xmu.postprocessor.XmuModelChecker"
+            id="edu.ustb.sei.mde.xmu.postprocessor.modelchecker">
       </provider>
    </extension>
 

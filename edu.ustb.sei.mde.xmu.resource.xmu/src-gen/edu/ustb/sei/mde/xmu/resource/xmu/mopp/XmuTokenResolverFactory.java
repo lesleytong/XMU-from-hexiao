@@ -28,6 +28,7 @@ public class XmuTokenResolverFactory implements edu.ustb.sei.mde.xmu.resource.xm
 		registerTokenResolver("BOOLEAN", new edu.ustb.sei.mde.xmu.resource.xmu.analysis.XmuBOOLEANTokenResolver());
 		registerTokenResolver("NAME", new edu.ustb.sei.mde.xmu.resource.xmu.analysis.XmuNAMETokenResolver());
 		registerTokenResolver("NUMBER", new edu.ustb.sei.mde.xmu.resource.xmu.analysis.XmuNUMBERTokenResolver());
+		registerTokenResolver("OBJ_URI", new edu.ustb.sei.mde.xmu.resource.xmu.analysis.XmuOBJ_URITokenResolver());
 		registerTokenResolver("QUOTED_39_39_92", new edu.ustb.sei.mde.xmu.resource.xmu.analysis.XmuQUOTED_39_39_92TokenResolver());
 	}
 	

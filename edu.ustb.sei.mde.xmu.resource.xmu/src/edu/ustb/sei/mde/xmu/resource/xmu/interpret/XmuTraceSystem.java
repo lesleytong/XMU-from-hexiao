@@ -25,14 +25,14 @@ public class XmuTraceSystem {
 	
 	protected void init() {
 		//init forward
-		put(DT_STRING,null,EcorePackage.eINSTANCE.getEString());
-		put(DT_BOOLEAN,null,EcorePackage.eINSTANCE.getEBoolean());
-		put(DT_INT,null,EcorePackage.eINSTANCE.getEInt());
-		
-		//init backward
-		put(DT_STRING,EcorePackage.eINSTANCE.getEString(),DT_STRING);
-		put(DT_BOOLEAN,EcorePackage.eINSTANCE.getEBoolean(),DT_BOOLEAN);
-		put(DT_INT,EcorePackage.eINSTANCE.getEInt(),DT_INT);
+//		put(DT_STRING,null,EcorePackage.eINSTANCE.getEString());
+//		put(DT_BOOLEAN,null,EcorePackage.eINSTANCE.getEBoolean());
+//		put(DT_INT,null,EcorePackage.eINSTANCE.getEInt());
+//		
+//		//init backward
+//		put(DT_STRING,EcorePackage.eINSTANCE.getEString(),DT_STRING);
+//		put(DT_BOOLEAN,EcorePackage.eINSTANCE.getEBoolean(),DT_BOOLEAN);
+//		put(DT_INT,EcorePackage.eINSTANCE.getEInt(),DT_INT);
 		
 	}
 	

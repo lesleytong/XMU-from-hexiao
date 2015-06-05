@@ -26,7 +26,16 @@ public class XmuTokenStyleInformationProvider {
 		if ("ML_COMMENT".equals(tokenName)) {
 			return new edu.ustb.sei.mde.xmu.resource.xmu.mopp.XmuTokenStyle(new int[] {0x00, 0x80, 0x00}, null, false, false, false, false);
 		}
+		if ("OBJ_URI".equals(tokenName)) {
+			return new edu.ustb.sei.mde.xmu.resource.xmu.mopp.XmuTokenStyle(new int[] {0x40, 0x80, 0xC0}, null, false, false, false, false);
+		}
+		if ("URI".equals(tokenName)) {
+			return new edu.ustb.sei.mde.xmu.resource.xmu.mopp.XmuTokenStyle(new int[] {0x40, 0x80, 0xC0}, null, true, false, false, false);
+		}
 		if ("import".equals(tokenName)) {
+			return new edu.ustb.sei.mde.xmu.resource.xmu.mopp.XmuTokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
+		}
+		if ("mapping".equals(tokenName)) {
 			return new edu.ustb.sei.mde.xmu.resource.xmu.mopp.XmuTokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
 		}
 		if ("start".equals(tokenName)) {

@@ -158,18 +158,7 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 		List<XmuContext> smatches = ContextUtil.match(forStatement.getSPattern(), context);
 		
 		for(XmuContext c : smatches) {
-			for(UpdatedStatement u : forStatement.getWhen()) {
-				SafeType ret = this.interprete(u, c);
-				if(ret.isInvalid()==false) {
-//					c.putValue(u.getVVar(), ret);
-					Object[] vals = (Object[])ret.getValue();
-					for(int i=0;i<u.getVVar().size();i++) {
-						Variable v = u.getVVar().get(i);
-						Object val = vals[i];
-						c.putValue(v, SafeType.createFromValue(val));
-					}
-				}
-			}
+			doForUpdatedStatements(forStatement, c);
 			
 			//1. check if patternV is enforceable 
 			//2. if true, do normal logic
@@ -301,6 +290,22 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 		return Just.TRUE;
 		
 	}
+
+	protected void doForUpdatedStatements(ForStatement forStatement,
+			XmuContext c) {
+		for(UpdatedStatement u : forStatement.getWhen()) {
+			SafeType ret = this.interprete_edu_ustb_sei_mde_xmu_UpdatedStatement(u, c);
+			if(ret.isInvalid()==false) {
+//					c.putValue(u.getVVar(), ret);
+				Object[] vals = (Object[])ret.getValue();
+				for(int i=0;i<u.getVVar().size();i++) {
+					Variable v = u.getVVar().get(i);
+					Object val = vals[i];
+					c.putValue(v, SafeType.createFromValue(val));
+				}
+			}
+		}
+	}
 	
 	
 
@@ -310,6 +315,9 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 		if(switchStatement.getTag()==VariableFlag.SOURCE 
 				|| switchStatement.getTag()==VariableFlag.SOURCE_POST 
 				|| switchStatement.getTag()==VariableFlag.NORMAL) {
+			
+			doSwitchUpdatedStatements(switchStatement, context);
+			
 			for(CaseSubStatement css : switchStatement.getCases()) {
 				if(css instanceof CasePatternStatement) {
 					SafeType c = this.interprete_edu_ustb_sei_mde_xmu_Pattern(((CasePatternStatement) css).getPattern(), context);
@@ -326,6 +334,9 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 			//switch view
 			
 			SwitchVReordering newOrder = reorderSwitchStatement(switchStatement, context);
+			
+			doSwitchUpdatedStatements(switchStatement, context);
+			
 			if(newOrder==null) {
 				System.out.println("Unable to reorder switchV:");
 				printer.print_edu_ustb_sei_mde_xmu_SwitchStatement(switchStatement, "", new PrintWriter(System.out));
@@ -357,7 +368,7 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 						continue;
 					} else {
 						System.out.println("Unable to check reordered patternV:");
-						printer.print_edu_ustb_sei_mde_xmu_Pattern(p, "", new PrintWriter(System.out));
+//						printer.print_edu_ustb_sei_mde_xmu_Pattern(p, "", new PrintWriter(System.out));
 						return t;
 					}
 				}
@@ -395,6 +406,21 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 //				}
 //			}
 //			return SafeType.getInvalid();
+		}
+	}
+
+	protected void doSwitchUpdatedStatements(SwitchStatement switchStatement,
+			XmuContext context) {
+		for(UpdatedStatement u : switchStatement.getWhen()) {
+			SafeType ret = this.interprete_edu_ustb_sei_mde_xmu_UpdatedStatement(u, context);
+			if(ret.isInvalid()==false) {
+				Object[] vals = (Object[])ret.getValue();
+				for(int i=0;i<u.getVVar().size();i++) {
+					Variable v = u.getVVar().get(i);
+					Object val = vals[i];
+					context.putValue(v, SafeType.createFromValue(val));
+				}
+			}
 		}
 	}
 	
@@ -441,6 +467,7 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 					if(c instanceof CasePatternStatement) {
 						if(isCheckable(((CasePatternStatement) c).getPattern().getRoot(), context)==false) {
 							allCheckable = false;
+							break;
 						}
 					}
 				}
@@ -472,6 +499,9 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 					for(CaseSubStatement c : cases) {
 						if(c instanceof CasePatternStatement) {
 							if(collectReorderedPath(c.getStatement(),reorder,context)) {
+								
+								doSwitchUpdatedStatements((SwitchStatement) statement,context);
+								
 								if(isEnforceable(((CasePatternStatement) c).getPattern().getRoot(),context)) {
 									reorder.enforceV.add(((CasePatternStatement) c).getPattern());
 								} else
@@ -793,6 +823,28 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 			} else return SafeType.getInvalid();
 		}
 		return Just.TRUE;		
+	}
+	
+	
+
+	@Override
+	public SafeType interprete_edu_ustb_sei_mde_xmu_InitialMappingStatement(
+			InitialMappingStatement initialMappingStatement, XmuContext context) {
+		// TODO Auto-generated method stub
+		
+		List<Object> src = new ArrayList<Object>();
+		
+		for(Expr e : initialMappingStatement.getSource()) {
+			SafeType sv = XmuExpressionCheck.EXPRESSION_CHECK.interprete(e,context);
+			src.add(sv.getValue());
+		}
+		
+		SafeType tv = XmuExpressionCheck.EXPRESSION_CHECK.interprete(initialMappingStatement.getTarget(),context);
+		List<Object> tar = Collections.singletonList(tv.getValue());
+		
+		context.getEnvironment().getTrace().putForward(src, tar);
+		
+		return Just.TRUE;
 	}
 	
 	

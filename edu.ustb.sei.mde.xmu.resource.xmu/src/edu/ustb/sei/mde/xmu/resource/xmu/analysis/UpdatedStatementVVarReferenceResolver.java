@@ -15,17 +15,34 @@ public class UpdatedStatementVVarReferenceResolver implements edu.ustb.sei.mde.x
 	private edu.ustb.sei.mde.xmu.resource.xmu.analysis.XmuDefaultResolverDelegate<edu.ustb.sei.mde.xmu.UpdatedStatement, edu.ustb.sei.mde.xmu.ObjectVariable> delegate = new edu.ustb.sei.mde.xmu.resource.xmu.analysis.XmuDefaultResolverDelegate<edu.ustb.sei.mde.xmu.UpdatedStatement, edu.ustb.sei.mde.xmu.ObjectVariable>();
 	
 	public void resolve(String identifier, edu.ustb.sei.mde.xmu.UpdatedStatement container, org.eclipse.emf.ecore.EReference reference, int position, boolean resolveFuzzy, final edu.ustb.sei.mde.xmu.resource.xmu.IXmuReferenceResolveResult<edu.ustb.sei.mde.xmu.ObjectVariable> result) {
-		if(identifier==null || container ==null) return;
-		Rule rule = Util.getRule(container);
-		
-		if(rule==null) return;
-		
-		Variable v = null;
-		
-		v = Util.getVariable(identifier, rule.getVVars());
-		if(v!=null) {
-			result.addMapping(identifier, (ObjectVariable) v);
-			return;
+		if(resolveFuzzy) {
+			if(container==null) return;
+			Rule rule = Util.getRule(container);
+			if(rule==null) return;
+			if(identifier==null) {
+				for(ObjectVariable v : rule.getVVars()) {
+					result.addMapping(v.getName(), v);
+				}
+			} else {
+				for(ObjectVariable v : rule.getVVars()) {
+					if(v.getName().startsWith(identifier))
+						result.addMapping(v.getName(), v);
+				}
+			}
+		} else {
+			if(identifier==null || container ==null) return;
+			Rule rule = Util.getRule(container);
+			
+			if(rule==null) return;
+			
+			Variable v = null;
+			
+			v = Util.getVariable(identifier, rule.getVVars());
+			if(v!=null) {
+				result.addMapping(identifier, (ObjectVariable) v);
+				return;
+			}
+			
 		}
 	}
 	

@@ -268,6 +268,10 @@ public class XmuAdapterFactory extends AdapterFactoryImpl {
 				return createPathAdapter();
 			}
 			@Override
+			public Adapter caseHelperPath(HelperPath object) {
+				return createHelperPathAdapter();
+			}
+			@Override
 			public Adapter caseFeaturePath(FeaturePath object) {
 				return createFeaturePathAdapter();
 			}
@@ -302,6 +306,18 @@ public class XmuAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseESet(ESet object) {
 				return createESetAdapter();
+			}
+			@Override
+			public Adapter caseObjectPathExpr(ObjectPathExpr object) {
+				return createObjectPathExprAdapter();
+			}
+			@Override
+			public Adapter caseInitialMappingStatement(InitialMappingStatement object) {
+				return createInitialMappingStatementAdapter();
+			}
+			@Override
+			public Adapter caseHelperMapping(HelperMapping object) {
+				return createHelperMappingAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -1024,6 +1040,20 @@ public class XmuAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.xmu.HelperPath <em>Helper Path</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.xmu.HelperPath
+	 * @generated
+	 */
+	public Adapter createHelperPathAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.xmu.FeaturePath <em>Feature Path</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1146,6 +1176,48 @@ public class XmuAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createESetAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.xmu.ObjectPathExpr <em>Object Path Expr</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.xmu.ObjectPathExpr
+	 * @generated
+	 */
+	public Adapter createObjectPathExprAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.xmu.InitialMappingStatement <em>Initial Mapping Statement</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.xmu.InitialMappingStatement
+	 * @generated
+	 */
+	public Adapter createInitialMappingStatementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.xmu.HelperMapping <em>Helper Mapping</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.xmu.HelperMapping
+	 * @generated
+	 */
+	public Adapter createHelperMappingAdapter() {
 		return null;
 	}
 

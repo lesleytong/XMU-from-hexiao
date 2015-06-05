@@ -27,6 +27,9 @@ import edu.ustb.sei.mde.xmu.EnumLiteral;
 import edu.ustb.sei.mde.xmu.Expr;
 import edu.ustb.sei.mde.xmu.FeaturePath;
 import edu.ustb.sei.mde.xmu.ForStatement;
+import edu.ustb.sei.mde.xmu.HelperMapping;
+import edu.ustb.sei.mde.xmu.HelperPath;
+import edu.ustb.sei.mde.xmu.InitialMappingStatement;
 import edu.ustb.sei.mde.xmu.IntegerLiteral;
 import edu.ustb.sei.mde.xmu.LoopOperator;
 import edu.ustb.sei.mde.xmu.LoopPath;
@@ -34,6 +37,7 @@ import edu.ustb.sei.mde.xmu.MultiplicativeExpr;
 import edu.ustb.sei.mde.xmu.MultiplicativeExprChild;
 import edu.ustb.sei.mde.xmu.MultiplicativeOperator;
 import edu.ustb.sei.mde.xmu.NamedElement;
+import edu.ustb.sei.mde.xmu.ObjectPathExpr;
 import edu.ustb.sei.mde.xmu.ObjectVariable;
 import edu.ustb.sei.mde.xmu.OperationPath;
 import edu.ustb.sei.mde.xmu.Parameter;
@@ -440,6 +444,13 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass helperPathEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass featurePathEClass = null;
 
 	/**
@@ -497,6 +508,27 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 	 * @generated
 	 */
 	private EClass eSetEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass objectPathExprEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass initialMappingStatementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass helperMappingEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1052,6 +1084,15 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getConstantExpr_Path() {
+		return (EReference)constantExprEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getEmptyLiteral() {
 		return emptyLiteralEClass;
 	}
@@ -1313,7 +1354,7 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getXMUModel_Rules() {
+	public EReference getXMUModel_InitialMappings() {
 		return (EReference)xmuModelEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1322,7 +1363,7 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getXMUModel_Packages() {
+	public EReference getXMUModel_HelperMappings() {
 		return (EReference)xmuModelEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -1331,8 +1372,26 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getXMUModel_Start() {
+	public EReference getXMUModel_Rules() {
 		return (EReference)xmuModelEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getXMUModel_Packages() {
+		return (EReference)xmuModelEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getXMUModel_Start() {
+		return (EReference)xmuModelEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -1655,6 +1714,24 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getHelperPath() {
+		return helperPathEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getHelperPath_Helper() {
+		return (EReference)helperPathEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getFeaturePath() {
 		return featurePathEClass;
 	}
@@ -1862,6 +1939,78 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getObjectPathExpr() {
+		return objectPathExprEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getObjectPathExpr_Object() {
+		return (EReference)objectPathExprEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getInitialMappingStatement() {
+		return initialMappingStatementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getInitialMappingStatement_Source() {
+		return (EReference)initialMappingStatementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getInitialMappingStatement_Target() {
+		return (EReference)initialMappingStatementEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getHelperMapping() {
+		return helperMappingEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getHelperMapping_Left() {
+		return (EReference)helperMappingEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getHelperMapping_Right() {
+		return (EReference)helperMappingEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getVariableFlag() {
 		return variableFlagEEnum;
 	}
@@ -2023,6 +2172,7 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 		createEReference(variableExpEClass, VARIABLE_EXP__PATH);
 
 		constantExprEClass = createEClass(CONSTANT_EXPR);
+		createEReference(constantExprEClass, CONSTANT_EXPR__PATH);
 
 		emptyLiteralEClass = createEClass(EMPTY_LITERAL);
 		createEAttribute(emptyLiteralEClass, EMPTY_LITERAL__VALUE);
@@ -2065,6 +2215,8 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 		createEReference(caseValueStatementEClass, CASE_VALUE_STATEMENT__EXPRESSION);
 
 		xmuModelEClass = createEClass(XMU_MODEL);
+		createEReference(xmuModelEClass, XMU_MODEL__INITIAL_MAPPINGS);
+		createEReference(xmuModelEClass, XMU_MODEL__HELPER_MAPPINGS);
 		createEReference(xmuModelEClass, XMU_MODEL__RULES);
 		createEReference(xmuModelEClass, XMU_MODEL__PACKAGES);
 		createEReference(xmuModelEClass, XMU_MODEL__START);
@@ -2122,6 +2274,9 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 
 		pathEClass = createEClass(PATH);
 
+		helperPathEClass = createEClass(HELPER_PATH);
+		createEReference(helperPathEClass, HELPER_PATH__HELPER);
+
 		featurePathEClass = createEClass(FEATURE_PATH);
 		createEAttribute(featurePathEClass, FEATURE_PATH__FEATURE);
 
@@ -2153,6 +2308,17 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 
 		eSetEClass = createEClass(ESET);
 		createEReference(eSetEClass, ESET__CONTENT);
+
+		objectPathExprEClass = createEClass(OBJECT_PATH_EXPR);
+		createEReference(objectPathExprEClass, OBJECT_PATH_EXPR__OBJECT);
+
+		initialMappingStatementEClass = createEClass(INITIAL_MAPPING_STATEMENT);
+		createEReference(initialMappingStatementEClass, INITIAL_MAPPING_STATEMENT__SOURCE);
+		createEReference(initialMappingStatementEClass, INITIAL_MAPPING_STATEMENT__TARGET);
+
+		helperMappingEClass = createEClass(HELPER_MAPPING);
+		createEReference(helperMappingEClass, HELPER_MAPPING__LEFT);
+		createEReference(helperMappingEClass, HELPER_MAPPING__RIGHT);
 
 		// Create enums
 		variableFlagEEnum = createEEnum(VARIABLE_FLAG);
@@ -2236,12 +2402,15 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 		unaryExprChildEClass.getESuperTypes().add(this.getMultiplicativeExprChild());
 		atomicExprEClass.getESuperTypes().add(this.getUnaryExprChild());
 		parenExprEClass.getESuperTypes().add(this.getAtomicExpr());
+		helperPathEClass.getESuperTypes().add(this.getPath());
 		featurePathEClass.getESuperTypes().add(this.getPath());
 		operationPathEClass.getESuperTypes().add(this.getPath());
 		loopPathEClass.getESuperTypes().add(this.getPath());
 		startRootEClass.getESuperTypes().add(this.getTaggedElement());
 		printStatementEClass.getESuperTypes().add(this.getStatement());
 		allInstanceExprEClass.getESuperTypes().add(this.getExpr());
+		objectPathExprEClass.getESuperTypes().add(this.getExpr());
+		helperMappingEClass.getESuperTypes().add(this.getNamedElement());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(namedElementEClass, NamedElement.class, "NamedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2310,6 +2479,7 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 		initEReference(getVariableExp_Path(), this.getPath(), null, "path", null, 0, -1, VariableExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(constantExprEClass, ConstantExpr.class, "ConstantExpr", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getConstantExpr_Path(), this.getPath(), null, "path", null, 0, -1, ConstantExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(emptyLiteralEClass, EmptyLiteral.class, "EmptyLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getEmptyLiteral_Value(), this.getEmptyType(), "value", null, 1, 1, EmptyLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2352,6 +2522,8 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 		initEReference(getCaseValueStatement_Expression(), this.getExpr(), null, "expression", null, 1, 1, CaseValueStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(xmuModelEClass, XMUModel.class, "XMUModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getXMUModel_InitialMappings(), this.getInitialMappingStatement(), null, "initialMappings", null, 0, -1, XMUModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getXMUModel_HelperMappings(), this.getHelperMapping(), null, "helperMappings", null, 0, -1, XMUModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getXMUModel_Rules(), this.getRule(), null, "rules", null, 0, -1, XMUModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getXMUModel_Packages(), ecorePackage.getEPackage(), null, "packages", null, 0, -1, XMUModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getXMUModel_Start(), this.getStartStatement(), null, "start", null, 1, -1, XMUModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2409,6 +2581,9 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 
 		initEClass(pathEClass, Path.class, "Path", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
+		initEClass(helperPathEClass, HelperPath.class, "HelperPath", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getHelperPath_Helper(), this.getHelperMapping(), null, "helper", null, 1, 1, HelperPath.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(featurePathEClass, FeaturePath.class, "FeaturePath", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFeaturePath_Feature(), ecorePackage.getEString(), "feature", null, 1, 1, FeaturePath.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -2440,6 +2615,17 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 
 		initEClass(eSetEClass, ESet.class, "ESet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getESet_Content(), ecorePackage.getEObject(), null, "content", null, 0, -1, ESet.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(objectPathExprEClass, ObjectPathExpr.class, "ObjectPathExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getObjectPathExpr_Object(), ecorePackage.getEObject(), null, "object", null, 1, 1, ObjectPathExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(initialMappingStatementEClass, InitialMappingStatement.class, "InitialMappingStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getInitialMappingStatement_Source(), this.getExpr(), null, "source", null, 1, -1, InitialMappingStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getInitialMappingStatement_Target(), this.getExpr(), null, "target", null, 1, 1, InitialMappingStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(helperMappingEClass, HelperMapping.class, "HelperMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getHelperMapping_Left(), this.getExpr(), null, "left", null, 1, -1, HelperMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getHelperMapping_Right(), this.getExpr(), null, "right", null, 1, -1, HelperMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(variableFlagEEnum, VariableFlag.class, "VariableFlag");

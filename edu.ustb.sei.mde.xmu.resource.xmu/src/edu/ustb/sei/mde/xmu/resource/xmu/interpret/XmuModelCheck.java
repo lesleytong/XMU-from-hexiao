@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 
+import edu.ustb.sei.commonutil.util.BidirectionalMap;
 import edu.ustb.sei.commonutil.util.Pair;
 import edu.ustb.sei.mde.xmu.*;
 import edu.ustb.sei.mde.xmu.resource.xmu.analysis.Util;
@@ -360,7 +361,24 @@ public class XmuModelCheck extends XmuExpressionCheck {
 				
 				return context.putValue(((VariableExp) invalid).getVar(), expect);
 			} else {
-				return false;
+				// add support for helper mappings
+				Object expV = expect.getValue();
+				for(int i = exp.getPath().size()-1;i>=0;i--) {
+					Path p = exp.getPath().get(i);
+					if(p instanceof HelperPath) {
+						BidirectionalMap<Object,Object> map = context.getEnvironment().getHelperMappings(((HelperPath) p).getHelper().getName());
+						expV = map.backward(expV);
+						if(expV==null) 
+							return false;
+					} else {
+						return false;
+					}
+				}
+				
+				if(context.getSafeTypeValue(exp.getVar()).isUndefined()==false) 
+					return false;
+				
+				return context.putValue(((VariableExp) invalid).getVar(), SafeType.createFromValue(expV));
 			}
 		} else if(invalid instanceof ParenExpr) {
 			return enforceExpr(((ParenExpr) invalid).getBody(),context,expect);

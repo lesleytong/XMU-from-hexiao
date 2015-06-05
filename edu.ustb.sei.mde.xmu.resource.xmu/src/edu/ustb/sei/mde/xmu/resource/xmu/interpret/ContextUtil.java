@@ -465,8 +465,10 @@ public class ContextUtil {
 									}
 								} else {
 									XmuContext nc = current.getCopy();
-									if(XmuModelCheck.MODEL_CHECK.enforceAtomicExpr(right, nc, SafeType.getNull()))
-										res.add(nc);
+									if(feature.isMany()==false) {
+										if(XmuModelCheck.MODEL_CHECK.enforceAtomicExpr(right, nc, SafeType.getNull()))
+											res.add(nc);
+									}
 								}
 							} else {
 								// set pos

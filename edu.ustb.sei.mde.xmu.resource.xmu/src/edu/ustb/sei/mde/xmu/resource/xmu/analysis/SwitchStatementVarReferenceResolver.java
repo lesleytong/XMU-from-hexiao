@@ -14,7 +14,7 @@ public class SwitchStatementVarReferenceResolver implements edu.ustb.sei.mde.xmu
 	
 	private edu.ustb.sei.mde.xmu.resource.xmu.analysis.XmuDefaultResolverDelegate<edu.ustb.sei.mde.xmu.SwitchStatement, edu.ustb.sei.mde.xmu.Variable> delegate = new edu.ustb.sei.mde.xmu.resource.xmu.analysis.XmuDefaultResolverDelegate<edu.ustb.sei.mde.xmu.SwitchStatement, edu.ustb.sei.mde.xmu.Variable>();
 	
-	public void resolve(String identifier, edu.ustb.sei.mde.xmu.SwitchStatement container, org.eclipse.emf.ecore.EReference reference, int position, boolean resolveFuzzy, final edu.ustb.sei.mde.xmu.resource.xmu.IXmuReferenceResolveResult<edu.ustb.sei.mde.xmu.Variable> result) {
+	public void resolve(String identifier, edu.ustb.sei.mde.xmu.SwitchStatement container, org.eclipse.emf.ecore.EReference reference, int position, boolean resolveFuzzy, final edu.ustb.sei.mde.xmu.resource.xmu.IXmuReferenceResolveResult<edu.ustb.sei.mde.xmu.Variable> result) {		
 		if(identifier==null || container ==null) return;
 		Rule rule = Util.getRule(container);
 		

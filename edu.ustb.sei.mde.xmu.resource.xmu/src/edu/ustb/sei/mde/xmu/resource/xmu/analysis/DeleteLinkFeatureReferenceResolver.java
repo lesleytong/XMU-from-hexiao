@@ -6,6 +6,8 @@
  */
 package edu.ustb.sei.mde.xmu.resource.xmu.analysis;
 
+import java.util.List;
+
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
@@ -17,19 +19,45 @@ public class DeleteLinkFeatureReferenceResolver implements edu.ustb.sei.mde.xmu.
 	private edu.ustb.sei.mde.xmu.resource.xmu.analysis.XmuDefaultResolverDelegate<edu.ustb.sei.mde.xmu.DeleteLink, org.eclipse.emf.ecore.EStructuralFeature> delegate = new edu.ustb.sei.mde.xmu.resource.xmu.analysis.XmuDefaultResolverDelegate<edu.ustb.sei.mde.xmu.DeleteLink, org.eclipse.emf.ecore.EStructuralFeature>();
 	
 	public void resolve(String identifier, edu.ustb.sei.mde.xmu.DeleteLink container, org.eclipse.emf.ecore.EReference reference, int position, boolean resolveFuzzy, final edu.ustb.sei.mde.xmu.resource.xmu.IXmuReferenceResolveResult<org.eclipse.emf.ecore.EStructuralFeature> result) {
-		if(identifier==null || container==null) return;
-		
-		ObjectVariable ov = container.getSource();
-		
-		if(ov==null || ov.eIsProxy()) return;
-		
-		PatternNode n = Util.getNearestPatternNode(container.eContainer(), ov);
-		
-		if(n==null) return;
-		
-		EStructuralFeature feature = Util.getFeature(identifier, n.getType());
-		
-		result.addMapping(identifier, feature);
+		if(resolveFuzzy) {
+			if(container==null) return;
+			
+			ObjectVariable ov = container.getSource();
+			
+			if(ov==null || ov.eIsProxy()) return;
+			
+			PatternNode n = Util.getNearestPatternNode(container.eContainer(), ov);
+			
+			if(n==null) return;
+			
+			if(identifier==null) {
+				List<EStructuralFeature> lists = n.getType().getEAllStructuralFeatures();
+				for(EStructuralFeature f : lists) {
+					result.addMapping(f.getName(), f);
+				}
+			} else {
+				List<EStructuralFeature> lists = n.getType().getEAllStructuralFeatures();
+				for(EStructuralFeature f : lists) {
+					if(f.getName().startsWith(identifier))
+						result.addMapping(f.getName(), f);
+				}
+			}
+			
+		} else {
+			if(identifier==null || container==null) return;
+			
+			ObjectVariable ov = container.getSource();
+			
+			if(ov==null || ov.eIsProxy()) return;
+			
+			PatternNode n = Util.getNearestPatternNode(container.eContainer(), ov);
+			
+			if(n==null) return;
+			
+			
+			EStructuralFeature feature = Util.getFeature(identifier, n.getType());
+			result.addMapping(identifier, feature);		
+		}
 	}
 	
 	public String deResolve(org.eclipse.emf.ecore.EStructuralFeature element, edu.ustb.sei.mde.xmu.DeleteLink container, org.eclipse.emf.ecore.EReference reference) {

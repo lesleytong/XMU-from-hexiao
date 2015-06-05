@@ -214,6 +214,12 @@ public class AbstractXmuInterpreter<ResultType, ContextType> {
 		if (result != null) {
 			return result;
 		}
+		if (object instanceof edu.ustb.sei.mde.xmu.RuleCallStatement) {
+			result = interprete_edu_ustb_sei_mde_xmu_RuleCallStatement((edu.ustb.sei.mde.xmu.RuleCallStatement) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
 		if (object instanceof edu.ustb.sei.mde.xmu.TaggedElement) {
 			result = interprete_edu_ustb_sei_mde_xmu_TaggedElement((edu.ustb.sei.mde.xmu.TaggedElement) object, context);
 		}
@@ -246,12 +252,6 @@ public class AbstractXmuInterpreter<ResultType, ContextType> {
 		}
 		if (object instanceof edu.ustb.sei.mde.xmu.Parameter) {
 			result = interprete_edu_ustb_sei_mde_xmu_Parameter((edu.ustb.sei.mde.xmu.Parameter) object, context);
-		}
-		if (result != null) {
-			return result;
-		}
-		if (object instanceof edu.ustb.sei.mde.xmu.RuleCallStatement) {
-			result = interprete_edu_ustb_sei_mde_xmu_RuleCallStatement((edu.ustb.sei.mde.xmu.RuleCallStatement) object, context);
 		}
 		if (result != null) {
 			return result;
@@ -352,6 +352,12 @@ public class AbstractXmuInterpreter<ResultType, ContextType> {
 		if (result != null) {
 			return result;
 		}
+		if (object instanceof edu.ustb.sei.mde.xmu.HelperPath) {
+			result = interprete_edu_ustb_sei_mde_xmu_HelperPath((edu.ustb.sei.mde.xmu.HelperPath) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
 		if (object instanceof edu.ustb.sei.mde.xmu.FeaturePath) {
 			result = interprete_edu_ustb_sei_mde_xmu_FeaturePath((edu.ustb.sei.mde.xmu.FeaturePath) object, context);
 		}
@@ -408,6 +414,24 @@ public class AbstractXmuInterpreter<ResultType, ContextType> {
 		}
 		if (object instanceof edu.ustb.sei.mde.xmu.ESet) {
 			result = interprete_edu_ustb_sei_mde_xmu_ESet((edu.ustb.sei.mde.xmu.ESet) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
+		if (object instanceof edu.ustb.sei.mde.xmu.ObjectPathExpr) {
+			result = interprete_edu_ustb_sei_mde_xmu_ObjectPathExpr((edu.ustb.sei.mde.xmu.ObjectPathExpr) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
+		if (object instanceof edu.ustb.sei.mde.xmu.InitialMappingStatement) {
+			result = interprete_edu_ustb_sei_mde_xmu_InitialMappingStatement((edu.ustb.sei.mde.xmu.InitialMappingStatement) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
+		if (object instanceof edu.ustb.sei.mde.xmu.HelperMapping) {
+			result = interprete_edu_ustb_sei_mde_xmu_HelperMapping((edu.ustb.sei.mde.xmu.HelperMapping) object, context);
 		}
 		if (result != null) {
 			return result;
@@ -735,6 +759,10 @@ public class AbstractXmuInterpreter<ResultType, ContextType> {
 		return null;
 	}
 	
+	public ResultType interprete_edu_ustb_sei_mde_xmu_HelperPath(edu.ustb.sei.mde.xmu.HelperPath helperPath, ContextType context) {
+		return null;
+	}
+	
 	public ResultType interprete_edu_ustb_sei_mde_xmu_FeaturePath(edu.ustb.sei.mde.xmu.FeaturePath featurePath, ContextType context) {
 		return null;
 	}
@@ -768,6 +796,18 @@ public class AbstractXmuInterpreter<ResultType, ContextType> {
 	}
 	
 	public ResultType interprete_edu_ustb_sei_mde_xmu_ESet(edu.ustb.sei.mde.xmu.ESet eSet, ContextType context) {
+		return null;
+	}
+	
+	public ResultType interprete_edu_ustb_sei_mde_xmu_ObjectPathExpr(edu.ustb.sei.mde.xmu.ObjectPathExpr objectPathExpr, ContextType context) {
+		return null;
+	}
+	
+	public ResultType interprete_edu_ustb_sei_mde_xmu_InitialMappingStatement(edu.ustb.sei.mde.xmu.InitialMappingStatement initialMappingStatement, ContextType context) {
+		return null;
+	}
+	
+	public ResultType interprete_edu_ustb_sei_mde_xmu_HelperMapping(edu.ustb.sei.mde.xmu.HelperMapping helperMapping, ContextType context) {
 		return null;
 	}
 	

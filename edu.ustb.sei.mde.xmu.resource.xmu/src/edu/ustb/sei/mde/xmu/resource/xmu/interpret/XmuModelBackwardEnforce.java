@@ -7,6 +7,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import edu.ustb.sei.commonutil.util.Pair;
 import edu.ustb.sei.mde.xmu.*;
 import edu.ustb.sei.mde.xmu.resource.xmu.analysis.Util;
@@ -53,6 +54,8 @@ public class XmuModelBackwardEnforce extends XmuModelEnforce {
 									SafeType vp = SafeType.createFromValue(spv[i]);
 									merge.putValue(pv, vp);
 								}
+							} else {
+								// should I rewrite the value of a primitive variable?
 							}
 						}
 					}
@@ -397,6 +400,28 @@ public class XmuModelBackwardEnforce extends XmuModelEnforce {
 				}
 			}
 		} else return SafeType.getInvalid();
+		return Just.TRUE;
+	}
+	
+	@Override
+	public SafeType interprete_edu_ustb_sei_mde_xmu_InitialMappingStatement(
+			InitialMappingStatement initialMappingStatement, XmuContext context) {
+		// TODO Auto-generated method stub
+		
+		List<Object> src = new ArrayList<Object>();
+//		List<Object> nilSrc = new ArrayList<Object>();
+		
+		for(Expr e : initialMappingStatement.getSource()) {
+			SafeType sv = XmuExpressionCheck.EXPRESSION_CHECK.interprete(e,context);
+			src.add(sv.getValue());
+		}
+		
+		SafeType tv = XmuExpressionCheck.EXPRESSION_CHECK.interprete(initialMappingStatement.getTarget(),context);
+		List<Object> tar = Collections.singletonList(tv.getValue());
+		
+		context.getEnvironment().getTrace().putBackward(src, tar, src);
+//		context.getEnvironment().getTrace().putBackward(sources, tar, src);
+		
 		return Just.TRUE;
 	}
 }

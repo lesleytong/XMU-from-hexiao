@@ -2,6 +2,8 @@
  */
 package edu.ustb.sei.mde.xmu.impl;
 
+import edu.ustb.sei.mde.xmu.HelperMapping;
+import edu.ustb.sei.mde.xmu.InitialMappingStatement;
 import edu.ustb.sei.mde.xmu.Rule;
 import edu.ustb.sei.mde.xmu.StartStatement;
 import edu.ustb.sei.mde.xmu.XMUModel;
@@ -24,6 +26,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link edu.ustb.sei.mde.xmu.impl.XMUModelImpl#getInitialMappings <em>Initial Mappings</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.xmu.impl.XMUModelImpl#getHelperMappings <em>Helper Mappings</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.XMUModelImpl#getRules <em>Rules</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.XMUModelImpl#getPackages <em>Packages</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.XMUModelImpl#getStart <em>Start</em>}</li>
@@ -33,6 +37,26 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public class XMUModelImpl extends MinimalEObjectImpl.Container implements XMUModel {
+	/**
+	 * The cached value of the '{@link #getInitialMappings() <em>Initial Mappings</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInitialMappings()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<InitialMappingStatement> initialMappings;
+
+	/**
+	 * The cached value of the '{@link #getHelperMappings() <em>Helper Mappings</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getHelperMappings()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<HelperMapping> helperMappings;
+
 	/**
 	 * The cached value of the '{@link #getRules() <em>Rules</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -87,6 +111,30 @@ public class XMUModelImpl extends MinimalEObjectImpl.Container implements XMUMod
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<InitialMappingStatement> getInitialMappings() {
+		if (initialMappings == null) {
+			initialMappings = new EObjectContainmentEList<InitialMappingStatement>(InitialMappingStatement.class, this, XmuPackage.XMU_MODEL__INITIAL_MAPPINGS);
+		}
+		return initialMappings;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<HelperMapping> getHelperMappings() {
+		if (helperMappings == null) {
+			helperMappings = new EObjectContainmentEList<HelperMapping>(HelperMapping.class, this, XmuPackage.XMU_MODEL__HELPER_MAPPINGS);
+		}
+		return helperMappings;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList<Rule> getRules() {
 		if (rules == null) {
 			rules = new EObjectContainmentEList<Rule>(Rule.class, this, XmuPackage.XMU_MODEL__RULES);
@@ -126,6 +174,10 @@ public class XMUModelImpl extends MinimalEObjectImpl.Container implements XMUMod
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case XmuPackage.XMU_MODEL__INITIAL_MAPPINGS:
+				return ((InternalEList<?>)getInitialMappings()).basicRemove(otherEnd, msgs);
+			case XmuPackage.XMU_MODEL__HELPER_MAPPINGS:
+				return ((InternalEList<?>)getHelperMappings()).basicRemove(otherEnd, msgs);
 			case XmuPackage.XMU_MODEL__RULES:
 				return ((InternalEList<?>)getRules()).basicRemove(otherEnd, msgs);
 			case XmuPackage.XMU_MODEL__START:
@@ -142,6 +194,10 @@ public class XMUModelImpl extends MinimalEObjectImpl.Container implements XMUMod
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case XmuPackage.XMU_MODEL__INITIAL_MAPPINGS:
+				return getInitialMappings();
+			case XmuPackage.XMU_MODEL__HELPER_MAPPINGS:
+				return getHelperMappings();
 			case XmuPackage.XMU_MODEL__RULES:
 				return getRules();
 			case XmuPackage.XMU_MODEL__PACKAGES:
@@ -161,6 +217,14 @@ public class XMUModelImpl extends MinimalEObjectImpl.Container implements XMUMod
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case XmuPackage.XMU_MODEL__INITIAL_MAPPINGS:
+				getInitialMappings().clear();
+				getInitialMappings().addAll((Collection<? extends InitialMappingStatement>)newValue);
+				return;
+			case XmuPackage.XMU_MODEL__HELPER_MAPPINGS:
+				getHelperMappings().clear();
+				getHelperMappings().addAll((Collection<? extends HelperMapping>)newValue);
+				return;
 			case XmuPackage.XMU_MODEL__RULES:
 				getRules().clear();
 				getRules().addAll((Collection<? extends Rule>)newValue);
@@ -185,6 +249,12 @@ public class XMUModelImpl extends MinimalEObjectImpl.Container implements XMUMod
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case XmuPackage.XMU_MODEL__INITIAL_MAPPINGS:
+				getInitialMappings().clear();
+				return;
+			case XmuPackage.XMU_MODEL__HELPER_MAPPINGS:
+				getHelperMappings().clear();
+				return;
 			case XmuPackage.XMU_MODEL__RULES:
 				getRules().clear();
 				return;
@@ -206,6 +276,10 @@ public class XMUModelImpl extends MinimalEObjectImpl.Container implements XMUMod
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case XmuPackage.XMU_MODEL__INITIAL_MAPPINGS:
+				return initialMappings != null && !initialMappings.isEmpty();
+			case XmuPackage.XMU_MODEL__HELPER_MAPPINGS:
+				return helperMappings != null && !helperMappings.isEmpty();
 			case XmuPackage.XMU_MODEL__RULES:
 				return rules != null && !rules.isEmpty();
 			case XmuPackage.XMU_MODEL__PACKAGES:

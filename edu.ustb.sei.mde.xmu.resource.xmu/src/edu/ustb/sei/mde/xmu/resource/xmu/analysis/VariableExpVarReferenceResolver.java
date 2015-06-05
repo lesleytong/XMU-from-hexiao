@@ -31,29 +31,29 @@ public class VariableExpVarReferenceResolver implements edu.ustb.sei.mde.xmu.res
 			}
 			return;
 		} else {
-			switch(t.getTag()) {
-			case NORMAL:
+//			switch(t.getTag()) {
+//			case NORMAL:
 				v = Util.getVariable(identifier, r.getNVars());
 				if(v==null) v = Util.getVariable(identifier, r.getSVars());
 				if(v==null) v = Util.getVariable(identifier, r.getVVars());
 				if(v==null) v = Util.getVariable(identifier, r.getSpVars());
-				break;
-			case SOURCE:
-				v = Util.getVariable(identifier, r.getNVars());
-				if(v==null) v = Util.getVariable(identifier, r.getSVars());
-				break;
-			case VIEW:
-				v = Util.getVariable(identifier, r.getNVars());
-				if(v==null) v = Util.getVariable(identifier, r.getVVars());
-				break;
-			case SOURCE_POST:
-				v = Util.getVariable(identifier, r.getNVars());
-				if(v==null) v = Util.getVariable(identifier, r.getSVars());
-				if(v==null) v = Util.getVariable(identifier, r.getSpVars());
-				break;
-			default:
-				break;
-			}
+//				break;
+//			case SOURCE:
+//				v = Util.getVariable(identifier, r.getNVars());
+//				if(v==null) v = Util.getVariable(identifier, r.getSVars());
+//				break;
+//			case VIEW:
+//				v = Util.getVariable(identifier, r.getNVars());
+//				if(v==null) v = Util.getVariable(identifier, r.getVVars());
+//				break;
+//			case SOURCE_POST:
+//				v = Util.getVariable(identifier, r.getNVars());
+//				if(v==null) v = Util.getVariable(identifier, r.getSVars());
+//				if(v==null) v = Util.getVariable(identifier, r.getSpVars());
+//				break;
+//			default:
+//				break;
+//			}
 			
 			if(v!=null) {
 				result.addMapping(identifier, v);

@@ -344,6 +344,22 @@ public class XmuPrinter2 implements edu.ustb.sei.mde.xmu.resource.xmu.IXmuTextPr
 			printInternal(element, edu.ustb.sei.mde.xmu.resource.xmu.grammar.XmuGrammarInformationProvider.XMU_38, foundFormattingElements);
 			return;
 		}
+		if (element instanceof edu.ustb.sei.mde.xmu.InitialMappingStatement) {
+			printInternal(element, edu.ustb.sei.mde.xmu.resource.xmu.grammar.XmuGrammarInformationProvider.XMU_39, foundFormattingElements);
+			return;
+		}
+		if (element instanceof edu.ustb.sei.mde.xmu.ObjectPathExpr) {
+			printInternal(element, edu.ustb.sei.mde.xmu.resource.xmu.grammar.XmuGrammarInformationProvider.XMU_40, foundFormattingElements);
+			return;
+		}
+		if (element instanceof edu.ustb.sei.mde.xmu.HelperMapping) {
+			printInternal(element, edu.ustb.sei.mde.xmu.resource.xmu.grammar.XmuGrammarInformationProvider.XMU_41, foundFormattingElements);
+			return;
+		}
+		if (element instanceof edu.ustb.sei.mde.xmu.HelperPath) {
+			printInternal(element, edu.ustb.sei.mde.xmu.resource.xmu.grammar.XmuGrammarInformationProvider.XMU_42, foundFormattingElements);
+			return;
+		}
 		if (element instanceof edu.ustb.sei.mde.xmu.Pattern) {
 			printInternal(element, edu.ustb.sei.mde.xmu.resource.xmu.grammar.XmuGrammarInformationProvider.XMU_9, foundFormattingElements);
 			return;

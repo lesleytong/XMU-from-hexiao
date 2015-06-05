@@ -6,6 +6,10 @@
  */
 package edu.ustb.sei.mde.xmu.resource.xmu.analysis;
 
+import java.util.List;
+
+import org.eclipse.emf.ecore.EReference;
+
 import edu.ustb.sei.mde.xmu.ObjectVariable;
 import edu.ustb.sei.mde.xmu.Pattern;
 import edu.ustb.sei.mde.xmu.PatternNode;
@@ -24,19 +28,57 @@ public class PatternNodeVariableReferenceResolver implements edu.ustb.sei.mde.xm
 	private edu.ustb.sei.mde.xmu.resource.xmu.analysis.XmuDefaultResolverDelegate<edu.ustb.sei.mde.xmu.PatternNode, edu.ustb.sei.mde.xmu.Variable> delegate = new edu.ustb.sei.mde.xmu.resource.xmu.analysis.XmuDefaultResolverDelegate<edu.ustb.sei.mde.xmu.PatternNode, edu.ustb.sei.mde.xmu.Variable>();
 	
 	public void resolve(String identifier, edu.ustb.sei.mde.xmu.PatternNode container, org.eclipse.emf.ecore.EReference reference, int position, boolean resolveFuzzy, final edu.ustb.sei.mde.xmu.resource.xmu.IXmuReferenceResolveResult<edu.ustb.sei.mde.xmu.Variable> result) {
-		if(identifier==null || container==null) return;
-		Rule rule = Util.getRule(container);
-		if(rule==null) return;
-		
-		//Util.cleanVariable(rule);
-		
-		Pattern pat = Util.getPattern(container);
-		if(pat==null) return;
-		
-		if(pat instanceof UpdatePattern) {
-			handleUpdatePattern(identifier, pat, rule, result);
+		if(resolveFuzzy) {
+			if(container==null) return;
+			Rule rule = Util.getRule(container);
+			if(rule==null) return;
+			Pattern pat = Util.getPattern(container);
+			if(pat==null) return;
+			
+			EReference ref = pat.eContainmentFeature();
+			
+			List<? extends Variable> list = null;
+			if(pat instanceof UpdatePattern) {
+				list = rule.getSpVars();
+			} else if(ref==XmuPackage.eINSTANCE.getForStatement_SPattern()) {
+				list = rule.getSVars();
+			} else if(ref==XmuPackage.eINSTANCE.getForStatement_VPattern()) {
+				list = rule.getVVars();
+			} else if(ref==XmuPackage.eINSTANCE.getCasePatternStatement_Pattern()) {
+				SwitchStatement ss = (SwitchStatement) pat.eContainer().eContainer();
+				if(ss!=null) {
+					if(ss.getTag()==VariableFlag.SOURCE) list = rule.getSVars();
+					else if(ss.getTag()==VariableFlag.VIEW) list = rule.getVVars();
+				}
+			}
+			if(list==null) return;
+			
+			if(identifier==null) {
+				for(Variable v : list) {
+					result.addMapping(v.getName(), v);
+				}
+			} else {
+				for(Variable v : list) {
+					if(v.getName().startsWith(identifier))
+						result.addMapping(v.getName(), v);
+				}
+			}
+			
 		} else {
-			handleNormalPattern(identifier, container, pat, rule, result);
+			if(identifier==null || container==null) return;
+			Rule rule = Util.getRule(container);
+			if(rule==null) return;
+			
+			//Util.cleanVariable(rule);
+			
+			Pattern pat = Util.getPattern(container);
+			if(pat==null) return;
+			
+			if(pat instanceof UpdatePattern) {
+				handleUpdatePattern(identifier, pat, rule, result);
+			} else {
+				handleNormalPattern(identifier, container, pat, rule, result);
+			}		
 		}
 		
 	}

@@ -90,6 +90,7 @@ public class XmuFactoryImpl extends EFactoryImpl implements XmuFactory {
 			case XmuPackage.MULTIPLICATIVE_EXPR: return createMultiplicativeExpr();
 			case XmuPackage.UNARY_EXPR: return createUnaryExpr();
 			case XmuPackage.PAREN_EXPR: return createParenExpr();
+			case XmuPackage.HELPER_PATH: return createHelperPath();
 			case XmuPackage.FEATURE_PATH: return createFeaturePath();
 			case XmuPackage.OPERATION_PATH: return createOperationPath();
 			case XmuPackage.LOOP_PATH: return createLoopPath();
@@ -99,6 +100,9 @@ public class XmuFactoryImpl extends EFactoryImpl implements XmuFactory {
 			case XmuPackage.PRINT_STATEMENT: return createPrintStatement();
 			case XmuPackage.ALL_INSTANCE_EXPR: return createAllInstanceExpr();
 			case XmuPackage.ESET: return createESet();
+			case XmuPackage.OBJECT_PATH_EXPR: return createObjectPathExpr();
+			case XmuPackage.INITIAL_MAPPING_STATEMENT: return createInitialMappingStatement();
+			case XmuPackage.HELPER_MAPPING: return createHelperMapping();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -497,6 +501,16 @@ public class XmuFactoryImpl extends EFactoryImpl implements XmuFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public HelperPath createHelperPath() {
+		HelperPathImpl helperPath = new HelperPathImpl();
+		return helperPath;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public FeaturePath createFeaturePath() {
 		FeaturePathImpl featurePath = new FeaturePathImpl();
 		return featurePath;
@@ -580,6 +594,36 @@ public class XmuFactoryImpl extends EFactoryImpl implements XmuFactory {
 	public ESet createESet() {
 		ESetImpl eSet = new ESetImpl();
 		return eSet;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ObjectPathExpr createObjectPathExpr() {
+		ObjectPathExprImpl objectPathExpr = new ObjectPathExprImpl();
+		return objectPathExpr;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public InitialMappingStatement createInitialMappingStatement() {
+		InitialMappingStatementImpl initialMappingStatement = new InitialMappingStatementImpl();
+		return initialMappingStatement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public HelperMapping createHelperMapping() {
+		HelperMappingImpl helperMapping = new HelperMappingImpl();
+		return helperMapping;
 	}
 
 	/**

@@ -98,7 +98,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="path" upperBound="-1" eType="#//Path"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ConstantExpr" abstract="true" eSuperTypes="#//AtomicExpr"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ConstantExpr" abstract="true" eSuperTypes="#//AtomicExpr">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="path" upperBound="-1" eType="#//Path"
+        containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EmptyLiteral" eSuperTypes="#//ConstantExpr">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="#//EmptyType"/>
   </eClassifiers>
@@ -156,6 +159,10 @@
         eType="#//Expr" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="XMUModel">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="initialMappings" upperBound="-1"
+        eType="#//InitialMappingStatement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="helperMappings" upperBound="-1"
+        eType="#//HelperMapping" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="rules" upperBound="-1"
         eType="#//Rule" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="packages" upperBound="-1"
@@ -241,6 +248,10 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Path" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="HelperPath" eSuperTypes="#//Path">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="helper" lowerBound="1"
+        eType="#//HelperMapping"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FeaturePath" eSuperTypes="#//Path">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="feature" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -291,5 +302,21 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="content" upperBound="-1"
         eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" volatile="true"
         transient="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ObjectPathExpr" eSuperTypes="#//Expr">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="object" lowerBound="1"
+        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InitialMappingStatement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
+        upperBound="-1" eType="#//Expr" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+        eType="#//Expr" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="HelperMapping" eSuperTypes="#//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" lowerBound="1" upperBound="-1"
+        eType="#//Expr" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" lowerBound="1" upperBound="-1"
+        eType="#//Expr" containment="true"/>
   </eClassifiers>
 </ecore:EPackage>
