@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import edu.ustb.sei.mde.xmu.CasePatternStatement;
 import edu.ustb.sei.mde.xmu.CaseSubStatement;
 import edu.ustb.sei.mde.xmu.ForStatement;
+import edu.ustb.sei.mde.xmu.LoopPath;
 import edu.ustb.sei.mde.xmu.ObjectVariable;
 import edu.ustb.sei.mde.xmu.Pattern;
 import edu.ustb.sei.mde.xmu.PatternNode;
@@ -76,6 +77,13 @@ public class Util {
 		}
 	}
 	
+	static public LoopPath getLoopPath(EObject o) {
+		while(o!=null) {
+			if(o instanceof LoopPath) break;
+			else o = o.eContainer();
+		}
+		return (LoopPath)o;
+	}
 	static public Rule getRule(EObject o) {
 		while(o!=null) {
 			if(o instanceof Rule) break;

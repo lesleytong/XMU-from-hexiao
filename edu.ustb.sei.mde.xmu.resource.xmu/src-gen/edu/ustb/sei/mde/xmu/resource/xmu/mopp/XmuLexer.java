@@ -66,6 +66,8 @@ public class XmuLexer extends Lexer {
     public static final int T__68=68;
     public static final int T__69=69;
     public static final int T__70=70;
+    public static final int T__71=71;
+    public static final int T__72=72;
     public static final int BOOLEAN=4;
     public static final int LINEBREAK=5;
     public static final int ML_COMMENT=6;
@@ -452,10 +454,10 @@ public class XmuLexer extends Lexer {
         try {
             int _type = T__32;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:31:7: ( '<->' )
-            // Xmu.g:31:9: '<->'
+            // Xmu.g:31:7: ( '<=' )
+            // Xmu.g:31:9: '<='
             {
-            match("<->"); 
+            match("<="); 
 
 
 
@@ -475,12 +477,10 @@ public class XmuLexer extends Lexer {
         try {
             int _type = T__33;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:32:7: ( '<=' )
-            // Xmu.g:32:9: '<='
+            // Xmu.g:32:7: ( '=' )
+            // Xmu.g:32:9: '='
             {
-            match("<="); 
-
-
+            match('='); 
 
             }
 
@@ -498,10 +498,10 @@ public class XmuLexer extends Lexer {
         try {
             int _type = T__34;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:33:7: ( '=' )
-            // Xmu.g:33:9: '='
+            // Xmu.g:33:7: ( '>' )
+            // Xmu.g:33:9: '>'
             {
-            match('='); 
+            match('>'); 
 
             }
 
@@ -519,10 +519,12 @@ public class XmuLexer extends Lexer {
         try {
             int _type = T__35;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:34:7: ( '>' )
-            // Xmu.g:34:9: '>'
+            // Xmu.g:34:7: ( '>=' )
+            // Xmu.g:34:9: '>='
             {
-            match('>'); 
+            match(">="); 
+
+
 
             }
 
@@ -540,12 +542,10 @@ public class XmuLexer extends Lexer {
         try {
             int _type = T__36;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:35:7: ( '>=' )
-            // Xmu.g:35:9: '>='
+            // Xmu.g:35:7: ( '[' )
+            // Xmu.g:35:9: '['
             {
-            match(">="); 
-
-
+            match('['); 
 
             }
 
@@ -563,10 +563,10 @@ public class XmuLexer extends Lexer {
         try {
             int _type = T__37;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:36:7: ( '[' )
-            // Xmu.g:36:9: '['
+            // Xmu.g:36:7: ( ']' )
+            // Xmu.g:36:9: ']'
             {
-            match('['); 
+            match(']'); 
 
             }
 
@@ -584,10 +584,12 @@ public class XmuLexer extends Lexer {
         try {
             int _type = T__38;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:37:7: ( ']' )
-            // Xmu.g:37:9: ']'
+            // Xmu.g:37:7: ( 'and' )
+            // Xmu.g:37:9: 'and'
             {
-            match(']'); 
+            match("and"); 
+
+
 
             }
 
@@ -605,10 +607,10 @@ public class XmuLexer extends Lexer {
         try {
             int _type = T__39;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:38:7: ( 'and' )
-            // Xmu.g:38:9: 'and'
+            // Xmu.g:38:7: ( 'by' )
+            // Xmu.g:38:9: 'by'
             {
-            match("and"); 
+            match("by"); 
 
 
 
@@ -628,10 +630,10 @@ public class XmuLexer extends Lexer {
         try {
             int _type = T__40;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:39:7: ( 'by' )
-            // Xmu.g:39:9: 'by'
+            // Xmu.g:39:7: ( 'case' )
+            // Xmu.g:39:9: 'case'
             {
-            match("by"); 
+            match("case"); 
 
 
 
@@ -651,10 +653,10 @@ public class XmuLexer extends Lexer {
         try {
             int _type = T__41;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:40:7: ( 'case' )
-            // Xmu.g:40:9: 'case'
+            // Xmu.g:40:7: ( 'context' )
+            // Xmu.g:40:9: 'context'
             {
-            match("case"); 
+            match("context"); 
 
 
 
@@ -674,10 +676,10 @@ public class XmuLexer extends Lexer {
         try {
             int _type = T__42;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:41:7: ( 'context' )
-            // Xmu.g:41:9: 'context'
+            // Xmu.g:41:7: ( 'delete' )
+            // Xmu.g:41:9: 'delete'
             {
-            match("context"); 
+            match("delete"); 
 
 
 
@@ -697,10 +699,10 @@ public class XmuLexer extends Lexer {
         try {
             int _type = T__43;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:42:7: ( 'delete' )
-            // Xmu.g:42:9: 'delete'
+            // Xmu.g:42:7: ( 'enforce' )
+            // Xmu.g:42:9: 'enforce'
             {
-            match("delete"); 
+            match("enforce"); 
 
 
 
@@ -720,10 +722,10 @@ public class XmuLexer extends Lexer {
         try {
             int _type = T__44;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:43:7: ( 'enforce' )
-            // Xmu.g:43:9: 'enforce'
+            // Xmu.g:43:7: ( 'exists' )
+            // Xmu.g:43:9: 'exists'
             {
-            match("enforce"); 
+            match("exists"); 
 
 
 
@@ -743,10 +745,10 @@ public class XmuLexer extends Lexer {
         try {
             int _type = T__45;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:44:7: ( 'exists' )
-            // Xmu.g:44:9: 'exists'
+            // Xmu.g:44:7: ( 'fail' )
+            // Xmu.g:44:9: 'fail'
             {
-            match("exists"); 
+            match("fail"); 
 
 
 
@@ -950,10 +952,10 @@ public class XmuLexer extends Lexer {
         try {
             int _type = T__54;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:53:7: ( 'print' )
-            // Xmu.g:53:9: 'print'
+            // Xmu.g:53:7: ( 'otherwise' )
+            // Xmu.g:53:9: 'otherwise'
             {
-            match("print"); 
+            match("otherwise"); 
 
 
 
@@ -973,10 +975,10 @@ public class XmuLexer extends Lexer {
         try {
             int _type = T__55;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:54:7: ( 'rule' )
-            // Xmu.g:54:9: 'rule'
+            // Xmu.g:54:7: ( 'print' )
+            // Xmu.g:54:9: 'print'
             {
-            match("rule"); 
+            match("print"); 
 
 
 
@@ -996,10 +998,10 @@ public class XmuLexer extends Lexer {
         try {
             int _type = T__56;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:55:7: ( 'select' )
-            // Xmu.g:55:9: 'select'
+            // Xmu.g:55:7: ( 'rule' )
+            // Xmu.g:55:9: 'rule'
             {
-            match("select"); 
+            match("rule"); 
 
 
 
@@ -1019,10 +1021,10 @@ public class XmuLexer extends Lexer {
         try {
             int _type = T__57;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:56:7: ( 'source' )
-            // Xmu.g:56:9: 'source'
+            // Xmu.g:56:7: ( 'select' )
+            // Xmu.g:56:9: 'select'
             {
-            match("source"); 
+            match("select"); 
 
 
 
@@ -1042,10 +1044,10 @@ public class XmuLexer extends Lexer {
         try {
             int _type = T__58;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:57:7: ( 'start' )
-            // Xmu.g:57:9: 'start'
+            // Xmu.g:57:7: ( 'skip' )
+            // Xmu.g:57:9: 'skip'
             {
-            match("start"); 
+            match("skip"); 
 
 
 
@@ -1065,10 +1067,10 @@ public class XmuLexer extends Lexer {
         try {
             int _type = T__59;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:58:7: ( 'switch' )
-            // Xmu.g:58:9: 'switch'
+            // Xmu.g:58:7: ( 'source' )
+            // Xmu.g:58:9: 'source'
             {
-            match("switch"); 
+            match("source"); 
 
 
 
@@ -1088,10 +1090,10 @@ public class XmuLexer extends Lexer {
         try {
             int _type = T__60;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:59:7: ( 'unmatchs' )
-            // Xmu.g:59:9: 'unmatchs'
+            // Xmu.g:59:7: ( 'start' )
+            // Xmu.g:59:9: 'start'
             {
-            match("unmatchs"); 
+            match("start"); 
 
 
 
@@ -1111,10 +1113,10 @@ public class XmuLexer extends Lexer {
         try {
             int _type = T__61;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:60:7: ( 'unmatchv' )
-            // Xmu.g:60:9: 'unmatchv'
+            // Xmu.g:60:7: ( 'switch' )
+            // Xmu.g:60:9: 'switch'
             {
-            match("unmatchv"); 
+            match("switch"); 
 
 
 
@@ -1134,10 +1136,10 @@ public class XmuLexer extends Lexer {
         try {
             int _type = T__62;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:61:7: ( 'update' )
-            // Xmu.g:61:9: 'update'
+            // Xmu.g:61:7: ( 'unmatchs' )
+            // Xmu.g:61:9: 'unmatchs'
             {
-            match("update"); 
+            match("unmatchs"); 
 
 
 
@@ -1157,10 +1159,10 @@ public class XmuLexer extends Lexer {
         try {
             int _type = T__63;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:62:7: ( 'updated' )
-            // Xmu.g:62:9: 'updated'
+            // Xmu.g:62:7: ( 'unmatchv' )
+            // Xmu.g:62:9: 'unmatchv'
             {
-            match("updated"); 
+            match("unmatchv"); 
 
 
 
@@ -1180,10 +1182,10 @@ public class XmuLexer extends Lexer {
         try {
             int _type = T__64;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:63:7: ( 'using' )
-            // Xmu.g:63:9: 'using'
+            // Xmu.g:63:7: ( 'update' )
+            // Xmu.g:63:9: 'update'
             {
-            match("using"); 
+            match("update"); 
 
 
 
@@ -1203,10 +1205,10 @@ public class XmuLexer extends Lexer {
         try {
             int _type = T__65;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:64:7: ( 'view' )
-            // Xmu.g:64:9: 'view'
+            // Xmu.g:64:7: ( 'updated' )
+            // Xmu.g:64:9: 'updated'
             {
-            match("view"); 
+            match("updated"); 
 
 
 
@@ -1226,10 +1228,10 @@ public class XmuLexer extends Lexer {
         try {
             int _type = T__66;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:65:7: ( 'when' )
-            // Xmu.g:65:9: 'when'
+            // Xmu.g:65:7: ( 'using' )
+            // Xmu.g:65:9: 'using'
             {
-            match("when"); 
+            match("using"); 
 
 
 
@@ -1249,10 +1251,10 @@ public class XmuLexer extends Lexer {
         try {
             int _type = T__67;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:66:7: ( 'with' )
-            // Xmu.g:66:9: 'with'
+            // Xmu.g:66:7: ( 'view' )
+            // Xmu.g:66:9: 'view'
             {
-            match("with"); 
+            match("view"); 
 
 
 
@@ -1272,10 +1274,12 @@ public class XmuLexer extends Lexer {
         try {
             int _type = T__68;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:67:7: ( '{' )
-            // Xmu.g:67:9: '{'
+            // Xmu.g:67:7: ( 'when' )
+            // Xmu.g:67:9: 'when'
             {
-            match('{'); 
+            match("when"); 
+
+
 
             }
 
@@ -1293,10 +1297,12 @@ public class XmuLexer extends Lexer {
         try {
             int _type = T__69;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:68:7: ( '|' )
-            // Xmu.g:68:9: '|'
+            // Xmu.g:68:7: ( 'with' )
+            // Xmu.g:68:9: 'with'
             {
-            match('|'); 
+            match("with"); 
+
+
 
             }
 
@@ -1314,10 +1320,10 @@ public class XmuLexer extends Lexer {
         try {
             int _type = T__70;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:69:7: ( '}' )
-            // Xmu.g:69:9: '}'
+            // Xmu.g:69:7: ( '{' )
+            // Xmu.g:69:9: '{'
             {
-            match('}'); 
+            match('{'); 
 
             }
 
@@ -1330,20 +1336,62 @@ public class XmuLexer extends Lexer {
     }
     // $ANTLR end "T__70"
 
+    // $ANTLR start "T__71"
+    public final void mT__71() throws RecognitionException {
+        try {
+            int _type = T__71;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // Xmu.g:70:7: ( '|' )
+            // Xmu.g:70:9: '|'
+            {
+            match('|'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        	// do for sure before leaving
+        }
+    }
+    // $ANTLR end "T__71"
+
+    // $ANTLR start "T__72"
+    public final void mT__72() throws RecognitionException {
+        try {
+            int _type = T__72;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // Xmu.g:71:7: ( '}' )
+            // Xmu.g:71:9: '}'
+            {
+            match('}'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        	// do for sure before leaving
+        }
+    }
+    // $ANTLR end "T__72"
+
     // $ANTLR start "URI"
     public final void mURI() throws RecognitionException {
         try {
             int _type = URI;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:7877:4: ( ( '<' ( '0' .. '9' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '-' | '/' | '\\\\' | '\\.' | ':' )+ '>' ) )
-            // Xmu.g:7878:2: ( '<' ( '0' .. '9' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '-' | '/' | '\\\\' | '\\.' | ':' )+ '>' )
+            // Xmu.g:8426:4: ( ( '<' ( '0' .. '9' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '-' | '/' | '\\\\' | '\\.' | ':' )+ '>' ) )
+            // Xmu.g:8427:2: ( '<' ( '0' .. '9' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '-' | '/' | '\\\\' | '\\.' | ':' )+ '>' )
             {
-            // Xmu.g:7878:2: ( '<' ( '0' .. '9' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '-' | '/' | '\\\\' | '\\.' | ':' )+ '>' )
-            // Xmu.g:7878:3: '<' ( '0' .. '9' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '-' | '/' | '\\\\' | '\\.' | ':' )+ '>'
+            // Xmu.g:8427:2: ( '<' ( '0' .. '9' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '-' | '/' | '\\\\' | '\\.' | ':' )+ '>' )
+            // Xmu.g:8427:3: '<' ( '0' .. '9' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '-' | '/' | '\\\\' | '\\.' | ':' )+ '>'
             {
             match('<'); 
 
-            // Xmu.g:7878:6: ( '0' .. '9' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '-' | '/' | '\\\\' | '\\.' | ':' )+
+            // Xmu.g:8427:6: ( '0' .. '9' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '-' | '/' | '\\\\' | '\\.' | ':' )+
             int cnt1=0;
             loop1:
             do {
@@ -1403,10 +1451,10 @@ public class XmuLexer extends Lexer {
         try {
             int _type = PRIMITIVE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:7880:10: ( ( 'String' | 'Boolean' | 'Integer' ) )
-            // Xmu.g:7881:2: ( 'String' | 'Boolean' | 'Integer' )
+            // Xmu.g:8429:10: ( ( 'String' | 'Boolean' | 'Integer' ) )
+            // Xmu.g:8430:2: ( 'String' | 'Boolean' | 'Integer' )
             {
-            // Xmu.g:7881:2: ( 'String' | 'Boolean' | 'Integer' )
+            // Xmu.g:8430:2: ( 'String' | 'Boolean' | 'Integer' )
             int alt2=3;
             switch ( input.LA(1) ) {
             case 'S':
@@ -1434,7 +1482,7 @@ public class XmuLexer extends Lexer {
 
             switch (alt2) {
                 case 1 :
-                    // Xmu.g:7881:3: 'String'
+                    // Xmu.g:8430:3: 'String'
                     {
                     match("String"); 
 
@@ -1443,7 +1491,7 @@ public class XmuLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // Xmu.g:7881:12: 'Boolean'
+                    // Xmu.g:8430:12: 'Boolean'
                     {
                     match("Boolean"); 
 
@@ -1452,7 +1500,7 @@ public class XmuLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // Xmu.g:7881:22: 'Integer'
+                    // Xmu.g:8430:22: 'Integer'
                     {
                     match("Integer"); 
 
@@ -1480,10 +1528,10 @@ public class XmuLexer extends Lexer {
         try {
             int _type = BOOLEAN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:7883:8: ( ( 'true' | 'false' ) )
-            // Xmu.g:7884:2: ( 'true' | 'false' )
+            // Xmu.g:8432:8: ( ( 'true' | 'false' ) )
+            // Xmu.g:8433:2: ( 'true' | 'false' )
             {
-            // Xmu.g:7884:2: ( 'true' | 'false' )
+            // Xmu.g:8433:2: ( 'true' | 'false' )
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -1502,7 +1550,7 @@ public class XmuLexer extends Lexer {
             }
             switch (alt3) {
                 case 1 :
-                    // Xmu.g:7884:3: 'true'
+                    // Xmu.g:8433:3: 'true'
                     {
                     match("true"); 
 
@@ -1511,7 +1559,7 @@ public class XmuLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // Xmu.g:7884:10: 'false'
+                    // Xmu.g:8433:10: 'false'
                     {
                     match("false"); 
 
@@ -1539,20 +1587,20 @@ public class XmuLexer extends Lexer {
         try {
             int _type = NAME;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:7886:5: ( ( ( ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )+ '!' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( '0' .. '9' | 'a' .. 'z' | 'A' .. 'Z' | '_' )* ( '@post' )? ) )
-            // Xmu.g:7887:2: ( ( ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )+ '!' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( '0' .. '9' | 'a' .. 'z' | 'A' .. 'Z' | '_' )* ( '@post' )? )
+            // Xmu.g:8435:5: ( ( ( ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )+ '!' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( '0' .. '9' | 'a' .. 'z' | 'A' .. 'Z' | '_' )* ( '@post' )? ) )
+            // Xmu.g:8436:2: ( ( ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )+ '!' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( '0' .. '9' | 'a' .. 'z' | 'A' .. 'Z' | '_' )* ( '@post' )? )
             {
-            // Xmu.g:7887:2: ( ( ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )+ '!' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( '0' .. '9' | 'a' .. 'z' | 'A' .. 'Z' | '_' )* ( '@post' )? )
-            // Xmu.g:7887:3: ( ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )+ '!' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( '0' .. '9' | 'a' .. 'z' | 'A' .. 'Z' | '_' )* ( '@post' )?
+            // Xmu.g:8436:2: ( ( ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )+ '!' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( '0' .. '9' | 'a' .. 'z' | 'A' .. 'Z' | '_' )* ( '@post' )? )
+            // Xmu.g:8436:3: ( ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )+ '!' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( '0' .. '9' | 'a' .. 'z' | 'A' .. 'Z' | '_' )* ( '@post' )?
             {
-            // Xmu.g:7887:3: ( ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )+ '!' )?
+            // Xmu.g:8436:3: ( ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )+ '!' )?
             int alt5=2;
             alt5 = dfa5.predict(input);
             switch (alt5) {
                 case 1 :
-                    // Xmu.g:7887:4: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )+ '!'
+                    // Xmu.g:8436:4: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )+ '!'
                     {
-                    // Xmu.g:7887:4: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )+
+                    // Xmu.g:8436:4: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )+
                     int cnt4=0;
                     loop4:
                     do {
@@ -1609,7 +1657,7 @@ public class XmuLexer extends Lexer {
             }
 
 
-            // Xmu.g:7887:65: ( '0' .. '9' | 'a' .. 'z' | 'A' .. 'Z' | '_' )*
+            // Xmu.g:8436:65: ( '0' .. '9' | 'a' .. 'z' | 'A' .. 'Z' | '_' )*
             loop6:
             do {
                 int alt6=2;
@@ -1643,7 +1691,7 @@ public class XmuLexer extends Lexer {
             } while (true);
 
 
-            // Xmu.g:7887:98: ( '@post' )?
+            // Xmu.g:8436:98: ( '@post' )?
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -1652,7 +1700,7 @@ public class XmuLexer extends Lexer {
             }
             switch (alt7) {
                 case 1 :
-                    // Xmu.g:7887:99: '@post'
+                    // Xmu.g:8436:99: '@post'
                     {
                     match("@post"); 
 
@@ -1683,13 +1731,13 @@ public class XmuLexer extends Lexer {
         try {
             int _type = NUMBER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:7889:7: ( ( ( '0' .. '9' )+ ) )
-            // Xmu.g:7890:2: ( ( '0' .. '9' )+ )
+            // Xmu.g:8438:7: ( ( ( '0' .. '9' )+ ) )
+            // Xmu.g:8439:2: ( ( '0' .. '9' )+ )
             {
-            // Xmu.g:7890:2: ( ( '0' .. '9' )+ )
-            // Xmu.g:7890:3: ( '0' .. '9' )+
+            // Xmu.g:8439:2: ( ( '0' .. '9' )+ )
+            // Xmu.g:8439:3: ( '0' .. '9' )+
             {
-            // Xmu.g:7890:3: ( '0' .. '9' )+
+            // Xmu.g:8439:3: ( '0' .. '9' )+
             int cnt8=0;
             loop8:
             do {
@@ -1747,17 +1795,17 @@ public class XmuLexer extends Lexer {
         try {
             int _type = SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:7892:11: ( ( '//' (~ ( '\\n' | '\\r' | '\\uffff' ) )* ) )
-            // Xmu.g:7893:2: ( '//' (~ ( '\\n' | '\\r' | '\\uffff' ) )* )
+            // Xmu.g:8441:11: ( ( '//' (~ ( '\\n' | '\\r' | '\\uffff' ) )* ) )
+            // Xmu.g:8442:2: ( '//' (~ ( '\\n' | '\\r' | '\\uffff' ) )* )
             {
-            // Xmu.g:7893:2: ( '//' (~ ( '\\n' | '\\r' | '\\uffff' ) )* )
-            // Xmu.g:7893:4: '//' (~ ( '\\n' | '\\r' | '\\uffff' ) )*
+            // Xmu.g:8442:2: ( '//' (~ ( '\\n' | '\\r' | '\\uffff' ) )* )
+            // Xmu.g:8442:4: '//' (~ ( '\\n' | '\\r' | '\\uffff' ) )*
             {
             match("//"); 
 
 
 
-            // Xmu.g:7893:8: (~ ( '\\n' | '\\r' | '\\uffff' ) )*
+            // Xmu.g:8442:8: (~ ( '\\n' | '\\r' | '\\uffff' ) )*
             loop9:
             do {
                 int alt9=2;
@@ -1812,17 +1860,17 @@ public class XmuLexer extends Lexer {
         try {
             int _type = ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:7896:11: ( ( '/*' ( . )* '*/' ) )
-            // Xmu.g:7897:2: ( '/*' ( . )* '*/' )
+            // Xmu.g:8445:11: ( ( '/*' ( . )* '*/' ) )
+            // Xmu.g:8446:2: ( '/*' ( . )* '*/' )
             {
-            // Xmu.g:7897:2: ( '/*' ( . )* '*/' )
-            // Xmu.g:7897:4: '/*' ( . )* '*/'
+            // Xmu.g:8446:2: ( '/*' ( . )* '*/' )
+            // Xmu.g:8446:4: '/*' ( . )* '*/'
             {
             match("/*"); 
 
 
 
-            // Xmu.g:7897:8: ( . )*
+            // Xmu.g:8446:8: ( . )*
             loop10:
             do {
                 int alt10=2;
@@ -1847,7 +1895,7 @@ public class XmuLexer extends Lexer {
 
                 switch (alt10) {
             	case 1 :
-            	    // Xmu.g:7897:8: .
+            	    // Xmu.g:8446:8: .
             	    {
             	    matchAny(); 
 
@@ -1885,15 +1933,15 @@ public class XmuLexer extends Lexer {
         try {
             int _type = OBJ_URI;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:7900:8: ( ( '@' ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '-' | '/' | '\\\\' | '\\.' | ':' | '#' )* ) )
-            // Xmu.g:7901:2: ( '@' ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '-' | '/' | '\\\\' | '\\.' | ':' | '#' )* )
+            // Xmu.g:8449:8: ( ( '@' ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '-' | '/' | '\\\\' | '\\.' | ':' | '#' )* ) )
+            // Xmu.g:8450:2: ( '@' ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '-' | '/' | '\\\\' | '\\.' | ':' | '#' )* )
             {
-            // Xmu.g:7901:2: ( '@' ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '-' | '/' | '\\\\' | '\\.' | ':' | '#' )* )
-            // Xmu.g:7901:3: '@' ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '-' | '/' | '\\\\' | '\\.' | ':' | '#' )*
+            // Xmu.g:8450:2: ( '@' ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '-' | '/' | '\\\\' | '\\.' | ':' | '#' )* )
+            // Xmu.g:8450:3: '@' ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '-' | '/' | '\\\\' | '\\.' | ':' | '#' )*
             {
             match('@'); 
 
-            // Xmu.g:7901:6: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '-' | '/' | '\\\\' | '\\.' | ':' | '#' )*
+            // Xmu.g:8450:6: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '-' | '/' | '\\\\' | '\\.' | ':' | '#' )*
             loop11:
             do {
                 int alt11=2;
@@ -1946,13 +1994,13 @@ public class XmuLexer extends Lexer {
         try {
             int _type = TEXT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:7903:5: ( ( ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '_' | '-' )+ ) )
-            // Xmu.g:7904:2: ( ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '_' | '-' )+ )
+            // Xmu.g:8452:5: ( ( ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '_' | '-' )+ ) )
+            // Xmu.g:8453:2: ( ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '_' | '-' )+ )
             {
-            // Xmu.g:7904:2: ( ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '_' | '-' )+ )
-            // Xmu.g:7904:3: ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '_' | '-' )+
+            // Xmu.g:8453:2: ( ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '_' | '-' )+ )
+            // Xmu.g:8453:3: ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '_' | '-' )+
             {
-            // Xmu.g:7904:3: ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '_' | '-' )+
+            // Xmu.g:8453:3: ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '_' | '-' )+
             int cnt12=0;
             loop12:
             do {
@@ -2012,8 +2060,8 @@ public class XmuLexer extends Lexer {
         try {
             int _type = WHITESPACE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:7907:11: ( ( ( ' ' | '\\t' | '\\f' ) ) )
-            // Xmu.g:7908:2: ( ( ' ' | '\\t' | '\\f' ) )
+            // Xmu.g:8456:11: ( ( ( ' ' | '\\t' | '\\f' ) ) )
+            // Xmu.g:8457:2: ( ( ' ' | '\\t' | '\\f' ) )
             {
             if ( input.LA(1)=='\t'||input.LA(1)=='\f'||input.LA(1)==' ' ) {
                 input.consume();
@@ -2043,13 +2091,13 @@ public class XmuLexer extends Lexer {
         try {
             int _type = LINEBREAK;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:7911:10: ( ( ( '\\r\\n' | '\\r' | '\\n' ) ) )
-            // Xmu.g:7912:2: ( ( '\\r\\n' | '\\r' | '\\n' ) )
+            // Xmu.g:8460:10: ( ( ( '\\r\\n' | '\\r' | '\\n' ) ) )
+            // Xmu.g:8461:2: ( ( '\\r\\n' | '\\r' | '\\n' ) )
             {
-            // Xmu.g:7912:2: ( ( '\\r\\n' | '\\r' | '\\n' ) )
-            // Xmu.g:7912:3: ( '\\r\\n' | '\\r' | '\\n' )
+            // Xmu.g:8461:2: ( ( '\\r\\n' | '\\r' | '\\n' ) )
+            // Xmu.g:8461:3: ( '\\r\\n' | '\\r' | '\\n' )
             {
-            // Xmu.g:7912:3: ( '\\r\\n' | '\\r' | '\\n' )
+            // Xmu.g:8461:3: ( '\\r\\n' | '\\r' | '\\n' )
             int alt13=3;
             int LA13_0 = input.LA(1);
 
@@ -2075,7 +2123,7 @@ public class XmuLexer extends Lexer {
             }
             switch (alt13) {
                 case 1 :
-                    // Xmu.g:7912:4: '\\r\\n'
+                    // Xmu.g:8461:4: '\\r\\n'
                     {
                     match("\r\n"); 
 
@@ -2084,14 +2132,14 @@ public class XmuLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // Xmu.g:7912:13: '\\r'
+                    // Xmu.g:8461:13: '\\r'
                     {
                     match('\r'); 
 
                     }
                     break;
                 case 3 :
-                    // Xmu.g:7912:20: '\\n'
+                    // Xmu.g:8461:20: '\\n'
                     {
                     match('\n'); 
 
@@ -2122,21 +2170,21 @@ public class XmuLexer extends Lexer {
         try {
             int _type = QUOTED_39_39_92;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:7915:16: ( ( ( '\\'' ) ( ( '\\\\' '\\'' ) | ( '\\\\' '\\\\' ) | (~ ( '\\'' | '\\\\' ) ) )* ( '\\'' ) ) )
-            // Xmu.g:7916:2: ( ( '\\'' ) ( ( '\\\\' '\\'' ) | ( '\\\\' '\\\\' ) | (~ ( '\\'' | '\\\\' ) ) )* ( '\\'' ) )
+            // Xmu.g:8464:16: ( ( ( '\\'' ) ( ( '\\\\' '\\'' ) | ( '\\\\' '\\\\' ) | (~ ( '\\'' | '\\\\' ) ) )* ( '\\'' ) ) )
+            // Xmu.g:8465:2: ( ( '\\'' ) ( ( '\\\\' '\\'' ) | ( '\\\\' '\\\\' ) | (~ ( '\\'' | '\\\\' ) ) )* ( '\\'' ) )
             {
-            // Xmu.g:7916:2: ( ( '\\'' ) ( ( '\\\\' '\\'' ) | ( '\\\\' '\\\\' ) | (~ ( '\\'' | '\\\\' ) ) )* ( '\\'' ) )
-            // Xmu.g:7916:3: ( '\\'' ) ( ( '\\\\' '\\'' ) | ( '\\\\' '\\\\' ) | (~ ( '\\'' | '\\\\' ) ) )* ( '\\'' )
+            // Xmu.g:8465:2: ( ( '\\'' ) ( ( '\\\\' '\\'' ) | ( '\\\\' '\\\\' ) | (~ ( '\\'' | '\\\\' ) ) )* ( '\\'' ) )
+            // Xmu.g:8465:3: ( '\\'' ) ( ( '\\\\' '\\'' ) | ( '\\\\' '\\\\' ) | (~ ( '\\'' | '\\\\' ) ) )* ( '\\'' )
             {
-            // Xmu.g:7916:3: ( '\\'' )
-            // Xmu.g:7916:4: '\\''
+            // Xmu.g:8465:3: ( '\\'' )
+            // Xmu.g:8465:4: '\\''
             {
             match('\''); 
 
             }
 
 
-            // Xmu.g:7916:9: ( ( '\\\\' '\\'' ) | ( '\\\\' '\\\\' ) | (~ ( '\\'' | '\\\\' ) ) )*
+            // Xmu.g:8465:9: ( ( '\\\\' '\\'' ) | ( '\\\\' '\\\\' ) | (~ ( '\\'' | '\\\\' ) ) )*
             loop14:
             do {
                 int alt14=4;
@@ -2161,10 +2209,10 @@ public class XmuLexer extends Lexer {
 
                 switch (alt14) {
             	case 1 :
-            	    // Xmu.g:7916:10: ( '\\\\' '\\'' )
+            	    // Xmu.g:8465:10: ( '\\\\' '\\'' )
             	    {
-            	    // Xmu.g:7916:10: ( '\\\\' '\\'' )
-            	    // Xmu.g:7916:11: '\\\\' '\\''
+            	    // Xmu.g:8465:10: ( '\\\\' '\\'' )
+            	    // Xmu.g:8465:11: '\\\\' '\\''
             	    {
             	    match('\\'); 
 
@@ -2176,10 +2224,10 @@ public class XmuLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // Xmu.g:7916:21: ( '\\\\' '\\\\' )
+            	    // Xmu.g:8465:21: ( '\\\\' '\\\\' )
             	    {
-            	    // Xmu.g:7916:21: ( '\\\\' '\\\\' )
-            	    // Xmu.g:7916:22: '\\\\' '\\\\'
+            	    // Xmu.g:8465:21: ( '\\\\' '\\\\' )
+            	    // Xmu.g:8465:22: '\\\\' '\\\\'
             	    {
             	    match('\\'); 
 
@@ -2191,7 +2239,7 @@ public class XmuLexer extends Lexer {
             	    }
             	    break;
             	case 3 :
-            	    // Xmu.g:7916:32: (~ ( '\\'' | '\\\\' ) )
+            	    // Xmu.g:8465:32: (~ ( '\\'' | '\\\\' ) )
             	    {
             	    if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '&')||(input.LA(1) >= '(' && input.LA(1) <= '[')||(input.LA(1) >= ']' && input.LA(1) <= '\uFFFF') ) {
             	        input.consume();
@@ -2212,8 +2260,8 @@ public class XmuLexer extends Lexer {
             } while (true);
 
 
-            // Xmu.g:7916:48: ( '\\'' )
-            // Xmu.g:7916:49: '\\''
+            // Xmu.g:8465:48: ( '\\'' )
+            // Xmu.g:8465:49: '\\''
             {
             match('\''); 
 
@@ -2235,8 +2283,8 @@ public class XmuLexer extends Lexer {
     // $ANTLR end "QUOTED_39_39_92"
 
     public void mTokens() throws RecognitionException {
-        // Xmu.g:1:8: ( T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | URI | PRIMITIVE | BOOLEAN | NAME | NUMBER | SL_COMMENT | ML_COMMENT | OBJ_URI | TEXT | WHITESPACE | LINEBREAK | QUOTED_39_39_92 )
-        int alt15=67;
+        // Xmu.g:1:8: ( T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | URI | PRIMITIVE | BOOLEAN | NAME | NUMBER | SL_COMMENT | ML_COMMENT | OBJ_URI | TEXT | WHITESPACE | LINEBREAK | QUOTED_39_39_92 )
+        int alt15=69;
         alt15 = dfa15.predict(input);
         switch (alt15) {
             case 1 :
@@ -2680,95 +2728,111 @@ public class XmuLexer extends Lexer {
                 }
                 break;
             case 56 :
-                // Xmu.g:1:340: URI
+                // Xmu.g:1:340: T__71
+                {
+                mT__71(); 
+
+
+                }
+                break;
+            case 57 :
+                // Xmu.g:1:346: T__72
+                {
+                mT__72(); 
+
+
+                }
+                break;
+            case 58 :
+                // Xmu.g:1:352: URI
                 {
                 mURI(); 
 
 
                 }
                 break;
-            case 57 :
-                // Xmu.g:1:344: PRIMITIVE
+            case 59 :
+                // Xmu.g:1:356: PRIMITIVE
                 {
                 mPRIMITIVE(); 
 
 
                 }
                 break;
-            case 58 :
-                // Xmu.g:1:354: BOOLEAN
+            case 60 :
+                // Xmu.g:1:366: BOOLEAN
                 {
                 mBOOLEAN(); 
 
 
                 }
                 break;
-            case 59 :
-                // Xmu.g:1:362: NAME
+            case 61 :
+                // Xmu.g:1:374: NAME
                 {
                 mNAME(); 
 
 
                 }
                 break;
-            case 60 :
-                // Xmu.g:1:367: NUMBER
+            case 62 :
+                // Xmu.g:1:379: NUMBER
                 {
                 mNUMBER(); 
 
 
                 }
                 break;
-            case 61 :
-                // Xmu.g:1:374: SL_COMMENT
+            case 63 :
+                // Xmu.g:1:386: SL_COMMENT
                 {
                 mSL_COMMENT(); 
 
 
                 }
                 break;
-            case 62 :
-                // Xmu.g:1:385: ML_COMMENT
+            case 64 :
+                // Xmu.g:1:397: ML_COMMENT
                 {
                 mML_COMMENT(); 
 
 
                 }
                 break;
-            case 63 :
-                // Xmu.g:1:396: OBJ_URI
+            case 65 :
+                // Xmu.g:1:408: OBJ_URI
                 {
                 mOBJ_URI(); 
 
 
                 }
                 break;
-            case 64 :
-                // Xmu.g:1:404: TEXT
+            case 66 :
+                // Xmu.g:1:416: TEXT
                 {
                 mTEXT(); 
 
 
                 }
                 break;
-            case 65 :
-                // Xmu.g:1:409: WHITESPACE
+            case 67 :
+                // Xmu.g:1:421: WHITESPACE
                 {
                 mWHITESPACE(); 
 
 
                 }
                 break;
-            case 66 :
-                // Xmu.g:1:420: LINEBREAK
+            case 68 :
+                // Xmu.g:1:432: LINEBREAK
                 {
                 mLINEBREAK(); 
 
 
                 }
                 break;
-            case 67 :
-                // Xmu.g:1:430: QUOTED_39_39_92
+            case 69 :
+                // Xmu.g:1:442: QUOTED_39_39_92
                 {
                 mQUOTED_39_39_92(); 
 
@@ -2833,54 +2897,57 @@ public class XmuLexer extends Lexer {
             this.transition = DFA5_transition;
         }
         public String getDescription() {
-            return "7887:3: ( ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )+ '!' )?";
+            return "8436:3: ( ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )+ '!' )?";
         }
     }
     static final String DFA15_eotS =
-        "\5\uffff\1\57\1\uffff\1\61\1\uffff\1\65\1\67\1\uffff\1\72\1\uffff"+
-        "\1\75\2\uffff\20\77\3\uffff\5\77\1\137\11\uffff\1\141\12\uffff\1"+
-        "\77\1\uffff\1\77\1\145\14\77\1\163\20\77\1\uffff\1\62\3\uffff\1"+
-        "\u0085\1\uffff\12\77\1\u0090\1\u0091\1\77\1\uffff\20\77\2\uffff"+
-        "\1\u00a3\11\77\2\uffff\1\u00ad\1\77\1\u00af\7\77\1\u00b7\1\u00b8"+
-        "\1\u00b9\3\77\1\u00bd\1\uffff\5\77\1\u00bd\2\77\1\u00c5\1\uffff"+
-        "\1\u00c6\1\uffff\2\77\1\u00c9\3\77\1\u00cd\3\uffff\3\77\1\uffff"+
-        "\1\77\1\u00d2\1\77\1\u00d4\1\u00d5\1\u00d6\1\77\2\uffff\1\u00d8"+
-        "\1\u00d9\1\uffff\1\u00da\1\77\1\u00dd\1\uffff\1\u00de\2\77\1\u00e1"+
-        "\1\uffff\1\u00e2\3\uffff\1\u00e3\3\uffff\1\77\1\u00e6\2\uffff\2"+
-        "\u00de\3\uffff\1\u00e7\1\u00e8\3\uffff";
+        "\5\uffff\1\57\1\uffff\1\61\1\uffff\1\65\1\67\1\uffff\1\71\1\uffff"+
+        "\1\74\2\uffff\20\76\3\uffff\5\76\1\140\11\uffff\1\142\11\uffff\1"+
+        "\76\1\uffff\1\76\1\145\14\76\1\164\22\76\1\uffff\1\62\2\uffff\1"+
+        "\u0087\1\uffff\13\76\1\u0093\1\u0094\1\76\1\uffff\22\76\1\uffff"+
+        "\1\u00a8\4\76\1\u00ad\5\76\2\uffff\1\u00b3\2\76\1\u00b6\1\76\1\u00b8"+
+        "\6\76\1\u00bf\1\u00c0\1\u00c1\3\76\1\u00c5\1\uffff\4\76\1\uffff"+
+        "\1\u00c5\3\76\1\u00cd\1\uffff\1\76\1\u00cf\1\uffff\1\76\1\uffff"+
+        "\1\76\1\u00d2\3\76\1\u00d6\3\uffff\3\76\1\uffff\1\76\1\u00db\1\76"+
+        "\1\u00dd\1\u00de\1\u00df\1\76\1\uffff\1\76\1\uffff\1\u00e2\1\u00e3"+
+        "\1\uffff\1\u00e4\1\76\1\u00e7\1\uffff\1\u00e8\2\76\1\u00eb\1\uffff"+
+        "\1\u00ec\3\uffff\1\u00ed\1\76\3\uffff\1\76\1\u00f1\2\uffff\2\u00e8"+
+        "\3\uffff\1\76\1\u00f3\1\u00f4\1\uffff\1\u00f5\3\uffff";
     static final String DFA15_eofS =
-        "\u00e9\uffff";
+        "\u00f6\uffff";
     static final String DFA15_minS =
         "\1\11\4\uffff\1\53\1\uffff\1\55\1\uffff\1\52\1\72\1\uffff\1\55\1"+
-        "\uffff\1\75\2\uffff\20\55\3\uffff\5\55\1\41\11\uffff\1\0\4\uffff"+
-        "\1\55\5\uffff\1\55\1\uffff\1\55\1\41\14\55\1\41\20\55\1\uffff\1"+
-        "\41\3\uffff\1\41\1\uffff\12\55\2\41\1\55\1\uffff\20\55\2\uffff\1"+
-        "\41\11\55\2\uffff\1\41\1\55\1\41\7\55\3\41\3\55\1\41\1\uffff\5\55"+
-        "\1\41\2\55\1\41\1\uffff\1\41\1\uffff\2\55\1\41\3\55\1\41\3\uffff"+
-        "\3\55\1\uffff\1\55\1\41\1\55\3\41\1\55\2\uffff\2\41\1\uffff\1\41"+
-        "\1\55\1\41\1\uffff\1\41\2\55\1\41\1\uffff\1\41\3\uffff\1\41\3\uffff"+
-        "\1\55\1\41\2\uffff\2\41\3\uffff\2\41\3\uffff";
+        "\uffff\1\75\2\uffff\20\55\3\uffff\5\55\1\41\11\uffff\1\0\11\uffff"+
+        "\1\55\1\uffff\1\55\1\41\14\55\1\41\22\55\1\uffff\1\41\2\uffff\1"+
+        "\41\1\uffff\13\55\2\41\1\55\1\uffff\22\55\1\uffff\1\41\4\55\1\41"+
+        "\5\55\2\uffff\1\41\2\55\1\41\1\55\1\41\6\55\3\41\3\55\1\41\1\uffff"+
+        "\4\55\1\uffff\1\41\3\55\1\41\1\uffff\1\55\1\41\1\uffff\1\55\1\uffff"+
+        "\1\55\1\41\3\55\1\41\3\uffff\3\55\1\uffff\1\55\1\41\1\55\3\41\1"+
+        "\55\1\uffff\1\55\1\uffff\2\41\1\uffff\1\41\1\55\1\41\1\uffff\1\41"+
+        "\2\55\1\41\1\uffff\1\41\3\uffff\1\41\1\55\3\uffff\1\55\1\41\2\uffff"+
+        "\2\41\3\uffff\1\55\2\41\1\uffff\1\41\3\uffff";
     static final String DFA15_maxS =
         "\1\175\4\uffff\1\53\1\uffff\1\172\1\uffff\1\57\1\72\1\uffff\1\172"+
-        "\1\uffff\1\75\2\uffff\20\172\3\uffff\6\172\11\uffff\1\ufffe\4\uffff"+
-        "\1\172\5\uffff\1\172\1\uffff\37\172\1\uffff\1\172\3\uffff\1\172"+
-        "\1\uffff\15\172\1\uffff\20\172\2\uffff\12\172\2\uffff\21\172\1\uffff"+
-        "\11\172\1\uffff\1\172\1\uffff\7\172\3\uffff\3\172\1\uffff\7\172"+
-        "\2\uffff\2\172\1\uffff\3\172\1\uffff\4\172\1\uffff\1\172\3\uffff"+
-        "\1\172\3\uffff\2\172\2\uffff\2\172\3\uffff\2\172\3\uffff";
+        "\1\uffff\1\75\2\uffff\20\172\3\uffff\6\172\11\uffff\1\ufffe\11\uffff"+
+        "\1\172\1\uffff\41\172\1\uffff\1\172\2\uffff\1\172\1\uffff\16\172"+
+        "\1\uffff\22\172\1\uffff\13\172\2\uffff\23\172\1\uffff\4\172\1\uffff"+
+        "\5\172\1\uffff\2\172\1\uffff\1\172\1\uffff\6\172\3\uffff\3\172\1"+
+        "\uffff\7\172\1\uffff\1\172\1\uffff\2\172\1\uffff\3\172\1\uffff\4"+
+        "\172\1\uffff\1\172\3\uffff\2\172\3\uffff\2\172\2\uffff\2\172\3\uffff"+
+        "\3\172\1\uffff\1\172\3\uffff";
     static final String DFA15_acceptS =
         "\1\uffff\1\1\1\2\1\3\1\4\1\uffff\1\7\1\uffff\1\12\2\uffff\1\17\1"+
-        "\uffff\1\23\1\uffff\1\26\1\27\20\uffff\1\65\1\66\1\67\6\uffff\1"+
-        "\77\1\101\1\102\1\103\1\6\1\5\1\11\1\10\1\100\1\uffff\1\76\1\13"+
-        "\1\16\1\15\1\uffff\1\22\1\20\1\70\1\25\1\24\1\uffff\1\73\37\uffff"+
-        "\1\74\1\uffff\1\14\1\75\1\21\1\uffff\1\31\15\uffff\1\46\20\uffff"+
-        "\1\21\1\30\12\uffff\1\43\1\44\21\uffff\1\32\11\uffff\1\45\1\uffff"+
-        "\1\50\7\uffff\1\62\1\63\1\64\3\uffff\1\72\7\uffff\1\42\1\47\2\uffff"+
-        "\1\53\3\uffff\1\61\4\uffff\1\34\1\uffff\1\36\1\37\1\40\1\uffff\1"+
-        "\51\1\52\1\54\2\uffff\1\57\1\71\2\uffff\1\33\1\35\1\41\2\uffff\1"+
-        "\60\1\55\1\56";
+        "\uffff\1\22\1\uffff\1\25\1\26\20\uffff\1\67\1\70\1\71\6\uffff\1"+
+        "\101\1\103\1\104\1\105\1\6\1\5\1\11\1\10\1\102\1\uffff\1\100\1\13"+
+        "\1\16\1\15\1\21\1\20\1\72\1\24\1\23\1\uffff\1\75\41\uffff\1\76\1"+
+        "\uffff\1\14\1\77\1\uffff\1\30\16\uffff\1\46\22\uffff\1\27\13\uffff"+
+        "\1\43\1\44\23\uffff\1\31\4\uffff\1\36\5\uffff\1\45\2\uffff\1\51"+
+        "\1\uffff\1\53\6\uffff\1\64\1\65\1\66\3\uffff\1\74\7\uffff\1\42\1"+
+        "\uffff\1\50\2\uffff\1\55\3\uffff\1\63\4\uffff\1\33\1\uffff\1\35"+
+        "\1\37\1\40\2\uffff\1\52\1\54\1\56\2\uffff\1\61\1\73\2\uffff\1\32"+
+        "\1\34\1\41\3\uffff\1\62\1\uffff\1\57\1\60\1\47";
     static final String DFA15_specialS =
-        "\u00e9\uffff}>";
+        "\u00f6\uffff}>";
     static final String[] DFA15_transitionS = {
             "\1\53\1\54\1\uffff\1\53\1\54\22\uffff\1\53\2\uffff\1\1\3\uffff"+
             "\1\55\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11\12\51\1\12\1\13\1\14"+
@@ -2900,60 +2967,58 @@ public class XmuLexer extends Lexer {
             "\1\64\4\uffff\1\63",
             "\1\66",
             "",
-            "\1\70\15\73\2\uffff\1\71\3\uffff\32\73\1\uffff\1\73\2\uffff"+
-            "\1\73\1\uffff\32\73",
+            "\16\72\2\uffff\1\70\3\uffff\32\72\1\uffff\1\72\2\uffff\1\72"+
+            "\1\uffff\32\72",
             "",
-            "\1\74",
-            "",
-            "",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\15"+
-            "\100\1\76\14\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\30"+
-            "\100\1\101\1\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\1"+
-            "\102\15\100\1\103\13\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\4"+
-            "\100\1\104\25\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\15"+
-            "\100\1\105\11\100\1\106\2\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\1"+
-            "\110\15\100\1\107\13\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\14"+
-            "\100\1\111\15\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\1"+
-            "\112\31\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\10"+
-            "\100\1\113\5\100\1\114\5\100\1\115\5\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\21"+
-            "\100\1\116\10\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\21"+
-            "\100\1\117\10\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\24"+
-            "\100\1\120\5\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\4"+
-            "\100\1\121\11\100\1\122\4\100\1\123\2\100\1\124\3\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\15"+
-            "\100\1\125\1\100\1\126\2\100\1\127\7\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\10"+
-            "\100\1\130\21\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\7"+
-            "\100\1\131\1\132\21\100",
+            "\1\73",
             "",
             "",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\15\77"+
+            "\1\75\14\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\30\77"+
+            "\1\100\1\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\1\101"+
+            "\15\77\1\102\13\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\4\77"+
+            "\1\103\25\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\15\77"+
+            "\1\104\11\77\1\105\2\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\1\106"+
+            "\15\77\1\107\13\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\14\77"+
+            "\1\110\15\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\1\111"+
+            "\31\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\10\77"+
+            "\1\112\5\77\1\113\5\77\1\114\5\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\21\77"+
+            "\1\115\1\77\1\116\6\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\21\77"+
+            "\1\117\10\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\24\77"+
+            "\1\120\5\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\4\77"+
+            "\1\121\5\77\1\122\3\77\1\123\4\77\1\124\2\77\1\125\3\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\15\77"+
+            "\1\126\1\77\1\127\2\77\1\130\7\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\10\77"+
+            "\1\131\21\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\7\77"+
+            "\1\132\1\133\21\77",
             "",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\23"+
-            "\100\1\133\6\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\16"+
-            "\100\1\134\13\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\15"+
-            "\100\1\135\14\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\21"+
-            "\100\1\136\10\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\32"+
-            "\100",
-            "\1\77\13\uffff\1\62\2\uffff\12\51\7\uffff\32\140\4\uffff\1"+
-            "\140\1\uffff\32\140",
             "",
+            "",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\23\77"+
+            "\1\134\6\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\16\77"+
+            "\1\135\13\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\15\77"+
+            "\1\136\14\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\21\77"+
+            "\1\137\10\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+            "\1\76\13\uffff\1\62\2\uffff\12\51\7\uffff\32\141\4\uffff\1"+
+            "\141\1\uffff\32\141",
             "",
             "",
             "",
@@ -2962,320 +3027,345 @@ public class XmuLexer extends Lexer {
             "",
             "",
             "",
-            "\12\142\1\uffff\2\142\1\uffff\ufff1\142",
             "",
-            "",
-            "",
-            "",
-            "\16\73\3\uffff\1\143\2\uffff\32\73\1\uffff\1\73\2\uffff\1\73"+
-            "\1\uffff\32\73",
+            "\12\143\1\uffff\2\143\1\uffff\ufff1\143",
             "",
             "",
             "",
             "",
             "",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\3"+
-            "\100\1\144\26\100",
-            "",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\32"+
-            "\100",
-            "\1\77\13\uffff\1\62\2\uffff\12\100\6\uffff\1\77\32\100\4\uffff"+
-            "\1\100\1\uffff\32\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\22"+
-            "\100\1\146\7\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\15"+
-            "\100\1\147\14\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\13"+
-            "\100\1\150\16\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\5"+
-            "\100\1\151\24\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\10"+
-            "\100\1\152\21\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\21"+
-            "\100\1\153\10\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\13"+
-            "\100\1\154\16\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\17"+
-            "\100\1\155\12\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\17"+
-            "\100\1\156\3\100\1\157\6\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\13"+
-            "\100\1\160\16\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\23"+
-            "\100\1\161\6\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\13"+
-            "\100\1\162\16\100",
-            "\1\77\13\uffff\1\62\2\uffff\12\100\6\uffff\1\77\32\100\4\uffff"+
-            "\1\100\1\uffff\32\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\10"+
-            "\100\1\164\21\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\13"+
-            "\100\1\165\16\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\13"+
-            "\100\1\166\16\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\24"+
-            "\100\1\167\5\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\1"+
-            "\170\31\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\10"+
-            "\100\1\171\21\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\14"+
-            "\100\1\172\15\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\3"+
-            "\100\1\173\26\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\10"+
-            "\100\1\174\21\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\4"+
-            "\100\1\175\25\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\4"+
-            "\100\1\176\25\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\23"+
-            "\100\1\177\6\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\21"+
-            "\100\1\u0080\10\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\16"+
-            "\100\1\u0081\13\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\23"+
-            "\100\1\u0082\6\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\24"+
-            "\100\1\u0083\5\100",
-            "",
-            "\1\77\16\uffff\12\140\7\uffff\32\140\4\uffff\1\140\1\uffff"+
-            "\32\140",
             "",
             "",
             "",
-            "\1\77\13\uffff\1\62\2\uffff\12\100\6\uffff\1\77\32\100\4\uffff"+
-            "\1\100\1\uffff\32\100",
             "",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\4"+
-            "\100\1\u0086\25\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\23"+
-            "\100\1\u0087\6\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\4"+
-            "\100\1\u0088\25\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\16"+
-            "\100\1\u0089\13\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\22"+
-            "\100\1\u008a\7\100",
-            "\1\62\2\uffff\12\100\7\uffff\1\u008b\31\100\4\uffff\1\100\1"+
-            "\uffff\32\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\22"+
-            "\100\1\u008c\7\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\16"+
-            "\100\1\u008d\13\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\17"+
-            "\100\1\u008e\12\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\2"+
-            "\100\1\u008f\27\100",
-            "\1\77\13\uffff\1\62\2\uffff\12\100\6\uffff\1\77\32\100\4\uffff"+
-            "\1\100\1\uffff\32\100",
-            "\1\77\13\uffff\1\62\2\uffff\12\100\6\uffff\1\77\32\100\4\uffff"+
-            "\1\100\1\uffff\32\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\13"+
-            "\100\1\u0092\16\100",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\3\77"+
+            "\1\144\26\77",
             "",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\15"+
-            "\100\1\u0093\14\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\4"+
-            "\100\1\u0094\25\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\4"+
-            "\100\1\u0095\25\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\21"+
-            "\100\1\u0096\10\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\21"+
-            "\100\1\u0097\10\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\23"+
-            "\100\1\u0098\6\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\1"+
-            "\u0099\31\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\1"+
-            "\u009a\31\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\15"+
-            "\100\1\u009b\14\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\26"+
-            "\100\1\u009c\3\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\15"+
-            "\100\1\u009d\14\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\7"+
-            "\100\1\u009e\22\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\10"+
-            "\100\1\u009f\21\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\13"+
-            "\100\1\u00a0\16\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\4"+
-            "\100\1\u00a1\25\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\4"+
-            "\100\1\u00a2\25\100",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+            "\1\76\13\uffff\1\62\2\uffff\12\77\6\uffff\1\76\32\77\4\uffff"+
+            "\1\77\1\uffff\32\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\22\77"+
+            "\1\146\7\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\15\77"+
+            "\1\147\14\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\13\77"+
+            "\1\150\16\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\5\77"+
+            "\1\151\24\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\10\77"+
+            "\1\152\21\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\10\77"+
+            "\1\153\2\77\1\154\16\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\21\77"+
+            "\1\155\10\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\17\77"+
+            "\1\156\12\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\17\77"+
+            "\1\157\3\77\1\160\6\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\13\77"+
+            "\1\161\16\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\23\77"+
+            "\1\162\6\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\13\77"+
+            "\1\163\16\77",
+            "\1\76\13\uffff\1\62\2\uffff\12\77\6\uffff\1\76\32\77\4\uffff"+
+            "\1\77\1\uffff\32\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\7\77"+
+            "\1\165\22\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\10\77"+
+            "\1\166\21\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\13\77"+
+            "\1\167\16\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\13\77"+
+            "\1\170\16\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\10\77"+
+            "\1\171\21\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\24\77"+
+            "\1\172\5\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\1\173"+
+            "\31\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\10\77"+
+            "\1\174\21\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\14\77"+
+            "\1\175\15\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\3\77"+
+            "\1\176\26\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\10\77"+
+            "\1\177\21\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\4\77"+
+            "\1\u0080\25\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\4\77"+
+            "\1\u0081\25\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\23\77"+
+            "\1\u0082\6\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\21\77"+
+            "\1\u0083\10\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\16\77"+
+            "\1\u0084\13\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\23\77"+
+            "\1\u0085\6\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\24\77"+
+            "\1\u0086\5\77",
             "",
-            "",
-            "\1\77\13\uffff\1\62\2\uffff\12\100\6\uffff\1\77\32\100\4\uffff"+
-            "\1\100\1\uffff\32\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\4"+
-            "\100\1\u00a4\25\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\23"+
-            "\100\1\u00a5\6\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\21"+
-            "\100\1\u00a6\10\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\23"+
-            "\100\1\u00a7\6\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\13"+
-            "\100\1\u00a8\16\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\4"+
-            "\100\1\u00a9\25\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\21"+
-            "\100\1\u00aa\10\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\10"+
-            "\100\1\u00ab\21\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\7"+
-            "\100\1\u00ac\22\100",
+            "\1\76\16\uffff\12\141\7\uffff\32\141\4\uffff\1\141\1\uffff"+
+            "\32\141",
             "",
             "",
-            "\1\77\13\uffff\1\62\2\uffff\12\100\6\uffff\1\77\32\100\4\uffff"+
-            "\1\100\1\uffff\32\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\23"+
-            "\100\1\u00ae\6\100",
-            "\1\77\13\uffff\1\62\2\uffff\12\100\6\uffff\1\77\32\100\4\uffff"+
-            "\1\100\1\uffff\32\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\2"+
-            "\100\1\u00b0\27\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\2"+
-            "\100\1\u00b1\27\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\23"+
-            "\100\1\u00b2\6\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\2"+
-            "\100\1\u00b3\27\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\23"+
-            "\100\1\u00b4\6\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\23"+
-            "\100\1\u00b5\6\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\6"+
-            "\100\1\u00b6\23\100",
-            "\1\77\13\uffff\1\62\2\uffff\12\100\6\uffff\1\77\32\100\4\uffff"+
-            "\1\100\1\uffff\32\100",
-            "\1\77\13\uffff\1\62\2\uffff\12\100\6\uffff\1\77\32\100\4\uffff"+
-            "\1\100\1\uffff\32\100",
-            "\1\77\13\uffff\1\62\2\uffff\12\100\6\uffff\1\77\32\100\4\uffff"+
-            "\1\100\1\uffff\32\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\15"+
-            "\100\1\u00ba\14\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\4"+
-            "\100\1\u00bb\25\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\6"+
-            "\100\1\u00bc\23\100",
-            "\1\77\13\uffff\1\62\2\uffff\12\100\6\uffff\1\77\32\100\4\uffff"+
-            "\1\100\1\uffff\32\100",
+            "\1\76\13\uffff\1\62\2\uffff\12\77\6\uffff\1\76\32\77\4\uffff"+
+            "\1\77\1\uffff\32\77",
             "",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\27"+
-            "\100\1\u00be\2\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\4"+
-            "\100\1\u00bf\25\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\2"+
-            "\100\1\u00c0\27\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\22"+
-            "\100\1\u00c1\7\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\13"+
-            "\100\1\u00c2\16\100",
-            "\1\77\13\uffff\1\62\2\uffff\12\100\6\uffff\1\77\32\100\4\uffff"+
-            "\1\100\1\uffff\32\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\23"+
-            "\100\1\u00c3\6\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\15"+
-            "\100\1\u00c4\14\100",
-            "\1\77\13\uffff\1\62\2\uffff\12\100\6\uffff\1\77\32\100\4\uffff"+
-            "\1\100\1\uffff\32\100",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\4\77"+
+            "\1\u0088\25\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\23\77"+
+            "\1\u0089\6\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\4\77"+
+            "\1\u008a\25\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\16\77"+
+            "\1\u008b\13\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\22\77"+
+            "\1\u008c\7\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\13\77"+
+            "\1\u008d\16\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\22\77"+
+            "\1\u008e\7\77",
+            "\1\62\2\uffff\12\77\7\uffff\1\u008f\31\77\4\uffff\1\77\1\uffff"+
+            "\32\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\16\77"+
+            "\1\u0090\13\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\17\77"+
+            "\1\u0091\12\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\2\77"+
+            "\1\u0092\27\77",
+            "\1\76\13\uffff\1\62\2\uffff\12\77\6\uffff\1\76\32\77\4\uffff"+
+            "\1\77\1\uffff\32\77",
+            "\1\76\13\uffff\1\62\2\uffff\12\77\6\uffff\1\76\32\77\4\uffff"+
+            "\1\77\1\uffff\32\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\13\77"+
+            "\1\u0095\16\77",
             "",
-            "\1\77\13\uffff\1\62\2\uffff\12\100\6\uffff\1\77\32\100\4\uffff"+
-            "\1\100\1\uffff\32\100",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\4\77"+
+            "\1\u0096\25\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\15\77"+
+            "\1\u0097\14\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\4\77"+
+            "\1\u0098\25\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\4\77"+
+            "\1\u0099\25\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\17\77"+
+            "\1\u009a\12\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\21\77"+
+            "\1\u009b\10\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\21\77"+
+            "\1\u009c\10\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\23\77"+
+            "\1\u009d\6\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\1\u009e"+
+            "\31\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\1\u009f"+
+            "\31\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\15\77"+
+            "\1\u00a0\14\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\26\77"+
+            "\1\u00a1\3\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\15\77"+
+            "\1\u00a2\14\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\7\77"+
+            "\1\u00a3\22\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\10\77"+
+            "\1\u00a4\21\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\13\77"+
+            "\1\u00a5\16\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\4\77"+
+            "\1\u00a6\25\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\4\77"+
+            "\1\u00a7\25\77",
             "",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\23"+
-            "\100\1\u00c7\6\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\4"+
-            "\100\1\u00c8\25\100",
-            "\1\77\13\uffff\1\62\2\uffff\12\100\6\uffff\1\77\32\100\4\uffff"+
-            "\1\100\1\uffff\32\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\7"+
-            "\100\1\u00ca\22\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\2"+
-            "\100\1\u00cb\27\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\4"+
-            "\100\1\u00cc\25\100",
-            "\1\77\13\uffff\1\62\2\uffff\12\100\6\uffff\1\77\32\100\4\uffff"+
-            "\1\100\1\uffff\32\100",
-            "",
-            "",
-            "",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\6"+
-            "\100\1\u00ce\23\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\1"+
-            "\u00cf\31\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\4"+
-            "\100\1\u00d0\25\100",
-            "",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\23"+
-            "\100\1\u00d1\6\100",
-            "\1\77\13\uffff\1\62\2\uffff\12\100\6\uffff\1\77\32\100\4\uffff"+
-            "\1\100\1\uffff\32\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\4"+
-            "\100\1\u00d3\25\100",
-            "\1\77\13\uffff\1\62\2\uffff\12\100\6\uffff\1\77\32\100\4\uffff"+
-            "\1\100\1\uffff\32\100",
-            "\1\77\13\uffff\1\62\2\uffff\12\100\6\uffff\1\77\32\100\4\uffff"+
-            "\1\100\1\uffff\32\100",
-            "\1\77\13\uffff\1\62\2\uffff\12\100\6\uffff\1\77\32\100\4\uffff"+
-            "\1\100\1\uffff\32\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\6"+
-            "\100\1\u00d7\23\100",
+            "\1\76\13\uffff\1\62\2\uffff\12\77\6\uffff\1\76\32\77\4\uffff"+
+            "\1\77\1\uffff\32\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\4\77"+
+            "\1\u00a9\25\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\23\77"+
+            "\1\u00aa\6\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\21\77"+
+            "\1\u00ab\10\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\23\77"+
+            "\1\u00ac\6\77",
+            "\1\76\13\uffff\1\62\2\uffff\12\77\6\uffff\1\76\32\77\4\uffff"+
+            "\1\77\1\uffff\32\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\4\77"+
+            "\1\u00ae\25\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\13\77"+
+            "\1\u00af\16\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\21\77"+
+            "\1\u00b0\10\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\10\77"+
+            "\1\u00b1\21\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\7\77"+
+            "\1\u00b2\22\77",
             "",
             "",
-            "\1\77\13\uffff\1\62\2\uffff\12\100\6\uffff\1\77\32\100\4\uffff"+
-            "\1\100\1\uffff\32\100",
-            "\1\77\13\uffff\1\62\2\uffff\12\100\6\uffff\1\77\32\100\4\uffff"+
-            "\1\100\1\uffff\32\100",
+            "\1\76\13\uffff\1\62\2\uffff\12\77\6\uffff\1\76\32\77\4\uffff"+
+            "\1\77\1\uffff\32\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\21\77"+
+            "\1\u00b4\10\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\23\77"+
+            "\1\u00b5\6\77",
+            "\1\76\13\uffff\1\62\2\uffff\12\77\6\uffff\1\76\32\77\4\uffff"+
+            "\1\77\1\uffff\32\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\2\77"+
+            "\1\u00b7\27\77",
+            "\1\76\13\uffff\1\62\2\uffff\12\77\6\uffff\1\76\32\77\4\uffff"+
+            "\1\77\1\uffff\32\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\2\77"+
+            "\1\u00b9\27\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\23\77"+
+            "\1\u00ba\6\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\2\77"+
+            "\1\u00bb\27\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\23\77"+
+            "\1\u00bc\6\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\23\77"+
+            "\1\u00bd\6\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\6\77"+
+            "\1\u00be\23\77",
+            "\1\76\13\uffff\1\62\2\uffff\12\77\6\uffff\1\76\32\77\4\uffff"+
+            "\1\77\1\uffff\32\77",
+            "\1\76\13\uffff\1\62\2\uffff\12\77\6\uffff\1\76\32\77\4\uffff"+
+            "\1\77\1\uffff\32\77",
+            "\1\76\13\uffff\1\62\2\uffff\12\77\6\uffff\1\76\32\77\4\uffff"+
+            "\1\77\1\uffff\32\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\15\77"+
+            "\1\u00c2\14\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\4\77"+
+            "\1\u00c3\25\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\6\77"+
+            "\1\u00c4\23\77",
+            "\1\76\13\uffff\1\62\2\uffff\12\77\6\uffff\1\76\32\77\4\uffff"+
+            "\1\77\1\uffff\32\77",
             "",
-            "\1\77\13\uffff\1\62\2\uffff\12\100\6\uffff\1\77\32\100\4\uffff"+
-            "\1\100\1\uffff\32\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\7"+
-            "\100\1\u00db\22\100",
-            "\1\77\13\uffff\1\62\2\uffff\12\100\6\uffff\1\77\32\100\4\uffff"+
-            "\1\100\1\uffff\3\100\1\u00dc\26\100",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\27\77"+
+            "\1\u00c6\2\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\4\77"+
+            "\1\u00c7\25\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\2\77"+
+            "\1\u00c8\27\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\22\77"+
+            "\1\u00c9\7\77",
             "",
-            "\1\77\13\uffff\1\62\2\uffff\12\100\6\uffff\1\77\32\100\4\uffff"+
-            "\1\100\1\uffff\32\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\15"+
-            "\100\1\u00df\14\100",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\21"+
-            "\100\1\u00e0\10\100",
-            "\1\77\13\uffff\1\62\2\uffff\12\100\6\uffff\1\77\32\100\4\uffff"+
-            "\1\100\1\uffff\32\100",
+            "\1\76\13\uffff\1\62\2\uffff\12\77\6\uffff\1\76\32\77\4\uffff"+
+            "\1\77\1\uffff\32\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\13\77"+
+            "\1\u00ca\16\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\23\77"+
+            "\1\u00cb\6\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\15\77"+
+            "\1\u00cc\14\77",
+            "\1\76\13\uffff\1\62\2\uffff\12\77\6\uffff\1\76\32\77\4\uffff"+
+            "\1\77\1\uffff\32\77",
             "",
-            "\1\77\13\uffff\1\62\2\uffff\12\100\6\uffff\1\77\32\100\4\uffff"+
-            "\1\100\1\uffff\32\100",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\26\77"+
+            "\1\u00ce\3\77",
+            "\1\76\13\uffff\1\62\2\uffff\12\77\6\uffff\1\76\32\77\4\uffff"+
+            "\1\77\1\uffff\32\77",
+            "",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\23\77"+
+            "\1\u00d0\6\77",
+            "",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\4\77"+
+            "\1\u00d1\25\77",
+            "\1\76\13\uffff\1\62\2\uffff\12\77\6\uffff\1\76\32\77\4\uffff"+
+            "\1\77\1\uffff\32\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\7\77"+
+            "\1\u00d3\22\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\2\77"+
+            "\1\u00d4\27\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\4\77"+
+            "\1\u00d5\25\77",
+            "\1\76\13\uffff\1\62\2\uffff\12\77\6\uffff\1\76\32\77\4\uffff"+
+            "\1\77\1\uffff\32\77",
             "",
             "",
             "",
-            "\1\77\13\uffff\1\62\2\uffff\12\100\6\uffff\1\77\32\100\4\uffff"+
-            "\1\100\1\uffff\32\100",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\6\77"+
+            "\1\u00d7\23\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\1\u00d8"+
+            "\31\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\4\77"+
+            "\1\u00d9\25\77",
+            "",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\23\77"+
+            "\1\u00da\6\77",
+            "\1\76\13\uffff\1\62\2\uffff\12\77\6\uffff\1\76\32\77\4\uffff"+
+            "\1\77\1\uffff\32\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\4\77"+
+            "\1\u00dc\25\77",
+            "\1\76\13\uffff\1\62\2\uffff\12\77\6\uffff\1\76\32\77\4\uffff"+
+            "\1\77\1\uffff\32\77",
+            "\1\76\13\uffff\1\62\2\uffff\12\77\6\uffff\1\76\32\77\4\uffff"+
+            "\1\77\1\uffff\32\77",
+            "\1\76\13\uffff\1\62\2\uffff\12\77\6\uffff\1\76\32\77\4\uffff"+
+            "\1\77\1\uffff\32\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\6\77"+
+            "\1\u00e0\23\77",
+            "",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\10\77"+
+            "\1\u00e1\21\77",
+            "",
+            "\1\76\13\uffff\1\62\2\uffff\12\77\6\uffff\1\76\32\77\4\uffff"+
+            "\1\77\1\uffff\32\77",
+            "\1\76\13\uffff\1\62\2\uffff\12\77\6\uffff\1\76\32\77\4\uffff"+
+            "\1\77\1\uffff\32\77",
+            "",
+            "\1\76\13\uffff\1\62\2\uffff\12\77\6\uffff\1\76\32\77\4\uffff"+
+            "\1\77\1\uffff\32\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\7\77"+
+            "\1\u00e5\22\77",
+            "\1\76\13\uffff\1\62\2\uffff\12\77\6\uffff\1\76\32\77\4\uffff"+
+            "\1\77\1\uffff\3\77\1\u00e6\26\77",
+            "",
+            "\1\76\13\uffff\1\62\2\uffff\12\77\6\uffff\1\76\32\77\4\uffff"+
+            "\1\77\1\uffff\32\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\15\77"+
+            "\1\u00e9\14\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\21\77"+
+            "\1\u00ea\10\77",
+            "\1\76\13\uffff\1\62\2\uffff\12\77\6\uffff\1\76\32\77\4\uffff"+
+            "\1\77\1\uffff\32\77",
+            "",
+            "\1\76\13\uffff\1\62\2\uffff\12\77\6\uffff\1\76\32\77\4\uffff"+
+            "\1\77\1\uffff\32\77",
             "",
             "",
             "",
-            "\1\62\2\uffff\12\100\7\uffff\32\100\4\uffff\1\100\1\uffff\22"+
-            "\100\1\u00e4\2\100\1\u00e5\4\100",
-            "\1\77\13\uffff\1\62\2\uffff\12\100\6\uffff\1\77\32\100\4\uffff"+
-            "\1\100\1\uffff\32\100",
-            "",
-            "",
-            "\1\77\13\uffff\1\62\2\uffff\12\100\6\uffff\1\77\32\100\4\uffff"+
-            "\1\100\1\uffff\32\100",
-            "\1\77\13\uffff\1\62\2\uffff\12\100\6\uffff\1\77\32\100\4\uffff"+
-            "\1\100\1\uffff\32\100",
+            "\1\76\13\uffff\1\62\2\uffff\12\77\6\uffff\1\76\32\77\4\uffff"+
+            "\1\77\1\uffff\32\77",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\22\77"+
+            "\1\u00ee\7\77",
             "",
             "",
             "",
-            "\1\77\13\uffff\1\62\2\uffff\12\100\6\uffff\1\77\32\100\4\uffff"+
-            "\1\100\1\uffff\32\100",
-            "\1\77\13\uffff\1\62\2\uffff\12\100\6\uffff\1\77\32\100\4\uffff"+
-            "\1\100\1\uffff\32\100",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\22\77"+
+            "\1\u00ef\2\77\1\u00f0\4\77",
+            "\1\76\13\uffff\1\62\2\uffff\12\77\6\uffff\1\76\32\77\4\uffff"+
+            "\1\77\1\uffff\32\77",
+            "",
+            "",
+            "\1\76\13\uffff\1\62\2\uffff\12\77\6\uffff\1\76\32\77\4\uffff"+
+            "\1\77\1\uffff\32\77",
+            "\1\76\13\uffff\1\62\2\uffff\12\77\6\uffff\1\76\32\77\4\uffff"+
+            "\1\77\1\uffff\32\77",
+            "",
+            "",
+            "",
+            "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\4\77"+
+            "\1\u00f2\25\77",
+            "\1\76\13\uffff\1\62\2\uffff\12\77\6\uffff\1\76\32\77\4\uffff"+
+            "\1\77\1\uffff\32\77",
+            "\1\76\13\uffff\1\62\2\uffff\12\77\6\uffff\1\76\32\77\4\uffff"+
+            "\1\77\1\uffff\32\77",
+            "",
+            "\1\76\13\uffff\1\62\2\uffff\12\77\6\uffff\1\76\32\77\4\uffff"+
+            "\1\77\1\uffff\32\77",
             "",
             "",
             ""
@@ -3311,7 +3401,7 @@ public class XmuLexer extends Lexer {
             this.transition = DFA15_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | URI | PRIMITIVE | BOOLEAN | NAME | NUMBER | SL_COMMENT | ML_COMMENT | OBJ_URI | TEXT | WHITESPACE | LINEBREAK | QUOTED_39_39_92 );";
+            return "1:1: Tokens : ( T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | URI | PRIMITIVE | BOOLEAN | NAME | NUMBER | SL_COMMENT | ML_COMMENT | OBJ_URI | TEXT | WHITESPACE | LINEBREAK | QUOTED_39_39_92 );";
         }
     }
  

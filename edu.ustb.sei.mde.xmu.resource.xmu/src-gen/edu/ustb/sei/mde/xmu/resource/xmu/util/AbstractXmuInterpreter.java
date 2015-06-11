@@ -214,6 +214,12 @@ public class AbstractXmuInterpreter<ResultType, ContextType> {
 		if (result != null) {
 			return result;
 		}
+		if (object instanceof edu.ustb.sei.mde.xmu.Parameter) {
+			result = interprete_edu_ustb_sei_mde_xmu_Parameter((edu.ustb.sei.mde.xmu.Parameter) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
 		if (object instanceof edu.ustb.sei.mde.xmu.RuleCallStatement) {
 			result = interprete_edu_ustb_sei_mde_xmu_RuleCallStatement((edu.ustb.sei.mde.xmu.RuleCallStatement) object, context);
 		}
@@ -232,6 +238,12 @@ public class AbstractXmuInterpreter<ResultType, ContextType> {
 		if (result != null) {
 			return result;
 		}
+		if (object instanceof edu.ustb.sei.mde.xmu.CaseDefaultStatement) {
+			result = interprete_edu_ustb_sei_mde_xmu_CaseDefaultStatement((edu.ustb.sei.mde.xmu.CaseDefaultStatement) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
 		if (object instanceof edu.ustb.sei.mde.xmu.CaseValueStatement) {
 			result = interprete_edu_ustb_sei_mde_xmu_CaseValueStatement((edu.ustb.sei.mde.xmu.CaseValueStatement) object, context);
 		}
@@ -246,12 +258,6 @@ public class AbstractXmuInterpreter<ResultType, ContextType> {
 		}
 		if (object instanceof edu.ustb.sei.mde.xmu.XMUModel) {
 			result = interprete_edu_ustb_sei_mde_xmu_XMUModel((edu.ustb.sei.mde.xmu.XMUModel) object, context);
-		}
-		if (result != null) {
-			return result;
-		}
-		if (object instanceof edu.ustb.sei.mde.xmu.Parameter) {
-			result = interprete_edu_ustb_sei_mde_xmu_Parameter((edu.ustb.sei.mde.xmu.Parameter) object, context);
 		}
 		if (result != null) {
 			return result;
@@ -432,6 +438,30 @@ public class AbstractXmuInterpreter<ResultType, ContextType> {
 		}
 		if (object instanceof edu.ustb.sei.mde.xmu.HelperMapping) {
 			result = interprete_edu_ustb_sei_mde_xmu_HelperMapping((edu.ustb.sei.mde.xmu.HelperMapping) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
+		if (object instanceof edu.ustb.sei.mde.xmu.HelperMappingEntry) {
+			result = interprete_edu_ustb_sei_mde_xmu_HelperMappingEntry((edu.ustb.sei.mde.xmu.HelperMappingEntry) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
+		if (object instanceof edu.ustb.sei.mde.xmu.Skip) {
+			result = interprete_edu_ustb_sei_mde_xmu_Skip((edu.ustb.sei.mde.xmu.Skip) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
+		if (object instanceof edu.ustb.sei.mde.xmu.Fail) {
+			result = interprete_edu_ustb_sei_mde_xmu_Fail((edu.ustb.sei.mde.xmu.Fail) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
+		if (object instanceof edu.ustb.sei.mde.xmu.PseudoUpdate) {
+			result = interprete_edu_ustb_sei_mde_xmu_PseudoUpdate((edu.ustb.sei.mde.xmu.PseudoUpdate) object, context);
 		}
 		if (result != null) {
 			return result;
@@ -683,6 +713,10 @@ public class AbstractXmuInterpreter<ResultType, ContextType> {
 		return null;
 	}
 	
+	public ResultType interprete_edu_ustb_sei_mde_xmu_CaseDefaultStatement(edu.ustb.sei.mde.xmu.CaseDefaultStatement caseDefaultStatement, ContextType context) {
+		return null;
+	}
+	
 	public ResultType interprete_edu_ustb_sei_mde_xmu_XMUModel(edu.ustb.sei.mde.xmu.XMUModel xMUModel, ContextType context) {
 		return null;
 	}
@@ -808,6 +842,22 @@ public class AbstractXmuInterpreter<ResultType, ContextType> {
 	}
 	
 	public ResultType interprete_edu_ustb_sei_mde_xmu_HelperMapping(edu.ustb.sei.mde.xmu.HelperMapping helperMapping, ContextType context) {
+		return null;
+	}
+	
+	public ResultType interprete_edu_ustb_sei_mde_xmu_HelperMappingEntry(edu.ustb.sei.mde.xmu.HelperMappingEntry helperMappingEntry, ContextType context) {
+		return null;
+	}
+	
+	public ResultType interprete_edu_ustb_sei_mde_xmu_PseudoUpdate(edu.ustb.sei.mde.xmu.PseudoUpdate pseudoUpdate, ContextType context) {
+		return null;
+	}
+	
+	public ResultType interprete_edu_ustb_sei_mde_xmu_Skip(edu.ustb.sei.mde.xmu.Skip skip, ContextType context) {
+		return null;
+	}
+	
+	public ResultType interprete_edu_ustb_sei_mde_xmu_Fail(edu.ustb.sei.mde.xmu.Fail fail, ContextType context) {
 		return null;
 	}
 	

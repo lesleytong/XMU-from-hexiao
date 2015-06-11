@@ -50,11 +50,13 @@ RULES {
 	
 	PrimitiveVariable ::= type[PRIMITIVE] name[NAME] ;
 	
+	ObjectVariable ::= name[NAME] ;
+	
 	ForStatement ::= "update" sPattern ("with" vPattern ("when" when (";" when)*)?)? "by" (actions (actions (actions)?)?) ;
 	
 	UpdatedStatement ::= "updated" "(" sVar[NAME]+ "," vVar[NAME]+ ")";
 	
-	VStatement ::= tag[match:"match", unmatchv:"unmatchv", unmatchs:"unmatchs"] "->" statement;
+	VStatement ::= tag[match:"match", match:"", unmatchv:"unmatchv", unmatchs:"unmatchs"] "->" statement;
 	
 	Pattern ::= root ("[" guard: BooleanOrExpr,BooleanAndExpr,RelationalExpr,AdditiveExpr,MultiplicativeExpr,UnaryExpr,AtomicExpr "]")?;
 	
@@ -90,6 +92,8 @@ RULES {
 	
 	CaseValueStatement ::= "case" expression "->" statement;
 	
+	CaseDefaultStatement ::= "otherwise" "->" statement;
+	
 	RuleCallStatement ::= rule[NAME] "(" (actualParameters ("," actualParameters)*)? ")" ;
 	
 	UpdatePattern ::= "enforce" root;
@@ -116,11 +120,17 @@ RULES {
 	
 	AllInstanceExpr ::= root "//" type[NAME] ;
 	
-	InitialMappingStatement ::= source:StringLiteral,IntegerLiteral,ObjectPathExpr+ "<->" target : ObjectPathExpr ;
+	InitialMappingStatement ::= source:StringLiteral,IntegerLiteral,ObjectPathExpr+ "=" target : ObjectPathExpr ";" ;
 	
 	ObjectPathExpr::= object[OBJ_URI];
 	
-	HelperMapping ::= name[NAME] ":" (left:StringLiteral,IntegerLiteral,ObjectPathExpr "=" right:StringLiteral,IntegerLiteral,ObjectPathExpr)+ ";" ;
+	HelperMapping ::= name[NAME] ":" entries + ("otherwise" defaultEqual["skip":"fail"])? ";" ;
+	
+	HelperMappingEntry ::= (left:StringLiteral,IntegerLiteral,ObjectPathExpr,EmptyLiteral "=" right:StringLiteral,IntegerLiteral,ObjectPathExpr,EmptyLiteral) ;
 	
 	HelperPath ::= "." "#" helper[NAME] ;
+	
+	Skip ::= "skip" (message['\'','\'','\\'])?;
+	
+	Fail ::= "fail" (message['\'','\'','\\'])?;
 }

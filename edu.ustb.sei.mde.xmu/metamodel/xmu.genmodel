@@ -149,6 +149,7 @@
     <genClasses ecoreClass="xmu.ecore#//CaseValueStatement">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//CaseValueStatement/expression"/>
     </genClasses>
+    <genClasses ecoreClass="xmu.ecore#//CaseDefaultStatement"/>
     <genClasses ecoreClass="xmu.ecore#//XMUModel">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//XMUModel/initialMappings"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//XMUModel/helperMappings"/>
@@ -244,8 +245,17 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//InitialMappingStatement/target"/>
     </genClasses>
     <genClasses ecoreClass="xmu.ecore#//HelperMapping">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//HelperMapping/left"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//HelperMapping/right"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//HelperMapping/entries"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmu.ecore#//HelperMapping/defaultEqual"/>
     </genClasses>
+    <genClasses image="false" ecoreClass="xmu.ecore#//HelperMappingEntry">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//HelperMappingEntry/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//HelperMappingEntry/right"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="xmu.ecore#//PseudoUpdate">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmu.ecore#//PseudoUpdate/message"/>
+    </genClasses>
+    <genClasses ecoreClass="xmu.ecore#//Skip"/>
+    <genClasses ecoreClass="xmu.ecore#//Fail"/>
   </genPackages>
 </genmodel:GenModel>

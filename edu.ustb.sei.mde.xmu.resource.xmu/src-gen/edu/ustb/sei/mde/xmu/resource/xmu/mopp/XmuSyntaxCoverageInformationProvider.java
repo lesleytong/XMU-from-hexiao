@@ -16,6 +16,7 @@ public class XmuSyntaxCoverageInformationProvider {
 			edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getRule(),
 			edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getParameter(),
 			edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getPrimitiveVariable(),
+			edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getObjectVariable(),
 			edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getForStatement(),
 			edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getUpdatedStatement(),
 			edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getVStatement(),
@@ -36,6 +37,7 @@ public class XmuSyntaxCoverageInformationProvider {
 			edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getSwitchStatement(),
 			edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getCasePatternStatement(),
 			edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getCaseValueStatement(),
+			edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getCaseDefaultStatement(),
 			edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getRuleCallStatement(),
 			edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getUpdatePattern(),
 			edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getDeleteNode(),
@@ -52,7 +54,10 @@ public class XmuSyntaxCoverageInformationProvider {
 			edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getInitialMappingStatement(),
 			edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getObjectPathExpr(),
 			edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getHelperMapping(),
+			edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getHelperMappingEntry(),
 			edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getHelperPath(),
+			edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getSkip(),
+			edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getFail(),
 		};
 	}
 	

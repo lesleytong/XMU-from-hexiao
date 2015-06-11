@@ -79,6 +79,7 @@ public class XmuFactoryImpl extends EFactoryImpl implements XmuFactory {
 			case XmuPackage.SWITCH_STATEMENT: return createSwitchStatement();
 			case XmuPackage.CASE_PATTERN_STATEMENT: return createCasePatternStatement();
 			case XmuPackage.CASE_VALUE_STATEMENT: return createCaseValueStatement();
+			case XmuPackage.CASE_DEFAULT_STATEMENT: return createCaseDefaultStatement();
 			case XmuPackage.XMU_MODEL: return createXMUModel();
 			case XmuPackage.PARAMETER: return createParameter();
 			case XmuPackage.RULE_CALL_STATEMENT: return createRuleCallStatement();
@@ -103,6 +104,9 @@ public class XmuFactoryImpl extends EFactoryImpl implements XmuFactory {
 			case XmuPackage.OBJECT_PATH_EXPR: return createObjectPathExpr();
 			case XmuPackage.INITIAL_MAPPING_STATEMENT: return createInitialMappingStatement();
 			case XmuPackage.HELPER_MAPPING: return createHelperMapping();
+			case XmuPackage.HELPER_MAPPING_ENTRY: return createHelperMappingEntry();
+			case XmuPackage.SKIP: return createSkip();
+			case XmuPackage.FAIL: return createFail();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -391,6 +395,16 @@ public class XmuFactoryImpl extends EFactoryImpl implements XmuFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public CaseDefaultStatement createCaseDefaultStatement() {
+		CaseDefaultStatementImpl caseDefaultStatement = new CaseDefaultStatementImpl();
+		return caseDefaultStatement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public XMUModel createXMUModel() {
 		XMUModelImpl xmuModel = new XMUModelImpl();
 		return xmuModel;
@@ -624,6 +638,36 @@ public class XmuFactoryImpl extends EFactoryImpl implements XmuFactory {
 	public HelperMapping createHelperMapping() {
 		HelperMappingImpl helperMapping = new HelperMappingImpl();
 		return helperMapping;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public HelperMappingEntry createHelperMappingEntry() {
+		HelperMappingEntryImpl helperMappingEntry = new HelperMappingEntryImpl();
+		return helperMappingEntry;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Skip createSkip() {
+		SkipImpl skip = new SkipImpl();
+		return skip;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Fail createFail() {
+		FailImpl fail = new FailImpl();
+		return fail;
 	}
 
 	/**

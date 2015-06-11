@@ -337,6 +337,14 @@ public class XmuSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case XmuPackage.CASE_DEFAULT_STATEMENT: {
+				CaseDefaultStatement caseDefaultStatement = (CaseDefaultStatement)theEObject;
+				T result = caseCaseDefaultStatement(caseDefaultStatement);
+				if (result == null) result = caseCaseValueStatement(caseDefaultStatement);
+				if (result == null) result = caseCaseSubStatement(caseDefaultStatement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case XmuPackage.XMU_MODEL: {
 				XMUModel xmuModel = (XMUModel)theEObject;
 				T result = caseXMUModel(xmuModel);
@@ -596,6 +604,38 @@ public class XmuSwitch<T> extends Switch<T> {
 				HelperMapping helperMapping = (HelperMapping)theEObject;
 				T result = caseHelperMapping(helperMapping);
 				if (result == null) result = caseNamedElement(helperMapping);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case XmuPackage.HELPER_MAPPING_ENTRY: {
+				HelperMappingEntry helperMappingEntry = (HelperMappingEntry)theEObject;
+				T result = caseHelperMappingEntry(helperMappingEntry);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case XmuPackage.PSEUDO_UPDATE: {
+				PseudoUpdate pseudoUpdate = (PseudoUpdate)theEObject;
+				T result = casePseudoUpdate(pseudoUpdate);
+				if (result == null) result = caseUpdate(pseudoUpdate);
+				if (result == null) result = caseStatement(pseudoUpdate);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case XmuPackage.SKIP: {
+				Skip skip = (Skip)theEObject;
+				T result = caseSkip(skip);
+				if (result == null) result = casePseudoUpdate(skip);
+				if (result == null) result = caseUpdate(skip);
+				if (result == null) result = caseStatement(skip);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case XmuPackage.FAIL: {
+				Fail fail = (Fail)theEObject;
+				T result = caseFail(fail);
+				if (result == null) result = casePseudoUpdate(fail);
+				if (result == null) result = caseUpdate(fail);
+				if (result == null) result = caseStatement(fail);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1065,6 +1105,21 @@ public class XmuSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseCaseValueStatement(CaseValueStatement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Case Default Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Case Default Statement</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCaseDefaultStatement(CaseDefaultStatement object) {
 		return null;
 	}
 
@@ -1545,6 +1600,66 @@ public class XmuSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseHelperMapping(HelperMapping object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Helper Mapping Entry</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Helper Mapping Entry</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseHelperMappingEntry(HelperMappingEntry object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Pseudo Update</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Pseudo Update</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePseudoUpdate(PseudoUpdate object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Skip</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Skip</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSkip(Skip object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Fail</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Fail</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFail(Fail object) {
 		return null;
 	}
 

@@ -192,6 +192,10 @@ public class XmuAdapterFactory extends AdapterFactoryImpl {
 				return createCaseValueStatementAdapter();
 			}
 			@Override
+			public Adapter caseCaseDefaultStatement(CaseDefaultStatement object) {
+				return createCaseDefaultStatementAdapter();
+			}
+			@Override
 			public Adapter caseXMUModel(XMUModel object) {
 				return createXMUModelAdapter();
 			}
@@ -318,6 +322,22 @@ public class XmuAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseHelperMapping(HelperMapping object) {
 				return createHelperMappingAdapter();
+			}
+			@Override
+			public Adapter caseHelperMappingEntry(HelperMappingEntry object) {
+				return createHelperMappingEntryAdapter();
+			}
+			@Override
+			public Adapter casePseudoUpdate(PseudoUpdate object) {
+				return createPseudoUpdateAdapter();
+			}
+			@Override
+			public Adapter caseSkip(Skip object) {
+				return createSkipAdapter();
+			}
+			@Override
+			public Adapter caseFail(Fail object) {
+				return createFailAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -774,6 +794,20 @@ public class XmuAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.xmu.CaseDefaultStatement <em>Case Default Statement</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.xmu.CaseDefaultStatement
+	 * @generated
+	 */
+	public Adapter createCaseDefaultStatementAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.xmu.XMUModel <em>XMU Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1218,6 +1252,62 @@ public class XmuAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createHelperMappingAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.xmu.HelperMappingEntry <em>Helper Mapping Entry</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.xmu.HelperMappingEntry
+	 * @generated
+	 */
+	public Adapter createHelperMappingEntryAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.xmu.PseudoUpdate <em>Pseudo Update</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.xmu.PseudoUpdate
+	 * @generated
+	 */
+	public Adapter createPseudoUpdateAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.xmu.Skip <em>Skip</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.xmu.Skip
+	 * @generated
+	 */
+	public Adapter createSkipAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.xmu.Fail <em>Fail</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.xmu.Fail
+	 * @generated
+	 */
+	public Adapter createFailAdapter() {
 		return null;
 	}
 

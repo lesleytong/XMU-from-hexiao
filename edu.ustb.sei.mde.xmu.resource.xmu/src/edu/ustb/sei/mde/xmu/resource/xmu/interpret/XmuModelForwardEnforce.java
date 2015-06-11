@@ -450,6 +450,9 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 			if(expr instanceof PatternReferenceExpr) {
 				if(isCheckable(((PatternReferenceExpr) expr).getNode(),context)==false) 
 					return false;
+			} else if(expr instanceof PatternEqualExpr){
+				EStructuralFeature feature = ((PatternEqualExpr) expr).getFeature();
+				if(context.getEnvironment().isChanged(v.getObjectValue(), feature)==false) return false; 
 			}
 		}
 		return true;

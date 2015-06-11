@@ -6,6 +6,7 @@
  */
 package edu.ustb.sei.mde.xmu.resource.xmu.analysis;
 
+import edu.ustb.sei.mde.xmu.LoopPath;
 import edu.ustb.sei.mde.xmu.Rule;
 import edu.ustb.sei.mde.xmu.TaggedElement;
 import edu.ustb.sei.mde.xmu.Variable;
@@ -16,6 +17,16 @@ public class VariableExpVarReferenceResolver implements edu.ustb.sei.mde.xmu.res
 	
 	public void resolve(String identifier, edu.ustb.sei.mde.xmu.VariableExp container, org.eclipse.emf.ecore.EReference reference, int position, boolean resolveFuzzy, final edu.ustb.sei.mde.xmu.resource.xmu.IXmuReferenceResolveResult<edu.ustb.sei.mde.xmu.Variable> result) {
 		if(identifier==null || container==null) return;
+		
+		LoopPath path = Util.getLoopPath(container);
+		while(path!=null) {
+			if(path.getVariable().getName().equals(identifier)) {
+				result.addMapping(identifier, path.getVariable());
+				return;
+			}
+			path = Util.getLoopPath(path.eContainer());
+		}
+		
 		Rule r = Util.getRule(container);
 		if(r==null) return;
 		TaggedElement t = Util.getTaggedElement(container);

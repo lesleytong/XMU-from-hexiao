@@ -220,6 +220,15 @@ public interface XmuFactory extends EFactory {
 	CaseValueStatement createCaseValueStatement();
 
 	/**
+	 * Returns a new object of class '<em>Case Default Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Case Default Statement</em>'.
+	 * @generated
+	 */
+	CaseDefaultStatement createCaseDefaultStatement();
+
+	/**
 	 * Returns a new object of class '<em>XMU Model</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -434,6 +443,33 @@ public interface XmuFactory extends EFactory {
 	 * @generated
 	 */
 	HelperMapping createHelperMapping();
+
+	/**
+	 * Returns a new object of class '<em>Helper Mapping Entry</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Helper Mapping Entry</em>'.
+	 * @generated
+	 */
+	HelperMappingEntry createHelperMappingEntry();
+
+	/**
+	 * Returns a new object of class '<em>Skip</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Skip</em>'.
+	 * @generated
+	 */
+	Skip createSkip();
+
+	/**
+	 * Returns a new object of class '<em>Fail</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Fail</em>'.
+	 * @generated
+	 */
+	Fail createFail();
 
 	/**
 	 * Returns the package supported by this factory.

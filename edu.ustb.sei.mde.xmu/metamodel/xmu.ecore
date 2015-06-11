@@ -158,6 +158,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="expression" lowerBound="1"
         eType="#//Expr" containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CaseDefaultStatement" eSuperTypes="#//CaseValueStatement"/>
   <eClassifiers xsi:type="ecore:EClass" name="XMUModel">
     <eStructuralFeatures xsi:type="ecore:EReference" name="initialMappings" upperBound="-1"
         eType="#//InitialMappingStatement" containment="true"/>
@@ -183,7 +184,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="sVar" lowerBound="1" upperBound="-1"
         eType="#//Variable"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="vVar" lowerBound="1" upperBound="-1"
-        eType="#//ObjectVariable"/>
+        eType="#//Variable"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BooleanOrExpr" eSuperTypes="#//Expr">
     <eStructuralFeatures xsi:type="ecore:EReference" name="operands" lowerBound="2"
@@ -314,9 +315,20 @@
         eType="#//Expr" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="HelperMapping" eSuperTypes="#//NamedElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="left" lowerBound="1" upperBound="-1"
-        eType="#//Expr" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="right" lowerBound="1" upperBound="-1"
-        eType="#//Expr" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entries" lowerBound="1"
+        upperBound="-1" eType="#//HelperMappingEntry" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultEqual" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="HelperMappingEntry">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" lowerBound="1" eType="#//Expr"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" lowerBound="1" eType="#//Expr"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PseudoUpdate" abstract="true" eSuperTypes="#//Update">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="message" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Skip" eSuperTypes="#//PseudoUpdate"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Fail" eSuperTypes="#//PseudoUpdate"/>
 </ecore:EPackage>

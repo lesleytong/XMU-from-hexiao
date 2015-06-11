@@ -138,8 +138,14 @@ public class ModificationTrackSystem {
 			ObjectModification m = map.get(s);
 			if(m!=null && m.checkSet(f)) return false;
 			if(f.getEOpposite()!=null) {
-				m = map.get(t);
-				if(m!=null && m.checkSet(f.getEOpposite())) return false;
+				if(f.getEOpposite().isMany()) {
+					if(hasDeleted(t,f.getEOpposite(),s)) 
+						return false;
+				} else {
+					m = map.get(t);
+					if(m!=null && m.checkSet(f.getEOpposite())) return false;					
+				}
+				
 			}
 		}
 		return true;
@@ -149,7 +155,7 @@ public class ModificationTrackSystem {
 		//s或t没有被创建
 		//(s,t)没有被创建
 		//(t,s)没有被创建，如果f.opposite!=null
-		if(hasCreatedOrModified(s) || hasCreatedOrModified(t)) return false;
+		//if(hasCreatedOrModified(s) || hasCreatedOrModified(t)) return false;
 		if(hasCreated(s,f,t)) return false;
 		return true;
 	}
@@ -172,7 +178,7 @@ public class ModificationTrackSystem {
 		//s或t没有被创建
 		//(s,t)没有被创建
 		//(t,s)没有被创建，如果f.opposite!=null
-		if(hasCreatedOrModified(s)) return false;
+		//if(hasCreatedOrModified(s)) return false;
 		if(hasCreated(s,f,t)) return false;
 		return true;
 	}

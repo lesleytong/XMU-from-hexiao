@@ -43,7 +43,7 @@ public interface UpdatedStatement extends Statement {
 
 	/**
 	 * Returns the value of the '<em><b>VVar</b></em>' reference list.
-	 * The list contents are of type {@link edu.ustb.sei.mde.xmu.ObjectVariable}.
+	 * The list contents are of type {@link edu.ustb.sei.mde.xmu.Variable}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>VVar</em>' reference isn't clear,
@@ -55,6 +55,6 @@ public interface UpdatedStatement extends Statement {
 	 * @model required="true"
 	 * @generated
 	 */
-	EList<ObjectVariable> getVVar();
+	EList<Variable> getVVar();
 
 } // UpdatedStatement

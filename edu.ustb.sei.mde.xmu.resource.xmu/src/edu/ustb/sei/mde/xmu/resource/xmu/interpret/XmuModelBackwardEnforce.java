@@ -32,58 +32,7 @@ public class XmuModelBackwardEnforce extends XmuModelEnforce {
 		for(Pair<XmuContext,XmuContext> p: alignment) {
 			XmuContext merge = (ContextUtil.merge(forStatement.getSPattern(), forStatement.getVPattern(), p));
 			
-			for(UpdatedStatement u : forStatement.getWhen()) {
-				SafeType ret = this.interprete(u, merge);
-				if(ret.isInvalid()==false ) {
-//					if(ret.isObject()) {
-//						merge.putValue(merge.getVariable(u.getSVar().getName()+Util.POST_FLAG), ret);						
-//					} else {
-//						// there is no need to record primitive value @ post in backward
-//					}
-					Object[] spv = (Object[]) ret.getValue();
-					if(spv==null) {
-						
-					} else {
-						int size = u.getSVar().size();
-						
-						for(int i=0;i<size;i++) {
-							Variable v = u.getSVar().get(i);
-							if(v instanceof ObjectVariable) {
-								Variable pv = merge.getVariable(v.getName()+Util.POST_FLAG);
-								if(pv!=null) {
-									SafeType vp = SafeType.createFromValue(spv[i]);
-									merge.putValue(pv, vp);
-								}
-							} else {
-								// should I rewrite the value of a primitive variable?
-							}
-						}
-					}
-				}
-			}
-			
-			for(ObjectVariable s : sVars) {
-				ObjectVariable sp = (ObjectVariable) merge.getVariable(s.getName()+Util.POST_FLAG);
-				if(merge.getSafeTypeValue(sp).isUndefined()) {
-					SafeType sv = merge.getSafeTypeValue(s);
-					if(sv.isNull()) {
-						//throw new RuntimeException("Source value is empty, while there is no updatedStatement for it.");
-						// this sp should be created
-						System.out.println("Source value is empty, while there is no updatedStatement for "+s.getName());
-						System.out.println(merge);
-					} else {
-//						EObject spv = merge.getEnvironment().getTrace().getCorresponding(sv.getObjectValue());
-						// try to get a direct link
-						XmuTraceTuple backward = merge.getEnvironment().getTrace().getBackward(Collections.singletonList(sv.getObjectValue()));
-						EObject spv = null;
-						
-						if(backward==null || backward.getElements().length==0) spv = null;
-						else spv = (EObject) backward.get(0);
-						
-						merge.putValue(sp, SafeType.createFromValue(spv));
-					}
-				}
-			}
+			handleUpdateStatements(forStatement.getWhen(), sVars, merge);
 			
 			flag = false;
 			
@@ -119,8 +68,59 @@ public class XmuModelBackwardEnforce extends XmuModelEnforce {
 		}
 		return Just.TRUE;
 	}
-	
-	
+
+
+
+	protected void handleUpdateStatements(List<UpdatedStatement> updates,
+			List<ObjectVariable> sVars, XmuContext context) {
+		for(UpdatedStatement u : updates) {
+			SafeType ret = this.interprete(u, context);
+			if(ret.isInvalid()==false ) {
+				Object[] spv = (Object[]) ret.getValue();
+				if(spv==null) {
+					
+				} else {
+					int size = u.getSVar().size();
+					
+					for(int i=0;i<size;i++) {
+						Variable v = u.getSVar().get(i);
+						if(v instanceof ObjectVariable) {
+							Variable pv = context.getVariable(v.getName()+Util.POST_FLAG);
+							if(pv!=null) {
+								SafeType vp = SafeType.createFromValue(spv[i]);
+								context.putValue(pv, vp);
+							}
+						} else {
+							// should I rewrite the value of a primitive variable?
+						}
+					}
+				}
+			}
+		}
+		
+		for(ObjectVariable s : sVars) {
+			ObjectVariable sp = (ObjectVariable) context.getVariable(s.getName()+Util.POST_FLAG);
+			if(context.getSafeTypeValue(sp).isUndefined()) {
+				SafeType sv = context.getSafeTypeValue(s);
+				if(sv.isNull()) {
+					//throw new RuntimeException("Source value is empty, while there is no updatedStatement for it.");
+					// this sp should be created
+					System.out.println("Source value is empty, while there is no updatedStatement for "+s.getName());
+					System.out.println(context);
+				} else {
+//						EObject spv = merge.getEnvironment().getTrace().getCorresponding(sv.getObjectValue());
+					// try to get a direct link
+					XmuTraceTuple backward = context.getEnvironment().getTrace().getBackward(Collections.singletonList(sv.getObjectValue()));
+					EObject spv = null;
+					
+					if(backward==null || backward.getElements().length==0) spv = null;
+					else spv = (EObject) backward.get(0);
+					
+					context.putValue(sp, SafeType.createFromValue(spv));
+				}
+			}
+		}
+	}
 
 	@Override
 	public SafeType interprete_edu_ustb_sei_mde_xmu_UpdatedStatement(
@@ -424,4 +424,30 @@ public class XmuModelBackwardEnforce extends XmuModelEnforce {
 		
 		return Just.TRUE;
 	}
+
+
+
+	@Override
+	public SafeType interprete_edu_ustb_sei_mde_xmu_SwitchStatement(
+			SwitchStatement switchStatement, XmuContext context) {
+		for(CaseSubStatement css : switchStatement.getCases()) {//copy context for each iteration and merge at last
+			if(css instanceof CasePatternStatement) {
+				SafeType c = this.interprete_edu_ustb_sei_mde_xmu_Pattern(((CasePatternStatement) css).getPattern(), context);
+				if(c.getValue()==Boolean.TRUE) {
+					List<ObjectVariable> sVars = ContextUtil.collectObjectVariables(((CasePatternStatement) css).getPattern());
+					if(sVars.size()!=0) {
+						handleUpdateStatements(switchStatement.getWhen(), sVars, context);
+					}
+					return this.interprete(css.getStatement(), context);
+				}
+			} else if(css instanceof CaseValueStatement) {
+				SafeType c = this.interprete(((CaseValueStatement) css).getExpression(), context);
+				if(c.getValue()==Boolean.TRUE)
+					return this.interprete(css.getStatement(), context);
+			}
+		}
+		return SafeType.getInvalid();
+	}
+	
+	
 }

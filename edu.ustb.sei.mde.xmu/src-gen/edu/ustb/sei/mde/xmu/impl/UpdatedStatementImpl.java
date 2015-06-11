@@ -2,7 +2,6 @@
  */
 package edu.ustb.sei.mde.xmu.impl;
 
-import edu.ustb.sei.mde.xmu.ObjectVariable;
 import edu.ustb.sei.mde.xmu.UpdatedStatement;
 import edu.ustb.sei.mde.xmu.Variable;
 import edu.ustb.sei.mde.xmu.XmuPackage;
@@ -44,7 +43,7 @@ public class UpdatedStatementImpl extends StatementImpl implements UpdatedStatem
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ObjectVariable> vVar;
+	protected EList<Variable> vVar;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -82,9 +81,9 @@ public class UpdatedStatementImpl extends StatementImpl implements UpdatedStatem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ObjectVariable> getVVar() {
+	public EList<Variable> getVVar() {
 		if (vVar == null) {
-			vVar = new EObjectResolvingEList<ObjectVariable>(ObjectVariable.class, this, XmuPackage.UPDATED_STATEMENT__VVAR);
+			vVar = new EObjectResolvingEList<Variable>(Variable.class, this, XmuPackage.UPDATED_STATEMENT__VVAR);
 		}
 		return vVar;
 	}
@@ -120,7 +119,7 @@ public class UpdatedStatementImpl extends StatementImpl implements UpdatedStatem
 				return;
 			case XmuPackage.UPDATED_STATEMENT__VVAR:
 				getVVar().clear();
-				getVVar().addAll((Collection<? extends ObjectVariable>)newValue);
+				getVVar().addAll((Collection<? extends Variable>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

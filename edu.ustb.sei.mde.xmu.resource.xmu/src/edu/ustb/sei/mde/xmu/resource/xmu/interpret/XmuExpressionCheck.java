@@ -2,6 +2,8 @@ package edu.ustb.sei.mde.xmu.resource.xmu.interpret;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -136,7 +138,7 @@ public class XmuExpressionCheck extends
 	public SafeType interprete_edu_ustb_sei_mde_xmu_PatternReferenceExpr(
 			PatternReferenceExpr patternReferenceExpr, XmuContext context) {
 		// TODO Auto-generated method stub
-		EObject obj = (EObject) context.getValue(((PatternNode)patternReferenceExpr.eContainer()).getVariable());
+		EObject obj = context.getSafeTypeValue(((PatternNode)patternReferenceExpr.eContainer()).getVariable()).getObjectValue();
 		
 		SafeType val = context.getSafeTypeValue(patternReferenceExpr.getNode().getVariable());
 		if(val.isUndefined() || val.isInvalid()) return val;
@@ -170,7 +172,7 @@ public class XmuExpressionCheck extends
 	@Override
 	public SafeType interprete_edu_ustb_sei_mde_xmu_PatternEqualExpr(
 			PatternEqualExpr patternEqualExpr, XmuContext context) {
-		EObject obj = (EObject) context.getValue(((PatternNode)patternEqualExpr.eContainer()).getVariable());
+		EObject obj = context.getSafeTypeValue(((PatternNode)patternEqualExpr.eContainer()).getVariable()).getObjectValue();
 		
 		SafeType val = this.interprete(patternEqualExpr.getValue(), context); 
 				
@@ -489,7 +491,24 @@ public class XmuExpressionCheck extends
 	}
 	
 	protected SafeType getFeaturePath(SafeType host, Path path, XmuContext context) {
-		if(host.isUndefined() || host.isInvalid() || host.isNull()) return SafeType.getInvalid();
+		if(host.isInvalid() || host.isNull()) {
+			if(path instanceof HelperPath) {
+				BidirectionalMap<Object, Object> map = context.getEnvironment().getHelperMappings(((HelperPath) path).getHelper().getName());
+				Object v = map.forward(null);
+				if(v==null) return SafeType.getInvalid();
+				return SafeType.createFromValue(v);
+			}
+			return SafeType.getInvalid();
+		}
+		else if(host.isUndefined()) {
+			if(path instanceof HelperPath) {
+				BidirectionalMap<Object, Object> map = context.getEnvironment().getHelperMappings(((HelperPath) path).getHelper().getName());
+				Object v = map.forward(null);
+				if(v==null) return SafeType.getInvalid();
+				return SafeType.createFromValue(v);
+			}
+			return SafeType.getUndefined();
+		}
 		
 		if(host.isObject()) {
 			EObject o  = host.getObjectValue();
@@ -500,9 +519,15 @@ public class XmuExpressionCheck extends
 			} else if(path instanceof HelperPath) {
 				BidirectionalMap<Object, Object> map = context.getEnvironment().getHelperMappings(((HelperPath) path).getHelper().getName());
 				Object v = map.forward(host.getValue());
-				if(v==null) return SafeType.getInvalid();
+				if(v==null) {
+					if(((HelperPath) path).getHelper().isDefaultEqual()) return host;
+					return SafeType.getInvalid();
+				}
 				return SafeType.createFromValue(v);
-			} else {
+			} else if(path instanceof LoopPath) {
+				return handleLoopPath(host, (LoopPath)path, context);
+				
+			} else if(path instanceof OperationPath) {
 				try {
 					Method[] methods = o.getClass().getMethods();
 					for(Method m : methods) {
@@ -524,7 +549,7 @@ public class XmuExpressionCheck extends
 					e.printStackTrace();
 					return SafeType.getInvalid();
 				}
-			}
+			} else return SafeType.getInvalid();
 		} else {
 			Object o = host.getValue();
 			if(path instanceof FeaturePath) {
@@ -541,7 +566,9 @@ public class XmuExpressionCheck extends
 				Object v = map.forward(host.getValue());
 				if(v==null) return SafeType.getInvalid();
 				return SafeType.createFromValue(v);
-			} else {
+			} else if(path instanceof LoopPath) {
+				return handleLoopPath(host, (LoopPath)path, context);
+			} else if(path instanceof OperationPath){
 				try {
 					Method[] methods = o.getClass().getMethods();
 					for(Method m : methods) {
@@ -563,8 +590,44 @@ public class XmuExpressionCheck extends
 					e.printStackTrace();
 					return SafeType.getInvalid();
 				}
-			}
+			} else return SafeType.getInvalid();
 		}
+	}
+
+	protected SafeType handleLoopPath(SafeType host, LoopPath path,
+			XmuContext context) {
+		XmuContext inner = context.createInnerContext(((LoopPath) path).getVariable());
+		List<Object> col = null;
+		if(host.getValue() instanceof List<?>)  col = (List<Object>) host.getValue();
+		else {
+			col = new ArrayList<Object>();
+			col.add(host);
+		}
+		
+		if(((LoopPath) path).getOperator()==LoopOperator.FOR_ALL) {
+			SafeType ret = Just.TRUE;
+			
+			for(Object o : col) {
+				inner.putValue(path.getVariable(), SafeType.createFromValue(o));
+				ret = this.interprete(path.getBody(), inner);
+				if(ret==Just.TRUE) continue;
+				return Just.FALSE;
+			}
+			
+			return Just.FALSE;
+		} else if(((LoopPath) path).getOperator()==LoopOperator.EXISTS) {
+			SafeType ret = Just.FALSE;
+			
+			for(Object o : col) {
+				inner.putValue(path.getVariable(), SafeType.createFromValue(o));
+				ret = this.interprete(path.getBody(), inner);
+				if(ret==Just.TRUE) return Just.TRUE;
+			}
+			
+			return Just.FALSE;
+		}
+		
+		return SafeType.getInvalid();
 	}
 
 	@Override
@@ -587,17 +650,27 @@ public class XmuExpressionCheck extends
 	final public SafeType interprete_edu_ustb_sei_mde_xmu_HelperMapping(
 			HelperMapping helperMapping, XmuContext context) {
 		
-		EList<Expr> left = helperMapping.getLeft();
-		EList<Expr> right = helperMapping.getRight();
-		int size = left.size();
+		EList<HelperMappingEntry> entries = helperMapping.getEntries();
 		
-		for(int i = 0;i<size;i++) {
-			SafeType lv = EXPRESSION_CHECK.interprete(left.get(i),context);
-			SafeType rv = EXPRESSION_CHECK.interprete(right.get(i),context);			
+		for(HelperMappingEntry e : entries) {
+			SafeType lv = EXPRESSION_CHECK.interprete(e.getLeft(),context);
+			SafeType rv = EXPRESSION_CHECK.interprete(e.getRight(),context);			
 			context.getEnvironment().getHelperMappings(helperMapping.getName()).put(lv.getValue(), rv.getValue());
 		}
 		
 		return Just.TRUE;
+	}
+
+	@Override
+	public SafeType interprete_edu_ustb_sei_mde_xmu_Skip(Skip skip,
+			XmuContext context) {
+		return Just.TRUE;
+	}
+
+	@Override
+	public SafeType interprete_edu_ustb_sei_mde_xmu_Fail(Fail fail,
+			XmuContext context) {
+		return SafeType.getInvalid();
 	}
 	
 	

@@ -134,7 +134,7 @@ public class PatternNodeVariableReferenceResolver implements edu.ustb.sei.mde.xm
 					v = XmuFactory.eINSTANCE.createObjectVariable();
 					v.setName(identifier+Util.POST_FLAG);
 					rule.getSpVars().add((ObjectVariable)v);
-					System.out.println(rule.getSpVars());
+//					System.out.println(rule.getSpVars());
 					return;
 				}
 			} else if(pat.eContainingFeature()==XmuPackage.eINSTANCE.getForStatement_VPattern()) {

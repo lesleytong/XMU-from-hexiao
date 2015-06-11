@@ -13,8 +13,8 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link edu.ustb.sei.mde.xmu.HelperMapping#getLeft <em>Left</em>}</li>
- *   <li>{@link edu.ustb.sei.mde.xmu.HelperMapping#getRight <em>Right</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.xmu.HelperMapping#getEntries <em>Entries</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.xmu.HelperMapping#isDefaultEqual <em>Default Equal</em>}</li>
  * </ul>
  * </p>
  *
@@ -24,35 +24,46 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface HelperMapping extends NamedElement {
 	/**
-	 * Returns the value of the '<em><b>Left</b></em>' containment reference list.
-	 * The list contents are of type {@link edu.ustb.sei.mde.xmu.Expr}.
+	 * Returns the value of the '<em><b>Entries</b></em>' containment reference list.
+	 * The list contents are of type {@link edu.ustb.sei.mde.xmu.HelperMappingEntry}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Left</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Entries</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Left</em>' containment reference list.
-	 * @see edu.ustb.sei.mde.xmu.XmuPackage#getHelperMapping_Left()
+	 * @return the value of the '<em>Entries</em>' containment reference list.
+	 * @see edu.ustb.sei.mde.xmu.XmuPackage#getHelperMapping_Entries()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	EList<Expr> getLeft();
+	EList<HelperMappingEntry> getEntries();
 
 	/**
-	 * Returns the value of the '<em><b>Right</b></em>' containment reference list.
-	 * The list contents are of type {@link edu.ustb.sei.mde.xmu.Expr}.
+	 * Returns the value of the '<em><b>Default Equal</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Right</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Default Equal</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Right</em>' containment reference list.
-	 * @see edu.ustb.sei.mde.xmu.XmuPackage#getHelperMapping_Right()
-	 * @model containment="true" required="true"
+	 * @return the value of the '<em>Default Equal</em>' attribute.
+	 * @see #setDefaultEqual(boolean)
+	 * @see edu.ustb.sei.mde.xmu.XmuPackage#getHelperMapping_DefaultEqual()
+	 * @model default="false"
 	 * @generated
 	 */
-	EList<Expr> getRight();
+	boolean isDefaultEqual();
+
+	/**
+	 * Sets the value of the '{@link edu.ustb.sei.mde.xmu.HelperMapping#isDefaultEqual <em>Default Equal</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Default Equal</em>' attribute.
+	 * @see #isDefaultEqual()
+	 * @generated
+	 */
+	void setDefaultEqual(boolean value);
 
 } // HelperMapping

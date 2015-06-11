@@ -156,6 +156,13 @@ public class XmuEnvironment {
 		}
 	}
 	
+	public boolean isChanged(EObject object, EStructuralFeature feature) {
+		ObjectModification m = track.getMap().get(object);
+		if(m==null) return false;
+		if(m.checkSet(feature)) return true;
+		return false;
+	}
+	
 	public void saveViews() {
 		Map<Object,Object> options  = new HashMap<Object,Object>();
 		
@@ -323,7 +330,7 @@ public class XmuEnvironment {
 				if(spv.size()!=sv.size()) continue;
 				
 				List<Object> vv = new ArrayList<Object>();
-				for(ObjectVariable var : u.getVVar()) {
+				for(Variable var : u.getVVar()) {
 					SafeType v = context.getSafeTypeValue(var);
 					vv.add(v.getValue());
 				}
@@ -410,8 +417,9 @@ public class XmuEnvironment {
 		
 		if(this.containFeature(obj, feature, value)) return Just.TRUE;
 		if(feature instanceof EReference) {
-			if(track.canCreate(obj, (EReference)feature, (EObject)value)==false)
+			if(track.canCreate(obj, (EReference)feature, (EObject)value)==false) {
 				return SafeType.getInvalid();
+			}
 		} else {
 			if(track.canCreate(obj, (EAttribute)feature, value)==false)
 				return SafeType.getInvalid();

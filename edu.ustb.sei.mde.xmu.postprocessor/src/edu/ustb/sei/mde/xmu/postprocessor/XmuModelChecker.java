@@ -74,7 +74,7 @@ public class XmuModelChecker extends AbstractXmuPostProcesser {
 							if(((CasePatternStatement) s).getPattern().getRoot().getVariable()!=((SwitchStatement)o).getVar())
 								resource.addError("Case condition must start from the focused variable", XmuEProblemType.ANALYSIS_PROBLEM,s);
 						} else {
-							resource.addError("Case condition must be a pattern", XmuEProblemType.ANALYSIS_PROBLEM,s);
+//							resource.addError("Case condition must be a pattern", XmuEProblemType.ANALYSIS_PROBLEM,s);
 						}
 					}
 				} else {

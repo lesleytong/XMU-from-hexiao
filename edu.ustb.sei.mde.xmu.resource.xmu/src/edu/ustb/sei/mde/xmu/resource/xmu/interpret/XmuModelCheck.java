@@ -179,11 +179,11 @@ public class XmuModelCheck extends XmuExpressionCheck {
 			return expectString.indexOf(elem.getConstant(),fromIndex);
 		else {
 			int id = 0;
-			int endIndex = expectString.length();
+			int endIndex = expectString.length()-1;
 			while(lastCount>0) {
 				id = expectString.lastIndexOf(elem.getConstant(), endIndex);
 				if(id==-1) break;
-				endIndex = id;
+				endIndex = id-1;//skip expectString[id]
 				lastCount--;
 			}
 			return id;
