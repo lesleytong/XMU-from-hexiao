@@ -12,12 +12,12 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link edu.ustb.sei.mde.xmu.Rule#getParameters <em>Parameters</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.Rule#getNVars <em>NVars</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.Rule#getSVars <em>SVars</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.Rule#getSpVars <em>Sp Vars</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.Rule#getVVars <em>VVars</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.Rule#getStatement <em>Statement</em>}</li>
- *   <li>{@link edu.ustb.sei.mde.xmu.Rule#getParameters <em>Parameters</em>}</li>
  * </ul>
  * </p>
  *

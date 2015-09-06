@@ -31,18 +31,28 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link edu.ustb.sei.mde.xmu.impl.RuleImpl#getParameters <em>Parameters</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.RuleImpl#getNVars <em>NVars</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.RuleImpl#getSVars <em>SVars</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.RuleImpl#getSpVars <em>Sp Vars</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.RuleImpl#getVVars <em>VVars</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.RuleImpl#getStatement <em>Statement</em>}</li>
- *   <li>{@link edu.ustb.sei.mde.xmu.impl.RuleImpl#getParameters <em>Parameters</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class RuleImpl extends NamedElementImpl implements Rule {
+	/**
+	 * The cached value of the '{@link #getParameters() <em>Parameters</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getParameters()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Parameter> parameters;
+
 	/**
 	 * The cached value of the '{@link #getNVars() <em>NVars</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -92,16 +102,6 @@ public class RuleImpl extends NamedElementImpl implements Rule {
 	 * @ordered
 	 */
 	protected Statement statement;
-
-	/**
-	 * The cached value of the '{@link #getParameters() <em>Parameters</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getParameters()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Parameter> parameters;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -233,6 +233,8 @@ public class RuleImpl extends NamedElementImpl implements Rule {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case XmuPackage.RULE__PARAMETERS:
+				return ((InternalEList<?>)getParameters()).basicRemove(otherEnd, msgs);
 			case XmuPackage.RULE__NVARS:
 				return ((InternalEList<?>)getNVars()).basicRemove(otherEnd, msgs);
 			case XmuPackage.RULE__SVARS:
@@ -243,8 +245,6 @@ public class RuleImpl extends NamedElementImpl implements Rule {
 				return ((InternalEList<?>)getVVars()).basicRemove(otherEnd, msgs);
 			case XmuPackage.RULE__STATEMENT:
 				return basicSetStatement(null, msgs);
-			case XmuPackage.RULE__PARAMETERS:
-				return ((InternalEList<?>)getParameters()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -257,6 +257,8 @@ public class RuleImpl extends NamedElementImpl implements Rule {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case XmuPackage.RULE__PARAMETERS:
+				return getParameters();
 			case XmuPackage.RULE__NVARS:
 				return getNVars();
 			case XmuPackage.RULE__SVARS:
@@ -267,8 +269,6 @@ public class RuleImpl extends NamedElementImpl implements Rule {
 				return getVVars();
 			case XmuPackage.RULE__STATEMENT:
 				return getStatement();
-			case XmuPackage.RULE__PARAMETERS:
-				return getParameters();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -282,6 +282,10 @@ public class RuleImpl extends NamedElementImpl implements Rule {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case XmuPackage.RULE__PARAMETERS:
+				getParameters().clear();
+				getParameters().addAll((Collection<? extends Parameter>)newValue);
+				return;
 			case XmuPackage.RULE__NVARS:
 				getNVars().clear();
 				getNVars().addAll((Collection<? extends PrimitiveVariable>)newValue);
@@ -301,10 +305,6 @@ public class RuleImpl extends NamedElementImpl implements Rule {
 			case XmuPackage.RULE__STATEMENT:
 				setStatement((Statement)newValue);
 				return;
-			case XmuPackage.RULE__PARAMETERS:
-				getParameters().clear();
-				getParameters().addAll((Collection<? extends Parameter>)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -317,6 +317,9 @@ public class RuleImpl extends NamedElementImpl implements Rule {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case XmuPackage.RULE__PARAMETERS:
+				getParameters().clear();
+				return;
 			case XmuPackage.RULE__NVARS:
 				getNVars().clear();
 				return;
@@ -332,9 +335,6 @@ public class RuleImpl extends NamedElementImpl implements Rule {
 			case XmuPackage.RULE__STATEMENT:
 				setStatement((Statement)null);
 				return;
-			case XmuPackage.RULE__PARAMETERS:
-				getParameters().clear();
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -347,6 +347,8 @@ public class RuleImpl extends NamedElementImpl implements Rule {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case XmuPackage.RULE__PARAMETERS:
+				return parameters != null && !parameters.isEmpty();
 			case XmuPackage.RULE__NVARS:
 				return nVars != null && !nVars.isEmpty();
 			case XmuPackage.RULE__SVARS:
@@ -357,8 +359,6 @@ public class RuleImpl extends NamedElementImpl implements Rule {
 				return vVars != null && !vVars.isEmpty();
 			case XmuPackage.RULE__STATEMENT:
 				return statement != null;
-			case XmuPackage.RULE__PARAMETERS:
-				return parameters != null && !parameters.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

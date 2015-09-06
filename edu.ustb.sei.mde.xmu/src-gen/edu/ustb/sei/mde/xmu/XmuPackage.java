@@ -233,13 +233,22 @@ public interface XmuPackage extends EPackage {
 	int RULE__NAME = NAMED_ELEMENT__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RULE__PARAMETERS = NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>NVars</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RULE__NVARS = NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int RULE__NVARS = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>SVars</b></em>' containment reference list.
@@ -248,7 +257,7 @@ public interface XmuPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RULE__SVARS = NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int RULE__SVARS = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Sp Vars</b></em>' containment reference list.
@@ -257,7 +266,7 @@ public interface XmuPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RULE__SP_VARS = NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int RULE__SP_VARS = NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>VVars</b></em>' containment reference list.
@@ -266,7 +275,7 @@ public interface XmuPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RULE__VVARS = NAMED_ELEMENT_FEATURE_COUNT + 3;
+	int RULE__VVARS = NAMED_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Statement</b></em>' containment reference.
@@ -275,16 +284,7 @@ public interface XmuPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RULE__STATEMENT = NAMED_ELEMENT_FEATURE_COUNT + 4;
-
-	/**
-	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RULE__PARAMETERS = NAMED_ELEMENT_FEATURE_COUNT + 5;
+	int RULE__STATEMENT = NAMED_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Rule</em>' class.

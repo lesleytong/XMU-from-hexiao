@@ -17,6 +17,8 @@
     <eLiterals name="source_post" value="4"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Rule" eSuperTypes="#//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
+        eType="#//Parameter" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nVars" upperBound="-1"
         eType="#//PrimitiveVariable" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sVars" upperBound="-1"
@@ -27,8 +29,6 @@
         eType="#//ObjectVariable" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="statement" lowerBound="1"
         eType="#//Statement" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
-        eType="#//Parameter" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Statement" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="ForStatement" eSuperTypes="#//Statement">

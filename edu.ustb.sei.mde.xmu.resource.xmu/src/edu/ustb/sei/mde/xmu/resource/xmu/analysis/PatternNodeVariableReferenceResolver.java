@@ -9,6 +9,7 @@ package edu.ustb.sei.mde.xmu.resource.xmu.analysis;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import edu.ustb.sei.mde.xmu.ObjectVariable;
 import edu.ustb.sei.mde.xmu.Pattern;
@@ -199,6 +200,8 @@ public class PatternNodeVariableReferenceResolver implements edu.ustb.sei.mde.xm
 					v = XmuFactory.eINSTANCE.createObjectVariable();
 					v.setName(identifier+Util.POST_FLAG);
 					rule.getSpVars().add((ObjectVariable)v);
+					
+					//System.out.println("insert new variable "+ identifier +" in Rule "+rule.hashCode());
 					return;
 				}
 			case VIEW:

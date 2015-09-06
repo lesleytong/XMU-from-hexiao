@@ -756,15 +756,6 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 	 * @generated
 	 */
 	public EReference getRule_NVars() {
-		return (EReference)ruleEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getRule_SVars() {
 		return (EReference)ruleEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -773,7 +764,7 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRule_SpVars() {
+	public EReference getRule_SVars() {
 		return (EReference)ruleEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -782,7 +773,7 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRule_VVars() {
+	public EReference getRule_SpVars() {
 		return (EReference)ruleEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -791,7 +782,7 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRule_Statement() {
+	public EReference getRule_VVars() {
 		return (EReference)ruleEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -800,8 +791,17 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRule_Parameters() {
+	public EReference getRule_Statement() {
 		return (EReference)ruleEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRule_Parameters() {
+		return (EReference)ruleEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -2229,12 +2229,12 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 		createEReference(primitiveVariableEClass, PRIMITIVE_VARIABLE__TYPE);
 
 		ruleEClass = createEClass(RULE);
+		createEReference(ruleEClass, RULE__PARAMETERS);
 		createEReference(ruleEClass, RULE__NVARS);
 		createEReference(ruleEClass, RULE__SVARS);
 		createEReference(ruleEClass, RULE__SP_VARS);
 		createEReference(ruleEClass, RULE__VVARS);
 		createEReference(ruleEClass, RULE__STATEMENT);
-		createEReference(ruleEClass, RULE__PARAMETERS);
 
 		statementEClass = createEClass(STATEMENT);
 
@@ -2553,12 +2553,12 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 		initEReference(getPrimitiveVariable_Type(), ecorePackage.getEDataType(), null, "type", null, 1, 1, PrimitiveVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(ruleEClass, Rule.class, "Rule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getRule_Parameters(), this.getParameter(), null, "parameters", null, 0, -1, Rule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getRule_NVars(), this.getPrimitiveVariable(), null, "nVars", null, 0, -1, Rule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getRule_SVars(), this.getObjectVariable(), null, "sVars", null, 0, -1, Rule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getRule_SpVars(), this.getObjectVariable(), null, "spVars", null, 0, -1, Rule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getRule_VVars(), this.getObjectVariable(), null, "vVars", null, 0, -1, Rule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getRule_Statement(), this.getStatement(), null, "statement", null, 1, 1, Rule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getRule_Parameters(), this.getParameter(), null, "parameters", null, 0, -1, Rule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(statementEClass, Statement.class, "Statement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
