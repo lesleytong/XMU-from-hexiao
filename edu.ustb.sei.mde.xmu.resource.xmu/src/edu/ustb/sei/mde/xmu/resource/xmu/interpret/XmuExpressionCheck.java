@@ -570,22 +570,41 @@ public class XmuExpressionCheck extends
 				return handleLoopPath(host, (LoopPath)path, context);
 			} else if(path instanceof OperationPath){
 				try {
-					Method[] methods = o.getClass().getMethods();
-					for(Method m : methods) {
-						if(m.getName().equals(((OperationPath)path).getOperation())) {
-							EList<Expr> parameters = ((OperationPath)path).getParameters();
-							Object[] args = new Object[parameters.size()];
-							for(int i=0;i<args.length;i++) {
-								Expr e = parameters.get(i);
-								SafeType pv =  XmuExpressionCheck.EXPRESSION_CHECK.interprete(e, context);
-								if(pv.isUndefined() || pv.isInvalid()) return SafeType.getInvalid();
-								args[i] = pv.getValue();
-							}
-							Object r = m.invoke(o, args);
-							return SafeType.createFromValue(r);
-						}
+					EList<Expr> parameters = ((OperationPath)path).getParameters();
+					
+					Object[] args = new Object[parameters.size()];
+					Class<?>[] types = new Class<?>[parameters.size()];
+					
+					for(int i=0;i<args.length;i++) {
+						Expr e = parameters.get(i);
+						SafeType pv =  XmuExpressionCheck.EXPRESSION_CHECK.interprete(e, context);
+						if(pv.isUndefined() || pv.isInvalid()) return SafeType.getInvalid();
+						args[i] = pv.getValue();
+						types[i] = args[i].getClass();
 					}
-					return SafeType.getInvalid();
+					
+					Method method = o.getClass().getMethod(((OperationPath)path).getOperation(), types);
+					if(method!=null) {
+						Object r = method.invoke(o, args);
+						return SafeType.createFromValue(r);
+					} else 
+						return SafeType.getInvalid();
+//					for(Method m : methods) {
+//						if(m.getName().equals(((OperationPath)path).getOperation())) {
+//							EList<Expr> parameters = ((OperationPath)path).getParameters();
+//							
+//							Object[] args = new Object[parameters.size()];
+//							for(int i=0;i<args.length;i++) {
+//								Expr e = parameters.get(i);
+//								SafeType pv =  XmuExpressionCheck.EXPRESSION_CHECK.interprete(e, context);
+//								if(pv.isUndefined() || pv.isInvalid()) return SafeType.getInvalid();
+//								args[i] = pv.getValue();
+//							}
+//							Object r = m.invoke(o, args);
+//							return SafeType.createFromValue(r);
+//						}
+//					}
+					//return SafeType.getInvalid();
 				} catch(Exception e) {
 					e.printStackTrace();
 					return SafeType.getInvalid();

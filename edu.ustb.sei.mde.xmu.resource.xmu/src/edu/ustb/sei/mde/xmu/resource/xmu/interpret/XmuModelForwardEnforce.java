@@ -3,6 +3,7 @@ package edu.ustb.sei.mde.xmu.resource.xmu.interpret;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
@@ -163,8 +164,10 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 			//1. check if patternV is enforceable 
 			//2. if true, do normal logic
 			//3. otherwise, reorder forstatement
+			EnforceableChecking trace = new EnforceableChecking();
+			
 			if(forStatement.getVPattern()==null || 
-					isEnforceable(forStatement.getVPattern().getRoot(), c)) {
+					isEnforceable(forStatement.getVPattern().getRoot(), c,trace)) {
 				SafeType ret = Just.TRUE; 
 				
 				if(forStatement.getVPattern()!=null) 
@@ -504,8 +507,8 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 							if(collectReorderedPath(c.getStatement(),reorder,context)) {
 								
 								doSwitchUpdatedStatements((SwitchStatement) statement,context);
-								
-								if(isEnforceable(((CasePatternStatement) c).getPattern().getRoot(),context)) {
+								EnforceableChecking trace = new EnforceableChecking();
+								if(isEnforceable(((CasePatternStatement) c).getPattern().getRoot(),context,trace)) {
 									reorder.enforceV.add(((CasePatternStatement) c).getPattern());
 								} else
 									reorder.checkV.add(((CasePatternStatement) c).getPattern());
@@ -575,21 +578,49 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 		}
 	}
 	
-	protected boolean isEnforceable(PatternNode node, XmuContext context) {
+	class EnforceableChecking {
+		public HashSet<Variable> enforceableVars = new HashSet<Variable>();
+		public String unsatisfiedReason = null;  
+	}
+	
+	protected boolean isEnforceable(PatternNode node, XmuContext context, EnforceableChecking trace) {
 		SafeType vv = context.getSafeTypeValue(node.getVariable());
 		
-		if(node.getType().isAbstract() && !vv.isValue()) 
+		if(node.getType().isAbstract() && !vv.isValue()) {
+			trace.unsatisfiedReason = "the pattern node "+node.getVariable().getName()+" has an abstract type without a value";
 			return false;
+		}
 		else {
+			trace.enforceableVars.add((ObjectVariable) node.getVariable());
+			
 			for(PatternExpr expr : node.getExpr() ) {
 				if(expr instanceof PatternReferenceExpr) {
-					if(isEnforceable(((PatternReferenceExpr) expr).getNode(),context)==false) 
+					if(isEnforceable(((PatternReferenceExpr) expr).getNode(),context, trace)==false) 
 						return false;
 				} else if(expr instanceof PatternEqualExpr) {
 					Expr right = ((PatternEqualExpr) expr).getValue();
-					SafeType ret = XmuExpressionCheck.EXPRESSION_CHECK.interprete(right, context);
-					if(ret==SafeType.getInvalid() || ret==SafeType.getUndefined()) 
-						return false;
+					if(((PatternEqualExpr) expr).getFeature() instanceof EReference) {
+						if(right instanceof VariableExp) {
+							if(trace.enforceableVars.contains(((VariableExp) right).getVar())==false) {
+								trace.unsatisfiedReason = "you are trying to use an ObjectVariable "+ ((VariableExp) right).getVar().getName() + " in a PatternEqualExpr without initializing it";
+								return false;
+							}
+						} else {
+							SafeType ret = XmuExpressionCheck.EXPRESSION_CHECK.interprete(right, context);
+							if(ret==SafeType.getInvalid() || ret==SafeType.getUndefined()) {
+								trace.unsatisfiedReason = "you are trying to assign an invalid value";
+								return false;	
+							}
+						}
+					} else {
+						
+						SafeType ret = XmuExpressionCheck.EXPRESSION_CHECK.interprete(right, context);
+						if(ret==SafeType.getInvalid() || ret==SafeType.getUndefined()) {
+							trace.unsatisfiedReason = "you are trying to assign an invalid value";
+							return false;						
+						}
+					}
+					
 				}
 			}
 			return true;
