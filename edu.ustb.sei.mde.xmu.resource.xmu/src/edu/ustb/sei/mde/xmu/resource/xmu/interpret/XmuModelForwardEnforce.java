@@ -124,12 +124,17 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 	
 	protected boolean reorderForStatement(Statement statement, XmuContext context, ForStatementVReordering reorder) {
 		if(statement instanceof ForStatement) {
-			for(VStatement stmt : ((ForStatement) statement).getActions()) {
-				if(stmt.getTag() == VStmtType.MATCH) {
-					return reorderForStatement(stmt.getStatement(),context,reorder);
+			if(statement==reorder.reason){
+				for(VStatement stmt : ((ForStatement) statement).getActions()) {
+					if(stmt.getTag() == VStmtType.MATCH) {
+						return reorderForStatement(stmt.getStatement(),context,reorder);
+					}
 				}
+				return false;
+			}else {
+				reorder.updates.add(statement);
+				return true;
 			}
-			return false;
 		} else if(statement instanceof Update) {
 			reorder.updates.add(statement);
 			return true;
@@ -455,7 +460,8 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 					return false;
 			} else if(expr instanceof PatternEqualExpr){
 				EStructuralFeature feature = ((PatternEqualExpr) expr).getFeature();
-				if(context.getEnvironment().isChanged(v.getObjectValue(), feature)==false) return false; 
+				SafeType rv = XmuExpressionCheck.EXPRESSION_CHECK.interprete(((PatternEqualExpr) expr).getValue(),context);
+				if((rv.isValue() || rv.isNull()) && context.getEnvironment().isChanged(v.getObjectValue(), feature)==false) return false; 
 			}
 		}
 		return true;
