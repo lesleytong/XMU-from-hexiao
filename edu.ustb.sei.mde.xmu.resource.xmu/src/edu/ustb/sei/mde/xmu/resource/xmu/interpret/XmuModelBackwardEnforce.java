@@ -13,6 +13,20 @@ import edu.ustb.sei.mde.xmu.*;
 import edu.ustb.sei.mde.xmu.resource.xmu.analysis.Util;
 
 public class XmuModelBackwardEnforce extends XmuModelEnforce {
+	
+	private VStatement findActionStatement(ForStatement stmt, VStmtType type) {
+		VStatement s = null;
+		for(VStatement x : stmt.getActions()) {
+			if(x.getTag()==type) {
+				s = x;
+			} else if(x.getTag()==VStmtType.DEFAULT) {
+				if(s==null) s = x;
+			}
+		}
+		return s;
+	}
+	
+	
 	@Override
 	public SafeType interprete_edu_ustb_sei_mde_xmu_ForStatement(
 			ForStatement forStatement, XmuContext context) {
@@ -24,47 +38,31 @@ public class XmuModelBackwardEnforce extends XmuModelEnforce {
 		List<XmuContext> vmatches = ContextUtil.match(forStatement.getVPattern(), vbase);
 		List<Pair<XmuContext,XmuContext>> alignment = ContextUtil.align(smatches, vmatches);
 		
-		boolean flag = false;
 		SafeType value = null;
 		
 		List<ObjectVariable> sVars = ContextUtil.collectObjectVariables(forStatement.getSPattern());
 		
 		for(Pair<XmuContext,XmuContext> p: alignment) {
 			XmuContext merge = (ContextUtil.merge(forStatement.getSPattern(), forStatement.getVPattern(), p));
-			
-			handleUpdateStatements(forStatement.getWhen(), sVars, merge);
-			
-			flag = false;
+
+			VStatement vStmt = null;
 			
 			if(p.getFirst()!=null && p.getSecond()!=null) {
-				for(VStatement stmt : forStatement.getActions()) {
-					if(stmt.getTag() == VStmtType.MATCH) {
-						value = this.interprete(stmt.getStatement(), merge);
-						flag = true;
-					}
-				}
+				vStmt = findActionStatement(forStatement,VStmtType.MATCH);
 			} else if(p.getFirst()!=null && p.getSecond()==null) {
-				for(VStatement stmt : forStatement.getActions()) {
-					if(stmt.getTag() == VStmtType.UNMATCHS) {
-						value = this.interprete(stmt.getStatement(), merge);
-						flag = true;
-					}
-				}
+				vStmt = findActionStatement(forStatement,VStmtType.UNMATCHS);
 			} else if(p.getFirst()==null && p.getSecond()!=null) {
-				for(VStatement stmt : forStatement.getActions()) {
-					if(stmt.getTag() == VStmtType.UNMATCHV) {
-						value = this.interprete(stmt.getStatement(), merge);
-						flag = true;
-					}
-				}
+				vStmt = findActionStatement(forStatement,VStmtType.UNMATCHV);
 			}
 			
-			if(flag==false) 
+			if(vStmt!=null) {
+				handleUpdateStatements(vStmt.getWhere(), sVars, merge);
+				value = this.interprete(vStmt.getStatement(), merge);
+			} else
 				throw new RuntimeException("No corresponding action!\n"+merge);
-			else {
-				if(value.isInvalid() || value==Just.FALSE) 
-					throw new RuntimeException("model check fails\n"+merge);
-			}
+
+			if(value.isInvalid() || value==Just.FALSE) 
+				throw new RuntimeException("model check fails\n"+merge);
 		}
 		return Just.TRUE;
 	}
@@ -499,7 +497,7 @@ public class XmuModelBackwardEnforce extends XmuModelEnforce {
 				if(c.getValue()==Boolean.TRUE) {
 					List<ObjectVariable> sVars = ContextUtil.collectObjectVariables(((CasePatternStatement) css).getPattern());
 					if(sVars.size()!=0) {
-						handleUpdateStatements(css.getWhen(), sVars, context);
+						handleUpdateStatements(css.getWhere(), sVars, context);
 					}
 					return this.interprete(css.getStatement(), context);
 				}

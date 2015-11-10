@@ -370,22 +370,13 @@ public interface XmuPackage extends EPackage {
 	int FOR_STATEMENT__ACTIONS = STATEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>When</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FOR_STATEMENT__WHEN = STATEMENT_FEATURE_COUNT + 3;
-
-	/**
 	 * The number of structural features of the '<em>For Statement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FOR_STATEMENT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 4;
+	int FOR_STATEMENT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>For Statement</em>' class.
@@ -1431,13 +1422,22 @@ public interface XmuPackage extends EPackage {
 	int VSTATEMENT__STATEMENT = 1;
 
 	/**
+	 * The feature id for the '<em><b>Where</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VSTATEMENT__WHERE = 2;
+
+	/**
 	 * The number of structural features of the '<em>VStatement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VSTATEMENT_FEATURE_COUNT = 2;
+	int VSTATEMENT_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>VStatement</em>' class.
@@ -1475,6 +1475,15 @@ public interface XmuPackage extends EPackage {
 	 * @ordered
 	 */
 	int DEFAULT_VSTATEMENT__STATEMENT = VSTATEMENT__STATEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Where</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEFAULT_VSTATEMENT__WHERE = VSTATEMENT__WHERE;
 
 	/**
 	 * The number of structural features of the '<em>Default VStatement</em>' class.
@@ -1521,6 +1530,15 @@ public interface XmuPackage extends EPackage {
 	 * @ordered
 	 */
 	int TAGGED_VSTATEMENT__STATEMENT = VSTATEMENT__STATEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Where</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAGGED_VSTATEMENT__WHERE = VSTATEMENT__WHERE;
 
 	/**
 	 * The number of structural features of the '<em>Tagged VStatement</em>' class.
@@ -1652,13 +1670,13 @@ public interface XmuPackage extends EPackage {
 	int CASE_SUB_STATEMENT__STATEMENT = 0;
 
 	/**
-	 * The feature id for the '<em><b>When</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Where</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CASE_SUB_STATEMENT__WHEN = 1;
+	int CASE_SUB_STATEMENT__WHERE = 1;
 
 	/**
 	 * The number of structural features of the '<em>Case Sub Statement</em>' class.
@@ -1698,13 +1716,13 @@ public interface XmuPackage extends EPackage {
 	int CASE_PATTERN_STATEMENT__STATEMENT = CASE_SUB_STATEMENT__STATEMENT;
 
 	/**
-	 * The feature id for the '<em><b>When</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Where</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CASE_PATTERN_STATEMENT__WHEN = CASE_SUB_STATEMENT__WHEN;
+	int CASE_PATTERN_STATEMENT__WHERE = CASE_SUB_STATEMENT__WHERE;
 
 	/**
 	 * The feature id for the '<em><b>Pattern</b></em>' containment reference.
@@ -1753,13 +1771,13 @@ public interface XmuPackage extends EPackage {
 	int CASE_VALUE_STATEMENT__STATEMENT = CASE_SUB_STATEMENT__STATEMENT;
 
 	/**
-	 * The feature id for the '<em><b>When</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Where</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CASE_VALUE_STATEMENT__WHEN = CASE_SUB_STATEMENT__WHEN;
+	int CASE_VALUE_STATEMENT__WHERE = CASE_SUB_STATEMENT__WHERE;
 
 	/**
 	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
@@ -1808,13 +1826,13 @@ public interface XmuPackage extends EPackage {
 	int CASE_DEFAULT_STATEMENT__STATEMENT = CASE_VALUE_STATEMENT__STATEMENT;
 
 	/**
-	 * The feature id for the '<em><b>When</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Where</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CASE_DEFAULT_STATEMENT__WHEN = CASE_VALUE_STATEMENT__WHEN;
+	int CASE_DEFAULT_STATEMENT__WHERE = CASE_VALUE_STATEMENT__WHERE;
 
 	/**
 	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
@@ -3344,17 +3362,6 @@ public interface XmuPackage extends EPackage {
 	EReference getForStatement_Actions();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link edu.ustb.sei.mde.xmu.ForStatement#getWhen <em>When</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>When</em>'.
-	 * @see edu.ustb.sei.mde.xmu.ForStatement#getWhen()
-	 * @see #getForStatement()
-	 * @generated
-	 */
-	EReference getForStatement_When();
-
-	/**
 	 * Returns the meta object for class '{@link edu.ustb.sei.mde.xmu.Update <em>Update</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3821,6 +3828,17 @@ public interface XmuPackage extends EPackage {
 	EReference getVStatement_Statement();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link edu.ustb.sei.mde.xmu.VStatement#getWhere <em>Where</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Where</em>'.
+	 * @see edu.ustb.sei.mde.xmu.VStatement#getWhere()
+	 * @see #getVStatement()
+	 * @generated
+	 */
+	EReference getVStatement_Where();
+
+	/**
 	 * Returns the meta object for class '{@link edu.ustb.sei.mde.xmu.DefaultVStatement <em>Default VStatement</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3936,15 +3954,15 @@ public interface XmuPackage extends EPackage {
 	EReference getCaseSubStatement_Statement();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link edu.ustb.sei.mde.xmu.CaseSubStatement#getWhen <em>When</em>}'.
+	 * Returns the meta object for the containment reference list '{@link edu.ustb.sei.mde.xmu.CaseSubStatement#getWhere <em>Where</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>When</em>'.
-	 * @see edu.ustb.sei.mde.xmu.CaseSubStatement#getWhen()
+	 * @return the meta object for the containment reference list '<em>Where</em>'.
+	 * @see edu.ustb.sei.mde.xmu.CaseSubStatement#getWhere()
 	 * @see #getCaseSubStatement()
 	 * @generated
 	 */
-	EReference getCaseSubStatement_When();
+	EReference getCaseSubStatement_Where();
 
 	/**
 	 * Returns the meta object for class '{@link edu.ustb.sei.mde.xmu.CasePatternStatement <em>Case Pattern Statement</em>}'.
@@ -5082,14 +5100,6 @@ public interface XmuPackage extends EPackage {
 		EReference FOR_STATEMENT__ACTIONS = eINSTANCE.getForStatement_Actions();
 
 		/**
-		 * The meta object literal for the '<em><b>When</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FOR_STATEMENT__WHEN = eINSTANCE.getForStatement_When();
-
-		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu.impl.UpdateImpl <em>Update</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -5478,6 +5488,14 @@ public interface XmuPackage extends EPackage {
 		EReference VSTATEMENT__STATEMENT = eINSTANCE.getVStatement_Statement();
 
 		/**
+		 * The meta object literal for the '<em><b>Where</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VSTATEMENT__WHERE = eINSTANCE.getVStatement_Where();
+
+		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu.impl.DefaultVStatementImpl <em>Default VStatement</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -5578,12 +5596,12 @@ public interface XmuPackage extends EPackage {
 		EReference CASE_SUB_STATEMENT__STATEMENT = eINSTANCE.getCaseSubStatement_Statement();
 
 		/**
-		 * The meta object literal for the '<em><b>When</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Where</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CASE_SUB_STATEMENT__WHEN = eINSTANCE.getCaseSubStatement_When();
+		EReference CASE_SUB_STATEMENT__WHERE = eINSTANCE.getCaseSubStatement_Where();
 
 		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu.impl.CasePatternStatementImpl <em>Case Pattern Statement</em>}' class.

@@ -70,7 +70,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//ForStatement/sPattern"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//ForStatement/vPattern"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//ForStatement/actions"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//ForStatement/when"/>
     </genClasses>
     <genClasses image="false" ecoreClass="xmu.ecore#//Update"/>
     <genClasses ecoreClass="xmu.ecore#//DeleteNode">
@@ -129,6 +128,7 @@
     <genClasses ecoreClass="xmu.ecore#//VStatement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmu.ecore#//VStatement/tag"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//VStatement/statement"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//VStatement/where"/>
     </genClasses>
     <genClasses ecoreClass="xmu.ecore#//DefaultVStatement"/>
     <genClasses ecoreClass="xmu.ecore#//TaggedVStatement"/>
@@ -144,7 +144,7 @@
     </genClasses>
     <genClasses image="false" ecoreClass="xmu.ecore#//CaseSubStatement">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//CaseSubStatement/statement"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//CaseSubStatement/when"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//CaseSubStatement/where"/>
     </genClasses>
     <genClasses ecoreClass="xmu.ecore#//CasePatternStatement">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu.ecore#//CasePatternStatement/pattern"/>

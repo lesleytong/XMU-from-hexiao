@@ -541,14 +541,14 @@ public class ContextUtil {
 	
 	static private void lookupUpdatedStatementsFromSourcePost(EObject o, ObjectVariable sourcePost, List<RuleCallStatement> result) {
 		if(o==null) return;
-		if(o instanceof ForStatement) {
-			for(RuleCallStatement u : ((ForStatement) o).getWhen()) {
+		if(o instanceof VStatement) {
+			for(RuleCallStatement u : ((VStatement) o).getWhere()) {
 				if(isCorrelated(u,sourcePost)) {
 					result.add(u);
 				}
 			}
 		} else if(o instanceof CaseSubStatement) {
-			for(RuleCallStatement u : ((CaseSubStatement) o).getWhen()) {
+			for(RuleCallStatement u : ((CaseSubStatement) o).getWhere()) {
 				if(isCorrelated(u,sourcePost)) {
 					result.add(u);
 				}

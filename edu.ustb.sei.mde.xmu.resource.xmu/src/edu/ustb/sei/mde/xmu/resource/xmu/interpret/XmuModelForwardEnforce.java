@@ -126,12 +126,16 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 	protected boolean reorderForStatement(Statement statement, XmuContext context, ForStatementVReordering reorder) {
 		if(statement instanceof ForStatement) {
 			if(statement==reorder.reason){
+				VStatement vStmt = null;
 				for(VStatement stmt : ((ForStatement) statement).getActions()) {
 					if(stmt.getTag() == VStmtType.MATCH) {
-						return reorderForStatement(stmt.getStatement(),context,reorder);
+						vStmt = stmt;
+					} else if(stmt.getTag() == VStmtType.DEFAULT) {
+						if(vStmt==null) vStmt = stmt;
 					}
 				}
-				return false;
+				if(vStmt!=null)  return reorderForStatement(vStmt.getStatement(),context,reorder);
+				else return false;
 			}else {
 				reorder.updates.add(statement);
 				return true;
@@ -183,13 +187,18 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 				if(ret==Just.TRUE) {
 					boolean flag = false;
 					SafeType value = null;
-
+					
+					VStatement vStmt = null;
 					for(VStatement stmt : forStatement.getActions()) {
 						if(stmt.getTag() == VStmtType.MATCH) {
-							value =  this.interprete(stmt.getStatement(), c);
-							flag = true;
-							break;
+							vStmt = stmt;
+						} else if(stmt.getTag() == VStmtType.DEFAULT) {
+							if(vStmt==null) vStmt = stmt;
 						}
+					}
+					if(vStmt!=null) {
+						value =  this.interprete(vStmt.getStatement(), c);
+						flag = true;
 					}
 					
 					if(flag==false) 
@@ -303,12 +312,43 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 
 	protected boolean doForUpdatedStatements(ForStatement forStatement,
 			XmuContext c) {
-		for(RuleCallStatement rc : forStatement.getWhen()) {
-			SafeType ret = this.interprete_edu_ustb_sei_mde_xmu_RuleCallStatement(rc, c);
-			if(ret.isInvalid()) 
-				return false;
+		VStatement vStmt = null;
+		for(VStatement stmt : forStatement.getActions()) {
+			if(stmt.getTag() == VStmtType.MATCH) {
+				vStmt = stmt;
+			} else if(stmt.getTag() == VStmtType.DEFAULT) {
+				if(vStmt==null) vStmt = stmt;
+			}
+		}
+		
+		if(vStmt!=null) {
+			for(RuleCallStatement rc : vStmt.getWhere()) {
+				SafeType ret = this.interprete_edu_ustb_sei_mde_xmu_RuleCallStatement(rc, c);
+				if(ret.isInvalid()) 
+					return false;
+			}
 		}
 		return true;
+		
+//		for(VStatement vStatement : forStatement.getActions()) {
+//			if(vStatement.getTag()==VStmtType.MATCH) {
+//				for(RuleCallStatement rc : vStatement.getWhen()) {
+//					SafeType ret = this.interprete_edu_ustb_sei_mde_xmu_RuleCallStatement(rc, c);
+//					if(ret.isInvalid()) 
+//						return false;
+//				}
+//				return true;
+//			} else if(vStatement.getTag()==VStmtType.DEFAULT) {
+//				defaultStatement = vStatement;
+//			}
+//		}
+//		
+//		for(RuleCallStatement rc : defaultStatement.getWhen()) {
+//			SafeType ret = this.interprete_edu_ustb_sei_mde_xmu_RuleCallStatement(rc, c);
+//			if(ret.isInvalid()) 
+//				return false;
+//		}
+//		return true;
 	}
 	
 	
@@ -444,7 +484,7 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 	
 	protected boolean doSwitchCaseUpdatedStatements(CaseSubStatement caesStatement,
 			XmuContext context) {
-		for(RuleCallStatement rc : caesStatement.getWhen()) {
+		for(RuleCallStatement rc : caesStatement.getWhere()) {
 			SafeType ret = this.interprete_edu_ustb_sei_mde_xmu_RuleCallStatement(rc, context);
 			if(ret.isInvalid()) 
 				return false;
@@ -538,7 +578,7 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 									reorder.enforceV.add(((CasePatternStatement) c).getPattern());
 								} else
 									reorder.checkV.add(((CasePatternStatement) c).getPattern());
-								reorder.whenUpdates.addAll(c.getWhen());
+								reorder.whenUpdates.addAll(c.getWhere());
 								return true;								
 							}
 						} else if(c instanceof CaseValueStatement) {

@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu.CaseSubStatement#getStatement <em>Statement</em>}</li>
- *   <li>{@link edu.ustb.sei.mde.xmu.CaseSubStatement#getWhen <em>When</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.xmu.CaseSubStatement#getWhere <em>Where</em>}</li>
  * </ul>
  *
  * @see edu.ustb.sei.mde.xmu.XmuPackage#getCaseSubStatement()
@@ -50,7 +50,7 @@ public interface CaseSubStatement extends EObject {
 	void setStatement(Statement value);
 
 	/**
-	 * Returns the value of the '<em><b>When</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Where</b></em>' containment reference list.
 	 * The list contents are of type {@link edu.ustb.sei.mde.xmu.RuleCallStatement}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -58,11 +58,11 @@ public interface CaseSubStatement extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>When</em>' containment reference list.
-	 * @see edu.ustb.sei.mde.xmu.XmuPackage#getCaseSubStatement_When()
+	 * @return the value of the '<em>Where</em>' containment reference list.
+	 * @see edu.ustb.sei.mde.xmu.XmuPackage#getCaseSubStatement_Where()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<RuleCallStatement> getWhen();
+	EList<RuleCallStatement> getWhere();
 
 } // CaseSubStatement

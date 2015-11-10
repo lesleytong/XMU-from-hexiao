@@ -862,15 +862,6 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getForStatement_When() {
-		return (EReference)forStatementEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getUpdate() {
 		return updateEClass;
 	}
@@ -1267,6 +1258,15 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getVStatement_Where() {
+		return (EReference)vStatementEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getDefaultVStatement() {
 		return defaultVStatementEClass;
 	}
@@ -1366,7 +1366,7 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCaseSubStatement_When() {
+	public EReference getCaseSubStatement_Where() {
 		return (EReference)caseSubStatementEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -2241,7 +2241,6 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 		createEReference(forStatementEClass, FOR_STATEMENT__SPATTERN);
 		createEReference(forStatementEClass, FOR_STATEMENT__VPATTERN);
 		createEReference(forStatementEClass, FOR_STATEMENT__ACTIONS);
-		createEReference(forStatementEClass, FOR_STATEMENT__WHEN);
 
 		updateEClass = createEClass(UPDATE);
 
@@ -2304,6 +2303,7 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 		vStatementEClass = createEClass(VSTATEMENT);
 		createEAttribute(vStatementEClass, VSTATEMENT__TAG);
 		createEReference(vStatementEClass, VSTATEMENT__STATEMENT);
+		createEReference(vStatementEClass, VSTATEMENT__WHERE);
 
 		defaultVStatementEClass = createEClass(DEFAULT_VSTATEMENT);
 
@@ -2321,7 +2321,7 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 
 		caseSubStatementEClass = createEClass(CASE_SUB_STATEMENT);
 		createEReference(caseSubStatementEClass, CASE_SUB_STATEMENT__STATEMENT);
-		createEReference(caseSubStatementEClass, CASE_SUB_STATEMENT__WHEN);
+		createEReference(caseSubStatementEClass, CASE_SUB_STATEMENT__WHERE);
 
 		casePatternStatementEClass = createEClass(CASE_PATTERN_STATEMENT);
 		createEReference(casePatternStatementEClass, CASE_PATTERN_STATEMENT__PATTERN);
@@ -2566,7 +2566,6 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 		initEReference(getForStatement_SPattern(), this.getPattern(), null, "sPattern", null, 1, 1, ForStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getForStatement_VPattern(), this.getPattern(), null, "vPattern", null, 0, 1, ForStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getForStatement_Actions(), this.getVStatement(), null, "actions", null, 1, 3, ForStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getForStatement_When(), this.getRuleCallStatement(), null, "when", null, 0, -1, ForStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(updateEClass, Update.class, "Update", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -2629,6 +2628,7 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 		initEClass(vStatementEClass, VStatement.class, "VStatement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getVStatement_Tag(), this.getVStmtType(), "tag", null, 1, 1, VStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getVStatement_Statement(), this.getStatement(), null, "statement", null, 1, 1, VStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getVStatement_Where(), this.getRuleCallStatement(), null, "where", null, 0, -1, VStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(defaultVStatementEClass, DefaultVStatement.class, "DefaultVStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -2646,7 +2646,7 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 
 		initEClass(caseSubStatementEClass, CaseSubStatement.class, "CaseSubStatement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCaseSubStatement_Statement(), this.getStatement(), null, "statement", null, 1, 1, CaseSubStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getCaseSubStatement_When(), this.getRuleCallStatement(), null, "when", null, 0, -1, CaseSubStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCaseSubStatement_Where(), this.getRuleCallStatement(), null, "where", null, 0, -1, CaseSubStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(casePatternStatementEClass, CasePatternStatement.class, "CasePatternStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCasePatternStatement_Pattern(), this.getPattern(), null, "pattern", null, 1, 1, CasePatternStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

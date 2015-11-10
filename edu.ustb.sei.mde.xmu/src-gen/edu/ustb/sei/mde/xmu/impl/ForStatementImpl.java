@@ -4,7 +4,6 @@ package edu.ustb.sei.mde.xmu.impl;
 
 import edu.ustb.sei.mde.xmu.ForStatement;
 import edu.ustb.sei.mde.xmu.Pattern;
-import edu.ustb.sei.mde.xmu.RuleCallStatement;
 import edu.ustb.sei.mde.xmu.VStatement;
 import edu.ustb.sei.mde.xmu.XmuPackage;
 
@@ -34,7 +33,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.ForStatementImpl#getSPattern <em>SPattern</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.ForStatementImpl#getVPattern <em>VPattern</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.ForStatementImpl#getActions <em>Actions</em>}</li>
- *   <li>{@link edu.ustb.sei.mde.xmu.impl.ForStatementImpl#getWhen <em>When</em>}</li>
  * </ul>
  *
  * @generated
@@ -69,16 +67,6 @@ public class ForStatementImpl extends StatementImpl implements ForStatement {
 	 * @ordered
 	 */
 	protected EList<VStatement> actions;
-
-	/**
-	 * The cached value of the '{@link #getWhen() <em>When</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getWhen()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<RuleCallStatement> when;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -202,18 +190,6 @@ public class ForStatementImpl extends StatementImpl implements ForStatement {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<RuleCallStatement> getWhen() {
-		if (when == null) {
-			when = new EObjectContainmentEList<RuleCallStatement>(RuleCallStatement.class, this, XmuPackage.FOR_STATEMENT__WHEN);
-		}
-		return when;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -223,8 +199,6 @@ public class ForStatementImpl extends StatementImpl implements ForStatement {
 				return basicSetVPattern(null, msgs);
 			case XmuPackage.FOR_STATEMENT__ACTIONS:
 				return ((InternalEList<?>)getActions()).basicRemove(otherEnd, msgs);
-			case XmuPackage.FOR_STATEMENT__WHEN:
-				return ((InternalEList<?>)getWhen()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -243,8 +217,6 @@ public class ForStatementImpl extends StatementImpl implements ForStatement {
 				return getVPattern();
 			case XmuPackage.FOR_STATEMENT__ACTIONS:
 				return getActions();
-			case XmuPackage.FOR_STATEMENT__WHEN:
-				return getWhen();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -268,10 +240,6 @@ public class ForStatementImpl extends StatementImpl implements ForStatement {
 				getActions().clear();
 				getActions().addAll((Collection<? extends VStatement>)newValue);
 				return;
-			case XmuPackage.FOR_STATEMENT__WHEN:
-				getWhen().clear();
-				getWhen().addAll((Collection<? extends RuleCallStatement>)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -293,9 +261,6 @@ public class ForStatementImpl extends StatementImpl implements ForStatement {
 			case XmuPackage.FOR_STATEMENT__ACTIONS:
 				getActions().clear();
 				return;
-			case XmuPackage.FOR_STATEMENT__WHEN:
-				getWhen().clear();
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -314,8 +279,6 @@ public class ForStatementImpl extends StatementImpl implements ForStatement {
 				return vPattern != null;
 			case XmuPackage.FOR_STATEMENT__ACTIONS:
 				return actions != null && !actions.isEmpty();
-			case XmuPackage.FOR_STATEMENT__WHEN:
-				return when != null && !when.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
