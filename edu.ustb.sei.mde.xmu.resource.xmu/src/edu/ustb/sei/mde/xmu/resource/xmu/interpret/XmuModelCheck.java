@@ -354,9 +354,14 @@ public class XmuModelCheck extends XmuExpressionCheck {
 			VariableExp exp = (VariableExp)invalid;
 			//if(exp.getVar() instanceof ObjectVariable) return false;
 			
+			SafeType oldValue = context.getSafeTypeValue(exp.getVar());
 			if(exp.getPath().isEmpty()) {
-				if(context.getSafeTypeValue(exp.getVar()).isUndefined()==false) 
-					return false;
+				if(oldValue.isUndefined()==false) {
+					if(oldValue!=expect && oldValue.getValue()==expect.getValue() 
+							&& oldValue.getValue().equals(expect.getValue())==false)
+						return false;
+					else return true;
+				}
 				//if(expect.isObject() && context.containValue(expect.getObjectValue())) return false;
 				
 				return context.putValue(((VariableExp) invalid).getVar(), expect);
@@ -375,7 +380,7 @@ public class XmuModelCheck extends XmuExpressionCheck {
 					}
 				}
 				
-				if(context.getSafeTypeValue(exp.getVar()).isUndefined()==false) 
+				if(oldValue.isUndefined()==false) 
 					return false;
 				
 				return context.putValue(((VariableExp) invalid).getVar(), SafeType.createFromValue(expV));

@@ -11,14 +11,14 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu.VStatement#getTag <em>Tag</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.VStatement#getStatement <em>Statement</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.ustb.sei.mde.xmu.XmuPackage#getVStatement()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface VStatement extends EObject {

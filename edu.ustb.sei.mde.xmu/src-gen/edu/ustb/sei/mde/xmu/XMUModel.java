@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EPackage;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu.XMUModel#getInitialMappings <em>Initial Mappings</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.XMUModel#getHelperMappings <em>Helper Mappings</em>}</li>
@@ -21,7 +22,6 @@ import org.eclipse.emf.ecore.EPackage;
  *   <li>{@link edu.ustb.sei.mde.xmu.XMUModel#getPackages <em>Packages</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.XMUModel#getStart <em>Start</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.ustb.sei.mde.xmu.XmuPackage#getXMUModel()
  * @model

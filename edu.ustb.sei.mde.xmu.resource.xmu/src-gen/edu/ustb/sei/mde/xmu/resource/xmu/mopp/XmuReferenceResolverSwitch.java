@@ -17,8 +17,6 @@ public class XmuReferenceResolverSwitch implements edu.ustb.sei.mde.xmu.resource
 	protected edu.ustb.sei.mde.xmu.resource.xmu.analysis.StartStatementRuleReferenceResolver startStatementRuleReferenceResolver = new edu.ustb.sei.mde.xmu.resource.xmu.analysis.StartStatementRuleReferenceResolver();
 	protected edu.ustb.sei.mde.xmu.resource.xmu.analysis.ParameterVariableReferenceResolver parameterVariableReferenceResolver = new edu.ustb.sei.mde.xmu.resource.xmu.analysis.ParameterVariableReferenceResolver();
 	protected edu.ustb.sei.mde.xmu.resource.xmu.analysis.PrimitiveVariableTypeReferenceResolver primitiveVariableTypeReferenceResolver = new edu.ustb.sei.mde.xmu.resource.xmu.analysis.PrimitiveVariableTypeReferenceResolver();
-	protected edu.ustb.sei.mde.xmu.resource.xmu.analysis.UpdatedStatementSVarReferenceResolver updatedStatementSVarReferenceResolver = new edu.ustb.sei.mde.xmu.resource.xmu.analysis.UpdatedStatementSVarReferenceResolver();
-	protected edu.ustb.sei.mde.xmu.resource.xmu.analysis.UpdatedStatementVVarReferenceResolver updatedStatementVVarReferenceResolver = new edu.ustb.sei.mde.xmu.resource.xmu.analysis.UpdatedStatementVVarReferenceResolver();
 	protected edu.ustb.sei.mde.xmu.resource.xmu.analysis.PatternNodeVariableReferenceResolver patternNodeVariableReferenceResolver = new edu.ustb.sei.mde.xmu.resource.xmu.analysis.PatternNodeVariableReferenceResolver();
 	protected edu.ustb.sei.mde.xmu.resource.xmu.analysis.PatternNodeTypeReferenceResolver patternNodeTypeReferenceResolver = new edu.ustb.sei.mde.xmu.resource.xmu.analysis.PatternNodeTypeReferenceResolver();
 	protected edu.ustb.sei.mde.xmu.resource.xmu.analysis.PatternReferenceExprReferenceReferenceResolver patternReferenceExprReferenceReferenceResolver = new edu.ustb.sei.mde.xmu.resource.xmu.analysis.PatternReferenceExprReferenceReferenceResolver();
@@ -50,14 +48,6 @@ public class XmuReferenceResolverSwitch implements edu.ustb.sei.mde.xmu.resource
 	
 	public edu.ustb.sei.mde.xmu.resource.xmu.IXmuReferenceResolver<edu.ustb.sei.mde.xmu.PrimitiveVariable, org.eclipse.emf.ecore.EDataType> getPrimitiveVariableTypeReferenceResolver() {
 		return getResolverChain(edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getPrimitiveVariable_Type(), primitiveVariableTypeReferenceResolver);
-	}
-	
-	public edu.ustb.sei.mde.xmu.resource.xmu.IXmuReferenceResolver<edu.ustb.sei.mde.xmu.UpdatedStatement, edu.ustb.sei.mde.xmu.Variable> getUpdatedStatementSVarReferenceResolver() {
-		return getResolverChain(edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getUpdatedStatement_SVar(), updatedStatementSVarReferenceResolver);
-	}
-	
-	public edu.ustb.sei.mde.xmu.resource.xmu.IXmuReferenceResolver<edu.ustb.sei.mde.xmu.UpdatedStatement, edu.ustb.sei.mde.xmu.Variable> getUpdatedStatementVVarReferenceResolver() {
-		return getResolverChain(edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getUpdatedStatement_VVar(), updatedStatementVVarReferenceResolver);
 	}
 	
 	public edu.ustb.sei.mde.xmu.resource.xmu.IXmuReferenceResolver<edu.ustb.sei.mde.xmu.PatternNode, edu.ustb.sei.mde.xmu.Variable> getPatternNodeVariableReferenceResolver() {
@@ -133,8 +123,6 @@ public class XmuReferenceResolverSwitch implements edu.ustb.sei.mde.xmu.resource
 		startStatementRuleReferenceResolver.setOptions(options);
 		parameterVariableReferenceResolver.setOptions(options);
 		primitiveVariableTypeReferenceResolver.setOptions(options);
-		updatedStatementSVarReferenceResolver.setOptions(options);
-		updatedStatementVVarReferenceResolver.setOptions(options);
 		patternNodeVariableReferenceResolver.setOptions(options);
 		patternNodeTypeReferenceResolver.setOptions(options);
 		patternReferenceExprReferenceReferenceResolver.setOptions(options);
@@ -187,22 +175,6 @@ public class XmuReferenceResolverSwitch implements edu.ustb.sei.mde.xmu.resource
 			org.eclipse.emf.ecore.EStructuralFeature feature = container.eClass().getEStructuralFeature(referenceName);
 			if (feature != null && feature instanceof org.eclipse.emf.ecore.EReference && referenceName != null && referenceName.equals("type")) {
 				primitiveVariableTypeReferenceResolver.resolve(identifier, (edu.ustb.sei.mde.xmu.PrimitiveVariable) container, (org.eclipse.emf.ecore.EReference) feature, position, true, frr);
-			}
-		}
-		if (edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getUpdatedStatement().isInstance(container)) {
-			XmuFuzzyResolveResult<edu.ustb.sei.mde.xmu.Variable> frr = new XmuFuzzyResolveResult<edu.ustb.sei.mde.xmu.Variable>(result);
-			String referenceName = reference.getName();
-			org.eclipse.emf.ecore.EStructuralFeature feature = container.eClass().getEStructuralFeature(referenceName);
-			if (feature != null && feature instanceof org.eclipse.emf.ecore.EReference && referenceName != null && referenceName.equals("sVar")) {
-				updatedStatementSVarReferenceResolver.resolve(identifier, (edu.ustb.sei.mde.xmu.UpdatedStatement) container, (org.eclipse.emf.ecore.EReference) feature, position, true, frr);
-			}
-		}
-		if (edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getUpdatedStatement().isInstance(container)) {
-			XmuFuzzyResolveResult<edu.ustb.sei.mde.xmu.Variable> frr = new XmuFuzzyResolveResult<edu.ustb.sei.mde.xmu.Variable>(result);
-			String referenceName = reference.getName();
-			org.eclipse.emf.ecore.EStructuralFeature feature = container.eClass().getEStructuralFeature(referenceName);
-			if (feature != null && feature instanceof org.eclipse.emf.ecore.EReference && referenceName != null && referenceName.equals("vVar")) {
-				updatedStatementVVarReferenceResolver.resolve(identifier, (edu.ustb.sei.mde.xmu.UpdatedStatement) container, (org.eclipse.emf.ecore.EReference) feature, position, true, frr);
 			}
 		}
 		if (edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getPatternNode().isInstance(container)) {
@@ -347,12 +319,6 @@ public class XmuReferenceResolverSwitch implements edu.ustb.sei.mde.xmu.resource
 		}
 		if (reference == edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getPrimitiveVariable_Type()) {
 			return getResolverChain(reference, primitiveVariableTypeReferenceResolver);
-		}
-		if (reference == edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getUpdatedStatement_SVar()) {
-			return getResolverChain(reference, updatedStatementSVarReferenceResolver);
-		}
-		if (reference == edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getUpdatedStatement_VVar()) {
-			return getResolverChain(reference, updatedStatementVVarReferenceResolver);
 		}
 		if (reference == edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getPatternNode_Variable()) {
 			return getResolverChain(reference, patternNodeVariableReferenceResolver);

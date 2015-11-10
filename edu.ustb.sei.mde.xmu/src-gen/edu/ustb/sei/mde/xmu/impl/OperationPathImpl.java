@@ -27,11 +27,11 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.OperationPathImpl#getOperation <em>Operation</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.OperationPathImpl#getParameters <em>Parameters</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

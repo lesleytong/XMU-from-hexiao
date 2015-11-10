@@ -25,11 +25,11 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.VariableExpImpl#getVar <em>Var</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.VariableExpImpl#getPath <em>Path</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

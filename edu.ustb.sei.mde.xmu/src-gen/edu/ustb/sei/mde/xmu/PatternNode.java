@@ -14,12 +14,12 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu.PatternNode#getVariable <em>Variable</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.PatternNode#getType <em>Type</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.PatternNode#getExpr <em>Expr</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.ustb.sei.mde.xmu.XmuPackage#getPatternNode()
  * @model

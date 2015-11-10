@@ -10,12 +10,12 @@ package edu.ustb.sei.mde.xmu;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu.LoopPath#getOperator <em>Operator</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.LoopPath#getVariable <em>Variable</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.LoopPath#getBody <em>Body</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.ustb.sei.mde.xmu.XmuPackage#getLoopPath()
  * @model

@@ -67,7 +67,6 @@ public class XmuLexer extends Lexer {
     public static final int T__69=69;
     public static final int T__70=70;
     public static final int T__71=71;
-    public static final int T__72=72;
     public static final int BOOLEAN=4;
     public static final int LINEBREAK=5;
     public static final int ML_COMMENT=6;
@@ -1205,10 +1204,10 @@ public class XmuLexer extends Lexer {
         try {
             int _type = T__65;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:64:7: ( 'updated' )
-            // Xmu.g:64:9: 'updated'
+            // Xmu.g:64:7: ( 'using' )
+            // Xmu.g:64:9: 'using'
             {
-            match("updated"); 
+            match("using"); 
 
 
 
@@ -1228,10 +1227,10 @@ public class XmuLexer extends Lexer {
         try {
             int _type = T__66;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:65:7: ( 'using' )
-            // Xmu.g:65:9: 'using'
+            // Xmu.g:65:7: ( 'view' )
+            // Xmu.g:65:9: 'view'
             {
-            match("using"); 
+            match("view"); 
 
 
 
@@ -1251,10 +1250,10 @@ public class XmuLexer extends Lexer {
         try {
             int _type = T__67;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:66:7: ( 'view' )
-            // Xmu.g:66:9: 'view'
+            // Xmu.g:66:7: ( 'when' )
+            // Xmu.g:66:9: 'when'
             {
-            match("view"); 
+            match("when"); 
 
 
 
@@ -1274,10 +1273,10 @@ public class XmuLexer extends Lexer {
         try {
             int _type = T__68;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:67:7: ( 'when' )
-            // Xmu.g:67:9: 'when'
+            // Xmu.g:67:7: ( 'with' )
+            // Xmu.g:67:9: 'with'
             {
-            match("when"); 
+            match("with"); 
 
 
 
@@ -1297,12 +1296,10 @@ public class XmuLexer extends Lexer {
         try {
             int _type = T__69;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:68:7: ( 'with' )
-            // Xmu.g:68:9: 'with'
+            // Xmu.g:68:7: ( '{' )
+            // Xmu.g:68:9: '{'
             {
-            match("with"); 
-
-
+            match('{'); 
 
             }
 
@@ -1320,10 +1317,10 @@ public class XmuLexer extends Lexer {
         try {
             int _type = T__70;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:69:7: ( '{' )
-            // Xmu.g:69:9: '{'
+            // Xmu.g:69:7: ( '|' )
+            // Xmu.g:69:9: '|'
             {
-            match('{'); 
+            match('|'); 
 
             }
 
@@ -1341,29 +1338,8 @@ public class XmuLexer extends Lexer {
         try {
             int _type = T__71;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:70:7: ( '|' )
-            // Xmu.g:70:9: '|'
-            {
-            match('|'); 
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        	// do for sure before leaving
-        }
-    }
-    // $ANTLR end "T__71"
-
-    // $ANTLR start "T__72"
-    public final void mT__72() throws RecognitionException {
-        try {
-            int _type = T__72;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:71:7: ( '}' )
-            // Xmu.g:71:9: '}'
+            // Xmu.g:70:7: ( '}' )
+            // Xmu.g:70:9: '}'
             {
             match('}'); 
 
@@ -1376,22 +1352,22 @@ public class XmuLexer extends Lexer {
         	// do for sure before leaving
         }
     }
-    // $ANTLR end "T__72"
+    // $ANTLR end "T__71"
 
     // $ANTLR start "URI"
     public final void mURI() throws RecognitionException {
         try {
             int _type = URI;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:8426:4: ( ( '<' ( '0' .. '9' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '-' | '/' | '\\\\' | '\\.' | ':' )+ '>' ) )
-            // Xmu.g:8427:2: ( '<' ( '0' .. '9' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '-' | '/' | '\\\\' | '\\.' | ':' )+ '>' )
+            // Xmu.g:8925:4: ( ( '<' ( '0' .. '9' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '-' | '/' | '\\\\' | '\\.' | ':' )+ '>' ) )
+            // Xmu.g:8926:2: ( '<' ( '0' .. '9' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '-' | '/' | '\\\\' | '\\.' | ':' )+ '>' )
             {
-            // Xmu.g:8427:2: ( '<' ( '0' .. '9' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '-' | '/' | '\\\\' | '\\.' | ':' )+ '>' )
-            // Xmu.g:8427:3: '<' ( '0' .. '9' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '-' | '/' | '\\\\' | '\\.' | ':' )+ '>'
+            // Xmu.g:8926:2: ( '<' ( '0' .. '9' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '-' | '/' | '\\\\' | '\\.' | ':' )+ '>' )
+            // Xmu.g:8926:3: '<' ( '0' .. '9' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '-' | '/' | '\\\\' | '\\.' | ':' )+ '>'
             {
             match('<'); 
 
-            // Xmu.g:8427:6: ( '0' .. '9' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '-' | '/' | '\\\\' | '\\.' | ':' )+
+            // Xmu.g:8926:6: ( '0' .. '9' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '-' | '/' | '\\\\' | '\\.' | ':' )+
             int cnt1=0;
             loop1:
             do {
@@ -1451,10 +1427,10 @@ public class XmuLexer extends Lexer {
         try {
             int _type = PRIMITIVE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:8429:10: ( ( 'String' | 'Boolean' | 'Integer' ) )
-            // Xmu.g:8430:2: ( 'String' | 'Boolean' | 'Integer' )
+            // Xmu.g:8928:10: ( ( 'String' | 'Boolean' | 'Integer' ) )
+            // Xmu.g:8929:2: ( 'String' | 'Boolean' | 'Integer' )
             {
-            // Xmu.g:8430:2: ( 'String' | 'Boolean' | 'Integer' )
+            // Xmu.g:8929:2: ( 'String' | 'Boolean' | 'Integer' )
             int alt2=3;
             switch ( input.LA(1) ) {
             case 'S':
@@ -1482,7 +1458,7 @@ public class XmuLexer extends Lexer {
 
             switch (alt2) {
                 case 1 :
-                    // Xmu.g:8430:3: 'String'
+                    // Xmu.g:8929:3: 'String'
                     {
                     match("String"); 
 
@@ -1491,7 +1467,7 @@ public class XmuLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // Xmu.g:8430:12: 'Boolean'
+                    // Xmu.g:8929:12: 'Boolean'
                     {
                     match("Boolean"); 
 
@@ -1500,7 +1476,7 @@ public class XmuLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // Xmu.g:8430:22: 'Integer'
+                    // Xmu.g:8929:22: 'Integer'
                     {
                     match("Integer"); 
 
@@ -1528,10 +1504,10 @@ public class XmuLexer extends Lexer {
         try {
             int _type = BOOLEAN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:8432:8: ( ( 'true' | 'false' ) )
-            // Xmu.g:8433:2: ( 'true' | 'false' )
+            // Xmu.g:8931:8: ( ( 'true' | 'false' ) )
+            // Xmu.g:8932:2: ( 'true' | 'false' )
             {
-            // Xmu.g:8433:2: ( 'true' | 'false' )
+            // Xmu.g:8932:2: ( 'true' | 'false' )
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -1550,7 +1526,7 @@ public class XmuLexer extends Lexer {
             }
             switch (alt3) {
                 case 1 :
-                    // Xmu.g:8433:3: 'true'
+                    // Xmu.g:8932:3: 'true'
                     {
                     match("true"); 
 
@@ -1559,7 +1535,7 @@ public class XmuLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // Xmu.g:8433:10: 'false'
+                    // Xmu.g:8932:10: 'false'
                     {
                     match("false"); 
 
@@ -1587,20 +1563,20 @@ public class XmuLexer extends Lexer {
         try {
             int _type = NAME;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:8435:5: ( ( ( ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )+ '!' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( '0' .. '9' | 'a' .. 'z' | 'A' .. 'Z' | '_' )* ( '@post' )? ) )
-            // Xmu.g:8436:2: ( ( ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )+ '!' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( '0' .. '9' | 'a' .. 'z' | 'A' .. 'Z' | '_' )* ( '@post' )? )
+            // Xmu.g:8934:5: ( ( ( ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )+ '!' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( '0' .. '9' | 'a' .. 'z' | 'A' .. 'Z' | '_' )* ( '@post' )? ) )
+            // Xmu.g:8935:2: ( ( ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )+ '!' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( '0' .. '9' | 'a' .. 'z' | 'A' .. 'Z' | '_' )* ( '@post' )? )
             {
-            // Xmu.g:8436:2: ( ( ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )+ '!' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( '0' .. '9' | 'a' .. 'z' | 'A' .. 'Z' | '_' )* ( '@post' )? )
-            // Xmu.g:8436:3: ( ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )+ '!' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( '0' .. '9' | 'a' .. 'z' | 'A' .. 'Z' | '_' )* ( '@post' )?
+            // Xmu.g:8935:2: ( ( ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )+ '!' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( '0' .. '9' | 'a' .. 'z' | 'A' .. 'Z' | '_' )* ( '@post' )? )
+            // Xmu.g:8935:3: ( ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )+ '!' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( '0' .. '9' | 'a' .. 'z' | 'A' .. 'Z' | '_' )* ( '@post' )?
             {
-            // Xmu.g:8436:3: ( ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )+ '!' )?
+            // Xmu.g:8935:3: ( ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )+ '!' )?
             int alt5=2;
             alt5 = dfa5.predict(input);
             switch (alt5) {
                 case 1 :
-                    // Xmu.g:8436:4: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )+ '!'
+                    // Xmu.g:8935:4: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )+ '!'
                     {
-                    // Xmu.g:8436:4: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )+
+                    // Xmu.g:8935:4: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )+
                     int cnt4=0;
                     loop4:
                     do {
@@ -1657,7 +1633,7 @@ public class XmuLexer extends Lexer {
             }
 
 
-            // Xmu.g:8436:65: ( '0' .. '9' | 'a' .. 'z' | 'A' .. 'Z' | '_' )*
+            // Xmu.g:8935:65: ( '0' .. '9' | 'a' .. 'z' | 'A' .. 'Z' | '_' )*
             loop6:
             do {
                 int alt6=2;
@@ -1691,7 +1667,7 @@ public class XmuLexer extends Lexer {
             } while (true);
 
 
-            // Xmu.g:8436:98: ( '@post' )?
+            // Xmu.g:8935:98: ( '@post' )?
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -1700,7 +1676,7 @@ public class XmuLexer extends Lexer {
             }
             switch (alt7) {
                 case 1 :
-                    // Xmu.g:8436:99: '@post'
+                    // Xmu.g:8935:99: '@post'
                     {
                     match("@post"); 
 
@@ -1731,13 +1707,13 @@ public class XmuLexer extends Lexer {
         try {
             int _type = NUMBER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:8438:7: ( ( ( '0' .. '9' )+ ) )
-            // Xmu.g:8439:2: ( ( '0' .. '9' )+ )
+            // Xmu.g:8937:7: ( ( ( '0' .. '9' )+ ) )
+            // Xmu.g:8938:2: ( ( '0' .. '9' )+ )
             {
-            // Xmu.g:8439:2: ( ( '0' .. '9' )+ )
-            // Xmu.g:8439:3: ( '0' .. '9' )+
+            // Xmu.g:8938:2: ( ( '0' .. '9' )+ )
+            // Xmu.g:8938:3: ( '0' .. '9' )+
             {
-            // Xmu.g:8439:3: ( '0' .. '9' )+
+            // Xmu.g:8938:3: ( '0' .. '9' )+
             int cnt8=0;
             loop8:
             do {
@@ -1795,17 +1771,17 @@ public class XmuLexer extends Lexer {
         try {
             int _type = SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:8441:11: ( ( '//' (~ ( '\\n' | '\\r' | '\\uffff' ) )* ) )
-            // Xmu.g:8442:2: ( '//' (~ ( '\\n' | '\\r' | '\\uffff' ) )* )
+            // Xmu.g:8940:11: ( ( '//' (~ ( '\\n' | '\\r' | '\\uffff' ) )* ) )
+            // Xmu.g:8941:2: ( '//' (~ ( '\\n' | '\\r' | '\\uffff' ) )* )
             {
-            // Xmu.g:8442:2: ( '//' (~ ( '\\n' | '\\r' | '\\uffff' ) )* )
-            // Xmu.g:8442:4: '//' (~ ( '\\n' | '\\r' | '\\uffff' ) )*
+            // Xmu.g:8941:2: ( '//' (~ ( '\\n' | '\\r' | '\\uffff' ) )* )
+            // Xmu.g:8941:4: '//' (~ ( '\\n' | '\\r' | '\\uffff' ) )*
             {
             match("//"); 
 
 
 
-            // Xmu.g:8442:8: (~ ( '\\n' | '\\r' | '\\uffff' ) )*
+            // Xmu.g:8941:8: (~ ( '\\n' | '\\r' | '\\uffff' ) )*
             loop9:
             do {
                 int alt9=2;
@@ -1860,17 +1836,17 @@ public class XmuLexer extends Lexer {
         try {
             int _type = ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:8445:11: ( ( '/*' ( . )* '*/' ) )
-            // Xmu.g:8446:2: ( '/*' ( . )* '*/' )
+            // Xmu.g:8944:11: ( ( '/*' ( . )* '*/' ) )
+            // Xmu.g:8945:2: ( '/*' ( . )* '*/' )
             {
-            // Xmu.g:8446:2: ( '/*' ( . )* '*/' )
-            // Xmu.g:8446:4: '/*' ( . )* '*/'
+            // Xmu.g:8945:2: ( '/*' ( . )* '*/' )
+            // Xmu.g:8945:4: '/*' ( . )* '*/'
             {
             match("/*"); 
 
 
 
-            // Xmu.g:8446:8: ( . )*
+            // Xmu.g:8945:8: ( . )*
             loop10:
             do {
                 int alt10=2;
@@ -1895,7 +1871,7 @@ public class XmuLexer extends Lexer {
 
                 switch (alt10) {
             	case 1 :
-            	    // Xmu.g:8446:8: .
+            	    // Xmu.g:8945:8: .
             	    {
             	    matchAny(); 
 
@@ -1933,15 +1909,15 @@ public class XmuLexer extends Lexer {
         try {
             int _type = OBJ_URI;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:8449:8: ( ( '@' ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '-' | '/' | '\\\\' | '\\.' | ':' | '#' )* ) )
-            // Xmu.g:8450:2: ( '@' ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '-' | '/' | '\\\\' | '\\.' | ':' | '#' )* )
+            // Xmu.g:8948:8: ( ( '@' ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '-' | '/' | '\\\\' | '\\.' | ':' | '#' )* ) )
+            // Xmu.g:8949:2: ( '@' ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '-' | '/' | '\\\\' | '\\.' | ':' | '#' )* )
             {
-            // Xmu.g:8450:2: ( '@' ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '-' | '/' | '\\\\' | '\\.' | ':' | '#' )* )
-            // Xmu.g:8450:3: '@' ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '-' | '/' | '\\\\' | '\\.' | ':' | '#' )*
+            // Xmu.g:8949:2: ( '@' ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '-' | '/' | '\\\\' | '\\.' | ':' | '#' )* )
+            // Xmu.g:8949:3: '@' ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '-' | '/' | '\\\\' | '\\.' | ':' | '#' )*
             {
             match('@'); 
 
-            // Xmu.g:8450:6: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '-' | '/' | '\\\\' | '\\.' | ':' | '#' )*
+            // Xmu.g:8949:6: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '-' | '/' | '\\\\' | '\\.' | ':' | '#' )*
             loop11:
             do {
                 int alt11=2;
@@ -1994,13 +1970,13 @@ public class XmuLexer extends Lexer {
         try {
             int _type = TEXT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:8452:5: ( ( ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '_' | '-' )+ ) )
-            // Xmu.g:8453:2: ( ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '_' | '-' )+ )
+            // Xmu.g:8951:5: ( ( ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '_' | '-' )+ ) )
+            // Xmu.g:8952:2: ( ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '_' | '-' )+ )
             {
-            // Xmu.g:8453:2: ( ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '_' | '-' )+ )
-            // Xmu.g:8453:3: ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '_' | '-' )+
+            // Xmu.g:8952:2: ( ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '_' | '-' )+ )
+            // Xmu.g:8952:3: ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '_' | '-' )+
             {
-            // Xmu.g:8453:3: ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '_' | '-' )+
+            // Xmu.g:8952:3: ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '_' | '-' )+
             int cnt12=0;
             loop12:
             do {
@@ -2060,8 +2036,8 @@ public class XmuLexer extends Lexer {
         try {
             int _type = WHITESPACE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:8456:11: ( ( ( ' ' | '\\t' | '\\f' ) ) )
-            // Xmu.g:8457:2: ( ( ' ' | '\\t' | '\\f' ) )
+            // Xmu.g:8955:11: ( ( ( ' ' | '\\t' | '\\f' ) ) )
+            // Xmu.g:8956:2: ( ( ' ' | '\\t' | '\\f' ) )
             {
             if ( input.LA(1)=='\t'||input.LA(1)=='\f'||input.LA(1)==' ' ) {
                 input.consume();
@@ -2091,13 +2067,13 @@ public class XmuLexer extends Lexer {
         try {
             int _type = LINEBREAK;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:8460:10: ( ( ( '\\r\\n' | '\\r' | '\\n' ) ) )
-            // Xmu.g:8461:2: ( ( '\\r\\n' | '\\r' | '\\n' ) )
+            // Xmu.g:8959:10: ( ( ( '\\r\\n' | '\\r' | '\\n' ) ) )
+            // Xmu.g:8960:2: ( ( '\\r\\n' | '\\r' | '\\n' ) )
             {
-            // Xmu.g:8461:2: ( ( '\\r\\n' | '\\r' | '\\n' ) )
-            // Xmu.g:8461:3: ( '\\r\\n' | '\\r' | '\\n' )
+            // Xmu.g:8960:2: ( ( '\\r\\n' | '\\r' | '\\n' ) )
+            // Xmu.g:8960:3: ( '\\r\\n' | '\\r' | '\\n' )
             {
-            // Xmu.g:8461:3: ( '\\r\\n' | '\\r' | '\\n' )
+            // Xmu.g:8960:3: ( '\\r\\n' | '\\r' | '\\n' )
             int alt13=3;
             int LA13_0 = input.LA(1);
 
@@ -2123,7 +2099,7 @@ public class XmuLexer extends Lexer {
             }
             switch (alt13) {
                 case 1 :
-                    // Xmu.g:8461:4: '\\r\\n'
+                    // Xmu.g:8960:4: '\\r\\n'
                     {
                     match("\r\n"); 
 
@@ -2132,14 +2108,14 @@ public class XmuLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // Xmu.g:8461:13: '\\r'
+                    // Xmu.g:8960:13: '\\r'
                     {
                     match('\r'); 
 
                     }
                     break;
                 case 3 :
-                    // Xmu.g:8461:20: '\\n'
+                    // Xmu.g:8960:20: '\\n'
                     {
                     match('\n'); 
 
@@ -2170,21 +2146,21 @@ public class XmuLexer extends Lexer {
         try {
             int _type = QUOTED_39_39_92;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xmu.g:8464:16: ( ( ( '\\'' ) ( ( '\\\\' '\\'' ) | ( '\\\\' '\\\\' ) | (~ ( '\\'' | '\\\\' ) ) )* ( '\\'' ) ) )
-            // Xmu.g:8465:2: ( ( '\\'' ) ( ( '\\\\' '\\'' ) | ( '\\\\' '\\\\' ) | (~ ( '\\'' | '\\\\' ) ) )* ( '\\'' ) )
+            // Xmu.g:8963:16: ( ( ( '\\'' ) ( ( '\\\\' '\\'' ) | ( '\\\\' '\\\\' ) | (~ ( '\\'' | '\\\\' ) ) )* ( '\\'' ) ) )
+            // Xmu.g:8964:2: ( ( '\\'' ) ( ( '\\\\' '\\'' ) | ( '\\\\' '\\\\' ) | (~ ( '\\'' | '\\\\' ) ) )* ( '\\'' ) )
             {
-            // Xmu.g:8465:2: ( ( '\\'' ) ( ( '\\\\' '\\'' ) | ( '\\\\' '\\\\' ) | (~ ( '\\'' | '\\\\' ) ) )* ( '\\'' ) )
-            // Xmu.g:8465:3: ( '\\'' ) ( ( '\\\\' '\\'' ) | ( '\\\\' '\\\\' ) | (~ ( '\\'' | '\\\\' ) ) )* ( '\\'' )
+            // Xmu.g:8964:2: ( ( '\\'' ) ( ( '\\\\' '\\'' ) | ( '\\\\' '\\\\' ) | (~ ( '\\'' | '\\\\' ) ) )* ( '\\'' ) )
+            // Xmu.g:8964:3: ( '\\'' ) ( ( '\\\\' '\\'' ) | ( '\\\\' '\\\\' ) | (~ ( '\\'' | '\\\\' ) ) )* ( '\\'' )
             {
-            // Xmu.g:8465:3: ( '\\'' )
-            // Xmu.g:8465:4: '\\''
+            // Xmu.g:8964:3: ( '\\'' )
+            // Xmu.g:8964:4: '\\''
             {
             match('\''); 
 
             }
 
 
-            // Xmu.g:8465:9: ( ( '\\\\' '\\'' ) | ( '\\\\' '\\\\' ) | (~ ( '\\'' | '\\\\' ) ) )*
+            // Xmu.g:8964:9: ( ( '\\\\' '\\'' ) | ( '\\\\' '\\\\' ) | (~ ( '\\'' | '\\\\' ) ) )*
             loop14:
             do {
                 int alt14=4;
@@ -2209,10 +2185,10 @@ public class XmuLexer extends Lexer {
 
                 switch (alt14) {
             	case 1 :
-            	    // Xmu.g:8465:10: ( '\\\\' '\\'' )
+            	    // Xmu.g:8964:10: ( '\\\\' '\\'' )
             	    {
-            	    // Xmu.g:8465:10: ( '\\\\' '\\'' )
-            	    // Xmu.g:8465:11: '\\\\' '\\''
+            	    // Xmu.g:8964:10: ( '\\\\' '\\'' )
+            	    // Xmu.g:8964:11: '\\\\' '\\''
             	    {
             	    match('\\'); 
 
@@ -2224,10 +2200,10 @@ public class XmuLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // Xmu.g:8465:21: ( '\\\\' '\\\\' )
+            	    // Xmu.g:8964:21: ( '\\\\' '\\\\' )
             	    {
-            	    // Xmu.g:8465:21: ( '\\\\' '\\\\' )
-            	    // Xmu.g:8465:22: '\\\\' '\\\\'
+            	    // Xmu.g:8964:21: ( '\\\\' '\\\\' )
+            	    // Xmu.g:8964:22: '\\\\' '\\\\'
             	    {
             	    match('\\'); 
 
@@ -2239,7 +2215,7 @@ public class XmuLexer extends Lexer {
             	    }
             	    break;
             	case 3 :
-            	    // Xmu.g:8465:32: (~ ( '\\'' | '\\\\' ) )
+            	    // Xmu.g:8964:32: (~ ( '\\'' | '\\\\' ) )
             	    {
             	    if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '&')||(input.LA(1) >= '(' && input.LA(1) <= '[')||(input.LA(1) >= ']' && input.LA(1) <= '\uFFFF') ) {
             	        input.consume();
@@ -2260,8 +2236,8 @@ public class XmuLexer extends Lexer {
             } while (true);
 
 
-            // Xmu.g:8465:48: ( '\\'' )
-            // Xmu.g:8465:49: '\\''
+            // Xmu.g:8964:48: ( '\\'' )
+            // Xmu.g:8964:49: '\\''
             {
             match('\''); 
 
@@ -2283,8 +2259,8 @@ public class XmuLexer extends Lexer {
     // $ANTLR end "QUOTED_39_39_92"
 
     public void mTokens() throws RecognitionException {
-        // Xmu.g:1:8: ( T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | URI | PRIMITIVE | BOOLEAN | NAME | NUMBER | SL_COMMENT | ML_COMMENT | OBJ_URI | TEXT | WHITESPACE | LINEBREAK | QUOTED_39_39_92 )
-        int alt15=69;
+        // Xmu.g:1:8: ( T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | URI | PRIMITIVE | BOOLEAN | NAME | NUMBER | SL_COMMENT | ML_COMMENT | OBJ_URI | TEXT | WHITESPACE | LINEBREAK | QUOTED_39_39_92 )
+        int alt15=68;
         alt15 = dfa15.predict(input);
         switch (alt15) {
             case 1 :
@@ -2736,103 +2712,95 @@ public class XmuLexer extends Lexer {
                 }
                 break;
             case 57 :
-                // Xmu.g:1:346: T__72
-                {
-                mT__72(); 
-
-
-                }
-                break;
-            case 58 :
-                // Xmu.g:1:352: URI
+                // Xmu.g:1:346: URI
                 {
                 mURI(); 
 
 
                 }
                 break;
-            case 59 :
-                // Xmu.g:1:356: PRIMITIVE
+            case 58 :
+                // Xmu.g:1:350: PRIMITIVE
                 {
                 mPRIMITIVE(); 
 
 
                 }
                 break;
-            case 60 :
-                // Xmu.g:1:366: BOOLEAN
+            case 59 :
+                // Xmu.g:1:360: BOOLEAN
                 {
                 mBOOLEAN(); 
 
 
                 }
                 break;
-            case 61 :
-                // Xmu.g:1:374: NAME
+            case 60 :
+                // Xmu.g:1:368: NAME
                 {
                 mNAME(); 
 
 
                 }
                 break;
-            case 62 :
-                // Xmu.g:1:379: NUMBER
+            case 61 :
+                // Xmu.g:1:373: NUMBER
                 {
                 mNUMBER(); 
 
 
                 }
                 break;
-            case 63 :
-                // Xmu.g:1:386: SL_COMMENT
+            case 62 :
+                // Xmu.g:1:380: SL_COMMENT
                 {
                 mSL_COMMENT(); 
 
 
                 }
                 break;
-            case 64 :
-                // Xmu.g:1:397: ML_COMMENT
+            case 63 :
+                // Xmu.g:1:391: ML_COMMENT
                 {
                 mML_COMMENT(); 
 
 
                 }
                 break;
-            case 65 :
-                // Xmu.g:1:408: OBJ_URI
+            case 64 :
+                // Xmu.g:1:402: OBJ_URI
                 {
                 mOBJ_URI(); 
 
 
                 }
                 break;
-            case 66 :
-                // Xmu.g:1:416: TEXT
+            case 65 :
+                // Xmu.g:1:410: TEXT
                 {
                 mTEXT(); 
 
 
                 }
                 break;
-            case 67 :
-                // Xmu.g:1:421: WHITESPACE
+            case 66 :
+                // Xmu.g:1:415: WHITESPACE
                 {
                 mWHITESPACE(); 
 
 
                 }
                 break;
-            case 68 :
-                // Xmu.g:1:432: LINEBREAK
+            case 67 :
+                // Xmu.g:1:426: LINEBREAK
                 {
                 mLINEBREAK(); 
 
 
                 }
                 break;
-            case 69 :
-                // Xmu.g:1:442: QUOTED_39_39_92
+            case 68 :
+                // Xmu.g:1:436: QUOTED_39_39_92
                 {
                 mQUOTED_39_39_92(); 
 
@@ -2897,7 +2865,7 @@ public class XmuLexer extends Lexer {
             this.transition = DFA5_transition;
         }
         public String getDescription() {
-            return "8436:3: ( ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )+ '!' )?";
+            return "8935:3: ( ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )+ '!' )?";
         }
     }
     static final String DFA15_eotS =
@@ -2910,11 +2878,11 @@ public class XmuLexer extends Lexer {
         "\1\u00c5\3\76\1\u00cd\1\uffff\1\76\1\u00cf\1\uffff\1\76\1\uffff"+
         "\1\76\1\u00d2\3\76\1\u00d6\3\uffff\3\76\1\uffff\1\76\1\u00db\1\76"+
         "\1\u00dd\1\u00de\1\u00df\1\76\1\uffff\1\76\1\uffff\1\u00e2\1\u00e3"+
-        "\1\uffff\1\u00e4\1\76\1\u00e7\1\uffff\1\u00e8\2\76\1\u00eb\1\uffff"+
-        "\1\u00ec\3\uffff\1\u00ed\1\76\3\uffff\1\76\1\u00f1\2\uffff\2\u00e8"+
-        "\3\uffff\1\76\1\u00f3\1\u00f4\1\uffff\1\u00f5\3\uffff";
+        "\1\uffff\1\u00e4\1\76\1\u00e6\1\uffff\1\u00e7\2\76\1\u00ea\1\uffff"+
+        "\1\u00eb\3\uffff\1\u00ec\1\76\3\uffff\1\76\2\uffff\2\u00e7\3\uffff"+
+        "\1\76\1\u00f1\1\u00f2\1\u00f3\3\uffff";
     static final String DFA15_eofS =
-        "\u00f6\uffff";
+        "\u00f4\uffff";
     static final String DFA15_minS =
         "\1\11\4\uffff\1\53\1\uffff\1\55\1\uffff\1\52\1\72\1\uffff\1\55\1"+
         "\uffff\1\75\2\uffff\20\55\3\uffff\5\55\1\41\11\uffff\1\0\11\uffff"+
@@ -2924,8 +2892,8 @@ public class XmuLexer extends Lexer {
         "\4\55\1\uffff\1\41\3\55\1\41\1\uffff\1\55\1\41\1\uffff\1\55\1\uffff"+
         "\1\55\1\41\3\55\1\41\3\uffff\3\55\1\uffff\1\55\1\41\1\55\3\41\1"+
         "\55\1\uffff\1\55\1\uffff\2\41\1\uffff\1\41\1\55\1\41\1\uffff\1\41"+
-        "\2\55\1\41\1\uffff\1\41\3\uffff\1\41\1\55\3\uffff\1\55\1\41\2\uffff"+
-        "\2\41\3\uffff\1\55\2\41\1\uffff\1\41\3\uffff";
+        "\2\55\1\41\1\uffff\1\41\3\uffff\1\41\1\55\3\uffff\1\55\2\uffff\2"+
+        "\41\3\uffff\1\55\3\41\3\uffff";
     static final String DFA15_maxS =
         "\1\175\4\uffff\1\53\1\uffff\1\172\1\uffff\1\57\1\72\1\uffff\1\172"+
         "\1\uffff\1\75\2\uffff\20\172\3\uffff\6\172\11\uffff\1\ufffe\11\uffff"+
@@ -2933,21 +2901,21 @@ public class XmuLexer extends Lexer {
         "\1\uffff\22\172\1\uffff\13\172\2\uffff\23\172\1\uffff\4\172\1\uffff"+
         "\5\172\1\uffff\2\172\1\uffff\1\172\1\uffff\6\172\3\uffff\3\172\1"+
         "\uffff\7\172\1\uffff\1\172\1\uffff\2\172\1\uffff\3\172\1\uffff\4"+
-        "\172\1\uffff\1\172\3\uffff\2\172\3\uffff\2\172\2\uffff\2\172\3\uffff"+
-        "\3\172\1\uffff\1\172\3\uffff";
+        "\172\1\uffff\1\172\3\uffff\2\172\3\uffff\1\172\2\uffff\2\172\3\uffff"+
+        "\4\172\3\uffff";
     static final String DFA15_acceptS =
         "\1\uffff\1\1\1\2\1\3\1\4\1\uffff\1\7\1\uffff\1\12\2\uffff\1\17\1"+
-        "\uffff\1\22\1\uffff\1\25\1\26\20\uffff\1\67\1\70\1\71\6\uffff\1"+
-        "\101\1\103\1\104\1\105\1\6\1\5\1\11\1\10\1\102\1\uffff\1\100\1\13"+
-        "\1\16\1\15\1\21\1\20\1\72\1\24\1\23\1\uffff\1\75\41\uffff\1\76\1"+
-        "\uffff\1\14\1\77\1\uffff\1\30\16\uffff\1\46\22\uffff\1\27\13\uffff"+
+        "\uffff\1\22\1\uffff\1\25\1\26\20\uffff\1\66\1\67\1\70\6\uffff\1"+
+        "\100\1\102\1\103\1\104\1\6\1\5\1\11\1\10\1\101\1\uffff\1\77\1\13"+
+        "\1\16\1\15\1\21\1\20\1\71\1\24\1\23\1\uffff\1\74\41\uffff\1\75\1"+
+        "\uffff\1\14\1\76\1\uffff\1\30\16\uffff\1\46\22\uffff\1\27\13\uffff"+
         "\1\43\1\44\23\uffff\1\31\4\uffff\1\36\5\uffff\1\45\2\uffff\1\51"+
-        "\1\uffff\1\53\6\uffff\1\64\1\65\1\66\3\uffff\1\74\7\uffff\1\42\1"+
-        "\uffff\1\50\2\uffff\1\55\3\uffff\1\63\4\uffff\1\33\1\uffff\1\35"+
-        "\1\37\1\40\2\uffff\1\52\1\54\1\56\2\uffff\1\61\1\73\2\uffff\1\32"+
-        "\1\34\1\41\3\uffff\1\62\1\uffff\1\57\1\60\1\47";
+        "\1\uffff\1\53\6\uffff\1\63\1\64\1\65\3\uffff\1\73\7\uffff\1\42\1"+
+        "\uffff\1\50\2\uffff\1\55\3\uffff\1\62\4\uffff\1\33\1\uffff\1\35"+
+        "\1\37\1\40\2\uffff\1\52\1\54\1\56\1\uffff\1\61\1\72\2\uffff\1\32"+
+        "\1\34\1\41\4\uffff\1\57\1\60\1\47";
     static final String DFA15_specialS =
-        "\u00f6\uffff}>";
+        "\u00f4\uffff}>";
     static final String[] DFA15_transitionS = {
             "\1\53\1\54\1\uffff\1\53\1\54\22\uffff\1\53\2\uffff\1\1\3\uffff"+
             "\1\55\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11\12\51\1\12\1\13\1\14"+
@@ -3321,14 +3289,14 @@ public class XmuLexer extends Lexer {
             "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\7\77"+
             "\1\u00e5\22\77",
             "\1\76\13\uffff\1\62\2\uffff\12\77\6\uffff\1\76\32\77\4\uffff"+
-            "\1\77\1\uffff\3\77\1\u00e6\26\77",
+            "\1\77\1\uffff\32\77",
             "",
             "\1\76\13\uffff\1\62\2\uffff\12\77\6\uffff\1\76\32\77\4\uffff"+
             "\1\77\1\uffff\32\77",
             "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\15\77"+
-            "\1\u00e9\14\77",
+            "\1\u00e8\14\77",
             "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\21\77"+
-            "\1\u00ea\10\77",
+            "\1\u00e9\10\77",
             "\1\76\13\uffff\1\62\2\uffff\12\77\6\uffff\1\76\32\77\4\uffff"+
             "\1\77\1\uffff\32\77",
             "",
@@ -3340,14 +3308,12 @@ public class XmuLexer extends Lexer {
             "\1\76\13\uffff\1\62\2\uffff\12\77\6\uffff\1\76\32\77\4\uffff"+
             "\1\77\1\uffff\32\77",
             "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\22\77"+
-            "\1\u00ee\7\77",
+            "\1\u00ed\7\77",
             "",
             "",
             "",
             "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\22\77"+
-            "\1\u00ef\2\77\1\u00f0\4\77",
-            "\1\76\13\uffff\1\62\2\uffff\12\77\6\uffff\1\76\32\77\4\uffff"+
-            "\1\77\1\uffff\32\77",
+            "\1\u00ee\2\77\1\u00ef\4\77",
             "",
             "",
             "\1\76\13\uffff\1\62\2\uffff\12\77\6\uffff\1\76\32\77\4\uffff"+
@@ -3358,12 +3324,11 @@ public class XmuLexer extends Lexer {
             "",
             "",
             "\1\62\2\uffff\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\4\77"+
-            "\1\u00f2\25\77",
+            "\1\u00f0\25\77",
             "\1\76\13\uffff\1\62\2\uffff\12\77\6\uffff\1\76\32\77\4\uffff"+
             "\1\77\1\uffff\32\77",
             "\1\76\13\uffff\1\62\2\uffff\12\77\6\uffff\1\76\32\77\4\uffff"+
             "\1\77\1\uffff\32\77",
-            "",
             "\1\76\13\uffff\1\62\2\uffff\12\77\6\uffff\1\76\32\77\4\uffff"+
             "\1\77\1\uffff\32\77",
             "",
@@ -3401,7 +3366,7 @@ public class XmuLexer extends Lexer {
             this.transition = DFA15_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | URI | PRIMITIVE | BOOLEAN | NAME | NUMBER | SL_COMMENT | ML_COMMENT | OBJ_URI | TEXT | WHITESPACE | LINEBREAK | QUOTED_39_39_92 );";
+            return "1:1: Tokens : ( T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | URI | PRIMITIVE | BOOLEAN | NAME | NUMBER | SL_COMMENT | ML_COMMENT | OBJ_URI | TEXT | WHITESPACE | LINEBREAK | QUOTED_39_39_92 );";
         }
     }
  

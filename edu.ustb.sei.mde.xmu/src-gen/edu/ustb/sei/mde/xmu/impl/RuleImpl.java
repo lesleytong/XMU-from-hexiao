@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.RuleImpl#getParameters <em>Parameters</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.RuleImpl#getNVars <em>NVars</em>}</li>
@@ -38,7 +39,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.RuleImpl#getVVars <em>VVars</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.RuleImpl#getStatement <em>Statement</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

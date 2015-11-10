@@ -12,11 +12,11 @@ import org.eclipse.emf.ecore.EEnumLiteral;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu.EnumLiteral#getType <em>Type</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.EnumLiteral#getValue <em>Value</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.ustb.sei.mde.xmu.XmuPackage#getEnumLiteral()
  * @model

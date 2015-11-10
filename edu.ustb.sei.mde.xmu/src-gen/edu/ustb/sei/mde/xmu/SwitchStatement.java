@@ -11,12 +11,11 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu.SwitchStatement#getVar <em>Var</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.SwitchStatement#getCases <em>Cases</em>}</li>
- *   <li>{@link edu.ustb.sei.mde.xmu.SwitchStatement#getWhen <em>When</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.ustb.sei.mde.xmu.XmuPackage#getSwitchStatement()
  * @model
@@ -64,21 +63,5 @@ public interface SwitchStatement extends Statement, TaggedElement {
 	 * @generated
 	 */
 	EList<CaseSubStatement> getCases();
-
-	/**
-	 * Returns the value of the '<em><b>When</b></em>' containment reference list.
-	 * The list contents are of type {@link edu.ustb.sei.mde.xmu.UpdatedStatement}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>When</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>When</em>' containment reference list.
-	 * @see edu.ustb.sei.mde.xmu.XmuPackage#getSwitchStatement_When()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<UpdatedStatement> getWhen();
 
 } // SwitchStatement

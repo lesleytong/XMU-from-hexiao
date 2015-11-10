@@ -3,14 +3,19 @@
 package edu.ustb.sei.mde.xmu.impl;
 
 import edu.ustb.sei.mde.xmu.CaseSubStatement;
+import edu.ustb.sei.mde.xmu.RuleCallStatement;
 import edu.ustb.sei.mde.xmu.Statement;
 import edu.ustb.sei.mde.xmu.XmuPackage;
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,10 +23,11 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.CaseSubStatementImpl#getStatement <em>Statement</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.xmu.impl.CaseSubStatementImpl#getWhen <em>When</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -35,6 +41,16 @@ public abstract class CaseSubStatementImpl extends MinimalEObjectImpl.Container 
 	 * @ordered
 	 */
 	protected Statement statement;
+
+	/**
+	 * The cached value of the '{@link #getWhen() <em>When</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getWhen()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<RuleCallStatement> when;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -103,11 +119,25 @@ public abstract class CaseSubStatementImpl extends MinimalEObjectImpl.Container 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<RuleCallStatement> getWhen() {
+		if (when == null) {
+			when = new EObjectContainmentEList<RuleCallStatement>(RuleCallStatement.class, this, XmuPackage.CASE_SUB_STATEMENT__WHEN);
+		}
+		return when;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case XmuPackage.CASE_SUB_STATEMENT__STATEMENT:
 				return basicSetStatement(null, msgs);
+			case XmuPackage.CASE_SUB_STATEMENT__WHEN:
+				return ((InternalEList<?>)getWhen()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -122,6 +152,8 @@ public abstract class CaseSubStatementImpl extends MinimalEObjectImpl.Container 
 		switch (featureID) {
 			case XmuPackage.CASE_SUB_STATEMENT__STATEMENT:
 				return getStatement();
+			case XmuPackage.CASE_SUB_STATEMENT__WHEN:
+				return getWhen();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -131,11 +163,16 @@ public abstract class CaseSubStatementImpl extends MinimalEObjectImpl.Container 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case XmuPackage.CASE_SUB_STATEMENT__STATEMENT:
 				setStatement((Statement)newValue);
+				return;
+			case XmuPackage.CASE_SUB_STATEMENT__WHEN:
+				getWhen().clear();
+				getWhen().addAll((Collection<? extends RuleCallStatement>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -152,6 +189,9 @@ public abstract class CaseSubStatementImpl extends MinimalEObjectImpl.Container 
 			case XmuPackage.CASE_SUB_STATEMENT__STATEMENT:
 				setStatement((Statement)null);
 				return;
+			case XmuPackage.CASE_SUB_STATEMENT__WHEN:
+				getWhen().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -166,6 +206,8 @@ public abstract class CaseSubStatementImpl extends MinimalEObjectImpl.Container 
 		switch (featureID) {
 			case XmuPackage.CASE_SUB_STATEMENT__STATEMENT:
 				return statement != null;
+			case XmuPackage.CASE_SUB_STATEMENT__WHEN:
+				return when != null && !when.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

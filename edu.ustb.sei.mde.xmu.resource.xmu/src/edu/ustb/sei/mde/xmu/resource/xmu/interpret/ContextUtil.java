@@ -532,24 +532,24 @@ public class ContextUtil {
 		}		
 	}
 	
-	static public List<UpdatedStatement> lookupUpdatedStatementsFromSourcePost(EObject o, ObjectVariable sourcePost) {
-		List<UpdatedStatement> result = new ArrayList<UpdatedStatement>();
+	static public List<RuleCallStatement> lookupUpdatedStatementsFromSourcePost(EObject o, ObjectVariable sourcePost) {
+		List<RuleCallStatement> result = new ArrayList<RuleCallStatement>();
 		lookupUpdatedStatementsFromSourcePost(o,sourcePost,result);
 		//if(result.size()==0) return null;
 		return result;
 	}
 	
-	static private void lookupUpdatedStatementsFromSourcePost(EObject o, ObjectVariable sourcePost, List<UpdatedStatement> result) {
+	static private void lookupUpdatedStatementsFromSourcePost(EObject o, ObjectVariable sourcePost, List<RuleCallStatement> result) {
 		if(o==null) return;
 		if(o instanceof ForStatement) {
-			for(UpdatedStatement u : ((ForStatement) o).getWhen()) {
-				if(isCorrelated(u.getSVar(),sourcePost)) {
+			for(RuleCallStatement u : ((ForStatement) o).getWhen()) {
+				if(isCorrelated(u,sourcePost)) {
 					result.add(u);
 				}
 			}
-		} else if(o instanceof SwitchStatement) {
-			for(UpdatedStatement u : ((SwitchStatement) o).getWhen()) {
-				if(isCorrelated(u.getSVar(),sourcePost)) {
+		} else if(o instanceof CaseSubStatement) {
+			for(RuleCallStatement u : ((CaseSubStatement) o).getWhen()) {
+				if(isCorrelated(u,sourcePost)) {
 					result.add(u);
 				}
 			}
@@ -557,62 +557,75 @@ public class ContextUtil {
 		lookupUpdatedStatementsFromSourcePost(o.eContainer(),sourcePost,result);
 	}
 	
-	static public boolean isCorrelated(List<Variable> slist, Variable sp) {
-		for(Variable s : slist) {
-			if(sp.getName().startsWith(s.getName()) && sp.getName().length() == s.getName().length()+Util.POST_LENGTH) 
-				return true;			
+	static public boolean isCorrelated(RuleCallStatement rc, Variable sp) {
+		for(Expr p : rc.getActualParameters()) {
+			if(p instanceof VariableExp) {
+				if(((VariableExp) p).getPath().size()==0) {
+					String sn = ((VariableExp) p).getVar().getName();
+					if(sp.getName().startsWith(sn) && sp.getName().length() == sn.length()+Util.POST_LENGTH) 
+						return true;
+				}
+			}
 		}
 		return false;
 	}
 	
-	static public List<UpdatedStatement> lookupUpdatedStatementsFromView(EObject o, Variable view) {
-		List<UpdatedStatement> result = new ArrayList<UpdatedStatement>();
-		lookupUpdatedStatementsFromView(o,view,result);
-		//if(result.size()==0) return null;
-		return result;
-	}
+//	static public boolean isCorrelated(List<Variable> slist, Variable sp) {
+//		for(Variable s : slist) {
+//			if(sp.getName().startsWith(s.getName()) && sp.getName().length() == s.getName().length()+Util.POST_LENGTH) 
+//				return true;			
+//		}
+//		return false;
+//	}
 	
-	static private void lookupUpdatedStatementsFromView(EObject o, Variable view,List<UpdatedStatement> result) {
-		if(o==null) return;
-		if(o instanceof ForStatement) {
-			for(UpdatedStatement u : ((ForStatement) o).getWhen()) {
-				if(u.getVVar().contains(view)) {
-					result.add(u);
-				}
-			}
-			
-//			if(((ForStatement) o).getVPattern()!=null) {
-//				if(((ForStatement) o).getVPattern().getRoot().getVariable()==view) {
-//					return (ObjectVariable) ((ForStatement) o).getSPattern().getRoot().getVariable();
+//	static public List<UpdatedStatement> lookupUpdatedStatementsFromView(EObject o, Variable view) {
+//		List<UpdatedStatement> result = new ArrayList<UpdatedStatement>();
+//		lookupUpdatedStatementsFromView(o,view,result);
+//		//if(result.size()==0) return null;
+//		return result;
+//	}
+	
+//	static private void lookupUpdatedStatementsFromView(EObject o, Variable view,List<UpdatedStatement> result) {
+//		if(o==null) return;
+//		if(o instanceof ForStatement) {
+//			for(UpdatedStatement u : ((ForStatement) o).getWhen()) {
+//				if(u.getVVar().contains(view)) {
+//					result.add(u);
 //				}
 //			}
-		} else if(o instanceof SwitchStatement) {
-			for(UpdatedStatement u : ((SwitchStatement) o).getWhen()) {
-				if(u.getVVar()==view) {
-					result.add(u);
-				}
-			}
-		} else if(o instanceof Rule) {
-//			boolean flag = false;
 //			
-//			for(Parameter p : ((Rule) o).getParameters()) {
-//				if(p.getTag()==VariableFlag.VIEW)
-//					if(p.getVariable()==view) {
-//						flag = true;
-//						break;
-//					}
-//			}
-//			
-//			if(flag) {
-//				for(Parameter p : ((Rule) o).getParameters()) {
-//					if(p.getTag()==VariableFlag.SOURCE)
-//						return (ObjectVariable) p.getVariable();
+////			if(((ForStatement) o).getVPattern()!=null) {
+////				if(((ForStatement) o).getVPattern().getRoot().getVariable()==view) {
+////					return (ObjectVariable) ((ForStatement) o).getSPattern().getRoot().getVariable();
+////				}
+////			}
+//		} else if(o instanceof SwitchStatement) {
+//			for(UpdatedStatement u : ((SwitchStatement) o).getWhen()) {
+//				if(u.getVVar()==view) {
+//					result.add(u);
 //				}
 //			}
-		}
-		
-		lookupUpdatedStatementsFromView(o.eContainer(),view,result);
-	}
+//		} else if(o instanceof Rule) {
+////			boolean flag = false;
+////			
+////			for(Parameter p : ((Rule) o).getParameters()) {
+////				if(p.getTag()==VariableFlag.VIEW)
+////					if(p.getVariable()==view) {
+////						flag = true;
+////						break;
+////					}
+////			}
+////			
+////			if(flag) {
+////				for(Parameter p : ((Rule) o).getParameters()) {
+////					if(p.getTag()==VariableFlag.SOURCE)
+////						return (ObjectVariable) p.getVariable();
+////				}
+////			}
+//		}
+//		
+//		lookupUpdatedStatementsFromView(o.eContainer(),view,result);
+//	}
 	
 //	static public ObjectVariable lookupViewVariable(EObject o, ObjectVariable sourcePost) {
 //		if(o==null) return null;

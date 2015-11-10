@@ -168,6 +168,14 @@ public class XmuAdapterFactory extends AdapterFactoryImpl {
 				return createVStatementAdapter();
 			}
 			@Override
+			public Adapter caseDefaultVStatement(DefaultVStatement object) {
+				return createDefaultVStatementAdapter();
+			}
+			@Override
+			public Adapter caseTaggedVStatement(TaggedVStatement object) {
+				return createTaggedVStatementAdapter();
+			}
+			@Override
 			public Adapter caseBlockStatement(BlockStatement object) {
 				return createBlockStatementAdapter();
 			}
@@ -206,10 +214,6 @@ public class XmuAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseRuleCallStatement(RuleCallStatement object) {
 				return createRuleCallStatementAdapter();
-			}
-			@Override
-			public Adapter caseUpdatedStatement(UpdatedStatement object) {
-				return createUpdatedStatementAdapter();
 			}
 			@Override
 			public Adapter caseBooleanOrExpr(BooleanOrExpr object) {
@@ -710,6 +714,34 @@ public class XmuAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.xmu.DefaultVStatement <em>Default VStatement</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.xmu.DefaultVStatement
+	 * @generated
+	 */
+	public Adapter createDefaultVStatementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.xmu.TaggedVStatement <em>Tagged VStatement</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.xmu.TaggedVStatement
+	 * @generated
+	 */
+	public Adapter createTaggedVStatementAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.xmu.BlockStatement <em>Block Statement</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -846,20 +878,6 @@ public class XmuAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createRuleCallStatementAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.xmu.UpdatedStatement <em>Updated Statement</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.ustb.sei.mde.xmu.UpdatedStatement
-	 * @generated
-	 */
-	public Adapter createUpdatedStatementAdapter() {
 		return null;
 	}
 

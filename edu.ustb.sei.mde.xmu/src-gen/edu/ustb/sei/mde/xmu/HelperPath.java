@@ -10,10 +10,10 @@ package edu.ustb.sei.mde.xmu;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu.HelperPath#getHelper <em>Helper</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.ustb.sei.mde.xmu.XmuPackage#getHelperPath()
  * @model

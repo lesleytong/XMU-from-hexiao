@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import edu.ustb.sei.mde.xmu.*;
 import edu.ustb.sei.mde.xmu.impl.CaseSubStatementImpl;
+import edu.ustb.sei.mde.xmu.resource.xmu.analysis.Util;
 import edu.ustb.sei.mde.xmu.resource.xmu.mopp.XmuPrinter;
 import edu.ustb.sei.mde.xmu.resource.xmu.mopp.XmuPrinter2;
 import edu.ustb.sei.mde.xmu.resource.xmu.util.AbstractXmuInterpreter;
@@ -53,52 +54,52 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 		return Just.TRUE;
 	}
 
-	@Override
-	public SafeType interprete_edu_ustb_sei_mde_xmu_UpdatedStatement(
-			UpdatedStatement updatedStatement, XmuContext context) {
-		
-		
-//		SafeType s = context.getSafeTypeValue(updatedStatement.getSVar());
-//		SafeType v = context.getSafeTypeValue(updatedStatement.getVVar());
+//	@Override
+//	public SafeType interprete_edu_ustb_sei_mde_xmu_UpdatedStatement(
+//			UpdatedStatement updatedStatement, XmuContext context) {
 //		
-//		if(v.isUndefined() || v.isInvalid() || v.isNull()) {
-//			if(s.isUndefined() || s.isInvalid() || s.isNull()) return SafeType.getInvalid();
-////			EObject cv = context.getEnvironment().getTrace().getCorresponding(s.getObjectValue());
-//			XmuTraceTuple forward = context.getEnvironment().getTrace().getForward(Collections.singletonList(s.getValue()));
-//			if(forward==null || forward.getElements().length==0) return SafeType.getInvalid();
-//			
-//			EObject cv = (EObject) forward.get(0);
-//			if(cv==null) return SafeType.getInvalid();
-//			return SafeType.createFromValue(cv);
-//		} else 
-//			return v;
-		
-		List<Object> sv = new ArrayList<Object>();
-		List<Object> vv = new ArrayList<Object>();
-		
-		for(Variable var : updatedStatement.getSVar()) {
-			SafeType val = context.getSafeTypeValue(var);
-			if(val.isInvalid()) return SafeType.getInvalid();
-			sv.add(val.getValue());
-		}
-		
-		for(Variable var : updatedStatement.getVVar()) {
-			SafeType val = context.getSafeTypeValue(var);
-			if(val.isUndefined() || val.isInvalid()) 
-				break; 
-			vv.add(val.getValue());
-		}
-		
-		if(vv.size()==updatedStatement.getVVar().size()) {
-			return SafeType.createFromValue(vv.toArray());
-		} else {
-			if(sv.size()==updatedStatement.getSVar().size()) {
-				XmuTraceTuple forward = context.getEnvironment().getTrace().getForward(sv);
-				if(forward==null || forward.getElements().length==0) return SafeType.getInvalid();
-				return SafeType.createFromValue(forward.getElements());
-			} else return SafeType.getInvalid();
-		}
-	}
+//		
+////		SafeType s = context.getSafeTypeValue(updatedStatement.getSVar());
+////		SafeType v = context.getSafeTypeValue(updatedStatement.getVVar());
+////		
+////		if(v.isUndefined() || v.isInvalid() || v.isNull()) {
+////			if(s.isUndefined() || s.isInvalid() || s.isNull()) return SafeType.getInvalid();
+//////			EObject cv = context.getEnvironment().getTrace().getCorresponding(s.getObjectValue());
+////			XmuTraceTuple forward = context.getEnvironment().getTrace().getForward(Collections.singletonList(s.getValue()));
+////			if(forward==null || forward.getElements().length==0) return SafeType.getInvalid();
+////			
+////			EObject cv = (EObject) forward.get(0);
+////			if(cv==null) return SafeType.getInvalid();
+////			return SafeType.createFromValue(cv);
+////		} else 
+////			return v;
+//		
+//		List<Object> sv = new ArrayList<Object>();
+//		List<Object> vv = new ArrayList<Object>();
+//		
+//		for(Variable var : updatedStatement.getSVar()) {
+//			SafeType val = context.getSafeTypeValue(var);
+//			if(val.isInvalid()) return SafeType.getInvalid();
+//			sv.add(val.getValue());
+//		}
+//		
+//		for(Variable var : updatedStatement.getVVar()) {
+//			SafeType val = context.getSafeTypeValue(var);
+//			if(val.isUndefined() || val.isInvalid()) 
+//				break; 
+//			vv.add(val.getValue());
+//		}
+//		
+//		if(vv.size()==updatedStatement.getVVar().size()) {
+//			return SafeType.createFromValue(vv.toArray());
+//		} else {
+//			if(sv.size()==updatedStatement.getSVar().size()) {
+//				XmuTraceTuple forward = context.getEnvironment().getTrace().getForward(sv);
+//				if(forward==null || forward.getElements().length==0) return SafeType.getInvalid();
+//				return SafeType.createFromValue(forward.getElements());
+//			} else return SafeType.getInvalid();
+//		}
+//	}
 	
 	class ForStatementVReordering {
 		public ForStatement reason;
@@ -169,7 +170,8 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 			//1. check if patternV is enforceable 
 			//2. if true, do normal logic
 			//3. otherwise, reorder forstatement
-			EnforceableChecking trace = new EnforceableChecking();
+			EnforceableChecking trace = new EnforceableChecking(Util.getRule(forStatement));
+			
 			
 			if(forStatement.getVPattern()==null || 
 					isEnforceable(forStatement.getVPattern().getRoot(), c,trace)) {
@@ -299,20 +301,14 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 		
 	}
 
-	protected void doForUpdatedStatements(ForStatement forStatement,
+	protected boolean doForUpdatedStatements(ForStatement forStatement,
 			XmuContext c) {
-		for(UpdatedStatement u : forStatement.getWhen()) {
-			SafeType ret = this.interprete_edu_ustb_sei_mde_xmu_UpdatedStatement(u, c);
-			if(ret.isInvalid()==false) {
-//					c.putValue(u.getVVar(), ret);
-				Object[] vals = (Object[])ret.getValue();
-				for(int i=0;i<u.getVVar().size();i++) {
-					Variable v = u.getVVar().get(i);
-					Object val = vals[i];
-					c.putValue(v, SafeType.createFromValue(val));
-				}
-			}
+		for(RuleCallStatement rc : forStatement.getWhen()) {
+			SafeType ret = this.interprete_edu_ustb_sei_mde_xmu_RuleCallStatement(rc, c);
+			if(ret.isInvalid()) 
+				return false;
 		}
+		return true;
 	}
 	
 	
@@ -324,13 +320,17 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 				|| switchStatement.getTag()==VariableFlag.SOURCE_POST 
 				|| switchStatement.getTag()==VariableFlag.NORMAL) {
 			
-			doSwitchUpdatedStatements(switchStatement, context);
+//			doSwitchUpdatedStatements(switchStatement, context);
 			
 			for(CaseSubStatement css : switchStatement.getCases()) {
+				
 				if(css instanceof CasePatternStatement) {
 					SafeType c = this.interprete_edu_ustb_sei_mde_xmu_Pattern(((CasePatternStatement) css).getPattern(), context);
-					if(c.getValue()==Boolean.TRUE)
+					if(c.getValue()==Boolean.TRUE) {
+						if(doSwitchCaseUpdatedStatements(css,context)==false)
+							throw new RuntimeException();
 						return this.interprete(css.getStatement(), context);
+					}
 				} else if(css instanceof CaseValueStatement) {
 					SafeType c = this.interprete(((CaseValueStatement) css).getExpression(), context);
 					if(c.getValue()==Boolean.TRUE)
@@ -343,13 +343,23 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 			
 			SwitchVReordering newOrder = reorderSwitchStatement(switchStatement, context);
 			
-			doSwitchUpdatedStatements(switchStatement, context);
+			//doSwitchUpdatedStatements(switchStatement, context);
 			
 			if(newOrder==null) {
 				System.out.println("Unable to reorder switchV:");
 				printer.print_edu_ustb_sei_mde_xmu_SwitchStatement(switchStatement, "", new PrintWriter(System.out));
 				return SafeType.getInvalid();
 			} else {
+				for(Statement u : newOrder.whenUpdates) {
+					SafeType t = this.interprete(u, context);
+					if(t==Just.TRUE) {
+						continue;
+					} else {
+						System.out.println("Unable to execute when update "+u);
+						return t;
+					}
+				}
+				
 				for(Pattern p : newOrder.enforceV) {
 					SafeType t = this.enforcePattern(p, context, null);
 					if(t==Just.TRUE) {
@@ -417,24 +427,34 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 		}
 	}
 
-	protected void doSwitchUpdatedStatements(SwitchStatement switchStatement,
+//	protected void doSwitchUpdatedStatements(SwitchStatement switchStatement,
+//			XmuContext context) {
+//		for(UpdatedStatement u : switchStatement.getWhen()) {
+//			SafeType ret = this.interprete_edu_ustb_sei_mde_xmu_UpdatedStatement(u, context);
+//			if(ret.isInvalid()==false) {
+//				Object[] vals = (Object[])ret.getValue();
+//				for(int i=0;i<u.getVVar().size();i++) {
+//					Variable v = u.getVVar().get(i);
+//					Object val = vals[i];
+//					context.putValue(v, SafeType.createFromValue(val));
+//				}
+//			}
+//		}
+//	}
+	
+	protected boolean doSwitchCaseUpdatedStatements(CaseSubStatement caesStatement,
 			XmuContext context) {
-		for(UpdatedStatement u : switchStatement.getWhen()) {
-			SafeType ret = this.interprete_edu_ustb_sei_mde_xmu_UpdatedStatement(u, context);
-			if(ret.isInvalid()==false) {
-				Object[] vals = (Object[])ret.getValue();
-				for(int i=0;i<u.getVVar().size();i++) {
-					Variable v = u.getVVar().get(i);
-					Object val = vals[i];
-					context.putValue(v, SafeType.createFromValue(val));
-				}
-			}
+		for(RuleCallStatement rc : caesStatement.getWhen()) {
+			SafeType ret = this.interprete_edu_ustb_sei_mde_xmu_RuleCallStatement(rc, context);
+			if(ret.isInvalid()) 
+				return false;
 		}
+		return true;
 	}
 	
 	class SwitchVReordering {
 		public SwitchStatement reason;
-		
+		public ArrayList<Statement> whenUpdates = new ArrayList<Statement>();
 		public ArrayList<Pattern> enforceV = new ArrayList<Pattern>();
 		public ArrayList<Statement> updates = new ArrayList<Statement>();
 		public ArrayList<Pattern> checkV = new ArrayList<Pattern>();
@@ -491,6 +511,8 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 							XmuContext nc = context.getCopy();
 							SafeType check = XmuModelCheck.MODEL_CHECK.interprete_edu_ustb_sei_mde_xmu_Pattern(((CasePatternStatement) c).getPattern(), nc);
 							if(check==Just.TRUE) {
+								if(doSwitchCaseUpdatedStatements(c,nc)==false)
+									return false;
 								if(collectReorderedPath(c.getStatement(),reorder,nc)) {
 									ContextUtil.merge(context, nc);
 									return true;								
@@ -511,13 +533,12 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 					for(CaseSubStatement c : cases) {
 						if(c instanceof CasePatternStatement) {
 							if(collectReorderedPath(c.getStatement(),reorder,context)) {
-								
-								doSwitchUpdatedStatements((SwitchStatement) statement,context);
-								EnforceableChecking trace = new EnforceableChecking();
+								EnforceableChecking trace = new EnforceableChecking(Util.getRule(c));
 								if(isEnforceable(((CasePatternStatement) c).getPattern().getRoot(),context,trace)) {
 									reorder.enforceV.add(((CasePatternStatement) c).getPattern());
 								} else
 									reorder.checkV.add(((CasePatternStatement) c).getPattern());
+								reorder.whenUpdates.addAll(c.getWhen());
 								return true;								
 							}
 						} else if(c instanceof CaseValueStatement) {
@@ -538,10 +559,14 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 						XmuContext nc = context.getCopy();
 						SafeType check = XmuModelCheck.MODEL_CHECK.interprete_edu_ustb_sei_mde_xmu_Pattern(((CasePatternStatement) c).getPattern(), nc);
 						if(check==Just.TRUE) {
+							if(doSwitchCaseUpdatedStatements(c,nc)==false) 
+								return false;
 							if(collectReorderedPath(c.getStatement(),reorder,nc)) {
 								ContextUtil.merge(context, nc);
 								return true;								
 							}
+							//Assert if condition holds, this line should not be executed
+							throw new RuntimeException();
 						}
 					} else if(c instanceof CaseValueStatement) {
 						SafeType check = XmuModelCheck.MODEL_CHECK.interprete(((CaseValueStatement) c).getExpression(), context);
@@ -585,6 +610,11 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 	}
 	
 	class EnforceableChecking {
+		EnforceableChecking(Rule r) {
+			for(Parameter p : r.getParameters()) {
+				enforceableVars.add(p.getVariable());
+			}
+		}
 		public HashSet<Variable> enforceableVars = new HashSet<Variable>();
 		public String unsatisfiedReason = null;  
 	}
@@ -812,13 +842,81 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 	@Override
 	public SafeType interprete_edu_ustb_sei_mde_xmu_RuleCallStatement(
 			RuleCallStatement ruleCallStatement, XmuContext context) {
-//		if(shouldPendingThisCall(ruleCallStatement)) {
-//			ruleCallPending.add(ruleCallStatement);
-//			return Just.TRUE;//maybe unknown
-//		} else {
-			return super.interprete_edu_ustb_sei_mde_xmu_RuleCallStatement(
-					ruleCallStatement, context);			
-//		}
+		
+		//collect source and normal parameters
+		//check trace
+		//if trace exists, use the trace directly and write back
+		//else do rule call
+		
+		List<Object> parameterList = new ArrayList<Object>();
+		
+		XmuContext newContext = new XmuContext(context.getEnvironment());
+		Rule rule = ruleCallStatement.getRule();
+		newContext.initFromRule(rule);
+		
+		int size = rule.getParameters().size();
+		
+		for(int i=0;i<size;i++) {
+			Parameter fp = rule.getParameters().get(i);
+			Expr ap = ruleCallStatement.getActualParameters().get(i);
+			SafeType value = this.interprete(ap, context);
+			if((fp.getTag()==VariableFlag.SOURCE || fp.getTag()==VariableFlag.NORMAL)
+					&&(value.isInvalid() || value.isUndefined())) 
+				return SafeType.getInvalid();
+			
+			newContext.putValue(fp.getVariable(), value);
+			
+			if(fp.getTag()==VariableFlag.SOURCE) {
+				if(!(ap instanceof VariableExp || ap instanceof AllInstanceExpr)) return SafeType.getInvalid(); // you are not allowed to pass a derived value to a source variable
+				Variable spV = context.getVariable(((VariableExp)ap).getVar().getName()+Util.POST_FLAG);
+				SafeType spValue = context.getSafeTypeValue(spV);
+				Variable fspv = newContext.getVariable(fp.getVariable().getName()+Util.POST_FLAG);
+				newContext.putValue(fspv, spValue);
+			}
+			
+			if(fp.getTag()==VariableFlag.SOURCE || fp.getTag()==VariableFlag.NORMAL) {
+				parameterList.add(value.getValue());
+			}
+		}
+		
+		XmuTraceTuple ret = context.getEnvironment().getTrace().get(rule, parameterList);
+		if(ret!=null) {
+			//write back
+			for(int i=0,j=0;i<size;i++) {
+				Parameter fp = rule.getParameters().get(i);
+				Expr ap = ruleCallStatement.getActualParameters().get(i);
+				if(fp.getTag()==VariableFlag.VIEW) {
+					Object obj = ret.get(j);
+					j++;
+					if(this.enforceExpr(ap, context, SafeType.createFromValue(obj))==false)
+						return SafeType.getInvalid();
+				}
+			}
+			
+			return Just.TRUE;
+			
+		} else {
+			SafeType t = this.interprete(rule.getStatement(),newContext);
+			if(t.isInvalid() || t==Just.FALSE) 
+				return SafeType.getInvalid();
+			
+			List<Object> viewList = new ArrayList<Object>();
+			//write back
+			for(int i=0;i<size;i++) {
+				Parameter fp = rule.getParameters().get(i);
+				Expr ap = ruleCallStatement.getActualParameters().get(i);
+				if(fp.getTag()==VariableFlag.VIEW) {
+					SafeType obj = newContext.getSafeTypeValue(fp.getVariable());
+					if(this.enforceExpr(ap, context, obj)==false)
+						return SafeType.getInvalid();
+					viewList.add(obj.getValue());
+				}
+			}
+			
+			//record trace
+			context.getEnvironment().getTrace().put(rule, parameterList, viewList);
+			return Just.TRUE;
+		}
 	}
 
 	protected SafeType enforceViewPatternReferenceExpr(PatternReferenceExpr expr,SafeType host, XmuContext context, List<PatternExpr> pending) {
@@ -872,19 +970,20 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 			InitialMappingStatement initialMappingStatement, XmuContext context) {
 		// TODO Auto-generated method stub
 		
-		List<Object> src = new ArrayList<Object>();
-		
-		for(Expr e : initialMappingStatement.getSource()) {
-			SafeType sv = XmuExpressionCheck.EXPRESSION_CHECK.interprete(e,context);
-			src.add(sv.getValue());
-		}
-		
-		SafeType tv = XmuExpressionCheck.EXPRESSION_CHECK.interprete(initialMappingStatement.getTarget(),context);
-		List<Object> tar = Collections.singletonList(tv.getValue());
-		
-		context.getEnvironment().getTrace().putForward(src, tar);
-		
-		return Just.TRUE;
+//		List<Object> src = new ArrayList<Object>();
+//		
+//		for(Expr e : initialMappingStatement.getSource()) {
+//			SafeType sv = XmuExpressionCheck.EXPRESSION_CHECK.interprete(e,context);
+//			src.add(sv.getValue());
+//		}
+//		
+//		SafeType tv = XmuExpressionCheck.EXPRESSION_CHECK.interprete(initialMappingStatement.getTarget(),context);
+//		List<Object> tar = Collections.singletonList(tv.getValue());
+//		
+//		context.getEnvironment().getTrace().putForward(src, tar);
+//		
+//		return Just.TRUE;
+		throw new UnsupportedOperationException();
 	}
 	
 	

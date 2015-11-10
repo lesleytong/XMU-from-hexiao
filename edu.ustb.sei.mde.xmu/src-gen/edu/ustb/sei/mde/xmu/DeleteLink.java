@@ -11,12 +11,12 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu.DeleteLink#getSource <em>Source</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.DeleteLink#getTarget <em>Target</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.DeleteLink#getFeature <em>Feature</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.ustb.sei.mde.xmu.XmuPackage#getDeleteLink()
  * @model

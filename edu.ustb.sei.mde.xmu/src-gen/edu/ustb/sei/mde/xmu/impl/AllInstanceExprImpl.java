@@ -20,11 +20,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.AllInstanceExprImpl#getRoot <em>Root</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.AllInstanceExprImpl#getType <em>Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

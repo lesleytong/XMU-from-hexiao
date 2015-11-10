@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.XMUModelImpl#getInitialMappings <em>Initial Mappings</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.XMUModelImpl#getHelperMappings <em>Helper Mappings</em>}</li>
@@ -32,7 +33,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.XMUModelImpl#getPackages <em>Packages</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.XMUModelImpl#getStart <em>Start</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

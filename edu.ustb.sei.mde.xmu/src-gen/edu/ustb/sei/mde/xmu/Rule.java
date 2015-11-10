@@ -11,6 +11,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu.Rule#getParameters <em>Parameters</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.Rule#getNVars <em>NVars</em>}</li>
@@ -19,7 +20,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link edu.ustb.sei.mde.xmu.Rule#getVVars <em>VVars</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.Rule#getStatement <em>Statement</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.ustb.sei.mde.xmu.XmuPackage#getRule()
  * @model

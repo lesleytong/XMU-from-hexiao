@@ -19,12 +19,12 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.LoopPathImpl#getOperator <em>Operator</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.LoopPathImpl#getVariable <em>Variable</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.LoopPathImpl#getBody <em>Body</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

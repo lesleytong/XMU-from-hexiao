@@ -196,6 +196,18 @@ public class AbstractXmuInterpreter<ResultType, ContextType> {
 		if (result != null) {
 			return result;
 		}
+		if (object instanceof edu.ustb.sei.mde.xmu.DefaultVStatement) {
+			result = interprete_edu_ustb_sei_mde_xmu_DefaultVStatement((edu.ustb.sei.mde.xmu.DefaultVStatement) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
+		if (object instanceof edu.ustb.sei.mde.xmu.TaggedVStatement) {
+			result = interprete_edu_ustb_sei_mde_xmu_TaggedVStatement((edu.ustb.sei.mde.xmu.TaggedVStatement) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
 		if (object instanceof edu.ustb.sei.mde.xmu.VStatement) {
 			result = interprete_edu_ustb_sei_mde_xmu_VStatement((edu.ustb.sei.mde.xmu.VStatement) object, context);
 		}
@@ -216,12 +228,6 @@ public class AbstractXmuInterpreter<ResultType, ContextType> {
 		}
 		if (object instanceof edu.ustb.sei.mde.xmu.Parameter) {
 			result = interprete_edu_ustb_sei_mde_xmu_Parameter((edu.ustb.sei.mde.xmu.Parameter) object, context);
-		}
-		if (result != null) {
-			return result;
-		}
-		if (object instanceof edu.ustb.sei.mde.xmu.RuleCallStatement) {
-			result = interprete_edu_ustb_sei_mde_xmu_RuleCallStatement((edu.ustb.sei.mde.xmu.RuleCallStatement) object, context);
 		}
 		if (result != null) {
 			return result;
@@ -262,8 +268,8 @@ public class AbstractXmuInterpreter<ResultType, ContextType> {
 		if (result != null) {
 			return result;
 		}
-		if (object instanceof edu.ustb.sei.mde.xmu.UpdatedStatement) {
-			result = interprete_edu_ustb_sei_mde_xmu_UpdatedStatement((edu.ustb.sei.mde.xmu.UpdatedStatement) object, context);
+		if (object instanceof edu.ustb.sei.mde.xmu.RuleCallStatement) {
+			result = interprete_edu_ustb_sei_mde_xmu_RuleCallStatement((edu.ustb.sei.mde.xmu.RuleCallStatement) object, context);
 		}
 		if (result != null) {
 			return result;
@@ -689,6 +695,14 @@ public class AbstractXmuInterpreter<ResultType, ContextType> {
 		return null;
 	}
 	
+	public ResultType interprete_edu_ustb_sei_mde_xmu_DefaultVStatement(edu.ustb.sei.mde.xmu.DefaultVStatement defaultVStatement, ContextType context) {
+		return null;
+	}
+	
+	public ResultType interprete_edu_ustb_sei_mde_xmu_TaggedVStatement(edu.ustb.sei.mde.xmu.TaggedVStatement taggedVStatement, ContextType context) {
+		return null;
+	}
+	
 	public ResultType interprete_edu_ustb_sei_mde_xmu_BlockStatement(edu.ustb.sei.mde.xmu.BlockStatement blockStatement, ContextType context) {
 		return null;
 	}
@@ -726,10 +740,6 @@ public class AbstractXmuInterpreter<ResultType, ContextType> {
 	}
 	
 	public ResultType interprete_edu_ustb_sei_mde_xmu_RuleCallStatement(edu.ustb.sei.mde.xmu.RuleCallStatement ruleCallStatement, ContextType context) {
-		return null;
-	}
-	
-	public ResultType interprete_edu_ustb_sei_mde_xmu_UpdatedStatement(edu.ustb.sei.mde.xmu.UpdatedStatement updatedStatement, ContextType context) {
 		return null;
 	}
 	

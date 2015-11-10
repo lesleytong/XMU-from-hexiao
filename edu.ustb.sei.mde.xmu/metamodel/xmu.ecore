@@ -38,7 +38,7 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="actions" lowerBound="1"
         upperBound="3" eType="#//VStatement" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="when" upperBound="-1" eType="#//UpdatedStatement"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="when" upperBound="-1" eType="#//RuleCallStatement"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Update" abstract="true" eSuperTypes="#//Statement"/>
@@ -122,15 +122,18 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EEnum"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EEnumLiteral"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="VStatement">
+  <eClassifiers xsi:type="ecore:EClass" name="VStatement" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="tag" lowerBound="1" eType="#//VStmtType"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="statement" lowerBound="1"
         eType="#//Statement" containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DefaultVStatement" eSuperTypes="#//VStatement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TaggedVStatement" eSuperTypes="#//VStatement"/>
   <eClassifiers xsi:type="ecore:EEnum" name="VStmtType">
-    <eLiterals name="match"/>
-    <eLiterals name="unmatchv" value="1"/>
-    <eLiterals name="unmatchs" value="2"/>
+    <eLiterals name="default"/>
+    <eLiterals name="match" value="1"/>
+    <eLiterals name="unmatchv" value="2"/>
+    <eLiterals name="unmatchs" value="3"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BlockStatement" eSuperTypes="#//Statement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="statements" upperBound="-1"
@@ -140,8 +143,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="var" lowerBound="1" eType="#//Variable"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="cases" upperBound="-1"
         eType="#//CaseSubStatement" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="when" upperBound="-1" eType="#//UpdatedStatement"
-        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TaggedElement" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="tag" lowerBound="1" eType="#//VariableFlag"/>
@@ -149,6 +150,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="CaseSubStatement" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="statement" lowerBound="1"
         eType="#//Statement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="when" upperBound="-1" eType="#//RuleCallStatement"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CasePatternStatement" eSuperTypes="#//CaseSubStatement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="pattern" lowerBound="1"
@@ -179,12 +182,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="actualParameters" upperBound="-1"
         eType="#//Expr" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="rule" lowerBound="1" eType="#//Rule"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="UpdatedStatement" eSuperTypes="#//Statement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="sVar" lowerBound="1" upperBound="-1"
-        eType="#//Variable"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="vVar" lowerBound="1" upperBound="-1"
-        eType="#//Variable"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BooleanOrExpr" eSuperTypes="#//Expr">
     <eStructuralFeatures xsi:type="ecore:EReference" name="operands" lowerBound="2"

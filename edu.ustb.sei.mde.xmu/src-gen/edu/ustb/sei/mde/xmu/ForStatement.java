@@ -11,13 +11,13 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu.ForStatement#getSPattern <em>SPattern</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.ForStatement#getVPattern <em>VPattern</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.ForStatement#getActions <em>Actions</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.ForStatement#getWhen <em>When</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.ustb.sei.mde.xmu.XmuPackage#getForStatement()
  * @model
@@ -94,7 +94,7 @@ public interface ForStatement extends Statement {
 
 	/**
 	 * Returns the value of the '<em><b>When</b></em>' containment reference list.
-	 * The list contents are of type {@link edu.ustb.sei.mde.xmu.UpdatedStatement}.
+	 * The list contents are of type {@link edu.ustb.sei.mde.xmu.RuleCallStatement}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>When</em>' containment reference list isn't clear,
@@ -106,6 +106,6 @@ public interface ForStatement extends Statement {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<UpdatedStatement> getWhen();
+	EList<RuleCallStatement> getWhen();
 
 } // ForStatement

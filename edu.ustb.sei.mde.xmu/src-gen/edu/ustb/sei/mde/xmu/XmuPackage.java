@@ -524,7 +524,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getTaggedElement()
 	 * @generated
 	 */
-	int TAGGED_ELEMENT = 27;
+	int TAGGED_ELEMENT = 29;
 
 	/**
 	 * The feature id for the '<em><b>Tag</b></em>' attribute.
@@ -892,7 +892,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getBooleanOrExprChild()
 	 * @generated
 	 */
-	int BOOLEAN_OR_EXPR_CHILD = 37;
+	int BOOLEAN_OR_EXPR_CHILD = 38;
 
 	/**
 	 * The number of structural features of the '<em>Boolean Or Expr Child</em>' class.
@@ -920,7 +920,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getBooleanAndExprChild()
 	 * @generated
 	 */
-	int BOOLEAN_AND_EXPR_CHILD = 39;
+	int BOOLEAN_AND_EXPR_CHILD = 40;
 
 	/**
 	 * The number of structural features of the '<em>Boolean And Expr Child</em>' class.
@@ -948,7 +948,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getRelationalExprChild()
 	 * @generated
 	 */
-	int RELATIONAL_EXPR_CHILD = 41;
+	int RELATIONAL_EXPR_CHILD = 42;
 
 	/**
 	 * The number of structural features of the '<em>Relational Expr Child</em>' class.
@@ -976,7 +976,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getAdditiveExprChild()
 	 * @generated
 	 */
-	int ADDITIVE_EXPR_CHILD = 43;
+	int ADDITIVE_EXPR_CHILD = 44;
 
 	/**
 	 * The number of structural features of the '<em>Additive Expr Child</em>' class.
@@ -1004,7 +1004,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getMultiplicativeExprChild()
 	 * @generated
 	 */
-	int MULTIPLICATIVE_EXPR_CHILD = 45;
+	int MULTIPLICATIVE_EXPR_CHILD = 46;
 
 	/**
 	 * The number of structural features of the '<em>Multiplicative Expr Child</em>' class.
@@ -1032,7 +1032,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getUnaryExprChild()
 	 * @generated
 	 */
-	int UNARY_EXPR_CHILD = 47;
+	int UNARY_EXPR_CHILD = 48;
 
 	/**
 	 * The number of structural features of the '<em>Unary Expr Child</em>' class.
@@ -1060,7 +1060,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getAtomicExpr()
 	 * @generated
 	 */
-	int ATOMIC_EXPR = 48;
+	int ATOMIC_EXPR = 49;
 
 	/**
 	 * The number of structural features of the '<em>Atomic Expr</em>' class.
@@ -1449,6 +1449,98 @@ public interface XmuPackage extends EPackage {
 	int VSTATEMENT_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu.impl.DefaultVStatementImpl <em>Default VStatement</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.xmu.impl.DefaultVStatementImpl
+	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getDefaultVStatement()
+	 * @generated
+	 */
+	int DEFAULT_VSTATEMENT = 25;
+
+	/**
+	 * The feature id for the '<em><b>Tag</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEFAULT_VSTATEMENT__TAG = VSTATEMENT__TAG;
+
+	/**
+	 * The feature id for the '<em><b>Statement</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEFAULT_VSTATEMENT__STATEMENT = VSTATEMENT__STATEMENT;
+
+	/**
+	 * The number of structural features of the '<em>Default VStatement</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEFAULT_VSTATEMENT_FEATURE_COUNT = VSTATEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Default VStatement</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEFAULT_VSTATEMENT_OPERATION_COUNT = VSTATEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu.impl.TaggedVStatementImpl <em>Tagged VStatement</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.xmu.impl.TaggedVStatementImpl
+	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getTaggedVStatement()
+	 * @generated
+	 */
+	int TAGGED_VSTATEMENT = 26;
+
+	/**
+	 * The feature id for the '<em><b>Tag</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAGGED_VSTATEMENT__TAG = VSTATEMENT__TAG;
+
+	/**
+	 * The feature id for the '<em><b>Statement</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAGGED_VSTATEMENT__STATEMENT = VSTATEMENT__STATEMENT;
+
+	/**
+	 * The number of structural features of the '<em>Tagged VStatement</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAGGED_VSTATEMENT_FEATURE_COUNT = VSTATEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Tagged VStatement</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAGGED_VSTATEMENT_OPERATION_COUNT = VSTATEMENT_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu.impl.BlockStatementImpl <em>Block Statement</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1456,7 +1548,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getBlockStatement()
 	 * @generated
 	 */
-	int BLOCK_STATEMENT = 25;
+	int BLOCK_STATEMENT = 27;
 
 	/**
 	 * The feature id for the '<em><b>Statements</b></em>' containment reference list.
@@ -1493,7 +1585,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getSwitchStatement()
 	 * @generated
 	 */
-	int SWITCH_STATEMENT = 26;
+	int SWITCH_STATEMENT = 28;
 
 	/**
 	 * The feature id for the '<em><b>Tag</b></em>' attribute.
@@ -1523,22 +1615,13 @@ public interface XmuPackage extends EPackage {
 	int SWITCH_STATEMENT__CASES = STATEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>When</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SWITCH_STATEMENT__WHEN = STATEMENT_FEATURE_COUNT + 3;
-
-	/**
 	 * The number of structural features of the '<em>Switch Statement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SWITCH_STATEMENT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 4;
+	int SWITCH_STATEMENT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Switch Statement</em>' class.
@@ -1557,7 +1640,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getCaseSubStatement()
 	 * @generated
 	 */
-	int CASE_SUB_STATEMENT = 28;
+	int CASE_SUB_STATEMENT = 30;
 
 	/**
 	 * The feature id for the '<em><b>Statement</b></em>' containment reference.
@@ -1569,13 +1652,22 @@ public interface XmuPackage extends EPackage {
 	int CASE_SUB_STATEMENT__STATEMENT = 0;
 
 	/**
+	 * The feature id for the '<em><b>When</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CASE_SUB_STATEMENT__WHEN = 1;
+
+	/**
 	 * The number of structural features of the '<em>Case Sub Statement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CASE_SUB_STATEMENT_FEATURE_COUNT = 1;
+	int CASE_SUB_STATEMENT_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>Case Sub Statement</em>' class.
@@ -1594,7 +1686,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getCasePatternStatement()
 	 * @generated
 	 */
-	int CASE_PATTERN_STATEMENT = 29;
+	int CASE_PATTERN_STATEMENT = 31;
 
 	/**
 	 * The feature id for the '<em><b>Statement</b></em>' containment reference.
@@ -1604,6 +1696,15 @@ public interface XmuPackage extends EPackage {
 	 * @ordered
 	 */
 	int CASE_PATTERN_STATEMENT__STATEMENT = CASE_SUB_STATEMENT__STATEMENT;
+
+	/**
+	 * The feature id for the '<em><b>When</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CASE_PATTERN_STATEMENT__WHEN = CASE_SUB_STATEMENT__WHEN;
 
 	/**
 	 * The feature id for the '<em><b>Pattern</b></em>' containment reference.
@@ -1640,7 +1741,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getCaseValueStatement()
 	 * @generated
 	 */
-	int CASE_VALUE_STATEMENT = 30;
+	int CASE_VALUE_STATEMENT = 32;
 
 	/**
 	 * The feature id for the '<em><b>Statement</b></em>' containment reference.
@@ -1650,6 +1751,15 @@ public interface XmuPackage extends EPackage {
 	 * @ordered
 	 */
 	int CASE_VALUE_STATEMENT__STATEMENT = CASE_SUB_STATEMENT__STATEMENT;
+
+	/**
+	 * The feature id for the '<em><b>When</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CASE_VALUE_STATEMENT__WHEN = CASE_SUB_STATEMENT__WHEN;
 
 	/**
 	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
@@ -1686,7 +1796,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getCaseDefaultStatement()
 	 * @generated
 	 */
-	int CASE_DEFAULT_STATEMENT = 31;
+	int CASE_DEFAULT_STATEMENT = 33;
 
 	/**
 	 * The feature id for the '<em><b>Statement</b></em>' containment reference.
@@ -1696,6 +1806,15 @@ public interface XmuPackage extends EPackage {
 	 * @ordered
 	 */
 	int CASE_DEFAULT_STATEMENT__STATEMENT = CASE_VALUE_STATEMENT__STATEMENT;
+
+	/**
+	 * The feature id for the '<em><b>When</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CASE_DEFAULT_STATEMENT__WHEN = CASE_VALUE_STATEMENT__WHEN;
 
 	/**
 	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
@@ -1732,7 +1851,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getXMUModel()
 	 * @generated
 	 */
-	int XMU_MODEL = 32;
+	int XMU_MODEL = 34;
 
 	/**
 	 * The feature id for the '<em><b>Initial Mappings</b></em>' containment reference list.
@@ -1805,7 +1924,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getParameter()
 	 * @generated
 	 */
-	int PARAMETER = 33;
+	int PARAMETER = 35;
 
 	/**
 	 * The feature id for the '<em><b>Tag</b></em>' attribute.
@@ -1851,7 +1970,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getRuleCallStatement()
 	 * @generated
 	 */
-	int RULE_CALL_STATEMENT = 34;
+	int RULE_CALL_STATEMENT = 36;
 
 	/**
 	 * The feature id for the '<em><b>Tag</b></em>' attribute.
@@ -1899,52 +2018,6 @@ public interface XmuPackage extends EPackage {
 	int RULE_CALL_STATEMENT_OPERATION_COUNT = STATEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu.impl.UpdatedStatementImpl <em>Updated Statement</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.ustb.sei.mde.xmu.impl.UpdatedStatementImpl
-	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getUpdatedStatement()
-	 * @generated
-	 */
-	int UPDATED_STATEMENT = 35;
-
-	/**
-	 * The feature id for the '<em><b>SVar</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UPDATED_STATEMENT__SVAR = STATEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>VVar</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UPDATED_STATEMENT__VVAR = STATEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Updated Statement</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UPDATED_STATEMENT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Updated Statement</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UPDATED_STATEMENT_OPERATION_COUNT = STATEMENT_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu.impl.BooleanOrExprImpl <em>Boolean Or Expr</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1952,7 +2025,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getBooleanOrExpr()
 	 * @generated
 	 */
-	int BOOLEAN_OR_EXPR = 36;
+	int BOOLEAN_OR_EXPR = 37;
 
 	/**
 	 * The feature id for the '<em><b>Operands</b></em>' containment reference list.
@@ -1989,7 +2062,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getBooleanAndExpr()
 	 * @generated
 	 */
-	int BOOLEAN_AND_EXPR = 38;
+	int BOOLEAN_AND_EXPR = 39;
 
 	/**
 	 * The feature id for the '<em><b>Operands</b></em>' containment reference list.
@@ -2026,7 +2099,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getRelationalExpr()
 	 * @generated
 	 */
-	int RELATIONAL_EXPR = 40;
+	int RELATIONAL_EXPR = 41;
 
 	/**
 	 * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -2081,7 +2154,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getAdditiveExpr()
 	 * @generated
 	 */
-	int ADDITIVE_EXPR = 42;
+	int ADDITIVE_EXPR = 43;
 
 	/**
 	 * The feature id for the '<em><b>Operands</b></em>' containment reference list.
@@ -2127,7 +2200,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getMultiplicativeExpr()
 	 * @generated
 	 */
-	int MULTIPLICATIVE_EXPR = 44;
+	int MULTIPLICATIVE_EXPR = 45;
 
 	/**
 	 * The feature id for the '<em><b>Operands</b></em>' containment reference list.
@@ -2173,7 +2246,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getUnaryExpr()
 	 * @generated
 	 */
-	int UNARY_EXPR = 46;
+	int UNARY_EXPR = 47;
 
 	/**
 	 * The feature id for the '<em><b>Body</b></em>' containment reference.
@@ -2219,7 +2292,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getParenExpr()
 	 * @generated
 	 */
-	int PAREN_EXPR = 49;
+	int PAREN_EXPR = 50;
 
 	/**
 	 * The feature id for the '<em><b>Body</b></em>' containment reference.
@@ -2256,7 +2329,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getPath()
 	 * @generated
 	 */
-	int PATH = 50;
+	int PATH = 51;
 
 	/**
 	 * The number of structural features of the '<em>Path</em>' class.
@@ -2284,7 +2357,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getHelperPath()
 	 * @generated
 	 */
-	int HELPER_PATH = 51;
+	int HELPER_PATH = 52;
 
 	/**
 	 * The feature id for the '<em><b>Helper</b></em>' reference.
@@ -2321,7 +2394,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getFeaturePath()
 	 * @generated
 	 */
-	int FEATURE_PATH = 52;
+	int FEATURE_PATH = 53;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' attribute.
@@ -2358,7 +2431,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getOperationPath()
 	 * @generated
 	 */
-	int OPERATION_PATH = 53;
+	int OPERATION_PATH = 54;
 
 	/**
 	 * The feature id for the '<em><b>Operation</b></em>' attribute.
@@ -2404,7 +2477,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getLoopPath()
 	 * @generated
 	 */
-	int LOOP_PATH = 54;
+	int LOOP_PATH = 55;
 
 	/**
 	 * The feature id for the '<em><b>Operator</b></em>' attribute.
@@ -2459,7 +2532,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getStartStatement()
 	 * @generated
 	 */
-	int START_STATEMENT = 55;
+	int START_STATEMENT = 56;
 
 	/**
 	 * The feature id for the '<em><b>Rule</b></em>' reference.
@@ -2505,7 +2578,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getStartRoot()
 	 * @generated
 	 */
-	int START_ROOT = 56;
+	int START_ROOT = 57;
 
 	/**
 	 * The feature id for the '<em><b>Tag</b></em>' attribute.
@@ -2551,7 +2624,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getESet()
 	 * @generated
 	 */
-	int ESET = 60;
+	int ESET = 61;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu.impl.EResourceImpl <em>EResource</em>}' class.
@@ -2561,7 +2634,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getEResource()
 	 * @generated
 	 */
-	int ERESOURCE = 57;
+	int ERESOURCE = 58;
 
 	/**
 	 * The feature id for the '<em><b>Content</b></em>' reference list.
@@ -2598,7 +2671,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getPrintStatement()
 	 * @generated
 	 */
-	int PRINT_STATEMENT = 58;
+	int PRINT_STATEMENT = 59;
 
 	/**
 	 * The feature id for the '<em><b>Expr</b></em>' containment reference.
@@ -2635,7 +2708,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getAllInstanceExpr()
 	 * @generated
 	 */
-	int ALL_INSTANCE_EXPR = 59;
+	int ALL_INSTANCE_EXPR = 60;
 
 	/**
 	 * The feature id for the '<em><b>Root</b></em>' containment reference.
@@ -2708,7 +2781,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getObjectPathExpr()
 	 * @generated
 	 */
-	int OBJECT_PATH_EXPR = 61;
+	int OBJECT_PATH_EXPR = 62;
 
 	/**
 	 * The feature id for the '<em><b>Object</b></em>' reference.
@@ -2745,7 +2818,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getInitialMappingStatement()
 	 * @generated
 	 */
-	int INITIAL_MAPPING_STATEMENT = 62;
+	int INITIAL_MAPPING_STATEMENT = 63;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' containment reference list.
@@ -2791,7 +2864,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getHelperMapping()
 	 * @generated
 	 */
-	int HELPER_MAPPING = 63;
+	int HELPER_MAPPING = 64;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2846,7 +2919,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getHelperMappingEntry()
 	 * @generated
 	 */
-	int HELPER_MAPPING_ENTRY = 64;
+	int HELPER_MAPPING_ENTRY = 65;
 
 	/**
 	 * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -2892,7 +2965,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getPseudoUpdate()
 	 * @generated
 	 */
-	int PSEUDO_UPDATE = 65;
+	int PSEUDO_UPDATE = 66;
 
 	/**
 	 * The feature id for the '<em><b>Message</b></em>' attribute.
@@ -2929,7 +3002,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getSkip()
 	 * @generated
 	 */
-	int SKIP = 66;
+	int SKIP = 67;
 
 	/**
 	 * The feature id for the '<em><b>Message</b></em>' attribute.
@@ -2966,7 +3039,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getFail()
 	 * @generated
 	 */
-	int FAIL = 67;
+	int FAIL = 68;
 
 	/**
 	 * The feature id for the '<em><b>Message</b></em>' attribute.
@@ -3003,7 +3076,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getVariableFlag()
 	 * @generated
 	 */
-	int VARIABLE_FLAG = 68;
+	int VARIABLE_FLAG = 69;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu.RelationalOperator <em>Relational Operator</em>}' enum.
@@ -3013,7 +3086,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getRelationalOperator()
 	 * @generated
 	 */
-	int RELATIONAL_OPERATOR = 69;
+	int RELATIONAL_OPERATOR = 70;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu.EmptyType <em>Empty Type</em>}' enum.
@@ -3023,7 +3096,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getEmptyType()
 	 * @generated
 	 */
-	int EMPTY_TYPE = 70;
+	int EMPTY_TYPE = 71;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu.VStmtType <em>VStmt Type</em>}' enum.
@@ -3033,7 +3106,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getVStmtType()
 	 * @generated
 	 */
-	int VSTMT_TYPE = 71;
+	int VSTMT_TYPE = 72;
 
 
 	/**
@@ -3044,7 +3117,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getAdditiveOperator()
 	 * @generated
 	 */
-	int ADDITIVE_OPERATOR = 72;
+	int ADDITIVE_OPERATOR = 73;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu.MultiplicativeOperator <em>Multiplicative Operator</em>}' enum.
@@ -3054,7 +3127,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getMultiplicativeOperator()
 	 * @generated
 	 */
-	int MULTIPLICATIVE_OPERATOR = 73;
+	int MULTIPLICATIVE_OPERATOR = 74;
 
 
 	/**
@@ -3065,7 +3138,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getUnaryOperator()
 	 * @generated
 	 */
-	int UNARY_OPERATOR = 74;
+	int UNARY_OPERATOR = 75;
 
 
 	/**
@@ -3076,7 +3149,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getLoopOperator()
 	 * @generated
 	 */
-	int LOOP_OPERATOR = 75;
+	int LOOP_OPERATOR = 76;
 
 
 	/**
@@ -3748,6 +3821,26 @@ public interface XmuPackage extends EPackage {
 	EReference getVStatement_Statement();
 
 	/**
+	 * Returns the meta object for class '{@link edu.ustb.sei.mde.xmu.DefaultVStatement <em>Default VStatement</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Default VStatement</em>'.
+	 * @see edu.ustb.sei.mde.xmu.DefaultVStatement
+	 * @generated
+	 */
+	EClass getDefaultVStatement();
+
+	/**
+	 * Returns the meta object for class '{@link edu.ustb.sei.mde.xmu.TaggedVStatement <em>Tagged VStatement</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Tagged VStatement</em>'.
+	 * @see edu.ustb.sei.mde.xmu.TaggedVStatement
+	 * @generated
+	 */
+	EClass getTaggedVStatement();
+
+	/**
 	 * Returns the meta object for class '{@link edu.ustb.sei.mde.xmu.BlockStatement <em>Block Statement</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3801,17 +3894,6 @@ public interface XmuPackage extends EPackage {
 	EReference getSwitchStatement_Cases();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link edu.ustb.sei.mde.xmu.SwitchStatement#getWhen <em>When</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>When</em>'.
-	 * @see edu.ustb.sei.mde.xmu.SwitchStatement#getWhen()
-	 * @see #getSwitchStatement()
-	 * @generated
-	 */
-	EReference getSwitchStatement_When();
-
-	/**
 	 * Returns the meta object for class '{@link edu.ustb.sei.mde.xmu.TaggedElement <em>Tagged Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3852,6 +3934,17 @@ public interface XmuPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getCaseSubStatement_Statement();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link edu.ustb.sei.mde.xmu.CaseSubStatement#getWhen <em>When</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>When</em>'.
+	 * @see edu.ustb.sei.mde.xmu.CaseSubStatement#getWhen()
+	 * @see #getCaseSubStatement()
+	 * @generated
+	 */
+	EReference getCaseSubStatement_When();
 
 	/**
 	 * Returns the meta object for class '{@link edu.ustb.sei.mde.xmu.CasePatternStatement <em>Case Pattern Statement</em>}'.
@@ -4022,38 +4115,6 @@ public interface XmuPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getRuleCallStatement_Rule();
-
-	/**
-	 * Returns the meta object for class '{@link edu.ustb.sei.mde.xmu.UpdatedStatement <em>Updated Statement</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Updated Statement</em>'.
-	 * @see edu.ustb.sei.mde.xmu.UpdatedStatement
-	 * @generated
-	 */
-	EClass getUpdatedStatement();
-
-	/**
-	 * Returns the meta object for the reference list '{@link edu.ustb.sei.mde.xmu.UpdatedStatement#getSVar <em>SVar</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>SVar</em>'.
-	 * @see edu.ustb.sei.mde.xmu.UpdatedStatement#getSVar()
-	 * @see #getUpdatedStatement()
-	 * @generated
-	 */
-	EReference getUpdatedStatement_SVar();
-
-	/**
-	 * Returns the meta object for the reference list '{@link edu.ustb.sei.mde.xmu.UpdatedStatement#getVVar <em>VVar</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>VVar</em>'.
-	 * @see edu.ustb.sei.mde.xmu.UpdatedStatement#getVVar()
-	 * @see #getUpdatedStatement()
-	 * @generated
-	 */
-	EReference getUpdatedStatement_VVar();
 
 	/**
 	 * Returns the meta object for class '{@link edu.ustb.sei.mde.xmu.BooleanOrExpr <em>Boolean Or Expr</em>}'.
@@ -5417,6 +5478,26 @@ public interface XmuPackage extends EPackage {
 		EReference VSTATEMENT__STATEMENT = eINSTANCE.getVStatement_Statement();
 
 		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu.impl.DefaultVStatementImpl <em>Default VStatement</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.xmu.impl.DefaultVStatementImpl
+		 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getDefaultVStatement()
+		 * @generated
+		 */
+		EClass DEFAULT_VSTATEMENT = eINSTANCE.getDefaultVStatement();
+
+		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu.impl.TaggedVStatementImpl <em>Tagged VStatement</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.xmu.impl.TaggedVStatementImpl
+		 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getTaggedVStatement()
+		 * @generated
+		 */
+		EClass TAGGED_VSTATEMENT = eINSTANCE.getTaggedVStatement();
+
+		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu.impl.BlockStatementImpl <em>Block Statement</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -5461,14 +5542,6 @@ public interface XmuPackage extends EPackage {
 		EReference SWITCH_STATEMENT__CASES = eINSTANCE.getSwitchStatement_Cases();
 
 		/**
-		 * The meta object literal for the '<em><b>When</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SWITCH_STATEMENT__WHEN = eINSTANCE.getSwitchStatement_When();
-
-		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu.impl.TaggedElementImpl <em>Tagged Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -5503,6 +5576,14 @@ public interface XmuPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CASE_SUB_STATEMENT__STATEMENT = eINSTANCE.getCaseSubStatement_Statement();
+
+		/**
+		 * The meta object literal for the '<em><b>When</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CASE_SUB_STATEMENT__WHEN = eINSTANCE.getCaseSubStatement_When();
 
 		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu.impl.CasePatternStatementImpl <em>Case Pattern Statement</em>}' class.
@@ -5643,32 +5724,6 @@ public interface XmuPackage extends EPackage {
 		 * @generated
 		 */
 		EReference RULE_CALL_STATEMENT__RULE = eINSTANCE.getRuleCallStatement_Rule();
-
-		/**
-		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu.impl.UpdatedStatementImpl <em>Updated Statement</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.ustb.sei.mde.xmu.impl.UpdatedStatementImpl
-		 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getUpdatedStatement()
-		 * @generated
-		 */
-		EClass UPDATED_STATEMENT = eINSTANCE.getUpdatedStatement();
-
-		/**
-		 * The meta object literal for the '<em><b>SVar</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference UPDATED_STATEMENT__SVAR = eINSTANCE.getUpdatedStatement_SVar();
-
-		/**
-		 * The meta object literal for the '<em><b>VVar</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference UPDATED_STATEMENT__VVAR = eINSTANCE.getUpdatedStatement_VVar();
 
 		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu.impl.BooleanOrExprImpl <em>Boolean Or Expr</em>}' class.

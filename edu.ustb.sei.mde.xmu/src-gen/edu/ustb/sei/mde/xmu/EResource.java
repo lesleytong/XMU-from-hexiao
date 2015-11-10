@@ -13,10 +13,10 @@ import org.eclipse.emf.ecore.resource.Resource;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu.EResource#getContent <em>Content</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.ustb.sei.mde.xmu.XmuPackage#getEResource()
  * @model

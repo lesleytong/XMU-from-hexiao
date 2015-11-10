@@ -74,7 +74,8 @@ public class XmuFactoryImpl extends EFactoryImpl implements XmuFactory {
 			case XmuPackage.INTEGER_LITERAL: return createIntegerLiteral();
 			case XmuPackage.BOOLEAN_LITERAL: return createBooleanLiteral();
 			case XmuPackage.ENUM_LITERAL: return createEnumLiteral();
-			case XmuPackage.VSTATEMENT: return createVStatement();
+			case XmuPackage.DEFAULT_VSTATEMENT: return createDefaultVStatement();
+			case XmuPackage.TAGGED_VSTATEMENT: return createTaggedVStatement();
 			case XmuPackage.BLOCK_STATEMENT: return createBlockStatement();
 			case XmuPackage.SWITCH_STATEMENT: return createSwitchStatement();
 			case XmuPackage.CASE_PATTERN_STATEMENT: return createCasePatternStatement();
@@ -83,7 +84,6 @@ public class XmuFactoryImpl extends EFactoryImpl implements XmuFactory {
 			case XmuPackage.XMU_MODEL: return createXMUModel();
 			case XmuPackage.PARAMETER: return createParameter();
 			case XmuPackage.RULE_CALL_STATEMENT: return createRuleCallStatement();
-			case XmuPackage.UPDATED_STATEMENT: return createUpdatedStatement();
 			case XmuPackage.BOOLEAN_OR_EXPR: return createBooleanOrExpr();
 			case XmuPackage.BOOLEAN_AND_EXPR: return createBooleanAndExpr();
 			case XmuPackage.RELATIONAL_EXPR: return createRelationalExpr();
@@ -345,9 +345,19 @@ public class XmuFactoryImpl extends EFactoryImpl implements XmuFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public VStatement createVStatement() {
-		VStatementImpl vStatement = new VStatementImpl();
-		return vStatement;
+	public DefaultVStatement createDefaultVStatement() {
+		DefaultVStatementImpl defaultVStatement = new DefaultVStatementImpl();
+		return defaultVStatement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TaggedVStatement createTaggedVStatement() {
+		TaggedVStatementImpl taggedVStatement = new TaggedVStatementImpl();
+		return taggedVStatement;
 	}
 
 	/**
@@ -428,16 +438,6 @@ public class XmuFactoryImpl extends EFactoryImpl implements XmuFactory {
 	public RuleCallStatement createRuleCallStatement() {
 		RuleCallStatementImpl ruleCallStatement = new RuleCallStatementImpl();
 		return ruleCallStatement;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public UpdatedStatement createUpdatedStatement() {
-		UpdatedStatementImpl updatedStatement = new UpdatedStatementImpl();
-		return updatedStatement;
 	}
 
 	/**

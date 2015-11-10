@@ -11,11 +11,11 @@ import org.eclipse.emf.ecore.EClass;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu.AllInstanceExpr#getRoot <em>Root</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.AllInstanceExpr#getType <em>Type</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.ustb.sei.mde.xmu.XmuPackage#getAllInstanceExpr()
  * @model

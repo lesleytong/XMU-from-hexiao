@@ -10,11 +10,11 @@ package edu.ustb.sei.mde.xmu;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu.UnaryExpr#getBody <em>Body</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.UnaryExpr#getOperator <em>Operator</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.ustb.sei.mde.xmu.XmuPackage#getUnaryExpr()
  * @model

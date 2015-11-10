@@ -47,7 +47,7 @@ public class XmuSwitch<T> extends Switch<T> {
 	 * Checks whether this is a switch for the given package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @parameter ePackage the package in question.
+	 * @param ePackage the package in question.
 	 * @return whether this is a switch for the given package.
 	 * @generated
 	 */
@@ -296,6 +296,20 @@ public class XmuSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case XmuPackage.DEFAULT_VSTATEMENT: {
+				DefaultVStatement defaultVStatement = (DefaultVStatement)theEObject;
+				T result = caseDefaultVStatement(defaultVStatement);
+				if (result == null) result = caseVStatement(defaultVStatement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case XmuPackage.TAGGED_VSTATEMENT: {
+				TaggedVStatement taggedVStatement = (TaggedVStatement)theEObject;
+				T result = caseTaggedVStatement(taggedVStatement);
+				if (result == null) result = caseVStatement(taggedVStatement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case XmuPackage.BLOCK_STATEMENT: {
 				BlockStatement blockStatement = (BlockStatement)theEObject;
 				T result = caseBlockStatement(blockStatement);
@@ -363,13 +377,6 @@ public class XmuSwitch<T> extends Switch<T> {
 				T result = caseRuleCallStatement(ruleCallStatement);
 				if (result == null) result = caseStatement(ruleCallStatement);
 				if (result == null) result = caseTaggedElement(ruleCallStatement);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case XmuPackage.UPDATED_STATEMENT: {
-				UpdatedStatement updatedStatement = (UpdatedStatement)theEObject;
-				T result = caseUpdatedStatement(updatedStatement);
-				if (result == null) result = caseStatement(updatedStatement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1019,6 +1026,36 @@ public class XmuSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Default VStatement</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Default VStatement</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDefaultVStatement(DefaultVStatement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Tagged VStatement</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Tagged VStatement</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTaggedVStatement(TaggedVStatement object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Block Statement</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1165,21 +1202,6 @@ public class XmuSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseRuleCallStatement(RuleCallStatement object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Updated Statement</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Updated Statement</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseUpdatedStatement(UpdatedStatement object) {
 		return null;
 	}
 

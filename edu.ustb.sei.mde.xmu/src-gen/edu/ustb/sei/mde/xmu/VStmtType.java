@@ -19,6 +19,14 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum VStmtType implements Enumerator {
 	/**
+	 * The '<em><b>Default</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #DEFAULT_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	DEFAULT(0, "default", "default"), /**
 	 * The '<em><b>Match</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -26,7 +34,7 @@ public enum VStmtType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MATCH(0, "match", "match"),
+	MATCH(1, "match", "match"),
 
 	/**
 	 * The '<em><b>Unmatchv</b></em>' literal object.
@@ -36,7 +44,7 @@ public enum VStmtType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	UNMATCHV(1, "unmatchv", "unmatchv"),
+	UNMATCHV(2, "unmatchv", "unmatchv"),
 
 	/**
 	 * The '<em><b>Unmatchs</b></em>' literal object.
@@ -46,7 +54,22 @@ public enum VStmtType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	UNMATCHS(2, "unmatchs", "unmatchs");
+	UNMATCHS(3, "unmatchs", "unmatchs");
+
+	/**
+	 * The '<em><b>Default</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Default</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #DEFAULT
+	 * @model name="default"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int DEFAULT_VALUE = 0;
 
 	/**
 	 * The '<em><b>Match</b></em>' literal value.
@@ -61,7 +84,7 @@ public enum VStmtType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MATCH_VALUE = 0;
+	public static final int MATCH_VALUE = 1;
 
 	/**
 	 * The '<em><b>Unmatchv</b></em>' literal value.
@@ -76,7 +99,7 @@ public enum VStmtType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int UNMATCHV_VALUE = 1;
+	public static final int UNMATCHV_VALUE = 2;
 
 	/**
 	 * The '<em><b>Unmatchs</b></em>' literal value.
@@ -91,7 +114,7 @@ public enum VStmtType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int UNMATCHS_VALUE = 2;
+	public static final int UNMATCHS_VALUE = 3;
 
 	/**
 	 * An array of all the '<em><b>VStmt Type</b></em>' enumerators.
@@ -101,6 +124,7 @@ public enum VStmtType implements Enumerator {
 	 */
 	private static final VStmtType[] VALUES_ARRAY =
 		new VStmtType[] {
+			DEFAULT,
 			MATCH,
 			UNMATCHV,
 			UNMATCHS,
@@ -118,6 +142,8 @@ public enum VStmtType implements Enumerator {
 	 * Returns the '<em><b>VStmt Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static VStmtType get(String literal) {
@@ -134,6 +160,8 @@ public enum VStmtType implements Enumerator {
 	 * Returns the '<em><b>VStmt Type</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static VStmtType getByName(String name) {
@@ -150,10 +178,13 @@ public enum VStmtType implements Enumerator {
 	 * Returns the '<em><b>VStmt Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static VStmtType get(int value) {
 		switch (value) {
+			case DEFAULT_VALUE: return DEFAULT;
 			case MATCH_VALUE: return MATCH;
 			case UNMATCHV_VALUE: return UNMATCHV;
 			case UNMATCHS_VALUE: return UNMATCHS;

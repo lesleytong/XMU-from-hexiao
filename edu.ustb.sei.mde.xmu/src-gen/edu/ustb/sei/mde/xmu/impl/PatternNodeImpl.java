@@ -23,12 +23,12 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.PatternNodeImpl#getVariable <em>Variable</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.PatternNodeImpl#getType <em>Type</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.PatternNodeImpl#getExpr <em>Expr</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

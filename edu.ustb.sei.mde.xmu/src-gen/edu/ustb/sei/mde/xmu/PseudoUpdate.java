@@ -10,10 +10,10 @@ package edu.ustb.sei.mde.xmu;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu.PseudoUpdate#getMessage <em>Message</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.ustb.sei.mde.xmu.XmuPackage#getPseudoUpdate()
  * @model abstract="true"

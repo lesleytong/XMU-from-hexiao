@@ -12,11 +12,11 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu.HelperMapping#getEntries <em>Entries</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.HelperMapping#isDefaultEqual <em>Default Equal</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.ustb.sei.mde.xmu.XmuPackage#getHelperMapping()
  * @model

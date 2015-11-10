@@ -11,11 +11,11 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu.RuleCallStatement#getActualParameters <em>Actual Parameters</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.RuleCallStatement#getRule <em>Rule</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.ustb.sei.mde.xmu.XmuPackage#getRuleCallStatement()
  * @model

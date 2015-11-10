@@ -68,9 +68,6 @@ public class XmuTokenStyleInformationProvider {
 		if ("by".equals(tokenName)) {
 			return new edu.ustb.sei.mde.xmu.resource.xmu.mopp.XmuTokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
 		}
-		if ("updated".equals(tokenName)) {
-			return new edu.ustb.sei.mde.xmu.resource.xmu.mopp.XmuTokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
-		}
 		if ("match".equals(tokenName)) {
 			return new edu.ustb.sei.mde.xmu.resource.xmu.mopp.XmuTokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
 		}

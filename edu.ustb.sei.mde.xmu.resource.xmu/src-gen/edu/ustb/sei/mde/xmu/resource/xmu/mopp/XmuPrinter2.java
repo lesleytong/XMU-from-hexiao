@@ -224,11 +224,11 @@ public class XmuPrinter2 implements edu.ustb.sei.mde.xmu.resource.xmu.IXmuTextPr
 			printInternal(element, edu.ustb.sei.mde.xmu.resource.xmu.grammar.XmuGrammarInformationProvider.XMU_7, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu.UpdatedStatement) {
+		if (element instanceof edu.ustb.sei.mde.xmu.TaggedVStatement) {
 			printInternal(element, edu.ustb.sei.mde.xmu.resource.xmu.grammar.XmuGrammarInformationProvider.XMU_8, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu.VStatement) {
+		if (element instanceof edu.ustb.sei.mde.xmu.DefaultVStatement) {
 			printInternal(element, edu.ustb.sei.mde.xmu.resource.xmu.grammar.XmuGrammarInformationProvider.XMU_9, foundFormattingElements);
 			return;
 		}

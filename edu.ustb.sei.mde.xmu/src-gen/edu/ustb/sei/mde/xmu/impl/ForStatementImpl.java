@@ -4,7 +4,7 @@ package edu.ustb.sei.mde.xmu.impl;
 
 import edu.ustb.sei.mde.xmu.ForStatement;
 import edu.ustb.sei.mde.xmu.Pattern;
-import edu.ustb.sei.mde.xmu.UpdatedStatement;
+import edu.ustb.sei.mde.xmu.RuleCallStatement;
 import edu.ustb.sei.mde.xmu.VStatement;
 import edu.ustb.sei.mde.xmu.XmuPackage;
 
@@ -29,13 +29,13 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.ForStatementImpl#getSPattern <em>SPattern</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.ForStatementImpl#getVPattern <em>VPattern</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.ForStatementImpl#getActions <em>Actions</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.ForStatementImpl#getWhen <em>When</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -78,7 +78,7 @@ public class ForStatementImpl extends StatementImpl implements ForStatement {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<UpdatedStatement> when;
+	protected EList<RuleCallStatement> when;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -202,9 +202,9 @@ public class ForStatementImpl extends StatementImpl implements ForStatement {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<UpdatedStatement> getWhen() {
+	public EList<RuleCallStatement> getWhen() {
 		if (when == null) {
-			when = new EObjectContainmentEList<UpdatedStatement>(UpdatedStatement.class, this, XmuPackage.FOR_STATEMENT__WHEN);
+			when = new EObjectContainmentEList<RuleCallStatement>(RuleCallStatement.class, this, XmuPackage.FOR_STATEMENT__WHEN);
 		}
 		return when;
 	}
@@ -270,7 +270,7 @@ public class ForStatementImpl extends StatementImpl implements ForStatement {
 				return;
 			case XmuPackage.FOR_STATEMENT__WHEN:
 				getWhen().clear();
-				getWhen().addAll((Collection<? extends UpdatedStatement>)newValue);
+				getWhen().addAll((Collection<? extends RuleCallStatement>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

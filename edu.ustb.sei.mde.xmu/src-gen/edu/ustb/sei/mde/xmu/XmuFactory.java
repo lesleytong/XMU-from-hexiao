@@ -175,13 +175,22 @@ public interface XmuFactory extends EFactory {
 	EnumLiteral createEnumLiteral();
 
 	/**
-	 * Returns a new object of class '<em>VStatement</em>'.
+	 * Returns a new object of class '<em>Default VStatement</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>VStatement</em>'.
+	 * @return a new object of class '<em>Default VStatement</em>'.
 	 * @generated
 	 */
-	VStatement createVStatement();
+	DefaultVStatement createDefaultVStatement();
+
+	/**
+	 * Returns a new object of class '<em>Tagged VStatement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Tagged VStatement</em>'.
+	 * @generated
+	 */
+	TaggedVStatement createTaggedVStatement();
 
 	/**
 	 * Returns a new object of class '<em>Block Statement</em>'.
@@ -254,15 +263,6 @@ public interface XmuFactory extends EFactory {
 	 * @generated
 	 */
 	RuleCallStatement createRuleCallStatement();
-
-	/**
-	 * Returns a new object of class '<em>Updated Statement</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Updated Statement</em>'.
-	 * @generated
-	 */
-	UpdatedStatement createUpdatedStatement();
 
 	/**
 	 * Returns a new object of class '<em>Boolean Or Expr</em>'.

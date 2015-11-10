@@ -337,6 +337,8 @@ public class XmuExpressionCheck extends
 	@Override
 	public SafeType interprete_edu_ustb_sei_mde_xmu_RuleCallStatement(
 			RuleCallStatement ruleCallStatement, XmuContext context) {
+		
+		
 		XmuContext newContext = new XmuContext(context.getEnvironment());
 		Rule rule = ruleCallStatement.getRule();
 		newContext.initFromRule(rule);
@@ -360,16 +362,6 @@ public class XmuExpressionCheck extends
 		}
 		
 		return this.interprete(rule.getStatement(),newContext);
-	}
-
-	@Override
-	public SafeType interprete_edu_ustb_sei_mde_xmu_UpdatedStatement(
-			UpdatedStatement updatedStatement, XmuContext context) {
-		// TODO Auto-generated method stub
-		// check the record of update
-		throw new java.lang.UnsupportedOperationException("UndatedStatement");
-//		return super.interprete_edu_ustb_sei_mde_xmu_UpdatedStatement(updatedStatement,
-//				context);
 	}
 
 	@Override

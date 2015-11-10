@@ -13,7 +13,7 @@ import edu.ustb.sei.mde.xmu.PrimitiveVariable;
 import edu.ustb.sei.mde.xmu.Rule;
 import edu.ustb.sei.mde.xmu.RuleCallStatement;
 import edu.ustb.sei.mde.xmu.SwitchStatement;
-import edu.ustb.sei.mde.xmu.UpdatedStatement;
+//import edu.ustb.sei.mde.xmu.UpdatedStatement;
 import edu.ustb.sei.mde.xmu.Variable;
 import edu.ustb.sei.mde.xmu.VariableExp;
 import edu.ustb.sei.mde.xmu.VariableFlag;
@@ -84,19 +84,20 @@ public class XmuModelChecker extends AbstractXmuPostProcesser {
 						}
 					}
 				}
-			} else if(o instanceof UpdatedStatement) {
-				for(Variable v : ((UpdatedStatement) o).getSVar()) {
-					if(v instanceof PrimitiveVariable) {
-						// v is a parameter
-						// v is used in both source pattern and view pattern in a forstatement
-						// v is used in a case statement
-						
-						if(isPrimitiveVariableNullable((PrimitiveVariable)v,o)) {
-							resource.addWarning("Variable "+v.getName()+" may be null", XmuEProblemType.ANALYSIS_PROBLEM, o);
-						}
-					}
-				}
-			}
+			} 
+//			else if(o instanceof RuleCallStatement) {
+//				for(Variable v : ((RuleCallStatement) o).getSVar()) {
+//					if(v instanceof PrimitiveVariable) {
+//						// v is a parameter
+//						// v is used in both source pattern and view pattern in a forstatement
+//						// v is used in a case statement
+//						
+//						if(isPrimitiveVariableNullable((PrimitiveVariable)v,o)) {
+//							resource.addWarning("Variable "+v.getName()+" may be null", XmuEProblemType.ANALYSIS_PROBLEM, o);
+//						}
+//					}
+//				}
+//			}
 		}
 	}
 	

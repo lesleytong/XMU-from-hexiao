@@ -54,9 +54,11 @@ RULES {
 	
 	ForStatement ::= "update" sPattern ("with" vPattern ("when" when (";" when)*)?)? "by" (actions (actions (actions)?)?) ;
 	
-	UpdatedStatement ::= "updated" "(" sVar[NAME]+ "," vVar[NAME]+ ")";
+	//UpdatedStatement ::= "updated" "(" sVar[NAME]+ "," vVar[NAME]+ ")";
 	
-	VStatement ::= tag[match:"match", match:"", unmatchv:"unmatchv", unmatchs:"unmatchs"] "->" statement;
+	TaggedVStatement ::= tag[match:"match", unmatchv:"unmatchv", unmatchs:"unmatchs"] "->" statement;
+	
+	DefaultVStatement ::= statement;
 	
 	Pattern ::= root ("[" guard: BooleanOrExpr,BooleanAndExpr,RelationalExpr,AdditiveExpr,MultiplicativeExpr,UnaryExpr,AtomicExpr "]")?;
 	
@@ -86,13 +88,13 @@ RULES {
 	
 	BlockStatement ::= "{" (statements (";" statements)*)? "}" ;
 	
-	SwitchStatement ::= "switch" var[NAME] ("when" when (";" when)*)? "{" cases* "}";
+	SwitchStatement ::= "switch" var[NAME] "{" cases* "}";
 	
-	CasePatternStatement ::= "case" pattern "->" statement;
+	CasePatternStatement ::= "case" pattern  "->" statement ("when" when (";" when)*)?;
 	
 	CaseValueStatement ::= "case" expression "->" statement;
 	
-	CaseDefaultStatement ::= "otherwise" "->" statement;
+	CaseDefaultStatement ::= "otherwise" ("when" when (";" when)*)? "->" statement;
 	
 	RuleCallStatement ::= rule[NAME] "(" (actualParameters ("," actualParameters)*)? ")" ;
 	

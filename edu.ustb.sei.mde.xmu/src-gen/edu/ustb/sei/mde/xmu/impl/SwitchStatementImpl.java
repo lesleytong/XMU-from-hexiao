@@ -5,7 +5,6 @@ package edu.ustb.sei.mde.xmu.impl;
 import edu.ustb.sei.mde.xmu.CaseSubStatement;
 import edu.ustb.sei.mde.xmu.SwitchStatement;
 import edu.ustb.sei.mde.xmu.TaggedElement;
-import edu.ustb.sei.mde.xmu.UpdatedStatement;
 import edu.ustb.sei.mde.xmu.Variable;
 import edu.ustb.sei.mde.xmu.VariableFlag;
 import edu.ustb.sei.mde.xmu.XmuPackage;
@@ -31,13 +30,12 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.SwitchStatementImpl#getTag <em>Tag</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.SwitchStatementImpl#getVar <em>Var</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.SwitchStatementImpl#getCases <em>Cases</em>}</li>
- *   <li>{@link edu.ustb.sei.mde.xmu.impl.SwitchStatementImpl#getWhen <em>When</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -81,16 +79,6 @@ public class SwitchStatementImpl extends StatementImpl implements SwitchStatemen
 	 * @ordered
 	 */
 	protected EList<CaseSubStatement> cases;
-
-	/**
-	 * The cached value of the '{@link #getWhen() <em>When</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getWhen()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<UpdatedStatement> when;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -166,18 +154,6 @@ public class SwitchStatementImpl extends StatementImpl implements SwitchStatemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<UpdatedStatement> getWhen() {
-		if (when == null) {
-			when = new EObjectContainmentEList<UpdatedStatement>(UpdatedStatement.class, this, XmuPackage.SWITCH_STATEMENT__WHEN);
-		}
-		return when;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public VariableFlag getTag() {
 		return tag;
 	}
@@ -204,8 +180,6 @@ public class SwitchStatementImpl extends StatementImpl implements SwitchStatemen
 		switch (featureID) {
 			case XmuPackage.SWITCH_STATEMENT__CASES:
 				return ((InternalEList<?>)getCases()).basicRemove(otherEnd, msgs);
-			case XmuPackage.SWITCH_STATEMENT__WHEN:
-				return ((InternalEList<?>)getWhen()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -225,8 +199,6 @@ public class SwitchStatementImpl extends StatementImpl implements SwitchStatemen
 				return basicGetVar();
 			case XmuPackage.SWITCH_STATEMENT__CASES:
 				return getCases();
-			case XmuPackage.SWITCH_STATEMENT__WHEN:
-				return getWhen();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -250,10 +222,6 @@ public class SwitchStatementImpl extends StatementImpl implements SwitchStatemen
 				getCases().clear();
 				getCases().addAll((Collection<? extends CaseSubStatement>)newValue);
 				return;
-			case XmuPackage.SWITCH_STATEMENT__WHEN:
-				getWhen().clear();
-				getWhen().addAll((Collection<? extends UpdatedStatement>)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -275,9 +243,6 @@ public class SwitchStatementImpl extends StatementImpl implements SwitchStatemen
 			case XmuPackage.SWITCH_STATEMENT__CASES:
 				getCases().clear();
 				return;
-			case XmuPackage.SWITCH_STATEMENT__WHEN:
-				getWhen().clear();
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -296,8 +261,6 @@ public class SwitchStatementImpl extends StatementImpl implements SwitchStatemen
 				return var != null;
 			case XmuPackage.SWITCH_STATEMENT__CASES:
 				return cases != null && !cases.isEmpty();
-			case XmuPackage.SWITCH_STATEMENT__WHEN:
-				return when != null && !when.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

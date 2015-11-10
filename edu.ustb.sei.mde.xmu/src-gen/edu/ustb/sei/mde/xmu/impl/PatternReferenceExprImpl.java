@@ -19,12 +19,12 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.PatternReferenceExprImpl#getReference <em>Reference</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.PatternReferenceExprImpl#getNode <em>Node</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.PatternReferenceExprImpl#getPos <em>Pos</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

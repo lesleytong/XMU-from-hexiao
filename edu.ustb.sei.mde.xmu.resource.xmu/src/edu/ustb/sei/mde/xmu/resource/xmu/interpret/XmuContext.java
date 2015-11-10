@@ -140,7 +140,7 @@ public class XmuContext {
 						Variable sv = getVariable(var.getName().substring(0, var.getName().length()-Util.POST_LENGTH));
 						if(sv!=null) {
 							if(getSafeTypeValue(sv).isUndefined()) {
-								EObject def = this.getEnvironment().getTrace().getDefaultSource().get(value.getObjectValue());
+								EObject def = this.getEnvironment().getTrace().getSource(value.getObjectValue());
 								varBindings.put(sv, SafeType.createFromValue(def));						
 							}
 						}

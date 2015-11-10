@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
+import org.eclipse.emf.ecore.util.EcoreUtil.UsageCrossReferencer;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
@@ -139,8 +140,8 @@ public class XmuEnvironment {
 		    	EObject so = it.next();
 		    	EObject spo = copier.get(so);
 		    	//trace.setCorresponding(so,spo);
-		    	trace.putBackward(Collections.singletonList(so), Collections.singletonList(spo));
-		    	trace.getDefaultSource().put(spo, so);
+		    	//trace.putBackward(Collections.singletonList(so), Collections.singletonList(spo));
+		    	trace.put(so, spo);
 		    }
 		}
 		return true;
@@ -246,34 +247,34 @@ public class XmuEnvironment {
 		
 		System.out.println("create "+o+" when\n"+context);
 		
-		List<UpdatedStatement> updates = ContextUtil.lookupUpdatedStatementsFromView(current, vv);
-		
-		if(updates.size()!=0) {
-			
-			for(UpdatedStatement u : updates) {
-				List<Object> sVals = new ArrayList<Object>();
-				List<Object> vVals = new ArrayList<Object>();
-				for(Variable v : u.getSVar()) {
-					SafeType sv = context.getSafeTypeValue(v);
-					if(sv.isInvalid() || sv.isUndefined()) break;
-					sVals.add(sv.getValue());
-				}
-				if(sVals.size()!=u.getSVar().size()) continue;
-				
-				for(Variable v : u.getVVar()) {
-					if(v==vv) {
-						vVals.add(o);
-					} else {
-						SafeType sv = context.getSafeTypeValue(v);
-						if(sv.isInvalid() || sv.isUndefined()) break;
-						vVals.add(sv.getValue());
-					}
-				}
-				if(vVals.size()!=u.getVVar().size()) continue;
-				
-				trace.putForward(sVals,vVals);
-			}
-		}
+//		List<UpdatedStatement> updates = ContextUtil.lookupUpdatedStatementsFromView(current, vv);
+//		
+//		if(updates.size()!=0) {
+//			
+//			for(UpdatedStatement u : updates) {
+//				List<Object> sVals = new ArrayList<Object>();
+//				List<Object> vVals = new ArrayList<Object>();
+//				for(Variable v : u.getSVar()) {
+//					SafeType sv = context.getSafeTypeValue(v);
+//					if(sv.isInvalid() || sv.isUndefined()) break;
+//					sVals.add(sv.getValue());
+//				}
+//				if(sVals.size()!=u.getSVar().size()) continue;
+//				
+//				for(Variable v : u.getVVar()) {
+//					if(v==vv) {
+//						vVals.add(o);
+//					} else {
+//						SafeType sv = context.getSafeTypeValue(v);
+//						if(sv.isInvalid() || sv.isUndefined()) break;
+//						vVals.add(sv.getValue());
+//					}
+//				}
+//				if(vVals.size()!=u.getVVar().size()) continue;
+//				
+//				trace.putForward(sVals,vVals);
+//			}
+//		}
 		return o;
 	}
 	
@@ -283,61 +284,79 @@ public class XmuEnvironment {
 		EObject o = EcoreUtil.create(cls);
 		track.create(o);
 		
-		List<UpdatedStatement> updates = ContextUtil.lookupUpdatedStatementsFromSourcePost(current, sp);
 		
-		if(updates.size()==0) {//updateStatement does not exist. try to put a direct link
+		//FIXME: default link should be updated
+		/*
+		 * if need update default link
+		 * 	put
+		 * else do nothing
+		 */
+		
+		List<RuleCallStatement> updates = ContextUtil.lookupUpdatedStatementsFromSourcePost(current, sp);
+		if(updates.size()==0) {
 			Variable s = context.getVariable(sp.getName().substring(0, sp.getName().length()-Util.POST_LENGTH));
+			//should I check if s is a formal parameter?
 			if(s!=null) {
 				SafeType sv = context.getSafeTypeValue(s);
 				if(sv.getValue()!=null) {
-					trace.putBackward(Collections.singletonList(sv.getValue()),
-							Collections.singletonList(o));
+					trace.put(sv.getObjectValue(),o);
 				}
-			}
-		} else {
-			for(UpdatedStatement u : updates) {
-				List<Object> spv = new ArrayList<Object>();
-				List<Object> sv = new ArrayList<Object>();
-				
-				for(Variable var : u.getSVar()) {
-					if(var instanceof PrimitiveVariable) {
-						SafeType v = context.getSafeTypeValue(var);
-						sv.add(v.getValue());
-						spv.add(v.getValue());
-					} else {
-						SafeType v = context.getSafeTypeValue(var);
-						sv.add(v.getValue());
-						
-						Variable pv = context.getVariable(var.getName()+Util.POST_FLAG);
-						if(pv!=null) {
-							if(pv==sp) {
-								spv.add(o);
-							} else {
-								// in this case, some source post in the same tuple have not been created yet
-								SafeType vp = context.getSafeTypeValue(pv);
-								if(vp.isUndefined() || vp.isInvalid()){
-									break;
-								}
-								else 
-									spv.add(vp);								
-							}
-						} else {
-							spv.add(null);
-						}
-					}
-				}
-				
-				if(spv.size()!=sv.size()) continue;
-				
-				List<Object> vv = new ArrayList<Object>();
-				for(Variable var : u.getVVar()) {
-					SafeType v = context.getSafeTypeValue(var);
-					vv.add(v.getValue());
-				}
-				
-				trace.putBackward(sv, vv, spv);
 			}
 		}
+//		
+//		if(updates.size()==0) {//updateStatement does not exist. try to put a direct link
+//			Variable s = context.getVariable(sp.getName().substring(0, sp.getName().length()-Util.POST_LENGTH));
+//			if(s!=null) {
+//				SafeType sv = context.getSafeTypeValue(s);
+//				if(sv.getValue()!=null) {
+//					trace.putBackward(Collections.singletonList(sv.getValue()),
+//							Collections.singletonList(o));
+//				}
+//			}
+//		} else {
+//			for(UpdatedStatement u : updates) {
+//				List<Object> spv = new ArrayList<Object>();
+//				List<Object> sv = new ArrayList<Object>();
+//				
+//				for(Variable var : u.getSVar()) {
+//					if(var instanceof PrimitiveVariable) {
+//						SafeType v = context.getSafeTypeValue(var);
+//						sv.add(v.getValue());
+//						spv.add(v.getValue());
+//					} else {
+//						SafeType v = context.getSafeTypeValue(var);
+//						sv.add(v.getValue());
+//						
+//						Variable pv = context.getVariable(var.getName()+Util.POST_FLAG);
+//						if(pv!=null) {
+//							if(pv==sp) {
+//								spv.add(o);
+//							} else {
+//								// in this case, some source post in the same tuple have not been created yet
+//								SafeType vp = context.getSafeTypeValue(pv);
+//								if(vp.isUndefined() || vp.isInvalid()){
+//									break;
+//								}
+//								else 
+//									spv.add(vp);								
+//							}
+//						} else {
+//							spv.add(null);
+//						}
+//					}
+//				}
+//				
+//				if(spv.size()!=sv.size()) continue;
+//				
+//				List<Object> vv = new ArrayList<Object>();
+//				for(Variable var : u.getVVar()) {
+//					SafeType v = context.getSafeTypeValue(var);
+//					vv.add(v.getValue());
+//				}
+//				
+//				trace.putBackward(sv, vv, spv);
+//			}
+//		}
 		
 		return o;
 	}
@@ -347,9 +366,26 @@ public class XmuEnvironment {
 			track.delete(sourcePost);
 			
 			//trace.setCorresponding(source, null);
-			trace.removeBackward(Collections.singletonList(source));
+			trace.put(source, null);
 			
-			EcoreUtil.delete(sourcePost);
+			Resource res = sourcePost.eResource();
+			
+			if(res!=null)
+				EcoreUtil.delete(sourcePost);
+			else {
+				for(Resource r : this.getSourcePosts()) {
+					Collection<EStructuralFeature.Setting> usages = UsageCrossReferencer.find(sourcePost, r);
+					for (EStructuralFeature.Setting setting : usages)
+				    {
+				      if (setting.getEStructuralFeature().isChangeable())
+				      {
+				        EcoreUtil.remove(setting, sourcePost);
+				      }
+				    }
+				}
+			}
+			
+			
 			return Just.TRUE;
 		}
 		return SafeType.getInvalid();
@@ -670,6 +706,28 @@ public class XmuEnvironment {
 			return (List<Object>)res.getValue();
 		} else {
 			return (List<Object>) Collections.singletonList(res.getValue());
+		}
+	}
+
+	private Map<Expr,Expr> spExpMap = new HashMap<Expr,Expr>();
+	public Expr getSourcePostExpression(Expr ap) {
+		if(spExpMap.containsKey(ap)) return spExpMap.get(ap);
+		
+		if(ap instanceof VariableExp) {
+			Rule rule = Util.getRule(ap);
+			for(ObjectVariable v : rule.getSpVars()) {
+				if(v.getName().startsWith(((VariableExp) ap).getVar().getName())
+						&& v.getName().length() == ((VariableExp) ap).getVar().getName().length()+Util.POST_LENGTH) {
+					VariableExp nap = XmuFactory.eINSTANCE.createVariableExp();
+					nap.setVar(v);
+					nap.getPath().addAll(((VariableExp) ap).getPath());
+					spExpMap.put(ap, nap);
+					return nap;
+				}
+			}
+			return null;
+		} else {
+			return null;
 		}
 	}
 

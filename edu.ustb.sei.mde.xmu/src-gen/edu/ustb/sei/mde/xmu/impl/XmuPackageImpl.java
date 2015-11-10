@@ -18,6 +18,7 @@ import edu.ustb.sei.mde.xmu.CasePatternStatement;
 import edu.ustb.sei.mde.xmu.CaseSubStatement;
 import edu.ustb.sei.mde.xmu.CaseValueStatement;
 import edu.ustb.sei.mde.xmu.ConstantExpr;
+import edu.ustb.sei.mde.xmu.DefaultVStatement;
 import edu.ustb.sei.mde.xmu.DeleteLink;
 import edu.ustb.sei.mde.xmu.DeleteNode;
 import edu.ustb.sei.mde.xmu.EResource;
@@ -66,12 +67,12 @@ import edu.ustb.sei.mde.xmu.Statement;
 import edu.ustb.sei.mde.xmu.StringLiteral;
 import edu.ustb.sei.mde.xmu.SwitchStatement;
 import edu.ustb.sei.mde.xmu.TaggedElement;
+import edu.ustb.sei.mde.xmu.TaggedVStatement;
 import edu.ustb.sei.mde.xmu.UnaryExpr;
 import edu.ustb.sei.mde.xmu.UnaryExprChild;
 import edu.ustb.sei.mde.xmu.UnaryOperator;
 import edu.ustb.sei.mde.xmu.Update;
 import edu.ustb.sei.mde.xmu.UpdatePattern;
-import edu.ustb.sei.mde.xmu.UpdatedStatement;
 import edu.ustb.sei.mde.xmu.VStatement;
 import edu.ustb.sei.mde.xmu.VStmtType;
 import edu.ustb.sei.mde.xmu.Variable;
@@ -274,6 +275,20 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass defaultVStatementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass taggedVStatementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass blockStatementEClass = null;
 
 	/**
@@ -338,13 +353,6 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 	 * @generated
 	 */
 	private EClass ruleCallStatementEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass updatedStatementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1259,6 +1267,24 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getDefaultVStatement() {
+		return defaultVStatementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getTaggedVStatement() {
+		return taggedVStatementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getBlockStatement() {
 		return blockStatementEClass;
 	}
@@ -1304,15 +1330,6 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSwitchStatement_When() {
-		return (EReference)switchStatementEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getTaggedElement() {
 		return taggedElementEClass;
 	}
@@ -1342,6 +1359,15 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 	 */
 	public EReference getCaseSubStatement_Statement() {
 		return (EReference)caseSubStatementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCaseSubStatement_When() {
+		return (EReference)caseSubStatementEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1486,33 +1512,6 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 	 */
 	public EReference getRuleCallStatement_Rule() {
 		return (EReference)ruleCallStatementEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getUpdatedStatement() {
-		return updatedStatementEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getUpdatedStatement_SVar() {
-		return (EReference)updatedStatementEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getUpdatedStatement_VVar() {
-		return (EReference)updatedStatementEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -2306,19 +2305,23 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 		createEAttribute(vStatementEClass, VSTATEMENT__TAG);
 		createEReference(vStatementEClass, VSTATEMENT__STATEMENT);
 
+		defaultVStatementEClass = createEClass(DEFAULT_VSTATEMENT);
+
+		taggedVStatementEClass = createEClass(TAGGED_VSTATEMENT);
+
 		blockStatementEClass = createEClass(BLOCK_STATEMENT);
 		createEReference(blockStatementEClass, BLOCK_STATEMENT__STATEMENTS);
 
 		switchStatementEClass = createEClass(SWITCH_STATEMENT);
 		createEReference(switchStatementEClass, SWITCH_STATEMENT__VAR);
 		createEReference(switchStatementEClass, SWITCH_STATEMENT__CASES);
-		createEReference(switchStatementEClass, SWITCH_STATEMENT__WHEN);
 
 		taggedElementEClass = createEClass(TAGGED_ELEMENT);
 		createEAttribute(taggedElementEClass, TAGGED_ELEMENT__TAG);
 
 		caseSubStatementEClass = createEClass(CASE_SUB_STATEMENT);
 		createEReference(caseSubStatementEClass, CASE_SUB_STATEMENT__STATEMENT);
+		createEReference(caseSubStatementEClass, CASE_SUB_STATEMENT__WHEN);
 
 		casePatternStatementEClass = createEClass(CASE_PATTERN_STATEMENT);
 		createEReference(casePatternStatementEClass, CASE_PATTERN_STATEMENT__PATTERN);
@@ -2341,10 +2344,6 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 		ruleCallStatementEClass = createEClass(RULE_CALL_STATEMENT);
 		createEReference(ruleCallStatementEClass, RULE_CALL_STATEMENT__ACTUAL_PARAMETERS);
 		createEReference(ruleCallStatementEClass, RULE_CALL_STATEMENT__RULE);
-
-		updatedStatementEClass = createEClass(UPDATED_STATEMENT);
-		createEReference(updatedStatementEClass, UPDATED_STATEMENT__SVAR);
-		createEReference(updatedStatementEClass, UPDATED_STATEMENT__VVAR);
 
 		booleanOrExprEClass = createEClass(BOOLEAN_OR_EXPR);
 		createEReference(booleanOrExprEClass, BOOLEAN_OR_EXPR__OPERANDS);
@@ -2504,6 +2503,8 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 		integerLiteralEClass.getESuperTypes().add(this.getConstantExpr());
 		booleanLiteralEClass.getESuperTypes().add(this.getConstantExpr());
 		enumLiteralEClass.getESuperTypes().add(this.getConstantExpr());
+		defaultVStatementEClass.getESuperTypes().add(this.getVStatement());
+		taggedVStatementEClass.getESuperTypes().add(this.getVStatement());
 		blockStatementEClass.getESuperTypes().add(this.getStatement());
 		switchStatementEClass.getESuperTypes().add(this.getStatement());
 		switchStatementEClass.getESuperTypes().add(this.getTaggedElement());
@@ -2513,7 +2514,6 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 		parameterEClass.getESuperTypes().add(this.getTaggedElement());
 		ruleCallStatementEClass.getESuperTypes().add(this.getStatement());
 		ruleCallStatementEClass.getESuperTypes().add(this.getTaggedElement());
-		updatedStatementEClass.getESuperTypes().add(this.getStatement());
 		booleanOrExprEClass.getESuperTypes().add(this.getExpr());
 		booleanOrExprChildEClass.getESuperTypes().add(this.getExpr());
 		booleanAndExprEClass.getESuperTypes().add(this.getBooleanOrExprChild());
@@ -2566,7 +2566,7 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 		initEReference(getForStatement_SPattern(), this.getPattern(), null, "sPattern", null, 1, 1, ForStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getForStatement_VPattern(), this.getPattern(), null, "vPattern", null, 0, 1, ForStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getForStatement_Actions(), this.getVStatement(), null, "actions", null, 1, 3, ForStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getForStatement_When(), this.getUpdatedStatement(), null, "when", null, 0, -1, ForStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getForStatement_When(), this.getRuleCallStatement(), null, "when", null, 0, -1, ForStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(updateEClass, Update.class, "Update", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -2626,9 +2626,13 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 		initEReference(getEnumLiteral_Type(), ecorePackage.getEEnum(), null, "type", null, 1, 1, EnumLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getEnumLiteral_Value(), ecorePackage.getEEnumLiteral(), null, "value", null, 1, 1, EnumLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(vStatementEClass, VStatement.class, "VStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(vStatementEClass, VStatement.class, "VStatement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getVStatement_Tag(), this.getVStmtType(), "tag", null, 1, 1, VStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getVStatement_Statement(), this.getStatement(), null, "statement", null, 1, 1, VStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(defaultVStatementEClass, DefaultVStatement.class, "DefaultVStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(taggedVStatementEClass, TaggedVStatement.class, "TaggedVStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(blockStatementEClass, BlockStatement.class, "BlockStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBlockStatement_Statements(), this.getStatement(), null, "statements", null, 0, -1, BlockStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2636,13 +2640,13 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 		initEClass(switchStatementEClass, SwitchStatement.class, "SwitchStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSwitchStatement_Var(), this.getVariable(), null, "var", null, 1, 1, SwitchStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSwitchStatement_Cases(), this.getCaseSubStatement(), null, "cases", null, 0, -1, SwitchStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSwitchStatement_When(), this.getUpdatedStatement(), null, "when", null, 0, -1, SwitchStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(taggedElementEClass, TaggedElement.class, "TaggedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTaggedElement_Tag(), this.getVariableFlag(), "tag", null, 1, 1, TaggedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(caseSubStatementEClass, CaseSubStatement.class, "CaseSubStatement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCaseSubStatement_Statement(), this.getStatement(), null, "statement", null, 1, 1, CaseSubStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCaseSubStatement_When(), this.getRuleCallStatement(), null, "when", null, 0, -1, CaseSubStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(casePatternStatementEClass, CasePatternStatement.class, "CasePatternStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCasePatternStatement_Pattern(), this.getPattern(), null, "pattern", null, 1, 1, CasePatternStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2665,10 +2669,6 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 		initEClass(ruleCallStatementEClass, RuleCallStatement.class, "RuleCallStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getRuleCallStatement_ActualParameters(), this.getExpr(), null, "actualParameters", null, 0, -1, RuleCallStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getRuleCallStatement_Rule(), this.getRule(), null, "rule", null, 1, 1, RuleCallStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(updatedStatementEClass, UpdatedStatement.class, "UpdatedStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getUpdatedStatement_SVar(), this.getVariable(), null, "sVar", null, 1, -1, UpdatedStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getUpdatedStatement_VVar(), this.getVariable(), null, "vVar", null, 1, -1, UpdatedStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(booleanOrExprEClass, BooleanOrExpr.class, "BooleanOrExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBooleanOrExpr_Operands(), this.getBooleanOrExprChild(), null, "operands", null, 2, -1, BooleanOrExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2789,6 +2789,7 @@ public class XmuPackageImpl extends EPackageImpl implements XmuPackage {
 		addEEnumLiteral(emptyTypeEEnum, EmptyType.EMPTY_VALUE);
 
 		initEEnum(vStmtTypeEEnum, VStmtType.class, "VStmtType");
+		addEEnumLiteral(vStmtTypeEEnum, VStmtType.DEFAULT);
 		addEEnumLiteral(vStmtTypeEEnum, VStmtType.MATCH);
 		addEEnumLiteral(vStmtTypeEEnum, VStmtType.UNMATCHV);
 		addEEnumLiteral(vStmtTypeEEnum, VStmtType.UNMATCHS);

@@ -11,12 +11,12 @@ import org.eclipse.emf.ecore.EReference;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu.PatternReferenceExpr#getReference <em>Reference</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.PatternReferenceExpr#getNode <em>Node</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.PatternReferenceExpr#getPos <em>Pos</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.ustb.sei.mde.xmu.XmuPackage#getPatternReferenceExpr()
  * @model

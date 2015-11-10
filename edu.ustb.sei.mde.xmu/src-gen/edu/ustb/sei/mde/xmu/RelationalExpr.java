@@ -10,12 +10,12 @@ package edu.ustb.sei.mde.xmu;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu.RelationalExpr#getLeft <em>Left</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.RelationalExpr#getRight <em>Right</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.RelationalExpr#getOperator <em>Operator</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.ustb.sei.mde.xmu.XmuPackage#getRelationalExpr()
  * @model

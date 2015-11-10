@@ -2,6 +2,7 @@
  */
 package edu.ustb.sei.mde.xmu;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -11,10 +12,11 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu.CaseSubStatement#getStatement <em>Statement</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.xmu.CaseSubStatement#getWhen <em>When</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.ustb.sei.mde.xmu.XmuPackage#getCaseSubStatement()
  * @model abstract="true"
@@ -46,5 +48,21 @@ public interface CaseSubStatement extends EObject {
 	 * @generated
 	 */
 	void setStatement(Statement value);
+
+	/**
+	 * Returns the value of the '<em><b>When</b></em>' containment reference list.
+	 * The list contents are of type {@link edu.ustb.sei.mde.xmu.RuleCallStatement}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>When</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>When</em>' containment reference list.
+	 * @see edu.ustb.sei.mde.xmu.XmuPackage#getCaseSubStatement_When()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<RuleCallStatement> getWhen();
 
 } // CaseSubStatement

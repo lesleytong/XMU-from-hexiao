@@ -10,11 +10,11 @@ package edu.ustb.sei.mde.xmu;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu.Pattern#getRoot <em>Root</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.Pattern#getGuard <em>Guard</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.ustb.sei.mde.xmu.XmuPackage#getPattern()
  * @model

@@ -11,10 +11,10 @@ import org.eclipse.emf.ecore.EDataType;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu.PrimitiveVariable#getType <em>Type</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.ustb.sei.mde.xmu.XmuPackage#getPrimitiveVariable()
  * @model

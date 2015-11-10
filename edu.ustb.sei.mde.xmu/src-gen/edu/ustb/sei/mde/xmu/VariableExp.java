@@ -12,11 +12,11 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu.VariableExp#getVar <em>Var</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.VariableExp#getPath <em>Path</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.ustb.sei.mde.xmu.XmuPackage#getVariableExp()
  * @model

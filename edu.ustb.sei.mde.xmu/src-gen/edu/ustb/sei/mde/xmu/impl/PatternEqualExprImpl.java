@@ -18,12 +18,12 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.PatternEqualExprImpl#getFeature <em>Feature</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.PatternEqualExprImpl#getValue <em>Value</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.PatternEqualExprImpl#getPos <em>Pos</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

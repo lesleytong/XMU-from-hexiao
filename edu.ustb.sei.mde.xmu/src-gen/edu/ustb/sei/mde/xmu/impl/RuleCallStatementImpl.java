@@ -30,12 +30,12 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.RuleCallStatementImpl#getTag <em>Tag</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.RuleCallStatementImpl#getActualParameters <em>Actual Parameters</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.RuleCallStatementImpl#getRule <em>Rule</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

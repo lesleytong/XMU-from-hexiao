@@ -18,12 +18,12 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.DeleteLinkImpl#getSource <em>Source</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.DeleteLinkImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.DeleteLinkImpl#getFeature <em>Feature</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

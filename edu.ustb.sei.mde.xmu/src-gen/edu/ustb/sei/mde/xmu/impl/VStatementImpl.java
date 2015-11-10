@@ -19,15 +19,15 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.VStatementImpl#getTag <em>Tag</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.VStatementImpl#getStatement <em>Statement</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class VStatementImpl extends MinimalEObjectImpl.Container implements VStatement {
+public abstract class VStatementImpl extends MinimalEObjectImpl.Container implements VStatement {
 	/**
 	 * The default value of the '{@link #getTag() <em>Tag</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -36,7 +36,7 @@ public class VStatementImpl extends MinimalEObjectImpl.Container implements VSta
 	 * @generated
 	 * @ordered
 	 */
-	protected static final VStmtType TAG_EDEFAULT = VStmtType.MATCH;
+	protected static final VStmtType TAG_EDEFAULT = VStmtType.DEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getTag() <em>Tag</em>}' attribute.

@@ -13,11 +13,11 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu.StartStatement#getRule <em>Rule</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.StartStatement#getRoot <em>Root</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.ustb.sei.mde.xmu.XmuPackage#getStartStatement()
  * @model

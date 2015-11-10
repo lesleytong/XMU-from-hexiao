@@ -11,12 +11,12 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu.PatternEqualExpr#getFeature <em>Feature</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.PatternEqualExpr#getValue <em>Value</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu.PatternEqualExpr#getPos <em>Pos</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.ustb.sei.mde.xmu.XmuPackage#getPatternEqualExpr()
  * @model
