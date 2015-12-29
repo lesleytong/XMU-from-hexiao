@@ -252,7 +252,7 @@ public class ModelSpace extends NamedElement {
 				}
 			} else {
 				EObject c = (EObject)object.eGet(ref);
-				deleteElement(c);
+				if(c!=null) deleteElement(c);
 			}
 		}
 		synchronized(object) {

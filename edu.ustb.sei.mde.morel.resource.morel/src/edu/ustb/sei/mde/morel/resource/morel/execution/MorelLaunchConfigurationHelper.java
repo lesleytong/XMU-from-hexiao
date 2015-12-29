@@ -6,6 +6,7 @@
  */
 package edu.ustb.sei.mde.morel.resource.morel.execution;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -109,7 +110,10 @@ public class MorelLaunchConfigurationHelper {
 				interpreter.interprete_edu_ustb_sei_mde_morel_QueryModel((QueryModel) root, createContext);
 			} else if(root instanceof TransformationModel) {
 //				OclInterpreter interpreter = new OclInterpreter();
+				long startTime = Calendar.getInstance().getTimeInMillis();
 				interpreter.interprete_edu_ustb_sei_mde_morel_TransformationModel((TransformationModel) root, createContext);
+				long endTime = Calendar.getInstance().getTimeInMillis();
+				ConsoleUtil.printToConsole("Execute time (ms): "+(endTime-startTime), MOREL_TITLE, true);
 				saveModelSpace(root, env);
 			} 
 //			else if(root instanceof BXRewritingModel) {
