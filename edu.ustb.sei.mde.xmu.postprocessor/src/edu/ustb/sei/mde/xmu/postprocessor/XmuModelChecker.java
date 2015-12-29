@@ -4,11 +4,16 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 
+import edu.ustb.sei.mde.xmu.AtomicExpr;
 import edu.ustb.sei.mde.xmu.CasePatternStatement;
 import edu.ustb.sei.mde.xmu.CaseSubStatement;
 import edu.ustb.sei.mde.xmu.ForStatement;
+import edu.ustb.sei.mde.xmu.ObjectVariable;
 import edu.ustb.sei.mde.xmu.Parameter;
+import edu.ustb.sei.mde.xmu.PatternEqualExpr;
+import edu.ustb.sei.mde.xmu.PatternNode;
 import edu.ustb.sei.mde.xmu.PrimitiveVariable;
 import edu.ustb.sei.mde.xmu.Rule;
 import edu.ustb.sei.mde.xmu.RuleCallStatement;
@@ -23,6 +28,7 @@ import edu.ustb.sei.mde.xmu.resource.xmu.IXmuResourcePostProcessor;
 import edu.ustb.sei.mde.xmu.resource.xmu.IXmuResourcePostProcessorProvider;
 import edu.ustb.sei.mde.xmu.resource.xmu.XmuEProblemType;
 import edu.ustb.sei.mde.xmu.resource.xmu.analysis.Util;
+import edu.ustb.sei.mde.xmu.resource.xmu.mopp.XmuProblem;
 import edu.ustb.sei.mde.xmu.resource.xmu.mopp.XmuResource;
 
 public class XmuModelChecker extends AbstractXmuPostProcesser {
@@ -38,11 +44,43 @@ public class XmuModelChecker extends AbstractXmuPostProcesser {
 				try {
 					checkContent(rule,resource);
 					checkUndefinedPrimitiveVariable(rule,resource);
+					checkSuspiciousPatternEqual(rule,resource);
 				} catch(Exception e){
 					e.printStackTrace();
 				}
 			}
 			
+	}
+
+	private void checkSuspiciousPatternEqual(Rule rule, XmuResource resource) {
+		// TODO Auto-generated method stub
+		TreeIterator<EObject> it = rule.eAllContents();
+		
+		while(it.hasNext()) {
+			EObject o = it.next();
+			
+			if(o instanceof PatternEqualExpr) {
+				PatternNode n = (PatternNode) o.eContainer();
+				if(!rule.getSpVars().contains(n.getVariable())) continue;
+				
+				if(((PatternEqualExpr) o).getFeature() instanceof EReference) {
+					AtomicExpr value = ((PatternEqualExpr) o).getValue();
+					if(value instanceof VariableExp) {
+						if(!((VariableExp) value).getPath().isEmpty()) continue;
+						Variable var = ((VariableExp) value).getVar();
+						if(var instanceof ObjectVariable) {
+							if (!rule.getSpVars().contains(var)) {
+								resource.addWarning("assign a source object to a source post reference",
+										XmuEProblemType.ANALYSIS_PROBLEM, o);
+							}
+						} else {
+							resource.addWarning("assign an primitive value to a reference",
+									XmuEProblemType.ANALYSIS_PROBLEM, o);
+						}
+					}
+				}
+			}
+		}
 	}
 
 	private void checkUndefinedPrimitiveVariable(Rule rule,XmuResource resource) {

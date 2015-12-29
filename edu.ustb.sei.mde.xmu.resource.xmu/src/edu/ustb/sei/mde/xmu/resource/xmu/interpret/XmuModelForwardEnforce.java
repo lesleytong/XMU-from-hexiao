@@ -208,10 +208,8 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 							System.out.println(c);
 							throw new RuntimeException("model check fails");
 						}
-						else {
-							continue;
-						}
 					}
+					mergeContext(context,c);
 				}
 			} else {
 				ForStatementVReordering reorder = reorderForStatement(forStatement,c);
@@ -247,6 +245,7 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 						if(ret!=Just.TRUE) return SafeType.getInvalid();
 					}
 				}
+				mergeContext(context,c);
 			}
 			
 			
@@ -308,6 +307,19 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 //		
 		return Just.TRUE;
 		
+	}
+	
+	protected void mergeContext(XmuContext outterContext, XmuContext mergeContext) {
+		{//write back to parameter
+			Rule rule = outterContext.getRule();
+			for(Parameter fp : rule.getParameters()) {
+				if(fp.getTag()==VariableFlag.VIEW || fp.getTag()==VariableFlag.NORMAL) {
+					Variable vp = fp.getVariable();
+					SafeType val = mergeContext.getSafeTypeValue(vp);
+					outterContext.putValue(vp, val);
+				}
+			}
+		}
 	}
 
 	protected boolean doForUpdatedStatements(ForStatement forStatement,

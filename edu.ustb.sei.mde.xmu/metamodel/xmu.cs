@@ -58,7 +58,7 @@ RULES {
 	
 	TaggedVStatement ::= tag[match:"match", unmatchv:"unmatchv", unmatchs:"unmatchs"] "->" statement ("where" where (";" where)*)?;
 	
-	DefaultVStatement ::= statement ("where" where (";" where)*)?;
+	DefaultVStatement ::= statement ("where" where ("," where)*)?;
 	
 	Pattern ::= root ("[" guard: BooleanOrExpr,BooleanAndExpr,RelationalExpr,AdditiveExpr,MultiplicativeExpr,UnaryExpr,AtomicExpr "]")?;
 	

@@ -1339,7 +1339,7 @@ public class XmuPrinter implements edu.ustb.sei.mde.xmu.resource.xmu.IXmuTextPri
 		String localtab = outertab;
 		int count;
 		// DEFINITION PART BEGINS (CsString)
-		out.print(";");
+		out.print(",");
 		out.print(" ");
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("where");

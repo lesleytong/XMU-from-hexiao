@@ -636,6 +636,16 @@ public class XmuExpressionCheck extends
 			}
 			
 			return Just.FALSE;
+		} else if(((LoopPath) path).getOperator()==LoopOperator.SELECT) {
+			SafeType ret = Just.FALSE;
+			
+			for(Object o : col) {
+				inner.putValue(path.getVariable(), SafeType.createFromValue(o));
+				ret = this.interprete(path.getBody(), inner);
+				if(ret==Just.TRUE) return SafeType.createFromValue(o);
+			}
+			
+			return SafeType.getInvalid();
 		}
 		
 		return SafeType.getInvalid();

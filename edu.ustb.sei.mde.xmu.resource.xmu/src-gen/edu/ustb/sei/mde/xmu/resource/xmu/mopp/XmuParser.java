@@ -4004,7 +4004,7 @@ public class XmuParser extends XmuANTLRParserBase {
 
 
     // $ANTLR start "parse_edu_ustb_sei_mde_xmu_DefaultVStatement"
-    // Xmu.g:2461:1: parse_edu_ustb_sei_mde_xmu_DefaultVStatement returns [edu.ustb.sei.mde.xmu.DefaultVStatement element = null] : (a0_0= parse_edu_ustb_sei_mde_xmu_Statement ) ( (a1= 'where' (a2_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) ( (a3= ';' (a4_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) ) )* ) )? ;
+    // Xmu.g:2461:1: parse_edu_ustb_sei_mde_xmu_DefaultVStatement returns [edu.ustb.sei.mde.xmu.DefaultVStatement element = null] : (a0_0= parse_edu_ustb_sei_mde_xmu_Statement ) ( (a1= 'where' (a2_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) ( (a3= ',' (a4_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) ) )* ) )? ;
     public final edu.ustb.sei.mde.xmu.DefaultVStatement parse_edu_ustb_sei_mde_xmu_DefaultVStatement() throws RecognitionException {
         edu.ustb.sei.mde.xmu.DefaultVStatement element =  null;
 
@@ -4024,8 +4024,8 @@ public class XmuParser extends XmuANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 11) ) { return element; }
 
-            // Xmu.g:2464:2: ( (a0_0= parse_edu_ustb_sei_mde_xmu_Statement ) ( (a1= 'where' (a2_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) ( (a3= ';' (a4_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) ) )* ) )? )
-            // Xmu.g:2465:2: (a0_0= parse_edu_ustb_sei_mde_xmu_Statement ) ( (a1= 'where' (a2_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) ( (a3= ';' (a4_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) ) )* ) )?
+            // Xmu.g:2464:2: ( (a0_0= parse_edu_ustb_sei_mde_xmu_Statement ) ( (a1= 'where' (a2_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) ( (a3= ',' (a4_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) ) )* ) )? )
+            // Xmu.g:2465:2: (a0_0= parse_edu_ustb_sei_mde_xmu_Statement ) ( (a1= 'where' (a2_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) ( (a3= ',' (a4_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) ) )* ) )?
             {
             // Xmu.g:2465:2: (a0_0= parse_edu_ustb_sei_mde_xmu_Statement )
             // Xmu.g:2466:3: a0_0= parse_edu_ustb_sei_mde_xmu_Statement
@@ -4084,7 +4084,7 @@ public class XmuParser extends XmuANTLRParserBase {
             		addExpectedElement(null, edu.ustb.sei.mde.xmu.resource.xmu.mopp.XmuExpectationConstants.EXPECTATIONS[423]);
             	}
 
-            // Xmu.g:2511:2: ( (a1= 'where' (a2_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) ( (a3= ';' (a4_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) ) )* ) )?
+            // Xmu.g:2511:2: ( (a1= 'where' (a2_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) ( (a3= ',' (a4_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) ) )* ) )?
             int alt20=2;
             int LA20_0 = input.LA(1);
 
@@ -4097,10 +4097,10 @@ public class XmuParser extends XmuANTLRParserBase {
             }
             switch (alt20) {
                 case 1 :
-                    // Xmu.g:2512:3: (a1= 'where' (a2_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) ( (a3= ';' (a4_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) ) )* )
+                    // Xmu.g:2512:3: (a1= 'where' (a2_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) ( (a3= ',' (a4_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) ) )* )
                     {
-                    // Xmu.g:2512:3: (a1= 'where' (a2_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) ( (a3= ';' (a4_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) ) )* )
-                    // Xmu.g:2513:4: a1= 'where' (a2_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) ( (a3= ';' (a4_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) ) )*
+                    // Xmu.g:2512:3: (a1= 'where' (a2_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) ( (a3= ',' (a4_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) ) )* )
+                    // Xmu.g:2513:4: a1= 'where' (a2_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) ( (a3= ',' (a4_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) ) )*
                     {
                     a1=(Token)match(input,67,FOLLOW_67_in_parse_edu_ustb_sei_mde_xmu_DefaultVStatement2122); if (state.failed) return element;
 
@@ -4177,31 +4177,25 @@ public class XmuParser extends XmuANTLRParserBase {
                     				addExpectedElement(null, edu.ustb.sei.mde.xmu.resource.xmu.mopp.XmuExpectationConstants.EXPECTATIONS[446]);
                     			}
 
-                    // Xmu.g:2574:4: ( (a3= ';' (a4_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) ) )*
+                    // Xmu.g:2574:4: ( (a3= ',' (a4_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) ) )*
                     loop19:
                     do {
                         int alt19=2;
                         int LA19_0 = input.LA(1);
 
-                        if ( (LA19_0==30) ) {
-                            int LA19_16 = input.LA(2);
-
-                            if ( (synpred23_Xmu()) ) {
-                                alt19=1;
-                            }
-
-
+                        if ( (LA19_0==22) ) {
+                            alt19=1;
                         }
 
 
                         switch (alt19) {
                     	case 1 :
-                    	    // Xmu.g:2575:5: (a3= ';' (a4_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) )
+                    	    // Xmu.g:2575:5: (a3= ',' (a4_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) )
                     	    {
-                    	    // Xmu.g:2575:5: (a3= ';' (a4_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) )
-                    	    // Xmu.g:2576:6: a3= ';' (a4_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement )
+                    	    // Xmu.g:2575:5: (a3= ',' (a4_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) )
+                    	    // Xmu.g:2576:6: a3= ',' (a4_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement )
                     	    {
-                    	    a3=(Token)match(input,30,FOLLOW_30_in_parse_edu_ustb_sei_mde_xmu_DefaultVStatement2189); if (state.failed) return element;
+                    	    a3=(Token)match(input,22,FOLLOW_22_in_parse_edu_ustb_sei_mde_xmu_DefaultVStatement2189); if (state.failed) return element;
 
                     	    if ( state.backtracking==0 ) {
                     	    						if (element == null) {
@@ -19894,40 +19888,6 @@ public class XmuParser extends XmuANTLRParserBase {
     }
     // $ANTLR end synpred22_Xmu
 
-    // $ANTLR start synpred23_Xmu
-    public final void synpred23_Xmu_fragment() throws RecognitionException {
-        Token a3=null;
-        edu.ustb.sei.mde.xmu.RuleCallStatement a4_0 =null;
-
-
-        // Xmu.g:2575:5: ( (a3= ';' (a4_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) ) )
-        // Xmu.g:2575:5: (a3= ';' (a4_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) )
-        {
-        // Xmu.g:2575:5: (a3= ';' (a4_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) )
-        // Xmu.g:2576:6: a3= ';' (a4_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement )
-        {
-        a3=(Token)match(input,30,FOLLOW_30_in_synpred23_Xmu2189); if (state.failed) return ;
-
-        // Xmu.g:2590:6: (a4_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement )
-        // Xmu.g:2591:7: a4_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement
-        {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu_RuleCallStatement_in_synpred23_Xmu2223);
-        a4_0=parse_edu_ustb_sei_mde_xmu_RuleCallStatement();
-
-        state._fsp--;
-        if (state.failed) return ;
-
-        }
-
-
-        }
-
-
-        }
-
-    }
-    // $ANTLR end synpred23_Xmu
-
     // $ANTLR start synpred24_Xmu
     public final void synpred24_Xmu_fragment() throws RecognitionException {
         Token a1=null;
@@ -19937,11 +19897,11 @@ public class XmuParser extends XmuANTLRParserBase {
         edu.ustb.sei.mde.xmu.RuleCallStatement a4_0 =null;
 
 
-        // Xmu.g:2512:3: ( (a1= 'where' (a2_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) ( (a3= ';' (a4_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) ) )* ) )
-        // Xmu.g:2512:3: (a1= 'where' (a2_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) ( (a3= ';' (a4_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) ) )* )
+        // Xmu.g:2512:3: ( (a1= 'where' (a2_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) ( (a3= ',' (a4_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) ) )* ) )
+        // Xmu.g:2512:3: (a1= 'where' (a2_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) ( (a3= ',' (a4_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) ) )* )
         {
-        // Xmu.g:2512:3: (a1= 'where' (a2_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) ( (a3= ';' (a4_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) ) )* )
-        // Xmu.g:2513:4: a1= 'where' (a2_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) ( (a3= ';' (a4_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) ) )*
+        // Xmu.g:2512:3: (a1= 'where' (a2_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) ( (a3= ',' (a4_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) ) )* )
+        // Xmu.g:2513:4: a1= 'where' (a2_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) ( (a3= ',' (a4_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) ) )*
         {
         a1=(Token)match(input,67,FOLLOW_67_in_synpred24_Xmu2122); if (state.failed) return ;
 
@@ -19957,25 +19917,25 @@ public class XmuParser extends XmuANTLRParserBase {
         }
 
 
-        // Xmu.g:2574:4: ( (a3= ';' (a4_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) ) )*
+        // Xmu.g:2574:4: ( (a3= ',' (a4_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) ) )*
         loop87:
         do {
             int alt87=2;
             int LA87_0 = input.LA(1);
 
-            if ( (LA87_0==30) ) {
+            if ( (LA87_0==22) ) {
                 alt87=1;
             }
 
 
             switch (alt87) {
         	case 1 :
-        	    // Xmu.g:2575:5: (a3= ';' (a4_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) )
+        	    // Xmu.g:2575:5: (a3= ',' (a4_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) )
         	    {
-        	    // Xmu.g:2575:5: (a3= ';' (a4_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) )
-        	    // Xmu.g:2576:6: a3= ';' (a4_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement )
+        	    // Xmu.g:2575:5: (a3= ',' (a4_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement ) )
+        	    // Xmu.g:2576:6: a3= ',' (a4_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement )
         	    {
-        	    a3=(Token)match(input,30,FOLLOW_30_in_synpred24_Xmu2189); if (state.failed) return ;
+        	    a3=(Token)match(input,22,FOLLOW_22_in_synpred24_Xmu2189); if (state.failed) return ;
 
         	    // Xmu.g:2590:6: (a4_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement )
         	    // Xmu.g:2591:7: a4_0= parse_edu_ustb_sei_mde_xmu_RuleCallStatement
@@ -22053,20 +22013,6 @@ public class XmuParser extends XmuANTLRParserBase {
         state.failed=false;
         return success;
     }
-    public final boolean synpred23_Xmu() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred23_Xmu_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
     public final boolean synpred79_Xmu() {
         state.backtracking++;
         int start = input.mark();
@@ -22275,9 +22221,9 @@ public class XmuParser extends XmuANTLRParserBase {
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu_RuleCallStatement_in_parse_edu_ustb_sei_mde_xmu_TaggedVStatement2002 = new BitSet(new long[]{0x0000000040000002L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu_Statement_in_parse_edu_ustb_sei_mde_xmu_DefaultVStatement2095 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000008L});
     public static final BitSet FOLLOW_67_in_parse_edu_ustb_sei_mde_xmu_DefaultVStatement2122 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu_RuleCallStatement_in_parse_edu_ustb_sei_mde_xmu_DefaultVStatement2148 = new BitSet(new long[]{0x0000000040000002L});
-    public static final BitSet FOLLOW_30_in_parse_edu_ustb_sei_mde_xmu_DefaultVStatement2189 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu_RuleCallStatement_in_parse_edu_ustb_sei_mde_xmu_DefaultVStatement2223 = new BitSet(new long[]{0x0000000040000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu_RuleCallStatement_in_parse_edu_ustb_sei_mde_xmu_DefaultVStatement2148 = new BitSet(new long[]{0x0000000000400002L});
+    public static final BitSet FOLLOW_22_in_parse_edu_ustb_sei_mde_xmu_DefaultVStatement2189 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu_RuleCallStatement_in_parse_edu_ustb_sei_mde_xmu_DefaultVStatement2223 = new BitSet(new long[]{0x0000000000400002L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu_PatternNode_in_parse_edu_ustb_sei_mde_xmu_Pattern2316 = new BitSet(new long[]{0x0000001000000002L});
     public static final BitSet FOLLOW_36_in_parse_edu_ustb_sei_mde_xmu_Pattern2343 = new BitSet(new long[]{0x001C000000820990L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu_BooleanOrExpr_in_parse_edu_ustb_sei_mde_xmu_Pattern2369 = new BitSet(new long[]{0x0000002000000000L});
@@ -22546,12 +22492,10 @@ public class XmuParser extends XmuANTLRParserBase {
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu_RuleCallStatement_in_synpred22_Xmu1927 = new BitSet(new long[]{0x0000000040000002L});
     public static final BitSet FOLLOW_30_in_synpred22_Xmu1968 = new BitSet(new long[]{0x0000000000000080L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu_RuleCallStatement_in_synpred22_Xmu2002 = new BitSet(new long[]{0x0000000040000002L});
-    public static final BitSet FOLLOW_30_in_synpred23_Xmu2189 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu_RuleCallStatement_in_synpred23_Xmu2223 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_67_in_synpred24_Xmu2122 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu_RuleCallStatement_in_synpred24_Xmu2148 = new BitSet(new long[]{0x0000000040000002L});
-    public static final BitSet FOLLOW_30_in_synpred24_Xmu2189 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu_RuleCallStatement_in_synpred24_Xmu2223 = new BitSet(new long[]{0x0000000040000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu_RuleCallStatement_in_synpred24_Xmu2148 = new BitSet(new long[]{0x0000000000400002L});
+    public static final BitSet FOLLOW_22_in_synpred24_Xmu2189 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu_RuleCallStatement_in_synpred24_Xmu2223 = new BitSet(new long[]{0x0000000000400002L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu_BooleanOrExpr_in_synpred25_Xmu2369 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu_BooleanAndExpr_in_synpred26_Xmu2389 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu_RelationalExpr_in_synpred27_Xmu2409 = new BitSet(new long[]{0x0000000000000002L});

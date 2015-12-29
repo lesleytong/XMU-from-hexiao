@@ -2573,7 +2573,7 @@ parse_edu_ustb_sei_mde_xmu_DefaultVStatement returns [edu.ustb.sei.mde.xmu.Defau
 			
 			(
 				(
-					a3 = ';' {
+					a3 = ',' {
 						if (element == null) {
 							element = edu.ustb.sei.mde.xmu.XmuFactory.eINSTANCE.createDefaultVStatement();
 							startIncompleteElement(element);

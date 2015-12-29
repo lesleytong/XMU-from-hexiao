@@ -44,7 +44,15 @@ public abstract class XmuModelEnforce extends XmuModelCheck {
 				}
 				if(val.isNull()) {
 					// FIX ME: nil list
-					return SafeType.getInvalid();
+					AtomicExpr rh = expr.getValue();
+					if(rh instanceof ConstantExpr) {
+						// FIXME empty the list
+						return SafeType.getInvalid();
+					} else {
+						// DO NOTHING
+						System.out.println("[ignore] set null to a reference");
+						return Just.TRUE;
+					}
 				}
 				SafeType r = context.getEnvironment().setFeature(host.getObjectValue(), ((PatternEqualExpr) expr).getFeature(), val.getValue());
 				if(r==Just.TRUE) return Just.TRUE;
@@ -56,8 +64,15 @@ public abstract class XmuModelEnforce extends XmuModelCheck {
 					return SafeType.getInvalid();
 				}
 				if(val.isNull()) {
-					// FIX ME: nil list
-					return SafeType.getInvalid();
+					AtomicExpr rh = expr.getValue();
+					if(rh instanceof ConstantExpr) {
+						// FIXME empty the list
+						return SafeType.getInvalid();
+					} else {
+						// DO NOTHING
+						System.out.println("[ignore] set null to a reference");
+						return Just.TRUE;
+					}
 				}
 				
 				if(pv.isInteger()) {

@@ -409,7 +409,6 @@ public class ContextUtil {
 									for(int i = 0;i<candidate.size();i++) {
 										XmuContext nc = current.getCopy();
 										EObject v = (EObject)candidate.get(i);
-										//if(nc.containValue(v)) continue;
 										nc.putValue(next.getVariable(), SafeType.createFromValue(v));
 										if(XmuModelCheck.MODEL_CHECK.enforceAtomicExpr(pos, nc, SafeType.createFromValue(i))){
 											res.addAll(matchNode(next,current));
@@ -450,7 +449,7 @@ public class ContextUtil {
 						AtomicExpr pos = ((PatternEqualExpr)expr).getPos();
 						AtomicExpr right = ((PatternEqualExpr)expr).getValue();
 						EStructuralFeature feature = ((PatternEqualExpr)expr).getFeature();
-						
+						// NOTE ME
 						SafeType nValue = XmuExpressionCheck.EXPRESSION_CHECK.interprete(right, current);
 						List<Object> candidate = current.getEnvironment().getFeatureAsCollection(obj.getObjectValue(), feature);
 						

@@ -63,8 +63,29 @@ public class XmuModelBackwardEnforce extends XmuModelEnforce {
 
 			if(value.isInvalid() || value==Just.FALSE) 
 				throw new RuntimeException("model check fails\n"+merge);
+			
+			mergeContext(context, merge);
 		}
 		return Just.TRUE;
+	}
+
+
+	protected void mergeContext(XmuContext outterContext, XmuContext mergeContext) {
+		{//write back to parameter
+			Rule rule = outterContext.getRule();
+			for(Parameter fp : rule.getParameters()) {
+				if(fp.getTag()==VariableFlag.SOURCE) {
+					Variable v = fp.getVariable();
+					Variable vp = outterContext.getVariable(v.getName()+Util.POST_FLAG);
+					SafeType val = mergeContext.getSafeTypeValue(vp);
+					outterContext.putValue(vp, val);
+				} else if(fp.getTag()==VariableFlag.NORMAL) {
+					Variable vp = fp.getVariable();
+					SafeType val = mergeContext.getSafeTypeValue(vp);
+					outterContext.putValue(vp, val);
+				}
+			}
+		}
 	}
 
 

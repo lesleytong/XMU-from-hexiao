@@ -15,6 +15,10 @@ public class XmuContext {
 	private Rule rule;
 	private XmuContext outerContext = null;
 	
+	public Rule getRule() {
+		return rule;
+	}
+	
 	public XmuContext createInnerContext(Variable... vars) {
 		XmuContext inner = new XmuContext(this.getEnvironment());
 		inner.outerContext = this;
