@@ -1422,22 +1422,13 @@ public interface XmuPackage extends EPackage {
 	int VSTATEMENT__STATEMENT = 1;
 
 	/**
-	 * The feature id for the '<em><b>Where</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VSTATEMENT__WHERE = 2;
-
-	/**
 	 * The number of structural features of the '<em>VStatement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VSTATEMENT_FEATURE_COUNT = 3;
+	int VSTATEMENT_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>VStatement</em>' class.
@@ -1475,15 +1466,6 @@ public interface XmuPackage extends EPackage {
 	 * @ordered
 	 */
 	int DEFAULT_VSTATEMENT__STATEMENT = VSTATEMENT__STATEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Where</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEFAULT_VSTATEMENT__WHERE = VSTATEMENT__WHERE;
 
 	/**
 	 * The number of structural features of the '<em>Default VStatement</em>' class.
@@ -1530,15 +1512,6 @@ public interface XmuPackage extends EPackage {
 	 * @ordered
 	 */
 	int TAGGED_VSTATEMENT__STATEMENT = VSTATEMENT__STATEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Where</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TAGGED_VSTATEMENT__WHERE = VSTATEMENT__WHERE;
 
 	/**
 	 * The number of structural features of the '<em>Tagged VStatement</em>' class.
@@ -1670,22 +1643,13 @@ public interface XmuPackage extends EPackage {
 	int CASE_SUB_STATEMENT__STATEMENT = 0;
 
 	/**
-	 * The feature id for the '<em><b>Where</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CASE_SUB_STATEMENT__WHERE = 1;
-
-	/**
 	 * The number of structural features of the '<em>Case Sub Statement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CASE_SUB_STATEMENT_FEATURE_COUNT = 2;
+	int CASE_SUB_STATEMENT_FEATURE_COUNT = 1;
 
 	/**
 	 * The number of operations of the '<em>Case Sub Statement</em>' class.
@@ -1714,15 +1678,6 @@ public interface XmuPackage extends EPackage {
 	 * @ordered
 	 */
 	int CASE_PATTERN_STATEMENT__STATEMENT = CASE_SUB_STATEMENT__STATEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Where</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CASE_PATTERN_STATEMENT__WHERE = CASE_SUB_STATEMENT__WHERE;
 
 	/**
 	 * The feature id for the '<em><b>Pattern</b></em>' containment reference.
@@ -1771,15 +1726,6 @@ public interface XmuPackage extends EPackage {
 	int CASE_VALUE_STATEMENT__STATEMENT = CASE_SUB_STATEMENT__STATEMENT;
 
 	/**
-	 * The feature id for the '<em><b>Where</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CASE_VALUE_STATEMENT__WHERE = CASE_SUB_STATEMENT__WHERE;
-
-	/**
 	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1824,15 +1770,6 @@ public interface XmuPackage extends EPackage {
 	 * @ordered
 	 */
 	int CASE_DEFAULT_STATEMENT__STATEMENT = CASE_VALUE_STATEMENT__STATEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Where</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CASE_DEFAULT_STATEMENT__WHERE = CASE_VALUE_STATEMENT__WHERE;
 
 	/**
 	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
@@ -3087,6 +3024,43 @@ public interface XmuPackage extends EPackage {
 	int FAIL_OPERATION_COUNT = PSEUDO_UPDATE_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu.impl.ResetStatementImpl <em>Reset Statement</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.xmu.impl.ResetStatementImpl
+	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getResetStatement()
+	 * @generated
+	 */
+	int RESET_STATEMENT = 69;
+
+	/**
+	 * The feature id for the '<em><b>Variables</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESET_STATEMENT__VARIABLES = STATEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Reset Statement</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESET_STATEMENT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Reset Statement</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESET_STATEMENT_OPERATION_COUNT = STATEMENT_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu.VariableFlag <em>Variable Flag</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3094,7 +3068,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getVariableFlag()
 	 * @generated
 	 */
-	int VARIABLE_FLAG = 69;
+	int VARIABLE_FLAG = 70;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu.RelationalOperator <em>Relational Operator</em>}' enum.
@@ -3104,7 +3078,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getRelationalOperator()
 	 * @generated
 	 */
-	int RELATIONAL_OPERATOR = 70;
+	int RELATIONAL_OPERATOR = 71;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu.EmptyType <em>Empty Type</em>}' enum.
@@ -3114,7 +3088,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getEmptyType()
 	 * @generated
 	 */
-	int EMPTY_TYPE = 71;
+	int EMPTY_TYPE = 72;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu.VStmtType <em>VStmt Type</em>}' enum.
@@ -3124,7 +3098,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getVStmtType()
 	 * @generated
 	 */
-	int VSTMT_TYPE = 72;
+	int VSTMT_TYPE = 73;
 
 
 	/**
@@ -3135,7 +3109,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getAdditiveOperator()
 	 * @generated
 	 */
-	int ADDITIVE_OPERATOR = 73;
+	int ADDITIVE_OPERATOR = 74;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu.MultiplicativeOperator <em>Multiplicative Operator</em>}' enum.
@@ -3145,7 +3119,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getMultiplicativeOperator()
 	 * @generated
 	 */
-	int MULTIPLICATIVE_OPERATOR = 74;
+	int MULTIPLICATIVE_OPERATOR = 75;
 
 
 	/**
@@ -3156,7 +3130,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getUnaryOperator()
 	 * @generated
 	 */
-	int UNARY_OPERATOR = 75;
+	int UNARY_OPERATOR = 76;
 
 
 	/**
@@ -3167,7 +3141,7 @@ public interface XmuPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getLoopOperator()
 	 * @generated
 	 */
-	int LOOP_OPERATOR = 76;
+	int LOOP_OPERATOR = 77;
 
 
 	/**
@@ -3828,17 +3802,6 @@ public interface XmuPackage extends EPackage {
 	EReference getVStatement_Statement();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link edu.ustb.sei.mde.xmu.VStatement#getWhere <em>Where</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Where</em>'.
-	 * @see edu.ustb.sei.mde.xmu.VStatement#getWhere()
-	 * @see #getVStatement()
-	 * @generated
-	 */
-	EReference getVStatement_Where();
-
-	/**
 	 * Returns the meta object for class '{@link edu.ustb.sei.mde.xmu.DefaultVStatement <em>Default VStatement</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3952,17 +3915,6 @@ public interface XmuPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getCaseSubStatement_Statement();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link edu.ustb.sei.mde.xmu.CaseSubStatement#getWhere <em>Where</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Where</em>'.
-	 * @see edu.ustb.sei.mde.xmu.CaseSubStatement#getWhere()
-	 * @see #getCaseSubStatement()
-	 * @generated
-	 */
-	EReference getCaseSubStatement_Where();
 
 	/**
 	 * Returns the meta object for class '{@link edu.ustb.sei.mde.xmu.CasePatternStatement <em>Case Pattern Statement</em>}'.
@@ -4840,6 +4792,27 @@ public interface XmuPackage extends EPackage {
 	EClass getFail();
 
 	/**
+	 * Returns the meta object for class '{@link edu.ustb.sei.mde.xmu.ResetStatement <em>Reset Statement</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Reset Statement</em>'.
+	 * @see edu.ustb.sei.mde.xmu.ResetStatement
+	 * @generated
+	 */
+	EClass getResetStatement();
+
+	/**
+	 * Returns the meta object for the reference list '{@link edu.ustb.sei.mde.xmu.ResetStatement#getVariables <em>Variables</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Variables</em>'.
+	 * @see edu.ustb.sei.mde.xmu.ResetStatement#getVariables()
+	 * @see #getResetStatement()
+	 * @generated
+	 */
+	EReference getResetStatement_Variables();
+
+	/**
 	 * Returns the meta object for enum '{@link edu.ustb.sei.mde.xmu.VariableFlag <em>Variable Flag</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5488,14 +5461,6 @@ public interface XmuPackage extends EPackage {
 		EReference VSTATEMENT__STATEMENT = eINSTANCE.getVStatement_Statement();
 
 		/**
-		 * The meta object literal for the '<em><b>Where</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference VSTATEMENT__WHERE = eINSTANCE.getVStatement_Where();
-
-		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu.impl.DefaultVStatementImpl <em>Default VStatement</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -5594,14 +5559,6 @@ public interface XmuPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CASE_SUB_STATEMENT__STATEMENT = eINSTANCE.getCaseSubStatement_Statement();
-
-		/**
-		 * The meta object literal for the '<em><b>Where</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CASE_SUB_STATEMENT__WHERE = eINSTANCE.getCaseSubStatement_Where();
 
 		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu.impl.CasePatternStatementImpl <em>Case Pattern Statement</em>}' class.
@@ -6342,6 +6299,24 @@ public interface XmuPackage extends EPackage {
 		 * @generated
 		 */
 		EClass FAIL = eINSTANCE.getFail();
+
+		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu.impl.ResetStatementImpl <em>Reset Statement</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.xmu.impl.ResetStatementImpl
+		 * @see edu.ustb.sei.mde.xmu.impl.XmuPackageImpl#getResetStatement()
+		 * @generated
+		 */
+		EClass RESET_STATEMENT = eINSTANCE.getResetStatement();
+
+		/**
+		 * The meta object literal for the '<em><b>Variables</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference RESET_STATEMENT__VARIABLES = eINSTANCE.getResetStatement_Variables();
 
 		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu.VariableFlag <em>Variable Flag</em>}' enum.

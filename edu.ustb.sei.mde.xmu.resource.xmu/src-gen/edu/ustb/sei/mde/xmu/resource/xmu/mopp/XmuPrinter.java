@@ -236,6 +236,10 @@ public class XmuPrinter implements edu.ustb.sei.mde.xmu.resource.xmu.IXmuTextPri
 			print_edu_ustb_sei_mde_xmu_Fail((edu.ustb.sei.mde.xmu.Fail) element, globaltab, out);
 			return;
 		}
+		if (element instanceof edu.ustb.sei.mde.xmu.ResetStatement) {
+			print_edu_ustb_sei_mde_xmu_ResetStatement((edu.ustb.sei.mde.xmu.ResetStatement) element, globaltab, out);
+			return;
+		}
 		if (element instanceof edu.ustb.sei.mde.xmu.Pattern) {
 			print_edu_ustb_sei_mde_xmu_Pattern((edu.ustb.sei.mde.xmu.Pattern) element, globaltab, out);
 			return;
@@ -788,9 +792,6 @@ public class XmuPrinter implements edu.ustb.sei.mde.xmu.resource.xmu.IXmuTextPri
 		java.io.StringWriter sWriter = null;
 		java.io.PrintWriter out1 = null;
 		java.util.Map<String, Integer> printCountingMap1 = null;
-		// DEFINITION PART BEGINS (CsString)
-		out.print("using");
-		out.print(" ");
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("nVars");
 		if (count > 0) {
@@ -824,6 +825,9 @@ public class XmuPrinter implements edu.ustb.sei.mde.xmu.resource.xmu.IXmuTextPri
 				printCountingMap.putAll(printCountingMap1);
 			}
 		}
+		// DEFINITION PART BEGINS (CsString)
+		out.print(";");
+		out.print(" ");
 	}
 	
 	public void print_edu_ustb_sei_mde_xmu_Rule_1_0(edu.ustb.sei.mde.xmu.Rule element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
@@ -1128,19 +1132,14 @@ public class XmuPrinter implements edu.ustb.sei.mde.xmu.resource.xmu.IXmuTextPri
 		// the number of elements stored in each structural feature. For lists this is the
 		// list size. For non-multiple features it is either 1 (if the feature is set) or
 		// 0 (if the feature is null).
-		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(3);
+		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(2);
 		Object temp;
 		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu.XmuPackage.TAGGED_VSTATEMENT__TAG));
 		printCountingMap.put("tag", temp == null ? 0 : 1);
 		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu.XmuPackage.TAGGED_VSTATEMENT__STATEMENT));
 		printCountingMap.put("statement", temp == null ? 0 : 1);
-		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu.XmuPackage.TAGGED_VSTATEMENT__WHERE));
-		printCountingMap.put("where", temp == null ? 0 : ((java.util.Collection<?>) temp).size());
 		// print collected hidden tokens
 		int count;
-		java.io.StringWriter sWriter = null;
-		java.io.PrintWriter out1 = null;
-		java.util.Map<String, Integer> printCountingMap1 = null;
 		// DEFINITION PART BEGINS (EnumTerminal)
 		count = printCountingMap.get("tag");
 		if (count > 0) {
@@ -1161,88 +1160,6 @@ public class XmuPrinter implements edu.ustb.sei.mde.xmu.resource.xmu.IXmuTextPri
 			}
 			printCountingMap.put("statement", count - 1);
 		}
-		// DEFINITION PART BEGINS (CompoundDefinition)
-		sWriter = new java.io.StringWriter();
-		out1 = new java.io.PrintWriter(sWriter);
-		printCountingMap1 = new java.util.LinkedHashMap<String, Integer>(printCountingMap);
-		print_edu_ustb_sei_mde_xmu_TaggedVStatement_0(element, localtab, out1, printCountingMap1);
-		if (printCountingMap.equals(printCountingMap1)) {
-			out1.close();
-		} else {
-			out1.flush();
-			out1.close();
-			out.print(sWriter.toString());
-			printCountingMap.putAll(printCountingMap1);
-		}
-	}
-	
-	public void print_edu_ustb_sei_mde_xmu_TaggedVStatement_0(edu.ustb.sei.mde.xmu.TaggedVStatement element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
-		String localtab = outertab;
-		int count;
-		boolean iterate = true;
-		java.io.StringWriter sWriter = null;
-		java.io.PrintWriter out1 = null;
-		java.util.Map<String, Integer> printCountingMap1 = null;
-		// DEFINITION PART BEGINS (CsString)
-		out.print("where");
-		out.print(" ");
-		// DEFINITION PART BEGINS (Containment)
-		count = printCountingMap.get("where");
-		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu.XmuPackage.TAGGED_VSTATEMENT__WHERE));
-			java.util.List<?> list = (java.util.List<?>) o;
-			int index = list.size() - count;
-			if (index >= 0) {
-				o = list.get(index);
-			} else {
-				o = null;
-			}
-			if (o != null) {
-				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
-			}
-			printCountingMap.put("where", count - 1);
-		}
-		// DEFINITION PART BEGINS (CompoundDefinition)
-		iterate = true;
-		while (iterate) {
-			sWriter = new java.io.StringWriter();
-			out1 = new java.io.PrintWriter(sWriter);
-			printCountingMap1 = new java.util.LinkedHashMap<String, Integer>(printCountingMap);
-			print_edu_ustb_sei_mde_xmu_TaggedVStatement_0_0(element, localtab, out1, printCountingMap1);
-			if (printCountingMap.equals(printCountingMap1)) {
-				iterate = false;
-				out1.close();
-			} else {
-				out1.flush();
-				out1.close();
-				out.print(sWriter.toString());
-				printCountingMap.putAll(printCountingMap1);
-			}
-		}
-	}
-	
-	public void print_edu_ustb_sei_mde_xmu_TaggedVStatement_0_0(edu.ustb.sei.mde.xmu.TaggedVStatement element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
-		String localtab = outertab;
-		int count;
-		// DEFINITION PART BEGINS (CsString)
-		out.print(";");
-		out.print(" ");
-		// DEFINITION PART BEGINS (Containment)
-		count = printCountingMap.get("where");
-		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu.XmuPackage.TAGGED_VSTATEMENT__WHERE));
-			java.util.List<?> list = (java.util.List<?>) o;
-			int index = list.size() - count;
-			if (index >= 0) {
-				o = list.get(index);
-			} else {
-				o = null;
-			}
-			if (o != null) {
-				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
-			}
-			printCountingMap.put("where", count - 1);
-		}
 	}
 	
 	
@@ -1253,19 +1170,14 @@ public class XmuPrinter implements edu.ustb.sei.mde.xmu.resource.xmu.IXmuTextPri
 		// the number of elements stored in each structural feature. For lists this is the
 		// list size. For non-multiple features it is either 1 (if the feature is set) or
 		// 0 (if the feature is null).
-		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(3);
+		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(2);
 		Object temp;
 		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu.XmuPackage.DEFAULT_VSTATEMENT__TAG));
 		printCountingMap.put("tag", temp == null ? 0 : 1);
 		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu.XmuPackage.DEFAULT_VSTATEMENT__STATEMENT));
 		printCountingMap.put("statement", temp == null ? 0 : 1);
-		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu.XmuPackage.DEFAULT_VSTATEMENT__WHERE));
-		printCountingMap.put("where", temp == null ? 0 : ((java.util.Collection<?>) temp).size());
 		// print collected hidden tokens
 		int count;
-		java.io.StringWriter sWriter = null;
-		java.io.PrintWriter out1 = null;
-		java.util.Map<String, Integer> printCountingMap1 = null;
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("statement");
 		if (count > 0) {
@@ -1274,88 +1186,6 @@ public class XmuPrinter implements edu.ustb.sei.mde.xmu.resource.xmu.IXmuTextPri
 				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
 			}
 			printCountingMap.put("statement", count - 1);
-		}
-		// DEFINITION PART BEGINS (CompoundDefinition)
-		sWriter = new java.io.StringWriter();
-		out1 = new java.io.PrintWriter(sWriter);
-		printCountingMap1 = new java.util.LinkedHashMap<String, Integer>(printCountingMap);
-		print_edu_ustb_sei_mde_xmu_DefaultVStatement_0(element, localtab, out1, printCountingMap1);
-		if (printCountingMap.equals(printCountingMap1)) {
-			out1.close();
-		} else {
-			out1.flush();
-			out1.close();
-			out.print(sWriter.toString());
-			printCountingMap.putAll(printCountingMap1);
-		}
-	}
-	
-	public void print_edu_ustb_sei_mde_xmu_DefaultVStatement_0(edu.ustb.sei.mde.xmu.DefaultVStatement element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
-		String localtab = outertab;
-		int count;
-		boolean iterate = true;
-		java.io.StringWriter sWriter = null;
-		java.io.PrintWriter out1 = null;
-		java.util.Map<String, Integer> printCountingMap1 = null;
-		// DEFINITION PART BEGINS (CsString)
-		out.print("where");
-		out.print(" ");
-		// DEFINITION PART BEGINS (Containment)
-		count = printCountingMap.get("where");
-		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu.XmuPackage.DEFAULT_VSTATEMENT__WHERE));
-			java.util.List<?> list = (java.util.List<?>) o;
-			int index = list.size() - count;
-			if (index >= 0) {
-				o = list.get(index);
-			} else {
-				o = null;
-			}
-			if (o != null) {
-				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
-			}
-			printCountingMap.put("where", count - 1);
-		}
-		// DEFINITION PART BEGINS (CompoundDefinition)
-		iterate = true;
-		while (iterate) {
-			sWriter = new java.io.StringWriter();
-			out1 = new java.io.PrintWriter(sWriter);
-			printCountingMap1 = new java.util.LinkedHashMap<String, Integer>(printCountingMap);
-			print_edu_ustb_sei_mde_xmu_DefaultVStatement_0_0(element, localtab, out1, printCountingMap1);
-			if (printCountingMap.equals(printCountingMap1)) {
-				iterate = false;
-				out1.close();
-			} else {
-				out1.flush();
-				out1.close();
-				out.print(sWriter.toString());
-				printCountingMap.putAll(printCountingMap1);
-			}
-		}
-	}
-	
-	public void print_edu_ustb_sei_mde_xmu_DefaultVStatement_0_0(edu.ustb.sei.mde.xmu.DefaultVStatement element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
-		String localtab = outertab;
-		int count;
-		// DEFINITION PART BEGINS (CsString)
-		out.print(",");
-		out.print(" ");
-		// DEFINITION PART BEGINS (Containment)
-		count = printCountingMap.get("where");
-		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu.XmuPackage.DEFAULT_VSTATEMENT__WHERE));
-			java.util.List<?> list = (java.util.List<?>) o;
-			int index = list.size() - count;
-			if (index >= 0) {
-				o = list.get(index);
-			} else {
-				o = null;
-			}
-			if (o != null) {
-				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
-			}
-			printCountingMap.put("where", count - 1);
 		}
 	}
 	
@@ -2411,19 +2241,14 @@ public class XmuPrinter implements edu.ustb.sei.mde.xmu.resource.xmu.IXmuTextPri
 		// the number of elements stored in each structural feature. For lists this is the
 		// list size. For non-multiple features it is either 1 (if the feature is set) or
 		// 0 (if the feature is null).
-		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(3);
+		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(2);
 		Object temp;
 		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu.XmuPackage.CASE_PATTERN_STATEMENT__STATEMENT));
 		printCountingMap.put("statement", temp == null ? 0 : 1);
-		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu.XmuPackage.CASE_PATTERN_STATEMENT__WHERE));
-		printCountingMap.put("where", temp == null ? 0 : ((java.util.Collection<?>) temp).size());
 		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu.XmuPackage.CASE_PATTERN_STATEMENT__PATTERN));
 		printCountingMap.put("pattern", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
-		java.io.StringWriter sWriter = null;
-		java.io.PrintWriter out1 = null;
-		java.util.Map<String, Integer> printCountingMap1 = null;
 		// DEFINITION PART BEGINS (CsString)
 		out.print("case");
 		out.print(" ");
@@ -2448,88 +2273,6 @@ public class XmuPrinter implements edu.ustb.sei.mde.xmu.resource.xmu.IXmuTextPri
 			}
 			printCountingMap.put("statement", count - 1);
 		}
-		// DEFINITION PART BEGINS (CompoundDefinition)
-		sWriter = new java.io.StringWriter();
-		out1 = new java.io.PrintWriter(sWriter);
-		printCountingMap1 = new java.util.LinkedHashMap<String, Integer>(printCountingMap);
-		print_edu_ustb_sei_mde_xmu_CasePatternStatement_0(element, localtab, out1, printCountingMap1);
-		if (printCountingMap.equals(printCountingMap1)) {
-			out1.close();
-		} else {
-			out1.flush();
-			out1.close();
-			out.print(sWriter.toString());
-			printCountingMap.putAll(printCountingMap1);
-		}
-	}
-	
-	public void print_edu_ustb_sei_mde_xmu_CasePatternStatement_0(edu.ustb.sei.mde.xmu.CasePatternStatement element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
-		String localtab = outertab;
-		int count;
-		boolean iterate = true;
-		java.io.StringWriter sWriter = null;
-		java.io.PrintWriter out1 = null;
-		java.util.Map<String, Integer> printCountingMap1 = null;
-		// DEFINITION PART BEGINS (CsString)
-		out.print("where");
-		out.print(" ");
-		// DEFINITION PART BEGINS (Containment)
-		count = printCountingMap.get("where");
-		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu.XmuPackage.CASE_PATTERN_STATEMENT__WHERE));
-			java.util.List<?> list = (java.util.List<?>) o;
-			int index = list.size() - count;
-			if (index >= 0) {
-				o = list.get(index);
-			} else {
-				o = null;
-			}
-			if (o != null) {
-				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
-			}
-			printCountingMap.put("where", count - 1);
-		}
-		// DEFINITION PART BEGINS (CompoundDefinition)
-		iterate = true;
-		while (iterate) {
-			sWriter = new java.io.StringWriter();
-			out1 = new java.io.PrintWriter(sWriter);
-			printCountingMap1 = new java.util.LinkedHashMap<String, Integer>(printCountingMap);
-			print_edu_ustb_sei_mde_xmu_CasePatternStatement_0_0(element, localtab, out1, printCountingMap1);
-			if (printCountingMap.equals(printCountingMap1)) {
-				iterate = false;
-				out1.close();
-			} else {
-				out1.flush();
-				out1.close();
-				out.print(sWriter.toString());
-				printCountingMap.putAll(printCountingMap1);
-			}
-		}
-	}
-	
-	public void print_edu_ustb_sei_mde_xmu_CasePatternStatement_0_0(edu.ustb.sei.mde.xmu.CasePatternStatement element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
-		String localtab = outertab;
-		int count;
-		// DEFINITION PART BEGINS (CsString)
-		out.print(";");
-		out.print(" ");
-		// DEFINITION PART BEGINS (Containment)
-		count = printCountingMap.get("where");
-		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu.XmuPackage.CASE_PATTERN_STATEMENT__WHERE));
-			java.util.List<?> list = (java.util.List<?>) o;
-			int index = list.size() - count;
-			if (index >= 0) {
-				o = list.get(index);
-			} else {
-				o = null;
-			}
-			if (o != null) {
-				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
-			}
-			printCountingMap.put("where", count - 1);
-		}
 	}
 	
 	
@@ -2540,12 +2283,10 @@ public class XmuPrinter implements edu.ustb.sei.mde.xmu.resource.xmu.IXmuTextPri
 		// the number of elements stored in each structural feature. For lists this is the
 		// list size. For non-multiple features it is either 1 (if the feature is set) or
 		// 0 (if the feature is null).
-		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(3);
+		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(2);
 		Object temp;
 		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu.XmuPackage.CASE_VALUE_STATEMENT__STATEMENT));
 		printCountingMap.put("statement", temp == null ? 0 : 1);
-		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu.XmuPackage.CASE_VALUE_STATEMENT__WHERE));
-		printCountingMap.put("where", temp == null ? 0 : ((java.util.Collection<?>) temp).size());
 		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu.XmuPackage.CASE_VALUE_STATEMENT__EXPRESSION));
 		printCountingMap.put("expression", temp == null ? 0 : 1);
 		// print collected hidden tokens
@@ -2584,35 +2325,17 @@ public class XmuPrinter implements edu.ustb.sei.mde.xmu.resource.xmu.IXmuTextPri
 		// the number of elements stored in each structural feature. For lists this is the
 		// list size. For non-multiple features it is either 1 (if the feature is set) or
 		// 0 (if the feature is null).
-		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(3);
+		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(2);
 		Object temp;
 		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu.XmuPackage.CASE_DEFAULT_STATEMENT__STATEMENT));
 		printCountingMap.put("statement", temp == null ? 0 : 1);
-		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu.XmuPackage.CASE_DEFAULT_STATEMENT__WHERE));
-		printCountingMap.put("where", temp == null ? 0 : ((java.util.Collection<?>) temp).size());
 		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu.XmuPackage.CASE_DEFAULT_STATEMENT__EXPRESSION));
 		printCountingMap.put("expression", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
-		java.io.StringWriter sWriter = null;
-		java.io.PrintWriter out1 = null;
-		java.util.Map<String, Integer> printCountingMap1 = null;
 		// DEFINITION PART BEGINS (CsString)
 		out.print("otherwise");
 		out.print(" ");
-		// DEFINITION PART BEGINS (CompoundDefinition)
-		sWriter = new java.io.StringWriter();
-		out1 = new java.io.PrintWriter(sWriter);
-		printCountingMap1 = new java.util.LinkedHashMap<String, Integer>(printCountingMap);
-		print_edu_ustb_sei_mde_xmu_CaseDefaultStatement_0(element, localtab, out1, printCountingMap1);
-		if (printCountingMap.equals(printCountingMap1)) {
-			out1.close();
-		} else {
-			out1.flush();
-			out1.close();
-			out.print(sWriter.toString());
-			printCountingMap.putAll(printCountingMap1);
-		}
 		// DEFINITION PART BEGINS (CsString)
 		out.print("->");
 		out.print(" ");
@@ -2624,75 +2347,6 @@ public class XmuPrinter implements edu.ustb.sei.mde.xmu.resource.xmu.IXmuTextPri
 				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
 			}
 			printCountingMap.put("statement", count - 1);
-		}
-	}
-	
-	public void print_edu_ustb_sei_mde_xmu_CaseDefaultStatement_0(edu.ustb.sei.mde.xmu.CaseDefaultStatement element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
-		String localtab = outertab;
-		int count;
-		boolean iterate = true;
-		java.io.StringWriter sWriter = null;
-		java.io.PrintWriter out1 = null;
-		java.util.Map<String, Integer> printCountingMap1 = null;
-		// DEFINITION PART BEGINS (CsString)
-		out.print("where");
-		out.print(" ");
-		// DEFINITION PART BEGINS (Containment)
-		count = printCountingMap.get("where");
-		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu.XmuPackage.CASE_DEFAULT_STATEMENT__WHERE));
-			java.util.List<?> list = (java.util.List<?>) o;
-			int index = list.size() - count;
-			if (index >= 0) {
-				o = list.get(index);
-			} else {
-				o = null;
-			}
-			if (o != null) {
-				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
-			}
-			printCountingMap.put("where", count - 1);
-		}
-		// DEFINITION PART BEGINS (CompoundDefinition)
-		iterate = true;
-		while (iterate) {
-			sWriter = new java.io.StringWriter();
-			out1 = new java.io.PrintWriter(sWriter);
-			printCountingMap1 = new java.util.LinkedHashMap<String, Integer>(printCountingMap);
-			print_edu_ustb_sei_mde_xmu_CaseDefaultStatement_0_0(element, localtab, out1, printCountingMap1);
-			if (printCountingMap.equals(printCountingMap1)) {
-				iterate = false;
-				out1.close();
-			} else {
-				out1.flush();
-				out1.close();
-				out.print(sWriter.toString());
-				printCountingMap.putAll(printCountingMap1);
-			}
-		}
-	}
-	
-	public void print_edu_ustb_sei_mde_xmu_CaseDefaultStatement_0_0(edu.ustb.sei.mde.xmu.CaseDefaultStatement element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
-		String localtab = outertab;
-		int count;
-		// DEFINITION PART BEGINS (CsString)
-		out.print(";");
-		out.print(" ");
-		// DEFINITION PART BEGINS (Containment)
-		count = printCountingMap.get("where");
-		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu.XmuPackage.CASE_DEFAULT_STATEMENT__WHERE));
-			java.util.List<?> list = (java.util.List<?>) o;
-			int index = list.size() - count;
-			if (index >= 0) {
-				o = list.get(index);
-			} else {
-				o = null;
-			}
-			if (o != null) {
-				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
-			}
-			printCountingMap.put("where", count - 1);
 		}
 	}
 	
@@ -3798,6 +3452,111 @@ public class XmuPrinter implements edu.ustb.sei.mde.xmu.resource.xmu.IXmuTextPri
 				out.print(" ");
 			}
 			printCountingMap.put("message", count - 1);
+		}
+	}
+	
+	
+	public void print_edu_ustb_sei_mde_xmu_ResetStatement(edu.ustb.sei.mde.xmu.ResetStatement element, String outertab, java.io.PrintWriter out) {
+		String localtab = outertab;
+		// The printCountingMap contains a mapping from feature names to the number of
+		// remaining elements that still need to be printed. The map is initialized with
+		// the number of elements stored in each structural feature. For lists this is the
+		// list size. For non-multiple features it is either 1 (if the feature is set) or
+		// 0 (if the feature is null).
+		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(1);
+		Object temp;
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu.XmuPackage.RESET_STATEMENT__VARIABLES));
+		printCountingMap.put("variables", temp == null ? 0 : ((java.util.Collection<?>) temp).size());
+		// print collected hidden tokens
+		java.io.StringWriter sWriter = null;
+		java.io.PrintWriter out1 = null;
+		java.util.Map<String, Integer> printCountingMap1 = null;
+		// DEFINITION PART BEGINS (CsString)
+		out.print("reset");
+		out.print(" ");
+		// DEFINITION PART BEGINS (CompoundDefinition)
+		sWriter = new java.io.StringWriter();
+		out1 = new java.io.PrintWriter(sWriter);
+		printCountingMap1 = new java.util.LinkedHashMap<String, Integer>(printCountingMap);
+		print_edu_ustb_sei_mde_xmu_ResetStatement_0(element, localtab, out1, printCountingMap1);
+		if (printCountingMap.equals(printCountingMap1)) {
+			out1.close();
+		} else {
+			out1.flush();
+			out1.close();
+			out.print(sWriter.toString());
+			printCountingMap.putAll(printCountingMap1);
+		}
+	}
+	
+	public void print_edu_ustb_sei_mde_xmu_ResetStatement_0(edu.ustb.sei.mde.xmu.ResetStatement element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
+		String localtab = outertab;
+		int count;
+		boolean iterate = true;
+		java.io.StringWriter sWriter = null;
+		java.io.PrintWriter out1 = null;
+		java.util.Map<String, Integer> printCountingMap1 = null;
+		// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
+		count = printCountingMap.get("variables");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu.XmuPackage.RESET_STATEMENT__VARIABLES));
+			java.util.List<?> list = (java.util.List<?>) o;
+			int index = list.size() - count;
+			if (index >= 0) {
+				o = list.get(index);
+			} else {
+				o = null;
+			}
+			if (o != null) {
+				edu.ustb.sei.mde.xmu.resource.xmu.IXmuTokenResolver resolver = tokenResolverFactory.createTokenResolver("NAME");
+				resolver.setOptions(getOptions());
+				out.print(resolver.deResolve(getReferenceResolverSwitch() == null ? null : getReferenceResolverSwitch().getResetStatementVariablesReferenceResolver().deResolve((edu.ustb.sei.mde.xmu.Variable) o, element, (org.eclipse.emf.ecore.EReference) element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu.XmuPackage.RESET_STATEMENT__VARIABLES)), element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu.XmuPackage.RESET_STATEMENT__VARIABLES), element));
+				out.print(" ");
+			}
+			printCountingMap.put("variables", count - 1);
+		}
+		// DEFINITION PART BEGINS (CompoundDefinition)
+		iterate = true;
+		while (iterate) {
+			sWriter = new java.io.StringWriter();
+			out1 = new java.io.PrintWriter(sWriter);
+			printCountingMap1 = new java.util.LinkedHashMap<String, Integer>(printCountingMap);
+			print_edu_ustb_sei_mde_xmu_ResetStatement_0_0(element, localtab, out1, printCountingMap1);
+			if (printCountingMap.equals(printCountingMap1)) {
+				iterate = false;
+				out1.close();
+			} else {
+				out1.flush();
+				out1.close();
+				out.print(sWriter.toString());
+				printCountingMap.putAll(printCountingMap1);
+			}
+		}
+	}
+	
+	public void print_edu_ustb_sei_mde_xmu_ResetStatement_0_0(edu.ustb.sei.mde.xmu.ResetStatement element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
+		int count;
+		// DEFINITION PART BEGINS (CsString)
+		out.print(",");
+		out.print(" ");
+		// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
+		count = printCountingMap.get("variables");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu.XmuPackage.RESET_STATEMENT__VARIABLES));
+			java.util.List<?> list = (java.util.List<?>) o;
+			int index = list.size() - count;
+			if (index >= 0) {
+				o = list.get(index);
+			} else {
+				o = null;
+			}
+			if (o != null) {
+				edu.ustb.sei.mde.xmu.resource.xmu.IXmuTokenResolver resolver = tokenResolverFactory.createTokenResolver("NAME");
+				resolver.setOptions(getOptions());
+				out.print(resolver.deResolve(getReferenceResolverSwitch() == null ? null : getReferenceResolverSwitch().getResetStatementVariablesReferenceResolver().deResolve((edu.ustb.sei.mde.xmu.Variable) o, element, (org.eclipse.emf.ecore.EReference) element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu.XmuPackage.RESET_STATEMENT__VARIABLES)), element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu.XmuPackage.RESET_STATEMENT__VARIABLES), element));
+				out.print(" ");
+			}
+			printCountingMap.put("variables", count - 1);
 		}
 	}
 	

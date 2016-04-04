@@ -171,6 +171,12 @@ public class XmuContext {
 //		return false;
 //	}
 	
+	public void resetVariable(Variable v) {
+		if(varBindings.containsKey(v)) {
+			varBindings.put(v, Just.getUndefined());
+		}
+	}
+	
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("====");

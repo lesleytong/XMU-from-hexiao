@@ -344,6 +344,10 @@ public class XmuAdapterFactory extends AdapterFactoryImpl {
 				return createFailAdapter();
 			}
 			@Override
+			public Adapter caseResetStatement(ResetStatement object) {
+				return createResetStatementAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -1326,6 +1330,20 @@ public class XmuAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createFailAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.xmu.ResetStatement <em>Reset Statement</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.xmu.ResetStatement
+	 * @generated
+	 */
+	public Adapter createResetStatementAdapter() {
 		return null;
 	}
 

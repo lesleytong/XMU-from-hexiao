@@ -92,6 +92,21 @@ public class Util {
 		return (Rule) o;
 	}
 	
+	static public <T> T getParentNodeByJavaType(EObject o, Class<T> clazz) {
+		while(o!=null) {
+			if(o.getClass()==clazz) break;
+			else o = o.eContainer();
+		}
+		return (T) o;
+	}
+	static public <T> EObject getParentNodeByEType(EObject o, Class<T> clazz) {
+		while(o!=null) {
+			if(o.eClass().getClass()==clazz) break;
+			else o = o.eContainer();
+		}
+		return o;
+	}
+	
 	static public Pattern getPattern(EObject o) {
 		while(o!=null) {
 			if(o instanceof Pattern) break;

@@ -472,6 +472,12 @@ public class AbstractXmuInterpreter<ResultType, ContextType> {
 		if (result != null) {
 			return result;
 		}
+		if (object instanceof edu.ustb.sei.mde.xmu.ResetStatement) {
+			result = interprete_edu_ustb_sei_mde_xmu_ResetStatement((edu.ustb.sei.mde.xmu.ResetStatement) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
 		if (object instanceof org.eclipse.emf.ecore.EAttribute) {
 			result = interprete_org_eclipse_emf_ecore_EAttribute((org.eclipse.emf.ecore.EAttribute) object, context);
 		}
@@ -868,6 +874,10 @@ public class AbstractXmuInterpreter<ResultType, ContextType> {
 	}
 	
 	public ResultType interprete_edu_ustb_sei_mde_xmu_Fail(edu.ustb.sei.mde.xmu.Fail fail, ContextType context) {
+		return null;
+	}
+	
+	public ResultType interprete_edu_ustb_sei_mde_xmu_ResetStatement(edu.ustb.sei.mde.xmu.ResetStatement resetStatement, ContextType context) {
 		return null;
 	}
 	

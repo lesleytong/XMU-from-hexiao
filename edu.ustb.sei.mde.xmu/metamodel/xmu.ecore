@@ -124,8 +124,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="tag" lowerBound="1" eType="#//VStmtType"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="statement" lowerBound="1"
         eType="#//Statement" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="where" upperBound="-1"
-        eType="#//RuleCallStatement" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DefaultVStatement" eSuperTypes="#//VStatement"/>
   <eClassifiers xsi:type="ecore:EClass" name="TaggedVStatement" eSuperTypes="#//VStatement"/>
@@ -150,8 +148,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="CaseSubStatement" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="statement" lowerBound="1"
         eType="#//Statement" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="where" upperBound="-1"
-        eType="#//RuleCallStatement" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CasePatternStatement" eSuperTypes="#//CaseSubStatement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="pattern" lowerBound="1"
@@ -328,4 +324,8 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Skip" eSuperTypes="#//PseudoUpdate"/>
   <eClassifiers xsi:type="ecore:EClass" name="Fail" eSuperTypes="#//PseudoUpdate"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ResetStatement" eSuperTypes="#//Statement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variables" upperBound="-1"
+        eType="#//Variable"/>
+  </eClassifiers>
 </ecore:EPackage>

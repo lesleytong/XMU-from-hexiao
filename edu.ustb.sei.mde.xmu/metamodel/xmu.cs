@@ -44,7 +44,7 @@ RULES {
 	
 	StartRoot ::= tag[source:"source", view:"view", context:"context"] "[" id[NUMBER] "]"; 
 
-	Rule ::= "rule" name[NAME] ("(" parameters ("," parameters)* ")")? "{" ("using" nVars("," nVars)*)? statement "}";
+	Rule ::= "rule" name[NAME] ("(" parameters ("," parameters)* ")")? "{" (nVars("," nVars)* ";" )? statement "}";
 	
 	Parameter ::= tag[source:"source", view:"view", context:"context", normal:""] variable[NAME];
 	
@@ -56,9 +56,9 @@ RULES {
 	
 	//UpdatedStatement ::= "updated" "(" sVar[NAME]+ "," vVar[NAME]+ ")";
 	
-	TaggedVStatement ::= tag[match:"match", unmatchv:"unmatchv", unmatchs:"unmatchs"] "->" statement ("where" where (";" where)*)?;
+	TaggedVStatement ::= tag[match:"match", unmatchv:"unmatchv", unmatchs:"unmatchs"] "->" statement;
 	
-	DefaultVStatement ::= statement ("where" where ("," where)*)?;
+	DefaultVStatement ::= statement;
 	
 	Pattern ::= root ("[" guard: BooleanOrExpr,BooleanAndExpr,RelationalExpr,AdditiveExpr,MultiplicativeExpr,UnaryExpr,AtomicExpr "]")?;
 	
@@ -90,11 +90,11 @@ RULES {
 	
 	SwitchStatement ::= "switch" var[NAME] "{" cases* "}";
 	
-	CasePatternStatement ::= "case" pattern  "->" statement ("where" where (";" where)*)?;
+	CasePatternStatement ::= "case" pattern  "->" statement;
 	
 	CaseValueStatement ::= "case" expression "->" statement;
 	
-	CaseDefaultStatement ::= "otherwise" ("where" where (";" where)*)? "->" statement;
+	CaseDefaultStatement ::= "otherwise" "->" statement;
 	
 	RuleCallStatement ::= rule[NAME] "(" (actualParameters ("," actualParameters)*)? ")" ;
 	
@@ -135,4 +135,6 @@ RULES {
 	Skip ::= "skip" (message['\'','\'','\\'])?;
 	
 	Fail ::= "fail" (message['\'','\'','\\'])?;
+	
+	ResetStatement ::= "reset" (variables[NAME] ("," variables[NAME])*)? ;
 }

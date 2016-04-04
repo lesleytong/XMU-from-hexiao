@@ -1,5 +1,10 @@
 package edu.ustb.sei.mde.xmu.resource.xmu.interpret;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 import edu.ustb.sei.mde.xmu.*;
@@ -85,6 +90,24 @@ public abstract class XmuModelEnforce extends XmuModelCheck {
 			}
 		}
 		return Just.TRUE;
+	}
+
+	protected List<RuleCallStatement> collectRuleCallStatements(EObject stmt) {
+		if(stmt instanceof CaseSubStatement) {
+			return this.collectRuleCallStatements(((CaseSubStatement) stmt).getStatement());
+		} else if(stmt instanceof VStatement) {
+			return this.collectRuleCallStatements(((VStatement) stmt).getStatement());
+		} else if(stmt instanceof RuleCallStatement) {
+			return Collections.singletonList((RuleCallStatement)stmt);
+		} else if(stmt instanceof BlockStatement) {
+			ArrayList<RuleCallStatement> list = new ArrayList<RuleCallStatement>();
+			for(Statement s : ((BlockStatement) stmt).getStatements()) {
+				list.addAll(this.collectRuleCallStatements(s));
+			}
+			return list;
+		} else {
+			return Collections.EMPTY_LIST;
+		}
 	}
 
 //	protected SafeType enforceViewPatternEqualExpr(PatternEqualExpr expr, SafeType host,

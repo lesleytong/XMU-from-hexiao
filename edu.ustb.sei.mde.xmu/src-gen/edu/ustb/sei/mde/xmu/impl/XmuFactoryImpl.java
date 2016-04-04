@@ -107,6 +107,7 @@ public class XmuFactoryImpl extends EFactoryImpl implements XmuFactory {
 			case XmuPackage.HELPER_MAPPING_ENTRY: return createHelperMappingEntry();
 			case XmuPackage.SKIP: return createSkip();
 			case XmuPackage.FAIL: return createFail();
+			case XmuPackage.RESET_STATEMENT: return createResetStatement();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -668,6 +669,16 @@ public class XmuFactoryImpl extends EFactoryImpl implements XmuFactory {
 	public Fail createFail() {
 		FailImpl fail = new FailImpl();
 		return fail;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ResetStatement createResetStatement() {
+		ResetStatementImpl resetStatement = new ResetStatementImpl();
+		return resetStatement;
 	}
 
 	/**

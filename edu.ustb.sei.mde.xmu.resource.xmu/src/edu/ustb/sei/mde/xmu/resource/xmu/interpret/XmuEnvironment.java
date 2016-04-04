@@ -284,26 +284,29 @@ public class XmuEnvironment {
 		EObject o = EcoreUtil.create(cls);
 		track.create(o);
 		
-		
-		//FIXME: default link should be updated
 		/*
 		 * if need update default link
 		 * 	put
 		 * else do nothing
 		 */
 		
-		List<RuleCallStatement> updates = ContextUtil.lookupUpdatedStatementsFromSourcePost(current, sp);
-		if(updates.size()==0) {
+//@begin 2016-4-4
+//after removing where clause, it is unable to loop up updated statements effectively
+//perhaps it is OK to update the default link
+		
+//		List<RuleCallStatement> updates = ContextUtil.lookupUpdatedStatementsFromSourcePost(current, sp);
+//		if(updates.size()==0) {
 			Variable s = context.getVariable(sp.getName().substring(0, sp.getName().length()-Util.POST_LENGTH));
-			//should I check if s is a formal parameter?
+//			//should I check if s is a formal parameter?
 			if(s!=null) {
 				SafeType sv = context.getSafeTypeValue(s);
 				if(sv.getValue()!=null) {
 					trace.put(sv.getObjectValue(),o);
 				}
 			}
-		}
-//		
+//		}
+//@end
+		
 //		if(updates.size()==0) {//updateStatement does not exist. try to put a direct link
 //			Variable s = context.getVariable(sp.getName().substring(0, sp.getName().length()-Util.POST_LENGTH));
 //			if(s!=null) {

@@ -3,19 +3,14 @@
 package edu.ustb.sei.mde.xmu.impl;
 
 import edu.ustb.sei.mde.xmu.CaseSubStatement;
-import edu.ustb.sei.mde.xmu.RuleCallStatement;
 import edu.ustb.sei.mde.xmu.Statement;
 import edu.ustb.sei.mde.xmu.XmuPackage;
-import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,7 +21,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * </p>
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu.impl.CaseSubStatementImpl#getStatement <em>Statement</em>}</li>
- *   <li>{@link edu.ustb.sei.mde.xmu.impl.CaseSubStatementImpl#getWhere <em>Where</em>}</li>
  * </ul>
  *
  * @generated
@@ -41,16 +35,6 @@ public abstract class CaseSubStatementImpl extends MinimalEObjectImpl.Container 
 	 * @ordered
 	 */
 	protected Statement statement;
-
-	/**
-	 * The cached value of the '{@link #getWhere() <em>Where</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getWhere()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<RuleCallStatement> where;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -119,25 +103,11 @@ public abstract class CaseSubStatementImpl extends MinimalEObjectImpl.Container 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<RuleCallStatement> getWhere() {
-		if (where == null) {
-			where = new EObjectContainmentEList<RuleCallStatement>(RuleCallStatement.class, this, XmuPackage.CASE_SUB_STATEMENT__WHERE);
-		}
-		return where;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case XmuPackage.CASE_SUB_STATEMENT__STATEMENT:
 				return basicSetStatement(null, msgs);
-			case XmuPackage.CASE_SUB_STATEMENT__WHERE:
-				return ((InternalEList<?>)getWhere()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -152,8 +122,6 @@ public abstract class CaseSubStatementImpl extends MinimalEObjectImpl.Container 
 		switch (featureID) {
 			case XmuPackage.CASE_SUB_STATEMENT__STATEMENT:
 				return getStatement();
-			case XmuPackage.CASE_SUB_STATEMENT__WHERE:
-				return getWhere();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -170,10 +138,6 @@ public abstract class CaseSubStatementImpl extends MinimalEObjectImpl.Container 
 			case XmuPackage.CASE_SUB_STATEMENT__STATEMENT:
 				setStatement((Statement)newValue);
 				return;
-			case XmuPackage.CASE_SUB_STATEMENT__WHERE:
-				getWhere().clear();
-				getWhere().addAll((Collection<? extends RuleCallStatement>)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -189,9 +153,6 @@ public abstract class CaseSubStatementImpl extends MinimalEObjectImpl.Container 
 			case XmuPackage.CASE_SUB_STATEMENT__STATEMENT:
 				setStatement((Statement)null);
 				return;
-			case XmuPackage.CASE_SUB_STATEMENT__WHERE:
-				getWhere().clear();
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -206,8 +167,6 @@ public abstract class CaseSubStatementImpl extends MinimalEObjectImpl.Container 
 		switch (featureID) {
 			case XmuPackage.CASE_SUB_STATEMENT__STATEMENT:
 				return statement != null;
-			case XmuPackage.CASE_SUB_STATEMENT__WHERE:
-				return where != null && !where.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

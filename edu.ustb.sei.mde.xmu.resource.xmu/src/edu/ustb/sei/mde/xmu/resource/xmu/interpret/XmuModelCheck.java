@@ -46,6 +46,15 @@ public class XmuModelCheck extends XmuExpressionCheck {
 		return SafeType.getInvalid();
 	}
 
+	public SafeType interprete_edu_ustb_sei_mde_xmu_ResetStatement(ResetStatement stmt, XmuContext context) {
+		for(Variable v : stmt.getVariables()) {
+			SafeType val = context.getSafeTypeValue(v);
+			if(val.isNull() || val.isInvalid() || val.isUndefined()) {
+				context.resetVariable(v);
+			} else return Just.FALSE;
+		}
+		return Just.TRUE;
+	}
 
 	@Override
 	public SafeType interprete_edu_ustb_sei_mde_xmu_Pattern(
@@ -357,7 +366,7 @@ public class XmuModelCheck extends XmuExpressionCheck {
 			SafeType oldValue = context.getSafeTypeValue(exp.getVar());
 			if(exp.getPath().isEmpty()) {
 				if(oldValue.isUndefined()==false) {
-					if(oldValue!=expect && oldValue.getValue()==expect.getValue() 
+					if(oldValue!=expect && oldValue.getValue()!=expect.getValue() 
 							&& oldValue.getValue().equals(expect.getValue())==false)
 						return false;
 					else return true;

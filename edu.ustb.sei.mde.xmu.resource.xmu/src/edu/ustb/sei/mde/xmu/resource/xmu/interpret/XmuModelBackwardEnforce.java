@@ -1,7 +1,6 @@
 package edu.ustb.sei.mde.xmu.resource.xmu.interpret;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
@@ -46,6 +45,7 @@ public class XmuModelBackwardEnforce extends XmuModelEnforce {
 			XmuContext merge = (ContextUtil.merge(forStatement.getSPattern(), forStatement.getVPattern(), p));
 
 			VStatement vStmt = null;
+			VStatement vStmt2 = null;
 			
 			if(p.getFirst()!=null && p.getSecond()!=null) {
 				vStmt = findActionStatement(forStatement,VStmtType.MATCH);
@@ -53,16 +53,24 @@ public class XmuModelBackwardEnforce extends XmuModelEnforce {
 				vStmt = findActionStatement(forStatement,VStmtType.UNMATCHS);
 			} else if(p.getFirst()==null && p.getSecond()!=null) {
 				vStmt = findActionStatement(forStatement,VStmtType.UNMATCHV);
+//				vStmt2 = findActionStatement(forStatement,VStmtType.MATCH);
 			}
 			
 			if(vStmt!=null) {
-				handleUpdateStatements(vStmt.getWhere(), sVars, merge);
+				handleUpdateStatements(this.collectRuleCallStatements(vStmt), sVars, merge);
 				value = this.interprete(vStmt.getStatement(), merge);
 			} else
 				throw new RuntimeException("No corresponding action!\n"+merge);
 
 			if(value.isInvalid() || value==Just.FALSE) 
 				throw new RuntimeException("model check fails\n"+merge);
+			
+//			if(vStmt2!=null) {// for unmatchv case
+//				handleUpdateStatements(vStmt2.getWhere(), sVars, merge);
+//				value = this.interprete(vStmt2.getStatement(), merge);
+//				if(value.isInvalid() || value==Just.FALSE) 
+//					throw new RuntimeException("model check fails\n"+merge);
+//			}
 			
 			mergeContext(context, merge);
 		}
@@ -93,7 +101,9 @@ public class XmuModelBackwardEnforce extends XmuModelEnforce {
 	protected void handleUpdateStatements(List<RuleCallStatement> updates,
 			List<ObjectVariable> sVars, XmuContext context) {
 		for(RuleCallStatement u : updates) {
-			SafeType ret = this.interprete(u, context);
+			
+			
+			SafeType ret = this.trialRuleCall(u, context);
 			if(ret.isInvalid()) {
 				throw new RuntimeException();
 			}
@@ -177,6 +187,59 @@ public class XmuModelBackwardEnforce extends XmuModelEnforce {
 //			return SafeType.createFromValue(spv.getElements());
 //		}
 //	}
+	
+	private SafeType trialRuleCall(RuleCallStatement ruleCallStatement, XmuContext context) {
+		List<Object> parameterList = new ArrayList<Object>();
+		
+		XmuContext newContext = new XmuContext(context.getEnvironment());
+		Rule rule = ruleCallStatement.getRule();
+		newContext.initFromRule(rule);
+		
+		int size = rule.getParameters().size();
+		
+		for(int i=0;i<size;i++) {
+			Parameter fp = rule.getParameters().get(i);
+			Expr ap = ruleCallStatement.getActualParameters().get(i);
+			SafeType value = this.interprete(ap, context);
+			if((value.isInvalid() || value.isUndefined())) 
+				return Just.FALSE;
+			
+			newContext.putValue(fp.getVariable(), value);
+			
+			if(fp.getTag()==VariableFlag.SOURCE) {
+				if(!(ap instanceof VariableExp || ap instanceof AllInstanceExpr)) 
+					return SafeType.getInvalid(); // you are not allowed to pass a derived value to a source variable
+				Variable spV = context.getVariable(((VariableExp)ap).getVar().getName()+Util.POST_FLAG);
+				SafeType spValue = context.getSafeTypeValue(spV);
+				Variable fspv = newContext.getVariable(fp.getVariable().getName()+Util.POST_FLAG);
+				newContext.putValue(fspv, spValue);
+			}
+			parameterList.add(value.getValue());
+		}
+		
+		XmuTraceTuple ret = context.getEnvironment().getTrace().get(rule, parameterList);
+		if(ret!=null) {
+			//write back
+			for(int i=0,j=0;i<size;i++) {
+				Parameter fp = rule.getParameters().get(i);
+				Expr ap = ruleCallStatement.getActualParameters().get(i);
+				if(fp.getTag()==VariableFlag.SOURCE) {
+					Object obj = ret.get(j);
+					j++;
+					
+					Expr ap_sp = context.getEnvironment().getSourcePostExpression(ap);
+					if(ap_sp!=null) {
+						if(this.enforceExpr(ap_sp, context, SafeType.createFromValue(obj))==false)
+							return SafeType.getInvalid();
+					}
+				}
+			}
+			
+			return Just.TRUE;
+			
+		} else 
+			return Just.FALSE;
+	}
 
 
 
@@ -508,7 +571,6 @@ public class XmuModelBackwardEnforce extends XmuModelEnforce {
 	}
 
 
-
 	@Override
 	public SafeType interprete_edu_ustb_sei_mde_xmu_SwitchStatement(
 			SwitchStatement switchStatement, XmuContext context) {
@@ -518,7 +580,7 @@ public class XmuModelBackwardEnforce extends XmuModelEnforce {
 				if(c.getValue()==Boolean.TRUE) {
 					List<ObjectVariable> sVars = ContextUtil.collectObjectVariables(((CasePatternStatement) css).getPattern());
 					if(sVars.size()!=0) {
-						handleUpdateStatements(css.getWhere(), sVars, context);
+						handleUpdateStatements(this.collectRuleCallStatements(css), sVars, context);
 					}
 					return this.interprete(css.getStatement(), context);
 				}

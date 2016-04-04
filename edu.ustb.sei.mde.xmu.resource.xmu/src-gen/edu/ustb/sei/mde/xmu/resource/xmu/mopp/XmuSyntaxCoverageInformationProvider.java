@@ -58,6 +58,7 @@ public class XmuSyntaxCoverageInformationProvider {
 			edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getHelperPath(),
 			edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getSkip(),
 			edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getFail(),
+			edu.ustb.sei.mde.xmu.XmuPackage.eINSTANCE.getResetStatement(),
 		};
 	}
 	

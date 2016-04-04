@@ -53,9 +53,6 @@ public class XmuTokenStyleInformationProvider {
 		if ("rule".equals(tokenName)) {
 			return new edu.ustb.sei.mde.xmu.resource.xmu.mopp.XmuTokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
 		}
-		if ("using".equals(tokenName)) {
-			return new edu.ustb.sei.mde.xmu.resource.xmu.mopp.XmuTokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
-		}
 		if ("update".equals(tokenName)) {
 			return new edu.ustb.sei.mde.xmu.resource.xmu.mopp.XmuTokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
 		}
@@ -72,9 +69,6 @@ public class XmuTokenStyleInformationProvider {
 			return new edu.ustb.sei.mde.xmu.resource.xmu.mopp.XmuTokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
 		}
 		if ("unmatchs".equals(tokenName)) {
-			return new edu.ustb.sei.mde.xmu.resource.xmu.mopp.XmuTokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
-		}
-		if ("where".equals(tokenName)) {
 			return new edu.ustb.sei.mde.xmu.resource.xmu.mopp.XmuTokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
 		}
 		if ("select".equals(tokenName)) {
@@ -123,6 +117,9 @@ public class XmuTokenStyleInformationProvider {
 			return new edu.ustb.sei.mde.xmu.resource.xmu.mopp.XmuTokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
 		}
 		if ("fail".equals(tokenName)) {
+			return new edu.ustb.sei.mde.xmu.resource.xmu.mopp.XmuTokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
+		}
+		if ("reset".equals(tokenName)) {
 			return new edu.ustb.sei.mde.xmu.resource.xmu.mopp.XmuTokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
 		}
 		if ("QUOTED_39_39_92".equals(tokenName)) {

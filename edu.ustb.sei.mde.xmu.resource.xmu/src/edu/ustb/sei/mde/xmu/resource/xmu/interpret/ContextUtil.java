@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
 
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -16,6 +17,7 @@ import org.eclipse.emf.ecore.EcorePackage;
 import edu.ustb.sei.commonutil.util.Pair;
 import edu.ustb.sei.mde.xmu.*;
 import edu.ustb.sei.mde.xmu.resource.xmu.analysis.Util;
+import edu.ustb.sei.mde.xmu.resource.xmu.grammar.XmuRule;
 
 public class ContextUtil {
 	static public List<Pair<XmuContext,XmuContext>> align(List<XmuContext> srcMatches,List<XmuContext> tarMatches) {
@@ -184,6 +186,47 @@ public class ContextUtil {
 			collectVariables(((UnaryExpr) root).getBody(), vars);
 		}
 	}
+	
+//	static private XmuContext resetPatternVariable(Pattern pattern, XmuContext base) {
+//		
+//	}
+//	
+//	static private List<Variable> collectResettablePatternVariable(Pattern pattern) {
+//		if(pattern.getTag()!=VariableFlag.SOURCE) { // we can only reset source patterns
+//			return Collections.EMPTY_LIST;
+//		} else {
+//			List<Variable> allVariables = new ArrayList<Variable>();
+//			TreeIterator<EObject> it = pattern.eAllContents();
+//			Rule rule = Util.getRule(pattern);
+//			while(it.hasNext()) {
+//				EObject o = it.next();
+//				if(rule.getSVars().contains(o)) {
+//					allVariables.add((Variable) o);
+//				}
+//			}
+//			
+//			VStatement vStmt = Util.getParentNodeByJavaType(pattern, VStatement.class);
+//			if(vStmt==null 
+//				|| vStmt.getTag()!=VStmtType.UNMATCHV) 
+//				return Collections.EMPTY_LIST;
+//			
+//			ForStatement forStmt = (ForStatement) vStmt.eContainer();
+//			it = forStmt.getSPattern().eAllContents();
+//			
+//			List<Variable> parentVariables = new ArrayList<Variable>();
+//			
+//			while(it.hasNext()) {
+//				EObject o = it.next();
+//				if(rule.getSVars().contains(o)) {
+//					parentVariables.add((Variable) o);
+//				}
+//			}
+//			
+//			allVariables.retainAll(parentVariables);
+//			allVariables
+//			
+//		}
+//	}
 
 	static public List<XmuContext> match(Pattern pattern, XmuContext base) {
 		if(pattern==null) return null;
@@ -531,30 +574,30 @@ public class ContextUtil {
 		}		
 	}
 	
-	static public List<RuleCallStatement> lookupUpdatedStatementsFromSourcePost(EObject o, ObjectVariable sourcePost) {
-		List<RuleCallStatement> result = new ArrayList<RuleCallStatement>();
-		lookupUpdatedStatementsFromSourcePost(o,sourcePost,result);
-		//if(result.size()==0) return null;
-		return result;
-	}
+//	static public List<RuleCallStatement> lookupUpdatedStatementsFromSourcePost(EObject o, ObjectVariable sourcePost) {
+//		List<RuleCallStatement> result = new ArrayList<RuleCallStatement>();
+//		lookupUpdatedStatementsFromSourcePost(o,sourcePost,result);
+//		//if(result.size()==0) return null;
+//		return result;
+//	}
 	
-	static private void lookupUpdatedStatementsFromSourcePost(EObject o, ObjectVariable sourcePost, List<RuleCallStatement> result) {
-		if(o==null) return;
-		if(o instanceof VStatement) {
-			for(RuleCallStatement u : ((VStatement) o).getWhere()) {
-				if(isCorrelated(u,sourcePost)) {
-					result.add(u);
-				}
-			}
-		} else if(o instanceof CaseSubStatement) {
-			for(RuleCallStatement u : ((CaseSubStatement) o).getWhere()) {
-				if(isCorrelated(u,sourcePost)) {
-					result.add(u);
-				}
-			}
-		} 
-		lookupUpdatedStatementsFromSourcePost(o.eContainer(),sourcePost,result);
-	}
+//	static private void lookupUpdatedStatementsFromSourcePost(EObject o, ObjectVariable sourcePost, List<RuleCallStatement> result) {
+//		if(o==null) return;
+//		if(o instanceof VStatement) {
+//			for(RuleCallStatement u : ((VStatement) o).getWhere()) {
+//				if(isCorrelated(u,sourcePost)) {
+//					result.add(u);
+//				}
+//			}
+//		} else if(o instanceof CaseSubStatement) {
+//			for(RuleCallStatement u : ((CaseSubStatement) o).getWhere()) {
+//				if(isCorrelated(u,sourcePost)) {
+//					result.add(u);
+//				}
+//			}
+//		} 
+//		lookupUpdatedStatementsFromSourcePost(o.eContainer(),sourcePost,result);
+//	}
 	
 	static public boolean isCorrelated(RuleCallStatement rc, Variable sp) {
 		for(Expr p : rc.getActualParameters()) {
