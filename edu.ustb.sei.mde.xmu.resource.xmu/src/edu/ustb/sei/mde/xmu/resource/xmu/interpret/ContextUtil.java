@@ -529,12 +529,12 @@ public class ContextUtil {
 										XmuContext nc = current.getCopy();
 										if(XmuModelCheck.MODEL_CHECK.enforceAtomicExpr(right, nc, SafeType.createFromValue((candidate.get(i))))) {
 											if(XmuModelCheck.MODEL_CHECK.enforceAtomicExpr(pos, nc, SafeType.createFromValue(i))){
-												res.add(current);
+												res.add(nc);
 											} else continue;
 										} else continue;
-										if(XmuModelCheck.MODEL_CHECK.enforceAtomicExpr(pos, nc, SafeType.createFromValue(i))){
-											res.add(current);
-										} else continue;
+//										if(XmuModelCheck.MODEL_CHECK.enforceAtomicExpr(pos, nc, SafeType.createFromValue(i))){
+//											res.add(nc);
+//										} else continue;
 									}
 
 								} else {

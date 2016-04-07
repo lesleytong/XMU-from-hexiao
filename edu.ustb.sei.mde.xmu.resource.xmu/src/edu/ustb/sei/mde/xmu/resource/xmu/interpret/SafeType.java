@@ -17,9 +17,9 @@ abstract public class SafeType {
 		if(v==null) 
 			return Nothing.instance;
 		else {
-			if(v==Boolean.TRUE) 
+			if(Boolean.TRUE.equals(v)) 
 				return (SafeType) Just.TRUE;
-			else if(v==Boolean.FALSE) 
+			else if(Boolean.FALSE.equals(v)) 
 				return (SafeType) Just.FALSE;
 			return new Just(v);
 		}
