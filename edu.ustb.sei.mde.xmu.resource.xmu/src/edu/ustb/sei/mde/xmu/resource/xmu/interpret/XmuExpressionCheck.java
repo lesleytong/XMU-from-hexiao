@@ -621,11 +621,10 @@ public class XmuExpressionCheck extends
 			for(Object o : col) {
 				inner.putValue(path.getVariable(), SafeType.createFromValue(o));
 				ret = this.interprete(path.getBody(), inner);
-				if(ret==Just.TRUE) continue;
-				return Just.FALSE;
+				if(ret==Just.FALSE)	return Just.FALSE;
 			}
 			
-			return Just.FALSE;
+			return Just.TRUE;
 		} else if(((LoopPath) path).getOperator()==LoopOperator.EXISTS) {
 			SafeType ret = Just.FALSE;
 			
@@ -637,15 +636,16 @@ public class XmuExpressionCheck extends
 			
 			return Just.FALSE;
 		} else if(((LoopPath) path).getOperator()==LoopOperator.SELECT) {
-			SafeType ret = Just.FALSE;
+			List<Object> resCol = new ArrayList<Object>();
 			
 			for(Object o : col) {
 				inner.putValue(path.getVariable(), SafeType.createFromValue(o));
-				ret = this.interprete(path.getBody(), inner);
-				if(ret==Just.TRUE) return SafeType.createFromValue(o);
+				SafeType ret = this.interprete(path.getBody(), inner);
+				if(ret==Just.TRUE) {
+					resCol.add(o);
+				}
 			}
-			
-			return SafeType.getInvalid();
+			return SafeType.createFromValue(resCol);
 		}
 		
 		return SafeType.getInvalid();

@@ -201,8 +201,7 @@ public class XmuModelCheck extends XmuExpressionCheck {
 	
 	protected boolean enforceAdditiveExpr(AdditiveExpr expr, XmuContext context, SafeType expect) {
 		// ...+undefined+... = expect
-		SafeType headValid = null;
-		SafeType tailValid = null;
+
 		
 		if(expect.isNull()) {
 			return false;
@@ -273,6 +272,9 @@ public class XmuModelCheck extends XmuExpressionCheck {
 				
 			} else {
 				//数值型
+				SafeType headValid = null;
+				SafeType tailValid = SafeType.createFromValue(0);
+				
 				int index = 0;
 				int invalidAt = 0;
 				
@@ -292,13 +294,17 @@ public class XmuModelCheck extends XmuExpressionCheck {
 				
 				index ++;
 				
-				for(;index<expr.getOperands().size();index++) {
-					AdditiveExprChild child = expr.getOperands().get(index);
-					SafeType value = EXPRESSION_CHECK.interprete(child,context);
-					if(tailValid==null) tailValid = value;
-					else {
-						AdditiveOperator op = expr.getOperators().get(index-1);
-						tailValid = EvaluationUtil.additive(op, tailValid, value);
+				if(index==expr.getOperands().size())
+					tailValid = null;
+				else {
+					for(;index<expr.getOperands().size();index++) {
+						AdditiveExprChild child = expr.getOperands().get(index);
+						SafeType value = EXPRESSION_CHECK.interprete(child,context);
+						if(tailValid==null) tailValid = value;
+						else {
+							AdditiveOperator op = expr.getOperators().get(index-1);
+							tailValid = EvaluationUtil.additive(op, tailValid, value);
+						}
 					}
 				}
 				

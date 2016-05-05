@@ -152,8 +152,6 @@ public class EvaluationUtil {
 			if(ls.compareTo(rs)<0) return Just.TRUE;
 			return Just.FALSE;
 		} else {
-			//if(left.isNull() || right.isNull()) return SafeType.getInvalid();
-			
 			if(left.isDouble() || right.isDouble()) {
 				Double ld = toDouble(left);
 				Double rd = toDouble(right);
@@ -258,19 +256,15 @@ public class EvaluationUtil {
 		if(left.isUndefined() && right.isUndefined()) return SafeType.getInvalid();
 		else if(left.isUndefined() || right.isUndefined()) return SafeType.getUndefined();
 		else if(left.isInvalid() || right.isInvalid()) return SafeType.getInvalid();
-		//else if(left.isNull() && right.isNull()) return Just.TRUE;
 		else if(left.isNull() || right.isNull()) return Just.getInvalid();
 		
 		if(left.isString() || right.isString()) {
 			String ls = left.getStringValue();
 			String rs = right.getStringValue();
 			
-			//if(ls==null || rs==null) return SafeType.getInvalid();
 			if(ls.compareTo(rs)>0) return Just.TRUE;
 			return Just.FALSE;
 		} else {
-			//if(left.isNull() || right.isNull()) return SafeType.getInvalid();
-			
 			if(left.isDouble() || right.isDouble()) {
 				Double ld = toDouble(left);
 				Double rd = toDouble(right);
@@ -353,12 +347,9 @@ public class EvaluationUtil {
 			String ls = left.getStringValue();
 			String rs = right.getStringValue();
 			
-			//if(ls==null || rs==null) return SafeType.getInvalid();
 			if(ls.compareTo(rs)>=0) return Just.TRUE;
 			return Just.FALSE;
 		} else {
-			//if(left.isNull() || right.isNull()) return SafeType.getInvalid();
-			
 			if(left.isDouble() || right.isDouble()) {
 				Double ld = toDouble(left);
 				Double rd = toDouble(right);
