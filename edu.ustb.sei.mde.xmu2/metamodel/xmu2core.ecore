@@ -11,6 +11,10 @@
         eType="#//Variable"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="statements" upperBound="-1"
         eType="#//Statement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="backwardStatements" upperBound="-1"
+        eType="#//Statement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="forwardStatements" upperBound="-1"
+        eType="#//Statement" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Variable" eSuperTypes="xmu2common.ecore#//NamedElement #//TypedElement xmu2common.ecore#//DomainElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="Statement" abstract="true"/>
@@ -204,6 +208,8 @@
         eType="#//Pattern" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="action" upperBound="-1"
         eType="#//Statement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="derived" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DeleteNodeStatement" eSuperTypes="#//Statement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"

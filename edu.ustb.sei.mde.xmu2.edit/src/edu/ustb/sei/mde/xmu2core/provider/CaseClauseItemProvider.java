@@ -188,6 +188,16 @@ public class CaseClauseItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(Xmu2corePackage.Literals.CASE_CLAUSE__VIEW_CREATION_STATEMENTS,
+				 Xmu2coreFactory.eINSTANCE.createCheckExpressionStatement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.CASE_CLAUSE__VIEW_CREATION_STATEMENTS,
+				 Xmu2coreFactory.eINSTANCE.createEnforceExpressionStatement()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(Xmu2corePackage.Literals.CASE_CLAUSE__SOURCE_CHECK_STATEMENTS,
 				 Xmu2coreFactory.eINSTANCE.createAlignStatement()));
 
@@ -233,6 +243,16 @@ public class CaseClauseItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(Xmu2corePackage.Literals.CASE_CLAUSE__SOURCE_CHECK_STATEMENTS,
+				 Xmu2coreFactory.eINSTANCE.createCheckExpressionStatement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.CASE_CLAUSE__SOURCE_CHECK_STATEMENTS,
+				 Xmu2coreFactory.eINSTANCE.createEnforceExpressionStatement()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(Xmu2corePackage.Literals.CASE_CLAUSE__ACTION,
 				 Xmu2coreFactory.eINSTANCE.createAlignStatement()));
 
@@ -275,6 +295,16 @@ public class CaseClauseItemProvider
 			(createChildParameter
 				(Xmu2corePackage.Literals.CASE_CLAUSE__ACTION,
 				 Xmu2coreFactory.eINSTANCE.createMatchPattern()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.CASE_CLAUSE__ACTION,
+				 Xmu2coreFactory.eINSTANCE.createCheckExpressionStatement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.CASE_CLAUSE__ACTION,
+				 Xmu2coreFactory.eINSTANCE.createEnforceExpressionStatement()));
 	}
 
 	/**

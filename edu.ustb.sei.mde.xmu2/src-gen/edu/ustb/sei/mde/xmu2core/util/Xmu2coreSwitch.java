@@ -136,6 +136,13 @@ public class Xmu2coreSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case Xmu2corePackage.CASE_STATEMENT_CLAUSE: {
+				CaseStatementClause caseStatementClause = (CaseStatementClause)theEObject;
+				T result = caseCaseStatementClause(caseStatementClause);
+				if (result == null) result = caseCaseClause(caseStatementClause);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case Xmu2corePackage.PATTERN: {
 				Pattern pattern = (Pattern)theEObject;
 				T result = casePattern(pattern);
@@ -416,6 +423,20 @@ public class Xmu2coreSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case Xmu2corePackage.CHECK_EXPRESSION_STATEMENT: {
+				CheckExpressionStatement checkExpressionStatement = (CheckExpressionStatement)theEObject;
+				T result = caseCheckExpressionStatement(checkExpressionStatement);
+				if (result == null) result = caseStatement(checkExpressionStatement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case Xmu2corePackage.ENFORCE_EXPRESSION_STATEMENT: {
+				EnforceExpressionStatement enforceExpressionStatement = (EnforceExpressionStatement)theEObject;
+				T result = caseEnforceExpressionStatement(enforceExpressionStatement);
+				if (result == null) result = caseStatement(enforceExpressionStatement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -552,6 +573,21 @@ public class Xmu2coreSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseCaseExpressionClause(CaseExpressionClause object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Case Statement Clause</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Case Statement Clause</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCaseStatementClause(CaseStatementClause object) {
 		return null;
 	}
 
@@ -1122,6 +1158,36 @@ public class Xmu2coreSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseMatchPattern(MatchPattern object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Check Expression Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Check Expression Statement</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCheckExpressionStatement(CheckExpressionStatement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Enforce Expression Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Enforce Expression Statement</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEnforceExpressionStatement(EnforceExpressionStatement object) {
 		return null;
 	}
 

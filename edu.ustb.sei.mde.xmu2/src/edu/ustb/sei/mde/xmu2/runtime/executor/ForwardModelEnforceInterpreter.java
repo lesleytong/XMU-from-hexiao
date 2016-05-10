@@ -26,6 +26,7 @@ import edu.ustb.sei.mde.xmu2common.*;
 import edu.ustb.sei.mde.xmu2core.EnforceLinkStatement;
 import edu.ustb.sei.mde.xmu2core.EnforceNodeStatement;
 import edu.ustb.sei.mde.xmu2core.Expression;
+import edu.ustb.sei.mde.xmu2core.ForEachStatement;
 import edu.ustb.sei.mde.xmu2core.LoopPath;
 import edu.ustb.sei.mde.xmu2core.Pattern;
 import edu.ustb.sei.mde.xmu2core.PositionPath;
@@ -60,7 +61,17 @@ public class ForwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 		}
 	}
 
-
+	@Override
+	public void executeForEachStatement(ForEachStatement statement, Context context) {
+		List<Context> smatches = ContextUtil.match(statement.getPattern(), context);
+		
+		for(Context c : smatches) {
+			this.handleProcedureTrialCallStatements(this.collectRuleCallStatements(statement.getAction(),c),c);
+			ReorderedAlignStatement reorder = ReorderUtil.reorderForEachStatement(statement, c);
+			this.executeStatements(reorder.finalOrder, c);
+			mergeContext(context, c);
+		} 
+	}
 
 	@Override
 	public void executeProcedureCallStatement(ProcedureCallStatement ruleCallStatement, Context context) {

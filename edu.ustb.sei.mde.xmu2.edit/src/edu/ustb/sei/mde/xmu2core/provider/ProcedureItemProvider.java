@@ -92,6 +92,8 @@ public class ProcedureItemProvider extends NamedElementItemProvider {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(Xmu2corePackage.Literals.PROCEDURE__VARIABLES);
 			childrenFeatures.add(Xmu2corePackage.Literals.PROCEDURE__STATEMENTS);
+			childrenFeatures.add(Xmu2corePackage.Literals.PROCEDURE__BACKWARD_STATEMENTS);
+			childrenFeatures.add(Xmu2corePackage.Literals.PROCEDURE__FORWARD_STATEMENTS);
 		}
 		return childrenFeatures;
 	}
@@ -149,6 +151,8 @@ public class ProcedureItemProvider extends NamedElementItemProvider {
 		switch (notification.getFeatureID(Procedure.class)) {
 			case Xmu2corePackage.PROCEDURE__VARIABLES:
 			case Xmu2corePackage.PROCEDURE__STATEMENTS:
+			case Xmu2corePackage.PROCEDURE__BACKWARD_STATEMENTS:
+			case Xmu2corePackage.PROCEDURE__FORWARD_STATEMENTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -215,6 +219,150 @@ public class ProcedureItemProvider extends NamedElementItemProvider {
 			(createChildParameter
 				(Xmu2corePackage.Literals.PROCEDURE__STATEMENTS,
 				 Xmu2coreFactory.eINSTANCE.createMatchPattern()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.PROCEDURE__STATEMENTS,
+				 Xmu2coreFactory.eINSTANCE.createCheckExpressionStatement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.PROCEDURE__STATEMENTS,
+				 Xmu2coreFactory.eINSTANCE.createEnforceExpressionStatement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.PROCEDURE__BACKWARD_STATEMENTS,
+				 Xmu2coreFactory.eINSTANCE.createAlignStatement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.PROCEDURE__BACKWARD_STATEMENTS,
+				 Xmu2coreFactory.eINSTANCE.createCaseStatement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.PROCEDURE__BACKWARD_STATEMENTS,
+				 Xmu2coreFactory.eINSTANCE.createProcedureCallStatement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.PROCEDURE__BACKWARD_STATEMENTS,
+				 Xmu2coreFactory.eINSTANCE.createForEachStatement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.PROCEDURE__BACKWARD_STATEMENTS,
+				 Xmu2coreFactory.eINSTANCE.createDeleteNodeStatement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.PROCEDURE__BACKWARD_STATEMENTS,
+				 Xmu2coreFactory.eINSTANCE.createDeleteLinkStatement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.PROCEDURE__BACKWARD_STATEMENTS,
+				 Xmu2coreFactory.eINSTANCE.createEnforceNodeStatement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.PROCEDURE__BACKWARD_STATEMENTS,
+				 Xmu2coreFactory.eINSTANCE.createEnforceLinkStatement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.PROCEDURE__BACKWARD_STATEMENTS,
+				 Xmu2coreFactory.eINSTANCE.createMatchPattern()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.PROCEDURE__BACKWARD_STATEMENTS,
+				 Xmu2coreFactory.eINSTANCE.createCheckExpressionStatement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.PROCEDURE__BACKWARD_STATEMENTS,
+				 Xmu2coreFactory.eINSTANCE.createEnforceExpressionStatement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.PROCEDURE__FORWARD_STATEMENTS,
+				 Xmu2coreFactory.eINSTANCE.createAlignStatement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.PROCEDURE__FORWARD_STATEMENTS,
+				 Xmu2coreFactory.eINSTANCE.createCaseStatement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.PROCEDURE__FORWARD_STATEMENTS,
+				 Xmu2coreFactory.eINSTANCE.createProcedureCallStatement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.PROCEDURE__FORWARD_STATEMENTS,
+				 Xmu2coreFactory.eINSTANCE.createForEachStatement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.PROCEDURE__FORWARD_STATEMENTS,
+				 Xmu2coreFactory.eINSTANCE.createDeleteNodeStatement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.PROCEDURE__FORWARD_STATEMENTS,
+				 Xmu2coreFactory.eINSTANCE.createDeleteLinkStatement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.PROCEDURE__FORWARD_STATEMENTS,
+				 Xmu2coreFactory.eINSTANCE.createEnforceNodeStatement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.PROCEDURE__FORWARD_STATEMENTS,
+				 Xmu2coreFactory.eINSTANCE.createEnforceLinkStatement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.PROCEDURE__FORWARD_STATEMENTS,
+				 Xmu2coreFactory.eINSTANCE.createMatchPattern()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.PROCEDURE__FORWARD_STATEMENTS,
+				 Xmu2coreFactory.eINSTANCE.createCheckExpressionStatement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.PROCEDURE__FORWARD_STATEMENTS,
+				 Xmu2coreFactory.eINSTANCE.createEnforceExpressionStatement()));
+	}
+
+	/**
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
+		Object childFeature = feature;
+		Object childObject = child;
+
+		boolean qualify =
+			childFeature == Xmu2corePackage.Literals.PROCEDURE__STATEMENTS ||
+			childFeature == Xmu2corePackage.Literals.PROCEDURE__BACKWARD_STATEMENTS ||
+			childFeature == Xmu2corePackage.Literals.PROCEDURE__FORWARD_STATEMENTS;
+
+		if (qualify) {
+			return getString
+				("_UI_CreateChild_text2",
+				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+		}
+		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 	/**

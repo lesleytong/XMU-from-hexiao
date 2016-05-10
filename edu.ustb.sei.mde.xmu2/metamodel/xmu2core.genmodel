@@ -17,6 +17,8 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2core.ecore#//Procedure/variables"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xmu2core.ecore#//Procedure/parameters"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2core.ecore#//Procedure/statements"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2core.ecore#//Procedure/backwardStatements"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2core.ecore#//Procedure/forwardStatements"/>
     </genClasses>
     <genClasses ecoreClass="xmu2core.ecore#//Variable"/>
     <genClasses image="false" ecoreClass="xmu2core.ecore#//Statement"/>
@@ -41,6 +43,9 @@
     </genClasses>
     <genClasses ecoreClass="xmu2core.ecore#//CaseExpressionClause">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2core.ecore#//CaseExpressionClause/condition"/>
+    </genClasses>
+    <genClasses ecoreClass="xmu2core.ecore#//CaseStatementClause">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2core.ecore#//CaseStatementClause/condition"/>
     </genClasses>
     <genClasses ecoreClass="xmu2core.ecore#//Pattern">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2core.ecore#//Pattern/root"/>
@@ -151,6 +156,7 @@
     <genClasses ecoreClass="xmu2core.ecore#//ForEachStatement">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2core.ecore#//ForEachStatement/pattern"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2core.ecore#//ForEachStatement/action"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmu2core.ecore#//ForEachStatement/derived"/>
     </genClasses>
     <genClasses ecoreClass="xmu2core.ecore#//DeleteNodeStatement">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xmu2core.ecore#//DeleteNodeStatement/target"/>
@@ -178,6 +184,15 @@
     </genClasses>
     <genClasses image="false" ecoreClass="xmu2core.ecore#//OclCollection">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xmu2core.ecore#//OclCollection/elementType"/>
+    </genClasses>
+    <genClasses ecoreClass="xmu2core.ecore#//MatchPattern">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2core.ecore#//MatchPattern/pattern"/>
+    </genClasses>
+    <genClasses ecoreClass="xmu2core.ecore#//CheckExpressionStatement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2core.ecore#//CheckExpressionStatement/expression"/>
+    </genClasses>
+    <genClasses ecoreClass="xmu2core.ecore#//EnforceExpressionStatement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2core.ecore#//EnforceExpressionStatement/expression"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

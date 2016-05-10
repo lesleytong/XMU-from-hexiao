@@ -28,6 +28,7 @@ import edu.ustb.sei.mde.xmu2common.*;
 import edu.ustb.sei.mde.xmu2core.EnforceLinkStatement;
 import edu.ustb.sei.mde.xmu2core.EnforceNodeStatement;
 import edu.ustb.sei.mde.xmu2core.Expression;
+import edu.ustb.sei.mde.xmu2core.ForEachStatement;
 import edu.ustb.sei.mde.xmu2core.LoopPath;
 import edu.ustb.sei.mde.xmu2core.PositionPath;
 import edu.ustb.sei.mde.xmu2core.Procedure;
@@ -48,7 +49,7 @@ public class BackwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 		List<Pair<Context,Context>> alignment = ContextUtil.align(smatches, vmatches);
 		
 		List<Variable> sVars = ContextUtil.collectPatternVariables(statement.getSource());
-		
+		 
 		for(Pair<Context,Context> p : alignment) {
 			Context merge = ContextUtil.merge(statement.getSource(), statement.getView(), p);
 			
@@ -431,4 +432,13 @@ public class BackwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 		return (v.getTag()==DomainTag.NORMAL || v.getTag()==DomainTag.UPDATED_SOURCE);
 	}
 
+	@Override
+	public void executeForEachStatement(ForEachStatement statement, Context context) {
+		List<Context> matches = ContextUtil.match(statement.getPattern(), context);
+		List<Variable> sVars = ContextUtil.collectPatternVariables(statement.getPattern());
+		for(Context m : matches) {
+			this.handleProcedureTrialCallStatements(this.collectRuleCallStatements(statement.getAction(),m),sVars,m);
+			this.executeStatements(statement.getAction(), m);
+		}
+	}
 }

@@ -14,9 +14,11 @@ import edu.ustb.sei.mde.xmu2core.BooleanAndExpression;
 import edu.ustb.sei.mde.xmu2core.BooleanOrExpression;
 import edu.ustb.sei.mde.xmu2core.BooleanValueExpression;
 import edu.ustb.sei.mde.xmu2core.CaseStatement;
+import edu.ustb.sei.mde.xmu2core.CheckExpressionStatement;
 import edu.ustb.sei.mde.xmu2core.DeleteLinkStatement;
 import edu.ustb.sei.mde.xmu2core.DeleteNodeStatement;
 import edu.ustb.sei.mde.xmu2core.EmptyValueExpression;
+import edu.ustb.sei.mde.xmu2core.EnforceExpressionStatement;
 import edu.ustb.sei.mde.xmu2core.EnforceLinkStatement;
 import edu.ustb.sei.mde.xmu2core.EnforceNodeStatement;
 import edu.ustb.sei.mde.xmu2core.EntryRuleParameter;
@@ -71,12 +73,20 @@ public abstract class AbstractInterpreter {
 			executeEnforceLinkStatement((EnforceLinkStatement)o, context);
 		
 		else if(o instanceof MatchPattern)
-			executeMatchPattern((MatchPattern)o,context);
+			executeMatchPatternStatement((MatchPattern)o,context);
+		
+		else if(o instanceof CheckExpressionStatement)
+			executeCheckExpressionStatement((CheckExpressionStatement)o,context);
+		
+		else if(o instanceof EnforceExpressionStatement)
+			executeEnforceExpressionStatement((EnforceExpressionStatement)o,context);
 		
 		else throw new InvalidCalculationException();
 	}
 	
-	abstract public void executeMatchPattern(MatchPattern o, Context context);
+	abstract public void executeMatchPatternStatement(MatchPattern o, Context context);
+	abstract public void executeCheckExpressionStatement(CheckExpressionStatement o, Context context);
+	abstract public void executeEnforceExpressionStatement(EnforceExpressionStatement o, Context context);
 
 	public SafeType executeExpression(Expression o, Context context) {
 		if (o instanceof BooleanOrExpression)

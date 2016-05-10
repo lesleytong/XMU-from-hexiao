@@ -144,13 +144,31 @@ public interface Xmu2corePackage extends EPackage {
 	int PROCEDURE__STATEMENTS = Xmu2commonPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Backward Statements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCEDURE__BACKWARD_STATEMENTS = Xmu2commonPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Forward Statements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCEDURE__FORWARD_STATEMENTS = Xmu2commonPackage.NAMED_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>Procedure</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROCEDURE_FEATURE_COUNT = Xmu2commonPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
+	int PROCEDURE_FEATURE_COUNT = Xmu2commonPackage.NAMED_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>Procedure</em>' class.
@@ -556,6 +574,70 @@ public interface Xmu2corePackage extends EPackage {
 	int CASE_EXPRESSION_CLAUSE_OPERATION_COUNT = CASE_CLAUSE_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu2core.impl.CaseStatementClauseImpl <em>Case Statement Clause</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.xmu2core.impl.CaseStatementClauseImpl
+	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getCaseStatementClause()
+	 * @generated
+	 */
+	int CASE_STATEMENT_CLAUSE = 9;
+
+	/**
+	 * The feature id for the '<em><b>View Creation Statements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CASE_STATEMENT_CLAUSE__VIEW_CREATION_STATEMENTS = CASE_CLAUSE__VIEW_CREATION_STATEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Source Check Statements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CASE_STATEMENT_CLAUSE__SOURCE_CHECK_STATEMENTS = CASE_CLAUSE__SOURCE_CHECK_STATEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Action</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CASE_STATEMENT_CLAUSE__ACTION = CASE_CLAUSE__ACTION;
+
+	/**
+	 * The feature id for the '<em><b>Condition</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CASE_STATEMENT_CLAUSE__CONDITION = CASE_CLAUSE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Case Statement Clause</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CASE_STATEMENT_CLAUSE_FEATURE_COUNT = CASE_CLAUSE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Case Statement Clause</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CASE_STATEMENT_CLAUSE_OPERATION_COUNT = CASE_CLAUSE_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu2core.impl.PatternImpl <em>Pattern</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -563,7 +645,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getPattern()
 	 * @generated
 	 */
-	int PATTERN = 9;
+	int PATTERN = 10;
 
 	/**
 	 * The feature id for the '<em><b>Root</b></em>' containment reference.
@@ -609,7 +691,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getPatternNode()
 	 * @generated
 	 */
-	int PATTERN_NODE = 10;
+	int PATTERN_NODE = 11;
 
 	/**
 	 * The feature id for the '<em><b>Variable</b></em>' reference.
@@ -664,7 +746,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getPatternExpression()
 	 * @generated
 	 */
-	int PATTERN_EXPRESSION = 11;
+	int PATTERN_EXPRESSION = 12;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference.
@@ -719,7 +801,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getObjectPatternExpression()
 	 * @generated
 	 */
-	int OBJECT_PATTERN_EXPRESSION = 12;
+	int OBJECT_PATTERN_EXPRESSION = 13;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference.
@@ -783,7 +865,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getPropertyPatternExpression()
 	 * @generated
 	 */
-	int PROPERTY_PATTERN_EXPRESSION = 13;
+	int PROPERTY_PATTERN_EXPRESSION = 14;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference.
@@ -847,7 +929,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getExpression()
 	 * @generated
 	 */
-	int EXPRESSION = 14;
+	int EXPRESSION = 15;
 
 	/**
 	 * The number of structural features of the '<em>Expression</em>' class.
@@ -875,7 +957,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getBooleanOrExpression()
 	 * @generated
 	 */
-	int BOOLEAN_OR_EXPRESSION = 15;
+	int BOOLEAN_OR_EXPRESSION = 16;
 
 	/**
 	 * The feature id for the '<em><b>Operands</b></em>' containment reference list.
@@ -912,7 +994,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getBooleanAndExpression()
 	 * @generated
 	 */
-	int BOOLEAN_AND_EXPRESSION = 16;
+	int BOOLEAN_AND_EXPRESSION = 17;
 
 	/**
 	 * The feature id for the '<em><b>Operands</b></em>' containment reference list.
@@ -949,7 +1031,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getRelationalExpression()
 	 * @generated
 	 */
-	int RELATIONAL_EXPRESSION = 17;
+	int RELATIONAL_EXPRESSION = 18;
 
 	/**
 	 * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1004,7 +1086,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getAdditiveExpression()
 	 * @generated
 	 */
-	int ADDITIVE_EXPRESSION = 18;
+	int ADDITIVE_EXPRESSION = 19;
 
 	/**
 	 * The feature id for the '<em><b>Operands</b></em>' containment reference list.
@@ -1050,7 +1132,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getMultiplicativeExpression()
 	 * @generated
 	 */
-	int MULTIPLICATIVE_EXPRESSION = 19;
+	int MULTIPLICATIVE_EXPRESSION = 20;
 
 	/**
 	 * The feature id for the '<em><b>Operands</b></em>' containment reference list.
@@ -1096,7 +1178,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getUnaryExpression()
 	 * @generated
 	 */
-	int UNARY_EXPRESSION = 20;
+	int UNARY_EXPRESSION = 21;
 
 	/**
 	 * The feature id for the '<em><b>Body</b></em>' containment reference.
@@ -1142,7 +1224,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getAtomicExpression()
 	 * @generated
 	 */
-	int ATOMIC_EXPRESSION = 21;
+	int ATOMIC_EXPRESSION = 22;
 
 	/**
 	 * The feature id for the '<em><b>Paths</b></em>' containment reference list.
@@ -1179,7 +1261,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getTypeCastExpression()
 	 * @generated
 	 */
-	int TYPE_CAST_EXPRESSION = 22;
+	int TYPE_CAST_EXPRESSION = 23;
 
 	/**
 	 * The feature id for the '<em><b>Paths</b></em>' containment reference list.
@@ -1243,7 +1325,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getPrimitiveValueExpression()
 	 * @generated
 	 */
-	int PRIMITIVE_VALUE_EXPRESSION = 23;
+	int PRIMITIVE_VALUE_EXPRESSION = 24;
 
 	/**
 	 * The feature id for the '<em><b>Paths</b></em>' containment reference list.
@@ -1289,7 +1371,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getStringValueExpression()
 	 * @generated
 	 */
-	int STRING_VALUE_EXPRESSION = 24;
+	int STRING_VALUE_EXPRESSION = 25;
 
 	/**
 	 * The feature id for the '<em><b>Paths</b></em>' containment reference list.
@@ -1344,7 +1426,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getBooleanValueExpression()
 	 * @generated
 	 */
-	int BOOLEAN_VALUE_EXPRESSION = 25;
+	int BOOLEAN_VALUE_EXPRESSION = 26;
 
 	/**
 	 * The feature id for the '<em><b>Paths</b></em>' containment reference list.
@@ -1399,7 +1481,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getIntegerValueExpression()
 	 * @generated
 	 */
-	int INTEGER_VALUE_EXPRESSION = 26;
+	int INTEGER_VALUE_EXPRESSION = 27;
 
 	/**
 	 * The feature id for the '<em><b>Paths</b></em>' containment reference list.
@@ -1454,7 +1536,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getEnumValueExpression()
 	 * @generated
 	 */
-	int ENUM_VALUE_EXPRESSION = 27;
+	int ENUM_VALUE_EXPRESSION = 28;
 
 	/**
 	 * The feature id for the '<em><b>Paths</b></em>' containment reference list.
@@ -1509,7 +1591,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getEmptyValueExpression()
 	 * @generated
 	 */
-	int EMPTY_VALUE_EXPRESSION = 28;
+	int EMPTY_VALUE_EXPRESSION = 29;
 
 	/**
 	 * The feature id for the '<em><b>Paths</b></em>' containment reference list.
@@ -1555,7 +1637,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getObjectValueExpression()
 	 * @generated
 	 */
-	int OBJECT_VALUE_EXPRESSION = 29;
+	int OBJECT_VALUE_EXPRESSION = 30;
 
 	/**
 	 * The feature id for the '<em><b>Paths</b></em>' containment reference list.
@@ -1601,7 +1683,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getVariableExpression()
 	 * @generated
 	 */
-	int VARIABLE_EXPRESSION = 30;
+	int VARIABLE_EXPRESSION = 31;
 
 	/**
 	 * The feature id for the '<em><b>Paths</b></em>' containment reference list.
@@ -1647,7 +1729,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getPath()
 	 * @generated
 	 */
-	int PATH = 31;
+	int PATH = 32;
 
 	/**
 	 * The number of structural features of the '<em>Path</em>' class.
@@ -1675,7 +1757,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getFeaturePath()
 	 * @generated
 	 */
-	int FEATURE_PATH = 32;
+	int FEATURE_PATH = 33;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference.
@@ -1712,7 +1794,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getOperationPath()
 	 * @generated
 	 */
-	int OPERATION_PATH = 33;
+	int OPERATION_PATH = 34;
 
 	/**
 	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
@@ -1758,7 +1840,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getLoopPath()
 	 * @generated
 	 */
-	int LOOP_PATH = 34;
+	int LOOP_PATH = 35;
 
 	/**
 	 * The feature id for the '<em><b>Operator</b></em>' attribute.
@@ -1813,7 +1895,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getPositionPath()
 	 * @generated
 	 */
-	int POSITION_PATH = 35;
+	int POSITION_PATH = 36;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' containment reference.
@@ -1859,7 +1941,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getProcedureCallStatement()
 	 * @generated
 	 */
-	int PROCEDURE_CALL_STATEMENT = 36;
+	int PROCEDURE_CALL_STATEMENT = 37;
 
 	/**
 	 * The feature id for the '<em><b>Procedure</b></em>' reference.
@@ -1914,7 +1996,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getTransformation()
 	 * @generated
 	 */
-	int TRANSFORMATION = 37;
+	int TRANSFORMATION = 38;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1987,7 +2069,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getEntryRuleParameter()
 	 * @generated
 	 */
-	int ENTRY_RULE_PARAMETER = 38;
+	int ENTRY_RULE_PARAMETER = 39;
 
 	/**
 	 * The feature id for the '<em><b>Tag</b></em>' attribute.
@@ -2042,7 +2124,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getForEachStatement()
 	 * @generated
 	 */
-	int FOR_EACH_STATEMENT = 39;
+	int FOR_EACH_STATEMENT = 40;
 
 	/**
 	 * The feature id for the '<em><b>Pattern</b></em>' containment reference.
@@ -2063,13 +2145,22 @@ public interface Xmu2corePackage extends EPackage {
 	int FOR_EACH_STATEMENT__ACTION = STATEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Derived</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FOR_EACH_STATEMENT__DERIVED = STATEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>For Each Statement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FOR_EACH_STATEMENT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 2;
+	int FOR_EACH_STATEMENT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>For Each Statement</em>' class.
@@ -2088,7 +2179,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getDeleteNodeStatement()
 	 * @generated
 	 */
-	int DELETE_NODE_STATEMENT = 40;
+	int DELETE_NODE_STATEMENT = 41;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
@@ -2125,7 +2216,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getDeleteLinkStatement()
 	 * @generated
 	 */
-	int DELETE_LINK_STATEMENT = 41;
+	int DELETE_LINK_STATEMENT = 42;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' containment reference.
@@ -2180,7 +2271,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getEnforceNodeStatement()
 	 * @generated
 	 */
-	int ENFORCE_NODE_STATEMENT = 42;
+	int ENFORCE_NODE_STATEMENT = 43;
 
 	/**
 	 * The feature id for the '<em><b>Tag</b></em>' attribute.
@@ -2244,7 +2335,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getEnforceLinkStatement()
 	 * @generated
 	 */
-	int ENFORCE_LINK_STATEMENT = 43;
+	int ENFORCE_LINK_STATEMENT = 44;
 
 	/**
 	 * The feature id for the '<em><b>Tag</b></em>' attribute.
@@ -2335,7 +2426,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getOclCollectionType()
 	 * @generated
 	 */
-	int OCL_COLLECTION_TYPE = 44;
+	int OCL_COLLECTION_TYPE = 45;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -2705,7 +2796,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getOclCollection()
 	 * @generated
 	 */
-	int OCL_COLLECTION = 45;
+	int OCL_COLLECTION = 46;
 
 	/**
 	 * The feature id for the '<em><b>Element Type</b></em>' reference.
@@ -2742,7 +2833,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getMatchPattern()
 	 * @generated
 	 */
-	int MATCH_PATTERN = 46;
+	int MATCH_PATTERN = 47;
 
 	/**
 	 * The feature id for the '<em><b>Pattern</b></em>' containment reference.
@@ -2772,6 +2863,80 @@ public interface Xmu2corePackage extends EPackage {
 	int MATCH_PATTERN_OPERATION_COUNT = STATEMENT_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu2core.impl.CheckExpressionStatementImpl <em>Check Expression Statement</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.xmu2core.impl.CheckExpressionStatementImpl
+	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getCheckExpressionStatement()
+	 * @generated
+	 */
+	int CHECK_EXPRESSION_STATEMENT = 48;
+
+	/**
+	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECK_EXPRESSION_STATEMENT__EXPRESSION = STATEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Check Expression Statement</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECK_EXPRESSION_STATEMENT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Check Expression Statement</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECK_EXPRESSION_STATEMENT_OPERATION_COUNT = STATEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu2core.impl.EnforceExpressionStatementImpl <em>Enforce Expression Statement</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.xmu2core.impl.EnforceExpressionStatementImpl
+	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getEnforceExpressionStatement()
+	 * @generated
+	 */
+	int ENFORCE_EXPRESSION_STATEMENT = 49;
+
+	/**
+	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENFORCE_EXPRESSION_STATEMENT__EXPRESSION = STATEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Enforce Expression Statement</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENFORCE_EXPRESSION_STATEMENT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Enforce Expression Statement</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENFORCE_EXPRESSION_STATEMENT_OPERATION_COUNT = STATEMENT_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '<em>Null</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2779,7 +2944,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getNull()
 	 * @generated
 	 */
-	int NULL = 47;
+	int NULL = 50;
 
 	/**
 	 * The meta object id for the '<em>Undefined</em>' data type.
@@ -2789,7 +2954,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getUndefined()
 	 * @generated
 	 */
-	int UNDEFINED = 48;
+	int UNDEFINED = 51;
 
 
 	/**
@@ -2855,6 +3020,28 @@ public interface Xmu2corePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getProcedure_Statements();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link edu.ustb.sei.mde.xmu2core.Procedure#getBackwardStatements <em>Backward Statements</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Backward Statements</em>'.
+	 * @see edu.ustb.sei.mde.xmu2core.Procedure#getBackwardStatements()
+	 * @see #getProcedure()
+	 * @generated
+	 */
+	EReference getProcedure_BackwardStatements();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link edu.ustb.sei.mde.xmu2core.Procedure#getForwardStatements <em>Forward Statements</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Forward Statements</em>'.
+	 * @see edu.ustb.sei.mde.xmu2core.Procedure#getForwardStatements()
+	 * @see #getProcedure()
+	 * @generated
+	 */
+	EReference getProcedure_ForwardStatements();
 
 	/**
 	 * Returns the meta object for class '{@link edu.ustb.sei.mde.xmu2core.Variable <em>Variable</em>}'.
@@ -3057,6 +3244,27 @@ public interface Xmu2corePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getCaseExpressionClause_Condition();
+
+	/**
+	 * Returns the meta object for class '{@link edu.ustb.sei.mde.xmu2core.CaseStatementClause <em>Case Statement Clause</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Case Statement Clause</em>'.
+	 * @see edu.ustb.sei.mde.xmu2core.CaseStatementClause
+	 * @generated
+	 */
+	EClass getCaseStatementClause();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link edu.ustb.sei.mde.xmu2core.CaseStatementClause#getCondition <em>Condition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Condition</em>'.
+	 * @see edu.ustb.sei.mde.xmu2core.CaseStatementClause#getCondition()
+	 * @see #getCaseStatementClause()
+	 * @generated
+	 */
+	EReference getCaseStatementClause_Condition();
 
 	/**
 	 * Returns the meta object for class '{@link edu.ustb.sei.mde.xmu2core.Pattern <em>Pattern</em>}'.
@@ -3930,6 +4138,17 @@ public interface Xmu2corePackage extends EPackage {
 	EReference getForEachStatement_Action();
 
 	/**
+	 * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.xmu2core.ForEachStatement#isDerived <em>Derived</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Derived</em>'.
+	 * @see edu.ustb.sei.mde.xmu2core.ForEachStatement#isDerived()
+	 * @see #getForEachStatement()
+	 * @generated
+	 */
+	EAttribute getForEachStatement_Derived();
+
+	/**
 	 * Returns the meta object for class '{@link edu.ustb.sei.mde.xmu2core.DeleteNodeStatement <em>Delete Node Statement</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4176,6 +4395,48 @@ public interface Xmu2corePackage extends EPackage {
 	EReference getMatchPattern_Pattern();
 
 	/**
+	 * Returns the meta object for class '{@link edu.ustb.sei.mde.xmu2core.CheckExpressionStatement <em>Check Expression Statement</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Check Expression Statement</em>'.
+	 * @see edu.ustb.sei.mde.xmu2core.CheckExpressionStatement
+	 * @generated
+	 */
+	EClass getCheckExpressionStatement();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.xmu2core.CheckExpressionStatement#getExpression <em>Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Expression</em>'.
+	 * @see edu.ustb.sei.mde.xmu2core.CheckExpressionStatement#getExpression()
+	 * @see #getCheckExpressionStatement()
+	 * @generated
+	 */
+	EReference getCheckExpressionStatement_Expression();
+
+	/**
+	 * Returns the meta object for class '{@link edu.ustb.sei.mde.xmu2core.EnforceExpressionStatement <em>Enforce Expression Statement</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Enforce Expression Statement</em>'.
+	 * @see edu.ustb.sei.mde.xmu2core.EnforceExpressionStatement
+	 * @generated
+	 */
+	EClass getEnforceExpressionStatement();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.xmu2core.EnforceExpressionStatement#getExpression <em>Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Expression</em>'.
+	 * @see edu.ustb.sei.mde.xmu2core.EnforceExpressionStatement#getExpression()
+	 * @see #getEnforceExpressionStatement()
+	 * @generated
+	 */
+	EReference getEnforceExpressionStatement_Expression();
+
+	/**
 	 * Returns the meta object for data type '{@link java.lang.Object <em>Null</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4271,6 +4532,22 @@ public interface Xmu2corePackage extends EPackage {
 		 * @generated
 		 */
 		EReference PROCEDURE__STATEMENTS = eINSTANCE.getProcedure_Statements();
+
+		/**
+		 * The meta object literal for the '<em><b>Backward Statements</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PROCEDURE__BACKWARD_STATEMENTS = eINSTANCE.getProcedure_BackwardStatements();
+
+		/**
+		 * The meta object literal for the '<em><b>Forward Statements</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PROCEDURE__FORWARD_STATEMENTS = eINSTANCE.getProcedure_ForwardStatements();
 
 		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu2core.impl.VariableImpl <em>Variable</em>}' class.
@@ -4437,6 +4714,24 @@ public interface Xmu2corePackage extends EPackage {
 		 * @generated
 		 */
 		EReference CASE_EXPRESSION_CLAUSE__CONDITION = eINSTANCE.getCaseExpressionClause_Condition();
+
+		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu2core.impl.CaseStatementClauseImpl <em>Case Statement Clause</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.xmu2core.impl.CaseStatementClauseImpl
+		 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getCaseStatementClause()
+		 * @generated
+		 */
+		EClass CASE_STATEMENT_CLAUSE = eINSTANCE.getCaseStatementClause();
+
+		/**
+		 * The meta object literal for the '<em><b>Condition</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CASE_STATEMENT_CLAUSE__CONDITION = eINSTANCE.getCaseStatementClause_Condition();
 
 		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu2core.impl.PatternImpl <em>Pattern</em>}' class.
@@ -5157,6 +5452,14 @@ public interface Xmu2corePackage extends EPackage {
 		EReference FOR_EACH_STATEMENT__ACTION = eINSTANCE.getForEachStatement_Action();
 
 		/**
+		 * The meta object literal for the '<em><b>Derived</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FOR_EACH_STATEMENT__DERIVED = eINSTANCE.getForEachStatement_Derived();
+
+		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu2core.impl.DeleteNodeStatementImpl <em>Delete Node Statement</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -5353,6 +5656,42 @@ public interface Xmu2corePackage extends EPackage {
 		 * @generated
 		 */
 		EReference MATCH_PATTERN__PATTERN = eINSTANCE.getMatchPattern_Pattern();
+
+		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu2core.impl.CheckExpressionStatementImpl <em>Check Expression Statement</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.xmu2core.impl.CheckExpressionStatementImpl
+		 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getCheckExpressionStatement()
+		 * @generated
+		 */
+		EClass CHECK_EXPRESSION_STATEMENT = eINSTANCE.getCheckExpressionStatement();
+
+		/**
+		 * The meta object literal for the '<em><b>Expression</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CHECK_EXPRESSION_STATEMENT__EXPRESSION = eINSTANCE.getCheckExpressionStatement_Expression();
+
+		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu2core.impl.EnforceExpressionStatementImpl <em>Enforce Expression Statement</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.xmu2core.impl.EnforceExpressionStatementImpl
+		 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getEnforceExpressionStatement()
+		 * @generated
+		 */
+		EClass ENFORCE_EXPRESSION_STATEMENT = eINSTANCE.getEnforceExpressionStatement();
+
+		/**
+		 * The meta object literal for the '<em><b>Expression</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ENFORCE_EXPRESSION_STATEMENT__EXPRESSION = eINSTANCE.getEnforceExpressionStatement_Expression();
 
 		/**
 		 * The meta object literal for the '<em>Null</em>' data type.

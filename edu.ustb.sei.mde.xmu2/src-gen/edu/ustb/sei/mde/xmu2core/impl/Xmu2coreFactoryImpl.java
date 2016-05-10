@@ -63,6 +63,7 @@ public class Xmu2coreFactoryImpl extends EFactoryImpl implements Xmu2coreFactory
 			case Xmu2corePackage.CASE_STATEMENT: return createCaseStatement();
 			case Xmu2corePackage.CASE_PATTERN_CLAUSE: return createCasePatternClause();
 			case Xmu2corePackage.CASE_EXPRESSION_CLAUSE: return createCaseExpressionClause();
+			case Xmu2corePackage.CASE_STATEMENT_CLAUSE: return createCaseStatementClause();
 			case Xmu2corePackage.PATTERN: return createPattern();
 			case Xmu2corePackage.PATTERN_NODE: return createPatternNode();
 			case Xmu2corePackage.OBJECT_PATTERN_EXPRESSION: return createObjectPatternExpression();
@@ -95,6 +96,8 @@ public class Xmu2coreFactoryImpl extends EFactoryImpl implements Xmu2coreFactory
 			case Xmu2corePackage.ENFORCE_LINK_STATEMENT: return createEnforceLinkStatement();
 			case Xmu2corePackage.OCL_COLLECTION_TYPE: return createOclCollectionType();
 			case Xmu2corePackage.MATCH_PATTERN: return createMatchPattern();
+			case Xmu2corePackage.CHECK_EXPRESSION_STATEMENT: return createCheckExpressionStatement();
+			case Xmu2corePackage.ENFORCE_EXPRESSION_STATEMENT: return createEnforceExpressionStatement();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -192,6 +195,16 @@ public class Xmu2coreFactoryImpl extends EFactoryImpl implements Xmu2coreFactory
 	public CaseExpressionClause createCaseExpressionClause() {
 		CaseExpressionClauseImpl caseExpressionClause = new CaseExpressionClauseImpl();
 		return caseExpressionClause;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CaseStatementClause createCaseStatementClause() {
+		CaseStatementClauseImpl caseStatementClause = new CaseStatementClauseImpl();
+		return caseStatementClause;
 	}
 
 	/**
@@ -512,6 +525,26 @@ public class Xmu2coreFactoryImpl extends EFactoryImpl implements Xmu2coreFactory
 	public MatchPattern createMatchPattern() {
 		MatchPatternImpl matchPattern = new MatchPatternImpl();
 		return matchPattern;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CheckExpressionStatement createCheckExpressionStatement() {
+		CheckExpressionStatementImpl checkExpressionStatement = new CheckExpressionStatementImpl();
+		return checkExpressionStatement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EnforceExpressionStatement createEnforceExpressionStatement() {
+		EnforceExpressionStatementImpl enforceExpressionStatement = new EnforceExpressionStatementImpl();
+		return enforceExpressionStatement;
 	}
 
 	/**

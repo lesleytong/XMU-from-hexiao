@@ -202,6 +202,16 @@ public class AlignStatementItemProvider extends StatementItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
+				(Xmu2corePackage.Literals.ALIGN_STATEMENT__MATCH,
+				 Xmu2coreFactory.eINSTANCE.createCheckExpressionStatement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.ALIGN_STATEMENT__MATCH,
+				 Xmu2coreFactory.eINSTANCE.createEnforceExpressionStatement()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(Xmu2corePackage.Literals.ALIGN_STATEMENT__UNMATCHV,
 				 Xmu2coreFactory.eINSTANCE.createAlignStatement()));
 
@@ -247,6 +257,16 @@ public class AlignStatementItemProvider extends StatementItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
+				(Xmu2corePackage.Literals.ALIGN_STATEMENT__UNMATCHV,
+				 Xmu2coreFactory.eINSTANCE.createCheckExpressionStatement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.ALIGN_STATEMENT__UNMATCHV,
+				 Xmu2coreFactory.eINSTANCE.createEnforceExpressionStatement()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(Xmu2corePackage.Literals.ALIGN_STATEMENT__UNMATCHS,
 				 Xmu2coreFactory.eINSTANCE.createAlignStatement()));
 
@@ -292,6 +312,16 @@ public class AlignStatementItemProvider extends StatementItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
+				(Xmu2corePackage.Literals.ALIGN_STATEMENT__UNMATCHS,
+				 Xmu2coreFactory.eINSTANCE.createCheckExpressionStatement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.ALIGN_STATEMENT__UNMATCHS,
+				 Xmu2coreFactory.eINSTANCE.createEnforceExpressionStatement()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(Xmu2corePackage.Literals.ALIGN_STATEMENT__VIEW_CREATION_STATEMENTS,
 				 Xmu2coreFactory.eINSTANCE.createAlignStatement()));
 
@@ -334,6 +364,16 @@ public class AlignStatementItemProvider extends StatementItemProvider {
 			(createChildParameter
 				(Xmu2corePackage.Literals.ALIGN_STATEMENT__VIEW_CREATION_STATEMENTS,
 				 Xmu2coreFactory.eINSTANCE.createMatchPattern()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.ALIGN_STATEMENT__VIEW_CREATION_STATEMENTS,
+				 Xmu2coreFactory.eINSTANCE.createCheckExpressionStatement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.ALIGN_STATEMENT__VIEW_CREATION_STATEMENTS,
+				 Xmu2coreFactory.eINSTANCE.createEnforceExpressionStatement()));
 	}
 
 	/**

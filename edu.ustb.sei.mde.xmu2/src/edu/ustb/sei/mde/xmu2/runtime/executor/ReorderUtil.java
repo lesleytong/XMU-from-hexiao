@@ -18,6 +18,7 @@ import edu.ustb.sei.mde.xmu2core.CaseClause;
 import edu.ustb.sei.mde.xmu2core.CaseExpressionClause;
 import edu.ustb.sei.mde.xmu2core.CasePatternClause;
 import edu.ustb.sei.mde.xmu2core.CaseStatement;
+import edu.ustb.sei.mde.xmu2core.CaseStatementClause;
 import edu.ustb.sei.mde.xmu2core.DeleteLinkStatement;
 import edu.ustb.sei.mde.xmu2core.DeleteNodeStatement;
 import edu.ustb.sei.mde.xmu2core.EnforceLinkStatement;
@@ -72,6 +73,29 @@ public class ReorderUtil {
 			reorder.finalOrder.addAll(reorder.tail);
 			
 			context.getEnvironment().putIntoOrderCache(enforcedVars, align, reorder);
+		}
+		return reorder;
+	}
+	
+	static public ReorderedAlignStatement reorderForEachStatement(ForEachStatement foreach, Context context) {
+		//FIXME: ideally, I should calculate the order according to the variable dependencies
+		//To achieve this goal, I should calculate the "source-view" variables for each statement
+		
+		List<Variable> enforcedVars = ReorderUtil.initEnforcedVariables(context);
+		
+		ReorderedAlignStatement reorder = (ReorderedAlignStatement) context.getEnvironment().getFromOrderCache(enforcedVars, foreach);
+		
+		if(reorder==null) {
+			reorder = new ReorderedAlignStatement();
+			reorder.enforcedVars = enforcedVars;
+			
+			reorderStatementsForAlignStatement(foreach.getAction(), reorder);
+			
+			reorder.finalOrder.addAll(reorder.enforce);
+			reorder.finalOrder.addAll(reorder.lazy);
+			reorder.finalOrder.addAll(reorder.tail);
+			
+			context.getEnvironment().putIntoOrderCache(enforcedVars, foreach, reorder);
 		}
 		return reorder;
 	}
@@ -181,32 +205,42 @@ public class ReorderUtil {
 				
 				for(CaseClause cc : ((CaseStatement) statement).getClauses()) {
 					ReorderedCaseClause nb = branch.clone();
-					List<ReorderedCaseClause> newBranches = reorderStatementsForCaseStatement(cc.getSourceCheckStatements(), nb);
-					for(ReorderedCaseClause newBranch : newBranches) {
-						if(cc instanceof CasePatternClause) {
-							for(Statement ac : cc.getViewCreationStatements()) {
-								if(ac instanceof EnforceNodeStatement) {
-									if(isEnforceNodeStatementExecutable((EnforceNodeStatement)ac, newBranch.enforcedVariables)) {
-										newBranch.action.add(ac);
-									} else {
-										newBranch.postCondition.add(ac);
-									}
-								} else if(ac instanceof EnforceLinkStatement) {
-									if(isEnforceLinkStatementExecutable((EnforceLinkStatement)ac, newBranch.enforcedVariables)) {
-										newBranch.action.add(ac);
-									} else {
-										newBranch.postCondition.add(ac);
+					
+					if(cc instanceof CaseStatementClause) {
+						nb.preCondition.addAll(((CaseStatementClause) cc).getCondition());
+						List<ReorderedCaseClause> newBranches = reorderStatementsForCaseStatement(((CaseStatementClause) cc).getAction(), nb);
+						branches.addAll(newBranches);
+					} else {
+						List<ReorderedCaseClause> newBranches = reorderStatementsForCaseStatement(
+								cc.getSourceCheckStatements(), nb);
+						for (ReorderedCaseClause newBranch : newBranches) {
+							if (cc instanceof CasePatternClause) {
+								for (Statement ac : cc.getViewCreationStatements()) {
+									if (ac instanceof EnforceNodeStatement) {
+										if (isEnforceNodeStatementExecutable((EnforceNodeStatement) ac,
+												newBranch.enforcedVariables)) {
+											newBranch.action.add(ac);
+										} else {
+											newBranch.postCondition.add(ac);
+										}
+									} else if (ac instanceof EnforceLinkStatement) {
+										if (isEnforceLinkStatementExecutable((EnforceLinkStatement) ac,
+												newBranch.enforcedVariables)) {
+											newBranch.action.add(ac);
+										} else {
+											newBranch.postCondition.add(ac);
+										}
 									}
 								}
+							} else if (cc instanceof CaseExpressionClause) {
+								newBranch.action.add(((CaseExpressionClause) cc).getCondition());
+							} else {
+								System.out.println("unhandled branch");
 							}
-						} else if(cc instanceof CaseExpressionClause) {
-							newBranch.action.add(((CaseExpressionClause) cc).getCondition());
-						} else {
-							System.out.println("unhandled branch");
 						}
+
+						branches.addAll(newBranches);
 					}
-					
-					branches.addAll(newBranches);
 				}
 				return  branches;
 				
@@ -266,7 +300,10 @@ public class ReorderUtil {
 			branch.action.add(statement);
 			return Collections.singletonList(branch);
 		} else if(statement instanceof ForEachStatement) {
-			branch.preCondition.add(statement);
+			if(((ForEachStatement) statement).isDerived())
+				branch.action.add(statement);
+			else
+				branch.preCondition.add(statement);
 			return Collections.singletonList(branch);
 		} else if(statement instanceof MatchPattern) {
 			branch.preCondition.add(statement);

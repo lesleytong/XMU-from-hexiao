@@ -22,6 +22,7 @@ import edu.ustb.sei.mde.xmu2common.RelationalOperator;
 import edu.ustb.sei.mde.xmu2common.UnaryOperator;
 import edu.ustb.sei.mde.xmu2core.AdditiveExpression;
 import edu.ustb.sei.mde.xmu2core.AtomicExpression;
+import edu.ustb.sei.mde.xmu2core.CheckExpressionStatement;
 import edu.ustb.sei.mde.xmu2core.Expression;
 import edu.ustb.sei.mde.xmu2core.ForEachStatement;
 import edu.ustb.sei.mde.xmu2core.LoopPath;
@@ -35,6 +36,14 @@ import edu.ustb.sei.mde.xmu2core.Variable;
 import edu.ustb.sei.mde.xmu2core.VariableExpression;
 
 public class ModelCheckInterpreter extends ExpressionCheckInterpreter {
+
+	
+	
+	@Override
+	public void executeCheckExpressionStatement(CheckExpressionStatement o, Context context) {
+		if(this.enforceExpression(o.getExpression(), context, Constants.TRUE)==false)
+			throw new InvalidCalculationException("cannot check the epxression");
+	}
 
 	@Override
 	public SafeType executeRelationalExpression(RelationalExpression expression, Context context) {
@@ -541,19 +550,9 @@ public class ModelCheckInterpreter extends ExpressionCheckInterpreter {
 	
 
 	@Override
-	public void executeMatchPattern(MatchPattern o, Context context) {
+	public void executeMatchPatternStatement(MatchPattern o, Context context) {
 		SafeType ret = this.checkPattern(o.getPattern(), context);
 		if(ret!=Constants.TRUE)
 			throw new InvalidCalculationException("pattern matching failed");
 	}
-
-	@Override
-	public void executeForEachStatement(ForEachStatement statement, Context context) {
-		List<Context> matches = ContextUtil.match(statement.getPattern(), context);
-		
-		for(Context m : matches) {
-			this.executeStatements(statement.getAction(), m);
-		}
-	}
-
 }

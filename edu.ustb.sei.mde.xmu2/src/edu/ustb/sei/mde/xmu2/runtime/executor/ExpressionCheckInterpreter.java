@@ -482,6 +482,14 @@ public class ExpressionCheckInterpreter extends AbstractInterpreter {
 	}
 
 	@Override
-	public void executeMatchPattern(MatchPattern o, Context context) {
+	public void executeMatchPatternStatement(MatchPattern o, Context context) {
+		throw new InvalidCalculationException("unsupported execution");	}
+
+	@Override
+	public void executeCheckExpressionStatement(CheckExpressionStatement o, Context context) {
+		throw new InvalidCalculationException("unsupported execution");	}
+
+	@Override
+	public void executeEnforceExpressionStatement(EnforceExpressionStatement o, Context context) {
 		throw new InvalidCalculationException("unsupported execution");	}
 }

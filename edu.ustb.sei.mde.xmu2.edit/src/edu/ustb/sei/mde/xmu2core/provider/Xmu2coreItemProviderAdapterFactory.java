@@ -210,6 +210,29 @@ public class Xmu2coreItemProviderAdapterFactory extends Xmu2coreAdapterFactory i
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link edu.ustb.sei.mde.xmu2core.CaseStatementClause} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CaseStatementClauseItemProvider caseStatementClauseItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.ustb.sei.mde.xmu2core.CaseStatementClause}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCaseStatementClauseAdapter() {
+		if (caseStatementClauseItemProvider == null) {
+			caseStatementClauseItemProvider = new CaseStatementClauseItemProvider(this);
+		}
+
+		return caseStatementClauseItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link edu.ustb.sei.mde.xmu2core.Pattern} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -946,6 +969,52 @@ public class Xmu2coreItemProviderAdapterFactory extends Xmu2coreAdapterFactory i
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link edu.ustb.sei.mde.xmu2core.CheckExpressionStatement} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CheckExpressionStatementItemProvider checkExpressionStatementItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.ustb.sei.mde.xmu2core.CheckExpressionStatement}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCheckExpressionStatementAdapter() {
+		if (checkExpressionStatementItemProvider == null) {
+			checkExpressionStatementItemProvider = new CheckExpressionStatementItemProvider(this);
+		}
+
+		return checkExpressionStatementItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link edu.ustb.sei.mde.xmu2core.EnforceExpressionStatement} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected EnforceExpressionStatementItemProvider enforceExpressionStatementItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.ustb.sei.mde.xmu2core.EnforceExpressionStatement}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createEnforceExpressionStatementAdapter() {
+		if (enforceExpressionStatementItemProvider == null) {
+			enforceExpressionStatementItemProvider = new EnforceExpressionStatementItemProvider(this);
+		}
+
+		return enforceExpressionStatementItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1050,6 +1119,7 @@ public class Xmu2coreItemProviderAdapterFactory extends Xmu2coreAdapterFactory i
 		if (caseStatementItemProvider != null) caseStatementItemProvider.dispose();
 		if (casePatternClauseItemProvider != null) casePatternClauseItemProvider.dispose();
 		if (caseExpressionClauseItemProvider != null) caseExpressionClauseItemProvider.dispose();
+		if (caseStatementClauseItemProvider != null) caseStatementClauseItemProvider.dispose();
 		if (patternItemProvider != null) patternItemProvider.dispose();
 		if (patternNodeItemProvider != null) patternNodeItemProvider.dispose();
 		if (objectPatternExpressionItemProvider != null) objectPatternExpressionItemProvider.dispose();
@@ -1082,6 +1152,8 @@ public class Xmu2coreItemProviderAdapterFactory extends Xmu2coreAdapterFactory i
 		if (enforceLinkStatementItemProvider != null) enforceLinkStatementItemProvider.dispose();
 		if (oclCollectionTypeItemProvider != null) oclCollectionTypeItemProvider.dispose();
 		if (matchPatternItemProvider != null) matchPatternItemProvider.dispose();
+		if (checkExpressionStatementItemProvider != null) checkExpressionStatementItemProvider.dispose();
+		if (enforceExpressionStatementItemProvider != null) enforceExpressionStatementItemProvider.dispose();
 	}
 
 }

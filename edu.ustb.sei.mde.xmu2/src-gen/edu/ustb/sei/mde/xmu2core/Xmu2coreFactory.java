@@ -76,6 +76,15 @@ public interface Xmu2coreFactory extends EFactory {
 	CaseExpressionClause createCaseExpressionClause();
 
 	/**
+	 * Returns a new object of class '<em>Case Statement Clause</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Case Statement Clause</em>'.
+	 * @generated
+	 */
+	CaseStatementClause createCaseStatementClause();
+
+	/**
 	 * Returns a new object of class '<em>Pattern</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -362,6 +371,24 @@ public interface Xmu2coreFactory extends EFactory {
 	 * @generated
 	 */
 	MatchPattern createMatchPattern();
+
+	/**
+	 * Returns a new object of class '<em>Check Expression Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Check Expression Statement</em>'.
+	 * @generated
+	 */
+	CheckExpressionStatement createCheckExpressionStatement();
+
+	/**
+	 * Returns a new object of class '<em>Enforce Expression Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Enforce Expression Statement</em>'.
+	 * @generated
+	 */
+	EnforceExpressionStatement createEnforceExpressionStatement();
 
 	/**
 	 * Returns the package supported by this factory.

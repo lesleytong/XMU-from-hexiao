@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.ForEachStatementImpl#getPattern <em>Pattern</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.ForEachStatementImpl#getAction <em>Action</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.ForEachStatementImpl#isDerived <em>Derived</em>}</li>
  * </ul>
  *
  * @generated
@@ -56,6 +57,26 @@ public class ForEachStatementImpl extends StatementImpl implements ForEachStatem
 	 * @ordered
 	 */
 	protected EList<Statement> action;
+
+	/**
+	 * The default value of the '{@link #isDerived() <em>Derived</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isDerived()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean DERIVED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isDerived() <em>Derived</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isDerived()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean derived = DERIVED_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -136,6 +157,27 @@ public class ForEachStatementImpl extends StatementImpl implements ForEachStatem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isDerived() {
+		return derived;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDerived(boolean newDerived) {
+		boolean oldDerived = derived;
+		derived = newDerived;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, Xmu2corePackage.FOR_EACH_STATEMENT__DERIVED, oldDerived, derived));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -159,6 +201,8 @@ public class ForEachStatementImpl extends StatementImpl implements ForEachStatem
 				return getPattern();
 			case Xmu2corePackage.FOR_EACH_STATEMENT__ACTION:
 				return getAction();
+			case Xmu2corePackage.FOR_EACH_STATEMENT__DERIVED:
+				return isDerived();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -179,6 +223,9 @@ public class ForEachStatementImpl extends StatementImpl implements ForEachStatem
 				getAction().clear();
 				getAction().addAll((Collection<? extends Statement>)newValue);
 				return;
+			case Xmu2corePackage.FOR_EACH_STATEMENT__DERIVED:
+				setDerived((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -197,6 +244,9 @@ public class ForEachStatementImpl extends StatementImpl implements ForEachStatem
 			case Xmu2corePackage.FOR_EACH_STATEMENT__ACTION:
 				getAction().clear();
 				return;
+			case Xmu2corePackage.FOR_EACH_STATEMENT__DERIVED:
+				setDerived(DERIVED_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -213,8 +263,26 @@ public class ForEachStatementImpl extends StatementImpl implements ForEachStatem
 				return pattern != null;
 			case Xmu2corePackage.FOR_EACH_STATEMENT__ACTION:
 				return action != null && !action.isEmpty();
+			case Xmu2corePackage.FOR_EACH_STATEMENT__DERIVED:
+				return derived != DERIVED_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (derived: ");
+		result.append(derived);
+		result.append(')');
+		return result.toString();
 	}
 
 } //ForEachStatementImpl

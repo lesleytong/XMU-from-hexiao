@@ -111,6 +111,10 @@ public class Xmu2coreAdapterFactory extends AdapterFactoryImpl {
 				return createCaseExpressionClauseAdapter();
 			}
 			@Override
+			public Adapter caseCaseStatementClause(CaseStatementClause object) {
+				return createCaseStatementClauseAdapter();
+			}
+			@Override
 			public Adapter casePattern(Pattern object) {
 				return createPatternAdapter();
 			}
@@ -261,6 +265,14 @@ public class Xmu2coreAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseMatchPattern(MatchPattern object) {
 				return createMatchPatternAdapter();
+			}
+			@Override
+			public Adapter caseCheckExpressionStatement(CheckExpressionStatement object) {
+				return createCheckExpressionStatementAdapter();
+			}
+			@Override
+			public Adapter caseEnforceExpressionStatement(EnforceExpressionStatement object) {
+				return createEnforceExpressionStatementAdapter();
 			}
 			@Override
 			public Adapter caseNamedElement(NamedElement object) {
@@ -429,6 +441,20 @@ public class Xmu2coreAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createCaseExpressionClauseAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.xmu2core.CaseStatementClause <em>Case Statement Clause</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.xmu2core.CaseStatementClause
+	 * @generated
+	 */
+	public Adapter createCaseStatementClauseAdapter() {
 		return null;
 	}
 
@@ -961,6 +987,34 @@ public class Xmu2coreAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createMatchPatternAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.xmu2core.CheckExpressionStatement <em>Check Expression Statement</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.xmu2core.CheckExpressionStatement
+	 * @generated
+	 */
+	public Adapter createCheckExpressionStatementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.xmu2core.EnforceExpressionStatement <em>Enforce Expression Statement</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.xmu2core.EnforceExpressionStatement
+	 * @generated
+	 */
+	public Adapter createEnforceExpressionStatementAdapter() {
 		return null;
 	}
 

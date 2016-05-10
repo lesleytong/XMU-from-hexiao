@@ -10,8 +10,10 @@ import edu.ustb.sei.mde.xmu2.runtime.exceptions.InvalidBackwardEnforcementExcept
 import edu.ustb.sei.mde.xmu2.runtime.exceptions.InvalidCalculationException;
 import edu.ustb.sei.mde.xmu2.runtime.structures.Context;
 import edu.ustb.sei.mde.xmu2.runtime.values.SafeType;
+import edu.ustb.sei.mde.xmu2.util.Constants;
 import edu.ustb.sei.mde.xmu2core.AtomicExpression;
 import edu.ustb.sei.mde.xmu2core.EmptyValueExpression;
+import edu.ustb.sei.mde.xmu2core.EnforceExpressionStatement;
 import edu.ustb.sei.mde.xmu2core.Expression;
 import edu.ustb.sei.mde.xmu2core.FeaturePath;
 import edu.ustb.sei.mde.xmu2core.LoopPath;
@@ -23,6 +25,14 @@ import edu.ustb.sei.mde.xmu2core.VariableExpression;
 
 
 abstract public class ModelEnforceInterpreter extends ModelCheckInterpreter {
+	
+	
+	@Override
+	public void executeEnforceExpressionStatement(EnforceExpressionStatement o, Context context) {
+		if(this.enforceExpression(o.getExpression(), context, Constants.TRUE)==false)
+			throw new InvalidCalculationException("cannot enforce the expression");
+	}
+
 	@Override
 	protected boolean enforceAtomicExpression(AtomicExpression invalid, Context context,
 			SafeType expect) {

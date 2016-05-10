@@ -15,6 +15,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.ForEachStatement#getPattern <em>Pattern</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.ForEachStatement#getAction <em>Action</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.xmu2core.ForEachStatement#isDerived <em>Derived</em>}</li>
  * </ul>
  *
  * @see edu.ustb.sei.mde.xmu2core.Xmu2corePackage#getForEachStatement()
@@ -63,5 +64,32 @@ public interface ForEachStatement extends Statement {
 	 * @generated
 	 */
 	EList<Statement> getAction();
+
+	/**
+	 * Returns the value of the '<em><b>Derived</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Derived</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Derived</em>' attribute.
+	 * @see #setDerived(boolean)
+	 * @see edu.ustb.sei.mde.xmu2core.Xmu2corePackage#getForEachStatement_Derived()
+	 * @model default="false" required="true"
+	 * @generated
+	 */
+	boolean isDerived();
+
+	/**
+	 * Sets the value of the '{@link edu.ustb.sei.mde.xmu2core.ForEachStatement#isDerived <em>Derived</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Derived</em>' attribute.
+	 * @see #isDerived()
+	 * @generated
+	 */
+	void setDerived(boolean value);
 
 } // ForEachStatement

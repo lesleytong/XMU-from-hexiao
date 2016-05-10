@@ -14,9 +14,12 @@ import edu.ustb.sei.mde.xmu2core.CaseClause;
 import edu.ustb.sei.mde.xmu2core.CaseExpressionClause;
 import edu.ustb.sei.mde.xmu2core.CasePatternClause;
 import edu.ustb.sei.mde.xmu2core.CaseStatement;
+import edu.ustb.sei.mde.xmu2core.CaseStatementClause;
+import edu.ustb.sei.mde.xmu2core.CheckExpressionStatement;
 import edu.ustb.sei.mde.xmu2core.DeleteLinkStatement;
 import edu.ustb.sei.mde.xmu2core.DeleteNodeStatement;
 import edu.ustb.sei.mde.xmu2core.EmptyValueExpression;
+import edu.ustb.sei.mde.xmu2core.EnforceExpressionStatement;
 import edu.ustb.sei.mde.xmu2core.EnforceLinkStatement;
 import edu.ustb.sei.mde.xmu2core.EnforceNodeStatement;
 import edu.ustb.sei.mde.xmu2core.EntryRuleParameter;
@@ -131,6 +134,13 @@ public class Xmu2corePackageImpl extends EPackageImpl implements Xmu2corePackage
 	 * @generated
 	 */
 	private EClass caseExpressionClauseEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass caseStatementClauseEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -403,6 +413,20 @@ public class Xmu2corePackageImpl extends EPackageImpl implements Xmu2corePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass checkExpressionStatementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass enforceExpressionStatementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EDataType nullEDataType = null;
 
 	/**
@@ -528,6 +552,24 @@ public class Xmu2corePackageImpl extends EPackageImpl implements Xmu2corePackage
 	 */
 	public EReference getProcedure_Statements() {
 		return (EReference)procedureEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getProcedure_BackwardStatements() {
+		return (EReference)procedureEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getProcedure_ForwardStatements() {
+		return (EReference)procedureEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -699,6 +741,24 @@ public class Xmu2corePackageImpl extends EPackageImpl implements Xmu2corePackage
 	 */
 	public EReference getCaseExpressionClause_Condition() {
 		return (EReference)caseExpressionClauseEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getCaseStatementClause() {
+		return caseStatementClauseEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCaseStatementClause_Condition() {
+		return (EReference)caseStatementClauseEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1444,6 +1504,15 @@ public class Xmu2corePackageImpl extends EPackageImpl implements Xmu2corePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getForEachStatement_Derived() {
+		return (EAttribute)forEachStatementEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getDeleteNodeStatement() {
 		return deleteNodeStatementEClass;
 	}
@@ -1651,6 +1720,42 @@ public class Xmu2corePackageImpl extends EPackageImpl implements Xmu2corePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getCheckExpressionStatement() {
+		return checkExpressionStatementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCheckExpressionStatement_Expression() {
+		return (EReference)checkExpressionStatementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getEnforceExpressionStatement() {
+		return enforceExpressionStatementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getEnforceExpressionStatement_Expression() {
+		return (EReference)enforceExpressionStatementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EDataType getNull() {
 		return nullEDataType;
 	}
@@ -1699,6 +1804,8 @@ public class Xmu2corePackageImpl extends EPackageImpl implements Xmu2corePackage
 		createEReference(procedureEClass, PROCEDURE__VARIABLES);
 		createEReference(procedureEClass, PROCEDURE__PARAMETERS);
 		createEReference(procedureEClass, PROCEDURE__STATEMENTS);
+		createEReference(procedureEClass, PROCEDURE__BACKWARD_STATEMENTS);
+		createEReference(procedureEClass, PROCEDURE__FORWARD_STATEMENTS);
 
 		variableEClass = createEClass(VARIABLE);
 
@@ -1725,6 +1832,9 @@ public class Xmu2corePackageImpl extends EPackageImpl implements Xmu2corePackage
 
 		caseExpressionClauseEClass = createEClass(CASE_EXPRESSION_CLAUSE);
 		createEReference(caseExpressionClauseEClass, CASE_EXPRESSION_CLAUSE__CONDITION);
+
+		caseStatementClauseEClass = createEClass(CASE_STATEMENT_CLAUSE);
+		createEReference(caseStatementClauseEClass, CASE_STATEMENT_CLAUSE__CONDITION);
 
 		patternEClass = createEClass(PATTERN);
 		createEReference(patternEClass, PATTERN__ROOT);
@@ -1838,6 +1948,7 @@ public class Xmu2corePackageImpl extends EPackageImpl implements Xmu2corePackage
 		forEachStatementEClass = createEClass(FOR_EACH_STATEMENT);
 		createEReference(forEachStatementEClass, FOR_EACH_STATEMENT__PATTERN);
 		createEReference(forEachStatementEClass, FOR_EACH_STATEMENT__ACTION);
+		createEAttribute(forEachStatementEClass, FOR_EACH_STATEMENT__DERIVED);
 
 		deleteNodeStatementEClass = createEClass(DELETE_NODE_STATEMENT);
 		createEReference(deleteNodeStatementEClass, DELETE_NODE_STATEMENT__TARGET);
@@ -1868,6 +1979,12 @@ public class Xmu2corePackageImpl extends EPackageImpl implements Xmu2corePackage
 
 		matchPatternEClass = createEClass(MATCH_PATTERN);
 		createEReference(matchPatternEClass, MATCH_PATTERN__PATTERN);
+
+		checkExpressionStatementEClass = createEClass(CHECK_EXPRESSION_STATEMENT);
+		createEReference(checkExpressionStatementEClass, CHECK_EXPRESSION_STATEMENT__EXPRESSION);
+
+		enforceExpressionStatementEClass = createEClass(ENFORCE_EXPRESSION_STATEMENT);
+		createEReference(enforceExpressionStatementEClass, ENFORCE_EXPRESSION_STATEMENT__EXPRESSION);
 
 		// Create data types
 		nullEDataType = createEDataType(NULL);
@@ -1914,6 +2031,7 @@ public class Xmu2corePackageImpl extends EPackageImpl implements Xmu2corePackage
 		caseStatementEClass.getESuperTypes().add(theXmu2commonPackage.getDomainElement());
 		casePatternClauseEClass.getESuperTypes().add(this.getCaseClause());
 		caseExpressionClauseEClass.getESuperTypes().add(this.getCaseClause());
+		caseStatementClauseEClass.getESuperTypes().add(this.getCaseClause());
 		objectPatternExpressionEClass.getESuperTypes().add(this.getPatternExpression());
 		propertyPatternExpressionEClass.getESuperTypes().add(this.getPatternExpression());
 		booleanOrExpressionEClass.getESuperTypes().add(this.getExpression());
@@ -1949,6 +2067,8 @@ public class Xmu2corePackageImpl extends EPackageImpl implements Xmu2corePackage
 		enforceLinkStatementEClass.getESuperTypes().add(theXmu2commonPackage.getDomainElement());
 		oclCollectionTypeEClass.getESuperTypes().add(ecorePackage.getEClass());
 		matchPatternEClass.getESuperTypes().add(this.getStatement());
+		checkExpressionStatementEClass.getESuperTypes().add(this.getStatement());
+		enforceExpressionStatementEClass.getESuperTypes().add(this.getStatement());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(typedElementEClass, TypedElement.class, "TypedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1958,6 +2078,8 @@ public class Xmu2corePackageImpl extends EPackageImpl implements Xmu2corePackage
 		initEReference(getProcedure_Variables(), this.getVariable(), null, "variables", null, 0, -1, Procedure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProcedure_Parameters(), this.getVariable(), null, "parameters", null, 0, -1, Procedure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProcedure_Statements(), this.getStatement(), null, "statements", null, 0, -1, Procedure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProcedure_BackwardStatements(), this.getStatement(), null, "backwardStatements", null, 0, -1, Procedure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProcedure_ForwardStatements(), this.getStatement(), null, "forwardStatements", null, 0, -1, Procedure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(variableEClass, Variable.class, "Variable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1984,6 +2106,9 @@ public class Xmu2corePackageImpl extends EPackageImpl implements Xmu2corePackage
 
 		initEClass(caseExpressionClauseEClass, CaseExpressionClause.class, "CaseExpressionClause", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCaseExpressionClause_Condition(), this.getExpression(), null, "condition", null, 1, 1, CaseExpressionClause.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(caseStatementClauseEClass, CaseStatementClause.class, "CaseStatementClause", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCaseStatementClause_Condition(), this.getStatement(), null, "condition", null, 0, -1, CaseStatementClause.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(patternEClass, Pattern.class, "Pattern", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPattern_Root(), this.getPatternNode(), null, "root", null, 1, 1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2097,6 +2222,7 @@ public class Xmu2corePackageImpl extends EPackageImpl implements Xmu2corePackage
 		initEClass(forEachStatementEClass, ForEachStatement.class, "ForEachStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getForEachStatement_Pattern(), this.getPattern(), null, "pattern", null, 1, 1, ForEachStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getForEachStatement_Action(), this.getStatement(), null, "action", null, 0, -1, ForEachStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getForEachStatement_Derived(), ecorePackage.getEBoolean(), "derived", "false", 1, 1, ForEachStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(deleteNodeStatementEClass, DeleteNodeStatement.class, "DeleteNodeStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDeleteNodeStatement_Target(), this.getVariable(), null, "target", null, 1, 1, DeleteNodeStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2127,6 +2253,12 @@ public class Xmu2corePackageImpl extends EPackageImpl implements Xmu2corePackage
 
 		initEClass(matchPatternEClass, MatchPattern.class, "MatchPattern", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMatchPattern_Pattern(), this.getPattern(), null, "pattern", null, 1, 1, MatchPattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(checkExpressionStatementEClass, CheckExpressionStatement.class, "CheckExpressionStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCheckExpressionStatement_Expression(), this.getExpression(), null, "expression", null, 1, 1, CheckExpressionStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(enforceExpressionStatementEClass, EnforceExpressionStatement.class, "EnforceExpressionStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getEnforceExpressionStatement_Expression(), this.getExpression(), null, "expression", null, 1, 1, EnforceExpressionStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize data types
 		initEDataType(nullEDataType, Object.class, "Null", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);

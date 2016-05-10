@@ -177,6 +177,11 @@ public class CaseStatementItemProvider extends StatementItemProvider {
 			(createChildParameter
 				(Xmu2corePackage.Literals.CASE_STATEMENT__CLAUSES,
 				 Xmu2coreFactory.eINSTANCE.createCaseExpressionClause()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.CASE_STATEMENT__CLAUSES,
+				 Xmu2coreFactory.eINSTANCE.createCaseStatementClause()));
 	}
 
 }
