@@ -49,6 +49,7 @@ import edu.ustb.sei.mde.xmu2.statement.SwitchStatement;
 import edu.ustb.sei.mde.xmu2.statement.UpdateClause;
 import edu.ustb.sei.mde.xmu2.statement.UpdateStatement;
 import edu.ustb.sei.mde.xmu2.util.AnalysisUtil;
+import edu.ustb.sei.mde.xmu2.util.Constants;
 import edu.ustb.sei.mde.xmu2common.DomainTag;
 import edu.ustb.sei.mde.xmu2common.LoopOperator;
 import edu.ustb.sei.mde.xmu2common.UnaryOperator;
@@ -93,7 +94,6 @@ public class BXCodeGenerator {
 
 
 	public BXCodeGenerator() {
-		// TODO Auto-generated constructor stub
 		transformation = Xmu2coreFactory.eINSTANCE.createTransformation();
 	}
 	
@@ -977,7 +977,7 @@ public class BXCodeGenerator {
 						v = getVariableInUpdatedContext(varName, varMap);
 					else v = varMap.get(varName);
 					
-					v.setType(t);
+					setVariableType(v, t);
 				}
 			}
 		}
@@ -1049,14 +1049,15 @@ public class BXCodeGenerator {
 			EnforceNodeStatement ens = this.convertPatternNodeEnforcement(targetNode, stmt, varMap, updatedSource);			
 
 			if(targetNode.getVariable().getType() instanceof EClass) {
-				if(!f.isMany()) {
-					edu.ustb.sei.mde.xmu2core.VariableExpression exp = Xmu2coreFactory.eINSTANCE.createVariableExpression();
+				if (!f.isMany()) {
+					edu.ustb.sei.mde.xmu2core.VariableExpression exp = Xmu2coreFactory.eINSTANCE
+							.createVariableExpression();
 					exp.setVariable(sv);
 					edu.ustb.sei.mde.xmu2core.FeaturePath fp = Xmu2coreFactory.eINSTANCE.createFeaturePath();
 					fp.setFeature(f);
 					exp.getPaths().add(fp);
 					ens.setCandidate(exp);
-				}	
+				}
 			}
 			
 			EnforceLinkStatement el = Xmu2coreFactory.eINSTANCE.createEnforceLinkStatement();
@@ -1641,6 +1642,31 @@ public class BXCodeGenerator {
 	protected static void setVariableType(Variable v, EClassifier t) {
 		if(v.getType()==null)
 			v.setType(t);
+		else {
+			v.setType(computeCommonSuperType(v.getType(), t));
+		}
+	}
+	
+	protected static EClassifier computeCommonSuperType(EClassifier t1, EClassifier t2) {
+		if(t1 instanceof EDataType && t2 instanceof EDataType) {
+			if(t1!=t2) return Constants.OCLANY;
+			else return t1;
+		} else if(t1 instanceof EClass && t2 instanceof EClass) {
+			EClass c1 = (EClass)t1;
+			EClass c2 = (EClass)t2;
+			if(c1.isSuperTypeOf(c2)) return c1;
+			else if(c2.isSuperTypeOf(c1)) return c2;
+			else {
+				for(EClass sc : c1.getESuperTypes()) {
+					EClassifier cc = computeCommonSuperType(sc, t2);
+					if(cc!=Constants.EOBJECT)
+						return cc;
+				}
+				return Constants.EOBJECT;
+			}
+		} else {
+			return Constants.OCLANY;
+		}
 	}
 }
 
@@ -1691,7 +1717,8 @@ class VarMapStack {
 		
 		top.varMap.forEach((n,v) -> {
 			EClassifier t = top.varTypeMap.get(v);
-			v.setType(t);
+			if(t!=null)
+				BXCodeGenerator.setVariableType(v, t);
 		});
 	}
 	

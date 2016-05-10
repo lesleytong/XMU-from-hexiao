@@ -66,9 +66,13 @@ public class ForwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 		List<Context> smatches = ContextUtil.match(statement.getPattern(), context);
 		
 		for(Context c : smatches) {
-			this.handleProcedureTrialCallStatements(this.collectRuleCallStatements(statement.getAction(),c),c);
-			ReorderedAlignStatement reorder = ReorderUtil.reorderForEachStatement(statement, c);
-			this.executeStatements(reorder.finalOrder, c);
+			if(statement.isDerived()) {
+				this.handleProcedureTrialCallStatements(this.collectRuleCallStatements(statement.getAction(), c), c);
+				ReorderedAlignStatement reorder = ReorderUtil.reorderForEachStatement(statement, c);
+				this.executeStatements(reorder.finalOrder, c);
+			} else {
+				this.executeStatements(statement.getAction(), c);
+			}
 			mergeContext(context, c);
 		} 
 	}
@@ -128,7 +132,7 @@ public class ForwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 			return;
 
 		} else {
-			this.executeStatements(rule.getStatements(),newContext);
+			this.executeStatements(rule.getForwardStatements(),newContext);
 			
 			List<Object> viewList = new ArrayList<Object>();
 			//write back

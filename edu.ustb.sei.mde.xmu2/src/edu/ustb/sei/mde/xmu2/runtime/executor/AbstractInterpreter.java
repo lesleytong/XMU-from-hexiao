@@ -208,6 +208,9 @@ public abstract class AbstractInterpreter {
 	}
 
 	private void executeProcedure(Procedure proc, Context c) {
-		this.executeStatements(proc.getStatements(), c);
+		if(c.getEnvironment().isForward())
+			this.executeStatements(proc.getForwardStatements(), c);
+		else
+			this.executeStatements(proc.getBackwardStatements(), c);
 	}
 }

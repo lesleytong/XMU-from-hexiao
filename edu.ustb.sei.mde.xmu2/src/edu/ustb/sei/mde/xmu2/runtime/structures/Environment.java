@@ -218,6 +218,10 @@ public class Environment {
 		engine = new ModelModificationEngine();
 	}
 
+	public void replaceObject(EObject oldObj, EObject newObj) {
+		engine.replaceObject(oldObj, newObj);
+	}
+
 	public boolean isCreatable(EObject s, EAttribute a, Object t) {
 		return engine.isCreatable(s, a, t);
 	}

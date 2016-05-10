@@ -52,6 +52,35 @@ public class ModelModificationEngine extends ModelModificationTrace{
 		return obj;
 	}
 	
+	public void replaceObject(EObject oldObj, EObject newObj) {
+		if(isDeletable(oldObj)) {
+			this.logDeletion(oldObj);
+			
+			for(Resource r : focusedResources) {
+				Collection<EStructuralFeature.Setting> usages = UsageCrossReferencer.find(oldObj, r);
+				for (EStructuralFeature.Setting setting : usages)
+				{
+					if (setting.getEStructuralFeature().isChangeable())
+					{
+						if(((EClass)setting.getEStructuralFeature().getEType()).isSuperTypeOf(newObj.eClass()))
+							EcoreUtil.replace(setting, oldObj, newObj);
+						else 
+							EcoreUtil.remove(setting, oldObj);
+					}
+				}
+			}
+			
+			if(((EClass)oldObj.eContainmentFeature().getEType()).isSuperTypeOf(newObj.eClass())) {
+				EcoreUtil.replace(oldObj, newObj);
+			} else {
+				EcoreUtil.remove(oldObj);
+			}
+			
+		} else {
+			throw new InvalidModificationException("a newly created/modified object is going to be replaced "+oldObj);
+		}
+	}
+	
 	public void deleteObject(EObject obj) {
 		if(isDeletable(obj)) {
 			this.logDeletion(obj);

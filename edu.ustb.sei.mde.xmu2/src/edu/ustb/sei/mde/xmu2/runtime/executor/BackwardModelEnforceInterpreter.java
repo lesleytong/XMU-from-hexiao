@@ -8,6 +8,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.EcoreUtil.CrossReferencer;
 
 import edu.ustb.sei.commonutil.util.Pair;
 import edu.ustb.sei.mde.xmu2.runtime.exceptions.InvalidBackwardEnforcementException;
@@ -85,8 +87,8 @@ public class BackwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 			if(context.get(sp).isUndefined()) {
 				SafeType sv = context.get(s);
 				if(sv.isNull()) {
-					System.out.println("Source value is empty, while there is no updatedStatement for "+s.getName());
-					System.out.println(context);
+//					System.out.println("Source value is empty, while there is no updatedStatement for "+s.getName());
+//					System.out.println(context);
 				} else {
 					Object spv = context.getEnvironment().getDefaultUpdated(sv.getValue());
 					context.put(sp, SafeType.createFromValue(spv));
@@ -217,7 +219,8 @@ public class BackwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 			
 			newContext.put(fp, value);
 			if(fp.getTag()==DomainTag.SOURCE) {
-				SafeType spValue = calculateDefaultUpdatedValue(ap,value,fp,context);
+				Expression uap = ruleCallStatement.getUpdatedParameters().get(i);
+				SafeType spValue = calculateDefaultUpdatedValue(uap,value,fp,context);
 				Variable fspv = newContext.getVariable(AnalysisUtil.getUpdatedSourceVariableName(fp.getName()));
 				newContext.put(fspv, spValue);
 			}
@@ -251,15 +254,11 @@ public class BackwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 			//write back
 			for(int i=0;i<size;i++) {
 				Variable fp = rule.getParameters().get(i);
-//				Expression uap = ruleCallStatement.getUpdatedParameters().get(i);
-				
+
 				if(fp.getTag()==DomainTag.SOURCE) {
 					Variable sp = newContext.getVariable(AnalysisUtil.getUpdatedSourceVariableName(fp.getName()));
 					SafeType spv = newContext.get(sp);
 					
-//						if(this.enforceExpression(uap, context, spv)==false)
-//							throw new InvalidBackwardEnforcementException("cannot putback updated source parameters");
-						
 					updatedSourceList.add(spv.getValue());
 				}
 			}
@@ -272,22 +271,27 @@ public class BackwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 	}
 
 	private SafeType calculateDefaultUpdatedValue(Expression ap, SafeType apv, Variable fp, Context context) {
-		if(ap instanceof VariableExpression) {
-			if(((VariableExpression) ap).getPaths().size()==0) {
-				Variable sv = ((VariableExpression) ap).getVariable();
-				Variable spv = context.getVariable(AnalysisUtil.getUpdatedSourceVariableName(sv.getName()));
-				if(spv==null) {
-					throw new InvalidBackwardEnforcementException("invalid actual parameter: no corresponding updated source variable "+sv.getName());
-				} else {
-					return context.get(spv);
-				}
-			} else {
-				if(!(fp.getType() instanceof EDataType))
-					throw new InvalidBackwardEnforcementException("currently, I cannot calculate derived value");
-			}
+		try {
+		    return AbstractInterpreter.MODEL_CHECK.executeExpression(ap, context);
+		} catch(Exception e) {
+			return Constants.UNDEFINED;
 		}
+//		if(ap instanceof VariableExpression) {
+//			if(((VariableExpression) ap).getPaths().size()==0) {
+//				Variable sv = ((VariableExpression) ap).getVariable();
+//				Variable spv = context.getVariable(AnalysisUtil.getUpdatedSourceVariableName(sv.getName()));
+//				if(spv==null) {
+//					throw new InvalidBackwardEnforcementException("invalid actual parameter: no corresponding updated source variable "+sv.getName());
+//				} else {
+//					return context.get(spv);
+//				}
+//			} else {
+//				if(!(fp.getType() instanceof EDataType))
+//					throw new InvalidBackwardEnforcementException("currently, I cannot calculate derived value");
+//			}
+//		}
 
-		return SafeType.createFromValue(context.getEnvironment().getDefaultUpdated(apv.getValue()));
+//		return SafeType.createFromValue(context.getEnvironment().getDefaultUpdated(apv.getValue()));
 	}
 
 	@Override
@@ -361,14 +365,14 @@ public class BackwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 		SafeType oldValue = context.get(node);
 		SafeType newValue = null;
 		
-		if(oldValue.isUndefined()) {
+		if (oldValue.isUndefined()) {
 			try {
-			if(candidate!=null) {
-				oldValue = this.executeExpression(candidate, context);
-				if(oldValue==Constants.NULL)
-					oldValue = Constants.UNDEFINED;
-			}
-			} catch(Exception e) {
+				if (candidate != null) {
+					oldValue = this.executeExpression(candidate, context);
+					if (oldValue == Constants.NULL)
+						oldValue = Constants.UNDEFINED;
+				}
+			} catch (Exception e) {
 				oldValue = SafeType.UNDEFINED;
 			}
 		}
@@ -385,10 +389,14 @@ public class BackwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 		if(createNew) {
 			Variable sNode = context.getVariable(AnalysisUtil.getNonUpdatedSourceVariableName(node.getName()));
 			SafeType sv = context.get(sNode);
-			if(sv==null) sv = SafeType.NULL;
-			if(oldValue.isUndefined()==false)
-				this.deleteUpdatedSourceElement(sv.getObjectValue(), oldValue.getValue(), context);
-			newValue = SafeType.createFromValue(this.createUpdatedSourceElement(sv.getObjectValue(), type, context));
+			if(sv==null) 
+				sv = SafeType.NULL;
+			
+			if(oldValue.isUndefined()==false) {
+				 newValue = this.replaceUpdatedSourceElement(sv.getObjectValue(),oldValue.getObjectValue(),type, context);
+			} else {
+				newValue = SafeType.createFromValue(this.createUpdatedSourceElement(sv.getObjectValue(), type, context));
+			}
 		} else {
 			newValue = oldValue;
 			context.getEnvironment().markAsUsed(newValue.getObjectValue());
@@ -399,6 +407,21 @@ public class BackwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 		return;
 	}
 	
+	private SafeType replaceUpdatedSourceElement(EObject sourceValue, EObject oldValue, EClass newType, Context context) {
+		if(newType.isSuperTypeOf(oldValue.eClass())) return SafeType.createFromValue(oldValue);
+		else {
+			
+			EObject newObj = context.getEnvironment().createObject(newType);
+			context.getEnvironment().replaceObject(oldValue, newObj);
+			
+			if(sourceValue!=null)
+				context.getEnvironment().putDefault(sourceValue, newObj);
+			
+			return SafeType.createFromValue(newObj);
+		}
+		
+	}
+
 	private EObject createUpdatedSourceElement(EObject sv, EClass type, Context context) {
 		if(type.isAbstract()) {
 			throw new InvalidBackwardEnforcementException("cannot create an instance of an abstract type");

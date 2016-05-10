@@ -10,7 +10,7 @@ import edu.ustb.sei.commonutil.util.PairHashMap;
 import edu.ustb.sei.mde.xmu2core.Procedure;
 
 public class TransformationTrace {
-	private BidirectionalMap<EObject,EObject> defaultSourceToUpdatedSourceObjectMap = new BidirectionalMap<EObject,EObject>();
+	private BidirectionalMap<EObject,EObject> defaultSourceToUpdatedSourceObjectMap = BidirectionalMap.createConsistentMap();
 	private PairHashMap<Procedure,Tuple,Tuple> ruleTrace = new PairHashMap<Procedure,Tuple,Tuple>();
 	
 	public void putDefault(EObject s, EObject sp) {

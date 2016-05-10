@@ -25,7 +25,7 @@ public class Xmu2LaunchConfigurationDelegate extends org.eclipse.debug.core.mode
 		// implement this method or disable launching support by setting
 		// disableLaunchSupport to <code>true</code>.
 		
-		new edu.ustb.sei.mde.xmu2.resource.xmu2.launch.Xmu2LaunchConfigurationHelper().launch(configuration, mode, launch, monitor);
+		new edu.ustb.sei.mde.xmu2.resource.xmu2.launch.Xmu2Launcher().launch(configuration, mode, launch, monitor);
 	}
 	
 }
