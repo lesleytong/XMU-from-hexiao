@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated xmu2 -->
+      <package
+            uri="http://www.ustb.edu.cn/sei/mde/xmu2"
+            class="edu.ustb.sei.mde.xmu2.Xmu2Package"
+            genModel="metamodel/xmu2.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated xmu2 -->
+      <package
+            uri="http://www.ustb.edu.cn/sei/mde/xmu2/statement"
+            class="edu.ustb.sei.mde.xmu2.statement.StatementPackage"
+            genModel="metamodel/xmu2.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated xmu2 -->
+      <package
+            uri="http://www.ustb.edu.cn/sei/mde/xmu2/pattern"
+            class="edu.ustb.sei.mde.xmu2.pattern.PatternPackage"
+            genModel="metamodel/xmu2.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated xmu2 -->
+      <package
+            uri="http://www.ustb.edu.cn/sei/mde/xmu2/expression"
+            class="edu.ustb.sei.mde.xmu2.expression.ExpressionPackage"
+            genModel="metamodel/xmu2.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated xmu2common -->
+      <package
+            uri="http://www.ustb.edu.cn/sei/mde/xmu2/common"
+            class="edu.ustb.sei.mde.xmu2common.Xmu2commonPackage"
+            genModel="metamodel/xmu2common.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated xmu2core -->
+      <package
+            uri="http://www.ustb.edu.cn/sei/mde/xmu2core"
+            class="edu.ustb.sei.mde.xmu2core.Xmu2corePackage"
+            genModel="metamodel/xmu2core.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated datatypes -->
+      <package
+            uri="http://www.ustb.edu.cn/sei/mde/datatypes"
+            class="edu.ustb.sei.mde.xmu2.datatypes.DatatypesPackage"
+            genModel="metamodel/datatypes.genmodel"/>
+   </extension>
+
+
+</plugin>

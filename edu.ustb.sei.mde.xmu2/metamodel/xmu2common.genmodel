@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/edu.ustb.sei.mde.xmu2/src-gen" modelPluginID="edu.ustb.sei.mde.xmu2"
+    modelName="Xmu2common" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>xmu2common.ecore</foreignModel>
+  <genPackages prefix="Xmu2common" basePackage="edu.ustb.sei.mde" disposableProviderFactory="true"
+      ecorePackage="xmu2common.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="xmu2common.ecore#//DomainTag">
+      <genEnumLiterals ecoreEnumLiteral="xmu2common.ecore#//DomainTag/normal"/>
+      <genEnumLiterals ecoreEnumLiteral="xmu2common.ecore#//DomainTag/source"/>
+      <genEnumLiterals ecoreEnumLiteral="xmu2common.ecore#//DomainTag/view"/>
+      <genEnumLiterals ecoreEnumLiteral="xmu2common.ecore#//DomainTag/updated_source"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="xmu2common.ecore#//AdditiveOperator">
+      <genEnumLiterals ecoreEnumLiteral="xmu2common.ecore#//AdditiveOperator/add"/>
+      <genEnumLiterals ecoreEnumLiteral="xmu2common.ecore#//AdditiveOperator/sub"/>
+      <genEnumLiterals ecoreEnumLiteral="xmu2common.ecore#//AdditiveOperator/append"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="xmu2common.ecore#//MultiplicativeOperator">
+      <genEnumLiterals ecoreEnumLiteral="xmu2common.ecore#//MultiplicativeOperator/mul"/>
+      <genEnumLiterals ecoreEnumLiteral="xmu2common.ecore#//MultiplicativeOperator/div"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="xmu2common.ecore#//RelationalOperator">
+      <genEnumLiterals ecoreEnumLiteral="xmu2common.ecore#//RelationalOperator/equal"/>
+      <genEnumLiterals ecoreEnumLiteral="xmu2common.ecore#//RelationalOperator/less"/>
+      <genEnumLiterals ecoreEnumLiteral="xmu2common.ecore#//RelationalOperator/lessEqual"/>
+      <genEnumLiterals ecoreEnumLiteral="xmu2common.ecore#//RelationalOperator/greater"/>
+      <genEnumLiterals ecoreEnumLiteral="xmu2common.ecore#//RelationalOperator/greaterEqual"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="xmu2common.ecore#//UnaryOperator">
+      <genEnumLiterals ecoreEnumLiteral="xmu2common.ecore#//UnaryOperator/not"/>
+      <genEnumLiterals ecoreEnumLiteral="xmu2common.ecore#//UnaryOperator/minus"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="xmu2common.ecore#//LoopOperator">
+      <genEnumLiterals ecoreEnumLiteral="xmu2common.ecore#//LoopOperator/select"/>
+      <genEnumLiterals ecoreEnumLiteral="xmu2common.ecore#//LoopOperator/forAll"/>
+      <genEnumLiterals ecoreEnumLiteral="xmu2common.ecore#//LoopOperator/exists"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="xmu2common.ecore#//PositionOperator">
+      <genEnumLiterals ecoreEnumLiteral="xmu2common.ecore#//PositionOperator/first"/>
+      <genEnumLiterals ecoreEnumLiteral="xmu2common.ecore#//PositionOperator/last"/>
+      <genEnumLiterals ecoreEnumLiteral="xmu2common.ecore#//PositionOperator/at"/>
+    </genEnums>
+    <genClasses image="false" ecoreClass="xmu2common.ecore#//DomainElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmu2common.ecore#//DomainElement/tag"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="xmu2common.ecore#//NamedElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmu2common.ecore#//NamedElement/name"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

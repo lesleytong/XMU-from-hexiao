@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/edu.ustb.sei.mde.xmu2/src" modelPluginID="edu.ustb.sei.mde.xmu2"
+    modelName="Datatypes" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore" operationReflection="true"
+    importOrganizing="true">
+  <foreignModel>datatypes.ecore</foreignModel>
+  <genPackages prefix="Datatypes" basePackage="edu.ustb.sei.mde.xmu2" disposableProviderFactory="true"
+      ecorePackage="datatypes.ecore#/">
+    <genClasses ecoreClass="datatypes.ecore#//OclCollection">
+      <genTypeParameters ecoreTypeParameter="datatypes.ecore#//OclCollection/T"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datatypes.ecore#//OclCollection/elements"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute datatypes.ecore#//OclCollection/size"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="datatypes.ecore#//FeatureSourceCollection">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference datatypes.ecore#//FeatureSourceCollection/sourceElement"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference datatypes.ecore#//FeatureSourceCollection/sourceFeature"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
