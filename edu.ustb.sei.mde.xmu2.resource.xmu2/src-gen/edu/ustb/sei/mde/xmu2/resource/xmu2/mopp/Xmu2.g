@@ -2309,40 +2309,42 @@ parse_edu_ustb_sei_mde_xmu2_pattern_ObjectPatternExpression returns [edu.ustb.se
 	(
 		(
 			(
-				(
-					(
-						a1_0 = parse_edu_ustb_sei_mde_xmu2_expression_LoopPath						{
-							if (terminateParsing) {
-								throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
-							}
-							if (element == null) {
-								element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createObjectPatternExpression();
-								startIncompleteElement(element);
-							}
-							if (a1_0 != null) {
-								if (a1_0 != null) {
-									Object value = a1_0;
-									element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.OBJECT_PATTERN_EXPRESSION__SELECTOR), value);
-									completedElement(value, true);
-								}
-								collectHiddenTokens(element);
-								retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_8_0_0_1_0_0_0_0_0_0, a1_0, true);
-								copyLocalizationInfos(a1_0, element);
-							}
-						}
-					)
-					{
-						// expected elements (follow set)
-						addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[206]);
+				a1_0 = parse_edu_ustb_sei_mde_xmu2_expression_LoopPath				{
+					if (terminateParsing) {
+						throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
 					}
-					
-				)
-				
-			)?			{
+					if (element == null) {
+						element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createObjectPatternExpression();
+						startIncompleteElement(element);
+					}
+					if (a1_0 != null) {
+						if (a1_0 != null) {
+							Object value = a1_0;
+							element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.OBJECT_PATTERN_EXPRESSION__SELECTOR), value);
+							completedElement(value, true);
+						}
+						collectHiddenTokens(element);
+						retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_8_0_0_1_0_0_0, a1_0, true);
+						copyLocalizationInfos(a1_0, element);
+					}
+				}
+			)
+			{
 				// expected elements (follow set)
-				addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[207]);
+				addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[206]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[207]);
 			}
 			
+		)
+		
+	)?	{
+		// expected elements (follow set)
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[208]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[209]);
+	}
+	
+	(
+		(
 			(
 				a2_0 = parse_edu_ustb_sei_mde_xmu2_expression_PositionPath				{
 					if (terminateParsing) {
@@ -2359,21 +2361,21 @@ parse_edu_ustb_sei_mde_xmu2_pattern_ObjectPatternExpression returns [edu.ustb.se
 							completedElement(value, true);
 						}
 						collectHiddenTokens(element);
-						retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_8_0_0_1_0_0_1, a2_0, true);
+						retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_8_0_0_2_0_0_0, a2_0, true);
 						copyLocalizationInfos(a2_0, element);
 					}
 				}
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[208]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[210]);
 			}
 			
 		)
 		
 	)?	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[209]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[211]);
 	}
 	
 	a3 = '=' {
@@ -2382,12 +2384,12 @@ parse_edu_ustb_sei_mde_xmu2_pattern_ObjectPatternExpression returns [edu.ustb.se
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_8_0_0_2, null, true);
+		retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_8_0_0_3, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a3, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[210]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[212]);
 	}
 	
 	(
@@ -2406,15 +2408,15 @@ parse_edu_ustb_sei_mde_xmu2_pattern_ObjectPatternExpression returns [edu.ustb.se
 					completedElement(value, true);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_8_0_0_3, a4_0, true);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_8_0_0_4, a4_0, true);
 				copyLocalizationInfos(a4_0, element);
 			}
 		}
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[211]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[212]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[213]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[214]);
 	}
 	
 ;
@@ -2460,48 +2462,50 @@ parse_edu_ustb_sei_mde_xmu2_pattern_PropertyPatternExpression returns [edu.ustb.
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getPropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[213]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getPropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[214]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[215]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getPropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[215]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getPropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[216]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[217]);
 	}
 	
 	(
 		(
 			(
-				(
-					(
-						a1_0 = parse_edu_ustb_sei_mde_xmu2_expression_LoopPath						{
-							if (terminateParsing) {
-								throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
-							}
-							if (element == null) {
-								element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createPropertyPatternExpression();
-								startIncompleteElement(element);
-							}
-							if (a1_0 != null) {
-								if (a1_0 != null) {
-									Object value = a1_0;
-									element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.PROPERTY_PATTERN_EXPRESSION__SELECTOR), value);
-									completedElement(value, true);
-								}
-								collectHiddenTokens(element);
-								retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_9_0_0_1_0_0_0_0_0_0, a1_0, true);
-								copyLocalizationInfos(a1_0, element);
-							}
-						}
-					)
-					{
-						// expected elements (follow set)
-						addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getPropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[216]);
+				a1_0 = parse_edu_ustb_sei_mde_xmu2_expression_LoopPath				{
+					if (terminateParsing) {
+						throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
 					}
-					
-				)
-				
-			)?			{
+					if (element == null) {
+						element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createPropertyPatternExpression();
+						startIncompleteElement(element);
+					}
+					if (a1_0 != null) {
+						if (a1_0 != null) {
+							Object value = a1_0;
+							element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.PROPERTY_PATTERN_EXPRESSION__SELECTOR), value);
+							completedElement(value, true);
+						}
+						collectHiddenTokens(element);
+						retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_9_0_0_1_0_0_0, a1_0, true);
+						copyLocalizationInfos(a1_0, element);
+					}
+				}
+			)
+			{
 				// expected elements (follow set)
-				addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getPropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[217]);
+				addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getPropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[218]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[219]);
 			}
 			
+		)
+		
+	)?	{
+		// expected elements (follow set)
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getPropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[220]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[221]);
+	}
+	
+	(
+		(
 			(
 				a2_0 = parse_edu_ustb_sei_mde_xmu2_expression_PositionPath				{
 					if (terminateParsing) {
@@ -2518,21 +2522,21 @@ parse_edu_ustb_sei_mde_xmu2_pattern_PropertyPatternExpression returns [edu.ustb.
 							completedElement(value, true);
 						}
 						collectHiddenTokens(element);
-						retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_9_0_0_1_0_0_1, a2_0, true);
+						retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_9_0_0_2_0_0_0, a2_0, true);
 						copyLocalizationInfos(a2_0, element);
 					}
 				}
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[218]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[222]);
 			}
 			
 		)
 		
 	)?	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[219]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[223]);
 	}
 	
 	a3 = '=' {
@@ -2541,20 +2545,20 @@ parse_edu_ustb_sei_mde_xmu2_pattern_PropertyPatternExpression returns [edu.ustb.
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_9_0_0_2, null, true);
+		retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_9_0_0_3, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a3, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getPropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[220]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getPropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[221]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getPropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[222]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getPropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[223]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getPropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[224]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getPropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[225]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getPropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[226]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getPropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[227]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getPropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[228]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getPropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[229]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getPropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[230]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getPropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[231]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getPropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[232]);
 	}
 	
 	(
@@ -2573,7 +2577,7 @@ parse_edu_ustb_sei_mde_xmu2_pattern_PropertyPatternExpression returns [edu.ustb.
 					completedElement(value, true);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_9_0_0_3, a4_0, true);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_9_0_0_4, a4_0, true);
 				copyLocalizationInfos(a4_0, element);
 			}
 		}
@@ -2592,7 +2596,7 @@ parse_edu_ustb_sei_mde_xmu2_pattern_PropertyPatternExpression returns [edu.ustb.
 					completedElement(value, true);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_9_0_0_3, a4_1, true);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_9_0_0_4, a4_1, true);
 				copyLocalizationInfos(a4_1, element);
 			}
 		}
@@ -2611,7 +2615,7 @@ parse_edu_ustb_sei_mde_xmu2_pattern_PropertyPatternExpression returns [edu.ustb.
 					completedElement(value, true);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_9_0_0_3, a4_2, true);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_9_0_0_4, a4_2, true);
 				copyLocalizationInfos(a4_2, element);
 			}
 		}
@@ -2630,7 +2634,7 @@ parse_edu_ustb_sei_mde_xmu2_pattern_PropertyPatternExpression returns [edu.ustb.
 					completedElement(value, true);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_9_0_0_3, a4_3, true);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_9_0_0_4, a4_3, true);
 				copyLocalizationInfos(a4_3, element);
 			}
 		}
@@ -2649,7 +2653,7 @@ parse_edu_ustb_sei_mde_xmu2_pattern_PropertyPatternExpression returns [edu.ustb.
 					completedElement(value, true);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_9_0_0_3, a4_4, true);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_9_0_0_4, a4_4, true);
 				copyLocalizationInfos(a4_4, element);
 			}
 		}
@@ -2668,7 +2672,7 @@ parse_edu_ustb_sei_mde_xmu2_pattern_PropertyPatternExpression returns [edu.ustb.
 					completedElement(value, true);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_9_0_0_3, a4_5, true);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_9_0_0_4, a4_5, true);
 				copyLocalizationInfos(a4_5, element);
 			}
 		}
@@ -2687,7 +2691,7 @@ parse_edu_ustb_sei_mde_xmu2_pattern_PropertyPatternExpression returns [edu.ustb.
 					completedElement(value, true);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_9_0_0_3, a4_6, true);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_9_0_0_4, a4_6, true);
 				copyLocalizationInfos(a4_6, element);
 			}
 		}
@@ -2706,15 +2710,15 @@ parse_edu_ustb_sei_mde_xmu2_pattern_PropertyPatternExpression returns [edu.ustb.
 					completedElement(value, true);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_9_0_0_3, a4_7, true);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_9_0_0_4, a4_7, true);
 				copyLocalizationInfos(a4_7, element);
 			}
 		}
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[229]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[230]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[233]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[234]);
 	}
 	
 ;
@@ -2734,7 +2738,7 @@ parse_edu_ustb_sei_mde_xmu2_expression_LoopPath returns [edu.ustb.sei.mde.xmu2.e
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[231]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[235]);
 	}
 	
 	(
@@ -2782,7 +2786,7 @@ parse_edu_ustb_sei_mde_xmu2_expression_LoopPath returns [edu.ustb.sei.mde.xmu2.e
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[232]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[236]);
 	}
 	
 	a6 = '(' {
@@ -2796,7 +2800,7 @@ parse_edu_ustb_sei_mde_xmu2_expression_LoopPath returns [edu.ustb.sei.mde.xmu2.e
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getLoopPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[233]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getLoopPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[237]);
 	}
 	
 	(
@@ -2822,7 +2826,7 @@ parse_edu_ustb_sei_mde_xmu2_expression_LoopPath returns [edu.ustb.sei.mde.xmu2.e
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[234]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[238]);
 	}
 	
 	a8 = '|' {
@@ -2836,15 +2840,15 @@ parse_edu_ustb_sei_mde_xmu2_expression_LoopPath returns [edu.ustb.sei.mde.xmu2.e
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getLoopPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[235]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getLoopPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[236]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getLoopPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[237]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getLoopPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[238]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getLoopPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[239]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getLoopPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[240]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getLoopPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[241]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getLoopPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[242]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getLoopPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[243]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getLoopPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[244]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getLoopPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[245]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getLoopPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[246]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getLoopPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[247]);
 	}
 	
 	(
@@ -3003,7 +3007,7 @@ parse_edu_ustb_sei_mde_xmu2_expression_LoopPath returns [edu.ustb.sei.mde.xmu2.e
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[244]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[248]);
 	}
 	
 	a10 = ')' {
@@ -3017,16 +3021,12 @@ parse_edu_ustb_sei_mde_xmu2_expression_LoopPath returns [edu.ustb.sei.mde.xmu2.e
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[245]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[246]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[247]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[248]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[249]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[249]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[250]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[251]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[252]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[253]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[254]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[252]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[253]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[254]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[255]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[256]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[257]);
@@ -3036,13 +3036,19 @@ parse_edu_ustb_sei_mde_xmu2_expression_LoopPath returns [edu.ustb.sei.mde.xmu2.e
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[261]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[262]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[263]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[264]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[265]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[266]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[267]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[264]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[265]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[266]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[267]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[268]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[269]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[270]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[270]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[271]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[272]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[273]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[274]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[275]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[276]);
 	}
 	
 ;
@@ -3062,7 +3068,7 @@ parse_edu_ustb_sei_mde_xmu2_expression_FeaturePath returns [edu.ustb.sei.mde.xmu
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[271]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[277]);
 	}
 	
 	(
@@ -3098,16 +3104,10 @@ parse_edu_ustb_sei_mde_xmu2_expression_FeaturePath returns [edu.ustb.sei.mde.xmu
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[272]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[273]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[274]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[275]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[276]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[277]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[278]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[279]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[280]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[281]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[278]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[279]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[280]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[281]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[282]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[283]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[284]);
@@ -3119,13 +3119,19 @@ parse_edu_ustb_sei_mde_xmu2_expression_FeaturePath returns [edu.ustb.sei.mde.xmu
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[290]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[291]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[292]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[293]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[294]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[295]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[296]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[293]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[294]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[295]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[296]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[297]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[298]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[299]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[299]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[300]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[301]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[302]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[303]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[304]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[305]);
 	}
 	
 ;
@@ -3145,7 +3151,7 @@ parse_edu_ustb_sei_mde_xmu2_expression_OperationPath returns [edu.ustb.sei.mde.x
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[300]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[306]);
 	}
 	
 	(
@@ -3181,7 +3187,7 @@ parse_edu_ustb_sei_mde_xmu2_expression_OperationPath returns [edu.ustb.sei.mde.x
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[301]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[307]);
 	}
 	
 	a2 = '(' {
@@ -3195,16 +3201,16 @@ parse_edu_ustb_sei_mde_xmu2_expression_OperationPath returns [edu.ustb.sei.mde.x
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getOperationPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[302]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getOperationPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[303]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getOperationPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[304]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getOperationPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[305]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getOperationPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[306]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getOperationPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[307]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getOperationPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[308]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getOperationPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[309]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getOperationPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[310]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[311]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getOperationPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[311]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getOperationPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[312]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getOperationPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[313]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getOperationPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[314]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getOperationPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[315]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getOperationPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[316]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[317]);
 	}
 	
 	(
@@ -3365,8 +3371,8 @@ parse_edu_ustb_sei_mde_xmu2_expression_OperationPath returns [edu.ustb.sei.mde.x
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[312]);
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[313]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[318]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[319]);
 			}
 			
 			(
@@ -3382,15 +3388,15 @@ parse_edu_ustb_sei_mde_xmu2_expression_OperationPath returns [edu.ustb.sei.mde.x
 					}
 					{
 						// expected elements (follow set)
-						addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getOperationPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[314]);
-						addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getOperationPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[315]);
-						addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getOperationPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[316]);
-						addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getOperationPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[317]);
-						addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getOperationPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[318]);
-						addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getOperationPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[319]);
 						addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getOperationPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[320]);
 						addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getOperationPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[321]);
 						addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getOperationPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[322]);
+						addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getOperationPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[323]);
+						addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getOperationPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[324]);
+						addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getOperationPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[325]);
+						addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getOperationPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[326]);
+						addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getOperationPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[327]);
+						addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getOperationPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[328]);
 					}
 					
 					(
@@ -3549,23 +3555,23 @@ parse_edu_ustb_sei_mde_xmu2_expression_OperationPath returns [edu.ustb.sei.mde.x
 					)
 					{
 						// expected elements (follow set)
-						addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[323]);
-						addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[324]);
+						addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[329]);
+						addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[330]);
 					}
 					
 				)
 				
 			)*			{
 				// expected elements (follow set)
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[325]);
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[326]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[331]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[332]);
 			}
 			
 		)
 		
 	)?	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[327]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[333]);
 	}
 	
 	a6 = ')' {
@@ -3579,16 +3585,10 @@ parse_edu_ustb_sei_mde_xmu2_expression_OperationPath returns [edu.ustb.sei.mde.x
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[328]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[329]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[330]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[331]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[332]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[333]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[334]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[335]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[336]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[337]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[334]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[335]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[336]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[337]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[338]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[339]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[340]);
@@ -3600,13 +3600,19 @@ parse_edu_ustb_sei_mde_xmu2_expression_OperationPath returns [edu.ustb.sei.mde.x
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[346]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[347]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[348]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[349]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[350]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[351]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[352]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[349]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[350]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[351]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[352]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[353]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[354]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[355]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[355]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[356]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[357]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[358]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[359]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[360]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[361]);
 	}
 	
 ;
@@ -3626,7 +3632,7 @@ parse_edu_ustb_sei_mde_xmu2_expression_PositionPath returns [edu.ustb.sei.mde.xm
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[356]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[362]);
 	}
 	
 	(
@@ -3674,7 +3680,7 @@ parse_edu_ustb_sei_mde_xmu2_expression_PositionPath returns [edu.ustb.sei.mde.xm
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[357]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[363]);
 	}
 	
 	a6 = '(' {
@@ -3688,16 +3694,16 @@ parse_edu_ustb_sei_mde_xmu2_expression_PositionPath returns [edu.ustb.sei.mde.xm
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPositionPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[358]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPositionPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[359]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPositionPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[360]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPositionPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[361]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPositionPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[362]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPositionPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[363]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPositionPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[364]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPositionPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[365]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPositionPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[366]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[367]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPositionPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[367]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPositionPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[368]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPositionPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[369]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPositionPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[370]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPositionPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[371]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPositionPath(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[372]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[373]);
 	}
 	
 	(
@@ -3858,7 +3864,7 @@ parse_edu_ustb_sei_mde_xmu2_expression_PositionPath returns [edu.ustb.sei.mde.xm
 		
 	)?	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[368]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[374]);
 	}
 	
 	a8 = ')' {
@@ -3872,18 +3878,12 @@ parse_edu_ustb_sei_mde_xmu2_expression_PositionPath returns [edu.ustb.sei.mde.xm
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[369]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[370]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[371]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[372]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[373]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[374]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[375]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[376]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[377]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[378]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[379]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[380]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[377]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[378]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[379]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[380]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[381]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[382]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[383]);
@@ -3893,13 +3893,19 @@ parse_edu_ustb_sei_mde_xmu2_expression_PositionPath returns [edu.ustb.sei.mde.xm
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[387]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[388]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[389]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[390]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[391]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[392]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[393]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[390]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[391]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[392]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[393]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[394]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[395]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[396]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[396]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[397]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[398]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[399]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[400]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[401]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[402]);
 	}
 	
 ;
@@ -3941,34 +3947,34 @@ parse_edu_ustb_sei_mde_xmu2_expression_VariableExpression returns [edu.ustb.sei.
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[397]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[398]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[399]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[400]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[401]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[402]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[403]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[404]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[405]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[406]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[407]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[404]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[405]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[406]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[407]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[408]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[409]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[410]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[411]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[412]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[413]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[410]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[411]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[412]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[413]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[414]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[415]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[416]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[417]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[418]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[419]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[420]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[421]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[418]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[419]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[420]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[421]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[422]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[423]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[424]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[424]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[425]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[426]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[427]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[428]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[429]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[430]);
 	}
 	
 ;
@@ -4038,10 +4044,10 @@ parse_edu_ustb_sei_mde_xmu2_expression_PathExpression returns [edu.ustb.sei.mde.
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[425]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[426]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[427]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[428]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[431]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[432]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[433]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[434]);
 	}
 	
 	(
@@ -4069,16 +4075,10 @@ parse_edu_ustb_sei_mde_xmu2_expression_PathExpression returns [edu.ustb.sei.mde.
 		
 	)+	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[429]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[430]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[431]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[432]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[433]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[434]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[435]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[436]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[437]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[438]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[435]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[436]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[437]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[438]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[439]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[440]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[441]);
@@ -4090,13 +4090,19 @@ parse_edu_ustb_sei_mde_xmu2_expression_PathExpression returns [edu.ustb.sei.mde.
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[447]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[448]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[449]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[450]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[451]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[452]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[453]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[450]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[451]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[452]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[453]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[454]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[455]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[456]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[456]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[457]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[458]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[459]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[460]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[461]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[462]);
 	}
 	
 ;
@@ -4137,34 +4143,34 @@ parse_edu_ustb_sei_mde_xmu2_expression_EmptyExpression returns [edu.ustb.sei.mde
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[457]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[458]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[459]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[460]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[461]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[462]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[463]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[464]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[465]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[466]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[467]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[464]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[465]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[466]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[467]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[468]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[469]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[470]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[471]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[472]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[473]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[470]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[471]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[472]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[473]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[474]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[475]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[476]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[477]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[478]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[479]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[480]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[481]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[478]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[479]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[480]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[481]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[482]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[483]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[484]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[484]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[485]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[486]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[487]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[488]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[489]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[490]);
 	}
 	
 ;
@@ -4206,34 +4212,34 @@ parse_edu_ustb_sei_mde_xmu2_expression_StringLiteralExpression returns [edu.ustb
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[485]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[486]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[487]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[488]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[489]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[490]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[491]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[492]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[493]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[494]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[495]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[492]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[493]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[494]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[495]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[496]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[497]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[498]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[499]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[500]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[501]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[498]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[499]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[500]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[501]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[502]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[503]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[504]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[505]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[506]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[507]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[508]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[509]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[506]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[507]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[508]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[509]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[510]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[511]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[512]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[512]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[513]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[514]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[515]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[516]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[517]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[518]);
 	}
 	
 ;
@@ -4275,34 +4281,34 @@ parse_edu_ustb_sei_mde_xmu2_expression_IntegerLiteralExpression returns [edu.ust
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[513]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[514]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[515]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[516]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[517]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[518]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[519]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[520]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[521]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[522]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[523]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[520]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[521]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[522]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[523]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[524]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[525]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[526]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[527]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[528]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[529]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[526]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[527]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[528]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[529]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[530]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[531]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[532]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[533]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[534]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[535]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[536]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[537]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[534]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[535]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[536]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[537]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[538]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[539]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[540]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[540]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[541]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[542]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[543]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[544]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[545]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[546]);
 	}
 	
 ;
@@ -4344,34 +4350,34 @@ parse_edu_ustb_sei_mde_xmu2_expression_BooleanLiteralExpression returns [edu.ust
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[541]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[542]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[543]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[544]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[545]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[546]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[547]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[548]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[549]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[550]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[551]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[548]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[549]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[550]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[551]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[552]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[553]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[554]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[555]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[556]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[557]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[554]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[555]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[556]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[557]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[558]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[559]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[560]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[561]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[562]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[563]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[564]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[565]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[562]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[563]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[564]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[565]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[566]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[567]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[568]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[568]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[569]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[570]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[571]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[572]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[573]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[574]);
 	}
 	
 ;
@@ -4417,7 +4423,7 @@ parse_edu_ustb_sei_mde_xmu2_expression_EnumLiteralExpression returns [edu.ustb.s
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[569]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[575]);
 	}
 	
 	a1 = '::' {
@@ -4431,7 +4437,7 @@ parse_edu_ustb_sei_mde_xmu2_expression_EnumLiteralExpression returns [edu.ustb.s
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[570]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[576]);
 	}
 	
 	(
@@ -4471,34 +4477,34 @@ parse_edu_ustb_sei_mde_xmu2_expression_EnumLiteralExpression returns [edu.ustb.s
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[571]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[572]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[573]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[574]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[575]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[576]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[577]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[578]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[579]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[580]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[581]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[578]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[579]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[580]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[581]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[582]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[583]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[584]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[585]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[586]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[587]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[584]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[585]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[586]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[587]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[588]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[589]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[590]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[591]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[592]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[593]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[594]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[595]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[592]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[593]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[594]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[595]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[596]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[597]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[598]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[598]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[599]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[600]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[601]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[602]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[603]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[604]);
 	}
 	
 ;
@@ -4544,34 +4550,34 @@ parse_edu_ustb_sei_mde_xmu2_expression_ObjectURIExpression returns [edu.ustb.sei
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[599]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[600]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[601]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[602]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[603]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[604]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[605]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[606]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[607]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[608]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[609]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[606]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[607]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[608]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[609]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[610]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[611]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[612]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[613]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[614]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[615]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[612]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[613]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[614]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[615]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[616]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[617]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[618]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[619]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[620]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[621]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[622]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[623]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[620]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[621]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[622]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[623]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[624]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[625]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[626]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[626]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[627]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[628]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[629]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[630]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[631]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[632]);
 	}
 	
 ;
@@ -4591,19 +4597,19 @@ parse_edu_ustb_sei_mde_xmu2_expression_ParenExpression returns [edu.ustb.sei.mde
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getParenExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[627]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getParenExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[628]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getParenExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[629]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getParenExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[630]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getParenExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[631]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getParenExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[632]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getParenExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[633]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getParenExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[634]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getParenExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[635]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getParenExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[636]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getParenExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[637]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getParenExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[638]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getParenExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[639]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getParenExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[640]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getParenExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[641]);
 	}
 	
 	(
-		a1_0 = parse_edu_ustb_sei_mde_xmu2_expression_Expression		{
+		a1_0 = parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression		{
 			if (terminateParsing) {
 				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
 			}
@@ -4622,10 +4628,143 @@ parse_edu_ustb_sei_mde_xmu2_expression_ParenExpression returns [edu.ustb.sei.mde
 				copyLocalizationInfos(a1_0, element);
 			}
 		}
+		|		a1_1 = parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression		{
+			if (terminateParsing) {
+				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
+			}
+			if (element == null) {
+				element = edu.ustb.sei.mde.xmu2.expression.ExpressionFactory.eINSTANCE.createParenExpression();
+				startIncompleteElement(element);
+			}
+			if (a1_1 != null) {
+				if (a1_1 != null) {
+					Object value = a1_1;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.PAREN_EXPRESSION__BODY), value);
+					completedElement(value, true);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_22_0_0_1, a1_1, true);
+				copyLocalizationInfos(a1_1, element);
+			}
+		}
+		|		a1_2 = parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression		{
+			if (terminateParsing) {
+				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
+			}
+			if (element == null) {
+				element = edu.ustb.sei.mde.xmu2.expression.ExpressionFactory.eINSTANCE.createParenExpression();
+				startIncompleteElement(element);
+			}
+			if (a1_2 != null) {
+				if (a1_2 != null) {
+					Object value = a1_2;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.PAREN_EXPRESSION__BODY), value);
+					completedElement(value, true);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_22_0_0_1, a1_2, true);
+				copyLocalizationInfos(a1_2, element);
+			}
+		}
+		|		a1_3 = parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression		{
+			if (terminateParsing) {
+				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
+			}
+			if (element == null) {
+				element = edu.ustb.sei.mde.xmu2.expression.ExpressionFactory.eINSTANCE.createParenExpression();
+				startIncompleteElement(element);
+			}
+			if (a1_3 != null) {
+				if (a1_3 != null) {
+					Object value = a1_3;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.PAREN_EXPRESSION__BODY), value);
+					completedElement(value, true);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_22_0_0_1, a1_3, true);
+				copyLocalizationInfos(a1_3, element);
+			}
+		}
+		|		a1_4 = parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression		{
+			if (terminateParsing) {
+				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
+			}
+			if (element == null) {
+				element = edu.ustb.sei.mde.xmu2.expression.ExpressionFactory.eINSTANCE.createParenExpression();
+				startIncompleteElement(element);
+			}
+			if (a1_4 != null) {
+				if (a1_4 != null) {
+					Object value = a1_4;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.PAREN_EXPRESSION__BODY), value);
+					completedElement(value, true);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_22_0_0_1, a1_4, true);
+				copyLocalizationInfos(a1_4, element);
+			}
+		}
+		|		a1_5 = parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression		{
+			if (terminateParsing) {
+				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
+			}
+			if (element == null) {
+				element = edu.ustb.sei.mde.xmu2.expression.ExpressionFactory.eINSTANCE.createParenExpression();
+				startIncompleteElement(element);
+			}
+			if (a1_5 != null) {
+				if (a1_5 != null) {
+					Object value = a1_5;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.PAREN_EXPRESSION__BODY), value);
+					completedElement(value, true);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_22_0_0_1, a1_5, true);
+				copyLocalizationInfos(a1_5, element);
+			}
+		}
+		|		a1_6 = parse_edu_ustb_sei_mde_xmu2_expression_PathExpression		{
+			if (terminateParsing) {
+				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
+			}
+			if (element == null) {
+				element = edu.ustb.sei.mde.xmu2.expression.ExpressionFactory.eINSTANCE.createParenExpression();
+				startIncompleteElement(element);
+			}
+			if (a1_6 != null) {
+				if (a1_6 != null) {
+					Object value = a1_6;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.PAREN_EXPRESSION__BODY), value);
+					completedElement(value, true);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_22_0_0_1, a1_6, true);
+				copyLocalizationInfos(a1_6, element);
+			}
+		}
+		|		a1_7 = parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression		{
+			if (terminateParsing) {
+				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
+			}
+			if (element == null) {
+				element = edu.ustb.sei.mde.xmu2.expression.ExpressionFactory.eINSTANCE.createParenExpression();
+				startIncompleteElement(element);
+			}
+			if (a1_7 != null) {
+				if (a1_7 != null) {
+					Object value = a1_7;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.PAREN_EXPRESSION__BODY), value);
+					completedElement(value, true);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_22_0_0_1, a1_7, true);
+				copyLocalizationInfos(a1_7, element);
+			}
+		}
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[636]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[642]);
 	}
 	
 	a2 = ')' {
@@ -4639,34 +4778,34 @@ parse_edu_ustb_sei_mde_xmu2_expression_ParenExpression returns [edu.ustb.sei.mde
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[637]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[638]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[639]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[640]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[641]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[642]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[643]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[644]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[645]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[646]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[647]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[644]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[645]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[646]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[647]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[648]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[649]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[650]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[651]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[652]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[653]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[650]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[651]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[652]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getPathExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[653]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[654]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[655]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[656]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[657]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[658]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[659]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[660]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[661]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[658]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[659]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[660]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[661]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[662]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[663]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[664]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[664]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[665]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[666]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[667]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[668]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[669]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[670]);
 	}
 	
 ;
@@ -4707,14 +4846,14 @@ parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression returns [edu.ustb.sei.mde
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getUnaryExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[665]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getUnaryExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[666]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getUnaryExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[667]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getUnaryExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[668]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getUnaryExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[669]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getUnaryExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[670]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getUnaryExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[671]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getUnaryExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[672]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getUnaryExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[673]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getUnaryExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[674]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getUnaryExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[675]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getUnaryExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[676]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getUnaryExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[677]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getUnaryExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[678]);
 	}
 	
 	(
@@ -4759,12 +4898,6 @@ parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression returns [edu.ustb.sei.mde
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[673]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[674]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[675]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[676]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[677]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[678]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[679]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[680]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[681]);
@@ -4776,11 +4909,17 @@ parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression returns [edu.ustb.sei.mde
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[687]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[688]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[689]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[690]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[691]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[692]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[693]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[690]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[691]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[692]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[693]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[694]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[695]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[696]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[697]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[698]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[699]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[700]);
 	}
 	
 ;
@@ -4850,7 +4989,7 @@ parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression returns [edu.ust
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[695]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[701]);
 	}
 	
 	(
@@ -4887,15 +5026,15 @@ parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression returns [edu.ust
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getMultiplicativeExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[696]);
-				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getMultiplicativeExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[697]);
-				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getMultiplicativeExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[698]);
-				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getMultiplicativeExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[699]);
-				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getMultiplicativeExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[700]);
-				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getMultiplicativeExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[701]);
 				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getMultiplicativeExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[702]);
 				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getMultiplicativeExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[703]);
 				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getMultiplicativeExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[704]);
+				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getMultiplicativeExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[705]);
+				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getMultiplicativeExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[706]);
+				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getMultiplicativeExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[707]);
+				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getMultiplicativeExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[708]);
+				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getMultiplicativeExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[709]);
+				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getMultiplicativeExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[710]);
 			}
 			
 			(
@@ -4959,12 +5098,6 @@ parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression returns [edu.ust
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[705]);
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[706]);
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[707]);
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[708]);
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[709]);
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[710]);
 				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[711]);
 				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[712]);
 				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[713]);
@@ -4972,18 +5105,18 @@ parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression returns [edu.ust
 				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[715]);
 				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[716]);
 				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[717]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[718]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[719]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[720]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[721]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[722]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[723]);
 			}
 			
 		)
 		
 	)+	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[718]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[719]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[720]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[721]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[722]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[723]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[724]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[725]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[726]);
@@ -4991,6 +5124,12 @@ parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression returns [edu.ust
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[728]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[729]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[730]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[731]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[732]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[733]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[734]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[735]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[736]);
 	}
 	
 ;
@@ -5079,7 +5218,7 @@ parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression returns [edu.ustb.sei.
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[731]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[737]);
 	}
 	
 	(
@@ -5129,15 +5268,15 @@ parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression returns [edu.ustb.sei.
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getAdditiveExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[732]);
-				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getAdditiveExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[733]);
-				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getAdditiveExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[734]);
-				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getAdditiveExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[735]);
-				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getAdditiveExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[736]);
-				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getAdditiveExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[737]);
 				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getAdditiveExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[738]);
 				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getAdditiveExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[739]);
 				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getAdditiveExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[740]);
+				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getAdditiveExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[741]);
+				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getAdditiveExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[742]);
+				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getAdditiveExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[743]);
+				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getAdditiveExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[744]);
+				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getAdditiveExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[745]);
+				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getAdditiveExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[746]);
 			}
 			
 			(
@@ -5220,36 +5359,36 @@ parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression returns [edu.ustb.sei.
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[741]);
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[742]);
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[743]);
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[744]);
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[745]);
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[746]);
 				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[747]);
 				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[748]);
 				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[749]);
 				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[750]);
 				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[751]);
 				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[752]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[753]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[754]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[755]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[756]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[757]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[758]);
 			}
 			
 		)
 		
 	)+	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[753]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[754]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[755]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[756]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[757]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[758]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[759]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[760]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[761]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[762]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[763]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[764]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[765]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[766]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[767]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[768]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[769]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[770]);
 	}
 	
 ;
@@ -5357,7 +5496,7 @@ parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression returns [edu.ustb.se
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[765]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[771]);
 	}
 	
 	(
@@ -5431,15 +5570,15 @@ parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression returns [edu.ustb.se
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getRelationalExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[766]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getRelationalExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[767]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getRelationalExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[768]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getRelationalExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[769]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getRelationalExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[770]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getRelationalExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[771]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getRelationalExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[772]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getRelationalExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[773]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getRelationalExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[774]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getRelationalExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[775]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getRelationalExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[776]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getRelationalExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[777]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getRelationalExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[778]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getRelationalExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[779]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getRelationalExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[780]);
 	}
 	
 	(
@@ -5541,17 +5680,17 @@ parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression returns [edu.ustb.se
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[775]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[776]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[777]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[778]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[779]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[780]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[781]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[782]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[783]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[784]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[785]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[786]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[787]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[788]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[789]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[790]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[791]);
 	}
 	
 ;
@@ -5678,7 +5817,7 @@ parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression returns [edu.ustb.se
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[786]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[792]);
 	}
 	
 	(
@@ -5694,15 +5833,15 @@ parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression returns [edu.ustb.se
 			}
 			{
 				// expected elements (follow set)
-				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getBooleanAndExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[787]);
-				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getBooleanAndExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[788]);
-				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getBooleanAndExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[789]);
-				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getBooleanAndExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[790]);
-				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getBooleanAndExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[791]);
-				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getBooleanAndExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[792]);
 				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getBooleanAndExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[793]);
 				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getBooleanAndExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[794]);
 				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getBooleanAndExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[795]);
+				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getBooleanAndExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[796]);
+				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getBooleanAndExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[797]);
+				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getBooleanAndExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[798]);
+				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getBooleanAndExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[799]);
+				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getBooleanAndExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[800]);
+				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getBooleanAndExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[801]);
 			}
 			
 			(
@@ -5823,34 +5962,34 @@ parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression returns [edu.ustb.se
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[796]);
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[797]);
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[798]);
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[799]);
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[800]);
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[801]);
 				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[802]);
 				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[803]);
 				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[804]);
 				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[805]);
 				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[806]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[807]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[808]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[809]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[810]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[811]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[812]);
 			}
 			
 		)
 		
 	)+	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[807]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[808]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[809]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[810]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[811]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[812]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[813]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[814]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[815]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[816]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[817]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[818]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[819]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[820]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[821]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[822]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[823]);
 	}
 	
 ;
@@ -5996,7 +6135,7 @@ parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression returns [edu.ustb.sei
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[818]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[824]);
 	}
 	
 	(
@@ -6012,15 +6151,15 @@ parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression returns [edu.ustb.sei
 			}
 			{
 				// expected elements (follow set)
-				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getBooleanOrExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[819]);
-				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getBooleanOrExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[820]);
-				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getBooleanOrExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[821]);
-				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getBooleanOrExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[822]);
-				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getBooleanOrExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[823]);
-				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getBooleanOrExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[824]);
 				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getBooleanOrExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[825]);
 				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getBooleanOrExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[826]);
 				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getBooleanOrExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[827]);
+				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getBooleanOrExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[828]);
+				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getBooleanOrExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[829]);
+				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getBooleanOrExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[830]);
+				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getBooleanOrExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[831]);
+				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getBooleanOrExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[832]);
+				addExpectedElement(edu.ustb.sei.mde.xmu2.expression.ExpressionPackage.eINSTANCE.getBooleanOrExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[833]);
 			}
 			
 			(
@@ -6160,32 +6299,32 @@ parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression returns [edu.ustb.sei
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[828]);
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[829]);
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[830]);
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[831]);
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[832]);
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[833]);
 				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[834]);
 				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[835]);
 				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[836]);
 				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[837]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[838]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[839]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[840]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[841]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[842]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[843]);
 			}
 			
 		)
 		
 	)+	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[838]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[839]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[840]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[841]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[842]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[843]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[844]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[845]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[846]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[847]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[848]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[849]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[850]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[851]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[852]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[853]);
 	}
 	
 ;
@@ -6205,16 +6344,16 @@ parse_edu_ustb_sei_mde_xmu2_statement_BlockStatement returns [edu.ustb.sei.mde.x
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getBlockStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[848]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getBlockStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[849]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getBlockStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[850]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getBlockStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[851]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getBlockStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[852]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getBlockStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[853]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getBlockStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[854]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getBlockStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[855]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getBlockStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[856]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[857]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getBlockStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[857]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getBlockStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[858]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getBlockStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[859]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getBlockStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[860]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getBlockStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[861]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getBlockStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[862]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[863]);
 	}
 	
 	(
@@ -6242,8 +6381,8 @@ parse_edu_ustb_sei_mde_xmu2_statement_BlockStatement returns [edu.ustb.sei.mde.x
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[858]);
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[859]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[864]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[865]);
 			}
 			
 			(
@@ -6259,15 +6398,15 @@ parse_edu_ustb_sei_mde_xmu2_statement_BlockStatement returns [edu.ustb.sei.mde.x
 					}
 					{
 						// expected elements (follow set)
-						addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getBlockStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[860]);
-						addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getBlockStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[861]);
-						addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getBlockStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[862]);
-						addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getBlockStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[863]);
-						addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getBlockStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[864]);
-						addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getBlockStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[865]);
 						addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getBlockStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[866]);
 						addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getBlockStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[867]);
 						addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getBlockStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[868]);
+						addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getBlockStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[869]);
+						addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getBlockStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[870]);
+						addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getBlockStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[871]);
+						addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getBlockStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[872]);
+						addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getBlockStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[873]);
+						addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getBlockStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[874]);
 					}
 					
 					(
@@ -6293,23 +6432,23 @@ parse_edu_ustb_sei_mde_xmu2_statement_BlockStatement returns [edu.ustb.sei.mde.x
 					)
 					{
 						// expected elements (follow set)
-						addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[869]);
-						addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[870]);
+						addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[875]);
+						addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[876]);
 					}
 					
 				)
 				
 			)*			{
 				// expected elements (follow set)
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[871]);
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[872]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[877]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[878]);
 			}
 			
 		)
 		
 	)?	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[873]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[879]);
 	}
 	
 	a4 = '}' {
@@ -6323,14 +6462,14 @@ parse_edu_ustb_sei_mde_xmu2_statement_BlockStatement returns [edu.ustb.sei.mde.x
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[874]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[875]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[876]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[877]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[878]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[879]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[880]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[880]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[881]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[882]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[883]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[884]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[885]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[886]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[887]);
 	}
 	
 ;
@@ -6350,7 +6489,7 @@ parse_edu_ustb_sei_mde_xmu2_statement_UpdateStatement returns [edu.ustb.sei.mde.
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[882]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[888]);
 	}
 	
 	(
@@ -6376,7 +6515,7 @@ parse_edu_ustb_sei_mde_xmu2_statement_UpdateStatement returns [edu.ustb.sei.mde.
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[883]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[889]);
 	}
 	
 	a2 = 'with' {
@@ -6390,7 +6529,7 @@ parse_edu_ustb_sei_mde_xmu2_statement_UpdateStatement returns [edu.ustb.sei.mde.
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[884]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[890]);
 	}
 	
 	(
@@ -6416,7 +6555,7 @@ parse_edu_ustb_sei_mde_xmu2_statement_UpdateStatement returns [edu.ustb.sei.mde.
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[885]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[891]);
 	}
 	
 	a4 = 'by' {
@@ -6430,7 +6569,7 @@ parse_edu_ustb_sei_mde_xmu2_statement_UpdateStatement returns [edu.ustb.sei.mde.
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[886]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[892]);
 	}
 	
 	(
@@ -6458,14 +6597,14 @@ parse_edu_ustb_sei_mde_xmu2_statement_UpdateStatement returns [edu.ustb.sei.mde.
 		
 	)+	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[887]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[888]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[889]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[890]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[891]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[892]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[893]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[893]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[894]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[895]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[896]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[897]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[898]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[899]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[900]);
 	}
 	
 ;
@@ -6485,7 +6624,7 @@ parse_edu_ustb_sei_mde_xmu2_statement_SwitchStatement returns [edu.ustb.sei.mde.
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[895]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[901]);
 	}
 	
 	a1 = '(' {
@@ -6499,7 +6638,7 @@ parse_edu_ustb_sei_mde_xmu2_statement_SwitchStatement returns [edu.ustb.sei.mde.
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[896]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[902]);
 	}
 	
 	(
@@ -6525,7 +6664,7 @@ parse_edu_ustb_sei_mde_xmu2_statement_SwitchStatement returns [edu.ustb.sei.mde.
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[897]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[903]);
 	}
 	
 	a3 = ')' {
@@ -6539,7 +6678,7 @@ parse_edu_ustb_sei_mde_xmu2_statement_SwitchStatement returns [edu.ustb.sei.mde.
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[898]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[904]);
 	}
 	
 	a4 = '{' {
@@ -6553,9 +6692,9 @@ parse_edu_ustb_sei_mde_xmu2_statement_SwitchStatement returns [edu.ustb.sei.mde.
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[899]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[900]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[901]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[905]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[906]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[907]);
 	}
 	
 	(
@@ -6583,10 +6722,10 @@ parse_edu_ustb_sei_mde_xmu2_statement_SwitchStatement returns [edu.ustb.sei.mde.
 		
 	)+	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[902]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[903]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[904]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[905]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[908]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[909]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[910]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[911]);
 	}
 	
 	a6 = '}' {
@@ -6600,14 +6739,14 @@ parse_edu_ustb_sei_mde_xmu2_statement_SwitchStatement returns [edu.ustb.sei.mde.
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[906]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[907]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[908]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[909]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[910]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[911]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[912]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[912]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[913]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[914]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[915]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[916]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[917]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[918]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[919]);
 	}
 	
 ;
@@ -6674,7 +6813,7 @@ parse_edu_ustb_sei_mde_xmu2_statement_UpdateClause returns [edu.ustb.sei.mde.xmu
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[914]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[920]);
 	}
 	
 	a6 = '->' {
@@ -6688,15 +6827,15 @@ parse_edu_ustb_sei_mde_xmu2_statement_UpdateClause returns [edu.ustb.sei.mde.xmu
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[915]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[916]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[917]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[918]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[919]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[920]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[921]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[922]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[923]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[924]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[925]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[926]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[927]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[928]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[929]);
 	}
 	
 	(
@@ -6722,14 +6861,14 @@ parse_edu_ustb_sei_mde_xmu2_statement_UpdateClause returns [edu.ustb.sei.mde.xmu
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[924]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[925]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[926]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[927]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[928]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[929]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[930]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[930]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[931]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[932]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[933]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[934]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[935]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[936]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[937]);
 	}
 	
 ;
@@ -6749,7 +6888,7 @@ parse_edu_ustb_sei_mde_xmu2_statement_PatternCaseClause returns [edu.ustb.sei.md
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getPatternCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[932]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getPatternCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[938]);
 	}
 	
 	(
@@ -6775,7 +6914,7 @@ parse_edu_ustb_sei_mde_xmu2_statement_PatternCaseClause returns [edu.ustb.sei.md
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[933]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[939]);
 	}
 	
 	a2 = '->' {
@@ -6789,15 +6928,15 @@ parse_edu_ustb_sei_mde_xmu2_statement_PatternCaseClause returns [edu.ustb.sei.md
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getPatternCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[934]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getPatternCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[935]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getPatternCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[936]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getPatternCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[937]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getPatternCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[938]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getPatternCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[939]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getPatternCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[940]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getPatternCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[941]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getPatternCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[942]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getPatternCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[943]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getPatternCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[944]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getPatternCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[945]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getPatternCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[946]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getPatternCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[947]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getPatternCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[948]);
 	}
 	
 	(
@@ -6823,10 +6962,10 @@ parse_edu_ustb_sei_mde_xmu2_statement_PatternCaseClause returns [edu.ustb.sei.md
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[943]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[944]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[945]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[946]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[949]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[950]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[951]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[952]);
 	}
 	
 ;
@@ -6846,15 +6985,15 @@ parse_edu_ustb_sei_mde_xmu2_statement_ExpressionCaseClause returns [edu.ustb.sei
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getExpressionCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[947]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getExpressionCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[948]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getExpressionCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[949]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getExpressionCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[950]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getExpressionCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[951]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getExpressionCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[952]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getExpressionCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[953]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getExpressionCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[954]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getExpressionCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[955]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getExpressionCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[956]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getExpressionCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[957]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getExpressionCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[958]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getExpressionCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[959]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getExpressionCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[960]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getExpressionCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[961]);
 	}
 	
 	(
@@ -6975,7 +7114,7 @@ parse_edu_ustb_sei_mde_xmu2_statement_ExpressionCaseClause returns [edu.ustb.sei
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[956]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[962]);
 	}
 	
 	a2 = '->' {
@@ -6989,15 +7128,15 @@ parse_edu_ustb_sei_mde_xmu2_statement_ExpressionCaseClause returns [edu.ustb.sei
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getExpressionCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[957]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getExpressionCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[958]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getExpressionCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[959]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getExpressionCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[960]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getExpressionCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[961]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getExpressionCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[962]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getExpressionCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[963]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getExpressionCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[964]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getExpressionCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[965]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getExpressionCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[966]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getExpressionCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[967]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getExpressionCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[968]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getExpressionCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[969]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getExpressionCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[970]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getExpressionCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[971]);
 	}
 	
 	(
@@ -7023,10 +7162,10 @@ parse_edu_ustb_sei_mde_xmu2_statement_ExpressionCaseClause returns [edu.ustb.sei
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[966]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[967]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[968]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[969]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[972]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[973]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[974]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[975]);
 	}
 	
 ;
@@ -7046,7 +7185,7 @@ parse_edu_ustb_sei_mde_xmu2_statement_DeleteNodeStatement returns [edu.ustb.sei.
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDeleteNodeStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[970]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDeleteNodeStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[976]);
 	}
 	
 	(
@@ -7072,14 +7211,14 @@ parse_edu_ustb_sei_mde_xmu2_statement_DeleteNodeStatement returns [edu.ustb.sei.
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[971]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[972]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[973]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[974]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[975]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[976]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[977]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[977]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[978]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[979]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[980]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[981]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[982]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[983]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[984]);
 	}
 	
 ;
@@ -7099,7 +7238,7 @@ parse_edu_ustb_sei_mde_xmu2_statement_DeleteLinkStatement returns [edu.ustb.sei.
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[979]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[985]);
 	}
 	
 	(
@@ -7125,7 +7264,7 @@ parse_edu_ustb_sei_mde_xmu2_statement_DeleteLinkStatement returns [edu.ustb.sei.
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[980]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[986]);
 	}
 	
 	a2 = '.' {
@@ -7139,7 +7278,7 @@ parse_edu_ustb_sei_mde_xmu2_statement_DeleteLinkStatement returns [edu.ustb.sei.
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[981]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[987]);
 	}
 	
 	(
@@ -7175,7 +7314,7 @@ parse_edu_ustb_sei_mde_xmu2_statement_DeleteLinkStatement returns [edu.ustb.sei.
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[982]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[988]);
 	}
 	
 	a4 = '=' {
@@ -7189,15 +7328,15 @@ parse_edu_ustb_sei_mde_xmu2_statement_DeleteLinkStatement returns [edu.ustb.sei.
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[983]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[984]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[985]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[986]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[987]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[988]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[989]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[990]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[991]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[992]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[993]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[994]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[995]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[996]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[997]);
 	}
 	
 	(
@@ -7261,14 +7400,14 @@ parse_edu_ustb_sei_mde_xmu2_statement_DeleteLinkStatement returns [edu.ustb.sei.
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[992]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[993]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[994]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[995]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[996]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[997]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[998]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[998]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[999]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1000]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1001]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1002]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1003]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1004]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1005]);
 	}
 	
 ;
@@ -7288,7 +7427,7 @@ parse_edu_ustb_sei_mde_xmu2_statement_EnforcePatternStatement returns [edu.ustb.
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getEnforcePatternStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1000]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getEnforcePatternStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1006]);
 	}
 	
 	(
@@ -7314,14 +7453,14 @@ parse_edu_ustb_sei_mde_xmu2_statement_EnforcePatternStatement returns [edu.ustb.
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1001]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1002]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1003]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1004]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1005]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1006]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1007]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1007]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1008]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1009]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1010]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1011]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1012]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1013]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1014]);
 	}
 	
 ;
@@ -7341,7 +7480,7 @@ parse_edu_ustb_sei_mde_xmu2_statement_ForEachStatement returns [edu.ustb.sei.mde
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getForEachStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1009]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getForEachStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1015]);
 	}
 	
 	(
@@ -7367,7 +7506,7 @@ parse_edu_ustb_sei_mde_xmu2_statement_ForEachStatement returns [edu.ustb.sei.mde
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1010]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1016]);
 	}
 	
 	a2 = '->' {
@@ -7381,15 +7520,15 @@ parse_edu_ustb_sei_mde_xmu2_statement_ForEachStatement returns [edu.ustb.sei.mde
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getForEachStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1011]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getForEachStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1012]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getForEachStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1013]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getForEachStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1014]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getForEachStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1015]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getForEachStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1016]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getForEachStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1017]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getForEachStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1018]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getForEachStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1019]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getForEachStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1020]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getForEachStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1021]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getForEachStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1022]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getForEachStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1023]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getForEachStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1024]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getForEachStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1025]);
 	}
 	
 	(
@@ -7415,14 +7554,14 @@ parse_edu_ustb_sei_mde_xmu2_statement_ForEachStatement returns [edu.ustb.sei.mde
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1020]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1021]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1022]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1023]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1024]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1025]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1026]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1026]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1027]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1028]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1029]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1030]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1031]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1032]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1033]);
 	}
 	
 ;
@@ -7468,7 +7607,7 @@ parse_edu_ustb_sei_mde_xmu2_statement_RuleCallStatement returns [edu.ustb.sei.md
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1028]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1034]);
 	}
 	
 	a1 = '(' {
@@ -7482,15 +7621,15 @@ parse_edu_ustb_sei_mde_xmu2_statement_RuleCallStatement returns [edu.ustb.sei.md
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getRuleCallStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1029]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getRuleCallStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1030]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getRuleCallStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1031]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getRuleCallStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1032]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getRuleCallStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1033]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getRuleCallStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1034]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getRuleCallStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1035]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getRuleCallStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1036]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1037]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getRuleCallStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1037]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getRuleCallStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1038]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getRuleCallStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1039]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getRuleCallStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1040]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getRuleCallStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1041]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getRuleCallStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1042]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1043]);
 	}
 	
 	(
@@ -7537,8 +7676,8 @@ parse_edu_ustb_sei_mde_xmu2_statement_RuleCallStatement returns [edu.ustb.sei.md
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1038]);
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1039]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1044]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1045]);
 			}
 			
 			(
@@ -7554,14 +7693,14 @@ parse_edu_ustb_sei_mde_xmu2_statement_RuleCallStatement returns [edu.ustb.sei.md
 					}
 					{
 						// expected elements (follow set)
-						addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getRuleCallStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1040]);
-						addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getRuleCallStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1041]);
-						addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getRuleCallStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1042]);
-						addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getRuleCallStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1043]);
-						addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getRuleCallStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1044]);
-						addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getRuleCallStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1045]);
 						addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getRuleCallStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1046]);
 						addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getRuleCallStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1047]);
+						addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getRuleCallStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1048]);
+						addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getRuleCallStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1049]);
+						addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getRuleCallStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1050]);
+						addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getRuleCallStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1051]);
+						addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getRuleCallStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1052]);
+						addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getRuleCallStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1053]);
 					}
 					
 					(
@@ -7606,23 +7745,23 @@ parse_edu_ustb_sei_mde_xmu2_statement_RuleCallStatement returns [edu.ustb.sei.md
 					)
 					{
 						// expected elements (follow set)
-						addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1048]);
-						addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1049]);
+						addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1054]);
+						addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1055]);
 					}
 					
 				)
 				
 			)*			{
 				// expected elements (follow set)
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1050]);
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1051]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1056]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1057]);
 			}
 			
 		)
 		
 	)?	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1052]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1058]);
 	}
 	
 	a5 = ')' {
@@ -7636,14 +7775,14 @@ parse_edu_ustb_sei_mde_xmu2_statement_RuleCallStatement returns [edu.ustb.sei.md
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1053]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1054]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1055]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1056]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1057]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1058]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1059]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1059]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1060]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1061]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1062]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1063]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1064]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1065]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1066]);
 	}
 	
 ;
@@ -7663,14 +7802,14 @@ parse_edu_ustb_sei_mde_xmu2_statement_Skip returns [edu.ustb.sei.mde.xmu2.statem
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1061]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1062]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1063]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1064]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1065]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1066]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1067]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1067]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1068]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1069]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1070]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1071]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1072]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1073]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1074]);
 	}
 	
 ;
@@ -7690,7 +7829,7 @@ parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause returns [edu.ustb.sei.md
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1069]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1075]);
 	}
 	
 	a1 = '->' {
@@ -7704,15 +7843,15 @@ parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause returns [edu.ustb.sei.md
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDefaultCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1070]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDefaultCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1071]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDefaultCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1072]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDefaultCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1073]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDefaultCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1074]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDefaultCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1075]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDefaultCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1076]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDefaultCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1077]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDefaultCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1078]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDefaultCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1079]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDefaultCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1080]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDefaultCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1081]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDefaultCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1082]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDefaultCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1083]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDefaultCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1084]);
 	}
 	
 	(
@@ -7738,10 +7877,10 @@ parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause returns [edu.ustb.sei.md
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1079]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1080]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1081]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1082]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1085]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1086]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1087]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1088]);
 	}
 	
 ;
@@ -7803,26 +7942,6 @@ parse_edu_ustb_sei_mde_xmu2_expression_Path returns [edu.ustb.sei.mde.xmu2.expre
 	|	c1 = parse_edu_ustb_sei_mde_xmu2_expression_FeaturePath{ element = c1; /* this is a subclass or primitive expression choice */ }
 	|	c2 = parse_edu_ustb_sei_mde_xmu2_expression_OperationPath{ element = c2; /* this is a subclass or primitive expression choice */ }
 	|	c3 = parse_edu_ustb_sei_mde_xmu2_expression_PositionPath{ element = c3; /* this is a subclass or primitive expression choice */ }
-	
-;
-
-parse_edu_ustb_sei_mde_xmu2_expression_Expression returns [edu.ustb.sei.mde.xmu2.expression.Expression element = null]
-:
-	c0 = parse_edu_ustb_sei_mde_xmu2_expression_VariableExpression{ element = c0; /* this is a subclass or primitive expression choice */ }
-	|	c1 = parse_edu_ustb_sei_mde_xmu2_expression_PathExpression{ element = c1; /* this is a subclass or primitive expression choice */ }
-	|	c2 = parse_edu_ustb_sei_mde_xmu2_expression_EmptyExpression{ element = c2; /* this is a subclass or primitive expression choice */ }
-	|	c3 = parse_edu_ustb_sei_mde_xmu2_expression_StringLiteralExpression{ element = c3; /* this is a subclass or primitive expression choice */ }
-	|	c4 = parse_edu_ustb_sei_mde_xmu2_expression_IntegerLiteralExpression{ element = c4; /* this is a subclass or primitive expression choice */ }
-	|	c5 = parse_edu_ustb_sei_mde_xmu2_expression_BooleanLiteralExpression{ element = c5; /* this is a subclass or primitive expression choice */ }
-	|	c6 = parse_edu_ustb_sei_mde_xmu2_expression_EnumLiteralExpression{ element = c6; /* this is a subclass or primitive expression choice */ }
-	|	c7 = parse_edu_ustb_sei_mde_xmu2_expression_ObjectURIExpression{ element = c7; /* this is a subclass or primitive expression choice */ }
-	|	c8 = parse_edu_ustb_sei_mde_xmu2_expression_ParenExpression{ element = c8; /* this is a subclass or primitive expression choice */ }
-	|	c9 = parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression{ element = c9; /* this is a subclass or primitive expression choice */ }
-	|	c10 = parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression{ element = c10; /* this is a subclass or primitive expression choice */ }
-	|	c11 = parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression{ element = c11; /* this is a subclass or primitive expression choice */ }
-	|	c12 = parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression{ element = c12; /* this is a subclass or primitive expression choice */ }
-	|	c13 = parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression{ element = c13; /* this is a subclass or primitive expression choice */ }
-	|	c14 = parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression{ element = c14; /* this is a subclass or primitive expression choice */ }
 	
 ;
 

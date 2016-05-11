@@ -69,6 +69,7 @@ import edu.ustb.sei.mde.xmu2core.EnforceNodeStatement;
 import edu.ustb.sei.mde.xmu2core.EntryRuleParameter;
 import edu.ustb.sei.mde.xmu2core.EnumValueExpression;
 import edu.ustb.sei.mde.xmu2core.Expression;
+import edu.ustb.sei.mde.xmu2core.ForEachStatement;
 import edu.ustb.sei.mde.xmu2core.IntegerValueExpression;
 import edu.ustb.sei.mde.xmu2core.MatchPattern;
 import edu.ustb.sei.mde.xmu2core.ObjectValueExpression;
@@ -161,7 +162,7 @@ public class BXCodeGenerator {
 			p.getParameters().add(v);
 		}
 		
-		p.getStatements().addAll(convertStatement(rule.getStatement(),map,transformation));
+//		p.getStatements().addAll(convertStatement(rule.getStatement(),map,transformation));
 		
 		p.getBackwardStatements().addAll(this.convertStatementInBackwardMode(rule.getStatement(), map, transformation));
 		p.getForwardStatements().addAll(this.convertStatementInForwardMode(rule.getStatement(), map, transformation));
@@ -202,187 +203,187 @@ public class BXCodeGenerator {
 		}
 	}
 
-	private List<Statement> convertStatement(edu.ustb.sei.mde.xmu2.statement.Statement statement, VarMapStack varMap, Transformation transformation) {
-		if(statement==null) return Collections.emptyList();
-		
-		if(statement instanceof UpdateStatement) {
-			AlignStatement stmt = Xmu2coreFactory.eINSTANCE.createAlignStatement();
-			
-			
-			varMap.push();
-			
-			refreshVariableTypes(varMap,false,((UpdateStatement) statement).getSource(),((UpdateStatement) statement).getView());
-			stmt.setSource(convertPatternMatching(((UpdateStatement) statement).getSource(), varMap));
-			stmt.setView(convertPatternMatching(((UpdateStatement) statement).getView(), varMap));
-			
-			stmt.getViewCreationStatements().addAll(convertPatternEnforcementStatement(((UpdateStatement) statement).getView(), varMap,false));
-			
-			varMap.push();
-			UpdateClause m = findUpdateClause(ActionType.MATCH, (UpdateStatement)statement);
-			if(m!=null) {
-				boolean skip = hasSkip(m.getStatement());
-				List<Statement> defaultSourceCreationStatements = skip ? null :
-						convertPatternEnforcementStatement(((UpdateStatement) statement).getSource(), varMap, true);
-				List<Statement> specifiedStatements = reorderAndCombine(convertStatement(m.getStatement(), varMap, transformation), defaultSourceCreationStatements);
-				stmt.getMatch().addAll(specifiedStatements);
-			}
-			varMap.pop();
-			
-			varMap.push();
-			UpdateClause ums = findUpdateClause(ActionType.UNMATCHS, (UpdateStatement)statement);
-			if(ums!=null) {
-				stmt.getUnmatchs().addAll(convertStatement(ums.getStatement(), varMap, transformation));
-			}
-			varMap.pop();
-			
-			varMap.push();
-			UpdateClause umv = findUpdateClause(ActionType.UNMATCHV, (UpdateStatement)statement);
-			if(umv!=null) {
-				boolean skip = hasSkip(umv.getStatement());
-				List<Statement> defaultSourceCreationStatements = null, defaultMatchStatements = null;
-				
-				if(!skip) {
-					if(m!=null)
-						defaultMatchStatements = convertStatement(m.getStatement(), varMap, transformation);
-					defaultSourceCreationStatements = convertPatternEnforcementStatement(((UpdateStatement) statement).getSource(), varMap, true);
-				}
-				
-				List<Statement> convertStatement = convertStatement(umv.getStatement(), varMap, transformation);
-				List<Statement> specifiedStatements = reorderAndCombine(convertStatement, defaultMatchStatements, defaultSourceCreationStatements);
-				stmt.getUnmatchv().addAll(specifiedStatements);
-			} else {
-				List<Statement> defaultSourceCreationStatements = null, defaultMatchStatements = null;
-				
-				defaultSourceCreationStatements = convertPatternEnforcementStatement(((UpdateStatement) statement).getSource(), varMap, true);
-				
-				if(m!=null)
-					defaultMatchStatements = convertStatement(m.getStatement(), varMap, transformation);
-
-				List<Statement> specifiedStatements = reorderAndCombine(defaultMatchStatements, defaultSourceCreationStatements);
-				
-				stmt.getUnmatchv().addAll(specifiedStatements);
-			}
-			varMap.pop();
-			
-			varMap.pop();
-			
-			return Collections.singletonList(stmt);
-			
-		} else if(statement instanceof SwitchStatement) {
-			CaseStatement stmt = Xmu2coreFactory.eINSTANCE.createCaseStatement();
-			String rootVarName = ((SwitchStatement) statement).getRoot().getVariable();
-			Variable rootVar = varMap.get(rootVarName);
-			
-			stmt.setTag(rootVar.getTag());
-			
-			for(edu.ustb.sei.mde.xmu2.statement.CaseClause c : ((SwitchStatement) statement).getCases()) {
-				if(c instanceof PatternCaseClause) {
-					CasePatternClause cc = Xmu2coreFactory.eINSTANCE.createCasePatternClause();
-					
-					varMap.push();
-					refreshVariableTypes(varMap,false,((PatternCaseClause) c).getCondition());
-					cc.setCondition(convertPatternMatching(((PatternCaseClause) c).getCondition(), varMap));
-					cc.getAction().addAll(convertStatement(c.getAction(), varMap, transformation));
-					
-					if(rootVar.getTag()==DomainTag.VIEW) {
-						cc.getViewCreationStatements().addAll(convertPatternEnforcementStatement(((PatternCaseClause) c).getCondition(), varMap, false));
-						cc.getSourceCheckStatements().addAll(convertSourceCheckStatementV1(c.getAction(),varMap,transformation));
-					}
-					
-					
-					stmt.getClauses().add(cc);
-					
-					varMap.pop();
-					
-				} else if(c instanceof ExpressionCaseClause) {
-					CaseExpressionClause cc = Xmu2coreFactory.eINSTANCE.createCaseExpressionClause();
-					
-					varMap.push();
-					cc.setCondition(convertExpression(((ExpressionCaseClause) c).getCondition(), varMap,false));
-					cc.getAction().addAll(convertStatement(c.getAction(), varMap, transformation));
-					
-					if(rootVar.getTag()==DomainTag.VIEW) {
-						cc.getSourceCheckStatements().addAll(convertSourceCheckStatementV1(c.getAction(),varMap,transformation));
-					}
-					
-					varMap.pop();
-					
-					stmt.getClauses().add(cc);
-				} else if(c instanceof DefaultCaseClause) {
-					CaseExpressionClause cc = Xmu2coreFactory.eINSTANCE.createCaseExpressionClause();
-					edu.ustb.sei.mde.xmu2core.BooleanValueExpression cond = Xmu2coreFactory.eINSTANCE.createBooleanValueExpression();
-					cond.setValue(true);
-
-					varMap.push();
-					cc.setCondition(cond);
-					cc.getAction().addAll(convertStatement(c.getAction(), varMap, transformation));
-					
-					if(rootVar.getTag()==DomainTag.VIEW) {
-						cc.getSourceCheckStatements().addAll(convertSourceCheckStatementV1(c.getAction(),varMap,transformation));
-					}
-					varMap.pop();
-					
-					stmt.getClauses().add(cc);
-				}
-			}
-			
-			return Collections.singletonList(stmt);
-		} else if(statement instanceof RuleCallStatement) {
-			String ruleName = ((RuleCallStatement) statement).getRule().getName();
-			Procedure p = null;
-			
-			for(Procedure ip : transformation.getProcedures()) {
-				if(ip.getName().equals(ruleName)) {
-					p = ip;
-					break;
-				}
-			}
-			
-			edu.ustb.sei.mde.xmu2core.ProcedureCallStatement stmt = Xmu2coreFactory.eINSTANCE.createProcedureCallStatement();
-			stmt.setProcedure(p);
-			for(edu.ustb.sei.mde.xmu2.expression.Expression e : ((RuleCallStatement) statement).getParameters()) {
-				stmt.getParameters().add(convertExpression(e, varMap, false));
-				stmt.getUpdatedParameters().add(convertExpression(e,varMap,true));
-			}
-			return Collections.singletonList(stmt);
-			
-		} else if(statement instanceof EnforcePatternStatement) {
-			refreshVariableTypes(varMap,true,((EnforcePatternStatement) statement).getPattern());
-			return convertPatternEnforcementStatement(((EnforcePatternStatement) statement).getPattern(),varMap,true);
-		} else if(statement instanceof edu.ustb.sei.mde.xmu2.statement.DeleteNodeStatement) {
-			edu.ustb.sei.mde.xmu2core.DeleteNodeStatement stmt = Xmu2coreFactory.eINSTANCE.createDeleteNodeStatement();
-			String sourceVarName = ((edu.ustb.sei.mde.xmu2.statement.DeleteNodeStatement) statement).getNode().getVariable();
-			Variable pv = getVariableInUpdatedContext(sourceVarName, varMap);
-			stmt.setTarget(pv);
-			return Collections.singletonList(stmt);
-		} else if(statement instanceof edu.ustb.sei.mde.xmu2.statement.DeleteLinkStatement) {
-			edu.ustb.sei.mde.xmu2core.DeleteLinkStatement stmt = Xmu2coreFactory.eINSTANCE.createDeleteLinkStatement();
-			String sourceVarName = ((edu.ustb.sei.mde.xmu2.statement.DeleteLinkStatement) statement).getSource().getVariable();
-			String feature = ((edu.ustb.sei.mde.xmu2.statement.DeleteLinkStatement) statement).getFeature();
-			Variable pv = getVariableInUpdatedContext(sourceVarName, varMap);
-			EClass type = (EClass) pv.getType();
-			EStructuralFeature f = type.getEStructuralFeature(feature);
-			stmt.setSource(pv);
-			stmt.setFeature(f);
-			stmt.setTarget(convertExpression(((edu.ustb.sei.mde.xmu2.statement.DeleteLinkStatement) statement).getTarget(),varMap,true));
-			return Collections.singletonList(stmt);
-		} else if(statement instanceof edu.ustb.sei.mde.xmu2.statement.ForEachStatement) {
-			edu.ustb.sei.mde.xmu2core.ForEachStatement stmt = Xmu2coreFactory.eINSTANCE.createForEachStatement();
-			stmt.setPattern(convertPatternMatching(((edu.ustb.sei.mde.xmu2.statement.ForEachStatement) statement).getPattern(),varMap));
-			stmt.getAction().addAll(convertStatement(((edu.ustb.sei.mde.xmu2.statement.ForEachStatement) statement).getAction(),varMap,transformation));
-			return Collections.singletonList(stmt);
-		} else if(statement instanceof edu.ustb.sei.mde.xmu2.statement.BlockStatement) {
-//			edu.ustb.sei.mde.xmu2core.BlockStatement result = Xmu2coreFactory.eINSTANCE.createBlockStatement();
-			List<Statement> result = new ArrayList<Statement>();
-			for(edu.ustb.sei.mde.xmu2.statement.Statement stmt : ((edu.ustb.sei.mde.xmu2.statement.BlockStatement) statement).getBody()) {
-				result.addAll(this.convertStatement(stmt,varMap,transformation));
-			}
-			return result;
-		} else if(statement instanceof Skip) {
-			return Collections.EMPTY_LIST;
-		}
-		throw new BuildException("Unconverted statement "+statement);
-	}
+//	private List<Statement> convertStatement(edu.ustb.sei.mde.xmu2.statement.Statement statement, VarMapStack varMap, Transformation transformation) {
+//		if(statement==null) return Collections.emptyList();
+//		
+//		if(statement instanceof UpdateStatement) {
+//			AlignStatement stmt = Xmu2coreFactory.eINSTANCE.createAlignStatement();
+//			
+//			
+//			varMap.push();
+//			
+//			refreshVariableTypes(varMap,false,((UpdateStatement) statement).getSource(),((UpdateStatement) statement).getView());
+//			stmt.setSource(convertPatternMatching(((UpdateStatement) statement).getSource(), varMap));
+//			stmt.setView(convertPatternMatching(((UpdateStatement) statement).getView(), varMap));
+//			
+//			stmt.getViewCreationStatements().addAll(convertPatternEnforcementStatement(((UpdateStatement) statement).getView(), varMap,false));
+//			
+//			varMap.push();
+//			UpdateClause m = findUpdateClause(ActionType.MATCH, (UpdateStatement)statement);
+//			if(m!=null) {
+//				boolean skip = hasSkip(m.getStatement());
+//				List<Statement> defaultSourceCreationStatements = skip ? null :
+//						convertPatternEnforcementStatement(((UpdateStatement) statement).getSource(), varMap, true);
+//				List<Statement> specifiedStatements = reorderAndCombine(convertStatement(m.getStatement(), varMap, transformation), defaultSourceCreationStatements);
+//				stmt.getMatch().addAll(specifiedStatements);
+//			}
+//			varMap.pop();
+//			
+//			varMap.push();
+//			UpdateClause ums = findUpdateClause(ActionType.UNMATCHS, (UpdateStatement)statement);
+//			if(ums!=null) {
+//				stmt.getUnmatchs().addAll(convertStatement(ums.getStatement(), varMap, transformation));
+//			}
+//			varMap.pop();
+//			
+//			varMap.push();
+//			UpdateClause umv = findUpdateClause(ActionType.UNMATCHV, (UpdateStatement)statement);
+//			if(umv!=null) {
+//				boolean skip = hasSkip(umv.getStatement());
+//				List<Statement> defaultSourceCreationStatements = null, defaultMatchStatements = null;
+//				
+//				if(!skip) {
+//					if(m!=null)
+//						defaultMatchStatements = convertStatement(m.getStatement(), varMap, transformation);
+//					defaultSourceCreationStatements = convertPatternEnforcementStatement(((UpdateStatement) statement).getSource(), varMap, true);
+//				}
+//				
+//				List<Statement> convertStatement = convertStatement(umv.getStatement(), varMap, transformation);
+//				List<Statement> specifiedStatements = reorderAndCombine(convertStatement, defaultMatchStatements, defaultSourceCreationStatements);
+//				stmt.getUnmatchv().addAll(specifiedStatements);
+//			} else {
+//				List<Statement> defaultSourceCreationStatements = null, defaultMatchStatements = null;
+//				
+//				defaultSourceCreationStatements = convertPatternEnforcementStatement(((UpdateStatement) statement).getSource(), varMap, true);
+//				
+//				if(m!=null)
+//					defaultMatchStatements = convertStatement(m.getStatement(), varMap, transformation);
+//
+//				List<Statement> specifiedStatements = reorderAndCombine(defaultMatchStatements, defaultSourceCreationStatements);
+//				
+//				stmt.getUnmatchv().addAll(specifiedStatements);
+//			}
+//			varMap.pop();
+//			
+//			varMap.pop();
+//			
+//			return Collections.singletonList(stmt);
+//			
+//		} else if(statement instanceof SwitchStatement) {
+//			CaseStatement stmt = Xmu2coreFactory.eINSTANCE.createCaseStatement();
+//			String rootVarName = ((SwitchStatement) statement).getRoot().getVariable();
+//			Variable rootVar = varMap.get(rootVarName);
+//			
+//			stmt.setTag(rootVar.getTag());
+//			
+//			for(edu.ustb.sei.mde.xmu2.statement.CaseClause c : ((SwitchStatement) statement).getCases()) {
+//				if(c instanceof PatternCaseClause) {
+//					CasePatternClause cc = Xmu2coreFactory.eINSTANCE.createCasePatternClause();
+//					
+//					varMap.push();
+//					refreshVariableTypes(varMap,false,((PatternCaseClause) c).getCondition());
+//					cc.setCondition(convertPatternMatching(((PatternCaseClause) c).getCondition(), varMap));
+//					cc.getAction().addAll(convertStatement(c.getAction(), varMap, transformation));
+//					
+//					if(rootVar.getTag()==DomainTag.VIEW) {
+//						cc.getViewCreationStatements().addAll(convertPatternEnforcementStatement(((PatternCaseClause) c).getCondition(), varMap, false));
+//						cc.getSourceCheckStatements().addAll(convertSourceCheckStatementV1(c.getAction(),varMap,transformation));
+//					}
+//					
+//					
+//					stmt.getClauses().add(cc);
+//					
+//					varMap.pop();
+//					
+//				} else if(c instanceof ExpressionCaseClause) {
+//					CaseExpressionClause cc = Xmu2coreFactory.eINSTANCE.createCaseExpressionClause();
+//					
+//					varMap.push();
+//					cc.setCondition(convertExpression(((ExpressionCaseClause) c).getCondition(), varMap,false));
+//					cc.getAction().addAll(convertStatement(c.getAction(), varMap, transformation));
+//					
+//					if(rootVar.getTag()==DomainTag.VIEW) {
+//						cc.getSourceCheckStatements().addAll(convertSourceCheckStatementV1(c.getAction(),varMap,transformation));
+//					}
+//					
+//					varMap.pop();
+//					
+//					stmt.getClauses().add(cc);
+//				} else if(c instanceof DefaultCaseClause) {
+//					CaseExpressionClause cc = Xmu2coreFactory.eINSTANCE.createCaseExpressionClause();
+//					edu.ustb.sei.mde.xmu2core.BooleanValueExpression cond = Xmu2coreFactory.eINSTANCE.createBooleanValueExpression();
+//					cond.setValue(true);
+//
+//					varMap.push();
+//					cc.setCondition(cond);
+//					cc.getAction().addAll(convertStatement(c.getAction(), varMap, transformation));
+//					
+//					if(rootVar.getTag()==DomainTag.VIEW) {
+//						cc.getSourceCheckStatements().addAll(convertSourceCheckStatementV1(c.getAction(),varMap,transformation));
+//					}
+//					varMap.pop();
+//					
+//					stmt.getClauses().add(cc);
+//				}
+//			}
+//			
+//			return Collections.singletonList(stmt);
+//		} else if(statement instanceof RuleCallStatement) {
+//			String ruleName = ((RuleCallStatement) statement).getRule().getName();
+//			Procedure p = null;
+//			
+//			for(Procedure ip : transformation.getProcedures()) {
+//				if(ip.getName().equals(ruleName)) {
+//					p = ip;
+//					break;
+//				}
+//			}
+//			
+//			edu.ustb.sei.mde.xmu2core.ProcedureCallStatement stmt = Xmu2coreFactory.eINSTANCE.createProcedureCallStatement();
+//			stmt.setProcedure(p);
+//			for(edu.ustb.sei.mde.xmu2.expression.Expression e : ((RuleCallStatement) statement).getParameters()) {
+//				stmt.getParameters().add(convertExpression(e, varMap, false));
+//				stmt.getUpdatedParameters().add(convertExpression(e,varMap,true));
+//			}
+//			return Collections.singletonList(stmt);
+//			
+//		} else if(statement instanceof EnforcePatternStatement) {
+//			refreshVariableTypes(varMap,true,((EnforcePatternStatement) statement).getPattern());
+//			return convertPatternEnforcementStatement(((EnforcePatternStatement) statement).getPattern(),varMap,true);
+//		} else if(statement instanceof edu.ustb.sei.mde.xmu2.statement.DeleteNodeStatement) {
+//			edu.ustb.sei.mde.xmu2core.DeleteNodeStatement stmt = Xmu2coreFactory.eINSTANCE.createDeleteNodeStatement();
+//			String sourceVarName = ((edu.ustb.sei.mde.xmu2.statement.DeleteNodeStatement) statement).getNode().getVariable();
+//			Variable pv = getVariableInUpdatedContext(sourceVarName, varMap);
+//			stmt.setTarget(pv);
+//			return Collections.singletonList(stmt);
+//		} else if(statement instanceof edu.ustb.sei.mde.xmu2.statement.DeleteLinkStatement) {
+//			edu.ustb.sei.mde.xmu2core.DeleteLinkStatement stmt = Xmu2coreFactory.eINSTANCE.createDeleteLinkStatement();
+//			String sourceVarName = ((edu.ustb.sei.mde.xmu2.statement.DeleteLinkStatement) statement).getSource().getVariable();
+//			String feature = ((edu.ustb.sei.mde.xmu2.statement.DeleteLinkStatement) statement).getFeature();
+//			Variable pv = getVariableInUpdatedContext(sourceVarName, varMap);
+//			EClass type = (EClass) pv.getType();
+//			EStructuralFeature f = type.getEStructuralFeature(feature);
+//			stmt.setSource(pv);
+//			stmt.setFeature(f);
+//			stmt.setTarget(convertExpression(((edu.ustb.sei.mde.xmu2.statement.DeleteLinkStatement) statement).getTarget(),varMap,true));
+//			return Collections.singletonList(stmt);
+//		} else if(statement instanceof edu.ustb.sei.mde.xmu2.statement.ForEachStatement) {
+//			edu.ustb.sei.mde.xmu2core.ForEachStatement stmt = Xmu2coreFactory.eINSTANCE.createForEachStatement();
+//			stmt.setPattern(convertPatternMatching(((edu.ustb.sei.mde.xmu2.statement.ForEachStatement) statement).getPattern(),varMap));
+//			stmt.getAction().addAll(convertStatement(((edu.ustb.sei.mde.xmu2.statement.ForEachStatement) statement).getAction(),varMap,transformation));
+//			return Collections.singletonList(stmt);
+//		} else if(statement instanceof edu.ustb.sei.mde.xmu2.statement.BlockStatement) {
+////			edu.ustb.sei.mde.xmu2core.BlockStatement result = Xmu2coreFactory.eINSTANCE.createBlockStatement();
+//			List<Statement> result = new ArrayList<Statement>();
+//			for(edu.ustb.sei.mde.xmu2.statement.Statement stmt : ((edu.ustb.sei.mde.xmu2.statement.BlockStatement) statement).getBody()) {
+//				result.addAll(this.convertStatement(stmt,varMap,transformation));
+//			}
+//			return result;
+//		} else if(statement instanceof Skip) {
+//			return Collections.EMPTY_LIST;
+//		}
+//		throw new BuildException("Unconverted statement "+statement);
+//	}
 
 	
 	private List<Statement> convertStatementInBackwardMode(edu.ustb.sei.mde.xmu2.statement.Statement statement, 
@@ -675,7 +676,7 @@ public class BXCodeGenerator {
 					List<Statement> actions = new ArrayList<Statement>();
 
 					if(c instanceof PatternCaseClause) {
-						List<Statement> sourceCheckAndUpdateStatements = convertSourceCheckStatementV2(c.getAction(),varMap,transformation);
+						List<Statement> sourceCheckAndUpdateStatements = convertSourceCheckStatement(c.getAction(),varMap,transformation);
 						List<Statement> viewCreationStatements = convertPatternEnforcementStatement(((PatternCaseClause)
 								 c).getCondition(), varMap, false);
 						
@@ -694,7 +695,7 @@ public class BXCodeGenerator {
 						});
 						actions.addAll(viewCreationStatements);//should be further reordered (at runtime)
 					} else if(c instanceof ExpressionCaseClause) {
-						List<Statement> sourceCheckAndUpdateStatements = convertSourceCheckStatementV2(c.getAction(),varMap,transformation);
+						List<Statement> sourceCheckAndUpdateStatements = convertSourceCheckStatement(c.getAction(),varMap,transformation);
 						EnforceExpressionStatement ens = Xmu2coreFactory.eINSTANCE.createEnforceExpressionStatement();
 						ens.setExpression(convertExpression(((ExpressionCaseClause) c).getCondition(), varMap, false));
 						sourceCheckAndUpdateStatements.forEach((i)->{
@@ -711,7 +712,7 @@ public class BXCodeGenerator {
 						});
 						actions.add(ens);
 					} else if(c instanceof DefaultCaseClause) {
-						List<Statement> sourceCheckAndUpdateStatements = convertSourceCheckStatementV2(c.getAction(),varMap,transformation);
+						List<Statement> sourceCheckAndUpdateStatements = convertSourceCheckStatement(c.getAction(),varMap,transformation);
 						sourceCheckAndUpdateStatements.forEach((i)->{
 							if(i instanceof DeleteLinkStatement
 									|| i instanceof DeleteNodeStatement
@@ -891,12 +892,12 @@ public class BXCodeGenerator {
 		}
 	}
 
-	private List<Statement> convertSourceCheckStatementV2(
+	private List<Statement> convertSourceCheckStatement(
 			edu.ustb.sei.mde.xmu2.statement.Statement action, VarMapStack varMap, Transformation transformation) {
 		if(action instanceof BlockStatement) {
 			List<Statement> res = new ArrayList<Statement>();
 			for(edu.ustb.sei.mde.xmu2.statement.Statement s : ((BlockStatement) action).getBody()) {
-				res.addAll(convertSourceCheckStatementV2(s, varMap,transformation));
+				res.addAll(convertSourceCheckStatement(s, varMap,transformation));
 			}
 			return res;
 		} else if(action instanceof EnforcePatternStatement) {
@@ -909,23 +910,23 @@ public class BXCodeGenerator {
 		}
 	}
 	
-	private List<Statement> convertSourceCheckStatementV1(
-			edu.ustb.sei.mde.xmu2.statement.Statement action, VarMapStack varMap, Transformation transformation) {
-		if(action instanceof BlockStatement) {
-			List<Statement> res = new ArrayList<Statement>();
-			for(edu.ustb.sei.mde.xmu2.statement.Statement s : ((BlockStatement) action).getBody()) {
-				res.addAll(convertSourceCheckStatementV1(s, varMap,transformation));
-			}
-			return res;
-		} else if(action instanceof EnforcePatternStatement) {
-			Pattern pattern = convertPatternMatching(((EnforcePatternStatement) action).getPattern(),varMap);
-			MatchPattern stmt = Xmu2coreFactory.eINSTANCE.createMatchPattern();
-			stmt.setPattern(pattern);
-			return Collections.singletonList(stmt);
-		} else {
-			return convertStatement(action, varMap, transformation);
-		}
-	}
+//	private List<Statement> convertSourceCheckStatementV1(
+//			edu.ustb.sei.mde.xmu2.statement.Statement action, VarMapStack varMap, Transformation transformation) {
+//		if(action instanceof BlockStatement) {
+//			List<Statement> res = new ArrayList<Statement>();
+//			for(edu.ustb.sei.mde.xmu2.statement.Statement s : ((BlockStatement) action).getBody()) {
+//				res.addAll(convertSourceCheckStatementV1(s, varMap,transformation));
+//			}
+//			return res;
+//		} else if(action instanceof EnforcePatternStatement) {
+//			Pattern pattern = convertPatternMatching(((EnforcePatternStatement) action).getPattern(),varMap);
+//			MatchPattern stmt = Xmu2coreFactory.eINSTANCE.createMatchPattern();
+//			stmt.setPattern(pattern);
+//			return Collections.singletonList(stmt);
+//		} else {
+//			return convertStatement(action, varMap, transformation);
+//		}
+//	}
 
 	private boolean hasSkip(edu.ustb.sei.mde.xmu2.statement.Statement root) {
 		if(root instanceof Skip) return true;
@@ -1556,6 +1557,8 @@ public class BXCodeGenerator {
 						SwitchStatement stmt = (SwitchStatement)pat.eContainer().eContainer();
 						Variable rv = map.get(stmt.getRoot().getVariable());
 						setVariableDomainTag(var, rv.getTag());
+					} else if(pat.eContainer() instanceof edu.ustb.sei.mde.xmu2.statement.ForEachStatement) {
+						setVariableDomainTag(var, DomainTag.SOURCE);// should I allow for each in view?
 					} else {
 						throw new BuildException("Unknown variable source "+var.getName());
 					}

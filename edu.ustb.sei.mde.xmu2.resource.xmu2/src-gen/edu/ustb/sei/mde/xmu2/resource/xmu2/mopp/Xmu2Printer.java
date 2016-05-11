@@ -1145,6 +1145,19 @@ public class Xmu2Printer implements edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Tex
 			out.print(sWriter.toString());
 			printCountingMap.putAll(printCountingMap1);
 		}
+		// DEFINITION PART BEGINS (CompoundDefinition)
+		sWriter = new java.io.StringWriter();
+		out1 = new java.io.PrintWriter(sWriter);
+		printCountingMap1 = new java.util.LinkedHashMap<String, Integer>(printCountingMap);
+		print_edu_ustb_sei_mde_xmu2_pattern_ObjectPatternExpression_1(element, localtab, out1, printCountingMap1);
+		if (printCountingMap.equals(printCountingMap1)) {
+			out1.close();
+		} else {
+			out1.flush();
+			out1.close();
+			out.print(sWriter.toString());
+			printCountingMap.putAll(printCountingMap1);
+		}
 		// DEFINITION PART BEGINS (CsString)
 		out.print("=");
 		out.print(" ");
@@ -1162,36 +1175,6 @@ public class Xmu2Printer implements edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Tex
 	public void print_edu_ustb_sei_mde_xmu2_pattern_ObjectPatternExpression_0(edu.ustb.sei.mde.xmu2.pattern.ObjectPatternExpression element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
 		String localtab = outertab;
 		int count;
-		java.io.StringWriter sWriter = null;
-		java.io.PrintWriter out1 = null;
-		java.util.Map<String, Integer> printCountingMap1 = null;
-		// DEFINITION PART BEGINS (CompoundDefinition)
-		sWriter = new java.io.StringWriter();
-		out1 = new java.io.PrintWriter(sWriter);
-		printCountingMap1 = new java.util.LinkedHashMap<String, Integer>(printCountingMap);
-		print_edu_ustb_sei_mde_xmu2_pattern_ObjectPatternExpression_0_0(element, localtab, out1, printCountingMap1);
-		if (printCountingMap.equals(printCountingMap1)) {
-			out1.close();
-		} else {
-			out1.flush();
-			out1.close();
-			out.print(sWriter.toString());
-			printCountingMap.putAll(printCountingMap1);
-		}
-		// DEFINITION PART BEGINS (Containment)
-		count = printCountingMap.get("position");
-		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.OBJECT_PATTERN_EXPRESSION__POSITION));
-			if (o != null) {
-				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
-			}
-			printCountingMap.put("position", count - 1);
-		}
-	}
-	
-	public void print_edu_ustb_sei_mde_xmu2_pattern_ObjectPatternExpression_0_0(edu.ustb.sei.mde.xmu2.pattern.ObjectPatternExpression element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
-		String localtab = outertab;
-		int count;
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("selector");
 		if (count > 0) {
@@ -1200,6 +1183,20 @@ public class Xmu2Printer implements edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Tex
 				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
 			}
 			printCountingMap.put("selector", count - 1);
+		}
+	}
+	
+	public void print_edu_ustb_sei_mde_xmu2_pattern_ObjectPatternExpression_1(edu.ustb.sei.mde.xmu2.pattern.ObjectPatternExpression element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
+		String localtab = outertab;
+		int count;
+		// DEFINITION PART BEGINS (Containment)
+		count = printCountingMap.get("position");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.OBJECT_PATTERN_EXPRESSION__POSITION));
+			if (o != null) {
+				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
+			}
+			printCountingMap.put("position", count - 1);
 		}
 	}
 	
@@ -1253,6 +1250,19 @@ public class Xmu2Printer implements edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Tex
 			out.print(sWriter.toString());
 			printCountingMap.putAll(printCountingMap1);
 		}
+		// DEFINITION PART BEGINS (CompoundDefinition)
+		sWriter = new java.io.StringWriter();
+		out1 = new java.io.PrintWriter(sWriter);
+		printCountingMap1 = new java.util.LinkedHashMap<String, Integer>(printCountingMap);
+		print_edu_ustb_sei_mde_xmu2_pattern_PropertyPatternExpression_1(element, localtab, out1, printCountingMap1);
+		if (printCountingMap.equals(printCountingMap1)) {
+			out1.close();
+		} else {
+			out1.flush();
+			out1.close();
+			out.print(sWriter.toString());
+			printCountingMap.putAll(printCountingMap1);
+		}
 		// DEFINITION PART BEGINS (CsString)
 		out.print("=");
 		out.print(" ");
@@ -1270,36 +1280,6 @@ public class Xmu2Printer implements edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Tex
 	public void print_edu_ustb_sei_mde_xmu2_pattern_PropertyPatternExpression_0(edu.ustb.sei.mde.xmu2.pattern.PropertyPatternExpression element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
 		String localtab = outertab;
 		int count;
-		java.io.StringWriter sWriter = null;
-		java.io.PrintWriter out1 = null;
-		java.util.Map<String, Integer> printCountingMap1 = null;
-		// DEFINITION PART BEGINS (CompoundDefinition)
-		sWriter = new java.io.StringWriter();
-		out1 = new java.io.PrintWriter(sWriter);
-		printCountingMap1 = new java.util.LinkedHashMap<String, Integer>(printCountingMap);
-		print_edu_ustb_sei_mde_xmu2_pattern_PropertyPatternExpression_0_0(element, localtab, out1, printCountingMap1);
-		if (printCountingMap.equals(printCountingMap1)) {
-			out1.close();
-		} else {
-			out1.flush();
-			out1.close();
-			out.print(sWriter.toString());
-			printCountingMap.putAll(printCountingMap1);
-		}
-		// DEFINITION PART BEGINS (Containment)
-		count = printCountingMap.get("position");
-		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.PROPERTY_PATTERN_EXPRESSION__POSITION));
-			if (o != null) {
-				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
-			}
-			printCountingMap.put("position", count - 1);
-		}
-	}
-	
-	public void print_edu_ustb_sei_mde_xmu2_pattern_PropertyPatternExpression_0_0(edu.ustb.sei.mde.xmu2.pattern.PropertyPatternExpression element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
-		String localtab = outertab;
-		int count;
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("selector");
 		if (count > 0) {
@@ -1308,6 +1288,20 @@ public class Xmu2Printer implements edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Tex
 				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
 			}
 			printCountingMap.put("selector", count - 1);
+		}
+	}
+	
+	public void print_edu_ustb_sei_mde_xmu2_pattern_PropertyPatternExpression_1(edu.ustb.sei.mde.xmu2.pattern.PropertyPatternExpression element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
+		String localtab = outertab;
+		int count;
+		// DEFINITION PART BEGINS (Containment)
+		count = printCountingMap.get("position");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.PROPERTY_PATTERN_EXPRESSION__POSITION));
+			if (o != null) {
+				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
+			}
+			printCountingMap.put("position", count - 1);
 		}
 	}
 	

@@ -6,23 +6,6 @@
  */
 package edu.ustb.sei.mde.xmu2.resource.xmu2.launch;
 
-import java.io.File;
-
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.debug.core.ILaunchConfiguration;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
-
-import edu.ustb.sei.mde.modeling.ui.ConsolePrinter;
-import edu.ustb.sei.mde.modeling.ui.ConsoleUtil;
-import edu.ustb.sei.mde.xmu2.runtime.executor.BackwardModelEnforceInterpreter;
-import edu.ustb.sei.mde.xmu2.runtime.executor.ForwardModelEnforceInterpreter;
-import edu.ustb.sei.mde.xmu2.runtime.executor.ModelEnforceInterpreter;
-import edu.ustb.sei.mde.xmu2.runtime.structures.Environment;
-import edu.ustb.sei.mde.xmu2.util.AnalysisUtil;
-import edu.ustb.sei.mde.xmu2core.Transformation;
-
-
 /**
  * A class that provides common methods that are required by launch configuration
  * delegates.
@@ -38,7 +21,6 @@ public class Xmu2LaunchConfigurationHelper {
 		}
 	}
 	
-	
 	/**
 	 * Launch an example interpreter that prints object to System.out.
 	 */
@@ -48,7 +30,6 @@ public class Xmu2LaunchConfigurationHelper {
 		SystemOutInterpreter delegate = new SystemOutInterpreter();
 		delegate.addObjectTreeToInterpreteTopDown(root);
 		launchInterpreter(configuration, mode, launch, monitor, delegate, null);
-		
 	}
 	
 	public <ResultType, ContextType> void launchInterpreter(org.eclipse.debug.core.ILaunchConfiguration configuration, String mode, org.eclipse.debug.core.ILaunch launch, org.eclipse.core.runtime.IProgressMonitor monitor, edu.ustb.sei.mde.xmu2.resource.xmu2.util.AbstractXmu2Interpreter<ResultType, ContextType> delegate, final ContextType context) throws org.eclipse.core.runtime.CoreException {

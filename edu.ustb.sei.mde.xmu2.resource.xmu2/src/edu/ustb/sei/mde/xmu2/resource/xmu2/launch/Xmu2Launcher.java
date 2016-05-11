@@ -12,9 +12,6 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.widgets.Display;
 
 import edu.ustb.sei.mde.modeling.ui.ConsolePrinter;
 import edu.ustb.sei.mde.modeling.ui.ConsoleUtil;

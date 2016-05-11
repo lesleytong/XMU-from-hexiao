@@ -134,7 +134,7 @@ public class ModelCheckInterpreter extends ExpressionCheckInterpreter {
 				if(oldValue.isUndefined()==false) {
 					if(oldValue!=expect && oldValue.getValue()!=expect.getValue() 
 							&& oldValue.getValue().equals(expect.getValue())==false)
-						throw new ContextException("cannot assign a varialbe twice");
+						return false;
 					else return true;
 				} else {
 					context.put(((VariableExpression) invalid).getVariable(), expect);
@@ -159,12 +159,14 @@ public class ModelCheckInterpreter extends ExpressionCheckInterpreter {
 //					return false;
 //				
 //				return context.putValue(((VariableExp) invalid).getVar(), SafeType.createFromValue(expV));
-				throw new InvalidCalculationException("cannot change model in model check mode");
+//				throw new InvalidCalculationException("cannot change model in model check mode");
+				return false;
 			}
 //		} else if(invalid instanceof ParenExpression) {
 //			return enforceExpression(((ParenExpression) invalid).getBody(),context,expect);
 		}
-		throw new InvalidCalculationException("cannot enforce atomic expression "+invalid);
+		return false;
+//		throw new InvalidCalculationException("cannot enforce atomic expression "+invalid);
 	}
 
 	protected boolean enforceAdditiveExpression(AdditiveExpression invalid, Context context, SafeType expect) {

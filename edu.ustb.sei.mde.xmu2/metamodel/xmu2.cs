@@ -54,8 +54,8 @@ RULES {
 	//Pattern
 	pattern.Pattern ::= root ("[" guard:expression.BooleanOrExpression,expression.BooleanAndExpression,expression.RelationalExpression,expression.AdditiveExpression,expression.MultiplicativeExpression,expression.UnaryExpression,expression.PathExpression, expression.AtomicExpression "]")?;
 	pattern.PatternNode ::= variable ("{" (expressions ("," expressions)*)? "}")?;
-	pattern.ObjectPatternExpression ::= feature[NAME] ((selector)? position)? "=" targetNode;
-	pattern.PropertyPatternExpression ::= feature[NAME] ((selector)? position)? "=" targetExpression:expression.BooleanOrExpression,expression.BooleanAndExpression,expression.RelationalExpression,expression.AdditiveExpression,expression.MultiplicativeExpression,expression.UnaryExpression,expression.PathExpression, expression.AtomicExpression;
+	pattern.ObjectPatternExpression ::= feature[NAME] (selector)? (position)? "=" targetNode;
+	pattern.PropertyPatternExpression ::= feature[NAME] (selector)? (position)? "=" targetExpression:expression.BooleanOrExpression,expression.BooleanAndExpression,expression.RelationalExpression,expression.AdditiveExpression,expression.MultiplicativeExpression,expression.UnaryExpression,expression.PathExpression, expression.AtomicExpression;
 	
 	//Expression
 	
@@ -75,7 +75,7 @@ RULES {
 	expression.EnumLiteralExpression ::= type[TYPE] "::" value[NAME];
 	expression.ObjectURIExpression ::= object[OBJ_URI];
 	
-	expression.ParenExpression ::= "(" body ")";
+	expression.ParenExpression ::= "(" body : expression.BooleanOrExpression,expression.BooleanAndExpression,expression.RelationalExpression,expression.AdditiveExpression,expression.MultiplicativeExpression,expression.UnaryExpression,expression.PathExpression, expression.AtomicExpression ")";
 	
 	expression.UnaryExpression ::= operator[not:"not",minus:"-"] body:expression.PathExpression,expression.AtomicExpression;
 	expression.MultiplicativeExpression ::= operands:expression.UnaryExpression,expression.PathExpression,expression.AtomicExpression (operators[mul:"*",div:"/"] operands:expression.UnaryExpression,expression.PathExpression,expression.AtomicExpression)+ ;
