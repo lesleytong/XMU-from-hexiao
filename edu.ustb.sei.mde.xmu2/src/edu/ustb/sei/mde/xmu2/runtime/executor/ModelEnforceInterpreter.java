@@ -114,7 +114,7 @@ abstract public class ModelEnforceInterpreter extends ModelCheckInterpreter {
 					return true;				
 				}
 			} else {
-				SafeType posVal = this.handlePositionPath(list, position, context);
+				SafeType posVal = this.calculatePositionPath(position, context);
 				
 				if(val.isUndefined())
 					throw new InvalidCalculationException("cannot enforce property pattern expression");
@@ -131,7 +131,7 @@ abstract public class ModelEnforceInterpreter extends ModelCheckInterpreter {
 						if(posVal.getIntegerValue()>=list.size())
 							list.add(val.getValue());
 						else
-							list.set(val.getIntegerValue(), val.getValue());
+							list.set(posVal.getIntegerValue(), val.getValue());
 						return true;
 					} else {
 						throw new InvalidCalculationException("invalid position");

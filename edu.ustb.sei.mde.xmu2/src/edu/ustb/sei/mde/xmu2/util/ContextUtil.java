@@ -92,7 +92,8 @@ public final class ContextUtil {
 									for (int i = 0; i < candidate.size(); i++) {
 										try{
 											EObject v = (EObject) candidate.get(i);
-											if(((EClass)next.getVariable().getType()).isSuperTypeOf(v.eClass())) {
+											EClass nextType = (EClass)next.getVariable().getType();
+											if(nextType.isSuperTypeOf(v.eClass())) {
 												Context nc = current.clone();
 												nc.put(next.getVariable(), SafeType.createFromValue(v));
 												res.addAll(matchNode(next, nc));
@@ -158,8 +159,9 @@ public final class ContextUtil {
 												continue;
 										}
 									} else
-										continue;// out of bound
+										continue;// out of bound, and I cannot set next to null because it is an object pattern expression
 								} else {
+									// invalid posV, should I fail?
 									continue;
 								}
 							}
@@ -178,7 +180,7 @@ public final class ContextUtil {
 								nValue = AbstractInterpreter.EXPRESSION_CHECK.executeExpression(right, current);
 							} catch (Exception e) {
 								if(AnalysisUtil.isType(feature.getEType(), String.class))
-									nValue = SafeType.UNDEFINED; //String may be enforced
+									nValue = SafeType.UNDEFINED; //String may be enforced, so give it second chance
 								else 
 									continue;
 							}
@@ -207,10 +209,12 @@ public final class ContextUtil {
 										}
 									} else {
 										Context nc = current.clone();
-										if (feature.isMany() == false) {
+										// I comment the following *if* because it seems that there is no need to check the multiplicity of the feature 
+//										if (feature.isMany() == false) {
+										// because it is a property pattern expression, set it to null
 											if (AbstractInterpreter.MODEL_CHECK.enforceExpression(right, nc, SafeType.NULL))
 												res.add(nc);
-										}
+//										}
 									}
 								} else {
 									int id = candidate.indexOf(nValue.getValue());
@@ -274,10 +278,16 @@ public final class ContextUtil {
 											else
 												continue;
 										}
-									} else
-										continue;// out of bound
+									} else {
+										// if candidate is empty and posV = 0, I should set right to null
+										if(posV.getIntegerValue()==0 && candidate.isEmpty()) {
+											if(AbstractInterpreter.MODEL_CHECK.enforceExpression(right, current, Constants.NULL))
+												res.add(current);
+										} else
+											continue;// out of bound
+									}
 								} else {
-									System.out.println("posV is not an integer");
+									System.out.println("posV is not an integer");//should I fail?
 									continue;
 								}
 							}

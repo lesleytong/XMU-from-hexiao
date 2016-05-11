@@ -12,6 +12,9 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.widgets.Display;
 
 import edu.ustb.sei.mde.modeling.ui.ConsolePrinter;
 import edu.ustb.sei.mde.modeling.ui.ConsoleUtil;
@@ -87,6 +90,7 @@ public class Xmu2Launcher extends Xmu2LaunchConfigurationHelper {
 //		SystemOutInterpreter delegate = new SystemOutInterpreter();
 //		delegate.addObjectTreeToInterpreteTopDown(root);
 //		launchInterpreter(configuration, mode, launch, monitor, delegate, null);
+
 		
 		try {
 			boolean forward = getMode(configuration);
@@ -98,24 +102,28 @@ public class Xmu2Launcher extends Xmu2LaunchConfigurationHelper {
 			
 			checkAndBuild(resourceURI, buildFile);
 			
+			
 			if(resourceURI == null || sourceURI==null || viewURI==null) return;
 			
+			ConsoleUtil.clearConsole("XMU2");
 			ConsolePrinter printer = ConsoleUtil.getMessageWriter("XMU2");
 			
 			printer.println("XMU2 is starting");
 			
 			printer.println("BX Program URI:");
+			
 			printer.println(resourceURI.toString());
 			printer.println(buildFile.toString());
 			
 			printer.println("BX Program Mode:");
 			printer.println(forward?"Forward":"Backward");
 			
-			
 			printer.println("Source Files:");
 			for(String s : sourceURI)
 				printer.println(s);
+			
 			printer.println("View Files:");
+			
 			for(String s : viewURI)
 				printer.println(s);
 			
@@ -142,16 +150,17 @@ public class Xmu2Launcher extends Xmu2LaunchConfigurationHelper {
 			
 			env.setPrinter(printer);
 			
+			
 			try {
 				enforce.executeTransformation(model, env);
 			} catch (Exception e) {
 				e.printStackTrace(printer);
 			}
 			
+			printer.println("saving...");
 			env.save();
 			
-			printer.println("Transformation is over");
-			
+			printer.println("Transformation is over.\n");
 //			if(forward)
 //				env.saveViews();
 //			else 

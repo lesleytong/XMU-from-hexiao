@@ -5,16 +5,17 @@ Bundle-SymbolicName: edu.ustb.sei.mde.xmu2.resource.xmu2;singleton:=true
 Bundle-Version: 1.0.0
 Bundle-Vendor: Software Technology Group - TU Dresden Germany
 Require-Bundle: org.eclipse.core.runtime;resolution:=optional,
-  org.eclipse.emf.ecore,
-  org.eclipse.emf.ecore.change,
-  org.eclipse.emf.validation;resolution:=optional,
-  org.emftext.access;resolution:=optional,
-  org.eclipse.debug.core;resolution:=optional,
-  edu.ustb.sei.commonutil,
-  org.eclipse.emf.ecore.xmi,
-  edu.ustb.sei.mde.modeling,
-  org.emftext.commons.antlr3_4_0,
-  edu.ustb.sei.mde.xmu2
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.ecore.change,
+ org.eclipse.emf.validation;resolution:=optional,
+ org.emftext.access;resolution:=optional,
+ org.eclipse.debug.core;resolution:=optional,
+ edu.ustb.sei.commonutil,
+ org.eclipse.emf.ecore.xmi,
+ edu.ustb.sei.mde.modeling,
+ org.emftext.commons.antlr3_4_0,
+ edu.ustb.sei.mde.xmu2,
+ org.eclipse.swt;bundle-version="3.104.2"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: edu.ustb.sei.mde.xmu2.resource.xmu2,

@@ -370,6 +370,13 @@ public class ExpressionCheckInterpreter extends AbstractInterpreter {
 		}
 	}
 	
+	/**
+	 * the method will return the element in col, whose position is equal to the value of path
+	 * @param col
+	 * @param path
+	 * @param context
+	 * @return
+	 */
 	protected SafeType handlePositionPath(List<? extends Object> col, PositionPath path, Context context) {
 		try {
 			SafeType id = calculatePositionPath(path,context);
@@ -415,6 +422,7 @@ public class ExpressionCheckInterpreter extends AbstractInterpreter {
 	public SafeType handleLoopPath(List<? extends Object> col, LoopPath path,
 			Context context) {
 		Context inner = context.createInnerContext();
+		inner.registerVariable(path.getIterator());
 		
 		if(((LoopPath) path).getOperator()==LoopOperator.FOR_ALL) {
 			SafeType ret = Constants.TRUE;
