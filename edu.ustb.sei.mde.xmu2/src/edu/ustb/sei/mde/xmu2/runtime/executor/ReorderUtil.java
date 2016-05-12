@@ -28,7 +28,7 @@ import edu.ustb.sei.mde.xmu2core.ForEachStatement;
 import edu.ustb.sei.mde.xmu2core.LoopPath;
 import edu.ustb.sei.mde.xmu2core.MatchPattern;
 import edu.ustb.sei.mde.xmu2core.PositionPath;
-import edu.ustb.sei.mde.xmu2core.ProcedureCallStatement;
+import edu.ustb.sei.mde.xmu2core.CallStatement;
 import edu.ustb.sei.mde.xmu2core.Statement;
 import edu.ustb.sei.mde.xmu2core.Variable;
 import edu.ustb.sei.mde.xmu2core.VariableExpression;
@@ -37,7 +37,7 @@ public class ReorderUtil {
 
 	static public void reorderStatementsForAlignStatement(List<Statement> statements, ReorderedAlignStatement reorder) {
 		for(Statement st : statements) {
-			if(st instanceof ProcedureCallStatement) {
+			if(st instanceof CallStatement) {
 				reorder.tail.add(st);
 			} else if(st instanceof EnforceNodeStatement) {
 				if(ReorderUtil.isEnforceNodeStatementExecutable((EnforceNodeStatement)st, reorder.enforcedVars)) {
@@ -66,7 +66,7 @@ public class ReorderUtil {
 			reorder.enforcedVars = enforcedVars;
 			
 			reorderStatementsForAlignStatement(align.getMatch(), reorder);
-			reorderStatementsForAlignStatement(align.getViewCreationStatements(), reorder);
+//			reorderStatementsForAlignStatement(align.getViewCreationStatements(), reorder);
 			
 			reorder.finalOrder.addAll(reorder.enforce);
 			reorder.finalOrder.addAll(reorder.lazy);
@@ -211,35 +211,35 @@ public class ReorderUtil {
 						List<ReorderedCaseClause> newBranches = reorderStatementsForCaseStatement(((CaseStatementClause) cc).getAction(), nb);
 						branches.addAll(newBranches);
 					} else {
-						List<ReorderedCaseClause> newBranches = reorderStatementsForCaseStatement(
-								cc.getSourceCheckStatements(), nb);
-						for (ReorderedCaseClause newBranch : newBranches) {
-							if (cc instanceof CasePatternClause) {
-								for (Statement ac : cc.getViewCreationStatements()) {
-									if (ac instanceof EnforceNodeStatement) {
-										if (isEnforceNodeStatementExecutable((EnforceNodeStatement) ac,
-												newBranch.enforcedVariables)) {
-											newBranch.action.add(ac);
-										} else {
-											newBranch.postCondition.add(ac);
-										}
-									} else if (ac instanceof EnforceLinkStatement) {
-										if (isEnforceLinkStatementExecutable((EnforceLinkStatement) ac,
-												newBranch.enforcedVariables)) {
-											newBranch.action.add(ac);
-										} else {
-											newBranch.postCondition.add(ac);
-										}
-									}
-								}
-							} else if (cc instanceof CaseExpressionClause) {
-								newBranch.action.add(((CaseExpressionClause) cc).getCondition());
-							} else {
-								System.out.println("unhandled branch");
-							}
-						}
-
-						branches.addAll(newBranches);
+//						List<ReorderedCaseClause> newBranches = reorderStatementsForCaseStatement(
+//								cc.getSourceCheckStatements(), nb);
+//						for (ReorderedCaseClause newBranch : newBranches) {
+//							if (cc instanceof CasePatternClause) {
+//								for (Statement ac : cc.getViewCreationStatements()) {
+//									if (ac instanceof EnforceNodeStatement) {
+//										if (isEnforceNodeStatementExecutable((EnforceNodeStatement) ac,
+//												newBranch.enforcedVariables)) {
+//											newBranch.action.add(ac);
+//										} else {
+//											newBranch.postCondition.add(ac);
+//										}
+//									} else if (ac instanceof EnforceLinkStatement) {
+//										if (isEnforceLinkStatementExecutable((EnforceLinkStatement) ac,
+//												newBranch.enforcedVariables)) {
+//											newBranch.action.add(ac);
+//										} else {
+//											newBranch.postCondition.add(ac);
+//										}
+//									}
+//								}
+//							} else if (cc instanceof CaseExpressionClause) {
+//								newBranch.action.add(((CaseExpressionClause) cc).getCondition());
+//							} else {
+//								System.out.println("unhandled branch");
+//							}
+//						}
+//
+//						branches.addAll(newBranches);
 					}
 				}
 				return  branches;
@@ -296,7 +296,7 @@ public class ReorderUtil {
 				}
 				return Collections.singletonList(branch);
 			}
-		} else if(statement instanceof ProcedureCallStatement) {
+		} else if(statement instanceof CallStatement) {
 			branch.action.add(statement);
 			return Collections.singletonList(branch);
 		} else if(statement instanceof ForEachStatement) {
@@ -348,7 +348,7 @@ public class ReorderUtil {
 		
 		List<Object> proc = new ArrayList<Object>();
 		for(Object act : cc.action) {
-			if(act instanceof ProcedureCallStatement) {
+			if(act instanceof CallStatement) {
 				proc.add(act);
 			}
 		}

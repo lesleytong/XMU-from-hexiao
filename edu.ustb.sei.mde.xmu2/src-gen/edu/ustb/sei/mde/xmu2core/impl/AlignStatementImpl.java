@@ -35,7 +35,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.AlignStatementImpl#getMatch <em>Match</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.AlignStatementImpl#getUnmatchv <em>Unmatchv</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.AlignStatementImpl#getUnmatchs <em>Unmatchs</em>}</li>
- *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.AlignStatementImpl#getViewCreationStatements <em>View Creation Statements</em>}</li>
  * </ul>
  *
  * @generated
@@ -90,16 +89,6 @@ public class AlignStatementImpl extends StatementImpl implements AlignStatement 
 	 * @ordered
 	 */
 	protected EList<Statement> unmatchs;
-
-	/**
-	 * The cached value of the '{@link #getViewCreationStatements() <em>View Creation Statements</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getViewCreationStatements()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Statement> viewCreationStatements;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -247,18 +236,6 @@ public class AlignStatementImpl extends StatementImpl implements AlignStatement 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Statement> getViewCreationStatements() {
-		if (viewCreationStatements == null) {
-			viewCreationStatements = new EObjectContainmentEList<Statement>(Statement.class, this, Xmu2corePackage.ALIGN_STATEMENT__VIEW_CREATION_STATEMENTS);
-		}
-		return viewCreationStatements;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -272,8 +249,6 @@ public class AlignStatementImpl extends StatementImpl implements AlignStatement 
 				return ((InternalEList<?>)getUnmatchv()).basicRemove(otherEnd, msgs);
 			case Xmu2corePackage.ALIGN_STATEMENT__UNMATCHS:
 				return ((InternalEList<?>)getUnmatchs()).basicRemove(otherEnd, msgs);
-			case Xmu2corePackage.ALIGN_STATEMENT__VIEW_CREATION_STATEMENTS:
-				return ((InternalEList<?>)getViewCreationStatements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -296,8 +271,6 @@ public class AlignStatementImpl extends StatementImpl implements AlignStatement 
 				return getUnmatchv();
 			case Xmu2corePackage.ALIGN_STATEMENT__UNMATCHS:
 				return getUnmatchs();
-			case Xmu2corePackage.ALIGN_STATEMENT__VIEW_CREATION_STATEMENTS:
-				return getViewCreationStatements();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -329,10 +302,6 @@ public class AlignStatementImpl extends StatementImpl implements AlignStatement 
 				getUnmatchs().clear();
 				getUnmatchs().addAll((Collection<? extends Statement>)newValue);
 				return;
-			case Xmu2corePackage.ALIGN_STATEMENT__VIEW_CREATION_STATEMENTS:
-				getViewCreationStatements().clear();
-				getViewCreationStatements().addAll((Collection<? extends Statement>)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -360,9 +329,6 @@ public class AlignStatementImpl extends StatementImpl implements AlignStatement 
 			case Xmu2corePackage.ALIGN_STATEMENT__UNMATCHS:
 				getUnmatchs().clear();
 				return;
-			case Xmu2corePackage.ALIGN_STATEMENT__VIEW_CREATION_STATEMENTS:
-				getViewCreationStatements().clear();
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -385,8 +351,6 @@ public class AlignStatementImpl extends StatementImpl implements AlignStatement 
 				return unmatchv != null && !unmatchv.isEmpty();
 			case Xmu2corePackage.ALIGN_STATEMENT__UNMATCHS:
 				return unmatchs != null && !unmatchs.isEmpty();
-			case Xmu2corePackage.ALIGN_STATEMENT__VIEW_CREATION_STATEMENTS:
-				return viewCreationStatements != null && !viewCreationStatements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -19,7 +19,7 @@ import edu.ustb.sei.mde.xmu2core.FeaturePath;
 import edu.ustb.sei.mde.xmu2core.LoopPath;
 import edu.ustb.sei.mde.xmu2core.Path;
 import edu.ustb.sei.mde.xmu2core.PositionPath;
-import edu.ustb.sei.mde.xmu2core.ProcedureCallStatement;
+import edu.ustb.sei.mde.xmu2core.CallStatement;
 import edu.ustb.sei.mde.xmu2core.Variable;
 import edu.ustb.sei.mde.xmu2core.VariableExpression;
 
@@ -142,13 +142,13 @@ abstract public class ModelEnforceInterpreter extends ModelCheckInterpreter {
 			return true;
 	}
 
-	protected List<ProcedureCallStatement> collectRuleCallStatements(List<? extends Object> action, Context context) {
-		List<ProcedureCallStatement> calls = context.getEnvironment().getFromProcedureCallCache(action);
+	protected List<CallStatement> collectRuleCallStatements(List<? extends Object> action, Context context) {
+		List<CallStatement> calls = context.getEnvironment().getFromProcedureCallCache(action);
 		if(calls==null) {
-			calls = new ArrayList<ProcedureCallStatement>();
+			calls = new ArrayList<CallStatement>();
 			for(Object s : action) {
-				if(s instanceof ProcedureCallStatement)
-					calls.add((ProcedureCallStatement)s);
+				if(s instanceof CallStatement)
+					calls.add((CallStatement)s);
 			}
 			context.getEnvironment().putIntoProcedureCallCache(action, calls);
 		}

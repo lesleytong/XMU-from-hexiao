@@ -739,26 +739,26 @@ public class Xmu2coreItemProviderAdapterFactory extends Xmu2coreAdapterFactory i
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.ustb.sei.mde.xmu2core.ProcedureCallStatement} instances.
+	 * This keeps track of the one adapter used for all {@link edu.ustb.sei.mde.xmu2core.CallStatement} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ProcedureCallStatementItemProvider procedureCallStatementItemProvider;
+	protected CallStatementItemProvider callStatementItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link edu.ustb.sei.mde.xmu2core.ProcedureCallStatement}.
+	 * This creates an adapter for a {@link edu.ustb.sei.mde.xmu2core.CallStatement}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createProcedureCallStatementAdapter() {
-		if (procedureCallStatementItemProvider == null) {
-			procedureCallStatementItemProvider = new ProcedureCallStatementItemProvider(this);
+	public Adapter createCallStatementAdapter() {
+		if (callStatementItemProvider == null) {
+			callStatementItemProvider = new CallStatementItemProvider(this);
 		}
 
-		return procedureCallStatementItemProvider;
+		return callStatementItemProvider;
 	}
 
 	/**
@@ -1015,6 +1015,52 @@ public class Xmu2coreItemProviderAdapterFactory extends Xmu2coreAdapterFactory i
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link edu.ustb.sei.mde.xmu2core.Function} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FunctionItemProvider functionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.ustb.sei.mde.xmu2core.Function}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createFunctionAdapter() {
+		if (functionItemProvider == null) {
+			functionItemProvider = new FunctionItemProvider(this);
+		}
+
+		return functionItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link edu.ustb.sei.mde.xmu2core.SolveConstraintStatement} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SolveConstraintStatementItemProvider solveConstraintStatementItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.ustb.sei.mde.xmu2core.SolveConstraintStatement}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSolveConstraintStatementAdapter() {
+		if (solveConstraintStatementItemProvider == null) {
+			solveConstraintStatementItemProvider = new SolveConstraintStatementItemProvider(this);
+		}
+
+		return solveConstraintStatementItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1142,7 +1188,7 @@ public class Xmu2coreItemProviderAdapterFactory extends Xmu2coreAdapterFactory i
 		if (operationPathItemProvider != null) operationPathItemProvider.dispose();
 		if (loopPathItemProvider != null) loopPathItemProvider.dispose();
 		if (positionPathItemProvider != null) positionPathItemProvider.dispose();
-		if (procedureCallStatementItemProvider != null) procedureCallStatementItemProvider.dispose();
+		if (callStatementItemProvider != null) callStatementItemProvider.dispose();
 		if (transformationItemProvider != null) transformationItemProvider.dispose();
 		if (entryRuleParameterItemProvider != null) entryRuleParameterItemProvider.dispose();
 		if (forEachStatementItemProvider != null) forEachStatementItemProvider.dispose();
@@ -1154,6 +1200,8 @@ public class Xmu2coreItemProviderAdapterFactory extends Xmu2coreAdapterFactory i
 		if (matchPatternItemProvider != null) matchPatternItemProvider.dispose();
 		if (checkExpressionStatementItemProvider != null) checkExpressionStatementItemProvider.dispose();
 		if (enforceExpressionStatementItemProvider != null) enforceExpressionStatementItemProvider.dispose();
+		if (functionItemProvider != null) functionItemProvider.dispose();
+		if (solveConstraintStatementItemProvider != null) solveConstraintStatementItemProvider.dispose();
 	}
 
 }

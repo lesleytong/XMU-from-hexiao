@@ -4,8 +4,8 @@ package edu.ustb.sei.mde.xmu2core.impl;
 
 import edu.ustb.sei.mde.xmu2common.impl.NamedElementImpl;
 
-import edu.ustb.sei.mde.xmu2core.Procedure;
-import edu.ustb.sei.mde.xmu2core.ProcedureCallStatement;
+import edu.ustb.sei.mde.xmu2core.CallStatement;
+import edu.ustb.sei.mde.xmu2core.Callable;
 import edu.ustb.sei.mde.xmu2core.Transformation;
 import edu.ustb.sei.mde.xmu2core.Xmu2corePackage;
 
@@ -32,7 +32,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.TransformationImpl#getProcedures <em>Procedures</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.TransformationImpl#getCallables <em>Callables</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.TransformationImpl#getDeclaredTypes <em>Declared Types</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.TransformationImpl#getEntryRules <em>Entry Rules</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.TransformationImpl#getPackages <em>Packages</em>}</li>
@@ -42,14 +42,14 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class TransformationImpl extends NamedElementImpl implements Transformation {
 	/**
-	 * The cached value of the '{@link #getProcedures() <em>Procedures</em>}' containment reference list.
+	 * The cached value of the '{@link #getCallables() <em>Callables</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getProcedures()
+	 * @see #getCallables()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Procedure> procedures;
+	protected EList<Callable> callables;
 
 	/**
 	 * The cached value of the '{@link #getDeclaredTypes() <em>Declared Types</em>}' containment reference list.
@@ -69,7 +69,7 @@ public class TransformationImpl extends NamedElementImpl implements Transformati
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ProcedureCallStatement> entryRules;
+	protected EList<CallStatement> entryRules;
 
 	/**
 	 * The cached value of the '{@link #getPackages() <em>Packages</em>}' reference list.
@@ -105,11 +105,11 @@ public class TransformationImpl extends NamedElementImpl implements Transformati
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Procedure> getProcedures() {
-		if (procedures == null) {
-			procedures = new EObjectContainmentEList<Procedure>(Procedure.class, this, Xmu2corePackage.TRANSFORMATION__PROCEDURES);
+	public EList<Callable> getCallables() {
+		if (callables == null) {
+			callables = new EObjectContainmentEList<Callable>(Callable.class, this, Xmu2corePackage.TRANSFORMATION__CALLABLES);
 		}
-		return procedures;
+		return callables;
 	}
 
 	/**
@@ -129,9 +129,9 @@ public class TransformationImpl extends NamedElementImpl implements Transformati
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ProcedureCallStatement> getEntryRules() {
+	public EList<CallStatement> getEntryRules() {
 		if (entryRules == null) {
-			entryRules = new EObjectContainmentEList<ProcedureCallStatement>(ProcedureCallStatement.class, this, Xmu2corePackage.TRANSFORMATION__ENTRY_RULES);
+			entryRules = new EObjectContainmentEList<CallStatement>(CallStatement.class, this, Xmu2corePackage.TRANSFORMATION__ENTRY_RULES);
 		}
 		return entryRules;
 	}
@@ -156,8 +156,8 @@ public class TransformationImpl extends NamedElementImpl implements Transformati
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case Xmu2corePackage.TRANSFORMATION__PROCEDURES:
-				return ((InternalEList<?>)getProcedures()).basicRemove(otherEnd, msgs);
+			case Xmu2corePackage.TRANSFORMATION__CALLABLES:
+				return ((InternalEList<?>)getCallables()).basicRemove(otherEnd, msgs);
 			case Xmu2corePackage.TRANSFORMATION__DECLARED_TYPES:
 				return ((InternalEList<?>)getDeclaredTypes()).basicRemove(otherEnd, msgs);
 			case Xmu2corePackage.TRANSFORMATION__ENTRY_RULES:
@@ -174,8 +174,8 @@ public class TransformationImpl extends NamedElementImpl implements Transformati
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case Xmu2corePackage.TRANSFORMATION__PROCEDURES:
-				return getProcedures();
+			case Xmu2corePackage.TRANSFORMATION__CALLABLES:
+				return getCallables();
 			case Xmu2corePackage.TRANSFORMATION__DECLARED_TYPES:
 				return getDeclaredTypes();
 			case Xmu2corePackage.TRANSFORMATION__ENTRY_RULES:
@@ -195,9 +195,9 @@ public class TransformationImpl extends NamedElementImpl implements Transformati
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case Xmu2corePackage.TRANSFORMATION__PROCEDURES:
-				getProcedures().clear();
-				getProcedures().addAll((Collection<? extends Procedure>)newValue);
+			case Xmu2corePackage.TRANSFORMATION__CALLABLES:
+				getCallables().clear();
+				getCallables().addAll((Collection<? extends Callable>)newValue);
 				return;
 			case Xmu2corePackage.TRANSFORMATION__DECLARED_TYPES:
 				getDeclaredTypes().clear();
@@ -205,7 +205,7 @@ public class TransformationImpl extends NamedElementImpl implements Transformati
 				return;
 			case Xmu2corePackage.TRANSFORMATION__ENTRY_RULES:
 				getEntryRules().clear();
-				getEntryRules().addAll((Collection<? extends ProcedureCallStatement>)newValue);
+				getEntryRules().addAll((Collection<? extends CallStatement>)newValue);
 				return;
 			case Xmu2corePackage.TRANSFORMATION__PACKAGES:
 				getPackages().clear();
@@ -223,8 +223,8 @@ public class TransformationImpl extends NamedElementImpl implements Transformati
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case Xmu2corePackage.TRANSFORMATION__PROCEDURES:
-				getProcedures().clear();
+			case Xmu2corePackage.TRANSFORMATION__CALLABLES:
+				getCallables().clear();
 				return;
 			case Xmu2corePackage.TRANSFORMATION__DECLARED_TYPES:
 				getDeclaredTypes().clear();
@@ -247,8 +247,8 @@ public class TransformationImpl extends NamedElementImpl implements Transformati
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case Xmu2corePackage.TRANSFORMATION__PROCEDURES:
-				return procedures != null && !procedures.isEmpty();
+			case Xmu2corePackage.TRANSFORMATION__CALLABLES:
+				return callables != null && !callables.isEmpty();
 			case Xmu2corePackage.TRANSFORMATION__DECLARED_TYPES:
 				return declaredTypes != null && !declaredTypes.isEmpty();
 			case Xmu2corePackage.TRANSFORMATION__ENTRY_RULES:

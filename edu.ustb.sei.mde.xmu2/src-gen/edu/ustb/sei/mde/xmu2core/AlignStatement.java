@@ -18,7 +18,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link edu.ustb.sei.mde.xmu2core.AlignStatement#getMatch <em>Match</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.AlignStatement#getUnmatchv <em>Unmatchv</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.AlignStatement#getUnmatchs <em>Unmatchs</em>}</li>
- *   <li>{@link edu.ustb.sei.mde.xmu2core.AlignStatement#getViewCreationStatements <em>View Creation Statements</em>}</li>
  * </ul>
  *
  * @see edu.ustb.sei.mde.xmu2core.Xmu2corePackage#getAlignStatement()
@@ -125,21 +124,5 @@ public interface AlignStatement extends Statement {
 	 * @generated
 	 */
 	EList<Statement> getUnmatchs();
-
-	/**
-	 * Returns the value of the '<em><b>View Creation Statements</b></em>' containment reference list.
-	 * The list contents are of type {@link edu.ustb.sei.mde.xmu2core.Statement}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>View Creation Statements</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>View Creation Statements</em>' containment reference list.
-	 * @see edu.ustb.sei.mde.xmu2core.Xmu2corePackage#getAlignStatement_ViewCreationStatements()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<Statement> getViewCreationStatements();
 
 } // AlignStatement

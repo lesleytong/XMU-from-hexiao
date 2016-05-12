@@ -30,8 +30,8 @@ import edu.ustb.sei.mde.xmu2.util.ModelModificationEngine;
 import edu.ustb.sei.mde.xmu2.util.TransformationTrace;
 import edu.ustb.sei.mde.xmu2.util.Tuple;
 import edu.ustb.sei.mde.xmu2common.DomainTag;
+import edu.ustb.sei.mde.xmu2core.CallStatement;
 import edu.ustb.sei.mde.xmu2core.Procedure;
-import edu.ustb.sei.mde.xmu2core.ProcedureCallStatement;
 import edu.ustb.sei.mde.xmu2core.Statement;
 import edu.ustb.sei.mde.xmu2core.Transformation;
 import edu.ustb.sei.mde.xmu2core.Variable;
@@ -173,11 +173,11 @@ public class Environment {
 	
 	private CacheSystem cache;
 	
-	public List<ProcedureCallStatement> getFromProcedureCallCache(List<? extends Object> f) {
+	public List<CallStatement> getFromProcedureCallCache(List<? extends Object> f) {
 		return cache.getFromProcedureCallCache(f);
 	}
 
-	public void putIntoProcedureCallCache(List<? extends Object> f, List<ProcedureCallStatement> s) {
+	public void putIntoProcedureCallCache(List<? extends Object> f, List<CallStatement> s) {
 		cache.putIntoProcedureCallCache(f, s);
 	}
 

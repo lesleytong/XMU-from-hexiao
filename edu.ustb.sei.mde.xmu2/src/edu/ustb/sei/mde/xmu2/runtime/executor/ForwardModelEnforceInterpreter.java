@@ -15,14 +15,16 @@ import edu.ustb.sei.mde.xmu2.util.AnalysisUtil;
 import edu.ustb.sei.mde.xmu2.util.Constants;
 import edu.ustb.sei.mde.xmu2.util.ContextUtil;
 import edu.ustb.sei.mde.xmu2.util.Tuple;
+import edu.ustb.sei.mde.xmu2common.DomainTag;
 import edu.ustb.sei.mde.xmu2core.AlignStatement;
+import edu.ustb.sei.mde.xmu2core.CallStatement;
+import edu.ustb.sei.mde.xmu2core.Callable;
 import edu.ustb.sei.mde.xmu2core.CaseClause;
 import edu.ustb.sei.mde.xmu2core.CaseExpressionClause;
 import edu.ustb.sei.mde.xmu2core.CasePatternClause;
 import edu.ustb.sei.mde.xmu2core.CaseStatement;
 import edu.ustb.sei.mde.xmu2core.DeleteLinkStatement;
 import edu.ustb.sei.mde.xmu2core.DeleteNodeStatement;
-import edu.ustb.sei.mde.xmu2common.*;
 import edu.ustb.sei.mde.xmu2core.EnforceLinkStatement;
 import edu.ustb.sei.mde.xmu2core.EnforceNodeStatement;
 import edu.ustb.sei.mde.xmu2core.Expression;
@@ -31,7 +33,7 @@ import edu.ustb.sei.mde.xmu2core.LoopPath;
 import edu.ustb.sei.mde.xmu2core.Pattern;
 import edu.ustb.sei.mde.xmu2core.PositionPath;
 import edu.ustb.sei.mde.xmu2core.Procedure;
-import edu.ustb.sei.mde.xmu2core.ProcedureCallStatement;
+import edu.ustb.sei.mde.xmu2core.Function;
 import edu.ustb.sei.mde.xmu2core.Statement;
 import edu.ustb.sei.mde.xmu2core.Variable;
 
@@ -39,7 +41,7 @@ public class ForwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 	
 	protected void mergeContext(Context outterContext, Context mergeContext) {
 		{//write back to parameter
-			Procedure rule = outterContext.getProcedure();
+			Callable rule = outterContext.getCallable();
 			for(Variable fp : rule.getParameters()) {
 				if(fp.getTag()==DomainTag.VIEW || fp.getTag()==DomainTag.NORMAL) {
 					SafeType val = mergeContext.get(fp);
@@ -51,14 +53,15 @@ public class ForwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 	
 	@Override
 	public void executeAlignStatement(AlignStatement statement, Context context) {
-		List<Context> smatches = ContextUtil.match(statement.getSource(), context);
-		
-		for(Context c : smatches) {
-			this.handleProcedureTrialCallStatements(this.collectRuleCallStatements(statement.getViewCreationStatements(),c),c);
-			ReorderedAlignStatement reorder = ReorderUtil.reorderAlignStatement(statement, c);
-			this.executeStatements(reorder.finalOrder, c);
-			mergeContext(context, c);
-		}
+		throw new InvalidForwardEnforcementException("in the forward direction, the alignment statement is invalid");
+//		List<Context> smatches = ContextUtil.match(statement.getSource(), context);
+//		
+//		for(Context c : smatches) {
+//			this.handleProcedureTrialCallStatements(this.collectRuleCallStatements(statement.getViewCreationStatements(),c),c);
+//			ReorderedAlignStatement reorder = ReorderUtil.reorderAlignStatement(statement, c);
+//			this.executeStatements(reorder.finalOrder, c);
+//			mergeContext(context, c);
+//		}
 	}
 
 	@Override
@@ -78,82 +81,87 @@ public class ForwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 	}
 
 	@Override
-	public void executeProcedureCallStatement(ProcedureCallStatement ruleCallStatement, Context context) {
-		List<Object> parameterList = new ArrayList<Object>();
-		Procedure rule = ruleCallStatement.getProcedure();
-		int size = rule.getParameters().size();
+	public void executeCallStatement(CallStatement ruleCallStatement, Context context) {
+		Callable rule = ruleCallStatement.getCallable();
 		
-		Context newContext = new Context(context.getEnvironment());
-		newContext.setProcedure(rule);
-		newContext.initFromProcedure(rule);
-		
-		
-		for (int i = 0; i < size; i++) {
-			Variable fp = rule.getParameters().get(i);
-			Expression ap = ruleCallStatement.getParameters().get(i);
+		if (rule instanceof Procedure) {
+			List<Object> parameterList = new ArrayList<Object>();
+			int size = rule.getParameters().size();
 
-			SafeType value = this.executeExpression(ap, context);
-			
-			if (value.isUndefined() 
-					&& fp.getTag()!=DomainTag.VIEW)
-				throw new InvalidBackwardEnforcementException("invalid parameter of rule call in forward transformation");
-			
-			newContext.put(fp, value);
+			Context newContext = new Context(context.getEnvironment());
+			newContext.setCallable(rule);
+			newContext.initFromCallable(rule);
 
-			if(fp.getTag()==DomainTag.SOURCE || fp.getTag()==DomainTag.NORMAL)
-				parameterList.add(value.getValue());
-			
-			if(fp.getTag()==DomainTag.SOURCE) {
-				Variable fspv = newContext.getVariable(AnalysisUtil.getUpdatedSourceVariableName(fp.getName()));
-				// invariant: fspv = fp
-				newContext.put(fspv, value);
-			}
-
-		}
-
-		Tuple ret = context.getEnvironment().getTrace(rule, parameterList);
-		
-		if (ret != null) {
-			// write back
-			for (int i = 0, j = 0; i < size; i++) {
+			for (int i = 0; i < size; i++) {
 				Variable fp = rule.getParameters().get(i);
-				Expression uap = ruleCallStatement.getUpdatedParameters().get(i);
+				Expression ap = ruleCallStatement.getParameters().get(i);
 
-				if (fp.getTag() == DomainTag.VIEW) {
+				SafeType value = this.executeExpression(ap, context);
 
-					Object obj = ret.get(j);
-					j++;
+				if (value.isUndefined() && fp.getTag() != DomainTag.VIEW)
+					throw new InvalidBackwardEnforcementException(
+							"invalid parameter of rule call in forward transformation");
 
-					if (!this.enforceExpression(uap, context, 
-							SafeType.createFromValue(obj)))
-						throw new InvalidBackwardEnforcementException("cannot putback view parameters");
+				newContext.put(fp, value);
+
+				if (fp.getTag() == DomainTag.SOURCE || fp.getTag() == DomainTag.NORMAL)
+					parameterList.add(value.getValue());
+
+				if (fp.getTag() == DomainTag.SOURCE) {
+					Variable fspv = newContext.getVariable(AnalysisUtil.getUpdatedSourceVariableName(fp.getName()));
+					// invariant: fspv = fp
+					newContext.put(fspv, value);
 				}
-			}
-			return;
 
-		} else {
-			this.executeStatements(rule.getForwardStatements(),newContext);
-			
-			List<Object> viewList = new ArrayList<Object>();
-			//write back
-			for(int i=0;i<size;i++) {
-				Variable fp = rule.getParameters().get(i);
-//				Expression uap = ruleCallStatement.getUpdatedParameters().get(i);
-				
-				if(fp.getTag()==DomainTag.VIEW) {
-					SafeType spv = newContext.get(fp);
-					
-//						if(this.enforceExpression(uap, context, spv)==false)
-//							throw new InvalidBackwardEnforcementException("cannot putback updated source parameters");
-						
-					viewList.add(spv.getValue());
-				}
 			}
-			
-			//record trace
-			context.getEnvironment().putTrace(rule, parameterList, viewList);
-			
-			return;
+
+			Tuple ret = context.getEnvironment().getTrace(((Procedure)rule), parameterList);
+
+			if (ret != null) {
+				// write back
+				for (int i = 0, j = 0; i < size; i++) {
+					Variable fp = rule.getParameters().get(i);
+					Expression uap = ruleCallStatement.getUpdatedParameters().get(i);
+
+					if (fp.getTag() == DomainTag.VIEW) {
+
+						Object obj = ret.get(j);
+						j++;
+
+						if (!this.enforceExpression(uap, context, SafeType.createFromValue(obj)))
+							throw new InvalidBackwardEnforcementException("cannot putback view parameters");
+					}
+				}
+				return;
+
+			} else {
+				this.executeStatements(((Procedure)rule).getForwardStatements(), newContext);
+
+				List<Object> viewList = new ArrayList<Object>();
+				// write back
+				for (int i = 0; i < size; i++) {
+					Variable fp = rule.getParameters().get(i);
+					// Expression uap =
+					// ruleCallStatement.getUpdatedParameters().get(i);
+
+					if (fp.getTag() == DomainTag.VIEW) {
+						SafeType spv = newContext.get(fp);
+
+						// if(this.enforceExpression(uap, context, spv)==false)
+						// throw new InvalidBackwardEnforcementException("cannot
+						// putback updated source parameters");
+
+						viewList.add(spv.getValue());
+					}
+				}
+
+				// record trace
+				context.getEnvironment().putTrace(((Procedure)rule), parameterList, viewList);
+
+				return;
+			}
+		} else if (rule instanceof Function) {
+
 		}
 	}
 
@@ -303,53 +311,58 @@ public class ForwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 		return v.getTag()==DomainTag.NORMAL || v.getTag()==DomainTag.VIEW;
 	}
 
-	protected void handleProcedureTrialCallStatements(List<ProcedureCallStatement> collectRuleCallStatements, Context context) {
-		for(ProcedureCallStatement u : collectRuleCallStatements) {
+	protected void handleProcedureTrialCallStatements(List<CallStatement> collectRuleCallStatements, Context context) {
+		for(CallStatement u : collectRuleCallStatements) {
 			this.trialRuleCall(u, context);
 		}
 	}
 	
-	private void trialRuleCall(ProcedureCallStatement ruleCallStatement, Context context) {
+	private void trialRuleCall(CallStatement ruleCallStatement, Context context) {
 		try {
 			List<Object> parameterList = new ArrayList<Object>();
-			Procedure rule = ruleCallStatement.getProcedure();
-			int size = rule.getParameters().size();
-			
-			for (int i = 0; i < size; i++) {
-				Variable fp = ruleCallStatement.getProcedure().getParameters().get(i);
-				if(fp.getTag()==DomainTag.SOURCE || fp.getTag()==DomainTag.NORMAL) {
-					Expression ap = ruleCallStatement.getParameters().get(i);
-					try {
-						SafeType value = this.executeExpression(ap, context);
-						if (value.isUndefined())
+			Callable rule = ruleCallStatement.getCallable();
+
+			if (rule instanceof Procedure) {
+
+				int size = rule.getParameters().size();
+
+				for (int i = 0; i < size; i++) {
+					Variable fp = ruleCallStatement.getCallable().getParameters().get(i);
+					if (fp.getTag() == DomainTag.SOURCE || fp.getTag() == DomainTag.NORMAL) {
+						Expression ap = ruleCallStatement.getParameters().get(i);
+						try {
+							SafeType value = this.executeExpression(ap, context);
+							if (value.isUndefined())
+								return;
+							parameterList.add(value.getValue());
+						} catch (Exception e) {
 							return;
-						parameterList.add(value.getValue());
-					} catch (Exception e) {
-						return;
+						}
 					}
 				}
+
+				Tuple ret = context.getEnvironment().getTrace(((Procedure)rule), parameterList);
+
+				if (ret != null) {
+					// write back
+					for (int i = 0, j = 0; i < size; i++) {
+						Variable fp = rule.getParameters().get(i);
+						Expression uap = ruleCallStatement.getUpdatedParameters().get(i);
+
+						if (fp.getTag() == DomainTag.VIEW) {
+							Object obj = ret.get(j);
+							j++;
+
+							if (!this.enforceExpression(uap, context, SafeType.createFromValue(obj)))
+								return;
+						}
+					}
+					return;
+				} else
+					return;
+			} else if (rule instanceof Function) {
+
 			}
-			
-			Tuple ret = context.getEnvironment().getTrace(rule, parameterList);
-			
-			if (ret != null) {
-				// write back
-				for (int i = 0, j = 0; i < size; i++) {
-					Variable fp = rule.getParameters().get(i);
-					Expression uap = ruleCallStatement.getUpdatedParameters().get(i);
-					
-					if (fp.getTag() == DomainTag.VIEW) {
-						Object obj = ret.get(j);
-						j++;
-						
-						if (!this.enforceExpression(uap, context, 
-								SafeType.createFromValue(obj)))
-							return;
-					}
-				}
-				return;
-			} else
-				return;
 		} catch (Exception e) {
 		}
 	}

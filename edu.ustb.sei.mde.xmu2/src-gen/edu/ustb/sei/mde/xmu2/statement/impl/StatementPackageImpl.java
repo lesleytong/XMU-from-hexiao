@@ -15,6 +15,7 @@ import edu.ustb.sei.mde.xmu2.pattern.PatternPackage;
 import edu.ustb.sei.mde.xmu2.pattern.impl.PatternPackageImpl;
 
 import edu.ustb.sei.mde.xmu2.statement.ActionType;
+import edu.ustb.sei.mde.xmu2.statement.AssignStatement;
 import edu.ustb.sei.mde.xmu2.statement.BidirectionalStatement;
 import edu.ustb.sei.mde.xmu2.statement.BlockStatement;
 import edu.ustb.sei.mde.xmu2.statement.CaseClause;
@@ -186,6 +187,13 @@ public class StatementPackageImpl extends EPackageImpl implements StatementPacka
 	 * @generated
 	 */
 	private EClass skipEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass assignStatementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -625,6 +633,33 @@ public class StatementPackageImpl extends EPackageImpl implements StatementPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getAssignStatement() {
+		return assignStatementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAssignStatement_UpdatedVariable() {
+		return (EReference)assignStatementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAssignStatement_Value() {
+		return (EReference)assignStatementEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getActionType() {
 		return actionTypeEEnum;
 	}
@@ -715,6 +750,10 @@ public class StatementPackageImpl extends EPackageImpl implements StatementPacka
 
 		skipEClass = createEClass(SKIP);
 
+		assignStatementEClass = createEClass(ASSIGN_STATEMENT);
+		createEReference(assignStatementEClass, ASSIGN_STATEMENT__UPDATED_VARIABLE);
+		createEReference(assignStatementEClass, ASSIGN_STATEMENT__VALUE);
+
 		// Create enums
 		actionTypeEEnum = createEEnum(ACTION_TYPE);
 	}
@@ -768,6 +807,7 @@ public class StatementPackageImpl extends EPackageImpl implements StatementPacka
 		ruleCallStatementEClass.getESuperTypes().add(this.getBidirectionalStatement());
 		psesudoStatementEClass.getESuperTypes().add(this.getStatement());
 		skipEClass.getESuperTypes().add(this.getPsesudoStatement());
+		assignStatementEClass.getESuperTypes().add(this.getStatement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(statementEClass, Statement.class, "Statement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -827,6 +867,10 @@ public class StatementPackageImpl extends EPackageImpl implements StatementPacka
 		initEClass(psesudoStatementEClass, PsesudoStatement.class, "PsesudoStatement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(skipEClass, Skip.class, "Skip", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(assignStatementEClass, AssignStatement.class, "AssignStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAssignStatement_UpdatedVariable(), theExpressionPackage.getVariableExpression(), null, "updatedVariable", null, 1, 1, AssignStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAssignStatement_Value(), theExpressionPackage.getExpression(), null, "value", null, 1, 1, AssignStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(actionTypeEEnum, ActionType.class, "ActionType");

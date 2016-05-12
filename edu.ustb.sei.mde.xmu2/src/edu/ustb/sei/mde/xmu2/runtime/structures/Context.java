@@ -14,24 +14,24 @@ import edu.ustb.sei.mde.xmu2.util.AnalysisUtil;
 import edu.ustb.sei.mde.xmu2.util.Constants;
 import edu.ustb.sei.mde.xmu2.util.EvaluationUtil;
 import edu.ustb.sei.mde.xmu2common.DomainTag;
-import edu.ustb.sei.mde.xmu2core.Procedure;
+import edu.ustb.sei.mde.xmu2core.Callable;
 import edu.ustb.sei.mde.xmu2core.Variable;
 
 public class Context implements Iterable<Entry<Variable,SafeType>>{
 	private Environment environment = null;
 	private Context outerContext = null;
-	private Procedure procedure = null;
+	private Callable callable = null;
 	
 	public Environment getEnvironment() {
 		return this.environment;
 	}
 	
-	public Procedure getProcedure() {
-		return this.procedure;
+	public Callable getCallable() {
+		return this.callable;
 	}
 	
-	public void setProcedure(Procedure p) {
-		this.procedure = p;
+	public void setCallable(Callable p) {
+		this.callable = p;
 	}
 	
 	public Context(Environment e) {
@@ -108,7 +108,7 @@ public class Context implements Iterable<Entry<Variable,SafeType>>{
 			variableValueMap.put(var, value);
 			
 			// handle correlated variable
-			if(procedure!=null) {
+			if(callable!=null) {
 				if(environment.isForward()) {
 					if(var.getTag() == DomainTag.SOURCE) {
 						Variable spVar = variableNameMap.get(AnalysisUtil.getUpdatedSourceVariableName(var.getName()));
@@ -160,14 +160,14 @@ public class Context implements Iterable<Entry<Variable,SafeType>>{
 	public Context createInnerContext() {
 		Context in = new Context(this.environment);
 		in.outerContext = this;
-		in.procedure = this.procedure;
+		in.callable = this.callable;
 		return in;
 	}
 	
 	public Context clone() {
 		Context clone = new Context(this.environment);
 		clone.outerContext = this.outerContext;
-		clone.procedure = this.procedure;
+		clone.callable = this.callable;
 		
 		for(String varName : variableNameMap.keySet()) {
 			Variable var = variableNameMap.get(varName);
@@ -185,8 +185,8 @@ public class Context implements Iterable<Entry<Variable,SafeType>>{
 		}
 	}
 	
-	public void initFromProcedure(Procedure p) {
-		procedure = p;
+	public void initFromCallable(Callable p) {
+		callable = p;
 		for(Variable v : p.getVariables()) {
 			this.registerVariable(v);
 		}
@@ -251,7 +251,7 @@ public class Context implements Iterable<Entry<Variable,SafeType>>{
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("====");
-		builder.append(this.procedure.getName());
+		builder.append(this.callable.getName());
 		builder.append("====\n");
 		for(Entry<Variable,SafeType> e : this) {
 			builder.append(e.getKey().getName());

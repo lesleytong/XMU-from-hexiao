@@ -34,7 +34,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * </p>
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu2.impl.AbstractRuleImpl#getParameters <em>Parameters</em>}</li>
- *   <li>{@link edu.ustb.sei.mde.xmu2.impl.AbstractRuleImpl#getStatement <em>Statement</em>}</li>
  * </ul>
  *
  * @generated
@@ -49,16 +48,6 @@ public abstract class AbstractRuleImpl extends NamedElementImpl implements Abstr
 	 * @ordered
 	 */
 	protected EList<Parameter> parameters;
-
-	/**
-	 * The cached value of the '{@link #getStatement() <em>Statement</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStatement()
-	 * @generated
-	 * @ordered
-	 */
-	protected Statement statement;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -96,56 +85,11 @@ public abstract class AbstractRuleImpl extends NamedElementImpl implements Abstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Statement getStatement() {
-		return statement;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetStatement(Statement newStatement, NotificationChain msgs) {
-		Statement oldStatement = statement;
-		statement = newStatement;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, Xmu2Package.ABSTRACT_RULE__STATEMENT, oldStatement, newStatement);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setStatement(Statement newStatement) {
-		if (newStatement != statement) {
-			NotificationChain msgs = null;
-			if (statement != null)
-				msgs = ((InternalEObject)statement).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - Xmu2Package.ABSTRACT_RULE__STATEMENT, null, msgs);
-			if (newStatement != null)
-				msgs = ((InternalEObject)newStatement).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - Xmu2Package.ABSTRACT_RULE__STATEMENT, null, msgs);
-			msgs = basicSetStatement(newStatement, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Xmu2Package.ABSTRACT_RULE__STATEMENT, newStatement, newStatement));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case Xmu2Package.ABSTRACT_RULE__PARAMETERS:
 				return ((InternalEList<?>)getParameters()).basicRemove(otherEnd, msgs);
-			case Xmu2Package.ABSTRACT_RULE__STATEMENT:
-				return basicSetStatement(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -160,8 +104,6 @@ public abstract class AbstractRuleImpl extends NamedElementImpl implements Abstr
 		switch (featureID) {
 			case Xmu2Package.ABSTRACT_RULE__PARAMETERS:
 				return getParameters();
-			case Xmu2Package.ABSTRACT_RULE__STATEMENT:
-				return getStatement();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -179,9 +121,6 @@ public abstract class AbstractRuleImpl extends NamedElementImpl implements Abstr
 				getParameters().clear();
 				getParameters().addAll((Collection<? extends Parameter>)newValue);
 				return;
-			case Xmu2Package.ABSTRACT_RULE__STATEMENT:
-				setStatement((Statement)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -197,9 +136,6 @@ public abstract class AbstractRuleImpl extends NamedElementImpl implements Abstr
 			case Xmu2Package.ABSTRACT_RULE__PARAMETERS:
 				getParameters().clear();
 				return;
-			case Xmu2Package.ABSTRACT_RULE__STATEMENT:
-				setStatement((Statement)null);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -214,8 +150,6 @@ public abstract class AbstractRuleImpl extends NamedElementImpl implements Abstr
 		switch (featureID) {
 			case Xmu2Package.ABSTRACT_RULE__PARAMETERS:
 				return parameters != null && !parameters.isEmpty();
-			case Xmu2Package.ABSTRACT_RULE__STATEMENT:
-				return statement != null;
 		}
 		return super.eIsSet(featureID);
 	}

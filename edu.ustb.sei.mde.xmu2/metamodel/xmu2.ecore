@@ -24,8 +24,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="AbstractRule" abstract="true" eSuperTypes="xmu2common.ecore#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
         eType="#//Parameter" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="statement" eType="#//statement/Statement"
-        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Parameter" eSuperTypes="xmu2common.ecore#//NamedElement xmu2common.ecore#//DomainElement #//TypedElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="ModelRule" eSuperTypes="#//AbstractRule">
@@ -33,8 +31,13 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="variableDeclarations" upperBound="-1"
         eType="#//VariableDeclaration" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="statement" eType="#//statement/Statement"
+        containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ArithmeticRule" eSuperTypes="#//AbstractRule"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ArithmeticRule" eSuperTypes="#//AbstractRule">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="statements" upperBound="-1"
+        eType="#//statement/Statement" containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VariableDeclaration" eSuperTypes="xmu2common.ecore#//NamedElement #//TypedElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="TypedElement" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClassifier"/>
@@ -121,6 +124,12 @@
     <eClassifiers xsi:type="ecore:EClass" name="PsesudoStatement" abstract="true"
         eSuperTypes="#//statement/Statement"/>
     <eClassifiers xsi:type="ecore:EClass" name="Skip" eSuperTypes="#//statement/PsesudoStatement"/>
+    <eClassifiers xsi:type="ecore:EClass" name="AssignStatement" eSuperTypes="#//statement/Statement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="updatedVariable" lowerBound="1"
+          eType="#//expression/VariableExpression" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1"
+          eType="#//expression/Expression" containment="true"/>
+    </eClassifiers>
   </eSubpackages>
   <eSubpackages name="pattern" nsURI="http://www.ustb.edu.cn/sei/mde/xmu2/pattern"
       nsPrefix="pattern">

@@ -13,10 +13,11 @@
     <genClasses image="false" ecoreClass="xmu2core.ecore#//TypedElement">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xmu2core.ecore#//TypedElement/type"/>
     </genClasses>
+    <genClasses image="false" ecoreClass="xmu2core.ecore#//Callable">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2core.ecore#//Callable/variables"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xmu2core.ecore#//Callable/parameters"/>
+    </genClasses>
     <genClasses ecoreClass="xmu2core.ecore#//Procedure">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2core.ecore#//Procedure/variables"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xmu2core.ecore#//Procedure/parameters"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2core.ecore#//Procedure/statements"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2core.ecore#//Procedure/backwardStatements"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2core.ecore#//Procedure/forwardStatements"/>
     </genClasses>
@@ -28,14 +29,11 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2core.ecore#//AlignStatement/match"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2core.ecore#//AlignStatement/unmatchv"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2core.ecore#//AlignStatement/unmatchs"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2core.ecore#//AlignStatement/viewCreationStatements"/>
     </genClasses>
     <genClasses ecoreClass="xmu2core.ecore#//CaseStatement">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2core.ecore#//CaseStatement/clauses"/>
     </genClasses>
     <genClasses image="false" ecoreClass="xmu2core.ecore#//CaseClause">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2core.ecore#//CaseClause/viewCreationStatements"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2core.ecore#//CaseClause/sourceCheckStatements"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2core.ecore#//CaseClause/action"/>
     </genClasses>
     <genClasses ecoreClass="xmu2core.ecore#//CasePatternClause">
@@ -138,13 +136,13 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2core.ecore#//PositionPath/value"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmu2core.ecore#//PositionPath/operator"/>
     </genClasses>
-    <genClasses ecoreClass="xmu2core.ecore#//ProcedureCallStatement">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xmu2core.ecore#//ProcedureCallStatement/procedure"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2core.ecore#//ProcedureCallStatement/parameters"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2core.ecore#//ProcedureCallStatement/updatedParameters"/>
+    <genClasses ecoreClass="xmu2core.ecore#//CallStatement">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xmu2core.ecore#//CallStatement/callable"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2core.ecore#//CallStatement/parameters"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2core.ecore#//CallStatement/updatedParameters"/>
     </genClasses>
     <genClasses ecoreClass="xmu2core.ecore#//Transformation">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2core.ecore#//Transformation/procedures"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2core.ecore#//Transformation/callables"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2core.ecore#//Transformation/declaredTypes"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2core.ecore#//Transformation/entryRules"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xmu2core.ecore#//Transformation/packages"/>
@@ -193,6 +191,14 @@
     </genClasses>
     <genClasses ecoreClass="xmu2core.ecore#//EnforceExpressionStatement">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2core.ecore#//EnforceExpressionStatement/expression"/>
+    </genClasses>
+    <genClasses ecoreClass="xmu2core.ecore#//Function">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2core.ecore#//Function/backwardStatements"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2core.ecore#//Function/forwardStatements"/>
+    </genClasses>
+    <genClasses ecoreClass="xmu2core.ecore#//SolveConstraintStatement">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xmu2core.ecore#//SolveConstraintStatement/variables"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmu2core.ecore#//SolveConstraintStatement/problem"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

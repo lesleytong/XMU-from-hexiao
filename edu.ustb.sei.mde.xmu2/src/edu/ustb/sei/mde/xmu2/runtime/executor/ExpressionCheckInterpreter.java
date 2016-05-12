@@ -34,7 +34,7 @@ public class ExpressionCheckInterpreter extends AbstractInterpreter {
 		throw new InvalidCalculationException("unsupported execution");	}
 
 	@Override
-	public void executeProcedureCallStatement(ProcedureCallStatement statement, Context context) {
+	public void executeCallStatement(CallStatement statement, Context context) {
 		throw new InvalidCalculationException("unsupported execution");	}
 
 	@Override

@@ -634,6 +634,43 @@ public interface StatementPackage extends EPackage {
 	int SKIP_FEATURE_COUNT = PSESUDO_STATEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu2.statement.impl.AssignStatementImpl <em>Assign Statement</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.xmu2.statement.impl.AssignStatementImpl
+	 * @see edu.ustb.sei.mde.xmu2.statement.impl.StatementPackageImpl#getAssignStatement()
+	 * @generated
+	 */
+	int ASSIGN_STATEMENT = 19;
+
+	/**
+	 * The feature id for the '<em><b>Updated Variable</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSIGN_STATEMENT__UPDATED_VARIABLE = STATEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSIGN_STATEMENT__VALUE = STATEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Assign Statement</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSIGN_STATEMENT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu2.statement.ActionType <em>Action Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -641,7 +678,7 @@ public interface StatementPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2.statement.impl.StatementPackageImpl#getActionType()
 	 * @generated
 	 */
-	int ACTION_TYPE = 19;
+	int ACTION_TYPE = 20;
 
 
 	/**
@@ -1055,6 +1092,38 @@ public interface StatementPackage extends EPackage {
 	EClass getSkip();
 
 	/**
+	 * Returns the meta object for class '{@link edu.ustb.sei.mde.xmu2.statement.AssignStatement <em>Assign Statement</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Assign Statement</em>'.
+	 * @see edu.ustb.sei.mde.xmu2.statement.AssignStatement
+	 * @generated
+	 */
+	EClass getAssignStatement();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.xmu2.statement.AssignStatement#getUpdatedVariable <em>Updated Variable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Updated Variable</em>'.
+	 * @see edu.ustb.sei.mde.xmu2.statement.AssignStatement#getUpdatedVariable()
+	 * @see #getAssignStatement()
+	 * @generated
+	 */
+	EReference getAssignStatement_UpdatedVariable();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.xmu2.statement.AssignStatement#getValue <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Value</em>'.
+	 * @see edu.ustb.sei.mde.xmu2.statement.AssignStatement#getValue()
+	 * @see #getAssignStatement()
+	 * @generated
+	 */
+	EReference getAssignStatement_Value();
+
+	/**
 	 * Returns the meta object for enum '{@link edu.ustb.sei.mde.xmu2.statement.ActionType <em>Action Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1435,6 +1504,32 @@ public interface StatementPackage extends EPackage {
 		 * @generated
 		 */
 		EClass SKIP = eINSTANCE.getSkip();
+
+		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu2.statement.impl.AssignStatementImpl <em>Assign Statement</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.xmu2.statement.impl.AssignStatementImpl
+		 * @see edu.ustb.sei.mde.xmu2.statement.impl.StatementPackageImpl#getAssignStatement()
+		 * @generated
+		 */
+		EClass ASSIGN_STATEMENT = eINSTANCE.getAssignStatement();
+
+		/**
+		 * The meta object literal for the '<em><b>Updated Variable</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ASSIGN_STATEMENT__UPDATED_VARIABLE = eINSTANCE.getAssignStatement_UpdatedVariable();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ASSIGN_STATEMENT__VALUE = eINSTANCE.getAssignStatement_Value();
 
 		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu2.statement.ActionType <em>Action Type</em>}' enum.

@@ -283,13 +283,13 @@ public interface Xmu2coreFactory extends EFactory {
 	PositionPath createPositionPath();
 
 	/**
-	 * Returns a new object of class '<em>Procedure Call Statement</em>'.
+	 * Returns a new object of class '<em>Call Statement</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Procedure Call Statement</em>'.
+	 * @return a new object of class '<em>Call Statement</em>'.
 	 * @generated
 	 */
-	ProcedureCallStatement createProcedureCallStatement();
+	CallStatement createCallStatement();
 
 	/**
 	 * Returns a new object of class '<em>Transformation</em>'.
@@ -389,6 +389,24 @@ public interface Xmu2coreFactory extends EFactory {
 	 * @generated
 	 */
 	EnforceExpressionStatement createEnforceExpressionStatement();
+
+	/**
+	 * Returns a new object of class '<em>Function</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Function</em>'.
+	 * @generated
+	 */
+	Function createFunction();
+
+	/**
+	 * Returns a new object of class '<em>Solve Constraint Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Solve Constraint Statement</em>'.
+	 * @generated
+	 */
+	SolveConstraintStatement createSolveConstraintStatement();
 
 	/**
 	 * Returns the package supported by this factory.

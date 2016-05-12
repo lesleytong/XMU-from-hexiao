@@ -89,7 +89,7 @@ public class TransformationItemProvider extends NamedElementItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(Xmu2corePackage.Literals.TRANSFORMATION__PROCEDURES);
+			childrenFeatures.add(Xmu2corePackage.Literals.TRANSFORMATION__CALLABLES);
 			childrenFeatures.add(Xmu2corePackage.Literals.TRANSFORMATION__DECLARED_TYPES);
 			childrenFeatures.add(Xmu2corePackage.Literals.TRANSFORMATION__ENTRY_RULES);
 		}
@@ -147,7 +147,7 @@ public class TransformationItemProvider extends NamedElementItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Transformation.class)) {
-			case Xmu2corePackage.TRANSFORMATION__PROCEDURES:
+			case Xmu2corePackage.TRANSFORMATION__CALLABLES:
 			case Xmu2corePackage.TRANSFORMATION__DECLARED_TYPES:
 			case Xmu2corePackage.TRANSFORMATION__ENTRY_RULES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
@@ -169,8 +169,13 @@ public class TransformationItemProvider extends NamedElementItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(Xmu2corePackage.Literals.TRANSFORMATION__PROCEDURES,
+				(Xmu2corePackage.Literals.TRANSFORMATION__CALLABLES,
 				 Xmu2coreFactory.eINSTANCE.createProcedure()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.TRANSFORMATION__CALLABLES,
+				 Xmu2coreFactory.eINSTANCE.createFunction()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -180,7 +185,7 @@ public class TransformationItemProvider extends NamedElementItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(Xmu2corePackage.Literals.TRANSFORMATION__ENTRY_RULES,
-				 Xmu2coreFactory.eINSTANCE.createProcedureCallStatement()));
+				 Xmu2coreFactory.eINSTANCE.createCallStatement()));
 	}
 
 	/**

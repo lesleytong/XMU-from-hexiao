@@ -3,8 +3,6 @@
 package edu.ustb.sei.mde.xmu2core.provider;
 
 
-import edu.ustb.sei.mde.xmu2common.provider.NamedElementItemProvider;
-
 import edu.ustb.sei.mde.xmu2core.Procedure;
 import edu.ustb.sei.mde.xmu2core.Xmu2coreFactory;
 import edu.ustb.sei.mde.xmu2core.Xmu2corePackage;
@@ -14,12 +12,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
@@ -29,7 +22,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ProcedureItemProvider extends NamedElementItemProvider {
+public class ProcedureItemProvider extends CallableItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -51,31 +44,8 @@ public class ProcedureItemProvider extends NamedElementItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addParametersPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Parameters feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addParametersPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Procedure_parameters_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Procedure_parameters_feature", "_UI_Procedure_type"),
-				 Xmu2corePackage.Literals.PROCEDURE__PARAMETERS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
 	}
 
 	/**
@@ -90,8 +60,6 @@ public class ProcedureItemProvider extends NamedElementItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(Xmu2corePackage.Literals.PROCEDURE__VARIABLES);
-			childrenFeatures.add(Xmu2corePackage.Literals.PROCEDURE__STATEMENTS);
 			childrenFeatures.add(Xmu2corePackage.Literals.PROCEDURE__BACKWARD_STATEMENTS);
 			childrenFeatures.add(Xmu2corePackage.Literals.PROCEDURE__FORWARD_STATEMENTS);
 		}
@@ -149,8 +117,6 @@ public class ProcedureItemProvider extends NamedElementItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Procedure.class)) {
-			case Xmu2corePackage.PROCEDURE__VARIABLES:
-			case Xmu2corePackage.PROCEDURE__STATEMENTS:
 			case Xmu2corePackage.PROCEDURE__BACKWARD_STATEMENTS:
 			case Xmu2corePackage.PROCEDURE__FORWARD_STATEMENTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
@@ -172,66 +138,6 @@ public class ProcedureItemProvider extends NamedElementItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(Xmu2corePackage.Literals.PROCEDURE__VARIABLES,
-				 Xmu2coreFactory.eINSTANCE.createVariable()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(Xmu2corePackage.Literals.PROCEDURE__STATEMENTS,
-				 Xmu2coreFactory.eINSTANCE.createAlignStatement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(Xmu2corePackage.Literals.PROCEDURE__STATEMENTS,
-				 Xmu2coreFactory.eINSTANCE.createCaseStatement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(Xmu2corePackage.Literals.PROCEDURE__STATEMENTS,
-				 Xmu2coreFactory.eINSTANCE.createProcedureCallStatement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(Xmu2corePackage.Literals.PROCEDURE__STATEMENTS,
-				 Xmu2coreFactory.eINSTANCE.createForEachStatement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(Xmu2corePackage.Literals.PROCEDURE__STATEMENTS,
-				 Xmu2coreFactory.eINSTANCE.createDeleteNodeStatement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(Xmu2corePackage.Literals.PROCEDURE__STATEMENTS,
-				 Xmu2coreFactory.eINSTANCE.createDeleteLinkStatement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(Xmu2corePackage.Literals.PROCEDURE__STATEMENTS,
-				 Xmu2coreFactory.eINSTANCE.createEnforceNodeStatement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(Xmu2corePackage.Literals.PROCEDURE__STATEMENTS,
-				 Xmu2coreFactory.eINSTANCE.createEnforceLinkStatement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(Xmu2corePackage.Literals.PROCEDURE__STATEMENTS,
-				 Xmu2coreFactory.eINSTANCE.createMatchPattern()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(Xmu2corePackage.Literals.PROCEDURE__STATEMENTS,
-				 Xmu2coreFactory.eINSTANCE.createCheckExpressionStatement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(Xmu2corePackage.Literals.PROCEDURE__STATEMENTS,
-				 Xmu2coreFactory.eINSTANCE.createEnforceExpressionStatement()));
-
-		newChildDescriptors.add
-			(createChildParameter
 				(Xmu2corePackage.Literals.PROCEDURE__BACKWARD_STATEMENTS,
 				 Xmu2coreFactory.eINSTANCE.createAlignStatement()));
 
@@ -243,7 +149,7 @@ public class ProcedureItemProvider extends NamedElementItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(Xmu2corePackage.Literals.PROCEDURE__BACKWARD_STATEMENTS,
-				 Xmu2coreFactory.eINSTANCE.createProcedureCallStatement()));
+				 Xmu2coreFactory.eINSTANCE.createCallStatement()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -287,6 +193,11 @@ public class ProcedureItemProvider extends NamedElementItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
+				(Xmu2corePackage.Literals.PROCEDURE__BACKWARD_STATEMENTS,
+				 Xmu2coreFactory.eINSTANCE.createSolveConstraintStatement()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(Xmu2corePackage.Literals.PROCEDURE__FORWARD_STATEMENTS,
 				 Xmu2coreFactory.eINSTANCE.createAlignStatement()));
 
@@ -298,7 +209,7 @@ public class ProcedureItemProvider extends NamedElementItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(Xmu2corePackage.Literals.PROCEDURE__FORWARD_STATEMENTS,
-				 Xmu2coreFactory.eINSTANCE.createProcedureCallStatement()));
+				 Xmu2coreFactory.eINSTANCE.createCallStatement()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -339,6 +250,11 @@ public class ProcedureItemProvider extends NamedElementItemProvider {
 			(createChildParameter
 				(Xmu2corePackage.Literals.PROCEDURE__FORWARD_STATEMENTS,
 				 Xmu2coreFactory.eINSTANCE.createEnforceExpressionStatement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.PROCEDURE__FORWARD_STATEMENTS,
+				 Xmu2coreFactory.eINSTANCE.createSolveConstraintStatement()));
 	}
 
 	/**
@@ -353,7 +269,6 @@ public class ProcedureItemProvider extends NamedElementItemProvider {
 		Object childObject = child;
 
 		boolean qualify =
-			childFeature == Xmu2corePackage.Literals.PROCEDURE__STATEMENTS ||
 			childFeature == Xmu2corePackage.Literals.PROCEDURE__BACKWARD_STATEMENTS ||
 			childFeature == Xmu2corePackage.Literals.PROCEDURE__FORWARD_STATEMENTS;
 
@@ -363,17 +278,6 @@ public class ProcedureItemProvider extends NamedElementItemProvider {
 				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
 		}
 		return super.getCreateChildText(owner, feature, child, selection);
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return Xmu2coreEditPlugin.INSTANCE;
 	}
 
 }

@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EPackage;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link edu.ustb.sei.mde.xmu2core.Transformation#getProcedures <em>Procedures</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.xmu2core.Transformation#getCallables <em>Callables</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.Transformation#getDeclaredTypes <em>Declared Types</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.Transformation#getEntryRules <em>Entry Rules</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.Transformation#getPackages <em>Packages</em>}</li>
@@ -30,20 +30,20 @@ import org.eclipse.emf.ecore.EPackage;
  */
 public interface Transformation extends NamedElement {
 	/**
-	 * Returns the value of the '<em><b>Procedures</b></em>' containment reference list.
-	 * The list contents are of type {@link edu.ustb.sei.mde.xmu2core.Procedure}.
+	 * Returns the value of the '<em><b>Callables</b></em>' containment reference list.
+	 * The list contents are of type {@link edu.ustb.sei.mde.xmu2core.Callable}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Procedures</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Callables</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Procedures</em>' containment reference list.
-	 * @see edu.ustb.sei.mde.xmu2core.Xmu2corePackage#getTransformation_Procedures()
+	 * @return the value of the '<em>Callables</em>' containment reference list.
+	 * @see edu.ustb.sei.mde.xmu2core.Xmu2corePackage#getTransformation_Callables()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Procedure> getProcedures();
+	EList<Callable> getCallables();
 
 	/**
 	 * Returns the value of the '<em><b>Declared Types</b></em>' containment reference list.
@@ -63,7 +63,7 @@ public interface Transformation extends NamedElement {
 
 	/**
 	 * Returns the value of the '<em><b>Entry Rules</b></em>' containment reference list.
-	 * The list contents are of type {@link edu.ustb.sei.mde.xmu2core.ProcedureCallStatement}.
+	 * The list contents are of type {@link edu.ustb.sei.mde.xmu2core.CallStatement}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Entry Rules</em>' containment reference list isn't clear,
@@ -75,7 +75,7 @@ public interface Transformation extends NamedElement {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<ProcedureCallStatement> getEntryRules();
+	EList<CallStatement> getEntryRules();
 
 	/**
 	 * Returns the value of the '<em><b>Packages</b></em>' reference list.

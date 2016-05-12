@@ -18,7 +18,6 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu2.AbstractRule#getParameters <em>Parameters</em>}</li>
- *   <li>{@link edu.ustb.sei.mde.xmu2.AbstractRule#getStatement <em>Statement</em>}</li>
  * </ul>
  *
  * @see edu.ustb.sei.mde.xmu2.Xmu2Package#getAbstractRule()
@@ -41,31 +40,5 @@ public interface AbstractRule extends NamedElement {
 	 * @generated
 	 */
 	EList<Parameter> getParameters();
-
-	/**
-	 * Returns the value of the '<em><b>Statement</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Statement</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Statement</em>' containment reference.
-	 * @see #setStatement(Statement)
-	 * @see edu.ustb.sei.mde.xmu2.Xmu2Package#getAbstractRule_Statement()
-	 * @model containment="true"
-	 * @generated
-	 */
-	Statement getStatement();
-
-	/**
-	 * Sets the value of the '{@link edu.ustb.sei.mde.xmu2.AbstractRule#getStatement <em>Statement</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Statement</em>' containment reference.
-	 * @see #getStatement()
-	 * @generated
-	 */
-	void setStatement(Statement value);
 
 } // AbstractRule

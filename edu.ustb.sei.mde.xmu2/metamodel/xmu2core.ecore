@@ -4,13 +4,13 @@
   <eClassifiers xsi:type="ecore:EClass" name="TypedElement" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClassifier"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Procedure" eSuperTypes="xmu2common.ecore#//NamedElement">
+  <eClassifiers xsi:type="ecore:EClass" name="Callable" abstract="true" eSuperTypes="xmu2common.ecore#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="variables" upperBound="-1"
         eType="#//Variable" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
         eType="#//Variable"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="statements" upperBound="-1"
-        eType="#//Statement" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Procedure" eSuperTypes="#//Callable">
     <eStructuralFeatures xsi:type="ecore:EReference" name="backwardStatements" upperBound="-1"
         eType="#//Statement" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="forwardStatements" upperBound="-1"
@@ -29,18 +29,12 @@
         eType="#//Statement" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="unmatchs" upperBound="-1"
         eType="#//Statement" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="viewCreationStatements"
-        upperBound="-1" eType="#//Statement" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CaseStatement" eSuperTypes="#//Statement xmu2common.ecore#//DomainElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="clauses" lowerBound="1"
         upperBound="-1" eType="#//CaseClause" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CaseClause" abstract="true">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="viewCreationStatements"
-        upperBound="-1" eType="#//Statement" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceCheckStatements"
-        upperBound="-1" eType="#//Statement" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="action" upperBound="-1"
         eType="#//Statement" containment="true"/>
   </eClassifiers>
@@ -181,21 +175,21 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" lowerBound="1"
         eType="ecore:EEnum xmu2common.ecore#//PositionOperator"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ProcedureCallStatement" eSuperTypes="#//Statement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="procedure" lowerBound="1"
-        eType="#//Procedure"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CallStatement" eSuperTypes="#//Statement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="callable" lowerBound="1"
+        eType="#//Callable"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
         eType="#//Expression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="updatedParameters" upperBound="-1"
         eType="#//Expression" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Transformation" eSuperTypes="xmu2common.ecore#//NamedElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="procedures" upperBound="-1"
-        eType="#//Procedure" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="callables" upperBound="-1"
+        eType="#//Callable" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="declaredTypes" upperBound="-1"
         eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClassifier" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="entryRules" upperBound="-1"
-        eType="#//ProcedureCallStatement" containment="true"/>
+        eType="#//CallStatement" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="packages" upperBound="-1"
         eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
   </eClassifiers>
@@ -264,5 +258,17 @@
   <eClassifiers xsi:type="ecore:EClass" name="EnforceExpressionStatement" eSuperTypes="#//Statement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="expression" lowerBound="1"
         eType="#//Expression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Function" eSuperTypes="#//Callable">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="backwardStatements" upperBound="-1"
+        eType="#//Statement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="forwardStatements" upperBound="-1"
+        eType="#//Statement" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SolveConstraintStatement" eSuperTypes="#//Statement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variables" upperBound="-1"
+        eType="#//Variable"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="problem" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
   </eClassifiers>
 </ecore:EPackage>

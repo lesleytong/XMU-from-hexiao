@@ -144,6 +144,10 @@ public class StatementAdapterFactory extends AdapterFactoryImpl {
 				return createSkipAdapter();
 			}
 			@Override
+			public Adapter caseAssignStatement(AssignStatement object) {
+				return createAssignStatementAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -426,6 +430,20 @@ public class StatementAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSkipAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.xmu2.statement.AssignStatement <em>Assign Statement</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.xmu2.statement.AssignStatement
+	 * @generated
+	 */
+	public Adapter createAssignStatementAdapter() {
 		return null;
 	}
 

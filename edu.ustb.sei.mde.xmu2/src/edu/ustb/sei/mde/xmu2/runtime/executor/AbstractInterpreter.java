@@ -30,7 +30,7 @@ import edu.ustb.sei.mde.xmu2core.MatchPattern;
 import edu.ustb.sei.mde.xmu2core.MultiplicativeExpression;
 import edu.ustb.sei.mde.xmu2core.ObjectValueExpression;
 import edu.ustb.sei.mde.xmu2core.Procedure;
-import edu.ustb.sei.mde.xmu2core.ProcedureCallStatement;
+import edu.ustb.sei.mde.xmu2core.CallStatement;
 import edu.ustb.sei.mde.xmu2core.RelationalExpression;
 import edu.ustb.sei.mde.xmu2core.Statement;
 import edu.ustb.sei.mde.xmu2core.StringValueExpression;
@@ -54,8 +54,8 @@ public abstract class AbstractInterpreter {
 		else if(o instanceof CaseStatement)
 			executeCaseStatement((CaseStatement)o, context);
 		
-		else if(o instanceof ProcedureCallStatement)
-			executeProcedureCallStatement((ProcedureCallStatement)o, context);
+		else if(o instanceof CallStatement)
+			executeCallStatement((CallStatement)o, context);
 		
 		else if(o instanceof ForEachStatement)
 			executeForEachStatement((ForEachStatement)o, context);
@@ -146,7 +146,7 @@ public abstract class AbstractInterpreter {
 	
 	abstract public void executeAlignStatement(AlignStatement statement, Context context);
 	abstract public void executeCaseStatement(CaseStatement statement, Context context);
-	abstract public void executeProcedureCallStatement(ProcedureCallStatement statement, Context context);
+	abstract public void executeCallStatement(CallStatement statement, Context context);
 	abstract public void executeForEachStatement(ForEachStatement statement, Context context);
 	abstract public void executeDeleteNodeStatement(DeleteNodeStatement statement, Context context);
 	abstract public void executeDeleteLinkStatement(DeleteLinkStatement statement, Context context);
@@ -170,12 +170,12 @@ public abstract class AbstractInterpreter {
 	abstract public SafeType executeVariableExpression(VariableExpression expression, Context context);
 	
 	public void executeTransformation(Transformation transformation, Environment environment) {
-		List<ProcedureCallStatement> starts = transformation.getEntryRules();
+		List<CallStatement> starts = transformation.getEntryRules();
 		
-		for(ProcedureCallStatement proc : starts) {
-			Procedure p = proc.getProcedure();
+		for(CallStatement proc : starts) {
+			Procedure p = (Procedure) proc.getCallable();
 			Context context = new Context(environment);
-			context.initFromProcedure(p);
+			context.initFromCallable(p);
 			
 			for(int index = 0 ; index < p.getParameters().size() ; index ++) {
 				Expression e = proc.getParameters().get(index);

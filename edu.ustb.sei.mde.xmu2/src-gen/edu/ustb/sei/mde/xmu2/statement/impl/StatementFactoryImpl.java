@@ -71,6 +71,7 @@ public class StatementFactoryImpl extends EFactoryImpl implements StatementFacto
 			case StatementPackage.BLOCK_STATEMENT: return createBlockStatement();
 			case StatementPackage.RULE_CALL_STATEMENT: return createRuleCallStatement();
 			case StatementPackage.SKIP: return createSkip();
+			case StatementPackage.ASSIGN_STATEMENT: return createAssignStatement();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -244,6 +245,16 @@ public class StatementFactoryImpl extends EFactoryImpl implements StatementFacto
 	public Skip createSkip() {
 		SkipImpl skip = new SkipImpl();
 		return skip;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AssignStatement createAssignStatement() {
+		AssignStatementImpl assignStatement = new AssignStatementImpl();
+		return assignStatement;
 	}
 
 	/**

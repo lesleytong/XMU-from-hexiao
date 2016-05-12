@@ -79,9 +79,17 @@ public class Xmu2coreSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case Xmu2corePackage.CALLABLE: {
+				Callable callable = (Callable)theEObject;
+				T result = caseCallable(callable);
+				if (result == null) result = caseNamedElement(callable);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case Xmu2corePackage.PROCEDURE: {
 				Procedure procedure = (Procedure)theEObject;
 				T result = caseProcedure(procedure);
+				if (result == null) result = caseCallable(procedure);
 				if (result == null) result = caseNamedElement(procedure);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -341,10 +349,10 @@ public class Xmu2coreSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Xmu2corePackage.PROCEDURE_CALL_STATEMENT: {
-				ProcedureCallStatement procedureCallStatement = (ProcedureCallStatement)theEObject;
-				T result = caseProcedureCallStatement(procedureCallStatement);
-				if (result == null) result = caseStatement(procedureCallStatement);
+			case Xmu2corePackage.CALL_STATEMENT: {
+				CallStatement callStatement = (CallStatement)theEObject;
+				T result = caseCallStatement(callStatement);
+				if (result == null) result = caseStatement(callStatement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -437,6 +445,21 @@ public class Xmu2coreSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case Xmu2corePackage.FUNCTION: {
+				Function function = (Function)theEObject;
+				T result = caseFunction(function);
+				if (result == null) result = caseCallable(function);
+				if (result == null) result = caseNamedElement(function);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case Xmu2corePackage.SOLVE_CONSTRAINT_STATEMENT: {
+				SolveConstraintStatement solveConstraintStatement = (SolveConstraintStatement)theEObject;
+				T result = caseSolveConstraintStatement(solveConstraintStatement);
+				if (result == null) result = caseStatement(solveConstraintStatement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -453,6 +476,21 @@ public class Xmu2coreSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseTypedElement(TypedElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Callable</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Callable</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCallable(Callable object) {
 		return null;
 	}
 
@@ -997,17 +1035,17 @@ public class Xmu2coreSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Procedure Call Statement</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Call Statement</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Procedure Call Statement</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Call Statement</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseProcedureCallStatement(ProcedureCallStatement object) {
+	public T caseCallStatement(CallStatement object) {
 		return null;
 	}
 
@@ -1188,6 +1226,36 @@ public class Xmu2coreSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseEnforceExpressionStatement(EnforceExpressionStatement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Function</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Function</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFunction(Function object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Solve Constraint Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Solve Constraint Statement</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSolveConstraintStatement(SolveConstraintStatement object) {
 		return null;
 	}
 

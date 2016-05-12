@@ -146,7 +146,7 @@ public class CaseStatementClauseItemProvider extends CaseClauseItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(Xmu2corePackage.Literals.CASE_STATEMENT_CLAUSE__CONDITION,
-				 Xmu2coreFactory.eINSTANCE.createProcedureCallStatement()));
+				 Xmu2coreFactory.eINSTANCE.createCallStatement()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -187,6 +187,11 @@ public class CaseStatementClauseItemProvider extends CaseClauseItemProvider {
 			(createChildParameter
 				(Xmu2corePackage.Literals.CASE_STATEMENT_CLAUSE__CONDITION,
 				 Xmu2coreFactory.eINSTANCE.createEnforceExpressionStatement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.CASE_STATEMENT_CLAUSE__CONDITION,
+				 Xmu2coreFactory.eINSTANCE.createSolveConstraintStatement()));
 	}
 
 	/**
@@ -201,8 +206,6 @@ public class CaseStatementClauseItemProvider extends CaseClauseItemProvider {
 		Object childObject = child;
 
 		boolean qualify =
-			childFeature == Xmu2corePackage.Literals.CASE_CLAUSE__VIEW_CREATION_STATEMENTS ||
-			childFeature == Xmu2corePackage.Literals.CASE_CLAUSE__SOURCE_CHECK_STATEMENTS ||
 			childFeature == Xmu2corePackage.Literals.CASE_CLAUSE__ACTION ||
 			childFeature == Xmu2corePackage.Literals.CASE_STATEMENT_CLAUSE__CONDITION;
 

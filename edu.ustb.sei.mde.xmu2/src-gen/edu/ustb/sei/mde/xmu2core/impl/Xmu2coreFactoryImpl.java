@@ -86,7 +86,7 @@ public class Xmu2coreFactoryImpl extends EFactoryImpl implements Xmu2coreFactory
 			case Xmu2corePackage.OPERATION_PATH: return createOperationPath();
 			case Xmu2corePackage.LOOP_PATH: return createLoopPath();
 			case Xmu2corePackage.POSITION_PATH: return createPositionPath();
-			case Xmu2corePackage.PROCEDURE_CALL_STATEMENT: return createProcedureCallStatement();
+			case Xmu2corePackage.CALL_STATEMENT: return createCallStatement();
 			case Xmu2corePackage.TRANSFORMATION: return createTransformation();
 			case Xmu2corePackage.ENTRY_RULE_PARAMETER: return createEntryRuleParameter();
 			case Xmu2corePackage.FOR_EACH_STATEMENT: return createForEachStatement();
@@ -98,6 +98,8 @@ public class Xmu2coreFactoryImpl extends EFactoryImpl implements Xmu2coreFactory
 			case Xmu2corePackage.MATCH_PATTERN: return createMatchPattern();
 			case Xmu2corePackage.CHECK_EXPRESSION_STATEMENT: return createCheckExpressionStatement();
 			case Xmu2corePackage.ENFORCE_EXPRESSION_STATEMENT: return createEnforceExpressionStatement();
+			case Xmu2corePackage.FUNCTION: return createFunction();
+			case Xmu2corePackage.SOLVE_CONSTRAINT_STATEMENT: return createSolveConstraintStatement();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -432,9 +434,9 @@ public class Xmu2coreFactoryImpl extends EFactoryImpl implements Xmu2coreFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ProcedureCallStatement createProcedureCallStatement() {
-		ProcedureCallStatementImpl procedureCallStatement = new ProcedureCallStatementImpl();
-		return procedureCallStatement;
+	public CallStatement createCallStatement() {
+		CallStatementImpl callStatement = new CallStatementImpl();
+		return callStatement;
 	}
 
 	/**
@@ -545,6 +547,26 @@ public class Xmu2coreFactoryImpl extends EFactoryImpl implements Xmu2coreFactory
 	public EnforceExpressionStatement createEnforceExpressionStatement() {
 		EnforceExpressionStatementImpl enforceExpressionStatement = new EnforceExpressionStatementImpl();
 		return enforceExpressionStatement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Function createFunction() {
+		FunctionImpl function = new FunctionImpl();
+		return function;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SolveConstraintStatement createSolveConstraintStatement() {
+		SolveConstraintStatementImpl solveConstraintStatement = new SolveConstraintStatementImpl();
+		return solveConstraintStatement;
 	}
 
 	/**

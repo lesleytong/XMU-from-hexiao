@@ -352,6 +352,12 @@ public class AbstractXmu2Interpreter<ResultType, ContextType> {
 		if (result != null) {
 			return result;
 		}
+		if (object instanceof edu.ustb.sei.mde.xmu2.statement.AssignStatement) {
+			result = interprete_edu_ustb_sei_mde_xmu2_statement_AssignStatement((edu.ustb.sei.mde.xmu2.statement.AssignStatement) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
 		if (object instanceof edu.ustb.sei.mde.xmu2.pattern.Pattern) {
 			result = interprete_edu_ustb_sei_mde_xmu2_pattern_Pattern((edu.ustb.sei.mde.xmu2.pattern.Pattern) object, context);
 		}
@@ -764,6 +770,10 @@ public class AbstractXmu2Interpreter<ResultType, ContextType> {
 	}
 	
 	public ResultType interprete_edu_ustb_sei_mde_xmu2_statement_Skip(edu.ustb.sei.mde.xmu2.statement.Skip skip, ContextType context) {
+		return null;
+	}
+	
+	public ResultType interprete_edu_ustb_sei_mde_xmu2_statement_AssignStatement(edu.ustb.sei.mde.xmu2.statement.AssignStatement assignStatement, ContextType context) {
 		return null;
 	}
 	

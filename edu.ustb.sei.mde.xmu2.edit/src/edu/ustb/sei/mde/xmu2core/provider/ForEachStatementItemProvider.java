@@ -181,7 +181,7 @@ public class ForEachStatementItemProvider extends StatementItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(Xmu2corePackage.Literals.FOR_EACH_STATEMENT__ACTION,
-				 Xmu2coreFactory.eINSTANCE.createProcedureCallStatement()));
+				 Xmu2coreFactory.eINSTANCE.createCallStatement()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -222,6 +222,11 @@ public class ForEachStatementItemProvider extends StatementItemProvider {
 			(createChildParameter
 				(Xmu2corePackage.Literals.FOR_EACH_STATEMENT__ACTION,
 				 Xmu2coreFactory.eINSTANCE.createEnforceExpressionStatement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.FOR_EACH_STATEMENT__ACTION,
+				 Xmu2coreFactory.eINSTANCE.createSolveConstraintStatement()));
 	}
 
 }

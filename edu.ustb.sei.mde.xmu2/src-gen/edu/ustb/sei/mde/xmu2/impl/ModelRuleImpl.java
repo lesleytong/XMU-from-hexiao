@@ -6,6 +6,7 @@ import edu.ustb.sei.mde.xmu2.ModelRule;
 import edu.ustb.sei.mde.xmu2.VariableDeclaration;
 import edu.ustb.sei.mde.xmu2.Xmu2Package;
 
+import edu.ustb.sei.mde.xmu2.statement.Statement;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -31,6 +32,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu2.impl.ModelRuleImpl#isActive <em>Active</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2.impl.ModelRuleImpl#getVariableDeclarations <em>Variable Declarations</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.xmu2.impl.ModelRuleImpl#getStatement <em>Statement</em>}</li>
  * </ul>
  *
  * @generated
@@ -65,6 +67,16 @@ public class ModelRuleImpl extends AbstractRuleImpl implements ModelRule {
 	 * @ordered
 	 */
 	protected EList<VariableDeclaration> variableDeclarations;
+
+	/**
+	 * The cached value of the '{@link #getStatement() <em>Statement</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStatement()
+	 * @generated
+	 * @ordered
+	 */
+	protected Statement statement;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -123,11 +135,56 @@ public class ModelRuleImpl extends AbstractRuleImpl implements ModelRule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Statement getStatement() {
+		return statement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetStatement(Statement newStatement, NotificationChain msgs) {
+		Statement oldStatement = statement;
+		statement = newStatement;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, Xmu2Package.MODEL_RULE__STATEMENT, oldStatement, newStatement);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setStatement(Statement newStatement) {
+		if (newStatement != statement) {
+			NotificationChain msgs = null;
+			if (statement != null)
+				msgs = ((InternalEObject)statement).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - Xmu2Package.MODEL_RULE__STATEMENT, null, msgs);
+			if (newStatement != null)
+				msgs = ((InternalEObject)newStatement).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - Xmu2Package.MODEL_RULE__STATEMENT, null, msgs);
+			msgs = basicSetStatement(newStatement, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, Xmu2Package.MODEL_RULE__STATEMENT, newStatement, newStatement));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case Xmu2Package.MODEL_RULE__VARIABLE_DECLARATIONS:
 				return ((InternalEList<?>)getVariableDeclarations()).basicRemove(otherEnd, msgs);
+			case Xmu2Package.MODEL_RULE__STATEMENT:
+				return basicSetStatement(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -144,6 +201,8 @@ public class ModelRuleImpl extends AbstractRuleImpl implements ModelRule {
 				return isActive();
 			case Xmu2Package.MODEL_RULE__VARIABLE_DECLARATIONS:
 				return getVariableDeclarations();
+			case Xmu2Package.MODEL_RULE__STATEMENT:
+				return getStatement();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -164,6 +223,9 @@ public class ModelRuleImpl extends AbstractRuleImpl implements ModelRule {
 				getVariableDeclarations().clear();
 				getVariableDeclarations().addAll((Collection<? extends VariableDeclaration>)newValue);
 				return;
+			case Xmu2Package.MODEL_RULE__STATEMENT:
+				setStatement((Statement)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -182,6 +244,9 @@ public class ModelRuleImpl extends AbstractRuleImpl implements ModelRule {
 			case Xmu2Package.MODEL_RULE__VARIABLE_DECLARATIONS:
 				getVariableDeclarations().clear();
 				return;
+			case Xmu2Package.MODEL_RULE__STATEMENT:
+				setStatement((Statement)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -198,6 +263,8 @@ public class ModelRuleImpl extends AbstractRuleImpl implements ModelRule {
 				return active != ACTIVE_EDEFAULT;
 			case Xmu2Package.MODEL_RULE__VARIABLE_DECLARATIONS:
 				return variableDeclarations != null && !variableDeclarations.isEmpty();
+			case Xmu2Package.MODEL_RULE__STATEMENT:
+				return statement != null;
 		}
 		return super.eIsSet(featureID);
 	}

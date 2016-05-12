@@ -14,6 +14,7 @@ public class Xmu2SyntaxCoverageInformationProvider {
 			edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getEntryPoint(),
 			edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getEntryData(),
 			edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getModelRule(),
+			edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(),
 			edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getVariableDeclaration(),
 			edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getParameter(),
 			edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getPattern(),
@@ -52,6 +53,7 @@ public class Xmu2SyntaxCoverageInformationProvider {
 			edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getRuleCallStatement(),
 			edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSkip(),
 			edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDefaultCaseClause(),
+			edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getAssignStatement(),
 		};
 	}
 	

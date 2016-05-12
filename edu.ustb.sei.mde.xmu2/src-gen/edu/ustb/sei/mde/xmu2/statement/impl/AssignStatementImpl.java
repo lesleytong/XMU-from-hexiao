@@ -1,0 +1,243 @@
+/**
+ */
+package edu.ustb.sei.mde.xmu2.statement.impl;
+
+import edu.ustb.sei.mde.xmu2.expression.Expression;
+import edu.ustb.sei.mde.xmu2.expression.VariableExpression;
+
+import edu.ustb.sei.mde.xmu2.statement.AssignStatement;
+import edu.ustb.sei.mde.xmu2.statement.StatementPackage;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+/**
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Assign Statement</b></em>'.
+ * <!-- end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * </p>
+ * <ul>
+ *   <li>{@link edu.ustb.sei.mde.xmu2.statement.impl.AssignStatementImpl#getUpdatedVariable <em>Updated Variable</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.xmu2.statement.impl.AssignStatementImpl#getValue <em>Value</em>}</li>
+ * </ul>
+ *
+ * @generated
+ */
+public class AssignStatementImpl extends StatementImpl implements AssignStatement {
+	/**
+	 * The cached value of the '{@link #getUpdatedVariable() <em>Updated Variable</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUpdatedVariable()
+	 * @generated
+	 * @ordered
+	 */
+	protected VariableExpression updatedVariable;
+
+	/**
+	 * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getValue()
+	 * @generated
+	 * @ordered
+	 */
+	protected Expression value;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AssignStatementImpl() {
+		super();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return StatementPackage.Literals.ASSIGN_STATEMENT;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public VariableExpression getUpdatedVariable() {
+		return updatedVariable;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetUpdatedVariable(VariableExpression newUpdatedVariable, NotificationChain msgs) {
+		VariableExpression oldUpdatedVariable = updatedVariable;
+		updatedVariable = newUpdatedVariable;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, StatementPackage.ASSIGN_STATEMENT__UPDATED_VARIABLE, oldUpdatedVariable, newUpdatedVariable);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setUpdatedVariable(VariableExpression newUpdatedVariable) {
+		if (newUpdatedVariable != updatedVariable) {
+			NotificationChain msgs = null;
+			if (updatedVariable != null)
+				msgs = ((InternalEObject)updatedVariable).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - StatementPackage.ASSIGN_STATEMENT__UPDATED_VARIABLE, null, msgs);
+			if (newUpdatedVariable != null)
+				msgs = ((InternalEObject)newUpdatedVariable).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - StatementPackage.ASSIGN_STATEMENT__UPDATED_VARIABLE, null, msgs);
+			msgs = basicSetUpdatedVariable(newUpdatedVariable, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StatementPackage.ASSIGN_STATEMENT__UPDATED_VARIABLE, newUpdatedVariable, newUpdatedVariable));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Expression getValue() {
+		return value;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetValue(Expression newValue, NotificationChain msgs) {
+		Expression oldValue = value;
+		value = newValue;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, StatementPackage.ASSIGN_STATEMENT__VALUE, oldValue, newValue);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setValue(Expression newValue) {
+		if (newValue != value) {
+			NotificationChain msgs = null;
+			if (value != null)
+				msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - StatementPackage.ASSIGN_STATEMENT__VALUE, null, msgs);
+			if (newValue != null)
+				msgs = ((InternalEObject)newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - StatementPackage.ASSIGN_STATEMENT__VALUE, null, msgs);
+			msgs = basicSetValue(newValue, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StatementPackage.ASSIGN_STATEMENT__VALUE, newValue, newValue));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case StatementPackage.ASSIGN_STATEMENT__UPDATED_VARIABLE:
+				return basicSetUpdatedVariable(null, msgs);
+			case StatementPackage.ASSIGN_STATEMENT__VALUE:
+				return basicSetValue(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case StatementPackage.ASSIGN_STATEMENT__UPDATED_VARIABLE:
+				return getUpdatedVariable();
+			case StatementPackage.ASSIGN_STATEMENT__VALUE:
+				return getValue();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case StatementPackage.ASSIGN_STATEMENT__UPDATED_VARIABLE:
+				setUpdatedVariable((VariableExpression)newValue);
+				return;
+			case StatementPackage.ASSIGN_STATEMENT__VALUE:
+				setValue((Expression)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case StatementPackage.ASSIGN_STATEMENT__UPDATED_VARIABLE:
+				setUpdatedVariable((VariableExpression)null);
+				return;
+			case StatementPackage.ASSIGN_STATEMENT__VALUE:
+				setValue((Expression)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case StatementPackage.ASSIGN_STATEMENT__UPDATED_VARIABLE:
+				return updatedVariable != null;
+			case StatementPackage.ASSIGN_STATEMENT__VALUE:
+				return value != null;
+		}
+		return super.eIsSet(featureID);
+	}
+
+} //AssignStatementImpl

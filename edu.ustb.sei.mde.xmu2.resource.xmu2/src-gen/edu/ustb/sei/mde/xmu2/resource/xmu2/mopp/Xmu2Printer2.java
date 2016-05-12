@@ -208,156 +208,164 @@ public class Xmu2Printer2 implements edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Te
 			printInternal(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_3, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu2.VariableDeclaration) {
+		if (element instanceof edu.ustb.sei.mde.xmu2.ArithmeticRule) {
 			printInternal(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_4, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu2.Parameter) {
+		if (element instanceof edu.ustb.sei.mde.xmu2.VariableDeclaration) {
 			printInternal(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_5, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu2.pattern.Pattern) {
+		if (element instanceof edu.ustb.sei.mde.xmu2.Parameter) {
 			printInternal(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_6, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu2.pattern.PatternNode) {
+		if (element instanceof edu.ustb.sei.mde.xmu2.pattern.Pattern) {
 			printInternal(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_7, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu2.pattern.ObjectPatternExpression) {
+		if (element instanceof edu.ustb.sei.mde.xmu2.pattern.PatternNode) {
 			printInternal(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_8, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu2.pattern.PropertyPatternExpression) {
+		if (element instanceof edu.ustb.sei.mde.xmu2.pattern.ObjectPatternExpression) {
 			printInternal(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_9, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu2.expression.LoopPath) {
+		if (element instanceof edu.ustb.sei.mde.xmu2.pattern.PropertyPatternExpression) {
 			printInternal(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_10, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu2.expression.FeaturePath) {
+		if (element instanceof edu.ustb.sei.mde.xmu2.expression.LoopPath) {
 			printInternal(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_11, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu2.expression.OperationPath) {
+		if (element instanceof edu.ustb.sei.mde.xmu2.expression.FeaturePath) {
 			printInternal(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_12, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu2.expression.PositionPath) {
+		if (element instanceof edu.ustb.sei.mde.xmu2.expression.OperationPath) {
 			printInternal(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_13, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu2.expression.VariableExpression) {
+		if (element instanceof edu.ustb.sei.mde.xmu2.expression.PositionPath) {
 			printInternal(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_14, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu2.expression.PathExpression) {
+		if (element instanceof edu.ustb.sei.mde.xmu2.expression.VariableExpression) {
 			printInternal(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_15, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu2.expression.EmptyExpression) {
+		if (element instanceof edu.ustb.sei.mde.xmu2.expression.PathExpression) {
 			printInternal(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_16, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu2.expression.StringLiteralExpression) {
+		if (element instanceof edu.ustb.sei.mde.xmu2.expression.EmptyExpression) {
 			printInternal(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_17, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu2.expression.IntegerLiteralExpression) {
+		if (element instanceof edu.ustb.sei.mde.xmu2.expression.StringLiteralExpression) {
 			printInternal(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_18, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu2.expression.BooleanLiteralExpression) {
+		if (element instanceof edu.ustb.sei.mde.xmu2.expression.IntegerLiteralExpression) {
 			printInternal(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_19, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu2.expression.EnumLiteralExpression) {
+		if (element instanceof edu.ustb.sei.mde.xmu2.expression.BooleanLiteralExpression) {
 			printInternal(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_20, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu2.expression.ObjectURIExpression) {
+		if (element instanceof edu.ustb.sei.mde.xmu2.expression.EnumLiteralExpression) {
 			printInternal(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_21, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu2.expression.ParenExpression) {
+		if (element instanceof edu.ustb.sei.mde.xmu2.expression.ObjectURIExpression) {
 			printInternal(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_22, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu2.expression.UnaryExpression) {
+		if (element instanceof edu.ustb.sei.mde.xmu2.expression.ParenExpression) {
 			printInternal(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_23, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu2.expression.MultiplicativeExpression) {
+		if (element instanceof edu.ustb.sei.mde.xmu2.expression.UnaryExpression) {
 			printInternal(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_24, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu2.expression.AdditiveExpression) {
+		if (element instanceof edu.ustb.sei.mde.xmu2.expression.MultiplicativeExpression) {
 			printInternal(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_25, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu2.expression.RelationalExpression) {
+		if (element instanceof edu.ustb.sei.mde.xmu2.expression.AdditiveExpression) {
 			printInternal(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_26, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu2.expression.BooleanAndExpression) {
+		if (element instanceof edu.ustb.sei.mde.xmu2.expression.RelationalExpression) {
 			printInternal(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_27, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu2.expression.BooleanOrExpression) {
+		if (element instanceof edu.ustb.sei.mde.xmu2.expression.BooleanAndExpression) {
 			printInternal(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_28, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu2.statement.BlockStatement) {
+		if (element instanceof edu.ustb.sei.mde.xmu2.expression.BooleanOrExpression) {
 			printInternal(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_29, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu2.statement.UpdateStatement) {
+		if (element instanceof edu.ustb.sei.mde.xmu2.statement.BlockStatement) {
 			printInternal(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_30, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu2.statement.SwitchStatement) {
+		if (element instanceof edu.ustb.sei.mde.xmu2.statement.UpdateStatement) {
 			printInternal(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_31, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu2.statement.UpdateClause) {
+		if (element instanceof edu.ustb.sei.mde.xmu2.statement.SwitchStatement) {
 			printInternal(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_32, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu2.statement.PatternCaseClause) {
+		if (element instanceof edu.ustb.sei.mde.xmu2.statement.UpdateClause) {
 			printInternal(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_33, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu2.statement.ExpressionCaseClause) {
+		if (element instanceof edu.ustb.sei.mde.xmu2.statement.PatternCaseClause) {
 			printInternal(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_34, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu2.statement.DeleteNodeStatement) {
+		if (element instanceof edu.ustb.sei.mde.xmu2.statement.ExpressionCaseClause) {
 			printInternal(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_35, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu2.statement.DeleteLinkStatement) {
+		if (element instanceof edu.ustb.sei.mde.xmu2.statement.DeleteNodeStatement) {
 			printInternal(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_36, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu2.statement.EnforcePatternStatement) {
+		if (element instanceof edu.ustb.sei.mde.xmu2.statement.DeleteLinkStatement) {
 			printInternal(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_37, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu2.statement.ForEachStatement) {
+		if (element instanceof edu.ustb.sei.mde.xmu2.statement.EnforcePatternStatement) {
 			printInternal(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_38, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu2.statement.RuleCallStatement) {
+		if (element instanceof edu.ustb.sei.mde.xmu2.statement.ForEachStatement) {
 			printInternal(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_39, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu2.statement.Skip) {
+		if (element instanceof edu.ustb.sei.mde.xmu2.statement.RuleCallStatement) {
 			printInternal(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_40, foundFormattingElements);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu2.statement.DefaultCaseClause) {
+		if (element instanceof edu.ustb.sei.mde.xmu2.statement.Skip) {
 			printInternal(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_41, foundFormattingElements);
+			return;
+		}
+		if (element instanceof edu.ustb.sei.mde.xmu2.statement.DefaultCaseClause) {
+			printInternal(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_42, foundFormattingElements);
+			return;
+		}
+		if (element instanceof edu.ustb.sei.mde.xmu2.statement.AssignStatement) {
+			printInternal(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_43, foundFormattingElements);
 			return;
 		}
 		

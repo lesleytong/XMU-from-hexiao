@@ -28,34 +28,12 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.CaseClauseImpl#getViewCreationStatements <em>View Creation Statements</em>}</li>
- *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.CaseClauseImpl#getSourceCheckStatements <em>Source Check Statements</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.CaseClauseImpl#getAction <em>Action</em>}</li>
  * </ul>
  *
  * @generated
  */
 public abstract class CaseClauseImpl extends MinimalEObjectImpl.Container implements CaseClause {
-	/**
-	 * The cached value of the '{@link #getViewCreationStatements() <em>View Creation Statements</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getViewCreationStatements()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Statement> viewCreationStatements;
-
-	/**
-	 * The cached value of the '{@link #getSourceCheckStatements() <em>Source Check Statements</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSourceCheckStatements()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Statement> sourceCheckStatements;
-
 	/**
 	 * The cached value of the '{@link #getAction() <em>Action</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -90,30 +68,6 @@ public abstract class CaseClauseImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Statement> getViewCreationStatements() {
-		if (viewCreationStatements == null) {
-			viewCreationStatements = new EObjectContainmentEList<Statement>(Statement.class, this, Xmu2corePackage.CASE_CLAUSE__VIEW_CREATION_STATEMENTS);
-		}
-		return viewCreationStatements;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Statement> getSourceCheckStatements() {
-		if (sourceCheckStatements == null) {
-			sourceCheckStatements = new EObjectContainmentEList<Statement>(Statement.class, this, Xmu2corePackage.CASE_CLAUSE__SOURCE_CHECK_STATEMENTS);
-		}
-		return sourceCheckStatements;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<Statement> getAction() {
 		if (action == null) {
 			action = new EObjectContainmentEList<Statement>(Statement.class, this, Xmu2corePackage.CASE_CLAUSE__ACTION);
@@ -129,10 +83,6 @@ public abstract class CaseClauseImpl extends MinimalEObjectImpl.Container implem
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case Xmu2corePackage.CASE_CLAUSE__VIEW_CREATION_STATEMENTS:
-				return ((InternalEList<?>)getViewCreationStatements()).basicRemove(otherEnd, msgs);
-			case Xmu2corePackage.CASE_CLAUSE__SOURCE_CHECK_STATEMENTS:
-				return ((InternalEList<?>)getSourceCheckStatements()).basicRemove(otherEnd, msgs);
 			case Xmu2corePackage.CASE_CLAUSE__ACTION:
 				return ((InternalEList<?>)getAction()).basicRemove(otherEnd, msgs);
 		}
@@ -147,10 +97,6 @@ public abstract class CaseClauseImpl extends MinimalEObjectImpl.Container implem
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case Xmu2corePackage.CASE_CLAUSE__VIEW_CREATION_STATEMENTS:
-				return getViewCreationStatements();
-			case Xmu2corePackage.CASE_CLAUSE__SOURCE_CHECK_STATEMENTS:
-				return getSourceCheckStatements();
 			case Xmu2corePackage.CASE_CLAUSE__ACTION:
 				return getAction();
 		}
@@ -166,14 +112,6 @@ public abstract class CaseClauseImpl extends MinimalEObjectImpl.Container implem
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case Xmu2corePackage.CASE_CLAUSE__VIEW_CREATION_STATEMENTS:
-				getViewCreationStatements().clear();
-				getViewCreationStatements().addAll((Collection<? extends Statement>)newValue);
-				return;
-			case Xmu2corePackage.CASE_CLAUSE__SOURCE_CHECK_STATEMENTS:
-				getSourceCheckStatements().clear();
-				getSourceCheckStatements().addAll((Collection<? extends Statement>)newValue);
-				return;
 			case Xmu2corePackage.CASE_CLAUSE__ACTION:
 				getAction().clear();
 				getAction().addAll((Collection<? extends Statement>)newValue);
@@ -190,12 +128,6 @@ public abstract class CaseClauseImpl extends MinimalEObjectImpl.Container implem
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case Xmu2corePackage.CASE_CLAUSE__VIEW_CREATION_STATEMENTS:
-				getViewCreationStatements().clear();
-				return;
-			case Xmu2corePackage.CASE_CLAUSE__SOURCE_CHECK_STATEMENTS:
-				getSourceCheckStatements().clear();
-				return;
 			case Xmu2corePackage.CASE_CLAUSE__ACTION:
 				getAction().clear();
 				return;
@@ -211,10 +143,6 @@ public abstract class CaseClauseImpl extends MinimalEObjectImpl.Container implem
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case Xmu2corePackage.CASE_CLAUSE__VIEW_CREATION_STATEMENTS:
-				return viewCreationStatements != null && !viewCreationStatements.isEmpty();
-			case Xmu2corePackage.CASE_CLAUSE__SOURCE_CHECK_STATEMENTS:
-				return sourceCheckStatements != null && !sourceCheckStatements.isEmpty();
 			case Xmu2corePackage.CASE_CLAUSE__ACTION:
 				return action != null && !action.isEmpty();
 		}

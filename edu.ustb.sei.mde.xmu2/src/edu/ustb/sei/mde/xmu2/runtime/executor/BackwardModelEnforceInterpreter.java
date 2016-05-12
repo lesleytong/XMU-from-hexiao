@@ -5,11 +5,8 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.util.EcoreUtil.CrossReferencer;
 
 import edu.ustb.sei.commonutil.util.Pair;
 import edu.ustb.sei.mde.xmu2.runtime.exceptions.InvalidBackwardEnforcementException;
@@ -19,25 +16,26 @@ import edu.ustb.sei.mde.xmu2.util.AnalysisUtil;
 import edu.ustb.sei.mde.xmu2.util.Constants;
 import edu.ustb.sei.mde.xmu2.util.ContextUtil;
 import edu.ustb.sei.mde.xmu2.util.Tuple;
+import edu.ustb.sei.mde.xmu2common.DomainTag;
 import edu.ustb.sei.mde.xmu2core.AlignStatement;
+import edu.ustb.sei.mde.xmu2core.CallStatement;
+import edu.ustb.sei.mde.xmu2core.Callable;
 import edu.ustb.sei.mde.xmu2core.CaseClause;
 import edu.ustb.sei.mde.xmu2core.CaseExpressionClause;
 import edu.ustb.sei.mde.xmu2core.CasePatternClause;
 import edu.ustb.sei.mde.xmu2core.CaseStatement;
 import edu.ustb.sei.mde.xmu2core.DeleteLinkStatement;
 import edu.ustb.sei.mde.xmu2core.DeleteNodeStatement;
-import edu.ustb.sei.mde.xmu2common.*;
 import edu.ustb.sei.mde.xmu2core.EnforceLinkStatement;
 import edu.ustb.sei.mde.xmu2core.EnforceNodeStatement;
 import edu.ustb.sei.mde.xmu2core.Expression;
 import edu.ustb.sei.mde.xmu2core.ForEachStatement;
+import edu.ustb.sei.mde.xmu2core.Function;
 import edu.ustb.sei.mde.xmu2core.LoopPath;
 import edu.ustb.sei.mde.xmu2core.PositionPath;
 import edu.ustb.sei.mde.xmu2core.Procedure;
-import edu.ustb.sei.mde.xmu2core.ProcedureCallStatement;
 import edu.ustb.sei.mde.xmu2core.Statement;
 import edu.ustb.sei.mde.xmu2core.Variable;
-import edu.ustb.sei.mde.xmu2core.VariableExpression;
 
 public class BackwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 
@@ -76,9 +74,9 @@ public class BackwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 		}
 	}
 	
-	protected void handleProcedureTrialCallStatements(List<ProcedureCallStatement> collectRuleCallStatements,
+	protected void handleProcedureTrialCallStatements(List<CallStatement> collectRuleCallStatements,
 			List<Variable> sVars, Context context) {
-		for(ProcedureCallStatement u : collectRuleCallStatements) {
+		for(CallStatement u : collectRuleCallStatements) {
 			this.trialRuleCall(u, context);
 		}
 		
@@ -97,47 +95,51 @@ public class BackwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 		}
 	}
 	
-	private void trialRuleCall(ProcedureCallStatement ruleCallStatement, Context context) {
+	private void trialRuleCall(CallStatement ruleCallStatement, Context context) {
 		try {
-			List<Object> parameterList = new ArrayList<Object>();
-			Procedure rule = ruleCallStatement.getProcedure();
-			int size = rule.getParameters().size();
-			
-			for (int i = 0; i < size; i++) {
-				Expression ap = ruleCallStatement.getParameters().get(i);
-				try {
-					SafeType value = this.executeExpression(ap, context);
-					if (value.isUndefined())
-						return;
-					parameterList.add(value.getValue());
+			Callable rule = ruleCallStatement.getCallable();
+			if (rule instanceof Procedure) {
 
-				} catch (Exception e) {
-					return;
-				}
-			}
+				List<Object> parameterList = new ArrayList<Object>();
+				int size = rule.getParameters().size();
 
-			Tuple ret = context.getEnvironment().getTrace(rule, parameterList);
-			
-			if (ret != null) {
-				// write back
-				for (int i = 0, j = 0; i < size; i++) {
-					Variable fp = rule.getParameters().get(i);
-					Expression uap = ruleCallStatement.getUpdatedParameters().get(i);
-
-					if (fp.getTag() == DomainTag.SOURCE) {
-
-						Object obj = ret.get(j);
-						j++;
-
-						if (!this.enforceExpression(uap, context, 
-								SafeType.createFromValue(obj)))
+				for (int i = 0; i < size; i++) {
+					Expression ap = ruleCallStatement.getParameters().get(i);
+					try {
+						SafeType value = this.executeExpression(ap, context);
+						if (value.isUndefined())
 							return;
+						parameterList.add(value.getValue());
+
+					} catch (Exception e) {
+						return;
 					}
 				}
-				return;
 
-			} else
-				return;
+				Tuple ret = context.getEnvironment().getTrace(((Procedure)rule), parameterList);
+
+				if (ret != null) {
+					// write back
+					for (int i = 0, j = 0; i < size; i++) {
+						Variable fp = rule.getParameters().get(i);
+						Expression uap = ruleCallStatement.getUpdatedParameters().get(i);
+
+						if (fp.getTag() == DomainTag.SOURCE) {
+
+							Object obj = ret.get(j);
+							j++;
+
+							if (!this.enforceExpression(uap, context, SafeType.createFromValue(obj)))
+								return;
+						}
+					}
+					return;
+
+				} else
+					return;
+			} else if(rule instanceof Function) {
+				
+			}
 		} catch (Exception e) {
 		}
 	}
@@ -149,7 +151,7 @@ public class BackwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 		// an outer variable is a variable declared under the mainContext but uniquely bound in branchContext(s)
 		// perhaps, I can change the signature to mergeContext(Context, List<Context>)
 		
-		Procedure rule = mainContext.getProcedure();
+		Callable rule = mainContext.getCallable();
 
 		for (Variable fp : rule.getParameters()) {
 			if (fp.getTag() == DomainTag.SOURCE) {
@@ -197,76 +199,81 @@ public class BackwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 	}
 
 	@Override
-	public void executeProcedureCallStatement(ProcedureCallStatement ruleCallStatement, Context context) {
-		List<Object> parameterList = new ArrayList<Object>();
-		Procedure rule = ruleCallStatement.getProcedure();
-		int size = rule.getParameters().size();
+	public void executeCallStatement(CallStatement ruleCallStatement, Context context) {
+		Callable rule = ruleCallStatement.getCallable();
 		
-		Context newContext = new Context(context.getEnvironment());
-		newContext.setProcedure(rule);
-		newContext.initFromProcedure(rule);
-		
-		
-		for (int i = 0; i < size; i++) {
-			Variable fp = rule.getParameters().get(i);
-			Expression ap = ruleCallStatement.getParameters().get(i);
+		if (rule instanceof Procedure) {
 
-			SafeType value = this.executeExpression(ap, context);
-			
-			if (value.isUndefined())
-				throw new InvalidBackwardEnforcementException("invalid parameter of rule call in backward transformation");
-			parameterList.add(value.getValue());
-			
-			newContext.put(fp, value);
-			if(fp.getTag()==DomainTag.SOURCE) {
-				Expression uap = ruleCallStatement.getUpdatedParameters().get(i);
-				SafeType spValue = calculateDefaultUpdatedValue(uap,value,fp,context);
-				Variable fspv = newContext.getVariable(AnalysisUtil.getUpdatedSourceVariableName(fp.getName()));
-				newContext.put(fspv, spValue);
-			}
+			List<Object> parameterList = new ArrayList<Object>();
+			int size = rule.getParameters().size();
 
-		}
+			Context newContext = new Context(context.getEnvironment());
+			newContext.setCallable(rule);
+			newContext.initFromCallable(rule);
 
-		Tuple ret = context.getEnvironment().getTrace(rule, parameterList);
-		
-		if (ret != null) {
-			// write back
-			for (int i = 0, j = 0; i < size; i++) {
+			for (int i = 0; i < size; i++) {
 				Variable fp = rule.getParameters().get(i);
-				Expression uap = ruleCallStatement.getUpdatedParameters().get(i);
+				Expression ap = ruleCallStatement.getParameters().get(i);
 
+				SafeType value = this.executeExpression(ap, context);
+
+				if (value.isUndefined())
+					throw new InvalidBackwardEnforcementException(
+							"invalid parameter of rule call in backward transformation");
+				parameterList.add(value.getValue());
+
+				newContext.put(fp, value);
 				if (fp.getTag() == DomainTag.SOURCE) {
-
-					Object obj = ret.get(j);
-					j++;
-
-					if (!this.enforceExpression(uap, context, 
-							SafeType.createFromValue(obj)))
-						throw new InvalidBackwardEnforcementException("cannot putback updated source parameters");
+					Expression uap = ruleCallStatement.getUpdatedParameters().get(i);
+					SafeType spValue = calculateDefaultUpdatedValue(uap, value, fp, context);
+					Variable fspv = newContext.getVariable(AnalysisUtil.getUpdatedSourceVariableName(fp.getName()));
+					newContext.put(fspv, spValue);
 				}
+
 			}
-			return;
 
-		} else {
-			this.executeStatements(rule.getStatements(),newContext);
-			
-			List<Object> updatedSourceList = new ArrayList<Object>();
-			//write back
-			for(int i=0;i<size;i++) {
-				Variable fp = rule.getParameters().get(i);
+			Tuple ret = context.getEnvironment().getTrace(((Procedure)rule), parameterList);
 
-				if(fp.getTag()==DomainTag.SOURCE) {
-					Variable sp = newContext.getVariable(AnalysisUtil.getUpdatedSourceVariableName(fp.getName()));
-					SafeType spv = newContext.get(sp);
-					
-					updatedSourceList.add(spv.getValue());
+			if (ret != null) {
+				// write back
+				for (int i = 0, j = 0; i < size; i++) {
+					Variable fp = rule.getParameters().get(i);
+					Expression uap = ruleCallStatement.getUpdatedParameters().get(i);
+
+					if (fp.getTag() == DomainTag.SOURCE) {
+
+						Object obj = ret.get(j);
+						j++;
+
+						if (!this.enforceExpression(uap, context, SafeType.createFromValue(obj)))
+							throw new InvalidBackwardEnforcementException("cannot putback updated source parameters");
+					}
 				}
+				return;
+
+			} else {
+				this.executeStatements(((Procedure)rule).getBackwardStatements(), newContext);
+
+				List<Object> updatedSourceList = new ArrayList<Object>();
+				// write back
+				for (int i = 0; i < size; i++) {
+					Variable fp = rule.getParameters().get(i);
+
+					if (fp.getTag() == DomainTag.SOURCE) {
+						Variable sp = newContext.getVariable(AnalysisUtil.getUpdatedSourceVariableName(fp.getName()));
+						SafeType spv = newContext.get(sp);
+
+						updatedSourceList.add(spv.getValue());
+					}
+				}
+
+				// record trace
+				context.getEnvironment().putTrace(((Procedure)rule), parameterList, updatedSourceList);
+
+				return;
 			}
-			
-			//record trace
-			context.getEnvironment().putTrace(rule, parameterList, updatedSourceList);
-			
-			return;
+		} else if (rule instanceof Function) {
+
 		}
 	}
 

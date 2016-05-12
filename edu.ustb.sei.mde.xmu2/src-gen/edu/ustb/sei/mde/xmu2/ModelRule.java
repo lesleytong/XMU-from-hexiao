@@ -2,6 +2,7 @@
  */
 package edu.ustb.sei.mde.xmu2;
 
+import edu.ustb.sei.mde.xmu2.statement.Statement;
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -15,6 +16,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu2.ModelRule#isActive <em>Active</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2.ModelRule#getVariableDeclarations <em>Variable Declarations</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.xmu2.ModelRule#getStatement <em>Statement</em>}</li>
  * </ul>
  *
  * @see edu.ustb.sei.mde.xmu2.Xmu2Package#getModelRule()
@@ -64,5 +66,31 @@ public interface ModelRule extends AbstractRule {
 	 * @generated
 	 */
 	EList<VariableDeclaration> getVariableDeclarations();
+
+	/**
+	 * Returns the value of the '<em><b>Statement</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Statement</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Statement</em>' containment reference.
+	 * @see #setStatement(Statement)
+	 * @see edu.ustb.sei.mde.xmu2.Xmu2Package#getModelRule_Statement()
+	 * @model containment="true"
+	 * @generated
+	 */
+	Statement getStatement();
+
+	/**
+	 * Sets the value of the '{@link edu.ustb.sei.mde.xmu2.ModelRule#getStatement <em>Statement</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Statement</em>' containment reference.
+	 * @see #getStatement()
+	 * @generated
+	 */
+	void setStatement(Statement value);
 
 } // ModelRule

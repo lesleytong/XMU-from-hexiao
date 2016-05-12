@@ -38,16 +38,21 @@ public class ObjectURIExpressionObjectReferenceResolver implements edu.ustb.sei.
 			if(identifier==null ||identifier.length()==0 || container==null) return;
 			String str = identifier.substring(1);
 			
-			EObject obj = container.eResource().getResourceSet().getEObject(URI.createURI(str), false);
-			
-			if(obj==null) return;
-			
-			result.addMapping(identifier, obj);			
+			try {
+				EObject obj = container.eResource().getResourceSet().getEObject(URI.createURI(str), false);
+
+				if (obj == null)
+					return;
+
+				result.addMapping(identifier, obj);
+			} catch (Exception e) {
+
+			}
 		}
 	}
 	
 	public String deResolve(org.eclipse.emf.ecore.EObject element, edu.ustb.sei.mde.xmu2.expression.ObjectURIExpression container, org.eclipse.emf.ecore.EReference reference) {
-		return delegate.deResolve(element, container, reference);
+		return "@"+delegate.deResolve(element, container, reference);
 	}
 	
 	public void setOptions(java.util.Map<?,?> options) {

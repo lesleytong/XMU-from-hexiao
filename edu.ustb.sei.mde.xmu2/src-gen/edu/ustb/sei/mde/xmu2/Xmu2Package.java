@@ -252,22 +252,13 @@ public interface Xmu2Package extends EPackage {
 	int ABSTRACT_RULE__PARAMETERS = Xmu2commonPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Statement</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_RULE__STATEMENT = Xmu2commonPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
 	 * The number of structural features of the '<em>Abstract Rule</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_RULE_FEATURE_COUNT = Xmu2commonPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int ABSTRACT_RULE_FEATURE_COUNT = Xmu2commonPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu2.impl.ParameterImpl <em>Parameter</em>}' class.
@@ -344,15 +335,6 @@ public interface Xmu2Package extends EPackage {
 	int MODEL_RULE__PARAMETERS = ABSTRACT_RULE__PARAMETERS;
 
 	/**
-	 * The feature id for the '<em><b>Statement</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_RULE__STATEMENT = ABSTRACT_RULE__STATEMENT;
-
-	/**
 	 * The feature id for the '<em><b>Active</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -371,13 +353,22 @@ public interface Xmu2Package extends EPackage {
 	int MODEL_RULE__VARIABLE_DECLARATIONS = ABSTRACT_RULE_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Statement</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_RULE__STATEMENT = ABSTRACT_RULE_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Model Rule</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_RULE_FEATURE_COUNT = ABSTRACT_RULE_FEATURE_COUNT + 2;
+	int MODEL_RULE_FEATURE_COUNT = ABSTRACT_RULE_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu2.impl.ArithmeticRuleImpl <em>Arithmetic Rule</em>}' class.
@@ -408,13 +399,13 @@ public interface Xmu2Package extends EPackage {
 	int ARITHMETIC_RULE__PARAMETERS = ABSTRACT_RULE__PARAMETERS;
 
 	/**
-	 * The feature id for the '<em><b>Statement</b></em>' containment reference.
+	 * The feature id for the '<em><b>Statements</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ARITHMETIC_RULE__STATEMENT = ABSTRACT_RULE__STATEMENT;
+	int ARITHMETIC_RULE__STATEMENTS = ABSTRACT_RULE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Arithmetic Rule</em>' class.
@@ -423,7 +414,7 @@ public interface Xmu2Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ARITHMETIC_RULE_FEATURE_COUNT = ABSTRACT_RULE_FEATURE_COUNT + 0;
+	int ARITHMETIC_RULE_FEATURE_COUNT = ABSTRACT_RULE_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu2.impl.VariableDeclarationImpl <em>Variable Declaration</em>}' class.
@@ -641,17 +632,6 @@ public interface Xmu2Package extends EPackage {
 	EReference getAbstractRule_Parameters();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.xmu2.AbstractRule#getStatement <em>Statement</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Statement</em>'.
-	 * @see edu.ustb.sei.mde.xmu2.AbstractRule#getStatement()
-	 * @see #getAbstractRule()
-	 * @generated
-	 */
-	EReference getAbstractRule_Statement();
-
-	/**
 	 * Returns the meta object for class '{@link edu.ustb.sei.mde.xmu2.Parameter <em>Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -694,6 +674,17 @@ public interface Xmu2Package extends EPackage {
 	EReference getModelRule_VariableDeclarations();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.xmu2.ModelRule#getStatement <em>Statement</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Statement</em>'.
+	 * @see edu.ustb.sei.mde.xmu2.ModelRule#getStatement()
+	 * @see #getModelRule()
+	 * @generated
+	 */
+	EReference getModelRule_Statement();
+
+	/**
 	 * Returns the meta object for class '{@link edu.ustb.sei.mde.xmu2.ArithmeticRule <em>Arithmetic Rule</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -702,6 +693,17 @@ public interface Xmu2Package extends EPackage {
 	 * @generated
 	 */
 	EClass getArithmeticRule();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link edu.ustb.sei.mde.xmu2.ArithmeticRule#getStatements <em>Statements</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Statements</em>'.
+	 * @see edu.ustb.sei.mde.xmu2.ArithmeticRule#getStatements()
+	 * @see #getArithmeticRule()
+	 * @generated
+	 */
+	EReference getArithmeticRule_Statements();
 
 	/**
 	 * Returns the meta object for class '{@link edu.ustb.sei.mde.xmu2.VariableDeclaration <em>Variable Declaration</em>}'.
@@ -879,14 +881,6 @@ public interface Xmu2Package extends EPackage {
 		EReference ABSTRACT_RULE__PARAMETERS = eINSTANCE.getAbstractRule_Parameters();
 
 		/**
-		 * The meta object literal for the '<em><b>Statement</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ABSTRACT_RULE__STATEMENT = eINSTANCE.getAbstractRule_Statement();
-
-		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu2.impl.ParameterImpl <em>Parameter</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -923,6 +917,14 @@ public interface Xmu2Package extends EPackage {
 		EReference MODEL_RULE__VARIABLE_DECLARATIONS = eINSTANCE.getModelRule_VariableDeclarations();
 
 		/**
+		 * The meta object literal for the '<em><b>Statement</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MODEL_RULE__STATEMENT = eINSTANCE.getModelRule_Statement();
+
+		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu2.impl.ArithmeticRuleImpl <em>Arithmetic Rule</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -931,6 +933,14 @@ public interface Xmu2Package extends EPackage {
 		 * @generated
 		 */
 		EClass ARITHMETIC_RULE = eINSTANCE.getArithmeticRule();
+
+		/**
+		 * The meta object literal for the '<em><b>Statements</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ARITHMETIC_RULE__STATEMENTS = eINSTANCE.getArithmeticRule_Statements();
 
 		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu2.impl.VariableDeclarationImpl <em>Variable Declaration</em>}' class.

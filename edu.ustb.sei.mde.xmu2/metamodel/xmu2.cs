@@ -47,7 +47,10 @@ RULES {
 	
 	EntryData ::= tag[source:"source",view:"view"] "[" index[NUMBER]  (fragment[OBJ_URI])? "]";
 	
-	ModelRule ::= active["top" : ""] "rule" name[NAME]"(" (parameters ("," parameters)*)? ")" "{" (variableDeclarations ";")* statement? "}";
+	ModelRule ::= active["top" : ""] "rule" name[NAME] "(" (parameters ("," parameters)*)? ")" "{" (variableDeclarations ";")* statement? "}";
+	
+	ArithmeticRule ::= "function" name[NAME] "(" (parameters ("," parameters)*)? ")" "{" statements* "}";
+	
 	VariableDeclaration ::= name[NAME] ":" type[TYPE];
 	Parameter ::= tag[source:"source",view:"view",normal:""] name[NAME] ":" type[TYPE];
 	
@@ -99,4 +102,5 @@ RULES {
 	statement.RuleCallStatement ::= rule[NAME] "(" (parameters:expression.PathExpression,expression.AtomicExpression ("," parameters:expression.PathExpression,expression.AtomicExpression)*)? ")";
 	statement.Skip ::= "skip";
 	statement.DefaultCaseClause ::= "otherwise" "->" action;
+	statement.AssignStatement ::= updatedVariable "::=" value: expression.BooleanOrExpression,expression.BooleanAndExpression,expression.RelationalExpression,expression.AdditiveExpression,expression.MultiplicativeExpression,expression.UnaryExpression,expression.PathExpression, expression.AtomicExpression;
 }

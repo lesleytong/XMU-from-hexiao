@@ -9,6 +9,7 @@ import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 
 import edu.ustb.sei.mde.xmu2.AbstractRule;
+import edu.ustb.sei.mde.xmu2.ArithmeticRule;
 import edu.ustb.sei.mde.xmu2.EntryData;
 import edu.ustb.sei.mde.xmu2.EntryPoint;
 import edu.ustb.sei.mde.xmu2.ModelRule;
@@ -21,7 +22,10 @@ import edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Options;
 import edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2ResourcePostProcessor;
 import edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2ResourcePostProcessorProvider;
 import edu.ustb.sei.mde.xmu2.resource.xmu2.Xmu2EProblemType;
+import edu.ustb.sei.mde.xmu2.statement.AssignStatement;
 import edu.ustb.sei.mde.xmu2.statement.EnforcePatternStatement;
+import edu.ustb.sei.mde.xmu2.statement.ExpressionCaseClause;
+import edu.ustb.sei.mde.xmu2.statement.PatternCaseClause;
 import edu.ustb.sei.mde.xmu2.statement.RuleCallStatement;
 import edu.ustb.sei.mde.xmu2.util.AnalysisUtil;
 import edu.ustb.sei.mde.xmu2.util.Constants;
@@ -36,14 +40,20 @@ public class ValidityChecker
 	@Override
 	public void process(Xmu2Resource resource) {
 		termination = false;
+		if(resource.getContents().isEmpty()) return;
+		
+		TransformationModel model = (TransformationModel)resource.getContents().get(0);
 		
 		
 		try {
-			TransformationModel model = (TransformationModel)resource.getContents().get(0);
 			for(AbstractRule r : model.getRules()) {
 				if(termination) break;
 				if(r instanceof ModelRule) {
 					this.checkVariableValidity((ModelRule)r, resource);
+					this.checkStatementUsage(r,false,resource);
+				} else if(r instanceof ArithmeticRule) {
+					this.checkVariableValidity((ArithmeticRule)r, resource);
+					this.checkStatementUsage(r,true,resource);
 				}
 			}
 			for(EntryPoint ep : model.getEntryPoints()) {
@@ -52,9 +62,34 @@ public class ValidityChecker
 			}
 		} catch(Exception e) {
 			resource.addWarning("validity check is not finished becase of some exception", 
-					Xmu2EProblemType.ANALYSIS_PROBLEM, null);
+					Xmu2EProblemType.ANALYSIS_PROBLEM, model);
 		}
 
+	}
+
+	private void checkStatementUsage(AbstractRule r, boolean isArithmeticRule, Xmu2Resource resource) {
+		TreeIterator<EObject> it = r.eAllContents();
+		while(it.hasNext()) {
+			EObject o = it.next();
+			if(o instanceof edu.ustb.sei.mde.xmu2.statement.Statement) {
+				if(o instanceof edu.ustb.sei.mde.xmu2.statement.SwitchStatement) {
+					if(isArithmeticRule) {
+						for(edu.ustb.sei.mde.xmu2.statement.CaseClause cc : ((edu.ustb.sei.mde.xmu2.statement.SwitchStatement) o).getCases()) {
+							if(cc instanceof PatternCaseClause)
+								resource.addError("you cannot use the pattern case in a function", Xmu2EProblemType.SYNTAX_ERROR, cc);
+						}
+					}
+				} else if(o instanceof edu.ustb.sei.mde.xmu2.statement.AssignStatement) {
+					if(isArithmeticRule==false) {
+						resource.addError("you cannot use the AssignStatement in a model rule", Xmu2EProblemType.SYNTAX_ERROR, o);
+					}
+				} else if(o instanceof edu.ustb.sei.mde.xmu2.statement.BlockStatement) {
+				} else {
+					if(isArithmeticRule)
+						resource.addError("you cannot use this statement in a function", Xmu2EProblemType.SYNTAX_ERROR, o);
+				}
+			}
+		}
 	}
 
 	private void checkEntryPoints(EntryPoint ep, Xmu2Resource resource) {
@@ -106,7 +141,7 @@ public class ValidityChecker
 	 */
 	
 	//check the validity of variable name
-	public void checkVariableValidity(ModelRule rule, Xmu2Resource resource) {
+	public void checkVariableValidity(AbstractRule rule, Xmu2Resource resource) {
 		VariableValidityContext con = new VariableValidityContext();
 		
 		//collect variable names and check naming rules
@@ -117,7 +152,7 @@ public class ValidityChecker
 		return;
 	}
 	
-	public void checkRuleCallValidity(ModelRule rule,Xmu2Resource resource,VariableValidityContext cont) {
+	public void checkRuleCallValidity(AbstractRule rule,Xmu2Resource resource,VariableValidityContext cont) {
 		try {
 			TreeIterator<EObject> it = rule.eAllContents();
 			
@@ -259,6 +294,39 @@ class VariableValidityContext {
 				for(EObject o : root.eContents()) {
 					collectVariableNames(o, resource);
 				}
+			} else if(root instanceof ArithmeticRule) {
+				for(edu.ustb.sei.mde.xmu2.Parameter p : ((ArithmeticRule) root).getParameters()) {
+					if(((edu.ustb.sei.mde.xmu2.Parameter) p).getTag()==DomainTag.NORMAL) {
+						
+						if(AnalysisUtil.isValidNonUpdatedSourceVariableName(p.getName())==false)
+							resource.addError("the name of a normal variable should not end with '@post'", Xmu2EProblemType.SYNTAX_ERROR, p);
+						
+						if(isDuplicateNormalVariable(p.getName()))
+							resource.addError("the normal variable has been declared in a conflict context", Xmu2EProblemType.SYNTAX_ERROR, p);
+						else
+							addNromalVariableName(((edu.ustb.sei.mde.xmu2.Parameter) p).getName());
+					} else if(((edu.ustb.sei.mde.xmu2.Parameter) p).getTag()==DomainTag.SOURCE) {
+						if(AnalysisUtil.isValidNonUpdatedSourceVariableName(p.getName())==false)
+							resource.addError("the name of a source variable should not end with '@post'", Xmu2EProblemType.SYNTAX_ERROR, p);
+						
+						if(isDuplicateSourceVariable(p.getName()))
+							resource.addError("the source variable has been declared in a conflict context", Xmu2EProblemType.SYNTAX_ERROR, p);
+						else
+							addSourceVariableName(((edu.ustb.sei.mde.xmu2.Parameter) p).getName());
+					} else if(((edu.ustb.sei.mde.xmu2.Parameter) p).getTag()==DomainTag.VIEW) {
+						if(AnalysisUtil.isValidNonUpdatedSourceVariableName(p.getName())==false)
+							resource.addError("the name of a view variable should not end with '@post'", Xmu2EProblemType.SYNTAX_ERROR, p);
+						
+						if(isDuplicateViewVariable(p.getName()))
+							resource.addError("the view variable has been declared in a conflict context", Xmu2EProblemType.SYNTAX_ERROR, p);
+						else
+							addViewVariableName(((edu.ustb.sei.mde.xmu2.Parameter) p).getName());
+					}
+				}
+				
+				for(EObject o : root.eContents()) {
+					collectVariableNames(o, resource);
+				}
 			} else if(root instanceof edu.ustb.sei.mde.xmu2.statement.UpdateStatement) {
 				TreeIterator<EObject> sp = ((edu.ustb.sei.mde.xmu2.statement.UpdateStatement) root).getSource().eAllContents();
 				TreeIterator<EObject> vp = ((edu.ustb.sei.mde.xmu2.statement.UpdateStatement) root).getView().eAllContents();
@@ -384,6 +452,14 @@ class VariableValidityContext {
 				if(isDuplicateNormalVariable(varName)) {
 					resource.addError("the iterator variable has been declared", Xmu2EProblemType.SYNTAX_ERROR, root);
 				}
+			} else if(root instanceof AssignStatement) {
+				String varName = ((AssignStatement) root).getUpdatedVariable().getVariable();
+				if(isDuplicateUpdatedSourceVariable(varName))
+					resource.addError("the updated source variable has been declared in a conflict context", Xmu2EProblemType.SYNTAX_ERROR, root);
+				else {
+					addUpdatedSourceVariableName(varName);
+				}
+				checkVariableUsage(((AssignStatement) root).getValue(), resource, DomainTag.NORMAL);
 			} else {
 				for(EObject o : root.eContents()) {
 					collectVariableNames(o,  resource);

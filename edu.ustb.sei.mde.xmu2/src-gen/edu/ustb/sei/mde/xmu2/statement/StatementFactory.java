@@ -148,6 +148,15 @@ public interface StatementFactory extends EFactory {
 	Skip createSkip();
 
 	/**
+	 * Returns a new object of class '<em>Assign Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Assign Statement</em>'.
+	 * @generated
+	 */
+	AssignStatement createAssignStatement();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

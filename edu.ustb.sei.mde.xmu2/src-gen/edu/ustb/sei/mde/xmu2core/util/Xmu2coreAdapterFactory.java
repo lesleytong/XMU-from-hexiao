@@ -79,6 +79,10 @@ public class Xmu2coreAdapterFactory extends AdapterFactoryImpl {
 				return createTypedElementAdapter();
 			}
 			@Override
+			public Adapter caseCallable(Callable object) {
+				return createCallableAdapter();
+			}
+			@Override
 			public Adapter caseProcedure(Procedure object) {
 				return createProcedureAdapter();
 			}
@@ -223,8 +227,8 @@ public class Xmu2coreAdapterFactory extends AdapterFactoryImpl {
 				return createPositionPathAdapter();
 			}
 			@Override
-			public Adapter caseProcedureCallStatement(ProcedureCallStatement object) {
-				return createProcedureCallStatementAdapter();
+			public Adapter caseCallStatement(CallStatement object) {
+				return createCallStatementAdapter();
 			}
 			@Override
 			public Adapter caseTransformation(Transformation object) {
@@ -273,6 +277,14 @@ public class Xmu2coreAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseEnforceExpressionStatement(EnforceExpressionStatement object) {
 				return createEnforceExpressionStatementAdapter();
+			}
+			@Override
+			public Adapter caseFunction(Function object) {
+				return createFunctionAdapter();
+			}
+			@Override
+			public Adapter caseSolveConstraintStatement(SolveConstraintStatement object) {
+				return createSolveConstraintStatementAdapter();
 			}
 			@Override
 			public Adapter caseNamedElement(NamedElement object) {
@@ -329,6 +341,20 @@ public class Xmu2coreAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTypedElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.xmu2core.Callable <em>Callable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.xmu2core.Callable
+	 * @generated
+	 */
+	public Adapter createCallableAdapter() {
 		return null;
 	}
 
@@ -837,16 +863,16 @@ public class Xmu2coreAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.xmu2core.ProcedureCallStatement <em>Procedure Call Statement</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.xmu2core.CallStatement <em>Call Statement</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see edu.ustb.sei.mde.xmu2core.ProcedureCallStatement
+	 * @see edu.ustb.sei.mde.xmu2core.CallStatement
 	 * @generated
 	 */
-	public Adapter createProcedureCallStatementAdapter() {
+	public Adapter createCallStatementAdapter() {
 		return null;
 	}
 
@@ -1015,6 +1041,34 @@ public class Xmu2coreAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createEnforceExpressionStatementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.xmu2core.Function <em>Function</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.xmu2core.Function
+	 * @generated
+	 */
+	public Adapter createFunctionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.xmu2core.SolveConstraintStatement <em>Solve Constraint Statement</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.xmu2core.SolveConstraintStatement
+	 * @generated
+	 */
+	public Adapter createSolveConstraintStatementAdapter() {
 		return null;
 	}
 

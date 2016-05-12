@@ -77,8 +77,6 @@ public class CaseClauseItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(Xmu2corePackage.Literals.CASE_CLAUSE__VIEW_CREATION_STATEMENTS);
-			childrenFeatures.add(Xmu2corePackage.Literals.CASE_CLAUSE__SOURCE_CHECK_STATEMENTS);
 			childrenFeatures.add(Xmu2corePackage.Literals.CASE_CLAUSE__ACTION);
 		}
 		return childrenFeatures;
@@ -121,8 +119,6 @@ public class CaseClauseItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(CaseClause.class)) {
-			case Xmu2corePackage.CASE_CLAUSE__VIEW_CREATION_STATEMENTS:
-			case Xmu2corePackage.CASE_CLAUSE__SOURCE_CHECK_STATEMENTS:
 			case Xmu2corePackage.CASE_CLAUSE__ACTION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -143,116 +139,6 @@ public class CaseClauseItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(Xmu2corePackage.Literals.CASE_CLAUSE__VIEW_CREATION_STATEMENTS,
-				 Xmu2coreFactory.eINSTANCE.createAlignStatement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(Xmu2corePackage.Literals.CASE_CLAUSE__VIEW_CREATION_STATEMENTS,
-				 Xmu2coreFactory.eINSTANCE.createCaseStatement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(Xmu2corePackage.Literals.CASE_CLAUSE__VIEW_CREATION_STATEMENTS,
-				 Xmu2coreFactory.eINSTANCE.createProcedureCallStatement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(Xmu2corePackage.Literals.CASE_CLAUSE__VIEW_CREATION_STATEMENTS,
-				 Xmu2coreFactory.eINSTANCE.createForEachStatement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(Xmu2corePackage.Literals.CASE_CLAUSE__VIEW_CREATION_STATEMENTS,
-				 Xmu2coreFactory.eINSTANCE.createDeleteNodeStatement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(Xmu2corePackage.Literals.CASE_CLAUSE__VIEW_CREATION_STATEMENTS,
-				 Xmu2coreFactory.eINSTANCE.createDeleteLinkStatement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(Xmu2corePackage.Literals.CASE_CLAUSE__VIEW_CREATION_STATEMENTS,
-				 Xmu2coreFactory.eINSTANCE.createEnforceNodeStatement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(Xmu2corePackage.Literals.CASE_CLAUSE__VIEW_CREATION_STATEMENTS,
-				 Xmu2coreFactory.eINSTANCE.createEnforceLinkStatement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(Xmu2corePackage.Literals.CASE_CLAUSE__VIEW_CREATION_STATEMENTS,
-				 Xmu2coreFactory.eINSTANCE.createMatchPattern()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(Xmu2corePackage.Literals.CASE_CLAUSE__VIEW_CREATION_STATEMENTS,
-				 Xmu2coreFactory.eINSTANCE.createCheckExpressionStatement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(Xmu2corePackage.Literals.CASE_CLAUSE__VIEW_CREATION_STATEMENTS,
-				 Xmu2coreFactory.eINSTANCE.createEnforceExpressionStatement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(Xmu2corePackage.Literals.CASE_CLAUSE__SOURCE_CHECK_STATEMENTS,
-				 Xmu2coreFactory.eINSTANCE.createAlignStatement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(Xmu2corePackage.Literals.CASE_CLAUSE__SOURCE_CHECK_STATEMENTS,
-				 Xmu2coreFactory.eINSTANCE.createCaseStatement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(Xmu2corePackage.Literals.CASE_CLAUSE__SOURCE_CHECK_STATEMENTS,
-				 Xmu2coreFactory.eINSTANCE.createProcedureCallStatement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(Xmu2corePackage.Literals.CASE_CLAUSE__SOURCE_CHECK_STATEMENTS,
-				 Xmu2coreFactory.eINSTANCE.createForEachStatement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(Xmu2corePackage.Literals.CASE_CLAUSE__SOURCE_CHECK_STATEMENTS,
-				 Xmu2coreFactory.eINSTANCE.createDeleteNodeStatement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(Xmu2corePackage.Literals.CASE_CLAUSE__SOURCE_CHECK_STATEMENTS,
-				 Xmu2coreFactory.eINSTANCE.createDeleteLinkStatement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(Xmu2corePackage.Literals.CASE_CLAUSE__SOURCE_CHECK_STATEMENTS,
-				 Xmu2coreFactory.eINSTANCE.createEnforceNodeStatement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(Xmu2corePackage.Literals.CASE_CLAUSE__SOURCE_CHECK_STATEMENTS,
-				 Xmu2coreFactory.eINSTANCE.createEnforceLinkStatement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(Xmu2corePackage.Literals.CASE_CLAUSE__SOURCE_CHECK_STATEMENTS,
-				 Xmu2coreFactory.eINSTANCE.createMatchPattern()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(Xmu2corePackage.Literals.CASE_CLAUSE__SOURCE_CHECK_STATEMENTS,
-				 Xmu2coreFactory.eINSTANCE.createCheckExpressionStatement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(Xmu2corePackage.Literals.CASE_CLAUSE__SOURCE_CHECK_STATEMENTS,
-				 Xmu2coreFactory.eINSTANCE.createEnforceExpressionStatement()));
-
-		newChildDescriptors.add
-			(createChildParameter
 				(Xmu2corePackage.Literals.CASE_CLAUSE__ACTION,
 				 Xmu2coreFactory.eINSTANCE.createAlignStatement()));
 
@@ -264,7 +150,7 @@ public class CaseClauseItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(Xmu2corePackage.Literals.CASE_CLAUSE__ACTION,
-				 Xmu2coreFactory.eINSTANCE.createProcedureCallStatement()));
+				 Xmu2coreFactory.eINSTANCE.createCallStatement()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -305,30 +191,11 @@ public class CaseClauseItemProvider
 			(createChildParameter
 				(Xmu2corePackage.Literals.CASE_CLAUSE__ACTION,
 				 Xmu2coreFactory.eINSTANCE.createEnforceExpressionStatement()));
-	}
 
-	/**
-	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
-		Object childFeature = feature;
-		Object childObject = child;
-
-		boolean qualify =
-			childFeature == Xmu2corePackage.Literals.CASE_CLAUSE__VIEW_CREATION_STATEMENTS ||
-			childFeature == Xmu2corePackage.Literals.CASE_CLAUSE__SOURCE_CHECK_STATEMENTS ||
-			childFeature == Xmu2corePackage.Literals.CASE_CLAUSE__ACTION;
-
-		if (qualify) {
-			return getString
-				("_UI_CreateChild_text2",
-				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
-		}
-		return super.getCreateChildText(owner, feature, child, selection);
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.CASE_CLAUSE__ACTION,
+				 Xmu2coreFactory.eINSTANCE.createSolveConstraintStatement()));
 	}
 
 	/**

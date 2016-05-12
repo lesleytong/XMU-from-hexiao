@@ -24,14 +24,16 @@
     </genClasses>
     <genClasses image="false" ecoreClass="xmu2.ecore#//AbstractRule">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2.ecore#//AbstractRule/parameters"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2.ecore#//AbstractRule/statement"/>
     </genClasses>
     <genClasses ecoreClass="xmu2.ecore#//Parameter"/>
     <genClasses ecoreClass="xmu2.ecore#//ModelRule">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmu2.ecore#//ModelRule/active"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2.ecore#//ModelRule/variableDeclarations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2.ecore#//ModelRule/statement"/>
     </genClasses>
-    <genClasses ecoreClass="xmu2.ecore#//ArithmeticRule"/>
+    <genClasses ecoreClass="xmu2.ecore#//ArithmeticRule">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2.ecore#//ArithmeticRule/statements"/>
+    </genClasses>
     <genClasses ecoreClass="xmu2.ecore#//VariableDeclaration"/>
     <genClasses image="false" ecoreClass="xmu2.ecore#//TypedElement">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xmu2.ecore#//TypedElement/type"/>
@@ -101,6 +103,10 @@
       </genClasses>
       <genClasses image="false" ecoreClass="xmu2.ecore#//statement/PsesudoStatement"/>
       <genClasses ecoreClass="xmu2.ecore#//statement/Skip"/>
+      <genClasses ecoreClass="xmu2.ecore#//statement/AssignStatement">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2.ecore#//statement/AssignStatement/updatedVariable"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2.ecore#//statement/AssignStatement/value"/>
+      </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="Pattern" basePackage="edu.ustb.sei.mde.xmu2" disposableProviderFactory="true"
         ecorePackage="xmu2.ecore#//pattern">
