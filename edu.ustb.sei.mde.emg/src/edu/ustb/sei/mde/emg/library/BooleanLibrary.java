@@ -8,7 +8,7 @@ public class BooleanLibrary extends AnyLibrary {
 
 	public BooleanLibrary(LibrarySpace librarySpace) {
 		super(librarySpace);
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	@Override

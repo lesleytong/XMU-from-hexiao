@@ -26,7 +26,7 @@ public abstract class CollectionLibrary extends AnyLibrary {
 
 	public CollectionLibrary(LibrarySpace librarySpace) {
 		super(librarySpace);
-		// TODO Auto-generated constructor stub
+		
 	}
 	public boolean adaptFor(Object type) {
 		if(type instanceof CollectionType) return true;
@@ -76,7 +76,7 @@ public abstract class CollectionLibrary extends AnyLibrary {
 //	}
 //	@Override
 //	public Object notEqual(Object self, Object right) {
-//		// TODO Auto-generated method stub
+//		
 //		return super.notEqual(self, right);
 //	}
 	

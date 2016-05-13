@@ -34,7 +34,7 @@ public class PropPathS_C_T extends Propagator<IntVar> {
 
 	@Override
 	public void propagate(int evtmask) throws ContradictionException {
-		// TODO Auto-generated method stub
+		
 		filterPath(0);
 		filterTarget();
 		for(int i = 1; i<vars.length-2;i++)

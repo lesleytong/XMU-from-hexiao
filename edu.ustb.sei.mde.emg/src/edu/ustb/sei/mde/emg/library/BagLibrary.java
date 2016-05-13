@@ -14,7 +14,7 @@ public class BagLibrary extends CollectionLibrary {
 
 	public BagLibrary(LibrarySpace librarySpace) {
 		super(librarySpace);
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	@Override

@@ -119,7 +119,7 @@ public class ContextUtil {
 	}
 
 	static private List<Variable> collectVariables(Pattern s) {
-		// TODO Auto-generated method stub
+		
 		List<Variable> vars = new UniqueEList<Variable>();
 		collectVariables(s.getRoot(),vars);
 		return vars;
@@ -756,7 +756,7 @@ public class ContextUtil {
 //	}
 
 	public static void merge(XmuContext context, XmuContext xmuContext) {
-		// TODO Auto-generated method stub
+		
 		for(Entry<Variable,SafeType> e : context.getBindings().entrySet()) {
 			SafeType v = xmuContext.getSafeTypeValue(e.getKey());
 			if(e.getValue().isUndefined() && !v.isUndefined()) {

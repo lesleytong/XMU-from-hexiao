@@ -11,7 +11,7 @@ public class SequenceLibrary extends CollectionLibrary {
 
 	public SequenceLibrary(LibrarySpace librarySpace) {
 		super(librarySpace);
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	@Override

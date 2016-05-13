@@ -117,7 +117,7 @@ public class EResourceImpl extends MinimalEObjectImpl.Container implements EReso
 	
 	@Override
 	public void setResource(Resource res) {
-		// TODO Auto-generated method stub
+		
 		resource = res;
 	}
 

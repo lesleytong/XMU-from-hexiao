@@ -16,7 +16,7 @@ public class ModelCleaner extends AbstractXmuPostProcesser {
 
 	@Override
 	public void process(XmuResource resource) {
-		// TODO Auto-generated method stub
+		
 		setFlag(true);
 		XMUModel model = (XMUModel)resource.getContents().get(0);
 		resource.getErrors().clear();

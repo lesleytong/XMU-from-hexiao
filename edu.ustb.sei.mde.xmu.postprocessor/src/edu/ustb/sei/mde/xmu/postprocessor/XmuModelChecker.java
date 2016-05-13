@@ -53,7 +53,7 @@ public class XmuModelChecker extends AbstractXmuPostProcesser {
 	}
 
 	private void checkSuspiciousPatternEqual(Rule rule, XmuResource resource) {
-		// TODO Auto-generated method stub
+		
 		TreeIterator<EObject> it = rule.eAllContents();
 		
 		while(it.hasNext()) {

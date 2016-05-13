@@ -146,7 +146,7 @@ public class OclInterpreter extends
 
 	@Override
 	public Object interprete(EObject object, Context context) {
-		// TODO Auto-generated method stub
+		
 		Object result = null;
 		if(object instanceof LinkConstraint) {
 			result = this.interprete_edu_ustb_sei_mde_morel_SimpleLinkConstraint((SimpleLinkConstraint) object, context);
@@ -593,7 +593,7 @@ public class OclInterpreter extends
 
 	protected Object interprete_edu_ustb_sei_mde_morel_CallPathExp(Object point,
 			CallPathExp callPathExp, Context context, boolean bindValue, Object value) {
-		// TODO Auto-generated method stub
+		
 		if(callPathExp==null) return point;
 		else if(callPathExp instanceof FeaturePathExp) 
 			return interprete_edu_ustb_sei_mde_morel_FeaturePathExp(point,(FeaturePathExp) callPathExp,context, bindValue, value);
@@ -885,7 +885,7 @@ public class OclInterpreter extends
 	@Override
 	public Object interprete_edu_ustb_sei_mde_morel_ConditionExp(
 			ConditionExp conditionExp, Context context) {
-		// TODO Auto-generated method stub
+		
 		Object b = this.interprete(conditionExp.getCondition(),context);
 		if(!(b instanceof Boolean)) return OclUndefined.INVALIDED;
 		
@@ -999,7 +999,7 @@ public class OclInterpreter extends
 	@Override
 	public Object interprete_edu_ustb_sei_mde_morel_AdditiveExp(
 			AdditiveExp additiveExp, Context context) {
-		// TODO Auto-generated method stub
+		
 		int size = additiveExp.getOperators().size();
 		
 		Object result = this.interprete(additiveExp.getChildren().get(0), context);
@@ -1024,7 +1024,7 @@ public class OclInterpreter extends
 	@Override
 	public Object interprete_edu_ustb_sei_mde_morel_MultiplicativeExp(
 			MultiplicativeExp multiplicativeExp, Context context) {
-		// TODO Auto-generated method stub
+		
 		int size = multiplicativeExp.getOperators().size();
 		
 		Object result = this.interprete(multiplicativeExp.getChildren().get(0), context);
@@ -1049,7 +1049,7 @@ public class OclInterpreter extends
 	@Override
 	public Object interprete_edu_ustb_sei_mde_morel_UnaryExp(
 			UnaryExp unaryExp, Context context) {
-		// TODO Auto-generated method stub
+		
 		switch(unaryExp.getOperator().getValue()){
 		case UnaryOperator.PLUS_VALUE:
 			return this.interprete(unaryExp.getChild(), context);
@@ -1081,7 +1081,7 @@ public class OclInterpreter extends
 	@Override
 	public Object interprete_edu_ustb_sei_mde_morel_PredefinedBindExp(
 			PredefinedBindExp predefinedBindExp, Context context) {
-		// TODO Auto-generated method stub
+		
 		if(predefinedBindExp.getSource().getVariable()==PredefinedVariable.ID) {
 			//TODO ���ù�ϵ����
 			SimpleLinkConstraint link = (SimpleLinkConstraint) predefinedBindExp.eContainer();
@@ -1122,7 +1122,7 @@ public class OclInterpreter extends
 	@Override
 	public Object interprete_edu_ustb_sei_mde_morel_IfStatement(
 			IfStatement ifStatement, Context context) {
-		// TODO Auto-generated method stub
+		
 		Object v =checkInterpreter.interprete(ifStatement.getCondition(),context);
 		if(v instanceof Boolean) {
 			if((Boolean)v) return this.interprete(ifStatement.getThenStatement(), context);
@@ -1137,7 +1137,7 @@ public class OclInterpreter extends
 	@Override
 	public Boolean interprete_edu_ustb_sei_mde_morel_ForStatement(
 			ForStatement forStatement, Context context) {
-		// TODO Auto-generated method stub
+		
 		Context c = context.newScope();
 		if(forStatement.getIterator()!=null) {
 			this.interprete(forStatement.getIterator(), c);
@@ -1168,7 +1168,7 @@ public class OclInterpreter extends
 	@Override
 	public Object interprete_edu_ustb_sei_mde_morel_VariableWithInit(
 			VariableWithInit variableWithInit, Context context) {
-		// TODO Auto-generated method stub
+		
 		context.getBindingMap().put(variableWithInit, OclUndefined.INVALIDED);
 		Object v = this.interprete(variableWithInit.getInitExp(),context);
 		context.putValue(variableWithInit, v);
@@ -1189,7 +1189,7 @@ public class OclInterpreter extends
 	@Override
 	public Object interprete_edu_ustb_sei_mde_morel_DeclarativeStatement(
 			DeclarativeStatement declarativeStatement, Context context) {
-		// TODO Auto-generated method stub
+		
 		return this.interprete(declarativeStatement.getExpression(), context);
 	}
 
@@ -1227,7 +1227,7 @@ public class OclInterpreter extends
 	@Override
 	public Object interprete_edu_ustb_sei_mde_morel_CollectionLiteralExp(
 			CollectionLiteralExp collectionLiteralExp, Context context) {
-		// TODO Auto-generated method stub
+		
 		CollectionType type = null;
 		OclCollection col = null;
 		switch(collectionLiteralExp.getType()) {
@@ -1347,7 +1347,7 @@ public class OclInterpreter extends
 
 	@Override
 	public void terminate() {
-		// TODO Auto-generated method stub
+		
 		super.terminate();
 		terminated = true;
 	}
@@ -1384,7 +1384,7 @@ public class OclInterpreter extends
 	@Override
 	public Object interprete_edu_ustb_sei_mde_morel_RuleGroup(
 			RuleGroup ruleGroup, Context context) {
-		// TODO Auto-generated method stub
+		
 		List<Rule> scope = new ArrayList<Rule>();
 		Random random = new Random(Calendar.getInstance().getTimeInMillis());
 		Context init = context.newScope();

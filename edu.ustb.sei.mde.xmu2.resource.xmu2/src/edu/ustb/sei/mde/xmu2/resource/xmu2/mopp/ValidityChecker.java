@@ -112,7 +112,7 @@ public class ValidityChecker
 
 	@Override
 	public void terminate() {
-		// TODO Auto-generated method stub
+		
 		termination = true;
 	}
 

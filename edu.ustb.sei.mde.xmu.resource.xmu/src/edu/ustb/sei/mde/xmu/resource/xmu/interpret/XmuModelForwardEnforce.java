@@ -806,7 +806,7 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 
 	protected SafeType enforcePattern(Pattern pattern,
 			XmuContext context,List<PatternExpr> pending) {
-		// TODO Auto-generated method stub
+		
 		if(pattern.getTag()!=VariableFlag.VIEW) return SafeType.getInvalid();
 		
 		SafeType ret = enforceViewPatternNode(pattern.getRoot(),context,pending);
@@ -1079,7 +1079,7 @@ public class XmuModelForwardEnforce extends XmuModelEnforce {
 	@Override
 	public SafeType interprete_edu_ustb_sei_mde_xmu_InitialMappingStatement(
 			InitialMappingStatement initialMappingStatement, XmuContext context) {
-		// TODO Auto-generated method stub
+		
 		
 //		List<Object> src = new ArrayList<Object>();
 //		

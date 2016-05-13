@@ -103,10 +103,14 @@ public final class ContextUtil {
 											}
 										}
 									} else {
-										current.put(next.getVariable(), Constants.NULL);
-//										Context nc = current.clone();
+										if (next.getExpressions().isEmpty()) {
+											current.put(next.getVariable(), Constants.NULL);
+											res.add(current);
+										}
+									}
+								} else if(nValue.isNull()) {
+									if(candidate.size() == 0 && next.getExpressions().isEmpty()) {
 										res.add(current);
-										// }
 									}
 								} else {
 									int id = candidate.indexOf(nValue.getValue());
@@ -136,6 +140,8 @@ public final class ContextUtil {
 											} catch(Exception e) {
 											}
 										}
+									} else if(nValue.isNull()) {
+										//should I set the position to zero?
 									} else {
 										// set pos
 										int id = candidate.indexOf(nValue.getValue());
@@ -230,6 +236,10 @@ public final class ContextUtil {
 											if (AbstractInterpreter.MODEL_CHECK.enforceExpression(right, nc, SafeType.NULL))
 												res.add(nc);
 //										}
+									}
+								} else if(nValue.isNull()) {
+									if(candidate.size()==0) {
+										res.add(current);
 									}
 								} else {
 									int id = candidate.indexOf(nValue.getValue());
@@ -359,7 +369,7 @@ public final class ContextUtil {
 	}
 	
 	static private List<Variable> collectVariables(Pattern s) {
-		// TODO Auto-generated method stub
+		
 		List<Variable> vars = new UniqueEList<Variable>();
 		collectVariables(s.getRoot(),vars);
 		return vars;

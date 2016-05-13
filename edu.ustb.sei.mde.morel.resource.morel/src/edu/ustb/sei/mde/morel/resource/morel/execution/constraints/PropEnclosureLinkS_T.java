@@ -78,7 +78,7 @@ public class PropEnclosureLinkS_T extends Propagator<IntVar> {
 
 	@Override
 	public void propagate(int evtmask) throws ContradictionException {
-		// TODO Auto-generated method stub
+		
 		ArrayList<EObject> tarList = new ArrayList<EObject>();
 		
         idms[0].freeze();

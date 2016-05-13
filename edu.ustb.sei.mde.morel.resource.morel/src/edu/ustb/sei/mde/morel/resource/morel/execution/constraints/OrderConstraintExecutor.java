@@ -22,7 +22,7 @@ public class OrderConstraintExecutor extends AdditionalConstraintExecutor<OrderC
 
 	@Override
 	public void reset() {
-		// TODO Auto-generated method stub
+		
 		visited.clear();
 	}
 

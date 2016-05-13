@@ -15,14 +15,14 @@ public class AddElementCommand extends ModelCommand {
 
 	@Override
 	public boolean undo() {
-		// TODO Auto-generated method stub
+		
 		space.addElement(object);
 		return false;
 	}
 
 	@Override
 	public boolean redo() {
-		// TODO Auto-generated method stub
+		
 		space.deleteElement(object);
 		return false;
 	}

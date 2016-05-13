@@ -59,7 +59,7 @@ public class Update {
 //	
 //	public void delete(Pattern lhs, EList<String> parameters, Context context,
 //			Environment env, BXUpdateInterpreter bxUpdateInterpreter) {
-//		// TODO Auto-generated method stub
+//		
 //		List<Variable> variablesToBeDeleted = lhs.getVariables();
 //		for(Variable v : variablesToBeDeleted) {
 //			if(!(v instanceof ObjectVariable)) continue;

@@ -22,12 +22,12 @@ public class PassiveValueVariableImpl<T> extends AbstractVariable implements
 
 	public PassiveValueVariableImpl(String name, Solver solver) {
 		super(name, solver);
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	@Override
 	public boolean isInstantiated() {
-		// TODO Auto-generated method stub
+		
 		return false;
 	}
 
@@ -43,7 +43,7 @@ public class PassiveValueVariableImpl<T> extends AbstractVariable implements
 
 	@Override
 	public IDelta getDelta() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
@@ -72,7 +72,7 @@ public class PassiveValueVariableImpl<T> extends AbstractVariable implements
 
 	@Override
 	public <V extends Variable> V duplicate() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

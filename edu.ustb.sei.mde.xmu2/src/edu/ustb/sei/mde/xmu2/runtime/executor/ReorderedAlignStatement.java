@@ -8,6 +8,7 @@ import edu.ustb.sei.mde.xmu2core.Variable;
 
 class ReorderedAlignStatement {
 	List<Variable> enforcedVars = null;
+	List<Statement> match = new ArrayList<Statement>();
 	List<Statement> enforce = new ArrayList<Statement>();
 	List<Statement> lazy = new ArrayList<Statement>();
 	List<Statement> tail = new ArrayList<Statement>();

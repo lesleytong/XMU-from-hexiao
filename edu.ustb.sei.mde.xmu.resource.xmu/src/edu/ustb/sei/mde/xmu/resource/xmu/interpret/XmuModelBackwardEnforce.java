@@ -29,7 +29,7 @@ public class XmuModelBackwardEnforce extends XmuModelEnforce {
 	@Override
 	public SafeType interprete_edu_ustb_sei_mde_xmu_ForStatement(
 			ForStatement forStatement, XmuContext context) {
-		// TODO Auto-generated method stub
+		
 		XmuContext sbase = context.getCopy();
 		XmuContext vbase = context.getCopy();
 		
@@ -133,7 +133,7 @@ public class XmuModelBackwardEnforce extends XmuModelEnforce {
 //	@Override
 //	public SafeType interprete_edu_ustb_sei_mde_xmu_UpdatedStatement(
 //			UpdatedStatement updatedStatement, XmuContext context) {
-//		// TODO Auto-generated method stub
+//		
 ////		SafeType s = context.getSafeTypeValue(updatedStatement.getSVar());
 ////		SafeType v = context.getSafeTypeValue(updatedStatement.getVVar());
 ////		
@@ -550,7 +550,7 @@ public class XmuModelBackwardEnforce extends XmuModelEnforce {
 	@Override
 	public SafeType interprete_edu_ustb_sei_mde_xmu_InitialMappingStatement(
 			InitialMappingStatement initialMappingStatement, XmuContext context) {
-//		// TODO Auto-generated method stub
+//		
 //		
 //		List<Object> src = new ArrayList<Object>();
 ////		List<Object> nilSrc = new ArrayList<Object>();

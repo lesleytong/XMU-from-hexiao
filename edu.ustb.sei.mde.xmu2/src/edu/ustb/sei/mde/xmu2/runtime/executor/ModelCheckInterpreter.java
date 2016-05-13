@@ -49,7 +49,7 @@ public class ModelCheckInterpreter extends ExpressionCheckInterpreter {
 
 	@Override
 	public SafeType executeRelationalExpression(RelationalExpression expression, Context context) {
-		// TODO Auto-generated method stub
+		
 		if(expression.getOperator() == RelationalOperator.EQUAL) {
 			SafeType left = null;
 			SafeType right = null;

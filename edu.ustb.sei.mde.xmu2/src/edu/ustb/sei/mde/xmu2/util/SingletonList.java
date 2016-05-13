@@ -222,19 +222,19 @@ public class SingletonList<E> implements EList<E> {
 
 	@Override
 	public ListIterator<E> listIterator() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public ListIterator<E> listIterator(int index) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public List<E> subList(int fromIndex, int toIndex) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

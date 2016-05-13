@@ -8,7 +8,7 @@ public class RealLibrary extends AnyLibrary {
 
 	public RealLibrary(LibrarySpace librarySpace) {
 		super(librarySpace);
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	@Override

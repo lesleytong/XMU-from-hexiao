@@ -7,7 +7,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 public class TestEcoreLoader {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
 		ResourceSet resourceSet = new ResourceSetImpl();
 		// Register the default resource factory -- only needed for stand-alone!
 //		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(

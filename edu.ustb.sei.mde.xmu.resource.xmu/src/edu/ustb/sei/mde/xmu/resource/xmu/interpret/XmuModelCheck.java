@@ -59,7 +59,7 @@ public class XmuModelCheck extends XmuExpressionCheck {
 	@Override
 	public SafeType interprete_edu_ustb_sei_mde_xmu_Pattern(
 			Pattern pattern, XmuContext context) {
-		// TODO Auto-generated method stub
+		
 		List<XmuContext> smatches = ContextUtil.match(pattern, context);
 		if(smatches.size()>0) {
 			ContextUtil.merge(context,smatches.get(0));
@@ -511,7 +511,7 @@ public class XmuModelCheck extends XmuExpressionCheck {
 	@Override
 	public SafeType interprete_edu_ustb_sei_mde_xmu_StartStatement(
 			StartStatement startStatement, XmuContext context) {
-		// TODO Auto-generated method stub
+		
 		
 		Rule rule = startStatement.getRule();
 		XmuEnvironment env = context.getEnvironment();

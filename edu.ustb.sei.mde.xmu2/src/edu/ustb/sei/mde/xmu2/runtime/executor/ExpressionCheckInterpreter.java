@@ -500,4 +500,9 @@ public class ExpressionCheckInterpreter extends AbstractInterpreter {
 	@Override
 	public void executeEnforceExpressionStatement(EnforceExpressionStatement o, Context context) {
 		throw new InvalidCalculationException("unsupported execution");	}
+
+	@Override
+	public void executeSolveConstraintStatement(SolveConstraintStatement statement, Context context) {
+		throw new InvalidCalculationException("unsupported execution");
+	}
 }

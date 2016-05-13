@@ -48,7 +48,7 @@ public class XmuExpressionCheck extends
 	@Override
 	public SafeType interprete_edu_ustb_sei_mde_xmu_ForStatement(
 			ForStatement forStatement, XmuContext context) {
-		// TODO Auto-generated method stub
+		
 		Pattern sp = forStatement.getSPattern();
 		Pattern vp = forStatement.getVPattern();
 		
@@ -87,7 +87,7 @@ public class XmuExpressionCheck extends
 	@Override
 	public SafeType interprete_edu_ustb_sei_mde_xmu_DeleteNode(
 			DeleteNode deleteNode, XmuContext context) {
-		// TODO Auto-generated method stub
+		
 //		SafeType obj = context.getSafeTypeValue(deleteNode.getVariable());
 //		if(obj.isValue() && !obj.isNull()) {
 //			context.getEnvironment().removeElement((EObject)obj.getValue(), deleteNode.getVariable());
@@ -137,7 +137,7 @@ public class XmuExpressionCheck extends
 	@Override
 	public SafeType interprete_edu_ustb_sei_mde_xmu_PatternReferenceExpr(
 			PatternReferenceExpr patternReferenceExpr, XmuContext context) {
-		// TODO Auto-generated method stub
+		
 		EObject obj = context.getSafeTypeValue(((PatternNode)patternReferenceExpr.eContainer()).getVariable()).getObjectValue();
 		
 		SafeType val = context.getSafeTypeValue(patternReferenceExpr.getNode().getVariable());
@@ -393,7 +393,7 @@ public class XmuExpressionCheck extends
 	@Override
 	public SafeType interprete_edu_ustb_sei_mde_xmu_RelationalExpr(
 			RelationalExpr relationalExpr, XmuContext context) {
-		// TODO Auto-generated method stub
+		
 		SafeType left = this.interprete(relationalExpr.getLeft(),context);
 		SafeType right = this.interprete(relationalExpr.getRight(),context);
 		

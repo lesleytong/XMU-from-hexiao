@@ -8,7 +8,7 @@ public class IntegerLibrary extends AnyLibrary {
 
 	public IntegerLibrary(LibrarySpace librarySpace) {
 		super(librarySpace);
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	@Override

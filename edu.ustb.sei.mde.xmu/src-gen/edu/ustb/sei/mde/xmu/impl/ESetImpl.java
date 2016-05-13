@@ -122,7 +122,7 @@ public class ESetImpl extends MinimalEObjectImpl.Container implements ESet {
 
 	@Override
 	public void setEList(EList<EObject> collection) {
-		// TODO Auto-generated method stub
+		
 		this.collection = collection;
 	}
 

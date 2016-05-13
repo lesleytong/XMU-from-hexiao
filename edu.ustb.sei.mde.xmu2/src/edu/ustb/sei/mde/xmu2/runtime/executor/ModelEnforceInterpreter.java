@@ -16,9 +16,11 @@ import edu.ustb.sei.mde.xmu2core.EmptyValueExpression;
 import edu.ustb.sei.mde.xmu2core.EnforceExpressionStatement;
 import edu.ustb.sei.mde.xmu2core.Expression;
 import edu.ustb.sei.mde.xmu2core.FeaturePath;
+import edu.ustb.sei.mde.xmu2core.Function;
 import edu.ustb.sei.mde.xmu2core.LoopPath;
 import edu.ustb.sei.mde.xmu2core.Path;
 import edu.ustb.sei.mde.xmu2core.PositionPath;
+import edu.ustb.sei.mde.xmu2core.Procedure;
 import edu.ustb.sei.mde.xmu2core.CallStatement;
 import edu.ustb.sei.mde.xmu2core.Variable;
 import edu.ustb.sei.mde.xmu2core.VariableExpression;
@@ -141,8 +143,34 @@ abstract public class ModelEnforceInterpreter extends ModelCheckInterpreter {
 		} else
 			return true;
 	}
+	
+	protected List<CallStatement> collectFunctionCallStatements(List<? extends Object> action, Context context) {
+		List<CallStatement> calls = context.getEnvironment().getFromProcedureCallCache(action);
+		if(calls==null) {
+			calls = new ArrayList<CallStatement>();
+			for(Object s : action) {
+				if(s instanceof CallStatement && ((CallStatement) s).getCallable() instanceof Function)
+					calls.add((CallStatement)s);
+			}
+			context.getEnvironment().putIntoProcedureCallCache(action, calls);
+		}
+		return calls;
+	}
 
-	protected List<CallStatement> collectRuleCallStatements(List<? extends Object> action, Context context) {
+	protected List<CallStatement> collectProcedureCallStatements(List<? extends Object> action, Context context) {
+		List<CallStatement> calls = context.getEnvironment().getFromProcedureCallCache(action);
+		if(calls==null) {
+			calls = new ArrayList<CallStatement>();
+			for(Object s : action) {
+				if(s instanceof CallStatement && ((CallStatement) s).getCallable() instanceof Procedure)
+					calls.add((CallStatement)s);
+			}
+			context.getEnvironment().putIntoProcedureCallCache(action, calls);
+		}
+		return calls;
+	}
+	
+	protected List<CallStatement> collectCallStatements(List<? extends Object> action, Context context) {
 		List<CallStatement> calls = context.getEnvironment().getFromProcedureCallCache(action);
 		if(calls==null) {
 			calls = new ArrayList<CallStatement>();

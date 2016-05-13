@@ -73,7 +73,7 @@ abstract public class SafeType {
 	
 
 	public static SafeType getNull() {
-		// TODO Auto-generated method stub
+		
 		return Nothing.instance;
 	}
 	
@@ -164,22 +164,22 @@ class Just extends SafeType {
 	}
 	@Override
 	public boolean isValue() {
-		// TODO Auto-generated method stub
+		
 		return true;
 	}
 	@Override
 	public boolean isNull() {
-		// TODO Auto-generated method stub
+		
 		return false;
 	}
 	@Override
 	public boolean isInvalid() {
-		// TODO Auto-generated method stub
+		
 		return false;
 	}
 	@Override
 	public boolean isUndefined() {
-		// TODO Auto-generated method stub
+		
 		return false;
 	}
 	
@@ -193,31 +193,31 @@ class Nothing extends SafeType {
 
 	@Override
 	public Object getValue() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public boolean isValue() {
-		// TODO Auto-generated method stub
+		
 		return false;
 	}
 
 	@Override
 	public boolean isNull() {
-		// TODO Auto-generated method stub
+		
 		return true;
 	}
 
 	@Override
 	public boolean isInvalid() {
-		// TODO Auto-generated method stub
+		
 		return false;
 	}
 
 	@Override
 	public boolean isUndefined() {
-		// TODO Auto-generated method stub
+		
 		return false;
 	}
 	
@@ -231,31 +231,31 @@ class Undefined extends SafeType {
 
 	@Override
 	public Object getValue() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public boolean isValue() {
-		// TODO Auto-generated method stub
+		
 		return false;
 	}
 
 	@Override
 	public boolean isNull() {
-		// TODO Auto-generated method stub
+		
 		return false;
 	}
 
 	@Override
 	public boolean isInvalid() {
-		// TODO Auto-generated method stub
+		
 		return false;
 	}
 
 	@Override
 	public boolean isUndefined() {
-		// TODO Auto-generated method stub
+		
 		return true;
 	}
 	
@@ -269,31 +269,31 @@ class Invalid extends SafeType {
 
 	@Override
 	public Object getValue() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public boolean isValue() {
-		// TODO Auto-generated method stub
+		
 		return false;
 	}
 
 	@Override
 	public boolean isNull() {
-		// TODO Auto-generated method stub
+		
 		return false;
 	}
 
 	@Override
 	public boolean isInvalid() {
-		// TODO Auto-generated method stub
+		
 		return true;
 	}
 
 	@Override
 	public boolean isUndefined() {
-		// TODO Auto-generated method stub
+		
 		return false;
 	}
 	

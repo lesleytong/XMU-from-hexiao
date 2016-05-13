@@ -5,12 +5,12 @@ import java.util.Collection;
 public class OclSet extends OclCollection {
 
 	public OclSet() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public OclSet(int initialCapacity) {
 		super(initialCapacity);
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public OclSet(Collection<?> c) {
@@ -38,7 +38,7 @@ public class OclSet extends OclCollection {
 
 	@Override
 	public boolean addAll(int index, Collection<?> c) {
-		// TODO Auto-generated method stub
+		
 		c.retainAll(this);
 		return super.addAll(index, c);
 	}	

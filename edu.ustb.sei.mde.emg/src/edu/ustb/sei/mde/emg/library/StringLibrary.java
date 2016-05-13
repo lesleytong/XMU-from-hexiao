@@ -11,7 +11,7 @@ public class StringLibrary extends AnyLibrary {
 
 	public StringLibrary(LibrarySpace librarySpace) {
 		super(librarySpace);
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	@Override

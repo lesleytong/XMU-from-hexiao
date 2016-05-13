@@ -132,7 +132,8 @@ class Just implements SafeType{
 	public int hashCode() {
 		return value.hashCode();
 	}
-	public boolean equal(Object o) {
+	
+	public boolean equals(Object o) {
 		if(o==null) return false;
 		if(this==o) return true;
 		if(o instanceof Just) {

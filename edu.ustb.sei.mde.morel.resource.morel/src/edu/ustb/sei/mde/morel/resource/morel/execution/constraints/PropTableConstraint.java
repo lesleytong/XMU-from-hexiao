@@ -17,7 +17,7 @@ public class PropTableConstraint extends Propagator<IntVar> {
 	
 	@Override
 	public void propagate(int evtmask) throws ContradictionException {
-		// TODO Auto-generated method stub
+		
 		filterFromSrc();
 		filterFromTar();
 	}

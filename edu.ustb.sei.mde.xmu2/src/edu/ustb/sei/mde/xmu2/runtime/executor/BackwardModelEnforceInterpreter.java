@@ -64,7 +64,7 @@ public class BackwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 			}
 			
 			if(action!=null) {
-				handleProcedureTrialCallStatements(this.collectRuleCallStatements(action,merge),sVars,merge);
+				handleTrialCallStatements(this.collectProcedureCallStatements(action,merge),sVars,merge);
 				this.executeStatements(action,merge);
 			} else {
 				throw new InvalidBackwardEnforcementException("alignment statement lacks action");
@@ -74,7 +74,7 @@ public class BackwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 		}
 	}
 	
-	protected void handleProcedureTrialCallStatements(List<CallStatement> collectRuleCallStatements,
+	protected void handleTrialCallStatements(List<CallStatement> collectRuleCallStatements,
 			List<Variable> sVars, Context context) {
 		for(CallStatement u : collectRuleCallStatements) {
 			this.trialRuleCall(u, context);
@@ -182,7 +182,7 @@ public class BackwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 					List<Variable> sVars = statement.getTag() == DomainTag.SOURCE 
 							? ContextUtil.collectPatternVariables(((CasePatternClause) css).getCondition()) : Collections.EMPTY_LIST;
 					if(sVars.size()!=0) {
-						handleProcedureTrialCallStatements(this.collectRuleCallStatements(css.getAction(),context), sVars, context);
+						handleTrialCallStatements(this.collectProcedureCallStatements(css.getAction(),context), sVars, context);
 					}
 					this.executeStatements(css.getAction(), context);
 					return;
@@ -217,9 +217,13 @@ public class BackwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 
 				SafeType value = this.executeExpression(ap, context);
 
-				if (value.isUndefined())
-					throw new InvalidBackwardEnforcementException(
+				if (value.isUndefined()) {
+					if(fp.getTag()==DomainTag.SOURCE)
+						value = Constants.NULL;
+					else
+						throw new InvalidBackwardEnforcementException(
 							"invalid parameter of rule call in backward transformation");
+				}
 				parameterList.add(value.getValue());
 
 				newContext.put(fp, value);
@@ -285,9 +289,13 @@ public class BackwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 
 				SafeType value = this.executeExpression(ap, context);
 
-				if (value.isUndefined())
-					throw new InvalidBackwardEnforcementException(
+				if (value.isUndefined()) {
+					if(fp.getTag()==DomainTag.SOURCE)
+						value = Constants.NULL;
+					else
+						throw new InvalidBackwardEnforcementException(
 							"invalid parameter of rule call in backward transformation");
+				}
 
 				newContext.put(fp, value);
 				if (fp.getTag() == DomainTag.SOURCE) {
@@ -503,7 +511,7 @@ public class BackwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 		List<Context> matches = ContextUtil.match(statement.getPattern(), context);
 		List<Variable> sVars = ContextUtil.collectPatternVariables(statement.getPattern());
 		for(Context m : matches) {
-			this.handleProcedureTrialCallStatements(this.collectRuleCallStatements(statement.getAction(),m),sVars,m);
+			this.handleTrialCallStatements(this.collectProcedureCallStatements(statement.getAction(),m),sVars,m);
 			this.executeStatements(statement.getAction(), m);
 		}
 	}

@@ -808,7 +808,7 @@ public class ContextImpl extends MinimalEObjectImpl.Container implements Context
 	private Map<String, Object> map;
 	@Override
 	public void registerValueMap(Map<String,Object> map) {
-		// TODO Auto-generated method stub
+		
 		this.map = map;
 	}
 	

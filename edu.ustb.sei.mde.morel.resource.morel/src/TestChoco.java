@@ -12,7 +12,7 @@ import solver.variables.VF;
 public class TestChoco {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
 		Solver solver = new Solver();
 		IntVar v1 = VF.enumerated("v1", new int[]{2}, solver);
 		IntVar v2 = VF.enumerated("v2", new int[]{2,3,5,7}, solver);

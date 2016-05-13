@@ -365,7 +365,7 @@ public class MorelPostProcesser implements IMorelResourcePostProcessor,
 
 	private boolean checkConnectiveByType(EClass st,
 			EClass tt, List<EClass> types) {
-		// TODO Auto-generated method stub
+		
 		if(st.isSuperTypeOf(tt)) return true;
 		else {
 			for(EClass t : types) {

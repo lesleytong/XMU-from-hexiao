@@ -6,7 +6,7 @@ public class OclOrderedSet extends OclCollection {
 
 	public OclOrderedSet() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public OclOrderedSet(Collection<?> c) {
@@ -16,7 +16,7 @@ public class OclOrderedSet extends OclCollection {
 
 	public OclOrderedSet(int initialCapacity) {
 		super(initialCapacity);
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	@Override
@@ -39,7 +39,7 @@ public class OclOrderedSet extends OclCollection {
 
 	@Override
 	public boolean addAll(int index, Collection<?> c) {
-		// TODO Auto-generated method stub
+		
 		c.retainAll(this);
 		return super.addAll(index, c);
 	}

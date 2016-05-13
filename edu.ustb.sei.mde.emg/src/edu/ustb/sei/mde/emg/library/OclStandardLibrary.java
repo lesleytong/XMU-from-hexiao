@@ -4,7 +4,7 @@ public class OclStandardLibrary extends LibrarySpace {
 
 	public OclStandardLibrary(LibrarySpace librarySpace) {
 		super(librarySpace);
-		// TODO Auto-generated constructor stub
+		
 		this.getLibraries().add(new StringLibrary(this));
 		this.getLibraries().add(new IntegerLibrary(this));
 		this.getLibraries().add(new RealLibrary(this));

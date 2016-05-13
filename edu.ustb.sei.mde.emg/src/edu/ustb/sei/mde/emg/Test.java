@@ -23,7 +23,7 @@ public class Test {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-//		// TODO Auto-generated method stub
+//		
 //		 ResourceSet resourceSet = new ResourceSetImpl();
 //
 //		  // Register the default resource factory -- only needed for stand-alone!

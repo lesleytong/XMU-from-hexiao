@@ -991,6 +991,8 @@ public class BXCodeGenerator {
 		// basically, rule call statements are postponed
 		// other statements are executed in order
 		
+		// in the backward mode, the function call should be considered as an enforcement statement
+		// in the forward mode, the function call should also be considered as an enforcement statement
 		
 		List<Statement> enforce = new ArrayList<Statement>();
 		List<Statement> ruleCall = new ArrayList<Statement>();
@@ -998,7 +1000,7 @@ public class BXCodeGenerator {
 		for(List<Statement> convertStatement : convertStatements) {
 			if(convertStatement !=null) {
 				for(Statement s : convertStatement) {
-					if(s instanceof CallStatement) {
+					if(s instanceof CallStatement && ((CallStatement) s).getCallable() instanceof Procedure) {
 						ruleCall.add(s);
 					} else {
 						enforce.add(s);

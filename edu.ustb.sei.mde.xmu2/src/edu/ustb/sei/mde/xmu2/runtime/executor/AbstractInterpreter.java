@@ -32,6 +32,7 @@ import edu.ustb.sei.mde.xmu2core.ObjectValueExpression;
 import edu.ustb.sei.mde.xmu2core.Procedure;
 import edu.ustb.sei.mde.xmu2core.CallStatement;
 import edu.ustb.sei.mde.xmu2core.RelationalExpression;
+import edu.ustb.sei.mde.xmu2core.SolveConstraintStatement;
 import edu.ustb.sei.mde.xmu2core.Statement;
 import edu.ustb.sei.mde.xmu2core.StringValueExpression;
 import edu.ustb.sei.mde.xmu2core.Transformation;
@@ -80,6 +81,9 @@ public abstract class AbstractInterpreter {
 		
 		else if(o instanceof EnforceExpressionStatement)
 			executeEnforceExpressionStatement((EnforceExpressionStatement)o,context);
+		
+		else if (o instanceof SolveConstraintStatement)
+			executeSolveConstraintStatement((SolveConstraintStatement)o, context); 
 		
 		else throw new InvalidCalculationException();
 	}
@@ -152,6 +156,7 @@ public abstract class AbstractInterpreter {
 	abstract public void executeDeleteLinkStatement(DeleteLinkStatement statement, Context context);
 	abstract public void executeEnforceNodeStatement(EnforceNodeStatement statement, Context context);
 	abstract public void executeEnforceLinkStatement(EnforceLinkStatement statement, Context context);
+	abstract public void executeSolveConstraintStatement(SolveConstraintStatement statement, Context context);
 	
 	
 	abstract public SafeType executeBooleanOrExpression(BooleanOrExpression expression, Context context);

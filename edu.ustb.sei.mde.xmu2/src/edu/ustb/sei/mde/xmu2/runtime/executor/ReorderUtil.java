@@ -28,6 +28,7 @@ import edu.ustb.sei.mde.xmu2core.ForEachStatement;
 import edu.ustb.sei.mde.xmu2core.LoopPath;
 import edu.ustb.sei.mde.xmu2core.MatchPattern;
 import edu.ustb.sei.mde.xmu2core.PositionPath;
+import edu.ustb.sei.mde.xmu2core.Procedure;
 import edu.ustb.sei.mde.xmu2core.CallStatement;
 import edu.ustb.sei.mde.xmu2core.Statement;
 import edu.ustb.sei.mde.xmu2core.Variable;
@@ -37,7 +38,7 @@ public class ReorderUtil {
 
 	static public void reorderStatementsForAlignStatement(List<Statement> statements, ReorderedAlignStatement reorder) {
 		for(Statement st : statements) {
-			if(st instanceof CallStatement) {
+			if(st instanceof CallStatement && ((CallStatement) st).getCallable() instanceof Procedure) {
 				reorder.tail.add(st);
 			} else if(st instanceof EnforceNodeStatement) {
 				if(ReorderUtil.isEnforceNodeStatementExecutable((EnforceNodeStatement)st, reorder.enforcedVars)) {
@@ -47,6 +48,8 @@ public class ReorderUtil {
 				if(ReorderUtil.isEnforceLinkStatementExecutable((EnforceLinkStatement)st, reorder.enforcedVars)) {
 					reorder.enforce.add(st);
 				} else reorder.lazy.add(st);
+			} else if(st instanceof MatchPattern) {
+				reorder.match.add(st);
 			} else {
 				reorder.enforce.add(st);
 			}
@@ -91,6 +94,7 @@ public class ReorderUtil {
 			
 			reorderStatementsForAlignStatement(foreach.getAction(), reorder);
 			
+			reorder.finalOrder.addAll(reorder.match);
 			reorder.finalOrder.addAll(reorder.enforce);
 			reorder.finalOrder.addAll(reorder.lazy);
 			reorder.finalOrder.addAll(reorder.tail);
@@ -112,7 +116,10 @@ public class ReorderUtil {
 	}
 
 	static public boolean isEnforceLinkStatementExecutable(EnforceLinkStatement stmt, List<Variable> enforcedVars) {
-		if(stmt.getTag()==DomainTag.UPDATED_SOURCE) return true;
+		if(stmt.getTag()==DomainTag.UPDATED_SOURCE) {
+			System.out.println("enforce updated source in the forward mode");
+			return true;
+		}
 		try {
 			Variable source = stmt.getSource();
 			LoopPath selector = stmt.getSelector();
@@ -157,7 +164,10 @@ public class ReorderUtil {
 	}
 
 	static public boolean isEnforceNodeStatementExecutable(EnforceNodeStatement stmt, List<Variable> enforcedVars) {
-		if(stmt.getTag()==DomainTag.UPDATED_SOURCE) return true;
+		if(stmt.getTag()==DomainTag.UPDATED_SOURCE) {
+			System.out.println("enforce updated source in the forward mode");
+			return true;
+		}
 		try{
 			if(enforcedVars.contains(stmt.getNode())) return true;
 			else {

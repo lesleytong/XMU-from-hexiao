@@ -15,7 +15,7 @@ public abstract class AbstractXmuPostProcesser  implements IXmuOptionProvider,
 	private boolean flag;
 	@Override
 	public void terminate() {
-		// TODO Auto-generated method stub
+		
 		setFlag(false);
 	}
 

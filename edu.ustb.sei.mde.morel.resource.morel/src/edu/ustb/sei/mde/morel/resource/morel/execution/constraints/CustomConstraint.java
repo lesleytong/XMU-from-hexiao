@@ -39,7 +39,7 @@ public class CustomConstraint extends Constraint {
 
 	public CustomConstraint(String name, Propagator... propagators) {
 		super(name, propagators);
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	@Override

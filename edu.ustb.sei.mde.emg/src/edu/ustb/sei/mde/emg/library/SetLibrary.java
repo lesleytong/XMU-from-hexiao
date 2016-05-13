@@ -13,7 +13,7 @@ public class SetLibrary extends CollectionLibrary {
 
 	public SetLibrary(LibrarySpace librarySpace) {
 		super(librarySpace);
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	@Override
@@ -23,7 +23,7 @@ public class SetLibrary extends CollectionLibrary {
 
 	@Override
 	public Object execute(String operation, Object self, Object... params) {
-		// TODO Auto-generated method stub
+		
 		switch(operation){
 		case "union":
 			return union(self,params[0]);

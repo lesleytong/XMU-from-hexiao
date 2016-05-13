@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 import edu.ustb.sei.mde.xmu2.runtime.exceptions.InvalidBackwardEnforcementException;
+import edu.ustb.sei.mde.xmu2.runtime.exceptions.InvalidCalculationException;
 import edu.ustb.sei.mde.xmu2.runtime.exceptions.InvalidForwardEnforcementException;
 import edu.ustb.sei.mde.xmu2.runtime.structures.Context;
 import edu.ustb.sei.mde.xmu2.runtime.values.SafeType;
@@ -33,6 +34,7 @@ import edu.ustb.sei.mde.xmu2core.LoopPath;
 import edu.ustb.sei.mde.xmu2core.Pattern;
 import edu.ustb.sei.mde.xmu2core.PositionPath;
 import edu.ustb.sei.mde.xmu2core.Procedure;
+import edu.ustb.sei.mde.xmu2core.SolveConstraintStatement;
 import edu.ustb.sei.mde.xmu2core.Function;
 import edu.ustb.sei.mde.xmu2core.Statement;
 import edu.ustb.sei.mde.xmu2core.Variable;
@@ -70,7 +72,7 @@ public class ForwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 		
 		for(Context c : smatches) {
 			if(statement.isDerived()) {
-				this.handleProcedureTrialCallStatements(this.collectRuleCallStatements(statement.getAction(), c), c);
+				this.handleTrialCallStatements(this.collectProcedureCallStatements(statement.getAction(), c), c);
 				ReorderedAlignStatement reorder = ReorderUtil.reorderForEachStatement(statement, c);
 				this.executeStatements(reorder.finalOrder, c);
 			} else {
@@ -348,7 +350,7 @@ public class ForwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 		return v.getTag()==DomainTag.NORMAL || v.getTag()==DomainTag.VIEW;
 	}
 
-	protected void handleProcedureTrialCallStatements(List<CallStatement> collectRuleCallStatements, Context context) {
+	protected void handleTrialCallStatements(List<CallStatement> collectRuleCallStatements, Context context) {
 		for(CallStatement u : collectRuleCallStatements) {
 			this.trialRuleCall(u, context);
 		}
@@ -369,7 +371,7 @@ public class ForwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 						Expression ap = ruleCallStatement.getParameters().get(i);
 						try {
 							SafeType value = this.executeExpression(ap, context);
-							if (value.isUndefined())
+							if (value.isUndefined()) 
 								return;
 							parameterList.add(value.getValue());
 						} catch (Exception e) {
@@ -419,7 +421,7 @@ public class ForwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 					if(c.getValue()==Boolean.TRUE) {
 						List<Variable> sVars = ContextUtil.collectPatternVariables(((CasePatternClause) css).getCondition());
 						if(sVars.size()!=0) {
-							handleProcedureTrialCallStatements(this.collectRuleCallStatements(css.getAction(),context), context);
+							handleTrialCallStatements(this.collectProcedureCallStatements(css.getAction(),context), context);
 						}
 						
 						this.executeStatements(css.getAction(), context);
@@ -456,7 +458,7 @@ public class ForwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 							passed = false;
 							break;
 						}
-					} else if(prec instanceof Pattern) {
+					} else if(prec instanceof Pattern) {//the branch should be deprecated
 						try {
 							SafeType ret = AbstractInterpreter.MODEL_CHECK.matchPattern((Pattern) prec, nc);
 							if (ret != Constants.TRUE) {
@@ -468,7 +470,7 @@ public class ForwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 							break;
 						}
 					} else if(prec instanceof Expression) {
-						try {
+						try {//the branch should be deprecated
 							SafeType ret = AbstractInterpreter.MODEL_CHECK.executeExpression((Expression) prec, nc);
 							if (ret != Constants.TRUE) {
 								passed = false;
@@ -485,7 +487,7 @@ public class ForwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 				
 				if(passed) {
 					selected = true;
-					this.handleProcedureTrialCallStatements(this.collectRuleCallStatements(rcc.action, nc), nc);
+					this.handleTrialCallStatements(this.collectProcedureCallStatements(rcc.action, nc), nc);
 					
 					for(Object action : rcc.action) {
 						if(action instanceof Statement) {
@@ -517,6 +519,18 @@ public class ForwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 			return;
 		}
 	}
+	
+	
+
+	@Override
+	public void executeSolveConstraintStatement(SolveConstraintStatement statement, Context context) {
+		// FIXME currently, the statement is executed as an equal statement;
+		Expression e = statement.getConstraint();
+		if(this.enforceExpression(e, context, Constants.TRUE)==false)
+			throw new InvalidCalculationException("cannot enforce the expression");
+	}
+	
+	
 
 	
 //	private boolean isAllCheckable(CaseStatement statement, List<Variable> enforcedVariables) {
