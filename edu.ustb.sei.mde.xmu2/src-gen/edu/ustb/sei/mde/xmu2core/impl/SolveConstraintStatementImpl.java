@@ -2,6 +2,7 @@
  */
 package edu.ustb.sei.mde.xmu2core.impl;
 
+import edu.ustb.sei.mde.xmu2core.Expression;
 import edu.ustb.sei.mde.xmu2core.SolveConstraintStatement;
 import edu.ustb.sei.mde.xmu2core.Variable;
 import edu.ustb.sei.mde.xmu2core.Xmu2corePackage;
@@ -10,10 +11,12 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
@@ -27,7 +30,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  * </p>
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.SolveConstraintStatementImpl#getVariables <em>Variables</em>}</li>
- *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.SolveConstraintStatementImpl#getProblem <em>Problem</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.SolveConstraintStatementImpl#getConstraint <em>Constraint</em>}</li>
  * </ul>
  *
  * @generated
@@ -44,24 +47,14 @@ public class SolveConstraintStatementImpl extends StatementImpl implements Solve
 	protected EList<Variable> variables;
 
 	/**
-	 * The default value of the '{@link #getProblem() <em>Problem</em>}' attribute.
+	 * The cached value of the '{@link #getConstraint() <em>Constraint</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getProblem()
+	 * @see #getConstraint()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final byte[] PROBLEM_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getProblem() <em>Problem</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getProblem()
-	 * @generated
-	 * @ordered
-	 */
-	protected byte[] problem = PROBLEM_EDEFAULT;
+	protected Expression constraint;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -99,8 +92,8 @@ public class SolveConstraintStatementImpl extends StatementImpl implements Solve
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public byte[] getProblem() {
-		return problem;
+	public Expression getConstraint() {
+		return constraint;
 	}
 
 	/**
@@ -108,11 +101,47 @@ public class SolveConstraintStatementImpl extends StatementImpl implements Solve
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setProblem(byte[] newProblem) {
-		byte[] oldProblem = problem;
-		problem = newProblem;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Xmu2corePackage.SOLVE_CONSTRAINT_STATEMENT__PROBLEM, oldProblem, problem));
+	public NotificationChain basicSetConstraint(Expression newConstraint, NotificationChain msgs) {
+		Expression oldConstraint = constraint;
+		constraint = newConstraint;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, Xmu2corePackage.SOLVE_CONSTRAINT_STATEMENT__CONSTRAINT, oldConstraint, newConstraint);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setConstraint(Expression newConstraint) {
+		if (newConstraint != constraint) {
+			NotificationChain msgs = null;
+			if (constraint != null)
+				msgs = ((InternalEObject)constraint).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - Xmu2corePackage.SOLVE_CONSTRAINT_STATEMENT__CONSTRAINT, null, msgs);
+			if (newConstraint != null)
+				msgs = ((InternalEObject)newConstraint).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - Xmu2corePackage.SOLVE_CONSTRAINT_STATEMENT__CONSTRAINT, null, msgs);
+			msgs = basicSetConstraint(newConstraint, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, Xmu2corePackage.SOLVE_CONSTRAINT_STATEMENT__CONSTRAINT, newConstraint, newConstraint));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case Xmu2corePackage.SOLVE_CONSTRAINT_STATEMENT__CONSTRAINT:
+				return basicSetConstraint(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -125,8 +154,8 @@ public class SolveConstraintStatementImpl extends StatementImpl implements Solve
 		switch (featureID) {
 			case Xmu2corePackage.SOLVE_CONSTRAINT_STATEMENT__VARIABLES:
 				return getVariables();
-			case Xmu2corePackage.SOLVE_CONSTRAINT_STATEMENT__PROBLEM:
-				return getProblem();
+			case Xmu2corePackage.SOLVE_CONSTRAINT_STATEMENT__CONSTRAINT:
+				return getConstraint();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -144,8 +173,8 @@ public class SolveConstraintStatementImpl extends StatementImpl implements Solve
 				getVariables().clear();
 				getVariables().addAll((Collection<? extends Variable>)newValue);
 				return;
-			case Xmu2corePackage.SOLVE_CONSTRAINT_STATEMENT__PROBLEM:
-				setProblem((byte[])newValue);
+			case Xmu2corePackage.SOLVE_CONSTRAINT_STATEMENT__CONSTRAINT:
+				setConstraint((Expression)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -162,8 +191,8 @@ public class SolveConstraintStatementImpl extends StatementImpl implements Solve
 			case Xmu2corePackage.SOLVE_CONSTRAINT_STATEMENT__VARIABLES:
 				getVariables().clear();
 				return;
-			case Xmu2corePackage.SOLVE_CONSTRAINT_STATEMENT__PROBLEM:
-				setProblem(PROBLEM_EDEFAULT);
+			case Xmu2corePackage.SOLVE_CONSTRAINT_STATEMENT__CONSTRAINT:
+				setConstraint((Expression)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -179,26 +208,10 @@ public class SolveConstraintStatementImpl extends StatementImpl implements Solve
 		switch (featureID) {
 			case Xmu2corePackage.SOLVE_CONSTRAINT_STATEMENT__VARIABLES:
 				return variables != null && !variables.isEmpty();
-			case Xmu2corePackage.SOLVE_CONSTRAINT_STATEMENT__PROBLEM:
-				return PROBLEM_EDEFAULT == null ? problem != null : !PROBLEM_EDEFAULT.equals(problem);
+			case Xmu2corePackage.SOLVE_CONSTRAINT_STATEMENT__CONSTRAINT:
+				return constraint != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (problem: ");
-		result.append(problem);
-		result.append(')');
-		return result.toString();
 	}
 
 } //SolveConstraintStatementImpl

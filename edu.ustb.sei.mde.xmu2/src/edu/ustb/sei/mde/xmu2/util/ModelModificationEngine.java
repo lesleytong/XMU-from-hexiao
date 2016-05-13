@@ -62,7 +62,7 @@ public class ModelModificationEngine extends ModelModificationTrace{
 				{
 					if (setting.getEStructuralFeature().isChangeable())
 					{
-						if(((EClass)setting.getEStructuralFeature().getEType()).isSuperTypeOf(newObj.eClass()))
+						if(AnalysisUtil.isSuperTypeOf(((EClass)setting.getEStructuralFeature().getEType()),newObj.eClass()))
 							EcoreUtil.replace(setting, oldObj, newObj);
 						else 
 							EcoreUtil.remove(setting, oldObj);
@@ -70,7 +70,7 @@ public class ModelModificationEngine extends ModelModificationTrace{
 				}
 			}
 			
-			if(((EClass)oldObj.eContainmentFeature().getEType()).isSuperTypeOf(newObj.eClass())) {
+			if(AnalysisUtil.isSuperTypeOf(((EClass)oldObj.eContainmentFeature().getEType()),newObj.eClass())) {
 				EcoreUtil.replace(oldObj, newObj);
 			} else {
 				EcoreUtil.remove(oldObj);

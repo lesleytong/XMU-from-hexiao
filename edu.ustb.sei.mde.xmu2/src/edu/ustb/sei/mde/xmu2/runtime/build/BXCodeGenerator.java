@@ -25,6 +25,7 @@ import edu.ustb.sei.mde.xmu2.ModelRule;
 import edu.ustb.sei.mde.xmu2.Parameter;
 import edu.ustb.sei.mde.xmu2.TransformationModel;
 import edu.ustb.sei.mde.xmu2.VariableDeclaration;
+import edu.ustb.sei.mde.xmu2.Xmu2Package;
 import edu.ustb.sei.mde.xmu2.expression.BooleanLiteralExpression;
 import edu.ustb.sei.mde.xmu2.expression.EmptyExpression;
 import edu.ustb.sei.mde.xmu2.expression.EmptyValueType;
@@ -55,6 +56,7 @@ import edu.ustb.sei.mde.xmu2common.LoopOperator;
 import edu.ustb.sei.mde.xmu2common.RelationalOperator;
 import edu.ustb.sei.mde.xmu2common.UnaryOperator;
 import edu.ustb.sei.mde.xmu2core.AlignStatement;
+import edu.ustb.sei.mde.xmu2core.BooleanAndExpression;
 import edu.ustb.sei.mde.xmu2core.BooleanValueExpression;
 import edu.ustb.sei.mde.xmu2core.CallStatement;
 import edu.ustb.sei.mde.xmu2core.Callable;
@@ -180,7 +182,6 @@ public class BXCodeGenerator {
 			proc.getBackwardStatements().addAll(convertFunctionStatementInBackwardMode(s, map));
 			proc.getForwardStatements().addAll(convertFunctionStatementInForwardMode(s, map));
 		}
-		
 		
 	}
 
@@ -349,12 +350,31 @@ public class BXCodeGenerator {
 				enforce.setExpression(rel);
 				return Collections.singletonList(enforce);
 			} else {
+				// the case conditions should also be encoded into the solver object
+				
+				List<Expression> constraints = new ArrayList<Expression>();
+				
+				RelationalExpression rel = Xmu2coreFactory.eINSTANCE.createRelationalExpression();
+				rel.setOperator(RelationalOperator.EQUAL);
+				rel.setLeft(convertExpression(((AssignStatement) statement).getUpdatedVariable(), varMap, true));
+				rel.setRight(convertExpression(((AssignStatement) statement).getValue(), varMap, false));
+				
+				constraints.add(rel);
+				
+				EObject clause = AnalysisUtil.getAncestor(statement, StatementPackage.eINSTANCE.getExpressionCaseClause());
+				while(clause!=null) {
+					collectVariableUseage(((ExpressionCaseClause)clause).getCondition(), varMap, vars, false);
+					constraints.add(convertExpression(((ExpressionCaseClause)clause).getCondition(),varMap,false));
+					clause = AnalysisUtil.getAncestor(clause.eContainer(), StatementPackage.eINSTANCE.getExpressionCaseClause());
+				}
+				
+				BooleanAndExpression and = Xmu2coreFactory.eINSTANCE.createBooleanAndExpression();
+				and.getOperands().addAll(constraints);
+				
 				SolveConstraintStatement stmt = Xmu2coreFactory.eINSTANCE.createSolveConstraintStatement();
 				stmt.getVariables().addAll(vars);
-				byte[] arr = SolverCodeGenerator.convertAssignStatement((AssignStatement) statement, stmt.getVariables(), varMap);
-				stmt.setProblem(arr);
+				stmt.setConstraint(and);
 				return Collections.singletonList(stmt);
-				
 			}
 		}
 		

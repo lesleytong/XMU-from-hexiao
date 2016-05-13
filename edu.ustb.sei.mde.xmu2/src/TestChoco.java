@@ -17,38 +17,27 @@ public class TestChoco {
 
 	public static void main(String[] args) {
 		Solver solver = new Solver("my first problem");
-		
-		double PREC = 0.01d; // precision
-		RealVar x = VariableFactory.real("x", -1.0d, 1.0d, PREC, solver); RealVar y = VariableFactory.real("y", -1.0d, 1.0d, PREC, solver); RealConstraint rc = new RealConstraint(
-		            "my fct",
-		            "({0}*{1})+sin({0})=1.0;ln({0}+[-0.1,0.1])>=2.6",
-		            Ibex.HC4,
-		            x, y);
-		    solver.post(rc);
-
-		
-		
+		IntVar a = VF.bounded("a", VF.MIN_INT_BOUND, VF.MAX_INT_BOUND, solver);
+		IntVar na = VF.minus(a);
 		
 		
 //		Constraint get_put  = LCF.and(LCF.not(ICF.arithm(v, "=", 5)), ICF.arithm(spp, "=", 10));;
 //		solver.post(sum);
 //		solver.post(cons);
 		
-		solver.findSolution();
-		System.out.println(solver);
 		
-//		ByteArrayOutputStream bo = new ByteArrayOutputStream();
-//		
-//		try {
-//			ObjectOutputStream oos = new ObjectOutputStream(bo);
-//			oos.writeObject(solver);
-//			oos.close();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		
-//		byte[] arr = bo.toByteArray();
-//		
+		ByteArrayOutputStream bo = new ByteArrayOutputStream();
+		
+		try {
+			ObjectOutputStream oos = new ObjectOutputStream(bo);
+			oos.writeObject(solver);
+			oos.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		byte[] arr = bo.toByteArray();
+		
 //		try {
 //			ByteArrayInputStream bi = new ByteArrayInputStream(arr);
 //			ObjectInputStream ois = new ObjectInputStream(bi);

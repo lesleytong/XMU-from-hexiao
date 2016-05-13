@@ -60,7 +60,7 @@ public final class ContextUtil {
 		if (obj.isUndefined() || obj.isNull()) {
 			return Collections.emptyList();
 		} else {
-			if (node.getType().isSuperTypeOf(obj.getObjectValue().eClass()) == false)
+			if (AnalysisUtil.isSuperTypeOf(node.getType(), obj.getObjectValue().eClass()) == false)
 				return Collections.emptyList();
 
 			List<Context> cur = null;
@@ -89,17 +89,24 @@ public final class ContextUtil {
 
 							if (pos == null) {
 								if (nValue.isUndefined()) {
-									for (int i = 0; i < candidate.size(); i++) {
-										try{
-											EObject v = (EObject) candidate.get(i);
-											EClass nextType = (EClass)next.getVariable().getType();
-											if(nextType.isSuperTypeOf(v.eClass())) {
-												Context nc = current.clone();
-												nc.put(next.getVariable(), SafeType.createFromValue(v));
-												res.addAll(matchNode(next, nc));
+									if (candidate.size() != 0) {
+										for (int i = 0; i < candidate.size(); i++) {
+											try {
+												EObject v = (EObject) candidate.get(i);
+												EClass nextType = (EClass) next.getVariable().getType();
+												if (AnalysisUtil.isSuperTypeOf(nextType, v.eClass())) {
+													Context nc = current.clone();
+													nc.put(next.getVariable(), SafeType.createFromValue(v));
+													res.addAll(matchNode(next, nc));
+												}
+											} catch (Exception e) {
 											}
-										} catch(Exception e){
 										}
+									} else {
+										current.put(next.getVariable(), Constants.NULL);
+//										Context nc = current.clone();
+										res.add(current);
+										// }
 									}
 								} else {
 									int id = candidate.indexOf(nValue.getValue());
@@ -158,8 +165,16 @@ public final class ContextUtil {
 											else
 												continue;
 										}
-									} else
-										continue;// out of bound, and I cannot set next to null because it is an object pattern expression
+									}  else {
+										// if candidate is empty and posV = 0, I should set right to null
+										if(posV.getIntegerValue()==0 
+												&& candidate.isEmpty() 
+												&& next.getExpressions().size()==0) {
+											current.put(next.getVariable(),Constants.NULL);
+											res.add(current);
+										} else
+											continue;// out of bound
+									}
 								} else {
 									// invalid posV, should I fail?
 									continue;

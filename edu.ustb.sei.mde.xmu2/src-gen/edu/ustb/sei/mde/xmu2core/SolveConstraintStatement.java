@@ -14,7 +14,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.SolveConstraintStatement#getVariables <em>Variables</em>}</li>
- *   <li>{@link edu.ustb.sei.mde.xmu2core.SolveConstraintStatement#getProblem <em>Problem</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.xmu2core.SolveConstraintStatement#getConstraint <em>Constraint</em>}</li>
  * </ul>
  *
  * @see edu.ustb.sei.mde.xmu2core.Xmu2corePackage#getSolveConstraintStatement()
@@ -39,29 +39,29 @@ public interface SolveConstraintStatement extends Statement {
 	EList<Variable> getVariables();
 
 	/**
-	 * Returns the value of the '<em><b>Problem</b></em>' attribute.
+	 * Returns the value of the '<em><b>Constraint</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Problem</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Constraint</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Problem</em>' attribute.
-	 * @see #setProblem(byte[])
-	 * @see edu.ustb.sei.mde.xmu2core.Xmu2corePackage#getSolveConstraintStatement_Problem()
-	 * @model required="true"
+	 * @return the value of the '<em>Constraint</em>' containment reference.
+	 * @see #setConstraint(Expression)
+	 * @see edu.ustb.sei.mde.xmu2core.Xmu2corePackage#getSolveConstraintStatement_Constraint()
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	byte[] getProblem();
+	Expression getConstraint();
 
 	/**
-	 * Sets the value of the '{@link edu.ustb.sei.mde.xmu2core.SolveConstraintStatement#getProblem <em>Problem</em>}' attribute.
+	 * Sets the value of the '{@link edu.ustb.sei.mde.xmu2core.SolveConstraintStatement#getConstraint <em>Constraint</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Problem</em>' attribute.
-	 * @see #getProblem()
+	 * @param value the new value of the '<em>Constraint</em>' containment reference.
+	 * @see #getConstraint()
 	 * @generated
 	 */
-	void setProblem(byte[] value);
+	void setConstraint(Expression value);
 
 } // SolveConstraintStatement

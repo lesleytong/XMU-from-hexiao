@@ -24,11 +24,6 @@ import edu.ustb.sei.mde.xmu2.util.Constants;
 
 
 public class ResolverUtil {
-	private static final String BOOLEAN_NAME = "Boolean";
-	private static final String INTEGER_NAME = "Integer";
-	public static final String STRING_NAME = "String";
-	public static final String RESOURCE_NAME = "Resource";
-	
 	static public EObject getAncestor(EObject obj, EClass type) {
 		while(obj!=null) {
 			if(obj.eClass().equals(type)) break;
@@ -57,12 +52,14 @@ public class ResolverUtil {
 	}
 	
 	static public EDataType getPrimitiveDataType(String identifier) {
-		if(STRING_NAME.equals(identifier))
-			return EcorePackage.eINSTANCE.getEString();
-		else if(INTEGER_NAME.equals(identifier))
-			return EcorePackage.eINSTANCE.getEIntegerObject();
-		else if(BOOLEAN_NAME.equals(identifier))
-			return EcorePackage.eINSTANCE.getEBooleanObject();
+		if(Constants.STRING_NAME.equals(identifier))
+			return Constants.STRING;
+		else if(Constants.INTEGER_NAME.equals(identifier))
+			return Constants.INT;
+		else if(Constants.BOOLEAN_NAME.equals(identifier))
+			return Constants.BOOLEAN;
+		else if(Constants.OCLANY_NAME.equals(identifier))
+			return Constants.OCLANY;
 		else return null;
 	}
 	
@@ -161,15 +158,17 @@ public class ResolverUtil {
 	}
 	public static String getPrimitiveDataTypeName(EClassifier element) {
 		if(AnalysisUtil.isType(element, String.class))
-			return STRING_NAME;
+			return Constants.STRING_NAME;
 		else if(AnalysisUtil.isType(element, int.class))
-			return INTEGER_NAME;
+			return Constants.INTEGER_NAME;
 		else if(AnalysisUtil.isType(element, boolean.class))
-			return BOOLEAN_NAME;
+			return Constants.BOOLEAN_NAME;
+		else if(AnalysisUtil.isType(element, Object.class))
+			return Constants.OCLANY_NAME;
 		return null;
 	}
 	public static EClassifier getReservedType(String identifier) {
-		if(RESOURCE_NAME.equals(identifier))
+		if(Constants.RESOURCE_NAME.equals(identifier))
 			return Constants.RESOURCE;
 		return null;
 	}

@@ -22,4 +22,9 @@ final public class Constants {
 	
 	final static public Object[] EMPTYARRAY = new Object[0];
 	public static final EClass RESOURCE = DatatypesPackage.eINSTANCE.getResource();
+	public static final String BOOLEAN_NAME = "Boolean";
+	public static final String INTEGER_NAME = "Integer";
+	public static final String STRING_NAME = "String";
+	public static final String OCLANY_NAME = "OclAny";
+	public static final String RESOURCE_NAME = "Resource";
 }

@@ -17,6 +17,9 @@ public class Xmu2TokenStyleInformationProvider {
 		if ("BOOLEAN".equals(tokenName)) {
 			return new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TokenStyle(new int[] {0xff, 0x00, 0x00}, null, false, false, false, false);
 		}
+		if ("TYPE".equals(tokenName)) {
+			return new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TokenStyle(new int[] {0x00, 0x00, 0xff}, null, false, false, false, false);
+		}
 		if ("SL_COMMENT".equals(tokenName)) {
 			return new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TokenStyle(new int[] {0x00, 0x80, 0x00}, null, false, false, false, false);
 		}

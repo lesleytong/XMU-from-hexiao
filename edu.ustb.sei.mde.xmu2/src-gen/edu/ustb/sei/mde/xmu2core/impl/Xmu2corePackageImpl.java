@@ -1798,8 +1798,8 @@ public class Xmu2corePackageImpl extends EPackageImpl implements Xmu2corePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSolveConstraintStatement_Problem() {
-		return (EAttribute)solveConstraintStatementEClass.getEStructuralFeatures().get(1);
+	public EReference getSolveConstraintStatement_Constraint() {
+		return (EReference)solveConstraintStatementEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -2041,7 +2041,7 @@ public class Xmu2corePackageImpl extends EPackageImpl implements Xmu2corePackage
 
 		solveConstraintStatementEClass = createEClass(SOLVE_CONSTRAINT_STATEMENT);
 		createEReference(solveConstraintStatementEClass, SOLVE_CONSTRAINT_STATEMENT__VARIABLES);
-		createEAttribute(solveConstraintStatementEClass, SOLVE_CONSTRAINT_STATEMENT__PROBLEM);
+		createEReference(solveConstraintStatementEClass, SOLVE_CONSTRAINT_STATEMENT__CONSTRAINT);
 
 		// Create data types
 		nullEDataType = createEDataType(NULL);
@@ -2324,7 +2324,7 @@ public class Xmu2corePackageImpl extends EPackageImpl implements Xmu2corePackage
 
 		initEClass(solveConstraintStatementEClass, SolveConstraintStatement.class, "SolveConstraintStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSolveConstraintStatement_Variables(), this.getVariable(), null, "variables", null, 0, -1, SolveConstraintStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSolveConstraintStatement_Problem(), ecorePackage.getEByteArray(), "problem", null, 1, 1, SolveConstraintStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSolveConstraintStatement_Constraint(), this.getExpression(), null, "constraint", null, 1, 1, SolveConstraintStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize data types
 		initEDataType(nullEDataType, Object.class, "Null", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);

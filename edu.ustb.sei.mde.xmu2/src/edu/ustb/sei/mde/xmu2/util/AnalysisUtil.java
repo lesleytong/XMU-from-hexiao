@@ -187,4 +187,9 @@ final public class AnalysisUtil {
 		}
 		return false;
 	}
+	
+	static public boolean isSuperTypeOf(EClass parent, EClass child) {
+		return parent==Constants.EOBJECT || parent == Constants.OCLANY 
+				|| parent.isSuperTypeOf(child);
+	}
 }

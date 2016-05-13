@@ -46,7 +46,18 @@ public class SolverCodeGenerator {
 		
 		map.getSolver().post(c);
 		
+//		System.out.println(map.getSolver());
+		
+//		map.getSolver().post(c);
+		
+		map.getSolver().post(ICF.arithm((IntVar)map.getVariableByName("a@post"), "=", VF.fixed(10, map.getSolver())));
+		map.getSolver().post(ICF.arithm((IntVar)map.getVariableByName("b"), "=", VF.fixed(5, map.getSolver())));
+		
+		map.getSolver().findSolution();
+		
 		System.out.println(map.getSolver());
+		
+//		return new byte[0];
 		try {
 			ByteArrayOutputStream stream = new ByteArrayOutputStream();
 			ObjectOutputStream oos = new ObjectOutputStream(stream);

@@ -4,6 +4,7 @@ package edu.ustb.sei.mde.xmu2core.provider;
 
 
 import edu.ustb.sei.mde.xmu2core.SolveConstraintStatement;
+import edu.ustb.sei.mde.xmu2core.Xmu2coreFactory;
 import edu.ustb.sei.mde.xmu2core.Xmu2corePackage;
 
 import java.util.Collection;
@@ -12,9 +13,10 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
@@ -46,7 +48,6 @@ public class SolveConstraintStatementItemProvider extends StatementItemProvider 
 			super.getPropertyDescriptors(object);
 
 			addVariablesPropertyDescriptor(object);
-			addProblemPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -74,25 +75,33 @@ public class SolveConstraintStatementItemProvider extends StatementItemProvider 
 	}
 
 	/**
-	 * This adds a property descriptor for the Problem feature.
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addProblemPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_SolveConstraintStatement_problem_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SolveConstraintStatement_problem_feature", "_UI_SolveConstraintStatement_type"),
-				 Xmu2corePackage.Literals.SOLVE_CONSTRAINT_STATEMENT__PROBLEM,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+	@Override
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
+			super.getChildrenFeatures(object);
+			childrenFeatures.add(Xmu2corePackage.Literals.SOLVE_CONSTRAINT_STATEMENT__CONSTRAINT);
+		}
+		return childrenFeatures;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EStructuralFeature getChildFeature(Object object, Object child) {
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
+
+		return super.getChildFeature(object, child);
 	}
 
 	/**
@@ -110,15 +119,11 @@ public class SolveConstraintStatementItemProvider extends StatementItemProvider 
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		byte[] labelValue = ((SolveConstraintStatement)object).getProblem();
-		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ?
-			getString("_UI_SolveConstraintStatement_type") :
-			getString("_UI_SolveConstraintStatement_type") + " " + label;
+		return ((EObject)object).eContainmentFeature().getName()+" -> "+getString("_UI_SolveConstraintStatement_type");
 	}
 	
 
@@ -134,8 +139,8 @@ public class SolveConstraintStatementItemProvider extends StatementItemProvider 
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(SolveConstraintStatement.class)) {
-			case Xmu2corePackage.SOLVE_CONSTRAINT_STATEMENT__PROBLEM:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			case Xmu2corePackage.SOLVE_CONSTRAINT_STATEMENT__CONSTRAINT:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -151,6 +156,81 @@ public class SolveConstraintStatementItemProvider extends StatementItemProvider 
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.SOLVE_CONSTRAINT_STATEMENT__CONSTRAINT,
+				 Xmu2coreFactory.eINSTANCE.createBooleanOrExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.SOLVE_CONSTRAINT_STATEMENT__CONSTRAINT,
+				 Xmu2coreFactory.eINSTANCE.createBooleanAndExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.SOLVE_CONSTRAINT_STATEMENT__CONSTRAINT,
+				 Xmu2coreFactory.eINSTANCE.createRelationalExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.SOLVE_CONSTRAINT_STATEMENT__CONSTRAINT,
+				 Xmu2coreFactory.eINSTANCE.createAdditiveExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.SOLVE_CONSTRAINT_STATEMENT__CONSTRAINT,
+				 Xmu2coreFactory.eINSTANCE.createMultiplicativeExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.SOLVE_CONSTRAINT_STATEMENT__CONSTRAINT,
+				 Xmu2coreFactory.eINSTANCE.createUnaryExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.SOLVE_CONSTRAINT_STATEMENT__CONSTRAINT,
+				 Xmu2coreFactory.eINSTANCE.createTypeCastExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.SOLVE_CONSTRAINT_STATEMENT__CONSTRAINT,
+				 Xmu2coreFactory.eINSTANCE.createStringValueExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.SOLVE_CONSTRAINT_STATEMENT__CONSTRAINT,
+				 Xmu2coreFactory.eINSTANCE.createBooleanValueExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.SOLVE_CONSTRAINT_STATEMENT__CONSTRAINT,
+				 Xmu2coreFactory.eINSTANCE.createIntegerValueExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.SOLVE_CONSTRAINT_STATEMENT__CONSTRAINT,
+				 Xmu2coreFactory.eINSTANCE.createEnumValueExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.SOLVE_CONSTRAINT_STATEMENT__CONSTRAINT,
+				 Xmu2coreFactory.eINSTANCE.createEmptyValueExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.SOLVE_CONSTRAINT_STATEMENT__CONSTRAINT,
+				 Xmu2coreFactory.eINSTANCE.createObjectValueExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.SOLVE_CONSTRAINT_STATEMENT__CONSTRAINT,
+				 Xmu2coreFactory.eINSTANCE.createVariableExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.SOLVE_CONSTRAINT_STATEMENT__CONSTRAINT,
+				 Xmu2coreFactory.eINSTANCE.createEntryRuleParameter()));
 	}
 
 }

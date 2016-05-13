@@ -2994,13 +2994,13 @@ public interface Xmu2corePackage extends EPackage {
 	int SOLVE_CONSTRAINT_STATEMENT__VARIABLES = STATEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Problem</b></em>' attribute.
+	 * The feature id for the '<em><b>Constraint</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOLVE_CONSTRAINT_STATEMENT__PROBLEM = STATEMENT_FEATURE_COUNT + 1;
+	int SOLVE_CONSTRAINT_STATEMENT__CONSTRAINT = STATEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Solve Constraint Statement</em>' class.
@@ -4540,15 +4540,15 @@ public interface Xmu2corePackage extends EPackage {
 	EReference getSolveConstraintStatement_Variables();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.xmu2core.SolveConstraintStatement#getProblem <em>Problem</em>}'.
+	 * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.xmu2core.SolveConstraintStatement#getConstraint <em>Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Problem</em>'.
-	 * @see edu.ustb.sei.mde.xmu2core.SolveConstraintStatement#getProblem()
+	 * @return the meta object for the containment reference '<em>Constraint</em>'.
+	 * @see edu.ustb.sei.mde.xmu2core.SolveConstraintStatement#getConstraint()
 	 * @see #getSolveConstraintStatement()
 	 * @generated
 	 */
-	EAttribute getSolveConstraintStatement_Problem();
+	EReference getSolveConstraintStatement_Constraint();
 
 	/**
 	 * Returns the meta object for data type '{@link java.lang.Object <em>Null</em>}'.
@@ -5830,12 +5830,12 @@ public interface Xmu2corePackage extends EPackage {
 		EReference SOLVE_CONSTRAINT_STATEMENT__VARIABLES = eINSTANCE.getSolveConstraintStatement_Variables();
 
 		/**
-		 * The meta object literal for the '<em><b>Problem</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Constraint</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SOLVE_CONSTRAINT_STATEMENT__PROBLEM = eINSTANCE.getSolveConstraintStatement_Problem();
+		EReference SOLVE_CONSTRAINT_STATEMENT__CONSTRAINT = eINSTANCE.getSolveConstraintStatement_Constraint();
 
 		/**
 		 * The meta object literal for the '<em>Null</em>' data type.

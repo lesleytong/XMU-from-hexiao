@@ -8976,7 +8976,7 @@ parse_edu_ustb_sei_mde_xmu2_statement_CaseClause returns [edu.ustb.sei.mde.xmu2.
 ;
 
 TYPE:
-	('String'|'Boolean'|'Integer'|'Resource'|(('a'..'z'|'A'..'Z'|'0'..'9'|'_')+'!'('a'..'z'|'A'..'Z'|'_')('0'..'9'|'a'..'z'|'A'..'Z'|'_')*))
+	('String'|'Boolean'|'Integer'|'OclAny'|'Resource'|(('a'..'z'|'A'..'Z'|'0'..'9'|'_')+'!'('a'..'z'|'A'..'Z'|'_')('0'..'9'|'a'..'z'|'A'..'Z'|'_')*))
 ;
 BOOLEAN:
 	('true'|'false')

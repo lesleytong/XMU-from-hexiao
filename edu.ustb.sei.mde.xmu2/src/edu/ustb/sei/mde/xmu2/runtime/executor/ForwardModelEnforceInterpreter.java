@@ -161,7 +161,44 @@ public class ForwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 				return;
 			}
 		} else if (rule instanceof Function) {
+			int size = rule.getParameters().size();
 
+			Context newContext = new Context(context.getEnvironment());
+			newContext.setCallable(rule);
+			newContext.initFromCallable(rule);
+
+			for (int i = 0; i < size; i++) {
+				Variable fp = rule.getParameters().get(i);
+				Expression ap = ruleCallStatement.getParameters().get(i);
+
+				SafeType value = this.executeExpression(ap, context);
+
+				if (value.isUndefined() && fp.getTag() != DomainTag.VIEW)
+					throw new InvalidBackwardEnforcementException(
+							"invalid parameter of rule call in forward transformation");
+
+				newContext.put(fp, value);
+
+				if (fp.getTag() == DomainTag.SOURCE) {
+					Variable fspv = newContext.getVariable(AnalysisUtil.getUpdatedSourceVariableName(fp.getName()));
+					newContext.put(fspv, value);
+				}
+			}
+			
+			this.executeStatements(((Function)rule).getForwardStatements(), newContext);
+
+			// write back
+			for (int i = 0; i < size; i++) {
+				Variable fp = rule.getParameters().get(i);
+				Expression uap = ruleCallStatement.getUpdatedParameters().get(i);
+
+				if (fp.getTag() == DomainTag.VIEW) {
+					SafeType spv = newContext.get(fp);
+
+					if (!this.enforceExpression(uap, context, spv))
+						throw new InvalidBackwardEnforcementException("cannot putback view parameters");
+				}
+			}
 		}
 	}
 
@@ -215,7 +252,7 @@ public class ForwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 			throw new InvalidForwardEnforcementException("the source element does not exist");
 		else {
 			EObject o = value.getObjectValue();
-			if(type.isSuperTypeOf(o.eClass()))
+			if(AnalysisUtil.isSuperTypeOf(type, o.eClass()))
 				return;
 			else
 				throw new InvalidForwardEnforcementException("the source element does not match the type constraint");
@@ -269,7 +306,7 @@ public class ForwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 		if(oldValue.isUndefined())
 			createNew = true;
 		else {
-			if(!type.isSuperTypeOf(oldValue.getObjectValue().eClass()))
+			if(!AnalysisUtil.isSuperTypeOf(type, oldValue.getObjectValue().eClass()))
 				throw new InvalidForwardEnforcementException("cannot delete a view element");
 		}
 		

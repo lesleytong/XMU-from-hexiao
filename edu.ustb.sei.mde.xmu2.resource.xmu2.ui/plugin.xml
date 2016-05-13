@@ -157,12 +157,5 @@
 		<debugModelPresentation id="edu.ustb.sei.mde.xmu2.resource.xmu2.debugModel" class="edu.ustb.sei.mde.xmu2.resource.xmu2.ui.debug.Xmu2DebugModelPresentation">
 		</debugModelPresentation>
 	</extension>
- <extension
-       point="edu.ustb.sei.mde.xmu2.resource.xmu2.default_load_options">
-    <provider
-          class="edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.ValidityChecker"
-          id="edu.ustb.sei.mde.xmu2.resource.xmu2.ui.checker">
-    </provider>
- </extension>
 	
 </plugin>

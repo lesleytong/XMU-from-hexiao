@@ -22,6 +22,8 @@ import edu.ustb.sei.mde.xmu2common.RelationalOperator;
 import edu.ustb.sei.mde.xmu2common.UnaryOperator;
 import edu.ustb.sei.mde.xmu2core.AdditiveExpression;
 import edu.ustb.sei.mde.xmu2core.AtomicExpression;
+import edu.ustb.sei.mde.xmu2core.BooleanAndExpression;
+import edu.ustb.sei.mde.xmu2core.BooleanOrExpression;
 import edu.ustb.sei.mde.xmu2core.CheckExpressionStatement;
 import edu.ustb.sei.mde.xmu2core.Expression;
 import edu.ustb.sei.mde.xmu2core.ForEachStatement;
@@ -97,6 +99,17 @@ public class ModelCheckInterpreter extends ExpressionCheckInterpreter {
 	}
 
 	public boolean enforceExpression(Expression invalid, Context context, SafeType expect) {
+		if(invalid instanceof BooleanOrExpression) {
+			return enforceBooleanOrExpression((BooleanOrExpression)invalid,context,expect);
+		}
+		
+		if(invalid instanceof BooleanAndExpression) {
+			return enforceBooleanAndExpression((BooleanAndExpression)invalid,context,expect);
+		}
+		
+		if(invalid instanceof RelationalExpression) {
+			return enforceRelationalExpression((RelationalExpression)invalid,context,expect);
+		}
 		
 		if(invalid instanceof AdditiveExpression) {
 			return enforceAdditiveExpression((AdditiveExpression) invalid,context, expect);
@@ -109,6 +122,111 @@ public class ModelCheckInterpreter extends ExpressionCheckInterpreter {
 			return enforceUnaryExpression((UnaryExpression)invalid,context,expect);
 		
 		return false;
+	}
+
+	private boolean enforceRelationalExpression(RelationalExpression invalid, Context context, SafeType expect) {
+		if(expect!=Constants.TRUE && expect != Constants.FALSE)
+			return false;
+		
+		try {
+			SafeType ret = AbstractInterpreter.EXPRESSION_CHECK.executeExpression(invalid, context);
+			if (ret == expect) {
+				return true;
+			} else {
+				if(invalid.getOperator()==RelationalOperator.EQUAL) {
+					if(expect==Constants.TRUE) {
+						SafeType leftValue = null;
+						
+						try {
+							leftValue = AbstractInterpreter.EXPRESSION_CHECK.executeExpression(invalid.getLeft(),
+									context);
+						} catch(Exception e) {
+							leftValue = null;
+						}
+						SafeType rightValue = null;
+						
+						try {
+							rightValue = AbstractInterpreter.EXPRESSION_CHECK.executeExpression(invalid.getRight(),
+									context);
+						} catch(Exception e) {
+							rightValue = null;
+						}
+						
+						if(leftValue==null && rightValue==null) return false;
+						else {
+							if(leftValue!=null && leftValue.isUndefined() == false) {
+								if(enforceExpression(invalid.getRight(), context, leftValue))
+									return true;
+							}
+							if(rightValue!=null && rightValue.isUndefined() == false) {
+								if(enforceExpression(invalid.getLeft(), context, rightValue))
+									return true;
+							}
+							return false;
+						}
+					} else {
+						return false;
+					}
+				} else 
+					return false;
+			}
+		} catch(Exception e) {
+			return false;
+		}
+	}
+
+	private boolean enforceBooleanAndExpression(BooleanAndExpression invalid, Context context, SafeType expect) {
+		if(expect!=Constants.TRUE && expect != Constants.FALSE)
+			return false;
+		try {
+			SafeType ret = AbstractInterpreter.EXPRESSION_CHECK.executeExpression(invalid, context);
+			if (ret == expect) {
+				return true;
+			} else {
+				if (expect == Constants.TRUE) {
+					for (Expression e : invalid.getOperands()) {
+						if (!enforceExpression(e, context, Constants.TRUE))
+							return false;
+					}
+					return true;
+				} else {
+					for (Expression e : invalid.getOperands()) {
+						if (enforceExpression(e, context, Constants.FALSE))
+							return true;
+					}
+					return false;
+				}
+			}
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	private boolean enforceBooleanOrExpression(BooleanOrExpression invalid, Context context, SafeType expect) {
+		if(expect!=Constants.TRUE && expect != Constants.FALSE)
+			return false;
+		try {
+			SafeType ret = AbstractInterpreter.EXPRESSION_CHECK.executeExpression(invalid, context);
+			if (ret == expect) {
+				return true;
+			} else {
+				if (expect == Constants.TRUE) {
+					for (Expression e : invalid.getOperands()) {
+						if (enforceExpression(e, context, Constants.TRUE))
+							return true;
+					}
+					return false;
+				} else {
+					for (Expression e : invalid.getOperands()) {
+						if (!enforceExpression(e, context, Constants.FALSE))
+							return false;
+					}
+					return true;
+				}
+			}
+		} catch (Exception e) {
+			return false;
+		}
 	}
 
 	protected boolean enforceUnaryExpression(UnaryExpression invalid, Context context, SafeType expect) {

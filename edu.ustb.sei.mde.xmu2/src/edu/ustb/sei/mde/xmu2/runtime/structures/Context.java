@@ -75,7 +75,7 @@ public class Context implements Iterable<Entry<Variable,SafeType>>{
 				if(!value.isNull()) {
 					if(!value.isObject()) 
 						throw new ContextException("type cast exception: type="+var.getType()+", value="+value);
-					else if(((EClass)var.getType()).isSuperTypeOf(value.getObjectValue().eClass())==false)
+					else if(AnalysisUtil.isSuperTypeOf(((EClass)var.getType()),value.getObjectValue().eClass())==false)
 //						throw new ContextException("type cast exception: type="+var.getType()+", value="+value);
 						this.environment.getPrinter().println("type cast exception: type="+var.getType()+", value="+value);
 				}

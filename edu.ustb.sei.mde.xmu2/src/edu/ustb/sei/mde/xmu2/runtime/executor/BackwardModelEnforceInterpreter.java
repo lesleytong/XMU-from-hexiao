@@ -138,7 +138,7 @@ public class BackwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 				} else
 					return;
 			} else if(rule instanceof Function) {
-				
+				this.executeCallStatement(ruleCallStatement, context);
 			}
 		} catch (Exception e) {
 		}
@@ -273,7 +273,43 @@ public class BackwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 				return;
 			}
 		} else if (rule instanceof Function) {
+			int size = rule.getParameters().size();
 
+			Context newContext = new Context(context.getEnvironment());
+			newContext.setCallable(rule);
+			newContext.initFromCallable(rule);
+
+			for (int i = 0; i < size; i++) {
+				Variable fp = rule.getParameters().get(i);
+				Expression ap = ruleCallStatement.getParameters().get(i);
+
+				SafeType value = this.executeExpression(ap, context);
+
+				if (value.isUndefined())
+					throw new InvalidBackwardEnforcementException(
+							"invalid parameter of rule call in backward transformation");
+
+				newContext.put(fp, value);
+				if (fp.getTag() == DomainTag.SOURCE) {
+					Variable fspv = newContext.getVariable(AnalysisUtil.getUpdatedSourceVariableName(fp.getName()));
+					newContext.put(fspv, Constants.UNDEFINED);
+				}
+			}
+			
+			this.executeStatements(((Function)rule).getBackwardStatements(), newContext);
+
+			// write back
+			for (int i = 0; i < size; i++) {
+				Variable fp = rule.getParameters().get(i);
+				Expression uap = ruleCallStatement.getUpdatedParameters().get(i);
+
+				if (fp.getTag() == DomainTag.SOURCE) {
+					Variable fpv = newContext.getVariable(AnalysisUtil.getUpdatedSourceVariableName(fp.getName()));
+					SafeType fv = newContext.get(fpv);
+					if (!this.enforceExpression(uap, context, fv))
+						return;
+				}
+			}
 		}
 	}
 
@@ -389,7 +425,7 @@ public class BackwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 		if(oldValue.isUndefined())
 			createNew = true;
 		else {
-			if(!type.isSuperTypeOf(oldValue.getObjectValue().eClass()))
+			if(!AnalysisUtil.isSuperTypeOf(type, oldValue.getObjectValue().eClass()))
 				createNew = true;
 		}
 		
@@ -415,7 +451,7 @@ public class BackwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 	}
 	
 	private SafeType replaceUpdatedSourceElement(EObject sourceValue, EObject oldValue, EClass newType, Context context) {
-		if(newType.isSuperTypeOf(oldValue.eClass())) return SafeType.createFromValue(oldValue);
+		if(AnalysisUtil.isSuperTypeOf(newType, oldValue.eClass())) return SafeType.createFromValue(oldValue);
 		else {
 			
 			EObject newObj = context.getEnvironment().createObject(newType);

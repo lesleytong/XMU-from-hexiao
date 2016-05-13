@@ -21,7 +21,7 @@ OPTIONS {
 }
 
 TOKENS {
-  DEFINE TYPE $'String'|'Boolean'|'Integer'|'Resource'|(('a'..'z'|'A'..'Z'|'0'..'9'|'_')+'!'('a'..'z'|'A'..'Z'|'_')('0'..'9'|'a'..'z'|'A'..'Z'|'_')*)$;
+  DEFINE TYPE $'String'|'Boolean'|'Integer'|'OclAny'|'Resource'|(('a'..'z'|'A'..'Z'|'0'..'9'|'_')+'!'('a'..'z'|'A'..'Z'|'_')('0'..'9'|'a'..'z'|'A'..'Z'|'_')*)$;
   DEFINE BOOLEAN $'true'|'false'$;
   DEFINE NAME $('a'..'z'|'A'..'Z'|'_')('0'..'9'|'a'..'z'|'A'..'Z'|'_')*('@post')?$;
   DEFINE NUMBER $('0'..'9')+$;
@@ -33,7 +33,7 @@ TOKENS {
 TOKENSTYLES {
 	 "NUMBER" COLOR #00ff00;
 	 "BOOLEAN" COLOR #ff0000;
-//	 "PRIMITIVE" COLOR #ff0000;
+	 "TYPE" COLOR #0000ff;
 	 "SL_COMMENT" COLOR #008000;
 	 "ML_COMMENT" COLOR #008000;
 	 "OBJ_URI" COLOR #4080C0;
