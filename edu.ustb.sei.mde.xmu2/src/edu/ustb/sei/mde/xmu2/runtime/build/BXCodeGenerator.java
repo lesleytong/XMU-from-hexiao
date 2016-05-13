@@ -1109,6 +1109,11 @@ public class BXCodeGenerator {
 					exp.getPaths().add(fp);
 					ens.setCandidate(exp);
 				}
+				
+				ens.setNullable(e.isNullable());
+				
+				if(e.isNullable()&&!targetNode.getExpressions().isEmpty())
+					throw new BuildException("a nullable pattern node cannot have inner expressions");
 			}
 			
 			EnforceLinkStatement el = Xmu2coreFactory.eINSTANCE.createEnforceLinkStatement();
@@ -1504,6 +1509,7 @@ public class BXCodeGenerator {
 				npe.setSelector((edu.ustb.sei.mde.xmu2core.LoopPath)convertPath(null,pe.getSelector(),varMap,false));
 				npe.setPosition((edu.ustb.sei.mde.xmu2core.PositionPath)convertPath(null,pe.getPosition(),varMap,false));
 				npe.setTarget((edu.ustb.sei.mde.xmu2core.PatternNode)target);
+				npe.setNullable(pe.isNullable());
 				return npe;
 			} else if(target instanceof edu.ustb.sei.mde.xmu2core.VariableExpression){
 				edu.ustb.sei.mde.xmu2core.PropertyPatternExpression npe = Xmu2coreFactory.eINSTANCE.createPropertyPatternExpression();
@@ -1511,6 +1517,7 @@ public class BXCodeGenerator {
 				npe.setSelector((edu.ustb.sei.mde.xmu2core.LoopPath)convertPath(null,pe.getSelector(),varMap,false));
 				npe.setPosition((edu.ustb.sei.mde.xmu2core.PositionPath)convertPath(null,pe.getPosition(),varMap,false));
 				npe.setTarget((edu.ustb.sei.mde.xmu2core.VariableExpression)target);
+				npe.setNullable(pe.isNullable());
 				return npe;
 			}
 		} else if(pe instanceof edu.ustb.sei.mde.xmu2.pattern.PropertyPatternExpression) {
@@ -1518,8 +1525,8 @@ public class BXCodeGenerator {
 			npe.setFeature(pe.getFeature());
 			npe.setSelector((edu.ustb.sei.mde.xmu2core.LoopPath)convertPath(null,pe.getSelector(),varMap,false));
 			npe.setPosition((edu.ustb.sei.mde.xmu2core.PositionPath)convertPath(null,pe.getPosition(),varMap,false));
-			
 			npe.setTarget(convertExpression(((edu.ustb.sei.mde.xmu2.pattern.PropertyPatternExpression) pe).getTargetExpression(), varMap,false));
+			npe.setNullable(pe.isNullable());
 			return npe;
 		}
 		throw new BuildException("Unconverted pattern expression");

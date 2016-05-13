@@ -154,6 +154,9 @@
           containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="position" eType="#//expression/PositionPath"
           containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="nullable" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+          defaultValueLiteral="false"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ObjectPatternExpression" eSuperTypes="#//pattern/PatternExpression">
       <eStructuralFeatures xsi:type="ecore:EReference" name="targetNode" lowerBound="1"

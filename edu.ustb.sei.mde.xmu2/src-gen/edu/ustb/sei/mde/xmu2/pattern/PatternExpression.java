@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  *   <li>{@link edu.ustb.sei.mde.xmu2.pattern.PatternExpression#getFeature <em>Feature</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2.pattern.PatternExpression#getSelector <em>Selector</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2.pattern.PatternExpression#getPosition <em>Position</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.xmu2.pattern.PatternExpression#isNullable <em>Nullable</em>}</li>
  * </ul>
  *
  * @see edu.ustb.sei.mde.xmu2.pattern.PatternPackage#getPatternExpression()
@@ -133,5 +134,32 @@ public interface PatternExpression extends EObject {
 	 * @generated
 	 */
 	void setPosition(PositionPath value);
+
+	/**
+	 * Returns the value of the '<em><b>Nullable</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Nullable</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Nullable</em>' attribute.
+	 * @see #setNullable(boolean)
+	 * @see edu.ustb.sei.mde.xmu2.pattern.PatternPackage#getPatternExpression_Nullable()
+	 * @model default="false" required="true"
+	 * @generated
+	 */
+	boolean isNullable();
+
+	/**
+	 * Sets the value of the '{@link edu.ustb.sei.mde.xmu2.pattern.PatternExpression#isNullable <em>Nullable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Nullable</em>' attribute.
+	 * @see #isNullable()
+	 * @generated
+	 */
+	void setNullable(boolean value);
 
 } // PatternExpression

@@ -107,6 +107,7 @@ public class ModelModificationEngine extends ModelModificationTrace{
 	}
 	
 	public void markAsUsed(EObject o) {
+		if(o==null) return;
 		this.logCreation(o);
 	}
 	

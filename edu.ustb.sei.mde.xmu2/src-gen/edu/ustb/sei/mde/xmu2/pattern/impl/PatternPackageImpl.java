@@ -24,6 +24,7 @@ import edu.ustb.sei.mde.xmu2.statement.impl.StatementPackageImpl;
 
 import edu.ustb.sei.mde.xmu2common.Xmu2commonPackage;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -251,6 +252,15 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getPatternExpression_Nullable() {
+		return (EAttribute)patternExpressionEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getObjectPatternExpression() {
 		return objectPatternExpressionEClass;
 	}
@@ -323,6 +333,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 		createEReference(patternExpressionEClass, PATTERN_EXPRESSION__FEATURE);
 		createEReference(patternExpressionEClass, PATTERN_EXPRESSION__SELECTOR);
 		createEReference(patternExpressionEClass, PATTERN_EXPRESSION__POSITION);
+		createEAttribute(patternExpressionEClass, PATTERN_EXPRESSION__NULLABLE);
 
 		objectPatternExpressionEClass = createEClass(OBJECT_PATTERN_EXPRESSION);
 		createEReference(objectPatternExpressionEClass, OBJECT_PATTERN_EXPRESSION__TARGET_NODE);
@@ -380,6 +391,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 		initEReference(getPatternExpression_Feature(), ecorePackage.getEStructuralFeature(), null, "feature", null, 1, 1, PatternExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPatternExpression_Selector(), theExpressionPackage.getLoopPath(), null, "selector", null, 0, 1, PatternExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPatternExpression_Position(), theExpressionPackage.getPositionPath(), null, "position", null, 0, 1, PatternExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPatternExpression_Nullable(), ecorePackage.getEBoolean(), "nullable", "false", 1, 1, PatternExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(objectPatternExpressionEClass, ObjectPatternExpression.class, "ObjectPatternExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getObjectPatternExpression_TargetNode(), this.getPatternNode(), null, "targetNode", null, 1, 1, ObjectPatternExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

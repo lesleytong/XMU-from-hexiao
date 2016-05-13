@@ -33,6 +33,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  *   <li>{@link edu.ustb.sei.mde.xmu2.pattern.impl.PatternExpressionImpl#getFeature <em>Feature</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2.pattern.impl.PatternExpressionImpl#getSelector <em>Selector</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2.pattern.impl.PatternExpressionImpl#getPosition <em>Position</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.xmu2.pattern.impl.PatternExpressionImpl#isNullable <em>Nullable</em>}</li>
  * </ul>
  *
  * @generated
@@ -67,6 +68,26 @@ public abstract class PatternExpressionImpl extends EObjectImpl implements Patte
 	 * @ordered
 	 */
 	protected PositionPath position;
+
+	/**
+	 * The default value of the '{@link #isNullable() <em>Nullable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isNullable()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean NULLABLE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isNullable() <em>Nullable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isNullable()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean nullable = NULLABLE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -257,6 +278,27 @@ public abstract class PatternExpressionImpl extends EObjectImpl implements Patte
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isNullable() {
+		return nullable;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setNullable(boolean newNullable) {
+		boolean oldNullable = nullable;
+		nullable = newNullable;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PatternPackage.PATTERN_EXPRESSION__NULLABLE, oldNullable, nullable));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -317,6 +359,8 @@ public abstract class PatternExpressionImpl extends EObjectImpl implements Patte
 				return getSelector();
 			case PatternPackage.PATTERN_EXPRESSION__POSITION:
 				return getPosition();
+			case PatternPackage.PATTERN_EXPRESSION__NULLABLE:
+				return isNullable();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -340,6 +384,9 @@ public abstract class PatternExpressionImpl extends EObjectImpl implements Patte
 				return;
 			case PatternPackage.PATTERN_EXPRESSION__POSITION:
 				setPosition((PositionPath)newValue);
+				return;
+			case PatternPackage.PATTERN_EXPRESSION__NULLABLE:
+				setNullable((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -365,6 +412,9 @@ public abstract class PatternExpressionImpl extends EObjectImpl implements Patte
 			case PatternPackage.PATTERN_EXPRESSION__POSITION:
 				setPosition((PositionPath)null);
 				return;
+			case PatternPackage.PATTERN_EXPRESSION__NULLABLE:
+				setNullable(NULLABLE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -385,8 +435,26 @@ public abstract class PatternExpressionImpl extends EObjectImpl implements Patte
 				return selector != null;
 			case PatternPackage.PATTERN_EXPRESSION__POSITION:
 				return position != null;
+			case PatternPackage.PATTERN_EXPRESSION__NULLABLE:
+				return nullable != NULLABLE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (nullable: ");
+		result.append(nullable);
+		result.append(')');
+		return result.toString();
 	}
 
 } //PatternExpressionImpl

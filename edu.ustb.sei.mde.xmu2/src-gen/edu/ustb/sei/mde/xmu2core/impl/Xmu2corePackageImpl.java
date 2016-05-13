@@ -34,6 +34,7 @@ import edu.ustb.sei.mde.xmu2core.IntegerValueExpression;
 import edu.ustb.sei.mde.xmu2core.LoopPath;
 import edu.ustb.sei.mde.xmu2core.MatchPattern;
 import edu.ustb.sei.mde.xmu2core.MultiplicativeExpression;
+import edu.ustb.sei.mde.xmu2core.Nullable;
 import edu.ustb.sei.mde.xmu2core.ObjectPatternExpression;
 import edu.ustb.sei.mde.xmu2core.ObjectValueExpression;
 import edu.ustb.sei.mde.xmu2core.OclCollection;
@@ -81,6 +82,13 @@ public class Xmu2corePackageImpl extends EPackageImpl implements Xmu2corePackage
 	 * @generated
 	 */
 	private EClass typedElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass nullableEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -540,6 +548,24 @@ public class Xmu2corePackageImpl extends EPackageImpl implements Xmu2corePackage
 	 */
 	public EReference getTypedElement_Type() {
 		return (EReference)typedElementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getNullable() {
+		return nullableEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getNullable_Nullable() {
+		return (EAttribute)nullableEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1851,6 +1877,9 @@ public class Xmu2corePackageImpl extends EPackageImpl implements Xmu2corePackage
 		typedElementEClass = createEClass(TYPED_ELEMENT);
 		createEReference(typedElementEClass, TYPED_ELEMENT__TYPE);
 
+		nullableEClass = createEClass(NULLABLE);
+		createEAttribute(nullableEClass, NULLABLE__NULLABLE);
+
 		callableEClass = createEClass(CALLABLE);
 		createEReference(callableEClass, CALLABLE__VARIABLES);
 		createEReference(callableEClass, CALLABLE__PARAMETERS);
@@ -2090,6 +2119,7 @@ public class Xmu2corePackageImpl extends EPackageImpl implements Xmu2corePackage
 		casePatternClauseEClass.getESuperTypes().add(this.getCaseClause());
 		caseExpressionClauseEClass.getESuperTypes().add(this.getCaseClause());
 		caseStatementClauseEClass.getESuperTypes().add(this.getCaseClause());
+		patternExpressionEClass.getESuperTypes().add(this.getNullable());
 		objectPatternExpressionEClass.getESuperTypes().add(this.getPatternExpression());
 		propertyPatternExpressionEClass.getESuperTypes().add(this.getPatternExpression());
 		booleanOrExpressionEClass.getESuperTypes().add(this.getExpression());
@@ -2121,6 +2151,7 @@ public class Xmu2corePackageImpl extends EPackageImpl implements Xmu2corePackage
 		deleteLinkStatementEClass.getESuperTypes().add(this.getStatement());
 		enforceNodeStatementEClass.getESuperTypes().add(this.getStatement());
 		enforceNodeStatementEClass.getESuperTypes().add(theXmu2commonPackage.getDomainElement());
+		enforceNodeStatementEClass.getESuperTypes().add(this.getNullable());
 		enforceLinkStatementEClass.getESuperTypes().add(this.getStatement());
 		enforceLinkStatementEClass.getESuperTypes().add(theXmu2commonPackage.getDomainElement());
 		oclCollectionTypeEClass.getESuperTypes().add(ecorePackage.getEClass());
@@ -2133,6 +2164,9 @@ public class Xmu2corePackageImpl extends EPackageImpl implements Xmu2corePackage
 		// Initialize classes, features, and operations; add parameters
 		initEClass(typedElementEClass, TypedElement.class, "TypedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTypedElement_Type(), ecorePackage.getEClassifier(), null, "type", null, 1, 1, TypedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(nullableEClass, Nullable.class, "Nullable", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getNullable_Nullable(), ecorePackage.getEBoolean(), "nullable", "false", 1, 1, Nullable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(callableEClass, Callable.class, "Callable", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCallable_Variables(), this.getVariable(), null, "variables", null, 0, -1, Callable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -99,7 +99,8 @@ public class PropertyPatternExpressionItemProvider extends PatternExpressionItem
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_PropertyPatternExpression_type");
+		PropertyPatternExpression propertyPatternExpression = (PropertyPatternExpression)object;
+		return getString("_UI_PropertyPatternExpression_type") + " " + propertyPatternExpression.isNullable();
 	}
 	
 

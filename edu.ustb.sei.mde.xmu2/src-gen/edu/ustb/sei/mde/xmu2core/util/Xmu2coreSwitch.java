@@ -79,6 +79,12 @@ public class Xmu2coreSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case Xmu2corePackage.NULLABLE: {
+				Nullable nullable = (Nullable)theEObject;
+				T result = caseNullable(nullable);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case Xmu2corePackage.CALLABLE: {
 				Callable callable = (Callable)theEObject;
 				T result = caseCallable(callable);
@@ -166,6 +172,7 @@ public class Xmu2coreSwitch<T> extends Switch<T> {
 			case Xmu2corePackage.PATTERN_EXPRESSION: {
 				PatternExpression patternExpression = (PatternExpression)theEObject;
 				T result = casePatternExpression(patternExpression);
+				if (result == null) result = caseNullable(patternExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -173,6 +180,7 @@ public class Xmu2coreSwitch<T> extends Switch<T> {
 				ObjectPatternExpression objectPatternExpression = (ObjectPatternExpression)theEObject;
 				T result = caseObjectPatternExpression(objectPatternExpression);
 				if (result == null) result = casePatternExpression(objectPatternExpression);
+				if (result == null) result = caseNullable(objectPatternExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -180,6 +188,7 @@ public class Xmu2coreSwitch<T> extends Switch<T> {
 				PropertyPatternExpression propertyPatternExpression = (PropertyPatternExpression)theEObject;
 				T result = casePropertyPatternExpression(propertyPatternExpression);
 				if (result == null) result = casePatternExpression(propertyPatternExpression);
+				if (result == null) result = caseNullable(propertyPatternExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -397,6 +406,7 @@ public class Xmu2coreSwitch<T> extends Switch<T> {
 				T result = caseEnforceNodeStatement(enforceNodeStatement);
 				if (result == null) result = caseStatement(enforceNodeStatement);
 				if (result == null) result = caseDomainElement(enforceNodeStatement);
+				if (result == null) result = caseNullable(enforceNodeStatement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -476,6 +486,21 @@ public class Xmu2coreSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseTypedElement(TypedElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Nullable</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Nullable</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNullable(Nullable object) {
 		return null;
 	}
 

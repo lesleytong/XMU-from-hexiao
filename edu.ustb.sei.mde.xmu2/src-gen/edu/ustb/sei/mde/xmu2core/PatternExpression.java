@@ -2,7 +2,6 @@
  */
 package edu.ustb.sei.mde.xmu2core;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 /**
@@ -23,7 +22,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  * @model abstract="true"
  * @generated
  */
-public interface PatternExpression extends EObject {
+public interface PatternExpression extends Nullable {
 	/**
 	 * Returns the value of the '<em><b>Feature</b></em>' reference.
 	 * <!-- begin-user-doc -->

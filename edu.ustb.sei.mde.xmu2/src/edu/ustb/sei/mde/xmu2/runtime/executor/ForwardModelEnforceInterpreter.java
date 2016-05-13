@@ -295,8 +295,8 @@ public class ForwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 			try {
 				if (candidate != null) {
 					oldValue = this.executeExpression(candidate, context);
-					if(oldValue==Constants.NULL)
-						oldValue = Constants.UNDEFINED;
+//					if(oldValue==Constants.NULL)
+//						oldValue = Constants.UNDEFINED;
 				}
 			} catch (Exception e) {
 				oldValue = SafeType.UNDEFINED;
@@ -308,12 +308,15 @@ public class ForwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 		if(oldValue.isUndefined())
 			createNew = true;
 		else {
-			if(!AnalysisUtil.isSuperTypeOf(type, oldValue.getObjectValue().eClass()))
+			if(!oldValue.isNull() && !AnalysisUtil.isSuperTypeOf(type, oldValue.getObjectValue().eClass()))
 				throw new InvalidForwardEnforcementException("cannot delete a view element");
 		}
 		
 		if(createNew) {
-			newValue = SafeType.createFromValue(this.createViewElement(type, context));
+			if(oldValue.isNull() && statement.isNullable()) {
+				newValue  = oldValue;
+			} else
+				newValue = SafeType.createFromValue(this.createViewElement(type, context));
 		} else {
 			newValue = oldValue;
 			context.getEnvironment().markAsUsed(newValue.getObjectValue());

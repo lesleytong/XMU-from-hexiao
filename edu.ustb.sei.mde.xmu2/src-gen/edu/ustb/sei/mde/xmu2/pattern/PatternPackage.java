@@ -2,6 +2,7 @@
  */
 package edu.ustb.sei.mde.xmu2.pattern;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -175,13 +176,22 @@ public interface PatternPackage extends EPackage {
 	int PATTERN_EXPRESSION__POSITION = 3;
 
 	/**
+	 * The feature id for the '<em><b>Nullable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATTERN_EXPRESSION__NULLABLE = 4;
+
+	/**
 	 * The number of structural features of the '<em>Expression</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PATTERN_EXPRESSION_FEATURE_COUNT = 4;
+	int PATTERN_EXPRESSION_FEATURE_COUNT = 5;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu2.pattern.impl.ObjectPatternExpressionImpl <em>Object Pattern Expression</em>}' class.
@@ -228,6 +238,15 @@ public interface PatternPackage extends EPackage {
 	 * @ordered
 	 */
 	int OBJECT_PATTERN_EXPRESSION__POSITION = PATTERN_EXPRESSION__POSITION;
+
+	/**
+	 * The feature id for the '<em><b>Nullable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_PATTERN_EXPRESSION__NULLABLE = PATTERN_EXPRESSION__NULLABLE;
 
 	/**
 	 * The feature id for the '<em><b>Target Node</b></em>' containment reference.
@@ -292,6 +311,15 @@ public interface PatternPackage extends EPackage {
 	 * @ordered
 	 */
 	int PROPERTY_PATTERN_EXPRESSION__POSITION = PATTERN_EXPRESSION__POSITION;
+
+	/**
+	 * The feature id for the '<em><b>Nullable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_PATTERN_EXPRESSION__NULLABLE = PATTERN_EXPRESSION__NULLABLE;
 
 	/**
 	 * The feature id for the '<em><b>Target Expression</b></em>' containment reference.
@@ -429,6 +457,17 @@ public interface PatternPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getPatternExpression_Position();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.xmu2.pattern.PatternExpression#isNullable <em>Nullable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Nullable</em>'.
+	 * @see edu.ustb.sei.mde.xmu2.pattern.PatternExpression#isNullable()
+	 * @see #getPatternExpression()
+	 * @generated
+	 */
+	EAttribute getPatternExpression_Nullable();
 
 	/**
 	 * Returns the meta object for class '{@link edu.ustb.sei.mde.xmu2.pattern.ObjectPatternExpression <em>Object Pattern Expression</em>}'.
@@ -587,6 +626,14 @@ public interface PatternPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PATTERN_EXPRESSION__POSITION = eINSTANCE.getPatternExpression_Position();
+
+		/**
+		 * The meta object literal for the '<em><b>Nullable</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PATTERN_EXPRESSION__NULLABLE = eINSTANCE.getPatternExpression_Nullable();
 
 		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu2.pattern.impl.ObjectPatternExpressionImpl <em>Object Pattern Expression</em>}' class.

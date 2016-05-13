@@ -99,7 +99,8 @@ public class ObjectPatternExpressionItemProvider extends PatternExpressionItemPr
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_ObjectPatternExpression_type");
+		ObjectPatternExpression objectPatternExpression = (ObjectPatternExpression)object;
+		return getString("_UI_ObjectPatternExpression_type") + " " + objectPatternExpression.isNullable();
 	}
 	
 

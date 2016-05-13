@@ -433,7 +433,7 @@ public class BackwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 		if(oldValue.isUndefined())
 			createNew = true;
 		else {
-			if(!AnalysisUtil.isSuperTypeOf(type, oldValue.getObjectValue().eClass()))
+			if(oldValue.isNull() || !AnalysisUtil.isSuperTypeOf(type, oldValue.getObjectValue().eClass()))
 				createNew = true;
 		}
 		
@@ -443,11 +443,16 @@ public class BackwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 			if(sv==null) 
 				sv = SafeType.NULL;
 			
-			if(oldValue.isUndefined()==false) {
-				 newValue = this.replaceUpdatedSourceElement(sv.getObjectValue(),oldValue.getObjectValue(),type, context);
+			if(sv.isNull() && statement.isNullable()) {
+				newValue = sv;
 			} else {
-				newValue = SafeType.createFromValue(this.createUpdatedSourceElement(sv.getObjectValue(), type, context));
+				if(oldValue.isUndefined()==false) {
+					newValue = this.replaceUpdatedSourceElement(sv.getObjectValue(),oldValue.getObjectValue(),type, context);
+				} else {
+					newValue = SafeType.createFromValue(this.createUpdatedSourceElement(sv.getObjectValue(), type, context));
+				}				
 			}
+			
 		} else {
 			newValue = oldValue;
 			context.getEnvironment().markAsUsed(newValue.getObjectValue());

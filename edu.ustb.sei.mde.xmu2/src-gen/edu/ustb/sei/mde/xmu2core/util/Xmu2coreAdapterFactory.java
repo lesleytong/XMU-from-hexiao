@@ -79,6 +79,10 @@ public class Xmu2coreAdapterFactory extends AdapterFactoryImpl {
 				return createTypedElementAdapter();
 			}
 			@Override
+			public Adapter caseNullable(Nullable object) {
+				return createNullableAdapter();
+			}
+			@Override
 			public Adapter caseCallable(Callable object) {
 				return createCallableAdapter();
 			}
@@ -341,6 +345,20 @@ public class Xmu2coreAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTypedElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.xmu2core.Nullable <em>Nullable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.xmu2core.Nullable
+	 * @generated
+	 */
+	public Adapter createNullableAdapter() {
 		return null;
 	}
 

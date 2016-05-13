@@ -98,6 +98,43 @@ public interface Xmu2corePackage extends EPackage {
 	int TYPED_ELEMENT_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu2core.impl.NullableImpl <em>Nullable</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.xmu2core.impl.NullableImpl
+	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getNullable()
+	 * @generated
+	 */
+	int NULLABLE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Nullable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULLABLE__NULLABLE = 0;
+
+	/**
+	 * The number of structural features of the '<em>Nullable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULLABLE_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Nullable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULLABLE_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu2core.impl.CallableImpl <em>Callable</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -105,7 +142,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getCallable()
 	 * @generated
 	 */
-	int CALLABLE = 1;
+	int CALLABLE = 2;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -160,7 +197,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getProcedure()
 	 * @generated
 	 */
-	int PROCEDURE = 2;
+	int PROCEDURE = 3;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -233,7 +270,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getVariable()
 	 * @generated
 	 */
-	int VARIABLE = 3;
+	int VARIABLE = 4;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -288,7 +325,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getStatement()
 	 * @generated
 	 */
-	int STATEMENT = 4;
+	int STATEMENT = 5;
 
 	/**
 	 * The number of structural features of the '<em>Statement</em>' class.
@@ -316,7 +353,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getAlignStatement()
 	 * @generated
 	 */
-	int ALIGN_STATEMENT = 5;
+	int ALIGN_STATEMENT = 6;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' containment reference.
@@ -389,7 +426,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getCaseStatement()
 	 * @generated
 	 */
-	int CASE_STATEMENT = 6;
+	int CASE_STATEMENT = 7;
 
 	/**
 	 * The feature id for the '<em><b>Tag</b></em>' attribute.
@@ -435,7 +472,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getCaseClause()
 	 * @generated
 	 */
-	int CASE_CLAUSE = 7;
+	int CASE_CLAUSE = 8;
 
 	/**
 	 * The feature id for the '<em><b>Action</b></em>' containment reference list.
@@ -472,7 +509,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getCasePatternClause()
 	 * @generated
 	 */
-	int CASE_PATTERN_CLAUSE = 8;
+	int CASE_PATTERN_CLAUSE = 9;
 
 	/**
 	 * The feature id for the '<em><b>Action</b></em>' containment reference list.
@@ -518,7 +555,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getCaseExpressionClause()
 	 * @generated
 	 */
-	int CASE_EXPRESSION_CLAUSE = 9;
+	int CASE_EXPRESSION_CLAUSE = 10;
 
 	/**
 	 * The feature id for the '<em><b>Action</b></em>' containment reference list.
@@ -564,7 +601,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getCaseStatementClause()
 	 * @generated
 	 */
-	int CASE_STATEMENT_CLAUSE = 10;
+	int CASE_STATEMENT_CLAUSE = 11;
 
 	/**
 	 * The feature id for the '<em><b>Action</b></em>' containment reference list.
@@ -610,7 +647,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getPattern()
 	 * @generated
 	 */
-	int PATTERN = 11;
+	int PATTERN = 12;
 
 	/**
 	 * The feature id for the '<em><b>Root</b></em>' containment reference.
@@ -656,7 +693,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getPatternNode()
 	 * @generated
 	 */
-	int PATTERN_NODE = 12;
+	int PATTERN_NODE = 13;
 
 	/**
 	 * The feature id for the '<em><b>Variable</b></em>' reference.
@@ -711,7 +748,16 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getPatternExpression()
 	 * @generated
 	 */
-	int PATTERN_EXPRESSION = 13;
+	int PATTERN_EXPRESSION = 14;
+
+	/**
+	 * The feature id for the '<em><b>Nullable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATTERN_EXPRESSION__NULLABLE = NULLABLE__NULLABLE;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference.
@@ -720,7 +766,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PATTERN_EXPRESSION__FEATURE = 0;
+	int PATTERN_EXPRESSION__FEATURE = NULLABLE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Selector</b></em>' containment reference.
@@ -729,7 +775,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PATTERN_EXPRESSION__SELECTOR = 1;
+	int PATTERN_EXPRESSION__SELECTOR = NULLABLE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Position</b></em>' containment reference.
@@ -738,7 +784,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PATTERN_EXPRESSION__POSITION = 2;
+	int PATTERN_EXPRESSION__POSITION = NULLABLE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Pattern Expression</em>' class.
@@ -747,7 +793,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PATTERN_EXPRESSION_FEATURE_COUNT = 3;
+	int PATTERN_EXPRESSION_FEATURE_COUNT = NULLABLE_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Pattern Expression</em>' class.
@@ -756,7 +802,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PATTERN_EXPRESSION_OPERATION_COUNT = 0;
+	int PATTERN_EXPRESSION_OPERATION_COUNT = NULLABLE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu2core.impl.ObjectPatternExpressionImpl <em>Object Pattern Expression</em>}' class.
@@ -766,7 +812,16 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getObjectPatternExpression()
 	 * @generated
 	 */
-	int OBJECT_PATTERN_EXPRESSION = 14;
+	int OBJECT_PATTERN_EXPRESSION = 15;
+
+	/**
+	 * The feature id for the '<em><b>Nullable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_PATTERN_EXPRESSION__NULLABLE = PATTERN_EXPRESSION__NULLABLE;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference.
@@ -830,7 +885,16 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getPropertyPatternExpression()
 	 * @generated
 	 */
-	int PROPERTY_PATTERN_EXPRESSION = 15;
+	int PROPERTY_PATTERN_EXPRESSION = 16;
+
+	/**
+	 * The feature id for the '<em><b>Nullable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_PATTERN_EXPRESSION__NULLABLE = PATTERN_EXPRESSION__NULLABLE;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference.
@@ -894,7 +958,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getExpression()
 	 * @generated
 	 */
-	int EXPRESSION = 16;
+	int EXPRESSION = 17;
 
 	/**
 	 * The number of structural features of the '<em>Expression</em>' class.
@@ -922,7 +986,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getBooleanOrExpression()
 	 * @generated
 	 */
-	int BOOLEAN_OR_EXPRESSION = 17;
+	int BOOLEAN_OR_EXPRESSION = 18;
 
 	/**
 	 * The feature id for the '<em><b>Operands</b></em>' containment reference list.
@@ -959,7 +1023,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getBooleanAndExpression()
 	 * @generated
 	 */
-	int BOOLEAN_AND_EXPRESSION = 18;
+	int BOOLEAN_AND_EXPRESSION = 19;
 
 	/**
 	 * The feature id for the '<em><b>Operands</b></em>' containment reference list.
@@ -996,7 +1060,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getRelationalExpression()
 	 * @generated
 	 */
-	int RELATIONAL_EXPRESSION = 19;
+	int RELATIONAL_EXPRESSION = 20;
 
 	/**
 	 * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1051,7 +1115,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getAdditiveExpression()
 	 * @generated
 	 */
-	int ADDITIVE_EXPRESSION = 20;
+	int ADDITIVE_EXPRESSION = 21;
 
 	/**
 	 * The feature id for the '<em><b>Operands</b></em>' containment reference list.
@@ -1097,7 +1161,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getMultiplicativeExpression()
 	 * @generated
 	 */
-	int MULTIPLICATIVE_EXPRESSION = 21;
+	int MULTIPLICATIVE_EXPRESSION = 22;
 
 	/**
 	 * The feature id for the '<em><b>Operands</b></em>' containment reference list.
@@ -1143,7 +1207,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getUnaryExpression()
 	 * @generated
 	 */
-	int UNARY_EXPRESSION = 22;
+	int UNARY_EXPRESSION = 23;
 
 	/**
 	 * The feature id for the '<em><b>Body</b></em>' containment reference.
@@ -1189,7 +1253,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getAtomicExpression()
 	 * @generated
 	 */
-	int ATOMIC_EXPRESSION = 23;
+	int ATOMIC_EXPRESSION = 24;
 
 	/**
 	 * The feature id for the '<em><b>Paths</b></em>' containment reference list.
@@ -1226,7 +1290,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getTypeCastExpression()
 	 * @generated
 	 */
-	int TYPE_CAST_EXPRESSION = 24;
+	int TYPE_CAST_EXPRESSION = 25;
 
 	/**
 	 * The feature id for the '<em><b>Paths</b></em>' containment reference list.
@@ -1290,7 +1354,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getPrimitiveValueExpression()
 	 * @generated
 	 */
-	int PRIMITIVE_VALUE_EXPRESSION = 25;
+	int PRIMITIVE_VALUE_EXPRESSION = 26;
 
 	/**
 	 * The feature id for the '<em><b>Paths</b></em>' containment reference list.
@@ -1336,7 +1400,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getStringValueExpression()
 	 * @generated
 	 */
-	int STRING_VALUE_EXPRESSION = 26;
+	int STRING_VALUE_EXPRESSION = 27;
 
 	/**
 	 * The feature id for the '<em><b>Paths</b></em>' containment reference list.
@@ -1391,7 +1455,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getBooleanValueExpression()
 	 * @generated
 	 */
-	int BOOLEAN_VALUE_EXPRESSION = 27;
+	int BOOLEAN_VALUE_EXPRESSION = 28;
 
 	/**
 	 * The feature id for the '<em><b>Paths</b></em>' containment reference list.
@@ -1446,7 +1510,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getIntegerValueExpression()
 	 * @generated
 	 */
-	int INTEGER_VALUE_EXPRESSION = 28;
+	int INTEGER_VALUE_EXPRESSION = 29;
 
 	/**
 	 * The feature id for the '<em><b>Paths</b></em>' containment reference list.
@@ -1501,7 +1565,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getEnumValueExpression()
 	 * @generated
 	 */
-	int ENUM_VALUE_EXPRESSION = 29;
+	int ENUM_VALUE_EXPRESSION = 30;
 
 	/**
 	 * The feature id for the '<em><b>Paths</b></em>' containment reference list.
@@ -1556,7 +1620,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getEmptyValueExpression()
 	 * @generated
 	 */
-	int EMPTY_VALUE_EXPRESSION = 30;
+	int EMPTY_VALUE_EXPRESSION = 31;
 
 	/**
 	 * The feature id for the '<em><b>Paths</b></em>' containment reference list.
@@ -1602,7 +1666,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getObjectValueExpression()
 	 * @generated
 	 */
-	int OBJECT_VALUE_EXPRESSION = 31;
+	int OBJECT_VALUE_EXPRESSION = 32;
 
 	/**
 	 * The feature id for the '<em><b>Paths</b></em>' containment reference list.
@@ -1648,7 +1712,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getVariableExpression()
 	 * @generated
 	 */
-	int VARIABLE_EXPRESSION = 32;
+	int VARIABLE_EXPRESSION = 33;
 
 	/**
 	 * The feature id for the '<em><b>Paths</b></em>' containment reference list.
@@ -1694,7 +1758,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getPath()
 	 * @generated
 	 */
-	int PATH = 33;
+	int PATH = 34;
 
 	/**
 	 * The number of structural features of the '<em>Path</em>' class.
@@ -1722,7 +1786,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getFeaturePath()
 	 * @generated
 	 */
-	int FEATURE_PATH = 34;
+	int FEATURE_PATH = 35;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference.
@@ -1759,7 +1823,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getOperationPath()
 	 * @generated
 	 */
-	int OPERATION_PATH = 35;
+	int OPERATION_PATH = 36;
 
 	/**
 	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
@@ -1805,7 +1869,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getLoopPath()
 	 * @generated
 	 */
-	int LOOP_PATH = 36;
+	int LOOP_PATH = 37;
 
 	/**
 	 * The feature id for the '<em><b>Operator</b></em>' attribute.
@@ -1860,7 +1924,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getPositionPath()
 	 * @generated
 	 */
-	int POSITION_PATH = 37;
+	int POSITION_PATH = 38;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' containment reference.
@@ -1906,7 +1970,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getCallStatement()
 	 * @generated
 	 */
-	int CALL_STATEMENT = 38;
+	int CALL_STATEMENT = 39;
 
 	/**
 	 * The feature id for the '<em><b>Callable</b></em>' reference.
@@ -1961,7 +2025,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getTransformation()
 	 * @generated
 	 */
-	int TRANSFORMATION = 39;
+	int TRANSFORMATION = 40;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2034,7 +2098,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getEntryRuleParameter()
 	 * @generated
 	 */
-	int ENTRY_RULE_PARAMETER = 40;
+	int ENTRY_RULE_PARAMETER = 41;
 
 	/**
 	 * The feature id for the '<em><b>Tag</b></em>' attribute.
@@ -2089,7 +2153,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getForEachStatement()
 	 * @generated
 	 */
-	int FOR_EACH_STATEMENT = 41;
+	int FOR_EACH_STATEMENT = 42;
 
 	/**
 	 * The feature id for the '<em><b>Pattern</b></em>' containment reference.
@@ -2144,7 +2208,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getDeleteNodeStatement()
 	 * @generated
 	 */
-	int DELETE_NODE_STATEMENT = 42;
+	int DELETE_NODE_STATEMENT = 43;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
@@ -2181,7 +2245,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getDeleteLinkStatement()
 	 * @generated
 	 */
-	int DELETE_LINK_STATEMENT = 43;
+	int DELETE_LINK_STATEMENT = 44;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' containment reference.
@@ -2236,7 +2300,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getEnforceNodeStatement()
 	 * @generated
 	 */
-	int ENFORCE_NODE_STATEMENT = 44;
+	int ENFORCE_NODE_STATEMENT = 45;
 
 	/**
 	 * The feature id for the '<em><b>Tag</b></em>' attribute.
@@ -2248,13 +2312,22 @@ public interface Xmu2corePackage extends EPackage {
 	int ENFORCE_NODE_STATEMENT__TAG = STATEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Nullable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENFORCE_NODE_STATEMENT__NULLABLE = STATEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The feature id for the '<em><b>Node</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ENFORCE_NODE_STATEMENT__NODE = STATEMENT_FEATURE_COUNT + 1;
+	int ENFORCE_NODE_STATEMENT__NODE = STATEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -2263,7 +2336,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENFORCE_NODE_STATEMENT__TYPE = STATEMENT_FEATURE_COUNT + 2;
+	int ENFORCE_NODE_STATEMENT__TYPE = STATEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Candidate</b></em>' containment reference.
@@ -2272,7 +2345,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENFORCE_NODE_STATEMENT__CANDIDATE = STATEMENT_FEATURE_COUNT + 3;
+	int ENFORCE_NODE_STATEMENT__CANDIDATE = STATEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Enforce Node Statement</em>' class.
@@ -2281,7 +2354,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENFORCE_NODE_STATEMENT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 4;
+	int ENFORCE_NODE_STATEMENT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>Enforce Node Statement</em>' class.
@@ -2300,7 +2373,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getEnforceLinkStatement()
 	 * @generated
 	 */
-	int ENFORCE_LINK_STATEMENT = 45;
+	int ENFORCE_LINK_STATEMENT = 46;
 
 	/**
 	 * The feature id for the '<em><b>Tag</b></em>' attribute.
@@ -2391,7 +2464,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getOclCollectionType()
 	 * @generated
 	 */
-	int OCL_COLLECTION_TYPE = 46;
+	int OCL_COLLECTION_TYPE = 47;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -2761,7 +2834,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getOclCollection()
 	 * @generated
 	 */
-	int OCL_COLLECTION = 47;
+	int OCL_COLLECTION = 48;
 
 	/**
 	 * The feature id for the '<em><b>Element Type</b></em>' reference.
@@ -2798,7 +2871,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getMatchPattern()
 	 * @generated
 	 */
-	int MATCH_PATTERN = 48;
+	int MATCH_PATTERN = 49;
 
 	/**
 	 * The feature id for the '<em><b>Pattern</b></em>' containment reference.
@@ -2835,7 +2908,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getCheckExpressionStatement()
 	 * @generated
 	 */
-	int CHECK_EXPRESSION_STATEMENT = 49;
+	int CHECK_EXPRESSION_STATEMENT = 50;
 
 	/**
 	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
@@ -2872,7 +2945,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getEnforceExpressionStatement()
 	 * @generated
 	 */
-	int ENFORCE_EXPRESSION_STATEMENT = 50;
+	int ENFORCE_EXPRESSION_STATEMENT = 51;
 
 	/**
 	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
@@ -2909,7 +2982,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getFunction()
 	 * @generated
 	 */
-	int FUNCTION = 51;
+	int FUNCTION = 52;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2982,7 +3055,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getSolveConstraintStatement()
 	 * @generated
 	 */
-	int SOLVE_CONSTRAINT_STATEMENT = 52;
+	int SOLVE_CONSTRAINT_STATEMENT = 53;
 
 	/**
 	 * The feature id for the '<em><b>Variables</b></em>' reference list.
@@ -3028,7 +3101,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getNull()
 	 * @generated
 	 */
-	int NULL = 53;
+	int NULL = 54;
 
 	/**
 	 * The meta object id for the '<em>Undefined</em>' data type.
@@ -3038,7 +3111,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getUndefined()
 	 * @generated
 	 */
-	int UNDEFINED = 54;
+	int UNDEFINED = 55;
 
 
 	/**
@@ -3061,6 +3134,27 @@ public interface Xmu2corePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getTypedElement_Type();
+
+	/**
+	 * Returns the meta object for class '{@link edu.ustb.sei.mde.xmu2core.Nullable <em>Nullable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Nullable</em>'.
+	 * @see edu.ustb.sei.mde.xmu2core.Nullable
+	 * @generated
+	 */
+	EClass getNullable();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.xmu2core.Nullable#isNullable <em>Nullable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Nullable</em>'.
+	 * @see edu.ustb.sei.mde.xmu2core.Nullable#isNullable()
+	 * @see #getNullable()
+	 * @generated
+	 */
+	EAttribute getNullable_Nullable();
 
 	/**
 	 * Returns the meta object for class '{@link edu.ustb.sei.mde.xmu2core.Callable <em>Callable</em>}'.
@@ -4612,6 +4706,24 @@ public interface Xmu2corePackage extends EPackage {
 		 * @generated
 		 */
 		EReference TYPED_ELEMENT__TYPE = eINSTANCE.getTypedElement_Type();
+
+		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu2core.impl.NullableImpl <em>Nullable</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.xmu2core.impl.NullableImpl
+		 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getNullable()
+		 * @generated
+		 */
+		EClass NULLABLE = eINSTANCE.getNullable();
+
+		/**
+		 * The meta object literal for the '<em><b>Nullable</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NULLABLE__NULLABLE = eINSTANCE.getNullable_Nullable();
 
 		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu2core.impl.CallableImpl <em>Callable</em>}' class.

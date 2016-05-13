@@ -1255,7 +1255,7 @@ public class Xmu2Printer implements edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Tex
 		// the number of elements stored in each structural feature. For lists this is the
 		// list size. For non-multiple features it is either 1 (if the feature is set) or
 		// 0 (if the feature is null).
-		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(5);
+		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(6);
 		Object temp;
 		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.OBJECT_PATTERN_EXPRESSION__OWNER_NODE));
 		printCountingMap.put("ownerNode", temp == null ? 0 : 1);
@@ -1265,6 +1265,8 @@ public class Xmu2Printer implements edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Tex
 		printCountingMap.put("selector", temp == null ? 0 : 1);
 		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.OBJECT_PATTERN_EXPRESSION__POSITION));
 		printCountingMap.put("position", temp == null ? 0 : 1);
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.OBJECT_PATTERN_EXPRESSION__NULLABLE));
+		printCountingMap.put("nullable", temp == null ? 0 : 1);
 		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.OBJECT_PATTERN_EXPRESSION__TARGET_NODE));
 		printCountingMap.put("targetNode", temp == null ? 0 : 1);
 		// print collected hidden tokens
@@ -1313,6 +1315,14 @@ public class Xmu2Printer implements edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Tex
 		// DEFINITION PART BEGINS (CsString)
 		out.print("=");
 		out.print(" ");
+		// DEFINITION PART BEGINS (BooleanTerminal)
+		count = printCountingMap.get("nullable");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.OBJECT_PATTERN_EXPRESSION__NULLABLE));
+			if (o != null) {
+			}
+			printCountingMap.put("nullable", count - 1);
+		}
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("targetNode");
 		if (count > 0) {
@@ -1360,7 +1370,7 @@ public class Xmu2Printer implements edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Tex
 		// the number of elements stored in each structural feature. For lists this is the
 		// list size. For non-multiple features it is either 1 (if the feature is set) or
 		// 0 (if the feature is null).
-		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(5);
+		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(6);
 		Object temp;
 		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.PROPERTY_PATTERN_EXPRESSION__OWNER_NODE));
 		printCountingMap.put("ownerNode", temp == null ? 0 : 1);
@@ -1370,6 +1380,8 @@ public class Xmu2Printer implements edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Tex
 		printCountingMap.put("selector", temp == null ? 0 : 1);
 		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.PROPERTY_PATTERN_EXPRESSION__POSITION));
 		printCountingMap.put("position", temp == null ? 0 : 1);
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.PROPERTY_PATTERN_EXPRESSION__NULLABLE));
+		printCountingMap.put("nullable", temp == null ? 0 : 1);
 		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.PROPERTY_PATTERN_EXPRESSION__TARGET_EXPRESSION));
 		printCountingMap.put("targetExpression", temp == null ? 0 : 1);
 		// print collected hidden tokens
@@ -1418,6 +1430,14 @@ public class Xmu2Printer implements edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Tex
 		// DEFINITION PART BEGINS (CsString)
 		out.print("=");
 		out.print(" ");
+		// DEFINITION PART BEGINS (BooleanTerminal)
+		count = printCountingMap.get("nullable");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.PROPERTY_PATTERN_EXPRESSION__NULLABLE));
+			if (o != null) {
+			}
+			printCountingMap.put("nullable", count - 1);
+		}
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("targetExpression");
 		if (count > 0) {

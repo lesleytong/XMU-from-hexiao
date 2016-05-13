@@ -125,6 +125,7 @@
             ecoreFeature="ecore:EReference xmu2.ecore#//pattern/PatternExpression/feature"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2.ecore#//pattern/PatternExpression/selector"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2.ecore#//pattern/PatternExpression/position"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmu2.ecore#//pattern/PatternExpression/nullable"/>
       </genClasses>
       <genClasses ecoreClass="xmu2.ecore#//pattern/ObjectPatternExpression">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2.ecore#//pattern/ObjectPatternExpression/targetNode"/>

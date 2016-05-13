@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.EClassifier;
  * @model
  * @generated
  */
-public interface EnforceNodeStatement extends Statement, DomainElement {
+public interface EnforceNodeStatement extends Statement, DomainElement, Nullable {
 	/**
 	 * Returns the value of the '<em><b>Node</b></em>' reference.
 	 * <!-- begin-user-doc -->

@@ -57,8 +57,8 @@ RULES {
 	//Pattern
 	pattern.Pattern ::= root ("[" guard:expression.BooleanOrExpression,expression.BooleanAndExpression,expression.RelationalExpression,expression.AdditiveExpression,expression.MultiplicativeExpression,expression.UnaryExpression,expression.PathExpression, expression.AtomicExpression "]")?;
 	pattern.PatternNode ::= variable ("{" (expressions ("," expressions)*)? "}")?;
-	pattern.ObjectPatternExpression ::= feature[NAME] (selector)? (position)? "=" targetNode;
-	pattern.PropertyPatternExpression ::= feature[NAME] (selector)? (position)? "=" targetExpression:expression.BooleanOrExpression,expression.BooleanAndExpression,expression.RelationalExpression,expression.AdditiveExpression,expression.MultiplicativeExpression,expression.UnaryExpression,expression.PathExpression, expression.AtomicExpression;
+	pattern.ObjectPatternExpression ::= feature[NAME] (selector)? (position)? "=" nullable["?":""] targetNode ;
+	pattern.PropertyPatternExpression ::= feature[NAME] (selector)? (position)? "=" nullable["?":""] targetExpression:expression.BooleanOrExpression,expression.BooleanAndExpression,expression.RelationalExpression,expression.AdditiveExpression,expression.MultiplicativeExpression,expression.UnaryExpression,expression.PathExpression, expression.AtomicExpression;
 	
 	//Expression
 	

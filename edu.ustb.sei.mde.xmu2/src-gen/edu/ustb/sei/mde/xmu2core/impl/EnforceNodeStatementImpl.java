@@ -7,6 +7,7 @@ import edu.ustb.sei.mde.xmu2common.DomainTag;
 import edu.ustb.sei.mde.xmu2common.Xmu2commonPackage;
 
 import edu.ustb.sei.mde.xmu2core.EnforceNodeStatement;
+import edu.ustb.sei.mde.xmu2core.Nullable;
 import edu.ustb.sei.mde.xmu2core.Variable;
 import edu.ustb.sei.mde.xmu2core.VariableExpression;
 import edu.ustb.sei.mde.xmu2core.Xmu2corePackage;
@@ -29,6 +30,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * </p>
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.EnforceNodeStatementImpl#getTag <em>Tag</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.EnforceNodeStatementImpl#isNullable <em>Nullable</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.EnforceNodeStatementImpl#getNode <em>Node</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.EnforceNodeStatementImpl#getType <em>Type</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.EnforceNodeStatementImpl#getCandidate <em>Candidate</em>}</li>
@@ -56,6 +58,26 @@ public class EnforceNodeStatementImpl extends StatementImpl implements EnforceNo
 	 * @ordered
 	 */
 	protected DomainTag tag = TAG_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isNullable() <em>Nullable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isNullable()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean NULLABLE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isNullable() <em>Nullable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isNullable()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean nullable = NULLABLE_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getNode() <em>Node</em>}' reference.
@@ -125,6 +147,27 @@ public class EnforceNodeStatementImpl extends StatementImpl implements EnforceNo
 		tag = newTag == null ? TAG_EDEFAULT : newTag;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Xmu2corePackage.ENFORCE_NODE_STATEMENT__TAG, oldTag, tag));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isNullable() {
+		return nullable;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setNullable(boolean newNullable) {
+		boolean oldNullable = nullable;
+		nullable = newNullable;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, Xmu2corePackage.ENFORCE_NODE_STATEMENT__NULLABLE, oldNullable, nullable));
 	}
 
 	/**
@@ -270,6 +313,8 @@ public class EnforceNodeStatementImpl extends StatementImpl implements EnforceNo
 		switch (featureID) {
 			case Xmu2corePackage.ENFORCE_NODE_STATEMENT__TAG:
 				return getTag();
+			case Xmu2corePackage.ENFORCE_NODE_STATEMENT__NULLABLE:
+				return isNullable();
 			case Xmu2corePackage.ENFORCE_NODE_STATEMENT__NODE:
 				if (resolve) return getNode();
 				return basicGetNode();
@@ -292,6 +337,9 @@ public class EnforceNodeStatementImpl extends StatementImpl implements EnforceNo
 		switch (featureID) {
 			case Xmu2corePackage.ENFORCE_NODE_STATEMENT__TAG:
 				setTag((DomainTag)newValue);
+				return;
+			case Xmu2corePackage.ENFORCE_NODE_STATEMENT__NULLABLE:
+				setNullable((Boolean)newValue);
 				return;
 			case Xmu2corePackage.ENFORCE_NODE_STATEMENT__NODE:
 				setNode((Variable)newValue);
@@ -317,6 +365,9 @@ public class EnforceNodeStatementImpl extends StatementImpl implements EnforceNo
 			case Xmu2corePackage.ENFORCE_NODE_STATEMENT__TAG:
 				setTag(TAG_EDEFAULT);
 				return;
+			case Xmu2corePackage.ENFORCE_NODE_STATEMENT__NULLABLE:
+				setNullable(NULLABLE_EDEFAULT);
+				return;
 			case Xmu2corePackage.ENFORCE_NODE_STATEMENT__NODE:
 				setNode((Variable)null);
 				return;
@@ -340,6 +391,8 @@ public class EnforceNodeStatementImpl extends StatementImpl implements EnforceNo
 		switch (featureID) {
 			case Xmu2corePackage.ENFORCE_NODE_STATEMENT__TAG:
 				return tag != TAG_EDEFAULT;
+			case Xmu2corePackage.ENFORCE_NODE_STATEMENT__NULLABLE:
+				return nullable != NULLABLE_EDEFAULT;
 			case Xmu2corePackage.ENFORCE_NODE_STATEMENT__NODE:
 				return node != null;
 			case Xmu2corePackage.ENFORCE_NODE_STATEMENT__TYPE:
@@ -363,6 +416,12 @@ public class EnforceNodeStatementImpl extends StatementImpl implements EnforceNo
 				default: return -1;
 			}
 		}
+		if (baseClass == Nullable.class) {
+			switch (derivedFeatureID) {
+				case Xmu2corePackage.ENFORCE_NODE_STATEMENT__NULLABLE: return Xmu2corePackage.NULLABLE__NULLABLE;
+				default: return -1;
+			}
+		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
 	}
 
@@ -376,6 +435,12 @@ public class EnforceNodeStatementImpl extends StatementImpl implements EnforceNo
 		if (baseClass == DomainElement.class) {
 			switch (baseFeatureID) {
 				case Xmu2commonPackage.DOMAIN_ELEMENT__TAG: return Xmu2corePackage.ENFORCE_NODE_STATEMENT__TAG;
+				default: return -1;
+			}
+		}
+		if (baseClass == Nullable.class) {
+			switch (baseFeatureID) {
+				case Xmu2corePackage.NULLABLE__NULLABLE: return Xmu2corePackage.ENFORCE_NODE_STATEMENT__NULLABLE;
 				default: return -1;
 			}
 		}
@@ -394,6 +459,8 @@ public class EnforceNodeStatementImpl extends StatementImpl implements EnforceNo
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (tag: ");
 		result.append(tag);
+		result.append(", nullable: ");
+		result.append(nullable);
 		result.append(')');
 		return result.toString();
 	}

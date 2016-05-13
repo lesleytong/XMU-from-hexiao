@@ -20,6 +20,7 @@ import edu.ustb.sei.mde.xmu2core.AdditiveExpression;
 import edu.ustb.sei.mde.xmu2core.AtomicExpression;
 import edu.ustb.sei.mde.xmu2core.BooleanAndExpression;
 import edu.ustb.sei.mde.xmu2core.BooleanOrExpression;
+import edu.ustb.sei.mde.xmu2core.EmptyValueExpression;
 import edu.ustb.sei.mde.xmu2core.Expression;
 import edu.ustb.sei.mde.xmu2core.LoopPath;
 import edu.ustb.sei.mde.xmu2core.MultiplicativeExpression;
@@ -103,13 +104,15 @@ public final class ContextUtil {
 											}
 										}
 									} else {
-										if (next.getExpressions().isEmpty()) {
+										if (next.getExpressions().isEmpty() && expr.isNullable()) {
 											current.put(next.getVariable(), Constants.NULL);
 											res.add(current);
 										}
 									}
 								} else if(nValue.isNull()) {
-									if(candidate.size() == 0 && next.getExpressions().isEmpty()) {
+									if(candidate.size() == 0 
+											&& next.getExpressions().isEmpty()
+											&& expr.isNullable()) {
 										res.add(current);
 									}
 								} else {
@@ -142,6 +145,7 @@ public final class ContextUtil {
 										}
 									} else if(nValue.isNull()) {
 										//should I set the position to zero?
+										// it seems that I shouldn't do it.
 									} else {
 										// set pos
 										int id = candidate.indexOf(nValue.getValue());
@@ -175,7 +179,8 @@ public final class ContextUtil {
 										// if candidate is empty and posV = 0, I should set right to null
 										if(posV.getIntegerValue()==0 
 												&& candidate.isEmpty() 
-												&& next.getExpressions().size()==0) {
+												&& next.getExpressions().size()==0
+												&& expr.isNullable()) {
 											current.put(next.getVariable(),Constants.NULL);
 											res.add(current);
 										} else
@@ -229,16 +234,20 @@ public final class ContextUtil {
 											}
 										}
 									} else {
-										Context nc = current.clone();
+//										Context nc = current.clone();
 										// I comment the following *if* because it seems that there is no need to check the multiplicity of the feature 
-//										if (feature.isMany() == false) {
 										// because it is a property pattern expression, set it to null
-											if (AbstractInterpreter.MODEL_CHECK.enforceExpression(right, nc, SafeType.NULL))
-												res.add(nc);
-//										}
+										if (expr.isNullable()) {
+											if (AbstractInterpreter.MODEL_CHECK.enforceExpression(right, current,
+													Constants.NULL))
+												res.add(current);
+										}
+										
 									}
 								} else if(nValue.isNull()) {
-									if(candidate.size()==0) {
+									if(candidate.size()==0
+											&& (expr.isNullable() 
+													|| right instanceof EmptyValueExpression)) {
 										res.add(current);
 									}
 								} else {
@@ -305,7 +314,8 @@ public final class ContextUtil {
 										}
 									} else {
 										// if candidate is empty and posV = 0, I should set right to null
-										if(posV.getIntegerValue()==0 && candidate.isEmpty()) {
+										if(posV.getIntegerValue()==0 && candidate.isEmpty()
+												&& (expr.isNullable() || right instanceof EmptyValueExpression)) {
 											if(AbstractInterpreter.MODEL_CHECK.enforceExpression(right, current, Constants.NULL))
 												res.add(current);
 										} else
