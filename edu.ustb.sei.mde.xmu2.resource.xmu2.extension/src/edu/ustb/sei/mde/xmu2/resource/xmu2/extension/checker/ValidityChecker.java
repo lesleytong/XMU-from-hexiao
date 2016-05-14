@@ -1,4 +1,4 @@
-package edu.ustb.sei.mde.xmu2.resource.xmu2.mopp;
+package edu.ustb.sei.mde.xmu2.resource.xmu2.extension.checker;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -26,6 +26,8 @@ import edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Options;
 import edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2ResourcePostProcessor;
 import edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2ResourcePostProcessorProvider;
 import edu.ustb.sei.mde.xmu2.resource.xmu2.Xmu2EProblemType;
+import edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.ModelIterator;
+import edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2Resource;
 import edu.ustb.sei.mde.xmu2.statement.AssignStatement;
 import edu.ustb.sei.mde.xmu2.statement.EnforcePatternStatement;
 import edu.ustb.sei.mde.xmu2.statement.ExpressionCaseClause;

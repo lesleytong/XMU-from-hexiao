@@ -335,22 +335,13 @@ public interface Xmu2Package extends EPackage {
 	int MODEL_RULE__PARAMETERS = ABSTRACT_RULE__PARAMETERS;
 
 	/**
-	 * The feature id for the '<em><b>Active</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_RULE__ACTIVE = ABSTRACT_RULE_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Variable Declarations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_RULE__VARIABLE_DECLARATIONS = ABSTRACT_RULE_FEATURE_COUNT + 1;
+	int MODEL_RULE__VARIABLE_DECLARATIONS = ABSTRACT_RULE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Statement</b></em>' containment reference.
@@ -359,7 +350,7 @@ public interface Xmu2Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_RULE__STATEMENT = ABSTRACT_RULE_FEATURE_COUNT + 2;
+	int MODEL_RULE__STATEMENT = ABSTRACT_RULE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Model Rule</em>' class.
@@ -368,7 +359,7 @@ public interface Xmu2Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_RULE_FEATURE_COUNT = ABSTRACT_RULE_FEATURE_COUNT + 3;
+	int MODEL_RULE_FEATURE_COUNT = ABSTRACT_RULE_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu2.impl.ArithmeticRuleImpl <em>Arithmetic Rule</em>}' class.
@@ -652,17 +643,6 @@ public interface Xmu2Package extends EPackage {
 	EClass getModelRule();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.xmu2.ModelRule#isActive <em>Active</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Active</em>'.
-	 * @see edu.ustb.sei.mde.xmu2.ModelRule#isActive()
-	 * @see #getModelRule()
-	 * @generated
-	 */
-	EAttribute getModelRule_Active();
-
-	/**
 	 * Returns the meta object for the containment reference list '{@link edu.ustb.sei.mde.xmu2.ModelRule#getVariableDeclarations <em>Variable Declarations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -899,14 +879,6 @@ public interface Xmu2Package extends EPackage {
 		 * @generated
 		 */
 		EClass MODEL_RULE = eINSTANCE.getModelRule();
-
-		/**
-		 * The meta object literal for the '<em><b>Active</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute MODEL_RULE__ACTIVE = eINSTANCE.getModelRule_Active();
 
 		/**
 		 * The meta object literal for the '<em><b>Variable Declarations</b></em>' containment reference list feature.

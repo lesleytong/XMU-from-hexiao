@@ -30,7 +30,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.ustb.sei.mde.xmu2.impl.ModelRuleImpl#isActive <em>Active</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2.impl.ModelRuleImpl#getVariableDeclarations <em>Variable Declarations</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2.impl.ModelRuleImpl#getStatement <em>Statement</em>}</li>
  * </ul>
@@ -38,26 +37,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public class ModelRuleImpl extends AbstractRuleImpl implements ModelRule {
-	/**
-	 * The default value of the '{@link #isActive() <em>Active</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isActive()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean ACTIVE_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isActive() <em>Active</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isActive()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean active = ACTIVE_EDEFAULT;
-
 	/**
 	 * The cached value of the '{@link #getVariableDeclarations() <em>Variable Declarations</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -95,27 +74,6 @@ public class ModelRuleImpl extends AbstractRuleImpl implements ModelRule {
 	@Override
 	protected EClass eStaticClass() {
 		return Xmu2Package.Literals.MODEL_RULE;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isActive() {
-		return active;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setActive(boolean newActive) {
-		boolean oldActive = active;
-		active = newActive;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Xmu2Package.MODEL_RULE__ACTIVE, oldActive, active));
 	}
 
 	/**
@@ -197,8 +155,6 @@ public class ModelRuleImpl extends AbstractRuleImpl implements ModelRule {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case Xmu2Package.MODEL_RULE__ACTIVE:
-				return isActive();
 			case Xmu2Package.MODEL_RULE__VARIABLE_DECLARATIONS:
 				return getVariableDeclarations();
 			case Xmu2Package.MODEL_RULE__STATEMENT:
@@ -216,9 +172,6 @@ public class ModelRuleImpl extends AbstractRuleImpl implements ModelRule {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case Xmu2Package.MODEL_RULE__ACTIVE:
-				setActive((Boolean)newValue);
-				return;
 			case Xmu2Package.MODEL_RULE__VARIABLE_DECLARATIONS:
 				getVariableDeclarations().clear();
 				getVariableDeclarations().addAll((Collection<? extends VariableDeclaration>)newValue);
@@ -238,9 +191,6 @@ public class ModelRuleImpl extends AbstractRuleImpl implements ModelRule {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case Xmu2Package.MODEL_RULE__ACTIVE:
-				setActive(ACTIVE_EDEFAULT);
-				return;
 			case Xmu2Package.MODEL_RULE__VARIABLE_DECLARATIONS:
 				getVariableDeclarations().clear();
 				return;
@@ -259,30 +209,12 @@ public class ModelRuleImpl extends AbstractRuleImpl implements ModelRule {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case Xmu2Package.MODEL_RULE__ACTIVE:
-				return active != ACTIVE_EDEFAULT;
 			case Xmu2Package.MODEL_RULE__VARIABLE_DECLARATIONS:
 				return variableDeclarations != null && !variableDeclarations.isEmpty();
 			case Xmu2Package.MODEL_RULE__STATEMENT:
 				return statement != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (active: ");
-		result.append(active);
-		result.append(')');
-		return result.toString();
 	}
 
 } //ModelRuleImpl

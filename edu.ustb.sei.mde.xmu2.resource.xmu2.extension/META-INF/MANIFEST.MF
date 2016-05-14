@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Extension
+Bundle-SymbolicName: edu.ustb.sei.mde.xmu2.resource.xmu2.extension;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: edu.ustb.sei.mde.xmu2.resource.xmu2.extension.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ edu.ustb.sei.mde.xmu2;bundle-version="1.0.0",
+ edu.ustb.sei.mde.xmu2.resource.xmu2;bundle-version="1.0.0",
+ edu.ustb.sei.mde.xmu2.resource.xmu2.ui;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy

@@ -27,7 +27,6 @@
     </genClasses>
     <genClasses ecoreClass="xmu2.ecore#//Parameter"/>
     <genClasses ecoreClass="xmu2.ecore#//ModelRule">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmu2.ecore#//ModelRule/active"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2.ecore#//ModelRule/variableDeclarations"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2.ecore#//ModelRule/statement"/>
     </genClasses>

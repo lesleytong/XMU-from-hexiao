@@ -337,17 +337,8 @@ public class Xmu2PackageImpl extends EPackageImpl implements Xmu2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getModelRule_Active() {
-		return (EAttribute)modelRuleEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getModelRule_VariableDeclarations() {
-		return (EReference)modelRuleEClass.getEStructuralFeatures().get(1);
+		return (EReference)modelRuleEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -356,7 +347,7 @@ public class Xmu2PackageImpl extends EPackageImpl implements Xmu2Package {
 	 * @generated
 	 */
 	public EReference getModelRule_Statement() {
-		return (EReference)modelRuleEClass.getEStructuralFeatures().get(2);
+		return (EReference)modelRuleEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -454,7 +445,6 @@ public class Xmu2PackageImpl extends EPackageImpl implements Xmu2Package {
 		parameterEClass = createEClass(PARAMETER);
 
 		modelRuleEClass = createEClass(MODEL_RULE);
-		createEAttribute(modelRuleEClass, MODEL_RULE__ACTIVE);
 		createEReference(modelRuleEClass, MODEL_RULE__VARIABLE_DECLARATIONS);
 		createEReference(modelRuleEClass, MODEL_RULE__STATEMENT);
 
@@ -540,7 +530,6 @@ public class Xmu2PackageImpl extends EPackageImpl implements Xmu2Package {
 		initEClass(parameterEClass, Parameter.class, "Parameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(modelRuleEClass, ModelRule.class, "ModelRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getModelRule_Active(), ecorePackage.getEBoolean(), "active", "false", 1, 1, ModelRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getModelRule_VariableDeclarations(), this.getVariableDeclaration(), null, "variableDeclarations", null, 0, -1, ModelRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getModelRule_Statement(), theStatementPackage.getStatement(), null, "statement", null, 0, 1, ModelRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

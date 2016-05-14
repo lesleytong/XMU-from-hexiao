@@ -18,6 +18,7 @@ OPTIONS {
 	overrideBuilder = "false";
 	overrideLaunchConfigurationMainTab = "false";
 	overrideLaunchConfigurationDelegate = "false";
+	overrideProposalPostProcessor ="false";
 }
 
 TOKENS {
@@ -47,7 +48,7 @@ RULES {
 	
 	EntryData ::= tag[source:"source",view:"view"] "[" index[NUMBER]  (fragment[OBJ_URI])? "]";
 	
-	ModelRule ::= active["top" : ""] "rule" name[NAME] "(" (parameters ("," parameters)*)? ")" "{" (variableDeclarations ";")* statement? "}";
+	ModelRule ::= "rule" name[NAME] "(" (parameters ("," parameters)*)? ")" "{" (variableDeclarations ";")* statement? "}";
 	
 	ArithmeticRule ::= "function" name[NAME] "(" (parameters ("," parameters)*)? ")" "{" statements* "}";
 	

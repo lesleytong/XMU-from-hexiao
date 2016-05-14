@@ -24,6 +24,13 @@ import edu.ustb.sei.mde.xmu2.util.Constants;
 
 
 public class ResolverUtil {
+	final static String[] reservedWords = new String[]{
+			Constants.BOOLEAN_NAME,Constants.INTEGER_NAME,Constants.STRING_NAME,Constants.OCLANY_NAME,Constants.RESOURCE_NAME,
+			"update","enforce","delete","with","by","switch","case","otherwise","match","unmatchs","unmatchv",
+			"source","view","entry","module","import","rule","function","select","forAll","exists","first","last",
+			"at","null","undefined","not","skip","foreach","default"
+			};
+	
 	static public EObject getAncestor(EObject obj, EClass type) {
 		while(obj!=null) {
 			if(obj.eClass().equals(type)) break;
@@ -52,15 +59,21 @@ public class ResolverUtil {
 	}
 	
 	static public EDataType getPrimitiveDataType(String identifier) {
-		if(Constants.STRING_NAME.equals(identifier))
-			return Constants.STRING;
-		else if(Constants.INTEGER_NAME.equals(identifier))
-			return Constants.INT;
-		else if(Constants.BOOLEAN_NAME.equals(identifier))
-			return Constants.BOOLEAN;
-		else if(Constants.OCLANY_NAME.equals(identifier))
-			return Constants.OCLANY;
-		else return null;
+		for(int i = 0; i < primitiveTypeNames.length ; i++) {
+			if(primitiveTypeNames[i].equals(identifier))
+				return primitiveTypes[i];
+		}
+		return null;
+		
+//		if(Constants.STRING_NAME.equals(identifier))
+//			return Constants.STRING;
+//		else if(Constants.INTEGER_NAME.equals(identifier))
+//			return Constants.INT;
+//		else if(Constants.BOOLEAN_NAME.equals(identifier))
+//			return Constants.BOOLEAN;
+//		else if(Constants.OCLANY_NAME.equals(identifier))
+//			return Constants.OCLANY;
+//		else return null;
 	}
 	
 	static public EEnum getEnum(String identifier, EList<EPackage> packages) {
@@ -98,7 +111,7 @@ public class ResolverUtil {
 		} else {
 			String[] buf = identifier.split("!");
 			for(EPackage pkg : packages) {
-				if(pkg.getName().equals(buf[0]))
+				if(pkg.eIsProxy()==false && pkg.getName().equals(buf[0]))
 					return getClassifier(buf[1],pkg);
 			}
 		}
@@ -117,7 +130,7 @@ public class ResolverUtil {
 	
 	static public boolean identifierMatchFuzzy(String identifier, String str) {
 		if(str.startsWith(identifier)) return true;
-		if(identifier.length()==0) return false;
+		if(identifier.length()==0) return true;
 		if(identifier.charAt(0)=='_') {
 			if(str.startsWith(identifier.substring(1)))
 				return true;
@@ -154,26 +167,62 @@ public class ResolverUtil {
 	
 	
 	static public String keywordSafeString(String str) {
+		for(String s : reservedWords) {
+			if(s.equals(str))
+				return "_"+str;
+		}
 		return str;
 	}
+	
+	
+	
 	public static String getPrimitiveDataTypeName(EClassifier element) {
-		if(AnalysisUtil.isType(element, String.class))
-			return Constants.STRING_NAME;
-		else if(AnalysisUtil.isType(element, int.class))
-			return Constants.INTEGER_NAME;
-		else if(AnalysisUtil.isType(element, boolean.class))
-			return Constants.BOOLEAN_NAME;
-		else if(AnalysisUtil.isType(element, Object.class))
-			return Constants.OCLANY_NAME;
+		for(int i = 0 ; i< primitiveTypes.length ; i++) {
+			if(element==primitiveTypes[i])
+				return primitiveTypeNames[i];
+		}
 		return null;
+//		
+//		if(AnalysisUtil.isType(element, String.class))
+//			return Constants.STRING_NAME;
+//		else if(AnalysisUtil.isType(element, int.class))
+//			return Constants.INTEGER_NAME;
+//		else if(AnalysisUtil.isType(element, boolean.class))
+//			return Constants.BOOLEAN_NAME;
+//		else if(AnalysisUtil.isType(element, Object.class))
+//			return Constants.OCLANY_NAME;
+//		return null;
 	}
+	
+
+	
+	
 	public static EClassifier getReservedType(String identifier) {
-		if(Constants.RESOURCE_NAME.equals(identifier))
-			return Constants.RESOURCE;
+		for(int i = 0; i < reservedTypeNames.length; i++) {
+			if(reservedTypeNames[i].equals(identifier))
+				return reservedTypes[i];
+		}
 		return null;
 	}
 	public static boolean isReservedType(EClassifier element) {
-		return element==Constants.RESOURCE;
+		for(int i = 0; i < reservedTypes.length ; i ++) {
+			if(element==reservedTypes[i])
+				return true;
+		}
+		return false;
 	}
+	public static String getReservedTypeName(EClassifier element) {
+		for(int i = 0; i < reservedTypes.length ; i ++) {
+			if(element==reservedTypes[i])
+				return reservedTypeNames[i];
+		}
+		return null;
+	}
+	
+	final static public String[] primitiveTypeNames = new String[]{Constants.STRING_NAME,Constants.BOOLEAN_NAME,Constants.INTEGER_NAME,Constants.OCLANY_NAME};
+	final static public EDataType[] primitiveTypes = new EDataType[]{Constants.STRING,Constants.BOOLEAN,Constants.INT,Constants.OCLANY};
+	
+	final static public String[] reservedTypeNames = new String[]{Constants.RESOURCE_NAME};
+	final static public EClassifier[] reservedTypes = new EClassifier[]{Constants.RESOURCE};
 
 }
