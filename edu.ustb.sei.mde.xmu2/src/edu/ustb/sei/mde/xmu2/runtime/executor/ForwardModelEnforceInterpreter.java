@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import edu.ustb.sei.mde.xmu2.runtime.build.SolverHelper;
 import edu.ustb.sei.mde.xmu2.runtime.exceptions.InvalidBackwardEnforcementException;
 import edu.ustb.sei.mde.xmu2.runtime.exceptions.InvalidCalculationException;
 import edu.ustb.sei.mde.xmu2.runtime.exceptions.InvalidForwardEnforcementException;
@@ -529,8 +530,9 @@ public class ForwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 	public void executeSolveConstraintStatement(SolveConstraintStatement statement, Context context) {
 		// FIXME currently, the statement is executed as an equal statement;
 		Expression e = statement.getConstraint();
-		if(this.enforceExpression(e, context, Constants.TRUE)==false)
-			throw new InvalidCalculationException("cannot enforce the expression");
+		if(this.enforceExpression(e, context, Constants.TRUE)==false) {
+			SolverHelper.executeSolveConstraintStatement(statement, context);
+		}
 	}
 	
 	
