@@ -6,6 +6,8 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 
 import edu.ustb.sei.mde.xmu2.AbstractRule;
@@ -21,6 +23,7 @@ import edu.ustb.sei.mde.xmu2.expression.LoopPath;
 import edu.ustb.sei.mde.xmu2.pattern.ObjectPatternExpression;
 import edu.ustb.sei.mde.xmu2.pattern.Pattern;
 import edu.ustb.sei.mde.xmu2.pattern.PatternExpression;
+import edu.ustb.sei.mde.xmu2.pattern.PatternNode;
 import edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2OptionProvider;
 import edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Options;
 import edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2ResourcePostProcessor;
@@ -57,6 +60,7 @@ public class ValidityChecker
 				if(r instanceof ModelRule) {
 					this.checkVariableValidity((ModelRule)r, resource);
 					this.checkStatementUsage(r,false,resource);
+					this.checkPatternValidity((ModelRule)r,resource);
 				} else if(r instanceof ArithmeticRule) {
 					this.checkVariableValidity((ArithmeticRule)r, resource);
 					this.checkStatementUsage(r,true,resource);
@@ -71,6 +75,21 @@ public class ValidityChecker
 					Xmu2EProblemType.ANALYSIS_PROBLEM, model);
 		}
 
+	}
+
+	private void checkPatternValidity(EObject r, Xmu2Resource resource) {
+		if(r instanceof PatternNode) {
+			for(PatternExpression e : ((PatternNode) r).getExpressions()) {
+				EClassifier cls = ((PatternNode) r).getVariable().getType();
+				if(cls instanceof EClass) {
+					if(!((EClass) cls).getEAllStructuralFeatures().contains(e.getFeature()))
+						resource.addError("the pattern node does not contain this feature", Xmu2EProblemType.SYNTAX_ERROR, e);
+				}
+			}
+		} else {
+			for(EObject c : r.eContents())
+				this.checkPatternValidity(c, resource);
+		}
 	}
 
 	private void checkStatementUsage(AbstractRule r, boolean isArithmeticRule, Xmu2Resource resource) {

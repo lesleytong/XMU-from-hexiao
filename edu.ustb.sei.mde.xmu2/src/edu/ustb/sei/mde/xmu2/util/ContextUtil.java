@@ -137,7 +137,7 @@ public final class ContextUtil {
 												nc.put(next.getVariable(), SafeType.createFromValue(v));
 												if (AbstractInterpreter.MODEL_CHECK.enforceExpression(pos.getValue(), nc,
 														SafeType.createFromValue(i))) {
-													res.addAll(matchNode(next, current));
+													res.addAll(matchNode(next, nc));
 												} else
 													continue;
 											} catch(Exception e) {
