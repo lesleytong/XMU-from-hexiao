@@ -1,0 +1,9 @@
+module myBX
+
+import <platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore>
+
+entry top(source[0],view[0])
+
+rule top(source sr:Resource, view vr:Resource) {
+  // TODO: insert your code here
+}

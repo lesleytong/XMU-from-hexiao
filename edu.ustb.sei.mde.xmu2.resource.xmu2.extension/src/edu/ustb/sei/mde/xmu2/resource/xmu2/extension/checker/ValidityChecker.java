@@ -90,14 +90,14 @@ public class ValidityChecker
 						resource.addError("you cannot use the AssignStatement in a model rule", Xmu2EProblemType.SYNTAX_ERROR, o);
 					}
 				} else if(o instanceof edu.ustb.sei.mde.xmu2.statement.BlockStatement) {
-				} else if(o instanceof ObjectPatternExpression) {
-					if(((ObjectPatternExpression) o).isNullable() 
-							&& ((ObjectPatternExpression) o).getTargetNode().getExpressions().isEmpty())
-						resource.addError("a nullable pattern node cannot have inner expressions", Xmu2EProblemType.SYNTAX_ERROR,o);
 				} else {
 					if(isArithmeticRule)
 						resource.addError("you cannot use this statement in a function", Xmu2EProblemType.SYNTAX_ERROR, o);
 				}
+			} else if(o instanceof ObjectPatternExpression) {
+				if(((ObjectPatternExpression) o).isNullable() 
+						&& !((ObjectPatternExpression) o).getTargetNode().getExpressions().isEmpty())
+					resource.addError("a nullable pattern node cannot have inner expressions", Xmu2EProblemType.SYNTAX_ERROR,o);
 			}
 		}
 	}

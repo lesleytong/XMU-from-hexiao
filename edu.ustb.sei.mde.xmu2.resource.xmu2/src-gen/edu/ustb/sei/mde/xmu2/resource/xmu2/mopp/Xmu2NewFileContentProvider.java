@@ -19,13 +19,7 @@ public class Xmu2NewFileContentProvider {
 	}
 	
 	protected String getExampleContent(org.eclipse.emf.ecore.EClass[] startClasses, org.eclipse.emf.ecore.EClass[] allClassesWithSyntax, String newFileName) {
-		String content = "";
-		for (org.eclipse.emf.ecore.EClass next : startClasses) {
-			content = getExampleContent(next, allClassesWithSyntax, newFileName);
-			if (content.trim().length() > 0) {
-				break;
-			}
-		}
+		String content = "module myBX\n\nimport <platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore>\n\nentry top(source[0],view[0])\n\nrule top(source sr:Resource, view vr:Resource) {\n  // TODO: insert your code here\n}".replace("\n", System.getProperty("line.separator"));
 		return content;
 	}
 	
