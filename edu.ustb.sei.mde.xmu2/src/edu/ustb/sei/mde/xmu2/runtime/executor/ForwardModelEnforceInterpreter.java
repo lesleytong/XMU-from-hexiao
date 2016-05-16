@@ -528,9 +528,19 @@ public class ForwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 
 	@Override
 	public void executeSolveConstraintStatement(SolveConstraintStatement statement, Context context) {
-		// FIXME currently, the statement is executed as an equal statement;
 		Expression e = statement.getConstraint();
-		if(this.enforceExpression(e, context, Constants.TRUE)==false) {
+		
+		
+		
+		boolean enforceExpression = true;
+		
+		try {
+			this.enforceExpression(e, context, Constants.TRUE);
+		} catch(Exception exp) {
+			enforceExpression = false;
+		}
+		
+		if(enforceExpression==false) {
 			SolverHelper.executeSolveConstraintStatement(statement, context);
 		}
 	}

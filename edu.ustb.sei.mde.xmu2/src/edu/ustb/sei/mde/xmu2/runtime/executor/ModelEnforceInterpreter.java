@@ -3,27 +3,22 @@ package edu.ustb.sei.mde.xmu2.runtime.executor;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
-import edu.ustb.sei.mde.xmu2.runtime.exceptions.InvalidBackwardEnforcementException;
 import edu.ustb.sei.mde.xmu2.runtime.exceptions.InvalidCalculationException;
 import edu.ustb.sei.mde.xmu2.runtime.structures.Context;
 import edu.ustb.sei.mde.xmu2.runtime.values.SafeType;
 import edu.ustb.sei.mde.xmu2.util.Constants;
-import edu.ustb.sei.mde.xmu2core.AtomicExpression;
+import edu.ustb.sei.mde.xmu2common.PositionOperator;
+import edu.ustb.sei.mde.xmu2core.CallStatement;
 import edu.ustb.sei.mde.xmu2core.EmptyValueExpression;
 import edu.ustb.sei.mde.xmu2core.EnforceExpressionStatement;
 import edu.ustb.sei.mde.xmu2core.Expression;
-import edu.ustb.sei.mde.xmu2core.FeaturePath;
 import edu.ustb.sei.mde.xmu2core.Function;
 import edu.ustb.sei.mde.xmu2core.LoopPath;
-import edu.ustb.sei.mde.xmu2core.Path;
 import edu.ustb.sei.mde.xmu2core.PositionPath;
 import edu.ustb.sei.mde.xmu2core.Procedure;
-import edu.ustb.sei.mde.xmu2core.CallStatement;
 import edu.ustb.sei.mde.xmu2core.Variable;
-import edu.ustb.sei.mde.xmu2core.VariableExpression;
 
 
 abstract public class ModelEnforceInterpreter extends ModelCheckInterpreter {
@@ -35,38 +30,90 @@ abstract public class ModelEnforceInterpreter extends ModelCheckInterpreter {
 			throw new InvalidCalculationException("cannot enforce the expression");
 	}
 
-	@Override
-	protected boolean enforceAtomicExpression(AtomicExpression invalid, Context context,
-			SafeType expect) {
-		if(invalid instanceof VariableExpression) {
-			VariableExpression exp = (VariableExpression)invalid;
-			
-			if(this.isEnforceableVariable(exp.getVariable())==false)
-				return false;
-			
-			if(((VariableExpression) invalid).getVariable().getType() instanceof EClass && exp.getPaths().size()==1) {
-				SafeType hostObject = context.get(exp.getVariable());
-				if(hostObject.isNull() || hostObject.isUndefined()) 
-					return false;
-				
-				Path path = exp.getPaths().get(0);
-				if(path instanceof FeaturePath) {
-					EStructuralFeature feature  = ((FeaturePath) path).getFeature();
-					if(feature!=null) {
-						context.getEnvironment().setFeature(hostObject.getObjectValue(), feature, expect.getValue());
-						return true;
-					} else 
-						return false;
-				} else 
-					return false;
-			}
-		} 
-
-		return super.enforceAtomicExpression(invalid, context, expect);
-	}
 	
 	abstract protected boolean isEnforceableVariable(Variable v);
 
+	protected boolean enforceFeatureSelector(SafeType host, EStructuralFeature feature, LoopPath loop, PositionPath position, SafeType val, Context context) {
+		try {
+			List<Object> list = context.getEnvironment().getFeatureAsFeatureList(host.getObjectValue(), feature);
+
+			if (loop != null) {
+				list = (List<Object>) this.handleLoopPath(list, loop, context).getValue();
+			}
+
+			if (position == null) {
+				if (val.isUndefined())
+					return false;
+
+				if (list.contains(val.getValue())) {
+					return true;
+				} else {
+					if (val.isNull()) {
+						list.clear();
+						return true;
+					} else {
+						context.getEnvironment().setFeature(host.getObjectValue(), feature, val.getValue());
+						return true;
+					}
+				}
+			} else {
+				SafeType posVal = this.calculatePositionPath(position, context);
+
+				if (val.isUndefined())
+					return false;
+
+				if (posVal.isUndefined()) {
+					int idx = list.indexOf(val.getValue());
+
+					if (idx >= 0) {
+						if (position.getOperator() != PositionOperator.AT) {
+							return false;
+						}
+
+						if (this.enforceExpression(position.getValue(), context, SafeType.createFromValue(idx)))
+							return true;
+						else
+							return false;
+					} else
+						// insert val into list
+						return false;
+				} else {
+					if (posVal.isNull())
+						return false;
+
+					if (!posVal.isInteger())
+						return false;
+
+					// FIXME list[id] = val
+					if (list.contains(val.getValue()))
+						return true;
+					else {
+						if (val.isNull()) {
+							if (posVal.isInteger()) {
+								list.remove((int) posVal.getIntegerValue());
+								return true;
+							} else {
+								return false;
+							}
+						} else {
+							if (posVal.isInteger()) {
+								if (posVal.getIntegerValue() >= list.size())
+									list.add(val.getValue());
+								else
+									list.set(posVal.getIntegerValue(), val.getValue());
+								return true;
+							} else {
+								return false;
+							}
+						}
+					}
+				}
+			}
+		} catch (Exception e) {
+			return false;
+		}
+		
+	}
 
 	@Override
 	protected boolean enforceLink(Variable source, EStructuralFeature feature, LoopPath loop, PositionPath position,
@@ -84,6 +131,7 @@ abstract public class ModelEnforceInterpreter extends ModelCheckInterpreter {
 		if(enforceVar==false) {
 			// try to enforce obj.ref
 			// pos==null || pos != invalid
+			SafeType val = this.executeExpression(target, context);
 			
 			SafeType host = context.get(source);
 			
@@ -93,7 +141,6 @@ abstract public class ModelEnforceInterpreter extends ModelCheckInterpreter {
 				list = (List<Object>) this.handleLoopPath(list, loop, context).getValue();
 			}
 			
-			SafeType val = this.executeExpression(target, context);
 			
 			if(position==null) {
 				if(val.isUndefined())
@@ -109,7 +156,7 @@ abstract public class ModelEnforceInterpreter extends ModelCheckInterpreter {
 							list.clear();
 							return true;
 						} else
-							throw new InvalidBackwardEnforcementException("cannot nil a list");
+							throw new InvalidCalculationException("cannot nil a list");
 					}
 				} else {
 					context.getEnvironment().setFeature(host.getObjectValue(), feature, val.getValue());
@@ -119,14 +166,14 @@ abstract public class ModelEnforceInterpreter extends ModelCheckInterpreter {
 				SafeType posVal = this.calculatePositionPath(position, context);
 				
 				if(val.isUndefined())
-					throw new InvalidCalculationException("cannot enforce property pattern expression");
+					return false;
 				
 				if(val.isNull()) {
 					if(posVal.isInteger()) {
-						list.remove(posVal.getValue());
+						list.remove((int)posVal.getIntegerValue());
 						return true;
 					} else {
-						throw new InvalidBackwardEnforcementException("cannot nil an unknown position");
+						return false;
 					}
 				} else {
 					if(posVal.isInteger()) {
@@ -136,7 +183,7 @@ abstract public class ModelEnforceInterpreter extends ModelCheckInterpreter {
 							list.set(posVal.getIntegerValue(), val.getValue());
 						return true;
 					} else {
-						throw new InvalidCalculationException("invalid position");
+						return false;
 					}
 				}
 			}
