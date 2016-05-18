@@ -44,4 +44,12 @@
   <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ReflectiveObject" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="eContainer" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        changeable="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="eContents" upperBound="-1"
+        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" changeable="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="eAllContents" upperBound="-1"
+        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" changeable="false"/>
+  </eClassifiers>
 </ecore:EPackage>

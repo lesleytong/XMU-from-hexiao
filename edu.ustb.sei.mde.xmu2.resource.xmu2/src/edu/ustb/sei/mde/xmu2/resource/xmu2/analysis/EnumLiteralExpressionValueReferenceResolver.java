@@ -28,6 +28,8 @@ public class EnumLiteralExpressionValueReferenceResolver implements edu.ustb.sei
 			}
 			return;
 		} else {
+//			EEnumLiteral l = ResolverUtil.getEnumLiteral(identifier, e);
+			
 			for(EEnumLiteral l : e.getELiterals()) {
 				if(ResolverUtil.identifierMatch(identifier, l.getName())) {
 					result.addMapping(identifier, l);

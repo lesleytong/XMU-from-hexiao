@@ -423,17 +423,18 @@ public class ForwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 					// currently, I cannot check this. 
 					
 					if(c.getValue()==Boolean.TRUE) {
-						List<Variable> sVars = ContextUtil.collectPatternVariables(((CasePatternClause) css).getCondition());
-						if(sVars.size()!=0) {
-							handleTrialCallStatements(this.collectProcedureCallStatements(css.getAction(),context), context);
-						}
+//						List<Variable> sVars = ContextUtil.collectPatternVariables(((CasePatternClause) css).getCondition());
+//						if(sVars.size()!=0) {
+//						}
 						
+						handleTrialCallStatements(this.collectProcedureCallStatements(css.getAction(),context), context);
 						this.executeStatements(css.getAction(), context);
 						return;
 					}
 				} else if(css instanceof CaseExpressionClause) {
 					SafeType c = this.executeExpression(((CaseExpressionClause) css).getCondition(), context);
 					if(c.getValue()==Boolean.TRUE) {
+						handleTrialCallStatements(this.collectProcedureCallStatements(css.getAction(),context), context);
 						this.executeStatements(css.getAction(), context);
 						return;
 					}

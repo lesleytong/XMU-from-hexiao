@@ -1,0 +1,173 @@
+/**
+ */
+package edu.ustb.sei.mde.xmu2common.impl;
+
+import edu.ustb.sei.mde.xmu2common.ReflectiveObject;
+import edu.ustb.sei.mde.xmu2common.Xmu2commonPackage;
+
+import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.common.util.EList;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+
+/**
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Reflective Object</b></em>'.
+ * <!-- end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * </p>
+ * <ul>
+ *   <li>{@link edu.ustb.sei.mde.xmu2common.impl.ReflectiveObjectImpl#getEContainer <em>EContainer</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.xmu2common.impl.ReflectiveObjectImpl#getEContents <em>EContents</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.xmu2common.impl.ReflectiveObjectImpl#getEAllContents <em>EAll Contents</em>}</li>
+ * </ul>
+ *
+ * @generated
+ */
+public abstract class ReflectiveObjectImpl extends MinimalEObjectImpl.Container implements ReflectiveObject {
+	/**
+	 * The cached value of the '{@link #getEContainer() <em>EContainer</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEContainer()
+	 * @generated
+	 * @ordered
+	 */
+	protected EObject eContainer;
+
+	/**
+	 * The cached value of the '{@link #getEContents() <em>EContents</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEContents()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<EObject> eContents;
+
+	/**
+	 * The cached value of the '{@link #getEAllContents() <em>EAll Contents</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEAllContents()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<EObject> eAllContents;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ReflectiveObjectImpl() {
+		super();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return Xmu2commonPackage.Literals.REFLECTIVE_OBJECT;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EObject getEContainer() {
+		if (eContainer != null && eContainer.eIsProxy()) {
+			InternalEObject oldEContainer = (InternalEObject)eContainer;
+			eContainer = eResolveProxy(oldEContainer);
+			if (eContainer != oldEContainer) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Xmu2commonPackage.REFLECTIVE_OBJECT__ECONTAINER, oldEContainer, eContainer));
+			}
+		}
+		return eContainer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EObject basicGetEContainer() {
+		return eContainer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<EObject> getEContents() {
+		if (eContents == null) {
+			eContents = new EObjectResolvingEList<EObject>(EObject.class, this, Xmu2commonPackage.REFLECTIVE_OBJECT__ECONTENTS);
+		}
+		return eContents;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<EObject> getEAllContents() {
+		if (eAllContents == null) {
+			eAllContents = new EObjectResolvingEList<EObject>(EObject.class, this, Xmu2commonPackage.REFLECTIVE_OBJECT__EALL_CONTENTS);
+		}
+		return eAllContents;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case Xmu2commonPackage.REFLECTIVE_OBJECT__ECONTAINER:
+				if (resolve) return getEContainer();
+				return basicGetEContainer();
+			case Xmu2commonPackage.REFLECTIVE_OBJECT__ECONTENTS:
+				return getEContents();
+			case Xmu2commonPackage.REFLECTIVE_OBJECT__EALL_CONTENTS:
+				return getEAllContents();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case Xmu2commonPackage.REFLECTIVE_OBJECT__ECONTAINER:
+				return eContainer != null;
+			case Xmu2commonPackage.REFLECTIVE_OBJECT__ECONTENTS:
+				return eContents != null && !eContents.isEmpty();
+			case Xmu2commonPackage.REFLECTIVE_OBJECT__EALL_CONTENTS:
+				return eAllContents != null && !eAllContents.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
+
+} //ReflectiveObjectImpl

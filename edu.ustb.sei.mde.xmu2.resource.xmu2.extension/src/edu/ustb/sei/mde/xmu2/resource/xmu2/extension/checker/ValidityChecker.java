@@ -9,6 +9,7 @@ import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 import edu.ustb.sei.mde.xmu2.AbstractRule;
 import edu.ustb.sei.mde.xmu2.ArithmeticRule;
@@ -82,8 +83,18 @@ public class ValidityChecker
 			for(PatternExpression e : ((PatternNode) r).getExpressions()) {
 				EClassifier cls = ((PatternNode) r).getVariable().getType();
 				if(cls instanceof EClass) {
-					if(!((EClass) cls).getEAllStructuralFeatures().contains(e.getFeature()))
+					if(!Constants.REFLECTIVE_OBJECT.getEAllStructuralFeatures().contains(e.getFeature())
+							&& !((EClass) cls).getEAllStructuralFeatures().contains(e.getFeature()))
 						resource.addError("the pattern node does not contain this feature", Xmu2EProblemType.SYNTAX_ERROR, e);
+				}
+				
+				if(e instanceof ObjectPatternExpression) {
+					EStructuralFeature f = e.getFeature();
+					EClassifier tarType = ((ObjectPatternExpression) e).getTargetNode().getVariable().getType();
+					
+					if(!AnalysisUtil.isSuperTypeOf(f.getEType(), tarType)) {
+						resource.addWarning("type inconsistency", Xmu2EProblemType.ANALYSIS_PROBLEM, e);
+					}
 				}
 			}
 		} else {

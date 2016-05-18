@@ -6,6 +6,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -131,6 +132,61 @@ public interface Xmu2commonPackage extends EPackage {
 	int NAMED_ELEMENT_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu2common.impl.ReflectiveObjectImpl <em>Reflective Object</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.xmu2common.impl.ReflectiveObjectImpl
+	 * @see edu.ustb.sei.mde.xmu2common.impl.Xmu2commonPackageImpl#getReflectiveObject()
+	 * @generated
+	 */
+	int REFLECTIVE_OBJECT = 2;
+
+	/**
+	 * The feature id for the '<em><b>EContainer</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFLECTIVE_OBJECT__ECONTAINER = 0;
+
+	/**
+	 * The feature id for the '<em><b>EContents</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFLECTIVE_OBJECT__ECONTENTS = 1;
+
+	/**
+	 * The feature id for the '<em><b>EAll Contents</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFLECTIVE_OBJECT__EALL_CONTENTS = 2;
+
+	/**
+	 * The number of structural features of the '<em>Reflective Object</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFLECTIVE_OBJECT_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>Reflective Object</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFLECTIVE_OBJECT_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu2common.DomainTag <em>Domain Tag</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -138,7 +194,7 @@ public interface Xmu2commonPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2common.impl.Xmu2commonPackageImpl#getDomainTag()
 	 * @generated
 	 */
-	int DOMAIN_TAG = 2;
+	int DOMAIN_TAG = 3;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu2common.AdditiveOperator <em>Additive Operator</em>}' enum.
@@ -148,7 +204,7 @@ public interface Xmu2commonPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2common.impl.Xmu2commonPackageImpl#getAdditiveOperator()
 	 * @generated
 	 */
-	int ADDITIVE_OPERATOR = 3;
+	int ADDITIVE_OPERATOR = 4;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu2common.MultiplicativeOperator <em>Multiplicative Operator</em>}' enum.
@@ -158,7 +214,7 @@ public interface Xmu2commonPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2common.impl.Xmu2commonPackageImpl#getMultiplicativeOperator()
 	 * @generated
 	 */
-	int MULTIPLICATIVE_OPERATOR = 4;
+	int MULTIPLICATIVE_OPERATOR = 5;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu2common.RelationalOperator <em>Relational Operator</em>}' enum.
@@ -168,7 +224,7 @@ public interface Xmu2commonPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2common.impl.Xmu2commonPackageImpl#getRelationalOperator()
 	 * @generated
 	 */
-	int RELATIONAL_OPERATOR = 5;
+	int RELATIONAL_OPERATOR = 6;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu2common.UnaryOperator <em>Unary Operator</em>}' enum.
@@ -178,7 +234,7 @@ public interface Xmu2commonPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2common.impl.Xmu2commonPackageImpl#getUnaryOperator()
 	 * @generated
 	 */
-	int UNARY_OPERATOR = 6;
+	int UNARY_OPERATOR = 7;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu2common.LoopOperator <em>Loop Operator</em>}' enum.
@@ -188,7 +244,7 @@ public interface Xmu2commonPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2common.impl.Xmu2commonPackageImpl#getLoopOperator()
 	 * @generated
 	 */
-	int LOOP_OPERATOR = 7;
+	int LOOP_OPERATOR = 8;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu2common.PositionOperator <em>Position Operator</em>}' enum.
@@ -198,7 +254,7 @@ public interface Xmu2commonPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2common.impl.Xmu2commonPackageImpl#getPositionOperator()
 	 * @generated
 	 */
-	int POSITION_OPERATOR = 8;
+	int POSITION_OPERATOR = 9;
 
 
 	/**
@@ -242,6 +298,49 @@ public interface Xmu2commonPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getNamedElement_Name();
+
+	/**
+	 * Returns the meta object for class '{@link edu.ustb.sei.mde.xmu2common.ReflectiveObject <em>Reflective Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Reflective Object</em>'.
+	 * @see edu.ustb.sei.mde.xmu2common.ReflectiveObject
+	 * @generated
+	 */
+	EClass getReflectiveObject();
+
+	/**
+	 * Returns the meta object for the reference '{@link edu.ustb.sei.mde.xmu2common.ReflectiveObject#getEContainer <em>EContainer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>EContainer</em>'.
+	 * @see edu.ustb.sei.mde.xmu2common.ReflectiveObject#getEContainer()
+	 * @see #getReflectiveObject()
+	 * @generated
+	 */
+	EReference getReflectiveObject_EContainer();
+
+	/**
+	 * Returns the meta object for the reference list '{@link edu.ustb.sei.mde.xmu2common.ReflectiveObject#getEContents <em>EContents</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>EContents</em>'.
+	 * @see edu.ustb.sei.mde.xmu2common.ReflectiveObject#getEContents()
+	 * @see #getReflectiveObject()
+	 * @generated
+	 */
+	EReference getReflectiveObject_EContents();
+
+	/**
+	 * Returns the meta object for the reference list '{@link edu.ustb.sei.mde.xmu2common.ReflectiveObject#getEAllContents <em>EAll Contents</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>EAll Contents</em>'.
+	 * @see edu.ustb.sei.mde.xmu2common.ReflectiveObject#getEAllContents()
+	 * @see #getReflectiveObject()
+	 * @generated
+	 */
+	EReference getReflectiveObject_EAllContents();
 
 	/**
 	 * Returns the meta object for enum '{@link edu.ustb.sei.mde.xmu2common.DomainTag <em>Domain Tag</em>}'.
@@ -371,6 +470,40 @@ public interface Xmu2commonPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute NAMED_ELEMENT__NAME = eINSTANCE.getNamedElement_Name();
+
+		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu2common.impl.ReflectiveObjectImpl <em>Reflective Object</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.xmu2common.impl.ReflectiveObjectImpl
+		 * @see edu.ustb.sei.mde.xmu2common.impl.Xmu2commonPackageImpl#getReflectiveObject()
+		 * @generated
+		 */
+		EClass REFLECTIVE_OBJECT = eINSTANCE.getReflectiveObject();
+
+		/**
+		 * The meta object literal for the '<em><b>EContainer</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REFLECTIVE_OBJECT__ECONTAINER = eINSTANCE.getReflectiveObject_EContainer();
+
+		/**
+		 * The meta object literal for the '<em><b>EContents</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REFLECTIVE_OBJECT__ECONTENTS = eINSTANCE.getReflectiveObject_EContents();
+
+		/**
+		 * The meta object literal for the '<em><b>EAll Contents</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REFLECTIVE_OBJECT__EALL_CONTENTS = eINSTANCE.getReflectiveObject_EAllContents();
 
 		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu2common.DomainTag <em>Domain Tag</em>}' enum.

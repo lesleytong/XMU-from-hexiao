@@ -207,34 +207,82 @@ public class BXCodeGenerator {
 		TreeIterator<EObject> it = rule.eAllContents();
 		
 		while(it.hasNext()) {
-			EObject obj = it.next();
-			if(obj instanceof UpdateStatement) {
-				edu.ustb.sei.mde.xmu2.pattern.Pattern pat = ((UpdateStatement) obj).getSource();
-				TreeIterator<EObject> varIt = pat.eAllContents();
-				while(varIt.hasNext()) {
-					EObject vo = varIt.next();
-					if(vo instanceof VariableDeclaration 
-							&& !(vo.eContainer() instanceof edu.ustb.sei.mde.xmu2.expression.LoopPath)) {
-						String varName = ((VariableDeclaration) vo).getName();
-						String ov = null,pv = null;
-						
-						ov = AnalysisUtil.getNonUpdatedSourceVariableName(varName);
-						pv = AnalysisUtil.getUpdatedSourceVariableName(varName);
-						
-						
-						Variable ovv = map.get(ov);
-						if(ovv==null) {
-							throw new BuildException("cannot find the correlated variable of "+pv); 
-						} else if(ovv.getTag()!=DomainTag.SOURCE) {
-							throw new BuildException("the correlated variable of "+pv+" is not a source variable");
-						}
-						
-						Variable pvv = findOrCreateVariable(pv, map);
-						setVariableType(pvv, ovv.getType());
-						setVariableDomainTag(pvv, DomainTag.UPDATED_SOURCE);
-					}
-				}
+			EObject vo = it.next();
+			
+			if(vo instanceof VariableDeclaration 
+					&& (vo.eContainer() instanceof edu.ustb.sei.mde.xmu2.pattern.PatternNode)) {
+				String varName = ((VariableDeclaration) vo).getName();
+				String ov = null,pv = null;
+				
+				ov = AnalysisUtil.getNonUpdatedSourceVariableName(varName);
+				pv = AnalysisUtil.getUpdatedSourceVariableName(varName);
+				
+				
+				Variable ovv = map.get(ov);
+				if(ovv!=null && ovv.getTag()==DomainTag.SOURCE) {
+					Variable pvv = findOrCreateVariable(pv, map);
+					setVariableType(pvv, ovv.getType());
+					setVariableDomainTag(pvv, DomainTag.UPDATED_SOURCE);
+				} 
+//				else
+//					throw new BuildException("the correlated variable of "+pv+" is not a source variable or is undeclared");
+				
 			}
+			
+			
+//			if(obj instanceof UpdateStatement) {
+//				edu.ustb.sei.mde.xmu2.pattern.Pattern pat = ((UpdateStatement) obj).getSource();
+//				TreeIterator<EObject> varIt = pat.eAllContents();
+//				while(varIt.hasNext()) {
+//					EObject vo = varIt.next();
+//					if(vo instanceof VariableDeclaration 
+//							&& !(vo.eContainer() instanceof edu.ustb.sei.mde.xmu2.expression.LoopPath)) {
+//						String varName = ((VariableDeclaration) vo).getName();
+//						String ov = null,pv = null;
+//						
+//						ov = AnalysisUtil.getNonUpdatedSourceVariableName(varName);
+//						pv = AnalysisUtil.getUpdatedSourceVariableName(varName);
+//						
+//						
+//						Variable ovv = map.get(ov);
+//						if(ovv==null) {
+//							throw new BuildException("cannot find the correlated variable of "+pv); 
+//						} else if(ovv.getTag()!=DomainTag.SOURCE) {
+//							throw new BuildException("the correlated variable of "+pv+" is not a source variable");
+//						}
+//						
+//						Variable pvv = findOrCreateVariable(pv, map);
+//						setVariableType(pvv, ovv.getType());
+//						setVariableDomainTag(pvv, DomainTag.UPDATED_SOURCE);
+//					}
+//				}
+//			} else if(obj instanceof PatternCaseClause) {
+//				edu.ustb.sei.mde.xmu2.pattern.Pattern pat = ((PatternCaseClause) obj).getCondition();
+//				TreeIterator<EObject> varIt = pat.eAllContents();
+//				while(varIt.hasNext()) {
+//					EObject vo = varIt.next();
+//					if(vo instanceof VariableDeclaration 
+//							&& !(vo.eContainer() instanceof edu.ustb.sei.mde.xmu2.expression.LoopPath)) {
+//						
+//						String varName = ((VariableDeclaration) vo).getName();
+//						String ov = null,pv = null;
+//						
+//						ov = AnalysisUtil.getNonUpdatedSourceVariableName(varName);
+//						pv = AnalysisUtil.getUpdatedSourceVariableName(varName);
+//						
+//						
+//						Variable ovv = map.get(ov);
+//						if(ovv!=null
+//								&&ovv.getTag()==DomainTag.SOURCE) {
+//							Variable pvv = findOrCreateVariable(pv, map);
+//							setVariableType(pvv, ovv.getType());
+//							setVariableDomainTag(pvv, DomainTag.UPDATED_SOURCE);
+//						}
+//						
+//						
+//					}
+//				}
+//			}
 		}
 	}
 	
@@ -1539,7 +1587,19 @@ public class BXCodeGenerator {
 		if(path instanceof edu.ustb.sei.mde.xmu2.expression.FeaturePath) {
 			if(type instanceof EClass) {
 				edu.ustb.sei.mde.xmu2core.FeaturePath fp = Xmu2coreFactory.eINSTANCE.createFeaturePath();
-				EStructuralFeature feature = ((EClass) type).getEStructuralFeature(((edu.ustb.sei.mde.xmu2.expression.FeaturePath) path).getFeature());
+				String featureName = ((edu.ustb.sei.mde.xmu2.expression.FeaturePath) path).getFeature();
+				EStructuralFeature feature = null;
+				while(true) {
+					feature = ((EClass) type).getEStructuralFeature(featureName);
+					if(feature!=null) break;
+					else {
+						if(featureName.startsWith("_"))
+							featureName = featureName.substring(1);
+						else break;
+					}
+				}
+				if(feature==null)
+					throw new BuildException("unconverted feature path "+featureName);
 				fp.setFeature(feature);
 				return fp;
 			} else {

@@ -5,6 +5,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -73,6 +74,7 @@ final public class AnalysisUtil {
 		else return name;
 	}
 	
+	@Deprecated
 	static protected boolean isCompatible(EClassifier typeA, EClassifier typeB) {
 		if(typeA==Constants.OCLANY)
 			return true;
@@ -106,6 +108,7 @@ final public class AnalysisUtil {
 		
 	}
 	
+	@Deprecated
 	static public boolean isCompatible(EClassifier type, SafeType value) {
 		if(type==Constants.OCLANY
 				|| value==Constants.NULL 
@@ -188,8 +191,20 @@ final public class AnalysisUtil {
 		return false;
 	}
 	
-	static public boolean isSuperTypeOf(EClass parent, EClass child) {
-		return parent==Constants.EOBJECT || parent == Constants.OCLANY 
-				|| parent.isSuperTypeOf(child);
+	static public boolean isSuperTypeOf(EClassifier parent, EClassifier child) {
+		if(parent==Constants.OCLANY) return true;
+		else if(parent==Constants.EOBJECT) {
+			return child instanceof EClass;
+		} else {
+			if(parent instanceof EClass && child instanceof EClass)
+				return ((EClass)parent).isSuperTypeOf(((EClass)child));
+			else if(parent instanceof EEnum && child instanceof EEnum) {
+				return parent == child;
+			} else if(parent instanceof EDataType && child instanceof EDataType) {
+				//FIXME: type checking of primitve types should be enhanced
+				return true;
+			} else 
+				return false;
+		}
 	}
 }

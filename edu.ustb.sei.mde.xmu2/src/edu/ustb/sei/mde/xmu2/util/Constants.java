@@ -6,6 +6,7 @@ import org.eclipse.emf.ecore.EcorePackage;
 
 import edu.ustb.sei.mde.xmu2.datatypes.DatatypesPackage;
 import edu.ustb.sei.mde.xmu2.runtime.values.SafeType;
+import edu.ustb.sei.mde.xmu2common.Xmu2commonPackage;
 
 final public class Constants {
 	final static public SafeType TRUE = SafeType.TRUE;
@@ -27,4 +28,6 @@ final public class Constants {
 	public static final String STRING_NAME = "String";
 	public static final String OCLANY_NAME = "OclAny";
 	public static final String RESOURCE_NAME = "Resource";
+	
+	public static final EClass REFLECTIVE_OBJECT = Xmu2commonPackage.eINSTANCE.getReflectiveObject();
 }

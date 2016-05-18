@@ -48,7 +48,7 @@ public class TypedElementTypeReferenceResolver implements edu.ustb.sei.mde.xmu2.
 							while(it.hasNext()) {
 								EObject o = it.next();
 								if(o instanceof EClassifier) {
-									if(ResolverUtil.identifierMatchFuzzy(names[1], ((EClassifier)o).getName())){
+									if(names.length==1 || ResolverUtil.identifierMatchFuzzy(names[1], ((EClassifier)o).getName())){
 										result.addMapping(names[0]+"!"+((EClassifier)o).getName(), (EClassifier)o);
 									}
 								}

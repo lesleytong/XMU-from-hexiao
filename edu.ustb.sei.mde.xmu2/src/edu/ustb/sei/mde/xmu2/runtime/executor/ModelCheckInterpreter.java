@@ -366,22 +366,15 @@ public class ModelCheckInterpreter extends ExpressionCheckInterpreter {
 	}
 
 	private boolean isPatternA(AtomicExpression e) {
-		if (e.getPaths().size() != 2 && e.getPaths().size() != 3)
+		if (e.getPaths().size() != 0 && e.getPaths().size() != 1)
 			return false;
 		else {
-			boolean shortForm = e.getPaths().size() == 2;
+			boolean shortForm = e.getPaths().isEmpty();
 
-			Path p1 = e.getPaths().get(0);
-			Path p2 = shortForm ? null : e.getPaths().get(1);
-			Path p3 = shortForm ? e.getPaths().get(1) : e.getPaths().get(2);
-
-			if (p1 instanceof FeaturePath && p3 instanceof PositionPath) {
-				if (p2 == null)
-					return true;
-
-				if (p2 instanceof LoopPath && ((LoopPath) p2).getOperator() == LoopOperator.SELECT)
-					return true;
-			}
+			Path p1 = shortForm ? null : e.getPaths().get(0);
+			
+			if(p1==null || p1 instanceof FeaturePath)
+				return true;
 
 			return false;
 		}

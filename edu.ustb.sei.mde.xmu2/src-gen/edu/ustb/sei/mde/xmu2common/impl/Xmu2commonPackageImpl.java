@@ -9,6 +9,7 @@ import edu.ustb.sei.mde.xmu2common.LoopOperator;
 import edu.ustb.sei.mde.xmu2common.MultiplicativeOperator;
 import edu.ustb.sei.mde.xmu2common.NamedElement;
 import edu.ustb.sei.mde.xmu2common.PositionOperator;
+import edu.ustb.sei.mde.xmu2common.ReflectiveObject;
 import edu.ustb.sei.mde.xmu2common.RelationalOperator;
 import edu.ustb.sei.mde.xmu2common.UnaryOperator;
 import edu.ustb.sei.mde.xmu2common.Xmu2commonFactory;
@@ -19,6 +20,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
@@ -41,6 +43,13 @@ public class Xmu2commonPackageImpl extends EPackageImpl implements Xmu2commonPac
 	 * @generated
 	 */
 	private EClass namedElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass reflectiveObjectEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -193,6 +202,42 @@ public class Xmu2commonPackageImpl extends EPackageImpl implements Xmu2commonPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getReflectiveObject() {
+		return reflectiveObjectEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getReflectiveObject_EContainer() {
+		return (EReference)reflectiveObjectEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getReflectiveObject_EContents() {
+		return (EReference)reflectiveObjectEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getReflectiveObject_EAllContents() {
+		return (EReference)reflectiveObjectEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getDomainTag() {
 		return domainTagEEnum;
 	}
@@ -285,6 +330,11 @@ public class Xmu2commonPackageImpl extends EPackageImpl implements Xmu2commonPac
 		namedElementEClass = createEClass(NAMED_ELEMENT);
 		createEAttribute(namedElementEClass, NAMED_ELEMENT__NAME);
 
+		reflectiveObjectEClass = createEClass(REFLECTIVE_OBJECT);
+		createEReference(reflectiveObjectEClass, REFLECTIVE_OBJECT__ECONTAINER);
+		createEReference(reflectiveObjectEClass, REFLECTIVE_OBJECT__ECONTENTS);
+		createEReference(reflectiveObjectEClass, REFLECTIVE_OBJECT__EALL_CONTENTS);
+
 		// Create enums
 		domainTagEEnum = createEEnum(DOMAIN_TAG);
 		additiveOperatorEEnum = createEEnum(ADDITIVE_OPERATOR);
@@ -330,6 +380,11 @@ public class Xmu2commonPackageImpl extends EPackageImpl implements Xmu2commonPac
 
 		initEClass(namedElementEClass, NamedElement.class, "NamedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNamedElement_Name(), ecorePackage.getEString(), "name", null, 1, 1, NamedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(reflectiveObjectEClass, ReflectiveObject.class, "ReflectiveObject", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getReflectiveObject_EContainer(), ecorePackage.getEObject(), null, "eContainer", null, 0, 1, ReflectiveObject.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getReflectiveObject_EContents(), ecorePackage.getEObject(), null, "eContents", null, 0, -1, ReflectiveObject.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getReflectiveObject_EAllContents(), ecorePackage.getEObject(), null, "eAllContents", null, 0, -1, ReflectiveObject.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(domainTagEEnum, DomainTag.class, "DomainTag");

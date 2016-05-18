@@ -51,6 +51,13 @@ public class ResolverUtil {
 	}
 	
 	static public EStructuralFeature getFeature(String identifier, EClass cls) {
+		EClass ro = Constants.REFLECTIVE_OBJECT;
+		
+		for(EStructuralFeature f : ro.getEAllStructuralFeatures()) {
+			if(identifierMatch(identifier, f.getName()))
+				return f;
+		}
+		
 		for(EStructuralFeature f : cls.getEAllStructuralFeatures()) {
 			if(identifierMatch(identifier, f.getName()))
 				return f;

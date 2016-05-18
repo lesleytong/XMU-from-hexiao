@@ -1,5 +1,6 @@
 package edu.ustb.sei.mde.xmu2.util;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -21,6 +22,7 @@ import edu.ustb.sei.mde.xmu2.runtime.exceptions.InvalidModificationException;
 import edu.ustb.sei.mde.xmu2.runtime.values.FeatureList;
 import edu.ustb.sei.mde.xmu2.runtime.values.ModelList;
 import edu.ustb.sei.mde.xmu2.runtime.values.SafeType;
+import edu.ustb.sei.mde.xmu2common.Xmu2commonPackage;
 
 /*
  *  all the modifications on models should be performed through this engine 
@@ -334,7 +336,17 @@ public class ModelModificationEngine extends ModelModificationTrace{
 	}
 
 	public Object getFeatureAsJavaObject(EObject obj, EStructuralFeature feature) {
-		return obj.eGet(feature);
+		if(feature == Xmu2commonPackage.Literals.REFLECTIVE_OBJECT__ECONTAINER) {
+			return obj.eContainer();
+		} else if(feature == Xmu2commonPackage.Literals.REFLECTIVE_OBJECT__ECONTENTS) {
+			return obj.eContents();
+		}  else if(feature == Xmu2commonPackage.Literals.REFLECTIVE_OBJECT__EALL_CONTENTS) {
+			TreeIterator<EObject> it = obj.eAllContents();
+			List<EObject> allContents = new ArrayList<EObject>();
+			while(it.hasNext()) allContents.add(it.next());
+			return allContents;
+		} else
+			return obj.eGet(feature);
 	}
 	
 	public Object getFeatureAtIndexAsJavaObject(EObject obj,EStructuralFeature feature, int id) {
@@ -386,7 +398,18 @@ public class ModelModificationEngine extends ModelModificationTrace{
 	}
 	
 	public List<Object> getFeatureAsFeatureList(EObject obj, EStructuralFeature feature) {
-		return new FeatureList<Object>(obj,feature,this);
+		if(feature == Xmu2commonPackage.Literals.REFLECTIVE_OBJECT__ECONTAINER) {
+			return Collections.singletonList(obj.eContainer());
+		} else if(feature == Xmu2commonPackage.Literals.REFLECTIVE_OBJECT__ECONTENTS) {
+			List<?> list = obj.eContents();
+			return (List<Object>) list;
+		}  else if(feature == Xmu2commonPackage.Literals.REFLECTIVE_OBJECT__EALL_CONTENTS) {
+			TreeIterator<EObject> it = obj.eAllContents();
+			List<Object> allContents = new ArrayList<Object>();
+			while(it.hasNext()) allContents.add(it.next());
+			return allContents;
+		} else
+			return new FeatureList<Object>(obj,feature,this);
 	}
 	
 //	public OclCollection getFeatureAsOclCollection(EObject obj, EStructuralFeature feature) {
@@ -401,6 +424,8 @@ public class ModelModificationEngine extends ModelModificationTrace{
 		if(containFeature(source, feature, value)) {
 			if(this.isDeletable(source, feature, value)) {
 				this.logDeletion(source, feature, value);
+				if(!feature.isChangeable())
+					throw new InvalidModificationException("you are going to delete an unchangeable link");
 				
 				if(feature.isMany()) {
 					List<? extends Object> list = (List<? extends Object>)source.eGet(feature);

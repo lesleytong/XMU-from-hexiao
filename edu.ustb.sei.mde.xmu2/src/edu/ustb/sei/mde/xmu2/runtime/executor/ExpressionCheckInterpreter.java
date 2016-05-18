@@ -313,7 +313,7 @@ public class ExpressionCheckInterpreter extends AbstractInterpreter {
 			EObject o  = host.getObjectValue();
 			if(path instanceof FeaturePath) {
 				EStructuralFeature feature = ((FeaturePath) path).getFeature();
-				return SafeType.createFromValue(o.eGet(feature));
+				return context.getEnvironment().getFeature(o, feature);
 //			} else if(path instanceof HelperPath) {
 //				BidirectionalMap<Object, Object> map = context.getEnvironment().getHelperMappings(((HelperPath) path).getHelper().getName());
 //				Object v = map.forward(host.getValue());
@@ -445,7 +445,7 @@ public class ExpressionCheckInterpreter extends AbstractInterpreter {
 					if(ret==Constants.TRUE) 
 						return Constants.TRUE;
 				} catch(Exception e) {
-					return Constants.FALSE;
+					
 				}
 			}
 			return Constants.FALSE;

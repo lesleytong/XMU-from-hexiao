@@ -49,5 +49,10 @@
     <genClasses image="false" ecoreClass="xmu2common.ecore#//NamedElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmu2common.ecore#//NamedElement/name"/>
     </genClasses>
+    <genClasses image="false" ecoreClass="xmu2common.ecore#//ReflectiveObject">
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference xmu2common.ecore#//ReflectiveObject/eContainer"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference xmu2common.ecore#//ReflectiveObject/eContents"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference xmu2common.ecore#//ReflectiveObject/eAllContents"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

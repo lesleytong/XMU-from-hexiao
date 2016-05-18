@@ -43,17 +43,21 @@ public class EnumLiteralExpressionTypeReferenceResolver implements edu.ustb.sei.
 					}
 				}
 			} else {
-				for(EPackage p : model.getPackages()) {
-					if(ResolverUtil.identifierMatchFuzzy(identifier, p.getName())) {
-						TreeIterator<EObject> it = p.eAllContents();
-						while(it.hasNext()) {
-							EObject o = it.next();
-							if(o instanceof EEnum) {
-								result.addMapping(p.getName()+"!"+((EEnum)o).getName(), (EEnum)o);
-							}
-						}
-					}
-				}
+				EEnum e = ResolverUtil.getEnum(identifier, model.getPackages());
+				if(e!=null)
+					result.addMapping(identifier, e);
+				
+//				for(EPackage p : model.getPackages()) {
+//					if(ResolverUtil.identifierMatchFuzzy(identifier, p.getName())) {
+//						TreeIterator<EObject> it = p.eAllContents();
+//						while(it.hasNext()) {
+//							EObject o = it.next();
+//							if(o instanceof EEnum) {
+//								result.addMapping(p.getName()+"!"+((EEnum)o).getName(), (EEnum)o);
+//							}
+//						}
+//					}
+//				}
 				
 			}
 			return;

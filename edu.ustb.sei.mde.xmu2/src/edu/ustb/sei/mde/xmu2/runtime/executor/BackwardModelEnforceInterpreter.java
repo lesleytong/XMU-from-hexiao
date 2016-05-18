@@ -190,6 +190,7 @@ public class BackwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 			} else if(css instanceof CaseExpressionClause) {
 				SafeType c = this.executeExpression(((CaseExpressionClause) css).getCondition(), context);
 				if(c.getValue()==Boolean.TRUE) {
+					handleTrialCallStatements(this.collectProcedureCallStatements(css.getAction(),context), Collections.EMPTY_LIST, context);
 					this.executeStatements(css.getAction(), context);
 					return;
 				}
