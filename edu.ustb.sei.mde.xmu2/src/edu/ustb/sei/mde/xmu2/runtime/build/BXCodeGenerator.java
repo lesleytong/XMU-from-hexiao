@@ -1700,6 +1700,13 @@ public class BXCodeGenerator {
 			Variable var = findOrCreateVariable(p.getName(),map);
 			setVariableType(var,p.getType());
 			setVariableDomainTag(var, ((Parameter) obj).getTag());
+			
+			if(p.getTag()==DomainTag.SOURCE) {
+				Variable varp = findOrCreateVariable(AnalysisUtil.getUpdatedSourceVariableName(p.getName()),map);
+				setVariableType(varp,p.getType());
+				setVariableDomainTag(varp, DomainTag.UPDATED_SOURCE);
+			}
+			
 		} else if(obj instanceof edu.ustb.sei.mde.xmu2.statement.DeleteNodeStatement) {
 			edu.ustb.sei.mde.xmu2.statement.DeleteNodeStatement stmt = (edu.ustb.sei.mde.xmu2.statement.DeleteNodeStatement) obj;
 			registerUpdatedVariableExpression(stmt.getNode(), map, obj);

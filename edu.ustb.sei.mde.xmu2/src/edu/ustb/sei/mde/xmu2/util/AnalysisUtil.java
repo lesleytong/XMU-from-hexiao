@@ -53,7 +53,12 @@ final public class AnalysisUtil {
 	}
 	
 	static public Resource loadOrCreateResource(ResourceSet resSet, URI uri, boolean create) {
-		Resource res = resSet.getResource(uri, true);
+		Resource res = null;
+		try{
+		  res = resSet.getResource(uri, true);
+		} catch(Exception e) {
+			res = null;
+		}
 		if(res==null && create)
 			res = resSet.createResource(uri);
 		return res;

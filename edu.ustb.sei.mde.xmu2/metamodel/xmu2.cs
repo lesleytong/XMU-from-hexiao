@@ -1,5 +1,5 @@
 SYNTAXDEF xmu2
-FOR <http://www.ustb.edu.cn/sei/mde/xmu2><xmu2.genmodel>
+FOR <http://www.ustb.edu.cn/sei/mde/xmu2> <xmu2.genmodel>
 START TransformationModel
 
 // each time the text resource is regenerated, add the validity checker to the ui plugin
@@ -10,7 +10,6 @@ IMPORTS {
 	pattern:<http://www.ustb.edu.cn/sei/mde/xmu2/pattern> <xmu2.genmodel>
 	expression:<http://www.ustb.edu.cn/sei/mde/xmu2/expression> <xmu2.genmodel>
 	common:<http://www.ustb.edu.cn/sei/mde/xmu2/common> <xmu2common.genmodel>
-
 }
 
 OPTIONS {
@@ -22,7 +21,7 @@ OPTIONS {
 }
 
 TOKENS {
-  DEFINE TYPE $'String'|'Boolean'|'Integer'|'OclAny'|'Resource'|(('a'..'z'|'A'..'Z'|'0'..'9'|'_')+'!'('a'..'z'|'A'..'Z'|'_')('0'..'9'|'a'..'z'|'A'..'Z'|'_')*)$;
+  DEFINE TYPE $'String'|'Boolean'|'Integer'|'OclAny'|'Resource'|'OclObject'|(('a'..'z'|'A'..'Z'|'0'..'9'|'_')+'!'('a'..'z'|'A'..'Z'|'_')('0'..'9'|'a'..'z'|'A'..'Z'|'_')*)$;
   DEFINE BOOLEAN $'true'|'false'$;
   DEFINE NAME $('a'..'z'|'A'..'Z'|'_')('0'..'9'|'a'..'z'|'A'..'Z'|'_')*('@post')?$;
   DEFINE NUMBER $('0'..'9')+$;
@@ -38,7 +37,6 @@ TOKENSTYLES {
 	 "SL_COMMENT" COLOR #008000;
 	 "ML_COMMENT" COLOR #008000;
 	 "OBJ_URI" COLOR #4080C0;
-//	 "URI" COLOR #4080C0, BOLD; 
 }
 
 RULES {

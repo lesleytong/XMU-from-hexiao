@@ -35,6 +35,7 @@ import edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2Resource;
 import edu.ustb.sei.mde.xmu2.statement.AssignStatement;
 import edu.ustb.sei.mde.xmu2.statement.EnforcePatternStatement;
 import edu.ustb.sei.mde.xmu2.statement.ExpressionCaseClause;
+import edu.ustb.sei.mde.xmu2.statement.ForEachStatement;
 import edu.ustb.sei.mde.xmu2.statement.PatternCaseClause;
 import edu.ustb.sei.mde.xmu2.statement.RuleCallStatement;
 import edu.ustb.sei.mde.xmu2.util.AnalysisUtil;
@@ -466,7 +467,10 @@ class VariableValidityContext {
 					addUpdatedSourceVariableName(varName);
 				}
 				checkVariableUsage(((AssignStatement) root).getValue(), resource, DomainTag.NORMAL);
-			} else {
+			} else if(root instanceof ForEachStatement) {
+				Pattern source = ((edu.ustb.sei.mde.xmu2.statement.ForEachStatement) root).getPattern();
+				collectVariablesInPattern(source, DomainTag.SOURCE, resource);
+			}else {
 				for(EObject o : root.eContents()) {
 					collectVariableNames(o,  resource);
 				}

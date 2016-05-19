@@ -39,7 +39,13 @@ public class ObjectURIExpressionObjectReferenceResolver implements edu.ustb.sei.
 			String str = identifier.substring(1);
 			
 			try {
-				EObject obj = container.eResource().getResourceSet().getEObject(URI.createURI(str), false);
+				
+				URI u = URI.createURI(str);
+				
+				if(u.isRelative())
+					u = u.resolve(container.eResource().getURI());
+				
+				EObject obj = container.eResource().getResourceSet().getEObject(u, true);
 
 				if (obj == null)
 					return;

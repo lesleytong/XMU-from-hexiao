@@ -13,5 +13,7 @@ Export-Package: edu.ustb.sei.mde.xmu2core.provider,
 Require-Bundle: org.eclipse.core.runtime,
  edu.ustb.sei.mde.xmu2;visibility:=reexport,
  org.eclipse.emf.edit;visibility:=reexport,
- edu.ustb.sei.mde.xmu2.edit;visibility:=reexport
+ edu.ustb.sei.mde.xmu2.edit;visibility:=reexport,
+ org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.emf.ecore.edit;visibility:=reexport
 Bundle-ActivationPolicy: lazy

@@ -25,7 +25,7 @@ import edu.ustb.sei.mde.xmu2.util.Constants;
 
 public class ResolverUtil {
 	final static String[] reservedWords = new String[]{
-			Constants.BOOLEAN_NAME,Constants.INTEGER_NAME,Constants.STRING_NAME,Constants.OCLANY_NAME,Constants.RESOURCE_NAME,
+			Constants.BOOLEAN_NAME,Constants.INTEGER_NAME,Constants.STRING_NAME,Constants.OCLANY_NAME,Constants.RESOURCE_NAME,Constants.OCLOBJECT_NAME,
 			"update","enforce","delete","with","by","switch","case","otherwise","match","unmatchs","unmatchv",
 			"source","view","entry","module","import","rule","function","select","forAll","exists","first","last",
 			"at","null","undefined","not","skip","foreach","default"
@@ -162,6 +162,10 @@ public class ResolverUtil {
 			}
 			
 			URI u = URI.createURI(uri);
+			
+			if(u.isRelative())
+				u = u.resolve(resource.getURI());
+			
 			Resource res = set.getResource(u, true);
 			EObject target = res.getContents().get(0);
 			return (EPackage)target;
@@ -229,7 +233,7 @@ public class ResolverUtil {
 	final static public String[] primitiveTypeNames = new String[]{Constants.STRING_NAME,Constants.BOOLEAN_NAME,Constants.INTEGER_NAME,Constants.OCLANY_NAME};
 	final static public EDataType[] primitiveTypes = new EDataType[]{Constants.STRING,Constants.BOOLEAN,Constants.INT,Constants.OCLANY};
 	
-	final static public String[] reservedTypeNames = new String[]{Constants.RESOURCE_NAME};
-	final static public EClassifier[] reservedTypes = new EClassifier[]{Constants.RESOURCE};
+	final static public String[] reservedTypeNames = new String[]{Constants.RESOURCE_NAME,Constants.OCLOBJECT_NAME};
+	final static public EClassifier[] reservedTypes = new EClassifier[]{Constants.RESOURCE,Constants.EOBJECT};
 
 }

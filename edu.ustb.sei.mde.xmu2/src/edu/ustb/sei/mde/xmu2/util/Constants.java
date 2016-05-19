@@ -20,14 +20,15 @@ final public class Constants {
 	final static public EDataType STRING = EcorePackage.eINSTANCE.getEString();
 	final static public EDataType OCLANY = EcorePackage.eINSTANCE.getEJavaObject(); 
 	final static public EClass EOBJECT = EcorePackage.eINSTANCE.getEObject();
-	
-	final static public Object[] EMPTYARRAY = new Object[0];
 	public static final EClass RESOURCE = DatatypesPackage.eINSTANCE.getResource();
+	public static final EClass REFLECTIVE_OBJECT = Xmu2commonPackage.eINSTANCE.getReflectiveObject();
+	
 	public static final String BOOLEAN_NAME = "Boolean";
 	public static final String INTEGER_NAME = "Integer";
 	public static final String STRING_NAME = "String";
 	public static final String OCLANY_NAME = "OclAny";
 	public static final String RESOURCE_NAME = "Resource";
+	public static final String OCLOBJECT_NAME = "OclObject";
 	
-	public static final EClass REFLECTIVE_OBJECT = Xmu2commonPackage.eINSTANCE.getReflectiveObject();
+	final static public Object[] EMPTYARRAY = new Object[0];
 }

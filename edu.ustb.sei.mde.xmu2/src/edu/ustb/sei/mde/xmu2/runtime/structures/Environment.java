@@ -71,7 +71,7 @@ public class Environment {
 	}
 
 	private void loadSourceModels(String[] paths) {
-		this.loadModels(resourceSet, sources, paths, false);
+		this.loadModels(resourceSet, sources, paths, true);
 	}
 	
 	private void initUpdatedSource() {
@@ -102,7 +102,7 @@ public class Environment {
 	}
 	
 	private void loadViewModels(String[] paths) {
-		this.loadModels(resourceSet, views, paths, false);
+		this.loadModels(resourceSet, views, paths, true);
 	}
 	
 	private void createViewModels(String[] paths) {
