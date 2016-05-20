@@ -166,6 +166,7 @@ public class Xmu2coreSwitch<T> extends Switch<T> {
 			case Xmu2corePackage.PATTERN_NODE: {
 				PatternNode patternNode = (PatternNode)theEObject;
 				T result = casePatternNode(patternNode);
+				if (result == null) result = caseReflectiveSupport(patternNode);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -173,6 +174,7 @@ public class Xmu2coreSwitch<T> extends Switch<T> {
 				PatternExpression patternExpression = (PatternExpression)theEObject;
 				T result = casePatternExpression(patternExpression);
 				if (result == null) result = caseNullable(patternExpression);
+				if (result == null) result = caseReflectiveSupport(patternExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -181,6 +183,7 @@ public class Xmu2coreSwitch<T> extends Switch<T> {
 				T result = caseObjectPatternExpression(objectPatternExpression);
 				if (result == null) result = casePatternExpression(objectPatternExpression);
 				if (result == null) result = caseNullable(objectPatternExpression);
+				if (result == null) result = caseReflectiveSupport(objectPatternExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -189,6 +192,7 @@ public class Xmu2coreSwitch<T> extends Switch<T> {
 				T result = casePropertyPatternExpression(propertyPatternExpression);
 				if (result == null) result = casePatternExpression(propertyPatternExpression);
 				if (result == null) result = caseNullable(propertyPatternExpression);
+				if (result == null) result = caseReflectiveSupport(propertyPatternExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -334,6 +338,7 @@ public class Xmu2coreSwitch<T> extends Switch<T> {
 				FeaturePath featurePath = (FeaturePath)theEObject;
 				T result = caseFeaturePath(featurePath);
 				if (result == null) result = casePath(featurePath);
+				if (result == null) result = caseReflectiveSupport(featurePath);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -398,6 +403,7 @@ public class Xmu2coreSwitch<T> extends Switch<T> {
 				DeleteLinkStatement deleteLinkStatement = (DeleteLinkStatement)theEObject;
 				T result = caseDeleteLinkStatement(deleteLinkStatement);
 				if (result == null) result = caseStatement(deleteLinkStatement);
+				if (result == null) result = caseReflectiveSupport(deleteLinkStatement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -407,6 +413,7 @@ public class Xmu2coreSwitch<T> extends Switch<T> {
 				if (result == null) result = caseStatement(enforceNodeStatement);
 				if (result == null) result = caseDomainElement(enforceNodeStatement);
 				if (result == null) result = caseNullable(enforceNodeStatement);
+				if (result == null) result = caseReflectiveSupport(enforceNodeStatement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -415,6 +422,7 @@ public class Xmu2coreSwitch<T> extends Switch<T> {
 				T result = caseEnforceLinkStatement(enforceLinkStatement);
 				if (result == null) result = caseStatement(enforceLinkStatement);
 				if (result == null) result = caseDomainElement(enforceLinkStatement);
+				if (result == null) result = caseReflectiveSupport(enforceLinkStatement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -467,6 +475,19 @@ public class Xmu2coreSwitch<T> extends Switch<T> {
 				SolveConstraintStatement solveConstraintStatement = (SolveConstraintStatement)theEObject;
 				T result = caseSolveConstraintStatement(solveConstraintStatement);
 				if (result == null) result = caseStatement(solveConstraintStatement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case Xmu2corePackage.COMMAND_STATEMENT: {
+				CommandStatement commandStatement = (CommandStatement)theEObject;
+				T result = caseCommandStatement(commandStatement);
+				if (result == null) result = caseStatement(commandStatement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case Xmu2corePackage.REFLECTIVE_SUPPORT: {
+				ReflectiveSupport reflectiveSupport = (ReflectiveSupport)theEObject;
+				T result = caseReflectiveSupport(reflectiveSupport);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1281,6 +1302,36 @@ public class Xmu2coreSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseSolveConstraintStatement(SolveConstraintStatement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Command Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Command Statement</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCommandStatement(CommandStatement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Reflective Support</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Reflective Support</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseReflectiveSupport(ReflectiveSupport object) {
 		return null;
 	}
 

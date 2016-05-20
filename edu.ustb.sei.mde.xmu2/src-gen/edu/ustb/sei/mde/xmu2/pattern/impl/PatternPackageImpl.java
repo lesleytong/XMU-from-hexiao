@@ -18,6 +18,9 @@ import edu.ustb.sei.mde.xmu2.pattern.PatternNode;
 import edu.ustb.sei.mde.xmu2.pattern.PatternPackage;
 import edu.ustb.sei.mde.xmu2.pattern.PropertyPatternExpression;
 
+import edu.ustb.sei.mde.xmu2.pattern.ReflectiveObjectPatternExpression;
+import edu.ustb.sei.mde.xmu2.pattern.ReflectivePatternNode;
+import edu.ustb.sei.mde.xmu2.pattern.ReflectivePropertyPatternExpression;
 import edu.ustb.sei.mde.xmu2.statement.StatementPackage;
 
 import edu.ustb.sei.mde.xmu2.statement.impl.StatementPackageImpl;
@@ -72,6 +75,27 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 	 * @generated
 	 */
 	private EClass propertyPatternExpressionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass reflectivePatternNodeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass reflectiveObjectPatternExpressionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass reflectivePropertyPatternExpressionEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -297,6 +321,33 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getReflectivePatternNode() {
+		return reflectivePatternNodeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getReflectiveObjectPatternExpression() {
+		return reflectiveObjectPatternExpressionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getReflectivePropertyPatternExpression() {
+		return reflectivePropertyPatternExpressionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public PatternFactory getPatternFactory() {
 		return (PatternFactory)getEFactoryInstance();
 	}
@@ -340,6 +391,12 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
 		propertyPatternExpressionEClass = createEClass(PROPERTY_PATTERN_EXPRESSION);
 		createEReference(propertyPatternExpressionEClass, PROPERTY_PATTERN_EXPRESSION__TARGET_EXPRESSION);
+
+		reflectivePatternNodeEClass = createEClass(REFLECTIVE_PATTERN_NODE);
+
+		reflectiveObjectPatternExpressionEClass = createEClass(REFLECTIVE_OBJECT_PATTERN_EXPRESSION);
+
+		reflectivePropertyPatternExpressionEClass = createEClass(REFLECTIVE_PROPERTY_PATTERN_EXPRESSION);
 	}
 
 	/**
@@ -376,6 +433,12 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 		// Add supertypes to classes
 		objectPatternExpressionEClass.getESuperTypes().add(this.getPatternExpression());
 		propertyPatternExpressionEClass.getESuperTypes().add(this.getPatternExpression());
+		reflectivePatternNodeEClass.getESuperTypes().add(this.getPatternNode());
+		reflectivePatternNodeEClass.getESuperTypes().add(theXmu2Package.getReflectiveAPI());
+		reflectiveObjectPatternExpressionEClass.getESuperTypes().add(this.getObjectPatternExpression());
+		reflectiveObjectPatternExpressionEClass.getESuperTypes().add(theXmu2Package.getReflectiveAPI());
+		reflectivePropertyPatternExpressionEClass.getESuperTypes().add(this.getPropertyPatternExpression());
+		reflectivePropertyPatternExpressionEClass.getESuperTypes().add(theXmu2Package.getReflectiveAPI());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(patternEClass, Pattern.class, "Pattern", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -398,6 +461,12 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
 		initEClass(propertyPatternExpressionEClass, PropertyPatternExpression.class, "PropertyPatternExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPropertyPatternExpression_TargetExpression(), theExpressionPackage.getExpression(), null, "targetExpression", null, 1, 1, PropertyPatternExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(reflectivePatternNodeEClass, ReflectivePatternNode.class, "ReflectivePatternNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(reflectiveObjectPatternExpressionEClass, ReflectiveObjectPatternExpression.class, "ReflectiveObjectPatternExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(reflectivePropertyPatternExpressionEClass, ReflectivePropertyPatternExpression.class, "ReflectivePropertyPatternExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 	}
 
 } //PatternPackageImpl

@@ -36,9 +36,16 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="statements" upperBound="-1"
         eType="#//statement/Statement" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="VariableDeclaration" eSuperTypes="xmu2common.ecore#//NamedElement #//TypedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="VariableDeclaration" abstract="true"
+      eSuperTypes="xmu2common.ecore#//NamedElement #//TypedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ConcreteVariableDeclaration" eSuperTypes="#//VariableDeclaration"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ReflectiveVariableDeclaration" eSuperTypes="#//VariableDeclaration"/>
   <eClassifiers xsi:type="ecore:EClass" name="TypedElement" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClassifier"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ReflectiveAPI" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="reflectiveIdentifier" lowerBound="1"
+        eType="#//expression/Expression" containment="true"/>
   </eClassifiers>
   <eSubpackages name="statement" nsURI="http://www.ustb.edu.cn/sei/mde/xmu2/statement"
       nsPrefix="statement">
@@ -103,6 +110,7 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="feature" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ReflectiveDeleteLinkStatement" eSuperTypes="#//statement/DeleteLinkStatement #//ReflectiveAPI"/>
     <eClassifiers xsi:type="ecore:EClass" name="ForEachStatement" eSuperTypes="#//statement/UnidirectionalStatement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="pattern" lowerBound="1"
           eType="#//pattern/Pattern" containment="true"/>
@@ -121,6 +129,9 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="PsesudoStatement" abstract="true"
         eSuperTypes="#//statement/Statement"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Fail" eSuperTypes="#//statement/PsesudoStatement">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="message" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Skip" eSuperTypes="#//statement/PsesudoStatement"/>
     <eClassifiers xsi:type="ecore:EClass" name="AssignStatement" eSuperTypes="#//statement/Statement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="updatedVariable" lowerBound="1"
@@ -164,6 +175,11 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="targetExpression" lowerBound="1"
           eType="#//expression/Expression" containment="true"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ReflectivePatternNode" eSuperTypes="#//pattern/PatternNode #//ReflectiveAPI"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ReflectiveObjectPatternExpression"
+        eSuperTypes="#//pattern/ObjectPatternExpression #//ReflectiveAPI"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ReflectivePropertyPatternExpression"
+        eSuperTypes="#//pattern/PropertyPatternExpression #//ReflectiveAPI"/>
   </eSubpackages>
   <eSubpackages name="expression" nsURI="http://www.ustb.edu.cn/sei/mde/xmu2/expression"
       nsPrefix="expression">

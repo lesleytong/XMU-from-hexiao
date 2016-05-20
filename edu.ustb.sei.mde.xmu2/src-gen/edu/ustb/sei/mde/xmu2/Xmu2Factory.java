@@ -76,13 +76,22 @@ public interface Xmu2Factory extends EFactory {
 	ArithmeticRule createArithmeticRule();
 
 	/**
-	 * Returns a new object of class '<em>Variable Declaration</em>'.
+	 * Returns a new object of class '<em>Concrete Variable Declaration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Variable Declaration</em>'.
+	 * @return a new object of class '<em>Concrete Variable Declaration</em>'.
 	 * @generated
 	 */
-	VariableDeclaration createVariableDeclaration();
+	ConcreteVariableDeclaration createConcreteVariableDeclaration();
+
+	/**
+	 * Returns a new object of class '<em>Reflective Variable Declaration</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Reflective Variable Declaration</em>'.
+	 * @generated
+	 */
+	ReflectiveVariableDeclaration createReflectiveVariableDeclaration();
 
 	/**
 	 * Returns the package supported by this factory.

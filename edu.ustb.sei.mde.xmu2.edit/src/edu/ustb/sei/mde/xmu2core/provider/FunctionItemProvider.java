@@ -199,6 +199,11 @@ public class FunctionItemProvider extends CallableItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
+				(Xmu2corePackage.Literals.FUNCTION__BACKWARD_STATEMENTS,
+				 Xmu2coreFactory.eINSTANCE.createCommandStatement()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(Xmu2corePackage.Literals.FUNCTION__FORWARD_STATEMENTS,
 				 Xmu2coreFactory.eINSTANCE.createAlignStatement()));
 
@@ -256,6 +261,11 @@ public class FunctionItemProvider extends CallableItemProvider {
 			(createChildParameter
 				(Xmu2corePackage.Literals.FUNCTION__FORWARD_STATEMENTS,
 				 Xmu2coreFactory.eINSTANCE.createSolveConstraintStatement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.FUNCTION__FORWARD_STATEMENTS,
+				 Xmu2coreFactory.eINSTANCE.createCommandStatement()));
 	}
 
 	/**

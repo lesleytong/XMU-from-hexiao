@@ -2,6 +2,7 @@
  */
 package edu.ustb.sei.mde.xmu2.statement.util;
 
+import edu.ustb.sei.mde.xmu2.ReflectiveAPI;
 import edu.ustb.sei.mde.xmu2.statement.*;
 
 import org.eclipse.emf.common.notify.Adapter;
@@ -124,6 +125,10 @@ public class StatementAdapterFactory extends AdapterFactoryImpl {
 				return createDeleteLinkStatementAdapter();
 			}
 			@Override
+			public Adapter caseReflectiveDeleteLinkStatement(ReflectiveDeleteLinkStatement object) {
+				return createReflectiveDeleteLinkStatementAdapter();
+			}
+			@Override
 			public Adapter caseForEachStatement(ForEachStatement object) {
 				return createForEachStatementAdapter();
 			}
@@ -140,12 +145,20 @@ public class StatementAdapterFactory extends AdapterFactoryImpl {
 				return createPsesudoStatementAdapter();
 			}
 			@Override
+			public Adapter caseFail(Fail object) {
+				return createFailAdapter();
+			}
+			@Override
 			public Adapter caseSkip(Skip object) {
 				return createSkipAdapter();
 			}
 			@Override
 			public Adapter caseAssignStatement(AssignStatement object) {
 				return createAssignStatementAdapter();
+			}
+			@Override
+			public Adapter caseReflectiveAPI(ReflectiveAPI object) {
+				return createReflectiveAPIAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -364,6 +377,20 @@ public class StatementAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.xmu2.statement.ReflectiveDeleteLinkStatement <em>Reflective Delete Link Statement</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.xmu2.statement.ReflectiveDeleteLinkStatement
+	 * @generated
+	 */
+	public Adapter createReflectiveDeleteLinkStatementAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.xmu2.statement.ForEachStatement <em>For Each Statement</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -420,6 +447,20 @@ public class StatementAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.xmu2.statement.Fail <em>Fail</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.xmu2.statement.Fail
+	 * @generated
+	 */
+	public Adapter createFailAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.xmu2.statement.Skip <em>Skip</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -444,6 +485,20 @@ public class StatementAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createAssignStatementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.xmu2.ReflectiveAPI <em>Reflective API</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.xmu2.ReflectiveAPI
+	 * @generated
+	 */
+	public Adapter createReflectiveAPIAdapter() {
 		return null;
 	}
 

@@ -1061,6 +1061,29 @@ public class Xmu2coreItemProviderAdapterFactory extends Xmu2coreAdapterFactory i
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link edu.ustb.sei.mde.xmu2core.CommandStatement} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CommandStatementItemProvider commandStatementItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.ustb.sei.mde.xmu2core.CommandStatement}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCommandStatementAdapter() {
+		if (commandStatementItemProvider == null) {
+			commandStatementItemProvider = new CommandStatementItemProvider(this);
+		}
+
+		return commandStatementItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1202,6 +1225,7 @@ public class Xmu2coreItemProviderAdapterFactory extends Xmu2coreAdapterFactory i
 		if (enforceExpressionStatementItemProvider != null) enforceExpressionStatementItemProvider.dispose();
 		if (functionItemProvider != null) functionItemProvider.dispose();
 		if (solveConstraintStatementItemProvider != null) solveConstraintStatementItemProvider.dispose();
+		if (commandStatementItemProvider != null) commandStatementItemProvider.dispose();
 	}
 
 }

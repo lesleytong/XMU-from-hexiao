@@ -106,6 +106,18 @@ public class AbstractXmu2Interpreter<ResultType, ContextType> {
 		if (result != null) {
 			return result;
 		}
+		if (object instanceof edu.ustb.sei.mde.xmu2.ConcreteVariableDeclaration) {
+			result = interprete_edu_ustb_sei_mde_xmu2_ConcreteVariableDeclaration((edu.ustb.sei.mde.xmu2.ConcreteVariableDeclaration) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
+		if (object instanceof edu.ustb.sei.mde.xmu2.ReflectiveVariableDeclaration) {
+			result = interprete_edu_ustb_sei_mde_xmu2_ReflectiveVariableDeclaration((edu.ustb.sei.mde.xmu2.ReflectiveVariableDeclaration) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
 		if (object instanceof edu.ustb.sei.mde.xmu2.VariableDeclaration) {
 			result = interprete_edu_ustb_sei_mde_xmu2_VariableDeclaration((edu.ustb.sei.mde.xmu2.VariableDeclaration) object, context);
 		}
@@ -114,6 +126,12 @@ public class AbstractXmu2Interpreter<ResultType, ContextType> {
 		}
 		if (object instanceof edu.ustb.sei.mde.xmu2.TypedElement) {
 			result = interprete_edu_ustb_sei_mde_xmu2_TypedElement((edu.ustb.sei.mde.xmu2.TypedElement) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
+		if (object instanceof edu.ustb.sei.mde.xmu2.ReflectiveAPI) {
+			result = interprete_edu_ustb_sei_mde_xmu2_ReflectiveAPI((edu.ustb.sei.mde.xmu2.ReflectiveAPI) object, context);
 		}
 		if (result != null) {
 			return result;
@@ -166,12 +184,6 @@ public class AbstractXmu2Interpreter<ResultType, ContextType> {
 		if (result != null) {
 			return result;
 		}
-		if (object instanceof org.eclipse.emf.ecore.EOperation) {
-			result = interprete_org_eclipse_emf_ecore_EOperation((org.eclipse.emf.ecore.EOperation) object, context);
-		}
-		if (result != null) {
-			return result;
-		}
 		if (object instanceof org.eclipse.emf.ecore.ENamedElement) {
 			result = interprete_org_eclipse_emf_ecore_ENamedElement((org.eclipse.emf.ecore.ENamedElement) object, context);
 		}
@@ -186,6 +198,12 @@ public class AbstractXmu2Interpreter<ResultType, ContextType> {
 		}
 		if (object instanceof org.eclipse.emf.ecore.EObject) {
 			result = interprete_org_eclipse_emf_ecore_EObject((org.eclipse.emf.ecore.EObject) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
+		if (object instanceof org.eclipse.emf.ecore.EOperation) {
+			result = interprete_org_eclipse_emf_ecore_EOperation((org.eclipse.emf.ecore.EOperation) object, context);
 		}
 		if (result != null) {
 			return result;
@@ -250,8 +268,14 @@ public class AbstractXmu2Interpreter<ResultType, ContextType> {
 		if (result != null) {
 			return result;
 		}
-		if (object instanceof edu.ustb.sei.mde.xmu2.statement.DeleteNodeStatement) {
-			result = interprete_edu_ustb_sei_mde_xmu2_statement_DeleteNodeStatement((edu.ustb.sei.mde.xmu2.statement.DeleteNodeStatement) object, context);
+		if (object instanceof edu.ustb.sei.mde.xmu2.statement.ReflectiveDeleteLinkStatement) {
+			result = interprete_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement((edu.ustb.sei.mde.xmu2.statement.ReflectiveDeleteLinkStatement) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
+		if (object instanceof edu.ustb.sei.mde.xmu2.statement.DeleteLinkStatement) {
+			result = interprete_edu_ustb_sei_mde_xmu2_statement_DeleteLinkStatement((edu.ustb.sei.mde.xmu2.statement.DeleteLinkStatement) object, context);
 		}
 		if (result != null) {
 			return result;
@@ -304,8 +328,8 @@ public class AbstractXmu2Interpreter<ResultType, ContextType> {
 		if (result != null) {
 			return result;
 		}
-		if (object instanceof edu.ustb.sei.mde.xmu2.statement.DeleteLinkStatement) {
-			result = interprete_edu_ustb_sei_mde_xmu2_statement_DeleteLinkStatement((edu.ustb.sei.mde.xmu2.statement.DeleteLinkStatement) object, context);
+		if (object instanceof edu.ustb.sei.mde.xmu2.statement.DeleteNodeStatement) {
+			result = interprete_edu_ustb_sei_mde_xmu2_statement_DeleteNodeStatement((edu.ustb.sei.mde.xmu2.statement.DeleteNodeStatement) object, context);
 		}
 		if (result != null) {
 			return result;
@@ -336,6 +360,12 @@ public class AbstractXmu2Interpreter<ResultType, ContextType> {
 		}
 		if (object instanceof edu.ustb.sei.mde.xmu2.statement.RuleCallStatement) {
 			result = interprete_edu_ustb_sei_mde_xmu2_statement_RuleCallStatement((edu.ustb.sei.mde.xmu2.statement.RuleCallStatement) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
+		if (object instanceof edu.ustb.sei.mde.xmu2.statement.Fail) {
+			result = interprete_edu_ustb_sei_mde_xmu2_statement_Fail((edu.ustb.sei.mde.xmu2.statement.Fail) object, context);
 		}
 		if (result != null) {
 			return result;
@@ -376,6 +406,12 @@ public class AbstractXmu2Interpreter<ResultType, ContextType> {
 		if (result != null) {
 			return result;
 		}
+		if (object instanceof edu.ustb.sei.mde.xmu2.pattern.ReflectivePropertyPatternExpression) {
+			result = interprete_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression((edu.ustb.sei.mde.xmu2.pattern.ReflectivePropertyPatternExpression) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
 		if (object instanceof edu.ustb.sei.mde.xmu2.pattern.PropertyPatternExpression) {
 			result = interprete_edu_ustb_sei_mde_xmu2_pattern_PropertyPatternExpression((edu.ustb.sei.mde.xmu2.pattern.PropertyPatternExpression) object, context);
 		}
@@ -384,6 +420,18 @@ public class AbstractXmu2Interpreter<ResultType, ContextType> {
 		}
 		if (object instanceof edu.ustb.sei.mde.xmu2.pattern.PatternExpression) {
 			result = interprete_edu_ustb_sei_mde_xmu2_pattern_PatternExpression((edu.ustb.sei.mde.xmu2.pattern.PatternExpression) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
+		if (object instanceof edu.ustb.sei.mde.xmu2.pattern.ReflectivePatternNode) {
+			result = interprete_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode((edu.ustb.sei.mde.xmu2.pattern.ReflectivePatternNode) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
+		if (object instanceof edu.ustb.sei.mde.xmu2.pattern.ReflectiveObjectPatternExpression) {
+			result = interprete_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression((edu.ustb.sei.mde.xmu2.pattern.ReflectiveObjectPatternExpression) object, context);
 		}
 		if (result != null) {
 			return result;
@@ -472,12 +520,6 @@ public class AbstractXmu2Interpreter<ResultType, ContextType> {
 		if (result != null) {
 			return result;
 		}
-		if (object instanceof edu.ustb.sei.mde.xmu2.expression.ObjectURIExpression) {
-			result = interprete_edu_ustb_sei_mde_xmu2_expression_ObjectURIExpression((edu.ustb.sei.mde.xmu2.expression.ObjectURIExpression) object, context);
-		}
-		if (result != null) {
-			return result;
-		}
 		if (object instanceof edu.ustb.sei.mde.xmu2.expression.ConstantExpression) {
 			result = interprete_edu_ustb_sei_mde_xmu2_expression_ConstantExpression((edu.ustb.sei.mde.xmu2.expression.ConstantExpression) object, context);
 		}
@@ -486,6 +528,12 @@ public class AbstractXmu2Interpreter<ResultType, ContextType> {
 		}
 		if (object instanceof edu.ustb.sei.mde.xmu2.expression.ParenExpression) {
 			result = interprete_edu_ustb_sei_mde_xmu2_expression_ParenExpression((edu.ustb.sei.mde.xmu2.expression.ParenExpression) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
+		if (object instanceof edu.ustb.sei.mde.xmu2.expression.ObjectURIExpression) {
+			result = interprete_edu_ustb_sei_mde_xmu2_expression_ObjectURIExpression((edu.ustb.sei.mde.xmu2.expression.ObjectURIExpression) object, context);
 		}
 		if (result != null) {
 			return result;
@@ -574,6 +622,12 @@ public class AbstractXmu2Interpreter<ResultType, ContextType> {
 		if (result != null) {
 			return result;
 		}
+		if (object instanceof edu.ustb.sei.mde.xmu2common.ReflectiveObject) {
+			result = interprete_edu_ustb_sei_mde_xmu2common_ReflectiveObject((edu.ustb.sei.mde.xmu2common.ReflectiveObject) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
 		return result;
 	}
 	
@@ -613,7 +667,19 @@ public class AbstractXmu2Interpreter<ResultType, ContextType> {
 		return null;
 	}
 	
+	public ResultType interprete_edu_ustb_sei_mde_xmu2_ConcreteVariableDeclaration(edu.ustb.sei.mde.xmu2.ConcreteVariableDeclaration concreteVariableDeclaration, ContextType context) {
+		return null;
+	}
+	
+	public ResultType interprete_edu_ustb_sei_mde_xmu2_ReflectiveVariableDeclaration(edu.ustb.sei.mde.xmu2.ReflectiveVariableDeclaration reflectiveVariableDeclaration, ContextType context) {
+		return null;
+	}
+	
 	public ResultType interprete_edu_ustb_sei_mde_xmu2_TypedElement(edu.ustb.sei.mde.xmu2.TypedElement typedElement, ContextType context) {
+		return null;
+	}
+	
+	public ResultType interprete_edu_ustb_sei_mde_xmu2_ReflectiveAPI(edu.ustb.sei.mde.xmu2.ReflectiveAPI reflectiveAPI, ContextType context) {
 		return null;
 	}
 	
@@ -753,6 +819,10 @@ public class AbstractXmu2Interpreter<ResultType, ContextType> {
 		return null;
 	}
 	
+	public ResultType interprete_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement(edu.ustb.sei.mde.xmu2.statement.ReflectiveDeleteLinkStatement reflectiveDeleteLinkStatement, ContextType context) {
+		return null;
+	}
+	
 	public ResultType interprete_edu_ustb_sei_mde_xmu2_statement_ForEachStatement(edu.ustb.sei.mde.xmu2.statement.ForEachStatement forEachStatement, ContextType context) {
 		return null;
 	}
@@ -766,6 +836,10 @@ public class AbstractXmu2Interpreter<ResultType, ContextType> {
 	}
 	
 	public ResultType interprete_edu_ustb_sei_mde_xmu2_statement_PsesudoStatement(edu.ustb.sei.mde.xmu2.statement.PsesudoStatement psesudoStatement, ContextType context) {
+		return null;
+	}
+	
+	public ResultType interprete_edu_ustb_sei_mde_xmu2_statement_Fail(edu.ustb.sei.mde.xmu2.statement.Fail fail, ContextType context) {
 		return null;
 	}
 	
@@ -794,6 +868,18 @@ public class AbstractXmu2Interpreter<ResultType, ContextType> {
 	}
 	
 	public ResultType interprete_edu_ustb_sei_mde_xmu2_pattern_PropertyPatternExpression(edu.ustb.sei.mde.xmu2.pattern.PropertyPatternExpression propertyPatternExpression, ContextType context) {
+		return null;
+	}
+	
+	public ResultType interprete_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode(edu.ustb.sei.mde.xmu2.pattern.ReflectivePatternNode reflectivePatternNode, ContextType context) {
+		return null;
+	}
+	
+	public ResultType interprete_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression(edu.ustb.sei.mde.xmu2.pattern.ReflectiveObjectPatternExpression reflectiveObjectPatternExpression, ContextType context) {
+		return null;
+	}
+	
+	public ResultType interprete_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression(edu.ustb.sei.mde.xmu2.pattern.ReflectivePropertyPatternExpression reflectivePropertyPatternExpression, ContextType context) {
 		return null;
 	}
 	
@@ -918,6 +1004,10 @@ public class AbstractXmu2Interpreter<ResultType, ContextType> {
 	}
 	
 	public ResultType interprete_edu_ustb_sei_mde_xmu2common_NamedElement(edu.ustb.sei.mde.xmu2common.NamedElement namedElement, ContextType context) {
+		return null;
+	}
+	
+	public ResultType interprete_edu_ustb_sei_mde_xmu2common_ReflectiveObject(edu.ustb.sei.mde.xmu2common.ReflectiveObject reflectiveObject, ContextType context) {
 		return null;
 	}
 	

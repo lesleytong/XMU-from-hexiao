@@ -67,9 +67,11 @@ public class StatementFactoryImpl extends EFactoryImpl implements StatementFacto
 			case StatementPackage.ENFORCE_PATTERN_STATEMENT: return createEnforcePatternStatement();
 			case StatementPackage.DELETE_NODE_STATEMENT: return createDeleteNodeStatement();
 			case StatementPackage.DELETE_LINK_STATEMENT: return createDeleteLinkStatement();
+			case StatementPackage.REFLECTIVE_DELETE_LINK_STATEMENT: return createReflectiveDeleteLinkStatement();
 			case StatementPackage.FOR_EACH_STATEMENT: return createForEachStatement();
 			case StatementPackage.BLOCK_STATEMENT: return createBlockStatement();
 			case StatementPackage.RULE_CALL_STATEMENT: return createRuleCallStatement();
+			case StatementPackage.FAIL: return createFail();
 			case StatementPackage.SKIP: return createSkip();
 			case StatementPackage.ASSIGN_STATEMENT: return createAssignStatement();
 			default:
@@ -212,6 +214,16 @@ public class StatementFactoryImpl extends EFactoryImpl implements StatementFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ReflectiveDeleteLinkStatement createReflectiveDeleteLinkStatement() {
+		ReflectiveDeleteLinkStatementImpl reflectiveDeleteLinkStatement = new ReflectiveDeleteLinkStatementImpl();
+		return reflectiveDeleteLinkStatement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ForEachStatement createForEachStatement() {
 		ForEachStatementImpl forEachStatement = new ForEachStatementImpl();
 		return forEachStatement;
@@ -235,6 +247,16 @@ public class StatementFactoryImpl extends EFactoryImpl implements StatementFacto
 	public RuleCallStatement createRuleCallStatement() {
 		RuleCallStatementImpl ruleCallStatement = new RuleCallStatementImpl();
 		return ruleCallStatement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Fail createFail() {
+		FailImpl fail = new FailImpl();
+		return fail;
 	}
 
 	/**

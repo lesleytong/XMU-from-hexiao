@@ -6,9 +6,13 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
@@ -17,6 +21,7 @@ import edu.ustb.sei.mde.xmu2.runtime.structures.Context;
 import edu.ustb.sei.mde.xmu2.runtime.values.ModelList;
 import edu.ustb.sei.mde.xmu2.runtime.values.FeatureSelectionList;
 import edu.ustb.sei.mde.xmu2.runtime.values.SafeType;
+import edu.ustb.sei.mde.xmu2.util.AnalysisUtil;
 import edu.ustb.sei.mde.xmu2.util.Constants;
 import edu.ustb.sei.mde.xmu2.util.EvaluationUtil;
 import edu.ustb.sei.mde.xmu2core.*;
@@ -284,28 +289,13 @@ public class ExpressionCheckInterpreter extends AbstractInterpreter {
 	}
 	
 	protected SafeType getFeaturePath(SafeType host, Path path, Context context) {
-		if(//host.isInvalid() || 
-				host.isNull()) {
-//			if(path instanceof HelperPath) {
-//				BidirectionalMap<Object, Object> map = context.getEnvironment().getHelperMappings(((HelperPath) path).getHelper().getName());
-//				Object v = map.forward(null);
-//				if(v==null) return SafeType.getInvalid();
-//				return SafeType.createFromValue(v);
-//			}
-//			return SafeType.getInvalid();
+		if(host.isNull()) {
 			if(path instanceof PositionPath) {
 				return SafeType.NULL;
 			} else
 				throw new InvalidCalculationException("invalid path of NULL");
 		}
 		else if(host.isUndefined()) {
-//			if(path instanceof HelperPath) {
-//				BidirectionalMap<Object, Object> map = context.getEnvironment().getHelperMappings(((HelperPath) path).getHelper().getName());
-//				Object v = map.forward(null);
-//				if(v==null) return SafeType.getInvalid();
-//				return SafeType.createFromValue(v);
-//			}
-//			return SafeType.getUndefined();
 			throw new InvalidCalculationException("invalid path of UNDEFINED");
 		}
 		
@@ -313,15 +303,19 @@ public class ExpressionCheckInterpreter extends AbstractInterpreter {
 			EObject o  = host.getObjectValue();
 			if(path instanceof FeaturePath) {
 				EStructuralFeature feature = ((FeaturePath) path).getFeature();
+				
+				// reflective API
+				if(((FeaturePath) path).isReflective()) {
+					try {
+						SafeType expectedFeature = this.resolveReflectiveFeature(o.eClass(), 
+								((FeaturePath) path).getReflectiveIdentifier(), context);
+						feature = (EStructuralFeature) expectedFeature.getValue();
+					} catch(Exception e) {
+						throw new InvalidCalculationException("invalid dynamic feature path");
+					}
+				}
+				
 				return context.getEnvironment().getFeature(o, feature);
-//			} else if(path instanceof HelperPath) {
-//				BidirectionalMap<Object, Object> map = context.getEnvironment().getHelperMappings(((HelperPath) path).getHelper().getName());
-//				Object v = map.forward(host.getValue());
-//				if(v==null) {
-//					if(((HelperPath) path).getHelper().isDefaultEqual()) return host;
-//					return SafeType.getInvalid();
-//				}
-//				return SafeType.createFromValue(v);
 			} else if(path instanceof LoopPath) {
 				List<? extends Object> col = Collections.singletonList(o);
 				return handleLoopPath(col, (LoopPath)path, context);
@@ -333,22 +327,6 @@ public class ExpressionCheckInterpreter extends AbstractInterpreter {
 			} else 
 				throw new InvalidCalculationException("invalid path of EObject");
 		} else {
-//			Object o = host.getValue();
-//			if(path instanceof FeaturePath) {
-//				try{
-//					Field field = o.getClass().getField(((FeaturePath) path).getFeature());
-//					if(field==null) return SafeType.getInvalid();
-//					return SafeType.createFromValue(field.get(o));
-//				} catch(Exception e) {
-//					e.printStackTrace();
-//					return SafeType.getInvalid();
-//				}
-////			} else if(path instanceof HelperPath) {
-////				BidirectionalMap<Object, Object> map = context.getEnvironment().getHelperMappings(((HelperPath) path).getHelper().getName());
-////				Object v = map.forward(host.getValue());
-////				if(v==null) return SafeType.getInvalid();
-////				return SafeType.createFromValue(v);
-//			} else 
 			if(path instanceof LoopPath) {
 				List<?> col = null;
 				if(host.getValue() instanceof List<?>)
@@ -505,4 +483,102 @@ public class ExpressionCheckInterpreter extends AbstractInterpreter {
 	public void executeSolveConstraintStatement(SolveConstraintStatement statement, Context context) {
 		throw new InvalidCalculationException("unsupported execution");
 	}
+
+	@Override
+	public void executeCommandStatement(CommandStatement o, Context context) {
+		if(Constants.CMD_FAIL.equals(o.getCommand())) {
+			for(Object s : o.getParameters())
+				System.out.println(s);
+			
+			throw new FailException("The fail command is executed");
+		}
+	}
+	
+	public SafeType resolveReflectiveClassifier(Expression ri, Context context) {
+		SafeType st = this.executeExpression(ri, context);
+		if(st==Constants.UNDEFINED) 
+			return st;
+		else {
+			String str = st.getStringValue();
+			Transformation t = context.getEnvironment().getTransformation();
+			EClassifier eClassifier = getEClassifier(str,t.getPackages());
+			if(eClassifier==null) {
+				throw new InvalidCalculationException("cannot resolve "+str+" dynamically");
+			} else
+				return SafeType.createFromValue(eClassifier);
+		}
+	}
+	
+	public SafeType desolveReflectiveClassifier(EClassifier cls) {
+		if(cls==Constants.REFLECTIVE_OBJECT)
+			throw new InvalidCalculationException("the reflective object cannot be desolved");
+		
+		EPackage pkg = cls.getEPackage();
+		while(pkg.getESuperPackage()!=null) pkg = pkg.getESuperPackage();
+		return SafeType.createFromValue(pkg.getName() +"!"+cls.getName());
+	}
+	
+	public SafeType resolveReflectiveFeature(EClass hostType, Expression ri, Context context) {
+		SafeType st = this.executeExpression(ri, context);
+		if(st==Constants.UNDEFINED)
+			return st;
+		else {
+			String str = st.getStringValue();
+			EStructuralFeature eStructuralFeature = hostType.getEStructuralFeature(str);
+			if(eStructuralFeature==null) {
+				throw new InvalidCalculationException("cannot resolve " + str + " dynamically");
+			}
+			return SafeType.createFromValue(eStructuralFeature);
+		}
+	}
+	
+	public SafeType desolveReflectiveFeature(EStructuralFeature feature) {
+		if(feature==Constants.DYNAMIC_FEATURE)
+			throw new InvalidCalculationException("the dynamic feature cannot be desolved");
+		return SafeType.createFromValue(feature.getName());
+	}
+	
+	// cloned from ResolverUtil
+	public static EClassifier getEClassifier(
+			String identifier, EList<EPackage> packages) {
+		if(identifier==null) 
+			return null;
+		int indexOf = identifier.indexOf("!");
+		if(indexOf==-1) {
+			for(EPackage pkg : packages) {
+				EClassifier cls = getClassifier(identifier, pkg);
+				if(cls !=null ) return cls;
+			}		
+		} else {
+			String[] buf = identifier.split("!");
+			for(EPackage pkg : packages) {
+				if(pkg.eIsProxy()==false && pkg.getName().equals(buf[0]))
+					return getClassifier(buf[1],pkg);
+			}
+		}
+		return null;
+	}
+	
+	static public EClassifier getClassifier(String identifier, EPackage pkg) {
+		TreeIterator<EObject> it = pkg.eAllContents();
+		while(it.hasNext()) {
+			EObject o = it.next();
+			if(o instanceof EClassifier) {
+				if(identifierMatch(identifier, ((EClassifier)o).getName()))
+					return (EClassifier) o;
+			}
+		}
+		return null;
+	}
+	
+	static public boolean identifierMatch(String identifier, String str) {
+		if(identifier.equals(str)) return true;
+		if(identifier.length()==0) return false;
+		if(identifier.charAt(0)=='_') {
+			if(identifier.substring(1).equals(str))
+				return true;
+		}
+		return false;
+	}
+	// end of the clone
 }

@@ -291,6 +291,14 @@ public class Xmu2coreAdapterFactory extends AdapterFactoryImpl {
 				return createSolveConstraintStatementAdapter();
 			}
 			@Override
+			public Adapter caseCommandStatement(CommandStatement object) {
+				return createCommandStatementAdapter();
+			}
+			@Override
+			public Adapter caseReflectiveSupport(ReflectiveSupport object) {
+				return createReflectiveSupportAdapter();
+			}
+			@Override
 			public Adapter caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
 			}
@@ -1087,6 +1095,34 @@ public class Xmu2coreAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSolveConstraintStatementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.xmu2core.CommandStatement <em>Command Statement</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.xmu2core.CommandStatement
+	 * @generated
+	 */
+	public Adapter createCommandStatementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.xmu2core.ReflectiveSupport <em>Reflective Support</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.xmu2core.ReflectiveSupport
+	 * @generated
+	 */
+	public Adapter createReflectiveSupportAdapter() {
 		return null;
 	}
 

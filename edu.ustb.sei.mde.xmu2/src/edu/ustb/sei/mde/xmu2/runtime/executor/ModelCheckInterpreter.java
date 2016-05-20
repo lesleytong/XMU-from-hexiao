@@ -40,496 +40,17 @@ import edu.ustb.sei.mde.xmu2core.VariableExpression;
 
 public class ModelCheckInterpreter extends ExpressionCheckInterpreter {
 
-	@Override
-	public void executeCheckExpressionStatement(CheckExpressionStatement o, Context context) {
-		if (this.enforceExpression(o.getExpression(), context, Constants.TRUE) == false)
-			throw new InvalidCalculationException("cannot check the epxression");
-	}
-
-	@Override
-	public SafeType executeRelationalExpression(RelationalExpression expression, Context context) {
-
-		if (expression.getOperator() == RelationalOperator.EQUAL) {
-			SafeType left = null;
-			SafeType right = null;
-
-			try {
-				left = this.executeExpression(expression.getLeft(), context);
-			} catch (InvalidCalculationException e) {
-				left = SafeType.UNDEFINED;
-			}
-
-			try {
-				right = this.executeExpression(expression.getRight(), context);
-			} catch (InvalidCalculationException e) {
-				right = SafeType.UNDEFINED;
-			}
-
-			if (left.isUndefined() && right.isUndefined())
-				throw new InvalidCalculationException("the two operands of relational operation are both undefined");
-			else if ((left.isUndefined() || right.isUndefined())) {
-				if (left.isUndefined()) {
-					if (enforceExpression(expression.getLeft(), context, right))
-						return Constants.TRUE;
-					else
-						throw new InvalidCalculationException("relational expression fails");
-				} else {
-					if (enforceExpression(expression.getRight(), context, left))
-						return Constants.TRUE;
-					else
-						throw new InvalidCalculationException("relational expression fails");
-				}
-			}
-
-			if ((left.isNull() && right.isNull()) || (!left.isNull() && left.getValue().equals(right.getValue())))
+	public SafeType checkPattern(Pattern pat, Context c) {
+		try {
+			List<Context> smatches = ContextUtil.match(pat, c);
+			if (smatches.size() > 0) {
+				ContextUtil.merge(c, smatches.get(0));
 				return Constants.TRUE;
-			else {
-				// model check do not change model elements
-				if (enforceExpression(expression.getLeft(), context, right))
-					return Constants.TRUE;
-				else if (enforceExpression(expression.getRight(), context, left))
-					return Constants.TRUE;
+			} else {
 				return Constants.FALSE;
 			}
-
-		} else
-			return super.executeRelationalExpression(expression, context);
-	}
-
-	public boolean enforceExpression(Expression invalid, Context context, SafeType expect) {
-		if (expect.isUndefined())
-			return false;
-
-		if (invalid instanceof BooleanOrExpression) {
-			return enforceBooleanOrExpression((BooleanOrExpression) invalid, context, expect);
-		}
-
-		if (invalid instanceof BooleanAndExpression) {
-			return enforceBooleanAndExpression((BooleanAndExpression) invalid, context, expect);
-		}
-
-		if (invalid instanceof RelationalExpression) {
-			return enforceRelationalExpression((RelationalExpression) invalid, context, expect);
-		}
-
-		if (invalid instanceof AdditiveExpression) {
-			return enforceAdditiveExpression((AdditiveExpression) invalid, context, expect);
-		}
-
-		if (invalid instanceof AtomicExpression)
-			return enforceAtomicExpression((AtomicExpression) invalid, context, expect);
-
-		if (invalid instanceof UnaryExpression)
-			return enforceUnaryExpression((UnaryExpression) invalid, context, expect);
-
-		return false;
-	}
-
-	private boolean enforceRelationalExpression(RelationalExpression invalid, Context context, SafeType expect) {
-		if (expect != Constants.TRUE && expect != Constants.FALSE)
-			return false;
-
-		try {
-			SafeType ret = AbstractInterpreter.EXPRESSION_CHECK.executeExpression(invalid, context);
-			if (ret == expect) {
-				return true;
-			} else {
-				if (invalid.getOperator() == RelationalOperator.EQUAL) {
-					if (expect == Constants.TRUE) {
-						SafeType leftValue = null;
-
-						try {
-							leftValue = AbstractInterpreter.EXPRESSION_CHECK.executeExpression(invalid.getLeft(),
-									context);
-						} catch (Exception e) {
-							leftValue = null;
-						}
-						SafeType rightValue = null;
-
-						try {
-							rightValue = AbstractInterpreter.EXPRESSION_CHECK.executeExpression(invalid.getRight(),
-									context);
-						} catch (Exception e) {
-							rightValue = null;
-						}
-
-						if (leftValue == null && rightValue == null)
-							return false;
-						else {
-							if (leftValue != null && leftValue.isUndefined() == false) {
-								if (enforceExpression(invalid.getRight(), context, leftValue))
-									return true;
-							}
-							if (rightValue != null && rightValue.isUndefined() == false) {
-								if (enforceExpression(invalid.getLeft(), context, rightValue))
-									return true;
-							}
-							return false;
-						}
-					} else {
-						return false;
-					}
-				} else
-					return false;
-			}
 		} catch (Exception e) {
-			return false;
-		}
-	}
-
-	private boolean enforceBooleanAndExpression(BooleanAndExpression invalid, Context context, SafeType expect) {
-		if (expect != Constants.TRUE && expect != Constants.FALSE)
-			return false;
-		try {
-			SafeType ret = AbstractInterpreter.EXPRESSION_CHECK.executeExpression(invalid, context);
-			if (ret == expect) {
-				return true;
-			} else {
-				if (expect == Constants.TRUE) {
-					for (Expression e : invalid.getOperands()) {
-						if (!enforceExpression(e, context, Constants.TRUE))
-							return false;
-					}
-					return true;
-				} else {
-					for (Expression e : invalid.getOperands()) {
-						if (enforceExpression(e, context, Constants.FALSE))
-							return true;
-					}
-					return false;
-				}
-			}
-		} catch (Exception e) {
-			return false;
-		}
-	}
-
-	private boolean enforceBooleanOrExpression(BooleanOrExpression invalid, Context context, SafeType expect) {
-		if (expect != Constants.TRUE && expect != Constants.FALSE)
-			return false;
-		try {
-			SafeType ret = AbstractInterpreter.EXPRESSION_CHECK.executeExpression(invalid, context);
-			if (ret == expect) {
-				return true;
-			} else {
-				if (expect == Constants.TRUE) {
-					for (Expression e : invalid.getOperands()) {
-						if (enforceExpression(e, context, Constants.TRUE))
-							return true;
-					}
-					return false;
-				} else {
-					for (Expression e : invalid.getOperands()) {
-						if (!enforceExpression(e, context, Constants.FALSE))
-							return false;
-					}
-					return true;
-				}
-			}
-		} catch (Exception e) {
-			return false;
-		}
-	}
-
-	protected boolean enforceUnaryExpression(UnaryExpression invalid, Context context, SafeType expect) {
-		if (invalid.getOperator() == UnaryOperator.MINUS) {
-			expect = EvaluationUtil.minus(expect);
-			return enforceExpression(invalid.getBody(), context, expect);
-		} else {
-			if (expect == Constants.TRUE) {
-				return enforceExpression(invalid.getBody(), context, Constants.FALSE);
-			} else if (expect == Constants.FALSE) {
-				return enforceExpression(invalid.getBody(), context, Constants.TRUE);
-			} else
-				return false;
-		}
-	}
-
-	protected boolean enforceAtomicExpression(AtomicExpression invalid, Context context, SafeType expect) {
-		try {
-			if (invalid instanceof VariableExpression) {
-				VariableExpression exp = (VariableExpression) invalid;
-				// if(exp.getVar() instanceof ObjectVariable) return false;
-
-				// I can only support the following patterns:
-				// v(.feature)? = value
-				// v.feature(->select())?->first()/last()/at() = value
-				// v.feature(->select())?->forAll()/exists() = value
-
-				// 1. check the path pattern
-				// 2. handle the pattern by calling one of the handling
-				// operations
-
-				if (isPatternA(exp))
-					return enforceAtomicExpressionPatternA(exp, context, expect);
-				if (isPatternB(exp))
-					return enforceAtomicExpressionPatternB(exp, context, expect);
-				if (isPatternC(exp))
-					return enforceAtomicExpressionPatternC(exp, context, expect);
-
-				return false;
-
-				// } else if(invalid instanceof ParenExpression) {
-				// return enforceExpression(((ParenExpression)
-				// invalid).getBody(),context,expect);
-			}
-			return false;
-		} catch (Exception e) {
-			return false;
-		}
-		// throw new InvalidCalculationException("cannot enforce atomic
-		// expression "+invalid);
-	}
-
-	private boolean enforceAtomicExpressionPatternC(AtomicExpression e, Context context, SafeType expect) {
-		if (e.getPaths().size() == 2) {
-			FeaturePath fp = (FeaturePath) e.getPaths().get(0);
-			LoopPath pp = (LoopPath) e.getPaths().get(1);
-			if (e instanceof VariableExpression) {
-				SafeType t = context.get(((VariableExpression) e).getVariable());
-				return this.enforceFeatureLoop(t, fp.getFeature(), null, pp, expect, context);
-			} else
-				return false;
-		} else {
-			FeaturePath fp = (FeaturePath) e.getPaths().get(0);
-			LoopPath lp = (LoopPath) e.getPaths().get(1);
-			LoopPath pp = (LoopPath) e.getPaths().get(2);
-			if (e instanceof VariableExpression) {
-				SafeType t = context.get(((VariableExpression) e).getVariable());
-				return this.enforceFeatureLoop(t, fp.getFeature(), lp, pp, expect, context);
-			} else
-				return false;
-		}
-	}
-
-	protected boolean enforceFeatureLoop(SafeType host, EStructuralFeature fp, LoopPath loop, LoopPath pp,
-			SafeType expect, Context context) {
-		EObject obj = host.getObjectValue();
-		List<?> list = context.getEnvironment().getFeatureAsFeatureList(obj, fp);
-
-		if (loop != null) {
-			list = (List<?>) this.handleLoopPath(list, loop, context).getValue();
-		}
-
-		if (pp.getOperator() == LoopOperator.FOR_ALL) {
-			return enforceForAll(list, pp, expect, context);
-		} else if (pp.getOperator() == LoopOperator.FOR_ALL) {
-			return enforceExists(list, pp, expect, context);
-		} else
-			return false;
-	}
-
-	private boolean enforceExists(List<?> list, LoopPath loop, SafeType expect, Context context) {
-
-		if (expect == Constants.TRUE) {
-			for (Object o : list) {
-				Context inner = context.createInnerContext();
-				inner.registerVariable(loop.getIterator());
-				inner.put(loop.getIterator(), SafeType.createFromValue(o));
-				if (this.enforceExpression(loop.getBody(), inner, Constants.TRUE))
-					return true;
-			}
-			return false;
-		} else {
-			for (Object o : list) {
-				Context inner = context.createInnerContext();
-				inner.registerVariable(loop.getIterator());
-				inner.put(loop.getIterator(), SafeType.createFromValue(o));
-				if (this.enforceExpression(loop.getBody(), inner, Constants.FALSE) == false)
-					return false;
-			}
-			return true;
-		}
-	}
-
-	private boolean enforceForAll(List<?> list, LoopPath loop, SafeType expect, Context context) {
-		if (expect == Constants.TRUE) {
-			for (Object o : list) {
-				Context inner = context.createInnerContext();
-				inner.registerVariable(loop.getIterator());
-				inner.put(loop.getIterator(), SafeType.createFromValue(o));
-				if (this.enforceExpression(loop.getBody(), inner, Constants.TRUE) == false)
-					return false;
-			}
-			return true;
-		} else {
-			for (Object o : list) {
-				Context inner = context.createInnerContext();
-				inner.registerVariable(loop.getIterator());
-				inner.put(loop.getIterator(), SafeType.createFromValue(o));
-				if (this.enforceExpression(loop.getBody(), inner, Constants.FALSE))
-					return true;
-			}
-
-			return false;
-		}
-	}
-
-	private boolean isPatternA(AtomicExpression e) {
-		if (e.getPaths().size() != 0 && e.getPaths().size() != 1)
-			return false;
-		else {
-			boolean shortForm = e.getPaths().isEmpty();
-
-			Path p1 = shortForm ? null : e.getPaths().get(0);
-			
-			if(p1==null || p1 instanceof FeaturePath)
-				return true;
-
-			return false;
-		}
-	}
-
-	private boolean isPatternB(AtomicExpression e) {
-		if (e.getPaths().size() != 2 && e.getPaths().size() != 3)
-			return false;
-		else {
-			boolean shortForm = e.getPaths().size() == 2;
-
-			Path p1 = e.getPaths().get(0);
-			Path p2 = shortForm ? null : e.getPaths().get(1);
-			Path p3 = shortForm ? e.getPaths().get(1) : e.getPaths().get(2);
-
-			if (p1 instanceof FeaturePath) {
-				if (p3 instanceof PositionPath) {
-					if (p2 == null)
-						return true;
-
-					if (p2 instanceof LoopPath && ((LoopPath) p2).getOperator() == LoopOperator.SELECT)
-						return true;
-				}
-			}
-
-			return false;
-		}
-	}
-
-	private boolean isPatternC(AtomicExpression e) {
-		if (e.getPaths().size() != 2 && e.getPaths().size() != 3)
-			return false;
-		else {
-			boolean shortForm = e.getPaths().size() == 2;
-
-			Path p1 = e.getPaths().get(0);
-			Path p2 = shortForm ? null : e.getPaths().get(1);
-			Path p3 = shortForm ? e.getPaths().get(1) : e.getPaths().get(2);
-
-			if (p1 instanceof FeaturePath) {
-				if (p3 instanceof LoopPath && ((LoopPath) p3).getOperator() != LoopOperator.SELECT) {
-					if (p2 == null)
-						return true;
-
-					if (p2 instanceof LoopPath && ((LoopPath) p2).getOperator() == LoopOperator.SELECT)
-						return true;
-				}
-			}
-
-			return false;
-		}
-	}
-
-	private boolean enforceAtomicExpressionPatternB(AtomicExpression e, Context context, SafeType expect) {
-		if (e.getPaths().size() == 2) {
-			FeaturePath fp = (FeaturePath) e.getPaths().get(0);
-			PositionPath pp = (PositionPath) e.getPaths().get(1);
-			if (e instanceof VariableExpression) {
-				SafeType t = context.get(((VariableExpression) e).getVariable());
-				return this.enforceFeatureSelector(t, fp.getFeature(), null, pp, expect, context);
-			} else
-				return false;
-		} else {
-			FeaturePath fp = (FeaturePath) e.getPaths().get(0);
-			LoopPath lp = (LoopPath) e.getPaths().get(1);
-			PositionPath pp = (PositionPath) e.getPaths().get(2);
-			if (e instanceof VariableExpression) {
-				SafeType t = context.get(((VariableExpression) e).getVariable());
-				return this.enforceFeatureSelector(t, fp.getFeature(), lp, pp, expect, context);
-			} else
-				return false;
-		}
-	}
-
-	/**
-	 * this method is intended to be overridden to support model enforcement
-	 */
-	protected boolean enforceFeatureSelector(SafeType host, EStructuralFeature fp, LoopPath loop, PositionPath position,
-			SafeType val, Context context) {
-
-		EObject obj = host.getObjectValue();
-		List<?> list = context.getEnvironment().getFeatureAsFeatureList(obj, fp);
-
-		if (loop != null) {
-			list = (List<?>) this.handleLoopPath(list, loop, context).getValue();
-		}
-
-		if (position == null) {
-			if (list.contains(val.getValue())) {
-				return true;
-			} else
-				return false;
-		} else {
-			SafeType id = this.calculatePositionPath(position, context);
-
-			if (id.isUndefined()) {
-				int idx = list.indexOf(val.getValue());
-
-				if (idx >= 0) {
-					if (position.getOperator() != PositionOperator.AT) {
-						return false;
-					}
-
-					if (this.enforceExpression(position.getValue(), context, SafeType.createFromValue(idx)))
-						return true;
-					else
-						return false;
-				} else
-					// insert val into list
-					return false;
-			} else {
-				if (id.isNull())
-					return false;
-
-				if (!id.isInteger())
-					return false;
-
-				// FIXME list[id] = val
-				if (list.contains(val.getValue()))
-					return true;
-				else
-					// insert val into list
-					return false;
-			}
-		}
-	}
-
-	private boolean enforceAtomicExpressionPatternA(AtomicExpression e, Context context, SafeType expect) {
-		if (e.getPaths().isEmpty()) {
-			if (e instanceof VariableExpression) {
-				VariableExpression exp = (VariableExpression) e;
-				SafeType oldValue = context.get(exp.getVariable());
-				if (oldValue.isUndefined() == false) {
-					if (oldValue != expect && oldValue.getValue() != expect.getValue()
-							&& oldValue.getValue().equals(expect.getValue()) == false)
-						return false;
-					else
-						return true;
-				} else {
-					context.put(exp.getVariable(), expect);
-					return true;
-				}
-			} else
-				return false;
-		} else {
-			FeaturePath path = (FeaturePath) e.getPaths().get(0);
-			VariableExpression exp = (VariableExpression) e;
-
-			SafeType host = context.get(exp.getVariable());
-
-			if (host.isUndefined() || host.isNull())
-				return false;
-			else {
-				return enforceFeatureSelector(host, path.getFeature(), null, null, expect, context);
-			}
+			return Constants.FALSE;
 		}
 	}
 
@@ -643,6 +164,326 @@ public class ModelCheckInterpreter extends ExpressionCheckInterpreter {
 		}
 	}
 
+	protected boolean enforceAtomicExpression(AtomicExpression invalid, Context context, SafeType expect) {
+		try {
+			if (invalid instanceof VariableExpression) {
+				VariableExpression exp = (VariableExpression) invalid;
+				// if(exp.getVar() instanceof ObjectVariable) return false;
+
+				// I can only support the following patterns:
+				// v(.feature)? = value
+				// v.feature(->select())?->first()/last()/at() = value
+				// v.feature(->select())?->forAll()/exists() = value
+
+				// 1. check the path pattern
+				// 2. handle the pattern by calling one of the handling
+				// operations
+
+				if (isPatternA(exp))
+					return enforceVariableExpressionPatternA(exp, context, expect);
+				if (isPatternB(exp))
+					return enforceVariableExpressionPatternB(exp, context, expect);
+				if (isPatternC(exp))
+					return enforceVariableExpressionPatternC(exp, context, expect);
+
+				return false;
+
+				// } else if(invalid instanceof ParenExpression) {
+				// return enforceExpression(((ParenExpression)
+				// invalid).getBody(),context,expect);
+			}
+			return false;
+		} catch (Exception e) {
+			return false;
+		}
+		// throw new InvalidCalculationException("cannot enforce atomic
+		// expression "+invalid);
+	}
+
+	private boolean enforceBooleanAndExpression(BooleanAndExpression invalid, Context context, SafeType expect) {
+		if (expect != Constants.TRUE && expect != Constants.FALSE)
+			return false;
+		try {
+			SafeType ret = AbstractInterpreter.EXPRESSION_CHECK.executeExpression(invalid, context);
+			if (ret == expect) {
+				return true;
+			} else {
+				if (expect == Constants.TRUE) {
+					for (Expression e : invalid.getOperands()) {
+						if (!enforceExpression(e, context, Constants.TRUE))
+							return false;
+					}
+					return true;
+				} else {
+					for (Expression e : invalid.getOperands()) {
+						if (enforceExpression(e, context, Constants.FALSE))
+							return true;
+					}
+					return false;
+				}
+			}
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	private boolean enforceBooleanOrExpression(BooleanOrExpression invalid, Context context, SafeType expect) {
+		if (expect != Constants.TRUE && expect != Constants.FALSE)
+			return false;
+		try {
+			SafeType ret = AbstractInterpreter.EXPRESSION_CHECK.executeExpression(invalid, context);
+			if (ret == expect) {
+				return true;
+			} else {
+				if (expect == Constants.TRUE) {
+					for (Expression e : invalid.getOperands()) {
+						if (enforceExpression(e, context, Constants.TRUE))
+							return true;
+					}
+					return false;
+				} else {
+					for (Expression e : invalid.getOperands()) {
+						if (!enforceExpression(e, context, Constants.FALSE))
+							return false;
+					}
+					return true;
+				}
+			}
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	private boolean enforceExists(List<?> list, LoopPath loop, SafeType expect, Context context) {
+
+		if (expect == Constants.TRUE) {
+			for (Object o : list) {
+				Context inner = context.createInnerContext();
+				inner.registerVariable(loop.getIterator());
+				inner.put(loop.getIterator(), SafeType.createFromValue(o));
+				if (this.enforceExpression(loop.getBody(), inner, Constants.TRUE))
+					return true;
+			}
+			return false;
+		} else {
+			for (Object o : list) {
+				Context inner = context.createInnerContext();
+				inner.registerVariable(loop.getIterator());
+				inner.put(loop.getIterator(), SafeType.createFromValue(o));
+				if (this.enforceExpression(loop.getBody(), inner, Constants.FALSE) == false)
+					return false;
+			}
+			return true;
+		}
+	}
+
+	public boolean enforceExpression(Expression invalid, Context context, SafeType expect) {
+		if (expect.isUndefined())
+			return false;
+
+		if (invalid instanceof BooleanOrExpression) {
+			return enforceBooleanOrExpression((BooleanOrExpression) invalid, context, expect);
+		}
+
+		if (invalid instanceof BooleanAndExpression) {
+			return enforceBooleanAndExpression((BooleanAndExpression) invalid, context, expect);
+		}
+
+		if (invalid instanceof RelationalExpression) {
+			return enforceRelationalExpression((RelationalExpression) invalid, context, expect);
+		}
+
+		if (invalid instanceof AdditiveExpression) {
+			return enforceAdditiveExpression((AdditiveExpression) invalid, context, expect);
+		}
+
+		if (invalid instanceof AtomicExpression)
+			return enforceAtomicExpression((AtomicExpression) invalid, context, expect);
+
+		if (invalid instanceof UnaryExpression)
+			return enforceUnaryExpression((UnaryExpression) invalid, context, expect);
+
+		return false;
+	}
+
+	protected boolean enforceFeatureLoop(SafeType host, EStructuralFeature fp, LoopPath loop, LoopPath pp,
+			SafeType expect, Context context) {
+		EObject obj = host.getObjectValue();
+		List<?> list = context.getEnvironment().getFeatureAsFeatureList(obj, fp);
+
+		if (loop != null) {
+			list = (List<?>) this.handleLoopPath(list, loop, context).getValue();
+		}
+
+		if (pp.getOperator() == LoopOperator.FOR_ALL) {
+			return enforceForAll(list, pp, expect, context);
+		} else if (pp.getOperator() == LoopOperator.FOR_ALL) {
+			return enforceExists(list, pp, expect, context);
+		} else
+			return false;
+	}
+
+	/**
+	 * this method is intended to be overridden to support model enforcement
+	 */
+	protected boolean enforceFeatureSelector(SafeType host, EStructuralFeature fp, LoopPath loop, PositionPath position,
+			SafeType val, Context context) {
+
+		EObject obj = host.getObjectValue();
+		List<?> list = context.getEnvironment().getFeatureAsFeatureList(obj, fp);
+
+		if (loop != null) {
+			list = (List<?>) this.handleLoopPath(list, loop, context).getValue();
+		}
+
+		if (position == null) {
+			if (list.contains(val.getValue())) {
+				return true;
+			} else
+				return false;
+		} else {
+			SafeType id = this.calculatePositionPath(position, context);
+
+			if (id.isUndefined()) {
+				int idx = list.indexOf(val.getValue());
+
+				if (idx >= 0) {
+					if (position.getOperator() != PositionOperator.AT) {
+						return false;
+					}
+
+					if (this.enforceExpression(position.getValue(), context, SafeType.createFromValue(idx)))
+						return true;
+					else
+						return false;
+				} else
+					// insert val into list
+					return false;
+			} else {
+				if (id.isNull())
+					return false;
+
+				if (!id.isInteger())
+					return false;
+
+				// FIXME list[id] = val
+				if (list.contains(val.getValue()))
+					return true;
+				else
+					// insert val into list
+					return false;
+			}
+		}
+	}
+
+	private boolean enforceForAll(List<?> list, LoopPath loop, SafeType expect, Context context) {
+		if (expect == Constants.TRUE) {
+			for (Object o : list) {
+				Context inner = context.createInnerContext();
+				inner.registerVariable(loop.getIterator());
+				inner.put(loop.getIterator(), SafeType.createFromValue(o));
+				if (this.enforceExpression(loop.getBody(), inner, Constants.TRUE) == false)
+					return false;
+			}
+			return true;
+		} else {
+			for (Object o : list) {
+				Context inner = context.createInnerContext();
+				inner.registerVariable(loop.getIterator());
+				inner.put(loop.getIterator(), SafeType.createFromValue(o));
+				if (this.enforceExpression(loop.getBody(), inner, Constants.FALSE))
+					return true;
+			}
+
+			return false;
+		}
+	}
+
+	protected boolean enforceLink(Variable source, EStructuralFeature feature, LoopPath loop, PositionPath position,
+			Expression target, Context context) {
+		SafeType val = this.executeExpression(target, context);
+
+		try {
+			if (val.isUndefined()) {
+				SafeType expect = this.getFeatureFromPropertyPatternExpression(source, feature, loop, position,
+						context);
+
+				if (expect.isUndefined())
+					return false;
+
+				List<?> list = (List<?>) expect.getValue();
+				int size = list.size();
+				if (size == 0) {
+					expect = Constants.NULL;
+				} else if (size >= 1) {
+					expect = SafeType.createFromValue(list.get(0));
+				}
+
+				if (this.enforceExpression(target, context, expect))
+					return true;
+				else
+					return false;
+			} else {
+				SafeType safeType = context.get(source);
+				return this.enforceFeatureSelector(safeType, feature, loop, position, val, context);
+			}
+		} catch (Exception e) {
+			throw new InvalidCalculationException("cannot enforce property pattern expression");
+		}
+	}
+
+	private boolean enforceRelationalExpression(RelationalExpression invalid, Context context, SafeType expect) {
+		if (expect != Constants.TRUE && expect != Constants.FALSE)
+			return false;
+
+		try {
+			SafeType ret = AbstractInterpreter.EXPRESSION_CHECK.executeExpression(invalid, context);
+			if (ret == expect) {
+				return true;
+			} else {
+				if (invalid.getOperator() == RelationalOperator.EQUAL) {
+					if (expect == Constants.TRUE) {
+						SafeType leftValue = null;
+
+						try {
+							leftValue = AbstractInterpreter.EXPRESSION_CHECK.executeExpression(invalid.getLeft(),
+									context);
+						} catch (Exception e) {
+							leftValue = null;
+						}
+						SafeType rightValue = null;
+
+						try {
+							rightValue = AbstractInterpreter.EXPRESSION_CHECK.executeExpression(invalid.getRight(),
+									context);
+						} catch (Exception e) {
+							rightValue = null;
+						}
+
+						if (leftValue == null && rightValue == null)
+							return false;
+						else {
+							if (leftValue != null && leftValue.isUndefined() == false) {
+								if (enforceExpression(invalid.getRight(), context, leftValue))
+									return true;
+							}
+							if (rightValue != null && rightValue.isUndefined() == false) {
+								if (enforceExpression(invalid.getLeft(), context, rightValue))
+									return true;
+							}
+							return false;
+						}
+					} else {
+						return false;
+					}
+				} else
+					return false;
+			}
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
 	protected boolean enforceStringPattern(String expectString, StringPattern pattern, Context context) {
 
 		List<StringPatternElement> patternDef = pattern.getPattern();
@@ -698,33 +539,207 @@ public class ModelCheckInterpreter extends ExpressionCheckInterpreter {
 		return true;
 	}
 
-	protected int getPosition(String expectString, int fromIndex, StringPattern pattern, int elemIndex, int lastCount) {
-		StringConstant elem = (StringConstant) pattern.getPattern().get(elemIndex);
-
-		if (lastCount == 0)
-			return expectString.indexOf(elem.getConstant(), fromIndex);
-		else {
-			int id = 0;
-			int endIndex = expectString.length() - 1;
-			while (lastCount > 0) {
-				id = expectString.lastIndexOf(elem.getConstant(), endIndex);
-				if (id == -1)
-					break;
-				endIndex = id - 1;// skip expectString[id]
-				lastCount--;
-			}
-			return id;
+	protected boolean enforceUnaryExpression(UnaryExpression invalid, Context context, SafeType expect) {
+		if (invalid.getOperator() == UnaryOperator.MINUS) {
+			expect = EvaluationUtil.minus(expect);
+			return enforceExpression(invalid.getBody(), context, expect);
+		} else {
+			if (expect == Constants.TRUE) {
+				return enforceExpression(invalid.getBody(), context, Constants.FALSE);
+			} else if (expect == Constants.FALSE) {
+				return enforceExpression(invalid.getBody(), context, Constants.TRUE);
+			} else
+				return false;
 		}
 	}
 
-	public SafeType matchPattern(Pattern pattern, Context context) {
-		List<Context> smatches = ContextUtil.match(pattern, context);
-		if (smatches.size() > 0) {
-			ContextUtil.merge(context, smatches.get(0));
-			return Constants.TRUE;
+	private boolean enforceVariableExpressionPatternA(VariableExpression e, Context context, SafeType expect) {
+		if (e.getPaths().isEmpty()) {
+			VariableExpression exp = (VariableExpression) e;
+			SafeType oldValue = context.get(exp.getVariable());
+			if (oldValue.isUndefined() == false) {
+				if (oldValue != expect && oldValue.getValue() != expect.getValue()
+						&& oldValue.getValue().equals(expect.getValue()) == false)
+					return false;
+				else
+					return true;
+			} else {
+				context.put(exp.getVariable(), expect);
+				return true;
+			}
 		} else {
-			return Constants.FALSE;
+			FeaturePath path = (FeaturePath) e.getPaths().get(0);
+			VariableExpression exp = e;
+
+			SafeType host = context.get(exp.getVariable());
+
+			if (host.isUndefined() || host.isNull())
+				return false;
+			else {
+				EStructuralFeature feature = path.getFeature();
+				
+				// Reflective API
+				if (path.isReflective()) {
+					try {
+						SafeType expectedFeature = this.resolveReflectiveFeature(host.getObjectValue().eClass(),
+								((FeaturePath) path).getReflectiveIdentifier(), context);
+						feature = (EStructuralFeature) expectedFeature.getValue();
+					} catch (Exception exception) {
+						throw new InvalidCalculationException("invalid dynamic feature path");
+					}
+				}
+				
+				return enforceFeatureSelector(host, feature , null, null, expect, context);
+			}
 		}
+	}
+
+	private boolean enforceVariableExpressionPatternB(VariableExpression e, Context context, SafeType expect) {
+		if (e.getPaths().size() == 2) {
+			FeaturePath fp = (FeaturePath) e.getPaths().get(0);
+			PositionPath pp = (PositionPath) e.getPaths().get(1);
+			SafeType t = context.get(((VariableExpression) e).getVariable());
+			EStructuralFeature feature = fp.getFeature();
+			
+			
+			// Reflective API
+			if (fp.isReflective()) {
+				try {
+					SafeType expectedFeature = this.resolveReflectiveFeature(t.getObjectValue().eClass(),
+							((FeaturePath) fp).getReflectiveIdentifier(), context);
+					feature = (EStructuralFeature) expectedFeature.getValue();
+				} catch (Exception exception) {
+					throw new InvalidCalculationException("invalid dynamic feature path");
+				}
+			}
+			
+			return this.enforceFeatureSelector(t, feature, null, pp, expect, context);
+		} else {
+			FeaturePath fp = (FeaturePath) e.getPaths().get(0);
+			LoopPath lp = (LoopPath) e.getPaths().get(1);
+			PositionPath pp = (PositionPath) e.getPaths().get(2);
+			SafeType t = context.get(((VariableExpression) e).getVariable());
+			
+			EStructuralFeature feature = fp.getFeature();
+			
+			// Reflective API
+			if (fp.isReflective()) {
+				try {
+					SafeType expectedFeature = this.resolveReflectiveFeature(t.getObjectValue().eClass(),
+							((FeaturePath) fp).getReflectiveIdentifier(), context);
+					feature = (EStructuralFeature) expectedFeature.getValue();
+				} catch (Exception exception) {
+					throw new InvalidCalculationException("invalid dynamic feature path");
+				}
+			}
+			
+			return this.enforceFeatureSelector(t, feature, lp, pp, expect, context);
+		}
+	}
+
+	private boolean enforceVariableExpressionPatternC(VariableExpression e, Context context, SafeType expect) {
+		if (e.getPaths().size() == 2) {
+			FeaturePath fp = (FeaturePath) e.getPaths().get(0);
+			LoopPath pp = (LoopPath) e.getPaths().get(1);
+			SafeType t = context.get(((VariableExpression) e).getVariable());
+			
+			EStructuralFeature feature = fp.getFeature();
+			
+			// Reflective API
+			if (fp.isReflective()) {
+				try {
+					SafeType expectedFeature = this.resolveReflectiveFeature(t.getObjectValue().eClass(),
+							((FeaturePath) fp).getReflectiveIdentifier(), context);
+					feature = (EStructuralFeature) expectedFeature.getValue();
+				} catch (Exception exception) {
+					throw new InvalidCalculationException("invalid dynamic feature path");
+				}
+			}
+			
+			return this.enforceFeatureLoop(t, feature, null, pp, expect, context);
+		} else {
+			FeaturePath fp = (FeaturePath) e.getPaths().get(0);
+			LoopPath lp = (LoopPath) e.getPaths().get(1);
+			LoopPath pp = (LoopPath) e.getPaths().get(2);
+			SafeType t = context.get(((VariableExpression) e).getVariable());
+			
+			EStructuralFeature feature = fp.getFeature();
+			
+			// Reflective API
+			if (fp.isReflective()) {
+				try {
+					SafeType expectedFeature = this.resolveReflectiveFeature(t.getObjectValue().eClass(),
+							((FeaturePath) fp).getReflectiveIdentifier(), context);
+					feature = (EStructuralFeature) expectedFeature.getValue();
+				} catch (Exception exception) {
+					throw new InvalidCalculationException("invalid dynamic feature path");
+				}
+			}
+			return this.enforceFeatureLoop(t, feature, lp, pp, expect, context);
+		}
+	}
+
+	@Override
+	public void executeCheckExpressionStatement(CheckExpressionStatement o, Context context) {
+		if (this.enforceExpression(o.getExpression(), context, Constants.TRUE) == false)
+			throw new InvalidCalculationException("cannot check the epxression");
+	}
+
+	@Override
+	public void executeMatchPatternStatement(MatchPattern o, Context context) {
+		SafeType ret = this.checkPattern(o.getPattern(), context);
+		if (ret != Constants.TRUE)
+			throw new InvalidCalculationException("pattern matching failed");
+	}
+
+	@Override
+	public SafeType executeRelationalExpression(RelationalExpression expression, Context context) {
+
+		if (expression.getOperator() == RelationalOperator.EQUAL) {
+			SafeType left = null;
+			SafeType right = null;
+
+			try {
+				left = this.executeExpression(expression.getLeft(), context);
+			} catch (InvalidCalculationException e) {
+				left = SafeType.UNDEFINED;
+			}
+
+			try {
+				right = this.executeExpression(expression.getRight(), context);
+			} catch (InvalidCalculationException e) {
+				right = SafeType.UNDEFINED;
+			}
+
+			if (left.isUndefined() && right.isUndefined())
+				throw new InvalidCalculationException("the two operands of relational operation are both undefined");
+			else if ((left.isUndefined() || right.isUndefined())) {
+				if (left.isUndefined()) {
+					if (enforceExpression(expression.getLeft(), context, right))
+						return Constants.TRUE;
+					else
+						throw new InvalidCalculationException("relational expression fails");
+				} else {
+					if (enforceExpression(expression.getRight(), context, left))
+						return Constants.TRUE;
+					else
+						throw new InvalidCalculationException("relational expression fails");
+				}
+			}
+
+			if ((left.isNull() && right.isNull()) || (!left.isNull() && left.getValue().equals(right.getValue())))
+				return Constants.TRUE;
+			else {
+				// model check do not change model elements
+				if (enforceExpression(expression.getLeft(), context, right))
+					return Constants.TRUE;
+				else if (enforceExpression(expression.getRight(), context, left))
+					return Constants.TRUE;
+				return Constants.FALSE;
+			}
+
+		} else
+			return super.executeRelationalExpression(expression, context);
 	}
 
 	protected SafeType getFeatureFromPropertyPatternExpression(Variable var, EStructuralFeature feature, LoopPath loop,
@@ -754,36 +769,61 @@ public class ModelCheckInterpreter extends ExpressionCheckInterpreter {
 		}
 	}
 
-	protected boolean enforceLink(Variable source, EStructuralFeature feature, LoopPath loop, PositionPath position,
-			Expression target, Context context) {
-		SafeType val = this.executeExpression(target, context);
+	protected int getPosition(String expectString, int fromIndex, StringPattern pattern, int elemIndex, int lastCount) {
+		StringConstant elem = (StringConstant) pattern.getPattern().get(elemIndex);
 
-		try {
-			if (val.isUndefined()) {
-				SafeType expect = this.getFeatureFromPropertyPatternExpression(source, feature, loop, position,
-						context);
-
-				if (expect.isUndefined())
-					return false;
-
-				List<?> list = (List<?>) expect.getValue();
-				int size = list.size();
-				if (size == 0) {
-					expect = Constants.NULL;
-				} else if (size >= 1) {
-					expect = SafeType.createFromValue(list.get(0));
-				}
-
-				if (this.enforceExpression(target, context, expect))
-					return true;
-				else
-					return false;
-			} else {
-				SafeType safeType = context.get(source);
-				return this.enforceFeatureSelector(safeType, feature, loop, position, val, context);
+		if (lastCount == 0)
+			return expectString.indexOf(elem.getConstant(), fromIndex);
+		else {
+			int id = 0;
+			int endIndex = expectString.length() - 1;
+			while (lastCount > 0) {
+				id = expectString.lastIndexOf(elem.getConstant(), endIndex);
+				if (id == -1)
+					break;
+				endIndex = id - 1;// skip expectString[id]
+				lastCount--;
 			}
-		} catch (Exception e) {
-			throw new InvalidCalculationException("cannot enforce property pattern expression");
+			return id;
+		}
+	}
+
+	private boolean isPatternA(AtomicExpression e) {
+		if (e.getPaths().size() != 0 && e.getPaths().size() != 1)
+			return false;
+		else {
+			boolean shortForm = e.getPaths().isEmpty();
+
+			Path p1 = shortForm ? null : e.getPaths().get(0);
+			
+			if(p1==null || p1 instanceof FeaturePath)
+				return true;
+
+			return false;
+		}
+	}
+
+	private boolean isPatternB(AtomicExpression e) {
+		if (e.getPaths().size() != 2 && e.getPaths().size() != 3)
+			return false;
+		else {
+			boolean shortForm = e.getPaths().size() == 2;
+
+			Path p1 = e.getPaths().get(0);
+			Path p2 = shortForm ? null : e.getPaths().get(1);
+			Path p3 = shortForm ? e.getPaths().get(1) : e.getPaths().get(2);
+
+			if (p1 instanceof FeaturePath) {
+				if (p3 instanceof PositionPath) {
+					if (p2 == null)
+						return true;
+
+					if (p2 instanceof LoopPath && ((LoopPath) p2).getOperator() == LoopOperator.SELECT)
+						return true;
+				}
+			}
+
+			return false;
 		}
 	}
 
@@ -877,24 +917,37 @@ public class ModelCheckInterpreter extends ExpressionCheckInterpreter {
 	//// }
 	// }
 
-	public SafeType checkPattern(Pattern pat, Context c) {
-		try {
-			List<Context> smatches = ContextUtil.match(pat, c);
-			if (smatches.size() > 0) {
-				ContextUtil.merge(c, smatches.get(0));
-				return Constants.TRUE;
-			} else {
-				return Constants.FALSE;
+	private boolean isPatternC(AtomicExpression e) {
+		if (e.getPaths().size() != 2 && e.getPaths().size() != 3)
+			return false;
+		else {
+			boolean shortForm = e.getPaths().size() == 2;
+
+			Path p1 = e.getPaths().get(0);
+			Path p2 = shortForm ? null : e.getPaths().get(1);
+			Path p3 = shortForm ? e.getPaths().get(1) : e.getPaths().get(2);
+
+			if (p1 instanceof FeaturePath) {
+				if (p3 instanceof LoopPath && ((LoopPath) p3).getOperator() != LoopOperator.SELECT) {
+					if (p2 == null)
+						return true;
+
+					if (p2 instanceof LoopPath && ((LoopPath) p2).getOperator() == LoopOperator.SELECT)
+						return true;
+				}
 			}
-		} catch (Exception e) {
-			return Constants.FALSE;
+
+			return false;
 		}
 	}
 
-	@Override
-	public void executeMatchPatternStatement(MatchPattern o, Context context) {
-		SafeType ret = this.checkPattern(o.getPattern(), context);
-		if (ret != Constants.TRUE)
-			throw new InvalidCalculationException("pattern matching failed");
+	public SafeType matchPattern(Pattern pattern, Context context) {
+		List<Context> smatches = ContextUtil.match(pattern, context);
+		if (smatches.size() > 0) {
+			ContextUtil.merge(context, smatches.get(0));
+			return Constants.TRUE;
+		} else {
+			return Constants.FALSE;
+		}
 	}
 }

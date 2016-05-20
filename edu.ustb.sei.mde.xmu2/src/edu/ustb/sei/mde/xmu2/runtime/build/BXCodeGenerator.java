@@ -23,6 +23,8 @@ import edu.ustb.sei.mde.xmu2.EntryData;
 import edu.ustb.sei.mde.xmu2.EntryPoint;
 import edu.ustb.sei.mde.xmu2.ModelRule;
 import edu.ustb.sei.mde.xmu2.Parameter;
+import edu.ustb.sei.mde.xmu2.ReflectiveAPI;
+import edu.ustb.sei.mde.xmu2.ReflectiveVariableDeclaration;
 import edu.ustb.sei.mde.xmu2.TransformationModel;
 import edu.ustb.sei.mde.xmu2.VariableDeclaration;
 import edu.ustb.sei.mde.xmu2.Xmu2Package;
@@ -35,6 +37,7 @@ import edu.ustb.sei.mde.xmu2.expression.ObjectURIExpression;
 import edu.ustb.sei.mde.xmu2.expression.PathExpression;
 import edu.ustb.sei.mde.xmu2.expression.StringLiteralExpression;
 import edu.ustb.sei.mde.xmu2.pattern.PatternPackage;
+import edu.ustb.sei.mde.xmu2.pattern.ReflectivePatternNode;
 import edu.ustb.sei.mde.xmu2.runtime.exceptions.BuildException;
 import edu.ustb.sei.mde.xmu2.statement.ActionType;
 import edu.ustb.sei.mde.xmu2.statement.AssignStatement;
@@ -42,6 +45,7 @@ import edu.ustb.sei.mde.xmu2.statement.BlockStatement;
 import edu.ustb.sei.mde.xmu2.statement.DefaultCaseClause;
 import edu.ustb.sei.mde.xmu2.statement.EnforcePatternStatement;
 import edu.ustb.sei.mde.xmu2.statement.ExpressionCaseClause;
+import edu.ustb.sei.mde.xmu2.statement.Fail;
 import edu.ustb.sei.mde.xmu2.statement.PatternCaseClause;
 import edu.ustb.sei.mde.xmu2.statement.RuleCallStatement;
 import edu.ustb.sei.mde.xmu2.statement.Skip;
@@ -65,6 +69,7 @@ import edu.ustb.sei.mde.xmu2core.CasePatternClause;
 import edu.ustb.sei.mde.xmu2core.CaseStatement;
 import edu.ustb.sei.mde.xmu2core.CaseStatementClause;
 import edu.ustb.sei.mde.xmu2core.CheckExpressionStatement;
+import edu.ustb.sei.mde.xmu2core.CommandStatement;
 import edu.ustb.sei.mde.xmu2core.DeleteLinkStatement;
 import edu.ustb.sei.mde.xmu2core.DeleteNodeStatement;
 import edu.ustb.sei.mde.xmu2core.EmptyValueExpression;
@@ -424,9 +429,8 @@ public class BXCodeGenerator {
 				stmt.setConstraint(and);
 				return Collections.singletonList(stmt);
 			}
-		}
-		
-		throw new BuildException("the function should not contain "+statement);
+		} else 
+			return convertFunctionStatementInCommon(statement,varMap,transformation);
 		
 	}
 	
@@ -495,26 +499,70 @@ public class BXCodeGenerator {
 			rel.setRight(convertExpression(((AssignStatement) statement).getValue(), varMap, false));
 			enforce.setExpression(rel);
 			return Collections.singletonList(enforce);
-		}
+		} else 
+			return convertFunctionStatementInCommon(statement,varMap,transformation);
 		
-		throw new BuildException("the function should not contain "+statement);
 		
 	}
 	
-//	private void registerVariable(EObject e,
-//			SolveConstraintStatement stmt, VarMapStack varMap, boolean update) {
-//		if(e instanceof edu.ustb.sei.mde.xmu2.expression.VariableExpression) {
-//			String vn = update ? AnalysisUtil.getUpdatedSourceVariableName(((edu.ustb.sei.mde.xmu2.expression.VariableExpression) e).getVariable())
-//						: AnalysisUtil.getNonUpdatedSourceVariableName(((edu.ustb.sei.mde.xmu2.expression.VariableExpression) e).getVariable());
-//			
-//			Variable v = varMap.get(vn);
-//			stmt.getVariables().add(v);
-//		} else {
-//			for(EObject o : e.eContents()) {
-//				registerVariable(o, stmt, varMap, update);
+	private List<Statement> convertFunctionStatementInCommon(edu.ustb.sei.mde.xmu2.statement.Statement statement, 
+			VarMapStack varMap, Transformation transformation) {
+//		if(statement instanceof edu.ustb.sei.mde.xmu2.statement.BlockStatement) {
+////			edu.ustb.sei.mde.xmu2core.BlockStatement result = Xmu2coreFactory.eINSTANCE.createBlockStatement();
+//			List<Statement> result = new ArrayList<Statement>();
+//			for(edu.ustb.sei.mde.xmu2.statement.Statement stmt : ((edu.ustb.sei.mde.xmu2.statement.BlockStatement) statement).getBody()) {
+//				result.addAll(this.convertStatementInBackwardMode(stmt,varMap,transformation));
 //			}
-//		}
-//	}
+//			return result;
+//		} else 
+			if(statement instanceof Fail) {
+			CommandStatement stmt = Xmu2coreFactory.eINSTANCE.createCommandStatement();
+			stmt.setCommand(Constants.CMD_FAIL);
+			stmt.getParameters().add(((Fail) statement).getMessage());
+			return Collections.singletonList(stmt);
+		}
+		throw new BuildException("the function should not contain "+statement);
+	}
+	
+
+	private List<Statement> convertStatementInCommon(edu.ustb.sei.mde.xmu2.statement.Statement statement, 
+			VarMapStack varMap, Transformation transformation) {
+		if(statement instanceof RuleCallStatement) {
+			String ruleName = ((RuleCallStatement) statement).getRule().getName();
+			Callable p = null;
+			
+			for(Callable ip : transformation.getCallables()) {
+				if(ip.getName().equals(ruleName)) {
+					p = ip;
+					break;
+				}
+			}
+			
+			edu.ustb.sei.mde.xmu2core.CallStatement stmt = Xmu2coreFactory.eINSTANCE.createCallStatement();
+			stmt.setCallable(p);
+			for(edu.ustb.sei.mde.xmu2.expression.Expression e : ((RuleCallStatement) statement).getParameters()) {
+				stmt.getParameters().add(convertExpression(e, varMap, false));
+				stmt.getUpdatedParameters().add(convertExpression(e,varMap,true));
+			}
+			return Collections.singletonList(stmt);
+			
+		} else if(statement instanceof edu.ustb.sei.mde.xmu2.statement.BlockStatement) {
+//			edu.ustb.sei.mde.xmu2core.BlockStatement result = Xmu2coreFactory.eINSTANCE.createBlockStatement();
+			List<Statement> result = new ArrayList<Statement>();
+			for(edu.ustb.sei.mde.xmu2.statement.Statement stmt : ((edu.ustb.sei.mde.xmu2.statement.BlockStatement) statement).getBody()) {
+				result.addAll(this.convertStatementInBackwardMode(stmt,varMap,transformation));
+			}
+			return result;
+		} else if(statement instanceof Skip) {
+			return Collections.EMPTY_LIST;
+		} else if(statement instanceof Fail) {
+			CommandStatement stmt = Xmu2coreFactory.eINSTANCE.createCommandStatement();
+			stmt.setCommand(Constants.CMD_FAIL);
+			stmt.getParameters().add(((Fail) statement).getMessage());
+			return Collections.singletonList(stmt);
+		}
+		throw new BuildException("Unconverted statement "+statement);
+	}
 
 	private List<Statement> convertStatementInBackwardMode(edu.ustb.sei.mde.xmu2.statement.Statement statement, 
 			VarMapStack varMap, Transformation transformation) {
@@ -676,25 +724,6 @@ public class BXCodeGenerator {
 			}
 			
 			return Collections.singletonList(stmt);
-		} else if(statement instanceof RuleCallStatement) {
-			String ruleName = ((RuleCallStatement) statement).getRule().getName();
-			Callable p = null;
-			
-			for(Callable ip : transformation.getCallables()) {
-				if(ip.getName().equals(ruleName)) {
-					p = ip;
-					break;
-				}
-			}
-			
-			edu.ustb.sei.mde.xmu2core.CallStatement stmt = Xmu2coreFactory.eINSTANCE.createCallStatement();
-			stmt.setCallable(p);
-			for(edu.ustb.sei.mde.xmu2.expression.Expression e : ((RuleCallStatement) statement).getParameters()) {
-				stmt.getParameters().add(convertExpression(e, varMap, false));
-				stmt.getUpdatedParameters().add(convertExpression(e,varMap,true));
-			}
-			return Collections.singletonList(stmt);
-			
 		} else if(statement instanceof EnforcePatternStatement) {
 			refreshVariableTypes(varMap,true,((EnforcePatternStatement) statement).getPattern());
 			return convertPatternEnforcementStatement(((EnforcePatternStatement) statement).getPattern(),varMap,true);
@@ -714,6 +743,14 @@ public class BXCodeGenerator {
 			stmt.setSource(pv);
 			stmt.setFeature(f);
 			stmt.setTarget(convertExpression(((edu.ustb.sei.mde.xmu2.statement.DeleteLinkStatement) statement).getTarget(),varMap,true));
+			
+			//Reflective API
+			if(statement instanceof ReflectiveAPI) {
+				stmt.setReflective(true);
+				edu.ustb.sei.mde.xmu2.expression.Expression re = ((ReflectiveAPI)statement).getReflectiveIdentifier();
+				stmt.setReflectiveIdentifier(this.convertExpression(re, varMap, true));
+			}
+			
 			return Collections.singletonList(stmt);
 		} else if(statement instanceof edu.ustb.sei.mde.xmu2.statement.ForEachStatement) {
 			varMap.push();
@@ -728,16 +765,41 @@ public class BXCodeGenerator {
 			varMap.pop();
 			return Collections.singletonList(stmt);
 		} else if(statement instanceof edu.ustb.sei.mde.xmu2.statement.BlockStatement) {
-//			edu.ustb.sei.mde.xmu2core.BlockStatement result = Xmu2coreFactory.eINSTANCE.createBlockStatement();
 			List<Statement> result = new ArrayList<Statement>();
 			for(edu.ustb.sei.mde.xmu2.statement.Statement stmt : ((edu.ustb.sei.mde.xmu2.statement.BlockStatement) statement).getBody()) {
 				result.addAll(this.convertStatementInBackwardMode(stmt,varMap,transformation));
 			}
 			return result;
-		} else if(statement instanceof Skip) {
-			return Collections.EMPTY_LIST;
-		}
-		throw new BuildException("Unconverted statement "+statement);
+		} else 
+			return convertStatementInCommon(statement, varMap, transformation);
+//		else if(statement instanceof RuleCallStatement) {
+//			String ruleName = ((RuleCallStatement) statement).getRule().getName();
+//			Callable p = null;
+//			
+//			for(Callable ip : transformation.getCallables()) {
+//				if(ip.getName().equals(ruleName)) {
+//					p = ip;
+//					break;
+//				}
+//			}
+//			
+//			edu.ustb.sei.mde.xmu2core.CallStatement stmt = Xmu2coreFactory.eINSTANCE.createCallStatement();
+//			stmt.setCallable(p);
+//			for(edu.ustb.sei.mde.xmu2.expression.Expression e : ((RuleCallStatement) statement).getParameters()) {
+//				stmt.getParameters().add(convertExpression(e, varMap, false));
+//				stmt.getUpdatedParameters().add(convertExpression(e,varMap,true));
+//			}
+//			return Collections.singletonList(stmt);
+//			
+//		} else if(statement instanceof Skip) {
+//			return Collections.EMPTY_LIST;
+//		} else if(statement instanceof Fail) {
+//			CommandStatement stmt = Xmu2coreFactory.eINSTANCE.createCommandStatement();
+//			stmt.setCommand(Constants.CMD_FAIL);
+//			stmt.getParameters().add(((Fail) statement).getMessage());
+//			return Collections.singletonList(stmt);
+//		}
+//		throw new BuildException("Unconverted statement "+statement);
 	}
 	
 
@@ -898,25 +960,6 @@ public class BXCodeGenerator {
 			}
 			
 			return Collections.singletonList(stmt);
-		} else if(statement instanceof RuleCallStatement) {
-			String ruleName = ((RuleCallStatement) statement).getRule().getName();
-			Callable p = null;
-			
-			for(Callable ip : transformation.getCallables()) {
-				if(ip.getName().equals(ruleName)) {
-					p = ip;
-					break;
-				}
-			}
-			
-			edu.ustb.sei.mde.xmu2core.CallStatement stmt = Xmu2coreFactory.eINSTANCE.createCallStatement();
-			stmt.setCallable(p);
-			for(edu.ustb.sei.mde.xmu2.expression.Expression e : ((RuleCallStatement) statement).getParameters()) {
-				stmt.getParameters().add(convertExpression(e, varMap, false));
-				stmt.getUpdatedParameters().add(convertExpression(e,varMap,true));
-			}
-			return Collections.singletonList(stmt);
-			
 		} else if(statement instanceof EnforcePatternStatement) {
 			refreshVariableTypes(varMap,true,((EnforcePatternStatement) statement).getPattern());
 			MatchPattern mps = Xmu2coreFactory.eINSTANCE.createMatchPattern();
@@ -938,6 +981,14 @@ public class BXCodeGenerator {
 			stmt.setSource(pv);
 			stmt.setFeature(f);
 			stmt.setTarget(convertExpression(((edu.ustb.sei.mde.xmu2.statement.DeleteLinkStatement) statement).getTarget(),varMap,true));
+			
+			//Reflective API
+			if(statement instanceof ReflectiveAPI) {
+				stmt.setReflective(true);
+				edu.ustb.sei.mde.xmu2.expression.Expression re = ((ReflectiveAPI)statement).getReflectiveIdentifier();
+				stmt.setReflectiveIdentifier(this.convertExpression(re, varMap, true));
+			}
+			
 			return Collections.singletonList(stmt);
 		} else if(statement instanceof edu.ustb.sei.mde.xmu2.statement.ForEachStatement) {
 			varMap.push();
@@ -958,10 +1009,35 @@ public class BXCodeGenerator {
 				result.addAll(this.convertStatementInForwardMode(stmt,varMap,transformation));
 			}
 			return result;
-		} else if(statement instanceof Skip) {
-			return Collections.EMPTY_LIST;
-		}
-		throw new BuildException("Unconverted statement "+statement);
+		} else return convertStatementInCommon(statement, varMap, transformation); 
+//		else if(statement instanceof RuleCallStatement) {
+//			String ruleName = ((RuleCallStatement) statement).getRule().getName();
+//			Callable p = null;
+//			
+//			for(Callable ip : transformation.getCallables()) {
+//				if(ip.getName().equals(ruleName)) {
+//					p = ip;
+//					break;
+//				}
+//			}
+//			
+//			edu.ustb.sei.mde.xmu2core.CallStatement stmt = Xmu2coreFactory.eINSTANCE.createCallStatement();
+//			stmt.setCallable(p);
+//			for(edu.ustb.sei.mde.xmu2.expression.Expression e : ((RuleCallStatement) statement).getParameters()) {
+//				stmt.getParameters().add(convertExpression(e, varMap, false));
+//				stmt.getUpdatedParameters().add(convertExpression(e,varMap,true));
+//			}
+//			return Collections.singletonList(stmt);
+//			
+//		} else if(statement instanceof Skip) {
+//			return Collections.EMPTY_LIST;
+//		} else if(statement instanceof Fail) {
+//			CommandStatement stmt = Xmu2coreFactory.eINSTANCE.createCommandStatement();
+//			stmt.setCommand(Constants.CMD_FAIL);
+//			stmt.getParameters().add(((Fail) statement).getMessage());
+//			return Collections.singletonList(stmt);
+//		}
+//		throw new BuildException("Unconverted statement "+statement);
 	}
 	
 	private void refreshAssignedVariablesFromExpression(Expression condition, VarMapStack varMap, boolean handleCorelated) {
@@ -1120,7 +1196,15 @@ public class BXCodeGenerator {
 			s.setType(t);
 			s.setTag((updatedSource ? DomainTag.UPDATED_SOURCE : DomainTag.VIEW));
 			stmt.add(s);
+
+			// reflective API
+			if(root instanceof ReflectiveAPI) {
+				edu.ustb.sei.mde.xmu2.expression.Expression re = ((ReflectiveAPI)root).getReflectiveIdentifier();
+				s.setReflective(true);
+				s.setReflectiveIdentifier(this.convertExpression(re, varMap, updatedSource));
+			}
 		}
+		
 		
 		for(edu.ustb.sei.mde.xmu2.pattern.PatternExpression e : root.getExpressions()) {
 			convertPatternExpressionEnforcement(e, stmt, varMap, updatedSource);
@@ -1148,7 +1232,10 @@ public class BXCodeGenerator {
 			EnforceNodeStatement ens = this.convertPatternNodeEnforcement(targetNode, stmt, varMap, updatedSource);			
 
 			if(targetNode.getVariable().getType() instanceof EClass) {
-				if (!f.isMany()) {
+				// FIXME if f is dynamic, the following code does not work well
+				// perhaps I need a reflective feature path which is check only 
+				if (!f.isMany() 
+						|| f==Constants.DYNAMIC_FEATURE) {
 					edu.ustb.sei.mde.xmu2core.VariableExpression exp = Xmu2coreFactory.eINSTANCE
 							.createVariableExpression();
 					exp.setVariable(sv);
@@ -1156,6 +1243,12 @@ public class BXCodeGenerator {
 					fp.setFeature(f);
 					exp.getPaths().add(fp);
 					ens.setCandidate(exp);
+					
+					if(f==Constants.DYNAMIC_FEATURE) {
+						fp.setReflective(true);
+						edu.ustb.sei.mde.xmu2.expression.Expression ri = ((ReflectiveAPI)e).getReflectiveIdentifier();
+						fp.setReflectiveIdentifier(this.convertExpression(ri, varMap, updatedSource));
+					}
 				}
 				
 				ens.setNullable(e.isNullable());
@@ -1178,6 +1271,14 @@ public class BXCodeGenerator {
 			el.setSelector((edu.ustb.sei.mde.xmu2core.LoopPath)convertPath(null,e.getSelector(), varMap,updatedSource));
 			el.setPosition((edu.ustb.sei.mde.xmu2core.PositionPath)convertPath(null,e.getPosition(), varMap,updatedSource));
 			stmt.add(el);
+			
+			//Reflective API
+			if(e instanceof ReflectiveAPI) {
+				el.setReflective(true);
+				edu.ustb.sei.mde.xmu2.expression.Expression re = ((ReflectiveAPI)e).getReflectiveIdentifier();
+				el.setReflectiveIdentifier(this.convertExpression(re, varMap, updatedSource));
+			}
+			
 			return;
 		} else if(e instanceof edu.ustb.sei.mde.xmu2.pattern.PropertyPatternExpression) {
 			Variable sv = updatedSource ? 
@@ -1193,6 +1294,14 @@ public class BXCodeGenerator {
 			el.setSelector((edu.ustb.sei.mde.xmu2core.LoopPath)convertPath(null,e.getSelector(), varMap,updatedSource));
 			el.setPosition((edu.ustb.sei.mde.xmu2core.PositionPath)convertPath(null,e.getPosition(), varMap,updatedSource));
 			stmt.add(el);
+			
+			//Reflective API
+			if(e instanceof ReflectiveAPI) {
+				el.setReflective(true);
+				edu.ustb.sei.mde.xmu2.expression.Expression re = ((ReflectiveAPI)e).getReflectiveIdentifier();
+				el.setReflectiveIdentifier(this.convertExpression(re, varMap, updatedSource));
+			}
+			
 			return;
 		}
 		throw new BuildException("Unconverted pattern expression enforcement");
@@ -1535,6 +1644,13 @@ public class BXCodeGenerator {
 			n.setVariable(v);
 			n.setType((EClass)node.getVariable().getType());
 			
+			//Reflective API
+			if(node instanceof ReflectiveAPI) {
+				n.setReflective(true);
+				edu.ustb.sei.mde.xmu2.expression.Expression re = ((ReflectiveAPI)node).getReflectiveIdentifier();
+				n.setReflectiveIdentifier(this.convertExpression(re, varMap, false));
+			}
+			
 			for(edu.ustb.sei.mde.xmu2.pattern.PatternExpression pe : node.getExpressions()) {
 				n.getExpressions().add(convertPatternExpressionMatching(n,pe,varMap));
 			}
@@ -1558,6 +1674,14 @@ public class BXCodeGenerator {
 				npe.setPosition((edu.ustb.sei.mde.xmu2core.PositionPath)convertPath(null,pe.getPosition(),varMap,false));
 				npe.setTarget((edu.ustb.sei.mde.xmu2core.PatternNode)target);
 				npe.setNullable(pe.isNullable());
+				
+				//Reflective API
+				if(pe instanceof ReflectiveAPI) {
+					npe.setReflective(true);
+					edu.ustb.sei.mde.xmu2.expression.Expression re = ((ReflectiveAPI)pe).getReflectiveIdentifier();
+					npe.setReflectiveIdentifier(this.convertExpression(re, varMap, false));
+				}
+				
 				return npe;
 			} else if(target instanceof edu.ustb.sei.mde.xmu2core.VariableExpression){
 				edu.ustb.sei.mde.xmu2core.PropertyPatternExpression npe = Xmu2coreFactory.eINSTANCE.createPropertyPatternExpression();
@@ -1566,6 +1690,14 @@ public class BXCodeGenerator {
 				npe.setPosition((edu.ustb.sei.mde.xmu2core.PositionPath)convertPath(null,pe.getPosition(),varMap,false));
 				npe.setTarget((edu.ustb.sei.mde.xmu2core.VariableExpression)target);
 				npe.setNullable(pe.isNullable());
+				
+				//Reflective API
+				if(pe instanceof ReflectiveAPI) {
+					npe.setReflective(true);
+					edu.ustb.sei.mde.xmu2.expression.Expression re = ((ReflectiveAPI)pe).getReflectiveIdentifier();
+					npe.setReflectiveIdentifier(this.convertExpression(re, varMap, false));
+				}
+				
 				return npe;
 			}
 		} else if(pe instanceof edu.ustb.sei.mde.xmu2.pattern.PropertyPatternExpression) {
@@ -1575,6 +1707,14 @@ public class BXCodeGenerator {
 			npe.setPosition((edu.ustb.sei.mde.xmu2core.PositionPath)convertPath(null,pe.getPosition(),varMap,false));
 			npe.setTarget(convertExpression(((edu.ustb.sei.mde.xmu2.pattern.PropertyPatternExpression) pe).getTargetExpression(), varMap,false));
 			npe.setNullable(pe.isNullable());
+			
+			//Reflective API
+			if(pe instanceof ReflectiveAPI) {
+				npe.setReflective(true);
+				edu.ustb.sei.mde.xmu2.expression.Expression re = ((ReflectiveAPI)pe).getReflectiveIdentifier();
+				npe.setReflectiveIdentifier(this.convertExpression(re, varMap, false));
+			}
+			
 			return npe;
 		}
 		throw new BuildException("Unconverted pattern expression");

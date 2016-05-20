@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link edu.ustb.sei.mde.xmu2common.ReflectiveObject#getEContainer <em>EContainer</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2common.ReflectiveObject#getEContents <em>EContents</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2common.ReflectiveObject#getEAllContents <em>EAll Contents</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.xmu2common.ReflectiveObject#getEDynamticFeature <em>EDynamtic Feature</em>}</li>
  * </ul>
  *
  * @see edu.ustb.sei.mde.xmu2common.Xmu2commonPackage#getReflectiveObject()
@@ -71,5 +72,21 @@ public interface ReflectiveObject extends EObject {
 	 * @generated
 	 */
 	EList<EObject> getEAllContents();
+
+	/**
+	 * Returns the value of the '<em><b>EDynamtic Feature</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.Object}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>EDynamtic Feature</em>' attribute list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>EDynamtic Feature</em>' attribute list.
+	 * @see edu.ustb.sei.mde.xmu2common.Xmu2commonPackage#getReflectiveObject_EDynamticFeature()
+	 * @model
+	 * @generated
+	 */
+	EList<Object> getEDynamticFeature();
 
 } // ReflectiveObject

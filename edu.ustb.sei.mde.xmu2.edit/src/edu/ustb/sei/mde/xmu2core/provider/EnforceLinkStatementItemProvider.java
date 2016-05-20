@@ -52,6 +52,7 @@ public class EnforceLinkStatementItemProvider extends StatementItemProvider {
 			super.getPropertyDescriptors(object);
 
 			addTagPropertyDescriptor(object);
+			addReflectivePropertyDescriptor(object);
 			addSourcePropertyDescriptor(object);
 			addFeaturePropertyDescriptor(object);
 			addSourceTypePropertyDescriptor(object);
@@ -77,6 +78,28 @@ public class EnforceLinkStatementItemProvider extends StatementItemProvider {
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Reflective feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addReflectivePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ReflectiveSupport_reflective_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ReflectiveSupport_reflective_feature", "_UI_ReflectiveSupport_type"),
+				 Xmu2corePackage.Literals.REFLECTIVE_SUPPORT__REFLECTIVE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -159,6 +182,7 @@ public class EnforceLinkStatementItemProvider extends StatementItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
+			childrenFeatures.add(Xmu2corePackage.Literals.REFLECTIVE_SUPPORT__REFLECTIVE_IDENTIFIER);
 			childrenFeatures.add(Xmu2corePackage.Literals.ENFORCE_LINK_STATEMENT__TARGET);
 			childrenFeatures.add(Xmu2corePackage.Literals.ENFORCE_LINK_STATEMENT__SELECTOR);
 			childrenFeatures.add(Xmu2corePackage.Literals.ENFORCE_LINK_STATEMENT__POSITION);
@@ -219,8 +243,10 @@ public class EnforceLinkStatementItemProvider extends StatementItemProvider {
 
 		switch (notification.getFeatureID(EnforceLinkStatement.class)) {
 			case Xmu2corePackage.ENFORCE_LINK_STATEMENT__TAG:
+			case Xmu2corePackage.ENFORCE_LINK_STATEMENT__REFLECTIVE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
+			case Xmu2corePackage.ENFORCE_LINK_STATEMENT__REFLECTIVE_IDENTIFIER:
 			case Xmu2corePackage.ENFORCE_LINK_STATEMENT__TARGET:
 			case Xmu2corePackage.ENFORCE_LINK_STATEMENT__SELECTOR:
 			case Xmu2corePackage.ENFORCE_LINK_STATEMENT__POSITION:
@@ -240,6 +266,81 @@ public class EnforceLinkStatementItemProvider extends StatementItemProvider {
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.REFLECTIVE_SUPPORT__REFLECTIVE_IDENTIFIER,
+				 Xmu2coreFactory.eINSTANCE.createBooleanOrExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.REFLECTIVE_SUPPORT__REFLECTIVE_IDENTIFIER,
+				 Xmu2coreFactory.eINSTANCE.createBooleanAndExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.REFLECTIVE_SUPPORT__REFLECTIVE_IDENTIFIER,
+				 Xmu2coreFactory.eINSTANCE.createRelationalExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.REFLECTIVE_SUPPORT__REFLECTIVE_IDENTIFIER,
+				 Xmu2coreFactory.eINSTANCE.createAdditiveExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.REFLECTIVE_SUPPORT__REFLECTIVE_IDENTIFIER,
+				 Xmu2coreFactory.eINSTANCE.createMultiplicativeExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.REFLECTIVE_SUPPORT__REFLECTIVE_IDENTIFIER,
+				 Xmu2coreFactory.eINSTANCE.createUnaryExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.REFLECTIVE_SUPPORT__REFLECTIVE_IDENTIFIER,
+				 Xmu2coreFactory.eINSTANCE.createTypeCastExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.REFLECTIVE_SUPPORT__REFLECTIVE_IDENTIFIER,
+				 Xmu2coreFactory.eINSTANCE.createStringValueExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.REFLECTIVE_SUPPORT__REFLECTIVE_IDENTIFIER,
+				 Xmu2coreFactory.eINSTANCE.createBooleanValueExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.REFLECTIVE_SUPPORT__REFLECTIVE_IDENTIFIER,
+				 Xmu2coreFactory.eINSTANCE.createIntegerValueExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.REFLECTIVE_SUPPORT__REFLECTIVE_IDENTIFIER,
+				 Xmu2coreFactory.eINSTANCE.createEnumValueExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.REFLECTIVE_SUPPORT__REFLECTIVE_IDENTIFIER,
+				 Xmu2coreFactory.eINSTANCE.createEmptyValueExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.REFLECTIVE_SUPPORT__REFLECTIVE_IDENTIFIER,
+				 Xmu2coreFactory.eINSTANCE.createObjectValueExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.REFLECTIVE_SUPPORT__REFLECTIVE_IDENTIFIER,
+				 Xmu2coreFactory.eINSTANCE.createVariableExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.REFLECTIVE_SUPPORT__REFLECTIVE_IDENTIFIER,
+				 Xmu2coreFactory.eINSTANCE.createEntryRuleParameter()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -325,6 +426,29 @@ public class EnforceLinkStatementItemProvider extends StatementItemProvider {
 			(createChildParameter
 				(Xmu2corePackage.Literals.ENFORCE_LINK_STATEMENT__POSITION,
 				 Xmu2coreFactory.eINSTANCE.createPositionPath()));
+	}
+
+	/**
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
+		Object childFeature = feature;
+		Object childObject = child;
+
+		boolean qualify =
+			childFeature == Xmu2corePackage.Literals.REFLECTIVE_SUPPORT__REFLECTIVE_IDENTIFIER ||
+			childFeature == Xmu2corePackage.Literals.ENFORCE_LINK_STATEMENT__TARGET;
+
+		if (qualify) {
+			return getString
+				("_UI_CreateChild_text2",
+				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+		}
+		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 }

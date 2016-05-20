@@ -409,6 +409,15 @@ public interface Xmu2coreFactory extends EFactory {
 	SolveConstraintStatement createSolveConstraintStatement();
 
 	/**
+	 * Returns a new object of class '<em>Command Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Command Statement</em>'.
+	 * @generated
+	 */
+	CommandStatement createCommandStatement();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

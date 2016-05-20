@@ -122,6 +122,9 @@ public class Xmu2TokenStyleInformationProvider {
 		if ("skip".equals(tokenName)) {
 			return new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
 		}
+		if ("fail".equals(tokenName)) {
+			return new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
+		}
 		if ("otherwise".equals(tokenName)) {
 			return new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
 		}

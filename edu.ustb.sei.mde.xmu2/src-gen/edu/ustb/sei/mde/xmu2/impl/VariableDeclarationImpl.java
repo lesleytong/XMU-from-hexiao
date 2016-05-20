@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class VariableDeclarationImpl extends NamedElementImpl implements VariableDeclaration {
+public abstract class VariableDeclarationImpl extends NamedElementImpl implements VariableDeclaration {
 	/**
 	 * The cached value of the '{@link #getType() <em>Type</em>}' reference.
 	 * <!-- begin-user-doc -->

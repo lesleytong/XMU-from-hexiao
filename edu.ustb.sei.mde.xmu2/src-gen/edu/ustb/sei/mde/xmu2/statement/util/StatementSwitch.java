@@ -2,6 +2,7 @@
  */
 package edu.ustb.sei.mde.xmu2.statement.util;
 
+import edu.ustb.sei.mde.xmu2.ReflectiveAPI;
 import edu.ustb.sei.mde.xmu2.statement.*;
 
 import org.eclipse.emf.ecore.EObject;
@@ -166,6 +167,16 @@ public class StatementSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case StatementPackage.REFLECTIVE_DELETE_LINK_STATEMENT: {
+				ReflectiveDeleteLinkStatement reflectiveDeleteLinkStatement = (ReflectiveDeleteLinkStatement)theEObject;
+				T result = caseReflectiveDeleteLinkStatement(reflectiveDeleteLinkStatement);
+				if (result == null) result = caseDeleteLinkStatement(reflectiveDeleteLinkStatement);
+				if (result == null) result = caseReflectiveAPI(reflectiveDeleteLinkStatement);
+				if (result == null) result = caseUnidirectionalStatement(reflectiveDeleteLinkStatement);
+				if (result == null) result = caseStatement(reflectiveDeleteLinkStatement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case StatementPackage.FOR_EACH_STATEMENT: {
 				ForEachStatement forEachStatement = (ForEachStatement)theEObject;
 				T result = caseForEachStatement(forEachStatement);
@@ -193,6 +204,14 @@ public class StatementSwitch<T> extends Switch<T> {
 				PsesudoStatement psesudoStatement = (PsesudoStatement)theEObject;
 				T result = casePsesudoStatement(psesudoStatement);
 				if (result == null) result = caseStatement(psesudoStatement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case StatementPackage.FAIL: {
+				Fail fail = (Fail)theEObject;
+				T result = caseFail(fail);
+				if (result == null) result = casePsesudoStatement(fail);
+				if (result == null) result = caseStatement(fail);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -426,6 +445,21 @@ public class StatementSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Reflective Delete Link Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Reflective Delete Link Statement</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseReflectiveDeleteLinkStatement(ReflectiveDeleteLinkStatement object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>For Each Statement</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -486,6 +520,21 @@ public class StatementSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Fail</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Fail</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFail(Fail object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Skip</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -512,6 +561,21 @@ public class StatementSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseAssignStatement(AssignStatement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Reflective API</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Reflective API</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseReflectiveAPI(ReflectiveAPI object) {
 		return null;
 	}
 

@@ -93,7 +93,7 @@ public class ValidityChecker
 					EStructuralFeature f = e.getFeature();
 					EClassifier tarType = ((ObjectPatternExpression) e).getTargetNode().getVariable().getType();
 					
-					if(!AnalysisUtil.isSuperTypeOf(f.getEType(), tarType)) {
+					if(!AnalysisUtil.isSuperTypeOf(f.getEType(), tarType) ) {
 						resource.addWarning("type inconsistency", Xmu2EProblemType.ANALYSIS_PROBLEM, e);
 					}
 				}
@@ -121,6 +121,7 @@ public class ValidityChecker
 						resource.addError("you cannot use the AssignStatement in a model rule", Xmu2EProblemType.SYNTAX_ERROR, o);
 					}
 				} else if(o instanceof edu.ustb.sei.mde.xmu2.statement.BlockStatement) {
+				} else if(o instanceof edu.ustb.sei.mde.xmu2.statement.Fail) {
 				} else {
 					if(isArithmeticRule)
 						resource.addError("you cannot use this statement in a function", Xmu2EProblemType.SYNTAX_ERROR, o);

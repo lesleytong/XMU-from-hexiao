@@ -14,6 +14,7 @@ import edu.ustb.sei.mde.xmu2.runtime.structures.Context;
 import edu.ustb.sei.mde.xmu2.runtime.values.SafeType;
 import edu.ustb.sei.mde.xmu2common.DomainTag;
 import edu.ustb.sei.mde.xmu2core.AlignStatement;
+import edu.ustb.sei.mde.xmu2core.CallStatement;
 import edu.ustb.sei.mde.xmu2core.CaseClause;
 import edu.ustb.sei.mde.xmu2core.CaseExpressionClause;
 import edu.ustb.sei.mde.xmu2core.CasePatternClause;
@@ -29,7 +30,6 @@ import edu.ustb.sei.mde.xmu2core.LoopPath;
 import edu.ustb.sei.mde.xmu2core.MatchPattern;
 import edu.ustb.sei.mde.xmu2core.PositionPath;
 import edu.ustb.sei.mde.xmu2core.Procedure;
-import edu.ustb.sei.mde.xmu2core.CallStatement;
 import edu.ustb.sei.mde.xmu2core.Statement;
 import edu.ustb.sei.mde.xmu2core.Variable;
 import edu.ustb.sei.mde.xmu2core.VariableExpression;
@@ -172,13 +172,14 @@ public class ReorderUtil {
 			if(enforcedVars.contains(stmt.getNode())) return true;
 			else {
 				EClass type = (EClass) stmt.getType();
-				if (type.isAbstract()) {
+				if (stmt.isReflective()==false && type.isAbstract()) {
 					if (checkExpressionExecutable(stmt.getCandidate(), enforcedVars)) {
 						enforcedVars.add(stmt.getNode());
 						return true;
 					} else
 						return false;
 				} else {
+					// !!! reflective node enforcement must be always executable
 					enforcedVars.add(stmt.getNode());
 					return true;
 				}
@@ -367,5 +368,4 @@ public class ReorderUtil {
 		
 		
 	}
-
 }

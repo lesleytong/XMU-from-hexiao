@@ -2,6 +2,7 @@ package edu.ustb.sei.mde.xmu2.util;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 
 import edu.ustb.sei.mde.xmu2.datatypes.DatatypesPackage;
@@ -23,6 +24,8 @@ final public class Constants {
 	public static final EClass RESOURCE = DatatypesPackage.eINSTANCE.getResource();
 	public static final EClass REFLECTIVE_OBJECT = Xmu2commonPackage.eINSTANCE.getReflectiveObject();
 	
+	public static final EStructuralFeature DYNAMIC_FEATURE = Xmu2commonPackage.Literals.REFLECTIVE_OBJECT__EDYNAMTIC_FEATURE;
+	
 	public static final String BOOLEAN_NAME = "Boolean";
 	public static final String INTEGER_NAME = "Integer";
 	public static final String STRING_NAME = "String";
@@ -31,4 +34,5 @@ final public class Constants {
 	public static final String OCLOBJECT_NAME = "OclObject";
 	
 	final static public Object[] EMPTYARRAY = new Object[0];
+	public static final String CMD_FAIL = "fail";
 }

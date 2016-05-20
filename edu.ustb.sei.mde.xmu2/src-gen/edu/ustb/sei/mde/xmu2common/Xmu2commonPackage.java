@@ -169,13 +169,22 @@ public interface Xmu2commonPackage extends EPackage {
 	int REFLECTIVE_OBJECT__EALL_CONTENTS = 2;
 
 	/**
+	 * The feature id for the '<em><b>EDynamtic Feature</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFLECTIVE_OBJECT__EDYNAMTIC_FEATURE = 3;
+
+	/**
 	 * The number of structural features of the '<em>Reflective Object</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REFLECTIVE_OBJECT_FEATURE_COUNT = 3;
+	int REFLECTIVE_OBJECT_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Reflective Object</em>' class.
@@ -343,6 +352,17 @@ public interface Xmu2commonPackage extends EPackage {
 	EReference getReflectiveObject_EAllContents();
 
 	/**
+	 * Returns the meta object for the attribute list '{@link edu.ustb.sei.mde.xmu2common.ReflectiveObject#getEDynamticFeature <em>EDynamtic Feature</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>EDynamtic Feature</em>'.
+	 * @see edu.ustb.sei.mde.xmu2common.ReflectiveObject#getEDynamticFeature()
+	 * @see #getReflectiveObject()
+	 * @generated
+	 */
+	EAttribute getReflectiveObject_EDynamticFeature();
+
+	/**
 	 * Returns the meta object for enum '{@link edu.ustb.sei.mde.xmu2common.DomainTag <em>Domain Tag</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -504,6 +524,14 @@ public interface Xmu2commonPackage extends EPackage {
 		 * @generated
 		 */
 		EReference REFLECTIVE_OBJECT__EALL_CONTENTS = eINSTANCE.getReflectiveObject_EAllContents();
+
+		/**
+		 * The meta object literal for the '<em><b>EDynamtic Feature</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute REFLECTIVE_OBJECT__EDYNAMTIC_FEATURE = eINSTANCE.getReflectiveObject_EDynamticFeature();
 
 		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu2common.DomainTag <em>Domain Tag</em>}' enum.

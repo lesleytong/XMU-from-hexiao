@@ -2,6 +2,7 @@
  */
 package edu.ustb.sei.mde.xmu2.pattern.util;
 
+import edu.ustb.sei.mde.xmu2.ReflectiveAPI;
 import edu.ustb.sei.mde.xmu2.pattern.*;
 
 import org.eclipse.emf.common.notify.Adapter;
@@ -86,6 +87,22 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter casePropertyPatternExpression(PropertyPatternExpression object) {
 				return createPropertyPatternExpressionAdapter();
+			}
+			@Override
+			public Adapter caseReflectivePatternNode(ReflectivePatternNode object) {
+				return createReflectivePatternNodeAdapter();
+			}
+			@Override
+			public Adapter caseReflectiveObjectPatternExpression(ReflectiveObjectPatternExpression object) {
+				return createReflectiveObjectPatternExpressionAdapter();
+			}
+			@Override
+			public Adapter caseReflectivePropertyPatternExpression(ReflectivePropertyPatternExpression object) {
+				return createReflectivePropertyPatternExpressionAdapter();
+			}
+			@Override
+			public Adapter caseReflectiveAPI(ReflectiveAPI object) {
+				return createReflectiveAPIAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -174,6 +191,62 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createPropertyPatternExpressionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.xmu2.pattern.ReflectivePatternNode <em>Reflective Pattern Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.xmu2.pattern.ReflectivePatternNode
+	 * @generated
+	 */
+	public Adapter createReflectivePatternNodeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.xmu2.pattern.ReflectiveObjectPatternExpression <em>Reflective Object Pattern Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.xmu2.pattern.ReflectiveObjectPatternExpression
+	 * @generated
+	 */
+	public Adapter createReflectiveObjectPatternExpressionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.xmu2.pattern.ReflectivePropertyPatternExpression <em>Reflective Property Pattern Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.xmu2.pattern.ReflectivePropertyPatternExpression
+	 * @generated
+	 */
+	public Adapter createReflectivePropertyPatternExpressionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.xmu2.ReflectiveAPI <em>Reflective API</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.xmu2.ReflectiveAPI
+	 * @generated
+	 */
+	public Adapter createReflectiveAPIAdapter() {
 		return null;
 	}
 

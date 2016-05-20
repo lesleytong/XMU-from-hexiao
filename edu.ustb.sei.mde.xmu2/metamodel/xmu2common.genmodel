@@ -53,6 +53,7 @@
       <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference xmu2common.ecore#//ReflectiveObject/eContainer"/>
       <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference xmu2common.ecore#//ReflectiveObject/eContents"/>
       <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference xmu2common.ecore#//ReflectiveObject/eAllContents"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmu2common.ecore#//ReflectiveObject/eDynamticFeature"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

@@ -395,6 +395,16 @@ public class BackwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 		Expression tar = statement.getTarget();
 		EStructuralFeature f = statement.getFeature();
 		
+		try {
+			if(statement.isReflective()) {
+				SafeType hostObj = context.get(src);
+				SafeType expectedFeature = this.resolveReflectiveFeature(hostObj.getObjectValue().eClass(), statement.getReflectiveIdentifier(), context);
+				f = (EStructuralFeature) expectedFeature.getValue();
+			}
+		} catch(Exception e) {
+			throw new InvalidBackwardEnforcementException("cannot delete link because of the unresolved feature", e);
+		}
+		
 		EObject sourcePost = context.get(src).getObjectValue();		
 		SafeType value = this.executeExpression(tar, context);
 		
@@ -412,6 +422,16 @@ public class BackwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 	public void executeEnforceNodeStatement(EnforceNodeStatement statement, Context context) {
 		Variable node = statement.getNode();
 		EClass type = (EClass)statement.getType();
+		
+		try {
+			if(statement.isReflective()) {
+				SafeType expectedType = this.resolveReflectiveClassifier(statement.getReflectiveIdentifier(), context);
+				type = (EClass) expectedType.getValue();
+			}
+		} catch(Exception e) {
+			throw new InvalidBackwardEnforcementException("cannot enforce link because of the unresolved type", e);
+		}
+		
 		Expression candidate = statement.getCandidate();
 
 		SafeType oldValue = context.get(node);
@@ -421,8 +441,18 @@ public class BackwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 			try {
 				if (candidate != null) {
 					oldValue = this.executeExpression(candidate, context);
+
+					// I must reset oldValue because I have to create a new object when the oldValue is null
 					if (oldValue == Constants.NULL)
 						oldValue = Constants.UNDEFINED;
+					else {
+						// to support reflective API, I have to check whether value is a list
+						Object value = oldValue.getValue();
+						if(value!=null && value instanceof List<?>) {
+							oldValue = SafeType.UNDEFINED;
+						}					
+					}
+					
 				}
 			} catch (Exception e) {
 				oldValue = SafeType.UNDEFINED;
@@ -497,6 +527,16 @@ public class BackwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 		LoopPath selector = statement.getSelector();
 		PositionPath position = statement.getPosition();
 		Expression target = statement.getTarget();
+		
+		try {
+			if(statement.isReflective()) {
+				SafeType hostObj = context.get(source);
+				SafeType expectedFeature = this.resolveReflectiveFeature(hostObj.getObjectValue().eClass(), statement.getReflectiveIdentifier(), context);
+				feature = (EStructuralFeature) expectedFeature.getValue();
+			}
+		} catch(Exception e) {
+			throw new InvalidBackwardEnforcementException("cannot enforce link because of the unresolved feature", e);
+		}
 		
 		if(this.enforceLink(source, feature, selector, position, target, context))
 			return;

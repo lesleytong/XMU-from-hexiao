@@ -60,6 +60,9 @@ public class PatternFactoryImpl extends EFactoryImpl implements PatternFactory {
 			case PatternPackage.PATTERN_NODE: return createPatternNode();
 			case PatternPackage.OBJECT_PATTERN_EXPRESSION: return createObjectPatternExpression();
 			case PatternPackage.PROPERTY_PATTERN_EXPRESSION: return createPropertyPatternExpression();
+			case PatternPackage.REFLECTIVE_PATTERN_NODE: return createReflectivePatternNode();
+			case PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION: return createReflectiveObjectPatternExpression();
+			case PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION: return createReflectivePropertyPatternExpression();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -103,6 +106,36 @@ public class PatternFactoryImpl extends EFactoryImpl implements PatternFactory {
 	public PropertyPatternExpression createPropertyPatternExpression() {
 		PropertyPatternExpressionImpl propertyPatternExpression = new PropertyPatternExpressionImpl();
 		return propertyPatternExpression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ReflectivePatternNode createReflectivePatternNode() {
+		ReflectivePatternNodeImpl reflectivePatternNode = new ReflectivePatternNodeImpl();
+		return reflectivePatternNode;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ReflectiveObjectPatternExpression createReflectiveObjectPatternExpression() {
+		ReflectiveObjectPatternExpressionImpl reflectiveObjectPatternExpression = new ReflectiveObjectPatternExpressionImpl();
+		return reflectiveObjectPatternExpression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ReflectivePropertyPatternExpression createReflectivePropertyPatternExpression() {
+		ReflectivePropertyPatternExpressionImpl reflectivePropertyPatternExpression = new ReflectivePropertyPatternExpressionImpl();
+		return reflectivePropertyPatternExpression;
 	}
 
 	/**

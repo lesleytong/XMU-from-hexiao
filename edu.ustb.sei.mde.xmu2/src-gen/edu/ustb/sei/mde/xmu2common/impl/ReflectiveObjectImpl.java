@@ -5,6 +5,7 @@ package edu.ustb.sei.mde.xmu2common.impl;
 import edu.ustb.sei.mde.xmu2common.ReflectiveObject;
 import edu.ustb.sei.mde.xmu2common.Xmu2commonPackage;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.EList;
@@ -16,6 +17,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 /**
@@ -29,6 +31,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  *   <li>{@link edu.ustb.sei.mde.xmu2common.impl.ReflectiveObjectImpl#getEContainer <em>EContainer</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2common.impl.ReflectiveObjectImpl#getEContents <em>EContents</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2common.impl.ReflectiveObjectImpl#getEAllContents <em>EAll Contents</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.xmu2common.impl.ReflectiveObjectImpl#getEDynamticFeature <em>EDynamtic Feature</em>}</li>
  * </ul>
  *
  * @generated
@@ -63,6 +66,16 @@ public abstract class ReflectiveObjectImpl extends MinimalEObjectImpl.Container 
 	 * @ordered
 	 */
 	protected EList<EObject> eAllContents;
+
+	/**
+	 * The cached value of the '{@link #getEDynamticFeature() <em>EDynamtic Feature</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEDynamticFeature()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Object> eDynamticFeature;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -138,6 +151,18 @@ public abstract class ReflectiveObjectImpl extends MinimalEObjectImpl.Container 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Object> getEDynamticFeature() {
+		if (eDynamticFeature == null) {
+			eDynamticFeature = new EDataTypeUniqueEList<Object>(Object.class, this, Xmu2commonPackage.REFLECTIVE_OBJECT__EDYNAMTIC_FEATURE);
+		}
+		return eDynamticFeature;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -148,8 +173,42 @@ public abstract class ReflectiveObjectImpl extends MinimalEObjectImpl.Container 
 				return getEContents();
 			case Xmu2commonPackage.REFLECTIVE_OBJECT__EALL_CONTENTS:
 				return getEAllContents();
+			case Xmu2commonPackage.REFLECTIVE_OBJECT__EDYNAMTIC_FEATURE:
+				return getEDynamticFeature();
 		}
 		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case Xmu2commonPackage.REFLECTIVE_OBJECT__EDYNAMTIC_FEATURE:
+				getEDynamticFeature().clear();
+				getEDynamticFeature().addAll((Collection<? extends Object>)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case Xmu2commonPackage.REFLECTIVE_OBJECT__EDYNAMTIC_FEATURE:
+				getEDynamticFeature().clear();
+				return;
+		}
+		super.eUnset(featureID);
 	}
 
 	/**
@@ -166,8 +225,26 @@ public abstract class ReflectiveObjectImpl extends MinimalEObjectImpl.Container 
 				return eContents != null && !eContents.isEmpty();
 			case Xmu2commonPackage.REFLECTIVE_OBJECT__EALL_CONTENTS:
 				return eAllContents != null && !eAllContents.isEmpty();
+			case Xmu2commonPackage.REFLECTIVE_OBJECT__EDYNAMTIC_FEATURE:
+				return eDynamticFeature != null && !eDynamticFeature.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (eDynamticFeature: ");
+		result.append(eDynamticFeature);
+		result.append(')');
+		return result.toString();
 	}
 
 } //ReflectiveObjectImpl

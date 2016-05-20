@@ -196,6 +196,11 @@ public class CaseClauseItemProvider
 			(createChildParameter
 				(Xmu2corePackage.Literals.CASE_CLAUSE__ACTION,
 				 Xmu2coreFactory.eINSTANCE.createSolveConstraintStatement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.CASE_CLAUSE__ACTION,
+				 Xmu2coreFactory.eINSTANCE.createCommandStatement()));
 	}
 
 	/**

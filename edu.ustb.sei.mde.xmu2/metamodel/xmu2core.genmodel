@@ -203,5 +203,13 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xmu2core.ecore#//SolveConstraintStatement/variables"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2core.ecore#//SolveConstraintStatement/constraint"/>
     </genClasses>
+    <genClasses ecoreClass="xmu2core.ecore#//CommandStatement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmu2core.ecore#//CommandStatement/parameters"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmu2core.ecore#//CommandStatement/command"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="xmu2core.ecore#//ReflectiveSupport">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2core.ecore#//ReflectiveSupport/reflectiveIdentifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmu2core.ecore#//ReflectiveSupport/reflective"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

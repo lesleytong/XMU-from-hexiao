@@ -4,6 +4,7 @@ package edu.ustb.sei.mde.xmu2core.impl;
 
 import edu.ustb.sei.mde.xmu2core.DeleteLinkStatement;
 import edu.ustb.sei.mde.xmu2core.Expression;
+import edu.ustb.sei.mde.xmu2core.ReflectiveSupport;
 import edu.ustb.sei.mde.xmu2core.Variable;
 import edu.ustb.sei.mde.xmu2core.Xmu2corePackage;
 
@@ -24,6 +25,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.DeleteLinkStatementImpl#getReflectiveIdentifier <em>Reflective Identifier</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.DeleteLinkStatementImpl#isReflective <em>Reflective</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.DeleteLinkStatementImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.DeleteLinkStatementImpl#getSource <em>Source</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.DeleteLinkStatementImpl#getFeature <em>Feature</em>}</li>
@@ -32,6 +35,36 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * @generated
  */
 public class DeleteLinkStatementImpl extends StatementImpl implements DeleteLinkStatement {
+	/**
+	 * The cached value of the '{@link #getReflectiveIdentifier() <em>Reflective Identifier</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getReflectiveIdentifier()
+	 * @generated
+	 * @ordered
+	 */
+	protected Expression reflectiveIdentifier;
+
+	/**
+	 * The default value of the '{@link #isReflective() <em>Reflective</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isReflective()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean REFLECTIVE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isReflective() <em>Reflective</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isReflective()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean reflective = REFLECTIVE_EDEFAULT;
+
 	/**
 	 * The cached value of the '{@link #getTarget() <em>Target</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -79,6 +112,70 @@ public class DeleteLinkStatementImpl extends StatementImpl implements DeleteLink
 	@Override
 	protected EClass eStaticClass() {
 		return Xmu2corePackage.Literals.DELETE_LINK_STATEMENT;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Expression getReflectiveIdentifier() {
+		return reflectiveIdentifier;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetReflectiveIdentifier(Expression newReflectiveIdentifier, NotificationChain msgs) {
+		Expression oldReflectiveIdentifier = reflectiveIdentifier;
+		reflectiveIdentifier = newReflectiveIdentifier;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, Xmu2corePackage.DELETE_LINK_STATEMENT__REFLECTIVE_IDENTIFIER, oldReflectiveIdentifier, newReflectiveIdentifier);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setReflectiveIdentifier(Expression newReflectiveIdentifier) {
+		if (newReflectiveIdentifier != reflectiveIdentifier) {
+			NotificationChain msgs = null;
+			if (reflectiveIdentifier != null)
+				msgs = ((InternalEObject)reflectiveIdentifier).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - Xmu2corePackage.DELETE_LINK_STATEMENT__REFLECTIVE_IDENTIFIER, null, msgs);
+			if (newReflectiveIdentifier != null)
+				msgs = ((InternalEObject)newReflectiveIdentifier).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - Xmu2corePackage.DELETE_LINK_STATEMENT__REFLECTIVE_IDENTIFIER, null, msgs);
+			msgs = basicSetReflectiveIdentifier(newReflectiveIdentifier, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, Xmu2corePackage.DELETE_LINK_STATEMENT__REFLECTIVE_IDENTIFIER, newReflectiveIdentifier, newReflectiveIdentifier));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isReflective() {
+		return reflective;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setReflective(boolean newReflective) {
+		boolean oldReflective = reflective;
+		reflective = newReflective;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, Xmu2corePackage.DELETE_LINK_STATEMENT__REFLECTIVE, oldReflective, reflective));
 	}
 
 	/**
@@ -208,6 +305,8 @@ public class DeleteLinkStatementImpl extends StatementImpl implements DeleteLink
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case Xmu2corePackage.DELETE_LINK_STATEMENT__REFLECTIVE_IDENTIFIER:
+				return basicSetReflectiveIdentifier(null, msgs);
 			case Xmu2corePackage.DELETE_LINK_STATEMENT__TARGET:
 				return basicSetTarget(null, msgs);
 		}
@@ -222,6 +321,10 @@ public class DeleteLinkStatementImpl extends StatementImpl implements DeleteLink
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case Xmu2corePackage.DELETE_LINK_STATEMENT__REFLECTIVE_IDENTIFIER:
+				return getReflectiveIdentifier();
+			case Xmu2corePackage.DELETE_LINK_STATEMENT__REFLECTIVE:
+				return isReflective();
 			case Xmu2corePackage.DELETE_LINK_STATEMENT__TARGET:
 				return getTarget();
 			case Xmu2corePackage.DELETE_LINK_STATEMENT__SOURCE:
@@ -242,6 +345,12 @@ public class DeleteLinkStatementImpl extends StatementImpl implements DeleteLink
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case Xmu2corePackage.DELETE_LINK_STATEMENT__REFLECTIVE_IDENTIFIER:
+				setReflectiveIdentifier((Expression)newValue);
+				return;
+			case Xmu2corePackage.DELETE_LINK_STATEMENT__REFLECTIVE:
+				setReflective((Boolean)newValue);
+				return;
 			case Xmu2corePackage.DELETE_LINK_STATEMENT__TARGET:
 				setTarget((Expression)newValue);
 				return;
@@ -263,6 +372,12 @@ public class DeleteLinkStatementImpl extends StatementImpl implements DeleteLink
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case Xmu2corePackage.DELETE_LINK_STATEMENT__REFLECTIVE_IDENTIFIER:
+				setReflectiveIdentifier((Expression)null);
+				return;
+			case Xmu2corePackage.DELETE_LINK_STATEMENT__REFLECTIVE:
+				setReflective(REFLECTIVE_EDEFAULT);
+				return;
 			case Xmu2corePackage.DELETE_LINK_STATEMENT__TARGET:
 				setTarget((Expression)null);
 				return;
@@ -284,6 +399,10 @@ public class DeleteLinkStatementImpl extends StatementImpl implements DeleteLink
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case Xmu2corePackage.DELETE_LINK_STATEMENT__REFLECTIVE_IDENTIFIER:
+				return reflectiveIdentifier != null;
+			case Xmu2corePackage.DELETE_LINK_STATEMENT__REFLECTIVE:
+				return reflective != REFLECTIVE_EDEFAULT;
 			case Xmu2corePackage.DELETE_LINK_STATEMENT__TARGET:
 				return target != null;
 			case Xmu2corePackage.DELETE_LINK_STATEMENT__SOURCE:
@@ -292,6 +411,56 @@ public class DeleteLinkStatementImpl extends StatementImpl implements DeleteLink
 				return feature != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == ReflectiveSupport.class) {
+			switch (derivedFeatureID) {
+				case Xmu2corePackage.DELETE_LINK_STATEMENT__REFLECTIVE_IDENTIFIER: return Xmu2corePackage.REFLECTIVE_SUPPORT__REFLECTIVE_IDENTIFIER;
+				case Xmu2corePackage.DELETE_LINK_STATEMENT__REFLECTIVE: return Xmu2corePackage.REFLECTIVE_SUPPORT__REFLECTIVE;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == ReflectiveSupport.class) {
+			switch (baseFeatureID) {
+				case Xmu2corePackage.REFLECTIVE_SUPPORT__REFLECTIVE_IDENTIFIER: return Xmu2corePackage.DELETE_LINK_STATEMENT__REFLECTIVE_IDENTIFIER;
+				case Xmu2corePackage.REFLECTIVE_SUPPORT__REFLECTIVE: return Xmu2corePackage.DELETE_LINK_STATEMENT__REFLECTIVE;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (reflective: ");
+		result.append(reflective);
+		result.append(')');
+		return result.toString();
 	}
 
 } //DeleteLinkStatementImpl

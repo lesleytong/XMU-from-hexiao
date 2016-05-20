@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  * @model
  * @generated
  */
-public interface FeaturePath extends Path {
+public interface FeaturePath extends Path, ReflectiveSupport {
 	/**
 	 * Returns the value of the '<em><b>Feature</b></em>' reference.
 	 * <!-- begin-user-doc -->

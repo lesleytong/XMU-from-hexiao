@@ -2,6 +2,7 @@
  */
 package edu.ustb.sei.mde.xmu2.pattern.util;
 
+import edu.ustb.sei.mde.xmu2.ReflectiveAPI;
 import edu.ustb.sei.mde.xmu2.pattern.*;
 
 import org.eclipse.emf.ecore.EObject;
@@ -98,6 +99,32 @@ public class PatternSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case PatternPackage.REFLECTIVE_PATTERN_NODE: {
+				ReflectivePatternNode reflectivePatternNode = (ReflectivePatternNode)theEObject;
+				T result = caseReflectivePatternNode(reflectivePatternNode);
+				if (result == null) result = casePatternNode(reflectivePatternNode);
+				if (result == null) result = caseReflectiveAPI(reflectivePatternNode);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION: {
+				ReflectiveObjectPatternExpression reflectiveObjectPatternExpression = (ReflectiveObjectPatternExpression)theEObject;
+				T result = caseReflectiveObjectPatternExpression(reflectiveObjectPatternExpression);
+				if (result == null) result = caseObjectPatternExpression(reflectiveObjectPatternExpression);
+				if (result == null) result = caseReflectiveAPI(reflectiveObjectPatternExpression);
+				if (result == null) result = casePatternExpression(reflectiveObjectPatternExpression);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION: {
+				ReflectivePropertyPatternExpression reflectivePropertyPatternExpression = (ReflectivePropertyPatternExpression)theEObject;
+				T result = caseReflectivePropertyPatternExpression(reflectivePropertyPatternExpression);
+				if (result == null) result = casePropertyPatternExpression(reflectivePropertyPatternExpression);
+				if (result == null) result = caseReflectiveAPI(reflectivePropertyPatternExpression);
+				if (result == null) result = casePatternExpression(reflectivePropertyPatternExpression);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -174,6 +201,66 @@ public class PatternSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T casePropertyPatternExpression(PropertyPatternExpression object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Reflective Pattern Node</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Reflective Pattern Node</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseReflectivePatternNode(ReflectivePatternNode object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Reflective Object Pattern Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Reflective Object Pattern Expression</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseReflectiveObjectPatternExpression(ReflectiveObjectPatternExpression object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Reflective Property Pattern Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Reflective Property Pattern Expression</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseReflectivePropertyPatternExpression(ReflectivePropertyPatternExpression object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Reflective API</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Reflective API</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseReflectiveAPI(ReflectiveAPI object) {
 		return null;
 	}
 

@@ -72,8 +72,8 @@ public class Xmu2Printer implements edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Tex
 			print_edu_ustb_sei_mde_xmu2_ArithmeticRule((edu.ustb.sei.mde.xmu2.ArithmeticRule) element, globaltab, out);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu2.VariableDeclaration) {
-			print_edu_ustb_sei_mde_xmu2_VariableDeclaration((edu.ustb.sei.mde.xmu2.VariableDeclaration) element, globaltab, out);
+		if (element instanceof edu.ustb.sei.mde.xmu2.ConcreteVariableDeclaration) {
+			print_edu_ustb_sei_mde_xmu2_ConcreteVariableDeclaration((edu.ustb.sei.mde.xmu2.ConcreteVariableDeclaration) element, globaltab, out);
 			return;
 		}
 		if (element instanceof edu.ustb.sei.mde.xmu2.Parameter) {
@@ -82,18 +82,6 @@ public class Xmu2Printer implements edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Tex
 		}
 		if (element instanceof edu.ustb.sei.mde.xmu2.pattern.Pattern) {
 			print_edu_ustb_sei_mde_xmu2_pattern_Pattern((edu.ustb.sei.mde.xmu2.pattern.Pattern) element, globaltab, out);
-			return;
-		}
-		if (element instanceof edu.ustb.sei.mde.xmu2.pattern.PatternNode) {
-			print_edu_ustb_sei_mde_xmu2_pattern_PatternNode((edu.ustb.sei.mde.xmu2.pattern.PatternNode) element, globaltab, out);
-			return;
-		}
-		if (element instanceof edu.ustb.sei.mde.xmu2.pattern.ObjectPatternExpression) {
-			print_edu_ustb_sei_mde_xmu2_pattern_ObjectPatternExpression((edu.ustb.sei.mde.xmu2.pattern.ObjectPatternExpression) element, globaltab, out);
-			return;
-		}
-		if (element instanceof edu.ustb.sei.mde.xmu2.pattern.PropertyPatternExpression) {
-			print_edu_ustb_sei_mde_xmu2_pattern_PropertyPatternExpression((edu.ustb.sei.mde.xmu2.pattern.PropertyPatternExpression) element, globaltab, out);
 			return;
 		}
 		if (element instanceof edu.ustb.sei.mde.xmu2.expression.LoopPath) {
@@ -200,10 +188,6 @@ public class Xmu2Printer implements edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Tex
 			print_edu_ustb_sei_mde_xmu2_statement_DeleteNodeStatement((edu.ustb.sei.mde.xmu2.statement.DeleteNodeStatement) element, globaltab, out);
 			return;
 		}
-		if (element instanceof edu.ustb.sei.mde.xmu2.statement.DeleteLinkStatement) {
-			print_edu_ustb_sei_mde_xmu2_statement_DeleteLinkStatement((edu.ustb.sei.mde.xmu2.statement.DeleteLinkStatement) element, globaltab, out);
-			return;
-		}
 		if (element instanceof edu.ustb.sei.mde.xmu2.statement.EnforcePatternStatement) {
 			print_edu_ustb_sei_mde_xmu2_statement_EnforcePatternStatement((edu.ustb.sei.mde.xmu2.statement.EnforcePatternStatement) element, globaltab, out);
 			return;
@@ -220,12 +204,52 @@ public class Xmu2Printer implements edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Tex
 			print_edu_ustb_sei_mde_xmu2_statement_Skip((edu.ustb.sei.mde.xmu2.statement.Skip) element, globaltab, out);
 			return;
 		}
+		if (element instanceof edu.ustb.sei.mde.xmu2.statement.Fail) {
+			print_edu_ustb_sei_mde_xmu2_statement_Fail((edu.ustb.sei.mde.xmu2.statement.Fail) element, globaltab, out);
+			return;
+		}
 		if (element instanceof edu.ustb.sei.mde.xmu2.statement.DefaultCaseClause) {
 			print_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause((edu.ustb.sei.mde.xmu2.statement.DefaultCaseClause) element, globaltab, out);
 			return;
 		}
 		if (element instanceof edu.ustb.sei.mde.xmu2.statement.AssignStatement) {
 			print_edu_ustb_sei_mde_xmu2_statement_AssignStatement((edu.ustb.sei.mde.xmu2.statement.AssignStatement) element, globaltab, out);
+			return;
+		}
+		if (element instanceof edu.ustb.sei.mde.xmu2.ReflectiveVariableDeclaration) {
+			print_edu_ustb_sei_mde_xmu2_ReflectiveVariableDeclaration((edu.ustb.sei.mde.xmu2.ReflectiveVariableDeclaration) element, globaltab, out);
+			return;
+		}
+		if (element instanceof edu.ustb.sei.mde.xmu2.pattern.ReflectivePatternNode) {
+			print_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode((edu.ustb.sei.mde.xmu2.pattern.ReflectivePatternNode) element, globaltab, out);
+			return;
+		}
+		if (element instanceof edu.ustb.sei.mde.xmu2.pattern.ReflectiveObjectPatternExpression) {
+			print_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression((edu.ustb.sei.mde.xmu2.pattern.ReflectiveObjectPatternExpression) element, globaltab, out);
+			return;
+		}
+		if (element instanceof edu.ustb.sei.mde.xmu2.pattern.ReflectivePropertyPatternExpression) {
+			print_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression((edu.ustb.sei.mde.xmu2.pattern.ReflectivePropertyPatternExpression) element, globaltab, out);
+			return;
+		}
+		if (element instanceof edu.ustb.sei.mde.xmu2.statement.ReflectiveDeleteLinkStatement) {
+			print_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement((edu.ustb.sei.mde.xmu2.statement.ReflectiveDeleteLinkStatement) element, globaltab, out);
+			return;
+		}
+		if (element instanceof edu.ustb.sei.mde.xmu2.pattern.PatternNode) {
+			print_edu_ustb_sei_mde_xmu2_pattern_PatternNode((edu.ustb.sei.mde.xmu2.pattern.PatternNode) element, globaltab, out);
+			return;
+		}
+		if (element instanceof edu.ustb.sei.mde.xmu2.pattern.ObjectPatternExpression) {
+			print_edu_ustb_sei_mde_xmu2_pattern_ObjectPatternExpression((edu.ustb.sei.mde.xmu2.pattern.ObjectPatternExpression) element, globaltab, out);
+			return;
+		}
+		if (element instanceof edu.ustb.sei.mde.xmu2.pattern.PropertyPatternExpression) {
+			print_edu_ustb_sei_mde_xmu2_pattern_PropertyPatternExpression((edu.ustb.sei.mde.xmu2.pattern.PropertyPatternExpression) element, globaltab, out);
+			return;
+		}
+		if (element instanceof edu.ustb.sei.mde.xmu2.statement.DeleteLinkStatement) {
+			print_edu_ustb_sei_mde_xmu2_statement_DeleteLinkStatement((edu.ustb.sei.mde.xmu2.statement.DeleteLinkStatement) element, globaltab, out);
 			return;
 		}
 		
@@ -942,7 +966,7 @@ public class Xmu2Printer implements edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Tex
 	}
 	
 	
-	public void print_edu_ustb_sei_mde_xmu2_VariableDeclaration(edu.ustb.sei.mde.xmu2.VariableDeclaration element, String outertab, java.io.PrintWriter out) {
+	public void print_edu_ustb_sei_mde_xmu2_ConcreteVariableDeclaration(edu.ustb.sei.mde.xmu2.ConcreteVariableDeclaration element, String outertab, java.io.PrintWriter out) {
 		// The printCountingMap contains a mapping from feature names to the number of
 		// remaining elements that still need to be printed. The map is initialized with
 		// the number of elements stored in each structural feature. For lists this is the
@@ -950,20 +974,20 @@ public class Xmu2Printer implements edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Tex
 		// 0 (if the feature is null).
 		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(2);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.Xmu2Package.VARIABLE_DECLARATION__NAME));
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.Xmu2Package.CONCRETE_VARIABLE_DECLARATION__NAME));
 		printCountingMap.put("name", temp == null ? 0 : 1);
-		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.Xmu2Package.VARIABLE_DECLARATION__TYPE));
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.Xmu2Package.CONCRETE_VARIABLE_DECLARATION__TYPE));
 		printCountingMap.put("type", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
 		// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
 		count = printCountingMap.get("name");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.Xmu2Package.VARIABLE_DECLARATION__NAME));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.Xmu2Package.CONCRETE_VARIABLE_DECLARATION__NAME));
 			if (o != null) {
 				edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2TokenResolver resolver = tokenResolverFactory.createTokenResolver("NAME");
 				resolver.setOptions(getOptions());
-				out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.Xmu2Package.VARIABLE_DECLARATION__NAME), element));
+				out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.Xmu2Package.CONCRETE_VARIABLE_DECLARATION__NAME), element));
 				out.print(" ");
 			}
 			printCountingMap.put("name", count - 1);
@@ -974,11 +998,11 @@ public class Xmu2Printer implements edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Tex
 		// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
 		count = printCountingMap.get("type");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.Xmu2Package.VARIABLE_DECLARATION__TYPE));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.Xmu2Package.CONCRETE_VARIABLE_DECLARATION__TYPE));
 			if (o != null) {
 				edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2TokenResolver resolver = tokenResolverFactory.createTokenResolver("TYPE");
 				resolver.setOptions(getOptions());
-				out.print(resolver.deResolve(getReferenceResolverSwitch() == null ? null : getReferenceResolverSwitch().getTypedElementTypeReferenceResolver().deResolve((org.eclipse.emf.ecore.EClassifier) o, element, (org.eclipse.emf.ecore.EReference) element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.Xmu2Package.VARIABLE_DECLARATION__TYPE)), element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.Xmu2Package.VARIABLE_DECLARATION__TYPE), element));
+				out.print(resolver.deResolve(getReferenceResolverSwitch() == null ? null : getReferenceResolverSwitch().getTypedElementTypeReferenceResolver().deResolve((org.eclipse.emf.ecore.EClassifier) o, element, (org.eclipse.emf.ecore.EReference) element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.Xmu2Package.CONCRETE_VARIABLE_DECLARATION__TYPE)), element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.Xmu2Package.CONCRETE_VARIABLE_DECLARATION__TYPE), element));
 				out.print(" ");
 			}
 			printCountingMap.put("type", count - 1);
@@ -3049,6 +3073,36 @@ public class Xmu2Printer implements edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Tex
 	}
 	
 	
+	public void print_edu_ustb_sei_mde_xmu2_statement_Fail(edu.ustb.sei.mde.xmu2.statement.Fail element, String outertab, java.io.PrintWriter out) {
+		// The printCountingMap contains a mapping from feature names to the number of
+		// remaining elements that still need to be printed. The map is initialized with
+		// the number of elements stored in each structural feature. For lists this is the
+		// list size. For non-multiple features it is either 1 (if the feature is set) or
+		// 0 (if the feature is null).
+		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(1);
+		Object temp;
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.FAIL__MESSAGE));
+		printCountingMap.put("message", temp == null ? 0 : 1);
+		// print collected hidden tokens
+		int count;
+		// DEFINITION PART BEGINS (CsString)
+		out.print("fail");
+		out.print(" ");
+		// DEFINITION PART BEGINS (PlaceholderInQuotes)
+		count = printCountingMap.get("message");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.FAIL__MESSAGE));
+			if (o != null) {
+				edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2TokenResolver resolver = tokenResolverFactory.createTokenResolver("QUOTED_39_39_92");
+				resolver.setOptions(getOptions());
+				out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.FAIL__MESSAGE), element));
+				out.print(" ");
+			}
+			printCountingMap.put("message", count - 1);
+		}
+	}
+	
+	
 	public void print_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause(edu.ustb.sei.mde.xmu2.statement.DefaultCaseClause element, String outertab, java.io.PrintWriter out) {
 		String localtab = outertab;
 		// The printCountingMap contains a mapping from feature names to the number of
@@ -3115,6 +3169,482 @@ public class Xmu2Printer implements edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Tex
 				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
 			}
 			printCountingMap.put("value", count - 1);
+		}
+	}
+	
+	
+	public void print_edu_ustb_sei_mde_xmu2_ReflectiveVariableDeclaration(edu.ustb.sei.mde.xmu2.ReflectiveVariableDeclaration element, String outertab, java.io.PrintWriter out) {
+		// The printCountingMap contains a mapping from feature names to the number of
+		// remaining elements that still need to be printed. The map is initialized with
+		// the number of elements stored in each structural feature. For lists this is the
+		// list size. For non-multiple features it is either 1 (if the feature is set) or
+		// 0 (if the feature is null).
+		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(2);
+		Object temp;
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.Xmu2Package.REFLECTIVE_VARIABLE_DECLARATION__NAME));
+		printCountingMap.put("name", temp == null ? 0 : 1);
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.Xmu2Package.REFLECTIVE_VARIABLE_DECLARATION__TYPE));
+		printCountingMap.put("type", temp == null ? 0 : 1);
+		// print collected hidden tokens
+		int count;
+		// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
+		count = printCountingMap.get("name");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.Xmu2Package.REFLECTIVE_VARIABLE_DECLARATION__NAME));
+			if (o != null) {
+				edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2TokenResolver resolver = tokenResolverFactory.createTokenResolver("NAME");
+				resolver.setOptions(getOptions());
+				out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.Xmu2Package.REFLECTIVE_VARIABLE_DECLARATION__NAME), element));
+				out.print(" ");
+			}
+			printCountingMap.put("name", count - 1);
+		}
+	}
+	
+	
+	public void print_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode(edu.ustb.sei.mde.xmu2.pattern.ReflectivePatternNode element, String outertab, java.io.PrintWriter out) {
+		String localtab = outertab;
+		// The printCountingMap contains a mapping from feature names to the number of
+		// remaining elements that still need to be printed. The map is initialized with
+		// the number of elements stored in each structural feature. For lists this is the
+		// list size. For non-multiple features it is either 1 (if the feature is set) or
+		// 0 (if the feature is null).
+		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(3);
+		Object temp;
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PATTERN_NODE__VARIABLE));
+		printCountingMap.put("variable", temp == null ? 0 : 1);
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PATTERN_NODE__EXPRESSIONS));
+		printCountingMap.put("expressions", temp == null ? 0 : ((java.util.Collection<?>) temp).size());
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PATTERN_NODE__REFLECTIVE_IDENTIFIER));
+		printCountingMap.put("reflectiveIdentifier", temp == null ? 0 : 1);
+		// print collected hidden tokens
+		int count;
+		java.io.StringWriter sWriter = null;
+		java.io.PrintWriter out1 = null;
+		java.util.Map<String, Integer> printCountingMap1 = null;
+		// DEFINITION PART BEGINS (Containment)
+		count = printCountingMap.get("variable");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PATTERN_NODE__VARIABLE));
+			if (o != null) {
+				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
+			}
+			printCountingMap.put("variable", count - 1);
+		}
+		// DEFINITION PART BEGINS (CsString)
+		out.print(":");
+		out.print(" ");
+		// DEFINITION PART BEGINS (CsString)
+		out.print("$");
+		out.print(" ");
+		// DEFINITION PART BEGINS (Containment)
+		count = printCountingMap.get("reflectiveIdentifier");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PATTERN_NODE__REFLECTIVE_IDENTIFIER));
+			if (o != null) {
+				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
+			}
+			printCountingMap.put("reflectiveIdentifier", count - 1);
+		}
+		// DEFINITION PART BEGINS (CompoundDefinition)
+		sWriter = new java.io.StringWriter();
+		out1 = new java.io.PrintWriter(sWriter);
+		printCountingMap1 = new java.util.LinkedHashMap<String, Integer>(printCountingMap);
+		print_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode_0(element, localtab, out1, printCountingMap1);
+		if (printCountingMap.equals(printCountingMap1)) {
+			out1.close();
+		} else {
+			out1.flush();
+			out1.close();
+			out.print(sWriter.toString());
+			printCountingMap.putAll(printCountingMap1);
+		}
+	}
+	
+	public void print_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode_0(edu.ustb.sei.mde.xmu2.pattern.ReflectivePatternNode element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
+		String localtab = outertab;
+		java.io.StringWriter sWriter = null;
+		java.io.PrintWriter out1 = null;
+		java.util.Map<String, Integer> printCountingMap1 = null;
+		// DEFINITION PART BEGINS (CsString)
+		out.print("{");
+		out.print(" ");
+		// DEFINITION PART BEGINS (CompoundDefinition)
+		sWriter = new java.io.StringWriter();
+		out1 = new java.io.PrintWriter(sWriter);
+		printCountingMap1 = new java.util.LinkedHashMap<String, Integer>(printCountingMap);
+		print_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode_0_0(element, localtab, out1, printCountingMap1);
+		if (printCountingMap.equals(printCountingMap1)) {
+			out1.close();
+		} else {
+			out1.flush();
+			out1.close();
+			out.print(sWriter.toString());
+			printCountingMap.putAll(printCountingMap1);
+		}
+		// DEFINITION PART BEGINS (CsString)
+		out.print("}");
+		out.print(" ");
+	}
+	
+	public void print_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode_0_0(edu.ustb.sei.mde.xmu2.pattern.ReflectivePatternNode element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
+		String localtab = outertab;
+		int count;
+		boolean iterate = true;
+		java.io.StringWriter sWriter = null;
+		java.io.PrintWriter out1 = null;
+		java.util.Map<String, Integer> printCountingMap1 = null;
+		// DEFINITION PART BEGINS (Containment)
+		count = printCountingMap.get("expressions");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PATTERN_NODE__EXPRESSIONS));
+			java.util.List<?> list = (java.util.List<?>) o;
+			int index = list.size() - count;
+			if (index >= 0) {
+				o = list.get(index);
+			} else {
+				o = null;
+			}
+			if (o != null) {
+				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
+			}
+			printCountingMap.put("expressions", count - 1);
+		}
+		// DEFINITION PART BEGINS (CompoundDefinition)
+		iterate = true;
+		while (iterate) {
+			sWriter = new java.io.StringWriter();
+			out1 = new java.io.PrintWriter(sWriter);
+			printCountingMap1 = new java.util.LinkedHashMap<String, Integer>(printCountingMap);
+			print_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode_0_0_0(element, localtab, out1, printCountingMap1);
+			if (printCountingMap.equals(printCountingMap1)) {
+				iterate = false;
+				out1.close();
+			} else {
+				out1.flush();
+				out1.close();
+				out.print(sWriter.toString());
+				printCountingMap.putAll(printCountingMap1);
+			}
+		}
+	}
+	
+	public void print_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode_0_0_0(edu.ustb.sei.mde.xmu2.pattern.ReflectivePatternNode element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
+		String localtab = outertab;
+		int count;
+		// DEFINITION PART BEGINS (CsString)
+		out.print(",");
+		out.print(" ");
+		// DEFINITION PART BEGINS (Containment)
+		count = printCountingMap.get("expressions");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PATTERN_NODE__EXPRESSIONS));
+			java.util.List<?> list = (java.util.List<?>) o;
+			int index = list.size() - count;
+			if (index >= 0) {
+				o = list.get(index);
+			} else {
+				o = null;
+			}
+			if (o != null) {
+				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
+			}
+			printCountingMap.put("expressions", count - 1);
+		}
+	}
+	
+	
+	public void print_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression(edu.ustb.sei.mde.xmu2.pattern.ReflectiveObjectPatternExpression element, String outertab, java.io.PrintWriter out) {
+		String localtab = outertab;
+		// The printCountingMap contains a mapping from feature names to the number of
+		// remaining elements that still need to be printed. The map is initialized with
+		// the number of elements stored in each structural feature. For lists this is the
+		// list size. For non-multiple features it is either 1 (if the feature is set) or
+		// 0 (if the feature is null).
+		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(7);
+		Object temp;
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__OWNER_NODE));
+		printCountingMap.put("ownerNode", temp == null ? 0 : 1);
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__FEATURE));
+		printCountingMap.put("feature", temp == null ? 0 : 1);
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__SELECTOR));
+		printCountingMap.put("selector", temp == null ? 0 : 1);
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__POSITION));
+		printCountingMap.put("position", temp == null ? 0 : 1);
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__NULLABLE));
+		printCountingMap.put("nullable", temp == null ? 0 : 1);
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__TARGET_NODE));
+		printCountingMap.put("targetNode", temp == null ? 0 : 1);
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__REFLECTIVE_IDENTIFIER));
+		printCountingMap.put("reflectiveIdentifier", temp == null ? 0 : 1);
+		// print collected hidden tokens
+		int count;
+		java.io.StringWriter sWriter = null;
+		java.io.PrintWriter out1 = null;
+		java.util.Map<String, Integer> printCountingMap1 = null;
+		// DEFINITION PART BEGINS (CsString)
+		out.print("$");
+		out.print(" ");
+		// DEFINITION PART BEGINS (Containment)
+		count = printCountingMap.get("reflectiveIdentifier");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__REFLECTIVE_IDENTIFIER));
+			if (o != null) {
+				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
+			}
+			printCountingMap.put("reflectiveIdentifier", count - 1);
+		}
+		// DEFINITION PART BEGINS (CompoundDefinition)
+		sWriter = new java.io.StringWriter();
+		out1 = new java.io.PrintWriter(sWriter);
+		printCountingMap1 = new java.util.LinkedHashMap<String, Integer>(printCountingMap);
+		print_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression_0(element, localtab, out1, printCountingMap1);
+		if (printCountingMap.equals(printCountingMap1)) {
+			out1.close();
+		} else {
+			out1.flush();
+			out1.close();
+			out.print(sWriter.toString());
+			printCountingMap.putAll(printCountingMap1);
+		}
+		// DEFINITION PART BEGINS (CompoundDefinition)
+		sWriter = new java.io.StringWriter();
+		out1 = new java.io.PrintWriter(sWriter);
+		printCountingMap1 = new java.util.LinkedHashMap<String, Integer>(printCountingMap);
+		print_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression_1(element, localtab, out1, printCountingMap1);
+		if (printCountingMap.equals(printCountingMap1)) {
+			out1.close();
+		} else {
+			out1.flush();
+			out1.close();
+			out.print(sWriter.toString());
+			printCountingMap.putAll(printCountingMap1);
+		}
+		// DEFINITION PART BEGINS (CsString)
+		out.print("=");
+		out.print(" ");
+		// DEFINITION PART BEGINS (BooleanTerminal)
+		count = printCountingMap.get("nullable");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__NULLABLE));
+			if (o != null) {
+			}
+			printCountingMap.put("nullable", count - 1);
+		}
+		// DEFINITION PART BEGINS (Containment)
+		count = printCountingMap.get("targetNode");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__TARGET_NODE));
+			if (o != null) {
+				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
+			}
+			printCountingMap.put("targetNode", count - 1);
+		}
+	}
+	
+	public void print_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression_0(edu.ustb.sei.mde.xmu2.pattern.ReflectiveObjectPatternExpression element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
+		String localtab = outertab;
+		int count;
+		// DEFINITION PART BEGINS (Containment)
+		count = printCountingMap.get("selector");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__SELECTOR));
+			if (o != null) {
+				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
+			}
+			printCountingMap.put("selector", count - 1);
+		}
+	}
+	
+	public void print_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression_1(edu.ustb.sei.mde.xmu2.pattern.ReflectiveObjectPatternExpression element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
+		String localtab = outertab;
+		int count;
+		// DEFINITION PART BEGINS (Containment)
+		count = printCountingMap.get("position");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__POSITION));
+			if (o != null) {
+				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
+			}
+			printCountingMap.put("position", count - 1);
+		}
+	}
+	
+	
+	public void print_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression(edu.ustb.sei.mde.xmu2.pattern.ReflectivePropertyPatternExpression element, String outertab, java.io.PrintWriter out) {
+		String localtab = outertab;
+		// The printCountingMap contains a mapping from feature names to the number of
+		// remaining elements that still need to be printed. The map is initialized with
+		// the number of elements stored in each structural feature. For lists this is the
+		// list size. For non-multiple features it is either 1 (if the feature is set) or
+		// 0 (if the feature is null).
+		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(7);
+		Object temp;
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__OWNER_NODE));
+		printCountingMap.put("ownerNode", temp == null ? 0 : 1);
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__FEATURE));
+		printCountingMap.put("feature", temp == null ? 0 : 1);
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__SELECTOR));
+		printCountingMap.put("selector", temp == null ? 0 : 1);
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__POSITION));
+		printCountingMap.put("position", temp == null ? 0 : 1);
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__NULLABLE));
+		printCountingMap.put("nullable", temp == null ? 0 : 1);
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__TARGET_EXPRESSION));
+		printCountingMap.put("targetExpression", temp == null ? 0 : 1);
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__REFLECTIVE_IDENTIFIER));
+		printCountingMap.put("reflectiveIdentifier", temp == null ? 0 : 1);
+		// print collected hidden tokens
+		int count;
+		java.io.StringWriter sWriter = null;
+		java.io.PrintWriter out1 = null;
+		java.util.Map<String, Integer> printCountingMap1 = null;
+		// DEFINITION PART BEGINS (CsString)
+		out.print("$");
+		out.print(" ");
+		// DEFINITION PART BEGINS (Containment)
+		count = printCountingMap.get("reflectiveIdentifier");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__REFLECTIVE_IDENTIFIER));
+			if (o != null) {
+				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
+			}
+			printCountingMap.put("reflectiveIdentifier", count - 1);
+		}
+		// DEFINITION PART BEGINS (CompoundDefinition)
+		sWriter = new java.io.StringWriter();
+		out1 = new java.io.PrintWriter(sWriter);
+		printCountingMap1 = new java.util.LinkedHashMap<String, Integer>(printCountingMap);
+		print_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression_0(element, localtab, out1, printCountingMap1);
+		if (printCountingMap.equals(printCountingMap1)) {
+			out1.close();
+		} else {
+			out1.flush();
+			out1.close();
+			out.print(sWriter.toString());
+			printCountingMap.putAll(printCountingMap1);
+		}
+		// DEFINITION PART BEGINS (CompoundDefinition)
+		sWriter = new java.io.StringWriter();
+		out1 = new java.io.PrintWriter(sWriter);
+		printCountingMap1 = new java.util.LinkedHashMap<String, Integer>(printCountingMap);
+		print_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression_1(element, localtab, out1, printCountingMap1);
+		if (printCountingMap.equals(printCountingMap1)) {
+			out1.close();
+		} else {
+			out1.flush();
+			out1.close();
+			out.print(sWriter.toString());
+			printCountingMap.putAll(printCountingMap1);
+		}
+		// DEFINITION PART BEGINS (CsString)
+		out.print("=");
+		out.print(" ");
+		// DEFINITION PART BEGINS (BooleanTerminal)
+		count = printCountingMap.get("nullable");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__NULLABLE));
+			if (o != null) {
+			}
+			printCountingMap.put("nullable", count - 1);
+		}
+		// DEFINITION PART BEGINS (Containment)
+		count = printCountingMap.get("targetExpression");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__TARGET_EXPRESSION));
+			if (o != null) {
+				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
+			}
+			printCountingMap.put("targetExpression", count - 1);
+		}
+	}
+	
+	public void print_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression_0(edu.ustb.sei.mde.xmu2.pattern.ReflectivePropertyPatternExpression element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
+		String localtab = outertab;
+		int count;
+		// DEFINITION PART BEGINS (Containment)
+		count = printCountingMap.get("selector");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__SELECTOR));
+			if (o != null) {
+				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
+			}
+			printCountingMap.put("selector", count - 1);
+		}
+	}
+	
+	public void print_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression_1(edu.ustb.sei.mde.xmu2.pattern.ReflectivePropertyPatternExpression element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
+		String localtab = outertab;
+		int count;
+		// DEFINITION PART BEGINS (Containment)
+		count = printCountingMap.get("position");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__POSITION));
+			if (o != null) {
+				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
+			}
+			printCountingMap.put("position", count - 1);
+		}
+	}
+	
+	
+	public void print_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement(edu.ustb.sei.mde.xmu2.statement.ReflectiveDeleteLinkStatement element, String outertab, java.io.PrintWriter out) {
+		String localtab = outertab;
+		// The printCountingMap contains a mapping from feature names to the number of
+		// remaining elements that still need to be printed. The map is initialized with
+		// the number of elements stored in each structural feature. For lists this is the
+		// list size. For non-multiple features it is either 1 (if the feature is set) or
+		// 0 (if the feature is null).
+		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(4);
+		Object temp;
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.REFLECTIVE_DELETE_LINK_STATEMENT__SOURCE));
+		printCountingMap.put("source", temp == null ? 0 : 1);
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.REFLECTIVE_DELETE_LINK_STATEMENT__TARGET));
+		printCountingMap.put("target", temp == null ? 0 : 1);
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.REFLECTIVE_DELETE_LINK_STATEMENT__FEATURE));
+		printCountingMap.put("feature", temp == null ? 0 : 1);
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.REFLECTIVE_DELETE_LINK_STATEMENT__REFLECTIVE_IDENTIFIER));
+		printCountingMap.put("reflectiveIdentifier", temp == null ? 0 : 1);
+		// print collected hidden tokens
+		int count;
+		// DEFINITION PART BEGINS (CsString)
+		out.print("delete");
+		out.print(" ");
+		// DEFINITION PART BEGINS (Containment)
+		count = printCountingMap.get("source");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.REFLECTIVE_DELETE_LINK_STATEMENT__SOURCE));
+			if (o != null) {
+				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
+			}
+			printCountingMap.put("source", count - 1);
+		}
+		// DEFINITION PART BEGINS (CsString)
+		out.print(".");
+		out.print(" ");
+		// DEFINITION PART BEGINS (CsString)
+		out.print("$");
+		out.print(" ");
+		// DEFINITION PART BEGINS (Containment)
+		count = printCountingMap.get("reflectiveIdentifier");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.REFLECTIVE_DELETE_LINK_STATEMENT__REFLECTIVE_IDENTIFIER));
+			if (o != null) {
+				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
+			}
+			printCountingMap.put("reflectiveIdentifier", count - 1);
+		}
+		// DEFINITION PART BEGINS (CsString)
+		out.print("=");
+		out.print(" ");
+		// DEFINITION PART BEGINS (Containment)
+		count = printCountingMap.get("target");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.REFLECTIVE_DELETE_LINK_STATEMENT__TARGET));
+			if (o != null) {
+				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
+			}
+			printCountingMap.put("target", count - 1);
 		}
 	}
 	

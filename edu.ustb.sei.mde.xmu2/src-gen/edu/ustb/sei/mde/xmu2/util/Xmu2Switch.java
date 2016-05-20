@@ -134,9 +134,33 @@ public class Xmu2Switch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case Xmu2Package.CONCRETE_VARIABLE_DECLARATION: {
+				ConcreteVariableDeclaration concreteVariableDeclaration = (ConcreteVariableDeclaration)theEObject;
+				T result = caseConcreteVariableDeclaration(concreteVariableDeclaration);
+				if (result == null) result = caseVariableDeclaration(concreteVariableDeclaration);
+				if (result == null) result = caseXmu2common_NamedElement(concreteVariableDeclaration);
+				if (result == null) result = caseTypedElement(concreteVariableDeclaration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case Xmu2Package.REFLECTIVE_VARIABLE_DECLARATION: {
+				ReflectiveVariableDeclaration reflectiveVariableDeclaration = (ReflectiveVariableDeclaration)theEObject;
+				T result = caseReflectiveVariableDeclaration(reflectiveVariableDeclaration);
+				if (result == null) result = caseVariableDeclaration(reflectiveVariableDeclaration);
+				if (result == null) result = caseXmu2common_NamedElement(reflectiveVariableDeclaration);
+				if (result == null) result = caseTypedElement(reflectiveVariableDeclaration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case Xmu2Package.TYPED_ELEMENT: {
 				TypedElement typedElement = (TypedElement)theEObject;
 				T result = caseTypedElement(typedElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case Xmu2Package.REFLECTIVE_API: {
+				ReflectiveAPI reflectiveAPI = (ReflectiveAPI)theEObject;
+				T result = caseReflectiveAPI(reflectiveAPI);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -280,6 +304,36 @@ public class Xmu2Switch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Concrete Variable Declaration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Concrete Variable Declaration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConcreteVariableDeclaration(ConcreteVariableDeclaration object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Reflective Variable Declaration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Reflective Variable Declaration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseReflectiveVariableDeclaration(ReflectiveVariableDeclaration object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Typed Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -291,6 +345,21 @@ public class Xmu2Switch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseTypedElement(TypedElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Reflective API</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Reflective API</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseReflectiveAPI(ReflectiveAPI object) {
 		return null;
 	}
 

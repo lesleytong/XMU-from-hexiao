@@ -11,7 +11,7 @@ import edu.ustb.sei.mde.xmu2common.NamedElement;
  *
  *
  * @see edu.ustb.sei.mde.xmu2.Xmu2Package#getVariableDeclaration()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface VariableDeclaration extends NamedElement, TypedElement {

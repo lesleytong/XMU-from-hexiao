@@ -238,6 +238,15 @@ public class Xmu2commonPackageImpl extends EPackageImpl implements Xmu2commonPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getReflectiveObject_EDynamticFeature() {
+		return (EAttribute)reflectiveObjectEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getDomainTag() {
 		return domainTagEEnum;
 	}
@@ -334,6 +343,7 @@ public class Xmu2commonPackageImpl extends EPackageImpl implements Xmu2commonPac
 		createEReference(reflectiveObjectEClass, REFLECTIVE_OBJECT__ECONTAINER);
 		createEReference(reflectiveObjectEClass, REFLECTIVE_OBJECT__ECONTENTS);
 		createEReference(reflectiveObjectEClass, REFLECTIVE_OBJECT__EALL_CONTENTS);
+		createEAttribute(reflectiveObjectEClass, REFLECTIVE_OBJECT__EDYNAMTIC_FEATURE);
 
 		// Create enums
 		domainTagEEnum = createEEnum(DOMAIN_TAG);
@@ -385,6 +395,7 @@ public class Xmu2commonPackageImpl extends EPackageImpl implements Xmu2commonPac
 		initEReference(getReflectiveObject_EContainer(), ecorePackage.getEObject(), null, "eContainer", null, 0, 1, ReflectiveObject.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getReflectiveObject_EContents(), ecorePackage.getEObject(), null, "eContents", null, 0, -1, ReflectiveObject.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getReflectiveObject_EAllContents(), ecorePackage.getEObject(), null, "eAllContents", null, 0, -1, ReflectiveObject.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getReflectiveObject_EDynamticFeature(), ecorePackage.getEJavaObject(), "eDynamticFeature", null, 0, -1, ReflectiveObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(domainTagEEnum, DomainTag.class, "DomainTag");

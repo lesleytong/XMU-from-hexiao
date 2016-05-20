@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  * @model abstract="true"
  * @generated
  */
-public interface PatternExpression extends Nullable {
+public interface PatternExpression extends Nullable, ReflectiveSupport {
 	/**
 	 * Returns the value of the '<em><b>Feature</b></em>' reference.
 	 * <!-- begin-user-doc -->

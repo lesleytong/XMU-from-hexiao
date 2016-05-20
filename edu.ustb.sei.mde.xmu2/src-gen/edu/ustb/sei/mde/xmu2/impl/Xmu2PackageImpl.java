@@ -4,11 +4,14 @@ package edu.ustb.sei.mde.xmu2.impl;
 
 import edu.ustb.sei.mde.xmu2.AbstractRule;
 import edu.ustb.sei.mde.xmu2.ArithmeticRule;
+import edu.ustb.sei.mde.xmu2.ConcreteVariableDeclaration;
 import edu.ustb.sei.mde.xmu2.EntryData;
 import edu.ustb.sei.mde.xmu2.EntryPoint;
 import edu.ustb.sei.mde.xmu2.ModelRule;
 import edu.ustb.sei.mde.xmu2.NamedElement;
 import edu.ustb.sei.mde.xmu2.Parameter;
+import edu.ustb.sei.mde.xmu2.ReflectiveAPI;
+import edu.ustb.sei.mde.xmu2.ReflectiveVariableDeclaration;
 import edu.ustb.sei.mde.xmu2.TransformationModel;
 import edu.ustb.sei.mde.xmu2.TypedElement;
 import edu.ustb.sei.mde.xmu2.VariableDeclaration;
@@ -111,7 +114,28 @@ public class Xmu2PackageImpl extends EPackageImpl implements Xmu2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass concreteVariableDeclarationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass reflectiveVariableDeclarationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass typedElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass reflectiveAPIEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -382,6 +406,24 @@ public class Xmu2PackageImpl extends EPackageImpl implements Xmu2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getConcreteVariableDeclaration() {
+		return concreteVariableDeclarationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getReflectiveVariableDeclaration() {
+		return reflectiveVariableDeclarationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getTypedElement() {
 		return typedElementEClass;
 	}
@@ -393,6 +435,24 @@ public class Xmu2PackageImpl extends EPackageImpl implements Xmu2Package {
 	 */
 	public EReference getTypedElement_Type() {
 		return (EReference)typedElementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getReflectiveAPI() {
+		return reflectiveAPIEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getReflectiveAPI_ReflectiveIdentifier() {
+		return (EReference)reflectiveAPIEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -453,8 +513,15 @@ public class Xmu2PackageImpl extends EPackageImpl implements Xmu2Package {
 
 		variableDeclarationEClass = createEClass(VARIABLE_DECLARATION);
 
+		concreteVariableDeclarationEClass = createEClass(CONCRETE_VARIABLE_DECLARATION);
+
+		reflectiveVariableDeclarationEClass = createEClass(REFLECTIVE_VARIABLE_DECLARATION);
+
 		typedElementEClass = createEClass(TYPED_ELEMENT);
 		createEReference(typedElementEClass, TYPED_ELEMENT__TYPE);
+
+		reflectiveAPIEClass = createEClass(REFLECTIVE_API);
+		createEReference(reflectiveAPIEClass, REFLECTIVE_API__REFLECTIVE_IDENTIFIER);
 	}
 
 	/**
@@ -506,6 +573,8 @@ public class Xmu2PackageImpl extends EPackageImpl implements Xmu2Package {
 		arithmeticRuleEClass.getESuperTypes().add(this.getAbstractRule());
 		variableDeclarationEClass.getESuperTypes().add(theXmu2commonPackage.getNamedElement());
 		variableDeclarationEClass.getESuperTypes().add(this.getTypedElement());
+		concreteVariableDeclarationEClass.getESuperTypes().add(this.getVariableDeclaration());
+		reflectiveVariableDeclarationEClass.getESuperTypes().add(this.getVariableDeclaration());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(namedElementEClass, NamedElement.class, "NamedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -536,10 +605,17 @@ public class Xmu2PackageImpl extends EPackageImpl implements Xmu2Package {
 		initEClass(arithmeticRuleEClass, ArithmeticRule.class, "ArithmeticRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getArithmeticRule_Statements(), theStatementPackage.getStatement(), null, "statements", null, 0, -1, ArithmeticRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(variableDeclarationEClass, VariableDeclaration.class, "VariableDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(variableDeclarationEClass, VariableDeclaration.class, "VariableDeclaration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(concreteVariableDeclarationEClass, ConcreteVariableDeclaration.class, "ConcreteVariableDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(reflectiveVariableDeclarationEClass, ReflectiveVariableDeclaration.class, "ReflectiveVariableDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(typedElementEClass, TypedElement.class, "TypedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTypedElement_Type(), ecorePackage.getEClassifier(), null, "type", null, 1, 1, TypedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(reflectiveAPIEClass, ReflectiveAPI.class, "ReflectiveAPI", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getReflectiveAPI_ReflectiveIdentifier(), theExpressionPackage.getExpression(), null, "reflectiveIdentifier", null, 1, 1, ReflectiveAPI.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

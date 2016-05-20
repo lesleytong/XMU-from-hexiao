@@ -15,7 +15,7 @@ public class Xmu2SyntaxCoverageInformationProvider {
 			edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getEntryData(),
 			edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getModelRule(),
 			edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(),
-			edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getVariableDeclaration(),
+			edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getConcreteVariableDeclaration(),
 			edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getParameter(),
 			edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getPattern(),
 			edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getPatternNode(),
@@ -52,8 +52,14 @@ public class Xmu2SyntaxCoverageInformationProvider {
 			edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getForEachStatement(),
 			edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getRuleCallStatement(),
 			edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSkip(),
+			edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getFail(),
 			edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDefaultCaseClause(),
 			edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getAssignStatement(),
+			edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getReflectiveVariableDeclaration(),
+			edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(),
+			edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(),
+			edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(),
+			edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(),
 		};
 	}
 	

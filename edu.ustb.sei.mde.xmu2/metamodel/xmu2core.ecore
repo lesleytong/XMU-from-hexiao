@@ -60,14 +60,14 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="guard" eType="#//Expression"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PatternNode">
+  <eClassifiers xsi:type="ecore:EClass" name="PatternNode" eSuperTypes="#//ReflectiveSupport">
     <eStructuralFeatures xsi:type="ecore:EReference" name="variable" lowerBound="1"
         eType="#//Variable"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="expressions" upperBound="-1"
         eType="#//PatternExpression" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PatternExpression" abstract="true" eSuperTypes="#//Nullable">
+  <eClassifiers xsi:type="ecore:EClass" name="PatternExpression" abstract="true" eSuperTypes="#//Nullable #//ReflectiveSupport">
     <eStructuralFeatures xsi:type="ecore:EReference" name="feature" lowerBound="1"
         eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="selector" eType="#//LoopPath"
@@ -155,7 +155,7 @@
         eType="#//Variable"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Path" abstract="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="FeaturePath" eSuperTypes="#//Path">
+  <eClassifiers xsi:type="ecore:EClass" name="FeaturePath" eSuperTypes="#//Path #//ReflectiveSupport">
     <eStructuralFeatures xsi:type="ecore:EReference" name="feature" lowerBound="1"
         eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature"/>
   </eClassifiers>
@@ -213,7 +213,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
         eType="#//Variable"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DeleteLinkStatement" eSuperTypes="#//Statement">
+  <eClassifiers xsi:type="ecore:EClass" name="DeleteLinkStatement" eSuperTypes="#//Statement #//ReflectiveSupport">
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
         eType="#//Expression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
@@ -221,13 +221,13 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="feature" lowerBound="1"
         eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="EnforceNodeStatement" eSuperTypes="#//Statement xmu2common.ecore#//DomainElement #//Nullable">
+  <eClassifiers xsi:type="ecore:EClass" name="EnforceNodeStatement" eSuperTypes="#//Statement xmu2common.ecore#//DomainElement #//Nullable #//ReflectiveSupport">
     <eStructuralFeatures xsi:type="ecore:EReference" name="node" lowerBound="1" eType="#//Variable"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClassifier"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="candidate" eType="#//VariableExpression"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="EnforceLinkStatement" eSuperTypes="#//Statement xmu2common.ecore#//DomainElement">
+  <eClassifiers xsi:type="ecore:EClass" name="EnforceLinkStatement" eSuperTypes="#//Statement xmu2common.ecore#//DomainElement #//ReflectiveSupport">
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
         eType="#//Expression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
@@ -274,5 +274,16 @@
         eType="#//Variable"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="constraint" lowerBound="1"
         eType="#//Expression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CommandStatement" eSuperTypes="#//Statement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="parameters" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="command" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ReflectiveSupport" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="reflectiveIdentifier" eType="#//Expression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="reflective" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
   </eClassifiers>
 </ecore:EPackage>

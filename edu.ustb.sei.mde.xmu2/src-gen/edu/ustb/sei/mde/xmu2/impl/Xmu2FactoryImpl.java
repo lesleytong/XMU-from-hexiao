@@ -62,7 +62,8 @@ public class Xmu2FactoryImpl extends EFactoryImpl implements Xmu2Factory {
 			case Xmu2Package.PARAMETER: return createParameter();
 			case Xmu2Package.MODEL_RULE: return createModelRule();
 			case Xmu2Package.ARITHMETIC_RULE: return createArithmeticRule();
-			case Xmu2Package.VARIABLE_DECLARATION: return createVariableDeclaration();
+			case Xmu2Package.CONCRETE_VARIABLE_DECLARATION: return createConcreteVariableDeclaration();
+			case Xmu2Package.REFLECTIVE_VARIABLE_DECLARATION: return createReflectiveVariableDeclaration();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -133,9 +134,19 @@ public class Xmu2FactoryImpl extends EFactoryImpl implements Xmu2Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public VariableDeclaration createVariableDeclaration() {
-		VariableDeclarationImpl variableDeclaration = new VariableDeclarationImpl();
-		return variableDeclaration;
+	public ConcreteVariableDeclaration createConcreteVariableDeclaration() {
+		ConcreteVariableDeclarationImpl concreteVariableDeclaration = new ConcreteVariableDeclarationImpl();
+		return concreteVariableDeclaration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ReflectiveVariableDeclaration createReflectiveVariableDeclaration() {
+		ReflectiveVariableDeclarationImpl reflectiveVariableDeclaration = new ReflectiveVariableDeclarationImpl();
+		return reflectiveVariableDeclaration;
 	}
 
 	/**

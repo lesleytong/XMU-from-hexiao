@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  * @model
  * @generated
  */
-public interface DeleteLinkStatement extends Statement {
+public interface DeleteLinkStatement extends Statement, ReflectiveSupport {
 	/**
 	 * Returns the value of the '<em><b>Target</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

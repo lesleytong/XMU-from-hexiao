@@ -494,6 +494,61 @@ public interface StatementPackage extends EPackage {
 	int DELETE_LINK_STATEMENT_FEATURE_COUNT = UNIDIRECTIONAL_STATEMENT_FEATURE_COUNT + 3;
 
 	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu2.statement.impl.ReflectiveDeleteLinkStatementImpl <em>Reflective Delete Link Statement</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.xmu2.statement.impl.ReflectiveDeleteLinkStatementImpl
+	 * @see edu.ustb.sei.mde.xmu2.statement.impl.StatementPackageImpl#getReflectiveDeleteLinkStatement()
+	 * @generated
+	 */
+	int REFLECTIVE_DELETE_LINK_STATEMENT = 14;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFLECTIVE_DELETE_LINK_STATEMENT__SOURCE = DELETE_LINK_STATEMENT__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFLECTIVE_DELETE_LINK_STATEMENT__TARGET = DELETE_LINK_STATEMENT__TARGET;
+
+	/**
+	 * The feature id for the '<em><b>Feature</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFLECTIVE_DELETE_LINK_STATEMENT__FEATURE = DELETE_LINK_STATEMENT__FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Reflective Identifier</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFLECTIVE_DELETE_LINK_STATEMENT__REFLECTIVE_IDENTIFIER = DELETE_LINK_STATEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Reflective Delete Link Statement</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFLECTIVE_DELETE_LINK_STATEMENT_FEATURE_COUNT = DELETE_LINK_STATEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu2.statement.impl.ForEachStatementImpl <em>For Each Statement</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -501,7 +556,7 @@ public interface StatementPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2.statement.impl.StatementPackageImpl#getForEachStatement()
 	 * @generated
 	 */
-	int FOR_EACH_STATEMENT = 14;
+	int FOR_EACH_STATEMENT = 15;
 
 	/**
 	 * The feature id for the '<em><b>Pattern</b></em>' containment reference.
@@ -538,7 +593,7 @@ public interface StatementPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2.statement.impl.StatementPackageImpl#getBlockStatement()
 	 * @generated
 	 */
-	int BLOCK_STATEMENT = 15;
+	int BLOCK_STATEMENT = 16;
 
 	/**
 	 * The feature id for the '<em><b>Body</b></em>' containment reference list.
@@ -566,7 +621,7 @@ public interface StatementPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2.statement.impl.StatementPackageImpl#getRuleCallStatement()
 	 * @generated
 	 */
-	int RULE_CALL_STATEMENT = 16;
+	int RULE_CALL_STATEMENT = 17;
 
 	/**
 	 * The feature id for the '<em><b>Rule</b></em>' reference.
@@ -603,7 +658,7 @@ public interface StatementPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2.statement.impl.StatementPackageImpl#getPsesudoStatement()
 	 * @generated
 	 */
-	int PSESUDO_STATEMENT = 17;
+	int PSESUDO_STATEMENT = 18;
 
 	/**
 	 * The number of structural features of the '<em>Psesudo Statement</em>' class.
@@ -615,6 +670,34 @@ public interface StatementPackage extends EPackage {
 	int PSESUDO_STATEMENT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu2.statement.impl.FailImpl <em>Fail</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.xmu2.statement.impl.FailImpl
+	 * @see edu.ustb.sei.mde.xmu2.statement.impl.StatementPackageImpl#getFail()
+	 * @generated
+	 */
+	int FAIL = 19;
+
+	/**
+	 * The feature id for the '<em><b>Message</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FAIL__MESSAGE = PSESUDO_STATEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Fail</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FAIL_FEATURE_COUNT = PSESUDO_STATEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu2.statement.impl.SkipImpl <em>Skip</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -622,7 +705,7 @@ public interface StatementPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2.statement.impl.StatementPackageImpl#getSkip()
 	 * @generated
 	 */
-	int SKIP = 18;
+	int SKIP = 20;
 
 	/**
 	 * The number of structural features of the '<em>Skip</em>' class.
@@ -641,7 +724,7 @@ public interface StatementPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2.statement.impl.StatementPackageImpl#getAssignStatement()
 	 * @generated
 	 */
-	int ASSIGN_STATEMENT = 19;
+	int ASSIGN_STATEMENT = 21;
 
 	/**
 	 * The feature id for the '<em><b>Updated Variable</b></em>' containment reference.
@@ -678,7 +761,7 @@ public interface StatementPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2.statement.impl.StatementPackageImpl#getActionType()
 	 * @generated
 	 */
-	int ACTION_TYPE = 20;
+	int ACTION_TYPE = 22;
 
 
 	/**
@@ -987,6 +1070,16 @@ public interface StatementPackage extends EPackage {
 	EAttribute getDeleteLinkStatement_Feature();
 
 	/**
+	 * Returns the meta object for class '{@link edu.ustb.sei.mde.xmu2.statement.ReflectiveDeleteLinkStatement <em>Reflective Delete Link Statement</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Reflective Delete Link Statement</em>'.
+	 * @see edu.ustb.sei.mde.xmu2.statement.ReflectiveDeleteLinkStatement
+	 * @generated
+	 */
+	EClass getReflectiveDeleteLinkStatement();
+
+	/**
 	 * Returns the meta object for class '{@link edu.ustb.sei.mde.xmu2.statement.ForEachStatement <em>For Each Statement</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1080,6 +1173,27 @@ public interface StatementPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getPsesudoStatement();
+
+	/**
+	 * Returns the meta object for class '{@link edu.ustb.sei.mde.xmu2.statement.Fail <em>Fail</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Fail</em>'.
+	 * @see edu.ustb.sei.mde.xmu2.statement.Fail
+	 * @generated
+	 */
+	EClass getFail();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.xmu2.statement.Fail#getMessage <em>Message</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Message</em>'.
+	 * @see edu.ustb.sei.mde.xmu2.statement.Fail#getMessage()
+	 * @see #getFail()
+	 * @generated
+	 */
+	EAttribute getFail_Message();
 
 	/**
 	 * Returns the meta object for class '{@link edu.ustb.sei.mde.xmu2.statement.Skip <em>Skip</em>}'.
@@ -1416,6 +1530,16 @@ public interface StatementPackage extends EPackage {
 		EAttribute DELETE_LINK_STATEMENT__FEATURE = eINSTANCE.getDeleteLinkStatement_Feature();
 
 		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu2.statement.impl.ReflectiveDeleteLinkStatementImpl <em>Reflective Delete Link Statement</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.xmu2.statement.impl.ReflectiveDeleteLinkStatementImpl
+		 * @see edu.ustb.sei.mde.xmu2.statement.impl.StatementPackageImpl#getReflectiveDeleteLinkStatement()
+		 * @generated
+		 */
+		EClass REFLECTIVE_DELETE_LINK_STATEMENT = eINSTANCE.getReflectiveDeleteLinkStatement();
+
+		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu2.statement.impl.ForEachStatementImpl <em>For Each Statement</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1494,6 +1618,24 @@ public interface StatementPackage extends EPackage {
 		 * @generated
 		 */
 		EClass PSESUDO_STATEMENT = eINSTANCE.getPsesudoStatement();
+
+		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu2.statement.impl.FailImpl <em>Fail</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.xmu2.statement.impl.FailImpl
+		 * @see edu.ustb.sei.mde.xmu2.statement.impl.StatementPackageImpl#getFail()
+		 * @generated
+		 */
+		EClass FAIL = eINSTANCE.getFail();
+
+		/**
+		 * The meta object literal for the '<em><b>Message</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FAIL__MESSAGE = eINSTANCE.getFail_Message();
 
 		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu2.statement.impl.SkipImpl <em>Skip</em>}' class.

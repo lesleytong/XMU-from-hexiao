@@ -445,6 +445,80 @@ public interface Xmu2Package extends EPackage {
 	int VARIABLE_DECLARATION_FEATURE_COUNT = Xmu2commonPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu2.impl.ConcreteVariableDeclarationImpl <em>Concrete Variable Declaration</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.xmu2.impl.ConcreteVariableDeclarationImpl
+	 * @see edu.ustb.sei.mde.xmu2.impl.Xmu2PackageImpl#getConcreteVariableDeclaration()
+	 * @generated
+	 */
+	int CONCRETE_VARIABLE_DECLARATION = 9;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_VARIABLE_DECLARATION__NAME = VARIABLE_DECLARATION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_VARIABLE_DECLARATION__TYPE = VARIABLE_DECLARATION__TYPE;
+
+	/**
+	 * The number of structural features of the '<em>Concrete Variable Declaration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_VARIABLE_DECLARATION_FEATURE_COUNT = VARIABLE_DECLARATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu2.impl.ReflectiveVariableDeclarationImpl <em>Reflective Variable Declaration</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.xmu2.impl.ReflectiveVariableDeclarationImpl
+	 * @see edu.ustb.sei.mde.xmu2.impl.Xmu2PackageImpl#getReflectiveVariableDeclaration()
+	 * @generated
+	 */
+	int REFLECTIVE_VARIABLE_DECLARATION = 10;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFLECTIVE_VARIABLE_DECLARATION__NAME = VARIABLE_DECLARATION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFLECTIVE_VARIABLE_DECLARATION__TYPE = VARIABLE_DECLARATION__TYPE;
+
+	/**
+	 * The number of structural features of the '<em>Reflective Variable Declaration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFLECTIVE_VARIABLE_DECLARATION_FEATURE_COUNT = VARIABLE_DECLARATION_FEATURE_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu2.impl.TypedElementImpl <em>Typed Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -452,7 +526,7 @@ public interface Xmu2Package extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2.impl.Xmu2PackageImpl#getTypedElement()
 	 * @generated
 	 */
-	int TYPED_ELEMENT = 9;
+	int TYPED_ELEMENT = 11;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -471,6 +545,35 @@ public interface Xmu2Package extends EPackage {
 	 * @ordered
 	 */
 	int TYPED_ELEMENT_FEATURE_COUNT = 1;
+
+
+	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu2.impl.ReflectiveAPIImpl <em>Reflective API</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.xmu2.impl.ReflectiveAPIImpl
+	 * @see edu.ustb.sei.mde.xmu2.impl.Xmu2PackageImpl#getReflectiveAPI()
+	 * @generated
+	 */
+	int REFLECTIVE_API = 12;
+
+	/**
+	 * The feature id for the '<em><b>Reflective Identifier</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFLECTIVE_API__REFLECTIVE_IDENTIFIER = 0;
+
+	/**
+	 * The number of structural features of the '<em>Reflective API</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFLECTIVE_API_FEATURE_COUNT = 1;
 
 
 	/**
@@ -696,6 +799,26 @@ public interface Xmu2Package extends EPackage {
 	EClass getVariableDeclaration();
 
 	/**
+	 * Returns the meta object for class '{@link edu.ustb.sei.mde.xmu2.ConcreteVariableDeclaration <em>Concrete Variable Declaration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Concrete Variable Declaration</em>'.
+	 * @see edu.ustb.sei.mde.xmu2.ConcreteVariableDeclaration
+	 * @generated
+	 */
+	EClass getConcreteVariableDeclaration();
+
+	/**
+	 * Returns the meta object for class '{@link edu.ustb.sei.mde.xmu2.ReflectiveVariableDeclaration <em>Reflective Variable Declaration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Reflective Variable Declaration</em>'.
+	 * @see edu.ustb.sei.mde.xmu2.ReflectiveVariableDeclaration
+	 * @generated
+	 */
+	EClass getReflectiveVariableDeclaration();
+
+	/**
 	 * Returns the meta object for class '{@link edu.ustb.sei.mde.xmu2.TypedElement <em>Typed Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -715,6 +838,27 @@ public interface Xmu2Package extends EPackage {
 	 * @generated
 	 */
 	EReference getTypedElement_Type();
+
+	/**
+	 * Returns the meta object for class '{@link edu.ustb.sei.mde.xmu2.ReflectiveAPI <em>Reflective API</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Reflective API</em>'.
+	 * @see edu.ustb.sei.mde.xmu2.ReflectiveAPI
+	 * @generated
+	 */
+	EClass getReflectiveAPI();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.xmu2.ReflectiveAPI#getReflectiveIdentifier <em>Reflective Identifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Reflective Identifier</em>'.
+	 * @see edu.ustb.sei.mde.xmu2.ReflectiveAPI#getReflectiveIdentifier()
+	 * @see #getReflectiveAPI()
+	 * @generated
+	 */
+	EReference getReflectiveAPI_ReflectiveIdentifier();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -925,6 +1069,26 @@ public interface Xmu2Package extends EPackage {
 		EClass VARIABLE_DECLARATION = eINSTANCE.getVariableDeclaration();
 
 		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu2.impl.ConcreteVariableDeclarationImpl <em>Concrete Variable Declaration</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.xmu2.impl.ConcreteVariableDeclarationImpl
+		 * @see edu.ustb.sei.mde.xmu2.impl.Xmu2PackageImpl#getConcreteVariableDeclaration()
+		 * @generated
+		 */
+		EClass CONCRETE_VARIABLE_DECLARATION = eINSTANCE.getConcreteVariableDeclaration();
+
+		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu2.impl.ReflectiveVariableDeclarationImpl <em>Reflective Variable Declaration</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.xmu2.impl.ReflectiveVariableDeclarationImpl
+		 * @see edu.ustb.sei.mde.xmu2.impl.Xmu2PackageImpl#getReflectiveVariableDeclaration()
+		 * @generated
+		 */
+		EClass REFLECTIVE_VARIABLE_DECLARATION = eINSTANCE.getReflectiveVariableDeclaration();
+
+		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu2.impl.TypedElementImpl <em>Typed Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -941,6 +1105,24 @@ public interface Xmu2Package extends EPackage {
 		 * @generated
 		 */
 		EReference TYPED_ELEMENT__TYPE = eINSTANCE.getTypedElement_Type();
+
+		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu2.impl.ReflectiveAPIImpl <em>Reflective API</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.xmu2.impl.ReflectiveAPIImpl
+		 * @see edu.ustb.sei.mde.xmu2.impl.Xmu2PackageImpl#getReflectiveAPI()
+		 * @generated
+		 */
+		EClass REFLECTIVE_API = eINSTANCE.getReflectiveAPI();
+
+		/**
+		 * The meta object literal for the '<em><b>Reflective Identifier</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REFLECTIVE_API__REFLECTIVE_IDENTIFIER = eINSTANCE.getReflectiveAPI_ReflectiveIdentifier();
 
 	}
 

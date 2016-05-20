@@ -100,6 +100,7 @@ public class Xmu2coreFactoryImpl extends EFactoryImpl implements Xmu2coreFactory
 			case Xmu2corePackage.ENFORCE_EXPRESSION_STATEMENT: return createEnforceExpressionStatement();
 			case Xmu2corePackage.FUNCTION: return createFunction();
 			case Xmu2corePackage.SOLVE_CONSTRAINT_STATEMENT: return createSolveConstraintStatement();
+			case Xmu2corePackage.COMMAND_STATEMENT: return createCommandStatement();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -567,6 +568,16 @@ public class Xmu2coreFactoryImpl extends EFactoryImpl implements Xmu2coreFactory
 	public SolveConstraintStatement createSolveConstraintStatement() {
 		SolveConstraintStatementImpl solveConstraintStatement = new SolveConstraintStatementImpl();
 		return solveConstraintStatement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CommandStatement createCommandStatement() {
+		CommandStatementImpl commandStatement = new CommandStatementImpl();
+		return commandStatement;
 	}
 
 	/**

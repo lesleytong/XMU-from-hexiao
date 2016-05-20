@@ -192,6 +192,11 @@ public class CaseStatementClauseItemProvider extends CaseClauseItemProvider {
 			(createChildParameter
 				(Xmu2corePackage.Literals.CASE_STATEMENT_CLAUSE__CONDITION,
 				 Xmu2coreFactory.eINSTANCE.createSolveConstraintStatement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.CASE_STATEMENT_CLAUSE__CONDITION,
+				 Xmu2coreFactory.eINSTANCE.createCommandStatement()));
 	}
 
 	/**

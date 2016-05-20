@@ -223,6 +223,16 @@ public class ForwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 		Expression tar = statement.getTarget();
 		EStructuralFeature f = statement.getFeature();
 		
+		try {
+			if(statement.isReflective()) {
+				SafeType hostObj = context.get(src);
+				SafeType expectedFeature = this.resolveReflectiveFeature(hostObj.getObjectValue().eClass(), statement.getReflectiveIdentifier(), context);
+				f = (EStructuralFeature) expectedFeature.getValue();
+			}
+		} catch(Exception e) {
+			throw new InvalidForwardEnforcementException("cannot delete link because of the unresolved feature", e);
+		}
+		
 		EObject sourcePost = context.get(src).getObjectValue();		
 		SafeType value = this.executeExpression(tar, context);
 		
@@ -246,6 +256,7 @@ public class ForwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 		}
 	}
 
+	@Deprecated
 	protected void executeEnforceSourceNodeStatement(EnforceNodeStatement statement, Context context) {
 		Variable node = statement.getNode();
 		EClass type = (EClass)statement.getType();
@@ -271,6 +282,7 @@ public class ForwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 		}
 	}
 
+	@Deprecated
 	protected void executeEnforceSourceLinkStatement(EnforceLinkStatement statement, Context context) {
 		Variable source = statement.getSource();
 		EStructuralFeature feature = statement.getFeature();
@@ -278,15 +290,27 @@ public class ForwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 		PositionPath position = statement.getPosition();
 		Expression target = statement.getTarget();
 		
+		
+		
 		if(AbstractInterpreter.MODEL_CHECK.enforceLink(source, feature, selector, position, target, context))
 			return;
 		else 
-			throw new InvalidForwardEnforcementException("cannot enforce view link");
+			throw new InvalidForwardEnforcementException("cannot enforce source link");
 	}
 
 	protected void executeEnforceViewNodeStatement(EnforceNodeStatement statement, Context context) {
 		Variable node = statement.getNode();
 		EClass type = (EClass)statement.getType();
+		
+		try {
+			if(statement.isReflective()) {
+				SafeType expectedType = this.resolveReflectiveClassifier(statement.getReflectiveIdentifier(), context);
+				type = (EClass) expectedType.getValue();
+			}
+		} catch(Exception e) {
+			throw new InvalidForwardEnforcementException("cannot enforce link because of the unresolved type", e);
+		}
+		
 		Expression candidate = statement.getCandidate();
 
 		SafeType oldValue = context.get(node);
@@ -296,8 +320,17 @@ public class ForwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 			try {
 				if (candidate != null) {
 					oldValue = this.executeExpression(candidate, context);
-//					if(oldValue==Constants.NULL)
-//						oldValue = Constants.UNDEFINED;
+					
+					// I uncomment the following two lines, but I cannot remember why I comment them
+					if (oldValue == Constants.NULL)
+						oldValue = Constants.UNDEFINED;
+					else {
+						// to support reflective API, I have to check whether value is a list
+						Object value = oldValue.getValue();
+						if (value != null && value instanceof List<?>) {
+							oldValue = SafeType.UNDEFINED;
+						}
+					}
 				}
 			} catch (Exception e) {
 				oldValue = SafeType.UNDEFINED;
@@ -342,6 +375,16 @@ public class ForwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 		LoopPath selector = statement.getSelector();
 		PositionPath position = statement.getPosition();
 		Expression target = statement.getTarget();
+		
+		try {
+			if(statement.isReflective()) {
+				SafeType hostObj = context.get(source);
+				SafeType expectedFeature = this.resolveReflectiveFeature(hostObj.getObjectValue().eClass(), statement.getReflectiveIdentifier(), context);
+				feature = (EStructuralFeature) expectedFeature.getValue();
+			}
+		} catch(Exception e) {
+			throw new InvalidForwardEnforcementException("cannot enforce link because of the unresolved feature", e);
+		}
 		
 		if(this.enforceLink(source, feature, selector, position, target, context))
 			return;

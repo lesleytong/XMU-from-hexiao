@@ -46,22 +46,25 @@ RULES {
 	
 	EntryData ::= tag[source:"source",view:"view"] "[" index[NUMBER]  (fragment[OBJ_URI])? "]";
 	
-	ModelRule ::= "rule" name[NAME] "(" (parameters ("," parameters)*)? ")" "{" (variableDeclarations ";")* statement? "}";
+	ModelRule ::= "rule" name[NAME] "(" (parameters ("," parameters)*)? ")" "{" (variableDeclarations : ConcreteVariableDeclaration ";")* statement? "}";
 	
 	ArithmeticRule ::= "function" name[NAME] "(" (parameters ("," parameters)*)? ")" "{" statements* "}";
 	
-	VariableDeclaration ::= name[NAME] ":" type[TYPE];
+	ConcreteVariableDeclaration ::= name[NAME] ":" type[TYPE];
+	
+	
 	Parameter ::= tag[source:"source",view:"view",normal:""] name[NAME] ":" type[TYPE];
 	
 	//Pattern
 	pattern.Pattern ::= root ("[" guard:expression.BooleanOrExpression,expression.BooleanAndExpression,expression.RelationalExpression,expression.AdditiveExpression,expression.MultiplicativeExpression,expression.UnaryExpression,expression.PathExpression, expression.AtomicExpression "]")?;
-	pattern.PatternNode ::= variable ("{" (expressions ("," expressions)*)? "}")?;
+	pattern.PatternNode ::= variable : ConcreteVariableDeclaration ("{" (expressions ("," expressions)*)? "}")?;
 	pattern.ObjectPatternExpression ::= feature[NAME] (selector)? (position)? "=" nullable["?":""] targetNode ;
 	pattern.PropertyPatternExpression ::= feature[NAME] (selector)? (position)? "=" nullable["?":""] targetExpression:expression.BooleanOrExpression,expression.BooleanAndExpression,expression.RelationalExpression,expression.AdditiveExpression,expression.MultiplicativeExpression,expression.UnaryExpression,expression.PathExpression, expression.AtomicExpression;
 	
+	
 	//Expression
 	
-	expression.LoopPath ::= "->" operator[select:"select", forAll:"forAll", exists:"exists"] "(" variable "|" body:expression.BooleanOrExpression,expression.BooleanAndExpression,expression.RelationalExpression,expression.AdditiveExpression,expression.MultiplicativeExpression,expression.UnaryExpression,expression.PathExpression, expression.AtomicExpression ")";
+	expression.LoopPath ::= "->" operator[select:"select", forAll:"forAll", exists:"exists"] "(" variable : ConcreteVariableDeclaration "|" body:expression.BooleanOrExpression,expression.BooleanAndExpression,expression.RelationalExpression,expression.AdditiveExpression,expression.MultiplicativeExpression,expression.UnaryExpression,expression.PathExpression, expression.AtomicExpression ")";
 	expression.FeaturePath ::= "." feature[NAME];
 	expression.OperationPath ::= "." operation[NAME] "(" (parameters:expression.BooleanOrExpression,expression.BooleanAndExpression,expression.RelationalExpression,expression.AdditiveExpression,expression.MultiplicativeExpression,expression.UnaryExpression,expression.PathExpression, expression.AtomicExpression ("," parameters:expression.BooleanOrExpression,expression.BooleanAndExpression,expression.RelationalExpression,expression.AdditiveExpression,expression.MultiplicativeExpression,expression.UnaryExpression,expression.PathExpression, expression.AtomicExpression)*)? ")";
 	expression.PositionPath ::= "->" type[first:"first", last:"last", at:"at"] "(" value:expression.BooleanOrExpression,expression.BooleanAndExpression,expression.RelationalExpression,expression.AdditiveExpression,expression.MultiplicativeExpression,expression.UnaryExpression,expression.PathExpression, expression.AtomicExpression? ")";
@@ -100,6 +103,15 @@ RULES {
 	statement.ForEachStatement ::= "foreach" pattern "->" action;
 	statement.RuleCallStatement ::= rule[NAME] "(" (parameters:expression.PathExpression,expression.AtomicExpression ("," parameters:expression.PathExpression,expression.AtomicExpression)*)? ")";
 	statement.Skip ::= "skip";
+	statement.Fail ::= "fail" message['\'','\'','\\']?;
 	statement.DefaultCaseClause ::= "otherwise" "->" action;
 	statement.AssignStatement ::= updatedVariable "::=" value: expression.BooleanOrExpression,expression.BooleanAndExpression,expression.RelationalExpression,expression.AdditiveExpression,expression.MultiplicativeExpression,expression.UnaryExpression,expression.PathExpression, expression.AtomicExpression;
+	
+	
+	//reflective API
+	ReflectiveVariableDeclaration ::= name[NAME];
+	pattern.ReflectivePatternNode ::= variable : ReflectiveVariableDeclaration ":" "$" reflectiveIdentifier : expression.AdditiveExpression,expression.MultiplicativeExpression,expression.UnaryExpression,expression.PathExpression, expression.AtomicExpression ("{" (expressions ("," expressions)*)? "}")?; 
+	pattern.ReflectiveObjectPatternExpression ::= "$" reflectiveIdentifier : expression.AdditiveExpression,expression.MultiplicativeExpression,expression.UnaryExpression,expression.PathExpression, expression.AtomicExpression (selector)? (position)? "=" nullable["?":""] targetNode ;
+	pattern.ReflectivePropertyPatternExpression ::= "$" reflectiveIdentifier : expression.AdditiveExpression,expression.MultiplicativeExpression,expression.UnaryExpression,expression.PathExpression, expression.AtomicExpression (selector)? (position)? "=" nullable["?":""] targetExpression:expression.BooleanOrExpression,expression.BooleanAndExpression,expression.RelationalExpression,expression.AdditiveExpression,expression.MultiplicativeExpression,expression.UnaryExpression,expression.PathExpression, expression.AtomicExpression;
+	statement.ReflectiveDeleteLinkStatement ::=  "delete" source "." "$" reflectiveIdentifier : expression.AdditiveExpression,expression.MultiplicativeExpression,expression.UnaryExpression,expression.PathExpression, expression.AtomicExpression "=" target:expression.UnaryExpression,expression.PathExpression, expression.AtomicExpression;
 }

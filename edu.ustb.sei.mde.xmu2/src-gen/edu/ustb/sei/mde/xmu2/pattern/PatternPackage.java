@@ -341,6 +341,217 @@ public interface PatternPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu2.pattern.impl.ReflectivePatternNodeImpl <em>Reflective Pattern Node</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.xmu2.pattern.impl.ReflectivePatternNodeImpl
+	 * @see edu.ustb.sei.mde.xmu2.pattern.impl.PatternPackageImpl#getReflectivePatternNode()
+	 * @generated
+	 */
+	int REFLECTIVE_PATTERN_NODE = 5;
+
+	/**
+	 * The feature id for the '<em><b>Variable</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFLECTIVE_PATTERN_NODE__VARIABLE = PATTERN_NODE__VARIABLE;
+
+	/**
+	 * The feature id for the '<em><b>Expressions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFLECTIVE_PATTERN_NODE__EXPRESSIONS = PATTERN_NODE__EXPRESSIONS;
+
+	/**
+	 * The feature id for the '<em><b>Reflective Identifier</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFLECTIVE_PATTERN_NODE__REFLECTIVE_IDENTIFIER = PATTERN_NODE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Reflective Pattern Node</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFLECTIVE_PATTERN_NODE_FEATURE_COUNT = PATTERN_NODE_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu2.pattern.impl.ReflectiveObjectPatternExpressionImpl <em>Reflective Object Pattern Expression</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.xmu2.pattern.impl.ReflectiveObjectPatternExpressionImpl
+	 * @see edu.ustb.sei.mde.xmu2.pattern.impl.PatternPackageImpl#getReflectiveObjectPatternExpression()
+	 * @generated
+	 */
+	int REFLECTIVE_OBJECT_PATTERN_EXPRESSION = 6;
+
+	/**
+	 * The feature id for the '<em><b>Owner Node</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFLECTIVE_OBJECT_PATTERN_EXPRESSION__OWNER_NODE = OBJECT_PATTERN_EXPRESSION__OWNER_NODE;
+
+	/**
+	 * The feature id for the '<em><b>Feature</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFLECTIVE_OBJECT_PATTERN_EXPRESSION__FEATURE = OBJECT_PATTERN_EXPRESSION__FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Selector</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFLECTIVE_OBJECT_PATTERN_EXPRESSION__SELECTOR = OBJECT_PATTERN_EXPRESSION__SELECTOR;
+
+	/**
+	 * The feature id for the '<em><b>Position</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFLECTIVE_OBJECT_PATTERN_EXPRESSION__POSITION = OBJECT_PATTERN_EXPRESSION__POSITION;
+
+	/**
+	 * The feature id for the '<em><b>Nullable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFLECTIVE_OBJECT_PATTERN_EXPRESSION__NULLABLE = OBJECT_PATTERN_EXPRESSION__NULLABLE;
+
+	/**
+	 * The feature id for the '<em><b>Target Node</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFLECTIVE_OBJECT_PATTERN_EXPRESSION__TARGET_NODE = OBJECT_PATTERN_EXPRESSION__TARGET_NODE;
+
+	/**
+	 * The feature id for the '<em><b>Reflective Identifier</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFLECTIVE_OBJECT_PATTERN_EXPRESSION__REFLECTIVE_IDENTIFIER = OBJECT_PATTERN_EXPRESSION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Reflective Object Pattern Expression</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFLECTIVE_OBJECT_PATTERN_EXPRESSION_FEATURE_COUNT = OBJECT_PATTERN_EXPRESSION_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu2.pattern.impl.ReflectivePropertyPatternExpressionImpl <em>Reflective Property Pattern Expression</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.xmu2.pattern.impl.ReflectivePropertyPatternExpressionImpl
+	 * @see edu.ustb.sei.mde.xmu2.pattern.impl.PatternPackageImpl#getReflectivePropertyPatternExpression()
+	 * @generated
+	 */
+	int REFLECTIVE_PROPERTY_PATTERN_EXPRESSION = 7;
+
+	/**
+	 * The feature id for the '<em><b>Owner Node</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__OWNER_NODE = PROPERTY_PATTERN_EXPRESSION__OWNER_NODE;
+
+	/**
+	 * The feature id for the '<em><b>Feature</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__FEATURE = PROPERTY_PATTERN_EXPRESSION__FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Selector</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__SELECTOR = PROPERTY_PATTERN_EXPRESSION__SELECTOR;
+
+	/**
+	 * The feature id for the '<em><b>Position</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__POSITION = PROPERTY_PATTERN_EXPRESSION__POSITION;
+
+	/**
+	 * The feature id for the '<em><b>Nullable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__NULLABLE = PROPERTY_PATTERN_EXPRESSION__NULLABLE;
+
+	/**
+	 * The feature id for the '<em><b>Target Expression</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__TARGET_EXPRESSION = PROPERTY_PATTERN_EXPRESSION__TARGET_EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Reflective Identifier</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__REFLECTIVE_IDENTIFIER = PROPERTY_PATTERN_EXPRESSION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Reflective Property Pattern Expression</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFLECTIVE_PROPERTY_PATTERN_EXPRESSION_FEATURE_COUNT = PROPERTY_PATTERN_EXPRESSION_FEATURE_COUNT + 1;
+
+
+	/**
 	 * Returns the meta object for class '{@link edu.ustb.sei.mde.xmu2.pattern.Pattern <em>Pattern</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -512,6 +723,36 @@ public interface PatternPackage extends EPackage {
 	EReference getPropertyPatternExpression_TargetExpression();
 
 	/**
+	 * Returns the meta object for class '{@link edu.ustb.sei.mde.xmu2.pattern.ReflectivePatternNode <em>Reflective Pattern Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Reflective Pattern Node</em>'.
+	 * @see edu.ustb.sei.mde.xmu2.pattern.ReflectivePatternNode
+	 * @generated
+	 */
+	EClass getReflectivePatternNode();
+
+	/**
+	 * Returns the meta object for class '{@link edu.ustb.sei.mde.xmu2.pattern.ReflectiveObjectPatternExpression <em>Reflective Object Pattern Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Reflective Object Pattern Expression</em>'.
+	 * @see edu.ustb.sei.mde.xmu2.pattern.ReflectiveObjectPatternExpression
+	 * @generated
+	 */
+	EClass getReflectiveObjectPatternExpression();
+
+	/**
+	 * Returns the meta object for class '{@link edu.ustb.sei.mde.xmu2.pattern.ReflectivePropertyPatternExpression <em>Reflective Property Pattern Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Reflective Property Pattern Expression</em>'.
+	 * @see edu.ustb.sei.mde.xmu2.pattern.ReflectivePropertyPatternExpression
+	 * @generated
+	 */
+	EClass getReflectivePropertyPatternExpression();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -670,6 +911,36 @@ public interface PatternPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PROPERTY_PATTERN_EXPRESSION__TARGET_EXPRESSION = eINSTANCE.getPropertyPatternExpression_TargetExpression();
+
+		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu2.pattern.impl.ReflectivePatternNodeImpl <em>Reflective Pattern Node</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.xmu2.pattern.impl.ReflectivePatternNodeImpl
+		 * @see edu.ustb.sei.mde.xmu2.pattern.impl.PatternPackageImpl#getReflectivePatternNode()
+		 * @generated
+		 */
+		EClass REFLECTIVE_PATTERN_NODE = eINSTANCE.getReflectivePatternNode();
+
+		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu2.pattern.impl.ReflectiveObjectPatternExpressionImpl <em>Reflective Object Pattern Expression</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.xmu2.pattern.impl.ReflectiveObjectPatternExpressionImpl
+		 * @see edu.ustb.sei.mde.xmu2.pattern.impl.PatternPackageImpl#getReflectiveObjectPatternExpression()
+		 * @generated
+		 */
+		EClass REFLECTIVE_OBJECT_PATTERN_EXPRESSION = eINSTANCE.getReflectiveObjectPatternExpression();
+
+		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu2.pattern.impl.ReflectivePropertyPatternExpressionImpl <em>Reflective Property Pattern Expression</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.xmu2.pattern.impl.ReflectivePropertyPatternExpressionImpl
+		 * @see edu.ustb.sei.mde.xmu2.pattern.impl.PatternPackageImpl#getReflectivePropertyPatternExpression()
+		 * @generated
+		 */
+		EClass REFLECTIVE_PROPERTY_PATTERN_EXPRESSION = eINSTANCE.getReflectivePropertyPatternExpression();
 
 	}
 

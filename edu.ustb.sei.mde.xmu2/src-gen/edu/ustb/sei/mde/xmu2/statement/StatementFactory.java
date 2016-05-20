@@ -112,6 +112,15 @@ public interface StatementFactory extends EFactory {
 	DeleteLinkStatement createDeleteLinkStatement();
 
 	/**
+	 * Returns a new object of class '<em>Reflective Delete Link Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Reflective Delete Link Statement</em>'.
+	 * @generated
+	 */
+	ReflectiveDeleteLinkStatement createReflectiveDeleteLinkStatement();
+
+	/**
 	 * Returns a new object of class '<em>For Each Statement</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -137,6 +146,15 @@ public interface StatementFactory extends EFactory {
 	 * @generated
 	 */
 	RuleCallStatement createRuleCallStatement();
+
+	/**
+	 * Returns a new object of class '<em>Fail</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Fail</em>'.
+	 * @generated
+	 */
+	Fail createFail();
 
 	/**
 	 * Returns a new object of class '<em>Skip</em>'.

@@ -215,6 +215,11 @@ public class AlignStatementItemProvider extends StatementItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
+				(Xmu2corePackage.Literals.ALIGN_STATEMENT__MATCH,
+				 Xmu2coreFactory.eINSTANCE.createCommandStatement()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(Xmu2corePackage.Literals.ALIGN_STATEMENT__UNMATCHV,
 				 Xmu2coreFactory.eINSTANCE.createAlignStatement()));
 
@@ -275,6 +280,11 @@ public class AlignStatementItemProvider extends StatementItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
+				(Xmu2corePackage.Literals.ALIGN_STATEMENT__UNMATCHV,
+				 Xmu2coreFactory.eINSTANCE.createCommandStatement()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(Xmu2corePackage.Literals.ALIGN_STATEMENT__UNMATCHS,
 				 Xmu2coreFactory.eINSTANCE.createAlignStatement()));
 
@@ -332,6 +342,11 @@ public class AlignStatementItemProvider extends StatementItemProvider {
 			(createChildParameter
 				(Xmu2corePackage.Literals.ALIGN_STATEMENT__UNMATCHS,
 				 Xmu2coreFactory.eINSTANCE.createSolveConstraintStatement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.ALIGN_STATEMENT__UNMATCHS,
+				 Xmu2coreFactory.eINSTANCE.createCommandStatement()));
 	}
 
 	/**

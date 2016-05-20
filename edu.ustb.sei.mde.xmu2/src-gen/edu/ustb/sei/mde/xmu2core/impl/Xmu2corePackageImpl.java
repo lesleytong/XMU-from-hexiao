@@ -18,6 +18,7 @@ import edu.ustb.sei.mde.xmu2core.CasePatternClause;
 import edu.ustb.sei.mde.xmu2core.CaseStatement;
 import edu.ustb.sei.mde.xmu2core.CaseStatementClause;
 import edu.ustb.sei.mde.xmu2core.CheckExpressionStatement;
+import edu.ustb.sei.mde.xmu2core.CommandStatement;
 import edu.ustb.sei.mde.xmu2core.DeleteLinkStatement;
 import edu.ustb.sei.mde.xmu2core.DeleteNodeStatement;
 import edu.ustb.sei.mde.xmu2core.EmptyValueExpression;
@@ -48,6 +49,7 @@ import edu.ustb.sei.mde.xmu2core.PositionPath;
 import edu.ustb.sei.mde.xmu2core.PrimitiveValueExpression;
 import edu.ustb.sei.mde.xmu2core.Procedure;
 import edu.ustb.sei.mde.xmu2core.PropertyPatternExpression;
+import edu.ustb.sei.mde.xmu2core.ReflectiveSupport;
 import edu.ustb.sei.mde.xmu2core.RelationalExpression;
 import edu.ustb.sei.mde.xmu2core.SolveConstraintStatement;
 import edu.ustb.sei.mde.xmu2core.Statement;
@@ -453,6 +455,20 @@ public class Xmu2corePackageImpl extends EPackageImpl implements Xmu2corePackage
 	 * @generated
 	 */
 	private EClass solveConstraintStatementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass commandStatementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass reflectiveSupportEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1833,6 +1849,60 @@ public class Xmu2corePackageImpl extends EPackageImpl implements Xmu2corePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getCommandStatement() {
+		return commandStatementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getCommandStatement_Parameters() {
+		return (EAttribute)commandStatementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getCommandStatement_Command() {
+		return (EAttribute)commandStatementEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getReflectiveSupport() {
+		return reflectiveSupportEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getReflectiveSupport_ReflectiveIdentifier() {
+		return (EReference)reflectiveSupportEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getReflectiveSupport_Reflective() {
+		return (EAttribute)reflectiveSupportEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EDataType getNull() {
 		return nullEDataType;
 	}
@@ -2072,6 +2142,14 @@ public class Xmu2corePackageImpl extends EPackageImpl implements Xmu2corePackage
 		createEReference(solveConstraintStatementEClass, SOLVE_CONSTRAINT_STATEMENT__VARIABLES);
 		createEReference(solveConstraintStatementEClass, SOLVE_CONSTRAINT_STATEMENT__CONSTRAINT);
 
+		commandStatementEClass = createEClass(COMMAND_STATEMENT);
+		createEAttribute(commandStatementEClass, COMMAND_STATEMENT__PARAMETERS);
+		createEAttribute(commandStatementEClass, COMMAND_STATEMENT__COMMAND);
+
+		reflectiveSupportEClass = createEClass(REFLECTIVE_SUPPORT);
+		createEReference(reflectiveSupportEClass, REFLECTIVE_SUPPORT__REFLECTIVE_IDENTIFIER);
+		createEAttribute(reflectiveSupportEClass, REFLECTIVE_SUPPORT__REFLECTIVE);
+
 		// Create data types
 		nullEDataType = createEDataType(NULL);
 		undefinedEDataType = createEDataType(UNDEFINED);
@@ -2119,7 +2197,9 @@ public class Xmu2corePackageImpl extends EPackageImpl implements Xmu2corePackage
 		casePatternClauseEClass.getESuperTypes().add(this.getCaseClause());
 		caseExpressionClauseEClass.getESuperTypes().add(this.getCaseClause());
 		caseStatementClauseEClass.getESuperTypes().add(this.getCaseClause());
+		patternNodeEClass.getESuperTypes().add(this.getReflectiveSupport());
 		patternExpressionEClass.getESuperTypes().add(this.getNullable());
+		patternExpressionEClass.getESuperTypes().add(this.getReflectiveSupport());
 		objectPatternExpressionEClass.getESuperTypes().add(this.getPatternExpression());
 		propertyPatternExpressionEClass.getESuperTypes().add(this.getPatternExpression());
 		booleanOrExpressionEClass.getESuperTypes().add(this.getExpression());
@@ -2139,6 +2219,7 @@ public class Xmu2corePackageImpl extends EPackageImpl implements Xmu2corePackage
 		objectValueExpressionEClass.getESuperTypes().add(this.getAtomicExpression());
 		variableExpressionEClass.getESuperTypes().add(this.getAtomicExpression());
 		featurePathEClass.getESuperTypes().add(this.getPath());
+		featurePathEClass.getESuperTypes().add(this.getReflectiveSupport());
 		operationPathEClass.getESuperTypes().add(this.getPath());
 		loopPathEClass.getESuperTypes().add(this.getPath());
 		positionPathEClass.getESuperTypes().add(this.getPath());
@@ -2149,17 +2230,21 @@ public class Xmu2corePackageImpl extends EPackageImpl implements Xmu2corePackage
 		forEachStatementEClass.getESuperTypes().add(this.getStatement());
 		deleteNodeStatementEClass.getESuperTypes().add(this.getStatement());
 		deleteLinkStatementEClass.getESuperTypes().add(this.getStatement());
+		deleteLinkStatementEClass.getESuperTypes().add(this.getReflectiveSupport());
 		enforceNodeStatementEClass.getESuperTypes().add(this.getStatement());
 		enforceNodeStatementEClass.getESuperTypes().add(theXmu2commonPackage.getDomainElement());
 		enforceNodeStatementEClass.getESuperTypes().add(this.getNullable());
+		enforceNodeStatementEClass.getESuperTypes().add(this.getReflectiveSupport());
 		enforceLinkStatementEClass.getESuperTypes().add(this.getStatement());
 		enforceLinkStatementEClass.getESuperTypes().add(theXmu2commonPackage.getDomainElement());
+		enforceLinkStatementEClass.getESuperTypes().add(this.getReflectiveSupport());
 		oclCollectionTypeEClass.getESuperTypes().add(ecorePackage.getEClass());
 		matchPatternEClass.getESuperTypes().add(this.getStatement());
 		checkExpressionStatementEClass.getESuperTypes().add(this.getStatement());
 		enforceExpressionStatementEClass.getESuperTypes().add(this.getStatement());
 		functionEClass.getESuperTypes().add(this.getCallable());
 		solveConstraintStatementEClass.getESuperTypes().add(this.getStatement());
+		commandStatementEClass.getESuperTypes().add(this.getStatement());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(typedElementEClass, TypedElement.class, "TypedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2359,6 +2444,14 @@ public class Xmu2corePackageImpl extends EPackageImpl implements Xmu2corePackage
 		initEClass(solveConstraintStatementEClass, SolveConstraintStatement.class, "SolveConstraintStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSolveConstraintStatement_Variables(), this.getVariable(), null, "variables", null, 0, -1, SolveConstraintStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSolveConstraintStatement_Constraint(), this.getExpression(), null, "constraint", null, 1, 1, SolveConstraintStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(commandStatementEClass, CommandStatement.class, "CommandStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getCommandStatement_Parameters(), ecorePackage.getEJavaObject(), "parameters", null, 0, -1, CommandStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCommandStatement_Command(), ecorePackage.getEString(), "command", null, 0, 1, CommandStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(reflectiveSupportEClass, ReflectiveSupport.class, "ReflectiveSupport", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getReflectiveSupport_ReflectiveIdentifier(), this.getExpression(), null, "reflectiveIdentifier", null, 0, 1, ReflectiveSupport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getReflectiveSupport_Reflective(), ecorePackage.getEBoolean(), "reflective", "false", 0, 1, ReflectiveSupport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize data types
 		initEDataType(nullEDataType, Object.class, "Null", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);

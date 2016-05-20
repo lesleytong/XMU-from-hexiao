@@ -10,6 +10,7 @@ import edu.ustb.sei.mde.xmu2core.EnforceLinkStatement;
 import edu.ustb.sei.mde.xmu2core.Expression;
 import edu.ustb.sei.mde.xmu2core.LoopPath;
 import edu.ustb.sei.mde.xmu2core.PositionPath;
+import edu.ustb.sei.mde.xmu2core.ReflectiveSupport;
 import edu.ustb.sei.mde.xmu2core.Variable;
 import edu.ustb.sei.mde.xmu2core.Xmu2corePackage;
 
@@ -32,6 +33,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * </p>
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.EnforceLinkStatementImpl#getTag <em>Tag</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.EnforceLinkStatementImpl#getReflectiveIdentifier <em>Reflective Identifier</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.EnforceLinkStatementImpl#isReflective <em>Reflective</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.EnforceLinkStatementImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.EnforceLinkStatementImpl#getSource <em>Source</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.EnforceLinkStatementImpl#getFeature <em>Feature</em>}</li>
@@ -62,6 +65,36 @@ public class EnforceLinkStatementImpl extends StatementImpl implements EnforceLi
 	 * @ordered
 	 */
 	protected DomainTag tag = TAG_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getReflectiveIdentifier() <em>Reflective Identifier</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getReflectiveIdentifier()
+	 * @generated
+	 * @ordered
+	 */
+	protected Expression reflectiveIdentifier;
+
+	/**
+	 * The default value of the '{@link #isReflective() <em>Reflective</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isReflective()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean REFLECTIVE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isReflective() <em>Reflective</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isReflective()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean reflective = REFLECTIVE_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getTarget() <em>Target</em>}' containment reference.
@@ -161,6 +194,70 @@ public class EnforceLinkStatementImpl extends StatementImpl implements EnforceLi
 		tag = newTag == null ? TAG_EDEFAULT : newTag;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Xmu2corePackage.ENFORCE_LINK_STATEMENT__TAG, oldTag, tag));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Expression getReflectiveIdentifier() {
+		return reflectiveIdentifier;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetReflectiveIdentifier(Expression newReflectiveIdentifier, NotificationChain msgs) {
+		Expression oldReflectiveIdentifier = reflectiveIdentifier;
+		reflectiveIdentifier = newReflectiveIdentifier;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, Xmu2corePackage.ENFORCE_LINK_STATEMENT__REFLECTIVE_IDENTIFIER, oldReflectiveIdentifier, newReflectiveIdentifier);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setReflectiveIdentifier(Expression newReflectiveIdentifier) {
+		if (newReflectiveIdentifier != reflectiveIdentifier) {
+			NotificationChain msgs = null;
+			if (reflectiveIdentifier != null)
+				msgs = ((InternalEObject)reflectiveIdentifier).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - Xmu2corePackage.ENFORCE_LINK_STATEMENT__REFLECTIVE_IDENTIFIER, null, msgs);
+			if (newReflectiveIdentifier != null)
+				msgs = ((InternalEObject)newReflectiveIdentifier).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - Xmu2corePackage.ENFORCE_LINK_STATEMENT__REFLECTIVE_IDENTIFIER, null, msgs);
+			msgs = basicSetReflectiveIdentifier(newReflectiveIdentifier, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, Xmu2corePackage.ENFORCE_LINK_STATEMENT__REFLECTIVE_IDENTIFIER, newReflectiveIdentifier, newReflectiveIdentifier));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isReflective() {
+		return reflective;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setReflective(boolean newReflective) {
+		boolean oldReflective = reflective;
+		reflective = newReflective;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, Xmu2corePackage.ENFORCE_LINK_STATEMENT__REFLECTIVE, oldReflective, reflective));
 	}
 
 	/**
@@ -414,6 +511,8 @@ public class EnforceLinkStatementImpl extends StatementImpl implements EnforceLi
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case Xmu2corePackage.ENFORCE_LINK_STATEMENT__REFLECTIVE_IDENTIFIER:
+				return basicSetReflectiveIdentifier(null, msgs);
 			case Xmu2corePackage.ENFORCE_LINK_STATEMENT__TARGET:
 				return basicSetTarget(null, msgs);
 			case Xmu2corePackage.ENFORCE_LINK_STATEMENT__SELECTOR:
@@ -434,6 +533,10 @@ public class EnforceLinkStatementImpl extends StatementImpl implements EnforceLi
 		switch (featureID) {
 			case Xmu2corePackage.ENFORCE_LINK_STATEMENT__TAG:
 				return getTag();
+			case Xmu2corePackage.ENFORCE_LINK_STATEMENT__REFLECTIVE_IDENTIFIER:
+				return getReflectiveIdentifier();
+			case Xmu2corePackage.ENFORCE_LINK_STATEMENT__REFLECTIVE:
+				return isReflective();
 			case Xmu2corePackage.ENFORCE_LINK_STATEMENT__TARGET:
 				return getTarget();
 			case Xmu2corePackage.ENFORCE_LINK_STATEMENT__SOURCE:
@@ -463,6 +566,12 @@ public class EnforceLinkStatementImpl extends StatementImpl implements EnforceLi
 		switch (featureID) {
 			case Xmu2corePackage.ENFORCE_LINK_STATEMENT__TAG:
 				setTag((DomainTag)newValue);
+				return;
+			case Xmu2corePackage.ENFORCE_LINK_STATEMENT__REFLECTIVE_IDENTIFIER:
+				setReflectiveIdentifier((Expression)newValue);
+				return;
+			case Xmu2corePackage.ENFORCE_LINK_STATEMENT__REFLECTIVE:
+				setReflective((Boolean)newValue);
 				return;
 			case Xmu2corePackage.ENFORCE_LINK_STATEMENT__TARGET:
 				setTarget((Expression)newValue);
@@ -497,6 +606,12 @@ public class EnforceLinkStatementImpl extends StatementImpl implements EnforceLi
 			case Xmu2corePackage.ENFORCE_LINK_STATEMENT__TAG:
 				setTag(TAG_EDEFAULT);
 				return;
+			case Xmu2corePackage.ENFORCE_LINK_STATEMENT__REFLECTIVE_IDENTIFIER:
+				setReflectiveIdentifier((Expression)null);
+				return;
+			case Xmu2corePackage.ENFORCE_LINK_STATEMENT__REFLECTIVE:
+				setReflective(REFLECTIVE_EDEFAULT);
+				return;
 			case Xmu2corePackage.ENFORCE_LINK_STATEMENT__TARGET:
 				setTarget((Expression)null);
 				return;
@@ -529,6 +644,10 @@ public class EnforceLinkStatementImpl extends StatementImpl implements EnforceLi
 		switch (featureID) {
 			case Xmu2corePackage.ENFORCE_LINK_STATEMENT__TAG:
 				return tag != TAG_EDEFAULT;
+			case Xmu2corePackage.ENFORCE_LINK_STATEMENT__REFLECTIVE_IDENTIFIER:
+				return reflectiveIdentifier != null;
+			case Xmu2corePackage.ENFORCE_LINK_STATEMENT__REFLECTIVE:
+				return reflective != REFLECTIVE_EDEFAULT;
 			case Xmu2corePackage.ENFORCE_LINK_STATEMENT__TARGET:
 				return target != null;
 			case Xmu2corePackage.ENFORCE_LINK_STATEMENT__SOURCE:
@@ -558,6 +677,13 @@ public class EnforceLinkStatementImpl extends StatementImpl implements EnforceLi
 				default: return -1;
 			}
 		}
+		if (baseClass == ReflectiveSupport.class) {
+			switch (derivedFeatureID) {
+				case Xmu2corePackage.ENFORCE_LINK_STATEMENT__REFLECTIVE_IDENTIFIER: return Xmu2corePackage.REFLECTIVE_SUPPORT__REFLECTIVE_IDENTIFIER;
+				case Xmu2corePackage.ENFORCE_LINK_STATEMENT__REFLECTIVE: return Xmu2corePackage.REFLECTIVE_SUPPORT__REFLECTIVE;
+				default: return -1;
+			}
+		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
 	}
 
@@ -571,6 +697,13 @@ public class EnforceLinkStatementImpl extends StatementImpl implements EnforceLi
 		if (baseClass == DomainElement.class) {
 			switch (baseFeatureID) {
 				case Xmu2commonPackage.DOMAIN_ELEMENT__TAG: return Xmu2corePackage.ENFORCE_LINK_STATEMENT__TAG;
+				default: return -1;
+			}
+		}
+		if (baseClass == ReflectiveSupport.class) {
+			switch (baseFeatureID) {
+				case Xmu2corePackage.REFLECTIVE_SUPPORT__REFLECTIVE_IDENTIFIER: return Xmu2corePackage.ENFORCE_LINK_STATEMENT__REFLECTIVE_IDENTIFIER;
+				case Xmu2corePackage.REFLECTIVE_SUPPORT__REFLECTIVE: return Xmu2corePackage.ENFORCE_LINK_STATEMENT__REFLECTIVE;
 				default: return -1;
 			}
 		}
@@ -589,6 +722,8 @@ public class EnforceLinkStatementImpl extends StatementImpl implements EnforceLi
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (tag: ");
 		result.append(tag);
+		result.append(", reflective: ");
+		result.append(reflective);
 		result.append(')');
 		return result.toString();
 	}

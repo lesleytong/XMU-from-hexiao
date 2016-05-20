@@ -106,8 +106,20 @@ public class Xmu2AdapterFactory extends AdapterFactoryImpl {
 				return createVariableDeclarationAdapter();
 			}
 			@Override
+			public Adapter caseConcreteVariableDeclaration(ConcreteVariableDeclaration object) {
+				return createConcreteVariableDeclarationAdapter();
+			}
+			@Override
+			public Adapter caseReflectiveVariableDeclaration(ReflectiveVariableDeclaration object) {
+				return createReflectiveVariableDeclarationAdapter();
+			}
+			@Override
 			public Adapter caseTypedElement(TypedElement object) {
 				return createTypedElementAdapter();
+			}
+			@Override
+			public Adapter caseReflectiveAPI(ReflectiveAPI object) {
+				return createReflectiveAPIAdapter();
 			}
 			@Override
 			public Adapter caseXmu2common_NamedElement(edu.ustb.sei.mde.xmu2common.NamedElement object) {
@@ -264,6 +276,34 @@ public class Xmu2AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.xmu2.ConcreteVariableDeclaration <em>Concrete Variable Declaration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.xmu2.ConcreteVariableDeclaration
+	 * @generated
+	 */
+	public Adapter createConcreteVariableDeclarationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.xmu2.ReflectiveVariableDeclaration <em>Reflective Variable Declaration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.xmu2.ReflectiveVariableDeclaration
+	 * @generated
+	 */
+	public Adapter createReflectiveVariableDeclarationAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.xmu2.TypedElement <em>Typed Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -274,6 +314,20 @@ public class Xmu2AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTypedElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.xmu2.ReflectiveAPI <em>Reflective API</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.xmu2.ReflectiveAPI
+	 * @generated
+	 */
+	public Adapter createReflectiveAPIAdapter() {
 		return null;
 	}
 

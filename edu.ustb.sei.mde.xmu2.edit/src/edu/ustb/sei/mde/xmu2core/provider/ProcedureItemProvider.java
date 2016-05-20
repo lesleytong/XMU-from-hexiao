@@ -198,6 +198,11 @@ public class ProcedureItemProvider extends CallableItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
+				(Xmu2corePackage.Literals.PROCEDURE__BACKWARD_STATEMENTS,
+				 Xmu2coreFactory.eINSTANCE.createCommandStatement()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(Xmu2corePackage.Literals.PROCEDURE__FORWARD_STATEMENTS,
 				 Xmu2coreFactory.eINSTANCE.createAlignStatement()));
 
@@ -255,6 +260,11 @@ public class ProcedureItemProvider extends CallableItemProvider {
 			(createChildParameter
 				(Xmu2corePackage.Literals.PROCEDURE__FORWARD_STATEMENTS,
 				 Xmu2coreFactory.eINSTANCE.createSolveConstraintStatement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.PROCEDURE__FORWARD_STATEMENTS,
+				 Xmu2coreFactory.eINSTANCE.createCommandStatement()));
 	}
 
 	/**

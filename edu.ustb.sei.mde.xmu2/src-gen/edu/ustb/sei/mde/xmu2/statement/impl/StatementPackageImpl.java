@@ -2,18 +2,19 @@
  */
 package edu.ustb.sei.mde.xmu2.statement.impl;
 
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.impl.EPackageImpl;
+
 import edu.ustb.sei.mde.xmu2.Xmu2Package;
-
 import edu.ustb.sei.mde.xmu2.expression.ExpressionPackage;
-
 import edu.ustb.sei.mde.xmu2.expression.impl.ExpressionPackageImpl;
-
 import edu.ustb.sei.mde.xmu2.impl.Xmu2PackageImpl;
-
 import edu.ustb.sei.mde.xmu2.pattern.PatternPackage;
-
 import edu.ustb.sei.mde.xmu2.pattern.impl.PatternPackageImpl;
-
 import edu.ustb.sei.mde.xmu2.statement.ActionType;
 import edu.ustb.sei.mde.xmu2.statement.AssignStatement;
 import edu.ustb.sei.mde.xmu2.statement.BidirectionalStatement;
@@ -25,9 +26,11 @@ import edu.ustb.sei.mde.xmu2.statement.DeleteLinkStatement;
 import edu.ustb.sei.mde.xmu2.statement.DeleteNodeStatement;
 import edu.ustb.sei.mde.xmu2.statement.EnforcePatternStatement;
 import edu.ustb.sei.mde.xmu2.statement.ExpressionCaseClause;
+import edu.ustb.sei.mde.xmu2.statement.Fail;
 import edu.ustb.sei.mde.xmu2.statement.ForEachStatement;
 import edu.ustb.sei.mde.xmu2.statement.PatternCaseClause;
 import edu.ustb.sei.mde.xmu2.statement.PsesudoStatement;
+import edu.ustb.sei.mde.xmu2.statement.ReflectiveDeleteLinkStatement;
 import edu.ustb.sei.mde.xmu2.statement.RuleCallStatement;
 import edu.ustb.sei.mde.xmu2.statement.Skip;
 import edu.ustb.sei.mde.xmu2.statement.Statement;
@@ -37,16 +40,7 @@ import edu.ustb.sei.mde.xmu2.statement.SwitchStatement;
 import edu.ustb.sei.mde.xmu2.statement.UnidirectionalStatement;
 import edu.ustb.sei.mde.xmu2.statement.UpdateClause;
 import edu.ustb.sei.mde.xmu2.statement.UpdateStatement;
-
 import edu.ustb.sei.mde.xmu2common.Xmu2commonPackage;
-
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
-
-import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -158,6 +152,13 @@ public class StatementPackageImpl extends EPackageImpl implements StatementPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass reflectiveDeleteLinkStatementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass forEachStatementEClass = null;
 
 	/**
@@ -180,6 +181,13 @@ public class StatementPackageImpl extends EPackageImpl implements StatementPacka
 	 * @generated
 	 */
 	private EClass psesudoStatementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass failEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -543,6 +551,15 @@ public class StatementPackageImpl extends EPackageImpl implements StatementPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getReflectiveDeleteLinkStatement() {
+		return reflectiveDeleteLinkStatementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getForEachStatement() {
 		return forEachStatementEClass;
 	}
@@ -617,6 +634,24 @@ public class StatementPackageImpl extends EPackageImpl implements StatementPacka
 	 */
 	public EClass getPsesudoStatement() {
 		return psesudoStatementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getFail() {
+		return failEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getFail_Message() {
+		return (EAttribute)failEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -735,6 +770,8 @@ public class StatementPackageImpl extends EPackageImpl implements StatementPacka
 		createEReference(deleteLinkStatementEClass, DELETE_LINK_STATEMENT__TARGET);
 		createEAttribute(deleteLinkStatementEClass, DELETE_LINK_STATEMENT__FEATURE);
 
+		reflectiveDeleteLinkStatementEClass = createEClass(REFLECTIVE_DELETE_LINK_STATEMENT);
+
 		forEachStatementEClass = createEClass(FOR_EACH_STATEMENT);
 		createEReference(forEachStatementEClass, FOR_EACH_STATEMENT__PATTERN);
 		createEReference(forEachStatementEClass, FOR_EACH_STATEMENT__ACTION);
@@ -747,6 +784,9 @@ public class StatementPackageImpl extends EPackageImpl implements StatementPacka
 		createEReference(ruleCallStatementEClass, RULE_CALL_STATEMENT__PARAMETERS);
 
 		psesudoStatementEClass = createEClass(PSESUDO_STATEMENT);
+
+		failEClass = createEClass(FAIL);
+		createEAttribute(failEClass, FAIL__MESSAGE);
 
 		skipEClass = createEClass(SKIP);
 
@@ -802,10 +842,13 @@ public class StatementPackageImpl extends EPackageImpl implements StatementPacka
 		enforcePatternStatementEClass.getESuperTypes().add(this.getUnidirectionalStatement());
 		deleteNodeStatementEClass.getESuperTypes().add(this.getUnidirectionalStatement());
 		deleteLinkStatementEClass.getESuperTypes().add(this.getUnidirectionalStatement());
+		reflectiveDeleteLinkStatementEClass.getESuperTypes().add(this.getDeleteLinkStatement());
+		reflectiveDeleteLinkStatementEClass.getESuperTypes().add(theXmu2Package.getReflectiveAPI());
 		forEachStatementEClass.getESuperTypes().add(this.getUnidirectionalStatement());
 		blockStatementEClass.getESuperTypes().add(this.getStatement());
 		ruleCallStatementEClass.getESuperTypes().add(this.getBidirectionalStatement());
 		psesudoStatementEClass.getESuperTypes().add(this.getStatement());
+		failEClass.getESuperTypes().add(this.getPsesudoStatement());
 		skipEClass.getESuperTypes().add(this.getPsesudoStatement());
 		assignStatementEClass.getESuperTypes().add(this.getStatement());
 
@@ -853,6 +896,8 @@ public class StatementPackageImpl extends EPackageImpl implements StatementPacka
 		initEReference(getDeleteLinkStatement_Target(), theExpressionPackage.getExpression(), null, "target", null, 1, 1, DeleteLinkStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDeleteLinkStatement_Feature(), ecorePackage.getEString(), "feature", null, 1, 1, DeleteLinkStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(reflectiveDeleteLinkStatementEClass, ReflectiveDeleteLinkStatement.class, "ReflectiveDeleteLinkStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
 		initEClass(forEachStatementEClass, ForEachStatement.class, "ForEachStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getForEachStatement_Pattern(), thePatternPackage.getPattern(), null, "pattern", null, 1, 1, ForEachStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getForEachStatement_Action(), this.getStatement(), null, "action", null, 1, 1, ForEachStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -865,6 +910,9 @@ public class StatementPackageImpl extends EPackageImpl implements StatementPacka
 		initEReference(getRuleCallStatement_Parameters(), theExpressionPackage.getExpression(), null, "parameters", null, 0, -1, RuleCallStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(psesudoStatementEClass, PsesudoStatement.class, "PsesudoStatement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(failEClass, Fail.class, "Fail", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getFail_Message(), ecorePackage.getEString(), "message", null, 0, 1, Fail.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(skipEClass, Skip.class, "Skip", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

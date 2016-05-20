@@ -58,6 +58,33 @@ public interface PatternFactory extends EFactory {
 	PropertyPatternExpression createPropertyPatternExpression();
 
 	/**
+	 * Returns a new object of class '<em>Reflective Pattern Node</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Reflective Pattern Node</em>'.
+	 * @generated
+	 */
+	ReflectivePatternNode createReflectivePatternNode();
+
+	/**
+	 * Returns a new object of class '<em>Reflective Object Pattern Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Reflective Object Pattern Expression</em>'.
+	 * @generated
+	 */
+	ReflectiveObjectPatternExpression createReflectiveObjectPatternExpression();
+
+	/**
+	 * Returns a new object of class '<em>Reflective Property Pattern Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Reflective Property Pattern Expression</em>'.
+	 * @generated
+	 */
+	ReflectivePropertyPatternExpression createReflectivePropertyPatternExpression();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

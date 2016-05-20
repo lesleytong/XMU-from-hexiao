@@ -197,8 +197,8 @@ final public class AnalysisUtil {
 	}
 	
 	static public boolean isSuperTypeOf(EClassifier parent, EClassifier child) {
-		if(parent==Constants.OCLANY) return true;
-		else if(parent==Constants.EOBJECT) {
+		if(parent==Constants.OCLANY || child==Constants.REFLECTIVE_OBJECT) return true;
+		else if(parent==Constants.EOBJECT || parent == Constants.REFLECTIVE_OBJECT) {
 			return child instanceof EClass;
 		} else {
 			if(parent instanceof EClass && child instanceof EClass)

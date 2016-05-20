@@ -28,7 +28,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  * @model
  * @generated
  */
-public interface EnforceLinkStatement extends Statement, DomainElement {
+public interface EnforceLinkStatement extends Statement, DomainElement, ReflectiveSupport {
 	/**
 	 * Returns the value of the '<em><b>Target</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
