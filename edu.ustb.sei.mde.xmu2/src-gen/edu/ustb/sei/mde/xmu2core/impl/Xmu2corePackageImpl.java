@@ -1903,6 +1903,15 @@ public class Xmu2corePackageImpl extends EPackageImpl implements Xmu2corePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getReflectiveSupport_Resolve() {
+		return (EAttribute)reflectiveSupportEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EDataType getNull() {
 		return nullEDataType;
 	}
@@ -2149,6 +2158,7 @@ public class Xmu2corePackageImpl extends EPackageImpl implements Xmu2corePackage
 		reflectiveSupportEClass = createEClass(REFLECTIVE_SUPPORT);
 		createEReference(reflectiveSupportEClass, REFLECTIVE_SUPPORT__REFLECTIVE_IDENTIFIER);
 		createEAttribute(reflectiveSupportEClass, REFLECTIVE_SUPPORT__REFLECTIVE);
+		createEAttribute(reflectiveSupportEClass, REFLECTIVE_SUPPORT__RESOLVE);
 
 		// Create data types
 		nullEDataType = createEDataType(NULL);
@@ -2452,6 +2462,7 @@ public class Xmu2corePackageImpl extends EPackageImpl implements Xmu2corePackage
 		initEClass(reflectiveSupportEClass, ReflectiveSupport.class, "ReflectiveSupport", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getReflectiveSupport_ReflectiveIdentifier(), this.getExpression(), null, "reflectiveIdentifier", null, 0, 1, ReflectiveSupport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getReflectiveSupport_Reflective(), ecorePackage.getEBoolean(), "reflective", "false", 0, 1, ReflectiveSupport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getReflectiveSupport_Resolve(), ecorePackage.getEBoolean(), "resolve", null, 1, 1, ReflectiveSupport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize data types
 		initEDataType(nullEDataType, Object.class, "Null", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);

@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.ReflectiveSupportImpl#getReflectiveIdentifier <em>Reflective Identifier</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.ReflectiveSupportImpl#isReflective <em>Reflective</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.ReflectiveSupportImpl#isResolve <em>Resolve</em>}</li>
  * </ul>
  *
  * @generated
@@ -59,6 +60,26 @@ public abstract class ReflectiveSupportImpl extends MinimalEObjectImpl.Container
 	 * @ordered
 	 */
 	protected boolean reflective = REFLECTIVE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isResolve() <em>Resolve</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isResolve()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean RESOLVE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isResolve() <em>Resolve</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isResolve()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean resolve = RESOLVE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -148,6 +169,27 @@ public abstract class ReflectiveSupportImpl extends MinimalEObjectImpl.Container
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isResolve() {
+		return resolve;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setResolve(boolean newResolve) {
+		boolean oldResolve = resolve;
+		resolve = newResolve;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, Xmu2corePackage.REFLECTIVE_SUPPORT__RESOLVE, oldResolve, resolve));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -169,6 +211,8 @@ public abstract class ReflectiveSupportImpl extends MinimalEObjectImpl.Container
 				return getReflectiveIdentifier();
 			case Xmu2corePackage.REFLECTIVE_SUPPORT__REFLECTIVE:
 				return isReflective();
+			case Xmu2corePackage.REFLECTIVE_SUPPORT__RESOLVE:
+				return isResolve();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -186,6 +230,9 @@ public abstract class ReflectiveSupportImpl extends MinimalEObjectImpl.Container
 				return;
 			case Xmu2corePackage.REFLECTIVE_SUPPORT__REFLECTIVE:
 				setReflective((Boolean)newValue);
+				return;
+			case Xmu2corePackage.REFLECTIVE_SUPPORT__RESOLVE:
+				setResolve((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -205,6 +252,9 @@ public abstract class ReflectiveSupportImpl extends MinimalEObjectImpl.Container
 			case Xmu2corePackage.REFLECTIVE_SUPPORT__REFLECTIVE:
 				setReflective(REFLECTIVE_EDEFAULT);
 				return;
+			case Xmu2corePackage.REFLECTIVE_SUPPORT__RESOLVE:
+				setResolve(RESOLVE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -221,6 +271,8 @@ public abstract class ReflectiveSupportImpl extends MinimalEObjectImpl.Container
 				return reflectiveIdentifier != null;
 			case Xmu2corePackage.REFLECTIVE_SUPPORT__REFLECTIVE:
 				return reflective != REFLECTIVE_EDEFAULT;
+			case Xmu2corePackage.REFLECTIVE_SUPPORT__RESOLVE:
+				return resolve != RESOLVE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -237,6 +289,8 @@ public abstract class ReflectiveSupportImpl extends MinimalEObjectImpl.Container
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (reflective: ");
 		result.append(reflective);
+		result.append(", resolve: ");
+		result.append(resolve);
 		result.append(')');
 		return result.toString();
 	}

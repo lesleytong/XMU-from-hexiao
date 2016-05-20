@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.EnforceNodeStatementImpl#isNullable <em>Nullable</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.EnforceNodeStatementImpl#getReflectiveIdentifier <em>Reflective Identifier</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.EnforceNodeStatementImpl#isReflective <em>Reflective</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.EnforceNodeStatementImpl#isResolve <em>Resolve</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.EnforceNodeStatementImpl#getNode <em>Node</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.EnforceNodeStatementImpl#getType <em>Type</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.EnforceNodeStatementImpl#getCandidate <em>Candidate</em>}</li>
@@ -112,6 +113,26 @@ public class EnforceNodeStatementImpl extends StatementImpl implements EnforceNo
 	 * @ordered
 	 */
 	protected boolean reflective = REFLECTIVE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isResolve() <em>Resolve</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isResolve()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean RESOLVE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isResolve() <em>Resolve</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isResolve()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean resolve = RESOLVE_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getNode() <em>Node</em>}' reference.
@@ -273,6 +294,27 @@ public class EnforceNodeStatementImpl extends StatementImpl implements EnforceNo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isResolve() {
+		return resolve;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setResolve(boolean newResolve) {
+		boolean oldResolve = resolve;
+		resolve = newResolve;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, Xmu2corePackage.ENFORCE_NODE_STATEMENT__RESOLVE, oldResolve, resolve));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Variable getNode() {
 		if (node != null && node.eIsProxy()) {
 			InternalEObject oldNode = (InternalEObject)node;
@@ -419,6 +461,8 @@ public class EnforceNodeStatementImpl extends StatementImpl implements EnforceNo
 				return getReflectiveIdentifier();
 			case Xmu2corePackage.ENFORCE_NODE_STATEMENT__REFLECTIVE:
 				return isReflective();
+			case Xmu2corePackage.ENFORCE_NODE_STATEMENT__RESOLVE:
+				return isResolve();
 			case Xmu2corePackage.ENFORCE_NODE_STATEMENT__NODE:
 				if (resolve) return getNode();
 				return basicGetNode();
@@ -450,6 +494,9 @@ public class EnforceNodeStatementImpl extends StatementImpl implements EnforceNo
 				return;
 			case Xmu2corePackage.ENFORCE_NODE_STATEMENT__REFLECTIVE:
 				setReflective((Boolean)newValue);
+				return;
+			case Xmu2corePackage.ENFORCE_NODE_STATEMENT__RESOLVE:
+				setResolve((Boolean)newValue);
 				return;
 			case Xmu2corePackage.ENFORCE_NODE_STATEMENT__NODE:
 				setNode((Variable)newValue);
@@ -484,6 +531,9 @@ public class EnforceNodeStatementImpl extends StatementImpl implements EnforceNo
 			case Xmu2corePackage.ENFORCE_NODE_STATEMENT__REFLECTIVE:
 				setReflective(REFLECTIVE_EDEFAULT);
 				return;
+			case Xmu2corePackage.ENFORCE_NODE_STATEMENT__RESOLVE:
+				setResolve(RESOLVE_EDEFAULT);
+				return;
 			case Xmu2corePackage.ENFORCE_NODE_STATEMENT__NODE:
 				setNode((Variable)null);
 				return;
@@ -513,6 +563,8 @@ public class EnforceNodeStatementImpl extends StatementImpl implements EnforceNo
 				return reflectiveIdentifier != null;
 			case Xmu2corePackage.ENFORCE_NODE_STATEMENT__REFLECTIVE:
 				return reflective != REFLECTIVE_EDEFAULT;
+			case Xmu2corePackage.ENFORCE_NODE_STATEMENT__RESOLVE:
+				return resolve != RESOLVE_EDEFAULT;
 			case Xmu2corePackage.ENFORCE_NODE_STATEMENT__NODE:
 				return node != null;
 			case Xmu2corePackage.ENFORCE_NODE_STATEMENT__TYPE:
@@ -546,6 +598,7 @@ public class EnforceNodeStatementImpl extends StatementImpl implements EnforceNo
 			switch (derivedFeatureID) {
 				case Xmu2corePackage.ENFORCE_NODE_STATEMENT__REFLECTIVE_IDENTIFIER: return Xmu2corePackage.REFLECTIVE_SUPPORT__REFLECTIVE_IDENTIFIER;
 				case Xmu2corePackage.ENFORCE_NODE_STATEMENT__REFLECTIVE: return Xmu2corePackage.REFLECTIVE_SUPPORT__REFLECTIVE;
+				case Xmu2corePackage.ENFORCE_NODE_STATEMENT__RESOLVE: return Xmu2corePackage.REFLECTIVE_SUPPORT__RESOLVE;
 				default: return -1;
 			}
 		}
@@ -575,6 +628,7 @@ public class EnforceNodeStatementImpl extends StatementImpl implements EnforceNo
 			switch (baseFeatureID) {
 				case Xmu2corePackage.REFLECTIVE_SUPPORT__REFLECTIVE_IDENTIFIER: return Xmu2corePackage.ENFORCE_NODE_STATEMENT__REFLECTIVE_IDENTIFIER;
 				case Xmu2corePackage.REFLECTIVE_SUPPORT__REFLECTIVE: return Xmu2corePackage.ENFORCE_NODE_STATEMENT__REFLECTIVE;
+				case Xmu2corePackage.REFLECTIVE_SUPPORT__RESOLVE: return Xmu2corePackage.ENFORCE_NODE_STATEMENT__RESOLVE;
 				default: return -1;
 			}
 		}
@@ -597,6 +651,8 @@ public class EnforceNodeStatementImpl extends StatementImpl implements EnforceNo
 		result.append(nullable);
 		result.append(", reflective: ");
 		result.append(reflective);
+		result.append(", resolve: ");
+		result.append(resolve);
 		result.append(')');
 		return result.toString();
 	}

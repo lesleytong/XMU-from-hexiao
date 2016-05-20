@@ -41,6 +41,7 @@
     </genClasses>
     <genClasses image="false" ecoreClass="xmu2.ecore#//ReflectiveAPI">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2.ecore#//ReflectiveAPI/reflectiveIdentifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmu2.ecore#//ReflectiveAPI/resolve"/>
     </genClasses>
     <nestedGenPackages prefix="Statement" basePackage="edu.ustb.sei.mde.xmu2" disposableProviderFactory="true"
         ecorePackage="xmu2.ecore#//statement">

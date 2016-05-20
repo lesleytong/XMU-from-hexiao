@@ -567,13 +567,22 @@ public interface Xmu2Package extends EPackage {
 	int REFLECTIVE_API__REFLECTIVE_IDENTIFIER = 0;
 
 	/**
+	 * The feature id for the '<em><b>Resolve</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFLECTIVE_API__RESOLVE = 1;
+
+	/**
 	 * The number of structural features of the '<em>Reflective API</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REFLECTIVE_API_FEATURE_COUNT = 1;
+	int REFLECTIVE_API_FEATURE_COUNT = 2;
 
 
 	/**
@@ -861,6 +870,17 @@ public interface Xmu2Package extends EPackage {
 	EReference getReflectiveAPI_ReflectiveIdentifier();
 
 	/**
+	 * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.xmu2.ReflectiveAPI#isResolve <em>Resolve</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Resolve</em>'.
+	 * @see edu.ustb.sei.mde.xmu2.ReflectiveAPI#isResolve()
+	 * @see #getReflectiveAPI()
+	 * @generated
+	 */
+	EAttribute getReflectiveAPI_Resolve();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1123,6 +1143,14 @@ public interface Xmu2Package extends EPackage {
 		 * @generated
 		 */
 		EReference REFLECTIVE_API__REFLECTIVE_IDENTIFIER = eINSTANCE.getReflectiveAPI_ReflectiveIdentifier();
+
+		/**
+		 * The meta object literal for the '<em><b>Resolve</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute REFLECTIVE_API__RESOLVE = eINSTANCE.getReflectiveAPI_Resolve();
 
 	}
 

@@ -478,7 +478,7 @@ options {
 				break;
 			}
 		}
-		int followSetID = 248;
+		int followSetID = 252;
 		int i;
 		for (i = tokenIndexOfLastCompleteElement; i < tokenStream.size(); i++) {
 			org.antlr.runtime3_4_0.CommonToken nextToken = (org.antlr.runtime3_4_0.CommonToken) tokenStream.get(i);
@@ -11247,6 +11247,11 @@ parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode returns [edu.ustb.sei.
 			if (element == null) {
 				element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectivePatternNode();
 				startIncompleteElement(element);
+				// initialize boolean attribute
+				{
+					Object value = false;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PATTERN_NODE__RESOLVE), value);
+				}
 			}
 			if (a0_0 != null) {
 				if (a0_0 != null) {
@@ -11269,6 +11274,11 @@ parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode returns [edu.ustb.sei.
 		if (element == null) {
 			element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectivePatternNode();
 			startIncompleteElement(element);
+			// initialize boolean attribute
+			{
+				Object value = false;
+				element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PATTERN_NODE__RESOLVE), value);
+			}
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_46_0_0_1, null, true);
@@ -11276,7 +11286,7 @@ parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode returns [edu.ustb.sei.
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1962]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1962]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1963]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1964]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1965]);
@@ -11285,332 +11295,422 @@ parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode returns [edu.ustb.sei.
 		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1968]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1969]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1970]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1971]);
 	}
 	
 	(
-		a2_0 = parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression		{
+		(
+			a2 = '#' {
+				if (element == null) {
+					element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectivePatternNode();
+					startIncompleteElement(element);
+					// initialize boolean attribute
+					{
+						Object value = false;
+						element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PATTERN_NODE__RESOLVE), value);
+					}
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_46_0_0_2, true, true);
+				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+				// set value of boolean attribute
+				Object value = true;
+				element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PATTERN_NODE__RESOLVE), value);
+				completedElement(value, false);
+			}
+		)?	)
+	{
+		// expected elements (follow set)
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1972]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1973]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1974]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1975]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1976]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1977]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1978]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1979]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1980]);
+	}
+	
+	(
+		a5_0 = parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression		{
 			if (terminateParsing) {
 				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
 			}
 			if (element == null) {
 				element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectivePatternNode();
 				startIncompleteElement(element);
+				// initialize boolean attribute
+				{
+					Object value = false;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PATTERN_NODE__RESOLVE), value);
+				}
 			}
-			if (a2_0 != null) {
-				if (a2_0 != null) {
-					Object value = a2_0;
+			if (a5_0 != null) {
+				if (a5_0 != null) {
+					Object value = a5_0;
 					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PATTERN_NODE__REFLECTIVE_IDENTIFIER), value);
 					completedElement(value, true);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_46_0_0_2, a2_0, true);
-				copyLocalizationInfos(a2_0, element);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_46_0_0_3, a5_0, true);
+				copyLocalizationInfos(a5_0, element);
 			}
 		}
-		|		a2_1 = parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression		{
+		|		a5_1 = parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression		{
 			if (terminateParsing) {
 				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
 			}
 			if (element == null) {
 				element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectivePatternNode();
 				startIncompleteElement(element);
+				// initialize boolean attribute
+				{
+					Object value = false;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PATTERN_NODE__RESOLVE), value);
+				}
 			}
-			if (a2_1 != null) {
-				if (a2_1 != null) {
-					Object value = a2_1;
+			if (a5_1 != null) {
+				if (a5_1 != null) {
+					Object value = a5_1;
 					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PATTERN_NODE__REFLECTIVE_IDENTIFIER), value);
 					completedElement(value, true);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_46_0_0_2, a2_1, true);
-				copyLocalizationInfos(a2_1, element);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_46_0_0_3, a5_1, true);
+				copyLocalizationInfos(a5_1, element);
 			}
 		}
-		|		a2_2 = parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression		{
+		|		a5_2 = parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression		{
 			if (terminateParsing) {
 				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
 			}
 			if (element == null) {
 				element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectivePatternNode();
 				startIncompleteElement(element);
+				// initialize boolean attribute
+				{
+					Object value = false;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PATTERN_NODE__RESOLVE), value);
+				}
 			}
-			if (a2_2 != null) {
-				if (a2_2 != null) {
-					Object value = a2_2;
+			if (a5_2 != null) {
+				if (a5_2 != null) {
+					Object value = a5_2;
 					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PATTERN_NODE__REFLECTIVE_IDENTIFIER), value);
 					completedElement(value, true);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_46_0_0_2, a2_2, true);
-				copyLocalizationInfos(a2_2, element);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_46_0_0_3, a5_2, true);
+				copyLocalizationInfos(a5_2, element);
 			}
 		}
-		|		a2_3 = parse_edu_ustb_sei_mde_xmu2_expression_PathExpression		{
+		|		a5_3 = parse_edu_ustb_sei_mde_xmu2_expression_PathExpression		{
 			if (terminateParsing) {
 				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
 			}
 			if (element == null) {
 				element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectivePatternNode();
 				startIncompleteElement(element);
+				// initialize boolean attribute
+				{
+					Object value = false;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PATTERN_NODE__RESOLVE), value);
+				}
 			}
-			if (a2_3 != null) {
-				if (a2_3 != null) {
-					Object value = a2_3;
+			if (a5_3 != null) {
+				if (a5_3 != null) {
+					Object value = a5_3;
 					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PATTERN_NODE__REFLECTIVE_IDENTIFIER), value);
 					completedElement(value, true);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_46_0_0_2, a2_3, true);
-				copyLocalizationInfos(a2_3, element);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_46_0_0_3, a5_3, true);
+				copyLocalizationInfos(a5_3, element);
 			}
 		}
-		|		a2_4 = parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression		{
+		|		a5_4 = parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression		{
 			if (terminateParsing) {
 				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
 			}
 			if (element == null) {
 				element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectivePatternNode();
 				startIncompleteElement(element);
+				// initialize boolean attribute
+				{
+					Object value = false;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PATTERN_NODE__RESOLVE), value);
+				}
 			}
-			if (a2_4 != null) {
-				if (a2_4 != null) {
-					Object value = a2_4;
+			if (a5_4 != null) {
+				if (a5_4 != null) {
+					Object value = a5_4;
 					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PATTERN_NODE__REFLECTIVE_IDENTIFIER), value);
 					completedElement(value, true);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_46_0_0_2, a2_4, true);
-				copyLocalizationInfos(a2_4, element);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_46_0_0_3, a5_4, true);
+				copyLocalizationInfos(a5_4, element);
 			}
 		}
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1971]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1981]);
 	}
 	
-	a3 = ']' {
+	a6 = ']' {
 		if (element == null) {
 			element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectivePatternNode();
 			startIncompleteElement(element);
+			// initialize boolean attribute
+			{
+				Object value = false;
+				element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PATTERN_NODE__RESOLVE), value);
+			}
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_46_0_0_3, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a3, element);
+		retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_46_0_0_4, null, true);
+		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a6, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1972]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1973]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1974]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1975]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1976]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1977]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1978]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1979]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1980]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1981]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1982]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1983]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1984]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1985]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1986]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1982]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1983]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1984]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1985]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1986]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1987]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1988]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1989]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1990]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1991]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1992]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1993]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1994]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1995]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1996]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1997]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1998]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1989]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1990]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1991]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1992]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1993]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1994]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1995]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1996]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1997]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1998]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1999]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2000]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2001]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2002]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2003]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2004]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2005]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2006]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2007]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2008]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2009]);
 	}
 	
 	(
 		(
-			a4 = '{' {
+			a7 = '{' {
 				if (element == null) {
 					element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectivePatternNode();
 					startIncompleteElement(element);
+					// initialize boolean attribute
+					{
+						Object value = false;
+						element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PATTERN_NODE__RESOLVE), value);
+					}
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_46_0_0_4_0_0_0, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a4, element);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_46_0_0_5_0_0_0, null, true);
+				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a7, element);
 			}
 			{
 				// expected elements (follow set)
-				addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2000]);
-				addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2001]);
-				addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2002]);
-				addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2003]);
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2004]);
+				addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2010]);
+				addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2011]);
+				addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2012]);
+				addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2013]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2014]);
 			}
 			
 			(
 				(
 					(
-						a5_0 = parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression						{
+						a8_0 = parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression						{
 							if (terminateParsing) {
 								throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
 							}
 							if (element == null) {
 								element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectivePatternNode();
 								startIncompleteElement(element);
+								// initialize boolean attribute
+								{
+									Object value = false;
+									element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PATTERN_NODE__RESOLVE), value);
+								}
 							}
-							if (a5_0 != null) {
-								if (a5_0 != null) {
-									Object value = a5_0;
+							if (a8_0 != null) {
+								if (a8_0 != null) {
+									Object value = a8_0;
 									addObjectToList(element, edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PATTERN_NODE__EXPRESSIONS, value);
 									completedElement(value, true);
 								}
 								collectHiddenTokens(element);
-								retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_46_0_0_4_0_0_1_0_0_0, a5_0, true);
-								copyLocalizationInfos(a5_0, element);
+								retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_46_0_0_5_0_0_1_0_0_0, a8_0, true);
+								copyLocalizationInfos(a8_0, element);
 							}
 						}
 					)
 					{
 						// expected elements (follow set)
-						addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2005]);
-						addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2006]);
+						addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2015]);
+						addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2016]);
 					}
 					
 					(
 						(
-							a6 = ',' {
+							a9 = ',' {
 								if (element == null) {
 									element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectivePatternNode();
 									startIncompleteElement(element);
+									// initialize boolean attribute
+									{
+										Object value = false;
+										element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PATTERN_NODE__RESOLVE), value);
+									}
 								}
 								collectHiddenTokens(element);
-								retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_46_0_0_4_0_0_1_0_0_1_0_0_0, null, true);
-								copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a6, element);
+								retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_46_0_0_5_0_0_1_0_0_1_0_0_0, null, true);
+								copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a9, element);
 							}
 							{
 								// expected elements (follow set)
-								addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2007]);
-								addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2008]);
-								addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2009]);
-								addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2010]);
+								addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2017]);
+								addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2018]);
+								addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2019]);
+								addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2020]);
 							}
 							
 							(
-								a7_0 = parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression								{
+								a10_0 = parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression								{
 									if (terminateParsing) {
 										throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
 									}
 									if (element == null) {
 										element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectivePatternNode();
 										startIncompleteElement(element);
+										// initialize boolean attribute
+										{
+											Object value = false;
+											element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PATTERN_NODE__RESOLVE), value);
+										}
 									}
-									if (a7_0 != null) {
-										if (a7_0 != null) {
-											Object value = a7_0;
+									if (a10_0 != null) {
+										if (a10_0 != null) {
+											Object value = a10_0;
 											addObjectToList(element, edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PATTERN_NODE__EXPRESSIONS, value);
 											completedElement(value, true);
 										}
 										collectHiddenTokens(element);
-										retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_46_0_0_4_0_0_1_0_0_1_0_0_1, a7_0, true);
-										copyLocalizationInfos(a7_0, element);
+										retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_46_0_0_5_0_0_1_0_0_1_0_0_1, a10_0, true);
+										copyLocalizationInfos(a10_0, element);
 									}
 								}
 							)
 							{
 								// expected elements (follow set)
-								addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2011]);
-								addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2012]);
+								addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2021]);
+								addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2022]);
 							}
 							
 						)
 						
 					)*					{
 						// expected elements (follow set)
-						addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2013]);
-						addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2014]);
+						addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2023]);
+						addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2024]);
 					}
 					
 				)
 				
 			)?			{
 				// expected elements (follow set)
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2015]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2025]);
 			}
 			
-			a8 = '}' {
+			a11 = '}' {
 				if (element == null) {
 					element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectivePatternNode();
 					startIncompleteElement(element);
+					// initialize boolean attribute
+					{
+						Object value = false;
+						element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PATTERN_NODE__RESOLVE), value);
+					}
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_46_0_0_4_0_0_2, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a8, element);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_46_0_0_5_0_0_2, null, true);
+				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a11, element);
 			}
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2016]);
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2017]);
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2018]);
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2019]);
-				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2020]);
-				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2021]);
-				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2022]);
-				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2023]);
-				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2024]);
-				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2025]);
-				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2026]);
-				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2027]);
-				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2028]);
-				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2029]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2026]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2027]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2028]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2029]);
 				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2030]);
 				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2031]);
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2032]);
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2033]);
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2034]);
-				addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2035]);
-				addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2036]);
-				addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2037]);
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2038]);
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2039]);
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2040]);
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2041]);
+				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2032]);
+				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2033]);
+				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2034]);
+				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2035]);
+				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2036]);
+				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2037]);
+				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2038]);
+				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2039]);
+				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2040]);
+				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2041]);
 				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2042]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2043]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2044]);
+				addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2045]);
+				addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2046]);
+				addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2047]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2048]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2049]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2050]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2051]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2052]);
 			}
 			
 		)
 		
 	)?	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2043]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2044]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2045]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2046]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2047]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2048]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2049]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2050]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2051]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2052]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2053]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2054]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2055]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2056]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2053]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2054]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2055]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2056]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2057]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2058]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2059]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2060]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2061]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2062]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2063]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2064]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2065]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2066]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2067]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2068]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2059]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2060]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2061]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2062]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2063]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2064]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2065]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2066]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2067]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2068]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2069]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2070]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2071]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2072]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2073]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2074]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2075]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2076]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2077]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2078]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2079]);
 	}
 	
 ;
@@ -11626,6 +11726,11 @@ parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression returns [e
 			// initialize boolean attribute
 			{
 				Object value = false;
+				element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__RESOLVE), value);
+			}
+			// initialize boolean attribute
+			{
+				Object value = false;
 				element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__NULLABLE), value);
 			}
 		}
@@ -11635,274 +11740,29 @@ parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression returns [e
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2070]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2071]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2072]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2073]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2074]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2075]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2076]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2077]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2078]);
-	}
-	
-	(
-		a1_0 = parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression		{
-			if (terminateParsing) {
-				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
-			}
-			if (element == null) {
-				element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectiveObjectPatternExpression();
-				startIncompleteElement(element);
-				// initialize boolean attribute
-				{
-					Object value = false;
-					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__NULLABLE), value);
-				}
-			}
-			if (a1_0 != null) {
-				if (a1_0 != null) {
-					Object value = a1_0;
-					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__REFLECTIVE_IDENTIFIER), value);
-					completedElement(value, true);
-				}
-				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_47_0_0_1, a1_0, true);
-				copyLocalizationInfos(a1_0, element);
-			}
-		}
-		|		a1_1 = parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression		{
-			if (terminateParsing) {
-				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
-			}
-			if (element == null) {
-				element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectiveObjectPatternExpression();
-				startIncompleteElement(element);
-				// initialize boolean attribute
-				{
-					Object value = false;
-					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__NULLABLE), value);
-				}
-			}
-			if (a1_1 != null) {
-				if (a1_1 != null) {
-					Object value = a1_1;
-					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__REFLECTIVE_IDENTIFIER), value);
-					completedElement(value, true);
-				}
-				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_47_0_0_1, a1_1, true);
-				copyLocalizationInfos(a1_1, element);
-			}
-		}
-		|		a1_2 = parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression		{
-			if (terminateParsing) {
-				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
-			}
-			if (element == null) {
-				element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectiveObjectPatternExpression();
-				startIncompleteElement(element);
-				// initialize boolean attribute
-				{
-					Object value = false;
-					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__NULLABLE), value);
-				}
-			}
-			if (a1_2 != null) {
-				if (a1_2 != null) {
-					Object value = a1_2;
-					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__REFLECTIVE_IDENTIFIER), value);
-					completedElement(value, true);
-				}
-				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_47_0_0_1, a1_2, true);
-				copyLocalizationInfos(a1_2, element);
-			}
-		}
-		|		a1_3 = parse_edu_ustb_sei_mde_xmu2_expression_PathExpression		{
-			if (terminateParsing) {
-				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
-			}
-			if (element == null) {
-				element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectiveObjectPatternExpression();
-				startIncompleteElement(element);
-				// initialize boolean attribute
-				{
-					Object value = false;
-					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__NULLABLE), value);
-				}
-			}
-			if (a1_3 != null) {
-				if (a1_3 != null) {
-					Object value = a1_3;
-					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__REFLECTIVE_IDENTIFIER), value);
-					completedElement(value, true);
-				}
-				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_47_0_0_1, a1_3, true);
-				copyLocalizationInfos(a1_3, element);
-			}
-		}
-		|		a1_4 = parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression		{
-			if (terminateParsing) {
-				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
-			}
-			if (element == null) {
-				element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectiveObjectPatternExpression();
-				startIncompleteElement(element);
-				// initialize boolean attribute
-				{
-					Object value = false;
-					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__NULLABLE), value);
-				}
-			}
-			if (a1_4 != null) {
-				if (a1_4 != null) {
-					Object value = a1_4;
-					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__REFLECTIVE_IDENTIFIER), value);
-					completedElement(value, true);
-				}
-				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_47_0_0_1, a1_4, true);
-				copyLocalizationInfos(a1_4, element);
-			}
-		}
-	)
-	{
-		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2079]);
-	}
-	
-	a2 = ']' {
-		if (element == null) {
-			element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectiveObjectPatternExpression();
-			startIncompleteElement(element);
-			// initialize boolean attribute
-			{
-				Object value = false;
-				element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__NULLABLE), value);
-			}
-		}
-		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_47_0_0_2, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
-	}
-	{
-		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2080]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2080]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2081]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2082]);
-	}
-	
-	(
-		(
-			(
-				a3_0 = parse_edu_ustb_sei_mde_xmu2_expression_LoopPath				{
-					if (terminateParsing) {
-						throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
-					}
-					if (element == null) {
-						element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectiveObjectPatternExpression();
-						startIncompleteElement(element);
-						// initialize boolean attribute
-						{
-							Object value = false;
-							element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__NULLABLE), value);
-						}
-					}
-					if (a3_0 != null) {
-						if (a3_0 != null) {
-							Object value = a3_0;
-							element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__SELECTOR), value);
-							completedElement(value, true);
-						}
-						collectHiddenTokens(element);
-						retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_47_0_0_3_0_0_0, a3_0, true);
-						copyLocalizationInfos(a3_0, element);
-					}
-				}
-			)
-			{
-				// expected elements (follow set)
-				addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2083]);
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2084]);
-			}
-			
-		)
-		
-	)?	{
-		// expected elements (follow set)
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2082]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2083]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2084]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2085]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2086]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2086]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2087]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2088]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2089]);
 	}
 	
 	(
 		(
-			(
-				a4_0 = parse_edu_ustb_sei_mde_xmu2_expression_PositionPath				{
-					if (terminateParsing) {
-						throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
-					}
-					if (element == null) {
-						element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectiveObjectPatternExpression();
-						startIncompleteElement(element);
-						// initialize boolean attribute
-						{
-							Object value = false;
-							element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__NULLABLE), value);
-						}
-					}
-					if (a4_0 != null) {
-						if (a4_0 != null) {
-							Object value = a4_0;
-							element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__POSITION), value);
-							completedElement(value, true);
-						}
-						collectHiddenTokens(element);
-						retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_47_0_0_4_0_0_0, a4_0, true);
-						copyLocalizationInfos(a4_0, element);
-					}
-				}
-			)
-			{
-				// expected elements (follow set)
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2087]);
-			}
-			
-		)
-		
-	)?	{
-		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2088]);
-	}
-	
-	a5 = '=' {
-		if (element == null) {
-			element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectiveObjectPatternExpression();
-			startIncompleteElement(element);
-			// initialize boolean attribute
-			{
-				Object value = false;
-				element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__NULLABLE), value);
-			}
-		}
-		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_47_0_0_5, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a5, element);
-	}
-	{
-		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2089]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2090]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2091]);
-	}
-	
-	(
-		(
-			a6 = '?' {
+			a1 = '#' {
 				if (element == null) {
 					element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectiveObjectPatternExpression();
 					startIncompleteElement(element);
+					// initialize boolean attribute
+					{
+						Object value = false;
+						element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__RESOLVE), value);
+					}
 					// initialize boolean attribute
 					{
 						Object value = false;
@@ -11910,8 +11770,343 @@ parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression returns [e
 					}
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_47_0_0_6, true, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a6, element);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_47_0_0_1, true, true);
+				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+				// set value of boolean attribute
+				Object value = true;
+				element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__RESOLVE), value);
+				completedElement(value, false);
+			}
+		)?	)
+	{
+		// expected elements (follow set)
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2090]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2091]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2092]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2093]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2094]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2095]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2096]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2097]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2098]);
+	}
+	
+	(
+		a4_0 = parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression		{
+			if (terminateParsing) {
+				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
+			}
+			if (element == null) {
+				element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectiveObjectPatternExpression();
+				startIncompleteElement(element);
+				// initialize boolean attribute
+				{
+					Object value = false;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__RESOLVE), value);
+				}
+				// initialize boolean attribute
+				{
+					Object value = false;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__NULLABLE), value);
+				}
+			}
+			if (a4_0 != null) {
+				if (a4_0 != null) {
+					Object value = a4_0;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__REFLECTIVE_IDENTIFIER), value);
+					completedElement(value, true);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_47_0_0_2, a4_0, true);
+				copyLocalizationInfos(a4_0, element);
+			}
+		}
+		|		a4_1 = parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression		{
+			if (terminateParsing) {
+				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
+			}
+			if (element == null) {
+				element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectiveObjectPatternExpression();
+				startIncompleteElement(element);
+				// initialize boolean attribute
+				{
+					Object value = false;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__RESOLVE), value);
+				}
+				// initialize boolean attribute
+				{
+					Object value = false;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__NULLABLE), value);
+				}
+			}
+			if (a4_1 != null) {
+				if (a4_1 != null) {
+					Object value = a4_1;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__REFLECTIVE_IDENTIFIER), value);
+					completedElement(value, true);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_47_0_0_2, a4_1, true);
+				copyLocalizationInfos(a4_1, element);
+			}
+		}
+		|		a4_2 = parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression		{
+			if (terminateParsing) {
+				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
+			}
+			if (element == null) {
+				element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectiveObjectPatternExpression();
+				startIncompleteElement(element);
+				// initialize boolean attribute
+				{
+					Object value = false;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__RESOLVE), value);
+				}
+				// initialize boolean attribute
+				{
+					Object value = false;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__NULLABLE), value);
+				}
+			}
+			if (a4_2 != null) {
+				if (a4_2 != null) {
+					Object value = a4_2;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__REFLECTIVE_IDENTIFIER), value);
+					completedElement(value, true);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_47_0_0_2, a4_2, true);
+				copyLocalizationInfos(a4_2, element);
+			}
+		}
+		|		a4_3 = parse_edu_ustb_sei_mde_xmu2_expression_PathExpression		{
+			if (terminateParsing) {
+				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
+			}
+			if (element == null) {
+				element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectiveObjectPatternExpression();
+				startIncompleteElement(element);
+				// initialize boolean attribute
+				{
+					Object value = false;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__RESOLVE), value);
+				}
+				// initialize boolean attribute
+				{
+					Object value = false;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__NULLABLE), value);
+				}
+			}
+			if (a4_3 != null) {
+				if (a4_3 != null) {
+					Object value = a4_3;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__REFLECTIVE_IDENTIFIER), value);
+					completedElement(value, true);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_47_0_0_2, a4_3, true);
+				copyLocalizationInfos(a4_3, element);
+			}
+		}
+		|		a4_4 = parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression		{
+			if (terminateParsing) {
+				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
+			}
+			if (element == null) {
+				element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectiveObjectPatternExpression();
+				startIncompleteElement(element);
+				// initialize boolean attribute
+				{
+					Object value = false;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__RESOLVE), value);
+				}
+				// initialize boolean attribute
+				{
+					Object value = false;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__NULLABLE), value);
+				}
+			}
+			if (a4_4 != null) {
+				if (a4_4 != null) {
+					Object value = a4_4;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__REFLECTIVE_IDENTIFIER), value);
+					completedElement(value, true);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_47_0_0_2, a4_4, true);
+				copyLocalizationInfos(a4_4, element);
+			}
+		}
+	)
+	{
+		// expected elements (follow set)
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2099]);
+	}
+	
+	a5 = ']' {
+		if (element == null) {
+			element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectiveObjectPatternExpression();
+			startIncompleteElement(element);
+			// initialize boolean attribute
+			{
+				Object value = false;
+				element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__RESOLVE), value);
+			}
+			// initialize boolean attribute
+			{
+				Object value = false;
+				element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__NULLABLE), value);
+			}
+		}
+		collectHiddenTokens(element);
+		retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_47_0_0_3, null, true);
+		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a5, element);
+	}
+	{
+		// expected elements (follow set)
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2100]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2101]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2102]);
+	}
+	
+	(
+		(
+			(
+				a6_0 = parse_edu_ustb_sei_mde_xmu2_expression_LoopPath				{
+					if (terminateParsing) {
+						throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
+					}
+					if (element == null) {
+						element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectiveObjectPatternExpression();
+						startIncompleteElement(element);
+						// initialize boolean attribute
+						{
+							Object value = false;
+							element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__RESOLVE), value);
+						}
+						// initialize boolean attribute
+						{
+							Object value = false;
+							element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__NULLABLE), value);
+						}
+					}
+					if (a6_0 != null) {
+						if (a6_0 != null) {
+							Object value = a6_0;
+							element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__SELECTOR), value);
+							completedElement(value, true);
+						}
+						collectHiddenTokens(element);
+						retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_47_0_0_4_0_0_0, a6_0, true);
+						copyLocalizationInfos(a6_0, element);
+					}
+				}
+			)
+			{
+				// expected elements (follow set)
+				addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2103]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2104]);
+			}
+			
+		)
+		
+	)?	{
+		// expected elements (follow set)
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2105]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2106]);
+	}
+	
+	(
+		(
+			(
+				a7_0 = parse_edu_ustb_sei_mde_xmu2_expression_PositionPath				{
+					if (terminateParsing) {
+						throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
+					}
+					if (element == null) {
+						element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectiveObjectPatternExpression();
+						startIncompleteElement(element);
+						// initialize boolean attribute
+						{
+							Object value = false;
+							element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__RESOLVE), value);
+						}
+						// initialize boolean attribute
+						{
+							Object value = false;
+							element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__NULLABLE), value);
+						}
+					}
+					if (a7_0 != null) {
+						if (a7_0 != null) {
+							Object value = a7_0;
+							element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__POSITION), value);
+							completedElement(value, true);
+						}
+						collectHiddenTokens(element);
+						retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_47_0_0_5_0_0_0, a7_0, true);
+						copyLocalizationInfos(a7_0, element);
+					}
+				}
+			)
+			{
+				// expected elements (follow set)
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2107]);
+			}
+			
+		)
+		
+	)?	{
+		// expected elements (follow set)
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2108]);
+	}
+	
+	a8 = '=' {
+		if (element == null) {
+			element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectiveObjectPatternExpression();
+			startIncompleteElement(element);
+			// initialize boolean attribute
+			{
+				Object value = false;
+				element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__RESOLVE), value);
+			}
+			// initialize boolean attribute
+			{
+				Object value = false;
+				element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__NULLABLE), value);
+			}
+		}
+		collectHiddenTokens(element);
+		retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_47_0_0_6, null, true);
+		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a8, element);
+	}
+	{
+		// expected elements (follow set)
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2109]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2110]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2111]);
+	}
+	
+	(
+		(
+			a9 = '?' {
+				if (element == null) {
+					element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectiveObjectPatternExpression();
+					startIncompleteElement(element);
+					// initialize boolean attribute
+					{
+						Object value = false;
+						element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__RESOLVE), value);
+					}
+					// initialize boolean attribute
+					{
+						Object value = false;
+						element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__NULLABLE), value);
+					}
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_47_0_0_7, true, true);
+				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a9, element);
 				// set value of boolean attribute
 				Object value = true;
 				element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__NULLABLE), value);
@@ -11920,12 +12115,12 @@ parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression returns [e
 		)?	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2092]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2093]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2112]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2113]);
 	}
 	
 	(
-		a9_0 = parse_edu_ustb_sei_mde_xmu2_pattern_PatternNode		{
+		a12_0 = parse_edu_ustb_sei_mde_xmu2_pattern_PatternNode		{
 			if (terminateParsing) {
 				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
 			}
@@ -11935,27 +12130,32 @@ parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression returns [e
 				// initialize boolean attribute
 				{
 					Object value = false;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__RESOLVE), value);
+				}
+				// initialize boolean attribute
+				{
+					Object value = false;
 					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__NULLABLE), value);
 				}
 			}
-			if (a9_0 != null) {
-				if (a9_0 != null) {
-					Object value = a9_0;
+			if (a12_0 != null) {
+				if (a12_0 != null) {
+					Object value = a12_0;
 					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__TARGET_NODE), value);
 					completedElement(value, true);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_47_0_0_7, a9_0, true);
-				copyLocalizationInfos(a9_0, element);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_47_0_0_8, a12_0, true);
+				copyLocalizationInfos(a12_0, element);
 			}
 		}
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2094]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2095]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2096]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2097]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2114]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2115]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2116]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2117]);
 	}
 	
 ;
@@ -11971,6 +12171,11 @@ parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression returns 
 			// initialize boolean attribute
 			{
 				Object value = false;
+				element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__RESOLVE), value);
+			}
+			// initialize boolean attribute
+			{
+				Object value = false;
 				element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__NULLABLE), value);
 			}
 		}
@@ -11980,265 +12185,7 @@ parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression returns 
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2098]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2099]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2100]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2101]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2102]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2103]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2104]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2105]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2106]);
-	}
-	
-	(
-		a1_0 = parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression		{
-			if (terminateParsing) {
-				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
-			}
-			if (element == null) {
-				element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectivePropertyPatternExpression();
-				startIncompleteElement(element);
-				// initialize boolean attribute
-				{
-					Object value = false;
-					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__NULLABLE), value);
-				}
-			}
-			if (a1_0 != null) {
-				if (a1_0 != null) {
-					Object value = a1_0;
-					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__REFLECTIVE_IDENTIFIER), value);
-					completedElement(value, true);
-				}
-				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_48_0_0_1, a1_0, true);
-				copyLocalizationInfos(a1_0, element);
-			}
-		}
-		|		a1_1 = parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression		{
-			if (terminateParsing) {
-				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
-			}
-			if (element == null) {
-				element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectivePropertyPatternExpression();
-				startIncompleteElement(element);
-				// initialize boolean attribute
-				{
-					Object value = false;
-					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__NULLABLE), value);
-				}
-			}
-			if (a1_1 != null) {
-				if (a1_1 != null) {
-					Object value = a1_1;
-					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__REFLECTIVE_IDENTIFIER), value);
-					completedElement(value, true);
-				}
-				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_48_0_0_1, a1_1, true);
-				copyLocalizationInfos(a1_1, element);
-			}
-		}
-		|		a1_2 = parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression		{
-			if (terminateParsing) {
-				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
-			}
-			if (element == null) {
-				element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectivePropertyPatternExpression();
-				startIncompleteElement(element);
-				// initialize boolean attribute
-				{
-					Object value = false;
-					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__NULLABLE), value);
-				}
-			}
-			if (a1_2 != null) {
-				if (a1_2 != null) {
-					Object value = a1_2;
-					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__REFLECTIVE_IDENTIFIER), value);
-					completedElement(value, true);
-				}
-				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_48_0_0_1, a1_2, true);
-				copyLocalizationInfos(a1_2, element);
-			}
-		}
-		|		a1_3 = parse_edu_ustb_sei_mde_xmu2_expression_PathExpression		{
-			if (terminateParsing) {
-				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
-			}
-			if (element == null) {
-				element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectivePropertyPatternExpression();
-				startIncompleteElement(element);
-				// initialize boolean attribute
-				{
-					Object value = false;
-					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__NULLABLE), value);
-				}
-			}
-			if (a1_3 != null) {
-				if (a1_3 != null) {
-					Object value = a1_3;
-					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__REFLECTIVE_IDENTIFIER), value);
-					completedElement(value, true);
-				}
-				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_48_0_0_1, a1_3, true);
-				copyLocalizationInfos(a1_3, element);
-			}
-		}
-		|		a1_4 = parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression		{
-			if (terminateParsing) {
-				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
-			}
-			if (element == null) {
-				element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectivePropertyPatternExpression();
-				startIncompleteElement(element);
-				// initialize boolean attribute
-				{
-					Object value = false;
-					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__NULLABLE), value);
-				}
-			}
-			if (a1_4 != null) {
-				if (a1_4 != null) {
-					Object value = a1_4;
-					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__REFLECTIVE_IDENTIFIER), value);
-					completedElement(value, true);
-				}
-				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_48_0_0_1, a1_4, true);
-				copyLocalizationInfos(a1_4, element);
-			}
-		}
-	)
-	{
-		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2107]);
-	}
-	
-	a2 = ']' {
-		if (element == null) {
-			element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectivePropertyPatternExpression();
-			startIncompleteElement(element);
-			// initialize boolean attribute
-			{
-				Object value = false;
-				element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__NULLABLE), value);
-			}
-		}
-		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_48_0_0_2, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
-	}
-	{
-		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2108]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2109]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2110]);
-	}
-	
-	(
-		(
-			(
-				a3_0 = parse_edu_ustb_sei_mde_xmu2_expression_LoopPath				{
-					if (terminateParsing) {
-						throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
-					}
-					if (element == null) {
-						element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectivePropertyPatternExpression();
-						startIncompleteElement(element);
-						// initialize boolean attribute
-						{
-							Object value = false;
-							element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__NULLABLE), value);
-						}
-					}
-					if (a3_0 != null) {
-						if (a3_0 != null) {
-							Object value = a3_0;
-							element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__SELECTOR), value);
-							completedElement(value, true);
-						}
-						collectHiddenTokens(element);
-						retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_48_0_0_3_0_0_0, a3_0, true);
-						copyLocalizationInfos(a3_0, element);
-					}
-				}
-			)
-			{
-				// expected elements (follow set)
-				addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2111]);
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2112]);
-			}
-			
-		)
-		
-	)?	{
-		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2113]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2114]);
-	}
-	
-	(
-		(
-			(
-				a4_0 = parse_edu_ustb_sei_mde_xmu2_expression_PositionPath				{
-					if (terminateParsing) {
-						throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
-					}
-					if (element == null) {
-						element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectivePropertyPatternExpression();
-						startIncompleteElement(element);
-						// initialize boolean attribute
-						{
-							Object value = false;
-							element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__NULLABLE), value);
-						}
-					}
-					if (a4_0 != null) {
-						if (a4_0 != null) {
-							Object value = a4_0;
-							element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__POSITION), value);
-							completedElement(value, true);
-						}
-						collectHiddenTokens(element);
-						retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_48_0_0_4_0_0_0, a4_0, true);
-						copyLocalizationInfos(a4_0, element);
-					}
-				}
-			)
-			{
-				// expected elements (follow set)
-				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2115]);
-			}
-			
-		)
-		
-	)?	{
-		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2116]);
-	}
-	
-	a5 = '=' {
-		if (element == null) {
-			element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectivePropertyPatternExpression();
-			startIncompleteElement(element);
-			// initialize boolean attribute
-			{
-				Object value = false;
-				element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__NULLABLE), value);
-			}
-		}
-		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_48_0_0_5, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a5, element);
-	}
-	{
-		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2117]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2118]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2118]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2119]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2120]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2121]);
@@ -12247,14 +12194,20 @@ parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression returns 
 		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2124]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2125]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2126]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2127]);
 	}
 	
 	(
 		(
-			a6 = '?' {
+			a1 = '#' {
 				if (element == null) {
 					element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectivePropertyPatternExpression();
 					startIncompleteElement(element);
+					// initialize boolean attribute
+					{
+						Object value = false;
+						element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__RESOLVE), value);
+					}
 					// initialize boolean attribute
 					{
 						Object value = false;
@@ -12262,17 +12215,16 @@ parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression returns 
 					}
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_48_0_0_6, true, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a6, element);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_48_0_0_1, true, true);
+				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
 				// set value of boolean attribute
 				Object value = true;
-				element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__NULLABLE), value);
+				element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__RESOLVE), value);
 				completedElement(value, false);
 			}
 		)?	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2127]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2128]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2129]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2130]);
@@ -12281,10 +12233,11 @@ parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression returns 
 		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2133]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2134]);
 		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2135]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2136]);
 	}
 	
 	(
-		a9_0 = parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression		{
+		a4_0 = parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression		{
 			if (terminateParsing) {
 				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
 			}
@@ -12294,21 +12247,26 @@ parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression returns 
 				// initialize boolean attribute
 				{
 					Object value = false;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__RESOLVE), value);
+				}
+				// initialize boolean attribute
+				{
+					Object value = false;
 					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__NULLABLE), value);
 				}
 			}
-			if (a9_0 != null) {
-				if (a9_0 != null) {
-					Object value = a9_0;
-					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__TARGET_EXPRESSION), value);
+			if (a4_0 != null) {
+				if (a4_0 != null) {
+					Object value = a4_0;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__REFLECTIVE_IDENTIFIER), value);
 					completedElement(value, true);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_48_0_0_7, a9_0, true);
-				copyLocalizationInfos(a9_0, element);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_48_0_0_2, a4_0, true);
+				copyLocalizationInfos(a4_0, element);
 			}
 		}
-		|		a9_1 = parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression		{
+		|		a4_1 = parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression		{
 			if (terminateParsing) {
 				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
 			}
@@ -12318,21 +12276,26 @@ parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression returns 
 				// initialize boolean attribute
 				{
 					Object value = false;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__RESOLVE), value);
+				}
+				// initialize boolean attribute
+				{
+					Object value = false;
 					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__NULLABLE), value);
 				}
 			}
-			if (a9_1 != null) {
-				if (a9_1 != null) {
-					Object value = a9_1;
-					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__TARGET_EXPRESSION), value);
+			if (a4_1 != null) {
+				if (a4_1 != null) {
+					Object value = a4_1;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__REFLECTIVE_IDENTIFIER), value);
 					completedElement(value, true);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_48_0_0_7, a9_1, true);
-				copyLocalizationInfos(a9_1, element);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_48_0_0_2, a4_1, true);
+				copyLocalizationInfos(a4_1, element);
 			}
 		}
-		|		a9_2 = parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression		{
+		|		a4_2 = parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression		{
 			if (terminateParsing) {
 				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
 			}
@@ -12342,21 +12305,26 @@ parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression returns 
 				// initialize boolean attribute
 				{
 					Object value = false;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__RESOLVE), value);
+				}
+				// initialize boolean attribute
+				{
+					Object value = false;
 					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__NULLABLE), value);
 				}
 			}
-			if (a9_2 != null) {
-				if (a9_2 != null) {
-					Object value = a9_2;
-					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__TARGET_EXPRESSION), value);
+			if (a4_2 != null) {
+				if (a4_2 != null) {
+					Object value = a4_2;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__REFLECTIVE_IDENTIFIER), value);
 					completedElement(value, true);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_48_0_0_7, a9_2, true);
-				copyLocalizationInfos(a9_2, element);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_48_0_0_2, a4_2, true);
+				copyLocalizationInfos(a4_2, element);
 			}
 		}
-		|		a9_3 = parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression		{
+		|		a4_3 = parse_edu_ustb_sei_mde_xmu2_expression_PathExpression		{
 			if (terminateParsing) {
 				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
 			}
@@ -12366,21 +12334,26 @@ parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression returns 
 				// initialize boolean attribute
 				{
 					Object value = false;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__RESOLVE), value);
+				}
+				// initialize boolean attribute
+				{
+					Object value = false;
 					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__NULLABLE), value);
 				}
 			}
-			if (a9_3 != null) {
-				if (a9_3 != null) {
-					Object value = a9_3;
-					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__TARGET_EXPRESSION), value);
+			if (a4_3 != null) {
+				if (a4_3 != null) {
+					Object value = a4_3;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__REFLECTIVE_IDENTIFIER), value);
 					completedElement(value, true);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_48_0_0_7, a9_3, true);
-				copyLocalizationInfos(a9_3, element);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_48_0_0_2, a4_3, true);
+				copyLocalizationInfos(a4_3, element);
 			}
 		}
-		|		a9_4 = parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression		{
+		|		a4_4 = parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression		{
 			if (terminateParsing) {
 				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
 			}
@@ -12390,99 +12363,461 @@ parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression returns 
 				// initialize boolean attribute
 				{
 					Object value = false;
-					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__NULLABLE), value);
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__RESOLVE), value);
 				}
-			}
-			if (a9_4 != null) {
-				if (a9_4 != null) {
-					Object value = a9_4;
-					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__TARGET_EXPRESSION), value);
-					completedElement(value, true);
-				}
-				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_48_0_0_7, a9_4, true);
-				copyLocalizationInfos(a9_4, element);
-			}
-		}
-		|		a9_5 = parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression		{
-			if (terminateParsing) {
-				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
-			}
-			if (element == null) {
-				element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectivePropertyPatternExpression();
-				startIncompleteElement(element);
 				// initialize boolean attribute
 				{
 					Object value = false;
 					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__NULLABLE), value);
 				}
 			}
-			if (a9_5 != null) {
-				if (a9_5 != null) {
-					Object value = a9_5;
-					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__TARGET_EXPRESSION), value);
+			if (a4_4 != null) {
+				if (a4_4 != null) {
+					Object value = a4_4;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__REFLECTIVE_IDENTIFIER), value);
 					completedElement(value, true);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_48_0_0_7, a9_5, true);
-				copyLocalizationInfos(a9_5, element);
-			}
-		}
-		|		a9_6 = parse_edu_ustb_sei_mde_xmu2_expression_PathExpression		{
-			if (terminateParsing) {
-				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
-			}
-			if (element == null) {
-				element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectivePropertyPatternExpression();
-				startIncompleteElement(element);
-				// initialize boolean attribute
-				{
-					Object value = false;
-					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__NULLABLE), value);
-				}
-			}
-			if (a9_6 != null) {
-				if (a9_6 != null) {
-					Object value = a9_6;
-					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__TARGET_EXPRESSION), value);
-					completedElement(value, true);
-				}
-				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_48_0_0_7, a9_6, true);
-				copyLocalizationInfos(a9_6, element);
-			}
-		}
-		|		a9_7 = parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression		{
-			if (terminateParsing) {
-				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
-			}
-			if (element == null) {
-				element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectivePropertyPatternExpression();
-				startIncompleteElement(element);
-				// initialize boolean attribute
-				{
-					Object value = false;
-					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__NULLABLE), value);
-				}
-			}
-			if (a9_7 != null) {
-				if (a9_7 != null) {
-					Object value = a9_7;
-					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__TARGET_EXPRESSION), value);
-					completedElement(value, true);
-				}
-				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_48_0_0_7, a9_7, true);
-				copyLocalizationInfos(a9_7, element);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_48_0_0_2, a4_4, true);
+				copyLocalizationInfos(a4_4, element);
 			}
 		}
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2136]);
 		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2137]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2138]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2139]);
+	}
+	
+	a5 = ']' {
+		if (element == null) {
+			element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectivePropertyPatternExpression();
+			startIncompleteElement(element);
+			// initialize boolean attribute
+			{
+				Object value = false;
+				element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__RESOLVE), value);
+			}
+			// initialize boolean attribute
+			{
+				Object value = false;
+				element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__NULLABLE), value);
+			}
+		}
+		collectHiddenTokens(element);
+		retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_48_0_0_3, null, true);
+		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a5, element);
+	}
+	{
+		// expected elements (follow set)
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2138]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2139]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2140]);
+	}
+	
+	(
+		(
+			(
+				a6_0 = parse_edu_ustb_sei_mde_xmu2_expression_LoopPath				{
+					if (terminateParsing) {
+						throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
+					}
+					if (element == null) {
+						element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectivePropertyPatternExpression();
+						startIncompleteElement(element);
+						// initialize boolean attribute
+						{
+							Object value = false;
+							element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__RESOLVE), value);
+						}
+						// initialize boolean attribute
+						{
+							Object value = false;
+							element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__NULLABLE), value);
+						}
+					}
+					if (a6_0 != null) {
+						if (a6_0 != null) {
+							Object value = a6_0;
+							element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__SELECTOR), value);
+							completedElement(value, true);
+						}
+						collectHiddenTokens(element);
+						retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_48_0_0_4_0_0_0, a6_0, true);
+						copyLocalizationInfos(a6_0, element);
+					}
+				}
+			)
+			{
+				// expected elements (follow set)
+				addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2141]);
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2142]);
+			}
+			
+		)
+		
+	)?	{
+		// expected elements (follow set)
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2143]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2144]);
+	}
+	
+	(
+		(
+			(
+				a7_0 = parse_edu_ustb_sei_mde_xmu2_expression_PositionPath				{
+					if (terminateParsing) {
+						throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
+					}
+					if (element == null) {
+						element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectivePropertyPatternExpression();
+						startIncompleteElement(element);
+						// initialize boolean attribute
+						{
+							Object value = false;
+							element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__RESOLVE), value);
+						}
+						// initialize boolean attribute
+						{
+							Object value = false;
+							element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__NULLABLE), value);
+						}
+					}
+					if (a7_0 != null) {
+						if (a7_0 != null) {
+							Object value = a7_0;
+							element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__POSITION), value);
+							completedElement(value, true);
+						}
+						collectHiddenTokens(element);
+						retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_48_0_0_5_0_0_0, a7_0, true);
+						copyLocalizationInfos(a7_0, element);
+					}
+				}
+			)
+			{
+				// expected elements (follow set)
+				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2145]);
+			}
+			
+		)
+		
+	)?	{
+		// expected elements (follow set)
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2146]);
+	}
+	
+	a8 = '=' {
+		if (element == null) {
+			element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectivePropertyPatternExpression();
+			startIncompleteElement(element);
+			// initialize boolean attribute
+			{
+				Object value = false;
+				element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__RESOLVE), value);
+			}
+			// initialize boolean attribute
+			{
+				Object value = false;
+				element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__NULLABLE), value);
+			}
+		}
+		collectHiddenTokens(element);
+		retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_48_0_0_6, null, true);
+		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a8, element);
+	}
+	{
+		// expected elements (follow set)
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2147]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2148]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2149]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2150]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2151]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2152]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2153]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2154]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2155]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2156]);
+	}
+	
+	(
+		(
+			a9 = '?' {
+				if (element == null) {
+					element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectivePropertyPatternExpression();
+					startIncompleteElement(element);
+					// initialize boolean attribute
+					{
+						Object value = false;
+						element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__RESOLVE), value);
+					}
+					// initialize boolean attribute
+					{
+						Object value = false;
+						element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__NULLABLE), value);
+					}
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_48_0_0_7, true, true);
+				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a9, element);
+				// set value of boolean attribute
+				Object value = true;
+				element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__NULLABLE), value);
+				completedElement(value, false);
+			}
+		)?	)
+	{
+		// expected elements (follow set)
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2157]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2158]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2159]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2160]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2161]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2162]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2163]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2164]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2165]);
+	}
+	
+	(
+		a12_0 = parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression		{
+			if (terminateParsing) {
+				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
+			}
+			if (element == null) {
+				element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectivePropertyPatternExpression();
+				startIncompleteElement(element);
+				// initialize boolean attribute
+				{
+					Object value = false;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__RESOLVE), value);
+				}
+				// initialize boolean attribute
+				{
+					Object value = false;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__NULLABLE), value);
+				}
+			}
+			if (a12_0 != null) {
+				if (a12_0 != null) {
+					Object value = a12_0;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__TARGET_EXPRESSION), value);
+					completedElement(value, true);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_48_0_0_8, a12_0, true);
+				copyLocalizationInfos(a12_0, element);
+			}
+		}
+		|		a12_1 = parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression		{
+			if (terminateParsing) {
+				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
+			}
+			if (element == null) {
+				element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectivePropertyPatternExpression();
+				startIncompleteElement(element);
+				// initialize boolean attribute
+				{
+					Object value = false;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__RESOLVE), value);
+				}
+				// initialize boolean attribute
+				{
+					Object value = false;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__NULLABLE), value);
+				}
+			}
+			if (a12_1 != null) {
+				if (a12_1 != null) {
+					Object value = a12_1;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__TARGET_EXPRESSION), value);
+					completedElement(value, true);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_48_0_0_8, a12_1, true);
+				copyLocalizationInfos(a12_1, element);
+			}
+		}
+		|		a12_2 = parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression		{
+			if (terminateParsing) {
+				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
+			}
+			if (element == null) {
+				element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectivePropertyPatternExpression();
+				startIncompleteElement(element);
+				// initialize boolean attribute
+				{
+					Object value = false;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__RESOLVE), value);
+				}
+				// initialize boolean attribute
+				{
+					Object value = false;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__NULLABLE), value);
+				}
+			}
+			if (a12_2 != null) {
+				if (a12_2 != null) {
+					Object value = a12_2;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__TARGET_EXPRESSION), value);
+					completedElement(value, true);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_48_0_0_8, a12_2, true);
+				copyLocalizationInfos(a12_2, element);
+			}
+		}
+		|		a12_3 = parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression		{
+			if (terminateParsing) {
+				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
+			}
+			if (element == null) {
+				element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectivePropertyPatternExpression();
+				startIncompleteElement(element);
+				// initialize boolean attribute
+				{
+					Object value = false;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__RESOLVE), value);
+				}
+				// initialize boolean attribute
+				{
+					Object value = false;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__NULLABLE), value);
+				}
+			}
+			if (a12_3 != null) {
+				if (a12_3 != null) {
+					Object value = a12_3;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__TARGET_EXPRESSION), value);
+					completedElement(value, true);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_48_0_0_8, a12_3, true);
+				copyLocalizationInfos(a12_3, element);
+			}
+		}
+		|		a12_4 = parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression		{
+			if (terminateParsing) {
+				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
+			}
+			if (element == null) {
+				element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectivePropertyPatternExpression();
+				startIncompleteElement(element);
+				// initialize boolean attribute
+				{
+					Object value = false;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__RESOLVE), value);
+				}
+				// initialize boolean attribute
+				{
+					Object value = false;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__NULLABLE), value);
+				}
+			}
+			if (a12_4 != null) {
+				if (a12_4 != null) {
+					Object value = a12_4;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__TARGET_EXPRESSION), value);
+					completedElement(value, true);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_48_0_0_8, a12_4, true);
+				copyLocalizationInfos(a12_4, element);
+			}
+		}
+		|		a12_5 = parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression		{
+			if (terminateParsing) {
+				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
+			}
+			if (element == null) {
+				element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectivePropertyPatternExpression();
+				startIncompleteElement(element);
+				// initialize boolean attribute
+				{
+					Object value = false;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__RESOLVE), value);
+				}
+				// initialize boolean attribute
+				{
+					Object value = false;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__NULLABLE), value);
+				}
+			}
+			if (a12_5 != null) {
+				if (a12_5 != null) {
+					Object value = a12_5;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__TARGET_EXPRESSION), value);
+					completedElement(value, true);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_48_0_0_8, a12_5, true);
+				copyLocalizationInfos(a12_5, element);
+			}
+		}
+		|		a12_6 = parse_edu_ustb_sei_mde_xmu2_expression_PathExpression		{
+			if (terminateParsing) {
+				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
+			}
+			if (element == null) {
+				element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectivePropertyPatternExpression();
+				startIncompleteElement(element);
+				// initialize boolean attribute
+				{
+					Object value = false;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__RESOLVE), value);
+				}
+				// initialize boolean attribute
+				{
+					Object value = false;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__NULLABLE), value);
+				}
+			}
+			if (a12_6 != null) {
+				if (a12_6 != null) {
+					Object value = a12_6;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__TARGET_EXPRESSION), value);
+					completedElement(value, true);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_48_0_0_8, a12_6, true);
+				copyLocalizationInfos(a12_6, element);
+			}
+		}
+		|		a12_7 = parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression		{
+			if (terminateParsing) {
+				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
+			}
+			if (element == null) {
+				element = edu.ustb.sei.mde.xmu2.pattern.PatternFactory.eINSTANCE.createReflectivePropertyPatternExpression();
+				startIncompleteElement(element);
+				// initialize boolean attribute
+				{
+					Object value = false;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__RESOLVE), value);
+				}
+				// initialize boolean attribute
+				{
+					Object value = false;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__NULLABLE), value);
+				}
+			}
+			if (a12_7 != null) {
+				if (a12_7 != null) {
+					Object value = a12_7;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__TARGET_EXPRESSION), value);
+					completedElement(value, true);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_48_0_0_8, a12_7, true);
+				copyLocalizationInfos(a12_7, element);
+			}
+		}
+	)
+	{
+		// expected elements (follow set)
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2166]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2167]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2168]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2169]);
 	}
 	
 ;
@@ -12495,6 +12830,11 @@ parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement returns [edu
 		if (element == null) {
 			element = edu.ustb.sei.mde.xmu2.statement.StatementFactory.eINSTANCE.createReflectiveDeleteLinkStatement();
 			startIncompleteElement(element);
+			// initialize boolean attribute
+			{
+				Object value = false;
+				element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.REFLECTIVE_DELETE_LINK_STATEMENT__RESOLVE), value);
+			}
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_49_0_0_0, null, true);
@@ -12502,7 +12842,7 @@ parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement returns [edu
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2140]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2170]);
 	}
 	
 	(
@@ -12513,6 +12853,11 @@ parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement returns [edu
 			if (element == null) {
 				element = edu.ustb.sei.mde.xmu2.statement.StatementFactory.eINSTANCE.createReflectiveDeleteLinkStatement();
 				startIncompleteElement(element);
+				// initialize boolean attribute
+				{
+					Object value = false;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.REFLECTIVE_DELETE_LINK_STATEMENT__RESOLVE), value);
+				}
 			}
 			if (a1_0 != null) {
 				if (a1_0 != null) {
@@ -12528,13 +12873,18 @@ parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement returns [edu
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2141]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2171]);
 	}
 	
 	a2 = '[' {
 		if (element == null) {
 			element = edu.ustb.sei.mde.xmu2.statement.StatementFactory.eINSTANCE.createReflectiveDeleteLinkStatement();
 			startIncompleteElement(element);
+			// initialize boolean attribute
+			{
+				Object value = false;
+				element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.REFLECTIVE_DELETE_LINK_STATEMENT__RESOLVE), value);
+			}
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_49_0_0_2, null, true);
@@ -12542,237 +12892,322 @@ parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement returns [edu
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2142]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2143]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2144]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2145]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2146]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2147]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2148]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2149]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2150]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2172]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2173]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2174]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2175]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2176]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2177]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2178]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2179]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2180]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2181]);
 	}
 	
 	(
-		a3_0 = parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression		{
-			if (terminateParsing) {
-				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
-			}
-			if (element == null) {
-				element = edu.ustb.sei.mde.xmu2.statement.StatementFactory.eINSTANCE.createReflectiveDeleteLinkStatement();
-				startIncompleteElement(element);
-			}
-			if (a3_0 != null) {
-				if (a3_0 != null) {
-					Object value = a3_0;
-					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.REFLECTIVE_DELETE_LINK_STATEMENT__REFLECTIVE_IDENTIFIER), value);
-					completedElement(value, true);
+		(
+			a3 = '#' {
+				if (element == null) {
+					element = edu.ustb.sei.mde.xmu2.statement.StatementFactory.eINSTANCE.createReflectiveDeleteLinkStatement();
+					startIncompleteElement(element);
+					// initialize boolean attribute
+					{
+						Object value = false;
+						element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.REFLECTIVE_DELETE_LINK_STATEMENT__RESOLVE), value);
+					}
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_49_0_0_3, a3_0, true);
-				copyLocalizationInfos(a3_0, element);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_49_0_0_3, true, true);
+				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a3, element);
+				// set value of boolean attribute
+				Object value = true;
+				element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.REFLECTIVE_DELETE_LINK_STATEMENT__RESOLVE), value);
+				completedElement(value, false);
 			}
-		}
-		|		a3_1 = parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression		{
-			if (terminateParsing) {
-				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
-			}
-			if (element == null) {
-				element = edu.ustb.sei.mde.xmu2.statement.StatementFactory.eINSTANCE.createReflectiveDeleteLinkStatement();
-				startIncompleteElement(element);
-			}
-			if (a3_1 != null) {
-				if (a3_1 != null) {
-					Object value = a3_1;
-					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.REFLECTIVE_DELETE_LINK_STATEMENT__REFLECTIVE_IDENTIFIER), value);
-					completedElement(value, true);
-				}
-				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_49_0_0_3, a3_1, true);
-				copyLocalizationInfos(a3_1, element);
-			}
-		}
-		|		a3_2 = parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression		{
-			if (terminateParsing) {
-				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
-			}
-			if (element == null) {
-				element = edu.ustb.sei.mde.xmu2.statement.StatementFactory.eINSTANCE.createReflectiveDeleteLinkStatement();
-				startIncompleteElement(element);
-			}
-			if (a3_2 != null) {
-				if (a3_2 != null) {
-					Object value = a3_2;
-					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.REFLECTIVE_DELETE_LINK_STATEMENT__REFLECTIVE_IDENTIFIER), value);
-					completedElement(value, true);
-				}
-				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_49_0_0_3, a3_2, true);
-				copyLocalizationInfos(a3_2, element);
-			}
-		}
-		|		a3_3 = parse_edu_ustb_sei_mde_xmu2_expression_PathExpression		{
-			if (terminateParsing) {
-				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
-			}
-			if (element == null) {
-				element = edu.ustb.sei.mde.xmu2.statement.StatementFactory.eINSTANCE.createReflectiveDeleteLinkStatement();
-				startIncompleteElement(element);
-			}
-			if (a3_3 != null) {
-				if (a3_3 != null) {
-					Object value = a3_3;
-					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.REFLECTIVE_DELETE_LINK_STATEMENT__REFLECTIVE_IDENTIFIER), value);
-					completedElement(value, true);
-				}
-				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_49_0_0_3, a3_3, true);
-				copyLocalizationInfos(a3_3, element);
-			}
-		}
-		|		a3_4 = parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression		{
-			if (terminateParsing) {
-				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
-			}
-			if (element == null) {
-				element = edu.ustb.sei.mde.xmu2.statement.StatementFactory.eINSTANCE.createReflectiveDeleteLinkStatement();
-				startIncompleteElement(element);
-			}
-			if (a3_4 != null) {
-				if (a3_4 != null) {
-					Object value = a3_4;
-					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.REFLECTIVE_DELETE_LINK_STATEMENT__REFLECTIVE_IDENTIFIER), value);
-					completedElement(value, true);
-				}
-				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_49_0_0_3, a3_4, true);
-				copyLocalizationInfos(a3_4, element);
-			}
-		}
-	)
+		)?	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2151]);
-	}
-	
-	a4 = ']' {
-		if (element == null) {
-			element = edu.ustb.sei.mde.xmu2.statement.StatementFactory.eINSTANCE.createReflectiveDeleteLinkStatement();
-			startIncompleteElement(element);
-		}
-		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_49_0_0_4, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a4, element);
-	}
-	{
-		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2152]);
-	}
-	
-	a5 = '=' {
-		if (element == null) {
-			element = edu.ustb.sei.mde.xmu2.statement.StatementFactory.eINSTANCE.createReflectiveDeleteLinkStatement();
-			startIncompleteElement(element);
-		}
-		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_49_0_0_5, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a5, element);
-	}
-	{
-		// expected elements (follow set)
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2153]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2154]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2155]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2156]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2157]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2158]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2159]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2160]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2161]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2182]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2183]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2184]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2185]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2186]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2187]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2188]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2189]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2190]);
 	}
 	
 	(
-		a6_0 = parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression		{
+		a6_0 = parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression		{
 			if (terminateParsing) {
 				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
 			}
 			if (element == null) {
 				element = edu.ustb.sei.mde.xmu2.statement.StatementFactory.eINSTANCE.createReflectiveDeleteLinkStatement();
 				startIncompleteElement(element);
+				// initialize boolean attribute
+				{
+					Object value = false;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.REFLECTIVE_DELETE_LINK_STATEMENT__RESOLVE), value);
+				}
 			}
 			if (a6_0 != null) {
 				if (a6_0 != null) {
 					Object value = a6_0;
-					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.REFLECTIVE_DELETE_LINK_STATEMENT__TARGET), value);
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.REFLECTIVE_DELETE_LINK_STATEMENT__REFLECTIVE_IDENTIFIER), value);
 					completedElement(value, true);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_49_0_0_6, a6_0, true);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_49_0_0_4, a6_0, true);
 				copyLocalizationInfos(a6_0, element);
 			}
 		}
-		|		a6_1 = parse_edu_ustb_sei_mde_xmu2_expression_PathExpression		{
+		|		a6_1 = parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression		{
 			if (terminateParsing) {
 				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
 			}
 			if (element == null) {
 				element = edu.ustb.sei.mde.xmu2.statement.StatementFactory.eINSTANCE.createReflectiveDeleteLinkStatement();
 				startIncompleteElement(element);
+				// initialize boolean attribute
+				{
+					Object value = false;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.REFLECTIVE_DELETE_LINK_STATEMENT__RESOLVE), value);
+				}
 			}
 			if (a6_1 != null) {
 				if (a6_1 != null) {
 					Object value = a6_1;
-					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.REFLECTIVE_DELETE_LINK_STATEMENT__TARGET), value);
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.REFLECTIVE_DELETE_LINK_STATEMENT__REFLECTIVE_IDENTIFIER), value);
 					completedElement(value, true);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_49_0_0_6, a6_1, true);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_49_0_0_4, a6_1, true);
 				copyLocalizationInfos(a6_1, element);
 			}
 		}
-		|		a6_2 = parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression		{
+		|		a6_2 = parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression		{
 			if (terminateParsing) {
 				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
 			}
 			if (element == null) {
 				element = edu.ustb.sei.mde.xmu2.statement.StatementFactory.eINSTANCE.createReflectiveDeleteLinkStatement();
 				startIncompleteElement(element);
+				// initialize boolean attribute
+				{
+					Object value = false;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.REFLECTIVE_DELETE_LINK_STATEMENT__RESOLVE), value);
+				}
 			}
 			if (a6_2 != null) {
 				if (a6_2 != null) {
 					Object value = a6_2;
-					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.REFLECTIVE_DELETE_LINK_STATEMENT__TARGET), value);
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.REFLECTIVE_DELETE_LINK_STATEMENT__REFLECTIVE_IDENTIFIER), value);
 					completedElement(value, true);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_49_0_0_6, a6_2, true);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_49_0_0_4, a6_2, true);
 				copyLocalizationInfos(a6_2, element);
+			}
+		}
+		|		a6_3 = parse_edu_ustb_sei_mde_xmu2_expression_PathExpression		{
+			if (terminateParsing) {
+				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
+			}
+			if (element == null) {
+				element = edu.ustb.sei.mde.xmu2.statement.StatementFactory.eINSTANCE.createReflectiveDeleteLinkStatement();
+				startIncompleteElement(element);
+				// initialize boolean attribute
+				{
+					Object value = false;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.REFLECTIVE_DELETE_LINK_STATEMENT__RESOLVE), value);
+				}
+			}
+			if (a6_3 != null) {
+				if (a6_3 != null) {
+					Object value = a6_3;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.REFLECTIVE_DELETE_LINK_STATEMENT__REFLECTIVE_IDENTIFIER), value);
+					completedElement(value, true);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_49_0_0_4, a6_3, true);
+				copyLocalizationInfos(a6_3, element);
+			}
+		}
+		|		a6_4 = parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression		{
+			if (terminateParsing) {
+				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
+			}
+			if (element == null) {
+				element = edu.ustb.sei.mde.xmu2.statement.StatementFactory.eINSTANCE.createReflectiveDeleteLinkStatement();
+				startIncompleteElement(element);
+				// initialize boolean attribute
+				{
+					Object value = false;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.REFLECTIVE_DELETE_LINK_STATEMENT__RESOLVE), value);
+				}
+			}
+			if (a6_4 != null) {
+				if (a6_4 != null) {
+					Object value = a6_4;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.REFLECTIVE_DELETE_LINK_STATEMENT__REFLECTIVE_IDENTIFIER), value);
+					completedElement(value, true);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_49_0_0_4, a6_4, true);
+				copyLocalizationInfos(a6_4, element);
 			}
 		}
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2162]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2163]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2164]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2165]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2166]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2167]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2168]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2169]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2170]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2171]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2172]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2173]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2174]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2175]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2176]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2177]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2178]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2179]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2180]);
-		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2181]);
-		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2182]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2191]);
+	}
+	
+	a7 = ']' {
+		if (element == null) {
+			element = edu.ustb.sei.mde.xmu2.statement.StatementFactory.eINSTANCE.createReflectiveDeleteLinkStatement();
+			startIncompleteElement(element);
+			// initialize boolean attribute
+			{
+				Object value = false;
+				element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.REFLECTIVE_DELETE_LINK_STATEMENT__RESOLVE), value);
+			}
+		}
+		collectHiddenTokens(element);
+		retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_49_0_0_5, null, true);
+		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a7, element);
+	}
+	{
+		// expected elements (follow set)
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2192]);
+	}
+	
+	a8 = '=' {
+		if (element == null) {
+			element = edu.ustb.sei.mde.xmu2.statement.StatementFactory.eINSTANCE.createReflectiveDeleteLinkStatement();
+			startIncompleteElement(element);
+			// initialize boolean attribute
+			{
+				Object value = false;
+				element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.REFLECTIVE_DELETE_LINK_STATEMENT__RESOLVE), value);
+			}
+		}
+		collectHiddenTokens(element);
+		retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_49_0_0_6, null, true);
+		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a8, element);
+	}
+	{
+		// expected elements (follow set)
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2193]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2194]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2195]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2196]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2197]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2198]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2199]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2200]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2201]);
+	}
+	
+	(
+		a9_0 = parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression		{
+			if (terminateParsing) {
+				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
+			}
+			if (element == null) {
+				element = edu.ustb.sei.mde.xmu2.statement.StatementFactory.eINSTANCE.createReflectiveDeleteLinkStatement();
+				startIncompleteElement(element);
+				// initialize boolean attribute
+				{
+					Object value = false;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.REFLECTIVE_DELETE_LINK_STATEMENT__RESOLVE), value);
+				}
+			}
+			if (a9_0 != null) {
+				if (a9_0 != null) {
+					Object value = a9_0;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.REFLECTIVE_DELETE_LINK_STATEMENT__TARGET), value);
+					completedElement(value, true);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_49_0_0_7, a9_0, true);
+				copyLocalizationInfos(a9_0, element);
+			}
+		}
+		|		a9_1 = parse_edu_ustb_sei_mde_xmu2_expression_PathExpression		{
+			if (terminateParsing) {
+				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
+			}
+			if (element == null) {
+				element = edu.ustb.sei.mde.xmu2.statement.StatementFactory.eINSTANCE.createReflectiveDeleteLinkStatement();
+				startIncompleteElement(element);
+				// initialize boolean attribute
+				{
+					Object value = false;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.REFLECTIVE_DELETE_LINK_STATEMENT__RESOLVE), value);
+				}
+			}
+			if (a9_1 != null) {
+				if (a9_1 != null) {
+					Object value = a9_1;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.REFLECTIVE_DELETE_LINK_STATEMENT__TARGET), value);
+					completedElement(value, true);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_49_0_0_7, a9_1, true);
+				copyLocalizationInfos(a9_1, element);
+			}
+		}
+		|		a9_2 = parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression		{
+			if (terminateParsing) {
+				throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
+			}
+			if (element == null) {
+				element = edu.ustb.sei.mde.xmu2.statement.StatementFactory.eINSTANCE.createReflectiveDeleteLinkStatement();
+				startIncompleteElement(element);
+				// initialize boolean attribute
+				{
+					Object value = false;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.REFLECTIVE_DELETE_LINK_STATEMENT__RESOLVE), value);
+				}
+			}
+			if (a9_2 != null) {
+				if (a9_2 != null) {
+					Object value = a9_2;
+					element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.REFLECTIVE_DELETE_LINK_STATEMENT__TARGET), value);
+					completedElement(value, true);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_49_0_0_7, a9_2, true);
+				copyLocalizationInfos(a9_2, element);
+			}
+		}
+	)
+	{
+		// expected elements (follow set)
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2202]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2203]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2204]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2205]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2206]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2207]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2208]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2209]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2210]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2211]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2212]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2213]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2214]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2215]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2216]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2217]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2218]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2219]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2220]);
+		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2221]);
+		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2222]);
 	}
 	
 ;

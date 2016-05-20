@@ -67,7 +67,7 @@ public final class ContextUtil {
 			// reflective support
 			if(hostType==Constants.REFLECTIVE_OBJECT && node.isReflective()) {
 				try {
-					SafeType expectedType = AbstractInterpreter.EXPRESSION_CHECK.resolveReflectiveClassifier(node.getReflectiveIdentifier(), base);
+					SafeType expectedType = AbstractInterpreter.EXPRESSION_CHECK.resolveReflectiveClassifier(node, base);
 					if(expectedType!=Constants.UNDEFINED) {
 						hostType = (EClass) expectedType.getValue();
 					} else hostType = null;
@@ -77,7 +77,7 @@ public final class ContextUtil {
 				
 				if(hostType==null) {
 					hostType = obj.getObjectValue().eClass();
-					SafeType hostTypeIdentifier = AbstractInterpreter.EXPRESSION_CHECK.desolveReflectiveClassifier(hostType);
+					SafeType hostTypeIdentifier = AbstractInterpreter.EXPRESSION_CHECK.desolveReflectiveClassifier(hostType, node.isResolve());
 					
 					try {
 						if(!AbstractInterpreter.MODEL_CHECK.enforceExpression(node.getReflectiveIdentifier(), base, hostTypeIdentifier)) {
@@ -114,7 +114,7 @@ public final class ContextUtil {
 							if(expr.isReflective() && feature==Constants.DYNAMIC_FEATURE) {
 								
 								try {
-									SafeType expectedFeature = AbstractInterpreter.EXPRESSION_CHECK.resolveReflectiveFeature(hostType, expr.getReflectiveIdentifier(), current);
+									SafeType expectedFeature = AbstractInterpreter.EXPRESSION_CHECK.resolveReflectiveFeature(hostType, expr, current);
 									if (expectedFeature != Constants.UNDEFINED) {
 										feature = (EStructuralFeature) expectedFeature.getValue();
 									} else {
@@ -127,7 +127,7 @@ public final class ContextUtil {
 								if(feature==null) {
 									List<EReference> allReferences = hostType.getEAllReferences();
 									for(EReference ref : allReferences) {
-										SafeType featureIdentifier = AbstractInterpreter.EXPRESSION_CHECK.desolveReflectiveFeature(ref);
+										SafeType featureIdentifier = AbstractInterpreter.EXPRESSION_CHECK.desolveReflectiveFeature(ref,expr.isResolve());
 										Context nc = current.clone();
 										
 										try {
@@ -155,7 +155,7 @@ public final class ContextUtil {
 							// NOTE ME
 							if(expr.isReflective() && feature==Constants.DYNAMIC_FEATURE) {	
 								try {
-									SafeType expectedFeature = AbstractInterpreter.EXPRESSION_CHECK.resolveReflectiveFeature(hostType, expr.getReflectiveIdentifier(), current);
+									SafeType expectedFeature = AbstractInterpreter.EXPRESSION_CHECK.resolveReflectiveFeature(hostType, expr, current);
 									if (expectedFeature != Constants.UNDEFINED) {
 										feature = (EStructuralFeature) expectedFeature.getValue();
 									} else {
@@ -168,7 +168,7 @@ public final class ContextUtil {
 								if(feature==null) {
 									List<EStructuralFeature> allFeatures = hostType.getEAllStructuralFeatures();
 									for(EStructuralFeature ref : allFeatures) {
-										SafeType featureIdentifier = AbstractInterpreter.EXPRESSION_CHECK.desolveReflectiveFeature(ref);
+										SafeType featureIdentifier = AbstractInterpreter.EXPRESSION_CHECK.desolveReflectiveFeature(ref,expr.isResolve());
 										Context nc = current.clone();
 										try {
 											if(AbstractInterpreter.MODEL_CHECK.enforceExpression(expr.getReflectiveIdentifier(), nc, featureIdentifier)) {

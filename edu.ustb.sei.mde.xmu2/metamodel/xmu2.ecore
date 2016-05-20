@@ -46,6 +46,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="ReflectiveAPI" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="reflectiveIdentifier" lowerBound="1"
         eType="#//expression/Expression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="resolve" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="true"/>
   </eClassifiers>
   <eSubpackages name="statement" nsURI="http://www.ustb.edu.cn/sei/mde/xmu2/statement"
       nsPrefix="statement">

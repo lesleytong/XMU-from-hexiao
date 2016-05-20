@@ -398,7 +398,7 @@ public class BackwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 		try {
 			if(statement.isReflective()) {
 				SafeType hostObj = context.get(src);
-				SafeType expectedFeature = this.resolveReflectiveFeature(hostObj.getObjectValue().eClass(), statement.getReflectiveIdentifier(), context);
+				SafeType expectedFeature = this.resolveReflectiveFeature(hostObj.getObjectValue().eClass(), statement, context);
 				f = (EStructuralFeature) expectedFeature.getValue();
 			}
 		} catch(Exception e) {
@@ -425,7 +425,7 @@ public class BackwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 		
 		try {
 			if(statement.isReflective()) {
-				SafeType expectedType = this.resolveReflectiveClassifier(statement.getReflectiveIdentifier(), context);
+				SafeType expectedType = this.resolveReflectiveClassifier(statement, context);
 				type = (EClass) expectedType.getValue();
 			}
 		} catch(Exception e) {
@@ -534,7 +534,7 @@ public class BackwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 		try {
 			if(statement.isReflective()) {
 				SafeType hostObj = context.get(source);
-				SafeType expectedFeature = this.resolveReflectiveFeature(hostObj.getObjectValue().eClass(), statement.getReflectiveIdentifier(), context);
+				SafeType expectedFeature = this.resolveReflectiveFeature(hostObj.getObjectValue().eClass(), statement, context);
 				feature = (EStructuralFeature) expectedFeature.getValue();
 			}
 		} catch(Exception e) {
@@ -545,9 +545,6 @@ public class BackwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 			return;
 		else
 			throw new InvalidBackwardEnforcementException("cannot enforce link");
-		
-		
-		
 	}
 
 	@Override

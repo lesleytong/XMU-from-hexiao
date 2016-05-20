@@ -3209,7 +3209,7 @@ public class Xmu2Printer implements edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Tex
 		// the number of elements stored in each structural feature. For lists this is the
 		// list size. For non-multiple features it is either 1 (if the feature is set) or
 		// 0 (if the feature is null).
-		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(3);
+		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(4);
 		Object temp;
 		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PATTERN_NODE__VARIABLE));
 		printCountingMap.put("variable", temp == null ? 0 : 1);
@@ -3217,6 +3217,8 @@ public class Xmu2Printer implements edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Tex
 		printCountingMap.put("expressions", temp == null ? 0 : ((java.util.Collection<?>) temp).size());
 		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PATTERN_NODE__REFLECTIVE_IDENTIFIER));
 		printCountingMap.put("reflectiveIdentifier", temp == null ? 0 : 1);
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PATTERN_NODE__RESOLVE));
+		printCountingMap.put("resolve", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
 		java.io.StringWriter sWriter = null;
@@ -3234,6 +3236,14 @@ public class Xmu2Printer implements edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Tex
 		// DEFINITION PART BEGINS (CsString)
 		out.print("[");
 		out.print(" ");
+		// DEFINITION PART BEGINS (BooleanTerminal)
+		count = printCountingMap.get("resolve");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PATTERN_NODE__RESOLVE));
+			if (o != null) {
+			}
+			printCountingMap.put("resolve", count - 1);
+		}
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("reflectiveIdentifier");
 		if (count > 0) {
@@ -3361,7 +3371,7 @@ public class Xmu2Printer implements edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Tex
 		// the number of elements stored in each structural feature. For lists this is the
 		// list size. For non-multiple features it is either 1 (if the feature is set) or
 		// 0 (if the feature is null).
-		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(7);
+		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(8);
 		Object temp;
 		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__OWNER_NODE));
 		printCountingMap.put("ownerNode", temp == null ? 0 : 1);
@@ -3377,6 +3387,8 @@ public class Xmu2Printer implements edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Tex
 		printCountingMap.put("targetNode", temp == null ? 0 : 1);
 		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__REFLECTIVE_IDENTIFIER));
 		printCountingMap.put("reflectiveIdentifier", temp == null ? 0 : 1);
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__RESOLVE));
+		printCountingMap.put("resolve", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
 		java.io.StringWriter sWriter = null;
@@ -3385,6 +3397,14 @@ public class Xmu2Printer implements edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Tex
 		// DEFINITION PART BEGINS (CsString)
 		out.print("[");
 		out.print(" ");
+		// DEFINITION PART BEGINS (BooleanTerminal)
+		count = printCountingMap.get("resolve");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_OBJECT_PATTERN_EXPRESSION__RESOLVE));
+			if (o != null) {
+			}
+			printCountingMap.put("resolve", count - 1);
+		}
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("reflectiveIdentifier");
 		if (count > 0) {
@@ -3481,7 +3501,7 @@ public class Xmu2Printer implements edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Tex
 		// the number of elements stored in each structural feature. For lists this is the
 		// list size. For non-multiple features it is either 1 (if the feature is set) or
 		// 0 (if the feature is null).
-		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(7);
+		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(8);
 		Object temp;
 		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__OWNER_NODE));
 		printCountingMap.put("ownerNode", temp == null ? 0 : 1);
@@ -3497,6 +3517,8 @@ public class Xmu2Printer implements edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Tex
 		printCountingMap.put("targetExpression", temp == null ? 0 : 1);
 		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__REFLECTIVE_IDENTIFIER));
 		printCountingMap.put("reflectiveIdentifier", temp == null ? 0 : 1);
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__RESOLVE));
+		printCountingMap.put("resolve", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
 		java.io.StringWriter sWriter = null;
@@ -3505,6 +3527,14 @@ public class Xmu2Printer implements edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Tex
 		// DEFINITION PART BEGINS (CsString)
 		out.print("[");
 		out.print(" ");
+		// DEFINITION PART BEGINS (BooleanTerminal)
+		count = printCountingMap.get("resolve");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__RESOLVE));
+			if (o != null) {
+			}
+			printCountingMap.put("resolve", count - 1);
+		}
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("reflectiveIdentifier");
 		if (count > 0) {
@@ -3601,7 +3631,7 @@ public class Xmu2Printer implements edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Tex
 		// the number of elements stored in each structural feature. For lists this is the
 		// list size. For non-multiple features it is either 1 (if the feature is set) or
 		// 0 (if the feature is null).
-		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(4);
+		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(5);
 		Object temp;
 		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.REFLECTIVE_DELETE_LINK_STATEMENT__SOURCE));
 		printCountingMap.put("source", temp == null ? 0 : 1);
@@ -3611,6 +3641,8 @@ public class Xmu2Printer implements edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Tex
 		printCountingMap.put("feature", temp == null ? 0 : 1);
 		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.REFLECTIVE_DELETE_LINK_STATEMENT__REFLECTIVE_IDENTIFIER));
 		printCountingMap.put("reflectiveIdentifier", temp == null ? 0 : 1);
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.REFLECTIVE_DELETE_LINK_STATEMENT__RESOLVE));
+		printCountingMap.put("resolve", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
 		// DEFINITION PART BEGINS (CsString)
@@ -3628,6 +3660,14 @@ public class Xmu2Printer implements edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Tex
 		// DEFINITION PART BEGINS (CsString)
 		out.print("[");
 		out.print(" ");
+		// DEFINITION PART BEGINS (BooleanTerminal)
+		count = printCountingMap.get("resolve");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.REFLECTIVE_DELETE_LINK_STATEMENT__RESOLVE));
+			if (o != null) {
+			}
+			printCountingMap.put("resolve", count - 1);
+		}
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("reflectiveIdentifier");
 		if (count > 0) {

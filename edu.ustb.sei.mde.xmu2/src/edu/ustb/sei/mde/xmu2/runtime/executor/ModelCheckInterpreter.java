@@ -582,7 +582,7 @@ public class ModelCheckInterpreter extends ExpressionCheckInterpreter {
 				if (path.isReflective()) {
 					try {
 						SafeType expectedFeature = this.resolveReflectiveFeature(host.getObjectValue().eClass(),
-								((FeaturePath) path).getReflectiveIdentifier(), context);
+								((FeaturePath) path), context);
 						feature = (EStructuralFeature) expectedFeature.getValue();
 					} catch (Exception exception) {
 						throw new InvalidCalculationException("invalid dynamic feature path");
@@ -606,7 +606,7 @@ public class ModelCheckInterpreter extends ExpressionCheckInterpreter {
 			if (fp.isReflective()) {
 				try {
 					SafeType expectedFeature = this.resolveReflectiveFeature(t.getObjectValue().eClass(),
-							((FeaturePath) fp).getReflectiveIdentifier(), context);
+							((FeaturePath) fp), context);
 					feature = (EStructuralFeature) expectedFeature.getValue();
 				} catch (Exception exception) {
 					throw new InvalidCalculationException("invalid dynamic feature path");
@@ -626,7 +626,7 @@ public class ModelCheckInterpreter extends ExpressionCheckInterpreter {
 			if (fp.isReflective()) {
 				try {
 					SafeType expectedFeature = this.resolveReflectiveFeature(t.getObjectValue().eClass(),
-							((FeaturePath) fp).getReflectiveIdentifier(), context);
+							((FeaturePath) fp), context);
 					feature = (EStructuralFeature) expectedFeature.getValue();
 				} catch (Exception exception) {
 					throw new InvalidCalculationException("invalid dynamic feature path");
@@ -649,7 +649,7 @@ public class ModelCheckInterpreter extends ExpressionCheckInterpreter {
 			if (fp.isReflective()) {
 				try {
 					SafeType expectedFeature = this.resolveReflectiveFeature(t.getObjectValue().eClass(),
-							((FeaturePath) fp).getReflectiveIdentifier(), context);
+							((FeaturePath) fp), context);
 					feature = (EStructuralFeature) expectedFeature.getValue();
 				} catch (Exception exception) {
 					throw new InvalidCalculationException("invalid dynamic feature path");
@@ -669,7 +669,7 @@ public class ModelCheckInterpreter extends ExpressionCheckInterpreter {
 			if (fp.isReflective()) {
 				try {
 					SafeType expectedFeature = this.resolveReflectiveFeature(t.getObjectValue().eClass(),
-							((FeaturePath) fp).getReflectiveIdentifier(), context);
+							((FeaturePath) fp), context);
 					feature = (EStructuralFeature) expectedFeature.getValue();
 				} catch (Exception exception) {
 					throw new InvalidCalculationException("invalid dynamic feature path");

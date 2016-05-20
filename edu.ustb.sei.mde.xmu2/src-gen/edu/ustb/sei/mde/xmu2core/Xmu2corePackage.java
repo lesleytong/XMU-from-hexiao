@@ -714,13 +714,22 @@ public interface Xmu2corePackage extends EPackage {
 	int REFLECTIVE_SUPPORT__REFLECTIVE = 1;
 
 	/**
+	 * The feature id for the '<em><b>Resolve</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFLECTIVE_SUPPORT__RESOLVE = 2;
+
+	/**
 	 * The number of structural features of the '<em>Reflective Support</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REFLECTIVE_SUPPORT_FEATURE_COUNT = 2;
+	int REFLECTIVE_SUPPORT_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Reflective Support</em>' class.
@@ -758,6 +767,15 @@ public interface Xmu2corePackage extends EPackage {
 	 * @ordered
 	 */
 	int PATTERN_NODE__REFLECTIVE = REFLECTIVE_SUPPORT__REFLECTIVE;
+
+	/**
+	 * The feature id for the '<em><b>Resolve</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATTERN_NODE__RESOLVE = REFLECTIVE_SUPPORT__RESOLVE;
 
 	/**
 	 * The feature id for the '<em><b>Variable</b></em>' reference.
@@ -842,13 +860,22 @@ public interface Xmu2corePackage extends EPackage {
 	int PATTERN_EXPRESSION__REFLECTIVE = NULLABLE_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Resolve</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATTERN_EXPRESSION__RESOLVE = NULLABLE_FEATURE_COUNT + 2;
+
+	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PATTERN_EXPRESSION__FEATURE = NULLABLE_FEATURE_COUNT + 2;
+	int PATTERN_EXPRESSION__FEATURE = NULLABLE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Selector</b></em>' containment reference.
@@ -857,7 +884,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PATTERN_EXPRESSION__SELECTOR = NULLABLE_FEATURE_COUNT + 3;
+	int PATTERN_EXPRESSION__SELECTOR = NULLABLE_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Position</b></em>' containment reference.
@@ -866,7 +893,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PATTERN_EXPRESSION__POSITION = NULLABLE_FEATURE_COUNT + 4;
+	int PATTERN_EXPRESSION__POSITION = NULLABLE_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Pattern Expression</em>' class.
@@ -875,7 +902,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PATTERN_EXPRESSION_FEATURE_COUNT = NULLABLE_FEATURE_COUNT + 5;
+	int PATTERN_EXPRESSION_FEATURE_COUNT = NULLABLE_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of operations of the '<em>Pattern Expression</em>' class.
@@ -922,6 +949,15 @@ public interface Xmu2corePackage extends EPackage {
 	 * @ordered
 	 */
 	int OBJECT_PATTERN_EXPRESSION__REFLECTIVE = PATTERN_EXPRESSION__REFLECTIVE;
+
+	/**
+	 * The feature id for the '<em><b>Resolve</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_PATTERN_EXPRESSION__RESOLVE = PATTERN_EXPRESSION__RESOLVE;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference.
@@ -1013,6 +1049,15 @@ public interface Xmu2corePackage extends EPackage {
 	 * @ordered
 	 */
 	int PROPERTY_PATTERN_EXPRESSION__REFLECTIVE = PATTERN_EXPRESSION__REFLECTIVE;
+
+	/**
+	 * The feature id for the '<em><b>Resolve</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_PATTERN_EXPRESSION__RESOLVE = PATTERN_EXPRESSION__RESOLVE;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference.
@@ -1925,13 +1970,22 @@ public interface Xmu2corePackage extends EPackage {
 	int FEATURE_PATH__REFLECTIVE = PATH_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Resolve</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_PATH__RESOLVE = PATH_FEATURE_COUNT + 2;
+
+	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_PATH__FEATURE = PATH_FEATURE_COUNT + 2;
+	int FEATURE_PATH__FEATURE = PATH_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Feature Path</em>' class.
@@ -1940,7 +1994,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_PATH_FEATURE_COUNT = PATH_FEATURE_COUNT + 3;
+	int FEATURE_PATH_FEATURE_COUNT = PATH_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Feature Path</em>' class.
@@ -2402,13 +2456,22 @@ public interface Xmu2corePackage extends EPackage {
 	int DELETE_LINK_STATEMENT__REFLECTIVE = STATEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Resolve</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DELETE_LINK_STATEMENT__RESOLVE = STATEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The feature id for the '<em><b>Target</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DELETE_LINK_STATEMENT__TARGET = STATEMENT_FEATURE_COUNT + 2;
+	int DELETE_LINK_STATEMENT__TARGET = STATEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
@@ -2417,7 +2480,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DELETE_LINK_STATEMENT__SOURCE = STATEMENT_FEATURE_COUNT + 3;
+	int DELETE_LINK_STATEMENT__SOURCE = STATEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference.
@@ -2426,7 +2489,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DELETE_LINK_STATEMENT__FEATURE = STATEMENT_FEATURE_COUNT + 4;
+	int DELETE_LINK_STATEMENT__FEATURE = STATEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Delete Link Statement</em>' class.
@@ -2435,7 +2498,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DELETE_LINK_STATEMENT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 5;
+	int DELETE_LINK_STATEMENT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of operations of the '<em>Delete Link Statement</em>' class.
@@ -2493,13 +2556,22 @@ public interface Xmu2corePackage extends EPackage {
 	int ENFORCE_NODE_STATEMENT__REFLECTIVE = STATEMENT_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Resolve</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENFORCE_NODE_STATEMENT__RESOLVE = STATEMENT_FEATURE_COUNT + 4;
+
+	/**
 	 * The feature id for the '<em><b>Node</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ENFORCE_NODE_STATEMENT__NODE = STATEMENT_FEATURE_COUNT + 4;
+	int ENFORCE_NODE_STATEMENT__NODE = STATEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -2508,7 +2580,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENFORCE_NODE_STATEMENT__TYPE = STATEMENT_FEATURE_COUNT + 5;
+	int ENFORCE_NODE_STATEMENT__TYPE = STATEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Candidate</b></em>' containment reference.
@@ -2517,7 +2589,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENFORCE_NODE_STATEMENT__CANDIDATE = STATEMENT_FEATURE_COUNT + 6;
+	int ENFORCE_NODE_STATEMENT__CANDIDATE = STATEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The number of structural features of the '<em>Enforce Node Statement</em>' class.
@@ -2526,7 +2598,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENFORCE_NODE_STATEMENT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 7;
+	int ENFORCE_NODE_STATEMENT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The number of operations of the '<em>Enforce Node Statement</em>' class.
@@ -2575,13 +2647,22 @@ public interface Xmu2corePackage extends EPackage {
 	int ENFORCE_LINK_STATEMENT__REFLECTIVE = STATEMENT_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Resolve</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENFORCE_LINK_STATEMENT__RESOLVE = STATEMENT_FEATURE_COUNT + 3;
+
+	/**
 	 * The feature id for the '<em><b>Target</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ENFORCE_LINK_STATEMENT__TARGET = STATEMENT_FEATURE_COUNT + 3;
+	int ENFORCE_LINK_STATEMENT__TARGET = STATEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
@@ -2590,7 +2671,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENFORCE_LINK_STATEMENT__SOURCE = STATEMENT_FEATURE_COUNT + 4;
+	int ENFORCE_LINK_STATEMENT__SOURCE = STATEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference.
@@ -2599,7 +2680,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENFORCE_LINK_STATEMENT__FEATURE = STATEMENT_FEATURE_COUNT + 5;
+	int ENFORCE_LINK_STATEMENT__FEATURE = STATEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Selector</b></em>' containment reference.
@@ -2608,7 +2689,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENFORCE_LINK_STATEMENT__SELECTOR = STATEMENT_FEATURE_COUNT + 6;
+	int ENFORCE_LINK_STATEMENT__SELECTOR = STATEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Position</b></em>' containment reference.
@@ -2617,7 +2698,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENFORCE_LINK_STATEMENT__POSITION = STATEMENT_FEATURE_COUNT + 7;
+	int ENFORCE_LINK_STATEMENT__POSITION = STATEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Source Type</b></em>' reference.
@@ -2626,7 +2707,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENFORCE_LINK_STATEMENT__SOURCE_TYPE = STATEMENT_FEATURE_COUNT + 8;
+	int ENFORCE_LINK_STATEMENT__SOURCE_TYPE = STATEMENT_FEATURE_COUNT + 9;
 
 	/**
 	 * The number of structural features of the '<em>Enforce Link Statement</em>' class.
@@ -2635,7 +2716,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENFORCE_LINK_STATEMENT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 9;
+	int ENFORCE_LINK_STATEMENT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 10;
 
 	/**
 	 * The number of operations of the '<em>Enforce Link Statement</em>' class.
@@ -4945,6 +5026,17 @@ public interface Xmu2corePackage extends EPackage {
 	EAttribute getReflectiveSupport_Reflective();
 
 	/**
+	 * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.xmu2core.ReflectiveSupport#isResolve <em>Resolve</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Resolve</em>'.
+	 * @see edu.ustb.sei.mde.xmu2core.ReflectiveSupport#isResolve()
+	 * @see #getReflectiveSupport()
+	 * @generated
+	 */
+	EAttribute getReflectiveSupport_Resolve();
+
+	/**
 	 * Returns the meta object for data type '{@link java.lang.Object <em>Null</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6300,6 +6392,14 @@ public interface Xmu2corePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute REFLECTIVE_SUPPORT__REFLECTIVE = eINSTANCE.getReflectiveSupport_Reflective();
+
+		/**
+		 * The meta object literal for the '<em><b>Resolve</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute REFLECTIVE_SUPPORT__RESOLVE = eINSTANCE.getReflectiveSupport_Resolve();
 
 		/**
 		 * The meta object literal for the '<em>Null</em>' data type.

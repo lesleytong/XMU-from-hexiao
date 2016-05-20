@@ -89,6 +89,7 @@ import edu.ustb.sei.mde.xmu2core.Pattern;
 import edu.ustb.sei.mde.xmu2core.PatternExpression;
 import edu.ustb.sei.mde.xmu2core.PatternNode;
 import edu.ustb.sei.mde.xmu2core.Procedure;
+import edu.ustb.sei.mde.xmu2core.ReflectiveSupport;
 import edu.ustb.sei.mde.xmu2core.RelationalExpression;
 import edu.ustb.sei.mde.xmu2core.SolveConstraintStatement;
 import edu.ustb.sei.mde.xmu2core.Statement;
@@ -746,9 +747,7 @@ public class BXCodeGenerator {
 			
 			//Reflective API
 			if(statement instanceof ReflectiveAPI) {
-				stmt.setReflective(true);
-				edu.ustb.sei.mde.xmu2.expression.Expression re = ((ReflectiveAPI)statement).getReflectiveIdentifier();
-				stmt.setReflectiveIdentifier(this.convertExpression(re, varMap, true));
+				this.convertReflectiveAPI((ReflectiveAPI)statement, stmt, varMap, true);
 			}
 			
 			return Collections.singletonList(stmt);
@@ -984,9 +983,7 @@ public class BXCodeGenerator {
 			
 			//Reflective API
 			if(statement instanceof ReflectiveAPI) {
-				stmt.setReflective(true);
-				edu.ustb.sei.mde.xmu2.expression.Expression re = ((ReflectiveAPI)statement).getReflectiveIdentifier();
-				stmt.setReflectiveIdentifier(this.convertExpression(re, varMap, true));
+				this.convertReflectiveAPI((ReflectiveAPI)statement, stmt, varMap, true);
 			}
 			
 			return Collections.singletonList(stmt);
@@ -1199,9 +1196,7 @@ public class BXCodeGenerator {
 
 			// reflective API
 			if(root instanceof ReflectiveAPI) {
-				edu.ustb.sei.mde.xmu2.expression.Expression re = ((ReflectiveAPI)root).getReflectiveIdentifier();
-				s.setReflective(true);
-				s.setReflectiveIdentifier(this.convertExpression(re, varMap, updatedSource));
+				convertReflectiveAPI((ReflectiveAPI)root, s, varMap, updatedSource);
 			}
 		}
 		
@@ -1211,6 +1206,14 @@ public class BXCodeGenerator {
 		}
 		
 		return s;
+	}
+
+	protected void convertReflectiveAPI(ReflectiveAPI api, ReflectiveSupport target,
+			VarMapStack varMap, boolean updatedSource) {
+		edu.ustb.sei.mde.xmu2.expression.Expression re = api.getReflectiveIdentifier();
+		target.setReflective(true);
+		target.setReflectiveIdentifier(this.convertExpression(re, varMap, updatedSource));
+		target.setResolve(api.isResolve());
 	}
 	
 	/**
@@ -1244,10 +1247,8 @@ public class BXCodeGenerator {
 					exp.getPaths().add(fp);
 					ens.setCandidate(exp);
 					
-					if(f==Constants.DYNAMIC_FEATURE) {
-						fp.setReflective(true);
-						edu.ustb.sei.mde.xmu2.expression.Expression ri = ((ReflectiveAPI)e).getReflectiveIdentifier();
-						fp.setReflectiveIdentifier(this.convertExpression(ri, varMap, updatedSource));
+					if(e instanceof ReflectiveAPI) {
+						this.convertReflectiveAPI((ReflectiveAPI)e, fp, varMap, updatedSource);
 					}
 				}
 				
@@ -1274,9 +1275,7 @@ public class BXCodeGenerator {
 			
 			//Reflective API
 			if(e instanceof ReflectiveAPI) {
-				el.setReflective(true);
-				edu.ustb.sei.mde.xmu2.expression.Expression re = ((ReflectiveAPI)e).getReflectiveIdentifier();
-				el.setReflectiveIdentifier(this.convertExpression(re, varMap, updatedSource));
+				this.convertReflectiveAPI((ReflectiveAPI)e, el, varMap, updatedSource);
 			}
 			
 			return;
@@ -1297,9 +1296,7 @@ public class BXCodeGenerator {
 			
 			//Reflective API
 			if(e instanceof ReflectiveAPI) {
-				el.setReflective(true);
-				edu.ustb.sei.mde.xmu2.expression.Expression re = ((ReflectiveAPI)e).getReflectiveIdentifier();
-				el.setReflectiveIdentifier(this.convertExpression(re, varMap, updatedSource));
+				this.convertReflectiveAPI((ReflectiveAPI)e, el, varMap, updatedSource);
 			}
 			
 			return;
@@ -1646,9 +1643,7 @@ public class BXCodeGenerator {
 			
 			//Reflective API
 			if(node instanceof ReflectiveAPI) {
-				n.setReflective(true);
-				edu.ustb.sei.mde.xmu2.expression.Expression re = ((ReflectiveAPI)node).getReflectiveIdentifier();
-				n.setReflectiveIdentifier(this.convertExpression(re, varMap, false));
+				this.convertReflectiveAPI((ReflectiveAPI)node, n, varMap, false);
 			}
 			
 			for(edu.ustb.sei.mde.xmu2.pattern.PatternExpression pe : node.getExpressions()) {
@@ -1677,9 +1672,7 @@ public class BXCodeGenerator {
 				
 				//Reflective API
 				if(pe instanceof ReflectiveAPI) {
-					npe.setReflective(true);
-					edu.ustb.sei.mde.xmu2.expression.Expression re = ((ReflectiveAPI)pe).getReflectiveIdentifier();
-					npe.setReflectiveIdentifier(this.convertExpression(re, varMap, false));
+					this.convertReflectiveAPI((ReflectiveAPI)pe, npe, varMap, false);
 				}
 				
 				return npe;
@@ -1693,9 +1686,7 @@ public class BXCodeGenerator {
 				
 				//Reflective API
 				if(pe instanceof ReflectiveAPI) {
-					npe.setReflective(true);
-					edu.ustb.sei.mde.xmu2.expression.Expression re = ((ReflectiveAPI)pe).getReflectiveIdentifier();
-					npe.setReflectiveIdentifier(this.convertExpression(re, varMap, false));
+					this.convertReflectiveAPI((ReflectiveAPI)pe, npe, varMap, false);
 				}
 				
 				return npe;
@@ -1710,9 +1701,7 @@ public class BXCodeGenerator {
 			
 			//Reflective API
 			if(pe instanceof ReflectiveAPI) {
-				npe.setReflective(true);
-				edu.ustb.sei.mde.xmu2.expression.Expression re = ((ReflectiveAPI)pe).getReflectiveIdentifier();
-				npe.setReflectiveIdentifier(this.convertExpression(re, varMap, false));
+				this.convertReflectiveAPI((ReflectiveAPI)pe, npe, varMap, false);
 			}
 			
 			return npe;

@@ -378,13 +378,22 @@ public interface PatternPackage extends EPackage {
 	int REFLECTIVE_PATTERN_NODE__REFLECTIVE_IDENTIFIER = PATTERN_NODE_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Resolve</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFLECTIVE_PATTERN_NODE__RESOLVE = PATTERN_NODE_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Reflective Pattern Node</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REFLECTIVE_PATTERN_NODE_FEATURE_COUNT = PATTERN_NODE_FEATURE_COUNT + 1;
+	int REFLECTIVE_PATTERN_NODE_FEATURE_COUNT = PATTERN_NODE_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu2.pattern.impl.ReflectiveObjectPatternExpressionImpl <em>Reflective Object Pattern Expression</em>}' class.
@@ -460,13 +469,22 @@ public interface PatternPackage extends EPackage {
 	int REFLECTIVE_OBJECT_PATTERN_EXPRESSION__REFLECTIVE_IDENTIFIER = OBJECT_PATTERN_EXPRESSION_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Resolve</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFLECTIVE_OBJECT_PATTERN_EXPRESSION__RESOLVE = OBJECT_PATTERN_EXPRESSION_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Reflective Object Pattern Expression</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REFLECTIVE_OBJECT_PATTERN_EXPRESSION_FEATURE_COUNT = OBJECT_PATTERN_EXPRESSION_FEATURE_COUNT + 1;
+	int REFLECTIVE_OBJECT_PATTERN_EXPRESSION_FEATURE_COUNT = OBJECT_PATTERN_EXPRESSION_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu2.pattern.impl.ReflectivePropertyPatternExpressionImpl <em>Reflective Property Pattern Expression</em>}' class.
@@ -542,13 +560,22 @@ public interface PatternPackage extends EPackage {
 	int REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__REFLECTIVE_IDENTIFIER = PROPERTY_PATTERN_EXPRESSION_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Resolve</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFLECTIVE_PROPERTY_PATTERN_EXPRESSION__RESOLVE = PROPERTY_PATTERN_EXPRESSION_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Reflective Property Pattern Expression</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REFLECTIVE_PROPERTY_PATTERN_EXPRESSION_FEATURE_COUNT = PROPERTY_PATTERN_EXPRESSION_FEATURE_COUNT + 1;
+	int REFLECTIVE_PROPERTY_PATTERN_EXPRESSION_FEATURE_COUNT = PROPERTY_PATTERN_EXPRESSION_FEATURE_COUNT + 2;
 
 
 	/**

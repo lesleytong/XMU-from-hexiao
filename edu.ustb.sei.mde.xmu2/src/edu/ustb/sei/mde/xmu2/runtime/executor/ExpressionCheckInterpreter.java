@@ -308,7 +308,7 @@ public class ExpressionCheckInterpreter extends AbstractInterpreter {
 				if(((FeaturePath) path).isReflective()) {
 					try {
 						SafeType expectedFeature = this.resolveReflectiveFeature(o.eClass(), 
-								((FeaturePath) path).getReflectiveIdentifier(), context);
+								((FeaturePath) path), context);
 						feature = (EStructuralFeature) expectedFeature.getValue();
 					} catch(Exception e) {
 						throw new InvalidCalculationException("invalid dynamic feature path");
@@ -494,48 +494,73 @@ public class ExpressionCheckInterpreter extends AbstractInterpreter {
 		}
 	}
 	
-	public SafeType resolveReflectiveClassifier(Expression ri, Context context) {
+	public SafeType resolveReflectiveClassifier(ReflectiveSupport rs, Context context) {
+		Expression ri = rs.getReflectiveIdentifier();
 		SafeType st = this.executeExpression(ri, context);
 		if(st==Constants.UNDEFINED) 
 			return st;
 		else {
-			String str = st.getStringValue();
-			Transformation t = context.getEnvironment().getTransformation();
-			EClassifier eClassifier = getEClassifier(str,t.getPackages());
-			if(eClassifier==null) {
-				throw new InvalidCalculationException("cannot resolve "+str+" dynamically");
-			} else
-				return SafeType.createFromValue(eClassifier);
+			if(rs.isResolve()) {
+				String str = st.getStringValue();
+				Transformation t = context.getEnvironment().getTransformation();
+				EClassifier eClassifier = getEClassifier(str,t.getPackages());
+				if(eClassifier==null) {
+					throw new InvalidCalculationException("cannot resolve "+str+" dynamically");
+				} else
+					return SafeType.createFromValue(eClassifier);				
+			} else {
+				if(st.getValue()!=null && st.getValue() instanceof EClassifier)
+					return st;
+				else 
+					throw new InvalidCalculationException("cannot resolve "+st+" dynamically");
+			}
+			
 		}
 	}
 	
-	public SafeType desolveReflectiveClassifier(EClassifier cls) {
-		if(cls==Constants.REFLECTIVE_OBJECT)
-			throw new InvalidCalculationException("the reflective object cannot be desolved");
-		
-		EPackage pkg = cls.getEPackage();
-		while(pkg.getESuperPackage()!=null) pkg = pkg.getESuperPackage();
-		return SafeType.createFromValue(pkg.getName() +"!"+cls.getName());
+	public SafeType desolveReflectiveClassifier(EClassifier cls, boolean resolve) {
+		if (resolve) {
+			if (cls == Constants.REFLECTIVE_OBJECT)
+				throw new InvalidCalculationException("the reflective object cannot be desolved");
+
+			EPackage pkg = cls.getEPackage();
+			while (pkg.getESuperPackage() != null)
+				pkg = pkg.getESuperPackage();
+			return SafeType.createFromValue(pkg.getName() + "!" + cls.getName());
+		} else
+			return SafeType.createFromValue(cls);
 	}
 	
-	public SafeType resolveReflectiveFeature(EClass hostType, Expression ri, Context context) {
+	public SafeType resolveReflectiveFeature(EClass hostType, ReflectiveSupport rs, Context context) {
+		Expression ri = rs.getReflectiveIdentifier();
 		SafeType st = this.executeExpression(ri, context);
+
 		if(st==Constants.UNDEFINED)
 			return st;
 		else {
-			String str = st.getStringValue();
-			EStructuralFeature eStructuralFeature = hostType.getEStructuralFeature(str);
-			if(eStructuralFeature==null) {
-				throw new InvalidCalculationException("cannot resolve " + str + " dynamically");
+			if(rs.isResolve()) {
+				String str = st.getStringValue();
+				EStructuralFeature eStructuralFeature = hostType.getEStructuralFeature(str);
+				if (eStructuralFeature == null) {
+					throw new InvalidCalculationException("cannot resolve " + str + " dynamically");
+				}
+				return SafeType.createFromValue(eStructuralFeature);
+			} else {
+				if(st.getValue()!=null && st.getValue() instanceof EStructuralFeature)
+					return st;
+				else 
+					throw new InvalidCalculationException("cannot resolve "+st+" dynamically");
 			}
-			return SafeType.createFromValue(eStructuralFeature);
 		}
 	}
 	
-	public SafeType desolveReflectiveFeature(EStructuralFeature feature) {
-		if(feature==Constants.DYNAMIC_FEATURE)
-			throw new InvalidCalculationException("the dynamic feature cannot be desolved");
-		return SafeType.createFromValue(feature.getName());
+	public SafeType desolveReflectiveFeature(EStructuralFeature feature,boolean resolve) {
+		if(resolve) {
+			if (feature == Constants.DYNAMIC_FEATURE)
+				throw new InvalidCalculationException("the dynamic feature cannot be desolved");
+			return SafeType.createFromValue(feature.getName());
+		} else
+			return SafeType.createFromValue(feature);
 	}
 	
 	// cloned from ResolverUtil

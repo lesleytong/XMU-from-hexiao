@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.PatternExpressionImpl#getReflectiveIdentifier <em>Reflective Identifier</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.PatternExpressionImpl#isReflective <em>Reflective</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.PatternExpressionImpl#isResolve <em>Resolve</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.PatternExpressionImpl#getFeature <em>Feature</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.PatternExpressionImpl#getSelector <em>Selector</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.PatternExpressionImpl#getPosition <em>Position</em>}</li>
@@ -65,6 +66,26 @@ public abstract class PatternExpressionImpl extends NullableImpl implements Patt
 	 * @ordered
 	 */
 	protected boolean reflective = REFLECTIVE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isResolve() <em>Resolve</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isResolve()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean RESOLVE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isResolve() <em>Resolve</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isResolve()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean resolve = RESOLVE_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getFeature() <em>Feature</em>}' reference.
@@ -177,6 +198,27 @@ public abstract class PatternExpressionImpl extends NullableImpl implements Patt
 		reflective = newReflective;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Xmu2corePackage.PATTERN_EXPRESSION__REFLECTIVE, oldReflective, reflective));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isResolve() {
+		return resolve;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setResolve(boolean newResolve) {
+		boolean oldResolve = resolve;
+		resolve = newResolve;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, Xmu2corePackage.PATTERN_EXPRESSION__RESOLVE, oldResolve, resolve));
 	}
 
 	/**
@@ -333,6 +375,8 @@ public abstract class PatternExpressionImpl extends NullableImpl implements Patt
 				return getReflectiveIdentifier();
 			case Xmu2corePackage.PATTERN_EXPRESSION__REFLECTIVE:
 				return isReflective();
+			case Xmu2corePackage.PATTERN_EXPRESSION__RESOLVE:
+				return isResolve();
 			case Xmu2corePackage.PATTERN_EXPRESSION__FEATURE:
 				if (resolve) return getFeature();
 				return basicGetFeature();
@@ -357,6 +401,9 @@ public abstract class PatternExpressionImpl extends NullableImpl implements Patt
 				return;
 			case Xmu2corePackage.PATTERN_EXPRESSION__REFLECTIVE:
 				setReflective((Boolean)newValue);
+				return;
+			case Xmu2corePackage.PATTERN_EXPRESSION__RESOLVE:
+				setResolve((Boolean)newValue);
 				return;
 			case Xmu2corePackage.PATTERN_EXPRESSION__FEATURE:
 				setFeature((EStructuralFeature)newValue);
@@ -385,6 +432,9 @@ public abstract class PatternExpressionImpl extends NullableImpl implements Patt
 			case Xmu2corePackage.PATTERN_EXPRESSION__REFLECTIVE:
 				setReflective(REFLECTIVE_EDEFAULT);
 				return;
+			case Xmu2corePackage.PATTERN_EXPRESSION__RESOLVE:
+				setResolve(RESOLVE_EDEFAULT);
+				return;
 			case Xmu2corePackage.PATTERN_EXPRESSION__FEATURE:
 				setFeature((EStructuralFeature)null);
 				return;
@@ -410,6 +460,8 @@ public abstract class PatternExpressionImpl extends NullableImpl implements Patt
 				return reflectiveIdentifier != null;
 			case Xmu2corePackage.PATTERN_EXPRESSION__REFLECTIVE:
 				return reflective != REFLECTIVE_EDEFAULT;
+			case Xmu2corePackage.PATTERN_EXPRESSION__RESOLVE:
+				return resolve != RESOLVE_EDEFAULT;
 			case Xmu2corePackage.PATTERN_EXPRESSION__FEATURE:
 				return feature != null;
 			case Xmu2corePackage.PATTERN_EXPRESSION__SELECTOR:
@@ -431,6 +483,7 @@ public abstract class PatternExpressionImpl extends NullableImpl implements Patt
 			switch (derivedFeatureID) {
 				case Xmu2corePackage.PATTERN_EXPRESSION__REFLECTIVE_IDENTIFIER: return Xmu2corePackage.REFLECTIVE_SUPPORT__REFLECTIVE_IDENTIFIER;
 				case Xmu2corePackage.PATTERN_EXPRESSION__REFLECTIVE: return Xmu2corePackage.REFLECTIVE_SUPPORT__REFLECTIVE;
+				case Xmu2corePackage.PATTERN_EXPRESSION__RESOLVE: return Xmu2corePackage.REFLECTIVE_SUPPORT__RESOLVE;
 				default: return -1;
 			}
 		}
@@ -448,6 +501,7 @@ public abstract class PatternExpressionImpl extends NullableImpl implements Patt
 			switch (baseFeatureID) {
 				case Xmu2corePackage.REFLECTIVE_SUPPORT__REFLECTIVE_IDENTIFIER: return Xmu2corePackage.PATTERN_EXPRESSION__REFLECTIVE_IDENTIFIER;
 				case Xmu2corePackage.REFLECTIVE_SUPPORT__REFLECTIVE: return Xmu2corePackage.PATTERN_EXPRESSION__REFLECTIVE;
+				case Xmu2corePackage.REFLECTIVE_SUPPORT__RESOLVE: return Xmu2corePackage.PATTERN_EXPRESSION__RESOLVE;
 				default: return -1;
 			}
 		}
@@ -466,6 +520,8 @@ public abstract class PatternExpressionImpl extends NullableImpl implements Patt
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (reflective: ");
 		result.append(reflective);
+		result.append(", resolve: ");
+		result.append(resolve);
 		result.append(')');
 		return result.toString();
 	}

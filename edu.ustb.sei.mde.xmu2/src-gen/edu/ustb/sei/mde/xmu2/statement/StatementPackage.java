@@ -586,13 +586,22 @@ public interface StatementPackage extends EPackage {
 	int REFLECTIVE_DELETE_LINK_STATEMENT__REFLECTIVE_IDENTIFIER = DELETE_LINK_STATEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Resolve</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFLECTIVE_DELETE_LINK_STATEMENT__RESOLVE = DELETE_LINK_STATEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Reflective Delete Link Statement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REFLECTIVE_DELETE_LINK_STATEMENT_FEATURE_COUNT = DELETE_LINK_STATEMENT_FEATURE_COUNT + 1;
+	int REFLECTIVE_DELETE_LINK_STATEMENT_FEATURE_COUNT = DELETE_LINK_STATEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu2.statement.impl.ForEachStatementImpl <em>For Each Statement</em>}' class.

@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * </p>
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu2.impl.ReflectiveAPIImpl#getReflectiveIdentifier <em>Reflective Identifier</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.xmu2.impl.ReflectiveAPIImpl#isResolve <em>Resolve</em>}</li>
  * </ul>
  *
  * @generated
@@ -39,6 +40,25 @@ public abstract class ReflectiveAPIImpl extends EObjectImpl implements Reflectiv
 	 * @ordered
 	 */
 	protected Expression reflectiveIdentifier;
+
+	/**
+	 * The default value of the '{@link #isResolve() <em>Resolve</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isResolve()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean RESOLVE_EDEFAULT = true;
+	/**
+	 * The cached value of the '{@link #isResolve() <em>Resolve</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isResolve()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean resolve = RESOLVE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -107,6 +127,27 @@ public abstract class ReflectiveAPIImpl extends EObjectImpl implements Reflectiv
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isResolve() {
+		return resolve;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setResolve(boolean newResolve) {
+		boolean oldResolve = resolve;
+		resolve = newResolve;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, Xmu2Package.REFLECTIVE_API__RESOLVE, oldResolve, resolve));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -126,6 +167,8 @@ public abstract class ReflectiveAPIImpl extends EObjectImpl implements Reflectiv
 		switch (featureID) {
 			case Xmu2Package.REFLECTIVE_API__REFLECTIVE_IDENTIFIER:
 				return getReflectiveIdentifier();
+			case Xmu2Package.REFLECTIVE_API__RESOLVE:
+				return isResolve();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -140,6 +183,9 @@ public abstract class ReflectiveAPIImpl extends EObjectImpl implements Reflectiv
 		switch (featureID) {
 			case Xmu2Package.REFLECTIVE_API__REFLECTIVE_IDENTIFIER:
 				setReflectiveIdentifier((Expression)newValue);
+				return;
+			case Xmu2Package.REFLECTIVE_API__RESOLVE:
+				setResolve((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -156,6 +202,9 @@ public abstract class ReflectiveAPIImpl extends EObjectImpl implements Reflectiv
 			case Xmu2Package.REFLECTIVE_API__REFLECTIVE_IDENTIFIER:
 				setReflectiveIdentifier((Expression)null);
 				return;
+			case Xmu2Package.REFLECTIVE_API__RESOLVE:
+				setResolve(RESOLVE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -170,8 +219,26 @@ public abstract class ReflectiveAPIImpl extends EObjectImpl implements Reflectiv
 		switch (featureID) {
 			case Xmu2Package.REFLECTIVE_API__REFLECTIVE_IDENTIFIER:
 				return reflectiveIdentifier != null;
+			case Xmu2Package.REFLECTIVE_API__RESOLVE:
+				return resolve != RESOLVE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (resolve: ");
+		result.append(resolve);
+		result.append(')');
+		return result.toString();
 	}
 
 } //ReflectiveAPIImpl

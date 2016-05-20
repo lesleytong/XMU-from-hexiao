@@ -64,6 +64,7 @@ public class ReflectiveSupportItemProvider
 			super.getPropertyDescriptors(object);
 
 			addReflectivePropertyDescriptor(object);
+			addResolvePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -82,6 +83,28 @@ public class ReflectiveSupportItemProvider
 				 getString("_UI_ReflectiveSupport_reflective_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ReflectiveSupport_reflective_feature", "_UI_ReflectiveSupport_type"),
 				 Xmu2corePackage.Literals.REFLECTIVE_SUPPORT__REFLECTIVE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Resolve feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addResolvePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ReflectiveSupport_resolve_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ReflectiveSupport_resolve_feature", "_UI_ReflectiveSupport_type"),
+				 Xmu2corePackage.Literals.REFLECTIVE_SUPPORT__RESOLVE,
 				 true,
 				 false,
 				 false,
@@ -146,6 +169,7 @@ public class ReflectiveSupportItemProvider
 
 		switch (notification.getFeatureID(ReflectiveSupport.class)) {
 			case Xmu2corePackage.REFLECTIVE_SUPPORT__REFLECTIVE:
+			case Xmu2corePackage.REFLECTIVE_SUPPORT__RESOLVE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case Xmu2corePackage.REFLECTIVE_SUPPORT__REFLECTIVE_IDENTIFIER:

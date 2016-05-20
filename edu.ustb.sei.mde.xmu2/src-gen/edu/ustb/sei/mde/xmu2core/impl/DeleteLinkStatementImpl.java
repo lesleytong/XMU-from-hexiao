@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.DeleteLinkStatementImpl#getReflectiveIdentifier <em>Reflective Identifier</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.DeleteLinkStatementImpl#isReflective <em>Reflective</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.DeleteLinkStatementImpl#isResolve <em>Resolve</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.DeleteLinkStatementImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.DeleteLinkStatementImpl#getSource <em>Source</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.DeleteLinkStatementImpl#getFeature <em>Feature</em>}</li>
@@ -64,6 +65,26 @@ public class DeleteLinkStatementImpl extends StatementImpl implements DeleteLink
 	 * @ordered
 	 */
 	protected boolean reflective = REFLECTIVE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isResolve() <em>Resolve</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isResolve()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean RESOLVE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isResolve() <em>Resolve</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isResolve()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean resolve = RESOLVE_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getTarget() <em>Target</em>}' containment reference.
@@ -176,6 +197,27 @@ public class DeleteLinkStatementImpl extends StatementImpl implements DeleteLink
 		reflective = newReflective;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Xmu2corePackage.DELETE_LINK_STATEMENT__REFLECTIVE, oldReflective, reflective));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isResolve() {
+		return resolve;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setResolve(boolean newResolve) {
+		boolean oldResolve = resolve;
+		resolve = newResolve;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, Xmu2corePackage.DELETE_LINK_STATEMENT__RESOLVE, oldResolve, resolve));
 	}
 
 	/**
@@ -325,6 +367,8 @@ public class DeleteLinkStatementImpl extends StatementImpl implements DeleteLink
 				return getReflectiveIdentifier();
 			case Xmu2corePackage.DELETE_LINK_STATEMENT__REFLECTIVE:
 				return isReflective();
+			case Xmu2corePackage.DELETE_LINK_STATEMENT__RESOLVE:
+				return isResolve();
 			case Xmu2corePackage.DELETE_LINK_STATEMENT__TARGET:
 				return getTarget();
 			case Xmu2corePackage.DELETE_LINK_STATEMENT__SOURCE:
@@ -350,6 +394,9 @@ public class DeleteLinkStatementImpl extends StatementImpl implements DeleteLink
 				return;
 			case Xmu2corePackage.DELETE_LINK_STATEMENT__REFLECTIVE:
 				setReflective((Boolean)newValue);
+				return;
+			case Xmu2corePackage.DELETE_LINK_STATEMENT__RESOLVE:
+				setResolve((Boolean)newValue);
 				return;
 			case Xmu2corePackage.DELETE_LINK_STATEMENT__TARGET:
 				setTarget((Expression)newValue);
@@ -378,6 +425,9 @@ public class DeleteLinkStatementImpl extends StatementImpl implements DeleteLink
 			case Xmu2corePackage.DELETE_LINK_STATEMENT__REFLECTIVE:
 				setReflective(REFLECTIVE_EDEFAULT);
 				return;
+			case Xmu2corePackage.DELETE_LINK_STATEMENT__RESOLVE:
+				setResolve(RESOLVE_EDEFAULT);
+				return;
 			case Xmu2corePackage.DELETE_LINK_STATEMENT__TARGET:
 				setTarget((Expression)null);
 				return;
@@ -403,6 +453,8 @@ public class DeleteLinkStatementImpl extends StatementImpl implements DeleteLink
 				return reflectiveIdentifier != null;
 			case Xmu2corePackage.DELETE_LINK_STATEMENT__REFLECTIVE:
 				return reflective != REFLECTIVE_EDEFAULT;
+			case Xmu2corePackage.DELETE_LINK_STATEMENT__RESOLVE:
+				return resolve != RESOLVE_EDEFAULT;
 			case Xmu2corePackage.DELETE_LINK_STATEMENT__TARGET:
 				return target != null;
 			case Xmu2corePackage.DELETE_LINK_STATEMENT__SOURCE:
@@ -424,6 +476,7 @@ public class DeleteLinkStatementImpl extends StatementImpl implements DeleteLink
 			switch (derivedFeatureID) {
 				case Xmu2corePackage.DELETE_LINK_STATEMENT__REFLECTIVE_IDENTIFIER: return Xmu2corePackage.REFLECTIVE_SUPPORT__REFLECTIVE_IDENTIFIER;
 				case Xmu2corePackage.DELETE_LINK_STATEMENT__REFLECTIVE: return Xmu2corePackage.REFLECTIVE_SUPPORT__REFLECTIVE;
+				case Xmu2corePackage.DELETE_LINK_STATEMENT__RESOLVE: return Xmu2corePackage.REFLECTIVE_SUPPORT__RESOLVE;
 				default: return -1;
 			}
 		}
@@ -441,6 +494,7 @@ public class DeleteLinkStatementImpl extends StatementImpl implements DeleteLink
 			switch (baseFeatureID) {
 				case Xmu2corePackage.REFLECTIVE_SUPPORT__REFLECTIVE_IDENTIFIER: return Xmu2corePackage.DELETE_LINK_STATEMENT__REFLECTIVE_IDENTIFIER;
 				case Xmu2corePackage.REFLECTIVE_SUPPORT__REFLECTIVE: return Xmu2corePackage.DELETE_LINK_STATEMENT__REFLECTIVE;
+				case Xmu2corePackage.REFLECTIVE_SUPPORT__RESOLVE: return Xmu2corePackage.DELETE_LINK_STATEMENT__RESOLVE;
 				default: return -1;
 			}
 		}
@@ -459,6 +513,8 @@ public class DeleteLinkStatementImpl extends StatementImpl implements DeleteLink
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (reflective: ");
 		result.append(reflective);
+		result.append(", resolve: ");
+		result.append(resolve);
 		result.append(')');
 		return result.toString();
 	}

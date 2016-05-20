@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * </p>
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu2.pattern.impl.ReflectivePatternNodeImpl#getReflectiveIdentifier <em>Reflective Identifier</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.xmu2.pattern.impl.ReflectivePatternNodeImpl#isResolve <em>Resolve</em>}</li>
  * </ul>
  *
  * @generated
@@ -41,6 +42,25 @@ public class ReflectivePatternNodeImpl extends PatternNodeImpl implements Reflec
 	 * @ordered
 	 */
 	protected Expression reflectiveIdentifier;
+
+	/**
+	 * The default value of the '{@link #isResolve() <em>Resolve</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isResolve()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean RESOLVE_EDEFAULT = true;
+	/**
+	 * The cached value of the '{@link #isResolve() <em>Resolve</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isResolve()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean resolve = RESOLVE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -109,6 +129,27 @@ public class ReflectivePatternNodeImpl extends PatternNodeImpl implements Reflec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isResolve() {
+		return resolve;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setResolve(boolean newResolve) {
+		boolean oldResolve = resolve;
+		resolve = newResolve;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PatternPackage.REFLECTIVE_PATTERN_NODE__RESOLVE, oldResolve, resolve));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -128,6 +169,8 @@ public class ReflectivePatternNodeImpl extends PatternNodeImpl implements Reflec
 		switch (featureID) {
 			case PatternPackage.REFLECTIVE_PATTERN_NODE__REFLECTIVE_IDENTIFIER:
 				return getReflectiveIdentifier();
+			case PatternPackage.REFLECTIVE_PATTERN_NODE__RESOLVE:
+				return isResolve();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -142,6 +185,9 @@ public class ReflectivePatternNodeImpl extends PatternNodeImpl implements Reflec
 		switch (featureID) {
 			case PatternPackage.REFLECTIVE_PATTERN_NODE__REFLECTIVE_IDENTIFIER:
 				setReflectiveIdentifier((Expression)newValue);
+				return;
+			case PatternPackage.REFLECTIVE_PATTERN_NODE__RESOLVE:
+				setResolve((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -158,6 +204,9 @@ public class ReflectivePatternNodeImpl extends PatternNodeImpl implements Reflec
 			case PatternPackage.REFLECTIVE_PATTERN_NODE__REFLECTIVE_IDENTIFIER:
 				setReflectiveIdentifier((Expression)null);
 				return;
+			case PatternPackage.REFLECTIVE_PATTERN_NODE__RESOLVE:
+				setResolve(RESOLVE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -172,6 +221,8 @@ public class ReflectivePatternNodeImpl extends PatternNodeImpl implements Reflec
 		switch (featureID) {
 			case PatternPackage.REFLECTIVE_PATTERN_NODE__REFLECTIVE_IDENTIFIER:
 				return reflectiveIdentifier != null;
+			case PatternPackage.REFLECTIVE_PATTERN_NODE__RESOLVE:
+				return resolve != RESOLVE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -186,6 +237,7 @@ public class ReflectivePatternNodeImpl extends PatternNodeImpl implements Reflec
 		if (baseClass == ReflectiveAPI.class) {
 			switch (derivedFeatureID) {
 				case PatternPackage.REFLECTIVE_PATTERN_NODE__REFLECTIVE_IDENTIFIER: return Xmu2Package.REFLECTIVE_API__REFLECTIVE_IDENTIFIER;
+				case PatternPackage.REFLECTIVE_PATTERN_NODE__RESOLVE: return Xmu2Package.REFLECTIVE_API__RESOLVE;
 				default: return -1;
 			}
 		}
@@ -202,10 +254,27 @@ public class ReflectivePatternNodeImpl extends PatternNodeImpl implements Reflec
 		if (baseClass == ReflectiveAPI.class) {
 			switch (baseFeatureID) {
 				case Xmu2Package.REFLECTIVE_API__REFLECTIVE_IDENTIFIER: return PatternPackage.REFLECTIVE_PATTERN_NODE__REFLECTIVE_IDENTIFIER;
+				case Xmu2Package.REFLECTIVE_API__RESOLVE: return PatternPackage.REFLECTIVE_PATTERN_NODE__RESOLVE;
 				default: return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (resolve: ");
+		result.append(resolve);
+		result.append(')');
+		return result.toString();
 	}
 
 } //ReflectivePatternNodeImpl

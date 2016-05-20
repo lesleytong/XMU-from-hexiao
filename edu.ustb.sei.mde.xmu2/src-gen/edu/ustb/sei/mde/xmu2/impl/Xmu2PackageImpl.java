@@ -460,6 +460,15 @@ public class Xmu2PackageImpl extends EPackageImpl implements Xmu2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getReflectiveAPI_Resolve() {
+		return (EAttribute)reflectiveAPIEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Xmu2Factory getXmu2Factory() {
 		return (Xmu2Factory)getEFactoryInstance();
 	}
@@ -522,6 +531,7 @@ public class Xmu2PackageImpl extends EPackageImpl implements Xmu2Package {
 
 		reflectiveAPIEClass = createEClass(REFLECTIVE_API);
 		createEReference(reflectiveAPIEClass, REFLECTIVE_API__REFLECTIVE_IDENTIFIER);
+		createEAttribute(reflectiveAPIEClass, REFLECTIVE_API__RESOLVE);
 	}
 
 	/**
@@ -616,6 +626,7 @@ public class Xmu2PackageImpl extends EPackageImpl implements Xmu2Package {
 
 		initEClass(reflectiveAPIEClass, ReflectiveAPI.class, "ReflectiveAPI", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getReflectiveAPI_ReflectiveIdentifier(), theExpressionPackage.getExpression(), null, "reflectiveIdentifier", null, 1, 1, ReflectiveAPI.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getReflectiveAPI_Resolve(), ecorePackage.getEBoolean(), "resolve", "true", 1, 1, ReflectiveAPI.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

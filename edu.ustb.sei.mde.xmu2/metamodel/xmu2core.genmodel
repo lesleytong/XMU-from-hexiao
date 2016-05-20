@@ -210,6 +210,7 @@
     <genClasses image="false" ecoreClass="xmu2core.ecore#//ReflectiveSupport">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2core.ecore#//ReflectiveSupport/reflectiveIdentifier"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmu2core.ecore#//ReflectiveSupport/reflective"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmu2core.ecore#//ReflectiveSupport/resolve"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

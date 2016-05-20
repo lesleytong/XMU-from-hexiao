@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.FeaturePathImpl#getReflectiveIdentifier <em>Reflective Identifier</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.FeaturePathImpl#isReflective <em>Reflective</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.FeaturePathImpl#isResolve <em>Resolve</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.FeaturePathImpl#getFeature <em>Feature</em>}</li>
  * </ul>
  *
@@ -59,6 +60,24 @@ public class FeaturePathImpl extends PathImpl implements FeaturePath {
 	 * @ordered
 	 */
 	protected boolean reflective = REFLECTIVE_EDEFAULT;
+	/**
+	 * The default value of the '{@link #isResolve() <em>Resolve</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isResolve()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean RESOLVE_EDEFAULT = false;
+	/**
+	 * The cached value of the '{@link #isResolve() <em>Resolve</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isResolve()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean resolve = RESOLVE_EDEFAULT;
 	/**
 	 * The cached value of the '{@link #getFeature() <em>Feature</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -157,6 +176,27 @@ public class FeaturePathImpl extends PathImpl implements FeaturePath {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isResolve() {
+		return resolve;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setResolve(boolean newResolve) {
+		boolean oldResolve = resolve;
+		resolve = newResolve;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, Xmu2corePackage.FEATURE_PATH__RESOLVE, oldResolve, resolve));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EStructuralFeature getFeature() {
 		if (feature != null && feature.eIsProxy()) {
 			InternalEObject oldFeature = (InternalEObject)feature;
@@ -216,6 +256,8 @@ public class FeaturePathImpl extends PathImpl implements FeaturePath {
 				return getReflectiveIdentifier();
 			case Xmu2corePackage.FEATURE_PATH__REFLECTIVE:
 				return isReflective();
+			case Xmu2corePackage.FEATURE_PATH__RESOLVE:
+				return isResolve();
 			case Xmu2corePackage.FEATURE_PATH__FEATURE:
 				if (resolve) return getFeature();
 				return basicGetFeature();
@@ -236,6 +278,9 @@ public class FeaturePathImpl extends PathImpl implements FeaturePath {
 				return;
 			case Xmu2corePackage.FEATURE_PATH__REFLECTIVE:
 				setReflective((Boolean)newValue);
+				return;
+			case Xmu2corePackage.FEATURE_PATH__RESOLVE:
+				setResolve((Boolean)newValue);
 				return;
 			case Xmu2corePackage.FEATURE_PATH__FEATURE:
 				setFeature((EStructuralFeature)newValue);
@@ -258,6 +303,9 @@ public class FeaturePathImpl extends PathImpl implements FeaturePath {
 			case Xmu2corePackage.FEATURE_PATH__REFLECTIVE:
 				setReflective(REFLECTIVE_EDEFAULT);
 				return;
+			case Xmu2corePackage.FEATURE_PATH__RESOLVE:
+				setResolve(RESOLVE_EDEFAULT);
+				return;
 			case Xmu2corePackage.FEATURE_PATH__FEATURE:
 				setFeature((EStructuralFeature)null);
 				return;
@@ -277,6 +325,8 @@ public class FeaturePathImpl extends PathImpl implements FeaturePath {
 				return reflectiveIdentifier != null;
 			case Xmu2corePackage.FEATURE_PATH__REFLECTIVE:
 				return reflective != REFLECTIVE_EDEFAULT;
+			case Xmu2corePackage.FEATURE_PATH__RESOLVE:
+				return resolve != RESOLVE_EDEFAULT;
 			case Xmu2corePackage.FEATURE_PATH__FEATURE:
 				return feature != null;
 		}
@@ -294,6 +344,7 @@ public class FeaturePathImpl extends PathImpl implements FeaturePath {
 			switch (derivedFeatureID) {
 				case Xmu2corePackage.FEATURE_PATH__REFLECTIVE_IDENTIFIER: return Xmu2corePackage.REFLECTIVE_SUPPORT__REFLECTIVE_IDENTIFIER;
 				case Xmu2corePackage.FEATURE_PATH__REFLECTIVE: return Xmu2corePackage.REFLECTIVE_SUPPORT__REFLECTIVE;
+				case Xmu2corePackage.FEATURE_PATH__RESOLVE: return Xmu2corePackage.REFLECTIVE_SUPPORT__RESOLVE;
 				default: return -1;
 			}
 		}
@@ -311,6 +362,7 @@ public class FeaturePathImpl extends PathImpl implements FeaturePath {
 			switch (baseFeatureID) {
 				case Xmu2corePackage.REFLECTIVE_SUPPORT__REFLECTIVE_IDENTIFIER: return Xmu2corePackage.FEATURE_PATH__REFLECTIVE_IDENTIFIER;
 				case Xmu2corePackage.REFLECTIVE_SUPPORT__REFLECTIVE: return Xmu2corePackage.FEATURE_PATH__REFLECTIVE;
+				case Xmu2corePackage.REFLECTIVE_SUPPORT__RESOLVE: return Xmu2corePackage.FEATURE_PATH__RESOLVE;
 				default: return -1;
 			}
 		}
@@ -329,6 +381,8 @@ public class FeaturePathImpl extends PathImpl implements FeaturePath {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (reflective: ");
 		result.append(reflective);
+		result.append(", resolve: ");
+		result.append(resolve);
 		result.append(')');
 		return result.toString();
 	}
