@@ -88,83 +88,106 @@ public class Xmu2Launcher extends Xmu2LaunchConfigurationHelper {
 //		delegate.addObjectTreeToInterpreteTopDown(root);
 //		launchInterpreter(configuration, mode, launch, monitor, delegate, null);
 
+		Runnable monitorThread = new Runnable() {
+			
+			@Override
+			public void run() {
+				Runnable executor = new Runnable() {
+					public void run() {
+						try {
+							boolean forward = getMode(configuration);
+							URI resourceURI = getResourceURI(configuration);
+							URI buildFile = resourceURI.trimFileExtension().appendFileExtension(AnalysisUtil.CORE_EXTENSION);
+							
+							String[] sourceURI = getSourceURI(configuration);
+							String[] viewURI = getViewURI(configuration);
+							
+							checkAndBuild(resourceURI, buildFile);
+							
+							
+							if(resourceURI == null || sourceURI==null || viewURI==null) return;
+							
+							ConsoleUtil.clearConsole("XMU2");
+							ConsolePrinter printer = ConsoleUtil.getMessageWriter("XMU2");
+							
+							printer.println("XMU2 is starting");
+							
+							printer.println("BX Program URI:");
+							
+							printer.println(resourceURI.toString());
+							printer.println(buildFile.toString());
+							
+							printer.println("BX Program Mode:");
+							printer.println(forward?"Forward":"Backward");
+							
+							printer.println("Source Files:");
+							for(String s : sourceURI)
+								printer.println(s);
+							
+							printer.println("View Files:");
+							
+							for(String s : viewURI)
+								printer.println(s);
+							
+							printer.println();
+							
+							
+							Environment env = null;
+							Transformation model = null;
+							
+							
+							
+							ModelEnforceInterpreter enforce;
+							
+							if(forward) {
+								env = Environment.createForwardEnvironment(buildFile,sourceURI,viewURI);
+								enforce = new ForwardModelEnforceInterpreter();
+							}
+							else {
+								env = Environment.createBackwardEnvironment(buildFile,sourceURI,viewURI);
+								enforce = new BackwardModelEnforceInterpreter();
+							}
+							
+							model = env.getTransformation();
+							
+							env.setPrinter(printer);
+							
+							
+							try {
+								enforce.executeTransformation(model, env);
+							} catch (Exception e) {
+								e.printStackTrace(printer);
+							}
+							
+							printer.println("saving...");
+							env.save();
+							
+							printer.println("Transformation is over.\n");
+
+						}catch(Exception e) {
+							e.printStackTrace();
+						}
+						
+					}
+				};
+				
+				Thread executorThread = new Thread(executor);
+				executorThread.start();
+				
+				while(monitor.isCanceled()==false) {
+					try {
+						Thread.sleep(1000);
+					} catch(Exception e) {
+					}
+				}
+				
+				executorThread.stop();
+				System.out.println("Transformation is over.\n");
+			}
+		}; 
 		
-		try {
-			boolean forward = getMode(configuration);
-			URI resourceURI = getResourceURI(configuration);
-			URI buildFile = resourceURI.trimFileExtension().appendFileExtension(AnalysisUtil.CORE_EXTENSION);
-			
-			String[] sourceURI = getSourceURI(configuration);
-			String[] viewURI = getViewURI(configuration);
-			
-			checkAndBuild(resourceURI, buildFile);
-			
-			
-			if(resourceURI == null || sourceURI==null || viewURI==null) return;
-			
-			ConsoleUtil.clearConsole("XMU2");
-			ConsolePrinter printer = ConsoleUtil.getMessageWriter("XMU2");
-			
-			printer.println("XMU2 is starting");
-			
-			printer.println("BX Program URI:");
-			
-			printer.println(resourceURI.toString());
-			printer.println(buildFile.toString());
-			
-			printer.println("BX Program Mode:");
-			printer.println(forward?"Forward":"Backward");
-			
-			printer.println("Source Files:");
-			for(String s : sourceURI)
-				printer.println(s);
-			
-			printer.println("View Files:");
-			
-			for(String s : viewURI)
-				printer.println(s);
-			
-			printer.println();
-			
-			
-			Environment env = null;
-			Transformation model = null;
-			
-			
-			
-			ModelEnforceInterpreter enforce;
-			
-			if(forward) {
-				env = Environment.createForwardEnvironment(buildFile,sourceURI,viewURI);
-				enforce = new ForwardModelEnforceInterpreter();
-			}
-			else {
-				env = Environment.createBackwardEnvironment(buildFile,sourceURI,viewURI);
-				enforce = new BackwardModelEnforceInterpreter();
-			}
-			
-			model = env.getTransformation();
-			
-			env.setPrinter(printer);
-			
-			
-			try {
-				enforce.executeTransformation(model, env);
-			} catch (Exception e) {
-				e.printStackTrace(printer);
-			}
-			
-			printer.println("saving...");
-			env.save();
-			
-			printer.println("Transformation is over.\n");
-//			if(forward)
-//				env.saveViews();
-//			else 
-//				env.saveSourcePosts();
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
+		new Thread(monitorThread).start();
+		
 	}
 	
 	private void checkAndBuild(URI resourceURI, URI buildFile) {

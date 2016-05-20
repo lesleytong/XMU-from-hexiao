@@ -72,15 +72,99 @@ public class ForwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 		List<Context> smatches = ContextUtil.match(statement.getPattern(), context);
 		
 		for(Context c : smatches) {
-			if(statement.isDerived()) {
+//			if(statement.isDerived()) {
 				this.handleTrialCallStatements(this.collectProcedureCallStatements(statement.getAction(), c), c);
 				ReorderedAlignStatement reorder = ReorderUtil.reorderForEachStatement(statement, c);
-				this.executeStatements(reorder.finalOrder, c);
-			} else {
-				this.executeStatements(statement.getAction(), c);
-			}
+				
+				boolean selected = false;
+				for(ReorderedAlignBranch branch : reorder.branches) {
+					Context nc = c.clone();
+					boolean passed = true;
+					for(Object prec : branch.precondition) {
+						if(prec instanceof Statement) {
+							try{
+								this.executeStatement((Statement)prec, nc);
+							} catch(Exception e) {
+								passed = false;
+								break;
+							}
+						} else if(prec instanceof Pattern) {//the branch should be deprecated
+							try {
+								SafeType ret = AbstractInterpreter.MODEL_CHECK.matchPattern((Pattern) prec, nc);
+								if (ret != Constants.TRUE) {
+									passed = false;
+									break;
+								}
+							} catch (Exception e) {
+								passed = false;
+								break;
+							}
+						} else if(prec instanceof Expression) {
+							try {//the branch should be deprecated
+								SafeType ret = AbstractInterpreter.MODEL_CHECK.executeExpression((Expression) prec, nc);
+								if (ret != Constants.TRUE) {
+									passed = false;
+									break;
+								}
+							} catch (Exception e) {
+								passed = false;
+								break;
+							}
+						} else {
+							throw new InvalidForwardEnforcementException("unknown condition type "+prec.getClass());
+						}
+					}
+					
+					if(passed) {
+						selected = true;
+						
+						if(branch.finalOrder==null) {
+							branch.finalOrder = new ArrayList<Statement>();
+							branch.finalOrder.addAll(branch.match);
+							branch.finalOrder.addAll(branch.enforce);
+							branch.finalOrder.addAll(branch.lazy);
+							branch.finalOrder.addAll(branch.tail);
+						}
+						
+						this.handleTrialCallStatements(this.collectProcedureCallStatements(branch.finalOrder, nc), nc);
+						
+						for(Statement action : branch.finalOrder) {
+							if(action instanceof Statement) {
+								this.executeStatement((Statement)action, nc);
+								
+							} 
+//							else if(action instanceof Expression) {
+//								SafeType ret = this.executeExpression((Expression)action, nc);
+//								if(ret!=Constants.TRUE) {
+//									throw new InvalidForwardEnforcementException("cannot enforce expressions in case statement");
+//								}
+//							} else {
+//								throw new InvalidForwardEnforcementException("unknown action type "+action.getClass());
+//							}
+						}
+						
+//						for(Statement post : rcc.postCondition) {
+//							this.executeStatement(post, nc);
+//						}
+						
+						ContextUtil.merge(c, nc);
+						
+						break;
+					}
+					
+					
+				}
+				
+				if(!selected) {
+					throw new InvalidForwardEnforcementException("cannot select a branch from the align statement");
+				}
+				
+//				this.executeStatements(reorder.finalOrder, c);
+//			} else {
+//				this.executeStatements(statement.getAction(), c);
+//			}
 			mergeContext(context, c);
-		} 
+		}
 	}
 
 	@Override
@@ -510,11 +594,11 @@ public class ForwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 			 * it is impossible that C1 and A1 and A2, so we can use A1/A2 to select C1/C2
 			 */
 			ReorderedCaseStatement reorder = ReorderUtil.reorderCaseStatement(statement, context);
-			Context nc = context.clone();
 			
 			boolean selected = false;
 			
-			for(ReorderedCaseClause rcc : reorder.branches) {
+			for(ReorderedCaseBranch rcc : reorder.branches) {
+				Context nc = context.clone();
 				boolean passed = true;
 				for(Object prec : rcc.preCondition) {
 					if(prec instanceof Statement) {

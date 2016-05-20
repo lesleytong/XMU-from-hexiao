@@ -4,5 +4,5 @@ import java.util.ArrayList;
 import java.util.List;
 
 class ReorderedCaseStatement {
-	List<ReorderedCaseClause> branches = new ArrayList<ReorderedCaseClause>();
+	List<ReorderedCaseBranch> branches = new ArrayList<ReorderedCaseBranch>();
 }

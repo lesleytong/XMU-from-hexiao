@@ -72,6 +72,23 @@ public class ModelModificationEngine extends ModelModificationTrace{
 				}
 			}
 			
+			List<EStructuralFeature> allFeatures = oldObj.eClass().getEAllStructuralFeatures();
+			for(EStructuralFeature f : allFeatures) {
+				if(newObj.eClass().getEAllStructuralFeatures().contains(f)) {
+					if(!f.isChangeable()) continue;
+					if(f instanceof EReference) {
+						if(((EReference) f).isContainer()) continue;
+					}
+					if(f.isMany()) {
+						List<Object> old = (List<Object>) oldObj.eGet(f);
+						List<Object> nv = (List<Object>) newObj.eGet(f);
+						nv.addAll(old);
+					} else {
+						newObj.eSet(f, oldObj.eGet(f));
+					}
+				}
+			}
+			
 			if(AnalysisUtil.isSuperTypeOf(((EClass)oldObj.eContainmentFeature().getEType()),newObj.eClass())) {
 				EcoreUtil.replace(oldObj, newObj);
 			} else {

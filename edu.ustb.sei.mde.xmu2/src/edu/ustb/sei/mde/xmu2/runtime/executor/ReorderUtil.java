@@ -1,6 +1,7 @@
 package edu.ustb.sei.mde.xmu2.runtime.executor;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map.Entry;
@@ -10,6 +11,7 @@ import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
+import edu.ustb.sei.mde.xmu2.runtime.exceptions.InvalidForwardEnforcementException;
 import edu.ustb.sei.mde.xmu2.runtime.structures.Context;
 import edu.ustb.sei.mde.xmu2.runtime.values.SafeType;
 import edu.ustb.sei.mde.xmu2common.DomainTag;
@@ -36,26 +38,86 @@ import edu.ustb.sei.mde.xmu2core.VariableExpression;
 
 public class ReorderUtil {
 
-	static public void reorderStatementsForAlignStatement(List<Statement> statements, ReorderedAlignStatement reorder) {
-		for(Statement st : statements) {
-			if(st instanceof CallStatement && ((CallStatement) st).getCallable() instanceof Procedure) {
-				reorder.tail.add(st);
-			} else if(st instanceof EnforceNodeStatement) {
-				if(ReorderUtil.isEnforceNodeStatementExecutable((EnforceNodeStatement)st, reorder.enforcedVars)) {
-					reorder.enforce.add(st);
-				} else reorder.lazy.add(st);
-			} else if(st instanceof EnforceLinkStatement) {
-				if(ReorderUtil.isEnforceLinkStatementExecutable((EnforceLinkStatement)st, reorder.enforcedVars)) {
-					reorder.enforce.add(st);
-				} else reorder.lazy.add(st);
-			} else if(st instanceof MatchPattern) {
-				reorder.match.add(st);
-			} else {
-				reorder.enforce.add(st);
+	static public List<ReorderedAlignBranch> reorderStatementsForAlignStatement(List<Statement> statements, ReorderedAlignBranch branch) {
+		
+		List<ReorderedAlignBranch> start = new ArrayList<ReorderedAlignBranch>();
+		List<ReorderedAlignBranch> result =  new ArrayList<ReorderedAlignBranch>();
+		result.add(branch);
+		
+		for(Statement s : statements) {
+			start.clear();
+			
+			start.addAll(result);
+			
+			result.clear();
+			
+			for(ReorderedAlignBranch rcc : start) {
+				result.addAll(ReorderUtil.reorderStatementForAlignStatement(s, rcc));
 			}
+		}
+		
+		return result;
+	}
+
+	private static Collection<? extends ReorderedAlignBranch> reorderStatementForAlignStatement(Statement st,
+			ReorderedAlignBranch rcc) {
+		if (st instanceof CallStatement && ((CallStatement) st).getCallable() instanceof Procedure) {
+			rcc.tail.add(st);
+			return Collections.singletonList(rcc);
+		} else if (st instanceof EnforceNodeStatement) {
+			if (ReorderUtil.isEnforceNodeStatementExecutable((EnforceNodeStatement) st, rcc.enforcedVars)) {
+				rcc.enforce.add(st);
+			} else
+				rcc.lazy.add(st);
+			return Collections.singletonList(rcc);
+		} else if (st instanceof EnforceLinkStatement) {
+			if (ReorderUtil.isEnforceLinkStatementExecutable((EnforceLinkStatement) st, rcc.enforcedVars)) {
+				rcc.enforce.add(st);
+			} else
+				rcc.lazy.add(st);
+			return Collections.singletonList(rcc);
+		} else if (st instanceof MatchPattern) {
+			rcc.match.add(st);
+			return Collections.singletonList(rcc);
+		} else if (st instanceof CaseStatement) {
+			List<ReorderedAlignBranch> results = new ArrayList<ReorderedAlignBranch>();
+
+			if (((CaseStatement) st).getTag() == DomainTag.VIEW) {
+				for (CaseClause cc : ((CaseStatement) st).getClauses()) {
+					if (cc instanceof CaseStatementClause) {
+						ReorderedAlignBranch newBranch = rcc.clone();
+						newBranch.precondition.addAll(((CaseStatementClause) cc).getCondition());
+						results.addAll(reorderStatementsForAlignStatement(cc.getAction(), newBranch));
+					} else
+						throw new InvalidForwardEnforcementException(
+								"I met an invalid case clause in the forward direction");
+				}
+				return results;
+			} else {
+				for (CaseClause cc : ((CaseStatement) st).getClauses()) {
+					ReorderedAlignBranch newBranch = rcc.clone();
+					if (cc instanceof CasePatternClause) {
+						newBranch.precondition.add(((CasePatternClause) cc).getCondition());
+					} else if (cc instanceof CaseExpressionClause) {
+						newBranch.precondition.add(((CaseExpressionClause) cc).getCondition());
+					} else {
+						System.out.println("unhandled branch");
+					}
+					results.addAll(reorderStatementsForAlignStatement(cc.getAction(), newBranch));
+				}
+
+				return results;
+			}
+		} else if (st instanceof ForEachStatement) {
+			rcc.lazy.add(st);
+			return Collections.singletonList(rcc);
+		} else {
+			rcc.enforce.add(st);
+			return Collections.singletonList(rcc);
 		}
 	}
 
+	@Deprecated
 	static public ReorderedAlignStatement reorderAlignStatement(AlignStatement align, Context context) {
 		//FIXME: ideally, I should calculate the order according to the variable dependencies
 		//To achieve this goal, I should calculate the "source-view" variables for each statement
@@ -65,15 +127,11 @@ public class ReorderUtil {
 		ReorderedAlignStatement reorder = (ReorderedAlignStatement) context.getEnvironment().getFromOrderCache(enforcedVars, align);
 		
 		if(reorder==null) {
+			ReorderedAlignBranch rcc = new ReorderedAlignBranch();
+			rcc.enforcedVars = enforcedVars;
 			reorder = new ReorderedAlignStatement();
-			reorder.enforcedVars = enforcedVars;
 			
-			reorderStatementsForAlignStatement(align.getMatch(), reorder);
-//			reorderStatementsForAlignStatement(align.getViewCreationStatements(), reorder);
-			
-			reorder.finalOrder.addAll(reorder.enforce);
-			reorder.finalOrder.addAll(reorder.lazy);
-			reorder.finalOrder.addAll(reorder.tail);
+			reorder.branches = reorderStatementsForAlignStatement(align.getMatch(), rcc);
 			
 			context.getEnvironment().putIntoOrderCache(enforcedVars, align, reorder);
 		}
@@ -89,15 +147,17 @@ public class ReorderUtil {
 		ReorderedAlignStatement reorder = (ReorderedAlignStatement) context.getEnvironment().getFromOrderCache(enforcedVars, foreach);
 		
 		if(reorder==null) {
+			ReorderedAlignBranch rcc = new ReorderedAlignBranch();
+			rcc.enforcedVars = enforcedVars;
 			reorder = new ReorderedAlignStatement();
-			reorder.enforcedVars = enforcedVars;
 			
-			reorderStatementsForAlignStatement(foreach.getAction(), reorder);
 			
-			reorder.finalOrder.addAll(reorder.match);
-			reorder.finalOrder.addAll(reorder.enforce);
-			reorder.finalOrder.addAll(reorder.lazy);
-			reorder.finalOrder.addAll(reorder.tail);
+			reorder.branches = reorderStatementsForAlignStatement(foreach.getAction(), rcc);
+			
+//			reorder.finalOrder.addAll(reorder.match);
+//			reorder.finalOrder.addAll(reorder.enforce);
+//			reorder.finalOrder.addAll(reorder.lazy);
+//			reorder.finalOrder.addAll(reorder.tail);
 			
 			context.getEnvironment().putIntoOrderCache(enforcedVars, foreach, reorder);
 		}
@@ -189,17 +249,17 @@ public class ReorderUtil {
 		}
 	}
 
-	static public List<ReorderedCaseClause> reorderStatementsForCaseStatement(List<Statement> action, ReorderedCaseClause branch) {
+	static public List<ReorderedCaseBranch> reorderStatementsForCaseStatement(List<Statement> action, ReorderedCaseBranch branch) {
 		
-		List<ReorderedCaseClause> start = new ArrayList<ReorderedCaseClause>();
-		List<ReorderedCaseClause> result =  new ArrayList<ReorderedCaseClause>();
+		List<ReorderedCaseBranch> start = new ArrayList<ReorderedCaseBranch>();
+		List<ReorderedCaseBranch> result =  new ArrayList<ReorderedCaseBranch>();
 		result.add(branch);
 		
 		for(Statement s : action) {
 			start.clear();
 			start.addAll(result);
 			result.clear();
-			for(ReorderedCaseClause rcc : start) {
+			for(ReorderedCaseBranch rcc : start) {
 				result.addAll(ReorderUtil.reorderStatementForCaseStatement(s, rcc));
 			}
 		}
@@ -207,19 +267,19 @@ public class ReorderUtil {
 		return result;
 	}
 
-	static public List<ReorderedCaseClause> reorderStatementForCaseStatement(Statement statement, ReorderedCaseClause branch) {
+	static public List<ReorderedCaseBranch> reorderStatementForCaseStatement(Statement statement, ReorderedCaseBranch branch) {
 		if(statement instanceof CaseStatement) {
 			if(((CaseStatement) statement).getTag()==DomainTag.VIEW) {
 				// try to select a branch according to this content
 				
-				List<ReorderedCaseClause> branches = new ArrayList<ReorderedCaseClause>();
+				List<ReorderedCaseBranch> branches = new ArrayList<ReorderedCaseBranch>();
 				
 				for(CaseClause cc : ((CaseStatement) statement).getClauses()) {
-					ReorderedCaseClause nb = branch.clone();
+					ReorderedCaseBranch nb = branch.clone();
 					
 					if(cc instanceof CaseStatementClause) {
 						nb.preCondition.addAll(((CaseStatementClause) cc).getCondition());
-						List<ReorderedCaseClause> newBranches = reorderStatementsForCaseStatement(((CaseStatementClause) cc).getAction(), nb);
+						List<ReorderedCaseBranch> newBranches = reorderStatementsForCaseStatement(((CaseStatementClause) cc).getAction(), nb);
 						branches.addAll(newBranches);
 					} else {
 //						List<ReorderedCaseClause> newBranches = reorderStatementsForCaseStatement(
@@ -256,10 +316,10 @@ public class ReorderUtil {
 				return  branches;
 				
 			} else {
-				List<ReorderedCaseClause> branches = new ArrayList<ReorderedCaseClause>();
+				List<ReorderedCaseBranch> branches = new ArrayList<ReorderedCaseBranch>();
 				
 				for(CaseClause cc : ((CaseStatement) statement).getClauses()) {
-					ReorderedCaseClause newBranch = branch.clone();
+					ReorderedCaseBranch newBranch = branch.clone();
 					
 					if(cc instanceof CasePatternClause) {
 						newBranch.preCondition.add(((CasePatternClause) cc).getCondition());
@@ -331,11 +391,11 @@ public class ReorderUtil {
 		
 		if(reorder==null) {
 			reorder = new ReorderedCaseStatement();
-			ReorderedCaseClause rcc = new ReorderedCaseClause();
+			ReorderedCaseBranch rcc = new ReorderedCaseBranch();
 			rcc.enforcedVariables = enforced;
 			reorder.branches = reorderStatementForCaseStatement(statement,rcc);
 			
-			for(ReorderedCaseClause cc : reorder.branches) {
+			for(ReorderedCaseBranch cc : reorder.branches) {
 				reorderMatchCondition(cc);
 			}
 			
@@ -345,7 +405,7 @@ public class ReorderUtil {
 		return reorder;
 	}
 
-	private static void reorderMatchCondition(ReorderedCaseClause cc) {
+	private static void reorderMatchCondition(ReorderedCaseBranch cc) {
 		
 		
 		List<Object> nodeCheck = new ArrayList<Object>();
@@ -354,16 +414,22 @@ public class ReorderUtil {
 				nodeCheck.add(cond);
 			}
 		}
+		//reorder
 		cc.preCondition.removeAll(nodeCheck);
 		cc.preCondition.addAll(nodeCheck);
 		
-		List<Object> proc = new ArrayList<Object>();
-		for(Object act : cc.action) {
+		List<Statement> forStmt = new ArrayList<Statement>();
+		List<Statement> proc = new ArrayList<Statement>();
+		for(Statement act : cc.action) {
 			if(act instanceof CallStatement) {
-				proc.add(act);
-			}
+				proc.add((Statement)act);
+			} else if(act instanceof ForEachStatement)
+				forStmt.add((Statement)act);
 		}
+		//reorder
+		cc.action.removeAll(forStmt);
 		cc.action.removeAll(proc);
+		cc.action.addAll(forStmt);
 		cc.action.addAll(proc);
 		
 		
