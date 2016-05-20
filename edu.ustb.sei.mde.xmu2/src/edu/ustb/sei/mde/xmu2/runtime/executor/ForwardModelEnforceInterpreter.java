@@ -315,45 +315,63 @@ public class ForwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 
 		SafeType oldValue = context.get(node);
 		SafeType newValue = null;
+		SafeType candidateValue = null;
+		
+		// oldValue		candidateValue	nullable	=> newValue
+		// undefined	undef/null		-			=> new object
+		// undefined	object			-			=> object
+		// null			-				true		=> null
+		// null			-				false		=> exception
+		// object		-				-			=> object or new object
 		
 		if(oldValue.isUndefined()) {
 			try {
 				if (candidate != null) {
-					oldValue = this.executeExpression(candidate, context);
+					candidateValue = this.executeExpression(candidate, context);
 					
-					// I uncomment the following two lines, but I cannot remember why I comment them
-					if (oldValue == Constants.NULL)
-						oldValue = Constants.UNDEFINED;
-					else {
-						// to support reflective API, I have to check whether value is a list
-						Object value = oldValue.getValue();
+					// I uncomment the following two lines, but I cannot
+					// remember why I comment them
+					if (!candidateValue.isNull() && !candidateValue.isUndefined()) {
+						// to support reflective API, I have to check whether
+						// value is a list
+						Object value = candidateValue.getValue();
 						if (value != null && value instanceof List<?>) {
-							oldValue = SafeType.UNDEFINED;
+							candidateValue = SafeType.UNDEFINED;
 						}
 					}
 				}
 			} catch (Exception e) {
-				oldValue = SafeType.UNDEFINED;
+				candidateValue = SafeType.UNDEFINED;
 			}
 		}
 		
 		boolean createNew = false;
 		
-		if(oldValue.isUndefined())
-			createNew = true;
-		else {
-			if(!oldValue.isNull() && !AnalysisUtil.isSuperTypeOf(type, oldValue.getObjectValue().eClass()))
-				throw new InvalidForwardEnforcementException("cannot delete a view element");
+		if(oldValue.isUndefined()) {
+			if(candidateValue==null || candidateValue.isUndefined() || candidateValue.isNull())
+				createNew = true;
+			else {
+				if(!AnalysisUtil.isSuperTypeOf(type, candidateValue.getObjectValue().eClass()))
+					throw new InvalidForwardEnforcementException("cannot replace a view element");
+				else
+					newValue = candidateValue;
+			}
+		} else if(oldValue.isNull()) {
+			if(statement.isNullable())
+				newValue = SafeType.NULL;
+			else 
+				throw new InvalidForwardEnforcementException("cannot create a view element from null");
+		} else {
+			if(!AnalysisUtil.isSuperTypeOf(type, oldValue.getObjectValue().eClass()))
+				throw new InvalidForwardEnforcementException("cannot replace a view element");
+			else newValue = oldValue;
 		}
 		
 		if(createNew) {
-			if(oldValue.isNull() && statement.isNullable()) {
-				newValue  = oldValue;
-			} else
-				newValue = SafeType.createFromValue(this.createViewElement(type, context));
+			newValue = SafeType.createFromValue(this.createViewElement(type, context));
 		} else {
-			newValue = oldValue;
-			context.getEnvironment().markAsUsed(newValue.getObjectValue());
+			if(!newValue.isNull())
+				context.getEnvironment().markAsUsed(newValue.getObjectValue());
 		}
 		
 		context.put(node, newValue);

@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class DeleteLinkStatementImpl extends UnidirectionalStatementImpl implements DeleteLinkStatement {
+public abstract class DeleteLinkStatementImpl extends UnidirectionalStatementImpl implements DeleteLinkStatement {
 	/**
 	 * The cached value of the '{@link #getSource() <em>Source</em>}' containment reference.
 	 * <!-- begin-user-doc -->

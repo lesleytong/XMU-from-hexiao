@@ -66,7 +66,7 @@ public class StatementFactoryImpl extends EFactoryImpl implements StatementFacto
 			case StatementPackage.DEFAULT_CASE_STATEMENT: return createDefaultCaseStatement();
 			case StatementPackage.ENFORCE_PATTERN_STATEMENT: return createEnforcePatternStatement();
 			case StatementPackage.DELETE_NODE_STATEMENT: return createDeleteNodeStatement();
-			case StatementPackage.DELETE_LINK_STATEMENT: return createDeleteLinkStatement();
+			case StatementPackage.CONCRETE_DELETE_LINK_STATEMENT: return createConcreteDeleteLinkStatement();
 			case StatementPackage.REFLECTIVE_DELETE_LINK_STATEMENT: return createReflectiveDeleteLinkStatement();
 			case StatementPackage.FOR_EACH_STATEMENT: return createForEachStatement();
 			case StatementPackage.BLOCK_STATEMENT: return createBlockStatement();
@@ -204,9 +204,9 @@ public class StatementFactoryImpl extends EFactoryImpl implements StatementFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DeleteLinkStatement createDeleteLinkStatement() {
-		DeleteLinkStatementImpl deleteLinkStatement = new DeleteLinkStatementImpl();
-		return deleteLinkStatement;
+	public ConcreteDeleteLinkStatement createConcreteDeleteLinkStatement() {
+		ConcreteDeleteLinkStatementImpl concreteDeleteLinkStatement = new ConcreteDeleteLinkStatementImpl();
+		return concreteDeleteLinkStatement;
 	}
 
 	/**

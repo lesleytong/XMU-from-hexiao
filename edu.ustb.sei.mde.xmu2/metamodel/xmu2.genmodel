@@ -93,6 +93,7 @@
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2.ecore#//statement/DeleteLinkStatement/target"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmu2.ecore#//statement/DeleteLinkStatement/feature"/>
       </genClasses>
+      <genClasses ecoreClass="xmu2.ecore#//statement/ConcreteDeleteLinkStatement"/>
       <genClasses ecoreClass="xmu2.ecore#//statement/ReflectiveDeleteLinkStatement"/>
       <genClasses ecoreClass="xmu2.ecore#//statement/ForEachStatement">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2.ecore#//statement/ForEachStatement/pattern"/>

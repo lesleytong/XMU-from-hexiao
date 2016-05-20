@@ -494,6 +494,52 @@ public interface StatementPackage extends EPackage {
 	int DELETE_LINK_STATEMENT_FEATURE_COUNT = UNIDIRECTIONAL_STATEMENT_FEATURE_COUNT + 3;
 
 	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu2.statement.impl.ConcreteDeleteLinkStatementImpl <em>Concrete Delete Link Statement</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.xmu2.statement.impl.ConcreteDeleteLinkStatementImpl
+	 * @see edu.ustb.sei.mde.xmu2.statement.impl.StatementPackageImpl#getConcreteDeleteLinkStatement()
+	 * @generated
+	 */
+	int CONCRETE_DELETE_LINK_STATEMENT = 14;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_DELETE_LINK_STATEMENT__SOURCE = DELETE_LINK_STATEMENT__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_DELETE_LINK_STATEMENT__TARGET = DELETE_LINK_STATEMENT__TARGET;
+
+	/**
+	 * The feature id for the '<em><b>Feature</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_DELETE_LINK_STATEMENT__FEATURE = DELETE_LINK_STATEMENT__FEATURE;
+
+	/**
+	 * The number of structural features of the '<em>Concrete Delete Link Statement</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_DELETE_LINK_STATEMENT_FEATURE_COUNT = DELETE_LINK_STATEMENT_FEATURE_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu2.statement.impl.ReflectiveDeleteLinkStatementImpl <em>Reflective Delete Link Statement</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -501,7 +547,7 @@ public interface StatementPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2.statement.impl.StatementPackageImpl#getReflectiveDeleteLinkStatement()
 	 * @generated
 	 */
-	int REFLECTIVE_DELETE_LINK_STATEMENT = 14;
+	int REFLECTIVE_DELETE_LINK_STATEMENT = 15;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' containment reference.
@@ -556,7 +602,7 @@ public interface StatementPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2.statement.impl.StatementPackageImpl#getForEachStatement()
 	 * @generated
 	 */
-	int FOR_EACH_STATEMENT = 15;
+	int FOR_EACH_STATEMENT = 16;
 
 	/**
 	 * The feature id for the '<em><b>Pattern</b></em>' containment reference.
@@ -593,7 +639,7 @@ public interface StatementPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2.statement.impl.StatementPackageImpl#getBlockStatement()
 	 * @generated
 	 */
-	int BLOCK_STATEMENT = 16;
+	int BLOCK_STATEMENT = 17;
 
 	/**
 	 * The feature id for the '<em><b>Body</b></em>' containment reference list.
@@ -621,7 +667,7 @@ public interface StatementPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2.statement.impl.StatementPackageImpl#getRuleCallStatement()
 	 * @generated
 	 */
-	int RULE_CALL_STATEMENT = 17;
+	int RULE_CALL_STATEMENT = 18;
 
 	/**
 	 * The feature id for the '<em><b>Rule</b></em>' reference.
@@ -658,7 +704,7 @@ public interface StatementPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2.statement.impl.StatementPackageImpl#getPsesudoStatement()
 	 * @generated
 	 */
-	int PSESUDO_STATEMENT = 18;
+	int PSESUDO_STATEMENT = 19;
 
 	/**
 	 * The number of structural features of the '<em>Psesudo Statement</em>' class.
@@ -677,7 +723,7 @@ public interface StatementPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2.statement.impl.StatementPackageImpl#getFail()
 	 * @generated
 	 */
-	int FAIL = 19;
+	int FAIL = 20;
 
 	/**
 	 * The feature id for the '<em><b>Message</b></em>' attribute.
@@ -705,7 +751,7 @@ public interface StatementPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2.statement.impl.StatementPackageImpl#getSkip()
 	 * @generated
 	 */
-	int SKIP = 20;
+	int SKIP = 21;
 
 	/**
 	 * The number of structural features of the '<em>Skip</em>' class.
@@ -724,7 +770,7 @@ public interface StatementPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2.statement.impl.StatementPackageImpl#getAssignStatement()
 	 * @generated
 	 */
-	int ASSIGN_STATEMENT = 21;
+	int ASSIGN_STATEMENT = 22;
 
 	/**
 	 * The feature id for the '<em><b>Updated Variable</b></em>' containment reference.
@@ -761,7 +807,7 @@ public interface StatementPackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2.statement.impl.StatementPackageImpl#getActionType()
 	 * @generated
 	 */
-	int ACTION_TYPE = 22;
+	int ACTION_TYPE = 23;
 
 
 	/**
@@ -1068,6 +1114,16 @@ public interface StatementPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getDeleteLinkStatement_Feature();
+
+	/**
+	 * Returns the meta object for class '{@link edu.ustb.sei.mde.xmu2.statement.ConcreteDeleteLinkStatement <em>Concrete Delete Link Statement</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Concrete Delete Link Statement</em>'.
+	 * @see edu.ustb.sei.mde.xmu2.statement.ConcreteDeleteLinkStatement
+	 * @generated
+	 */
+	EClass getConcreteDeleteLinkStatement();
 
 	/**
 	 * Returns the meta object for class '{@link edu.ustb.sei.mde.xmu2.statement.ReflectiveDeleteLinkStatement <em>Reflective Delete Link Statement</em>}'.
@@ -1528,6 +1584,16 @@ public interface StatementPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute DELETE_LINK_STATEMENT__FEATURE = eINSTANCE.getDeleteLinkStatement_Feature();
+
+		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu2.statement.impl.ConcreteDeleteLinkStatementImpl <em>Concrete Delete Link Statement</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.xmu2.statement.impl.ConcreteDeleteLinkStatementImpl
+		 * @see edu.ustb.sei.mde.xmu2.statement.impl.StatementPackageImpl#getConcreteDeleteLinkStatement()
+		 * @generated
+		 */
+		EClass CONCRETE_DELETE_LINK_STATEMENT = eINSTANCE.getConcreteDeleteLinkStatement();
 
 		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu2.statement.impl.ReflectiveDeleteLinkStatementImpl <em>Reflective Delete Link Statement</em>}' class.

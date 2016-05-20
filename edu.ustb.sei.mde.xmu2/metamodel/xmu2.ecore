@@ -102,7 +102,8 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="node" lowerBound="1"
           eType="#//expression/VariableExpression" containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="DeleteLinkStatement" eSuperTypes="#//statement/UnidirectionalStatement">
+    <eClassifiers xsi:type="ecore:EClass" name="DeleteLinkStatement" abstract="true"
+        eSuperTypes="#//statement/UnidirectionalStatement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
           eType="#//expression/VariableExpression" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
@@ -110,6 +111,7 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="feature" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ConcreteDeleteLinkStatement" eSuperTypes="#//statement/DeleteLinkStatement"/>
     <eClassifiers xsi:type="ecore:EClass" name="ReflectiveDeleteLinkStatement" eSuperTypes="#//statement/DeleteLinkStatement #//ReflectiveAPI"/>
     <eClassifiers xsi:type="ecore:EClass" name="ForEachStatement" eSuperTypes="#//statement/UnidirectionalStatement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="pattern" lowerBound="1"

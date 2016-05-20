@@ -464,7 +464,8 @@ public class BackwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 		if(oldValue.isUndefined())
 			createNew = true;
 		else {
-			if(oldValue.isNull() || !AnalysisUtil.isSuperTypeOf(type, oldValue.getObjectValue().eClass()))
+			if(oldValue.isNull() 
+					|| !AnalysisUtil.isSuperTypeOf(type, oldValue.getObjectValue().eClass()))
 				createNew = true;
 		}
 		
@@ -475,11 +476,13 @@ public class BackwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 				sv = SafeType.NULL;
 			
 			if(sv.isNull() && statement.isNullable()) {
-				newValue = sv;
+				newValue = Constants.NULL;
 			} else {
 				if(oldValue.isUndefined()==false) {
 					newValue = this.replaceUpdatedSourceElement(sv.getObjectValue(),oldValue.getObjectValue(),type, context);
 				} else {
+					// NOTE if oldValue.isNull then the following line of code will fail
+					// It means the source value is not null but the oldUpdated source is null. 
 					newValue = SafeType.createFromValue(this.createUpdatedSourceElement(sv.getObjectValue(), type, context));
 				}				
 			}

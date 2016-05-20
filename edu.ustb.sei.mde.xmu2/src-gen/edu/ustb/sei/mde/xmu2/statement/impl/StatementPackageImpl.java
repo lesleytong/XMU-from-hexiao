@@ -20,6 +20,7 @@ import edu.ustb.sei.mde.xmu2.statement.AssignStatement;
 import edu.ustb.sei.mde.xmu2.statement.BidirectionalStatement;
 import edu.ustb.sei.mde.xmu2.statement.BlockStatement;
 import edu.ustb.sei.mde.xmu2.statement.CaseClause;
+import edu.ustb.sei.mde.xmu2.statement.ConcreteDeleteLinkStatement;
 import edu.ustb.sei.mde.xmu2.statement.DefaultCaseClause;
 import edu.ustb.sei.mde.xmu2.statement.DefaultCaseStatement;
 import edu.ustb.sei.mde.xmu2.statement.DeleteLinkStatement;
@@ -146,6 +147,13 @@ public class StatementPackageImpl extends EPackageImpl implements StatementPacka
 	 * @generated
 	 */
 	private EClass deleteLinkStatementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass concreteDeleteLinkStatementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -551,6 +559,15 @@ public class StatementPackageImpl extends EPackageImpl implements StatementPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getConcreteDeleteLinkStatement() {
+		return concreteDeleteLinkStatementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getReflectiveDeleteLinkStatement() {
 		return reflectiveDeleteLinkStatementEClass;
 	}
@@ -770,6 +787,8 @@ public class StatementPackageImpl extends EPackageImpl implements StatementPacka
 		createEReference(deleteLinkStatementEClass, DELETE_LINK_STATEMENT__TARGET);
 		createEAttribute(deleteLinkStatementEClass, DELETE_LINK_STATEMENT__FEATURE);
 
+		concreteDeleteLinkStatementEClass = createEClass(CONCRETE_DELETE_LINK_STATEMENT);
+
 		reflectiveDeleteLinkStatementEClass = createEClass(REFLECTIVE_DELETE_LINK_STATEMENT);
 
 		forEachStatementEClass = createEClass(FOR_EACH_STATEMENT);
@@ -842,6 +861,7 @@ public class StatementPackageImpl extends EPackageImpl implements StatementPacka
 		enforcePatternStatementEClass.getESuperTypes().add(this.getUnidirectionalStatement());
 		deleteNodeStatementEClass.getESuperTypes().add(this.getUnidirectionalStatement());
 		deleteLinkStatementEClass.getESuperTypes().add(this.getUnidirectionalStatement());
+		concreteDeleteLinkStatementEClass.getESuperTypes().add(this.getDeleteLinkStatement());
 		reflectiveDeleteLinkStatementEClass.getESuperTypes().add(this.getDeleteLinkStatement());
 		reflectiveDeleteLinkStatementEClass.getESuperTypes().add(theXmu2Package.getReflectiveAPI());
 		forEachStatementEClass.getESuperTypes().add(this.getUnidirectionalStatement());
@@ -891,10 +911,12 @@ public class StatementPackageImpl extends EPackageImpl implements StatementPacka
 		initEClass(deleteNodeStatementEClass, DeleteNodeStatement.class, "DeleteNodeStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDeleteNodeStatement_Node(), theExpressionPackage.getVariableExpression(), null, "node", null, 1, 1, DeleteNodeStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(deleteLinkStatementEClass, DeleteLinkStatement.class, "DeleteLinkStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(deleteLinkStatementEClass, DeleteLinkStatement.class, "DeleteLinkStatement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDeleteLinkStatement_Source(), theExpressionPackage.getVariableExpression(), null, "source", null, 1, 1, DeleteLinkStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDeleteLinkStatement_Target(), theExpressionPackage.getExpression(), null, "target", null, 1, 1, DeleteLinkStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDeleteLinkStatement_Feature(), ecorePackage.getEString(), "feature", null, 1, 1, DeleteLinkStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(concreteDeleteLinkStatementEClass, ConcreteDeleteLinkStatement.class, "ConcreteDeleteLinkStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(reflectiveDeleteLinkStatementEClass, ReflectiveDeleteLinkStatement.class, "ReflectiveDeleteLinkStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

@@ -167,6 +167,15 @@ public class StatementSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case StatementPackage.CONCRETE_DELETE_LINK_STATEMENT: {
+				ConcreteDeleteLinkStatement concreteDeleteLinkStatement = (ConcreteDeleteLinkStatement)theEObject;
+				T result = caseConcreteDeleteLinkStatement(concreteDeleteLinkStatement);
+				if (result == null) result = caseDeleteLinkStatement(concreteDeleteLinkStatement);
+				if (result == null) result = caseUnidirectionalStatement(concreteDeleteLinkStatement);
+				if (result == null) result = caseStatement(concreteDeleteLinkStatement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case StatementPackage.REFLECTIVE_DELETE_LINK_STATEMENT: {
 				ReflectiveDeleteLinkStatement reflectiveDeleteLinkStatement = (ReflectiveDeleteLinkStatement)theEObject;
 				T result = caseReflectiveDeleteLinkStatement(reflectiveDeleteLinkStatement);
@@ -441,6 +450,21 @@ public class StatementSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseDeleteLinkStatement(DeleteLinkStatement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Concrete Delete Link Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Concrete Delete Link Statement</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConcreteDeleteLinkStatement(ConcreteDeleteLinkStatement object) {
 		return null;
 	}
 

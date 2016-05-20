@@ -125,6 +125,10 @@ public class StatementAdapterFactory extends AdapterFactoryImpl {
 				return createDeleteLinkStatementAdapter();
 			}
 			@Override
+			public Adapter caseConcreteDeleteLinkStatement(ConcreteDeleteLinkStatement object) {
+				return createConcreteDeleteLinkStatementAdapter();
+			}
+			@Override
 			public Adapter caseReflectiveDeleteLinkStatement(ReflectiveDeleteLinkStatement object) {
 				return createReflectiveDeleteLinkStatementAdapter();
 			}
@@ -373,6 +377,20 @@ public class StatementAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createDeleteLinkStatementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.xmu2.statement.ConcreteDeleteLinkStatement <em>Concrete Delete Link Statement</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.xmu2.statement.ConcreteDeleteLinkStatement
+	 * @generated
+	 */
+	public Adapter createConcreteDeleteLinkStatementAdapter() {
 		return null;
 	}
 

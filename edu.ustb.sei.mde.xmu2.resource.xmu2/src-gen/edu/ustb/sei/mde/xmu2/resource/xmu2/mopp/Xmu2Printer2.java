@@ -328,6 +328,10 @@ public class Xmu2Printer2 implements edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Te
 			printInternal(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_36, foundFormattingElements);
 			return;
 		}
+		if (element instanceof edu.ustb.sei.mde.xmu2.statement.ConcreteDeleteLinkStatement) {
+			printInternal(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_37, foundFormattingElements);
+			return;
+		}
 		if (element instanceof edu.ustb.sei.mde.xmu2.statement.EnforcePatternStatement) {
 			printInternal(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_38, foundFormattingElements);
 			return;
@@ -386,10 +390,6 @@ public class Xmu2Printer2 implements edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Te
 		}
 		if (element instanceof edu.ustb.sei.mde.xmu2.pattern.PropertyPatternExpression) {
 			printInternal(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_10, foundFormattingElements);
-			return;
-		}
-		if (element instanceof edu.ustb.sei.mde.xmu2.statement.DeleteLinkStatement) {
-			printInternal(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_37, foundFormattingElements);
 			return;
 		}
 		

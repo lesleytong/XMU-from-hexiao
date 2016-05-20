@@ -188,6 +188,10 @@ public class Xmu2Printer implements edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Tex
 			print_edu_ustb_sei_mde_xmu2_statement_DeleteNodeStatement((edu.ustb.sei.mde.xmu2.statement.DeleteNodeStatement) element, globaltab, out);
 			return;
 		}
+		if (element instanceof edu.ustb.sei.mde.xmu2.statement.ConcreteDeleteLinkStatement) {
+			print_edu_ustb_sei_mde_xmu2_statement_ConcreteDeleteLinkStatement((edu.ustb.sei.mde.xmu2.statement.ConcreteDeleteLinkStatement) element, globaltab, out);
+			return;
+		}
 		if (element instanceof edu.ustb.sei.mde.xmu2.statement.EnforcePatternStatement) {
 			print_edu_ustb_sei_mde_xmu2_statement_EnforcePatternStatement((edu.ustb.sei.mde.xmu2.statement.EnforcePatternStatement) element, globaltab, out);
 			return;
@@ -246,10 +250,6 @@ public class Xmu2Printer implements edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Tex
 		}
 		if (element instanceof edu.ustb.sei.mde.xmu2.pattern.PropertyPatternExpression) {
 			print_edu_ustb_sei_mde_xmu2_pattern_PropertyPatternExpression((edu.ustb.sei.mde.xmu2.pattern.PropertyPatternExpression) element, globaltab, out);
-			return;
-		}
-		if (element instanceof edu.ustb.sei.mde.xmu2.statement.DeleteLinkStatement) {
-			print_edu_ustb_sei_mde_xmu2_statement_DeleteLinkStatement((edu.ustb.sei.mde.xmu2.statement.DeleteLinkStatement) element, globaltab, out);
 			return;
 		}
 		
@@ -2813,7 +2813,7 @@ public class Xmu2Printer implements edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Tex
 	}
 	
 	
-	public void print_edu_ustb_sei_mde_xmu2_statement_DeleteLinkStatement(edu.ustb.sei.mde.xmu2.statement.DeleteLinkStatement element, String outertab, java.io.PrintWriter out) {
+	public void print_edu_ustb_sei_mde_xmu2_statement_ConcreteDeleteLinkStatement(edu.ustb.sei.mde.xmu2.statement.ConcreteDeleteLinkStatement element, String outertab, java.io.PrintWriter out) {
 		String localtab = outertab;
 		// The printCountingMap contains a mapping from feature names to the number of
 		// remaining elements that still need to be printed. The map is initialized with
@@ -2822,11 +2822,11 @@ public class Xmu2Printer implements edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Tex
 		// 0 (if the feature is null).
 		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(3);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.DELETE_LINK_STATEMENT__SOURCE));
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.CONCRETE_DELETE_LINK_STATEMENT__SOURCE));
 		printCountingMap.put("source", temp == null ? 0 : 1);
-		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.DELETE_LINK_STATEMENT__TARGET));
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.CONCRETE_DELETE_LINK_STATEMENT__TARGET));
 		printCountingMap.put("target", temp == null ? 0 : 1);
-		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.DELETE_LINK_STATEMENT__FEATURE));
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.CONCRETE_DELETE_LINK_STATEMENT__FEATURE));
 		printCountingMap.put("feature", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
@@ -2836,7 +2836,7 @@ public class Xmu2Printer implements edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Tex
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("source");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.DELETE_LINK_STATEMENT__SOURCE));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.CONCRETE_DELETE_LINK_STATEMENT__SOURCE));
 			if (o != null) {
 				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
 			}
@@ -2848,11 +2848,11 @@ public class Xmu2Printer implements edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Tex
 		// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
 		count = printCountingMap.get("feature");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.DELETE_LINK_STATEMENT__FEATURE));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.CONCRETE_DELETE_LINK_STATEMENT__FEATURE));
 			if (o != null) {
 				edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2TokenResolver resolver = tokenResolverFactory.createTokenResolver("NAME");
 				resolver.setOptions(getOptions());
-				out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.DELETE_LINK_STATEMENT__FEATURE), element));
+				out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.CONCRETE_DELETE_LINK_STATEMENT__FEATURE), element));
 				out.print(" ");
 			}
 			printCountingMap.put("feature", count - 1);
@@ -2863,7 +2863,7 @@ public class Xmu2Printer implements edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Tex
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("target");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.DELETE_LINK_STATEMENT__TARGET));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.CONCRETE_DELETE_LINK_STATEMENT__TARGET));
 			if (o != null) {
 				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
 			}
@@ -3232,10 +3232,7 @@ public class Xmu2Printer implements edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Tex
 			printCountingMap.put("variable", count - 1);
 		}
 		// DEFINITION PART BEGINS (CsString)
-		out.print(":");
-		out.print(" ");
-		// DEFINITION PART BEGINS (CsString)
-		out.print("$");
+		out.print("[");
 		out.print(" ");
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("reflectiveIdentifier");
@@ -3246,6 +3243,9 @@ public class Xmu2Printer implements edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Tex
 			}
 			printCountingMap.put("reflectiveIdentifier", count - 1);
 		}
+		// DEFINITION PART BEGINS (CsString)
+		out.print("]");
+		out.print(" ");
 		// DEFINITION PART BEGINS (CompoundDefinition)
 		sWriter = new java.io.StringWriter();
 		out1 = new java.io.PrintWriter(sWriter);
@@ -3383,7 +3383,7 @@ public class Xmu2Printer implements edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Tex
 		java.io.PrintWriter out1 = null;
 		java.util.Map<String, Integer> printCountingMap1 = null;
 		// DEFINITION PART BEGINS (CsString)
-		out.print("$");
+		out.print("[");
 		out.print(" ");
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("reflectiveIdentifier");
@@ -3394,6 +3394,9 @@ public class Xmu2Printer implements edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Tex
 			}
 			printCountingMap.put("reflectiveIdentifier", count - 1);
 		}
+		// DEFINITION PART BEGINS (CsString)
+		out.print("]");
+		out.print(" ");
 		// DEFINITION PART BEGINS (CompoundDefinition)
 		sWriter = new java.io.StringWriter();
 		out1 = new java.io.PrintWriter(sWriter);
@@ -3500,7 +3503,7 @@ public class Xmu2Printer implements edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Tex
 		java.io.PrintWriter out1 = null;
 		java.util.Map<String, Integer> printCountingMap1 = null;
 		// DEFINITION PART BEGINS (CsString)
-		out.print("$");
+		out.print("[");
 		out.print(" ");
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("reflectiveIdentifier");
@@ -3511,6 +3514,9 @@ public class Xmu2Printer implements edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Tex
 			}
 			printCountingMap.put("reflectiveIdentifier", count - 1);
 		}
+		// DEFINITION PART BEGINS (CsString)
+		out.print("]");
+		out.print(" ");
 		// DEFINITION PART BEGINS (CompoundDefinition)
 		sWriter = new java.io.StringWriter();
 		out1 = new java.io.PrintWriter(sWriter);
@@ -3620,10 +3626,7 @@ public class Xmu2Printer implements edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Tex
 			printCountingMap.put("source", count - 1);
 		}
 		// DEFINITION PART BEGINS (CsString)
-		out.print(".");
-		out.print(" ");
-		// DEFINITION PART BEGINS (CsString)
-		out.print("$");
+		out.print("[");
 		out.print(" ");
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("reflectiveIdentifier");
@@ -3634,6 +3637,9 @@ public class Xmu2Printer implements edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Tex
 			}
 			printCountingMap.put("reflectiveIdentifier", count - 1);
 		}
+		// DEFINITION PART BEGINS (CsString)
+		out.print("]");
+		out.print(" ");
 		// DEFINITION PART BEGINS (CsString)
 		out.print("=");
 		out.print(" ");

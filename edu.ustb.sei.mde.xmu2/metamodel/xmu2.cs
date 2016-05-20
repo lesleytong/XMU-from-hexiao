@@ -46,9 +46,9 @@ RULES {
 	
 	EntryData ::= tag[source:"source",view:"view"] "[" index[NUMBER]  (fragment[OBJ_URI])? "]";
 	
-	ModelRule ::= "rule" name[NAME] "(" (parameters ("," parameters)*)? ")" "{" (variableDeclarations : ConcreteVariableDeclaration ";")* statement? "}";
+	ModelRule ::= "rule" name[NAME] "(" (parameters ("," parameters)*)? ")" "{" (variableDeclarations : ConcreteVariableDeclaration ";")* statement: statement.BlockStatement,statement.UpdateStatement,statement.SwitchStatement,statement.DeleteNodeStatement,statement.ConcreteDeleteLinkStatement,statement.EnforcePatternStatement,statement.ForEachStatement,statement.RuleCallStatement,statement.Skip,statement.Fail,statement.AssignStatement,statement.ReflectiveDeleteLinkStatement ? "}";
 	
-	ArithmeticRule ::= "function" name[NAME] "(" (parameters ("," parameters)*)? ")" "{" statements* "}";
+	ArithmeticRule ::= "function" name[NAME] "(" (parameters ("," parameters)*)? ")" "{" statements: statement.BlockStatement,statement.UpdateStatement,statement.SwitchStatement,statement.DeleteNodeStatement,statement.ConcreteDeleteLinkStatement,statement.EnforcePatternStatement,statement.ForEachStatement,statement.RuleCallStatement,statement.Skip,statement.Fail,statement.AssignStatement,statement.ReflectiveDeleteLinkStatement* "}";
 	
 	ConcreteVariableDeclaration ::= name[NAME] ":" type[TYPE];
 	
@@ -91,27 +91,26 @@ RULES {
 	
 	
 	//Statements
-	statement.BlockStatement ::= "{" (body (";" body)*)? "}";
+	statement.BlockStatement ::= "{" (body : statement.BlockStatement,statement.UpdateStatement,statement.SwitchStatement,statement.DeleteNodeStatement,statement.ConcreteDeleteLinkStatement,statement.EnforcePatternStatement,statement.ForEachStatement,statement.RuleCallStatement,statement.Skip,statement.Fail,statement.AssignStatement,statement.ReflectiveDeleteLinkStatement (";" body : statement.BlockStatement,statement.UpdateStatement,statement.SwitchStatement,statement.DeleteNodeStatement,statement.ConcreteDeleteLinkStatement,statement.EnforcePatternStatement,statement.ForEachStatement,statement.RuleCallStatement,statement.Skip,statement.Fail,statement.AssignStatement,statement.ReflectiveDeleteLinkStatement)*)? "}";
 	statement.UpdateStatement ::= "update" source "with" view "by" clauses+;
 	statement.SwitchStatement ::= "switch" "(" root ")" "{" cases+ "}" ;
-	statement.UpdateClause ::=  type[match:"match",unmatchs:"unmatchs",unmatchv:"unmatchv",default:"default"] "->" statement;
-	statement.PatternCaseClause ::= "case" condition "->" action;
-	statement.ExpressionCaseClause ::= "case" condition:expression.BooleanOrExpression,expression.BooleanAndExpression,expression.RelationalExpression,expression.UnaryExpression,expression.PathExpression, expression.AtomicExpression "->" action;
+	statement.UpdateClause ::=  type[match:"match",unmatchs:"unmatchs",unmatchv:"unmatchv",default:"default"] "->" statement : statement.BlockStatement,statement.UpdateStatement,statement.SwitchStatement,statement.DeleteNodeStatement,statement.ConcreteDeleteLinkStatement,statement.EnforcePatternStatement,statement.ForEachStatement,statement.RuleCallStatement,statement.Skip,statement.Fail,statement.AssignStatement,statement.ReflectiveDeleteLinkStatement;
+	statement.PatternCaseClause ::= "case" condition "->" action : statement.BlockStatement,statement.UpdateStatement,statement.SwitchStatement,statement.DeleteNodeStatement,statement.ConcreteDeleteLinkStatement,statement.EnforcePatternStatement,statement.ForEachStatement,statement.RuleCallStatement,statement.Skip,statement.Fail,statement.AssignStatement,statement.ReflectiveDeleteLinkStatement;
+	statement.ExpressionCaseClause ::= "case" condition:expression.BooleanOrExpression,expression.BooleanAndExpression,expression.RelationalExpression,expression.UnaryExpression,expression.PathExpression, expression.AtomicExpression "->" action: statement.BlockStatement,statement.UpdateStatement,statement.SwitchStatement,statement.DeleteNodeStatement,statement.ConcreteDeleteLinkStatement,statement.EnforcePatternStatement,statement.ForEachStatement,statement.RuleCallStatement,statement.Skip,statement.Fail,statement.AssignStatement,statement.ReflectiveDeleteLinkStatement;
 	statement.DeleteNodeStatement ::= "delete" node;
-	statement.DeleteLinkStatement ::= "delete" source "." feature[NAME] "=" target:expression.UnaryExpression,expression.PathExpression, expression.AtomicExpression;
+	statement.ConcreteDeleteLinkStatement ::= "delete" source "." feature[NAME] "=" target:expression.UnaryExpression,expression.PathExpression, expression.AtomicExpression;
 	statement.EnforcePatternStatement ::= "enforce" pattern;
-	statement.ForEachStatement ::= "foreach" pattern "->" action;
+	statement.ForEachStatement ::= "foreach" pattern "->" action : statement.BlockStatement,statement.UpdateStatement,statement.SwitchStatement,statement.DeleteNodeStatement,statement.ConcreteDeleteLinkStatement,statement.EnforcePatternStatement,statement.ForEachStatement,statement.RuleCallStatement,statement.Skip,statement.Fail,statement.AssignStatement,statement.ReflectiveDeleteLinkStatement;
 	statement.RuleCallStatement ::= rule[NAME] "(" (parameters:expression.PathExpression,expression.AtomicExpression ("," parameters:expression.PathExpression,expression.AtomicExpression)*)? ")";
 	statement.Skip ::= "skip";
 	statement.Fail ::= "fail" message['\'','\'','\\']?;
-	statement.DefaultCaseClause ::= "otherwise" "->" action;
+	statement.DefaultCaseClause ::= "otherwise" "->" action : statement.BlockStatement,statement.UpdateStatement,statement.SwitchStatement,statement.DeleteNodeStatement,statement.ConcreteDeleteLinkStatement,statement.EnforcePatternStatement,statement.ForEachStatement,statement.RuleCallStatement,statement.Skip,statement.Fail,statement.AssignStatement,statement.ReflectiveDeleteLinkStatement;
 	statement.AssignStatement ::= updatedVariable "::=" value: expression.BooleanOrExpression,expression.BooleanAndExpression,expression.RelationalExpression,expression.AdditiveExpression,expression.MultiplicativeExpression,expression.UnaryExpression,expression.PathExpression, expression.AtomicExpression;
-	
 	
 	//reflective API
 	ReflectiveVariableDeclaration ::= name[NAME];
-	pattern.ReflectivePatternNode ::= variable : ReflectiveVariableDeclaration ":" "$" reflectiveIdentifier : expression.AdditiveExpression,expression.MultiplicativeExpression,expression.UnaryExpression,expression.PathExpression, expression.AtomicExpression ("{" (expressions ("," expressions)*)? "}")?; 
-	pattern.ReflectiveObjectPatternExpression ::= "$" reflectiveIdentifier : expression.AdditiveExpression,expression.MultiplicativeExpression,expression.UnaryExpression,expression.PathExpression, expression.AtomicExpression (selector)? (position)? "=" nullable["?":""] targetNode ;
-	pattern.ReflectivePropertyPatternExpression ::= "$" reflectiveIdentifier : expression.AdditiveExpression,expression.MultiplicativeExpression,expression.UnaryExpression,expression.PathExpression, expression.AtomicExpression (selector)? (position)? "=" nullable["?":""] targetExpression:expression.BooleanOrExpression,expression.BooleanAndExpression,expression.RelationalExpression,expression.AdditiveExpression,expression.MultiplicativeExpression,expression.UnaryExpression,expression.PathExpression, expression.AtomicExpression;
-	statement.ReflectiveDeleteLinkStatement ::=  "delete" source "." "$" reflectiveIdentifier : expression.AdditiveExpression,expression.MultiplicativeExpression,expression.UnaryExpression,expression.PathExpression, expression.AtomicExpression "=" target:expression.UnaryExpression,expression.PathExpression, expression.AtomicExpression;
+	pattern.ReflectivePatternNode ::= variable : ReflectiveVariableDeclaration "[" reflectiveIdentifier : expression.AdditiveExpression,expression.MultiplicativeExpression,expression.UnaryExpression,expression.PathExpression, expression.AtomicExpression "]" ("{" (expressions ("," expressions)*)? "}")?; 
+	pattern.ReflectiveObjectPatternExpression ::= "[" reflectiveIdentifier : expression.AdditiveExpression,expression.MultiplicativeExpression,expression.UnaryExpression,expression.PathExpression, expression.AtomicExpression "]" (selector)? (position)? "=" nullable["?":""] targetNode ;
+	pattern.ReflectivePropertyPatternExpression ::= "[" reflectiveIdentifier : expression.AdditiveExpression,expression.MultiplicativeExpression,expression.UnaryExpression,expression.PathExpression, expression.AtomicExpression "]" (selector)? (position)? "=" nullable["?":""] targetExpression:expression.BooleanOrExpression,expression.BooleanAndExpression,expression.RelationalExpression,expression.AdditiveExpression,expression.MultiplicativeExpression,expression.UnaryExpression,expression.PathExpression, expression.AtomicExpression;
+	statement.ReflectiveDeleteLinkStatement ::=  "delete" source "[" reflectiveIdentifier : expression.AdditiveExpression,expression.MultiplicativeExpression,expression.UnaryExpression,expression.PathExpression, expression.AtomicExpression "]" "=" target:expression.UnaryExpression,expression.PathExpression, expression.AtomicExpression;
 }

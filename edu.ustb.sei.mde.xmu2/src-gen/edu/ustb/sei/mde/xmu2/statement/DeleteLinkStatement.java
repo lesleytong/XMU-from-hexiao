@@ -20,7 +20,7 @@ import edu.ustb.sei.mde.xmu2.expression.VariableExpression;
  * </ul>
  *
  * @see edu.ustb.sei.mde.xmu2.statement.StatementPackage#getDeleteLinkStatement()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface DeleteLinkStatement extends UnidirectionalStatement {

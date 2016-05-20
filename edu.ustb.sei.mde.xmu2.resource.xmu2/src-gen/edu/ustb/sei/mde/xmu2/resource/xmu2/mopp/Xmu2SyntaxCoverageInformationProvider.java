@@ -47,7 +47,7 @@ public class Xmu2SyntaxCoverageInformationProvider {
 			edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getPatternCaseClause(),
 			edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getExpressionCaseClause(),
 			edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDeleteNodeStatement(),
-			edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDeleteLinkStatement(),
+			edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getConcreteDeleteLinkStatement(),
 			edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getEnforcePatternStatement(),
 			edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getForEachStatement(),
 			edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getRuleCallStatement(),

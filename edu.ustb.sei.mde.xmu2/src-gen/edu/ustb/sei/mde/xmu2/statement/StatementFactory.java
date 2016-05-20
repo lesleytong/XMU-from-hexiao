@@ -103,13 +103,13 @@ public interface StatementFactory extends EFactory {
 	DeleteNodeStatement createDeleteNodeStatement();
 
 	/**
-	 * Returns a new object of class '<em>Delete Link Statement</em>'.
+	 * Returns a new object of class '<em>Concrete Delete Link Statement</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Delete Link Statement</em>'.
+	 * @return a new object of class '<em>Concrete Delete Link Statement</em>'.
 	 * @generated
 	 */
-	DeleteLinkStatement createDeleteLinkStatement();
+	ConcreteDeleteLinkStatement createConcreteDeleteLinkStatement();
 
 	/**
 	 * Returns a new object of class '<em>Reflective Delete Link Statement</em>'.
