@@ -1806,7 +1806,11 @@ public class BXCodeGenerator {
 						Variable rv = map.get(stmt.getRoot().getVariable());
 						setVariableDomainTag(var, rv.getTag());
 					} else if(pat.eContainer() instanceof edu.ustb.sei.mde.xmu2.statement.ForEachStatement) {
-						setVariableDomainTag(var, DomainTag.SOURCE);// should I allow for each in view?
+						Variable rv = map.get(pat.getRoot().getVariable().getName());
+						if(rv==null || rv.getTag()==DomainTag.SOURCE)
+							setVariableDomainTag(var, DomainTag.SOURCE);
+						else
+							setVariableDomainTag(var, DomainTag.NORMAL);
 					} else {
 						throw new BuildException("Unknown variable source "+var.getName());
 					}

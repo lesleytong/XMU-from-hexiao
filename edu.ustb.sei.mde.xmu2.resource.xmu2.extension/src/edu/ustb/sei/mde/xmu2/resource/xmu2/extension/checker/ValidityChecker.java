@@ -474,7 +474,13 @@ class VariableValidityContext {
 				checkVariableUsage(((AssignStatement) root).getValue(), resource, DomainTag.NORMAL);
 			} else if(root instanceof ForEachStatement) {
 				Pattern source = ((edu.ustb.sei.mde.xmu2.statement.ForEachStatement) root).getPattern();
-				collectVariablesInPattern(source, DomainTag.SOURCE, resource);
+				
+				String name = source.getRoot().getVariable().getName();
+				
+				if(existInSourceVariable(name))
+					collectVariablesInPattern(source, DomainTag.SOURCE, resource);
+				else if(existInNormalVariable(name))
+					collectVariablesInPattern(source, DomainTag.NORMAL, resource);
 			}else {
 				for(EObject o : root.eContents()) {
 					collectVariableNames(o,  resource);
@@ -494,32 +500,41 @@ class VariableValidityContext {
 				if(o.eContainer() instanceof LoopPath) {
 					//do nothing
 				} else {
+					String varName = ((VariableDeclaration) o).getName();
 					if (domain == DomainTag.SOURCE) {
 						if (AnalysisUtil
-								.isValidNonUpdatedSourceVariableName(((VariableDeclaration) o).getName()) == false)
+								.isValidNonUpdatedSourceVariableName(varName) == false)
 							resource.addError("the name of a source variable should not end with '@post'",
 									Xmu2EProblemType.SYNTAX_ERROR, o);
 
-						if (isDuplicateSourceVariable(((VariableDeclaration) o).getName()))
+						if (isDuplicateSourceVariable(varName))
 							resource.addError("the source variable has been declared in a conflict context",
 									Xmu2EProblemType.SYNTAX_ERROR, o);
 						else {
-							addSourceVariableName(((VariableDeclaration) o).getName());
+							addSourceVariableName(varName);
 						}
 					} else if (domain == DomainTag.VIEW) {
-						if(AnalysisUtil.isValidNonUpdatedSourceVariableName(((VariableDeclaration) o).getName())==false)
+						if(AnalysisUtil.isValidNonUpdatedSourceVariableName(varName)==false)
 							resource.addError("the name of a view variable should not end with '@post'", Xmu2EProblemType.SYNTAX_ERROR, o);
 						
-						if(isDuplicateViewVariable(((VariableDeclaration) o).getName()))
+						if(isDuplicateViewVariable(varName))
 							resource.addError("the view variable has been declared in a conflict context", Xmu2EProblemType.SYNTAX_ERROR, o);
 						else
-							addViewVariableName(((VariableDeclaration) o).getName());
+							addViewVariableName(varName);
 					} else if (domain == DomainTag.UPDATED_SOURCE) {
-						if(isDuplicateUpdatedSourceVariable(((VariableDeclaration) o).getName()))
+						if(isDuplicateUpdatedSourceVariable(varName))
 							resource.addError("the updated source variable has been declared in a conflict context", Xmu2EProblemType.SYNTAX_ERROR, o);
 						else {
-							addSourceVariableName(((VariableDeclaration) o).getName());
+							addSourceVariableName(varName);
 						}
+					} else if(domain==DomainTag.NORMAL) {
+						if(AnalysisUtil.isValidNonUpdatedSourceVariableName(varName)==false) 
+							resource.addError("the name of a normal variable should not end with '@post'", Xmu2EProblemType.SYNTAX_ERROR, o);
+						
+						if(existInSourceVariable(varName)
+								|| existInViewVariable(varName))
+							resource.addError("the normal variable has been declared in a conflict context", Xmu2EProblemType.SYNTAX_ERROR, o);
+						else addUpdatedSourceVariableName(varName);
 					}
 					
 				}
