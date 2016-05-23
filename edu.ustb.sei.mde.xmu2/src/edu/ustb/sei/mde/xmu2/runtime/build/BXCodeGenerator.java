@@ -755,8 +755,10 @@ public class BXCodeGenerator {
 			varMap.push();
 			edu.ustb.sei.mde.xmu2core.ForEachStatement stmt = Xmu2coreFactory.eINSTANCE.createForEachStatement();
 			stmt.setPattern(convertPatternMatching(((edu.ustb.sei.mde.xmu2.statement.ForEachStatement) statement).getPattern(),varMap));
-			if(stmt.getPattern().getRoot().getVariable().getTag()!=DomainTag.SOURCE) {
-				throw new BuildException("a ForEach statement can only support source pattern");
+			DomainTag tag = stmt.getPattern().getRoot().getVariable().getTag();
+			if(tag!=DomainTag.SOURCE
+					&& tag !=DomainTag.NORMAL) {
+				throw new BuildException("a ForEach statement can only support source and normal pattern");
 			}
 			this.refreshAssignedVariablesFromPattern(stmt.getPattern(), varMap, true, true);
 			
@@ -991,8 +993,9 @@ public class BXCodeGenerator {
 			varMap.push();
 			edu.ustb.sei.mde.xmu2core.ForEachStatement stmt = Xmu2coreFactory.eINSTANCE.createForEachStatement();
 			stmt.setPattern(convertPatternMatching(((edu.ustb.sei.mde.xmu2.statement.ForEachStatement) statement).getPattern(),varMap));
-			if(stmt.getPattern().getRoot().getVariable().getTag()!=DomainTag.SOURCE) {
-				throw new BuildException("a ForEach statement can only support source pattern");
+			DomainTag tag = stmt.getPattern().getRoot().getVariable().getTag();
+			if(tag!=DomainTag.SOURCE && tag!=DomainTag.NORMAL) {
+				throw new BuildException("a ForEach statement can only support source and normal pattern");
 			}
 			this.refreshAssignedVariablesFromPattern(stmt.getPattern(), varMap, true, true);
 			
@@ -1053,14 +1056,14 @@ public class BXCodeGenerator {
 		}
 	}
 
-	private void refreshAssignedVariablesFromPattern(Pattern source, VarMapStack varMap, boolean handleCorelated, boolean matching) {
+	private void refreshAssignedVariablesFromPattern(Pattern source, VarMapStack varMap, boolean handleCorrelated, boolean matching) {
 		TreeIterator<EObject> it = source.eAllContents();
 		
 		while(it.hasNext()) {
 			EObject obj = it.next();
 			if(obj instanceof PatternNode) {
 				varMap.setAssigned(((PatternNode) obj).getVariable());
-				if(handleCorelated) {
+				if(handleCorrelated) {
 					Variable v = varMap.get(AnalysisUtil.getUpdatedSourceVariableName(((PatternNode) obj).getVariable().getName()));
 					if(v!=null)
 						varMap.setAssigned(v);
@@ -1069,7 +1072,7 @@ public class BXCodeGenerator {
 				Variable variable = ((VariableExpression) obj).getVariable();
 				if(variable.getTag()!=DomainTag.NORMAL || matching) {
 					varMap.setAssigned(variable);
-					if(handleCorelated) {
+					if(handleCorrelated) {
 						Variable v = varMap.get(AnalysisUtil.getUpdatedSourceVariableName(variable.getName()));
 						if(v!=null)
 							varMap.setAssigned(v);

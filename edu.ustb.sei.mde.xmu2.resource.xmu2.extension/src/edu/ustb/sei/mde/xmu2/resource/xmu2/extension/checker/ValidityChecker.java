@@ -403,12 +403,16 @@ class VariableValidityContext {
 							while(rp.hasNext()) {
 								EObject o = rp.next();
 								if (o instanceof VariableDeclaration) {
-									if (isDuplicateNormalVariable(((VariableDeclaration) o).getName()))
+									String name = ((VariableDeclaration) o).getName();
+									if (existInSourceVariable(name)
+											|| existInUpdatedSourceVariable(name)
+											|| existInUpdatedSourceVariable(name))
 										resource.addError("the normal variable has been declared in a conflict context",
 												Xmu2EProblemType.SYNTAX_ERROR, o);
-									else
-										resource.addError("a normal variable cannot have a pattern condition",
-												Xmu2EProblemType.SYNTAX_ERROR, cc);
+									else if(!existInNormalVariable(name))
+										resource.addWarning("it is recommended to declare the normal variable", Xmu2EProblemType.ANALYSIS_PROBLEM,o);
+//										resource.addError("a normal variable cannot have a pattern condition",
+//												Xmu2EProblemType.SYNTAX_ERROR, cc);
 								}
 							}
 						} else
