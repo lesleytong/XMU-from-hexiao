@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 
 import edu.ustb.sei.mde.modeling.ui.ConsolePrinter;
 import edu.ustb.sei.mde.modeling.ui.ConsoleUtil;
+import edu.ustb.sei.mde.xmu2.runtime.executor.AbstractInterpreter;
 import edu.ustb.sei.mde.xmu2.runtime.executor.BackwardModelEnforceInterpreter;
 import edu.ustb.sei.mde.xmu2.runtime.executor.ForwardModelEnforceInterpreter;
 import edu.ustb.sei.mde.xmu2.runtime.executor.ModelEnforceInterpreter;
@@ -141,11 +142,11 @@ public class Xmu2Launcher extends Xmu2LaunchConfigurationHelper {
 							
 							if(forward) {
 								env = Environment.createForwardEnvironment(buildFile,sourceURI,viewURI);
-								enforce = new ForwardModelEnforceInterpreter();
+								enforce = AbstractInterpreter.FORWARD_ENFORCE;
 							}
 							else {
 								env = Environment.createBackwardEnvironment(buildFile,sourceURI,viewURI);
-								enforce = new BackwardModelEnforceInterpreter();
+								enforce = AbstractInterpreter.BACKWARD_ENFORCE;
 							}
 							
 							model = env.getTransformation();
