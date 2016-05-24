@@ -3,7 +3,6 @@
 package edu.ustb.sei.mde.xmu2core.impl;
 
 import edu.ustb.sei.mde.xmu2core.CommandStatement;
-import edu.ustb.sei.mde.xmu2core.Expression;
 import edu.ustb.sei.mde.xmu2core.Xmu2corePackage;
 
 import java.util.Collection;
@@ -15,6 +14,7 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -63,7 +63,7 @@ public class CommandStatementImpl extends StatementImpl implements CommandStatem
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Expression> parameters;
+	protected EList<EObject> parameters;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -89,9 +89,9 @@ public class CommandStatementImpl extends StatementImpl implements CommandStatem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Expression> getParameters() {
+	public EList<EObject> getParameters() {
 		if (parameters == null) {
-			parameters = new EObjectContainmentEList<Expression>(Expression.class, this, Xmu2corePackage.COMMAND_STATEMENT__PARAMETERS);
+			parameters = new EObjectContainmentEList<EObject>(EObject.class, this, Xmu2corePackage.COMMAND_STATEMENT__PARAMETERS);
 		}
 		return parameters;
 	}
@@ -161,7 +161,7 @@ public class CommandStatementImpl extends StatementImpl implements CommandStatem
 				return;
 			case Xmu2corePackage.COMMAND_STATEMENT__PARAMETERS:
 				getParameters().clear();
-				getParameters().addAll((Collection<? extends Expression>)newValue);
+				getParameters().addAll((Collection<? extends EObject>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

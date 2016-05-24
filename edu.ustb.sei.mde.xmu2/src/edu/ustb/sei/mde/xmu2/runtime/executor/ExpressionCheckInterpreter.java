@@ -487,8 +487,14 @@ public class ExpressionCheckInterpreter extends AbstractInterpreter {
 	@Override
 	public void executeCommandStatement(CommandStatement o, Context context) {
 		if(Constants.CMD_FAIL.equals(o.getCommand())) {
-			for(Object s : o.getParameters())
-				System.out.println(s);
+			for(EObject s : o.getParameters()) {
+				if(s instanceof Expression) {
+					SafeType v = this.executeExpression((Expression)s, context);
+					System.out.println(v.toString());
+				} else {
+					this.executeStatement((Statement)s, context);
+				}
+			}
 			
 			throw new FailException("The fail command is executed");
 		}
