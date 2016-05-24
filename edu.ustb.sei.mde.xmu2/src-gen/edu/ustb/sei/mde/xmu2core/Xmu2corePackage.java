@@ -3393,13 +3393,22 @@ public interface Xmu2corePackage extends EPackage {
 	int COMMAND_STATEMENT__PARAMETERS = STATEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Actions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMAND_STATEMENT__ACTIONS = STATEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Command Statement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMMAND_STATEMENT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 2;
+	int COMMAND_STATEMENT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Command Statement</em>' class.
@@ -4983,6 +4992,17 @@ public interface Xmu2corePackage extends EPackage {
 	EReference getCommandStatement_Parameters();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link edu.ustb.sei.mde.xmu2core.CommandStatement#getActions <em>Actions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Actions</em>'.
+	 * @see edu.ustb.sei.mde.xmu2core.CommandStatement#getActions()
+	 * @see #getCommandStatement()
+	 * @generated
+	 */
+	EReference getCommandStatement_Actions();
+
+	/**
 	 * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.xmu2core.CommandStatement#getCommand <em>Command</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6358,6 +6378,14 @@ public interface Xmu2corePackage extends EPackage {
 		 * @generated
 		 */
 		EReference COMMAND_STATEMENT__PARAMETERS = eINSTANCE.getCommandStatement_Parameters();
+
+		/**
+		 * The meta object literal for the '<em><b>Actions</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMMAND_STATEMENT__ACTIONS = eINSTANCE.getCommandStatement_Actions();
 
 		/**
 		 * The meta object literal for the '<em><b>Command</b></em>' attribute feature.

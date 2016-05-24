@@ -3,7 +3,6 @@
 package edu.ustb.sei.mde.xmu2core;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -16,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.CommandStatement#getCommand <em>Command</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.CommandStatement#getParameters <em>Parameters</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.xmu2core.CommandStatement#getActions <em>Actions</em>}</li>
  * </ul>
  *
  * @see edu.ustb.sei.mde.xmu2core.Xmu2corePackage#getCommandStatement()
@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EObject;
 public interface CommandStatement extends Statement {
 	/**
 	 * Returns the value of the '<em><b>Parameters</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.emf.ecore.EObject}.
+	 * The list contents are of type {@link edu.ustb.sei.mde.xmu2core.Expression}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Parameters</em>' attribute list isn't clear,
@@ -37,7 +37,23 @@ public interface CommandStatement extends Statement {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<EObject> getParameters();
+	EList<Expression> getParameters();
+
+	/**
+	 * Returns the value of the '<em><b>Actions</b></em>' containment reference list.
+	 * The list contents are of type {@link edu.ustb.sei.mde.xmu2core.Statement}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Actions</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Actions</em>' containment reference list.
+	 * @see edu.ustb.sei.mde.xmu2core.Xmu2corePackage#getCommandStatement_Actions()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Statement> getActions();
 
 	/**
 	 * Returns the value of the '<em><b>Command</b></em>' attribute.

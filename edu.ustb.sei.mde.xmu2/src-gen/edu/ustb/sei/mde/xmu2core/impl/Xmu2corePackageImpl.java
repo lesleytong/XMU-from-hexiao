@@ -1867,6 +1867,15 @@ public class Xmu2corePackageImpl extends EPackageImpl implements Xmu2corePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getCommandStatement_Actions() {
+		return (EReference)commandStatementEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EAttribute getCommandStatement_Command() {
 		return (EAttribute)commandStatementEClass.getEStructuralFeatures().get(0);
 	}
@@ -2154,6 +2163,7 @@ public class Xmu2corePackageImpl extends EPackageImpl implements Xmu2corePackage
 		commandStatementEClass = createEClass(COMMAND_STATEMENT);
 		createEAttribute(commandStatementEClass, COMMAND_STATEMENT__COMMAND);
 		createEReference(commandStatementEClass, COMMAND_STATEMENT__PARAMETERS);
+		createEReference(commandStatementEClass, COMMAND_STATEMENT__ACTIONS);
 
 		reflectiveSupportEClass = createEClass(REFLECTIVE_SUPPORT);
 		createEReference(reflectiveSupportEClass, REFLECTIVE_SUPPORT__REFLECTIVE_IDENTIFIER);
@@ -2457,7 +2467,8 @@ public class Xmu2corePackageImpl extends EPackageImpl implements Xmu2corePackage
 
 		initEClass(commandStatementEClass, CommandStatement.class, "CommandStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getCommandStatement_Command(), ecorePackage.getEString(), "command", null, 0, 1, CommandStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getCommandStatement_Parameters(), ecorePackage.getEObject(), null, "parameters", null, 0, -1, CommandStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCommandStatement_Parameters(), this.getExpression(), null, "parameters", null, 0, -1, CommandStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCommandStatement_Actions(), this.getStatement(), null, "actions", null, 0, -1, CommandStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(reflectiveSupportEClass, ReflectiveSupport.class, "ReflectiveSupport", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getReflectiveSupport_ReflectiveIdentifier(), this.getExpression(), null, "reflectiveIdentifier", null, 0, 1, ReflectiveSupport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

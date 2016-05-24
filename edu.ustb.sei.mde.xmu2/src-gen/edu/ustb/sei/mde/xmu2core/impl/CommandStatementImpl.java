@@ -3,6 +3,8 @@
 package edu.ustb.sei.mde.xmu2core.impl;
 
 import edu.ustb.sei.mde.xmu2core.CommandStatement;
+import edu.ustb.sei.mde.xmu2core.Expression;
+import edu.ustb.sei.mde.xmu2core.Statement;
 import edu.ustb.sei.mde.xmu2core.Xmu2corePackage;
 
 import java.util.Collection;
@@ -13,8 +15,6 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.CommandStatementImpl#getCommand <em>Command</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.CommandStatementImpl#getParameters <em>Parameters</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.CommandStatementImpl#getActions <em>Actions</em>}</li>
  * </ul>
  *
  * @generated
@@ -63,7 +64,17 @@ public class CommandStatementImpl extends StatementImpl implements CommandStatem
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<EObject> parameters;
+	protected EList<Expression> parameters;
+
+	/**
+	 * The cached value of the '{@link #getActions() <em>Actions</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getActions()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Statement> actions;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -89,11 +100,23 @@ public class CommandStatementImpl extends StatementImpl implements CommandStatem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<EObject> getParameters() {
+	public EList<Expression> getParameters() {
 		if (parameters == null) {
-			parameters = new EObjectContainmentEList<EObject>(EObject.class, this, Xmu2corePackage.COMMAND_STATEMENT__PARAMETERS);
+			parameters = new EObjectContainmentEList<Expression>(Expression.class, this, Xmu2corePackage.COMMAND_STATEMENT__PARAMETERS);
 		}
 		return parameters;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Statement> getActions() {
+		if (actions == null) {
+			actions = new EObjectContainmentEList<Statement>(Statement.class, this, Xmu2corePackage.COMMAND_STATEMENT__ACTIONS);
+		}
+		return actions;
 	}
 
 	/**
@@ -106,6 +129,8 @@ public class CommandStatementImpl extends StatementImpl implements CommandStatem
 		switch (featureID) {
 			case Xmu2corePackage.COMMAND_STATEMENT__PARAMETERS:
 				return ((InternalEList<?>)getParameters()).basicRemove(otherEnd, msgs);
+			case Xmu2corePackage.COMMAND_STATEMENT__ACTIONS:
+				return ((InternalEList<?>)getActions()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -143,6 +168,8 @@ public class CommandStatementImpl extends StatementImpl implements CommandStatem
 				return getCommand();
 			case Xmu2corePackage.COMMAND_STATEMENT__PARAMETERS:
 				return getParameters();
+			case Xmu2corePackage.COMMAND_STATEMENT__ACTIONS:
+				return getActions();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -161,7 +188,11 @@ public class CommandStatementImpl extends StatementImpl implements CommandStatem
 				return;
 			case Xmu2corePackage.COMMAND_STATEMENT__PARAMETERS:
 				getParameters().clear();
-				getParameters().addAll((Collection<? extends EObject>)newValue);
+				getParameters().addAll((Collection<? extends Expression>)newValue);
+				return;
+			case Xmu2corePackage.COMMAND_STATEMENT__ACTIONS:
+				getActions().clear();
+				getActions().addAll((Collection<? extends Statement>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -181,6 +212,9 @@ public class CommandStatementImpl extends StatementImpl implements CommandStatem
 			case Xmu2corePackage.COMMAND_STATEMENT__PARAMETERS:
 				getParameters().clear();
 				return;
+			case Xmu2corePackage.COMMAND_STATEMENT__ACTIONS:
+				getActions().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -197,6 +231,8 @@ public class CommandStatementImpl extends StatementImpl implements CommandStatem
 				return COMMAND_EDEFAULT == null ? command != null : !COMMAND_EDEFAULT.equals(command);
 			case Xmu2corePackage.COMMAND_STATEMENT__PARAMETERS:
 				return parameters != null && !parameters.isEmpty();
+			case Xmu2corePackage.COMMAND_STATEMENT__ACTIONS:
+				return actions != null && !actions.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
