@@ -667,8 +667,8 @@ public class StatementPackageImpl extends EPackageImpl implements StatementPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getFail_Message() {
-		return (EAttribute)failEClass.getEStructuralFeatures().get(0);
+	public EReference getFail_Expression() {
+		return (EReference)failEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -805,7 +805,7 @@ public class StatementPackageImpl extends EPackageImpl implements StatementPacka
 		psesudoStatementEClass = createEClass(PSESUDO_STATEMENT);
 
 		failEClass = createEClass(FAIL);
-		createEAttribute(failEClass, FAIL__MESSAGE);
+		createEReference(failEClass, FAIL__EXPRESSION);
 
 		skipEClass = createEClass(SKIP);
 
@@ -934,7 +934,7 @@ public class StatementPackageImpl extends EPackageImpl implements StatementPacka
 		initEClass(psesudoStatementEClass, PsesudoStatement.class, "PsesudoStatement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(failEClass, Fail.class, "Fail", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getFail_Message(), ecorePackage.getEString(), "message", null, 0, 1, Fail.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFail_Expression(), theExpressionPackage.getExpression(), null, "expression", null, 0, 1, Fail.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(skipEClass, Skip.class, "Skip", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

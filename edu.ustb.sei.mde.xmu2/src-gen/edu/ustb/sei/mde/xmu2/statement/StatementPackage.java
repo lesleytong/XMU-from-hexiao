@@ -735,13 +735,13 @@ public interface StatementPackage extends EPackage {
 	int FAIL = 20;
 
 	/**
-	 * The feature id for the '<em><b>Message</b></em>' attribute.
+	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FAIL__MESSAGE = PSESUDO_STATEMENT_FEATURE_COUNT + 0;
+	int FAIL__EXPRESSION = PSESUDO_STATEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Fail</em>' class.
@@ -1250,15 +1250,15 @@ public interface StatementPackage extends EPackage {
 	EClass getFail();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.xmu2.statement.Fail#getMessage <em>Message</em>}'.
+	 * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.xmu2.statement.Fail#getExpression <em>Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Message</em>'.
-	 * @see edu.ustb.sei.mde.xmu2.statement.Fail#getMessage()
+	 * @return the meta object for the containment reference '<em>Expression</em>'.
+	 * @see edu.ustb.sei.mde.xmu2.statement.Fail#getExpression()
 	 * @see #getFail()
 	 * @generated
 	 */
-	EAttribute getFail_Message();
+	EReference getFail_Expression();
 
 	/**
 	 * Returns the meta object for class '{@link edu.ustb.sei.mde.xmu2.statement.Skip <em>Skip</em>}'.
@@ -1705,12 +1705,12 @@ public interface StatementPackage extends EPackage {
 		EClass FAIL = eINSTANCE.getFail();
 
 		/**
-		 * The meta object literal for the '<em><b>Message</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Expression</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute FAIL__MESSAGE = eINSTANCE.getFail_Message();
+		EReference FAIL__EXPRESSION = eINSTANCE.getFail_Expression();
 
 		/**
 		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu2.statement.impl.SkipImpl <em>Skip</em>}' class.

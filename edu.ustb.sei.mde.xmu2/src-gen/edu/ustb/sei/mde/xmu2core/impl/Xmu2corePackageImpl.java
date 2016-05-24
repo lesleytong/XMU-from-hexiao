@@ -1858,8 +1858,8 @@ public class Xmu2corePackageImpl extends EPackageImpl implements Xmu2corePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getCommandStatement_Parameters() {
-		return (EAttribute)commandStatementEClass.getEStructuralFeatures().get(0);
+	public EReference getCommandStatement_Parameters() {
+		return (EReference)commandStatementEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1868,7 +1868,7 @@ public class Xmu2corePackageImpl extends EPackageImpl implements Xmu2corePackage
 	 * @generated
 	 */
 	public EAttribute getCommandStatement_Command() {
-		return (EAttribute)commandStatementEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)commandStatementEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -2152,8 +2152,8 @@ public class Xmu2corePackageImpl extends EPackageImpl implements Xmu2corePackage
 		createEReference(solveConstraintStatementEClass, SOLVE_CONSTRAINT_STATEMENT__CONSTRAINT);
 
 		commandStatementEClass = createEClass(COMMAND_STATEMENT);
-		createEAttribute(commandStatementEClass, COMMAND_STATEMENT__PARAMETERS);
 		createEAttribute(commandStatementEClass, COMMAND_STATEMENT__COMMAND);
+		createEReference(commandStatementEClass, COMMAND_STATEMENT__PARAMETERS);
 
 		reflectiveSupportEClass = createEClass(REFLECTIVE_SUPPORT);
 		createEReference(reflectiveSupportEClass, REFLECTIVE_SUPPORT__REFLECTIVE_IDENTIFIER);
@@ -2456,8 +2456,8 @@ public class Xmu2corePackageImpl extends EPackageImpl implements Xmu2corePackage
 		initEReference(getSolveConstraintStatement_Constraint(), this.getExpression(), null, "constraint", null, 1, 1, SolveConstraintStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(commandStatementEClass, CommandStatement.class, "CommandStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getCommandStatement_Parameters(), ecorePackage.getEJavaObject(), "parameters", null, 0, -1, CommandStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getCommandStatement_Command(), ecorePackage.getEString(), "command", null, 0, 1, CommandStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCommandStatement_Parameters(), this.getExpression(), null, "parameters", null, 0, -1, CommandStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(reflectiveSupportEClass, ReflectiveSupport.class, "ReflectiveSupport", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getReflectiveSupport_ReflectiveIdentifier(), this.getExpression(), null, "reflectiveIdentifier", null, 0, 1, ReflectiveSupport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -103,7 +103,7 @@ RULES {
 	statement.ForEachStatement ::= "foreach" pattern "->" action : statement.BlockStatement,statement.UpdateStatement,statement.SwitchStatement,statement.DeleteNodeStatement,statement.ConcreteDeleteLinkStatement,statement.EnforcePatternStatement,statement.ForEachStatement,statement.RuleCallStatement,statement.Skip,statement.Fail,statement.AssignStatement,statement.ReflectiveDeleteLinkStatement;
 	statement.RuleCallStatement ::= rule[NAME] "(" (parameters:expression.PathExpression,expression.AtomicExpression ("," parameters:expression.PathExpression,expression.AtomicExpression)*)? ")";
 	statement.Skip ::= "skip";
-	statement.Fail ::= "fail" message['\'','\'','\\']?;
+	statement.Fail ::= "fail" (expression: expression.BooleanOrExpression,expression.BooleanAndExpression,expression.RelationalExpression,expression.UnaryExpression,expression.PathExpression, expression.AtomicExpression)?;
 	statement.DefaultCaseClause ::= "otherwise" "->" action : statement.BlockStatement,statement.UpdateStatement,statement.SwitchStatement,statement.DeleteNodeStatement,statement.ConcreteDeleteLinkStatement,statement.EnforcePatternStatement,statement.ForEachStatement,statement.RuleCallStatement,statement.Skip,statement.Fail,statement.AssignStatement,statement.ReflectiveDeleteLinkStatement;
 	statement.AssignStatement ::= updatedVariable "::=" value: expression.BooleanOrExpression,expression.BooleanAndExpression,expression.RelationalExpression,expression.AdditiveExpression,expression.MultiplicativeExpression,expression.UnaryExpression,expression.PathExpression, expression.AtomicExpression;
 	

@@ -110,7 +110,7 @@
       </genClasses>
       <genClasses image="false" ecoreClass="xmu2.ecore#//statement/PsesudoStatement"/>
       <genClasses ecoreClass="xmu2.ecore#//statement/Fail">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmu2.ecore#//statement/Fail/message"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2.ecore#//statement/Fail/expression"/>
       </genClasses>
       <genClasses ecoreClass="xmu2.ecore#//statement/Skip"/>
       <genClasses ecoreClass="xmu2.ecore#//statement/AssignStatement">

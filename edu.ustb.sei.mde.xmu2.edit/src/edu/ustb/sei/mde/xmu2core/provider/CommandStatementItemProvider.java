@@ -45,8 +45,8 @@ public class CommandStatementItemProvider extends StatementItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addParametersPropertyDescriptor(object);
 			addCommandPropertyDescriptor(object);
+			addParametersPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -68,7 +68,7 @@ public class CommandStatementItemProvider extends StatementItemProvider {
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
 				 null,
 				 null));
 	}
@@ -133,8 +133,8 @@ public class CommandStatementItemProvider extends StatementItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(CommandStatement.class)) {
-			case Xmu2corePackage.COMMAND_STATEMENT__PARAMETERS:
 			case Xmu2corePackage.COMMAND_STATEMENT__COMMAND:
+			case Xmu2corePackage.COMMAND_STATEMENT__PARAMETERS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

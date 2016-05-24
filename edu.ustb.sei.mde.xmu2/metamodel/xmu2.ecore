@@ -134,7 +134,8 @@
     <eClassifiers xsi:type="ecore:EClass" name="PsesudoStatement" abstract="true"
         eSuperTypes="#//statement/Statement"/>
     <eClassifiers xsi:type="ecore:EClass" name="Fail" eSuperTypes="#//statement/PsesudoStatement">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="message" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="#//expression/Expression"
+          containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Skip" eSuperTypes="#//statement/PsesudoStatement"/>
     <eClassifiers xsi:type="ecore:EClass" name="AssignStatement" eSuperTypes="#//statement/Statement">

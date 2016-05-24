@@ -3074,6 +3074,7 @@ public class Xmu2Printer implements edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Tex
 	
 	
 	public void print_edu_ustb_sei_mde_xmu2_statement_Fail(edu.ustb.sei.mde.xmu2.statement.Fail element, String outertab, java.io.PrintWriter out) {
+		String localtab = outertab;
 		// The printCountingMap contains a mapping from feature names to the number of
 		// remaining elements that still need to be printed. The map is initialized with
 		// the number of elements stored in each structural feature. For lists this is the
@@ -3081,24 +3082,41 @@ public class Xmu2Printer implements edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2Tex
 		// 0 (if the feature is null).
 		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(1);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.FAIL__MESSAGE));
-		printCountingMap.put("message", temp == null ? 0 : 1);
+		temp = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.FAIL__EXPRESSION));
+		printCountingMap.put("expression", temp == null ? 0 : 1);
 		// print collected hidden tokens
-		int count;
+		java.io.StringWriter sWriter = null;
+		java.io.PrintWriter out1 = null;
+		java.util.Map<String, Integer> printCountingMap1 = null;
 		// DEFINITION PART BEGINS (CsString)
 		out.print("fail");
 		out.print(" ");
-		// DEFINITION PART BEGINS (PlaceholderInQuotes)
-		count = printCountingMap.get("message");
+		// DEFINITION PART BEGINS (CompoundDefinition)
+		sWriter = new java.io.StringWriter();
+		out1 = new java.io.PrintWriter(sWriter);
+		printCountingMap1 = new java.util.LinkedHashMap<String, Integer>(printCountingMap);
+		print_edu_ustb_sei_mde_xmu2_statement_Fail_0(element, localtab, out1, printCountingMap1);
+		if (printCountingMap.equals(printCountingMap1)) {
+			out1.close();
+		} else {
+			out1.flush();
+			out1.close();
+			out.print(sWriter.toString());
+			printCountingMap.putAll(printCountingMap1);
+		}
+	}
+	
+	public void print_edu_ustb_sei_mde_xmu2_statement_Fail_0(edu.ustb.sei.mde.xmu2.statement.Fail element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
+		String localtab = outertab;
+		int count;
+		// DEFINITION PART BEGINS (Containment)
+		count = printCountingMap.get("expression");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.FAIL__MESSAGE));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.FAIL__EXPRESSION));
 			if (o != null) {
-				edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2TokenResolver resolver = tokenResolverFactory.createTokenResolver("QUOTED_39_39_92");
-				resolver.setOptions(getOptions());
-				out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.FAIL__MESSAGE), element));
-				out.print(" ");
+				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
 			}
-			printCountingMap.put("message", count - 1);
+			printCountingMap.put("expression", count - 1);
 		}
 	}
 	

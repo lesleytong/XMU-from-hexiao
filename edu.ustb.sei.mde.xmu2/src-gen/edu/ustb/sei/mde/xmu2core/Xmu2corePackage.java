@@ -3375,22 +3375,22 @@ public interface Xmu2corePackage extends EPackage {
 	int COMMAND_STATEMENT = 54;
 
 	/**
-	 * The feature id for the '<em><b>Parameters</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMMAND_STATEMENT__PARAMETERS = STATEMENT_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Command</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMMAND_STATEMENT__COMMAND = STATEMENT_FEATURE_COUNT + 1;
+	int COMMAND_STATEMENT__COMMAND = STATEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMAND_STATEMENT__PARAMETERS = STATEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Command Statement</em>' class.
@@ -4972,15 +4972,15 @@ public interface Xmu2corePackage extends EPackage {
 	EClass getCommandStatement();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link edu.ustb.sei.mde.xmu2core.CommandStatement#getParameters <em>Parameters</em>}'.
+	 * Returns the meta object for the containment reference list '{@link edu.ustb.sei.mde.xmu2core.CommandStatement#getParameters <em>Parameters</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Parameters</em>'.
+	 * @return the meta object for the containment reference list '<em>Parameters</em>'.
 	 * @see edu.ustb.sei.mde.xmu2core.CommandStatement#getParameters()
 	 * @see #getCommandStatement()
 	 * @generated
 	 */
-	EAttribute getCommandStatement_Parameters();
+	EReference getCommandStatement_Parameters();
 
 	/**
 	 * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.xmu2core.CommandStatement#getCommand <em>Command</em>}'.
@@ -6352,12 +6352,12 @@ public interface Xmu2corePackage extends EPackage {
 		EClass COMMAND_STATEMENT = eINSTANCE.getCommandStatement();
 
 		/**
-		 * The meta object literal for the '<em><b>Parameters</b></em>' attribute list feature.
+		 * The meta object literal for the '<em><b>Parameters</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute COMMAND_STATEMENT__PARAMETERS = eINSTANCE.getCommandStatement_Parameters();
+		EReference COMMAND_STATEMENT__PARAMETERS = eINSTANCE.getCommandStatement_Parameters();
 
 		/**
 		 * The meta object literal for the '<em><b>Command</b></em>' attribute feature.

@@ -3,19 +3,22 @@
 package edu.ustb.sei.mde.xmu2core.impl;
 
 import edu.ustb.sei.mde.xmu2core.CommandStatement;
+import edu.ustb.sei.mde.xmu2core.Expression;
 import edu.ustb.sei.mde.xmu2core.Xmu2corePackage;
 
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,23 +28,13 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.CommandStatementImpl#getParameters <em>Parameters</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.CommandStatementImpl#getCommand <em>Command</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.xmu2core.impl.CommandStatementImpl#getParameters <em>Parameters</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class CommandStatementImpl extends StatementImpl implements CommandStatement {
-	/**
-	 * The cached value of the '{@link #getParameters() <em>Parameters</em>}' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getParameters()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Object> parameters;
-
 	/**
 	 * The default value of the '{@link #getCommand() <em>Command</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -61,6 +54,16 @@ public class CommandStatementImpl extends StatementImpl implements CommandStatem
 	 * @ordered
 	 */
 	protected String command = COMMAND_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getParameters() <em>Parameters</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getParameters()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Expression> parameters;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -86,11 +89,25 @@ public class CommandStatementImpl extends StatementImpl implements CommandStatem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Object> getParameters() {
+	public EList<Expression> getParameters() {
 		if (parameters == null) {
-			parameters = new EDataTypeUniqueEList<Object>(Object.class, this, Xmu2corePackage.COMMAND_STATEMENT__PARAMETERS);
+			parameters = new EObjectContainmentEList<Expression>(Expression.class, this, Xmu2corePackage.COMMAND_STATEMENT__PARAMETERS);
 		}
 		return parameters;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case Xmu2corePackage.COMMAND_STATEMENT__PARAMETERS:
+				return ((InternalEList<?>)getParameters()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -122,10 +139,10 @@ public class CommandStatementImpl extends StatementImpl implements CommandStatem
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case Xmu2corePackage.COMMAND_STATEMENT__PARAMETERS:
-				return getParameters();
 			case Xmu2corePackage.COMMAND_STATEMENT__COMMAND:
 				return getCommand();
+			case Xmu2corePackage.COMMAND_STATEMENT__PARAMETERS:
+				return getParameters();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -139,12 +156,12 @@ public class CommandStatementImpl extends StatementImpl implements CommandStatem
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case Xmu2corePackage.COMMAND_STATEMENT__PARAMETERS:
-				getParameters().clear();
-				getParameters().addAll((Collection<? extends Object>)newValue);
-				return;
 			case Xmu2corePackage.COMMAND_STATEMENT__COMMAND:
 				setCommand((String)newValue);
+				return;
+			case Xmu2corePackage.COMMAND_STATEMENT__PARAMETERS:
+				getParameters().clear();
+				getParameters().addAll((Collection<? extends Expression>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -158,11 +175,11 @@ public class CommandStatementImpl extends StatementImpl implements CommandStatem
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case Xmu2corePackage.COMMAND_STATEMENT__PARAMETERS:
-				getParameters().clear();
-				return;
 			case Xmu2corePackage.COMMAND_STATEMENT__COMMAND:
 				setCommand(COMMAND_EDEFAULT);
+				return;
+			case Xmu2corePackage.COMMAND_STATEMENT__PARAMETERS:
+				getParameters().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -176,10 +193,10 @@ public class CommandStatementImpl extends StatementImpl implements CommandStatem
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case Xmu2corePackage.COMMAND_STATEMENT__PARAMETERS:
-				return parameters != null && !parameters.isEmpty();
 			case Xmu2corePackage.COMMAND_STATEMENT__COMMAND:
 				return COMMAND_EDEFAULT == null ? command != null : !COMMAND_EDEFAULT.equals(command);
+			case Xmu2corePackage.COMMAND_STATEMENT__PARAMETERS:
+				return parameters != null && !parameters.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -194,9 +211,7 @@ public class CommandStatementImpl extends StatementImpl implements CommandStatem
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (parameters: ");
-		result.append(parameters);
-		result.append(", command: ");
+		result.append(" (command: ");
 		result.append(command);
 		result.append(')');
 		return result.toString();

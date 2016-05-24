@@ -519,7 +519,7 @@ public class BXCodeGenerator {
 			if(statement instanceof Fail) {
 			CommandStatement stmt = Xmu2coreFactory.eINSTANCE.createCommandStatement();
 			stmt.setCommand(Constants.CMD_FAIL);
-			stmt.getParameters().add(((Fail) statement).getMessage());
+			stmt.getParameters().add(convertExpression(((Fail) statement).getExpression(),varMap,false));
 			return Collections.singletonList(stmt);
 		}
 		throw new BuildException("the function should not contain "+statement);
@@ -559,7 +559,7 @@ public class BXCodeGenerator {
 		} else if(statement instanceof Fail) {
 			CommandStatement stmt = Xmu2coreFactory.eINSTANCE.createCommandStatement();
 			stmt.setCommand(Constants.CMD_FAIL);
-			stmt.getParameters().add(((Fail) statement).getMessage());
+			stmt.getParameters().add(convertExpression(((Fail) statement).getExpression(),varMap,false));
 			return Collections.singletonList(stmt);
 		}
 		throw new BuildException("Unconverted statement "+statement);

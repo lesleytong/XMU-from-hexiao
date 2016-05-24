@@ -204,8 +204,8 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2core.ecore#//SolveConstraintStatement/constraint"/>
     </genClasses>
     <genClasses ecoreClass="xmu2core.ecore#//CommandStatement">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmu2core.ecore#//CommandStatement/parameters"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmu2core.ecore#//CommandStatement/command"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EReference xmu2core.ecore#//CommandStatement/parameters"/>
     </genClasses>
     <genClasses image="false" ecoreClass="xmu2core.ecore#//ReflectiveSupport">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2core.ecore#//ReflectiveSupport/reflectiveIdentifier"/>

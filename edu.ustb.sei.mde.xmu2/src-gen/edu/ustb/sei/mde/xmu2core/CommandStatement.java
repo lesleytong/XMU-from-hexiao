@@ -13,8 +13,8 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link edu.ustb.sei.mde.xmu2core.CommandStatement#getParameters <em>Parameters</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.xmu2core.CommandStatement#getCommand <em>Command</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.xmu2core.CommandStatement#getParameters <em>Parameters</em>}</li>
  * </ul>
  *
  * @see edu.ustb.sei.mde.xmu2core.Xmu2corePackage#getCommandStatement()
@@ -23,20 +23,20 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface CommandStatement extends Statement {
 	/**
-	 * Returns the value of the '<em><b>Parameters</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.Object}.
+	 * Returns the value of the '<em><b>Parameters</b></em>' containment reference list.
+	 * The list contents are of type {@link edu.ustb.sei.mde.xmu2core.Expression}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Parameters</em>' attribute list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Parameters</em>' attribute list.
+	 * @return the value of the '<em>Parameters</em>' containment reference list.
 	 * @see edu.ustb.sei.mde.xmu2core.Xmu2corePackage#getCommandStatement_Parameters()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Object> getParameters();
+	EList<Expression> getParameters();
 
 	/**
 	 * Returns the value of the '<em><b>Command</b></em>' attribute.

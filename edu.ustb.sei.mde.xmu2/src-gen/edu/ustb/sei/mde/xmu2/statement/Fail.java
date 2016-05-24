@@ -2,6 +2,8 @@
  */
 package edu.ustb.sei.mde.xmu2.statement;
 
+import edu.ustb.sei.mde.xmu2.expression.Expression;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -12,7 +14,7 @@ package edu.ustb.sei.mde.xmu2.statement;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link edu.ustb.sei.mde.xmu2.statement.Fail#getMessage <em>Message</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.xmu2.statement.Fail#getExpression <em>Expression</em>}</li>
  * </ul>
  *
  * @see edu.ustb.sei.mde.xmu2.statement.StatementPackage#getFail()
@@ -21,29 +23,29 @@ package edu.ustb.sei.mde.xmu2.statement;
  */
 public interface Fail extends PsesudoStatement {
 	/**
-	 * Returns the value of the '<em><b>Message</b></em>' attribute.
+	 * Returns the value of the '<em><b>Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Message</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Expression</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Message</em>' attribute.
-	 * @see #setMessage(String)
-	 * @see edu.ustb.sei.mde.xmu2.statement.StatementPackage#getFail_Message()
-	 * @model
+	 * @return the value of the '<em>Expression</em>' containment reference.
+	 * @see #setExpression(Expression)
+	 * @see edu.ustb.sei.mde.xmu2.statement.StatementPackage#getFail_Expression()
+	 * @model containment="true"
 	 * @generated
 	 */
-	String getMessage();
+	Expression getExpression();
 
 	/**
-	 * Sets the value of the '{@link edu.ustb.sei.mde.xmu2.statement.Fail#getMessage <em>Message</em>}' attribute.
+	 * Sets the value of the '{@link edu.ustb.sei.mde.xmu2.statement.Fail#getExpression <em>Expression</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Message</em>' attribute.
-	 * @see #getMessage()
+	 * @param value the new value of the '<em>Expression</em>' containment reference.
+	 * @see #getExpression()
 	 * @generated
 	 */
-	void setMessage(String value);
+	void setExpression(Expression value);
 
 } // Fail

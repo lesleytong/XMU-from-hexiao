@@ -102,7 +102,7 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
     }
     public Xmu2Parser(TokenStream input, RecognizerSharedState state) {
         super(input, state);
-        this.state.initializeRuleMemo(382 + 1);
+        this.state.initializeRuleMemo(387 + 1);
          
 
     }
@@ -565,7 +565,7 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
     				break;
     			}
     		}
-    		int followSetID = 252;
+    		int followSetID = 253;
     		int i;
     		for (i = tokenIndexOfLastCompleteElement; i < tokenStream.size(); i++) {
     			org.antlr.runtime3_4_0.CommonToken nextToken = (org.antlr.runtime3_4_0.CommonToken) tokenStream.get(i);
@@ -25202,22 +25202,33 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
 
     // $ANTLR start "parse_edu_ustb_sei_mde_xmu2_statement_Fail"
-    // Xmu2.g:10581:1: parse_edu_ustb_sei_mde_xmu2_statement_Fail returns [edu.ustb.sei.mde.xmu2.statement.Fail element = null] : a0= 'fail' ( (a1= QUOTED_39_39_92 ) )? ;
+    // Xmu2.g:10581:1: parse_edu_ustb_sei_mde_xmu2_statement_Fail returns [edu.ustb.sei.mde.xmu2.statement.Fail element = null] : a0= 'fail' ( ( (a1_0= parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression |a1_1= parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression |a1_2= parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression |a1_3= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a1_4= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a1_5= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression ) ) )? ;
     public final edu.ustb.sei.mde.xmu2.statement.Fail parse_edu_ustb_sei_mde_xmu2_statement_Fail() throws RecognitionException {
         edu.ustb.sei.mde.xmu2.statement.Fail element =  null;
 
         int parse_edu_ustb_sei_mde_xmu2_statement_Fail_StartIndex = input.index();
 
         Token a0=null;
-        Token a1=null;
+        edu.ustb.sei.mde.xmu2.expression.BooleanOrExpression a1_0 =null;
+
+        edu.ustb.sei.mde.xmu2.expression.BooleanAndExpression a1_1 =null;
+
+        edu.ustb.sei.mde.xmu2.expression.RelationalExpression a1_2 =null;
+
+        edu.ustb.sei.mde.xmu2.expression.UnaryExpression a1_3 =null;
+
+        edu.ustb.sei.mde.xmu2.expression.PathExpression a1_4 =null;
+
+        edu.ustb.sei.mde.xmu2.expression.AtomicExpression a1_5 =null;
+
 
 
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 44) ) { return element; }
 
-            // Xmu2.g:10584:2: (a0= 'fail' ( (a1= QUOTED_39_39_92 ) )? )
-            // Xmu2.g:10585:2: a0= 'fail' ( (a1= QUOTED_39_39_92 ) )?
+            // Xmu2.g:10584:2: (a0= 'fail' ( ( (a1_0= parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression |a1_1= parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression |a1_2= parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression |a1_3= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a1_4= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a1_5= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression ) ) )? )
+            // Xmu2.g:10585:2: a0= 'fail' ( ( (a1_0= parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression |a1_1= parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression |a1_2= parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression |a1_3= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a1_4= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a1_5= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression ) ) )?
             {
             a0=(Token)match(input,48,FOLLOW_48_in_parse_edu_ustb_sei_mde_xmu2_statement_Fail9013); if (state.failed) return element;
 
@@ -25233,73 +25244,597 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1869]);
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1870]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1871]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1872]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1873]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1874]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1875]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1876]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1877]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1878]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getFail(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1869]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getFail(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1870]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getFail(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1871]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getFail(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1872]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getFail(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1873]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getFail(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1874]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getFail(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1875]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getFail(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1876]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getFail(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1877]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1878]);
             		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1879]);
             		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1880]);
             		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1881]);
             		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1882]);
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1883]);
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1884]);
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1885]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1886]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1887]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1888]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1889]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1883]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1884]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1885]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1886]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1887]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1888]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1889]);
             		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1890]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1891]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1892]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1893]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1894]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1895]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1896]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1897]);
             	}
 
-            // Xmu2.g:10620:2: ( (a1= QUOTED_39_39_92 ) )?
-            int alt81=2;
-            int LA81_0 = input.LA(1);
+            // Xmu2.g:10627:2: ( ( (a1_0= parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression |a1_1= parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression |a1_2= parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression |a1_3= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a1_4= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a1_5= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression ) ) )?
+            int alt82=2;
+            int LA82_0 = input.LA(1);
 
-            if ( (LA81_0==QUOTED_39_39_92) ) {
-                alt81=1;
+            if ( (LA82_0==BOOLEAN||(LA82_0 >= NUMBER && LA82_0 <= QUOTED_39_39_92)||LA82_0==TYPE||LA82_0==17||LA82_0==23||(LA82_0 >= 57 && LA82_0 <= 58)||LA82_0==66) ) {
+                alt82=1;
             }
-            switch (alt81) {
+            else if ( (LA82_0==NAME) ) {
+                int LA82_2 = input.LA(2);
+
+                if ( (LA82_2==EOF||LA82_2==NAME||(LA82_2 >= 19 && LA82_2 <= 21)||(LA82_2 >= 23 && LA82_2 <= 26)||(LA82_2 >= 30 && LA82_2 <= 35)||LA82_2==39||(LA82_2 >= 42 && LA82_2 <= 45)||LA82_2==48||LA82_2==51||LA82_2==55||(LA82_2 >= 59 && LA82_2 <= 60)||LA82_2==63||LA82_2==65||(LA82_2 >= 67 && LA82_2 <= 69)||LA82_2==72||LA82_2==74) ) {
+                    alt82=1;
+                }
+            }
+            switch (alt82) {
                 case 1 :
-                    // Xmu2.g:10621:3: (a1= QUOTED_39_39_92 )
+                    // Xmu2.g:10628:3: ( (a1_0= parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression |a1_1= parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression |a1_2= parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression |a1_3= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a1_4= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a1_5= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression ) )
                     {
-                    // Xmu2.g:10621:3: (a1= QUOTED_39_39_92 )
-                    // Xmu2.g:10622:4: a1= QUOTED_39_39_92
+                    // Xmu2.g:10628:3: ( (a1_0= parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression |a1_1= parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression |a1_2= parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression |a1_3= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a1_4= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a1_5= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression ) )
+                    // Xmu2.g:10629:4: (a1_0= parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression |a1_1= parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression |a1_2= parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression |a1_3= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a1_4= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a1_5= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression )
                     {
-                    a1=(Token)match(input,QUOTED_39_39_92,FOLLOW_QUOTED_39_39_92_in_parse_edu_ustb_sei_mde_xmu2_statement_Fail9036); if (state.failed) return element;
+                    // Xmu2.g:10629:4: (a1_0= parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression |a1_1= parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression |a1_2= parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression |a1_3= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a1_4= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a1_5= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression )
+                    int alt81=6;
+                    switch ( input.LA(1) ) {
+                    case 57:
+                        {
+                        int LA81_1 = input.LA(2);
+
+                        if ( (synpred248_Xmu2()) ) {
+                            alt81=1;
+                        }
+                        else if ( (synpred249_Xmu2()) ) {
+                            alt81=2;
+                        }
+                        else if ( (synpred250_Xmu2()) ) {
+                            alt81=3;
+                        }
+                        else if ( (synpred251_Xmu2()) ) {
+                            alt81=4;
+                        }
+                        else {
+                            if (state.backtracking>0) {state.failed=true; return element;}
+                            NoViableAltException nvae =
+                                new NoViableAltException("", 81, 1, input);
+
+                            throw nvae;
+
+                        }
+                        }
+                        break;
+                    case 23:
+                        {
+                        int LA81_2 = input.LA(2);
+
+                        if ( (synpred248_Xmu2()) ) {
+                            alt81=1;
+                        }
+                        else if ( (synpred249_Xmu2()) ) {
+                            alt81=2;
+                        }
+                        else if ( (synpred250_Xmu2()) ) {
+                            alt81=3;
+                        }
+                        else if ( (synpred251_Xmu2()) ) {
+                            alt81=4;
+                        }
+                        else {
+                            if (state.backtracking>0) {state.failed=true; return element;}
+                            NoViableAltException nvae =
+                                new NoViableAltException("", 81, 2, input);
+
+                            throw nvae;
+
+                        }
+                        }
+                        break;
+                    case NAME:
+                        {
+                        int LA81_3 = input.LA(2);
+
+                        if ( (synpred248_Xmu2()) ) {
+                            alt81=1;
+                        }
+                        else if ( (synpred249_Xmu2()) ) {
+                            alt81=2;
+                        }
+                        else if ( (synpred250_Xmu2()) ) {
+                            alt81=3;
+                        }
+                        else if ( (synpred252_Xmu2()) ) {
+                            alt81=5;
+                        }
+                        else if ( (true) ) {
+                            alt81=6;
+                        }
+                        else {
+                            if (state.backtracking>0) {state.failed=true; return element;}
+                            NoViableAltException nvae =
+                                new NoViableAltException("", 81, 3, input);
+
+                            throw nvae;
+
+                        }
+                        }
+                        break;
+                    case 58:
+                        {
+                        int LA81_4 = input.LA(2);
+
+                        if ( (synpred248_Xmu2()) ) {
+                            alt81=1;
+                        }
+                        else if ( (synpred249_Xmu2()) ) {
+                            alt81=2;
+                        }
+                        else if ( (synpred250_Xmu2()) ) {
+                            alt81=3;
+                        }
+                        else if ( (synpred252_Xmu2()) ) {
+                            alt81=5;
+                        }
+                        else if ( (true) ) {
+                            alt81=6;
+                        }
+                        else {
+                            if (state.backtracking>0) {state.failed=true; return element;}
+                            NoViableAltException nvae =
+                                new NoViableAltException("", 81, 4, input);
+
+                            throw nvae;
+
+                        }
+                        }
+                        break;
+                    case 66:
+                        {
+                        int LA81_5 = input.LA(2);
+
+                        if ( (synpred248_Xmu2()) ) {
+                            alt81=1;
+                        }
+                        else if ( (synpred249_Xmu2()) ) {
+                            alt81=2;
+                        }
+                        else if ( (synpred250_Xmu2()) ) {
+                            alt81=3;
+                        }
+                        else if ( (synpred252_Xmu2()) ) {
+                            alt81=5;
+                        }
+                        else if ( (true) ) {
+                            alt81=6;
+                        }
+                        else {
+                            if (state.backtracking>0) {state.failed=true; return element;}
+                            NoViableAltException nvae =
+                                new NoViableAltException("", 81, 5, input);
+
+                            throw nvae;
+
+                        }
+                        }
+                        break;
+                    case QUOTED_39_39_92:
+                        {
+                        int LA81_6 = input.LA(2);
+
+                        if ( (synpred248_Xmu2()) ) {
+                            alt81=1;
+                        }
+                        else if ( (synpred249_Xmu2()) ) {
+                            alt81=2;
+                        }
+                        else if ( (synpred250_Xmu2()) ) {
+                            alt81=3;
+                        }
+                        else if ( (synpred252_Xmu2()) ) {
+                            alt81=5;
+                        }
+                        else if ( (true) ) {
+                            alt81=6;
+                        }
+                        else {
+                            if (state.backtracking>0) {state.failed=true; return element;}
+                            NoViableAltException nvae =
+                                new NoViableAltException("", 81, 6, input);
+
+                            throw nvae;
+
+                        }
+                        }
+                        break;
+                    case NUMBER:
+                        {
+                        int LA81_7 = input.LA(2);
+
+                        if ( (synpred248_Xmu2()) ) {
+                            alt81=1;
+                        }
+                        else if ( (synpred249_Xmu2()) ) {
+                            alt81=2;
+                        }
+                        else if ( (synpred250_Xmu2()) ) {
+                            alt81=3;
+                        }
+                        else if ( (synpred252_Xmu2()) ) {
+                            alt81=5;
+                        }
+                        else if ( (true) ) {
+                            alt81=6;
+                        }
+                        else {
+                            if (state.backtracking>0) {state.failed=true; return element;}
+                            NoViableAltException nvae =
+                                new NoViableAltException("", 81, 7, input);
+
+                            throw nvae;
+
+                        }
+                        }
+                        break;
+                    case BOOLEAN:
+                        {
+                        int LA81_8 = input.LA(2);
+
+                        if ( (synpred248_Xmu2()) ) {
+                            alt81=1;
+                        }
+                        else if ( (synpred249_Xmu2()) ) {
+                            alt81=2;
+                        }
+                        else if ( (synpred250_Xmu2()) ) {
+                            alt81=3;
+                        }
+                        else if ( (synpred252_Xmu2()) ) {
+                            alt81=5;
+                        }
+                        else if ( (true) ) {
+                            alt81=6;
+                        }
+                        else {
+                            if (state.backtracking>0) {state.failed=true; return element;}
+                            NoViableAltException nvae =
+                                new NoViableAltException("", 81, 8, input);
+
+                            throw nvae;
+
+                        }
+                        }
+                        break;
+                    case TYPE:
+                        {
+                        int LA81_9 = input.LA(2);
+
+                        if ( (synpred248_Xmu2()) ) {
+                            alt81=1;
+                        }
+                        else if ( (synpred249_Xmu2()) ) {
+                            alt81=2;
+                        }
+                        else if ( (synpred250_Xmu2()) ) {
+                            alt81=3;
+                        }
+                        else if ( (synpred252_Xmu2()) ) {
+                            alt81=5;
+                        }
+                        else if ( (true) ) {
+                            alt81=6;
+                        }
+                        else {
+                            if (state.backtracking>0) {state.failed=true; return element;}
+                            NoViableAltException nvae =
+                                new NoViableAltException("", 81, 9, input);
+
+                            throw nvae;
+
+                        }
+                        }
+                        break;
+                    case OBJ_URI:
+                        {
+                        int LA81_10 = input.LA(2);
+
+                        if ( (synpred248_Xmu2()) ) {
+                            alt81=1;
+                        }
+                        else if ( (synpred249_Xmu2()) ) {
+                            alt81=2;
+                        }
+                        else if ( (synpred250_Xmu2()) ) {
+                            alt81=3;
+                        }
+                        else if ( (synpred252_Xmu2()) ) {
+                            alt81=5;
+                        }
+                        else if ( (true) ) {
+                            alt81=6;
+                        }
+                        else {
+                            if (state.backtracking>0) {state.failed=true; return element;}
+                            NoViableAltException nvae =
+                                new NoViableAltException("", 81, 10, input);
+
+                            throw nvae;
+
+                        }
+                        }
+                        break;
+                    case 17:
+                        {
+                        int LA81_11 = input.LA(2);
+
+                        if ( (synpred248_Xmu2()) ) {
+                            alt81=1;
+                        }
+                        else if ( (synpred249_Xmu2()) ) {
+                            alt81=2;
+                        }
+                        else if ( (synpred250_Xmu2()) ) {
+                            alt81=3;
+                        }
+                        else if ( (synpred252_Xmu2()) ) {
+                            alt81=5;
+                        }
+                        else if ( (true) ) {
+                            alt81=6;
+                        }
+                        else {
+                            if (state.backtracking>0) {state.failed=true; return element;}
+                            NoViableAltException nvae =
+                                new NoViableAltException("", 81, 11, input);
+
+                            throw nvae;
+
+                        }
+                        }
+                        break;
+                    default:
+                        if (state.backtracking>0) {state.failed=true; return element;}
+                        NoViableAltException nvae =
+                            new NoViableAltException("", 81, 0, input);
+
+                        throw nvae;
+
+                    }
+
+                    switch (alt81) {
+                        case 1 :
+                            // Xmu2.g:10630:5: a1_0= parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression
+                            {
+                            pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_Fail9042);
+                            a1_0=parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression();
+
+                            state._fsp--;
+                            if (state.failed) return element;
+
+                            if ( state.backtracking==0 ) {
+                            					if (terminateParsing) {
+                            						throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
+                            					}
+                            					if (element == null) {
+                            						element = edu.ustb.sei.mde.xmu2.statement.StatementFactory.eINSTANCE.createFail();
+                            						startIncompleteElement(element);
+                            					}
+                            					if (a1_0 != null) {
+                            						if (a1_0 != null) {
+                            							Object value = a1_0;
+                            							element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.FAIL__EXPRESSION), value);
+                            							completedElement(value, true);
+                            						}
+                            						collectHiddenTokens(element);
+                            						retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_42_0_0_1_0_0_0, a1_0, true);
+                            						copyLocalizationInfos(a1_0, element);
+                            					}
+                            				}
+
+                            }
+                            break;
+                        case 2 :
+                            // Xmu2.g:10649:10: a1_1= parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression
+                            {
+                            pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_Fail9062);
+                            a1_1=parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression();
+
+                            state._fsp--;
+                            if (state.failed) return element;
+
+                            if ( state.backtracking==0 ) {
+                            					if (terminateParsing) {
+                            						throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
+                            					}
+                            					if (element == null) {
+                            						element = edu.ustb.sei.mde.xmu2.statement.StatementFactory.eINSTANCE.createFail();
+                            						startIncompleteElement(element);
+                            					}
+                            					if (a1_1 != null) {
+                            						if (a1_1 != null) {
+                            							Object value = a1_1;
+                            							element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.FAIL__EXPRESSION), value);
+                            							completedElement(value, true);
+                            						}
+                            						collectHiddenTokens(element);
+                            						retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_42_0_0_1_0_0_0, a1_1, true);
+                            						copyLocalizationInfos(a1_1, element);
+                            					}
+                            				}
+
+                            }
+                            break;
+                        case 3 :
+                            // Xmu2.g:10668:10: a1_2= parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression
+                            {
+                            pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_Fail9082);
+                            a1_2=parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression();
+
+                            state._fsp--;
+                            if (state.failed) return element;
+
+                            if ( state.backtracking==0 ) {
+                            					if (terminateParsing) {
+                            						throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
+                            					}
+                            					if (element == null) {
+                            						element = edu.ustb.sei.mde.xmu2.statement.StatementFactory.eINSTANCE.createFail();
+                            						startIncompleteElement(element);
+                            					}
+                            					if (a1_2 != null) {
+                            						if (a1_2 != null) {
+                            							Object value = a1_2;
+                            							element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.FAIL__EXPRESSION), value);
+                            							completedElement(value, true);
+                            						}
+                            						collectHiddenTokens(element);
+                            						retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_42_0_0_1_0_0_0, a1_2, true);
+                            						copyLocalizationInfos(a1_2, element);
+                            					}
+                            				}
+
+                            }
+                            break;
+                        case 4 :
+                            // Xmu2.g:10687:10: a1_3= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression
+                            {
+                            pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_Fail9102);
+                            a1_3=parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression();
+
+                            state._fsp--;
+                            if (state.failed) return element;
+
+                            if ( state.backtracking==0 ) {
+                            					if (terminateParsing) {
+                            						throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
+                            					}
+                            					if (element == null) {
+                            						element = edu.ustb.sei.mde.xmu2.statement.StatementFactory.eINSTANCE.createFail();
+                            						startIncompleteElement(element);
+                            					}
+                            					if (a1_3 != null) {
+                            						if (a1_3 != null) {
+                            							Object value = a1_3;
+                            							element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.FAIL__EXPRESSION), value);
+                            							completedElement(value, true);
+                            						}
+                            						collectHiddenTokens(element);
+                            						retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_42_0_0_1_0_0_0, a1_3, true);
+                            						copyLocalizationInfos(a1_3, element);
+                            					}
+                            				}
+
+                            }
+                            break;
+                        case 5 :
+                            // Xmu2.g:10706:10: a1_4= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression
+                            {
+                            pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_Fail9122);
+                            a1_4=parse_edu_ustb_sei_mde_xmu2_expression_PathExpression();
+
+                            state._fsp--;
+                            if (state.failed) return element;
+
+                            if ( state.backtracking==0 ) {
+                            					if (terminateParsing) {
+                            						throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
+                            					}
+                            					if (element == null) {
+                            						element = edu.ustb.sei.mde.xmu2.statement.StatementFactory.eINSTANCE.createFail();
+                            						startIncompleteElement(element);
+                            					}
+                            					if (a1_4 != null) {
+                            						if (a1_4 != null) {
+                            							Object value = a1_4;
+                            							element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.FAIL__EXPRESSION), value);
+                            							completedElement(value, true);
+                            						}
+                            						collectHiddenTokens(element);
+                            						retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_42_0_0_1_0_0_0, a1_4, true);
+                            						copyLocalizationInfos(a1_4, element);
+                            					}
+                            				}
+
+                            }
+                            break;
+                        case 6 :
+                            // Xmu2.g:10725:10: a1_5= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression
+                            {
+                            pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_Fail9142);
+                            a1_5=parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression();
+
+                            state._fsp--;
+                            if (state.failed) return element;
+
+                            if ( state.backtracking==0 ) {
+                            					if (terminateParsing) {
+                            						throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
+                            					}
+                            					if (element == null) {
+                            						element = edu.ustb.sei.mde.xmu2.statement.StatementFactory.eINSTANCE.createFail();
+                            						startIncompleteElement(element);
+                            					}
+                            					if (a1_5 != null) {
+                            						if (a1_5 != null) {
+                            							Object value = a1_5;
+                            							element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.FAIL__EXPRESSION), value);
+                            							completedElement(value, true);
+                            						}
+                            						collectHiddenTokens(element);
+                            						retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_42_0_0_1_0_0_0, a1_5, true);
+                            						copyLocalizationInfos(a1_5, element);
+                            					}
+                            				}
+
+                            }
+                            break;
+
+                    }
+
 
                     if ( state.backtracking==0 ) {
-                    				if (terminateParsing) {
-                    					throw new edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2TerminateParsingException();
-                    				}
-                    				if (element == null) {
-                    					element = edu.ustb.sei.mde.xmu2.statement.StatementFactory.eINSTANCE.createFail();
-                    					startIncompleteElement(element);
-                    				}
-                    				if (a1 != null) {
-                    					edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2TokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("QUOTED_39_39_92");
-                    					tokenResolver.setOptions(getOptions());
-                    					edu.ustb.sei.mde.xmu2.resource.xmu2.IXmu2TokenResolveResult result = getFreshTokenResolveResult();
-                    					tokenResolver.resolve(a1.getText(), element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.FAIL__MESSAGE), result);
-                    					Object resolvedObject = result.getResolvedToken();
-                    					if (resolvedObject == null) {
-                    						addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a1).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a1).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a1).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a1).getStopIndex());
-                    					}
-                    					java.lang.String resolved = (java.lang.String) resolvedObject;
-                    					if (resolved != null) {
-                    						Object value = resolved;
-                    						element.eSet(element.eClass().getEStructuralFeature(edu.ustb.sei.mde.xmu2.statement.StatementPackage.FAIL__MESSAGE), value);
-                    						completedElement(value, false);
-                    					}
-                    					collectHiddenTokens(element);
-                    					retrieveLayoutInformation(element, edu.ustb.sei.mde.xmu2.resource.xmu2.grammar.Xmu2GrammarInformationProvider.XMU2_42_0_0_1, resolved, true);
-                    					copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a1, element);
-                    				}
+                    				// expected elements (follow set)
+                    				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1898]);
+                    				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1899]);
+                    				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1900]);
+                    				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1901]);
+                    				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1902]);
+                    				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1903]);
+                    				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1904]);
+                    				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1905]);
+                    				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1906]);
+                    				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1907]);
+                    				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1908]);
+                    				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1909]);
+                    				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1910]);
+                    				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1911]);
+                    				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1912]);
+                    				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1913]);
+                    				addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1914]);
+                    				addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1915]);
+                    				addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1916]);
+                    				addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1917]);
+                    				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1918]);
                     			}
 
                     }
@@ -25313,27 +25848,27 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1891]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1892]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1893]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1894]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1895]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1896]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1897]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1898]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1899]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1900]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1901]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1902]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1903]);
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1904]);
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1905]);
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1906]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1907]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1908]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1909]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1910]);
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1911]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1919]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1920]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1921]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1922]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1923]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1924]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1925]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1926]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1927]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1928]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1929]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1930]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1931]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1932]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1933]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1934]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1935]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1936]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1937]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1938]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1939]);
             	}
 
             }
@@ -25356,7 +25891,7 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
 
     // $ANTLR start "parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause"
-    // Xmu2.g:10680:1: parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause returns [edu.ustb.sei.mde.xmu2.statement.DefaultCaseClause element = null] : a0= 'otherwise' a1= '->' (a2_0= parse_edu_ustb_sei_mde_xmu2_statement_BlockStatement |a2_1= parse_edu_ustb_sei_mde_xmu2_statement_UpdateStatement |a2_2= parse_edu_ustb_sei_mde_xmu2_statement_SwitchStatement |a2_3= parse_edu_ustb_sei_mde_xmu2_statement_DeleteNodeStatement |a2_4= parse_edu_ustb_sei_mde_xmu2_statement_ConcreteDeleteLinkStatement |a2_5= parse_edu_ustb_sei_mde_xmu2_statement_EnforcePatternStatement |a2_6= parse_edu_ustb_sei_mde_xmu2_statement_ForEachStatement |a2_7= parse_edu_ustb_sei_mde_xmu2_statement_RuleCallStatement |a2_8= parse_edu_ustb_sei_mde_xmu2_statement_Skip |a2_9= parse_edu_ustb_sei_mde_xmu2_statement_Fail |a2_10= parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement |a2_11= parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement ) ;
+    // Xmu2.g:10799:1: parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause returns [edu.ustb.sei.mde.xmu2.statement.DefaultCaseClause element = null] : a0= 'otherwise' a1= '->' (a2_0= parse_edu_ustb_sei_mde_xmu2_statement_BlockStatement |a2_1= parse_edu_ustb_sei_mde_xmu2_statement_UpdateStatement |a2_2= parse_edu_ustb_sei_mde_xmu2_statement_SwitchStatement |a2_3= parse_edu_ustb_sei_mde_xmu2_statement_DeleteNodeStatement |a2_4= parse_edu_ustb_sei_mde_xmu2_statement_ConcreteDeleteLinkStatement |a2_5= parse_edu_ustb_sei_mde_xmu2_statement_EnforcePatternStatement |a2_6= parse_edu_ustb_sei_mde_xmu2_statement_ForEachStatement |a2_7= parse_edu_ustb_sei_mde_xmu2_statement_RuleCallStatement |a2_8= parse_edu_ustb_sei_mde_xmu2_statement_Skip |a2_9= parse_edu_ustb_sei_mde_xmu2_statement_Fail |a2_10= parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement |a2_11= parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement ) ;
     public final edu.ustb.sei.mde.xmu2.statement.DefaultCaseClause parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause() throws RecognitionException {
         edu.ustb.sei.mde.xmu2.statement.DefaultCaseClause element =  null;
 
@@ -25394,10 +25929,10 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 45) ) { return element; }
 
-            // Xmu2.g:10683:2: (a0= 'otherwise' a1= '->' (a2_0= parse_edu_ustb_sei_mde_xmu2_statement_BlockStatement |a2_1= parse_edu_ustb_sei_mde_xmu2_statement_UpdateStatement |a2_2= parse_edu_ustb_sei_mde_xmu2_statement_SwitchStatement |a2_3= parse_edu_ustb_sei_mde_xmu2_statement_DeleteNodeStatement |a2_4= parse_edu_ustb_sei_mde_xmu2_statement_ConcreteDeleteLinkStatement |a2_5= parse_edu_ustb_sei_mde_xmu2_statement_EnforcePatternStatement |a2_6= parse_edu_ustb_sei_mde_xmu2_statement_ForEachStatement |a2_7= parse_edu_ustb_sei_mde_xmu2_statement_RuleCallStatement |a2_8= parse_edu_ustb_sei_mde_xmu2_statement_Skip |a2_9= parse_edu_ustb_sei_mde_xmu2_statement_Fail |a2_10= parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement |a2_11= parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement ) )
-            // Xmu2.g:10684:2: a0= 'otherwise' a1= '->' (a2_0= parse_edu_ustb_sei_mde_xmu2_statement_BlockStatement |a2_1= parse_edu_ustb_sei_mde_xmu2_statement_UpdateStatement |a2_2= parse_edu_ustb_sei_mde_xmu2_statement_SwitchStatement |a2_3= parse_edu_ustb_sei_mde_xmu2_statement_DeleteNodeStatement |a2_4= parse_edu_ustb_sei_mde_xmu2_statement_ConcreteDeleteLinkStatement |a2_5= parse_edu_ustb_sei_mde_xmu2_statement_EnforcePatternStatement |a2_6= parse_edu_ustb_sei_mde_xmu2_statement_ForEachStatement |a2_7= parse_edu_ustb_sei_mde_xmu2_statement_RuleCallStatement |a2_8= parse_edu_ustb_sei_mde_xmu2_statement_Skip |a2_9= parse_edu_ustb_sei_mde_xmu2_statement_Fail |a2_10= parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement |a2_11= parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement )
+            // Xmu2.g:10802:2: (a0= 'otherwise' a1= '->' (a2_0= parse_edu_ustb_sei_mde_xmu2_statement_BlockStatement |a2_1= parse_edu_ustb_sei_mde_xmu2_statement_UpdateStatement |a2_2= parse_edu_ustb_sei_mde_xmu2_statement_SwitchStatement |a2_3= parse_edu_ustb_sei_mde_xmu2_statement_DeleteNodeStatement |a2_4= parse_edu_ustb_sei_mde_xmu2_statement_ConcreteDeleteLinkStatement |a2_5= parse_edu_ustb_sei_mde_xmu2_statement_EnforcePatternStatement |a2_6= parse_edu_ustb_sei_mde_xmu2_statement_ForEachStatement |a2_7= parse_edu_ustb_sei_mde_xmu2_statement_RuleCallStatement |a2_8= parse_edu_ustb_sei_mde_xmu2_statement_Skip |a2_9= parse_edu_ustb_sei_mde_xmu2_statement_Fail |a2_10= parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement |a2_11= parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement ) )
+            // Xmu2.g:10803:2: a0= 'otherwise' a1= '->' (a2_0= parse_edu_ustb_sei_mde_xmu2_statement_BlockStatement |a2_1= parse_edu_ustb_sei_mde_xmu2_statement_UpdateStatement |a2_2= parse_edu_ustb_sei_mde_xmu2_statement_SwitchStatement |a2_3= parse_edu_ustb_sei_mde_xmu2_statement_DeleteNodeStatement |a2_4= parse_edu_ustb_sei_mde_xmu2_statement_ConcreteDeleteLinkStatement |a2_5= parse_edu_ustb_sei_mde_xmu2_statement_EnforcePatternStatement |a2_6= parse_edu_ustb_sei_mde_xmu2_statement_ForEachStatement |a2_7= parse_edu_ustb_sei_mde_xmu2_statement_RuleCallStatement |a2_8= parse_edu_ustb_sei_mde_xmu2_statement_Skip |a2_9= parse_edu_ustb_sei_mde_xmu2_statement_Fail |a2_10= parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement |a2_11= parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement )
             {
-            a0=(Token)match(input,60,FOLLOW_60_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9081); if (state.failed) return element;
+            a0=(Token)match(input,60,FOLLOW_60_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9198); if (state.failed) return element;
 
             if ( state.backtracking==0 ) {
             		if (element == null) {
@@ -25411,10 +25946,10 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1912]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1940]);
             	}
 
-            a1=(Token)match(input,24,FOLLOW_24_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9095); if (state.failed) return element;
+            a1=(Token)match(input,24,FOLLOW_24_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9212); if (state.failed) return element;
 
             if ( state.backtracking==0 ) {
             		if (element == null) {
@@ -25428,66 +25963,66 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDefaultCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1913]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDefaultCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1914]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDefaultCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1915]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDefaultCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1916]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDefaultCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1917]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDefaultCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1918]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDefaultCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1919]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDefaultCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1920]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDefaultCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1921]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDefaultCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1922]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDefaultCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1923]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDefaultCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1924]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDefaultCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1941]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDefaultCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1942]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDefaultCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1943]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDefaultCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1944]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDefaultCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1945]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDefaultCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1946]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDefaultCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1947]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDefaultCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1948]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDefaultCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1949]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDefaultCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1950]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDefaultCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1951]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getDefaultCaseClause(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1952]);
             	}
 
-            // Xmu2.g:10723:2: (a2_0= parse_edu_ustb_sei_mde_xmu2_statement_BlockStatement |a2_1= parse_edu_ustb_sei_mde_xmu2_statement_UpdateStatement |a2_2= parse_edu_ustb_sei_mde_xmu2_statement_SwitchStatement |a2_3= parse_edu_ustb_sei_mde_xmu2_statement_DeleteNodeStatement |a2_4= parse_edu_ustb_sei_mde_xmu2_statement_ConcreteDeleteLinkStatement |a2_5= parse_edu_ustb_sei_mde_xmu2_statement_EnforcePatternStatement |a2_6= parse_edu_ustb_sei_mde_xmu2_statement_ForEachStatement |a2_7= parse_edu_ustb_sei_mde_xmu2_statement_RuleCallStatement |a2_8= parse_edu_ustb_sei_mde_xmu2_statement_Skip |a2_9= parse_edu_ustb_sei_mde_xmu2_statement_Fail |a2_10= parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement |a2_11= parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement )
-            int alt82=12;
+            // Xmu2.g:10842:2: (a2_0= parse_edu_ustb_sei_mde_xmu2_statement_BlockStatement |a2_1= parse_edu_ustb_sei_mde_xmu2_statement_UpdateStatement |a2_2= parse_edu_ustb_sei_mde_xmu2_statement_SwitchStatement |a2_3= parse_edu_ustb_sei_mde_xmu2_statement_DeleteNodeStatement |a2_4= parse_edu_ustb_sei_mde_xmu2_statement_ConcreteDeleteLinkStatement |a2_5= parse_edu_ustb_sei_mde_xmu2_statement_EnforcePatternStatement |a2_6= parse_edu_ustb_sei_mde_xmu2_statement_ForEachStatement |a2_7= parse_edu_ustb_sei_mde_xmu2_statement_RuleCallStatement |a2_8= parse_edu_ustb_sei_mde_xmu2_statement_Skip |a2_9= parse_edu_ustb_sei_mde_xmu2_statement_Fail |a2_10= parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement |a2_11= parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement )
+            int alt83=12;
             switch ( input.LA(1) ) {
             case 72:
                 {
-                alt82=1;
+                alt83=1;
                 }
                 break;
             case 69:
                 {
-                alt82=2;
+                alt83=2;
                 }
                 break;
             case 65:
                 {
-                alt82=3;
+                alt83=3;
                 }
                 break;
             case 44:
                 {
-                int LA82_4 = input.LA(2);
+                int LA83_4 = input.LA(2);
 
-                if ( (LA82_4==NAME) ) {
+                if ( (LA83_4==NAME) ) {
                     switch ( input.LA(3) ) {
                     case EOF:
                     case 42:
                     case 60:
                     case 74:
                         {
-                        alt82=4;
+                        alt83=4;
                         }
                         break;
                     case 25:
                         {
-                        alt82=5;
+                        alt83=5;
                         }
                         break;
                     case 37:
                         {
-                        alt82=12;
+                        alt83=12;
                         }
                         break;
                     default:
                         if (state.backtracking>0) {state.failed=true; return element;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 82, 10, input);
+                            new NoViableAltException("", 83, 10, input);
 
                         throw nvae;
 
@@ -25497,7 +26032,7 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 82, 4, input);
+                        new NoViableAltException("", 83, 4, input);
 
                     throw nvae;
 
@@ -25506,28 +26041,28 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case 45:
                 {
-                alt82=6;
+                alt83=6;
                 }
                 break;
             case 51:
                 {
-                alt82=7;
+                alt83=7;
                 }
                 break;
             case NAME:
                 {
-                int LA82_7 = input.LA(2);
+                int LA83_7 = input.LA(2);
 
-                if ( (LA82_7==17) ) {
-                    alt82=8;
+                if ( (LA83_7==17) ) {
+                    alt83=8;
                 }
-                else if ( (LA82_7==29) ) {
-                    alt82=11;
+                else if ( (LA83_7==29) ) {
+                    alt83=11;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 82, 7, input);
+                        new NoViableAltException("", 83, 7, input);
 
                     throw nvae;
 
@@ -25536,28 +26071,28 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case 63:
                 {
-                alt82=9;
+                alt83=9;
                 }
                 break;
             case 48:
                 {
-                alt82=10;
+                alt83=10;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return element;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 82, 0, input);
+                    new NoViableAltException("", 83, 0, input);
 
                 throw nvae;
 
             }
 
-            switch (alt82) {
+            switch (alt83) {
                 case 1 :
-                    // Xmu2.g:10724:3: a2_0= parse_edu_ustb_sei_mde_xmu2_statement_BlockStatement
+                    // Xmu2.g:10843:3: a2_0= parse_edu_ustb_sei_mde_xmu2_statement_BlockStatement
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_BlockStatement_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9113);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_BlockStatement_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9230);
                     a2_0=parse_edu_ustb_sei_mde_xmu2_statement_BlockStatement();
 
                     state._fsp--;
@@ -25586,9 +26121,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Xmu2.g:10743:6: a2_1= parse_edu_ustb_sei_mde_xmu2_statement_UpdateStatement
+                    // Xmu2.g:10862:6: a2_1= parse_edu_ustb_sei_mde_xmu2_statement_UpdateStatement
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_UpdateStatement_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9127);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_UpdateStatement_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9244);
                     a2_1=parse_edu_ustb_sei_mde_xmu2_statement_UpdateStatement();
 
                     state._fsp--;
@@ -25617,9 +26152,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 3 :
-                    // Xmu2.g:10762:6: a2_2= parse_edu_ustb_sei_mde_xmu2_statement_SwitchStatement
+                    // Xmu2.g:10881:6: a2_2= parse_edu_ustb_sei_mde_xmu2_statement_SwitchStatement
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_SwitchStatement_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9141);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_SwitchStatement_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9258);
                     a2_2=parse_edu_ustb_sei_mde_xmu2_statement_SwitchStatement();
 
                     state._fsp--;
@@ -25648,9 +26183,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 4 :
-                    // Xmu2.g:10781:6: a2_3= parse_edu_ustb_sei_mde_xmu2_statement_DeleteNodeStatement
+                    // Xmu2.g:10900:6: a2_3= parse_edu_ustb_sei_mde_xmu2_statement_DeleteNodeStatement
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_DeleteNodeStatement_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9155);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_DeleteNodeStatement_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9272);
                     a2_3=parse_edu_ustb_sei_mde_xmu2_statement_DeleteNodeStatement();
 
                     state._fsp--;
@@ -25679,9 +26214,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 5 :
-                    // Xmu2.g:10800:6: a2_4= parse_edu_ustb_sei_mde_xmu2_statement_ConcreteDeleteLinkStatement
+                    // Xmu2.g:10919:6: a2_4= parse_edu_ustb_sei_mde_xmu2_statement_ConcreteDeleteLinkStatement
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_ConcreteDeleteLinkStatement_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9169);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_ConcreteDeleteLinkStatement_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9286);
                     a2_4=parse_edu_ustb_sei_mde_xmu2_statement_ConcreteDeleteLinkStatement();
 
                     state._fsp--;
@@ -25710,9 +26245,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 6 :
-                    // Xmu2.g:10819:6: a2_5= parse_edu_ustb_sei_mde_xmu2_statement_EnforcePatternStatement
+                    // Xmu2.g:10938:6: a2_5= parse_edu_ustb_sei_mde_xmu2_statement_EnforcePatternStatement
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_EnforcePatternStatement_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9183);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_EnforcePatternStatement_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9300);
                     a2_5=parse_edu_ustb_sei_mde_xmu2_statement_EnforcePatternStatement();
 
                     state._fsp--;
@@ -25741,9 +26276,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 7 :
-                    // Xmu2.g:10838:6: a2_6= parse_edu_ustb_sei_mde_xmu2_statement_ForEachStatement
+                    // Xmu2.g:10957:6: a2_6= parse_edu_ustb_sei_mde_xmu2_statement_ForEachStatement
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_ForEachStatement_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9197);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_ForEachStatement_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9314);
                     a2_6=parse_edu_ustb_sei_mde_xmu2_statement_ForEachStatement();
 
                     state._fsp--;
@@ -25772,9 +26307,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 8 :
-                    // Xmu2.g:10857:6: a2_7= parse_edu_ustb_sei_mde_xmu2_statement_RuleCallStatement
+                    // Xmu2.g:10976:6: a2_7= parse_edu_ustb_sei_mde_xmu2_statement_RuleCallStatement
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_RuleCallStatement_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9211);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_RuleCallStatement_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9328);
                     a2_7=parse_edu_ustb_sei_mde_xmu2_statement_RuleCallStatement();
 
                     state._fsp--;
@@ -25803,9 +26338,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 9 :
-                    // Xmu2.g:10876:6: a2_8= parse_edu_ustb_sei_mde_xmu2_statement_Skip
+                    // Xmu2.g:10995:6: a2_8= parse_edu_ustb_sei_mde_xmu2_statement_Skip
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_Skip_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9225);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_Skip_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9342);
                     a2_8=parse_edu_ustb_sei_mde_xmu2_statement_Skip();
 
                     state._fsp--;
@@ -25834,9 +26369,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 10 :
-                    // Xmu2.g:10895:6: a2_9= parse_edu_ustb_sei_mde_xmu2_statement_Fail
+                    // Xmu2.g:11014:6: a2_9= parse_edu_ustb_sei_mde_xmu2_statement_Fail
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_Fail_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9239);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_Fail_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9356);
                     a2_9=parse_edu_ustb_sei_mde_xmu2_statement_Fail();
 
                     state._fsp--;
@@ -25865,9 +26400,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 11 :
-                    // Xmu2.g:10914:6: a2_10= parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement
+                    // Xmu2.g:11033:6: a2_10= parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9253);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9370);
                     a2_10=parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement();
 
                     state._fsp--;
@@ -25896,9 +26431,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 12 :
-                    // Xmu2.g:10933:6: a2_11= parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement
+                    // Xmu2.g:11052:6: a2_11= parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9267);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9384);
                     a2_11=parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement();
 
                     state._fsp--;
@@ -25932,10 +26467,10 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1925]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1926]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1927]);
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1928]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1953]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1954]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1955]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1956]);
             	}
 
             }
@@ -25958,7 +26493,7 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
 
     // $ANTLR start "parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement"
-    // Xmu2.g:10963:1: parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement returns [edu.ustb.sei.mde.xmu2.statement.AssignStatement element = null] : (a0_0= parse_edu_ustb_sei_mde_xmu2_expression_VariableExpression ) a1= '::=' (a2_0= parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression |a2_1= parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression |a2_2= parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression |a2_3= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression |a2_4= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression |a2_5= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a2_6= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a2_7= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression ) ;
+    // Xmu2.g:11082:1: parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement returns [edu.ustb.sei.mde.xmu2.statement.AssignStatement element = null] : (a0_0= parse_edu_ustb_sei_mde_xmu2_expression_VariableExpression ) a1= '::=' (a2_0= parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression |a2_1= parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression |a2_2= parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression |a2_3= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression |a2_4= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression |a2_5= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a2_6= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a2_7= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression ) ;
     public final edu.ustb.sei.mde.xmu2.statement.AssignStatement parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement() throws RecognitionException {
         edu.ustb.sei.mde.xmu2.statement.AssignStatement element =  null;
 
@@ -25989,13 +26524,13 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 46) ) { return element; }
 
-            // Xmu2.g:10966:2: ( (a0_0= parse_edu_ustb_sei_mde_xmu2_expression_VariableExpression ) a1= '::=' (a2_0= parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression |a2_1= parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression |a2_2= parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression |a2_3= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression |a2_4= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression |a2_5= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a2_6= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a2_7= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression ) )
-            // Xmu2.g:10967:2: (a0_0= parse_edu_ustb_sei_mde_xmu2_expression_VariableExpression ) a1= '::=' (a2_0= parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression |a2_1= parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression |a2_2= parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression |a2_3= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression |a2_4= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression |a2_5= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a2_6= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a2_7= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression )
+            // Xmu2.g:11085:2: ( (a0_0= parse_edu_ustb_sei_mde_xmu2_expression_VariableExpression ) a1= '::=' (a2_0= parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression |a2_1= parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression |a2_2= parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression |a2_3= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression |a2_4= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression |a2_5= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a2_6= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a2_7= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression ) )
+            // Xmu2.g:11086:2: (a0_0= parse_edu_ustb_sei_mde_xmu2_expression_VariableExpression ) a1= '::=' (a2_0= parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression |a2_1= parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression |a2_2= parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression |a2_3= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression |a2_4= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression |a2_5= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a2_6= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a2_7= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression )
             {
-            // Xmu2.g:10967:2: (a0_0= parse_edu_ustb_sei_mde_xmu2_expression_VariableExpression )
-            // Xmu2.g:10968:3: a0_0= parse_edu_ustb_sei_mde_xmu2_expression_VariableExpression
+            // Xmu2.g:11086:2: (a0_0= parse_edu_ustb_sei_mde_xmu2_expression_VariableExpression )
+            // Xmu2.g:11087:3: a0_0= parse_edu_ustb_sei_mde_xmu2_expression_VariableExpression
             {
-            pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_VariableExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement9304);
+            pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_VariableExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement9421);
             a0_0=parse_edu_ustb_sei_mde_xmu2_expression_VariableExpression();
 
             state._fsp--;
@@ -26026,10 +26561,10 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1929]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1957]);
             	}
 
-            a1=(Token)match(input,29,FOLLOW_29_in_parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement9322); if (state.failed) return element;
+            a1=(Token)match(input,29,FOLLOW_29_in_parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement9439); if (state.failed) return element;
 
             if ( state.backtracking==0 ) {
             		if (element == null) {
@@ -26043,46 +26578,46 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getAssignStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1930]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getAssignStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1931]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getAssignStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1932]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getAssignStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1933]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getAssignStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1934]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getAssignStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1935]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getAssignStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1936]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getAssignStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1937]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getAssignStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1938]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getAssignStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1958]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getAssignStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1959]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getAssignStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1960]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getAssignStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1961]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getAssignStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1962]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getAssignStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1963]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getAssignStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1964]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getAssignStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1965]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getAssignStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1966]);
             	}
 
-            // Xmu2.g:11015:2: (a2_0= parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression |a2_1= parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression |a2_2= parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression |a2_3= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression |a2_4= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression |a2_5= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a2_6= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a2_7= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression )
-            int alt83=8;
+            // Xmu2.g:11134:2: (a2_0= parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression |a2_1= parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression |a2_2= parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression |a2_3= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression |a2_4= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression |a2_5= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a2_6= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a2_7= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression )
+            int alt84=8;
             switch ( input.LA(1) ) {
             case 57:
                 {
-                int LA83_1 = input.LA(2);
+                int LA84_1 = input.LA(2);
 
-                if ( (synpred260_Xmu2()) ) {
-                    alt83=1;
+                if ( (synpred265_Xmu2()) ) {
+                    alt84=1;
                 }
-                else if ( (synpred261_Xmu2()) ) {
-                    alt83=2;
+                else if ( (synpred266_Xmu2()) ) {
+                    alt84=2;
                 }
-                else if ( (synpred262_Xmu2()) ) {
-                    alt83=3;
+                else if ( (synpred267_Xmu2()) ) {
+                    alt84=3;
                 }
-                else if ( (synpred263_Xmu2()) ) {
-                    alt83=4;
+                else if ( (synpred268_Xmu2()) ) {
+                    alt84=4;
                 }
-                else if ( (synpred264_Xmu2()) ) {
-                    alt83=5;
+                else if ( (synpred269_Xmu2()) ) {
+                    alt84=5;
                 }
-                else if ( (synpred265_Xmu2()) ) {
-                    alt83=6;
+                else if ( (synpred270_Xmu2()) ) {
+                    alt84=6;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 83, 1, input);
+                        new NoViableAltException("", 84, 1, input);
 
                     throw nvae;
 
@@ -26091,30 +26626,30 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case 23:
                 {
-                int LA83_2 = input.LA(2);
+                int LA84_2 = input.LA(2);
 
-                if ( (synpred260_Xmu2()) ) {
-                    alt83=1;
+                if ( (synpred265_Xmu2()) ) {
+                    alt84=1;
                 }
-                else if ( (synpred261_Xmu2()) ) {
-                    alt83=2;
+                else if ( (synpred266_Xmu2()) ) {
+                    alt84=2;
                 }
-                else if ( (synpred262_Xmu2()) ) {
-                    alt83=3;
+                else if ( (synpred267_Xmu2()) ) {
+                    alt84=3;
                 }
-                else if ( (synpred263_Xmu2()) ) {
-                    alt83=4;
+                else if ( (synpred268_Xmu2()) ) {
+                    alt84=4;
                 }
-                else if ( (synpred264_Xmu2()) ) {
-                    alt83=5;
+                else if ( (synpred269_Xmu2()) ) {
+                    alt84=5;
                 }
-                else if ( (synpred265_Xmu2()) ) {
-                    alt83=6;
+                else if ( (synpred270_Xmu2()) ) {
+                    alt84=6;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 83, 2, input);
+                        new NoViableAltException("", 84, 2, input);
 
                     throw nvae;
 
@@ -26123,33 +26658,33 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case NAME:
                 {
-                int LA83_3 = input.LA(2);
+                int LA84_3 = input.LA(2);
 
-                if ( (synpred260_Xmu2()) ) {
-                    alt83=1;
-                }
-                else if ( (synpred261_Xmu2()) ) {
-                    alt83=2;
-                }
-                else if ( (synpred262_Xmu2()) ) {
-                    alt83=3;
-                }
-                else if ( (synpred263_Xmu2()) ) {
-                    alt83=4;
-                }
-                else if ( (synpred264_Xmu2()) ) {
-                    alt83=5;
+                if ( (synpred265_Xmu2()) ) {
+                    alt84=1;
                 }
                 else if ( (synpred266_Xmu2()) ) {
-                    alt83=7;
+                    alt84=2;
+                }
+                else if ( (synpred267_Xmu2()) ) {
+                    alt84=3;
+                }
+                else if ( (synpred268_Xmu2()) ) {
+                    alt84=4;
+                }
+                else if ( (synpred269_Xmu2()) ) {
+                    alt84=5;
+                }
+                else if ( (synpred271_Xmu2()) ) {
+                    alt84=7;
                 }
                 else if ( (true) ) {
-                    alt83=8;
+                    alt84=8;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 83, 3, input);
+                        new NoViableAltException("", 84, 3, input);
 
                     throw nvae;
 
@@ -26158,33 +26693,33 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case 58:
                 {
-                int LA83_4 = input.LA(2);
+                int LA84_4 = input.LA(2);
 
-                if ( (synpred260_Xmu2()) ) {
-                    alt83=1;
-                }
-                else if ( (synpred261_Xmu2()) ) {
-                    alt83=2;
-                }
-                else if ( (synpred262_Xmu2()) ) {
-                    alt83=3;
-                }
-                else if ( (synpred263_Xmu2()) ) {
-                    alt83=4;
-                }
-                else if ( (synpred264_Xmu2()) ) {
-                    alt83=5;
+                if ( (synpred265_Xmu2()) ) {
+                    alt84=1;
                 }
                 else if ( (synpred266_Xmu2()) ) {
-                    alt83=7;
+                    alt84=2;
+                }
+                else if ( (synpred267_Xmu2()) ) {
+                    alt84=3;
+                }
+                else if ( (synpred268_Xmu2()) ) {
+                    alt84=4;
+                }
+                else if ( (synpred269_Xmu2()) ) {
+                    alt84=5;
+                }
+                else if ( (synpred271_Xmu2()) ) {
+                    alt84=7;
                 }
                 else if ( (true) ) {
-                    alt83=8;
+                    alt84=8;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 83, 4, input);
+                        new NoViableAltException("", 84, 4, input);
 
                     throw nvae;
 
@@ -26193,33 +26728,33 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case 66:
                 {
-                int LA83_5 = input.LA(2);
+                int LA84_5 = input.LA(2);
 
-                if ( (synpred260_Xmu2()) ) {
-                    alt83=1;
-                }
-                else if ( (synpred261_Xmu2()) ) {
-                    alt83=2;
-                }
-                else if ( (synpred262_Xmu2()) ) {
-                    alt83=3;
-                }
-                else if ( (synpred263_Xmu2()) ) {
-                    alt83=4;
-                }
-                else if ( (synpred264_Xmu2()) ) {
-                    alt83=5;
+                if ( (synpred265_Xmu2()) ) {
+                    alt84=1;
                 }
                 else if ( (synpred266_Xmu2()) ) {
-                    alt83=7;
+                    alt84=2;
+                }
+                else if ( (synpred267_Xmu2()) ) {
+                    alt84=3;
+                }
+                else if ( (synpred268_Xmu2()) ) {
+                    alt84=4;
+                }
+                else if ( (synpred269_Xmu2()) ) {
+                    alt84=5;
+                }
+                else if ( (synpred271_Xmu2()) ) {
+                    alt84=7;
                 }
                 else if ( (true) ) {
-                    alt83=8;
+                    alt84=8;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 83, 5, input);
+                        new NoViableAltException("", 84, 5, input);
 
                     throw nvae;
 
@@ -26228,33 +26763,33 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case QUOTED_39_39_92:
                 {
-                int LA83_6 = input.LA(2);
+                int LA84_6 = input.LA(2);
 
-                if ( (synpred260_Xmu2()) ) {
-                    alt83=1;
-                }
-                else if ( (synpred261_Xmu2()) ) {
-                    alt83=2;
-                }
-                else if ( (synpred262_Xmu2()) ) {
-                    alt83=3;
-                }
-                else if ( (synpred263_Xmu2()) ) {
-                    alt83=4;
-                }
-                else if ( (synpred264_Xmu2()) ) {
-                    alt83=5;
+                if ( (synpred265_Xmu2()) ) {
+                    alt84=1;
                 }
                 else if ( (synpred266_Xmu2()) ) {
-                    alt83=7;
+                    alt84=2;
+                }
+                else if ( (synpred267_Xmu2()) ) {
+                    alt84=3;
+                }
+                else if ( (synpred268_Xmu2()) ) {
+                    alt84=4;
+                }
+                else if ( (synpred269_Xmu2()) ) {
+                    alt84=5;
+                }
+                else if ( (synpred271_Xmu2()) ) {
+                    alt84=7;
                 }
                 else if ( (true) ) {
-                    alt83=8;
+                    alt84=8;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 83, 6, input);
+                        new NoViableAltException("", 84, 6, input);
 
                     throw nvae;
 
@@ -26263,33 +26798,33 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case NUMBER:
                 {
-                int LA83_7 = input.LA(2);
+                int LA84_7 = input.LA(2);
 
-                if ( (synpred260_Xmu2()) ) {
-                    alt83=1;
-                }
-                else if ( (synpred261_Xmu2()) ) {
-                    alt83=2;
-                }
-                else if ( (synpred262_Xmu2()) ) {
-                    alt83=3;
-                }
-                else if ( (synpred263_Xmu2()) ) {
-                    alt83=4;
-                }
-                else if ( (synpred264_Xmu2()) ) {
-                    alt83=5;
+                if ( (synpred265_Xmu2()) ) {
+                    alt84=1;
                 }
                 else if ( (synpred266_Xmu2()) ) {
-                    alt83=7;
+                    alt84=2;
+                }
+                else if ( (synpred267_Xmu2()) ) {
+                    alt84=3;
+                }
+                else if ( (synpred268_Xmu2()) ) {
+                    alt84=4;
+                }
+                else if ( (synpred269_Xmu2()) ) {
+                    alt84=5;
+                }
+                else if ( (synpred271_Xmu2()) ) {
+                    alt84=7;
                 }
                 else if ( (true) ) {
-                    alt83=8;
+                    alt84=8;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 83, 7, input);
+                        new NoViableAltException("", 84, 7, input);
 
                     throw nvae;
 
@@ -26298,33 +26833,33 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case BOOLEAN:
                 {
-                int LA83_8 = input.LA(2);
+                int LA84_8 = input.LA(2);
 
-                if ( (synpred260_Xmu2()) ) {
-                    alt83=1;
-                }
-                else if ( (synpred261_Xmu2()) ) {
-                    alt83=2;
-                }
-                else if ( (synpred262_Xmu2()) ) {
-                    alt83=3;
-                }
-                else if ( (synpred263_Xmu2()) ) {
-                    alt83=4;
-                }
-                else if ( (synpred264_Xmu2()) ) {
-                    alt83=5;
+                if ( (synpred265_Xmu2()) ) {
+                    alt84=1;
                 }
                 else if ( (synpred266_Xmu2()) ) {
-                    alt83=7;
+                    alt84=2;
+                }
+                else if ( (synpred267_Xmu2()) ) {
+                    alt84=3;
+                }
+                else if ( (synpred268_Xmu2()) ) {
+                    alt84=4;
+                }
+                else if ( (synpred269_Xmu2()) ) {
+                    alt84=5;
+                }
+                else if ( (synpred271_Xmu2()) ) {
+                    alt84=7;
                 }
                 else if ( (true) ) {
-                    alt83=8;
+                    alt84=8;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 83, 8, input);
+                        new NoViableAltException("", 84, 8, input);
 
                     throw nvae;
 
@@ -26333,33 +26868,33 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case TYPE:
                 {
-                int LA83_9 = input.LA(2);
+                int LA84_9 = input.LA(2);
 
-                if ( (synpred260_Xmu2()) ) {
-                    alt83=1;
-                }
-                else if ( (synpred261_Xmu2()) ) {
-                    alt83=2;
-                }
-                else if ( (synpred262_Xmu2()) ) {
-                    alt83=3;
-                }
-                else if ( (synpred263_Xmu2()) ) {
-                    alt83=4;
-                }
-                else if ( (synpred264_Xmu2()) ) {
-                    alt83=5;
+                if ( (synpred265_Xmu2()) ) {
+                    alt84=1;
                 }
                 else if ( (synpred266_Xmu2()) ) {
-                    alt83=7;
+                    alt84=2;
+                }
+                else if ( (synpred267_Xmu2()) ) {
+                    alt84=3;
+                }
+                else if ( (synpred268_Xmu2()) ) {
+                    alt84=4;
+                }
+                else if ( (synpred269_Xmu2()) ) {
+                    alt84=5;
+                }
+                else if ( (synpred271_Xmu2()) ) {
+                    alt84=7;
                 }
                 else if ( (true) ) {
-                    alt83=8;
+                    alt84=8;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 83, 9, input);
+                        new NoViableAltException("", 84, 9, input);
 
                     throw nvae;
 
@@ -26368,33 +26903,33 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case OBJ_URI:
                 {
-                int LA83_10 = input.LA(2);
+                int LA84_10 = input.LA(2);
 
-                if ( (synpred260_Xmu2()) ) {
-                    alt83=1;
-                }
-                else if ( (synpred261_Xmu2()) ) {
-                    alt83=2;
-                }
-                else if ( (synpred262_Xmu2()) ) {
-                    alt83=3;
-                }
-                else if ( (synpred263_Xmu2()) ) {
-                    alt83=4;
-                }
-                else if ( (synpred264_Xmu2()) ) {
-                    alt83=5;
+                if ( (synpred265_Xmu2()) ) {
+                    alt84=1;
                 }
                 else if ( (synpred266_Xmu2()) ) {
-                    alt83=7;
+                    alt84=2;
+                }
+                else if ( (synpred267_Xmu2()) ) {
+                    alt84=3;
+                }
+                else if ( (synpred268_Xmu2()) ) {
+                    alt84=4;
+                }
+                else if ( (synpred269_Xmu2()) ) {
+                    alt84=5;
+                }
+                else if ( (synpred271_Xmu2()) ) {
+                    alt84=7;
                 }
                 else if ( (true) ) {
-                    alt83=8;
+                    alt84=8;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 83, 10, input);
+                        new NoViableAltException("", 84, 10, input);
 
                     throw nvae;
 
@@ -26403,33 +26938,33 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case 17:
                 {
-                int LA83_11 = input.LA(2);
+                int LA84_11 = input.LA(2);
 
-                if ( (synpred260_Xmu2()) ) {
-                    alt83=1;
-                }
-                else if ( (synpred261_Xmu2()) ) {
-                    alt83=2;
-                }
-                else if ( (synpred262_Xmu2()) ) {
-                    alt83=3;
-                }
-                else if ( (synpred263_Xmu2()) ) {
-                    alt83=4;
-                }
-                else if ( (synpred264_Xmu2()) ) {
-                    alt83=5;
+                if ( (synpred265_Xmu2()) ) {
+                    alt84=1;
                 }
                 else if ( (synpred266_Xmu2()) ) {
-                    alt83=7;
+                    alt84=2;
+                }
+                else if ( (synpred267_Xmu2()) ) {
+                    alt84=3;
+                }
+                else if ( (synpred268_Xmu2()) ) {
+                    alt84=4;
+                }
+                else if ( (synpred269_Xmu2()) ) {
+                    alt84=5;
+                }
+                else if ( (synpred271_Xmu2()) ) {
+                    alt84=7;
                 }
                 else if ( (true) ) {
-                    alt83=8;
+                    alt84=8;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 83, 11, input);
+                        new NoViableAltException("", 84, 11, input);
 
                     throw nvae;
 
@@ -26439,17 +26974,17 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
             default:
                 if (state.backtracking>0) {state.failed=true; return element;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 83, 0, input);
+                    new NoViableAltException("", 84, 0, input);
 
                 throw nvae;
 
             }
 
-            switch (alt83) {
+            switch (alt84) {
                 case 1 :
-                    // Xmu2.g:11016:3: a2_0= parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression
+                    // Xmu2.g:11135:3: a2_0= parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement9340);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement9457);
                     a2_0=parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression();
 
                     state._fsp--;
@@ -26478,9 +27013,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Xmu2.g:11035:6: a2_1= parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression
+                    // Xmu2.g:11154:6: a2_1= parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement9354);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement9471);
                     a2_1=parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression();
 
                     state._fsp--;
@@ -26509,9 +27044,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 3 :
-                    // Xmu2.g:11054:6: a2_2= parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression
+                    // Xmu2.g:11173:6: a2_2= parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement9368);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement9485);
                     a2_2=parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression();
 
                     state._fsp--;
@@ -26540,9 +27075,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 4 :
-                    // Xmu2.g:11073:6: a2_3= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression
+                    // Xmu2.g:11192:6: a2_3= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement9382);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement9499);
                     a2_3=parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression();
 
                     state._fsp--;
@@ -26571,9 +27106,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 5 :
-                    // Xmu2.g:11092:6: a2_4= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression
+                    // Xmu2.g:11211:6: a2_4= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement9396);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement9513);
                     a2_4=parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression();
 
                     state._fsp--;
@@ -26602,9 +27137,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 6 :
-                    // Xmu2.g:11111:6: a2_5= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression
+                    // Xmu2.g:11230:6: a2_5= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement9410);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement9527);
                     a2_5=parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression();
 
                     state._fsp--;
@@ -26633,9 +27168,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 7 :
-                    // Xmu2.g:11130:6: a2_6= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression
+                    // Xmu2.g:11249:6: a2_6= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement9424);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement9541);
                     a2_6=parse_edu_ustb_sei_mde_xmu2_expression_PathExpression();
 
                     state._fsp--;
@@ -26664,9 +27199,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 8 :
-                    // Xmu2.g:11149:6: a2_7= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression
+                    // Xmu2.g:11268:6: a2_7= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement9438);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement9555);
                     a2_7=parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression();
 
                     state._fsp--;
@@ -26700,27 +27235,27 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1939]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1940]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1941]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1942]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1943]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1944]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1945]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1946]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1947]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1948]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1949]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1950]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1951]);
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1952]);
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1953]);
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1954]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1955]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1956]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1957]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1958]);
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1959]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1967]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1968]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1969]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1970]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1971]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1972]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1973]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1974]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1975]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1976]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1977]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1978]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1979]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1980]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1981]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1982]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1983]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1984]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1985]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1986]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1987]);
             	}
 
             }
@@ -26743,7 +27278,7 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
 
     // $ANTLR start "parse_edu_ustb_sei_mde_xmu2_ReflectiveVariableDeclaration"
-    // Xmu2.g:11196:1: parse_edu_ustb_sei_mde_xmu2_ReflectiveVariableDeclaration returns [edu.ustb.sei.mde.xmu2.ReflectiveVariableDeclaration element = null] : (a0= NAME ) ;
+    // Xmu2.g:11315:1: parse_edu_ustb_sei_mde_xmu2_ReflectiveVariableDeclaration returns [edu.ustb.sei.mde.xmu2.ReflectiveVariableDeclaration element = null] : (a0= NAME ) ;
     public final edu.ustb.sei.mde.xmu2.ReflectiveVariableDeclaration parse_edu_ustb_sei_mde_xmu2_ReflectiveVariableDeclaration() throws RecognitionException {
         edu.ustb.sei.mde.xmu2.ReflectiveVariableDeclaration element =  null;
 
@@ -26756,13 +27291,13 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 47) ) { return element; }
 
-            // Xmu2.g:11199:2: ( (a0= NAME ) )
-            // Xmu2.g:11200:2: (a0= NAME )
+            // Xmu2.g:11318:2: ( (a0= NAME ) )
+            // Xmu2.g:11319:2: (a0= NAME )
             {
-            // Xmu2.g:11200:2: (a0= NAME )
-            // Xmu2.g:11201:3: a0= NAME
+            // Xmu2.g:11319:2: (a0= NAME )
+            // Xmu2.g:11320:3: a0= NAME
             {
-            a0=(Token)match(input,NAME,FOLLOW_NAME_in_parse_edu_ustb_sei_mde_xmu2_ReflectiveVariableDeclaration9475); if (state.failed) return element;
+            a0=(Token)match(input,NAME,FOLLOW_NAME_in_parse_edu_ustb_sei_mde_xmu2_ReflectiveVariableDeclaration9592); if (state.failed) return element;
 
             if ( state.backtracking==0 ) {
             			if (terminateParsing) {
@@ -26798,7 +27333,7 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1960]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1988]);
             	}
 
             }
@@ -26821,7 +27356,7 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
 
     // $ANTLR start "parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode"
-    // Xmu2.g:11238:1: parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode returns [edu.ustb.sei.mde.xmu2.pattern.ReflectivePatternNode element = null] : (a0_0= parse_edu_ustb_sei_mde_xmu2_ReflectiveVariableDeclaration ) a1= '[' ( (a2= '#' )? ) (a5_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression |a5_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression |a5_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a5_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a5_4= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression ) a6= ']' ( (a7= '{' ( ( (a8_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ( (a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ) )* ) )? a11= '}' ) )? ;
+    // Xmu2.g:11357:1: parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode returns [edu.ustb.sei.mde.xmu2.pattern.ReflectivePatternNode element = null] : (a0_0= parse_edu_ustb_sei_mde_xmu2_ReflectiveVariableDeclaration ) a1= '[' ( (a2= '#' )? ) (a5_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression |a5_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression |a5_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a5_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a5_4= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression ) a6= ']' ( (a7= '{' ( ( (a8_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ( (a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ) )* ) )? a11= '}' ) )? ;
     public final edu.ustb.sei.mde.xmu2.pattern.ReflectivePatternNode parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode() throws RecognitionException {
         edu.ustb.sei.mde.xmu2.pattern.ReflectivePatternNode element =  null;
 
@@ -26855,13 +27390,13 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 48) ) { return element; }
 
-            // Xmu2.g:11241:2: ( (a0_0= parse_edu_ustb_sei_mde_xmu2_ReflectiveVariableDeclaration ) a1= '[' ( (a2= '#' )? ) (a5_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression |a5_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression |a5_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a5_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a5_4= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression ) a6= ']' ( (a7= '{' ( ( (a8_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ( (a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ) )* ) )? a11= '}' ) )? )
-            // Xmu2.g:11242:2: (a0_0= parse_edu_ustb_sei_mde_xmu2_ReflectiveVariableDeclaration ) a1= '[' ( (a2= '#' )? ) (a5_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression |a5_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression |a5_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a5_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a5_4= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression ) a6= ']' ( (a7= '{' ( ( (a8_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ( (a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ) )* ) )? a11= '}' ) )?
+            // Xmu2.g:11360:2: ( (a0_0= parse_edu_ustb_sei_mde_xmu2_ReflectiveVariableDeclaration ) a1= '[' ( (a2= '#' )? ) (a5_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression |a5_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression |a5_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a5_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a5_4= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression ) a6= ']' ( (a7= '{' ( ( (a8_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ( (a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ) )* ) )? a11= '}' ) )? )
+            // Xmu2.g:11361:2: (a0_0= parse_edu_ustb_sei_mde_xmu2_ReflectiveVariableDeclaration ) a1= '[' ( (a2= '#' )? ) (a5_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression |a5_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression |a5_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a5_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a5_4= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression ) a6= ']' ( (a7= '{' ( ( (a8_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ( (a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ) )* ) )? a11= '}' ) )?
             {
-            // Xmu2.g:11242:2: (a0_0= parse_edu_ustb_sei_mde_xmu2_ReflectiveVariableDeclaration )
-            // Xmu2.g:11243:3: a0_0= parse_edu_ustb_sei_mde_xmu2_ReflectiveVariableDeclaration
+            // Xmu2.g:11361:2: (a0_0= parse_edu_ustb_sei_mde_xmu2_ReflectiveVariableDeclaration )
+            // Xmu2.g:11362:3: a0_0= parse_edu_ustb_sei_mde_xmu2_ReflectiveVariableDeclaration
             {
-            pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_ReflectiveVariableDeclaration_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9515);
+            pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_ReflectiveVariableDeclaration_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9632);
             a0_0=parse_edu_ustb_sei_mde_xmu2_ReflectiveVariableDeclaration();
 
             state._fsp--;
@@ -26897,10 +27432,10 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1961]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1989]);
             	}
 
-            a1=(Token)match(input,37,FOLLOW_37_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9533); if (state.failed) return element;
+            a1=(Token)match(input,37,FOLLOW_37_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9650); if (state.failed) return element;
 
             if ( state.backtracking==0 ) {
             		if (element == null) {
@@ -26919,33 +27454,33 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1962]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1963]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1964]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1965]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1966]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1967]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1968]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1969]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1970]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1971]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1990]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1991]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1992]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1993]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1994]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1995]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1996]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1997]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1998]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1999]);
             	}
 
-            // Xmu2.g:11301:2: ( (a2= '#' )? )
-            // Xmu2.g:11302:3: (a2= '#' )?
+            // Xmu2.g:11420:2: ( (a2= '#' )? )
+            // Xmu2.g:11421:3: (a2= '#' )?
             {
-            // Xmu2.g:11302:3: (a2= '#' )?
-            int alt84=2;
-            int LA84_0 = input.LA(1);
+            // Xmu2.g:11421:3: (a2= '#' )?
+            int alt85=2;
+            int LA85_0 = input.LA(1);
 
-            if ( (LA84_0==16) ) {
-                alt84=1;
+            if ( (LA85_0==16) ) {
+                alt85=1;
             }
-            switch (alt84) {
+            switch (alt85) {
                 case 1 :
-                    // Xmu2.g:11303:4: a2= '#'
+                    // Xmu2.g:11422:4: a2= '#'
                     {
-                    a2=(Token)match(input,16,FOLLOW_16_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9556); if (state.failed) return element;
+                    a2=(Token)match(input,16,FOLLOW_16_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9673); if (state.failed) return element;
 
                     if ( state.backtracking==0 ) {
                     				if (element == null) {
@@ -26977,37 +27512,37 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1972]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1973]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1974]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1975]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1976]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1977]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1978]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1979]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1980]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2000]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2001]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2002]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2003]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2004]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2005]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2006]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2007]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2008]);
             	}
 
-            // Xmu2.g:11335:2: (a5_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression |a5_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression |a5_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a5_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a5_4= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression )
-            int alt85=5;
+            // Xmu2.g:11454:2: (a5_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression |a5_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression |a5_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a5_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a5_4= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression )
+            int alt86=5;
             switch ( input.LA(1) ) {
             case 57:
                 {
-                int LA85_1 = input.LA(2);
+                int LA86_1 = input.LA(2);
 
-                if ( (synpred268_Xmu2()) ) {
-                    alt85=1;
+                if ( (synpred273_Xmu2()) ) {
+                    alt86=1;
                 }
-                else if ( (synpred269_Xmu2()) ) {
-                    alt85=2;
+                else if ( (synpred274_Xmu2()) ) {
+                    alt86=2;
                 }
-                else if ( (synpred270_Xmu2()) ) {
-                    alt85=3;
+                else if ( (synpred275_Xmu2()) ) {
+                    alt86=3;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 85, 1, input);
+                        new NoViableAltException("", 86, 1, input);
 
                     throw nvae;
 
@@ -27016,21 +27551,21 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case 23:
                 {
-                int LA85_2 = input.LA(2);
+                int LA86_2 = input.LA(2);
 
-                if ( (synpred268_Xmu2()) ) {
-                    alt85=1;
+                if ( (synpred273_Xmu2()) ) {
+                    alt86=1;
                 }
-                else if ( (synpred269_Xmu2()) ) {
-                    alt85=2;
+                else if ( (synpred274_Xmu2()) ) {
+                    alt86=2;
                 }
-                else if ( (synpred270_Xmu2()) ) {
-                    alt85=3;
+                else if ( (synpred275_Xmu2()) ) {
+                    alt86=3;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 85, 2, input);
+                        new NoViableAltException("", 86, 2, input);
 
                     throw nvae;
 
@@ -27039,24 +27574,24 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case NAME:
                 {
-                int LA85_3 = input.LA(2);
+                int LA86_3 = input.LA(2);
 
-                if ( (synpred268_Xmu2()) ) {
-                    alt85=1;
+                if ( (synpred273_Xmu2()) ) {
+                    alt86=1;
                 }
-                else if ( (synpred269_Xmu2()) ) {
-                    alt85=2;
+                else if ( (synpred274_Xmu2()) ) {
+                    alt86=2;
                 }
-                else if ( (synpred271_Xmu2()) ) {
-                    alt85=4;
+                else if ( (synpred276_Xmu2()) ) {
+                    alt86=4;
                 }
                 else if ( (true) ) {
-                    alt85=5;
+                    alt86=5;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 85, 3, input);
+                        new NoViableAltException("", 86, 3, input);
 
                     throw nvae;
 
@@ -27065,24 +27600,24 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case 58:
                 {
-                int LA85_4 = input.LA(2);
+                int LA86_4 = input.LA(2);
 
-                if ( (synpred268_Xmu2()) ) {
-                    alt85=1;
+                if ( (synpred273_Xmu2()) ) {
+                    alt86=1;
                 }
-                else if ( (synpred269_Xmu2()) ) {
-                    alt85=2;
+                else if ( (synpred274_Xmu2()) ) {
+                    alt86=2;
                 }
-                else if ( (synpred271_Xmu2()) ) {
-                    alt85=4;
+                else if ( (synpred276_Xmu2()) ) {
+                    alt86=4;
                 }
                 else if ( (true) ) {
-                    alt85=5;
+                    alt86=5;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 85, 4, input);
+                        new NoViableAltException("", 86, 4, input);
 
                     throw nvae;
 
@@ -27091,24 +27626,24 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case 66:
                 {
-                int LA85_5 = input.LA(2);
+                int LA86_5 = input.LA(2);
 
-                if ( (synpred268_Xmu2()) ) {
-                    alt85=1;
+                if ( (synpred273_Xmu2()) ) {
+                    alt86=1;
                 }
-                else if ( (synpred269_Xmu2()) ) {
-                    alt85=2;
+                else if ( (synpred274_Xmu2()) ) {
+                    alt86=2;
                 }
-                else if ( (synpred271_Xmu2()) ) {
-                    alt85=4;
+                else if ( (synpred276_Xmu2()) ) {
+                    alt86=4;
                 }
                 else if ( (true) ) {
-                    alt85=5;
+                    alt86=5;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 85, 5, input);
+                        new NoViableAltException("", 86, 5, input);
 
                     throw nvae;
 
@@ -27117,24 +27652,24 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case QUOTED_39_39_92:
                 {
-                int LA85_6 = input.LA(2);
+                int LA86_6 = input.LA(2);
 
-                if ( (synpred268_Xmu2()) ) {
-                    alt85=1;
+                if ( (synpred273_Xmu2()) ) {
+                    alt86=1;
                 }
-                else if ( (synpred269_Xmu2()) ) {
-                    alt85=2;
+                else if ( (synpred274_Xmu2()) ) {
+                    alt86=2;
                 }
-                else if ( (synpred271_Xmu2()) ) {
-                    alt85=4;
+                else if ( (synpred276_Xmu2()) ) {
+                    alt86=4;
                 }
                 else if ( (true) ) {
-                    alt85=5;
+                    alt86=5;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 85, 6, input);
+                        new NoViableAltException("", 86, 6, input);
 
                     throw nvae;
 
@@ -27143,24 +27678,24 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case NUMBER:
                 {
-                int LA85_7 = input.LA(2);
+                int LA86_7 = input.LA(2);
 
-                if ( (synpred268_Xmu2()) ) {
-                    alt85=1;
+                if ( (synpred273_Xmu2()) ) {
+                    alt86=1;
                 }
-                else if ( (synpred269_Xmu2()) ) {
-                    alt85=2;
+                else if ( (synpred274_Xmu2()) ) {
+                    alt86=2;
                 }
-                else if ( (synpred271_Xmu2()) ) {
-                    alt85=4;
+                else if ( (synpred276_Xmu2()) ) {
+                    alt86=4;
                 }
                 else if ( (true) ) {
-                    alt85=5;
+                    alt86=5;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 85, 7, input);
+                        new NoViableAltException("", 86, 7, input);
 
                     throw nvae;
 
@@ -27169,24 +27704,24 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case BOOLEAN:
                 {
-                int LA85_8 = input.LA(2);
+                int LA86_8 = input.LA(2);
 
-                if ( (synpred268_Xmu2()) ) {
-                    alt85=1;
+                if ( (synpred273_Xmu2()) ) {
+                    alt86=1;
                 }
-                else if ( (synpred269_Xmu2()) ) {
-                    alt85=2;
+                else if ( (synpred274_Xmu2()) ) {
+                    alt86=2;
                 }
-                else if ( (synpred271_Xmu2()) ) {
-                    alt85=4;
+                else if ( (synpred276_Xmu2()) ) {
+                    alt86=4;
                 }
                 else if ( (true) ) {
-                    alt85=5;
+                    alt86=5;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 85, 8, input);
+                        new NoViableAltException("", 86, 8, input);
 
                     throw nvae;
 
@@ -27195,24 +27730,24 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case TYPE:
                 {
-                int LA85_9 = input.LA(2);
+                int LA86_9 = input.LA(2);
 
-                if ( (synpred268_Xmu2()) ) {
-                    alt85=1;
+                if ( (synpred273_Xmu2()) ) {
+                    alt86=1;
                 }
-                else if ( (synpred269_Xmu2()) ) {
-                    alt85=2;
+                else if ( (synpred274_Xmu2()) ) {
+                    alt86=2;
                 }
-                else if ( (synpred271_Xmu2()) ) {
-                    alt85=4;
+                else if ( (synpred276_Xmu2()) ) {
+                    alt86=4;
                 }
                 else if ( (true) ) {
-                    alt85=5;
+                    alt86=5;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 85, 9, input);
+                        new NoViableAltException("", 86, 9, input);
 
                     throw nvae;
 
@@ -27221,24 +27756,24 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case OBJ_URI:
                 {
-                int LA85_10 = input.LA(2);
+                int LA86_10 = input.LA(2);
 
-                if ( (synpred268_Xmu2()) ) {
-                    alt85=1;
+                if ( (synpred273_Xmu2()) ) {
+                    alt86=1;
                 }
-                else if ( (synpred269_Xmu2()) ) {
-                    alt85=2;
+                else if ( (synpred274_Xmu2()) ) {
+                    alt86=2;
                 }
-                else if ( (synpred271_Xmu2()) ) {
-                    alt85=4;
+                else if ( (synpred276_Xmu2()) ) {
+                    alt86=4;
                 }
                 else if ( (true) ) {
-                    alt85=5;
+                    alt86=5;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 85, 10, input);
+                        new NoViableAltException("", 86, 10, input);
 
                     throw nvae;
 
@@ -27247,24 +27782,24 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case 17:
                 {
-                int LA85_11 = input.LA(2);
+                int LA86_11 = input.LA(2);
 
-                if ( (synpred268_Xmu2()) ) {
-                    alt85=1;
+                if ( (synpred273_Xmu2()) ) {
+                    alt86=1;
                 }
-                else if ( (synpred269_Xmu2()) ) {
-                    alt85=2;
+                else if ( (synpred274_Xmu2()) ) {
+                    alt86=2;
                 }
-                else if ( (synpred271_Xmu2()) ) {
-                    alt85=4;
+                else if ( (synpred276_Xmu2()) ) {
+                    alt86=4;
                 }
                 else if ( (true) ) {
-                    alt85=5;
+                    alt86=5;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 85, 11, input);
+                        new NoViableAltException("", 86, 11, input);
 
                     throw nvae;
 
@@ -27274,17 +27809,17 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
             default:
                 if (state.backtracking>0) {state.failed=true; return element;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 85, 0, input);
+                    new NoViableAltException("", 86, 0, input);
 
                 throw nvae;
 
             }
 
-            switch (alt85) {
+            switch (alt86) {
                 case 1 :
-                    // Xmu2.g:11336:3: a5_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression
+                    // Xmu2.g:11455:3: a5_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9581);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9698);
                     a5_0=parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression();
 
                     state._fsp--;
@@ -27318,9 +27853,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Xmu2.g:11360:6: a5_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression
+                    // Xmu2.g:11479:6: a5_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9595);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9712);
                     a5_1=parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression();
 
                     state._fsp--;
@@ -27354,9 +27889,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 3 :
-                    // Xmu2.g:11384:6: a5_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression
+                    // Xmu2.g:11503:6: a5_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9609);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9726);
                     a5_2=parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression();
 
                     state._fsp--;
@@ -27390,9 +27925,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 4 :
-                    // Xmu2.g:11408:6: a5_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression
+                    // Xmu2.g:11527:6: a5_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9623);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9740);
                     a5_3=parse_edu_ustb_sei_mde_xmu2_expression_PathExpression();
 
                     state._fsp--;
@@ -27426,9 +27961,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 5 :
-                    // Xmu2.g:11432:6: a5_4= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression
+                    // Xmu2.g:11551:6: a5_4= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9637);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9754);
                     a5_4=parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression();
 
                     state._fsp--;
@@ -27467,10 +28002,10 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1981]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2009]);
             	}
 
-            a6=(Token)match(input,38,FOLLOW_38_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9655); if (state.failed) return element;
+            a6=(Token)match(input,38,FOLLOW_38_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9772); if (state.failed) return element;
 
             if ( state.backtracking==0 ) {
             		if (element == null) {
@@ -27489,76 +28024,76 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1982]);
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1983]);
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1984]);
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1985]);
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1986]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1987]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1988]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1989]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1990]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1991]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1992]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1993]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1994]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1995]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1996]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1997]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1998]);
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[1999]);
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2000]);
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2001]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2002]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2003]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2004]);
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2005]);
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2006]);
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2007]);
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2008]);
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2009]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2010]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2011]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2012]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2013]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2014]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2015]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2016]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2017]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2018]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2019]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2020]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2021]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2022]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2023]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2024]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2025]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2026]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2027]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2028]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2029]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2030]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2031]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2032]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2033]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2034]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2035]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2036]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2037]);
             	}
 
-            // Xmu2.g:11508:2: ( (a7= '{' ( ( (a8_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ( (a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ) )* ) )? a11= '}' ) )?
-            int alt88=2;
-            int LA88_0 = input.LA(1);
+            // Xmu2.g:11627:2: ( (a7= '{' ( ( (a8_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ( (a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ) )* ) )? a11= '}' ) )?
+            int alt89=2;
+            int LA89_0 = input.LA(1);
 
-            if ( (LA88_0==72) ) {
+            if ( (LA89_0==72) ) {
                 switch ( input.LA(2) ) {
                     case NAME:
                         {
-                        int LA88_3 = input.LA(3);
+                        int LA89_3 = input.LA(3);
 
-                        if ( (LA88_3==24||LA88_3==33) ) {
-                            alt88=1;
+                        if ( (LA89_3==24||LA89_3==33) ) {
+                            alt89=1;
                         }
                         }
                         break;
                     case 37:
                         {
-                        alt88=1;
+                        alt89=1;
                         }
                         break;
                     case 74:
                         {
-                        int LA88_5 = input.LA(3);
+                        int LA89_5 = input.LA(3);
 
-                        if ( (synpred274_Xmu2()) ) {
-                            alt88=1;
+                        if ( (synpred279_Xmu2()) ) {
+                            alt89=1;
                         }
                         }
                         break;
                 }
 
             }
-            switch (alt88) {
+            switch (alt89) {
                 case 1 :
-                    // Xmu2.g:11509:3: (a7= '{' ( ( (a8_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ( (a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ) )* ) )? a11= '}' )
+                    // Xmu2.g:11628:3: (a7= '{' ( ( (a8_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ( (a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ) )* ) )? a11= '}' )
                     {
-                    // Xmu2.g:11509:3: (a7= '{' ( ( (a8_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ( (a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ) )* ) )? a11= '}' )
-                    // Xmu2.g:11510:4: a7= '{' ( ( (a8_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ( (a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ) )* ) )? a11= '}'
+                    // Xmu2.g:11628:3: (a7= '{' ( ( (a8_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ( (a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ) )* ) )? a11= '}' )
+                    // Xmu2.g:11629:4: a7= '{' ( ( (a8_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ( (a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ) )* ) )? a11= '}'
                     {
-                    a7=(Token)match(input,72,FOLLOW_72_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9678); if (state.failed) return element;
+                    a7=(Token)match(input,72,FOLLOW_72_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9795); if (state.failed) return element;
 
                     if ( state.backtracking==0 ) {
                     				if (element == null) {
@@ -27577,31 +28112,31 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
                     if ( state.backtracking==0 ) {
                     				// expected elements (follow set)
-                    				addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2010]);
-                    				addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2011]);
-                    				addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2012]);
-                    				addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2013]);
-                    				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2014]);
+                    				addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2038]);
+                    				addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2039]);
+                    				addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2040]);
+                    				addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2041]);
+                    				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2042]);
                     			}
 
-                    // Xmu2.g:11533:4: ( ( (a8_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ( (a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ) )* ) )?
-                    int alt87=2;
-                    int LA87_0 = input.LA(1);
+                    // Xmu2.g:11652:4: ( ( (a8_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ( (a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ) )* ) )?
+                    int alt88=2;
+                    int LA88_0 = input.LA(1);
 
-                    if ( (LA87_0==NAME||LA87_0==37) ) {
-                        alt87=1;
+                    if ( (LA88_0==NAME||LA88_0==37) ) {
+                        alt88=1;
                     }
-                    switch (alt87) {
+                    switch (alt88) {
                         case 1 :
-                            // Xmu2.g:11534:5: ( (a8_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ( (a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ) )* )
+                            // Xmu2.g:11653:5: ( (a8_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ( (a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ) )* )
                             {
-                            // Xmu2.g:11534:5: ( (a8_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ( (a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ) )* )
-                            // Xmu2.g:11535:6: (a8_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ( (a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ) )*
+                            // Xmu2.g:11653:5: ( (a8_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ( (a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ) )* )
+                            // Xmu2.g:11654:6: (a8_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ( (a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ) )*
                             {
-                            // Xmu2.g:11535:6: (a8_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression )
-                            // Xmu2.g:11536:7: a8_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression
+                            // Xmu2.g:11654:6: (a8_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression )
+                            // Xmu2.g:11655:7: a8_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression
                             {
-                            pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9719);
+                            pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9836);
                             a8_0=parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression();
 
                             state._fsp--;
@@ -27637,29 +28172,29 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
                             if ( state.backtracking==0 ) {
                             						// expected elements (follow set)
-                            						addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2015]);
-                            						addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2016]);
+                            						addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2043]);
+                            						addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2044]);
                             					}
 
-                            // Xmu2.g:11567:6: ( (a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ) )*
-                            loop86:
+                            // Xmu2.g:11686:6: ( (a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ) )*
+                            loop87:
                             do {
-                                int alt86=2;
-                                int LA86_0 = input.LA(1);
+                                int alt87=2;
+                                int LA87_0 = input.LA(1);
 
-                                if ( (LA86_0==22) ) {
-                                    alt86=1;
+                                if ( (LA87_0==22) ) {
+                                    alt87=1;
                                 }
 
 
-                                switch (alt86) {
+                                switch (alt87) {
                             	case 1 :
-                            	    // Xmu2.g:11568:7: (a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) )
+                            	    // Xmu2.g:11687:7: (a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) )
                             	    {
-                            	    // Xmu2.g:11568:7: (a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) )
-                            	    // Xmu2.g:11569:8: a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression )
+                            	    // Xmu2.g:11687:7: (a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) )
+                            	    // Xmu2.g:11688:8: a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression )
                             	    {
-                            	    a9=(Token)match(input,22,FOLLOW_22_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9774); if (state.failed) return element;
+                            	    a9=(Token)match(input,22,FOLLOW_22_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9891); if (state.failed) return element;
 
                             	    if ( state.backtracking==0 ) {
                             	    								if (element == null) {
@@ -27678,16 +28213,16 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
                             	    if ( state.backtracking==0 ) {
                             	    								// expected elements (follow set)
-                            	    								addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2017]);
-                            	    								addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2018]);
-                            	    								addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2019]);
-                            	    								addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2020]);
+                            	    								addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2045]);
+                            	    								addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2046]);
+                            	    								addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2047]);
+                            	    								addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePatternNode(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2048]);
                             	    							}
 
-                            	    // Xmu2.g:11591:8: (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression )
-                            	    // Xmu2.g:11592:9: a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression
+                            	    // Xmu2.g:11710:8: (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression )
+                            	    // Xmu2.g:11711:9: a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression
                             	    {
-                            	    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9816);
+                            	    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9933);
                             	    a10_0=parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression();
 
                             	    state._fsp--;
@@ -27723,8 +28258,8 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
                             	    if ( state.backtracking==0 ) {
                             	    								// expected elements (follow set)
-                            	    								addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2021]);
-                            	    								addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2022]);
+                            	    								addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2049]);
+                            	    								addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2050]);
                             	    							}
 
                             	    }
@@ -27734,15 +28269,15 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                             	    break;
 
                             	default :
-                            	    break loop86;
+                            	    break loop87;
                                 }
                             } while (true);
 
 
                             if ( state.backtracking==0 ) {
                             						// expected elements (follow set)
-                            						addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2023]);
-                            						addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2024]);
+                            						addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2051]);
+                            						addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2052]);
                             					}
 
                             }
@@ -27756,10 +28291,10 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
                     if ( state.backtracking==0 ) {
                     				// expected elements (follow set)
-                    				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2025]);
+                    				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2053]);
                     			}
 
-                    a11=(Token)match(input,74,FOLLOW_74_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9920); if (state.failed) return element;
+                    a11=(Token)match(input,74,FOLLOW_74_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode10037); if (state.failed) return element;
 
                     if ( state.backtracking==0 ) {
                     				if (element == null) {
@@ -27778,33 +28313,33 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
                     if ( state.backtracking==0 ) {
                     				// expected elements (follow set)
-                    				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2026]);
-                    				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2027]);
-                    				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2028]);
-                    				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2029]);
-                    				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2030]);
-                    				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2031]);
-                    				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2032]);
-                    				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2033]);
-                    				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2034]);
-                    				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2035]);
-                    				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2036]);
-                    				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2037]);
-                    				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2038]);
-                    				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2039]);
-                    				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2040]);
-                    				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2041]);
-                    				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2042]);
-                    				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2043]);
-                    				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2044]);
-                    				addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2045]);
-                    				addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2046]);
-                    				addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2047]);
-                    				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2048]);
-                    				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2049]);
-                    				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2050]);
-                    				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2051]);
-                    				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2052]);
+                    				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2054]);
+                    				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2055]);
+                    				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2056]);
+                    				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2057]);
+                    				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2058]);
+                    				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2059]);
+                    				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2060]);
+                    				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2061]);
+                    				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2062]);
+                    				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2063]);
+                    				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2064]);
+                    				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2065]);
+                    				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2066]);
+                    				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2067]);
+                    				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2068]);
+                    				addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2069]);
+                    				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2070]);
+                    				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2071]);
+                    				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2072]);
+                    				addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2073]);
+                    				addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2074]);
+                    				addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2075]);
+                    				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2076]);
+                    				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2077]);
+                    				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2078]);
+                    				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2079]);
+                    				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2080]);
                     			}
 
                     }
@@ -27818,33 +28353,33 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2053]);
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2054]);
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2055]);
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2056]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2057]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2058]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2059]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2060]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2061]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2062]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2063]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2064]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2065]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2066]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2067]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2068]);
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2069]);
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2070]);
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2071]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2072]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2073]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2074]);
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2075]);
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2076]);
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2077]);
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2078]);
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2079]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2081]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2082]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2083]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2084]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2085]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2086]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2087]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2088]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2089]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2090]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2091]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2092]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2093]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2094]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2095]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2096]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2097]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2098]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2099]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2100]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2101]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2102]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2103]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2104]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2105]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2106]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2107]);
             	}
 
             }
@@ -27867,7 +28402,7 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
 
     // $ANTLR start "parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression"
-    // Xmu2.g:11718:1: parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression returns [edu.ustb.sei.mde.xmu2.pattern.ReflectiveObjectPatternExpression element = null] : a0= '[' ( (a1= '#' )? ) (a4_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression |a4_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression |a4_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a4_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a4_4= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression ) a5= ']' ( ( (a6_0= parse_edu_ustb_sei_mde_xmu2_expression_LoopPath ) ) )? ( ( (a7_0= parse_edu_ustb_sei_mde_xmu2_expression_PositionPath ) ) )? a8= '=' ( (a9= '?' )? ) (a12_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternNode ) ;
+    // Xmu2.g:11837:1: parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression returns [edu.ustb.sei.mde.xmu2.pattern.ReflectiveObjectPatternExpression element = null] : a0= '[' ( (a1= '#' )? ) (a4_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression |a4_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression |a4_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a4_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a4_4= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression ) a5= ']' ( ( (a6_0= parse_edu_ustb_sei_mde_xmu2_expression_LoopPath ) ) )? ( ( (a7_0= parse_edu_ustb_sei_mde_xmu2_expression_PositionPath ) ) )? a8= '=' ( (a9= '?' )? ) (a12_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternNode ) ;
     public final edu.ustb.sei.mde.xmu2.pattern.ReflectiveObjectPatternExpression parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression() throws RecognitionException {
         edu.ustb.sei.mde.xmu2.pattern.ReflectiveObjectPatternExpression element =  null;
 
@@ -27900,10 +28435,10 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 49) ) { return element; }
 
-            // Xmu2.g:11721:2: (a0= '[' ( (a1= '#' )? ) (a4_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression |a4_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression |a4_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a4_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a4_4= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression ) a5= ']' ( ( (a6_0= parse_edu_ustb_sei_mde_xmu2_expression_LoopPath ) ) )? ( ( (a7_0= parse_edu_ustb_sei_mde_xmu2_expression_PositionPath ) ) )? a8= '=' ( (a9= '?' )? ) (a12_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternNode ) )
-            // Xmu2.g:11722:2: a0= '[' ( (a1= '#' )? ) (a4_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression |a4_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression |a4_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a4_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a4_4= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression ) a5= ']' ( ( (a6_0= parse_edu_ustb_sei_mde_xmu2_expression_LoopPath ) ) )? ( ( (a7_0= parse_edu_ustb_sei_mde_xmu2_expression_PositionPath ) ) )? a8= '=' ( (a9= '?' )? ) (a12_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternNode )
+            // Xmu2.g:11840:2: (a0= '[' ( (a1= '#' )? ) (a4_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression |a4_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression |a4_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a4_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a4_4= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression ) a5= ']' ( ( (a6_0= parse_edu_ustb_sei_mde_xmu2_expression_LoopPath ) ) )? ( ( (a7_0= parse_edu_ustb_sei_mde_xmu2_expression_PositionPath ) ) )? a8= '=' ( (a9= '?' )? ) (a12_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternNode ) )
+            // Xmu2.g:11841:2: a0= '[' ( (a1= '#' )? ) (a4_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression |a4_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression |a4_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a4_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a4_4= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression ) a5= ']' ( ( (a6_0= parse_edu_ustb_sei_mde_xmu2_expression_LoopPath ) ) )? ( ( (a7_0= parse_edu_ustb_sei_mde_xmu2_expression_PositionPath ) ) )? a8= '=' ( (a9= '?' )? ) (a12_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternNode )
             {
-            a0=(Token)match(input,37,FOLLOW_37_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression9968); if (state.failed) return element;
+            a0=(Token)match(input,37,FOLLOW_37_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression10085); if (state.failed) return element;
 
             if ( state.backtracking==0 ) {
             		if (element == null) {
@@ -27927,33 +28462,33 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2080]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2081]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2082]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2083]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2084]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2085]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2086]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2087]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2088]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2089]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2108]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2109]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2110]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2111]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2112]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2113]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2114]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2115]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2116]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2117]);
             	}
 
-            // Xmu2.g:11755:2: ( (a1= '#' )? )
-            // Xmu2.g:11756:3: (a1= '#' )?
+            // Xmu2.g:11874:2: ( (a1= '#' )? )
+            // Xmu2.g:11875:3: (a1= '#' )?
             {
-            // Xmu2.g:11756:3: (a1= '#' )?
-            int alt89=2;
-            int LA89_0 = input.LA(1);
+            // Xmu2.g:11875:3: (a1= '#' )?
+            int alt90=2;
+            int LA90_0 = input.LA(1);
 
-            if ( (LA89_0==16) ) {
-                alt89=1;
+            if ( (LA90_0==16) ) {
+                alt90=1;
             }
-            switch (alt89) {
+            switch (alt90) {
                 case 1 :
-                    // Xmu2.g:11757:4: a1= '#'
+                    // Xmu2.g:11876:4: a1= '#'
                     {
-                    a1=(Token)match(input,16,FOLLOW_16_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression9991); if (state.failed) return element;
+                    a1=(Token)match(input,16,FOLLOW_16_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression10108); if (state.failed) return element;
 
                     if ( state.backtracking==0 ) {
                     				if (element == null) {
@@ -27990,37 +28525,37 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2090]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2091]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2092]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2093]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2094]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2095]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2096]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2097]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2098]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2118]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2119]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2120]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2121]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2122]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2123]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2124]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2125]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2126]);
             	}
 
-            // Xmu2.g:11794:2: (a4_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression |a4_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression |a4_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a4_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a4_4= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression )
-            int alt90=5;
+            // Xmu2.g:11913:2: (a4_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression |a4_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression |a4_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a4_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a4_4= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression )
+            int alt91=5;
             switch ( input.LA(1) ) {
             case 57:
                 {
-                int LA90_1 = input.LA(2);
+                int LA91_1 = input.LA(2);
 
-                if ( (synpred276_Xmu2()) ) {
-                    alt90=1;
+                if ( (synpred281_Xmu2()) ) {
+                    alt91=1;
                 }
-                else if ( (synpred277_Xmu2()) ) {
-                    alt90=2;
+                else if ( (synpred282_Xmu2()) ) {
+                    alt91=2;
                 }
-                else if ( (synpred278_Xmu2()) ) {
-                    alt90=3;
+                else if ( (synpred283_Xmu2()) ) {
+                    alt91=3;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 90, 1, input);
+                        new NoViableAltException("", 91, 1, input);
 
                     throw nvae;
 
@@ -28029,21 +28564,21 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case 23:
                 {
-                int LA90_2 = input.LA(2);
+                int LA91_2 = input.LA(2);
 
-                if ( (synpred276_Xmu2()) ) {
-                    alt90=1;
+                if ( (synpred281_Xmu2()) ) {
+                    alt91=1;
                 }
-                else if ( (synpred277_Xmu2()) ) {
-                    alt90=2;
+                else if ( (synpred282_Xmu2()) ) {
+                    alt91=2;
                 }
-                else if ( (synpred278_Xmu2()) ) {
-                    alt90=3;
+                else if ( (synpred283_Xmu2()) ) {
+                    alt91=3;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 90, 2, input);
+                        new NoViableAltException("", 91, 2, input);
 
                     throw nvae;
 
@@ -28052,24 +28587,24 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case NAME:
                 {
-                int LA90_3 = input.LA(2);
+                int LA91_3 = input.LA(2);
 
-                if ( (synpred276_Xmu2()) ) {
-                    alt90=1;
+                if ( (synpred281_Xmu2()) ) {
+                    alt91=1;
                 }
-                else if ( (synpred277_Xmu2()) ) {
-                    alt90=2;
+                else if ( (synpred282_Xmu2()) ) {
+                    alt91=2;
                 }
-                else if ( (synpred279_Xmu2()) ) {
-                    alt90=4;
+                else if ( (synpred284_Xmu2()) ) {
+                    alt91=4;
                 }
                 else if ( (true) ) {
-                    alt90=5;
+                    alt91=5;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 90, 3, input);
+                        new NoViableAltException("", 91, 3, input);
 
                     throw nvae;
 
@@ -28078,24 +28613,24 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case 58:
                 {
-                int LA90_4 = input.LA(2);
+                int LA91_4 = input.LA(2);
 
-                if ( (synpred276_Xmu2()) ) {
-                    alt90=1;
+                if ( (synpred281_Xmu2()) ) {
+                    alt91=1;
                 }
-                else if ( (synpred277_Xmu2()) ) {
-                    alt90=2;
+                else if ( (synpred282_Xmu2()) ) {
+                    alt91=2;
                 }
-                else if ( (synpred279_Xmu2()) ) {
-                    alt90=4;
+                else if ( (synpred284_Xmu2()) ) {
+                    alt91=4;
                 }
                 else if ( (true) ) {
-                    alt90=5;
+                    alt91=5;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 90, 4, input);
+                        new NoViableAltException("", 91, 4, input);
 
                     throw nvae;
 
@@ -28104,24 +28639,24 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case 66:
                 {
-                int LA90_5 = input.LA(2);
+                int LA91_5 = input.LA(2);
 
-                if ( (synpred276_Xmu2()) ) {
-                    alt90=1;
+                if ( (synpred281_Xmu2()) ) {
+                    alt91=1;
                 }
-                else if ( (synpred277_Xmu2()) ) {
-                    alt90=2;
+                else if ( (synpred282_Xmu2()) ) {
+                    alt91=2;
                 }
-                else if ( (synpred279_Xmu2()) ) {
-                    alt90=4;
+                else if ( (synpred284_Xmu2()) ) {
+                    alt91=4;
                 }
                 else if ( (true) ) {
-                    alt90=5;
+                    alt91=5;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 90, 5, input);
+                        new NoViableAltException("", 91, 5, input);
 
                     throw nvae;
 
@@ -28130,24 +28665,24 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case QUOTED_39_39_92:
                 {
-                int LA90_6 = input.LA(2);
+                int LA91_6 = input.LA(2);
 
-                if ( (synpred276_Xmu2()) ) {
-                    alt90=1;
+                if ( (synpred281_Xmu2()) ) {
+                    alt91=1;
                 }
-                else if ( (synpred277_Xmu2()) ) {
-                    alt90=2;
+                else if ( (synpred282_Xmu2()) ) {
+                    alt91=2;
                 }
-                else if ( (synpred279_Xmu2()) ) {
-                    alt90=4;
+                else if ( (synpred284_Xmu2()) ) {
+                    alt91=4;
                 }
                 else if ( (true) ) {
-                    alt90=5;
+                    alt91=5;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 90, 6, input);
+                        new NoViableAltException("", 91, 6, input);
 
                     throw nvae;
 
@@ -28156,24 +28691,24 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case NUMBER:
                 {
-                int LA90_7 = input.LA(2);
+                int LA91_7 = input.LA(2);
 
-                if ( (synpred276_Xmu2()) ) {
-                    alt90=1;
+                if ( (synpred281_Xmu2()) ) {
+                    alt91=1;
                 }
-                else if ( (synpred277_Xmu2()) ) {
-                    alt90=2;
+                else if ( (synpred282_Xmu2()) ) {
+                    alt91=2;
                 }
-                else if ( (synpred279_Xmu2()) ) {
-                    alt90=4;
+                else if ( (synpred284_Xmu2()) ) {
+                    alt91=4;
                 }
                 else if ( (true) ) {
-                    alt90=5;
+                    alt91=5;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 90, 7, input);
+                        new NoViableAltException("", 91, 7, input);
 
                     throw nvae;
 
@@ -28182,24 +28717,24 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case BOOLEAN:
                 {
-                int LA90_8 = input.LA(2);
+                int LA91_8 = input.LA(2);
 
-                if ( (synpred276_Xmu2()) ) {
-                    alt90=1;
+                if ( (synpred281_Xmu2()) ) {
+                    alt91=1;
                 }
-                else if ( (synpred277_Xmu2()) ) {
-                    alt90=2;
+                else if ( (synpred282_Xmu2()) ) {
+                    alt91=2;
                 }
-                else if ( (synpred279_Xmu2()) ) {
-                    alt90=4;
+                else if ( (synpred284_Xmu2()) ) {
+                    alt91=4;
                 }
                 else if ( (true) ) {
-                    alt90=5;
+                    alt91=5;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 90, 8, input);
+                        new NoViableAltException("", 91, 8, input);
 
                     throw nvae;
 
@@ -28208,24 +28743,24 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case TYPE:
                 {
-                int LA90_9 = input.LA(2);
+                int LA91_9 = input.LA(2);
 
-                if ( (synpred276_Xmu2()) ) {
-                    alt90=1;
+                if ( (synpred281_Xmu2()) ) {
+                    alt91=1;
                 }
-                else if ( (synpred277_Xmu2()) ) {
-                    alt90=2;
+                else if ( (synpred282_Xmu2()) ) {
+                    alt91=2;
                 }
-                else if ( (synpred279_Xmu2()) ) {
-                    alt90=4;
+                else if ( (synpred284_Xmu2()) ) {
+                    alt91=4;
                 }
                 else if ( (true) ) {
-                    alt90=5;
+                    alt91=5;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 90, 9, input);
+                        new NoViableAltException("", 91, 9, input);
 
                     throw nvae;
 
@@ -28234,24 +28769,24 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case OBJ_URI:
                 {
-                int LA90_10 = input.LA(2);
+                int LA91_10 = input.LA(2);
 
-                if ( (synpred276_Xmu2()) ) {
-                    alt90=1;
+                if ( (synpred281_Xmu2()) ) {
+                    alt91=1;
                 }
-                else if ( (synpred277_Xmu2()) ) {
-                    alt90=2;
+                else if ( (synpred282_Xmu2()) ) {
+                    alt91=2;
                 }
-                else if ( (synpred279_Xmu2()) ) {
-                    alt90=4;
+                else if ( (synpred284_Xmu2()) ) {
+                    alt91=4;
                 }
                 else if ( (true) ) {
-                    alt90=5;
+                    alt91=5;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 90, 10, input);
+                        new NoViableAltException("", 91, 10, input);
 
                     throw nvae;
 
@@ -28260,24 +28795,24 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case 17:
                 {
-                int LA90_11 = input.LA(2);
+                int LA91_11 = input.LA(2);
 
-                if ( (synpred276_Xmu2()) ) {
-                    alt90=1;
+                if ( (synpred281_Xmu2()) ) {
+                    alt91=1;
                 }
-                else if ( (synpred277_Xmu2()) ) {
-                    alt90=2;
+                else if ( (synpred282_Xmu2()) ) {
+                    alt91=2;
                 }
-                else if ( (synpred279_Xmu2()) ) {
-                    alt90=4;
+                else if ( (synpred284_Xmu2()) ) {
+                    alt91=4;
                 }
                 else if ( (true) ) {
-                    alt90=5;
+                    alt91=5;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 90, 11, input);
+                        new NoViableAltException("", 91, 11, input);
 
                     throw nvae;
 
@@ -28287,17 +28822,17 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
             default:
                 if (state.backtracking>0) {state.failed=true; return element;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 90, 0, input);
+                    new NoViableAltException("", 91, 0, input);
 
                 throw nvae;
 
             }
 
-            switch (alt90) {
+            switch (alt91) {
                 case 1 :
-                    // Xmu2.g:11795:3: a4_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression
+                    // Xmu2.g:11914:3: a4_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression10016);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression10133);
                     a4_0=parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression();
 
                     state._fsp--;
@@ -28336,9 +28871,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Xmu2.g:11824:6: a4_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression
+                    // Xmu2.g:11943:6: a4_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression10030);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression10147);
                     a4_1=parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression();
 
                     state._fsp--;
@@ -28377,9 +28912,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 3 :
-                    // Xmu2.g:11853:6: a4_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression
+                    // Xmu2.g:11972:6: a4_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression10044);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression10161);
                     a4_2=parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression();
 
                     state._fsp--;
@@ -28418,9 +28953,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 4 :
-                    // Xmu2.g:11882:6: a4_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression
+                    // Xmu2.g:12001:6: a4_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression10058);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression10175);
                     a4_3=parse_edu_ustb_sei_mde_xmu2_expression_PathExpression();
 
                     state._fsp--;
@@ -28459,9 +28994,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 5 :
-                    // Xmu2.g:11911:6: a4_4= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression
+                    // Xmu2.g:12030:6: a4_4= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression10072);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression10189);
                     a4_4=parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression();
 
                     state._fsp--;
@@ -28505,10 +29040,10 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2099]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2127]);
             	}
 
-            a5=(Token)match(input,38,FOLLOW_38_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression10090); if (state.failed) return element;
+            a5=(Token)match(input,38,FOLLOW_38_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression10207); if (state.failed) return element;
 
             if ( state.backtracking==0 ) {
             		if (element == null) {
@@ -28532,33 +29067,33 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2100]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2101]);
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2102]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2128]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2129]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2130]);
             	}
 
-            // Xmu2.g:11972:2: ( ( (a6_0= parse_edu_ustb_sei_mde_xmu2_expression_LoopPath ) ) )?
-            int alt91=2;
-            int LA91_0 = input.LA(1);
+            // Xmu2.g:12091:2: ( ( (a6_0= parse_edu_ustb_sei_mde_xmu2_expression_LoopPath ) ) )?
+            int alt92=2;
+            int LA92_0 = input.LA(1);
 
-            if ( (LA91_0==24) ) {
-                int LA91_1 = input.LA(2);
+            if ( (LA92_0==24) ) {
+                int LA92_1 = input.LA(2);
 
-                if ( (LA91_1==47||LA91_1==50||LA91_1==62) ) {
-                    alt91=1;
+                if ( (LA92_1==47||LA92_1==50||LA92_1==62) ) {
+                    alt92=1;
                 }
             }
-            switch (alt91) {
+            switch (alt92) {
                 case 1 :
-                    // Xmu2.g:11973:3: ( (a6_0= parse_edu_ustb_sei_mde_xmu2_expression_LoopPath ) )
+                    // Xmu2.g:12092:3: ( (a6_0= parse_edu_ustb_sei_mde_xmu2_expression_LoopPath ) )
                     {
-                    // Xmu2.g:11973:3: ( (a6_0= parse_edu_ustb_sei_mde_xmu2_expression_LoopPath ) )
-                    // Xmu2.g:11974:4: (a6_0= parse_edu_ustb_sei_mde_xmu2_expression_LoopPath )
+                    // Xmu2.g:12092:3: ( (a6_0= parse_edu_ustb_sei_mde_xmu2_expression_LoopPath ) )
+                    // Xmu2.g:12093:4: (a6_0= parse_edu_ustb_sei_mde_xmu2_expression_LoopPath )
                     {
-                    // Xmu2.g:11974:4: (a6_0= parse_edu_ustb_sei_mde_xmu2_expression_LoopPath )
-                    // Xmu2.g:11975:5: a6_0= parse_edu_ustb_sei_mde_xmu2_expression_LoopPath
+                    // Xmu2.g:12093:4: (a6_0= parse_edu_ustb_sei_mde_xmu2_expression_LoopPath )
+                    // Xmu2.g:12094:5: a6_0= parse_edu_ustb_sei_mde_xmu2_expression_LoopPath
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_LoopPath_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression10119);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_LoopPath_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression10236);
                     a6_0=parse_edu_ustb_sei_mde_xmu2_expression_LoopPath();
 
                     state._fsp--;
@@ -28599,8 +29134,8 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
                     if ( state.backtracking==0 ) {
                     				// expected elements (follow set)
-                    				addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2103]);
-                    				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2104]);
+                    				addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2131]);
+                    				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2132]);
                     			}
 
                     }
@@ -28614,28 +29149,28 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2105]);
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2106]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2133]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2134]);
             	}
 
-            // Xmu2.g:12019:2: ( ( (a7_0= parse_edu_ustb_sei_mde_xmu2_expression_PositionPath ) ) )?
-            int alt92=2;
-            int LA92_0 = input.LA(1);
+            // Xmu2.g:12138:2: ( ( (a7_0= parse_edu_ustb_sei_mde_xmu2_expression_PositionPath ) ) )?
+            int alt93=2;
+            int LA93_0 = input.LA(1);
 
-            if ( (LA92_0==24) ) {
-                alt92=1;
+            if ( (LA93_0==24) ) {
+                alt93=1;
             }
-            switch (alt92) {
+            switch (alt93) {
                 case 1 :
-                    // Xmu2.g:12020:3: ( (a7_0= parse_edu_ustb_sei_mde_xmu2_expression_PositionPath ) )
+                    // Xmu2.g:12139:3: ( (a7_0= parse_edu_ustb_sei_mde_xmu2_expression_PositionPath ) )
                     {
-                    // Xmu2.g:12020:3: ( (a7_0= parse_edu_ustb_sei_mde_xmu2_expression_PositionPath ) )
-                    // Xmu2.g:12021:4: (a7_0= parse_edu_ustb_sei_mde_xmu2_expression_PositionPath )
+                    // Xmu2.g:12139:3: ( (a7_0= parse_edu_ustb_sei_mde_xmu2_expression_PositionPath ) )
+                    // Xmu2.g:12140:4: (a7_0= parse_edu_ustb_sei_mde_xmu2_expression_PositionPath )
                     {
-                    // Xmu2.g:12021:4: (a7_0= parse_edu_ustb_sei_mde_xmu2_expression_PositionPath )
-                    // Xmu2.g:12022:5: a7_0= parse_edu_ustb_sei_mde_xmu2_expression_PositionPath
+                    // Xmu2.g:12140:4: (a7_0= parse_edu_ustb_sei_mde_xmu2_expression_PositionPath )
+                    // Xmu2.g:12141:5: a7_0= parse_edu_ustb_sei_mde_xmu2_expression_PositionPath
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PositionPath_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression10175);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PositionPath_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression10292);
                     a7_0=parse_edu_ustb_sei_mde_xmu2_expression_PositionPath();
 
                     state._fsp--;
@@ -28676,7 +29211,7 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
                     if ( state.backtracking==0 ) {
                     				// expected elements (follow set)
-                    				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2107]);
+                    				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2135]);
                     			}
 
                     }
@@ -28690,10 +29225,10 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2108]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2136]);
             	}
 
-            a8=(Token)match(input,33,FOLLOW_33_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression10216); if (state.failed) return element;
+            a8=(Token)match(input,33,FOLLOW_33_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression10333); if (state.failed) return element;
 
             if ( state.backtracking==0 ) {
             		if (element == null) {
@@ -28717,26 +29252,26 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2109]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2110]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2111]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2137]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2138]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2139]);
             	}
 
-            // Xmu2.g:12090:2: ( (a9= '?' )? )
-            // Xmu2.g:12091:3: (a9= '?' )?
+            // Xmu2.g:12209:2: ( (a9= '?' )? )
+            // Xmu2.g:12210:3: (a9= '?' )?
             {
-            // Xmu2.g:12091:3: (a9= '?' )?
-            int alt93=2;
-            int LA93_0 = input.LA(1);
+            // Xmu2.g:12210:3: (a9= '?' )?
+            int alt94=2;
+            int LA94_0 = input.LA(1);
 
-            if ( (LA93_0==36) ) {
-                alt93=1;
+            if ( (LA94_0==36) ) {
+                alt94=1;
             }
-            switch (alt93) {
+            switch (alt94) {
                 case 1 :
-                    // Xmu2.g:12092:4: a9= '?'
+                    // Xmu2.g:12211:4: a9= '?'
                     {
-                    a9=(Token)match(input,36,FOLLOW_36_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression10239); if (state.failed) return element;
+                    a9=(Token)match(input,36,FOLLOW_36_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression10356); if (state.failed) return element;
 
                     if ( state.backtracking==0 ) {
                     				if (element == null) {
@@ -28773,14 +29308,14 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2112]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2113]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2140]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectiveObjectPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2141]);
             	}
 
-            // Xmu2.g:12122:2: (a12_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternNode )
-            // Xmu2.g:12123:3: a12_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternNode
+            // Xmu2.g:12241:2: (a12_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternNode )
+            // Xmu2.g:12242:3: a12_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternNode
             {
-            pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_pattern_PatternNode_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression10264);
+            pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_pattern_PatternNode_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression10381);
             a12_0=parse_edu_ustb_sei_mde_xmu2_pattern_PatternNode();
 
             state._fsp--;
@@ -28821,10 +29356,10 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2114]);
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2115]);
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2116]);
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2117]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2142]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2143]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2144]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2145]);
             	}
 
             }
@@ -28847,7 +29382,7 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
 
     // $ANTLR start "parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression"
-    // Xmu2.g:12163:1: parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression returns [edu.ustb.sei.mde.xmu2.pattern.ReflectivePropertyPatternExpression element = null] : a0= '[' ( (a1= '#' )? ) (a4_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression |a4_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression |a4_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a4_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a4_4= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression ) a5= ']' ( ( (a6_0= parse_edu_ustb_sei_mde_xmu2_expression_LoopPath ) ) )? ( ( (a7_0= parse_edu_ustb_sei_mde_xmu2_expression_PositionPath ) ) )? a8= '=' ( (a9= '?' )? ) (a12_0= parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression |a12_1= parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression |a12_2= parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression |a12_3= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression |a12_4= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression |a12_5= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a12_6= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a12_7= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression ) ;
+    // Xmu2.g:12282:1: parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression returns [edu.ustb.sei.mde.xmu2.pattern.ReflectivePropertyPatternExpression element = null] : a0= '[' ( (a1= '#' )? ) (a4_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression |a4_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression |a4_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a4_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a4_4= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression ) a5= ']' ( ( (a6_0= parse_edu_ustb_sei_mde_xmu2_expression_LoopPath ) ) )? ( ( (a7_0= parse_edu_ustb_sei_mde_xmu2_expression_PositionPath ) ) )? a8= '=' ( (a9= '?' )? ) (a12_0= parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression |a12_1= parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression |a12_2= parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression |a12_3= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression |a12_4= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression |a12_5= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a12_6= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a12_7= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression ) ;
     public final edu.ustb.sei.mde.xmu2.pattern.ReflectivePropertyPatternExpression parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression() throws RecognitionException {
         edu.ustb.sei.mde.xmu2.pattern.ReflectivePropertyPatternExpression element =  null;
 
@@ -28894,10 +29429,10 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 50) ) { return element; }
 
-            // Xmu2.g:12166:2: (a0= '[' ( (a1= '#' )? ) (a4_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression |a4_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression |a4_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a4_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a4_4= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression ) a5= ']' ( ( (a6_0= parse_edu_ustb_sei_mde_xmu2_expression_LoopPath ) ) )? ( ( (a7_0= parse_edu_ustb_sei_mde_xmu2_expression_PositionPath ) ) )? a8= '=' ( (a9= '?' )? ) (a12_0= parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression |a12_1= parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression |a12_2= parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression |a12_3= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression |a12_4= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression |a12_5= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a12_6= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a12_7= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression ) )
-            // Xmu2.g:12167:2: a0= '[' ( (a1= '#' )? ) (a4_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression |a4_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression |a4_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a4_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a4_4= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression ) a5= ']' ( ( (a6_0= parse_edu_ustb_sei_mde_xmu2_expression_LoopPath ) ) )? ( ( (a7_0= parse_edu_ustb_sei_mde_xmu2_expression_PositionPath ) ) )? a8= '=' ( (a9= '?' )? ) (a12_0= parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression |a12_1= parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression |a12_2= parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression |a12_3= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression |a12_4= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression |a12_5= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a12_6= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a12_7= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression )
+            // Xmu2.g:12285:2: (a0= '[' ( (a1= '#' )? ) (a4_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression |a4_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression |a4_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a4_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a4_4= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression ) a5= ']' ( ( (a6_0= parse_edu_ustb_sei_mde_xmu2_expression_LoopPath ) ) )? ( ( (a7_0= parse_edu_ustb_sei_mde_xmu2_expression_PositionPath ) ) )? a8= '=' ( (a9= '?' )? ) (a12_0= parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression |a12_1= parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression |a12_2= parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression |a12_3= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression |a12_4= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression |a12_5= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a12_6= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a12_7= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression ) )
+            // Xmu2.g:12286:2: a0= '[' ( (a1= '#' )? ) (a4_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression |a4_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression |a4_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a4_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a4_4= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression ) a5= ']' ( ( (a6_0= parse_edu_ustb_sei_mde_xmu2_expression_LoopPath ) ) )? ( ( (a7_0= parse_edu_ustb_sei_mde_xmu2_expression_PositionPath ) ) )? a8= '=' ( (a9= '?' )? ) (a12_0= parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression |a12_1= parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression |a12_2= parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression |a12_3= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression |a12_4= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression |a12_5= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a12_6= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a12_7= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression )
             {
-            a0=(Token)match(input,37,FOLLOW_37_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10297); if (state.failed) return element;
+            a0=(Token)match(input,37,FOLLOW_37_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10414); if (state.failed) return element;
 
             if ( state.backtracking==0 ) {
             		if (element == null) {
@@ -28921,33 +29456,33 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2118]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2119]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2120]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2121]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2122]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2123]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2124]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2125]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2126]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2127]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2146]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2147]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2148]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2149]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2150]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2151]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2152]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2153]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2154]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2155]);
             	}
 
-            // Xmu2.g:12200:2: ( (a1= '#' )? )
-            // Xmu2.g:12201:3: (a1= '#' )?
+            // Xmu2.g:12319:2: ( (a1= '#' )? )
+            // Xmu2.g:12320:3: (a1= '#' )?
             {
-            // Xmu2.g:12201:3: (a1= '#' )?
-            int alt94=2;
-            int LA94_0 = input.LA(1);
+            // Xmu2.g:12320:3: (a1= '#' )?
+            int alt95=2;
+            int LA95_0 = input.LA(1);
 
-            if ( (LA94_0==16) ) {
-                alt94=1;
+            if ( (LA95_0==16) ) {
+                alt95=1;
             }
-            switch (alt94) {
+            switch (alt95) {
                 case 1 :
-                    // Xmu2.g:12202:4: a1= '#'
+                    // Xmu2.g:12321:4: a1= '#'
                     {
-                    a1=(Token)match(input,16,FOLLOW_16_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10320); if (state.failed) return element;
+                    a1=(Token)match(input,16,FOLLOW_16_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10437); if (state.failed) return element;
 
                     if ( state.backtracking==0 ) {
                     				if (element == null) {
@@ -28984,37 +29519,37 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2128]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2129]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2130]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2131]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2132]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2133]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2134]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2135]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2136]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2156]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2157]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2158]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2159]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2160]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2161]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2162]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2163]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2164]);
             	}
 
-            // Xmu2.g:12239:2: (a4_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression |a4_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression |a4_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a4_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a4_4= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression )
-            int alt95=5;
+            // Xmu2.g:12358:2: (a4_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression |a4_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression |a4_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a4_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a4_4= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression )
+            int alt96=5;
             switch ( input.LA(1) ) {
             case 57:
                 {
-                int LA95_1 = input.LA(2);
+                int LA96_1 = input.LA(2);
 
-                if ( (synpred284_Xmu2()) ) {
-                    alt95=1;
+                if ( (synpred289_Xmu2()) ) {
+                    alt96=1;
                 }
-                else if ( (synpred285_Xmu2()) ) {
-                    alt95=2;
+                else if ( (synpred290_Xmu2()) ) {
+                    alt96=2;
                 }
-                else if ( (synpred286_Xmu2()) ) {
-                    alt95=3;
+                else if ( (synpred291_Xmu2()) ) {
+                    alt96=3;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 95, 1, input);
+                        new NoViableAltException("", 96, 1, input);
 
                     throw nvae;
 
@@ -29023,21 +29558,21 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case 23:
                 {
-                int LA95_2 = input.LA(2);
+                int LA96_2 = input.LA(2);
 
-                if ( (synpred284_Xmu2()) ) {
-                    alt95=1;
+                if ( (synpred289_Xmu2()) ) {
+                    alt96=1;
                 }
-                else if ( (synpred285_Xmu2()) ) {
-                    alt95=2;
+                else if ( (synpred290_Xmu2()) ) {
+                    alt96=2;
                 }
-                else if ( (synpred286_Xmu2()) ) {
-                    alt95=3;
+                else if ( (synpred291_Xmu2()) ) {
+                    alt96=3;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 95, 2, input);
+                        new NoViableAltException("", 96, 2, input);
 
                     throw nvae;
 
@@ -29046,24 +29581,24 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case NAME:
                 {
-                int LA95_3 = input.LA(2);
+                int LA96_3 = input.LA(2);
 
-                if ( (synpred284_Xmu2()) ) {
-                    alt95=1;
+                if ( (synpred289_Xmu2()) ) {
+                    alt96=1;
                 }
-                else if ( (synpred285_Xmu2()) ) {
-                    alt95=2;
+                else if ( (synpred290_Xmu2()) ) {
+                    alt96=2;
                 }
-                else if ( (synpred287_Xmu2()) ) {
-                    alt95=4;
+                else if ( (synpred292_Xmu2()) ) {
+                    alt96=4;
                 }
                 else if ( (true) ) {
-                    alt95=5;
+                    alt96=5;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 95, 3, input);
+                        new NoViableAltException("", 96, 3, input);
 
                     throw nvae;
 
@@ -29072,24 +29607,24 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case 58:
                 {
-                int LA95_4 = input.LA(2);
+                int LA96_4 = input.LA(2);
 
-                if ( (synpred284_Xmu2()) ) {
-                    alt95=1;
+                if ( (synpred289_Xmu2()) ) {
+                    alt96=1;
                 }
-                else if ( (synpred285_Xmu2()) ) {
-                    alt95=2;
+                else if ( (synpred290_Xmu2()) ) {
+                    alt96=2;
                 }
-                else if ( (synpred287_Xmu2()) ) {
-                    alt95=4;
+                else if ( (synpred292_Xmu2()) ) {
+                    alt96=4;
                 }
                 else if ( (true) ) {
-                    alt95=5;
+                    alt96=5;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 95, 4, input);
+                        new NoViableAltException("", 96, 4, input);
 
                     throw nvae;
 
@@ -29098,24 +29633,24 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case 66:
                 {
-                int LA95_5 = input.LA(2);
+                int LA96_5 = input.LA(2);
 
-                if ( (synpred284_Xmu2()) ) {
-                    alt95=1;
+                if ( (synpred289_Xmu2()) ) {
+                    alt96=1;
                 }
-                else if ( (synpred285_Xmu2()) ) {
-                    alt95=2;
+                else if ( (synpred290_Xmu2()) ) {
+                    alt96=2;
                 }
-                else if ( (synpred287_Xmu2()) ) {
-                    alt95=4;
+                else if ( (synpred292_Xmu2()) ) {
+                    alt96=4;
                 }
                 else if ( (true) ) {
-                    alt95=5;
+                    alt96=5;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 95, 5, input);
+                        new NoViableAltException("", 96, 5, input);
 
                     throw nvae;
 
@@ -29124,24 +29659,24 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case QUOTED_39_39_92:
                 {
-                int LA95_6 = input.LA(2);
+                int LA96_6 = input.LA(2);
 
-                if ( (synpred284_Xmu2()) ) {
-                    alt95=1;
+                if ( (synpred289_Xmu2()) ) {
+                    alt96=1;
                 }
-                else if ( (synpred285_Xmu2()) ) {
-                    alt95=2;
+                else if ( (synpred290_Xmu2()) ) {
+                    alt96=2;
                 }
-                else if ( (synpred287_Xmu2()) ) {
-                    alt95=4;
+                else if ( (synpred292_Xmu2()) ) {
+                    alt96=4;
                 }
                 else if ( (true) ) {
-                    alt95=5;
+                    alt96=5;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 95, 6, input);
+                        new NoViableAltException("", 96, 6, input);
 
                     throw nvae;
 
@@ -29150,24 +29685,24 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case NUMBER:
                 {
-                int LA95_7 = input.LA(2);
+                int LA96_7 = input.LA(2);
 
-                if ( (synpred284_Xmu2()) ) {
-                    alt95=1;
+                if ( (synpred289_Xmu2()) ) {
+                    alt96=1;
                 }
-                else if ( (synpred285_Xmu2()) ) {
-                    alt95=2;
+                else if ( (synpred290_Xmu2()) ) {
+                    alt96=2;
                 }
-                else if ( (synpred287_Xmu2()) ) {
-                    alt95=4;
+                else if ( (synpred292_Xmu2()) ) {
+                    alt96=4;
                 }
                 else if ( (true) ) {
-                    alt95=5;
+                    alt96=5;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 95, 7, input);
+                        new NoViableAltException("", 96, 7, input);
 
                     throw nvae;
 
@@ -29176,24 +29711,24 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case BOOLEAN:
                 {
-                int LA95_8 = input.LA(2);
+                int LA96_8 = input.LA(2);
 
-                if ( (synpred284_Xmu2()) ) {
-                    alt95=1;
+                if ( (synpred289_Xmu2()) ) {
+                    alt96=1;
                 }
-                else if ( (synpred285_Xmu2()) ) {
-                    alt95=2;
+                else if ( (synpred290_Xmu2()) ) {
+                    alt96=2;
                 }
-                else if ( (synpred287_Xmu2()) ) {
-                    alt95=4;
+                else if ( (synpred292_Xmu2()) ) {
+                    alt96=4;
                 }
                 else if ( (true) ) {
-                    alt95=5;
+                    alt96=5;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 95, 8, input);
+                        new NoViableAltException("", 96, 8, input);
 
                     throw nvae;
 
@@ -29202,24 +29737,24 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case TYPE:
                 {
-                int LA95_9 = input.LA(2);
+                int LA96_9 = input.LA(2);
 
-                if ( (synpred284_Xmu2()) ) {
-                    alt95=1;
+                if ( (synpred289_Xmu2()) ) {
+                    alt96=1;
                 }
-                else if ( (synpred285_Xmu2()) ) {
-                    alt95=2;
+                else if ( (synpred290_Xmu2()) ) {
+                    alt96=2;
                 }
-                else if ( (synpred287_Xmu2()) ) {
-                    alt95=4;
+                else if ( (synpred292_Xmu2()) ) {
+                    alt96=4;
                 }
                 else if ( (true) ) {
-                    alt95=5;
+                    alt96=5;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 95, 9, input);
+                        new NoViableAltException("", 96, 9, input);
 
                     throw nvae;
 
@@ -29228,24 +29763,24 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case OBJ_URI:
                 {
-                int LA95_10 = input.LA(2);
+                int LA96_10 = input.LA(2);
 
-                if ( (synpred284_Xmu2()) ) {
-                    alt95=1;
+                if ( (synpred289_Xmu2()) ) {
+                    alt96=1;
                 }
-                else if ( (synpred285_Xmu2()) ) {
-                    alt95=2;
+                else if ( (synpred290_Xmu2()) ) {
+                    alt96=2;
                 }
-                else if ( (synpred287_Xmu2()) ) {
-                    alt95=4;
+                else if ( (synpred292_Xmu2()) ) {
+                    alt96=4;
                 }
                 else if ( (true) ) {
-                    alt95=5;
+                    alt96=5;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 95, 10, input);
+                        new NoViableAltException("", 96, 10, input);
 
                     throw nvae;
 
@@ -29254,24 +29789,24 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case 17:
                 {
-                int LA95_11 = input.LA(2);
+                int LA96_11 = input.LA(2);
 
-                if ( (synpred284_Xmu2()) ) {
-                    alt95=1;
+                if ( (synpred289_Xmu2()) ) {
+                    alt96=1;
                 }
-                else if ( (synpred285_Xmu2()) ) {
-                    alt95=2;
+                else if ( (synpred290_Xmu2()) ) {
+                    alt96=2;
                 }
-                else if ( (synpred287_Xmu2()) ) {
-                    alt95=4;
+                else if ( (synpred292_Xmu2()) ) {
+                    alt96=4;
                 }
                 else if ( (true) ) {
-                    alt95=5;
+                    alt96=5;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 95, 11, input);
+                        new NoViableAltException("", 96, 11, input);
 
                     throw nvae;
 
@@ -29281,17 +29816,17 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
             default:
                 if (state.backtracking>0) {state.failed=true; return element;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 95, 0, input);
+                    new NoViableAltException("", 96, 0, input);
 
                 throw nvae;
 
             }
 
-            switch (alt95) {
+            switch (alt96) {
                 case 1 :
-                    // Xmu2.g:12240:3: a4_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression
+                    // Xmu2.g:12359:3: a4_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10345);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10462);
                     a4_0=parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression();
 
                     state._fsp--;
@@ -29330,9 +29865,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Xmu2.g:12269:6: a4_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression
+                    // Xmu2.g:12388:6: a4_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10359);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10476);
                     a4_1=parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression();
 
                     state._fsp--;
@@ -29371,9 +29906,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 3 :
-                    // Xmu2.g:12298:6: a4_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression
+                    // Xmu2.g:12417:6: a4_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10373);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10490);
                     a4_2=parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression();
 
                     state._fsp--;
@@ -29412,9 +29947,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 4 :
-                    // Xmu2.g:12327:6: a4_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression
+                    // Xmu2.g:12446:6: a4_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10387);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10504);
                     a4_3=parse_edu_ustb_sei_mde_xmu2_expression_PathExpression();
 
                     state._fsp--;
@@ -29453,9 +29988,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 5 :
-                    // Xmu2.g:12356:6: a4_4= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression
+                    // Xmu2.g:12475:6: a4_4= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10401);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10518);
                     a4_4=parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression();
 
                     state._fsp--;
@@ -29499,10 +30034,10 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2137]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2165]);
             	}
 
-            a5=(Token)match(input,38,FOLLOW_38_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10419); if (state.failed) return element;
+            a5=(Token)match(input,38,FOLLOW_38_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10536); if (state.failed) return element;
 
             if ( state.backtracking==0 ) {
             		if (element == null) {
@@ -29526,33 +30061,33 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2138]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2139]);
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2140]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2166]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2167]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2168]);
             	}
 
-            // Xmu2.g:12417:2: ( ( (a6_0= parse_edu_ustb_sei_mde_xmu2_expression_LoopPath ) ) )?
-            int alt96=2;
-            int LA96_0 = input.LA(1);
+            // Xmu2.g:12536:2: ( ( (a6_0= parse_edu_ustb_sei_mde_xmu2_expression_LoopPath ) ) )?
+            int alt97=2;
+            int LA97_0 = input.LA(1);
 
-            if ( (LA96_0==24) ) {
-                int LA96_1 = input.LA(2);
+            if ( (LA97_0==24) ) {
+                int LA97_1 = input.LA(2);
 
-                if ( (LA96_1==47||LA96_1==50||LA96_1==62) ) {
-                    alt96=1;
+                if ( (LA97_1==47||LA97_1==50||LA97_1==62) ) {
+                    alt97=1;
                 }
             }
-            switch (alt96) {
+            switch (alt97) {
                 case 1 :
-                    // Xmu2.g:12418:3: ( (a6_0= parse_edu_ustb_sei_mde_xmu2_expression_LoopPath ) )
+                    // Xmu2.g:12537:3: ( (a6_0= parse_edu_ustb_sei_mde_xmu2_expression_LoopPath ) )
                     {
-                    // Xmu2.g:12418:3: ( (a6_0= parse_edu_ustb_sei_mde_xmu2_expression_LoopPath ) )
-                    // Xmu2.g:12419:4: (a6_0= parse_edu_ustb_sei_mde_xmu2_expression_LoopPath )
+                    // Xmu2.g:12537:3: ( (a6_0= parse_edu_ustb_sei_mde_xmu2_expression_LoopPath ) )
+                    // Xmu2.g:12538:4: (a6_0= parse_edu_ustb_sei_mde_xmu2_expression_LoopPath )
                     {
-                    // Xmu2.g:12419:4: (a6_0= parse_edu_ustb_sei_mde_xmu2_expression_LoopPath )
-                    // Xmu2.g:12420:5: a6_0= parse_edu_ustb_sei_mde_xmu2_expression_LoopPath
+                    // Xmu2.g:12538:4: (a6_0= parse_edu_ustb_sei_mde_xmu2_expression_LoopPath )
+                    // Xmu2.g:12539:5: a6_0= parse_edu_ustb_sei_mde_xmu2_expression_LoopPath
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_LoopPath_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10448);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_LoopPath_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10565);
                     a6_0=parse_edu_ustb_sei_mde_xmu2_expression_LoopPath();
 
                     state._fsp--;
@@ -29593,8 +30128,8 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
                     if ( state.backtracking==0 ) {
                     				// expected elements (follow set)
-                    				addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2141]);
-                    				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2142]);
+                    				addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2169]);
+                    				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2170]);
                     			}
 
                     }
@@ -29608,28 +30143,28 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2143]);
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2144]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2171]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2172]);
             	}
 
-            // Xmu2.g:12464:2: ( ( (a7_0= parse_edu_ustb_sei_mde_xmu2_expression_PositionPath ) ) )?
-            int alt97=2;
-            int LA97_0 = input.LA(1);
+            // Xmu2.g:12583:2: ( ( (a7_0= parse_edu_ustb_sei_mde_xmu2_expression_PositionPath ) ) )?
+            int alt98=2;
+            int LA98_0 = input.LA(1);
 
-            if ( (LA97_0==24) ) {
-                alt97=1;
+            if ( (LA98_0==24) ) {
+                alt98=1;
             }
-            switch (alt97) {
+            switch (alt98) {
                 case 1 :
-                    // Xmu2.g:12465:3: ( (a7_0= parse_edu_ustb_sei_mde_xmu2_expression_PositionPath ) )
+                    // Xmu2.g:12584:3: ( (a7_0= parse_edu_ustb_sei_mde_xmu2_expression_PositionPath ) )
                     {
-                    // Xmu2.g:12465:3: ( (a7_0= parse_edu_ustb_sei_mde_xmu2_expression_PositionPath ) )
-                    // Xmu2.g:12466:4: (a7_0= parse_edu_ustb_sei_mde_xmu2_expression_PositionPath )
+                    // Xmu2.g:12584:3: ( (a7_0= parse_edu_ustb_sei_mde_xmu2_expression_PositionPath ) )
+                    // Xmu2.g:12585:4: (a7_0= parse_edu_ustb_sei_mde_xmu2_expression_PositionPath )
                     {
-                    // Xmu2.g:12466:4: (a7_0= parse_edu_ustb_sei_mde_xmu2_expression_PositionPath )
-                    // Xmu2.g:12467:5: a7_0= parse_edu_ustb_sei_mde_xmu2_expression_PositionPath
+                    // Xmu2.g:12585:4: (a7_0= parse_edu_ustb_sei_mde_xmu2_expression_PositionPath )
+                    // Xmu2.g:12586:5: a7_0= parse_edu_ustb_sei_mde_xmu2_expression_PositionPath
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PositionPath_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10504);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PositionPath_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10621);
                     a7_0=parse_edu_ustb_sei_mde_xmu2_expression_PositionPath();
 
                     state._fsp--;
@@ -29670,7 +30205,7 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
                     if ( state.backtracking==0 ) {
                     				// expected elements (follow set)
-                    				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2145]);
+                    				addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2173]);
                     			}
 
                     }
@@ -29684,10 +30219,10 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2146]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2174]);
             	}
 
-            a8=(Token)match(input,33,FOLLOW_33_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10545); if (state.failed) return element;
+            a8=(Token)match(input,33,FOLLOW_33_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10662); if (state.failed) return element;
 
             if ( state.backtracking==0 ) {
             		if (element == null) {
@@ -29711,33 +30246,33 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2147]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2148]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2149]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2150]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2151]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2152]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2153]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2154]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2155]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2156]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2175]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2176]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2177]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2178]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2179]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2180]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2181]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2182]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2183]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2184]);
             	}
 
-            // Xmu2.g:12542:2: ( (a9= '?' )? )
-            // Xmu2.g:12543:3: (a9= '?' )?
+            // Xmu2.g:12661:2: ( (a9= '?' )? )
+            // Xmu2.g:12662:3: (a9= '?' )?
             {
-            // Xmu2.g:12543:3: (a9= '?' )?
-            int alt98=2;
-            int LA98_0 = input.LA(1);
+            // Xmu2.g:12662:3: (a9= '?' )?
+            int alt99=2;
+            int LA99_0 = input.LA(1);
 
-            if ( (LA98_0==36) ) {
-                alt98=1;
+            if ( (LA99_0==36) ) {
+                alt99=1;
             }
-            switch (alt98) {
+            switch (alt99) {
                 case 1 :
-                    // Xmu2.g:12544:4: a9= '?'
+                    // Xmu2.g:12663:4: a9= '?'
                     {
-                    a9=(Token)match(input,36,FOLLOW_36_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10568); if (state.failed) return element;
+                    a9=(Token)match(input,36,FOLLOW_36_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10685); if (state.failed) return element;
 
                     if ( state.backtracking==0 ) {
                     				if (element == null) {
@@ -29774,46 +30309,46 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2157]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2158]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2159]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2160]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2161]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2162]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2163]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2164]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2165]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2185]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2186]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2187]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2188]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2189]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2190]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2191]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2192]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.pattern.PatternPackage.eINSTANCE.getReflectivePropertyPatternExpression(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2193]);
             	}
 
-            // Xmu2.g:12581:2: (a12_0= parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression |a12_1= parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression |a12_2= parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression |a12_3= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression |a12_4= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression |a12_5= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a12_6= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a12_7= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression )
-            int alt99=8;
+            // Xmu2.g:12700:2: (a12_0= parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression |a12_1= parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression |a12_2= parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression |a12_3= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression |a12_4= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression |a12_5= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a12_6= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a12_7= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression )
+            int alt100=8;
             switch ( input.LA(1) ) {
             case 57:
                 {
-                int LA99_1 = input.LA(2);
+                int LA100_1 = input.LA(2);
 
-                if ( (synpred291_Xmu2()) ) {
-                    alt99=1;
+                if ( (synpred296_Xmu2()) ) {
+                    alt100=1;
                 }
-                else if ( (synpred292_Xmu2()) ) {
-                    alt99=2;
+                else if ( (synpred297_Xmu2()) ) {
+                    alt100=2;
                 }
-                else if ( (synpred293_Xmu2()) ) {
-                    alt99=3;
+                else if ( (synpred298_Xmu2()) ) {
+                    alt100=3;
                 }
-                else if ( (synpred294_Xmu2()) ) {
-                    alt99=4;
+                else if ( (synpred299_Xmu2()) ) {
+                    alt100=4;
                 }
-                else if ( (synpred295_Xmu2()) ) {
-                    alt99=5;
+                else if ( (synpred300_Xmu2()) ) {
+                    alt100=5;
                 }
-                else if ( (synpred296_Xmu2()) ) {
-                    alt99=6;
+                else if ( (synpred301_Xmu2()) ) {
+                    alt100=6;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 99, 1, input);
+                        new NoViableAltException("", 100, 1, input);
 
                     throw nvae;
 
@@ -29822,30 +30357,30 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case 23:
                 {
-                int LA99_2 = input.LA(2);
+                int LA100_2 = input.LA(2);
 
-                if ( (synpred291_Xmu2()) ) {
-                    alt99=1;
+                if ( (synpred296_Xmu2()) ) {
+                    alt100=1;
                 }
-                else if ( (synpred292_Xmu2()) ) {
-                    alt99=2;
+                else if ( (synpred297_Xmu2()) ) {
+                    alt100=2;
                 }
-                else if ( (synpred293_Xmu2()) ) {
-                    alt99=3;
+                else if ( (synpred298_Xmu2()) ) {
+                    alt100=3;
                 }
-                else if ( (synpred294_Xmu2()) ) {
-                    alt99=4;
+                else if ( (synpred299_Xmu2()) ) {
+                    alt100=4;
                 }
-                else if ( (synpred295_Xmu2()) ) {
-                    alt99=5;
+                else if ( (synpred300_Xmu2()) ) {
+                    alt100=5;
                 }
-                else if ( (synpred296_Xmu2()) ) {
-                    alt99=6;
+                else if ( (synpred301_Xmu2()) ) {
+                    alt100=6;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 99, 2, input);
+                        new NoViableAltException("", 100, 2, input);
 
                     throw nvae;
 
@@ -29854,33 +30389,33 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case NAME:
                 {
-                int LA99_3 = input.LA(2);
+                int LA100_3 = input.LA(2);
 
-                if ( (synpred291_Xmu2()) ) {
-                    alt99=1;
-                }
-                else if ( (synpred292_Xmu2()) ) {
-                    alt99=2;
-                }
-                else if ( (synpred293_Xmu2()) ) {
-                    alt99=3;
-                }
-                else if ( (synpred294_Xmu2()) ) {
-                    alt99=4;
-                }
-                else if ( (synpred295_Xmu2()) ) {
-                    alt99=5;
+                if ( (synpred296_Xmu2()) ) {
+                    alt100=1;
                 }
                 else if ( (synpred297_Xmu2()) ) {
-                    alt99=7;
+                    alt100=2;
+                }
+                else if ( (synpred298_Xmu2()) ) {
+                    alt100=3;
+                }
+                else if ( (synpred299_Xmu2()) ) {
+                    alt100=4;
+                }
+                else if ( (synpred300_Xmu2()) ) {
+                    alt100=5;
+                }
+                else if ( (synpred302_Xmu2()) ) {
+                    alt100=7;
                 }
                 else if ( (true) ) {
-                    alt99=8;
+                    alt100=8;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 99, 3, input);
+                        new NoViableAltException("", 100, 3, input);
 
                     throw nvae;
 
@@ -29889,33 +30424,33 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case 58:
                 {
-                int LA99_4 = input.LA(2);
+                int LA100_4 = input.LA(2);
 
-                if ( (synpred291_Xmu2()) ) {
-                    alt99=1;
-                }
-                else if ( (synpred292_Xmu2()) ) {
-                    alt99=2;
-                }
-                else if ( (synpred293_Xmu2()) ) {
-                    alt99=3;
-                }
-                else if ( (synpred294_Xmu2()) ) {
-                    alt99=4;
-                }
-                else if ( (synpred295_Xmu2()) ) {
-                    alt99=5;
+                if ( (synpred296_Xmu2()) ) {
+                    alt100=1;
                 }
                 else if ( (synpred297_Xmu2()) ) {
-                    alt99=7;
+                    alt100=2;
+                }
+                else if ( (synpred298_Xmu2()) ) {
+                    alt100=3;
+                }
+                else if ( (synpred299_Xmu2()) ) {
+                    alt100=4;
+                }
+                else if ( (synpred300_Xmu2()) ) {
+                    alt100=5;
+                }
+                else if ( (synpred302_Xmu2()) ) {
+                    alt100=7;
                 }
                 else if ( (true) ) {
-                    alt99=8;
+                    alt100=8;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 99, 4, input);
+                        new NoViableAltException("", 100, 4, input);
 
                     throw nvae;
 
@@ -29924,33 +30459,33 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case 66:
                 {
-                int LA99_5 = input.LA(2);
+                int LA100_5 = input.LA(2);
 
-                if ( (synpred291_Xmu2()) ) {
-                    alt99=1;
-                }
-                else if ( (synpred292_Xmu2()) ) {
-                    alt99=2;
-                }
-                else if ( (synpred293_Xmu2()) ) {
-                    alt99=3;
-                }
-                else if ( (synpred294_Xmu2()) ) {
-                    alt99=4;
-                }
-                else if ( (synpred295_Xmu2()) ) {
-                    alt99=5;
+                if ( (synpred296_Xmu2()) ) {
+                    alt100=1;
                 }
                 else if ( (synpred297_Xmu2()) ) {
-                    alt99=7;
+                    alt100=2;
+                }
+                else if ( (synpred298_Xmu2()) ) {
+                    alt100=3;
+                }
+                else if ( (synpred299_Xmu2()) ) {
+                    alt100=4;
+                }
+                else if ( (synpred300_Xmu2()) ) {
+                    alt100=5;
+                }
+                else if ( (synpred302_Xmu2()) ) {
+                    alt100=7;
                 }
                 else if ( (true) ) {
-                    alt99=8;
+                    alt100=8;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 99, 5, input);
+                        new NoViableAltException("", 100, 5, input);
 
                     throw nvae;
 
@@ -29959,33 +30494,33 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case QUOTED_39_39_92:
                 {
-                int LA99_6 = input.LA(2);
+                int LA100_6 = input.LA(2);
 
-                if ( (synpred291_Xmu2()) ) {
-                    alt99=1;
-                }
-                else if ( (synpred292_Xmu2()) ) {
-                    alt99=2;
-                }
-                else if ( (synpred293_Xmu2()) ) {
-                    alt99=3;
-                }
-                else if ( (synpred294_Xmu2()) ) {
-                    alt99=4;
-                }
-                else if ( (synpred295_Xmu2()) ) {
-                    alt99=5;
+                if ( (synpred296_Xmu2()) ) {
+                    alt100=1;
                 }
                 else if ( (synpred297_Xmu2()) ) {
-                    alt99=7;
+                    alt100=2;
+                }
+                else if ( (synpred298_Xmu2()) ) {
+                    alt100=3;
+                }
+                else if ( (synpred299_Xmu2()) ) {
+                    alt100=4;
+                }
+                else if ( (synpred300_Xmu2()) ) {
+                    alt100=5;
+                }
+                else if ( (synpred302_Xmu2()) ) {
+                    alt100=7;
                 }
                 else if ( (true) ) {
-                    alt99=8;
+                    alt100=8;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 99, 6, input);
+                        new NoViableAltException("", 100, 6, input);
 
                     throw nvae;
 
@@ -29994,33 +30529,33 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case NUMBER:
                 {
-                int LA99_7 = input.LA(2);
+                int LA100_7 = input.LA(2);
 
-                if ( (synpred291_Xmu2()) ) {
-                    alt99=1;
-                }
-                else if ( (synpred292_Xmu2()) ) {
-                    alt99=2;
-                }
-                else if ( (synpred293_Xmu2()) ) {
-                    alt99=3;
-                }
-                else if ( (synpred294_Xmu2()) ) {
-                    alt99=4;
-                }
-                else if ( (synpred295_Xmu2()) ) {
-                    alt99=5;
+                if ( (synpred296_Xmu2()) ) {
+                    alt100=1;
                 }
                 else if ( (synpred297_Xmu2()) ) {
-                    alt99=7;
+                    alt100=2;
+                }
+                else if ( (synpred298_Xmu2()) ) {
+                    alt100=3;
+                }
+                else if ( (synpred299_Xmu2()) ) {
+                    alt100=4;
+                }
+                else if ( (synpred300_Xmu2()) ) {
+                    alt100=5;
+                }
+                else if ( (synpred302_Xmu2()) ) {
+                    alt100=7;
                 }
                 else if ( (true) ) {
-                    alt99=8;
+                    alt100=8;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 99, 7, input);
+                        new NoViableAltException("", 100, 7, input);
 
                     throw nvae;
 
@@ -30029,33 +30564,33 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case BOOLEAN:
                 {
-                int LA99_8 = input.LA(2);
+                int LA100_8 = input.LA(2);
 
-                if ( (synpred291_Xmu2()) ) {
-                    alt99=1;
-                }
-                else if ( (synpred292_Xmu2()) ) {
-                    alt99=2;
-                }
-                else if ( (synpred293_Xmu2()) ) {
-                    alt99=3;
-                }
-                else if ( (synpred294_Xmu2()) ) {
-                    alt99=4;
-                }
-                else if ( (synpred295_Xmu2()) ) {
-                    alt99=5;
+                if ( (synpred296_Xmu2()) ) {
+                    alt100=1;
                 }
                 else if ( (synpred297_Xmu2()) ) {
-                    alt99=7;
+                    alt100=2;
+                }
+                else if ( (synpred298_Xmu2()) ) {
+                    alt100=3;
+                }
+                else if ( (synpred299_Xmu2()) ) {
+                    alt100=4;
+                }
+                else if ( (synpred300_Xmu2()) ) {
+                    alt100=5;
+                }
+                else if ( (synpred302_Xmu2()) ) {
+                    alt100=7;
                 }
                 else if ( (true) ) {
-                    alt99=8;
+                    alt100=8;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 99, 8, input);
+                        new NoViableAltException("", 100, 8, input);
 
                     throw nvae;
 
@@ -30064,33 +30599,33 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case TYPE:
                 {
-                int LA99_9 = input.LA(2);
+                int LA100_9 = input.LA(2);
 
-                if ( (synpred291_Xmu2()) ) {
-                    alt99=1;
-                }
-                else if ( (synpred292_Xmu2()) ) {
-                    alt99=2;
-                }
-                else if ( (synpred293_Xmu2()) ) {
-                    alt99=3;
-                }
-                else if ( (synpred294_Xmu2()) ) {
-                    alt99=4;
-                }
-                else if ( (synpred295_Xmu2()) ) {
-                    alt99=5;
+                if ( (synpred296_Xmu2()) ) {
+                    alt100=1;
                 }
                 else if ( (synpred297_Xmu2()) ) {
-                    alt99=7;
+                    alt100=2;
+                }
+                else if ( (synpred298_Xmu2()) ) {
+                    alt100=3;
+                }
+                else if ( (synpred299_Xmu2()) ) {
+                    alt100=4;
+                }
+                else if ( (synpred300_Xmu2()) ) {
+                    alt100=5;
+                }
+                else if ( (synpred302_Xmu2()) ) {
+                    alt100=7;
                 }
                 else if ( (true) ) {
-                    alt99=8;
+                    alt100=8;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 99, 9, input);
+                        new NoViableAltException("", 100, 9, input);
 
                     throw nvae;
 
@@ -30099,33 +30634,33 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case OBJ_URI:
                 {
-                int LA99_10 = input.LA(2);
+                int LA100_10 = input.LA(2);
 
-                if ( (synpred291_Xmu2()) ) {
-                    alt99=1;
-                }
-                else if ( (synpred292_Xmu2()) ) {
-                    alt99=2;
-                }
-                else if ( (synpred293_Xmu2()) ) {
-                    alt99=3;
-                }
-                else if ( (synpred294_Xmu2()) ) {
-                    alt99=4;
-                }
-                else if ( (synpred295_Xmu2()) ) {
-                    alt99=5;
+                if ( (synpred296_Xmu2()) ) {
+                    alt100=1;
                 }
                 else if ( (synpred297_Xmu2()) ) {
-                    alt99=7;
+                    alt100=2;
+                }
+                else if ( (synpred298_Xmu2()) ) {
+                    alt100=3;
+                }
+                else if ( (synpred299_Xmu2()) ) {
+                    alt100=4;
+                }
+                else if ( (synpred300_Xmu2()) ) {
+                    alt100=5;
+                }
+                else if ( (synpred302_Xmu2()) ) {
+                    alt100=7;
                 }
                 else if ( (true) ) {
-                    alt99=8;
+                    alt100=8;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 99, 10, input);
+                        new NoViableAltException("", 100, 10, input);
 
                     throw nvae;
 
@@ -30134,33 +30669,33 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case 17:
                 {
-                int LA99_11 = input.LA(2);
+                int LA100_11 = input.LA(2);
 
-                if ( (synpred291_Xmu2()) ) {
-                    alt99=1;
-                }
-                else if ( (synpred292_Xmu2()) ) {
-                    alt99=2;
-                }
-                else if ( (synpred293_Xmu2()) ) {
-                    alt99=3;
-                }
-                else if ( (synpred294_Xmu2()) ) {
-                    alt99=4;
-                }
-                else if ( (synpred295_Xmu2()) ) {
-                    alt99=5;
+                if ( (synpred296_Xmu2()) ) {
+                    alt100=1;
                 }
                 else if ( (synpred297_Xmu2()) ) {
-                    alt99=7;
+                    alt100=2;
+                }
+                else if ( (synpred298_Xmu2()) ) {
+                    alt100=3;
+                }
+                else if ( (synpred299_Xmu2()) ) {
+                    alt100=4;
+                }
+                else if ( (synpred300_Xmu2()) ) {
+                    alt100=5;
+                }
+                else if ( (synpred302_Xmu2()) ) {
+                    alt100=7;
                 }
                 else if ( (true) ) {
-                    alt99=8;
+                    alt100=8;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 99, 11, input);
+                        new NoViableAltException("", 100, 11, input);
 
                     throw nvae;
 
@@ -30170,17 +30705,17 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
             default:
                 if (state.backtracking>0) {state.failed=true; return element;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 99, 0, input);
+                    new NoViableAltException("", 100, 0, input);
 
                 throw nvae;
 
             }
 
-            switch (alt99) {
+            switch (alt100) {
                 case 1 :
-                    // Xmu2.g:12582:3: a12_0= parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression
+                    // Xmu2.g:12701:3: a12_0= parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10593);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10710);
                     a12_0=parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression();
 
                     state._fsp--;
@@ -30219,9 +30754,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Xmu2.g:12611:6: a12_1= parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression
+                    // Xmu2.g:12730:6: a12_1= parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10607);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10724);
                     a12_1=parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression();
 
                     state._fsp--;
@@ -30260,9 +30795,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 3 :
-                    // Xmu2.g:12640:6: a12_2= parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression
+                    // Xmu2.g:12759:6: a12_2= parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10621);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10738);
                     a12_2=parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression();
 
                     state._fsp--;
@@ -30301,9 +30836,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 4 :
-                    // Xmu2.g:12669:6: a12_3= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression
+                    // Xmu2.g:12788:6: a12_3= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10635);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10752);
                     a12_3=parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression();
 
                     state._fsp--;
@@ -30342,9 +30877,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 5 :
-                    // Xmu2.g:12698:6: a12_4= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression
+                    // Xmu2.g:12817:6: a12_4= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10649);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10766);
                     a12_4=parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression();
 
                     state._fsp--;
@@ -30383,9 +30918,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 6 :
-                    // Xmu2.g:12727:6: a12_5= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression
+                    // Xmu2.g:12846:6: a12_5= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10663);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10780);
                     a12_5=parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression();
 
                     state._fsp--;
@@ -30424,9 +30959,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 7 :
-                    // Xmu2.g:12756:6: a12_6= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression
+                    // Xmu2.g:12875:6: a12_6= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10677);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10794);
                     a12_6=parse_edu_ustb_sei_mde_xmu2_expression_PathExpression();
 
                     state._fsp--;
@@ -30465,9 +31000,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 8 :
-                    // Xmu2.g:12785:6: a12_7= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression
+                    // Xmu2.g:12904:6: a12_7= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10691);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10808);
                     a12_7=parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression();
 
                     state._fsp--;
@@ -30511,10 +31046,10 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2166]);
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2167]);
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2168]);
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2169]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2194]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2195]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2196]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2197]);
             	}
 
             }
@@ -30537,7 +31072,7 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
 
     // $ANTLR start "parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement"
-    // Xmu2.g:12825:1: parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement returns [edu.ustb.sei.mde.xmu2.statement.ReflectiveDeleteLinkStatement element = null] : a0= 'delete' (a1_0= parse_edu_ustb_sei_mde_xmu2_expression_VariableExpression ) a2= '[' ( (a3= '#' )? ) (a6_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression |a6_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression |a6_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a6_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a6_4= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression ) a7= ']' a8= '=' (a9_0= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a9_1= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a9_2= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression ) ;
+    // Xmu2.g:12944:1: parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement returns [edu.ustb.sei.mde.xmu2.statement.ReflectiveDeleteLinkStatement element = null] : a0= 'delete' (a1_0= parse_edu_ustb_sei_mde_xmu2_expression_VariableExpression ) a2= '[' ( (a3= '#' )? ) (a6_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression |a6_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression |a6_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a6_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a6_4= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression ) a7= ']' a8= '=' (a9_0= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a9_1= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a9_2= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression ) ;
     public final edu.ustb.sei.mde.xmu2.statement.ReflectiveDeleteLinkStatement parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement() throws RecognitionException {
         edu.ustb.sei.mde.xmu2.statement.ReflectiveDeleteLinkStatement element =  null;
 
@@ -30572,10 +31107,10 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 51) ) { return element; }
 
-            // Xmu2.g:12828:2: (a0= 'delete' (a1_0= parse_edu_ustb_sei_mde_xmu2_expression_VariableExpression ) a2= '[' ( (a3= '#' )? ) (a6_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression |a6_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression |a6_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a6_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a6_4= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression ) a7= ']' a8= '=' (a9_0= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a9_1= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a9_2= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression ) )
-            // Xmu2.g:12829:2: a0= 'delete' (a1_0= parse_edu_ustb_sei_mde_xmu2_expression_VariableExpression ) a2= '[' ( (a3= '#' )? ) (a6_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression |a6_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression |a6_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a6_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a6_4= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression ) a7= ']' a8= '=' (a9_0= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a9_1= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a9_2= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression )
+            // Xmu2.g:12947:2: (a0= 'delete' (a1_0= parse_edu_ustb_sei_mde_xmu2_expression_VariableExpression ) a2= '[' ( (a3= '#' )? ) (a6_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression |a6_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression |a6_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a6_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a6_4= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression ) a7= ']' a8= '=' (a9_0= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a9_1= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a9_2= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression ) )
+            // Xmu2.g:12948:2: a0= 'delete' (a1_0= parse_edu_ustb_sei_mde_xmu2_expression_VariableExpression ) a2= '[' ( (a3= '#' )? ) (a6_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression |a6_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression |a6_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a6_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a6_4= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression ) a7= ']' a8= '=' (a9_0= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a9_1= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a9_2= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression )
             {
-            a0=(Token)match(input,44,FOLLOW_44_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement10724); if (state.failed) return element;
+            a0=(Token)match(input,44,FOLLOW_44_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement10841); if (state.failed) return element;
 
             if ( state.backtracking==0 ) {
             		if (element == null) {
@@ -30594,13 +31129,13 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2170]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2198]);
             	}
 
-            // Xmu2.g:12848:2: (a1_0= parse_edu_ustb_sei_mde_xmu2_expression_VariableExpression )
-            // Xmu2.g:12849:3: a1_0= parse_edu_ustb_sei_mde_xmu2_expression_VariableExpression
+            // Xmu2.g:12967:2: (a1_0= parse_edu_ustb_sei_mde_xmu2_expression_VariableExpression )
+            // Xmu2.g:12968:3: a1_0= parse_edu_ustb_sei_mde_xmu2_expression_VariableExpression
             {
-            pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_VariableExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement10742);
+            pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_VariableExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement10859);
             a1_0=parse_edu_ustb_sei_mde_xmu2_expression_VariableExpression();
 
             state._fsp--;
@@ -30636,10 +31171,10 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2171]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2199]);
             	}
 
-            a2=(Token)match(input,37,FOLLOW_37_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement10760); if (state.failed) return element;
+            a2=(Token)match(input,37,FOLLOW_37_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement10877); if (state.failed) return element;
 
             if ( state.backtracking==0 ) {
             		if (element == null) {
@@ -30658,33 +31193,33 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2172]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2173]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2174]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2175]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2176]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2177]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2178]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2179]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2180]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2181]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2200]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2201]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2202]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2203]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2204]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2205]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2206]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2207]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2208]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2209]);
             	}
 
-            // Xmu2.g:12907:2: ( (a3= '#' )? )
-            // Xmu2.g:12908:3: (a3= '#' )?
+            // Xmu2.g:13026:2: ( (a3= '#' )? )
+            // Xmu2.g:13027:3: (a3= '#' )?
             {
-            // Xmu2.g:12908:3: (a3= '#' )?
-            int alt100=2;
-            int LA100_0 = input.LA(1);
+            // Xmu2.g:13027:3: (a3= '#' )?
+            int alt101=2;
+            int LA101_0 = input.LA(1);
 
-            if ( (LA100_0==16) ) {
-                alt100=1;
+            if ( (LA101_0==16) ) {
+                alt101=1;
             }
-            switch (alt100) {
+            switch (alt101) {
                 case 1 :
-                    // Xmu2.g:12909:4: a3= '#'
+                    // Xmu2.g:13028:4: a3= '#'
                     {
-                    a3=(Token)match(input,16,FOLLOW_16_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement10783); if (state.failed) return element;
+                    a3=(Token)match(input,16,FOLLOW_16_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement10900); if (state.failed) return element;
 
                     if ( state.backtracking==0 ) {
                     				if (element == null) {
@@ -30716,37 +31251,37 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2182]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2183]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2184]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2185]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2186]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2187]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2188]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2189]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2190]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2210]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2211]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2212]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2213]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2214]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2215]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2216]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2217]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2218]);
             	}
 
-            // Xmu2.g:12941:2: (a6_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression |a6_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression |a6_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a6_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a6_4= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression )
-            int alt101=5;
+            // Xmu2.g:13060:2: (a6_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression |a6_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression |a6_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a6_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a6_4= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression )
+            int alt102=5;
             switch ( input.LA(1) ) {
             case 57:
                 {
-                int LA101_1 = input.LA(2);
+                int LA102_1 = input.LA(2);
 
-                if ( (synpred299_Xmu2()) ) {
-                    alt101=1;
+                if ( (synpred304_Xmu2()) ) {
+                    alt102=1;
                 }
-                else if ( (synpred300_Xmu2()) ) {
-                    alt101=2;
+                else if ( (synpred305_Xmu2()) ) {
+                    alt102=2;
                 }
-                else if ( (synpred301_Xmu2()) ) {
-                    alt101=3;
+                else if ( (synpred306_Xmu2()) ) {
+                    alt102=3;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 101, 1, input);
+                        new NoViableAltException("", 102, 1, input);
 
                     throw nvae;
 
@@ -30755,21 +31290,21 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case 23:
                 {
-                int LA101_2 = input.LA(2);
+                int LA102_2 = input.LA(2);
 
-                if ( (synpred299_Xmu2()) ) {
-                    alt101=1;
+                if ( (synpred304_Xmu2()) ) {
+                    alt102=1;
                 }
-                else if ( (synpred300_Xmu2()) ) {
-                    alt101=2;
+                else if ( (synpred305_Xmu2()) ) {
+                    alt102=2;
                 }
-                else if ( (synpred301_Xmu2()) ) {
-                    alt101=3;
+                else if ( (synpred306_Xmu2()) ) {
+                    alt102=3;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 101, 2, input);
+                        new NoViableAltException("", 102, 2, input);
 
                     throw nvae;
 
@@ -30778,24 +31313,24 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case NAME:
                 {
-                int LA101_3 = input.LA(2);
+                int LA102_3 = input.LA(2);
 
-                if ( (synpred299_Xmu2()) ) {
-                    alt101=1;
+                if ( (synpred304_Xmu2()) ) {
+                    alt102=1;
                 }
-                else if ( (synpred300_Xmu2()) ) {
-                    alt101=2;
+                else if ( (synpred305_Xmu2()) ) {
+                    alt102=2;
                 }
-                else if ( (synpred302_Xmu2()) ) {
-                    alt101=4;
+                else if ( (synpred307_Xmu2()) ) {
+                    alt102=4;
                 }
                 else if ( (true) ) {
-                    alt101=5;
+                    alt102=5;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 101, 3, input);
+                        new NoViableAltException("", 102, 3, input);
 
                     throw nvae;
 
@@ -30804,24 +31339,24 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case 58:
                 {
-                int LA101_4 = input.LA(2);
+                int LA102_4 = input.LA(2);
 
-                if ( (synpred299_Xmu2()) ) {
-                    alt101=1;
+                if ( (synpred304_Xmu2()) ) {
+                    alt102=1;
                 }
-                else if ( (synpred300_Xmu2()) ) {
-                    alt101=2;
+                else if ( (synpred305_Xmu2()) ) {
+                    alt102=2;
                 }
-                else if ( (synpred302_Xmu2()) ) {
-                    alt101=4;
+                else if ( (synpred307_Xmu2()) ) {
+                    alt102=4;
                 }
                 else if ( (true) ) {
-                    alt101=5;
+                    alt102=5;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 101, 4, input);
+                        new NoViableAltException("", 102, 4, input);
 
                     throw nvae;
 
@@ -30830,24 +31365,24 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case 66:
                 {
-                int LA101_5 = input.LA(2);
+                int LA102_5 = input.LA(2);
 
-                if ( (synpred299_Xmu2()) ) {
-                    alt101=1;
+                if ( (synpred304_Xmu2()) ) {
+                    alt102=1;
                 }
-                else if ( (synpred300_Xmu2()) ) {
-                    alt101=2;
+                else if ( (synpred305_Xmu2()) ) {
+                    alt102=2;
                 }
-                else if ( (synpred302_Xmu2()) ) {
-                    alt101=4;
+                else if ( (synpred307_Xmu2()) ) {
+                    alt102=4;
                 }
                 else if ( (true) ) {
-                    alt101=5;
+                    alt102=5;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 101, 5, input);
+                        new NoViableAltException("", 102, 5, input);
 
                     throw nvae;
 
@@ -30856,24 +31391,24 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case QUOTED_39_39_92:
                 {
-                int LA101_6 = input.LA(2);
+                int LA102_6 = input.LA(2);
 
-                if ( (synpred299_Xmu2()) ) {
-                    alt101=1;
+                if ( (synpred304_Xmu2()) ) {
+                    alt102=1;
                 }
-                else if ( (synpred300_Xmu2()) ) {
-                    alt101=2;
+                else if ( (synpred305_Xmu2()) ) {
+                    alt102=2;
                 }
-                else if ( (synpred302_Xmu2()) ) {
-                    alt101=4;
+                else if ( (synpred307_Xmu2()) ) {
+                    alt102=4;
                 }
                 else if ( (true) ) {
-                    alt101=5;
+                    alt102=5;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 101, 6, input);
+                        new NoViableAltException("", 102, 6, input);
 
                     throw nvae;
 
@@ -30882,24 +31417,24 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case NUMBER:
                 {
-                int LA101_7 = input.LA(2);
+                int LA102_7 = input.LA(2);
 
-                if ( (synpred299_Xmu2()) ) {
-                    alt101=1;
+                if ( (synpred304_Xmu2()) ) {
+                    alt102=1;
                 }
-                else if ( (synpred300_Xmu2()) ) {
-                    alt101=2;
+                else if ( (synpred305_Xmu2()) ) {
+                    alt102=2;
                 }
-                else if ( (synpred302_Xmu2()) ) {
-                    alt101=4;
+                else if ( (synpred307_Xmu2()) ) {
+                    alt102=4;
                 }
                 else if ( (true) ) {
-                    alt101=5;
+                    alt102=5;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 101, 7, input);
+                        new NoViableAltException("", 102, 7, input);
 
                     throw nvae;
 
@@ -30908,24 +31443,24 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case BOOLEAN:
                 {
-                int LA101_8 = input.LA(2);
+                int LA102_8 = input.LA(2);
 
-                if ( (synpred299_Xmu2()) ) {
-                    alt101=1;
+                if ( (synpred304_Xmu2()) ) {
+                    alt102=1;
                 }
-                else if ( (synpred300_Xmu2()) ) {
-                    alt101=2;
+                else if ( (synpred305_Xmu2()) ) {
+                    alt102=2;
                 }
-                else if ( (synpred302_Xmu2()) ) {
-                    alt101=4;
+                else if ( (synpred307_Xmu2()) ) {
+                    alt102=4;
                 }
                 else if ( (true) ) {
-                    alt101=5;
+                    alt102=5;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 101, 8, input);
+                        new NoViableAltException("", 102, 8, input);
 
                     throw nvae;
 
@@ -30934,24 +31469,24 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case TYPE:
                 {
-                int LA101_9 = input.LA(2);
+                int LA102_9 = input.LA(2);
 
-                if ( (synpred299_Xmu2()) ) {
-                    alt101=1;
+                if ( (synpred304_Xmu2()) ) {
+                    alt102=1;
                 }
-                else if ( (synpred300_Xmu2()) ) {
-                    alt101=2;
+                else if ( (synpred305_Xmu2()) ) {
+                    alt102=2;
                 }
-                else if ( (synpred302_Xmu2()) ) {
-                    alt101=4;
+                else if ( (synpred307_Xmu2()) ) {
+                    alt102=4;
                 }
                 else if ( (true) ) {
-                    alt101=5;
+                    alt102=5;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 101, 9, input);
+                        new NoViableAltException("", 102, 9, input);
 
                     throw nvae;
 
@@ -30960,24 +31495,24 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case OBJ_URI:
                 {
-                int LA101_10 = input.LA(2);
+                int LA102_10 = input.LA(2);
 
-                if ( (synpred299_Xmu2()) ) {
-                    alt101=1;
+                if ( (synpred304_Xmu2()) ) {
+                    alt102=1;
                 }
-                else if ( (synpred300_Xmu2()) ) {
-                    alt101=2;
+                else if ( (synpred305_Xmu2()) ) {
+                    alt102=2;
                 }
-                else if ( (synpred302_Xmu2()) ) {
-                    alt101=4;
+                else if ( (synpred307_Xmu2()) ) {
+                    alt102=4;
                 }
                 else if ( (true) ) {
-                    alt101=5;
+                    alt102=5;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 101, 10, input);
+                        new NoViableAltException("", 102, 10, input);
 
                     throw nvae;
 
@@ -30986,24 +31521,24 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case 17:
                 {
-                int LA101_11 = input.LA(2);
+                int LA102_11 = input.LA(2);
 
-                if ( (synpred299_Xmu2()) ) {
-                    alt101=1;
+                if ( (synpred304_Xmu2()) ) {
+                    alt102=1;
                 }
-                else if ( (synpred300_Xmu2()) ) {
-                    alt101=2;
+                else if ( (synpred305_Xmu2()) ) {
+                    alt102=2;
                 }
-                else if ( (synpred302_Xmu2()) ) {
-                    alt101=4;
+                else if ( (synpred307_Xmu2()) ) {
+                    alt102=4;
                 }
                 else if ( (true) ) {
-                    alt101=5;
+                    alt102=5;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 101, 11, input);
+                        new NoViableAltException("", 102, 11, input);
 
                     throw nvae;
 
@@ -31013,17 +31548,17 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
             default:
                 if (state.backtracking>0) {state.failed=true; return element;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 101, 0, input);
+                    new NoViableAltException("", 102, 0, input);
 
                 throw nvae;
 
             }
 
-            switch (alt101) {
+            switch (alt102) {
                 case 1 :
-                    // Xmu2.g:12942:3: a6_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression
+                    // Xmu2.g:13061:3: a6_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement10808);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement10925);
                     a6_0=parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression();
 
                     state._fsp--;
@@ -31057,9 +31592,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Xmu2.g:12966:6: a6_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression
+                    // Xmu2.g:13085:6: a6_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement10822);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement10939);
                     a6_1=parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression();
 
                     state._fsp--;
@@ -31093,9 +31628,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 3 :
-                    // Xmu2.g:12990:6: a6_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression
+                    // Xmu2.g:13109:6: a6_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement10836);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement10953);
                     a6_2=parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression();
 
                     state._fsp--;
@@ -31129,9 +31664,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 4 :
-                    // Xmu2.g:13014:6: a6_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression
+                    // Xmu2.g:13133:6: a6_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement10850);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement10967);
                     a6_3=parse_edu_ustb_sei_mde_xmu2_expression_PathExpression();
 
                     state._fsp--;
@@ -31165,9 +31700,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 5 :
-                    // Xmu2.g:13038:6: a6_4= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression
+                    // Xmu2.g:13157:6: a6_4= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement10864);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement10981);
                     a6_4=parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression();
 
                     state._fsp--;
@@ -31206,10 +31741,10 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2191]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2219]);
             	}
 
-            a7=(Token)match(input,38,FOLLOW_38_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement10882); if (state.failed) return element;
+            a7=(Token)match(input,38,FOLLOW_38_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement10999); if (state.failed) return element;
 
             if ( state.backtracking==0 ) {
             		if (element == null) {
@@ -31228,10 +31763,10 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2192]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2220]);
             	}
 
-            a8=(Token)match(input,33,FOLLOW_33_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement10896); if (state.failed) return element;
+            a8=(Token)match(input,33,FOLLOW_33_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement11013); if (state.failed) return element;
 
             if ( state.backtracking==0 ) {
             		if (element == null) {
@@ -31250,40 +31785,40 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2193]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2194]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2195]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2196]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2197]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2198]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2199]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2200]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2201]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2221]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2222]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2223]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2224]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2225]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2226]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2227]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2228]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getReflectiveDeleteLinkStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2229]);
             	}
 
-            // Xmu2.g:13114:2: (a9_0= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a9_1= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a9_2= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression )
-            int alt102=3;
+            // Xmu2.g:13233:2: (a9_0= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression |a9_1= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression |a9_2= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression )
+            int alt103=3;
             switch ( input.LA(1) ) {
             case 23:
             case 57:
                 {
-                alt102=1;
+                alt103=1;
                 }
                 break;
             case NAME:
                 {
-                int LA102_3 = input.LA(2);
+                int LA103_3 = input.LA(2);
 
-                if ( (synpred304_Xmu2()) ) {
-                    alt102=2;
+                if ( (synpred309_Xmu2()) ) {
+                    alt103=2;
                 }
                 else if ( (true) ) {
-                    alt102=3;
+                    alt103=3;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 102, 3, input);
+                        new NoViableAltException("", 103, 3, input);
 
                     throw nvae;
 
@@ -31292,18 +31827,18 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case 58:
                 {
-                int LA102_4 = input.LA(2);
+                int LA103_4 = input.LA(2);
 
-                if ( (synpred304_Xmu2()) ) {
-                    alt102=2;
+                if ( (synpred309_Xmu2()) ) {
+                    alt103=2;
                 }
                 else if ( (true) ) {
-                    alt102=3;
+                    alt103=3;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 102, 4, input);
+                        new NoViableAltException("", 103, 4, input);
 
                     throw nvae;
 
@@ -31312,18 +31847,18 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case 66:
                 {
-                int LA102_5 = input.LA(2);
+                int LA103_5 = input.LA(2);
 
-                if ( (synpred304_Xmu2()) ) {
-                    alt102=2;
+                if ( (synpred309_Xmu2()) ) {
+                    alt103=2;
                 }
                 else if ( (true) ) {
-                    alt102=3;
+                    alt103=3;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 102, 5, input);
+                        new NoViableAltException("", 103, 5, input);
 
                     throw nvae;
 
@@ -31332,18 +31867,18 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case QUOTED_39_39_92:
                 {
-                int LA102_6 = input.LA(2);
+                int LA103_6 = input.LA(2);
 
-                if ( (synpred304_Xmu2()) ) {
-                    alt102=2;
+                if ( (synpred309_Xmu2()) ) {
+                    alt103=2;
                 }
                 else if ( (true) ) {
-                    alt102=3;
+                    alt103=3;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 102, 6, input);
+                        new NoViableAltException("", 103, 6, input);
 
                     throw nvae;
 
@@ -31352,18 +31887,18 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case NUMBER:
                 {
-                int LA102_7 = input.LA(2);
+                int LA103_7 = input.LA(2);
 
-                if ( (synpred304_Xmu2()) ) {
-                    alt102=2;
+                if ( (synpred309_Xmu2()) ) {
+                    alt103=2;
                 }
                 else if ( (true) ) {
-                    alt102=3;
+                    alt103=3;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 102, 7, input);
+                        new NoViableAltException("", 103, 7, input);
 
                     throw nvae;
 
@@ -31372,18 +31907,18 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case BOOLEAN:
                 {
-                int LA102_8 = input.LA(2);
+                int LA103_8 = input.LA(2);
 
-                if ( (synpred304_Xmu2()) ) {
-                    alt102=2;
+                if ( (synpred309_Xmu2()) ) {
+                    alt103=2;
                 }
                 else if ( (true) ) {
-                    alt102=3;
+                    alt103=3;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 102, 8, input);
+                        new NoViableAltException("", 103, 8, input);
 
                     throw nvae;
 
@@ -31392,18 +31927,18 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case TYPE:
                 {
-                int LA102_9 = input.LA(2);
+                int LA103_9 = input.LA(2);
 
-                if ( (synpred304_Xmu2()) ) {
-                    alt102=2;
+                if ( (synpred309_Xmu2()) ) {
+                    alt103=2;
                 }
                 else if ( (true) ) {
-                    alt102=3;
+                    alt103=3;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 102, 9, input);
+                        new NoViableAltException("", 103, 9, input);
 
                     throw nvae;
 
@@ -31412,18 +31947,18 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case OBJ_URI:
                 {
-                int LA102_10 = input.LA(2);
+                int LA103_10 = input.LA(2);
 
-                if ( (synpred304_Xmu2()) ) {
-                    alt102=2;
+                if ( (synpred309_Xmu2()) ) {
+                    alt103=2;
                 }
                 else if ( (true) ) {
-                    alt102=3;
+                    alt103=3;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 102, 10, input);
+                        new NoViableAltException("", 103, 10, input);
 
                     throw nvae;
 
@@ -31432,18 +31967,18 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 break;
             case 17:
                 {
-                int LA102_11 = input.LA(2);
+                int LA103_11 = input.LA(2);
 
-                if ( (synpred304_Xmu2()) ) {
-                    alt102=2;
+                if ( (synpred309_Xmu2()) ) {
+                    alt103=2;
                 }
                 else if ( (true) ) {
-                    alt102=3;
+                    alt103=3;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 102, 11, input);
+                        new NoViableAltException("", 103, 11, input);
 
                     throw nvae;
 
@@ -31453,17 +31988,17 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
             default:
                 if (state.backtracking>0) {state.failed=true; return element;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 102, 0, input);
+                    new NoViableAltException("", 103, 0, input);
 
                 throw nvae;
 
             }
 
-            switch (alt102) {
+            switch (alt103) {
                 case 1 :
-                    // Xmu2.g:13115:3: a9_0= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression
+                    // Xmu2.g:13234:3: a9_0= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement10914);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement11031);
                     a9_0=parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression();
 
                     state._fsp--;
@@ -31497,9 +32032,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Xmu2.g:13139:6: a9_1= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression
+                    // Xmu2.g:13258:6: a9_1= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement10928);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement11045);
                     a9_1=parse_edu_ustb_sei_mde_xmu2_expression_PathExpression();
 
                     state._fsp--;
@@ -31533,9 +32068,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 3 :
-                    // Xmu2.g:13163:6: a9_2= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression
+                    // Xmu2.g:13282:6: a9_2= parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement10942);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement11059);
                     a9_2=parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression();
 
                     state._fsp--;
@@ -31574,27 +32109,27 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2202]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2203]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2204]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2205]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2206]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2207]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2208]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2209]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2210]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2211]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2212]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2213]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2214]);
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2215]);
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2216]);
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2217]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2218]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2219]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2220]);
-            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2221]);
-            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2222]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2230]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2231]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2232]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2233]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2234]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2235]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2236]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2237]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2238]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2239]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2240]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2241]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.Xmu2Package.eINSTANCE.getArithmeticRule(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2242]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2243]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2244]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2245]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getUpdateStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2246]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2247]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2248]);
+            		addExpectedElement(edu.ustb.sei.mde.xmu2.statement.StatementPackage.eINSTANCE.getSwitchStatement(), edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2249]);
+            		addExpectedElement(null, edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2ExpectationConstants.EXPECTATIONS[2250]);
             	}
 
             }
@@ -31617,7 +32152,7 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
 
     // $ANTLR start "parse_edu_ustb_sei_mde_xmu2_AbstractRule"
-    // Xmu2.g:13215:1: parse_edu_ustb_sei_mde_xmu2_AbstractRule returns [edu.ustb.sei.mde.xmu2.AbstractRule element = null] : (c0= parse_edu_ustb_sei_mde_xmu2_ModelRule |c1= parse_edu_ustb_sei_mde_xmu2_ArithmeticRule );
+    // Xmu2.g:13334:1: parse_edu_ustb_sei_mde_xmu2_AbstractRule returns [edu.ustb.sei.mde.xmu2.AbstractRule element = null] : (c0= parse_edu_ustb_sei_mde_xmu2_ModelRule |c1= parse_edu_ustb_sei_mde_xmu2_ArithmeticRule );
     public final edu.ustb.sei.mde.xmu2.AbstractRule parse_edu_ustb_sei_mde_xmu2_AbstractRule() throws RecognitionException {
         edu.ustb.sei.mde.xmu2.AbstractRule element =  null;
 
@@ -31631,29 +32166,29 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 52) ) { return element; }
 
-            // Xmu2.g:13216:2: (c0= parse_edu_ustb_sei_mde_xmu2_ModelRule |c1= parse_edu_ustb_sei_mde_xmu2_ArithmeticRule )
-            int alt103=2;
-            int LA103_0 = input.LA(1);
+            // Xmu2.g:13335:2: (c0= parse_edu_ustb_sei_mde_xmu2_ModelRule |c1= parse_edu_ustb_sei_mde_xmu2_ArithmeticRule )
+            int alt104=2;
+            int LA104_0 = input.LA(1);
 
-            if ( (LA103_0==61) ) {
-                alt103=1;
+            if ( (LA104_0==61) ) {
+                alt104=1;
             }
-            else if ( (LA103_0==52) ) {
-                alt103=2;
+            else if ( (LA104_0==52) ) {
+                alt104=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return element;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 103, 0, input);
+                    new NoViableAltException("", 104, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt103) {
+            switch (alt104) {
                 case 1 :
-                    // Xmu2.g:13217:2: c0= parse_edu_ustb_sei_mde_xmu2_ModelRule
+                    // Xmu2.g:13336:2: c0= parse_edu_ustb_sei_mde_xmu2_ModelRule
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_ModelRule_in_parse_edu_ustb_sei_mde_xmu2_AbstractRule10971);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_ModelRule_in_parse_edu_ustb_sei_mde_xmu2_AbstractRule11088);
                     c0=parse_edu_ustb_sei_mde_xmu2_ModelRule();
 
                     state._fsp--;
@@ -31664,9 +32199,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Xmu2.g:13218:4: c1= parse_edu_ustb_sei_mde_xmu2_ArithmeticRule
+                    // Xmu2.g:13337:4: c1= parse_edu_ustb_sei_mde_xmu2_ArithmeticRule
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_ArithmeticRule_in_parse_edu_ustb_sei_mde_xmu2_AbstractRule10981);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_ArithmeticRule_in_parse_edu_ustb_sei_mde_xmu2_AbstractRule11098);
                     c1=parse_edu_ustb_sei_mde_xmu2_ArithmeticRule();
 
                     state._fsp--;
@@ -31696,7 +32231,7 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
 
     // $ANTLR start "parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression"
-    // Xmu2.g:13222:1: parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression returns [edu.ustb.sei.mde.xmu2.expression.AtomicExpression element = null] : (c0= parse_edu_ustb_sei_mde_xmu2_expression_VariableExpression |c1= parse_edu_ustb_sei_mde_xmu2_expression_EmptyExpression |c2= parse_edu_ustb_sei_mde_xmu2_expression_StringLiteralExpression |c3= parse_edu_ustb_sei_mde_xmu2_expression_IntegerLiteralExpression |c4= parse_edu_ustb_sei_mde_xmu2_expression_BooleanLiteralExpression |c5= parse_edu_ustb_sei_mde_xmu2_expression_EnumLiteralExpression |c6= parse_edu_ustb_sei_mde_xmu2_expression_ObjectURIExpression |c7= parse_edu_ustb_sei_mde_xmu2_expression_ParenExpression );
+    // Xmu2.g:13341:1: parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression returns [edu.ustb.sei.mde.xmu2.expression.AtomicExpression element = null] : (c0= parse_edu_ustb_sei_mde_xmu2_expression_VariableExpression |c1= parse_edu_ustb_sei_mde_xmu2_expression_EmptyExpression |c2= parse_edu_ustb_sei_mde_xmu2_expression_StringLiteralExpression |c3= parse_edu_ustb_sei_mde_xmu2_expression_IntegerLiteralExpression |c4= parse_edu_ustb_sei_mde_xmu2_expression_BooleanLiteralExpression |c5= parse_edu_ustb_sei_mde_xmu2_expression_EnumLiteralExpression |c6= parse_edu_ustb_sei_mde_xmu2_expression_ObjectURIExpression |c7= parse_edu_ustb_sei_mde_xmu2_expression_ParenExpression );
     public final edu.ustb.sei.mde.xmu2.expression.AtomicExpression parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression() throws RecognitionException {
         edu.ustb.sei.mde.xmu2.expression.AtomicExpression element =  null;
 
@@ -31722,64 +32257,64 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 53) ) { return element; }
 
-            // Xmu2.g:13223:2: (c0= parse_edu_ustb_sei_mde_xmu2_expression_VariableExpression |c1= parse_edu_ustb_sei_mde_xmu2_expression_EmptyExpression |c2= parse_edu_ustb_sei_mde_xmu2_expression_StringLiteralExpression |c3= parse_edu_ustb_sei_mde_xmu2_expression_IntegerLiteralExpression |c4= parse_edu_ustb_sei_mde_xmu2_expression_BooleanLiteralExpression |c5= parse_edu_ustb_sei_mde_xmu2_expression_EnumLiteralExpression |c6= parse_edu_ustb_sei_mde_xmu2_expression_ObjectURIExpression |c7= parse_edu_ustb_sei_mde_xmu2_expression_ParenExpression )
-            int alt104=8;
+            // Xmu2.g:13342:2: (c0= parse_edu_ustb_sei_mde_xmu2_expression_VariableExpression |c1= parse_edu_ustb_sei_mde_xmu2_expression_EmptyExpression |c2= parse_edu_ustb_sei_mde_xmu2_expression_StringLiteralExpression |c3= parse_edu_ustb_sei_mde_xmu2_expression_IntegerLiteralExpression |c4= parse_edu_ustb_sei_mde_xmu2_expression_BooleanLiteralExpression |c5= parse_edu_ustb_sei_mde_xmu2_expression_EnumLiteralExpression |c6= parse_edu_ustb_sei_mde_xmu2_expression_ObjectURIExpression |c7= parse_edu_ustb_sei_mde_xmu2_expression_ParenExpression )
+            int alt105=8;
             switch ( input.LA(1) ) {
             case NAME:
                 {
-                alt104=1;
+                alt105=1;
                 }
                 break;
             case 58:
             case 66:
                 {
-                alt104=2;
+                alt105=2;
                 }
                 break;
             case QUOTED_39_39_92:
                 {
-                alt104=3;
+                alt105=3;
                 }
                 break;
             case NUMBER:
                 {
-                alt104=4;
+                alt105=4;
                 }
                 break;
             case BOOLEAN:
                 {
-                alt104=5;
+                alt105=5;
                 }
                 break;
             case TYPE:
                 {
-                alt104=6;
+                alt105=6;
                 }
                 break;
             case OBJ_URI:
                 {
-                alt104=7;
+                alt105=7;
                 }
                 break;
             case 17:
                 {
-                alt104=8;
+                alt105=8;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return element;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 104, 0, input);
+                    new NoViableAltException("", 105, 0, input);
 
                 throw nvae;
 
             }
 
-            switch (alt104) {
+            switch (alt105) {
                 case 1 :
-                    // Xmu2.g:13224:2: c0= parse_edu_ustb_sei_mde_xmu2_expression_VariableExpression
+                    // Xmu2.g:13343:2: c0= parse_edu_ustb_sei_mde_xmu2_expression_VariableExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_VariableExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression11002);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_VariableExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression11119);
                     c0=parse_edu_ustb_sei_mde_xmu2_expression_VariableExpression();
 
                     state._fsp--;
@@ -31790,9 +32325,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Xmu2.g:13225:4: c1= parse_edu_ustb_sei_mde_xmu2_expression_EmptyExpression
+                    // Xmu2.g:13344:4: c1= parse_edu_ustb_sei_mde_xmu2_expression_EmptyExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_EmptyExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression11012);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_EmptyExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression11129);
                     c1=parse_edu_ustb_sei_mde_xmu2_expression_EmptyExpression();
 
                     state._fsp--;
@@ -31803,9 +32338,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 3 :
-                    // Xmu2.g:13226:4: c2= parse_edu_ustb_sei_mde_xmu2_expression_StringLiteralExpression
+                    // Xmu2.g:13345:4: c2= parse_edu_ustb_sei_mde_xmu2_expression_StringLiteralExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_StringLiteralExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression11022);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_StringLiteralExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression11139);
                     c2=parse_edu_ustb_sei_mde_xmu2_expression_StringLiteralExpression();
 
                     state._fsp--;
@@ -31816,9 +32351,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 4 :
-                    // Xmu2.g:13227:4: c3= parse_edu_ustb_sei_mde_xmu2_expression_IntegerLiteralExpression
+                    // Xmu2.g:13346:4: c3= parse_edu_ustb_sei_mde_xmu2_expression_IntegerLiteralExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_IntegerLiteralExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression11032);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_IntegerLiteralExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression11149);
                     c3=parse_edu_ustb_sei_mde_xmu2_expression_IntegerLiteralExpression();
 
                     state._fsp--;
@@ -31829,9 +32364,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 5 :
-                    // Xmu2.g:13228:4: c4= parse_edu_ustb_sei_mde_xmu2_expression_BooleanLiteralExpression
+                    // Xmu2.g:13347:4: c4= parse_edu_ustb_sei_mde_xmu2_expression_BooleanLiteralExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_BooleanLiteralExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression11042);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_BooleanLiteralExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression11159);
                     c4=parse_edu_ustb_sei_mde_xmu2_expression_BooleanLiteralExpression();
 
                     state._fsp--;
@@ -31842,9 +32377,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 6 :
-                    // Xmu2.g:13229:4: c5= parse_edu_ustb_sei_mde_xmu2_expression_EnumLiteralExpression
+                    // Xmu2.g:13348:4: c5= parse_edu_ustb_sei_mde_xmu2_expression_EnumLiteralExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_EnumLiteralExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression11052);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_EnumLiteralExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression11169);
                     c5=parse_edu_ustb_sei_mde_xmu2_expression_EnumLiteralExpression();
 
                     state._fsp--;
@@ -31855,9 +32390,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 7 :
-                    // Xmu2.g:13230:4: c6= parse_edu_ustb_sei_mde_xmu2_expression_ObjectURIExpression
+                    // Xmu2.g:13349:4: c6= parse_edu_ustb_sei_mde_xmu2_expression_ObjectURIExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_ObjectURIExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression11062);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_ObjectURIExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression11179);
                     c6=parse_edu_ustb_sei_mde_xmu2_expression_ObjectURIExpression();
 
                     state._fsp--;
@@ -31868,9 +32403,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 8 :
-                    // Xmu2.g:13231:4: c7= parse_edu_ustb_sei_mde_xmu2_expression_ParenExpression
+                    // Xmu2.g:13350:4: c7= parse_edu_ustb_sei_mde_xmu2_expression_ParenExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_ParenExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression11072);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_ParenExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression11189);
                     c7=parse_edu_ustb_sei_mde_xmu2_expression_ParenExpression();
 
                     state._fsp--;
@@ -31900,7 +32435,7 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
 
     // $ANTLR start "parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression"
-    // Xmu2.g:13235:1: parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression returns [edu.ustb.sei.mde.xmu2.pattern.PatternExpression element = null] : (c0= parse_edu_ustb_sei_mde_xmu2_pattern_ObjectPatternExpression |c1= parse_edu_ustb_sei_mde_xmu2_pattern_PropertyPatternExpression |c2= parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression |c3= parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression );
+    // Xmu2.g:13354:1: parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression returns [edu.ustb.sei.mde.xmu2.pattern.PatternExpression element = null] : (c0= parse_edu_ustb_sei_mde_xmu2_pattern_ObjectPatternExpression |c1= parse_edu_ustb_sei_mde_xmu2_pattern_PropertyPatternExpression |c2= parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression |c3= parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression );
     public final edu.ustb.sei.mde.xmu2.pattern.PatternExpression parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression() throws RecognitionException {
         edu.ustb.sei.mde.xmu2.pattern.PatternExpression element =  null;
 
@@ -31918,47 +32453,47 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 54) ) { return element; }
 
-            // Xmu2.g:13236:2: (c0= parse_edu_ustb_sei_mde_xmu2_pattern_ObjectPatternExpression |c1= parse_edu_ustb_sei_mde_xmu2_pattern_PropertyPatternExpression |c2= parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression |c3= parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression )
-            int alt105=4;
-            int LA105_0 = input.LA(1);
+            // Xmu2.g:13355:2: (c0= parse_edu_ustb_sei_mde_xmu2_pattern_ObjectPatternExpression |c1= parse_edu_ustb_sei_mde_xmu2_pattern_PropertyPatternExpression |c2= parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression |c3= parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression )
+            int alt106=4;
+            int LA106_0 = input.LA(1);
 
-            if ( (LA105_0==NAME) ) {
-                int LA105_1 = input.LA(2);
+            if ( (LA106_0==NAME) ) {
+                int LA106_1 = input.LA(2);
 
-                if ( (synpred313_Xmu2()) ) {
-                    alt105=1;
+                if ( (synpred318_Xmu2()) ) {
+                    alt106=1;
                 }
-                else if ( (synpred314_Xmu2()) ) {
-                    alt105=2;
+                else if ( (synpred319_Xmu2()) ) {
+                    alt106=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 105, 1, input);
+                        new NoViableAltException("", 106, 1, input);
 
                     throw nvae;
 
                 }
             }
-            else if ( (LA105_0==37) ) {
-                int LA105_2 = input.LA(2);
+            else if ( (LA106_0==37) ) {
+                int LA106_2 = input.LA(2);
 
-                if ( (synpred313_Xmu2()) ) {
-                    alt105=1;
+                if ( (synpred318_Xmu2()) ) {
+                    alt106=1;
                 }
-                else if ( (synpred314_Xmu2()) ) {
-                    alt105=2;
+                else if ( (synpred319_Xmu2()) ) {
+                    alt106=2;
                 }
-                else if ( (synpred315_Xmu2()) ) {
-                    alt105=3;
+                else if ( (synpred320_Xmu2()) ) {
+                    alt106=3;
                 }
                 else if ( (true) ) {
-                    alt105=4;
+                    alt106=4;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 105, 2, input);
+                        new NoViableAltException("", 106, 2, input);
 
                     throw nvae;
 
@@ -31967,16 +32502,16 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
             else {
                 if (state.backtracking>0) {state.failed=true; return element;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 105, 0, input);
+                    new NoViableAltException("", 106, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt105) {
+            switch (alt106) {
                 case 1 :
-                    // Xmu2.g:13237:2: c0= parse_edu_ustb_sei_mde_xmu2_pattern_ObjectPatternExpression
+                    // Xmu2.g:13356:2: c0= parse_edu_ustb_sei_mde_xmu2_pattern_ObjectPatternExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_pattern_ObjectPatternExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression11093);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_pattern_ObjectPatternExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression11210);
                     c0=parse_edu_ustb_sei_mde_xmu2_pattern_ObjectPatternExpression();
 
                     state._fsp--;
@@ -31987,9 +32522,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Xmu2.g:13238:4: c1= parse_edu_ustb_sei_mde_xmu2_pattern_PropertyPatternExpression
+                    // Xmu2.g:13357:4: c1= parse_edu_ustb_sei_mde_xmu2_pattern_PropertyPatternExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_pattern_PropertyPatternExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression11103);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_pattern_PropertyPatternExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression11220);
                     c1=parse_edu_ustb_sei_mde_xmu2_pattern_PropertyPatternExpression();
 
                     state._fsp--;
@@ -32000,9 +32535,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 3 :
-                    // Xmu2.g:13239:4: c2= parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression
+                    // Xmu2.g:13358:4: c2= parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression11113);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression11230);
                     c2=parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression();
 
                     state._fsp--;
@@ -32013,9 +32548,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 4 :
-                    // Xmu2.g:13240:4: c3= parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression
+                    // Xmu2.g:13359:4: c3= parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression11123);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression11240);
                     c3=parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression();
 
                     state._fsp--;
@@ -32045,7 +32580,7 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
 
     // $ANTLR start "parse_edu_ustb_sei_mde_xmu2_expression_ConstantExpression"
-    // Xmu2.g:13244:1: parse_edu_ustb_sei_mde_xmu2_expression_ConstantExpression returns [edu.ustb.sei.mde.xmu2.expression.ConstantExpression element = null] : (c0= parse_edu_ustb_sei_mde_xmu2_expression_EmptyExpression |c1= parse_edu_ustb_sei_mde_xmu2_expression_StringLiteralExpression |c2= parse_edu_ustb_sei_mde_xmu2_expression_IntegerLiteralExpression |c3= parse_edu_ustb_sei_mde_xmu2_expression_BooleanLiteralExpression |c4= parse_edu_ustb_sei_mde_xmu2_expression_EnumLiteralExpression |c5= parse_edu_ustb_sei_mde_xmu2_expression_ObjectURIExpression );
+    // Xmu2.g:13363:1: parse_edu_ustb_sei_mde_xmu2_expression_ConstantExpression returns [edu.ustb.sei.mde.xmu2.expression.ConstantExpression element = null] : (c0= parse_edu_ustb_sei_mde_xmu2_expression_EmptyExpression |c1= parse_edu_ustb_sei_mde_xmu2_expression_StringLiteralExpression |c2= parse_edu_ustb_sei_mde_xmu2_expression_IntegerLiteralExpression |c3= parse_edu_ustb_sei_mde_xmu2_expression_BooleanLiteralExpression |c4= parse_edu_ustb_sei_mde_xmu2_expression_EnumLiteralExpression |c5= parse_edu_ustb_sei_mde_xmu2_expression_ObjectURIExpression );
     public final edu.ustb.sei.mde.xmu2.expression.ConstantExpression parse_edu_ustb_sei_mde_xmu2_expression_ConstantExpression() throws RecognitionException {
         edu.ustb.sei.mde.xmu2.expression.ConstantExpression element =  null;
 
@@ -32067,54 +32602,54 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 55) ) { return element; }
 
-            // Xmu2.g:13245:2: (c0= parse_edu_ustb_sei_mde_xmu2_expression_EmptyExpression |c1= parse_edu_ustb_sei_mde_xmu2_expression_StringLiteralExpression |c2= parse_edu_ustb_sei_mde_xmu2_expression_IntegerLiteralExpression |c3= parse_edu_ustb_sei_mde_xmu2_expression_BooleanLiteralExpression |c4= parse_edu_ustb_sei_mde_xmu2_expression_EnumLiteralExpression |c5= parse_edu_ustb_sei_mde_xmu2_expression_ObjectURIExpression )
-            int alt106=6;
+            // Xmu2.g:13364:2: (c0= parse_edu_ustb_sei_mde_xmu2_expression_EmptyExpression |c1= parse_edu_ustb_sei_mde_xmu2_expression_StringLiteralExpression |c2= parse_edu_ustb_sei_mde_xmu2_expression_IntegerLiteralExpression |c3= parse_edu_ustb_sei_mde_xmu2_expression_BooleanLiteralExpression |c4= parse_edu_ustb_sei_mde_xmu2_expression_EnumLiteralExpression |c5= parse_edu_ustb_sei_mde_xmu2_expression_ObjectURIExpression )
+            int alt107=6;
             switch ( input.LA(1) ) {
             case 58:
             case 66:
                 {
-                alt106=1;
+                alt107=1;
                 }
                 break;
             case QUOTED_39_39_92:
                 {
-                alt106=2;
+                alt107=2;
                 }
                 break;
             case NUMBER:
                 {
-                alt106=3;
+                alt107=3;
                 }
                 break;
             case BOOLEAN:
                 {
-                alt106=4;
+                alt107=4;
                 }
                 break;
             case TYPE:
                 {
-                alt106=5;
+                alt107=5;
                 }
                 break;
             case OBJ_URI:
                 {
-                alt106=6;
+                alt107=6;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return element;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 106, 0, input);
+                    new NoViableAltException("", 107, 0, input);
 
                 throw nvae;
 
             }
 
-            switch (alt106) {
+            switch (alt107) {
                 case 1 :
-                    // Xmu2.g:13246:2: c0= parse_edu_ustb_sei_mde_xmu2_expression_EmptyExpression
+                    // Xmu2.g:13365:2: c0= parse_edu_ustb_sei_mde_xmu2_expression_EmptyExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_EmptyExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_ConstantExpression11144);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_EmptyExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_ConstantExpression11261);
                     c0=parse_edu_ustb_sei_mde_xmu2_expression_EmptyExpression();
 
                     state._fsp--;
@@ -32125,9 +32660,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Xmu2.g:13247:4: c1= parse_edu_ustb_sei_mde_xmu2_expression_StringLiteralExpression
+                    // Xmu2.g:13366:4: c1= parse_edu_ustb_sei_mde_xmu2_expression_StringLiteralExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_StringLiteralExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_ConstantExpression11154);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_StringLiteralExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_ConstantExpression11271);
                     c1=parse_edu_ustb_sei_mde_xmu2_expression_StringLiteralExpression();
 
                     state._fsp--;
@@ -32138,9 +32673,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 3 :
-                    // Xmu2.g:13248:4: c2= parse_edu_ustb_sei_mde_xmu2_expression_IntegerLiteralExpression
+                    // Xmu2.g:13367:4: c2= parse_edu_ustb_sei_mde_xmu2_expression_IntegerLiteralExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_IntegerLiteralExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_ConstantExpression11164);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_IntegerLiteralExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_ConstantExpression11281);
                     c2=parse_edu_ustb_sei_mde_xmu2_expression_IntegerLiteralExpression();
 
                     state._fsp--;
@@ -32151,9 +32686,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 4 :
-                    // Xmu2.g:13249:4: c3= parse_edu_ustb_sei_mde_xmu2_expression_BooleanLiteralExpression
+                    // Xmu2.g:13368:4: c3= parse_edu_ustb_sei_mde_xmu2_expression_BooleanLiteralExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_BooleanLiteralExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_ConstantExpression11174);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_BooleanLiteralExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_ConstantExpression11291);
                     c3=parse_edu_ustb_sei_mde_xmu2_expression_BooleanLiteralExpression();
 
                     state._fsp--;
@@ -32164,9 +32699,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 5 :
-                    // Xmu2.g:13250:4: c4= parse_edu_ustb_sei_mde_xmu2_expression_EnumLiteralExpression
+                    // Xmu2.g:13369:4: c4= parse_edu_ustb_sei_mde_xmu2_expression_EnumLiteralExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_EnumLiteralExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_ConstantExpression11184);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_EnumLiteralExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_ConstantExpression11301);
                     c4=parse_edu_ustb_sei_mde_xmu2_expression_EnumLiteralExpression();
 
                     state._fsp--;
@@ -32177,9 +32712,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 6 :
-                    // Xmu2.g:13251:4: c5= parse_edu_ustb_sei_mde_xmu2_expression_ObjectURIExpression
+                    // Xmu2.g:13370:4: c5= parse_edu_ustb_sei_mde_xmu2_expression_ObjectURIExpression
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_ObjectURIExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_ConstantExpression11194);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_ObjectURIExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_ConstantExpression11311);
                     c5=parse_edu_ustb_sei_mde_xmu2_expression_ObjectURIExpression();
 
                     state._fsp--;
@@ -32209,7 +32744,7 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
 
     // $ANTLR start "parse_edu_ustb_sei_mde_xmu2_expression_Path"
-    // Xmu2.g:13255:1: parse_edu_ustb_sei_mde_xmu2_expression_Path returns [edu.ustb.sei.mde.xmu2.expression.Path element = null] : (c0= parse_edu_ustb_sei_mde_xmu2_expression_LoopPath |c1= parse_edu_ustb_sei_mde_xmu2_expression_FeaturePath |c2= parse_edu_ustb_sei_mde_xmu2_expression_OperationPath |c3= parse_edu_ustb_sei_mde_xmu2_expression_PositionPath );
+    // Xmu2.g:13374:1: parse_edu_ustb_sei_mde_xmu2_expression_Path returns [edu.ustb.sei.mde.xmu2.expression.Path element = null] : (c0= parse_edu_ustb_sei_mde_xmu2_expression_LoopPath |c1= parse_edu_ustb_sei_mde_xmu2_expression_FeaturePath |c2= parse_edu_ustb_sei_mde_xmu2_expression_OperationPath |c3= parse_edu_ustb_sei_mde_xmu2_expression_PositionPath );
     public final edu.ustb.sei.mde.xmu2.expression.Path parse_edu_ustb_sei_mde_xmu2_expression_Path() throws RecognitionException {
         edu.ustb.sei.mde.xmu2.expression.Path element =  null;
 
@@ -32227,44 +32762,44 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 56) ) { return element; }
 
-            // Xmu2.g:13256:2: (c0= parse_edu_ustb_sei_mde_xmu2_expression_LoopPath |c1= parse_edu_ustb_sei_mde_xmu2_expression_FeaturePath |c2= parse_edu_ustb_sei_mde_xmu2_expression_OperationPath |c3= parse_edu_ustb_sei_mde_xmu2_expression_PositionPath )
-            int alt107=4;
-            int LA107_0 = input.LA(1);
+            // Xmu2.g:13375:2: (c0= parse_edu_ustb_sei_mde_xmu2_expression_LoopPath |c1= parse_edu_ustb_sei_mde_xmu2_expression_FeaturePath |c2= parse_edu_ustb_sei_mde_xmu2_expression_OperationPath |c3= parse_edu_ustb_sei_mde_xmu2_expression_PositionPath )
+            int alt108=4;
+            int LA108_0 = input.LA(1);
 
-            if ( (LA107_0==24) ) {
-                int LA107_1 = input.LA(2);
+            if ( (LA108_0==24) ) {
+                int LA108_1 = input.LA(2);
 
-                if ( (LA107_1==47||LA107_1==50||LA107_1==62) ) {
-                    alt107=1;
+                if ( (LA108_1==47||LA108_1==50||LA108_1==62) ) {
+                    alt108=1;
                 }
-                else if ( (LA107_1==40||LA107_1==49||LA107_1==54) ) {
-                    alt107=4;
+                else if ( (LA108_1==40||LA108_1==49||LA108_1==54) ) {
+                    alt108=4;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 107, 1, input);
+                        new NoViableAltException("", 108, 1, input);
 
                     throw nvae;
 
                 }
             }
-            else if ( (LA107_0==25) ) {
-                int LA107_2 = input.LA(2);
+            else if ( (LA108_0==25) ) {
+                int LA108_2 = input.LA(2);
 
-                if ( (LA107_2==NAME) ) {
-                    int LA107_5 = input.LA(3);
+                if ( (LA108_2==NAME) ) {
+                    int LA108_5 = input.LA(3);
 
-                    if ( (LA107_5==EOF||LA107_5==NAME||(LA107_5 >= 18 && LA107_5 <= 26)||(LA107_5 >= 30 && LA107_5 <= 35)||(LA107_5 >= 38 && LA107_5 <= 39)||(LA107_5 >= 42 && LA107_5 <= 45)||LA107_5==48||LA107_5==51||LA107_5==55||(LA107_5 >= 59 && LA107_5 <= 60)||LA107_5==63||LA107_5==65||(LA107_5 >= 67 && LA107_5 <= 69)||LA107_5==72||LA107_5==74) ) {
-                        alt107=2;
+                    if ( (LA108_5==EOF||LA108_5==NAME||(LA108_5 >= 18 && LA108_5 <= 26)||(LA108_5 >= 30 && LA108_5 <= 35)||(LA108_5 >= 38 && LA108_5 <= 39)||(LA108_5 >= 42 && LA108_5 <= 45)||LA108_5==48||LA108_5==51||LA108_5==55||(LA108_5 >= 59 && LA108_5 <= 60)||LA108_5==63||LA108_5==65||(LA108_5 >= 67 && LA108_5 <= 69)||LA108_5==72||LA108_5==74) ) {
+                        alt108=2;
                     }
-                    else if ( (LA107_5==17) ) {
-                        alt107=3;
+                    else if ( (LA108_5==17) ) {
+                        alt108=3;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return element;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 107, 5, input);
+                            new NoViableAltException("", 108, 5, input);
 
                         throw nvae;
 
@@ -32273,7 +32808,7 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 107, 2, input);
+                        new NoViableAltException("", 108, 2, input);
 
                     throw nvae;
 
@@ -32282,16 +32817,16 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
             else {
                 if (state.backtracking>0) {state.failed=true; return element;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 107, 0, input);
+                    new NoViableAltException("", 108, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt107) {
+            switch (alt108) {
                 case 1 :
-                    // Xmu2.g:13257:2: c0= parse_edu_ustb_sei_mde_xmu2_expression_LoopPath
+                    // Xmu2.g:13376:2: c0= parse_edu_ustb_sei_mde_xmu2_expression_LoopPath
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_LoopPath_in_parse_edu_ustb_sei_mde_xmu2_expression_Path11215);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_LoopPath_in_parse_edu_ustb_sei_mde_xmu2_expression_Path11332);
                     c0=parse_edu_ustb_sei_mde_xmu2_expression_LoopPath();
 
                     state._fsp--;
@@ -32302,9 +32837,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Xmu2.g:13258:4: c1= parse_edu_ustb_sei_mde_xmu2_expression_FeaturePath
+                    // Xmu2.g:13377:4: c1= parse_edu_ustb_sei_mde_xmu2_expression_FeaturePath
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_FeaturePath_in_parse_edu_ustb_sei_mde_xmu2_expression_Path11225);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_FeaturePath_in_parse_edu_ustb_sei_mde_xmu2_expression_Path11342);
                     c1=parse_edu_ustb_sei_mde_xmu2_expression_FeaturePath();
 
                     state._fsp--;
@@ -32315,9 +32850,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 3 :
-                    // Xmu2.g:13259:4: c2= parse_edu_ustb_sei_mde_xmu2_expression_OperationPath
+                    // Xmu2.g:13378:4: c2= parse_edu_ustb_sei_mde_xmu2_expression_OperationPath
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_OperationPath_in_parse_edu_ustb_sei_mde_xmu2_expression_Path11235);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_OperationPath_in_parse_edu_ustb_sei_mde_xmu2_expression_Path11352);
                     c2=parse_edu_ustb_sei_mde_xmu2_expression_OperationPath();
 
                     state._fsp--;
@@ -32328,9 +32863,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 4 :
-                    // Xmu2.g:13260:4: c3= parse_edu_ustb_sei_mde_xmu2_expression_PositionPath
+                    // Xmu2.g:13379:4: c3= parse_edu_ustb_sei_mde_xmu2_expression_PositionPath
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PositionPath_in_parse_edu_ustb_sei_mde_xmu2_expression_Path11245);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PositionPath_in_parse_edu_ustb_sei_mde_xmu2_expression_Path11362);
                     c3=parse_edu_ustb_sei_mde_xmu2_expression_PositionPath();
 
                     state._fsp--;
@@ -32360,7 +32895,7 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
 
     // $ANTLR start "parse_edu_ustb_sei_mde_xmu2_statement_CaseClause"
-    // Xmu2.g:13264:1: parse_edu_ustb_sei_mde_xmu2_statement_CaseClause returns [edu.ustb.sei.mde.xmu2.statement.CaseClause element = null] : (c0= parse_edu_ustb_sei_mde_xmu2_statement_PatternCaseClause |c1= parse_edu_ustb_sei_mde_xmu2_statement_ExpressionCaseClause |c2= parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause );
+    // Xmu2.g:13383:1: parse_edu_ustb_sei_mde_xmu2_statement_CaseClause returns [edu.ustb.sei.mde.xmu2.statement.CaseClause element = null] : (c0= parse_edu_ustb_sei_mde_xmu2_statement_PatternCaseClause |c1= parse_edu_ustb_sei_mde_xmu2_statement_ExpressionCaseClause |c2= parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause );
     public final edu.ustb.sei.mde.xmu2.statement.CaseClause parse_edu_ustb_sei_mde_xmu2_statement_CaseClause() throws RecognitionException {
         edu.ustb.sei.mde.xmu2.statement.CaseClause element =  null;
 
@@ -32376,59 +32911,59 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 57) ) { return element; }
 
-            // Xmu2.g:13265:2: (c0= parse_edu_ustb_sei_mde_xmu2_statement_PatternCaseClause |c1= parse_edu_ustb_sei_mde_xmu2_statement_ExpressionCaseClause |c2= parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause )
-            int alt108=3;
-            int LA108_0 = input.LA(1);
+            // Xmu2.g:13384:2: (c0= parse_edu_ustb_sei_mde_xmu2_statement_PatternCaseClause |c1= parse_edu_ustb_sei_mde_xmu2_statement_ExpressionCaseClause |c2= parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause )
+            int alt109=3;
+            int LA109_0 = input.LA(1);
 
-            if ( (LA108_0==42) ) {
-                int LA108_1 = input.LA(2);
+            if ( (LA109_0==42) ) {
+                int LA109_1 = input.LA(2);
 
-                if ( (LA108_1==NAME) ) {
-                    int LA108_3 = input.LA(3);
+                if ( (LA109_1==NAME) ) {
+                    int LA109_3 = input.LA(3);
 
-                    if ( (LA108_3==27||LA108_3==37) ) {
-                        alt108=1;
+                    if ( (LA109_3==27||LA109_3==37) ) {
+                        alt109=1;
                     }
-                    else if ( ((LA108_3 >= 19 && LA108_3 <= 21)||(LA108_3 >= 23 && LA108_3 <= 26)||(LA108_3 >= 31 && LA108_3 <= 35)||LA108_3==39||LA108_3==59) ) {
-                        alt108=2;
+                    else if ( ((LA109_3 >= 19 && LA109_3 <= 21)||(LA109_3 >= 23 && LA109_3 <= 26)||(LA109_3 >= 31 && LA109_3 <= 35)||LA109_3==39||LA109_3==59) ) {
+                        alt109=2;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return element;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 108, 3, input);
+                            new NoViableAltException("", 109, 3, input);
 
                         throw nvae;
 
                     }
                 }
-                else if ( (LA108_1==BOOLEAN||(LA108_1 >= NUMBER && LA108_1 <= QUOTED_39_39_92)||LA108_1==TYPE||LA108_1==17||LA108_1==23||(LA108_1 >= 57 && LA108_1 <= 58)||LA108_1==66) ) {
-                    alt108=2;
+                else if ( (LA109_1==BOOLEAN||(LA109_1 >= NUMBER && LA109_1 <= QUOTED_39_39_92)||LA109_1==TYPE||LA109_1==17||LA109_1==23||(LA109_1 >= 57 && LA109_1 <= 58)||LA109_1==66) ) {
+                    alt109=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return element;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 108, 1, input);
+                        new NoViableAltException("", 109, 1, input);
 
                     throw nvae;
 
                 }
             }
-            else if ( (LA108_0==60) ) {
-                alt108=3;
+            else if ( (LA109_0==60) ) {
+                alt109=3;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return element;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 108, 0, input);
+                    new NoViableAltException("", 109, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt108) {
+            switch (alt109) {
                 case 1 :
-                    // Xmu2.g:13266:2: c0= parse_edu_ustb_sei_mde_xmu2_statement_PatternCaseClause
+                    // Xmu2.g:13385:2: c0= parse_edu_ustb_sei_mde_xmu2_statement_PatternCaseClause
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_PatternCaseClause_in_parse_edu_ustb_sei_mde_xmu2_statement_CaseClause11266);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_PatternCaseClause_in_parse_edu_ustb_sei_mde_xmu2_statement_CaseClause11383);
                     c0=parse_edu_ustb_sei_mde_xmu2_statement_PatternCaseClause();
 
                     state._fsp--;
@@ -32439,9 +32974,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Xmu2.g:13267:4: c1= parse_edu_ustb_sei_mde_xmu2_statement_ExpressionCaseClause
+                    // Xmu2.g:13386:4: c1= parse_edu_ustb_sei_mde_xmu2_statement_ExpressionCaseClause
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_ExpressionCaseClause_in_parse_edu_ustb_sei_mde_xmu2_statement_CaseClause11276);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_ExpressionCaseClause_in_parse_edu_ustb_sei_mde_xmu2_statement_CaseClause11393);
                     c1=parse_edu_ustb_sei_mde_xmu2_statement_ExpressionCaseClause();
 
                     state._fsp--;
@@ -32452,9 +32987,9 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                     }
                     break;
                 case 3 :
-                    // Xmu2.g:13268:4: c2= parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause
+                    // Xmu2.g:13387:4: c2= parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause
                     {
-                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause_in_parse_edu_ustb_sei_mde_xmu2_statement_CaseClause11286);
+                    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause_in_parse_edu_ustb_sei_mde_xmu2_statement_CaseClause11403);
                     c2=parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause();
 
                     state._fsp--;
@@ -32633,13 +33168,13 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         a1=(Token)match(input,72,FOLLOW_72_in_synpred48_Xmu22291); if (state.failed) return ;
 
         // Xmu2.g:2821:4: ( ( (a2_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ( (a3= ',' (a4_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ) )* ) )?
-        int alt116=2;
-        int LA116_0 = input.LA(1);
+        int alt117=2;
+        int LA117_0 = input.LA(1);
 
-        if ( (LA116_0==NAME||LA116_0==37) ) {
-            alt116=1;
+        if ( (LA117_0==NAME||LA117_0==37) ) {
+            alt117=1;
         }
-        switch (alt116) {
+        switch (alt117) {
             case 1 :
                 // Xmu2.g:2822:5: ( (a2_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ( (a3= ',' (a4_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ) )* )
                 {
@@ -32659,17 +33194,17 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
 
                 // Xmu2.g:2850:6: ( (a3= ',' (a4_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ) )*
-                loop115:
+                loop116:
                 do {
-                    int alt115=2;
-                    int LA115_0 = input.LA(1);
+                    int alt116=2;
+                    int LA116_0 = input.LA(1);
 
-                    if ( (LA115_0==22) ) {
-                        alt115=1;
+                    if ( (LA116_0==22) ) {
+                        alt116=1;
                     }
 
 
-                    switch (alt115) {
+                    switch (alt116) {
                 	case 1 :
                 	    // Xmu2.g:2851:7: (a3= ',' (a4_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) )
                 	    {
@@ -32697,7 +33232,7 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 	    break;
 
                 	default :
-                	    break loop115;
+                	    break loop116;
                     }
                 } while (true);
 
@@ -34437,16 +34972,16 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
     }
     // $ANTLR end synpred245_Xmu2
 
-    // $ANTLR start synpred260_Xmu2
-    public final void synpred260_Xmu2_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.xmu2.expression.BooleanOrExpression a2_0 =null;
+    // $ANTLR start synpred248_Xmu2
+    public final void synpred248_Xmu2_fragment() throws RecognitionException {
+        edu.ustb.sei.mde.xmu2.expression.BooleanOrExpression a1_0 =null;
 
 
-        // Xmu2.g:11016:3: (a2_0= parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression )
-        // Xmu2.g:11016:3: a2_0= parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression
+        // Xmu2.g:10630:5: (a1_0= parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression )
+        // Xmu2.g:10630:5: a1_0= parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression_in_synpred260_Xmu29340);
-        a2_0=parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression_in_synpred248_Xmu29042);
+        a1_0=parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression();
 
         state._fsp--;
         if (state.failed) return ;
@@ -34454,18 +34989,18 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         }
 
     }
-    // $ANTLR end synpred260_Xmu2
+    // $ANTLR end synpred248_Xmu2
 
-    // $ANTLR start synpred261_Xmu2
-    public final void synpred261_Xmu2_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.xmu2.expression.BooleanAndExpression a2_1 =null;
+    // $ANTLR start synpred249_Xmu2
+    public final void synpred249_Xmu2_fragment() throws RecognitionException {
+        edu.ustb.sei.mde.xmu2.expression.BooleanAndExpression a1_1 =null;
 
 
-        // Xmu2.g:11035:6: (a2_1= parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression )
-        // Xmu2.g:11035:6: a2_1= parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression
+        // Xmu2.g:10649:10: (a1_1= parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression )
+        // Xmu2.g:10649:10: a1_1= parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression_in_synpred261_Xmu29354);
-        a2_1=parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression_in_synpred249_Xmu29062);
+        a1_1=parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression();
 
         state._fsp--;
         if (state.failed) return ;
@@ -34473,18 +35008,18 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         }
 
     }
-    // $ANTLR end synpred261_Xmu2
+    // $ANTLR end synpred249_Xmu2
 
-    // $ANTLR start synpred262_Xmu2
-    public final void synpred262_Xmu2_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.xmu2.expression.RelationalExpression a2_2 =null;
+    // $ANTLR start synpred250_Xmu2
+    public final void synpred250_Xmu2_fragment() throws RecognitionException {
+        edu.ustb.sei.mde.xmu2.expression.RelationalExpression a1_2 =null;
 
 
-        // Xmu2.g:11054:6: (a2_2= parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression )
-        // Xmu2.g:11054:6: a2_2= parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression
+        // Xmu2.g:10668:10: (a1_2= parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression )
+        // Xmu2.g:10668:10: a1_2= parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression_in_synpred262_Xmu29368);
-        a2_2=parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression_in_synpred250_Xmu29082);
+        a1_2=parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression();
 
         state._fsp--;
         if (state.failed) return ;
@@ -34492,18 +35027,18 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         }
 
     }
-    // $ANTLR end synpred262_Xmu2
+    // $ANTLR end synpred250_Xmu2
 
-    // $ANTLR start synpred263_Xmu2
-    public final void synpred263_Xmu2_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.xmu2.expression.AdditiveExpression a2_3 =null;
+    // $ANTLR start synpred251_Xmu2
+    public final void synpred251_Xmu2_fragment() throws RecognitionException {
+        edu.ustb.sei.mde.xmu2.expression.UnaryExpression a1_3 =null;
 
 
-        // Xmu2.g:11073:6: (a2_3= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression )
-        // Xmu2.g:11073:6: a2_3= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression
+        // Xmu2.g:10687:10: (a1_3= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression )
+        // Xmu2.g:10687:10: a1_3= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression_in_synpred263_Xmu29382);
-        a2_3=parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_synpred251_Xmu29102);
+        a1_3=parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression();
 
         state._fsp--;
         if (state.failed) return ;
@@ -34511,18 +35046,18 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         }
 
     }
-    // $ANTLR end synpred263_Xmu2
+    // $ANTLR end synpred251_Xmu2
 
-    // $ANTLR start synpred264_Xmu2
-    public final void synpred264_Xmu2_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.xmu2.expression.MultiplicativeExpression a2_4 =null;
+    // $ANTLR start synpred252_Xmu2
+    public final void synpred252_Xmu2_fragment() throws RecognitionException {
+        edu.ustb.sei.mde.xmu2.expression.PathExpression a1_4 =null;
 
 
-        // Xmu2.g:11092:6: (a2_4= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression )
-        // Xmu2.g:11092:6: a2_4= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression
+        // Xmu2.g:10706:10: (a1_4= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression )
+        // Xmu2.g:10706:10: a1_4= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression_in_synpred264_Xmu29396);
-        a2_4=parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_synpred252_Xmu29122);
+        a1_4=parse_edu_ustb_sei_mde_xmu2_expression_PathExpression();
 
         state._fsp--;
         if (state.failed) return ;
@@ -34530,18 +35065,18 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         }
 
     }
-    // $ANTLR end synpred264_Xmu2
+    // $ANTLR end synpred252_Xmu2
 
     // $ANTLR start synpred265_Xmu2
     public final void synpred265_Xmu2_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.xmu2.expression.UnaryExpression a2_5 =null;
+        edu.ustb.sei.mde.xmu2.expression.BooleanOrExpression a2_0 =null;
 
 
-        // Xmu2.g:11111:6: (a2_5= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression )
-        // Xmu2.g:11111:6: a2_5= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression
+        // Xmu2.g:11135:3: (a2_0= parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression )
+        // Xmu2.g:11135:3: a2_0= parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_synpred265_Xmu29410);
-        a2_5=parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression_in_synpred265_Xmu29457);
+        a2_0=parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression();
 
         state._fsp--;
         if (state.failed) return ;
@@ -34553,14 +35088,14 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
     // $ANTLR start synpred266_Xmu2
     public final void synpred266_Xmu2_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.xmu2.expression.PathExpression a2_6 =null;
+        edu.ustb.sei.mde.xmu2.expression.BooleanAndExpression a2_1 =null;
 
 
-        // Xmu2.g:11130:6: (a2_6= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression )
-        // Xmu2.g:11130:6: a2_6= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression
+        // Xmu2.g:11154:6: (a2_1= parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression )
+        // Xmu2.g:11154:6: a2_1= parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_synpred266_Xmu29424);
-        a2_6=parse_edu_ustb_sei_mde_xmu2_expression_PathExpression();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression_in_synpred266_Xmu29471);
+        a2_1=parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression();
 
         state._fsp--;
         if (state.failed) return ;
@@ -34570,16 +35105,35 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
     }
     // $ANTLR end synpred266_Xmu2
 
+    // $ANTLR start synpred267_Xmu2
+    public final void synpred267_Xmu2_fragment() throws RecognitionException {
+        edu.ustb.sei.mde.xmu2.expression.RelationalExpression a2_2 =null;
+
+
+        // Xmu2.g:11173:6: (a2_2= parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression )
+        // Xmu2.g:11173:6: a2_2= parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression
+        {
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression_in_synpred267_Xmu29485);
+        a2_2=parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression();
+
+        state._fsp--;
+        if (state.failed) return ;
+
+        }
+
+    }
+    // $ANTLR end synpred267_Xmu2
+
     // $ANTLR start synpred268_Xmu2
     public final void synpred268_Xmu2_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.xmu2.expression.AdditiveExpression a5_0 =null;
+        edu.ustb.sei.mde.xmu2.expression.AdditiveExpression a2_3 =null;
 
 
-        // Xmu2.g:11336:3: (a5_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression )
-        // Xmu2.g:11336:3: a5_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression
+        // Xmu2.g:11192:6: (a2_3= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression )
+        // Xmu2.g:11192:6: a2_3= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression_in_synpred268_Xmu29581);
-        a5_0=parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression_in_synpred268_Xmu29499);
+        a2_3=parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression();
 
         state._fsp--;
         if (state.failed) return ;
@@ -34591,14 +35145,14 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
     // $ANTLR start synpred269_Xmu2
     public final void synpred269_Xmu2_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.xmu2.expression.MultiplicativeExpression a5_1 =null;
+        edu.ustb.sei.mde.xmu2.expression.MultiplicativeExpression a2_4 =null;
 
 
-        // Xmu2.g:11360:6: (a5_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression )
-        // Xmu2.g:11360:6: a5_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression
+        // Xmu2.g:11211:6: (a2_4= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression )
+        // Xmu2.g:11211:6: a2_4= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression_in_synpred269_Xmu29595);
-        a5_1=parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression_in_synpred269_Xmu29513);
+        a2_4=parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression();
 
         state._fsp--;
         if (state.failed) return ;
@@ -34610,14 +35164,14 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
     // $ANTLR start synpred270_Xmu2
     public final void synpred270_Xmu2_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.xmu2.expression.UnaryExpression a5_2 =null;
+        edu.ustb.sei.mde.xmu2.expression.UnaryExpression a2_5 =null;
 
 
-        // Xmu2.g:11384:6: (a5_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression )
-        // Xmu2.g:11384:6: a5_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression
+        // Xmu2.g:11230:6: (a2_5= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression )
+        // Xmu2.g:11230:6: a2_5= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_synpred270_Xmu29609);
-        a5_2=parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_synpred270_Xmu29527);
+        a2_5=parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression();
 
         state._fsp--;
         if (state.failed) return ;
@@ -34629,14 +35183,14 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
     // $ANTLR start synpred271_Xmu2
     public final void synpred271_Xmu2_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.xmu2.expression.PathExpression a5_3 =null;
+        edu.ustb.sei.mde.xmu2.expression.PathExpression a2_6 =null;
 
 
-        // Xmu2.g:11408:6: (a5_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression )
-        // Xmu2.g:11408:6: a5_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression
+        // Xmu2.g:11249:6: (a2_6= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression )
+        // Xmu2.g:11249:6: a2_6= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_synpred271_Xmu29623);
-        a5_3=parse_edu_ustb_sei_mde_xmu2_expression_PathExpression();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_synpred271_Xmu29541);
+        a2_6=parse_edu_ustb_sei_mde_xmu2_expression_PathExpression();
 
         state._fsp--;
         if (state.failed) return ;
@@ -34646,8 +35200,84 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
     }
     // $ANTLR end synpred271_Xmu2
 
+    // $ANTLR start synpred273_Xmu2
+    public final void synpred273_Xmu2_fragment() throws RecognitionException {
+        edu.ustb.sei.mde.xmu2.expression.AdditiveExpression a5_0 =null;
+
+
+        // Xmu2.g:11455:3: (a5_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression )
+        // Xmu2.g:11455:3: a5_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression
+        {
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression_in_synpred273_Xmu29698);
+        a5_0=parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression();
+
+        state._fsp--;
+        if (state.failed) return ;
+
+        }
+
+    }
+    // $ANTLR end synpred273_Xmu2
+
     // $ANTLR start synpred274_Xmu2
     public final void synpred274_Xmu2_fragment() throws RecognitionException {
+        edu.ustb.sei.mde.xmu2.expression.MultiplicativeExpression a5_1 =null;
+
+
+        // Xmu2.g:11479:6: (a5_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression )
+        // Xmu2.g:11479:6: a5_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression
+        {
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression_in_synpred274_Xmu29712);
+        a5_1=parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression();
+
+        state._fsp--;
+        if (state.failed) return ;
+
+        }
+
+    }
+    // $ANTLR end synpred274_Xmu2
+
+    // $ANTLR start synpred275_Xmu2
+    public final void synpred275_Xmu2_fragment() throws RecognitionException {
+        edu.ustb.sei.mde.xmu2.expression.UnaryExpression a5_2 =null;
+
+
+        // Xmu2.g:11503:6: (a5_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression )
+        // Xmu2.g:11503:6: a5_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression
+        {
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_synpred275_Xmu29726);
+        a5_2=parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression();
+
+        state._fsp--;
+        if (state.failed) return ;
+
+        }
+
+    }
+    // $ANTLR end synpred275_Xmu2
+
+    // $ANTLR start synpred276_Xmu2
+    public final void synpred276_Xmu2_fragment() throws RecognitionException {
+        edu.ustb.sei.mde.xmu2.expression.PathExpression a5_3 =null;
+
+
+        // Xmu2.g:11527:6: (a5_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression )
+        // Xmu2.g:11527:6: a5_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression
+        {
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_synpred276_Xmu29740);
+        a5_3=parse_edu_ustb_sei_mde_xmu2_expression_PathExpression();
+
+        state._fsp--;
+        if (state.failed) return ;
+
+        }
+
+    }
+    // $ANTLR end synpred276_Xmu2
+
+    // $ANTLR start synpred279_Xmu2
+    public final void synpred279_Xmu2_fragment() throws RecognitionException {
         Token a7=null;
         Token a9=null;
         Token a11=null;
@@ -34656,32 +35286,32 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         edu.ustb.sei.mde.xmu2.pattern.PatternExpression a10_0 =null;
 
 
-        // Xmu2.g:11509:3: ( (a7= '{' ( ( (a8_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ( (a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ) )* ) )? a11= '}' ) )
-        // Xmu2.g:11509:3: (a7= '{' ( ( (a8_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ( (a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ) )* ) )? a11= '}' )
+        // Xmu2.g:11628:3: ( (a7= '{' ( ( (a8_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ( (a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ) )* ) )? a11= '}' ) )
+        // Xmu2.g:11628:3: (a7= '{' ( ( (a8_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ( (a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ) )* ) )? a11= '}' )
         {
-        // Xmu2.g:11509:3: (a7= '{' ( ( (a8_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ( (a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ) )* ) )? a11= '}' )
-        // Xmu2.g:11510:4: a7= '{' ( ( (a8_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ( (a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ) )* ) )? a11= '}'
+        // Xmu2.g:11628:3: (a7= '{' ( ( (a8_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ( (a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ) )* ) )? a11= '}' )
+        // Xmu2.g:11629:4: a7= '{' ( ( (a8_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ( (a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ) )* ) )? a11= '}'
         {
-        a7=(Token)match(input,72,FOLLOW_72_in_synpred274_Xmu29678); if (state.failed) return ;
+        a7=(Token)match(input,72,FOLLOW_72_in_synpred279_Xmu29795); if (state.failed) return ;
 
-        // Xmu2.g:11533:4: ( ( (a8_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ( (a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ) )* ) )?
-        int alt148=2;
-        int LA148_0 = input.LA(1);
+        // Xmu2.g:11652:4: ( ( (a8_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ( (a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ) )* ) )?
+        int alt150=2;
+        int LA150_0 = input.LA(1);
 
-        if ( (LA148_0==NAME||LA148_0==37) ) {
-            alt148=1;
+        if ( (LA150_0==NAME||LA150_0==37) ) {
+            alt150=1;
         }
-        switch (alt148) {
+        switch (alt150) {
             case 1 :
-                // Xmu2.g:11534:5: ( (a8_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ( (a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ) )* )
+                // Xmu2.g:11653:5: ( (a8_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ( (a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ) )* )
                 {
-                // Xmu2.g:11534:5: ( (a8_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ( (a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ) )* )
-                // Xmu2.g:11535:6: (a8_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ( (a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ) )*
+                // Xmu2.g:11653:5: ( (a8_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ( (a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ) )* )
+                // Xmu2.g:11654:6: (a8_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ( (a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ) )*
                 {
-                // Xmu2.g:11535:6: (a8_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression )
-                // Xmu2.g:11536:7: a8_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression
+                // Xmu2.g:11654:6: (a8_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression )
+                // Xmu2.g:11655:7: a8_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression
                 {
-                pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression_in_synpred274_Xmu29719);
+                pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression_in_synpred279_Xmu29836);
                 a8_0=parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression();
 
                 state._fsp--;
@@ -34690,30 +35320,30 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 }
 
 
-                // Xmu2.g:11567:6: ( (a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ) )*
-                loop147:
+                // Xmu2.g:11686:6: ( (a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) ) )*
+                loop149:
                 do {
-                    int alt147=2;
-                    int LA147_0 = input.LA(1);
+                    int alt149=2;
+                    int LA149_0 = input.LA(1);
 
-                    if ( (LA147_0==22) ) {
-                        alt147=1;
+                    if ( (LA149_0==22) ) {
+                        alt149=1;
                     }
 
 
-                    switch (alt147) {
+                    switch (alt149) {
                 	case 1 :
-                	    // Xmu2.g:11568:7: (a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) )
+                	    // Xmu2.g:11687:7: (a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) )
                 	    {
-                	    // Xmu2.g:11568:7: (a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) )
-                	    // Xmu2.g:11569:8: a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression )
+                	    // Xmu2.g:11687:7: (a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression ) )
+                	    // Xmu2.g:11688:8: a9= ',' (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression )
                 	    {
-                	    a9=(Token)match(input,22,FOLLOW_22_in_synpred274_Xmu29774); if (state.failed) return ;
+                	    a9=(Token)match(input,22,FOLLOW_22_in_synpred279_Xmu29891); if (state.failed) return ;
 
-                	    // Xmu2.g:11591:8: (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression )
-                	    // Xmu2.g:11592:9: a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression
+                	    // Xmu2.g:11710:8: (a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression )
+                	    // Xmu2.g:11711:9: a10_0= parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression
                 	    {
-                	    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression_in_synpred274_Xmu29816);
+                	    pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression_in_synpred279_Xmu29933);
                 	    a10_0=parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression();
 
                 	    state._fsp--;
@@ -34729,7 +35359,7 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
                 	    break;
 
                 	default :
-                	    break loop147;
+                	    break loop149;
                     }
                 } while (true);
 
@@ -34743,7 +35373,7 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         }
 
 
-        a11=(Token)match(input,74,FOLLOW_74_in_synpred274_Xmu29920); if (state.failed) return ;
+        a11=(Token)match(input,74,FOLLOW_74_in_synpred279_Xmu210037); if (state.failed) return ;
 
         }
 
@@ -34751,17 +35381,17 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         }
 
     }
-    // $ANTLR end synpred274_Xmu2
+    // $ANTLR end synpred279_Xmu2
 
-    // $ANTLR start synpred276_Xmu2
-    public final void synpred276_Xmu2_fragment() throws RecognitionException {
+    // $ANTLR start synpred281_Xmu2
+    public final void synpred281_Xmu2_fragment() throws RecognitionException {
         edu.ustb.sei.mde.xmu2.expression.AdditiveExpression a4_0 =null;
 
 
-        // Xmu2.g:11795:3: (a4_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression )
-        // Xmu2.g:11795:3: a4_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression
+        // Xmu2.g:11914:3: (a4_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression )
+        // Xmu2.g:11914:3: a4_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression_in_synpred276_Xmu210016);
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression_in_synpred281_Xmu210133);
         a4_0=parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression();
 
         state._fsp--;
@@ -34770,17 +35400,17 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         }
 
     }
-    // $ANTLR end synpred276_Xmu2
+    // $ANTLR end synpred281_Xmu2
 
-    // $ANTLR start synpred277_Xmu2
-    public final void synpred277_Xmu2_fragment() throws RecognitionException {
+    // $ANTLR start synpred282_Xmu2
+    public final void synpred282_Xmu2_fragment() throws RecognitionException {
         edu.ustb.sei.mde.xmu2.expression.MultiplicativeExpression a4_1 =null;
 
 
-        // Xmu2.g:11824:6: (a4_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression )
-        // Xmu2.g:11824:6: a4_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression
+        // Xmu2.g:11943:6: (a4_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression )
+        // Xmu2.g:11943:6: a4_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression_in_synpred277_Xmu210030);
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression_in_synpred282_Xmu210147);
         a4_1=parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression();
 
         state._fsp--;
@@ -34789,17 +35419,17 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         }
 
     }
-    // $ANTLR end synpred277_Xmu2
+    // $ANTLR end synpred282_Xmu2
 
-    // $ANTLR start synpred278_Xmu2
-    public final void synpred278_Xmu2_fragment() throws RecognitionException {
+    // $ANTLR start synpred283_Xmu2
+    public final void synpred283_Xmu2_fragment() throws RecognitionException {
         edu.ustb.sei.mde.xmu2.expression.UnaryExpression a4_2 =null;
 
 
-        // Xmu2.g:11853:6: (a4_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression )
-        // Xmu2.g:11853:6: a4_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression
+        // Xmu2.g:11972:6: (a4_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression )
+        // Xmu2.g:11972:6: a4_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_synpred278_Xmu210044);
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_synpred283_Xmu210161);
         a4_2=parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression();
 
         state._fsp--;
@@ -34808,37 +35438,18 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         }
 
     }
-    // $ANTLR end synpred278_Xmu2
-
-    // $ANTLR start synpred279_Xmu2
-    public final void synpred279_Xmu2_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.xmu2.expression.PathExpression a4_3 =null;
-
-
-        // Xmu2.g:11882:6: (a4_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression )
-        // Xmu2.g:11882:6: a4_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression
-        {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_synpred279_Xmu210058);
-        a4_3=parse_edu_ustb_sei_mde_xmu2_expression_PathExpression();
-
-        state._fsp--;
-        if (state.failed) return ;
-
-        }
-
-    }
-    // $ANTLR end synpred279_Xmu2
+    // $ANTLR end synpred283_Xmu2
 
     // $ANTLR start synpred284_Xmu2
     public final void synpred284_Xmu2_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.xmu2.expression.AdditiveExpression a4_0 =null;
+        edu.ustb.sei.mde.xmu2.expression.PathExpression a4_3 =null;
 
 
-        // Xmu2.g:12240:3: (a4_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression )
-        // Xmu2.g:12240:3: a4_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression
+        // Xmu2.g:12001:6: (a4_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression )
+        // Xmu2.g:12001:6: a4_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression_in_synpred284_Xmu210345);
-        a4_0=parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_synpred284_Xmu210175);
+        a4_3=parse_edu_ustb_sei_mde_xmu2_expression_PathExpression();
 
         state._fsp--;
         if (state.failed) return ;
@@ -34848,15 +35459,34 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
     }
     // $ANTLR end synpred284_Xmu2
 
-    // $ANTLR start synpred285_Xmu2
-    public final void synpred285_Xmu2_fragment() throws RecognitionException {
+    // $ANTLR start synpred289_Xmu2
+    public final void synpred289_Xmu2_fragment() throws RecognitionException {
+        edu.ustb.sei.mde.xmu2.expression.AdditiveExpression a4_0 =null;
+
+
+        // Xmu2.g:12359:3: (a4_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression )
+        // Xmu2.g:12359:3: a4_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression
+        {
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression_in_synpred289_Xmu210462);
+        a4_0=parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression();
+
+        state._fsp--;
+        if (state.failed) return ;
+
+        }
+
+    }
+    // $ANTLR end synpred289_Xmu2
+
+    // $ANTLR start synpred290_Xmu2
+    public final void synpred290_Xmu2_fragment() throws RecognitionException {
         edu.ustb.sei.mde.xmu2.expression.MultiplicativeExpression a4_1 =null;
 
 
-        // Xmu2.g:12269:6: (a4_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression )
-        // Xmu2.g:12269:6: a4_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression
+        // Xmu2.g:12388:6: (a4_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression )
+        // Xmu2.g:12388:6: a4_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression_in_synpred285_Xmu210359);
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression_in_synpred290_Xmu210476);
         a4_1=parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression();
 
         state._fsp--;
@@ -34865,56 +35495,18 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         }
 
     }
-    // $ANTLR end synpred285_Xmu2
-
-    // $ANTLR start synpred286_Xmu2
-    public final void synpred286_Xmu2_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.xmu2.expression.UnaryExpression a4_2 =null;
-
-
-        // Xmu2.g:12298:6: (a4_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression )
-        // Xmu2.g:12298:6: a4_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression
-        {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_synpred286_Xmu210373);
-        a4_2=parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression();
-
-        state._fsp--;
-        if (state.failed) return ;
-
-        }
-
-    }
-    // $ANTLR end synpred286_Xmu2
-
-    // $ANTLR start synpred287_Xmu2
-    public final void synpred287_Xmu2_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.xmu2.expression.PathExpression a4_3 =null;
-
-
-        // Xmu2.g:12327:6: (a4_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression )
-        // Xmu2.g:12327:6: a4_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression
-        {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_synpred287_Xmu210387);
-        a4_3=parse_edu_ustb_sei_mde_xmu2_expression_PathExpression();
-
-        state._fsp--;
-        if (state.failed) return ;
-
-        }
-
-    }
-    // $ANTLR end synpred287_Xmu2
+    // $ANTLR end synpred290_Xmu2
 
     // $ANTLR start synpred291_Xmu2
     public final void synpred291_Xmu2_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.xmu2.expression.BooleanOrExpression a12_0 =null;
+        edu.ustb.sei.mde.xmu2.expression.UnaryExpression a4_2 =null;
 
 
-        // Xmu2.g:12582:3: (a12_0= parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression )
-        // Xmu2.g:12582:3: a12_0= parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression
+        // Xmu2.g:12417:6: (a4_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression )
+        // Xmu2.g:12417:6: a4_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression_in_synpred291_Xmu210593);
-        a12_0=parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_synpred291_Xmu210490);
+        a4_2=parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression();
 
         state._fsp--;
         if (state.failed) return ;
@@ -34926,14 +35518,14 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
     // $ANTLR start synpred292_Xmu2
     public final void synpred292_Xmu2_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.xmu2.expression.BooleanAndExpression a12_1 =null;
+        edu.ustb.sei.mde.xmu2.expression.PathExpression a4_3 =null;
 
 
-        // Xmu2.g:12611:6: (a12_1= parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression )
-        // Xmu2.g:12611:6: a12_1= parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression
+        // Xmu2.g:12446:6: (a4_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression )
+        // Xmu2.g:12446:6: a4_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression_in_synpred292_Xmu210607);
-        a12_1=parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_synpred292_Xmu210504);
+        a4_3=parse_edu_ustb_sei_mde_xmu2_expression_PathExpression();
 
         state._fsp--;
         if (state.failed) return ;
@@ -34943,73 +35535,16 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
     }
     // $ANTLR end synpred292_Xmu2
 
-    // $ANTLR start synpred293_Xmu2
-    public final void synpred293_Xmu2_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.xmu2.expression.RelationalExpression a12_2 =null;
-
-
-        // Xmu2.g:12640:6: (a12_2= parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression )
-        // Xmu2.g:12640:6: a12_2= parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression
-        {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression_in_synpred293_Xmu210621);
-        a12_2=parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression();
-
-        state._fsp--;
-        if (state.failed) return ;
-
-        }
-
-    }
-    // $ANTLR end synpred293_Xmu2
-
-    // $ANTLR start synpred294_Xmu2
-    public final void synpred294_Xmu2_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.xmu2.expression.AdditiveExpression a12_3 =null;
-
-
-        // Xmu2.g:12669:6: (a12_3= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression )
-        // Xmu2.g:12669:6: a12_3= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression
-        {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression_in_synpred294_Xmu210635);
-        a12_3=parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression();
-
-        state._fsp--;
-        if (state.failed) return ;
-
-        }
-
-    }
-    // $ANTLR end synpred294_Xmu2
-
-    // $ANTLR start synpred295_Xmu2
-    public final void synpred295_Xmu2_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.xmu2.expression.MultiplicativeExpression a12_4 =null;
-
-
-        // Xmu2.g:12698:6: (a12_4= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression )
-        // Xmu2.g:12698:6: a12_4= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression
-        {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression_in_synpred295_Xmu210649);
-        a12_4=parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression();
-
-        state._fsp--;
-        if (state.failed) return ;
-
-        }
-
-    }
-    // $ANTLR end synpred295_Xmu2
-
     // $ANTLR start synpred296_Xmu2
     public final void synpred296_Xmu2_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.xmu2.expression.UnaryExpression a12_5 =null;
+        edu.ustb.sei.mde.xmu2.expression.BooleanOrExpression a12_0 =null;
 
 
-        // Xmu2.g:12727:6: (a12_5= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression )
-        // Xmu2.g:12727:6: a12_5= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression
+        // Xmu2.g:12701:3: (a12_0= parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression )
+        // Xmu2.g:12701:3: a12_0= parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_synpred296_Xmu210663);
-        a12_5=parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression_in_synpred296_Xmu210710);
+        a12_0=parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression();
 
         state._fsp--;
         if (state.failed) return ;
@@ -35021,14 +35556,14 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
     // $ANTLR start synpred297_Xmu2
     public final void synpred297_Xmu2_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.xmu2.expression.PathExpression a12_6 =null;
+        edu.ustb.sei.mde.xmu2.expression.BooleanAndExpression a12_1 =null;
 
 
-        // Xmu2.g:12756:6: (a12_6= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression )
-        // Xmu2.g:12756:6: a12_6= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression
+        // Xmu2.g:12730:6: (a12_1= parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression )
+        // Xmu2.g:12730:6: a12_1= parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_synpred297_Xmu210677);
-        a12_6=parse_edu_ustb_sei_mde_xmu2_expression_PathExpression();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression_in_synpred297_Xmu210724);
+        a12_1=parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression();
 
         state._fsp--;
         if (state.failed) return ;
@@ -35038,16 +35573,35 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
     }
     // $ANTLR end synpred297_Xmu2
 
+    // $ANTLR start synpred298_Xmu2
+    public final void synpred298_Xmu2_fragment() throws RecognitionException {
+        edu.ustb.sei.mde.xmu2.expression.RelationalExpression a12_2 =null;
+
+
+        // Xmu2.g:12759:6: (a12_2= parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression )
+        // Xmu2.g:12759:6: a12_2= parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression
+        {
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression_in_synpred298_Xmu210738);
+        a12_2=parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression();
+
+        state._fsp--;
+        if (state.failed) return ;
+
+        }
+
+    }
+    // $ANTLR end synpred298_Xmu2
+
     // $ANTLR start synpred299_Xmu2
     public final void synpred299_Xmu2_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.xmu2.expression.AdditiveExpression a6_0 =null;
+        edu.ustb.sei.mde.xmu2.expression.AdditiveExpression a12_3 =null;
 
 
-        // Xmu2.g:12942:3: (a6_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression )
-        // Xmu2.g:12942:3: a6_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression
+        // Xmu2.g:12788:6: (a12_3= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression )
+        // Xmu2.g:12788:6: a12_3= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression_in_synpred299_Xmu210808);
-        a6_0=parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression_in_synpred299_Xmu210752);
+        a12_3=parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression();
 
         state._fsp--;
         if (state.failed) return ;
@@ -35059,14 +35613,14 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
     // $ANTLR start synpred300_Xmu2
     public final void synpred300_Xmu2_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.xmu2.expression.MultiplicativeExpression a6_1 =null;
+        edu.ustb.sei.mde.xmu2.expression.MultiplicativeExpression a12_4 =null;
 
 
-        // Xmu2.g:12966:6: (a6_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression )
-        // Xmu2.g:12966:6: a6_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression
+        // Xmu2.g:12817:6: (a12_4= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression )
+        // Xmu2.g:12817:6: a12_4= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression_in_synpred300_Xmu210822);
-        a6_1=parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression_in_synpred300_Xmu210766);
+        a12_4=parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression();
 
         state._fsp--;
         if (state.failed) return ;
@@ -35078,14 +35632,14 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
     // $ANTLR start synpred301_Xmu2
     public final void synpred301_Xmu2_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.xmu2.expression.UnaryExpression a6_2 =null;
+        edu.ustb.sei.mde.xmu2.expression.UnaryExpression a12_5 =null;
 
 
-        // Xmu2.g:12990:6: (a6_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression )
-        // Xmu2.g:12990:6: a6_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression
+        // Xmu2.g:12846:6: (a12_5= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression )
+        // Xmu2.g:12846:6: a12_5= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_synpred301_Xmu210836);
-        a6_2=parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_synpred301_Xmu210780);
+        a12_5=parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression();
 
         state._fsp--;
         if (state.failed) return ;
@@ -35097,14 +35651,14 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
     // $ANTLR start synpred302_Xmu2
     public final void synpred302_Xmu2_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.xmu2.expression.PathExpression a6_3 =null;
+        edu.ustb.sei.mde.xmu2.expression.PathExpression a12_6 =null;
 
 
-        // Xmu2.g:13014:6: (a6_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression )
-        // Xmu2.g:13014:6: a6_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression
+        // Xmu2.g:12875:6: (a12_6= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression )
+        // Xmu2.g:12875:6: a12_6= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_synpred302_Xmu210850);
-        a6_3=parse_edu_ustb_sei_mde_xmu2_expression_PathExpression();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_synpred302_Xmu210794);
+        a12_6=parse_edu_ustb_sei_mde_xmu2_expression_PathExpression();
 
         state._fsp--;
         if (state.failed) return ;
@@ -35116,14 +35670,14 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
 
     // $ANTLR start synpred304_Xmu2
     public final void synpred304_Xmu2_fragment() throws RecognitionException {
-        edu.ustb.sei.mde.xmu2.expression.PathExpression a9_1 =null;
+        edu.ustb.sei.mde.xmu2.expression.AdditiveExpression a6_0 =null;
 
 
-        // Xmu2.g:13139:6: (a9_1= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression )
-        // Xmu2.g:13139:6: a9_1= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression
+        // Xmu2.g:13061:3: (a6_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression )
+        // Xmu2.g:13061:3: a6_0= parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_synpred304_Xmu210928);
-        a9_1=parse_edu_ustb_sei_mde_xmu2_expression_PathExpression();
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression_in_synpred304_Xmu210925);
+        a6_0=parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression();
 
         state._fsp--;
         if (state.failed) return ;
@@ -35133,15 +35687,91 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
     }
     // $ANTLR end synpred304_Xmu2
 
-    // $ANTLR start synpred313_Xmu2
-    public final void synpred313_Xmu2_fragment() throws RecognitionException {
+    // $ANTLR start synpred305_Xmu2
+    public final void synpred305_Xmu2_fragment() throws RecognitionException {
+        edu.ustb.sei.mde.xmu2.expression.MultiplicativeExpression a6_1 =null;
+
+
+        // Xmu2.g:13085:6: (a6_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression )
+        // Xmu2.g:13085:6: a6_1= parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression
+        {
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression_in_synpred305_Xmu210939);
+        a6_1=parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression();
+
+        state._fsp--;
+        if (state.failed) return ;
+
+        }
+
+    }
+    // $ANTLR end synpred305_Xmu2
+
+    // $ANTLR start synpred306_Xmu2
+    public final void synpred306_Xmu2_fragment() throws RecognitionException {
+        edu.ustb.sei.mde.xmu2.expression.UnaryExpression a6_2 =null;
+
+
+        // Xmu2.g:13109:6: (a6_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression )
+        // Xmu2.g:13109:6: a6_2= parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression
+        {
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_synpred306_Xmu210953);
+        a6_2=parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression();
+
+        state._fsp--;
+        if (state.failed) return ;
+
+        }
+
+    }
+    // $ANTLR end synpred306_Xmu2
+
+    // $ANTLR start synpred307_Xmu2
+    public final void synpred307_Xmu2_fragment() throws RecognitionException {
+        edu.ustb.sei.mde.xmu2.expression.PathExpression a6_3 =null;
+
+
+        // Xmu2.g:13133:6: (a6_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression )
+        // Xmu2.g:13133:6: a6_3= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression
+        {
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_synpred307_Xmu210967);
+        a6_3=parse_edu_ustb_sei_mde_xmu2_expression_PathExpression();
+
+        state._fsp--;
+        if (state.failed) return ;
+
+        }
+
+    }
+    // $ANTLR end synpred307_Xmu2
+
+    // $ANTLR start synpred309_Xmu2
+    public final void synpred309_Xmu2_fragment() throws RecognitionException {
+        edu.ustb.sei.mde.xmu2.expression.PathExpression a9_1 =null;
+
+
+        // Xmu2.g:13258:6: (a9_1= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression )
+        // Xmu2.g:13258:6: a9_1= parse_edu_ustb_sei_mde_xmu2_expression_PathExpression
+        {
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_synpred309_Xmu211045);
+        a9_1=parse_edu_ustb_sei_mde_xmu2_expression_PathExpression();
+
+        state._fsp--;
+        if (state.failed) return ;
+
+        }
+
+    }
+    // $ANTLR end synpred309_Xmu2
+
+    // $ANTLR start synpred318_Xmu2
+    public final void synpred318_Xmu2_fragment() throws RecognitionException {
         edu.ustb.sei.mde.xmu2.pattern.ObjectPatternExpression c0 =null;
 
 
-        // Xmu2.g:13237:2: (c0= parse_edu_ustb_sei_mde_xmu2_pattern_ObjectPatternExpression )
-        // Xmu2.g:13237:2: c0= parse_edu_ustb_sei_mde_xmu2_pattern_ObjectPatternExpression
+        // Xmu2.g:13356:2: (c0= parse_edu_ustb_sei_mde_xmu2_pattern_ObjectPatternExpression )
+        // Xmu2.g:13356:2: c0= parse_edu_ustb_sei_mde_xmu2_pattern_ObjectPatternExpression
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_pattern_ObjectPatternExpression_in_synpred313_Xmu211093);
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_pattern_ObjectPatternExpression_in_synpred318_Xmu211210);
         c0=parse_edu_ustb_sei_mde_xmu2_pattern_ObjectPatternExpression();
 
         state._fsp--;
@@ -35150,17 +35780,17 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         }
 
     }
-    // $ANTLR end synpred313_Xmu2
+    // $ANTLR end synpred318_Xmu2
 
-    // $ANTLR start synpred314_Xmu2
-    public final void synpred314_Xmu2_fragment() throws RecognitionException {
+    // $ANTLR start synpred319_Xmu2
+    public final void synpred319_Xmu2_fragment() throws RecognitionException {
         edu.ustb.sei.mde.xmu2.pattern.PropertyPatternExpression c1 =null;
 
 
-        // Xmu2.g:13238:4: (c1= parse_edu_ustb_sei_mde_xmu2_pattern_PropertyPatternExpression )
-        // Xmu2.g:13238:4: c1= parse_edu_ustb_sei_mde_xmu2_pattern_PropertyPatternExpression
+        // Xmu2.g:13357:4: (c1= parse_edu_ustb_sei_mde_xmu2_pattern_PropertyPatternExpression )
+        // Xmu2.g:13357:4: c1= parse_edu_ustb_sei_mde_xmu2_pattern_PropertyPatternExpression
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_pattern_PropertyPatternExpression_in_synpred314_Xmu211103);
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_pattern_PropertyPatternExpression_in_synpred319_Xmu211220);
         c1=parse_edu_ustb_sei_mde_xmu2_pattern_PropertyPatternExpression();
 
         state._fsp--;
@@ -35169,17 +35799,17 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         }
 
     }
-    // $ANTLR end synpred314_Xmu2
+    // $ANTLR end synpred319_Xmu2
 
-    // $ANTLR start synpred315_Xmu2
-    public final void synpred315_Xmu2_fragment() throws RecognitionException {
+    // $ANTLR start synpred320_Xmu2
+    public final void synpred320_Xmu2_fragment() throws RecognitionException {
         edu.ustb.sei.mde.xmu2.pattern.ReflectiveObjectPatternExpression c2 =null;
 
 
-        // Xmu2.g:13239:4: (c2= parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression )
-        // Xmu2.g:13239:4: c2= parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression
+        // Xmu2.g:13358:4: (c2= parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression )
+        // Xmu2.g:13358:4: c2= parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression
         {
-        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression_in_synpred315_Xmu211113);
+        pushFollow(FOLLOW_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression_in_synpred320_Xmu211230);
         c2=parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression();
 
         state._fsp--;
@@ -35188,7 +35818,7 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         }
 
     }
-    // $ANTLR end synpred315_Xmu2
+    // $ANTLR end synpred320_Xmu2
 
     // Delegated rules
 
@@ -35211,20 +35841,6 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         int start = input.mark();
         try {
             synpred61_Xmu2_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred263_Xmu2() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred263_Xmu2_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -35262,20 +35878,6 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         state.failed=false;
         return success;
     }
-    public final boolean synpred293_Xmu2() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred293_Xmu2_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
     public final boolean synpred216_Xmu2() {
         state.backtracking++;
         int start = input.mark();
@@ -35295,20 +35897,6 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         int start = input.mark();
         try {
             synpred232_Xmu2_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred277_Xmu2() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred277_Xmu2_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -35360,53 +35948,11 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         state.failed=false;
         return success;
     }
-    public final boolean synpred294_Xmu2() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred294_Xmu2_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
     public final boolean synpred92_Xmu2() {
         state.backtracking++;
         int start = input.mark();
         try {
             synpred92_Xmu2_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred278_Xmu2() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred278_Xmu2_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred314_Xmu2() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred314_Xmu2_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -35472,11 +36018,11 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         state.failed=false;
         return success;
     }
-    public final boolean synpred264_Xmu2() {
+    public final boolean synpred250_Xmu2() {
         state.backtracking++;
         int start = input.mark();
         try {
-            synpred264_Xmu2_fragment(); // can never throw exception
+            synpred250_Xmu2_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -35500,11 +36046,11 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         state.failed=false;
         return success;
     }
-    public final boolean synpred300_Xmu2() {
+    public final boolean synpred248_Xmu2() {
         state.backtracking++;
         int start = input.mark();
         try {
-            synpred300_Xmu2_fragment(); // can never throw exception
+            synpred248_Xmu2_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -35514,11 +36060,11 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         state.failed=false;
         return success;
     }
-    public final boolean synpred261_Xmu2() {
+    public final boolean synpred300_Xmu2() {
         state.backtracking++;
         int start = input.mark();
         try {
-            synpred261_Xmu2_fragment(); // can never throw exception
+            synpred300_Xmu2_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -35738,11 +36284,39 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         state.failed=false;
         return success;
     }
+    public final boolean synpred290_Xmu2() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred290_Xmu2_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
     public final boolean synpred87_Xmu2() {
         state.backtracking++;
         int start = input.mark();
         try {
             synpred87_Xmu2_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred305_Xmu2() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred305_Xmu2_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -35785,6 +36359,48 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         int start = input.mark();
         try {
             synpred130_Xmu2_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred275_Xmu2() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred275_Xmu2_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred309_Xmu2() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred309_Xmu2_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred252_Xmu2() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred252_Xmu2_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -35920,20 +36536,6 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         state.failed=false;
         return success;
     }
-    public final boolean synpred287_Xmu2() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred287_Xmu2_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
     public final boolean synpred93_Xmu2() {
         state.backtracking++;
         int start = input.mark();
@@ -36018,11 +36620,11 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         state.failed=false;
         return success;
     }
-    public final boolean synpred262_Xmu2() {
+    public final boolean synpred318_Xmu2() {
         state.backtracking++;
         int start = input.mark();
         try {
-            synpred262_Xmu2_fragment(); // can never throw exception
+            synpred318_Xmu2_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -36074,11 +36676,11 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         state.failed=false;
         return success;
     }
-    public final boolean synpred315_Xmu2() {
+    public final boolean synpred71_Xmu2() {
         state.backtracking++;
         int start = input.mark();
         try {
-            synpred315_Xmu2_fragment(); // can never throw exception
+            synpred71_Xmu2_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -36088,11 +36690,11 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         state.failed=false;
         return success;
     }
-    public final boolean synpred71_Xmu2() {
+    public final boolean synpred249_Xmu2() {
         state.backtracking++;
         int start = input.mark();
         try {
-            synpred71_Xmu2_fragment(); // can never throw exception
+            synpred249_Xmu2_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -36149,6 +36751,20 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         int start = input.mark();
         try {
             synpred120_Xmu2_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred281_Xmu2() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred281_Xmu2_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -36228,20 +36844,6 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         state.failed=false;
         return success;
     }
-    public final boolean synpred285_Xmu2() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred285_Xmu2_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
     public final boolean synpred67_Xmu2() {
         state.backtracking++;
         int start = input.mark();
@@ -36303,20 +36905,6 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         int start = input.mark();
         try {
             synpred269_Xmu2_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred286_Xmu2() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred286_Xmu2_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -36452,6 +37040,34 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         state.failed=false;
         return success;
     }
+    public final boolean synpred306_Xmu2() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred306_Xmu2_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred267_Xmu2() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred267_Xmu2_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
     public final boolean synpred38_Xmu2() {
         state.backtracking++;
         int start = input.mark();
@@ -36485,6 +37101,20 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         int start = input.mark();
         try {
             synpred154_Xmu2_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred319_Xmu2() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred319_Xmu2_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -36555,20 +37185,6 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         int start = input.mark();
         try {
             synpred78_Xmu2_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred260_Xmu2() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred260_Xmu2_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -36662,20 +37278,6 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         state.failed=false;
         return success;
     }
-    public final boolean synpred313_Xmu2() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred313_Xmu2_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
     public final boolean synpred219_Xmu2() {
         state.backtracking++;
         int start = input.mark();
@@ -36690,11 +37292,39 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         state.failed=false;
         return success;
     }
+    public final boolean synpred282_Xmu2() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred282_Xmu2_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
     public final boolean synpred94_Xmu2() {
         state.backtracking++;
         int start = input.mark();
         try {
             synpred94_Xmu2_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred289_Xmu2() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred289_Xmu2_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -36723,6 +37353,20 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         int start = input.mark();
         try {
             synpred105_Xmu2_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred283_Xmu2() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred283_Xmu2_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -36802,6 +37446,20 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         state.failed=false;
         return success;
     }
+    public final boolean synpred298_Xmu2() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred298_Xmu2_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
     public final boolean synpred292_Xmu2() {
         state.backtracking++;
         int start = input.mark();
@@ -36821,20 +37479,6 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         int start = input.mark();
         try {
             synpred85_Xmu2_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred295_Xmu2() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred295_Xmu2_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -36919,6 +37563,20 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         int start = input.mark();
         try {
             synpred112_Xmu2_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred251_Xmu2() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred251_Xmu2_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -37026,6 +37684,20 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         state.failed=false;
         return success;
     }
+    public final boolean synpred307_Xmu2() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred307_Xmu2_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
     public final boolean synpred304_Xmu2() {
         state.backtracking++;
         int start = input.mark();
@@ -37045,6 +37717,34 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
         int start = input.mark();
         try {
             synpred82_Xmu2_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred320_Xmu2() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred320_Xmu2_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred273_Xmu2() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred273_Xmu2_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -37441,121 +38141,126 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_RuleCallStatement8881 = new BitSet(new long[]{0x0000000000440000L});
     public static final BitSet FOLLOW_18_in_parse_edu_ustb_sei_mde_xmu2_statement_RuleCallStatement8955 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_63_in_parse_edu_ustb_sei_mde_xmu2_statement_Skip8984 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_48_in_parse_edu_ustb_sei_mde_xmu2_statement_Fail9013 = new BitSet(new long[]{0x0000000000000402L});
-    public static final BitSet FOLLOW_QUOTED_39_39_92_in_parse_edu_ustb_sei_mde_xmu2_statement_Fail9036 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_60_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9081 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_24_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9095 = new BitSet(new long[]{0x8009300000000080L,0x0000000000000122L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_BlockStatement_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9113 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_UpdateStatement_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9127 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_SwitchStatement_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9141 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_DeleteNodeStatement_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9155 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_ConcreteDeleteLinkStatement_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9169 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_EnforcePatternStatement_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9183 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_ForEachStatement_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9197 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_RuleCallStatement_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9211 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_Skip_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9225 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_Fail_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9239 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9253 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9267 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_VariableExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement9304 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_29_in_parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement9322 = new BitSet(new long[]{0x0600000000824790L,0x0000000000000004L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement9340 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement9354 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement9368 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement9382 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement9396 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement9410 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement9424 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement9438 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NAME_in_parse_edu_ustb_sei_mde_xmu2_ReflectiveVariableDeclaration9475 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_ReflectiveVariableDeclaration_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9515 = new BitSet(new long[]{0x0000002000000000L});
-    public static final BitSet FOLLOW_37_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9533 = new BitSet(new long[]{0x0600000000834790L,0x0000000000000004L});
-    public static final BitSet FOLLOW_16_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9556 = new BitSet(new long[]{0x0600000000824790L,0x0000000000000004L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9581 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9595 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9609 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9623 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9637 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_38_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9655 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000100L});
-    public static final BitSet FOLLOW_72_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9678 = new BitSet(new long[]{0x0000002000000080L,0x0000000000000400L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9719 = new BitSet(new long[]{0x0000000000400000L,0x0000000000000400L});
-    public static final BitSet FOLLOW_22_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9774 = new BitSet(new long[]{0x0000002000000080L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9816 = new BitSet(new long[]{0x0000000000400000L,0x0000000000000400L});
-    public static final BitSet FOLLOW_74_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9920 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_37_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression9968 = new BitSet(new long[]{0x0600000000834790L,0x0000000000000004L});
-    public static final BitSet FOLLOW_16_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression9991 = new BitSet(new long[]{0x0600000000824790L,0x0000000000000004L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression10016 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression10030 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression10044 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression10058 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression10072 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_38_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression10090 = new BitSet(new long[]{0x0000000201000000L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_LoopPath_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression10119 = new BitSet(new long[]{0x0000000201000000L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PositionPath_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression10175 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_33_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression10216 = new BitSet(new long[]{0x0000001000000080L});
-    public static final BitSet FOLLOW_36_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression10239 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_pattern_PatternNode_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression10264 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_37_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10297 = new BitSet(new long[]{0x0600000000834790L,0x0000000000000004L});
-    public static final BitSet FOLLOW_16_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10320 = new BitSet(new long[]{0x0600000000824790L,0x0000000000000004L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10345 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10359 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10373 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10387 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10401 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_38_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10419 = new BitSet(new long[]{0x0000000201000000L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_LoopPath_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10448 = new BitSet(new long[]{0x0000000201000000L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PositionPath_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10504 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_33_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10545 = new BitSet(new long[]{0x0600001000824790L,0x0000000000000004L});
-    public static final BitSet FOLLOW_36_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10568 = new BitSet(new long[]{0x0600000000824790L,0x0000000000000004L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10593 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10607 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10621 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10635 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10649 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10663 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10677 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10691 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_44_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement10724 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_VariableExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement10742 = new BitSet(new long[]{0x0000002000000000L});
-    public static final BitSet FOLLOW_37_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement10760 = new BitSet(new long[]{0x0600000000834790L,0x0000000000000004L});
-    public static final BitSet FOLLOW_16_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement10783 = new BitSet(new long[]{0x0600000000824790L,0x0000000000000004L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement10808 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement10822 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement10836 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement10850 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement10864 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_38_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement10882 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_33_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement10896 = new BitSet(new long[]{0x0600000000824790L,0x0000000000000004L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement10914 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement10928 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement10942 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_ModelRule_in_parse_edu_ustb_sei_mde_xmu2_AbstractRule10971 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_ArithmeticRule_in_parse_edu_ustb_sei_mde_xmu2_AbstractRule10981 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_VariableExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression11002 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_EmptyExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression11012 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_StringLiteralExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression11022 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_IntegerLiteralExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression11032 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_BooleanLiteralExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression11042 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_EnumLiteralExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression11052 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_ObjectURIExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression11062 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_ParenExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression11072 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_pattern_ObjectPatternExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression11093 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_pattern_PropertyPatternExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression11103 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression11113 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression11123 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_EmptyExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_ConstantExpression11144 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_StringLiteralExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_ConstantExpression11154 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_IntegerLiteralExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_ConstantExpression11164 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_BooleanLiteralExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_ConstantExpression11174 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_EnumLiteralExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_ConstantExpression11184 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_ObjectURIExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_ConstantExpression11194 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_LoopPath_in_parse_edu_ustb_sei_mde_xmu2_expression_Path11215 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_FeaturePath_in_parse_edu_ustb_sei_mde_xmu2_expression_Path11225 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_OperationPath_in_parse_edu_ustb_sei_mde_xmu2_expression_Path11235 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PositionPath_in_parse_edu_ustb_sei_mde_xmu2_expression_Path11245 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_PatternCaseClause_in_parse_edu_ustb_sei_mde_xmu2_statement_CaseClause11266 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_ExpressionCaseClause_in_parse_edu_ustb_sei_mde_xmu2_statement_CaseClause11276 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause_in_parse_edu_ustb_sei_mde_xmu2_statement_CaseClause11286 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_48_in_parse_edu_ustb_sei_mde_xmu2_statement_Fail9013 = new BitSet(new long[]{0x0600000000824792L,0x0000000000000004L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_Fail9042 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_Fail9062 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_Fail9082 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_Fail9102 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_Fail9122 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_Fail9142 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_60_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9198 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_24_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9212 = new BitSet(new long[]{0x8009300000000080L,0x0000000000000122L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_BlockStatement_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9230 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_UpdateStatement_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9244 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_SwitchStatement_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9258 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_DeleteNodeStatement_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9272 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_ConcreteDeleteLinkStatement_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9286 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_EnforcePatternStatement_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9300 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_ForEachStatement_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9314 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_RuleCallStatement_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9328 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_Skip_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9342 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_Fail_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9356 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9370 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement_in_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause9384 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_VariableExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement9421 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_29_in_parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement9439 = new BitSet(new long[]{0x0600000000824790L,0x0000000000000004L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement9457 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement9471 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement9485 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement9499 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement9513 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement9527 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement9541 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_AssignStatement9555 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NAME_in_parse_edu_ustb_sei_mde_xmu2_ReflectiveVariableDeclaration9592 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_ReflectiveVariableDeclaration_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9632 = new BitSet(new long[]{0x0000002000000000L});
+    public static final BitSet FOLLOW_37_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9650 = new BitSet(new long[]{0x0600000000834790L,0x0000000000000004L});
+    public static final BitSet FOLLOW_16_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9673 = new BitSet(new long[]{0x0600000000824790L,0x0000000000000004L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9698 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9712 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9726 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9740 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9754 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_38_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9772 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000100L});
+    public static final BitSet FOLLOW_72_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9795 = new BitSet(new long[]{0x0000002000000080L,0x0000000000000400L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9836 = new BitSet(new long[]{0x0000000000400000L,0x0000000000000400L});
+    public static final BitSet FOLLOW_22_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9891 = new BitSet(new long[]{0x0000002000000080L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode9933 = new BitSet(new long[]{0x0000000000400000L,0x0000000000000400L});
+    public static final BitSet FOLLOW_74_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePatternNode10037 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_37_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression10085 = new BitSet(new long[]{0x0600000000834790L,0x0000000000000004L});
+    public static final BitSet FOLLOW_16_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression10108 = new BitSet(new long[]{0x0600000000824790L,0x0000000000000004L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression10133 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression10147 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression10161 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression10175 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression10189 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_38_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression10207 = new BitSet(new long[]{0x0000000201000000L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_LoopPath_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression10236 = new BitSet(new long[]{0x0000000201000000L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PositionPath_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression10292 = new BitSet(new long[]{0x0000000200000000L});
+    public static final BitSet FOLLOW_33_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression10333 = new BitSet(new long[]{0x0000001000000080L});
+    public static final BitSet FOLLOW_36_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression10356 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_pattern_PatternNode_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression10381 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_37_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10414 = new BitSet(new long[]{0x0600000000834790L,0x0000000000000004L});
+    public static final BitSet FOLLOW_16_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10437 = new BitSet(new long[]{0x0600000000824790L,0x0000000000000004L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10462 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10476 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10490 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10504 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10518 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_38_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10536 = new BitSet(new long[]{0x0000000201000000L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_LoopPath_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10565 = new BitSet(new long[]{0x0000000201000000L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PositionPath_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10621 = new BitSet(new long[]{0x0000000200000000L});
+    public static final BitSet FOLLOW_33_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10662 = new BitSet(new long[]{0x0600001000824790L,0x0000000000000004L});
+    public static final BitSet FOLLOW_36_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10685 = new BitSet(new long[]{0x0600000000824790L,0x0000000000000004L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10710 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10724 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10738 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10752 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10766 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10780 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10794 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression10808 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_44_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement10841 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_VariableExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement10859 = new BitSet(new long[]{0x0000002000000000L});
+    public static final BitSet FOLLOW_37_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement10877 = new BitSet(new long[]{0x0600000000834790L,0x0000000000000004L});
+    public static final BitSet FOLLOW_16_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement10900 = new BitSet(new long[]{0x0600000000824790L,0x0000000000000004L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement10925 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement10939 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement10953 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement10967 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement10981 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_38_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement10999 = new BitSet(new long[]{0x0000000200000000L});
+    public static final BitSet FOLLOW_33_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement11013 = new BitSet(new long[]{0x0600000000824790L,0x0000000000000004L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement11031 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement11045 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression_in_parse_edu_ustb_sei_mde_xmu2_statement_ReflectiveDeleteLinkStatement11059 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_ModelRule_in_parse_edu_ustb_sei_mde_xmu2_AbstractRule11088 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_ArithmeticRule_in_parse_edu_ustb_sei_mde_xmu2_AbstractRule11098 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_VariableExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression11119 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_EmptyExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression11129 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_StringLiteralExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression11139 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_IntegerLiteralExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression11149 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_BooleanLiteralExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression11159 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_EnumLiteralExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression11169 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_ObjectURIExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression11179 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_ParenExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_AtomicExpression11189 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_pattern_ObjectPatternExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression11210 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_pattern_PropertyPatternExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression11220 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression11230 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectivePropertyPatternExpression_in_parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression11240 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_EmptyExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_ConstantExpression11261 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_StringLiteralExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_ConstantExpression11271 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_IntegerLiteralExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_ConstantExpression11281 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_BooleanLiteralExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_ConstantExpression11291 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_EnumLiteralExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_ConstantExpression11301 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_ObjectURIExpression_in_parse_edu_ustb_sei_mde_xmu2_expression_ConstantExpression11311 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_LoopPath_in_parse_edu_ustb_sei_mde_xmu2_expression_Path11332 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_FeaturePath_in_parse_edu_ustb_sei_mde_xmu2_expression_Path11342 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_OperationPath_in_parse_edu_ustb_sei_mde_xmu2_expression_Path11352 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PositionPath_in_parse_edu_ustb_sei_mde_xmu2_expression_Path11362 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_PatternCaseClause_in_parse_edu_ustb_sei_mde_xmu2_statement_CaseClause11383 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_ExpressionCaseClause_in_parse_edu_ustb_sei_mde_xmu2_statement_CaseClause11393 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_statement_DefaultCaseClause_in_parse_edu_ustb_sei_mde_xmu2_statement_CaseClause11403 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression_in_synpred38_Xmu22044 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression_in_synpred39_Xmu22064 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression_in_synpred40_Xmu22084 = new BitSet(new long[]{0x0000000000000002L});
@@ -37658,44 +38363,49 @@ public class Xmu2Parser extends Xmu2ANTLRParserBase {
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_synpred232_Xmu28367 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_synpred244_Xmu28760 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_synpred245_Xmu28855 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression_in_synpred260_Xmu29340 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression_in_synpred261_Xmu29354 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression_in_synpred262_Xmu29368 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression_in_synpred263_Xmu29382 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression_in_synpred264_Xmu29396 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_synpred265_Xmu29410 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_synpred266_Xmu29424 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression_in_synpred268_Xmu29581 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression_in_synpred269_Xmu29595 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_synpred270_Xmu29609 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_synpred271_Xmu29623 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_72_in_synpred274_Xmu29678 = new BitSet(new long[]{0x0000002000000080L,0x0000000000000400L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression_in_synpred274_Xmu29719 = new BitSet(new long[]{0x0000000000400000L,0x0000000000000400L});
-    public static final BitSet FOLLOW_22_in_synpred274_Xmu29774 = new BitSet(new long[]{0x0000002000000080L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression_in_synpred274_Xmu29816 = new BitSet(new long[]{0x0000000000400000L,0x0000000000000400L});
-    public static final BitSet FOLLOW_74_in_synpred274_Xmu29920 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression_in_synpred276_Xmu210016 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression_in_synpred277_Xmu210030 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_synpred278_Xmu210044 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_synpred279_Xmu210058 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression_in_synpred284_Xmu210345 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression_in_synpred285_Xmu210359 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_synpred286_Xmu210373 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_synpred287_Xmu210387 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression_in_synpred291_Xmu210593 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression_in_synpred292_Xmu210607 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression_in_synpred293_Xmu210621 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression_in_synpred294_Xmu210635 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression_in_synpred295_Xmu210649 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_synpred296_Xmu210663 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_synpred297_Xmu210677 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression_in_synpred299_Xmu210808 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression_in_synpred300_Xmu210822 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_synpred301_Xmu210836 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_synpred302_Xmu210850 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_synpred304_Xmu210928 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_pattern_ObjectPatternExpression_in_synpred313_Xmu211093 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_pattern_PropertyPatternExpression_in_synpred314_Xmu211103 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression_in_synpred315_Xmu211113 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression_in_synpred248_Xmu29042 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression_in_synpred249_Xmu29062 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression_in_synpred250_Xmu29082 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_synpred251_Xmu29102 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_synpred252_Xmu29122 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression_in_synpred265_Xmu29457 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression_in_synpred266_Xmu29471 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression_in_synpred267_Xmu29485 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression_in_synpred268_Xmu29499 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression_in_synpred269_Xmu29513 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_synpred270_Xmu29527 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_synpred271_Xmu29541 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression_in_synpred273_Xmu29698 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression_in_synpred274_Xmu29712 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_synpred275_Xmu29726 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_synpred276_Xmu29740 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_72_in_synpred279_Xmu29795 = new BitSet(new long[]{0x0000002000000080L,0x0000000000000400L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression_in_synpred279_Xmu29836 = new BitSet(new long[]{0x0000000000400000L,0x0000000000000400L});
+    public static final BitSet FOLLOW_22_in_synpred279_Xmu29891 = new BitSet(new long[]{0x0000002000000080L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_pattern_PatternExpression_in_synpred279_Xmu29933 = new BitSet(new long[]{0x0000000000400000L,0x0000000000000400L});
+    public static final BitSet FOLLOW_74_in_synpred279_Xmu210037 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression_in_synpred281_Xmu210133 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression_in_synpred282_Xmu210147 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_synpred283_Xmu210161 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_synpred284_Xmu210175 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression_in_synpred289_Xmu210462 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression_in_synpred290_Xmu210476 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_synpred291_Xmu210490 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_synpred292_Xmu210504 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_BooleanOrExpression_in_synpred296_Xmu210710 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_BooleanAndExpression_in_synpred297_Xmu210724 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_RelationalExpression_in_synpred298_Xmu210738 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression_in_synpred299_Xmu210752 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression_in_synpred300_Xmu210766 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_synpred301_Xmu210780 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_synpred302_Xmu210794 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_AdditiveExpression_in_synpred304_Xmu210925 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_MultiplicativeExpression_in_synpred305_Xmu210939 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_UnaryExpression_in_synpred306_Xmu210953 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_synpred307_Xmu210967 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_expression_PathExpression_in_synpred309_Xmu211045 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_pattern_ObjectPatternExpression_in_synpred318_Xmu211210 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_pattern_PropertyPatternExpression_in_synpred319_Xmu211220 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parse_edu_ustb_sei_mde_xmu2_pattern_ReflectiveObjectPatternExpression_in_synpred320_Xmu211230 = new BitSet(new long[]{0x0000000000000002L});
 
 }
