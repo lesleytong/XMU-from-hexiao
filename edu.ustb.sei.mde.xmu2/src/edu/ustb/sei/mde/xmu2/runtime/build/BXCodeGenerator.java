@@ -1851,6 +1851,9 @@ public class BXCodeGenerator {
 			registerUpdatedVariableExpression(stmt.getSource(), map, obj);
 		} else if(obj instanceof edu.ustb.sei.mde.xmu2.expression.LoopPath) {
 			return;// do not go inside
+		} else if(obj instanceof edu.ustb.sei.mde.xmu2.statement.PatternCaseClause) {
+			collectVariables(((edu.ustb.sei.mde.xmu2.statement.PatternCaseClause)obj).getCondition(), map);
+			collectVariables(((edu.ustb.sei.mde.xmu2.statement.PatternCaseClause)obj).getAction(), map);
 		} else {
 			for(EObject o : obj.eContents()) {
 				collectVariables(o, map);
