@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 
+import edu.ustb.sei.commonutil.util.CacheMap;
 import edu.ustb.sei.mde.xmu2.datatypes.impl.ResourceImpl;
 import edu.ustb.sei.mde.xmu2.runtime.values.SafeType;
 import edu.ustb.sei.mde.xmu2.util.AnalysisUtil;
@@ -41,6 +42,7 @@ public class Environment {
 	private List<Resource> views = new ArrayList<Resource>();
 	private List<Resource> updatedSources = new ArrayList<Resource>();
 	private Transformation transformation = null;
+	private CacheMap externalData = new CacheMap();
 	
 	public Transformation getTransformation() {
 		return this.transformation;
@@ -413,5 +415,12 @@ public class Environment {
 //		return engine.deleteSourcePostElement(source, sourcePost);
 //	}
 	
+	public Object getExternalData(Object... keys) {
+		return this.externalData.get(keys);
+	}
+	
+	public void putExternalData(Object value, Object... keys) {
+		this.externalData.put(value, keys);
+	}
 	
 }
