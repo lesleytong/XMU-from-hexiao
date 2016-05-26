@@ -19,9 +19,12 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.resource.impl.URIConverterImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 import org.eclipse.emf.ecore.xmi.XMLResource;
+
+import com.beust.jcommander.converters.URIConverter;
 
 import edu.ustb.sei.commonutil.util.CacheMap;
 import edu.ustb.sei.mde.xmu2.datatypes.impl.ResourceImpl;
@@ -38,11 +41,23 @@ import edu.ustb.sei.mde.xmu2core.Transformation;
 import edu.ustb.sei.mde.xmu2core.Variable;
 
 public class Environment {
-	private List<Resource> sources = new ArrayList<Resource>();
-	private List<Resource> views = new ArrayList<Resource>();
-	private List<Resource> updatedSources = new ArrayList<Resource>();
-	private Transformation transformation = null;
-	private CacheMap externalData = new CacheMap();
+	protected List<Resource> sources = new ArrayList<Resource>();
+	List<Resource> getSources() {
+		return sources;
+	}
+
+	protected List<Resource> views = new ArrayList<Resource>();
+	List<Resource> getViews() {
+		return views;
+	}
+
+	protected List<Resource> updatedSources = new ArrayList<Resource>();
+	List<Resource> getUpdatedSources() {
+		return updatedSources;
+	}
+
+	protected Transformation transformation = null;
+	protected CacheMap externalData = new CacheMap();
 	
 	public Transformation getTransformation() {
 		return this.transformation;
@@ -61,7 +76,12 @@ public class Environment {
 		}
 	}
 	
-	private ResourceSet resourceSet;
+	protected ResourceSet resourceSet;
+	
+	ResourceSet getResourceSet() {
+		return resourceSet;
+	}
+	
 	private PrintStream printer = System.out;
 	
 	public PrintStream getPrinter() {
@@ -72,11 +92,11 @@ public class Environment {
 		this.printer = printer;
 	}
 
-	private void loadSourceModels(String[] paths) {
+	protected void loadSourceModels(String[] paths) {
 		this.loadModels(resourceSet, sources, paths, true);
 	}
 	
-	private void initUpdatedSource() {
+	protected void initUpdatedSource() {
 		for(Resource sr : sources) {
 			URI spuri = URI.createURI(sr.getURI().trimFileExtension().toString()+"_updated."+sr.getURI().fileExtension());
 
@@ -103,11 +123,11 @@ public class Environment {
 		}
 	}
 	
-	private void loadViewModels(String[] paths) {
+	protected void loadViewModels(String[] paths) {
 		this.loadModels(resourceSet, views, paths, true);
 	}
 	
-	private void createViewModels(String[] paths) {
+	protected void createViewModels(String[] paths) {
 		
 		for(String str : paths) {
 			URI uri = URI.createURI(str,true);
@@ -161,7 +181,7 @@ public class Environment {
 	
 	
 	
-	private Environment(boolean isForward) {
+	protected Environment(boolean isForward) {
 		this();
 		forward = isForward;
 		cache = new CacheSystem();
@@ -173,7 +193,7 @@ public class Environment {
 		return forward;
 	}
 	
-	private CacheSystem cache;
+	protected CacheSystem cache;
 	
 	public List<CallStatement> getFromProcedureCallCache(List<? extends Object> f) {
 		return cache.getFromProcedureCallCache(f);
@@ -191,8 +211,8 @@ public class Environment {
 		cache.putIntoOrderCache(f, s, t);
 	}
 
-	private boolean forward;
-	private TransformationTrace trace = null;
+	protected boolean forward;
+	protected TransformationTrace trace = null;
 	public void putDefault(EObject s, EObject sp) {
 		trace.putDefault(s, sp);
 	}
@@ -213,7 +233,7 @@ public class Environment {
 		return trace.getTrace(r, t);
 	}
 
-	private ModelModificationEngine engine = null;
+	protected ModelModificationEngine engine = null;
 	
 	public Environment() {
 		trace = new TransformationTrace();

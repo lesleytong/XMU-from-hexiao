@@ -3,7 +3,6 @@ package edu.ustb.sei.mde.xmu2.runtime.values;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -26,6 +25,7 @@ public class FeatureList<E> extends ModelList<E> {
 	@Override
 	public int size() {
 		if(feature.isMany()) {
+			@SuppressWarnings("unchecked")
 			List<Object> list = (List<Object>)object.eGet(feature);
 			return list.size();
 		} else {
@@ -42,6 +42,7 @@ public class FeatureList<E> extends ModelList<E> {
 	@Override
 	public boolean contains(Object o) {
 		if(feature.isMany()) {
+			@SuppressWarnings("unchecked")
 			List<Object> list = (List<Object>)object.eGet(feature);
 			return list.contains(o);
 		} else {
@@ -122,6 +123,7 @@ public class FeatureList<E> extends ModelList<E> {
 			remove(0);
 		}
 	}
+	@SuppressWarnings("unchecked")
 	@Override
 	public E get(int index) {
 		if(index==-1)
@@ -192,8 +194,4 @@ public class FeatureList<E> extends ModelList<E> {
 		}
 		return -1;
 	}
-	
-	
-	
-
 }
