@@ -44,4 +44,12 @@ public class CommandBasedEnvironment extends Environment {
 		env.engine.setFocusedResources(env.updatedSources);
 		return env;
 	}
+	
+	public void undo() {
+		((CommandBasedModelModificationEngine)this.engine).undoAll();
+	}
+	
+	public void redo() {
+		((CommandBasedModelModificationEngine)this.engine).redoAll();
+	}
 }

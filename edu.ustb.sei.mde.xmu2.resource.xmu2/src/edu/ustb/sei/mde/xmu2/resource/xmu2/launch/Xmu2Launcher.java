@@ -125,13 +125,14 @@ public class Xmu2Launcher extends Xmu2LaunchConfigurationHelper {
 							ConsolePrinter printer = ConsoleUtil.getMessageWriter("XMU2");
 							
 							printer.println("XMU2 is starting");
+							printer.println();
 							
 							printer.println("BX Program URI:");
 							
 							printer.println(resourceURI.toString());
 							printer.println(buildFile.toString());
 							
-							printer.println("BX Program Mode:");
+							printer.print("BX Program Mode: ");
 							printer.println(forward?"Forward":"Backward");
 							
 							printer.println("Source Files:");
@@ -143,7 +144,7 @@ public class Xmu2Launcher extends Xmu2LaunchConfigurationHelper {
 							for(String s : viewURI)
 								printer.println(s);
 							
-							printer.println();
+							
 							
 							
 							Environment env = null;
@@ -156,6 +157,8 @@ public class Xmu2Launcher extends Xmu2LaunchConfigurationHelper {
 							int envType = getEnvType(configuration);
 							printer.print("Environment Type: ");
 							printer.println(Xmu2LaunchConfigurationDelegate.ENVTYPE[envType]);
+							printer.println();
+							
 							
 							if(forward) {
 								env = createForwardEnvironment(buildFile, sourceURI, viewURI, envType);
@@ -167,12 +170,12 @@ public class Xmu2Launcher extends Xmu2LaunchConfigurationHelper {
 							}
 							
 							model = env.getTransformation();
-							
 							env.setPrinter(printer);
 							
 							
 							try {
 								enforce.executeTransformation(model, env);
+								((CommandBasedEnvironment)env).undo();
 							} catch (Exception e) {
 								e.printStackTrace(printer);
 							}

@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
@@ -14,13 +15,16 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.util.FeatureMapUtil;
+import org.eclipse.emf.edit.command.AddCommand;
+import org.eclipse.emf.edit.command.DeleteCommand;
+import org.eclipse.emf.edit.command.RemoveCommand;
+import org.eclipse.emf.edit.command.ReplaceCommand;
+import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 
 import edu.ustb.sei.commonutil.util.Pair;
 import edu.ustb.sei.mde.xmu2.runtime.exceptions.InvalidModificationException;
-
-import org.eclipse.emf.edit.command.*;
+import edu.ustb.sei.mde.xmu2.runtime.structures.TransformationCommandStack;
 
 public class CommandBasedModelModificationEngine extends ModelModificationEngine {
 	
@@ -28,6 +32,20 @@ public class CommandBasedModelModificationEngine extends ModelModificationEngine
 	public CommandBasedModelModificationEngine(EditingDomain domain) {
 		super();
 		this.domain = domain;
+	}
+	
+	public void undoAll() {
+		TransformationCommandStack commandStack = (TransformationCommandStack) domain.getCommandStack();
+		if(!commandStack.undoAll()) {
+			throw new InvalidModificationException("cannot undo all");
+		}
+	}
+	
+	public void redoAll() {
+		TransformationCommandStack commandStack = (TransformationCommandStack) domain.getCommandStack();
+		if(!commandStack.redoAll()) {
+			throw new InvalidModificationException("cannot redo all");
+		}
 	}
 
 	@Override

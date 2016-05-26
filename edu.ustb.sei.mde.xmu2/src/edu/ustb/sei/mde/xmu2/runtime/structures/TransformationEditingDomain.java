@@ -10,7 +10,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
 
-import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.command.CommandWrapper;
@@ -39,7 +38,7 @@ public class TransformationEditingDomain implements EditingDomain {
 
 	public TransformationEditingDomain(Environment env) {
 		environment = env;
-		commandStack = new BasicCommandStack();
+		commandStack = new TransformationCommandStack();
 	}
 
 	private Environment environment;
