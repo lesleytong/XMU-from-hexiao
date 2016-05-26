@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.FeatureMapUtil;
 import org.eclipse.emf.edit.domain.EditingDomain;
 
@@ -226,5 +227,16 @@ public class CommandBasedModelModificationEngine extends ModelModificationEngine
 		
 		postCommand(cmd);
 	}
+
+	@Override
+	public void deleteObjectFromModel(EObject eo, ResourceSet resourceSet) {
+		Command cmd;
+		
+		cmd = DeleteCommand.create(domain, eo);
+		
+		postCommand(cmd);
+	}
+	
+	
 
 }

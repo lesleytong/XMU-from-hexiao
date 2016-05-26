@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
@@ -414,20 +415,55 @@ public class Environment {
 		
 		if(this.forward) {
 			for(Resource res : this.views) {
-			try {
-					res.save(options);
-				} catch (IOException e) {
-					e.printStackTrace(this.printer);
-				}
+				saveResource(res, options);
 			}
 		} else {
 			for(Resource res : this.updatedSources) {
-				try {
-					res.save(options);
-				} catch (IOException e) {
-					e.printStackTrace(this.printer);
+				saveResource(res, options);
+			}
+		}
+	}
+	
+	private Resource getFinalResource(EObject o) {
+		if(o.eContainer()==null) {
+			Resource eResource = o.eResource();
+			if(eResource==null) return null;
+			else return eResource.getContents().contains(o) ? eResource : null;
+		} else
+			return getFinalResource(o.eContainer());
+	}
+
+	protected void saveResource(Resource res, Map<Object, Object> options) {
+		
+		TreeIterator<EObject> it = res.getAllContents();
+		while (it.hasNext()) {
+			EObject o = it.next();
+			EClass cls = o.eClass();
+			for (EReference r : cls.getEAllReferences()) {
+				if (r.isContainment() == false) {
+					if (r.isMany()) {
+						List<EObject> list = (List) o.eGet(r);
+						for (EObject eo : list) {
+							if (eo.eResource() == null) {
+								this.engine.deleteObjectFromModel(eo,this.resourceSet);
+							}
+						}
+					} else {
+						EObject eo = (EObject) o.eGet(r);
+						if (eo != null && eo.eResource() == null) {
+							System.out.println("a dangling object " + eo);
+							this.engine.deleteObjectFromModel(eo,this.resourceSet);
+						}
+					}
 				}
 			}
+
+		}
+		
+		try {
+			res.save(options);
+		} catch (IOException e) {
+			e.printStackTrace(this.printer);
 		}
 	}
 

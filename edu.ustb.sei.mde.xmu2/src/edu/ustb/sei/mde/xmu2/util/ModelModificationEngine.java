@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.EcoreUtil.UsageCrossReferencer;
 import org.eclipse.emf.ecore.util.FeatureMapUtil;
@@ -556,5 +557,18 @@ public class ModelModificationEngine extends ModelModificationTrace{
 		this.focusedResources = focusedResources;
 	}
 
-	
+	public void deleteObjectFromModel(EObject eo, ResourceSet resourceSet) {
+	    Collection<EStructuralFeature.Setting> usages;
+	    usages = UsageCrossReferencer.find(eo, resourceSet);
+
+	    for (EStructuralFeature.Setting setting : usages)
+	    {
+	      if (setting.getEStructuralFeature().isChangeable())
+	      {
+	        EcoreUtil.remove(setting, eo);
+	      }
+	    }
+
+	    EcoreUtil.remove(eo);
+	}
 }
