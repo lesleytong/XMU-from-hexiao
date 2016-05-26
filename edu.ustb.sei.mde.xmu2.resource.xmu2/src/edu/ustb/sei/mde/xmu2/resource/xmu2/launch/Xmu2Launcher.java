@@ -175,7 +175,6 @@ public class Xmu2Launcher extends Xmu2LaunchConfigurationHelper {
 							
 							try {
 								enforce.executeTransformation(model, env);
-								((CommandBasedEnvironment)env).undo();
 							} catch (Exception e) {
 								e.printStackTrace(printer);
 							}
