@@ -20,7 +20,7 @@ class ReorderedCaseBranch implements Cloneable{
 		n.preCondition.addAll(preCondition);
 		n.action.addAll(action);
 		n.postCondition.addAll(postCondition);
-		n.enforcedVariables.addAll(enforcedVariables);
+		n.enforcedVariables = new ArrayList<Variable>(enforcedVariables);
 		return n;
 	}
 }

@@ -6,6 +6,10 @@
  */
 package edu.ustb.sei.mde.xmu2.resource.xmu2.ui.launch;
 
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
+
 import edu.ustb.sei.mde.xmu2.resource.xmu2.launch.Xmu2LaunchConfigurationDelegate;
 import edu.ustb.sei.mde.xmu2.resource.xmu2.ui.Xmu2UIPlugin;
 
@@ -33,6 +37,9 @@ public class Xmu2LaunchConfigurationMainTab extends org.eclipse.debug.ui.Abstrac
 	
 	private org.eclipse.swt.widgets.Button modeButton;
 	private boolean mode = true;
+	
+	private org.eclipse.swt.widgets.Combo environmentSelection;
+	private String[] environmentTypes = Xmu2LaunchConfigurationDelegate.ENVTYPE;
 	
 	public void createControl(org.eclipse.swt.widgets.Composite parent) {
 		org.eclipse.swt.widgets.Composite comp = new org.eclipse.swt.widgets.Composite(parent, org.eclipse.swt.SWT.NONE);
@@ -207,12 +214,30 @@ public class Xmu2LaunchConfigurationMainTab extends org.eclipse.debug.ui.Abstrac
 			gd = new org.eclipse.swt.layout.GridData();
 			gd.grabExcessHorizontalSpace = true;
 			gd.horizontalAlignment = org.eclipse.swt.SWT.LEFT;
-			gd.horizontalSpan = 2;
+			gd.horizontalSpan = 1;
 			modeButton.setLayoutData(gd);
 		}
 		
+		{
+			environmentSelection = new org.eclipse.swt.widgets.Combo(group,SWT.DROP_DOWN | SWT.READ_ONLY);
+			environmentSelection.setItems(environmentTypes);
+			environmentSelection.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+				@Override
+				public void widgetSelected(SelectionEvent e) {
+					updateLaunchConfigurationDialog();
+				}
+			});
+			gd = new org.eclipse.swt.layout.GridData();
+			gd.grabExcessHorizontalSpace = true;
+			gd.horizontalSpan = 2;
+			gd.horizontalAlignment = org.eclipse.swt.SWT.LEFT;
+			modeButton.setLayoutData(gd);
+			
+		}
+
 		setControl(comp);
 	}
+	
 	
 	public void setDefaults(org.eclipse.debug.core.ILaunchConfigurationWorkingCopy configuration) {
 	}
@@ -225,6 +250,9 @@ public class Xmu2LaunchConfigurationMainTab extends org.eclipse.debug.ui.Abstrac
 			mode = configuration.getAttribute(Xmu2LaunchConfigurationDelegate.ATTR_MODE, Xmu2LaunchConfigurationDelegate.MODE[0]).equals(Xmu2LaunchConfigurationDelegate.MODE[0]);
 			if(mode) modeButton.setText(Xmu2LaunchConfigurationDelegate.MODE[0]);
 			else modeButton.setText(Xmu2LaunchConfigurationDelegate.MODE[1]);
+			String str = configuration.getAttribute(Xmu2LaunchConfigurationDelegate.ATTR_ENVTYPE, environmentTypes[0]);
+			environmentSelection.setText(str);
+			
 		} catch (org.eclipse.core.runtime.CoreException e) {
 			edu.ustb.sei.mde.xmu2.resource.xmu2.mopp.Xmu2Plugin.logError("Can't initialize launch configuration tab.", e);
 		}
@@ -235,6 +263,7 @@ public class Xmu2LaunchConfigurationMainTab extends org.eclipse.debug.ui.Abstrac
 		configuration.setAttribute(Xmu2LaunchConfigurationDelegate.ATTR_SOURCE_URI, sourceUriText.getText());
 		configuration.setAttribute(Xmu2LaunchConfigurationDelegate.ATTR_VIEW_URI, viewUriText.getText());
 		configuration.setAttribute(Xmu2LaunchConfigurationDelegate.ATTR_MODE, mode? Xmu2LaunchConfigurationDelegate.MODE[0]:Xmu2LaunchConfigurationDelegate.MODE[1]);
+		configuration.setAttribute(Xmu2LaunchConfigurationDelegate.ATTR_ENVTYPE, environmentSelection.getText());
 	}
 	
 	public String getName() {

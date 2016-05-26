@@ -19,6 +19,7 @@ import edu.ustb.sei.mde.xmu2.runtime.executor.AbstractInterpreter;
 import edu.ustb.sei.mde.xmu2.runtime.executor.BackwardModelEnforceInterpreter;
 import edu.ustb.sei.mde.xmu2.runtime.executor.ForwardModelEnforceInterpreter;
 import edu.ustb.sei.mde.xmu2.runtime.executor.ModelEnforceInterpreter;
+import edu.ustb.sei.mde.xmu2.runtime.structures.CommandBasedEnvironment;
 import edu.ustb.sei.mde.xmu2.runtime.structures.Environment;
 import edu.ustb.sei.mde.xmu2.util.AnalysisUtil;
 import edu.ustb.sei.mde.xmu2core.Transformation;
@@ -79,16 +80,28 @@ public class Xmu2Launcher extends Xmu2LaunchConfigurationHelper {
 		}
 	}
 	
+	public int getEnvType(org.eclipse.debug.core.ILaunchConfiguration configuration) {
+		try {
+			String attribute = configuration.getAttribute(Xmu2LaunchConfigurationDelegate.ATTR_ENVTYPE, 
+					Xmu2LaunchConfigurationDelegate.ENVTYPE[0]);
+			int i = 0;
+			for(String str : Xmu2LaunchConfigurationDelegate.ENVTYPE) {
+				if(str.equals(attribute))
+					return i;
+				i++;
+			}
+			return 0;
+		} catch(Exception e) {
+			return 0;
+		}
+	}
+	
+	
+	
 	/**
 	 * Launch an example interpreter that prints object to System.out.
 	 */
 	public void launch(org.eclipse.debug.core.ILaunchConfiguration configuration, String mode, org.eclipse.debug.core.ILaunch launch, org.eclipse.core.runtime.IProgressMonitor monitor) throws org.eclipse.core.runtime.CoreException {
-//		org.eclipse.emf.ecore.EObject root = getModelRoot(configuration);
-//		// replace this delegate with your actual interpreter
-//		SystemOutInterpreter delegate = new SystemOutInterpreter();
-//		delegate.addObjectTreeToInterpreteTopDown(root);
-//		launchInterpreter(configuration, mode, launch, monitor, delegate, null);
-
 		Runnable monitorThread = new Runnable() {
 			
 			@Override
@@ -140,12 +153,16 @@ public class Xmu2Launcher extends Xmu2LaunchConfigurationHelper {
 							
 							ModelEnforceInterpreter enforce;
 							
+							int envType = getEnvType(configuration);
+							printer.print("Environment Type: ");
+							printer.println(Xmu2LaunchConfigurationDelegate.ENVTYPE[envType]);
+							
 							if(forward) {
-								env = Environment.createForwardEnvironment(buildFile,sourceURI,viewURI);
+								env = createForwardEnvironment(buildFile, sourceURI, viewURI, envType);
 								enforce = AbstractInterpreter.FORWARD_ENFORCE;
 							}
 							else {
-								env = Environment.createBackwardEnvironment(buildFile,sourceURI,viewURI);
+								env = createBackwardEnvironment(buildFile, sourceURI, viewURI, envType);
 								enforce = AbstractInterpreter.BACKWARD_ENFORCE;
 							}
 							
@@ -193,5 +210,39 @@ public class Xmu2Launcher extends Xmu2LaunchConfigurationHelper {
 	
 	private void checkAndBuild(URI resourceURI, URI buildFile) {
 		
+	}
+
+	protected Environment createForwardEnvironment(URI buildFile, String[] sourceURI, String[] viewURI, int type) {
+		
+		Environment env;
+		switch(type) {
+		case 0:
+			env = Environment.createForwardEnvironment(buildFile,sourceURI,viewURI);
+			break;
+		case 1:
+			env = CommandBasedEnvironment.createForwardEnvironment(buildFile, sourceURI, viewURI);
+			break;
+		default:
+			env = Environment.createForwardEnvironment(buildFile,sourceURI,viewURI);
+			break;
+		}
+		return env;
+	}
+
+	protected Environment createBackwardEnvironment(URI buildFile, String[] sourceURI, String[] viewURI, int type) {
+		Environment env;
+		
+		switch(type) {
+		case 0:
+			env = Environment.createBackwardEnvironment(buildFile,sourceURI,viewURI);
+			break;
+		case 1:
+			env = CommandBasedEnvironment.createBackwardEnvironment(buildFile, sourceURI, viewURI);
+			break;
+		default:
+			env = Environment.createBackwardEnvironment(buildFile,sourceURI,viewURI);
+			break;
+		}
+		return env;
 	}
 }

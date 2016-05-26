@@ -19,6 +19,9 @@ public class Xmu2LaunchConfigurationDelegate extends org.eclipse.debug.core.mode
 	public final static String ATTR_VIEW_URI = "view_uri";
 	public final static String ATTR_MODE = "mode";
 	public static final String[] MODE = new String[]{"Forward", "Backward"};
+	public final static String ATTR_ENVTYPE = "env_type";
+	public static final String[] ENVTYPE = new String[]{"normal","command-based"};
+	
 	
 	public void launch(org.eclipse.debug.core.ILaunchConfiguration configuration, String mode, org.eclipse.debug.core.ILaunch launch, org.eclipse.core.runtime.IProgressMonitor monitor) throws org.eclipse.core.runtime.CoreException {
 		// Set the overrideLaunchConfigurationDelegate option to <code>false</code> to

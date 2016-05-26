@@ -567,7 +567,7 @@ public class TransformationEditingDomain implements EditingDomain {
 
 	@Override
 	public Command createOverrideCommand(OverrideableCommand command) {
-		throw new UnsupportedOperationException();
+		return null;
 	}
 
 	@Override
@@ -641,13 +641,16 @@ public class TransformationEditingDomain implements EditingDomain {
 
 	@Override
 	public boolean isReadOnly(Resource resource) {
+		if(resource==null)
+			return false;
+		
 		if (environment.getTransformation().eResource() == resource)
 			return true;
 
 		if (environment.isForward()) {
-			return environment.getViews().contains(resource);
+			return !environment.getViews().contains(resource);
 		} else {
-			return environment.getUpdatedSources().contains(resource);
+			return !environment.getUpdatedSources().contains(resource);
 		}
 	}
 
