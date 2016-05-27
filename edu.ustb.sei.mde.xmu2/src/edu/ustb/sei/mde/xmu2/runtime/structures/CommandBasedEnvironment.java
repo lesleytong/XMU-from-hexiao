@@ -7,7 +7,7 @@ import edu.ustb.sei.mde.xmu2.util.AnalysisUtil;
 import edu.ustb.sei.mde.xmu2.util.CommandBasedModelModificationEngine;
 import edu.ustb.sei.mde.xmu2.util.TransformationTrace;
 
-public class CommandBasedEnvironment extends Environment {
+public class CommandBasedEnvironment extends Environment implements Cloneable{
 	
 	protected TransformationEditingDomain editingDomain;
 
@@ -52,4 +52,34 @@ public class CommandBasedEnvironment extends Environment {
 	public void redo() {
 		((CommandBasedModelModificationEngine)this.engine).redoAll();
 	}
+	
+	public CommandBasedEnvironment clone() {
+		CommandBasedEnvironment newEnv = new CommandBasedEnvironment(this.forward);
+		newEnv.transformation = this.transformation;
+
+		newEnv.sources.addAll(this.sources);
+		newEnv.views.addAll(this.views);
+		newEnv.updatedSources.addAll(this.updatedSources);
+		
+		newEnv.engine.setFocusedResources(this.engine.getFocusedResources());
+
+		this.trace.copyTo(newEnv.trace);
+		// external data is shared by all environments
+		newEnv.externalData = this.externalData;
+		return newEnv;
+	}
+	
+	public CommandBasedEnvironment createHistoryScreenshot() {
+		CommandBasedEnvironment newEnv = this.clone();
+		CommandBasedEnvironment preEnv = this.clone();
+		((TransformationCommandStack)preEnv.editingDomain.getCommandStack()).cloneCommandStack(((TransformationCommandStack)this.editingDomain.getCommandStack()));
+		newEnv.previousState = preEnv;
+		return newEnv;
+	}
+	
+	public void mergeTraceFrom(CommandBasedEnvironment source) {
+		this.trace.mergeFrom(source.trace, source.previousState.trace);
+	}
+	
+	protected CommandBasedEnvironment previousState; 
 }
