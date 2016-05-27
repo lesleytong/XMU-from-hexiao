@@ -82,4 +82,8 @@ public class CommandBasedEnvironment extends Environment implements Cloneable{
 	}
 	
 	protected CommandBasedEnvironment previousState; 
+	
+	public TransformationCommandStack getCommandStack() {
+		return (TransformationCommandStack) this.editingDomain.getCommandStack();
+	}
 }

@@ -1,6 +1,9 @@
 package edu.ustb.sei.mde.xmu2.runtime.structures;
 
+import java.util.List;
+
 import org.eclipse.emf.common.command.BasicCommandStack;
+import org.eclipse.emf.common.command.Command;
 
 public class TransformationCommandStack extends BasicCommandStack {
 
@@ -27,6 +30,10 @@ public class TransformationCommandStack extends BasicCommandStack {
 		this.saveIndex = stack.saveIndex;
 		
 		this.top = stack.top;
+	}
+	
+	public List<Command> getCommandList() {
+		return this.commandList;
 	}
 
 }
