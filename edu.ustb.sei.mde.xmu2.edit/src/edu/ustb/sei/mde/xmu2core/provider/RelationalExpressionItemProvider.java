@@ -246,6 +246,11 @@ public class RelationalExpressionItemProvider extends ExpressionItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
+				(Xmu2corePackage.Literals.RELATIONAL_EXPRESSION__LEFT,
+				 Xmu2coreFactory.eINSTANCE.createTupleExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(Xmu2corePackage.Literals.RELATIONAL_EXPRESSION__RIGHT,
 				 Xmu2coreFactory.eINSTANCE.createBooleanOrExpression()));
 
@@ -318,6 +323,11 @@ public class RelationalExpressionItemProvider extends ExpressionItemProvider {
 			(createChildParameter
 				(Xmu2corePackage.Literals.RELATIONAL_EXPRESSION__RIGHT,
 				 Xmu2coreFactory.eINSTANCE.createEntryRuleParameter()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.RELATIONAL_EXPRESSION__RIGHT,
+				 Xmu2coreFactory.eINSTANCE.createTupleExpression()));
 	}
 
 	/**

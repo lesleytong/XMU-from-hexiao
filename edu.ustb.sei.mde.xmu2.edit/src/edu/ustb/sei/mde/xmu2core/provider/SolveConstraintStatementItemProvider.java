@@ -231,6 +231,11 @@ public class SolveConstraintStatementItemProvider extends StatementItemProvider 
 			(createChildParameter
 				(Xmu2corePackage.Literals.SOLVE_CONSTRAINT_STATEMENT__CONSTRAINT,
 				 Xmu2coreFactory.eINSTANCE.createEntryRuleParameter()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.SOLVE_CONSTRAINT_STATEMENT__CONSTRAINT,
+				 Xmu2coreFactory.eINSTANCE.createTupleExpression()));
 	}
 
 }

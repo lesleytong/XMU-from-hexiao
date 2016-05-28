@@ -236,6 +236,11 @@ public class CallStatementItemProvider extends StatementItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
+				(Xmu2corePackage.Literals.CALL_STATEMENT__PARAMETERS,
+				 Xmu2coreFactory.eINSTANCE.createTupleExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(Xmu2corePackage.Literals.CALL_STATEMENT__UPDATED_PARAMETERS,
 				 Xmu2coreFactory.eINSTANCE.createBooleanOrExpression()));
 
@@ -308,6 +313,11 @@ public class CallStatementItemProvider extends StatementItemProvider {
 			(createChildParameter
 				(Xmu2corePackage.Literals.CALL_STATEMENT__UPDATED_PARAMETERS,
 				 Xmu2coreFactory.eINSTANCE.createEntryRuleParameter()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.CALL_STATEMENT__UPDATED_PARAMETERS,
+				 Xmu2coreFactory.eINSTANCE.createTupleExpression()));
 	}
 
 	/**

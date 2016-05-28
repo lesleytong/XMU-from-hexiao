@@ -207,6 +207,11 @@ public class CaseExpressionClauseItemProvider extends CaseClauseItemProvider {
 			(createChildParameter
 				(Xmu2corePackage.Literals.CASE_EXPRESSION_CLAUSE__CONDITION,
 				 Xmu2coreFactory.eINSTANCE.createEntryRuleParameter()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.CASE_EXPRESSION_CLAUSE__CONDITION,
+				 Xmu2coreFactory.eINSTANCE.createTupleExpression()));
 	}
 
 }

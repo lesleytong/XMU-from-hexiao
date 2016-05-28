@@ -235,6 +235,11 @@ public class MultiplicativeExpressionItemProvider extends ExpressionItemProvider
 			(createChildParameter
 				(Xmu2corePackage.Literals.MULTIPLICATIVE_EXPRESSION__OPERANDS,
 				 Xmu2coreFactory.eINSTANCE.createEntryRuleParameter()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.MULTIPLICATIVE_EXPRESSION__OPERANDS,
+				 Xmu2coreFactory.eINSTANCE.createTupleExpression()));
 	}
 
 }

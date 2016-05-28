@@ -241,6 +241,11 @@ public class PositionPathItemProvider extends PathItemProvider {
 			(createChildParameter
 				(Xmu2corePackage.Literals.POSITION_PATH__VALUE,
 				 Xmu2coreFactory.eINSTANCE.createEntryRuleParameter()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.POSITION_PATH__VALUE,
+				 Xmu2coreFactory.eINSTANCE.createTupleExpression()));
 	}
 
 }

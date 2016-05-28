@@ -229,6 +229,11 @@ public class PatternItemProvider
 			(createChildParameter
 				(Xmu2corePackage.Literals.PATTERN__GUARD,
 				 Xmu2coreFactory.eINSTANCE.createEntryRuleParameter()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.PATTERN__GUARD,
+				 Xmu2coreFactory.eINSTANCE.createTupleExpression()));
 	}
 
 	/**

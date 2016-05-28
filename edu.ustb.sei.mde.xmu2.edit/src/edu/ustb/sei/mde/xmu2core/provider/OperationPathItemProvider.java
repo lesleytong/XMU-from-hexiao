@@ -238,6 +238,11 @@ public class OperationPathItemProvider extends PathItemProvider {
 			(createChildParameter
 				(Xmu2corePackage.Literals.OPERATION_PATH__PARAMETERS,
 				 Xmu2coreFactory.eINSTANCE.createEntryRuleParameter()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.OPERATION_PATH__PARAMETERS,
+				 Xmu2coreFactory.eINSTANCE.createTupleExpression()));
 	}
 
 }

@@ -1,5 +1,6 @@
 package edu.ustb.sei.mde.xmu2.runtime.executor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.ustb.sei.mde.xmu2.runtime.exceptions.InvalidCalculationException;
@@ -13,6 +14,7 @@ import edu.ustb.sei.mde.xmu2core.AlignStatement;
 import edu.ustb.sei.mde.xmu2core.BooleanAndExpression;
 import edu.ustb.sei.mde.xmu2core.BooleanOrExpression;
 import edu.ustb.sei.mde.xmu2core.BooleanValueExpression;
+import edu.ustb.sei.mde.xmu2core.CallStatement;
 import edu.ustb.sei.mde.xmu2core.CaseStatement;
 import edu.ustb.sei.mde.xmu2core.CheckExpressionStatement;
 import edu.ustb.sei.mde.xmu2core.CommandStatement;
@@ -31,12 +33,12 @@ import edu.ustb.sei.mde.xmu2core.MatchPattern;
 import edu.ustb.sei.mde.xmu2core.MultiplicativeExpression;
 import edu.ustb.sei.mde.xmu2core.ObjectValueExpression;
 import edu.ustb.sei.mde.xmu2core.Procedure;
-import edu.ustb.sei.mde.xmu2core.CallStatement;
 import edu.ustb.sei.mde.xmu2core.RelationalExpression;
 import edu.ustb.sei.mde.xmu2core.SolveConstraintStatement;
 import edu.ustb.sei.mde.xmu2core.Statement;
 import edu.ustb.sei.mde.xmu2core.StringValueExpression;
 import edu.ustb.sei.mde.xmu2core.Transformation;
+import edu.ustb.sei.mde.xmu2core.TupleExpression;
 import edu.ustb.sei.mde.xmu2core.TypeCastExpression;
 import edu.ustb.sei.mde.xmu2core.UnaryExpression;
 import edu.ustb.sei.mde.xmu2core.Variable;
@@ -145,6 +147,9 @@ public abstract class AbstractInterpreter {
 		else if (o instanceof VariableExpression)
 			return executeVariableExpression((VariableExpression) o, context);
 		
+		else if(o instanceof TupleExpression) 
+			return executeTupleExpression((TupleExpression) o, context);
+		
 		throw new InvalidCalculationException("cannot execute "+o);
 	}
 	
@@ -152,6 +157,14 @@ public abstract class AbstractInterpreter {
 		for(Statement stmt : statements) {
 			this.executeStatement(stmt, context);
 		}
+	}
+	
+	public SafeType executeTupleExpression(TupleExpression expression, Context context) {
+		List<Object> results = new ArrayList<Object>();
+		for(Expression e : expression.getTuples()) {
+			results.add(this.executeExpression(e, context).getValue());
+		}
+		return SafeType.createFromValue(results);
 	}
 	
 	
@@ -180,6 +193,7 @@ public abstract class AbstractInterpreter {
 	abstract public SafeType executeEmptyValueExpression(EmptyValueExpression expression, Context context);
 	abstract public SafeType executeObjectValueExpression(ObjectValueExpression expression, Context context);
 	abstract public SafeType executeVariableExpression(VariableExpression expression, Context context);
+	
 	
 	public void executeTransformation(Transformation transformation, Environment environment) {
 		List<CallStatement> starts = transformation.getEntryRules();

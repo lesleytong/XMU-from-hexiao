@@ -310,6 +310,11 @@ public class DeleteLinkStatementItemProvider extends StatementItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
+				(Xmu2corePackage.Literals.REFLECTIVE_SUPPORT__REFLECTIVE_IDENTIFIER,
+				 Xmu2coreFactory.eINSTANCE.createTupleExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(Xmu2corePackage.Literals.DELETE_LINK_STATEMENT__TARGET,
 				 Xmu2coreFactory.eINSTANCE.createBooleanOrExpression()));
 
@@ -382,6 +387,11 @@ public class DeleteLinkStatementItemProvider extends StatementItemProvider {
 			(createChildParameter
 				(Xmu2corePackage.Literals.DELETE_LINK_STATEMENT__TARGET,
 				 Xmu2coreFactory.eINSTANCE.createEntryRuleParameter()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.DELETE_LINK_STATEMENT__TARGET,
+				 Xmu2coreFactory.eINSTANCE.createTupleExpression()));
 	}
 
 	/**

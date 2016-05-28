@@ -235,6 +235,11 @@ public class AdditiveExpressionItemProvider extends ExpressionItemProvider {
 			(createChildParameter
 				(Xmu2corePackage.Literals.ADDITIVE_EXPRESSION__OPERANDS,
 				 Xmu2coreFactory.eINSTANCE.createEntryRuleParameter()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.ADDITIVE_EXPRESSION__OPERANDS,
+				 Xmu2coreFactory.eINSTANCE.createTupleExpression()));
 	}
 
 }

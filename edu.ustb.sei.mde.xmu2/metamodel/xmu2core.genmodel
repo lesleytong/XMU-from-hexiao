@@ -213,5 +213,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmu2core.ecore#//ReflectiveSupport/reflective"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xmu2core.ecore#//ReflectiveSupport/resolve"/>
     </genClasses>
+    <genClasses ecoreClass="xmu2core.ecore#//TupleExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xmu2core.ecore#//TupleExpression/tuples"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

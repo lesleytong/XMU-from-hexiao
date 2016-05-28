@@ -208,6 +208,11 @@ public class PropertyPatternExpressionItemProvider extends PatternExpressionItem
 			(createChildParameter
 				(Xmu2corePackage.Literals.PROPERTY_PATTERN_EXPRESSION__TARGET,
 				 Xmu2coreFactory.eINSTANCE.createEntryRuleParameter()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.PROPERTY_PATTERN_EXPRESSION__TARGET,
+				 Xmu2coreFactory.eINSTANCE.createTupleExpression()));
 	}
 
 	/**

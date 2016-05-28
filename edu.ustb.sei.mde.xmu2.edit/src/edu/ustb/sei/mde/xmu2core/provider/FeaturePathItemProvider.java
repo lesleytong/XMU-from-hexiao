@@ -282,6 +282,11 @@ public class FeaturePathItemProvider extends PathItemProvider {
 			(createChildParameter
 				(Xmu2corePackage.Literals.REFLECTIVE_SUPPORT__REFLECTIVE_IDENTIFIER,
 				 Xmu2coreFactory.eINSTANCE.createEntryRuleParameter()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.REFLECTIVE_SUPPORT__REFLECTIVE_IDENTIFIER,
+				 Xmu2coreFactory.eINSTANCE.createTupleExpression()));
 	}
 
 }

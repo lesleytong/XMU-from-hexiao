@@ -1084,6 +1084,29 @@ public class Xmu2coreItemProviderAdapterFactory extends Xmu2coreAdapterFactory i
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link edu.ustb.sei.mde.xmu2core.TupleExpression} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected TupleExpressionItemProvider tupleExpressionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.ustb.sei.mde.xmu2core.TupleExpression}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createTupleExpressionAdapter() {
+		if (tupleExpressionItemProvider == null) {
+			tupleExpressionItemProvider = new TupleExpressionItemProvider(this);
+		}
+
+		return tupleExpressionItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1226,6 +1249,7 @@ public class Xmu2coreItemProviderAdapterFactory extends Xmu2coreAdapterFactory i
 		if (functionItemProvider != null) functionItemProvider.dispose();
 		if (solveConstraintStatementItemProvider != null) solveConstraintStatementItemProvider.dispose();
 		if (commandStatementItemProvider != null) commandStatementItemProvider.dispose();
+		if (tupleExpressionItemProvider != null) tupleExpressionItemProvider.dispose();
 	}
 
 }

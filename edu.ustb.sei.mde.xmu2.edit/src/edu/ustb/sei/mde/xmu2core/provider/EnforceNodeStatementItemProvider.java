@@ -365,6 +365,11 @@ public class EnforceNodeStatementItemProvider extends StatementItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
+				(Xmu2corePackage.Literals.REFLECTIVE_SUPPORT__REFLECTIVE_IDENTIFIER,
+				 Xmu2coreFactory.eINSTANCE.createTupleExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(Xmu2corePackage.Literals.ENFORCE_NODE_STATEMENT__CANDIDATE,
 				 Xmu2coreFactory.eINSTANCE.createVariableExpression()));
 	}

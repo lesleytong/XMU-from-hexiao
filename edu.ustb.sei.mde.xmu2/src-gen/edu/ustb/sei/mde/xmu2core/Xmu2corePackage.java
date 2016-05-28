@@ -3420,6 +3420,43 @@ public interface Xmu2corePackage extends EPackage {
 	int COMMAND_STATEMENT_OPERATION_COUNT = STATEMENT_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link edu.ustb.sei.mde.xmu2core.impl.TupleExpressionImpl <em>Tuple Expression</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.ustb.sei.mde.xmu2core.impl.TupleExpressionImpl
+	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getTupleExpression()
+	 * @generated
+	 */
+	int TUPLE_EXPRESSION = 56;
+
+	/**
+	 * The feature id for the '<em><b>Tuples</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_EXPRESSION__TUPLES = EXPRESSION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Tuple Expression</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_EXPRESSION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Tuple Expression</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_EXPRESSION_OPERATION_COUNT = EXPRESSION_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '<em>Null</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3427,7 +3464,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getNull()
 	 * @generated
 	 */
-	int NULL = 56;
+	int NULL = 57;
 
 	/**
 	 * The meta object id for the '<em>Undefined</em>' data type.
@@ -3437,7 +3474,7 @@ public interface Xmu2corePackage extends EPackage {
 	 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getUndefined()
 	 * @generated
 	 */
-	int UNDEFINED = 57;
+	int UNDEFINED = 58;
 
 
 	/**
@@ -5057,6 +5094,27 @@ public interface Xmu2corePackage extends EPackage {
 	EAttribute getReflectiveSupport_Resolve();
 
 	/**
+	 * Returns the meta object for class '{@link edu.ustb.sei.mde.xmu2core.TupleExpression <em>Tuple Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Tuple Expression</em>'.
+	 * @see edu.ustb.sei.mde.xmu2core.TupleExpression
+	 * @generated
+	 */
+	EClass getTupleExpression();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link edu.ustb.sei.mde.xmu2core.TupleExpression#getTuples <em>Tuples</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Tuples</em>'.
+	 * @see edu.ustb.sei.mde.xmu2core.TupleExpression#getTuples()
+	 * @see #getTupleExpression()
+	 * @generated
+	 */
+	EReference getTupleExpression_Tuples();
+
+	/**
 	 * Returns the meta object for data type '{@link java.lang.Object <em>Null</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6428,6 +6486,24 @@ public interface Xmu2corePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute REFLECTIVE_SUPPORT__RESOLVE = eINSTANCE.getReflectiveSupport_Resolve();
+
+		/**
+		 * The meta object literal for the '{@link edu.ustb.sei.mde.xmu2core.impl.TupleExpressionImpl <em>Tuple Expression</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.ustb.sei.mde.xmu2core.impl.TupleExpressionImpl
+		 * @see edu.ustb.sei.mde.xmu2core.impl.Xmu2corePackageImpl#getTupleExpression()
+		 * @generated
+		 */
+		EClass TUPLE_EXPRESSION = eINSTANCE.getTupleExpression();
+
+		/**
+		 * The meta object literal for the '<em><b>Tuples</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TUPLE_EXPRESSION__TUPLES = eINSTANCE.getTupleExpression_Tuples();
 
 		/**
 		 * The meta object literal for the '<em>Null</em>' data type.

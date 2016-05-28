@@ -207,6 +207,11 @@ public class BooleanOrExpressionItemProvider extends ExpressionItemProvider {
 			(createChildParameter
 				(Xmu2corePackage.Literals.BOOLEAN_OR_EXPRESSION__OPERANDS,
 				 Xmu2coreFactory.eINSTANCE.createEntryRuleParameter()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.BOOLEAN_OR_EXPRESSION__OPERANDS,
+				 Xmu2coreFactory.eINSTANCE.createTupleExpression()));
 	}
 
 }

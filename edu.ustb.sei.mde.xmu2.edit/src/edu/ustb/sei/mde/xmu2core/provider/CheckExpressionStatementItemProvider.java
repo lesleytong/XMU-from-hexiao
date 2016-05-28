@@ -207,6 +207,11 @@ public class CheckExpressionStatementItemProvider extends StatementItemProvider 
 			(createChildParameter
 				(Xmu2corePackage.Literals.CHECK_EXPRESSION_STATEMENT__EXPRESSION,
 				 Xmu2coreFactory.eINSTANCE.createEntryRuleParameter()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.CHECK_EXPRESSION_STATEMENT__EXPRESSION,
+				 Xmu2coreFactory.eINSTANCE.createTupleExpression()));
 	}
 
 }

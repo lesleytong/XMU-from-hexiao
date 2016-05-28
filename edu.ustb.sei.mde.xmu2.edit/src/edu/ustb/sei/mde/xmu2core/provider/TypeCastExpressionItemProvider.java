@@ -254,6 +254,11 @@ public class TypeCastExpressionItemProvider extends AtomicExpressionItemProvider
 			(createChildParameter
 				(Xmu2corePackage.Literals.TYPE_CAST_EXPRESSION__BODY,
 				 Xmu2coreFactory.eINSTANCE.createEntryRuleParameter()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.TYPE_CAST_EXPRESSION__BODY,
+				 Xmu2coreFactory.eINSTANCE.createTupleExpression()));
 	}
 
 }

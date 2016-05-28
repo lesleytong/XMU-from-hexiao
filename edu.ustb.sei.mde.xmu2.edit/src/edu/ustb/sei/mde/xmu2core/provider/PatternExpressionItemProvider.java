@@ -279,6 +279,11 @@ public class PatternExpressionItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(Xmu2corePackage.Literals.REFLECTIVE_SUPPORT__REFLECTIVE_IDENTIFIER,
+				 Xmu2coreFactory.eINSTANCE.createTupleExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(Xmu2corePackage.Literals.PATTERN_EXPRESSION__SELECTOR,
 				 Xmu2coreFactory.eINSTANCE.createLoopPath()));
 

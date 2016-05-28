@@ -241,6 +241,11 @@ public class UnaryExpressionItemProvider extends ExpressionItemProvider {
 			(createChildParameter
 				(Xmu2corePackage.Literals.UNARY_EXPRESSION__BODY,
 				 Xmu2coreFactory.eINSTANCE.createEntryRuleParameter()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Xmu2corePackage.Literals.UNARY_EXPRESSION__BODY,
+				 Xmu2coreFactory.eINSTANCE.createTupleExpression()));
 	}
 
 }

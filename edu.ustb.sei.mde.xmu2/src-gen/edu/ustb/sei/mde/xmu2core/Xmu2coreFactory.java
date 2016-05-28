@@ -418,6 +418,15 @@ public interface Xmu2coreFactory extends EFactory {
 	CommandStatement createCommandStatement();
 
 	/**
+	 * Returns a new object of class '<em>Tuple Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Tuple Expression</em>'.
+	 * @generated
+	 */
+	TupleExpression createTupleExpression();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

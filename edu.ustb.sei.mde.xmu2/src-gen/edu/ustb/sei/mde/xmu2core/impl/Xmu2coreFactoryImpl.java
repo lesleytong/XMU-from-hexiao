@@ -101,6 +101,7 @@ public class Xmu2coreFactoryImpl extends EFactoryImpl implements Xmu2coreFactory
 			case Xmu2corePackage.FUNCTION: return createFunction();
 			case Xmu2corePackage.SOLVE_CONSTRAINT_STATEMENT: return createSolveConstraintStatement();
 			case Xmu2corePackage.COMMAND_STATEMENT: return createCommandStatement();
+			case Xmu2corePackage.TUPLE_EXPRESSION: return createTupleExpression();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -578,6 +579,16 @@ public class Xmu2coreFactoryImpl extends EFactoryImpl implements Xmu2coreFactory
 	public CommandStatement createCommandStatement() {
 		CommandStatementImpl commandStatement = new CommandStatementImpl();
 		return commandStatement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TupleExpression createTupleExpression() {
+		TupleExpressionImpl tupleExpression = new TupleExpressionImpl();
+		return tupleExpression;
 	}
 
 	/**

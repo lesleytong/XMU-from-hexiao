@@ -55,6 +55,7 @@ import edu.ustb.sei.mde.xmu2core.SolveConstraintStatement;
 import edu.ustb.sei.mde.xmu2core.Statement;
 import edu.ustb.sei.mde.xmu2core.StringValueExpression;
 import edu.ustb.sei.mde.xmu2core.Transformation;
+import edu.ustb.sei.mde.xmu2core.TupleExpression;
 import edu.ustb.sei.mde.xmu2core.TypeCastExpression;
 import edu.ustb.sei.mde.xmu2core.TypedElement;
 import edu.ustb.sei.mde.xmu2core.UnaryExpression;
@@ -469,6 +470,13 @@ public class Xmu2corePackageImpl extends EPackageImpl implements Xmu2corePackage
 	 * @generated
 	 */
 	private EClass reflectiveSupportEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass tupleExpressionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1921,6 +1929,24 @@ public class Xmu2corePackageImpl extends EPackageImpl implements Xmu2corePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getTupleExpression() {
+		return tupleExpressionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTupleExpression_Tuples() {
+		return (EReference)tupleExpressionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EDataType getNull() {
 		return nullEDataType;
 	}
@@ -2170,6 +2196,9 @@ public class Xmu2corePackageImpl extends EPackageImpl implements Xmu2corePackage
 		createEAttribute(reflectiveSupportEClass, REFLECTIVE_SUPPORT__REFLECTIVE);
 		createEAttribute(reflectiveSupportEClass, REFLECTIVE_SUPPORT__RESOLVE);
 
+		tupleExpressionEClass = createEClass(TUPLE_EXPRESSION);
+		createEReference(tupleExpressionEClass, TUPLE_EXPRESSION__TUPLES);
+
 		// Create data types
 		nullEDataType = createEDataType(NULL);
 		undefinedEDataType = createEDataType(UNDEFINED);
@@ -2265,6 +2294,7 @@ public class Xmu2corePackageImpl extends EPackageImpl implements Xmu2corePackage
 		functionEClass.getESuperTypes().add(this.getCallable());
 		solveConstraintStatementEClass.getESuperTypes().add(this.getStatement());
 		commandStatementEClass.getESuperTypes().add(this.getStatement());
+		tupleExpressionEClass.getESuperTypes().add(this.getExpression());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(typedElementEClass, TypedElement.class, "TypedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2474,6 +2504,9 @@ public class Xmu2corePackageImpl extends EPackageImpl implements Xmu2corePackage
 		initEReference(getReflectiveSupport_ReflectiveIdentifier(), this.getExpression(), null, "reflectiveIdentifier", null, 0, 1, ReflectiveSupport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getReflectiveSupport_Reflective(), ecorePackage.getEBoolean(), "reflective", "false", 0, 1, ReflectiveSupport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getReflectiveSupport_Resolve(), ecorePackage.getEBoolean(), "resolve", null, 1, 1, ReflectiveSupport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(tupleExpressionEClass, TupleExpression.class, "TupleExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getTupleExpression_Tuples(), this.getExpression(), null, "tuples", null, 1, -1, TupleExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize data types
 		initEDataType(nullEDataType, Object.class, "Null", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);

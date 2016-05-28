@@ -299,6 +299,10 @@ public class Xmu2coreAdapterFactory extends AdapterFactoryImpl {
 				return createReflectiveSupportAdapter();
 			}
 			@Override
+			public Adapter caseTupleExpression(TupleExpression object) {
+				return createTupleExpressionAdapter();
+			}
+			@Override
 			public Adapter caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
 			}
@@ -1123,6 +1127,20 @@ public class Xmu2coreAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createReflectiveSupportAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.xmu2core.TupleExpression <em>Tuple Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.ustb.sei.mde.xmu2core.TupleExpression
+	 * @generated
+	 */
+	public Adapter createTupleExpressionAdapter() {
 		return null;
 	}
 
