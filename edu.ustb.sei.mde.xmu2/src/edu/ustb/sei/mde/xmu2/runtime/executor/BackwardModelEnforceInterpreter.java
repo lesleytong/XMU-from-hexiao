@@ -180,17 +180,16 @@ public class BackwardModelEnforceInterpreter extends ModelEnforceInterpreter {
 				
 				if(c.getValue()==Boolean.TRUE) {
 					List<Variable> sVars = statement.getTag() == DomainTag.SOURCE 
-							? ContextUtil.collectPatternVariables(((CasePatternClause) css).getCondition()) : Collections.EMPTY_LIST;
-					if(sVars.size()!=0) {
-						handleTrialCallStatements(this.collectProcedureCallStatements(css.getAction(),context), sVars, context);
-					}
+							? ContextUtil.collectPatternVariables(((CasePatternClause) css).getCondition()) : Collections.emptyList();
+					handleTrialCallStatements(this.collectProcedureCallStatements(css.getAction(),context), sVars, context);
+
 					this.executeStatements(css.getAction(), context);
 					return;
 				}
 			} else if(css instanceof CaseExpressionClause) {
 				SafeType c = this.executeExpression(((CaseExpressionClause) css).getCondition(), context);
 				if(c.getValue()==Boolean.TRUE) {
-					handleTrialCallStatements(this.collectProcedureCallStatements(css.getAction(),context), Collections.EMPTY_LIST, context);
+					handleTrialCallStatements(this.collectProcedureCallStatements(css.getAction(),context), Collections.emptyList(), context);
 					this.executeStatements(css.getAction(), context);
 					return;
 				}
