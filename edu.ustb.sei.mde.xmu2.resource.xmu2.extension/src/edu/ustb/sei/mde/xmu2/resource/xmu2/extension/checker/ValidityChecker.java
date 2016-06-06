@@ -482,6 +482,10 @@ class VariableValidityContext {
 					collectVariablesInPattern(source, DomainTag.SOURCE, resource);
 				else if(existInNormalVariable(name))
 					collectVariablesInPattern(source, DomainTag.NORMAL, resource);
+				
+				for(EObject o : root.eContents()) {
+					collectVariableNames(o,  resource);
+				}
 			} else if(root instanceof Fail) {
 				checkVariableUsage(((Fail) root).getExpression(), resource, DomainTag.NORMAL);
 			}
@@ -586,7 +590,8 @@ class VariableValidityContext {
 									existInUpdatedSourceVariable(name) ) {
 								//valid
 							} else {
-								res.addWarning("using view variable in the context of updated source is not recommended", Xmu2EProblemType.ANALYSIS_PROBLEM, o);
+								if(existInViewVariable(name))
+									res.addWarning("using view variable in the context of updated source is not recommended", Xmu2EProblemType.ANALYSIS_PROBLEM, o);
 							}
 						}
 					}
