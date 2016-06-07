@@ -184,14 +184,24 @@ public class CommandBasedModelModificationEngine extends ModelModificationEngine
 
 	@Override
 	protected void internalRemoveAttributeValue(EObject host, EAttribute attribute, Object value) {
-		Command del = RemoveCommand.create(domain, host, attribute, value);
-		postCommand(del);
+		if(attribute.isMany()) {
+			Command del = RemoveCommand.create(domain, host, attribute, value);
+			postCommand(del);
+		} else {
+			Command del = SetCommand.create(domain, host, attribute, null);
+			postCommand(del);
+		}
 	}
 
 	@Override
 	protected void internalRemoveObject(EObject host, EReference feature, EObject oldObj) {
-		Command del = RemoveCommand.create(domain, host, feature, oldObj);
-		postCommand(del);
+		if(feature.isMany()) {
+			Command del = RemoveCommand.create(domain, host, feature, oldObj);
+			postCommand(del);
+		} else {
+			Command del = SetCommand.create(domain, host, feature, null);
+			postCommand(del);
+		}
 	}
 
 	@Override
