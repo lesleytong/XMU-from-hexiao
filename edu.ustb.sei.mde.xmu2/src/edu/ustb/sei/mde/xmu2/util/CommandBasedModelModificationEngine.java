@@ -212,7 +212,8 @@ public class CommandBasedModelModificationEngine extends ModelModificationEngine
 
 	@Override
 	protected void internalRemoveObject(EObject host, EReference feature, EObject oldObj) {
-		if(feature.isMany()) {
+		if(feature==null || feature.isMany()) {
+			if(feature==null && oldObj.eContainer()==null) return;
 			Command del = RemoveCommand.create(domain, host, feature, oldObj);
 			postCommand(del);
 		} else {
