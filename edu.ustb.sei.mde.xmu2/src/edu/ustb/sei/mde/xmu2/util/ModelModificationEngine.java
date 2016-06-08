@@ -11,9 +11,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.EcoreUtil.CrossReferencer;
 import org.eclipse.emf.ecore.util.EcoreUtil.UsageCrossReferencer;
 import org.eclipse.emf.ecore.util.FeatureMapUtil;
 
@@ -108,20 +110,21 @@ public class ModelModificationEngine extends ModelModificationTrace{
 			
 			Resource res = obj.eResource();
 			
-			if(res!=null)
-				internalRemoveObject(null,obj);
-			else {
-				for(Resource r : focusedResources) {
-					Collection<EStructuralFeature.Setting> usages = UsageCrossReferencer.find(obj, r);
-					for (EStructuralFeature.Setting setting : usages)
-				    {
-				      if (setting.getEStructuralFeature().isChangeable())
-				      {
-				        internalRemoveObject(setting, obj);
-				      }
-				    }
-				}
-			}
+			//if(res!=null)
+			internalRemoveObject(null,obj);
+//			else {
+//				for(Resource r : focusedResources) {
+//					Collection<EStructuralFeature.Setting> usages = UsageCrossReferencer.find(obj, r);
+//					for (EStructuralFeature.Setting setting : usages)
+//				    {
+//				      if (setting.getEStructuralFeature().isChangeable())
+//				      {
+//				        internalRemoveObject(setting, obj);
+//				      }
+//				    }
+//				}
+//				internalRemoveObject(null, obj);
+//			}
 		} else {
 			throw new InvalidModificationException("a newly created/modified object is going to be deleted "+obj);
 		}
@@ -325,8 +328,17 @@ public class ModelModificationEngine extends ModelModificationTrace{
 	final protected void internalRemoveObject(EStructuralFeature.Setting setting, EObject oldObj) {
 		if(setting!=null)
 			internalRemoveObject(setting.getEObject(),(EReference) setting.getEStructuralFeature(), oldObj);
-		else
+		else {
+			// remove from model
+			for(Resource res : this.focusedResources) {
+				Collection<Setting> settings = EcoreUtil.UsageCrossReferencer.find(oldObj, res);
+				for(Setting s : settings) {
+					if(s.getEStructuralFeature().isChangeable())
+						internalRemoveObject(s.getEObject(),(EReference)s.getEStructuralFeature(), oldObj);
+				}
+			}
 			internalRemoveObject(null,null,oldObj);
+		}
 	}
 
 	protected void internalReplaceAtFeature(EObject host, EStructuralFeature feature, Object value, int index) {

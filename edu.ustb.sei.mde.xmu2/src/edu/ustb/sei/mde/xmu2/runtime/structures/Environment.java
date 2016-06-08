@@ -440,7 +440,10 @@ public class Environment {
 			EObject o = it.next();
 			EClass cls = o.eClass();
 			for (EReference r : cls.getEAllReferences()) {
-				if (r.isContainment() == false) {
+				if (r.isContainment() == false
+						&& r.isChangeable()==true
+						&& r.isDerived()==false
+						&& r.isTransient()==false) {
 					if (r.isMany()) {
 						List<EObject> list = (List) o.eGet(r);
 						for (EObject eo : list) {
