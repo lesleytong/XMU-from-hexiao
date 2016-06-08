@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
@@ -23,6 +22,7 @@ import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 
 import edu.ustb.sei.commonutil.util.Pair;
+import edu.ustb.sei.mde.xmu2.datatypes.DatatypesPackage;
 import edu.ustb.sei.mde.xmu2.runtime.exceptions.InvalidModificationException;
 import edu.ustb.sei.mde.xmu2.runtime.structures.TransformationCommandStack;
 
@@ -128,7 +128,11 @@ public class CommandBasedModelModificationEngine extends ModelModificationEngine
 	@Override
 	protected void internalAddFeature(EObject host, EStructuralFeature feature, Object value) {
 		Command cmd;
-		if(feature instanceof EReference) {
+		
+		if(feature == DatatypesPackage.Literals.OCL_COLLECTION__ELEMENTS) {
+			EList<Object> list = calcExtent(host);
+			cmd = new AddCommand(domain,list,value);
+		} else if(feature instanceof EReference) {
 			Pair<EObject,EReference> brokenLink = this.computeBrokenLink((EReference)feature, (EObject)value);
 			if(brokenLink==null) {
 				cmd = AddCommand.create(domain, host, feature, value);
@@ -148,7 +152,10 @@ public class CommandBasedModelModificationEngine extends ModelModificationEngine
 	protected void internalInsertAtFeature(EObject host, EStructuralFeature feature, Object value, int index) {
 		Command cmd;
 		
-		if(feature instanceof EReference) {
+		if(feature == DatatypesPackage.Literals.OCL_COLLECTION__ELEMENTS) {
+			EList<Object> list = calcExtent(host);
+			cmd = new AddCommand(domain,list,value,index);
+		} else if(feature instanceof EReference) {
 			Pair<EObject,EReference> brokenLink = this.computeBrokenLink((EReference)feature, (EObject)value);
 			if(brokenLink==null) {
 				cmd = AddCommand.create(domain, host, feature, value, index);
@@ -162,6 +169,12 @@ public class CommandBasedModelModificationEngine extends ModelModificationEngine
 		}
 		
 		postCommand(cmd);
+	}
+
+	public EList<Object> calcExtent(EObject host) {
+		edu.ustb.sei.mde.xmu2.datatypes.Resource resObject = (edu.ustb.sei.mde.xmu2.datatypes.Resource) host;
+		EList<Object> list = resObject.getElements();
+		return list;
 	}
 
 	@Override
@@ -184,7 +197,11 @@ public class CommandBasedModelModificationEngine extends ModelModificationEngine
 
 	@Override
 	protected void internalRemoveAttributeValue(EObject host, EAttribute attribute, Object value) {
-		if(attribute.isMany()) {
+		if(attribute == DatatypesPackage.Literals.OCL_COLLECTION__ELEMENTS) {
+			EList<Object> list = calcExtent(host);
+			Command cmd = new RemoveCommand(domain,list,value);
+			postCommand(cmd);
+		} else if(attribute.isMany()) {
 			Command del = RemoveCommand.create(domain, host, attribute, value);
 			postCommand(del);
 		} else {
@@ -207,6 +224,7 @@ public class CommandBasedModelModificationEngine extends ModelModificationEngine
 	@Override
 	protected void internalReplaceAtFeature(EObject host, EStructuralFeature feature, Object value, int index) {
 		Command cmd;
+		// FIXME to support top-level replacement
 		if(feature.isMany()) {
 			if(feature instanceof EReference) {
 				Pair<EObject,EReference> brokenLink = this.computeBrokenLink((EReference)feature, (EObject)value);
@@ -265,6 +283,4 @@ public class CommandBasedModelModificationEngine extends ModelModificationEngine
 		postCommand(cmd);
 	}
 	
-	
-
 }
