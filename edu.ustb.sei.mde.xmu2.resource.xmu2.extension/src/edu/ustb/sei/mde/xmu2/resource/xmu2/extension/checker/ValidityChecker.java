@@ -74,7 +74,7 @@ public class ValidityChecker
 				checkEntryPoints(ep, resource);
 			}
 		} catch(Exception e) {
-			resource.addWarning("validity check is not finished becase of some exception", 
+			resource.addWarning("validity check is not finished because of some exceptions", 
 					Xmu2EProblemType.ANALYSIS_PROBLEM, model);
 		}
 
@@ -220,7 +220,7 @@ public class ValidityChecker
 				}
 			}
 		} catch(Exception e) {
-			resource.addWarning("validity check is not finished becase of some exception", 
+			resource.addWarning("validity check is not finished because of some exceptions", 
 					Xmu2EProblemType.ANALYSIS_PROBLEM, rule);
 		}
 	}
@@ -495,7 +495,7 @@ class VariableValidityContext {
 				}
 			}
 		}catch(Exception e) {
-			resource.addWarning("validity check is not finished becase of some exception", 
+			resource.addWarning("validity check is not finished because of some exceptions", 
 					Xmu2EProblemType.ANALYSIS_PROBLEM, root);
 		}
 	}
@@ -598,7 +598,7 @@ class VariableValidityContext {
 				}
 			}
 		} catch(Exception e) {
-			res.addWarning("validity check is not finished becase of some exception", Xmu2EProblemType.ANALYSIS_PROBLEM, root);
+			res.addWarning("validity check is not finished because of some exceptions", Xmu2EProblemType.ANALYSIS_PROBLEM, root);
 		}
 	}
 
