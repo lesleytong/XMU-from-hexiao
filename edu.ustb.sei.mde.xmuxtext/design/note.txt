@@ -1,0 +1,12 @@
+1.关于Cross Reference的问题
+当有候选范围时，建议使用Scope API。
+在使用Scope API时，如需要计算QualifiedName，则可以使用QualifiedName提供的方法；
+同时自定义QualifiedNameConverter，实现将其序列化成字符串。
+注册QualifiedNameConverter，可以在RuntimeModule中定义方法：
+def configureIQualifiedNameConverter(Binder binder) {
+  binder.bind(IQualifiedNameConverter).to(MyQualifiedNameConverter)
+}
+
+如果没有候选范围，则需要扩展DefaultLinkingService和CrossReferenceSerializer来实现解析和反序列化
+
+Scope API的优先级似乎高于LinkingService，而Serializer的优先级则似乎高于Converter

@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: edu.ustb.sei.mde.xmuxtext.ide
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: edu.ustb.sei.mde.xmuxtext.ide; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: edu.ustb.sei.mde.xmuxtext,
+ edu.ustb.sei.mde.xmu2,
+ org.eclipse.xtext.ide,
+ org.eclipse.xtext.xbase.ide
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: edu.ustb.sei.mde.xmuxtext.ide.contentassist.antlr.internal,
+ edu.ustb.sei.mde.xmuxtext.ide.contentassist.antlr
+
