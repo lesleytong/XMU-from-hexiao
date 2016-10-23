@@ -65,6 +65,7 @@ class Xmu2Validator extends AbstractXmu2Validator {
 	
 	@Check
 	def void checkPatternValidity(PatternNode r) {
+		try{
 			for (PatternExpression e : r.getExpressions()) {
 			var cls = r.getVariable().getType();
 			if (cls instanceof EClass) {
@@ -81,12 +82,15 @@ class Xmu2Validator extends AbstractXmu2Validator {
 					this.error("type inconsistency", e, PatternPackage.Literals.OBJECT_PATTERN_EXPRESSION__TARGET_NODE);
 				}
 			}
+			}
+		} catch(Exception e) {
 		}
 	}
 	
 	
 	@Check
 	def void checkStatementUsage(AbstractRule r) {
+		try {
 		var isArithmeticRule = r instanceof ArithmeticRule;
 		var it = r.eAllContents();
 		while(it.hasNext()) {
@@ -115,10 +119,12 @@ class Xmu2Validator extends AbstractXmu2Validator {
 					error("a nullable pattern node cannot have inner expressions", o, PatternPackage.Literals.OBJECT_PATTERN_EXPRESSION__TARGET_NODE);
 			}
 		}
+		} catch(Exception e) {}
 	}
 	
 	@Check
 	def void checkEntryPoints(EntryPoint ep) {
+		try {
 		var ModelRule rule = ep.getRule();
 		if(rule.getParameters().size()!=ep.getParameters().size()) {
 			error("the number of parameters is incorrect", ep, Xmu2Package.Literals.ENTRY_POINT__PARAMETERS);
@@ -134,6 +140,7 @@ class Xmu2Validator extends AbstractXmu2Validator {
 				}
 			}
 		}
+		} catch(Exception e) {}
 	}
 	
 	@Check
@@ -577,7 +584,6 @@ class VariableValidityContext {
 				}
 			}
 		}catch(Exception e) {
-			e.printStackTrace;
 			resource.addWarning("validity check is not finished because of some exceptions", 
 					root.eContainer, root.eContainmentFeature);
 		}

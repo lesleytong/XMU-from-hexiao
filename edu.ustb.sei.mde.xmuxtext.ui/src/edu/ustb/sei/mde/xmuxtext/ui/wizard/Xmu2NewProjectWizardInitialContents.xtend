@@ -4,23 +4,34 @@
 package edu.ustb.sei.mde.xmuxtext.ui.wizard
 
 
-import com.google.inject.Inject
-import org.eclipse.xtext.generator.IFileSystemAccess2
-import org.eclipse.xtext.resource.FileExtensionProvider
+import java.io.ByteArrayInputStream
 
 class Xmu2NewProjectWizardInitialContents {
-	@Inject
-	FileExtensionProvider fileExtensionProvider
-
-	def generateInitialContents(IFileSystemAccess2 fsa) {
-		fsa.generateFile(
-			"src/model/Model." + fileExtensionProvider.primaryFileExtension,
-			'''
-			/*
-			 * This is an example model
-			 */
-			Hello Xtext!
-			'''
-			)
+	
+	def generateInitialContents(String newName, boolean ecore, String[] importFiles) {
+		new ByteArrayInputStream(generateInitialContentString(newName,ecore,importFiles).getBytes());
+	}
+	
+	def generateInitialContentString(String newName, boolean ecore, String[] importFiles) {
+		var String str=
+		'''
+		module «newName»
+		
+		«IF(ecore)»
+		// import ecore
+		import <http://www.eclipse.org/emf/2002/Ecore>
+		«ENDIF»
+		
+		«FOR String str : importFiles»
+		import <«str»>
+		«ENDFOR»
+		
+		entry top(source[0], view[0])
+		
+		rule top(source sr:Resource, view tr:Resource) {
+			// write your code here
+		}
+		'''
+		return str;
 	}
 }

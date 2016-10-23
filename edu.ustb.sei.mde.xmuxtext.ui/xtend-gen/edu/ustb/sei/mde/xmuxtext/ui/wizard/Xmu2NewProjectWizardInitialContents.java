@@ -3,30 +3,52 @@
  */
 package edu.ustb.sei.mde.xmuxtext.ui.wizard;
 
-import com.google.inject.Inject;
+import java.io.ByteArrayInputStream;
 import org.eclipse.xtend2.lib.StringConcatenation;
-import org.eclipse.xtext.generator.IFileSystemAccess2;
-import org.eclipse.xtext.resource.FileExtensionProvider;
 
 @SuppressWarnings("all")
 public class Xmu2NewProjectWizardInitialContents {
-  @Inject
-  private FileExtensionProvider fileExtensionProvider;
+  public ByteArrayInputStream generateInitialContents(final String newName, final boolean ecore, final String[] importFiles) {
+    String _generateInitialContentString = this.generateInitialContentString(newName, ecore, importFiles);
+    byte[] _bytes = _generateInitialContentString.getBytes();
+    return new ByteArrayInputStream(_bytes);
+  }
   
-  public void generateInitialContents(final IFileSystemAccess2 fsa) {
-    String _primaryFileExtension = this.fileExtensionProvider.getPrimaryFileExtension();
-    String _plus = ("src/model/Model." + _primaryFileExtension);
+  public String generateInitialContentString(final String newName, final boolean ecore, final String[] importFiles) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("/*");
+    _builder.append("module ");
+    _builder.append(newName, "");
+    _builder.newLineIfNotEmpty();
     _builder.newLine();
-    _builder.append(" ");
-    _builder.append("* This is an example model");
+    {
+      if (ecore) {
+        _builder.append("// import ecore");
+        _builder.newLine();
+        _builder.append("import <http://www.eclipse.org/emf/2002/Ecore>");
+        _builder.newLine();
+      }
+    }
     _builder.newLine();
-    _builder.append(" ");
-    _builder.append("*/");
+    {
+      for(final String str : importFiles) {
+        _builder.append("import <");
+        _builder.append(str, "");
+        _builder.append(">");
+        _builder.newLineIfNotEmpty();
+      }
+    }
     _builder.newLine();
-    _builder.append("Hello Xtext!");
+    _builder.append("entry top(source[0], view[0])");
     _builder.newLine();
-    fsa.generateFile(_plus, _builder);
+    _builder.newLine();
+    _builder.append("rule top(source sr:Resource, view tr:Resource) {");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("// write your code here");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    String str_1 = _builder.toString();
+    return str_1;
   }
 }

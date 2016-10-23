@@ -411,10 +411,10 @@
 		point="org.eclipse.ui.newWizards">
 		<wizard
 			category="edu.ustb.sei.mde.modeling"
-			class="edu.ustb.sei.mde.xmuxtext.ui.Xmu2ExecutableExtensionFactory:edu.ustb.sei.mde.xmuxtext.ui.wizard.Xmu2NewProjectWizard"
-			id="edu.ustb.sei.mde.xmuxtext.ui.wizard.Xmu2NewProjectWizard"
-			name="XMU2 Project"
-				project="true">
+			class="edu.ustb.sei.mde.xmuxtext.ui.wizard.Xmu2NewFileWizard"
+			id="edu.ustb.sei.mde.xmuxtext.ui.wizard.Xmu2xNewFileWizard"
+			name="XMU2X File"
+				project="false">
 		</wizard>
 	</extension>
 </plugin>

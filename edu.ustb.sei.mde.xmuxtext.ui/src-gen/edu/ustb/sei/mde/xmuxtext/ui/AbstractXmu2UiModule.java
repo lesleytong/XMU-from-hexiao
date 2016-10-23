@@ -14,7 +14,6 @@ import edu.ustb.sei.mde.xmuxtext.ui.labeling.Xmu2DescriptionLabelProvider;
 import edu.ustb.sei.mde.xmuxtext.ui.labeling.Xmu2LabelProvider;
 import edu.ustb.sei.mde.xmuxtext.ui.outline.Xmu2OutlineTreeProvider;
 import edu.ustb.sei.mde.xmuxtext.ui.quickfix.Xmu2QuickfixProvider;
-import edu.ustb.sei.mde.xmuxtext.ui.wizard.Xmu2ProjectCreator;
 import org.eclipse.compare.IViewerCreator;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -76,7 +75,6 @@ import org.eclipse.xtext.ui.refactoring.ui.IRenameSupport;
 import org.eclipse.xtext.ui.refactoring.ui.RefactoringPreferences;
 import org.eclipse.xtext.ui.resource.ResourceServiceDescriptionLabelProvider;
 import org.eclipse.xtext.ui.shared.Access;
-import org.eclipse.xtext.ui.wizard.IProjectCreator;
 
 /**
  * Manual modifications go to {@link Xmu2UiModule}.
@@ -277,11 +275,6 @@ public abstract class AbstractXmu2UiModule extends DefaultUiModule {
 	// contributed by org.eclipse.xtext.xtext.generator.ui.compare.CompareFragment2
 	public Class<? extends IViewerCreator> bindIViewerCreator() {
 		return DefaultViewerCreator.class;
-	}
-	
-	// contributed by org.eclipse.xtext.xtext.generator.ui.projectWizard.SimpleProjectWizardFragment2
-	public Class<? extends IProjectCreator> bindIProjectCreator() {
-		return Xmu2ProjectCreator.class;
 	}
 	
 }

@@ -14,4 +14,22 @@ import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor
  */
 class Xmu2ProposalProvider extends AbstractXmu2ProposalProvider {
 	
+	override complete_EntryPoint(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		super.complete_EntryPoint(model, ruleCall, context, acceptor);
+		val String proposal = "entry rule_name (source[0], view[0])";
+  		acceptor.accept(createCompletionProposal(proposal, context))
+	}
+	
+	override complete_ModelRule(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		super.complete_ModelRule(model, ruleCall, context, acceptor);
+		val String proposal = "rule rulename (source s : OclAny, view v : OclAny) {\n}";
+		acceptor.accept(createCompletionProposal(proposal, context))
+	}
+
+	override complete_UpdateStatement(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		super.complete_UpdateStatement(model, ruleCall, context, acceptor);
+		val String proposal = "update s:OclObject{} with v:OclObject{} by match -> {} unmatchs -> {} unmatchv -> {}";
+		acceptor.accept(createCompletionProposal(proposal, context))
+	}
+	
 }

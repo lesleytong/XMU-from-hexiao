@@ -407,14 +407,4 @@
 			type="text">
 		</fileTypes>
 	</extension>
-	<extension
-		point="org.eclipse.ui.newWizards">
-		<wizard
-			category="org.eclipse.xtext.projectwiz"
-			class="edu.ustb.sei.mde.xmuxtext.ui.Xmu2ExecutableExtensionFactory:edu.ustb.sei.mde.xmuxtext.ui.wizard.Xmu2NewProjectWizard"
-			id="edu.ustb.sei.mde.xmuxtext.ui.wizard.Xmu2NewProjectWizard"
-			name="Xmu2 Project"
-				project="true">
-		</wizard>
-	</extension>
 </plugin>

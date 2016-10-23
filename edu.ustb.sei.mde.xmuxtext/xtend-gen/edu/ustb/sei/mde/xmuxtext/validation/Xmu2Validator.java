@@ -52,111 +52,135 @@ import org.eclipse.xtext.xbase.lib.Exceptions;
 public class Xmu2Validator extends AbstractXmu2Validator {
   @Check
   public void checkPatternValidity(final PatternNode r) {
-    EList<PatternExpression> _expressions = r.getExpressions();
-    for (final PatternExpression e : _expressions) {
-      {
-        VariableDeclaration _variable = r.getVariable();
-        EClassifier cls = _variable.getType();
-        if ((cls instanceof EClass)) {
-          if (((!Constants.REFLECTIVE_OBJECT.getEAllStructuralFeatures().contains(e.getFeature())) && 
-            (!((EClass) cls).getEAllStructuralFeatures().contains(e.getFeature())))) {
-            this.error("the pattern node does not contain this feature", e, PatternPackage.Literals.PATTERN_EXPRESSION__FEATURE);
+    try {
+      EList<PatternExpression> _expressions = r.getExpressions();
+      for (final PatternExpression e : _expressions) {
+        {
+          VariableDeclaration _variable = r.getVariable();
+          EClassifier cls = _variable.getType();
+          if ((cls instanceof EClass)) {
+            if (((!Constants.REFLECTIVE_OBJECT.getEAllStructuralFeatures().contains(e.getFeature())) && 
+              (!((EClass) cls).getEAllStructuralFeatures().contains(e.getFeature())))) {
+              this.error("the pattern node does not contain this feature", e, PatternPackage.Literals.PATTERN_EXPRESSION__FEATURE);
+            }
+          }
+          if ((e instanceof ObjectPatternExpression)) {
+            EStructuralFeature f = ((ObjectPatternExpression)e).getFeature();
+            PatternNode _targetNode = ((ObjectPatternExpression) e).getTargetNode();
+            VariableDeclaration _variable_1 = _targetNode.getVariable();
+            EClassifier tarType = _variable_1.getType();
+            EClassifier _eType = f.getEType();
+            boolean _isSuperTypeOf = AnalysisUtil.isSuperTypeOf(_eType, tarType);
+            boolean _not = (!_isSuperTypeOf);
+            if (_not) {
+              this.error("type inconsistency", e, PatternPackage.Literals.OBJECT_PATTERN_EXPRESSION__TARGET_NODE);
+            }
           }
         }
-        if ((e instanceof ObjectPatternExpression)) {
-          EStructuralFeature f = ((ObjectPatternExpression)e).getFeature();
-          PatternNode _targetNode = ((ObjectPatternExpression) e).getTargetNode();
-          VariableDeclaration _variable_1 = _targetNode.getVariable();
-          EClassifier tarType = _variable_1.getType();
-          EClassifier _eType = f.getEType();
-          boolean _isSuperTypeOf = AnalysisUtil.isSuperTypeOf(_eType, tarType);
-          boolean _not = (!_isSuperTypeOf);
-          if (_not) {
-            this.error("type inconsistency", e, PatternPackage.Literals.OBJECT_PATTERN_EXPRESSION__TARGET_NODE);
-          }
-        }
+      }
+    } catch (final Throwable _t) {
+      if (_t instanceof Exception) {
+        final Exception e_1 = (Exception)_t;
+      } else {
+        throw Exceptions.sneakyThrow(_t);
       }
     }
   }
   
   @Check
   public void checkStatementUsage(final AbstractRule r) {
-    boolean isArithmeticRule = (r instanceof ArithmeticRule);
-    TreeIterator<EObject> it = r.eAllContents();
-    while (it.hasNext()) {
-      {
-        EObject o = it.next();
-        if ((o instanceof Statement)) {
-          if ((o instanceof SwitchStatement)) {
-            if (isArithmeticRule) {
-              EList<CaseClause> _cases = ((SwitchStatement) o).getCases();
-              for (final CaseClause cc : _cases) {
-                if ((cc instanceof PatternCaseClause)) {
-                  this.error("you cannot use the pattern case in a function", o, StatementPackage.Literals.SWITCH_STATEMENT__CASES);
+    try {
+      boolean isArithmeticRule = (r instanceof ArithmeticRule);
+      TreeIterator<EObject> it = r.eAllContents();
+      while (it.hasNext()) {
+        {
+          EObject o = it.next();
+          if ((o instanceof Statement)) {
+            if ((o instanceof SwitchStatement)) {
+              if (isArithmeticRule) {
+                EList<CaseClause> _cases = ((SwitchStatement) o).getCases();
+                for (final CaseClause cc : _cases) {
+                  if ((cc instanceof PatternCaseClause)) {
+                    this.error("you cannot use the pattern case in a function", o, StatementPackage.Literals.SWITCH_STATEMENT__CASES);
+                  }
                 }
               }
-            }
-          } else {
-            if ((o instanceof AssignStatement)) {
-              if ((isArithmeticRule == false)) {
-                EObject _eContainer = ((AssignStatement)o).eContainer();
-                EReference _eContainmentFeature = ((AssignStatement)o).eContainmentFeature();
-                this.error("you cannot use the AssignStatement in a model rule", _eContainer, _eContainmentFeature);
-              }
             } else {
-              if ((o instanceof BlockStatement)) {
+              if ((o instanceof AssignStatement)) {
+                if ((isArithmeticRule == false)) {
+                  EObject _eContainer = ((AssignStatement)o).eContainer();
+                  EReference _eContainmentFeature = ((AssignStatement)o).eContainmentFeature();
+                  this.error("you cannot use the AssignStatement in a model rule", _eContainer, _eContainmentFeature);
+                }
               } else {
-                if ((o instanceof Fail)) {
+                if ((o instanceof BlockStatement)) {
                 } else {
-                  if (isArithmeticRule) {
-                    EObject _eContainer_1 = ((Statement)o).eContainer();
-                    EReference _eContainmentFeature_1 = ((Statement)o).eContainmentFeature();
-                    this.error("you cannot use this statement in a function", _eContainer_1, _eContainmentFeature_1);
+                  if ((o instanceof Fail)) {
+                  } else {
+                    if (isArithmeticRule) {
+                      EObject _eContainer_1 = ((Statement)o).eContainer();
+                      EReference _eContainmentFeature_1 = ((Statement)o).eContainmentFeature();
+                      this.error("you cannot use this statement in a function", _eContainer_1, _eContainmentFeature_1);
+                    }
                   }
                 }
               }
             }
-          }
-        } else {
-          if ((o instanceof ObjectPatternExpression)) {
-            if ((((ObjectPatternExpression) o).isNullable() && (!((ObjectPatternExpression) o).getTargetNode().getExpressions().isEmpty()))) {
-              this.error("a nullable pattern node cannot have inner expressions", o, PatternPackage.Literals.OBJECT_PATTERN_EXPRESSION__TARGET_NODE);
+          } else {
+            if ((o instanceof ObjectPatternExpression)) {
+              if ((((ObjectPatternExpression) o).isNullable() && (!((ObjectPatternExpression) o).getTargetNode().getExpressions().isEmpty()))) {
+                this.error("a nullable pattern node cannot have inner expressions", o, PatternPackage.Literals.OBJECT_PATTERN_EXPRESSION__TARGET_NODE);
+              }
             }
           }
         }
+      }
+    } catch (final Throwable _t) {
+      if (_t instanceof Exception) {
+        final Exception e = (Exception)_t;
+      } else {
+        throw Exceptions.sneakyThrow(_t);
       }
     }
   }
   
   @Check
   public void checkEntryPoints(final EntryPoint ep) {
-    ModelRule rule = ep.getRule();
-    EList<Parameter> _parameters = rule.getParameters();
-    int _size = _parameters.size();
-    EList<EntryData> _parameters_1 = ep.getParameters();
-    int _size_1 = _parameters_1.size();
-    boolean _notEquals = (_size != _size_1);
-    if (_notEquals) {
-      this.error("the number of parameters is incorrect", ep, Xmu2Package.Literals.ENTRY_POINT__PARAMETERS);
-    } else {
-      for (int i = 0; (i < rule.getParameters().size()); i++) {
-        {
-          EList<Parameter> _parameters_2 = rule.getParameters();
-          Parameter fp = _parameters_2.get(i);
-          EList<EntryData> _parameters_3 = ep.getParameters();
-          EntryData ed = _parameters_3.get(i);
-          DomainTag _tag = fp.getTag();
-          DomainTag _tag_1 = ed.getTag();
-          boolean _notEquals_1 = (!Objects.equal(_tag, _tag_1));
-          if (_notEquals_1) {
-            this.error((("the domain of the parameter " + Integer.valueOf(i)) + " is inconsistent"), ep, Xmu2Package.Literals.ENTRY_POINT__PARAMETERS, i);
-          }
-          DomainTag _tag_2 = fp.getTag();
-          boolean _equals = Objects.equal(_tag_2, DomainTag.NORMAL);
-          if (_equals) {
-            this.error("the entry rule cannot own normal parameters", rule, Xmu2Package.Literals.ABSTRACT_RULE__PARAMETERS, i);
+    try {
+      ModelRule rule = ep.getRule();
+      EList<Parameter> _parameters = rule.getParameters();
+      int _size = _parameters.size();
+      EList<EntryData> _parameters_1 = ep.getParameters();
+      int _size_1 = _parameters_1.size();
+      boolean _notEquals = (_size != _size_1);
+      if (_notEquals) {
+        this.error("the number of parameters is incorrect", ep, Xmu2Package.Literals.ENTRY_POINT__PARAMETERS);
+      } else {
+        for (int i = 0; (i < rule.getParameters().size()); i++) {
+          {
+            EList<Parameter> _parameters_2 = rule.getParameters();
+            Parameter fp = _parameters_2.get(i);
+            EList<EntryData> _parameters_3 = ep.getParameters();
+            EntryData ed = _parameters_3.get(i);
+            DomainTag _tag = fp.getTag();
+            DomainTag _tag_1 = ed.getTag();
+            boolean _notEquals_1 = (!Objects.equal(_tag, _tag_1));
+            if (_notEquals_1) {
+              this.error((("the domain of the parameter " + Integer.valueOf(i)) + " is inconsistent"), ep, Xmu2Package.Literals.ENTRY_POINT__PARAMETERS, i);
+            }
+            DomainTag _tag_2 = fp.getTag();
+            boolean _equals = Objects.equal(_tag_2, DomainTag.NORMAL);
+            if (_equals) {
+              this.error("the entry rule cannot own normal parameters", rule, Xmu2Package.Literals.ABSTRACT_RULE__PARAMETERS, i);
+            }
           }
         }
+      }
+    } catch (final Throwable _t) {
+      if (_t instanceof Exception) {
+        final Exception e = (Exception)_t;
+      } else {
+        throw Exceptions.sneakyThrow(_t);
       }
     }
   }

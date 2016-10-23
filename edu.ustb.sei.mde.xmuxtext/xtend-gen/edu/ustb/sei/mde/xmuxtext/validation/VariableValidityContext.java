@@ -609,7 +609,6 @@ public class VariableValidityContext {
     } catch (final Throwable _t) {
       if (_t instanceof Exception) {
         final Exception e = (Exception)_t;
-        e.printStackTrace();
         EObject _eContainer = root.eContainer();
         EReference _eContainmentFeature = root.eContainmentFeature();
         resource.addWarning("validity check is not finished because of some exceptions", _eContainer, _eContainmentFeature);

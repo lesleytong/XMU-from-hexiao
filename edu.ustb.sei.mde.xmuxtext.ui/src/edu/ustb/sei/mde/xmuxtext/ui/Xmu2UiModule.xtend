@@ -22,5 +22,4 @@ class Xmu2UiModule extends AbstractXmu2UiModule {
 		binder.bind(AbstractAntlrTokenToAttributeIdMapper).to(Xmu2AntlrTokenToAttributeIdMapper)
 	}
 	
-	
 }
