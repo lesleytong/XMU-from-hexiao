@@ -417,4 +417,41 @@
 				project="false">
 		</wizard>
 	</extension>
+  <extension
+        point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+     <launchConfigurationTabGroup
+           class="edu.ustb.sei.mde.xmuxtext.ui.launch.Xmu2LaunchConfigurationTabGroup"
+           id="edu.ustb.sei.mde.xmuxtext.ui.launch.Xmu2LaunchConfigurationTabGroup"
+           type="edu.ustb.sei.mde.xmuxtext.ui.launch.Xmu2LaunchConfigurationType">
+        <launchMode
+              description="Run XMU2X (xmu2core) model."
+              mode="run">
+        </launchMode>
+     </launchConfigurationTabGroup>
+  </extension>
+  <extension
+        point="org.eclipse.debug.ui.launchShortcuts">
+     <shortcut
+           class="edu.ustb.sei.mde.xmuxtext.ui.launch.Xmu2LaunchShortcut"
+           id="edu.ustb.sei.mde.xmuxtext.ui.launchShortcut"
+           label="XMU2X Application"
+           modes="run">
+        <configurationType
+              id="edu.ustb.sei.mde.xmuxtext.ui.launch.Xmu2LaunchConfigurationType">
+        </configurationType>
+        <description
+              description="Run XMU2X (xmu2core) model."
+              mode="run">
+        </description>
+     </shortcut>
+  </extension>
+  <extension
+        point="org.eclipse.debug.core.launchConfigurationTypes">
+     <launchConfigurationType
+           delegate="edu.ustb.sei.mde.xmuxtext.ui.launch.Xmu2LaunchConfigurationDelegate"
+           id="edu.ustb.sei.mde.xmuxtext.ui.launch.Xmu2LaunchConfigurationType"
+           modes="run"
+           name="XMU2X Application">
+     </launchConfigurationType>
+  </extension>
 </plugin>
