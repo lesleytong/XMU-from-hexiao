@@ -1692,15 +1692,15 @@ rule__PatternExpression__Alternatives
 	}
 :
 	(
-		{ before(grammarAccess.getPatternExpressionAccess().getPropertyPatternExpressionParserRuleCall_0()); }
-		(rulePropertyPatternExpression)
-		{ after(grammarAccess.getPatternExpressionAccess().getPropertyPatternExpressionParserRuleCall_0()); }
+		{ before(grammarAccess.getPatternExpressionAccess().getObjectPatternExpressionParserRuleCall_0()); }
+		(ruleObjectPatternExpression)
+		{ after(grammarAccess.getPatternExpressionAccess().getObjectPatternExpressionParserRuleCall_0()); }
 	)
 	|
 	(
-		{ before(grammarAccess.getPatternExpressionAccess().getObjectPatternExpressionParserRuleCall_1()); }
-		ruleObjectPatternExpression
-		{ after(grammarAccess.getPatternExpressionAccess().getObjectPatternExpressionParserRuleCall_1()); }
+		{ before(grammarAccess.getPatternExpressionAccess().getPropertyPatternExpressionParserRuleCall_1()); }
+		(rulePropertyPatternExpression)
+		{ after(grammarAccess.getPatternExpressionAccess().getPropertyPatternExpressionParserRuleCall_1()); }
 	)
 ;
 finally {
@@ -3969,7 +3969,7 @@ rule__PatternNode__Group__2__Impl
 :
 (
 	{ before(grammarAccess.getPatternNodeAccess().getGroup_2()); }
-	(rule__PatternNode__Group_2__0)?
+	(rule__PatternNode__Group_2__0)
 	{ after(grammarAccess.getPatternNodeAccess().getGroup_2()); }
 )
 ;

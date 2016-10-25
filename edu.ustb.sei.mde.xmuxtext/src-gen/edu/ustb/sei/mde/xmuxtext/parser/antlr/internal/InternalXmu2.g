@@ -972,7 +972,7 @@ rulePatternNode returns [EObject current=null]
 			{
 				newLeafNode(otherlv_6, grammarAccess.getPatternNodeAccess().getRightCurlyBracketKeyword_2_2());
 			}
-		)?
+		)
 	)
 ;
 
@@ -993,25 +993,28 @@ rulePatternExpression returns [EObject current=null]
 }:
 	(
 		(
-			(rulePropertyPatternExpression)=>
+			(ruleObjectPatternExpression)=>
 			{
-				newCompositeNode(grammarAccess.getPatternExpressionAccess().getPropertyPatternExpressionParserRuleCall_0());
+				newCompositeNode(grammarAccess.getPatternExpressionAccess().getObjectPatternExpressionParserRuleCall_0());
 			}
-			this_PropertyPatternExpression_0=rulePropertyPatternExpression
+			this_ObjectPatternExpression_0=ruleObjectPatternExpression
 			{
-				$current = $this_PropertyPatternExpression_0.current;
+				$current = $this_ObjectPatternExpression_0.current;
 				afterParserOrEnumRuleCall();
 			}
 		)
 		    |
-		{
-			newCompositeNode(grammarAccess.getPatternExpressionAccess().getObjectPatternExpressionParserRuleCall_1());
-		}
-		this_ObjectPatternExpression_1=ruleObjectPatternExpression
-		{
-			$current = $this_ObjectPatternExpression_1.current;
-			afterParserOrEnumRuleCall();
-		}
+		(
+			(rulePropertyPatternExpression)=>
+			{
+				newCompositeNode(grammarAccess.getPatternExpressionAccess().getPropertyPatternExpressionParserRuleCall_1());
+			}
+			this_PropertyPatternExpression_1=rulePropertyPatternExpression
+			{
+				$current = $this_PropertyPatternExpression_1.current;
+				afterParserOrEnumRuleCall();
+			}
+		)
 	)
 ;
 

@@ -542,11 +542,11 @@ public class Xmu2GrammarAccess extends AbstractGrammarElementFinder {
 		
 		//PatternNode xmu2pattern::PatternNode:
 		//	{xmu2pattern::PatternNode} variable=ConcreteVariableDeclaration ('{' (expressions+=PatternExpression (','
-		//	expressions+=PatternExpression)*)? '}')?
+		//	expressions+=PatternExpression)*)? '}')
 		@Override public ParserRule getRule() { return rule; }
 		
 		//{xmu2pattern::PatternNode} variable=ConcreteVariableDeclaration ('{' (expressions+=PatternExpression (','
-		//expressions+=PatternExpression)*)? '}')?
+		//expressions+=PatternExpression)*)? '}')
 		public Group getGroup() { return cGroup; }
 		
 		//{xmu2pattern::PatternNode}
@@ -558,7 +558,7 @@ public class Xmu2GrammarAccess extends AbstractGrammarElementFinder {
 		//ConcreteVariableDeclaration
 		public RuleCall getVariableConcreteVariableDeclarationParserRuleCall_1_0() { return cVariableConcreteVariableDeclarationParserRuleCall_1_0; }
 		
-		//('{' (expressions+=PatternExpression (',' expressions+=PatternExpression)*)? '}')?
+		//('{' (expressions+=PatternExpression (',' expressions+=PatternExpression)*)? '}')
 		public Group getGroup_2() { return cGroup_2; }
 		
 		//'{'
@@ -591,22 +591,22 @@ public class Xmu2GrammarAccess extends AbstractGrammarElementFinder {
 	public class PatternExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.xmuxtext.Xmu2.PatternExpression");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cPropertyPatternExpressionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cObjectPatternExpressionParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cObjectPatternExpressionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cPropertyPatternExpressionParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//PatternExpression xmu2pattern::PatternExpression:
-		//	=> PropertyPatternExpression
-		//	| ObjectPatternExpression
+		//	=> ObjectPatternExpression
+		//	| => PropertyPatternExpression
 		@Override public ParserRule getRule() { return rule; }
 		
-		//=> PropertyPatternExpression | ObjectPatternExpression
+		//=> ObjectPatternExpression | => PropertyPatternExpression
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//=> PropertyPatternExpression
-		public RuleCall getPropertyPatternExpressionParserRuleCall_0() { return cPropertyPatternExpressionParserRuleCall_0; }
+		//=> ObjectPatternExpression
+		public RuleCall getObjectPatternExpressionParserRuleCall_0() { return cObjectPatternExpressionParserRuleCall_0; }
 		
-		//ObjectPatternExpression
-		public RuleCall getObjectPatternExpressionParserRuleCall_1() { return cObjectPatternExpressionParserRuleCall_1; }
+		//=> PropertyPatternExpression
+		public RuleCall getPropertyPatternExpressionParserRuleCall_1() { return cPropertyPatternExpressionParserRuleCall_1; }
 	}
 	public class ObjectPatternExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.xmuxtext.Xmu2.ObjectPatternExpression");
@@ -2793,7 +2793,7 @@ public class Xmu2GrammarAccess extends AbstractGrammarElementFinder {
 	
 	//PatternNode xmu2pattern::PatternNode:
 	//	{xmu2pattern::PatternNode} variable=ConcreteVariableDeclaration ('{' (expressions+=PatternExpression (','
-	//	expressions+=PatternExpression)*)? '}')?
+	//	expressions+=PatternExpression)*)? '}')
 	public PatternNodeElements getPatternNodeAccess() {
 		return pPatternNode;
 	}
@@ -2803,8 +2803,8 @@ public class Xmu2GrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//PatternExpression xmu2pattern::PatternExpression:
-	//	=> PropertyPatternExpression
-	//	| ObjectPatternExpression
+	//	=> ObjectPatternExpression
+	//	| => PropertyPatternExpression
 	public PatternExpressionElements getPatternExpressionAccess() {
 		return pPatternExpression;
 	}

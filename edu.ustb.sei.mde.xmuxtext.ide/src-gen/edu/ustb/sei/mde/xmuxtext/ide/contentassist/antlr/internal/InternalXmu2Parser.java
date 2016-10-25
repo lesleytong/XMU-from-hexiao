@@ -5690,13 +5690,13 @@ public class InternalXmu2Parser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PatternExpression__Alternatives"
-    // InternalXmu2.g:1689:1: rule__PatternExpression__Alternatives : ( ( ( rulePropertyPatternExpression ) ) | ( ruleObjectPatternExpression ) );
+    // InternalXmu2.g:1689:1: rule__PatternExpression__Alternatives : ( ( ( ruleObjectPatternExpression ) ) | ( ( rulePropertyPatternExpression ) ) );
     public final void rule__PatternExpression__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalXmu2.g:1693:1: ( ( ( rulePropertyPatternExpression ) ) | ( ruleObjectPatternExpression ) )
+            // InternalXmu2.g:1693:1: ( ( ( ruleObjectPatternExpression ) ) | ( ( rulePropertyPatternExpression ) ) )
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -5726,16 +5726,45 @@ public class InternalXmu2Parser extends AbstractInternalContentAssistParser {
             }
             switch (alt3) {
                 case 1 :
-                    // InternalXmu2.g:1694:2: ( ( rulePropertyPatternExpression ) )
+                    // InternalXmu2.g:1694:2: ( ( ruleObjectPatternExpression ) )
                     {
-                    // InternalXmu2.g:1694:2: ( ( rulePropertyPatternExpression ) )
-                    // InternalXmu2.g:1695:3: ( rulePropertyPatternExpression )
+                    // InternalXmu2.g:1694:2: ( ( ruleObjectPatternExpression ) )
+                    // InternalXmu2.g:1695:3: ( ruleObjectPatternExpression )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getPatternExpressionAccess().getPropertyPatternExpressionParserRuleCall_0()); 
+                       before(grammarAccess.getPatternExpressionAccess().getObjectPatternExpressionParserRuleCall_0()); 
                     }
-                    // InternalXmu2.g:1696:3: ( rulePropertyPatternExpression )
-                    // InternalXmu2.g:1696:4: rulePropertyPatternExpression
+                    // InternalXmu2.g:1696:3: ( ruleObjectPatternExpression )
+                    // InternalXmu2.g:1696:4: ruleObjectPatternExpression
+                    {
+                    pushFollow(FOLLOW_2);
+                    ruleObjectPatternExpression();
+
+                    state._fsp--;
+                    if (state.failed) return ;
+
+                    }
+
+                    if ( state.backtracking==0 ) {
+                       after(grammarAccess.getPatternExpressionAccess().getObjectPatternExpressionParserRuleCall_0()); 
+                    }
+
+                    }
+
+
+                    }
+                    break;
+                case 2 :
+                    // InternalXmu2.g:1700:2: ( ( rulePropertyPatternExpression ) )
+                    {
+                    // InternalXmu2.g:1700:2: ( ( rulePropertyPatternExpression ) )
+                    // InternalXmu2.g:1701:3: ( rulePropertyPatternExpression )
+                    {
+                    if ( state.backtracking==0 ) {
+                       before(grammarAccess.getPatternExpressionAccess().getPropertyPatternExpressionParserRuleCall_1()); 
+                    }
+                    // InternalXmu2.g:1702:3: ( rulePropertyPatternExpression )
+                    // InternalXmu2.g:1702:4: rulePropertyPatternExpression
                     {
                     pushFollow(FOLLOW_2);
                     rulePropertyPatternExpression();
@@ -5746,30 +5775,7 @@ public class InternalXmu2Parser extends AbstractInternalContentAssistParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getPatternExpressionAccess().getPropertyPatternExpressionParserRuleCall_0()); 
-                    }
-
-                    }
-
-
-                    }
-                    break;
-                case 2 :
-                    // InternalXmu2.g:1700:2: ( ruleObjectPatternExpression )
-                    {
-                    // InternalXmu2.g:1700:2: ( ruleObjectPatternExpression )
-                    // InternalXmu2.g:1701:3: ruleObjectPatternExpression
-                    {
-                    if ( state.backtracking==0 ) {
-                       before(grammarAccess.getPatternExpressionAccess().getObjectPatternExpressionParserRuleCall_1()); 
-                    }
-                    pushFollow(FOLLOW_2);
-                    ruleObjectPatternExpression();
-
-                    state._fsp--;
-                    if (state.failed) return ;
-                    if ( state.backtracking==0 ) {
-                       after(grammarAccess.getPatternExpressionAccess().getObjectPatternExpressionParserRuleCall_1()); 
+                       after(grammarAccess.getPatternExpressionAccess().getPropertyPatternExpressionParserRuleCall_1()); 
                     }
 
                     }
@@ -5808,11 +5814,11 @@ public class InternalXmu2Parser extends AbstractInternalContentAssistParser {
             if ( (LA4_0==55) ) {
                 int LA4_1 = input.LA(2);
 
-                if ( ((LA4_1>=21 && LA4_1<=23)) ) {
-                    alt4=2;
-                }
-                else if ( ((LA4_1>=18 && LA4_1<=20)) ) {
+                if ( ((LA4_1>=18 && LA4_1<=20)) ) {
                     alt4=1;
+                }
+                else if ( ((LA4_1>=21 && LA4_1<=23)) ) {
+                    alt4=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return ;}
@@ -13749,55 +13755,29 @@ public class InternalXmu2Parser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PatternNode__Group__2__Impl"
-    // InternalXmu2.g:3965:1: rule__PatternNode__Group__2__Impl : ( ( rule__PatternNode__Group_2__0 )? ) ;
+    // InternalXmu2.g:3965:1: rule__PatternNode__Group__2__Impl : ( ( rule__PatternNode__Group_2__0 ) ) ;
     public final void rule__PatternNode__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalXmu2.g:3969:1: ( ( ( rule__PatternNode__Group_2__0 )? ) )
-            // InternalXmu2.g:3970:1: ( ( rule__PatternNode__Group_2__0 )? )
+            // InternalXmu2.g:3969:1: ( ( ( rule__PatternNode__Group_2__0 ) ) )
+            // InternalXmu2.g:3970:1: ( ( rule__PatternNode__Group_2__0 ) )
             {
-            // InternalXmu2.g:3970:1: ( ( rule__PatternNode__Group_2__0 )? )
-            // InternalXmu2.g:3971:2: ( rule__PatternNode__Group_2__0 )?
+            // InternalXmu2.g:3970:1: ( ( rule__PatternNode__Group_2__0 ) )
+            // InternalXmu2.g:3971:2: ( rule__PatternNode__Group_2__0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPatternNodeAccess().getGroup_2()); 
             }
-            // InternalXmu2.g:3972:2: ( rule__PatternNode__Group_2__0 )?
-            int alt39=2;
-            int LA39_0 = input.LA(1);
+            // InternalXmu2.g:3972:2: ( rule__PatternNode__Group_2__0 )
+            // InternalXmu2.g:3972:3: rule__PatternNode__Group_2__0
+            {
+            pushFollow(FOLLOW_2);
+            rule__PatternNode__Group_2__0();
 
-            if ( (LA39_0==50) ) {
-                int LA39_1 = input.LA(2);
-
-                if ( (LA39_1==RULE_NAME) ) {
-                    int LA39_3 = input.LA(3);
-
-                    if ( (LA39_3==32||LA39_3==55) ) {
-                        alt39=1;
-                    }
-                }
-                else if ( (LA39_1==51) ) {
-                    int LA39_4 = input.LA(3);
-
-                    if ( (synpred64_InternalXmu2()) ) {
-                        alt39=1;
-                    }
-                }
-            }
-            switch (alt39) {
-                case 1 :
-                    // InternalXmu2.g:3972:3: rule__PatternNode__Group_2__0
-                    {
-                    pushFollow(FOLLOW_2);
-                    rule__PatternNode__Group_2__0();
-
-                    state._fsp--;
-                    if (state.failed) return ;
-
-                    }
-                    break;
+            state._fsp--;
+            if (state.failed) return ;
 
             }
 
@@ -13959,13 +13939,13 @@ public class InternalXmu2Parser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getPatternNodeAccess().getGroup_2_1()); 
             }
             // InternalXmu2.g:4027:2: ( rule__PatternNode__Group_2_1__0 )?
-            int alt40=2;
-            int LA40_0 = input.LA(1);
+            int alt39=2;
+            int LA39_0 = input.LA(1);
 
-            if ( (LA40_0==RULE_NAME) ) {
-                alt40=1;
+            if ( (LA39_0==RULE_NAME) ) {
+                alt39=1;
             }
-            switch (alt40) {
+            switch (alt39) {
                 case 1 :
                     // InternalXmu2.g:4027:3: rule__PatternNode__Group_2_1__0
                     {
@@ -14217,17 +14197,17 @@ public class InternalXmu2Parser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getPatternNodeAccess().getGroup_2_1_1()); 
             }
             // InternalXmu2.g:4107:2: ( rule__PatternNode__Group_2_1_1__0 )*
-            loop41:
+            loop40:
             do {
-                int alt41=2;
-                int LA41_0 = input.LA(1);
+                int alt40=2;
+                int LA40_0 = input.LA(1);
 
-                if ( (LA41_0==46) ) {
-                    alt41=1;
+                if ( (LA40_0==46) ) {
+                    alt40=1;
                 }
 
 
-                switch (alt41) {
+                switch (alt40) {
             	case 1 :
             	    // InternalXmu2.g:4107:3: rule__PatternNode__Group_2_1_1__0
             	    {
@@ -14241,7 +14221,7 @@ public class InternalXmu2Parser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop41;
+            	    break loop40;
                 }
             } while (true);
 
@@ -14655,17 +14635,17 @@ public class InternalXmu2Parser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getObjectPatternExpressionAccess().getSelectorAssignment_2()); 
             }
             // InternalXmu2.g:4243:2: ( rule__ObjectPatternExpression__SelectorAssignment_2 )?
-            int alt42=2;
-            int LA42_0 = input.LA(1);
+            int alt41=2;
+            int LA41_0 = input.LA(1);
 
-            if ( (LA42_0==55) ) {
-                int LA42_1 = input.LA(2);
+            if ( (LA41_0==55) ) {
+                int LA41_1 = input.LA(2);
 
-                if ( ((LA42_1>=18 && LA42_1<=20)) ) {
-                    alt42=1;
+                if ( ((LA41_1>=18 && LA41_1<=20)) ) {
+                    alt41=1;
                 }
             }
-            switch (alt42) {
+            switch (alt41) {
                 case 1 :
                     // InternalXmu2.g:4243:3: rule__ObjectPatternExpression__SelectorAssignment_2
                     {
@@ -14759,13 +14739,13 @@ public class InternalXmu2Parser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getObjectPatternExpressionAccess().getPositionAssignment_3()); 
             }
             // InternalXmu2.g:4270:2: ( rule__ObjectPatternExpression__PositionAssignment_3 )?
-            int alt43=2;
-            int LA43_0 = input.LA(1);
+            int alt42=2;
+            int LA42_0 = input.LA(1);
 
-            if ( (LA43_0==55) ) {
-                alt43=1;
+            if ( (LA42_0==55) ) {
+                alt42=1;
             }
-            switch (alt43) {
+            switch (alt42) {
                 case 1 :
                     // InternalXmu2.g:4270:3: rule__ObjectPatternExpression__PositionAssignment_3
                     {
@@ -14938,13 +14918,13 @@ public class InternalXmu2Parser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getObjectPatternExpressionAccess().getNullableAssignment_5()); 
             }
             // InternalXmu2.g:4324:2: ( rule__ObjectPatternExpression__NullableAssignment_5 )?
-            int alt44=2;
-            int LA44_0 = input.LA(1);
+            int alt43=2;
+            int LA43_0 = input.LA(1);
 
-            if ( (LA44_0==73) ) {
-                alt44=1;
+            if ( (LA43_0==73) ) {
+                alt43=1;
             }
-            switch (alt44) {
+            switch (alt43) {
                 case 1 :
                     // InternalXmu2.g:4324:3: rule__ObjectPatternExpression__NullableAssignment_5
                     {
@@ -15290,17 +15270,17 @@ public class InternalXmu2Parser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getPropertyPatternExpressionAccess().getSelectorAssignment_2()); 
             }
             // InternalXmu2.g:4432:2: ( rule__PropertyPatternExpression__SelectorAssignment_2 )?
-            int alt45=2;
-            int LA45_0 = input.LA(1);
+            int alt44=2;
+            int LA44_0 = input.LA(1);
 
-            if ( (LA45_0==55) ) {
-                int LA45_1 = input.LA(2);
+            if ( (LA44_0==55) ) {
+                int LA44_1 = input.LA(2);
 
-                if ( ((LA45_1>=18 && LA45_1<=20)) ) {
-                    alt45=1;
+                if ( ((LA44_1>=18 && LA44_1<=20)) ) {
+                    alt44=1;
                 }
             }
-            switch (alt45) {
+            switch (alt44) {
                 case 1 :
                     // InternalXmu2.g:4432:3: rule__PropertyPatternExpression__SelectorAssignment_2
                     {
@@ -15394,13 +15374,13 @@ public class InternalXmu2Parser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getPropertyPatternExpressionAccess().getPositionAssignment_3()); 
             }
             // InternalXmu2.g:4459:2: ( rule__PropertyPatternExpression__PositionAssignment_3 )?
-            int alt46=2;
-            int LA46_0 = input.LA(1);
+            int alt45=2;
+            int LA45_0 = input.LA(1);
 
-            if ( (LA46_0==55) ) {
-                alt46=1;
+            if ( (LA45_0==55) ) {
+                alt45=1;
             }
-            switch (alt46) {
+            switch (alt45) {
                 case 1 :
                     // InternalXmu2.g:4459:3: rule__PropertyPatternExpression__PositionAssignment_3
                     {
@@ -15573,13 +15553,13 @@ public class InternalXmu2Parser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getPropertyPatternExpressionAccess().getNullableAssignment_5()); 
             }
             // InternalXmu2.g:4513:2: ( rule__PropertyPatternExpression__NullableAssignment_5 )?
-            int alt47=2;
-            int LA47_0 = input.LA(1);
+            int alt46=2;
+            int LA46_0 = input.LA(1);
 
-            if ( (LA47_0==73) ) {
-                alt47=1;
+            if ( (LA46_0==73) ) {
+                alt46=1;
             }
-            switch (alt47) {
+            switch (alt46) {
                 case 1 :
                     // InternalXmu2.g:4513:3: rule__PropertyPatternExpression__NullableAssignment_5
                     {
@@ -16582,13 +16562,13 @@ public class InternalXmu2Parser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getPositionPathAccess().getValueAssignment_3()); 
             }
             // InternalXmu2.g:4837:2: ( rule__PositionPath__ValueAssignment_3 )?
-            int alt48=2;
-            int LA48_0 = input.LA(1);
+            int alt47=2;
+            int LA47_0 = input.LA(1);
 
-            if ( ((LA48_0>=RULE_PRIMITIVE_TYPE && LA48_0<=RULE_NAME)||(LA48_0>=RULE_INT && LA48_0<=RULE_BOOLEAN)||(LA48_0>=24 && LA48_0<=27)||LA48_0==44) ) {
-                alt48=1;
+            if ( ((LA47_0>=RULE_PRIMITIVE_TYPE && LA47_0<=RULE_NAME)||(LA47_0>=RULE_INT && LA47_0<=RULE_BOOLEAN)||(LA47_0>=24 && LA47_0<=27)||LA47_0==44) ) {
+                alt47=1;
             }
-            switch (alt48) {
+            switch (alt47) {
                 case 1 :
                     // InternalXmu2.g:4837:3: rule__PositionPath__ValueAssignment_3
                     {
@@ -17166,13 +17146,13 @@ public class InternalXmu2Parser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getOperationPathAccess().getGroup_3()); 
             }
             // InternalXmu2.g:5026:2: ( rule__OperationPath__Group_3__0 )?
-            int alt49=2;
-            int LA49_0 = input.LA(1);
+            int alt48=2;
+            int LA48_0 = input.LA(1);
 
-            if ( ((LA49_0>=RULE_PRIMITIVE_TYPE && LA49_0<=RULE_NAME)||(LA49_0>=RULE_INT && LA49_0<=RULE_BOOLEAN)||(LA49_0>=24 && LA49_0<=27)||LA49_0==44) ) {
-                alt49=1;
+            if ( ((LA48_0>=RULE_PRIMITIVE_TYPE && LA48_0<=RULE_NAME)||(LA48_0>=RULE_INT && LA48_0<=RULE_BOOLEAN)||(LA48_0>=24 && LA48_0<=27)||LA48_0==44) ) {
+                alt48=1;
             }
-            switch (alt49) {
+            switch (alt48) {
                 case 1 :
                     // InternalXmu2.g:5026:3: rule__OperationPath__Group_3__0
                     {
@@ -17424,17 +17404,17 @@ public class InternalXmu2Parser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getOperationPathAccess().getGroup_3_1()); 
             }
             // InternalXmu2.g:5106:2: ( rule__OperationPath__Group_3_1__0 )*
-            loop50:
+            loop49:
             do {
-                int alt50=2;
-                int LA50_0 = input.LA(1);
+                int alt49=2;
+                int LA49_0 = input.LA(1);
 
-                if ( (LA50_0==46) ) {
-                    alt50=1;
+                if ( (LA49_0==46) ) {
+                    alt49=1;
                 }
 
 
-                switch (alt50) {
+                switch (alt49) {
             	case 1 :
             	    // InternalXmu2.g:5106:3: rule__OperationPath__Group_3_1__0
             	    {
@@ -17448,7 +17428,7 @@ public class InternalXmu2Parser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop50;
+            	    break loop49;
                 }
             } while (true);
 
@@ -18197,20 +18177,20 @@ public class InternalXmu2Parser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getUnaryExpressionChildAccess().getGroup_1()); 
             }
             // InternalXmu2.g:5349:2: ( rule__UnaryExpressionChild__Group_1__0 )?
-            int alt51=2;
-            int LA51_0 = input.LA(1);
+            int alt50=2;
+            int LA50_0 = input.LA(1);
 
-            if ( (LA51_0==55) ) {
-                int LA51_1 = input.LA(2);
+            if ( (LA50_0==55) ) {
+                int LA50_1 = input.LA(2);
 
-                if ( ((LA51_1>=18 && LA51_1<=23)) ) {
-                    alt51=1;
+                if ( ((LA50_1>=18 && LA50_1<=23)) ) {
+                    alt50=1;
                 }
             }
-            else if ( (LA51_0==57) ) {
-                alt51=1;
+            else if ( (LA50_0==57) ) {
+                alt50=1;
             }
-            switch (alt51) {
+            switch (alt50) {
                 case 1 :
                     // InternalXmu2.g:5349:3: rule__UnaryExpressionChild__Group_1__0
                     {
@@ -18467,26 +18447,26 @@ public class InternalXmu2Parser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getUnaryExpressionChildAccess().getPathAssignment_1_2()); 
             }
             // InternalXmu2.g:5430:2: ( rule__UnaryExpressionChild__PathAssignment_1_2 )*
-            loop52:
+            loop51:
             do {
-                int alt52=2;
-                int LA52_0 = input.LA(1);
+                int alt51=2;
+                int LA51_0 = input.LA(1);
 
-                if ( (LA52_0==55) ) {
-                    int LA52_2 = input.LA(2);
+                if ( (LA51_0==55) ) {
+                    int LA51_2 = input.LA(2);
 
-                    if ( ((LA52_2>=18 && LA52_2<=23)) ) {
-                        alt52=1;
+                    if ( ((LA51_2>=18 && LA51_2<=23)) ) {
+                        alt51=1;
                     }
 
 
                 }
-                else if ( (LA52_0==57) ) {
-                    alt52=1;
+                else if ( (LA51_0==57) ) {
+                    alt51=1;
                 }
 
 
-                switch (alt52) {
+                switch (alt51) {
             	case 1 :
             	    // InternalXmu2.g:5430:3: rule__UnaryExpressionChild__PathAssignment_1_2
             	    {
@@ -18500,7 +18480,7 @@ public class InternalXmu2Parser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop52;
+            	    break loop51;
                 }
             } while (true);
 
@@ -19014,17 +18994,17 @@ public class InternalXmu2Parser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getMultiplicativeExpressionAccess().getGroup_1()); 
             }
             // InternalXmu2.g:5598:3: ( rule__MultiplicativeExpression__Group_1__0 )*
-            loop53:
+            loop52:
             do {
-                int alt53=2;
-                int LA53_0 = input.LA(1);
+                int alt52=2;
+                int LA52_0 = input.LA(1);
 
-                if ( ((LA53_0>=28 && LA53_0<=29)) ) {
-                    alt53=1;
+                if ( ((LA52_0>=28 && LA52_0<=29)) ) {
+                    alt52=1;
                 }
 
 
-                switch (alt53) {
+                switch (alt52) {
             	case 1 :
             	    // InternalXmu2.g:5598:4: rule__MultiplicativeExpression__Group_1__0
             	    {
@@ -19038,7 +19018,7 @@ public class InternalXmu2Parser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop53;
+            	    break loop52;
                 }
             } while (true);
 
@@ -19407,17 +19387,17 @@ public class InternalXmu2Parser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getAdditiveExpressionAccess().getGroup_1()); 
             }
             // InternalXmu2.g:5713:3: ( rule__AdditiveExpression__Group_1__0 )*
-            loop54:
+            loop53:
             do {
-                int alt54=2;
-                int LA54_0 = input.LA(1);
+                int alt53=2;
+                int LA53_0 = input.LA(1);
 
-                if ( (LA54_0==27||(LA54_0>=30 && LA54_0<=31)) ) {
-                    alt54=1;
+                if ( (LA53_0==27||(LA53_0>=30 && LA53_0<=31)) ) {
+                    alt53=1;
                 }
 
 
-                switch (alt54) {
+                switch (alt53) {
             	case 1 :
             	    // InternalXmu2.g:5713:4: rule__AdditiveExpression__Group_1__0
             	    {
@@ -19431,7 +19411,7 @@ public class InternalXmu2Parser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop54;
+            	    break loop53;
                 }
             } while (true);
 
@@ -20062,17 +20042,17 @@ public class InternalXmu2Parser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getBooleanAndExpressionAccess().getGroup_1()); 
             }
             // InternalXmu2.g:5909:3: ( rule__BooleanAndExpression__Group_1__0 )*
-            loop55:
+            loop54:
             do {
-                int alt55=2;
-                int LA55_0 = input.LA(1);
+                int alt54=2;
+                int LA54_0 = input.LA(1);
 
-                if ( (LA55_0==59) ) {
-                    alt55=1;
+                if ( (LA54_0==59) ) {
+                    alt54=1;
                 }
 
 
-                switch (alt55) {
+                switch (alt54) {
             	case 1 :
             	    // InternalXmu2.g:5909:4: rule__BooleanAndExpression__Group_1__0
             	    {
@@ -20086,7 +20066,7 @@ public class InternalXmu2Parser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop55;
+            	    break loop54;
                 }
             } while (true);
 
@@ -20445,17 +20425,17 @@ public class InternalXmu2Parser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getBooleanOrExpressionAccess().getGroup_1()); 
             }
             // InternalXmu2.g:6024:3: ( rule__BooleanOrExpression__Group_1__0 )*
-            loop56:
+            loop55:
             do {
-                int alt56=2;
-                int LA56_0 = input.LA(1);
+                int alt55=2;
+                int LA55_0 = input.LA(1);
 
-                if ( (LA56_0==60) ) {
-                    alt56=1;
+                if ( (LA55_0==60) ) {
+                    alt55=1;
                 }
 
 
-                switch (alt56) {
+                switch (alt55) {
             	case 1 :
             	    // InternalXmu2.g:6024:4: rule__BooleanOrExpression__Group_1__0
             	    {
@@ -20469,7 +20449,7 @@ public class InternalXmu2Parser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop56;
+            	    break loop55;
                 }
             } while (true);
 
@@ -20876,13 +20856,13 @@ public class InternalXmu2Parser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getBlockStatementAccess().getGroup_2()); 
             }
             // InternalXmu2.g:6161:2: ( rule__BlockStatement__Group_2__0 )?
-            int alt57=2;
-            int LA57_0 = input.LA(1);
+            int alt56=2;
+            int LA56_0 = input.LA(1);
 
-            if ( (LA57_0==RULE_NAME||LA57_0==50||LA57_0==61||LA57_0==64||(LA57_0>=67 && LA57_0<=71)) ) {
-                alt57=1;
+            if ( (LA56_0==RULE_NAME||LA56_0==50||LA56_0==61||LA56_0==64||(LA56_0>=67 && LA56_0<=71)) ) {
+                alt56=1;
             }
-            switch (alt57) {
+            switch (alt56) {
                 case 1 :
                     // InternalXmu2.g:6161:3: rule__BlockStatement__Group_2__0
                     {
@@ -21134,17 +21114,17 @@ public class InternalXmu2Parser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getBlockStatementAccess().getGroup_2_1()); 
             }
             // InternalXmu2.g:6241:2: ( rule__BlockStatement__Group_2_1__0 )*
-            loop58:
+            loop57:
             do {
-                int alt58=2;
-                int LA58_0 = input.LA(1);
+                int alt57=2;
+                int LA57_0 = input.LA(1);
 
-                if ( (LA58_0==52) ) {
-                    alt58=1;
+                if ( (LA57_0==52) ) {
+                    alt57=1;
                 }
 
 
-                switch (alt58) {
+                switch (alt57) {
             	case 1 :
             	    // InternalXmu2.g:6241:3: rule__BlockStatement__Group_2_1__0
             	    {
@@ -21158,7 +21138,7 @@ public class InternalXmu2Parser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop58;
+            	    break loop57;
                 }
             } while (true);
 
@@ -21840,16 +21820,16 @@ public class InternalXmu2Parser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getUpdateStatementAccess().getClausesAssignment_5()); 
             }
             // InternalXmu2.g:6463:3: ( rule__UpdateStatement__ClausesAssignment_5 )*
-            loop59:
+            loop58:
             do {
-                int alt59=2;
+                int alt58=2;
                 switch ( input.LA(1) ) {
                 case 37:
                     {
-                    int LA59_2 = input.LA(2);
+                    int LA58_2 = input.LA(2);
 
-                    if ( (synpred84_InternalXmu2()) ) {
-                        alt59=1;
+                    if ( (synpred83_InternalXmu2()) ) {
+                        alt58=1;
                     }
 
 
@@ -21857,10 +21837,10 @@ public class InternalXmu2Parser extends AbstractInternalContentAssistParser {
                     break;
                 case 38:
                     {
-                    int LA59_3 = input.LA(2);
+                    int LA58_3 = input.LA(2);
 
-                    if ( (synpred84_InternalXmu2()) ) {
-                        alt59=1;
+                    if ( (synpred83_InternalXmu2()) ) {
+                        alt58=1;
                     }
 
 
@@ -21868,10 +21848,10 @@ public class InternalXmu2Parser extends AbstractInternalContentAssistParser {
                     break;
                 case 39:
                     {
-                    int LA59_4 = input.LA(2);
+                    int LA58_4 = input.LA(2);
 
-                    if ( (synpred84_InternalXmu2()) ) {
-                        alt59=1;
+                    if ( (synpred83_InternalXmu2()) ) {
+                        alt58=1;
                     }
 
 
@@ -21879,10 +21859,10 @@ public class InternalXmu2Parser extends AbstractInternalContentAssistParser {
                     break;
                 case 40:
                     {
-                    int LA59_5 = input.LA(2);
+                    int LA58_5 = input.LA(2);
 
-                    if ( (synpred84_InternalXmu2()) ) {
-                        alt59=1;
+                    if ( (synpred83_InternalXmu2()) ) {
+                        alt58=1;
                     }
 
 
@@ -21891,7 +21871,7 @@ public class InternalXmu2Parser extends AbstractInternalContentAssistParser {
 
                 }
 
-                switch (alt59) {
+                switch (alt58) {
             	case 1 :
             	    // InternalXmu2.g:6463:4: rule__UpdateStatement__ClausesAssignment_5
             	    {
@@ -21905,7 +21885,7 @@ public class InternalXmu2Parser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop59;
+            	    break loop58;
                 }
             } while (true);
 
@@ -22674,17 +22654,17 @@ public class InternalXmu2Parser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getSwitchStatementAccess().getCasesAssignment_5()); 
             }
             // InternalXmu2.g:6714:3: ( rule__SwitchStatement__CasesAssignment_5 )*
-            loop60:
+            loop59:
             do {
-                int alt60=2;
-                int LA60_0 = input.LA(1);
+                int alt59=2;
+                int LA59_0 = input.LA(1);
 
-                if ( ((LA60_0>=65 && LA60_0<=66)) ) {
-                    alt60=1;
+                if ( ((LA59_0>=65 && LA59_0<=66)) ) {
+                    alt59=1;
                 }
 
 
-                switch (alt60) {
+                switch (alt59) {
             	case 1 :
             	    // InternalXmu2.g:6714:4: rule__SwitchStatement__CasesAssignment_5
             	    {
@@ -22698,7 +22678,7 @@ public class InternalXmu2Parser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop60;
+            	    break loop59;
                 }
             } while (true);
 
@@ -25165,13 +25145,13 @@ public class InternalXmu2Parser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getRuleCallStatementAccess().getGroup_2()); 
             }
             // InternalXmu2.g:7525:2: ( rule__RuleCallStatement__Group_2__0 )?
-            int alt61=2;
-            int LA61_0 = input.LA(1);
+            int alt60=2;
+            int LA60_0 = input.LA(1);
 
-            if ( ((LA61_0>=RULE_PRIMITIVE_TYPE && LA61_0<=RULE_NAME)||(LA61_0>=RULE_INT && LA61_0<=RULE_BOOLEAN)||(LA61_0>=24 && LA61_0<=27)||LA61_0==44) ) {
-                alt61=1;
+            if ( ((LA60_0>=RULE_PRIMITIVE_TYPE && LA60_0<=RULE_NAME)||(LA60_0>=RULE_INT && LA60_0<=RULE_BOOLEAN)||(LA60_0>=24 && LA60_0<=27)||LA60_0==44) ) {
+                alt60=1;
             }
-            switch (alt61) {
+            switch (alt60) {
                 case 1 :
                     // InternalXmu2.g:7525:3: rule__RuleCallStatement__Group_2__0
                     {
@@ -25423,17 +25403,17 @@ public class InternalXmu2Parser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getRuleCallStatementAccess().getGroup_2_1()); 
             }
             // InternalXmu2.g:7605:2: ( rule__RuleCallStatement__Group_2_1__0 )*
-            loop62:
+            loop61:
             do {
-                int alt62=2;
-                int LA62_0 = input.LA(1);
+                int alt61=2;
+                int LA61_0 = input.LA(1);
 
-                if ( (LA62_0==46) ) {
-                    alt62=1;
+                if ( (LA61_0==46) ) {
+                    alt61=1;
                 }
 
 
-                switch (alt62) {
+                switch (alt61) {
             	case 1 :
             	    // InternalXmu2.g:7605:3: rule__RuleCallStatement__Group_2_1__0
             	    {
@@ -25447,7 +25427,7 @@ public class InternalXmu2Parser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop62;
+            	    break loop61;
                 }
             } while (true);
 
@@ -25999,20 +25979,20 @@ public class InternalXmu2Parser extends AbstractInternalContentAssistParser {
                before(grammarAccess.getFailAccess().getExpressionAssignment_2()); 
             }
             // InternalXmu2.g:7794:2: ( rule__Fail__ExpressionAssignment_2 )?
-            int alt63=2;
-            int LA63_0 = input.LA(1);
+            int alt62=2;
+            int LA62_0 = input.LA(1);
 
-            if ( ((LA63_0>=RULE_PRIMITIVE_TYPE && LA63_0<=RULE_PATH_NAME)||(LA63_0>=RULE_INT && LA63_0<=RULE_BOOLEAN)||(LA63_0>=24 && LA63_0<=27)||LA63_0==44) ) {
-                alt63=1;
+            if ( ((LA62_0>=RULE_PRIMITIVE_TYPE && LA62_0<=RULE_PATH_NAME)||(LA62_0>=RULE_INT && LA62_0<=RULE_BOOLEAN)||(LA62_0>=24 && LA62_0<=27)||LA62_0==44) ) {
+                alt62=1;
             }
-            else if ( (LA63_0==RULE_NAME) ) {
-                int LA63_2 = input.LA(2);
+            else if ( (LA62_0==RULE_NAME) ) {
+                int LA62_2 = input.LA(2);
 
-                if ( (LA63_2==EOF||LA63_2==RULE_NAME||(LA63_2>=27 && LA63_2<=40)||(LA63_2>=50 && LA63_2<=52)||LA63_2==55||LA63_2==57||(LA63_2>=59 && LA63_2<=61)||(LA63_2>=64 && LA63_2<=71)) ) {
-                    alt63=1;
+                if ( (LA62_2==EOF||LA62_2==RULE_NAME||(LA62_2>=27 && LA62_2<=40)||(LA62_2>=50 && LA62_2<=52)||LA62_2==55||LA62_2==57||(LA62_2>=59 && LA62_2<=61)||(LA62_2>=64 && LA62_2<=71)) ) {
+                    alt62=1;
                 }
             }
-            switch (alt63) {
+            switch (alt62) {
                 case 1 :
                     // InternalXmu2.g:7794:3: rule__Fail__ExpressionAssignment_2
                     {
@@ -30901,20 +30881,20 @@ public class InternalXmu2Parser extends AbstractInternalContentAssistParser {
 
     // $ANTLR start synpred3_InternalXmu2
     public final void synpred3_InternalXmu2_fragment() throws RecognitionException {   
-        // InternalXmu2.g:1694:2: ( ( ( rulePropertyPatternExpression ) ) )
-        // InternalXmu2.g:1694:2: ( ( rulePropertyPatternExpression ) )
+        // InternalXmu2.g:1694:2: ( ( ( ruleObjectPatternExpression ) ) )
+        // InternalXmu2.g:1694:2: ( ( ruleObjectPatternExpression ) )
         {
-        // InternalXmu2.g:1694:2: ( ( rulePropertyPatternExpression ) )
-        // InternalXmu2.g:1695:3: ( rulePropertyPatternExpression )
+        // InternalXmu2.g:1694:2: ( ( ruleObjectPatternExpression ) )
+        // InternalXmu2.g:1695:3: ( ruleObjectPatternExpression )
         {
         if ( state.backtracking==0 ) {
-           before(grammarAccess.getPatternExpressionAccess().getPropertyPatternExpressionParserRuleCall_0()); 
+           before(grammarAccess.getPatternExpressionAccess().getObjectPatternExpressionParserRuleCall_0()); 
         }
-        // InternalXmu2.g:1696:3: ( rulePropertyPatternExpression )
-        // InternalXmu2.g:1696:4: rulePropertyPatternExpression
+        // InternalXmu2.g:1696:3: ( ruleObjectPatternExpression )
+        // InternalXmu2.g:1696:4: ruleObjectPatternExpression
         {
         pushFollow(FOLLOW_2);
-        rulePropertyPatternExpression();
+        ruleObjectPatternExpression();
 
         state._fsp--;
         if (state.failed) return ;
@@ -31079,23 +31059,8 @@ public class InternalXmu2Parser extends AbstractInternalContentAssistParser {
     }
     // $ANTLR end synpred19_InternalXmu2
 
-    // $ANTLR start synpred64_InternalXmu2
-    public final void synpred64_InternalXmu2_fragment() throws RecognitionException {   
-        // InternalXmu2.g:3972:3: ( rule__PatternNode__Group_2__0 )
-        // InternalXmu2.g:3972:3: rule__PatternNode__Group_2__0
-        {
-        pushFollow(FOLLOW_2);
-        rule__PatternNode__Group_2__0();
-
-        state._fsp--;
-        if (state.failed) return ;
-
-        }
-    }
-    // $ANTLR end synpred64_InternalXmu2
-
-    // $ANTLR start synpred84_InternalXmu2
-    public final void synpred84_InternalXmu2_fragment() throws RecognitionException {   
+    // $ANTLR start synpred83_InternalXmu2
+    public final void synpred83_InternalXmu2_fragment() throws RecognitionException {   
         // InternalXmu2.g:6463:4: ( rule__UpdateStatement__ClausesAssignment_5 )
         // InternalXmu2.g:6463:4: rule__UpdateStatement__ClausesAssignment_5
         {
@@ -31107,38 +31072,10 @@ public class InternalXmu2Parser extends AbstractInternalContentAssistParser {
 
         }
     }
-    // $ANTLR end synpred84_InternalXmu2
+    // $ANTLR end synpred83_InternalXmu2
 
     // Delegated rules
 
-    public final boolean synpred64_InternalXmu2() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred64_InternalXmu2_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred84_InternalXmu2() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred84_InternalXmu2_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
     public final boolean synpred3_InternalXmu2() {
         state.backtracking++;
         int start = input.mark();
@@ -31172,6 +31109,20 @@ public class InternalXmu2Parser extends AbstractInternalContentAssistParser {
         int start = input.mark();
         try {
             synpred16_InternalXmu2_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred83_InternalXmu2() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred83_InternalXmu2_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -32308,7 +32259,7 @@ public class InternalXmu2Parser extends AbstractInternalContentAssistParser {
     static final String dfa_7s = "\12\uffff\1\16\4\uffff";
     static final String dfa_8s = "\1\6\3\uffff\1\6\2\uffff\1\54\2\uffff\1\6\4\uffff";
     static final String dfa_9s = "\1\107\3\uffff\1\6\2\uffff\1\110\2\uffff\1\107\4\uffff";
-    static final String dfa_10s = "\1\uffff\1\1\1\2\1\3\1\uffff\1\6\1\7\1\uffff\1\11\1\12\1\uffff\1\13\1\10\1\5\1\4";
+    static final String dfa_10s = "\1\uffff\1\1\1\2\1\3\1\uffff\1\6\1\7\1\uffff\1\11\1\12\1\uffff\1\10\1\13\1\5\1\4";
     static final String dfa_11s = "\17\uffff}>";
     static final String[] dfa_12s = {
             "\1\7\53\uffff\1\1\12\uffff\1\2\2\uffff\1\3\2\uffff\1\4\1\5\1\6\1\10\1\11",
@@ -32318,7 +32269,7 @@ public class InternalXmu2Parser extends AbstractInternalContentAssistParser {
             "\1\12",
             "",
             "",
-            "\1\14\33\uffff\1\13",
+            "\1\13\33\uffff\1\14",
             "",
             "",
             "\1\16\36\uffff\4\16\11\uffff\3\16\4\uffff\1\15\3\uffff\1\16\2\uffff\10\16",

@@ -1301,10 +1301,10 @@ public class InternalXmu2Lexer extends Lexer {
         try {
             int _type = RULE_BOOLEAN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalXmu2.g:4149:14: ( ( 'true' | 'false' ) )
-            // InternalXmu2.g:4149:16: ( 'true' | 'false' )
+            // InternalXmu2.g:4152:14: ( ( 'true' | 'false' ) )
+            // InternalXmu2.g:4152:16: ( 'true' | 'false' )
             {
-            // InternalXmu2.g:4149:16: ( 'true' | 'false' )
+            // InternalXmu2.g:4152:16: ( 'true' | 'false' )
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -1322,7 +1322,7 @@ public class InternalXmu2Lexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // InternalXmu2.g:4149:17: 'true'
+                    // InternalXmu2.g:4152:17: 'true'
                     {
                     match("true"); 
 
@@ -1330,7 +1330,7 @@ public class InternalXmu2Lexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // InternalXmu2.g:4149:24: 'false'
+                    // InternalXmu2.g:4152:24: 'false'
                     {
                     match("false"); 
 
@@ -1356,10 +1356,10 @@ public class InternalXmu2Lexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalXmu2.g:4151:10: ( ( '0' .. '9' )+ )
-            // InternalXmu2.g:4151:12: ( '0' .. '9' )+
+            // InternalXmu2.g:4154:10: ( ( '0' .. '9' )+ )
+            // InternalXmu2.g:4154:12: ( '0' .. '9' )+
             {
-            // InternalXmu2.g:4151:12: ( '0' .. '9' )+
+            // InternalXmu2.g:4154:12: ( '0' .. '9' )+
             int cnt2=0;
             loop2:
             do {
@@ -1373,7 +1373,7 @@ public class InternalXmu2Lexer extends Lexer {
 
                 switch (alt2) {
             	case 1 :
-            	    // InternalXmu2.g:4151:13: '0' .. '9'
+            	    // InternalXmu2.g:4154:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -1405,10 +1405,10 @@ public class InternalXmu2Lexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalXmu2.g:4153:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
-            // InternalXmu2.g:4153:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // InternalXmu2.g:4156:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
+            // InternalXmu2.g:4156:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
-            // InternalXmu2.g:4153:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // InternalXmu2.g:4156:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -1426,10 +1426,10 @@ public class InternalXmu2Lexer extends Lexer {
             }
             switch (alt5) {
                 case 1 :
-                    // InternalXmu2.g:4153:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+                    // InternalXmu2.g:4156:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
-                    // InternalXmu2.g:4153:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
+                    // InternalXmu2.g:4156:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
                     loop3:
                     do {
                         int alt3=3;
@@ -1445,7 +1445,7 @@ public class InternalXmu2Lexer extends Lexer {
 
                         switch (alt3) {
                     	case 1 :
-                    	    // InternalXmu2.g:4153:21: '\\\\' .
+                    	    // InternalXmu2.g:4156:21: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -1453,7 +1453,7 @@ public class InternalXmu2Lexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // InternalXmu2.g:4153:28: ~ ( ( '\\\\' | '\"' ) )
+                    	    // InternalXmu2.g:4156:28: ~ ( ( '\\\\' | '\"' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -1478,10 +1478,10 @@ public class InternalXmu2Lexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // InternalXmu2.g:4153:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+                    // InternalXmu2.g:4156:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
                     {
                     match('\''); 
-                    // InternalXmu2.g:4153:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
+                    // InternalXmu2.g:4156:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
                     loop4:
                     do {
                         int alt4=3;
@@ -1497,7 +1497,7 @@ public class InternalXmu2Lexer extends Lexer {
 
                         switch (alt4) {
                     	case 1 :
-                    	    // InternalXmu2.g:4153:54: '\\\\' .
+                    	    // InternalXmu2.g:4156:54: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -1505,7 +1505,7 @@ public class InternalXmu2Lexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // InternalXmu2.g:4153:61: ~ ( ( '\\\\' | '\\'' ) )
+                    	    // InternalXmu2.g:4156:61: ~ ( ( '\\\\' | '\\'' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -1548,12 +1548,12 @@ public class InternalXmu2Lexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalXmu2.g:4155:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // InternalXmu2.g:4155:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // InternalXmu2.g:4158:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // InternalXmu2.g:4158:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // InternalXmu2.g:4155:24: ( options {greedy=false; } : . )*
+            // InternalXmu2.g:4158:24: ( options {greedy=false; } : . )*
             loop6:
             do {
                 int alt6=2;
@@ -1578,7 +1578,7 @@ public class InternalXmu2Lexer extends Lexer {
 
                 switch (alt6) {
             	case 1 :
-            	    // InternalXmu2.g:4155:52: .
+            	    // InternalXmu2.g:4158:52: .
             	    {
             	    matchAny(); 
 
@@ -1608,12 +1608,12 @@ public class InternalXmu2Lexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalXmu2.g:4157:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // InternalXmu2.g:4157:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // InternalXmu2.g:4160:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // InternalXmu2.g:4160:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // InternalXmu2.g:4157:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // InternalXmu2.g:4160:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop7:
             do {
                 int alt7=2;
@@ -1626,7 +1626,7 @@ public class InternalXmu2Lexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // InternalXmu2.g:4157:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // InternalXmu2.g:4160:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -1646,7 +1646,7 @@ public class InternalXmu2Lexer extends Lexer {
                 }
             } while (true);
 
-            // InternalXmu2.g:4157:40: ( ( '\\r' )? '\\n' )?
+            // InternalXmu2.g:4160:40: ( ( '\\r' )? '\\n' )?
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -1655,9 +1655,9 @@ public class InternalXmu2Lexer extends Lexer {
             }
             switch (alt9) {
                 case 1 :
-                    // InternalXmu2.g:4157:41: ( '\\r' )? '\\n'
+                    // InternalXmu2.g:4160:41: ( '\\r' )? '\\n'
                     {
-                    // InternalXmu2.g:4157:41: ( '\\r' )?
+                    // InternalXmu2.g:4160:41: ( '\\r' )?
                     int alt8=2;
                     int LA8_0 = input.LA(1);
 
@@ -1666,7 +1666,7 @@ public class InternalXmu2Lexer extends Lexer {
                     }
                     switch (alt8) {
                         case 1 :
-                            // InternalXmu2.g:4157:41: '\\r'
+                            // InternalXmu2.g:4160:41: '\\r'
                             {
                             match('\r'); 
 
@@ -1698,10 +1698,10 @@ public class InternalXmu2Lexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalXmu2.g:4159:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // InternalXmu2.g:4159:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // InternalXmu2.g:4162:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // InternalXmu2.g:4162:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // InternalXmu2.g:4159:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // InternalXmu2.g:4162:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt10=0;
             loop10:
             do {
@@ -1755,15 +1755,15 @@ public class InternalXmu2Lexer extends Lexer {
         try {
             int _type = RULE_PRIMITIVE_TYPE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalXmu2.g:4161:21: ( ( 'String' | 'Boolean' | 'Integer' | 'OclAny' | 'Resource' | 'OclObject' ) )
-            // InternalXmu2.g:4161:23: ( 'String' | 'Boolean' | 'Integer' | 'OclAny' | 'Resource' | 'OclObject' )
+            // InternalXmu2.g:4164:21: ( ( 'String' | 'Boolean' | 'Integer' | 'OclAny' | 'Resource' | 'OclObject' ) )
+            // InternalXmu2.g:4164:23: ( 'String' | 'Boolean' | 'Integer' | 'OclAny' | 'Resource' | 'OclObject' )
             {
-            // InternalXmu2.g:4161:23: ( 'String' | 'Boolean' | 'Integer' | 'OclAny' | 'Resource' | 'OclObject' )
+            // InternalXmu2.g:4164:23: ( 'String' | 'Boolean' | 'Integer' | 'OclAny' | 'Resource' | 'OclObject' )
             int alt11=6;
             alt11 = dfa11.predict(input);
             switch (alt11) {
                 case 1 :
-                    // InternalXmu2.g:4161:24: 'String'
+                    // InternalXmu2.g:4164:24: 'String'
                     {
                     match("String"); 
 
@@ -1771,7 +1771,7 @@ public class InternalXmu2Lexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // InternalXmu2.g:4161:33: 'Boolean'
+                    // InternalXmu2.g:4164:33: 'Boolean'
                     {
                     match("Boolean"); 
 
@@ -1779,7 +1779,7 @@ public class InternalXmu2Lexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // InternalXmu2.g:4161:43: 'Integer'
+                    // InternalXmu2.g:4164:43: 'Integer'
                     {
                     match("Integer"); 
 
@@ -1787,7 +1787,7 @@ public class InternalXmu2Lexer extends Lexer {
                     }
                     break;
                 case 4 :
-                    // InternalXmu2.g:4161:53: 'OclAny'
+                    // InternalXmu2.g:4164:53: 'OclAny'
                     {
                     match("OclAny"); 
 
@@ -1795,7 +1795,7 @@ public class InternalXmu2Lexer extends Lexer {
                     }
                     break;
                 case 5 :
-                    // InternalXmu2.g:4161:62: 'Resource'
+                    // InternalXmu2.g:4164:62: 'Resource'
                     {
                     match("Resource"); 
 
@@ -1803,7 +1803,7 @@ public class InternalXmu2Lexer extends Lexer {
                     }
                     break;
                 case 6 :
-                    // InternalXmu2.g:4161:73: 'OclObject'
+                    // InternalXmu2.g:4164:73: 'OclObject'
                     {
                     match("OclObject"); 
 
@@ -1829,8 +1829,8 @@ public class InternalXmu2Lexer extends Lexer {
         try {
             int _type = RULE_PATH_NAME;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalXmu2.g:4163:16: ( RULE_ID '!' RULE_ID )
-            // InternalXmu2.g:4163:18: RULE_ID '!' RULE_ID
+            // InternalXmu2.g:4166:16: ( RULE_ID '!' RULE_ID )
+            // InternalXmu2.g:4166:18: RULE_ID '!' RULE_ID
             {
             mRULE_ID(); 
             match('!'); 
@@ -1851,11 +1851,11 @@ public class InternalXmu2Lexer extends Lexer {
         try {
             int _type = RULE_NAME;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalXmu2.g:4165:11: ( RULE_ID ( '@post' )? )
-            // InternalXmu2.g:4165:13: RULE_ID ( '@post' )?
+            // InternalXmu2.g:4168:11: ( RULE_ID ( '@post' )? )
+            // InternalXmu2.g:4168:13: RULE_ID ( '@post' )?
             {
             mRULE_ID(); 
-            // InternalXmu2.g:4165:21: ( '@post' )?
+            // InternalXmu2.g:4168:21: ( '@post' )?
             int alt12=2;
             int LA12_0 = input.LA(1);
 
@@ -1864,7 +1864,7 @@ public class InternalXmu2Lexer extends Lexer {
             }
             switch (alt12) {
                 case 1 :
-                    // InternalXmu2.g:4165:21: '@post'
+                    // InternalXmu2.g:4168:21: '@post'
                     {
                     match("@post"); 
 
@@ -1890,11 +1890,11 @@ public class InternalXmu2Lexer extends Lexer {
         try {
             int _type = RULE_MODEL_URI;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalXmu2.g:4167:16: ( '<' ( options {greedy=false; } : . )* '>' )
-            // InternalXmu2.g:4167:18: '<' ( options {greedy=false; } : . )* '>'
+            // InternalXmu2.g:4170:16: ( '<' ( options {greedy=false; } : . )* '>' )
+            // InternalXmu2.g:4170:18: '<' ( options {greedy=false; } : . )* '>'
             {
             match('<'); 
-            // InternalXmu2.g:4167:22: ( options {greedy=false; } : . )*
+            // InternalXmu2.g:4170:22: ( options {greedy=false; } : . )*
             loop13:
             do {
                 int alt13=2;
@@ -1910,7 +1910,7 @@ public class InternalXmu2Lexer extends Lexer {
 
                 switch (alt13) {
             	case 1 :
-            	    // InternalXmu2.g:4167:50: .
+            	    // InternalXmu2.g:4170:50: .
             	    {
             	    matchAny(); 
 
@@ -1939,11 +1939,11 @@ public class InternalXmu2Lexer extends Lexer {
         try {
             int _type = RULE_OBJ_URI;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalXmu2.g:4169:14: ( '@' ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '/' | '\\\\' | '.' | ':' | '#' )* )
-            // InternalXmu2.g:4169:16: '@' ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '/' | '\\\\' | '.' | ':' | '#' )*
+            // InternalXmu2.g:4172:14: ( '@' ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '/' | '\\\\' | '.' | ':' | '#' )* )
+            // InternalXmu2.g:4172:16: '@' ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '/' | '\\\\' | '.' | ':' | '#' )*
             {
             match('@'); 
-            // InternalXmu2.g:4169:20: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '/' | '\\\\' | '.' | ':' | '#' )*
+            // InternalXmu2.g:4172:20: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '/' | '\\\\' | '.' | ':' | '#' )*
             loop14:
             do {
                 int alt14=2;
@@ -1990,10 +1990,10 @@ public class InternalXmu2Lexer extends Lexer {
     // $ANTLR start "RULE_ID"
     public final void mRULE_ID() throws RecognitionException {
         try {
-            // InternalXmu2.g:4171:18: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // InternalXmu2.g:4171:20: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // InternalXmu2.g:4174:18: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // InternalXmu2.g:4174:20: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
-            // InternalXmu2.g:4171:20: ( '^' )?
+            // InternalXmu2.g:4174:20: ( '^' )?
             int alt15=2;
             int LA15_0 = input.LA(1);
 
@@ -2002,7 +2002,7 @@ public class InternalXmu2Lexer extends Lexer {
             }
             switch (alt15) {
                 case 1 :
-                    // InternalXmu2.g:4171:20: '^'
+                    // InternalXmu2.g:4174:20: '^'
                     {
                     match('^'); 
 
@@ -2020,7 +2020,7 @@ public class InternalXmu2Lexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // InternalXmu2.g:4171:49: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // InternalXmu2.g:4174:49: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop16:
             do {
                 int alt16=2;
@@ -2613,7 +2613,7 @@ public class InternalXmu2Lexer extends Lexer {
             this.transition = DFA11_transition;
         }
         public String getDescription() {
-            return "4161:23: ( 'String' | 'Boolean' | 'Integer' | 'OclAny' | 'Resource' | 'OclObject' )";
+            return "4164:23: ( 'String' | 'Boolean' | 'Integer' | 'OclAny' | 'Resource' | 'OclObject' )";
         }
     }
     static final String DFA17_eotS =

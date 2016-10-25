@@ -62,13 +62,13 @@ Pattern returns xmu2pattern::Pattern :
 ;
 
 PatternNode returns xmu2pattern::PatternNode :
-	{xmu2pattern::PatternNode} variable=ConcreteVariableDeclaration ('{' (expressions+=PatternExpression (',' expressions+=PatternExpression)*)? '}')?
+	{xmu2pattern::PatternNode} variable=ConcreteVariableDeclaration ('{' (expressions+=PatternExpression (',' expressions+=PatternExpression)*)? '}')
 //	| {xmu2pattern::ReflectivePatternNode} variable=ReflectiveVariableDeclaration '[' resolve?='#'? reflectiveIdentifier=RelationalExpressionChild ']' ('{' (expressions+=PatternExpression (',' expressions+=PatternExpression)*)? '}')?
 ;
 
 PatternExpression returns xmu2pattern::PatternExpression :
-		 =>PropertyPatternExpression
-		| ObjectPatternExpression 
+	=> ObjectPatternExpression 
+	| => PropertyPatternExpression
 ;
 
 ObjectPatternExpression returns xmu2pattern::ObjectPatternExpression :

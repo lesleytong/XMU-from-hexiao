@@ -2446,7 +2446,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePatternNode"
-    // InternalXmu2.g:886:1: rulePatternNode returns [EObject current=null] : ( () ( (lv_variable_1_0= ruleConcreteVariableDeclaration ) ) (otherlv_2= '{' ( ( (lv_expressions_3_0= rulePatternExpression ) ) (otherlv_4= ',' ( (lv_expressions_5_0= rulePatternExpression ) ) )* )? otherlv_6= '}' )? ) ;
+    // InternalXmu2.g:886:1: rulePatternNode returns [EObject current=null] : ( () ( (lv_variable_1_0= ruleConcreteVariableDeclaration ) ) (otherlv_2= '{' ( ( (lv_expressions_3_0= rulePatternExpression ) ) (otherlv_4= ',' ( (lv_expressions_5_0= rulePatternExpression ) ) )* )? otherlv_6= '}' ) ) ;
     public final EObject rulePatternNode() throws RecognitionException {
         EObject current = null;
 
@@ -2464,11 +2464,11 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:892:2: ( ( () ( (lv_variable_1_0= ruleConcreteVariableDeclaration ) ) (otherlv_2= '{' ( ( (lv_expressions_3_0= rulePatternExpression ) ) (otherlv_4= ',' ( (lv_expressions_5_0= rulePatternExpression ) ) )* )? otherlv_6= '}' )? ) )
-            // InternalXmu2.g:893:2: ( () ( (lv_variable_1_0= ruleConcreteVariableDeclaration ) ) (otherlv_2= '{' ( ( (lv_expressions_3_0= rulePatternExpression ) ) (otherlv_4= ',' ( (lv_expressions_5_0= rulePatternExpression ) ) )* )? otherlv_6= '}' )? )
+            // InternalXmu2.g:892:2: ( ( () ( (lv_variable_1_0= ruleConcreteVariableDeclaration ) ) (otherlv_2= '{' ( ( (lv_expressions_3_0= rulePatternExpression ) ) (otherlv_4= ',' ( (lv_expressions_5_0= rulePatternExpression ) ) )* )? otherlv_6= '}' ) ) )
+            // InternalXmu2.g:893:2: ( () ( (lv_variable_1_0= ruleConcreteVariableDeclaration ) ) (otherlv_2= '{' ( ( (lv_expressions_3_0= rulePatternExpression ) ) (otherlv_4= ',' ( (lv_expressions_5_0= rulePatternExpression ) ) )* )? otherlv_6= '}' ) )
             {
-            // InternalXmu2.g:893:2: ( () ( (lv_variable_1_0= ruleConcreteVariableDeclaration ) ) (otherlv_2= '{' ( ( (lv_expressions_3_0= rulePatternExpression ) ) (otherlv_4= ',' ( (lv_expressions_5_0= rulePatternExpression ) ) )* )? otherlv_6= '}' )? )
-            // InternalXmu2.g:894:3: () ( (lv_variable_1_0= ruleConcreteVariableDeclaration ) ) (otherlv_2= '{' ( ( (lv_expressions_3_0= rulePatternExpression ) ) (otherlv_4= ',' ( (lv_expressions_5_0= rulePatternExpression ) ) )* )? otherlv_6= '}' )?
+            // InternalXmu2.g:893:2: ( () ( (lv_variable_1_0= ruleConcreteVariableDeclaration ) ) (otherlv_2= '{' ( ( (lv_expressions_3_0= rulePatternExpression ) ) (otherlv_4= ',' ( (lv_expressions_5_0= rulePatternExpression ) ) )* )? otherlv_6= '}' ) )
+            // InternalXmu2.g:894:3: () ( (lv_variable_1_0= ruleConcreteVariableDeclaration ) ) (otherlv_2= '{' ( ( (lv_expressions_3_0= rulePatternExpression ) ) (otherlv_4= ',' ( (lv_expressions_5_0= rulePatternExpression ) ) )* )? otherlv_6= '}' )
             {
             // InternalXmu2.g:894:3: ()
             // InternalXmu2.g:895:4: 
@@ -2494,7 +2494,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
               					newCompositeNode(grammarAccess.getPatternNodeAccess().getVariableConcreteVariableDeclarationParserRuleCall_1_0());
               				
             }
-            pushFollow(FOLLOW_25);
+            pushFollow(FOLLOW_17);
             lv_variable_1_0=ruleConcreteVariableDeclaration();
 
             state._fsp--;
@@ -2518,160 +2518,138 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalXmu2.g:920:3: (otherlv_2= '{' ( ( (lv_expressions_3_0= rulePatternExpression ) ) (otherlv_4= ',' ( (lv_expressions_5_0= rulePatternExpression ) ) )* )? otherlv_6= '}' )?
-            int alt20=2;
-            int LA20_0 = input.LA(1);
+            // InternalXmu2.g:920:3: (otherlv_2= '{' ( ( (lv_expressions_3_0= rulePatternExpression ) ) (otherlv_4= ',' ( (lv_expressions_5_0= rulePatternExpression ) ) )* )? otherlv_6= '}' )
+            // InternalXmu2.g:921:4: otherlv_2= '{' ( ( (lv_expressions_3_0= rulePatternExpression ) ) (otherlv_4= ',' ( (lv_expressions_5_0= rulePatternExpression ) ) )* )? otherlv_6= '}'
+            {
+            otherlv_2=(Token)match(input,25,FOLLOW_25); if (state.failed) return current;
+            if ( state.backtracking==0 ) {
 
-            if ( (LA20_0==25) ) {
-                int LA20_1 = input.LA(2);
-
-                if ( (LA20_1==RULE_NAME) ) {
-                    int LA20_3 = input.LA(3);
-
-                    if ( (LA20_3==30||LA20_3==32) ) {
-                        alt20=1;
-                    }
-                }
-                else if ( (LA20_1==27) ) {
-                    alt20=1;
-                }
+              				newLeafNode(otherlv_2, grammarAccess.getPatternNodeAccess().getLeftCurlyBracketKeyword_2_0());
+              			
             }
-            switch (alt20) {
+            // InternalXmu2.g:925:4: ( ( (lv_expressions_3_0= rulePatternExpression ) ) (otherlv_4= ',' ( (lv_expressions_5_0= rulePatternExpression ) ) )* )?
+            int alt19=2;
+            int LA19_0 = input.LA(1);
+
+            if ( (LA19_0==RULE_NAME) ) {
+                alt19=1;
+            }
+            switch (alt19) {
                 case 1 :
-                    // InternalXmu2.g:921:4: otherlv_2= '{' ( ( (lv_expressions_3_0= rulePatternExpression ) ) (otherlv_4= ',' ( (lv_expressions_5_0= rulePatternExpression ) ) )* )? otherlv_6= '}'
+                    // InternalXmu2.g:926:5: ( (lv_expressions_3_0= rulePatternExpression ) ) (otherlv_4= ',' ( (lv_expressions_5_0= rulePatternExpression ) ) )*
                     {
-                    otherlv_2=(Token)match(input,25,FOLLOW_26); if (state.failed) return current;
+                    // InternalXmu2.g:926:5: ( (lv_expressions_3_0= rulePatternExpression ) )
+                    // InternalXmu2.g:927:6: (lv_expressions_3_0= rulePatternExpression )
+                    {
+                    // InternalXmu2.g:927:6: (lv_expressions_3_0= rulePatternExpression )
+                    // InternalXmu2.g:928:7: lv_expressions_3_0= rulePatternExpression
+                    {
                     if ( state.backtracking==0 ) {
 
-                      				newLeafNode(otherlv_2, grammarAccess.getPatternNodeAccess().getLeftCurlyBracketKeyword_2_0());
-                      			
+                      							newCompositeNode(grammarAccess.getPatternNodeAccess().getExpressionsPatternExpressionParserRuleCall_2_1_0_0());
+                      						
                     }
-                    // InternalXmu2.g:925:4: ( ( (lv_expressions_3_0= rulePatternExpression ) ) (otherlv_4= ',' ( (lv_expressions_5_0= rulePatternExpression ) ) )* )?
-                    int alt19=2;
-                    int LA19_0 = input.LA(1);
+                    pushFollow(FOLLOW_26);
+                    lv_expressions_3_0=rulePatternExpression();
 
-                    if ( (LA19_0==RULE_NAME) ) {
-                        alt19=1;
-                    }
-                    switch (alt19) {
-                        case 1 :
-                            // InternalXmu2.g:926:5: ( (lv_expressions_3_0= rulePatternExpression ) ) (otherlv_4= ',' ( (lv_expressions_5_0= rulePatternExpression ) ) )*
-                            {
-                            // InternalXmu2.g:926:5: ( (lv_expressions_3_0= rulePatternExpression ) )
-                            // InternalXmu2.g:927:6: (lv_expressions_3_0= rulePatternExpression )
-                            {
-                            // InternalXmu2.g:927:6: (lv_expressions_3_0= rulePatternExpression )
-                            // InternalXmu2.g:928:7: lv_expressions_3_0= rulePatternExpression
-                            {
-                            if ( state.backtracking==0 ) {
-
-                              							newCompositeNode(grammarAccess.getPatternNodeAccess().getExpressionsPatternExpressionParserRuleCall_2_1_0_0());
-                              						
-                            }
-                            pushFollow(FOLLOW_27);
-                            lv_expressions_3_0=rulePatternExpression();
-
-                            state._fsp--;
-                            if (state.failed) return current;
-                            if ( state.backtracking==0 ) {
-
-                              							if (current==null) {
-                              								current = createModelElementForParent(grammarAccess.getPatternNodeRule());
-                              							}
-                              							add(
-                              								current,
-                              								"expressions",
-                              								lv_expressions_3_0,
-                              								"edu.ustb.sei.mde.xmuxtext.Xmu2.PatternExpression");
-                              							afterParserOrEnumRuleCall();
-                              						
-                            }
-
-                            }
-
-
-                            }
-
-                            // InternalXmu2.g:945:5: (otherlv_4= ',' ( (lv_expressions_5_0= rulePatternExpression ) ) )*
-                            loop18:
-                            do {
-                                int alt18=2;
-                                int LA18_0 = input.LA(1);
-
-                                if ( (LA18_0==20) ) {
-                                    alt18=1;
-                                }
-
-
-                                switch (alt18) {
-                            	case 1 :
-                            	    // InternalXmu2.g:946:6: otherlv_4= ',' ( (lv_expressions_5_0= rulePatternExpression ) )
-                            	    {
-                            	    otherlv_4=(Token)match(input,20,FOLLOW_3); if (state.failed) return current;
-                            	    if ( state.backtracking==0 ) {
-
-                            	      						newLeafNode(otherlv_4, grammarAccess.getPatternNodeAccess().getCommaKeyword_2_1_1_0());
-                            	      					
-                            	    }
-                            	    // InternalXmu2.g:950:6: ( (lv_expressions_5_0= rulePatternExpression ) )
-                            	    // InternalXmu2.g:951:7: (lv_expressions_5_0= rulePatternExpression )
-                            	    {
-                            	    // InternalXmu2.g:951:7: (lv_expressions_5_0= rulePatternExpression )
-                            	    // InternalXmu2.g:952:8: lv_expressions_5_0= rulePatternExpression
-                            	    {
-                            	    if ( state.backtracking==0 ) {
-
-                            	      								newCompositeNode(grammarAccess.getPatternNodeAccess().getExpressionsPatternExpressionParserRuleCall_2_1_1_1_0());
-                            	      							
-                            	    }
-                            	    pushFollow(FOLLOW_27);
-                            	    lv_expressions_5_0=rulePatternExpression();
-
-                            	    state._fsp--;
-                            	    if (state.failed) return current;
-                            	    if ( state.backtracking==0 ) {
-
-                            	      								if (current==null) {
-                            	      									current = createModelElementForParent(grammarAccess.getPatternNodeRule());
-                            	      								}
-                            	      								add(
-                            	      									current,
-                            	      									"expressions",
-                            	      									lv_expressions_5_0,
-                            	      									"edu.ustb.sei.mde.xmuxtext.Xmu2.PatternExpression");
-                            	      								afterParserOrEnumRuleCall();
-                            	      							
-                            	    }
-
-                            	    }
-
-
-                            	    }
-
-
-                            	    }
-                            	    break;
-
-                            	default :
-                            	    break loop18;
-                                }
-                            } while (true);
-
-
-                            }
-                            break;
-
-                    }
-
-                    otherlv_6=(Token)match(input,27,FOLLOW_2); if (state.failed) return current;
+                    state._fsp--;
+                    if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                      				newLeafNode(otherlv_6, grammarAccess.getPatternNodeAccess().getRightCurlyBracketKeyword_2_2());
-                      			
+                      							if (current==null) {
+                      								current = createModelElementForParent(grammarAccess.getPatternNodeRule());
+                      							}
+                      							add(
+                      								current,
+                      								"expressions",
+                      								lv_expressions_3_0,
+                      								"edu.ustb.sei.mde.xmuxtext.Xmu2.PatternExpression");
+                      							afterParserOrEnumRuleCall();
+                      						
                     }
+
+                    }
+
+
+                    }
+
+                    // InternalXmu2.g:945:5: (otherlv_4= ',' ( (lv_expressions_5_0= rulePatternExpression ) ) )*
+                    loop18:
+                    do {
+                        int alt18=2;
+                        int LA18_0 = input.LA(1);
+
+                        if ( (LA18_0==20) ) {
+                            alt18=1;
+                        }
+
+
+                        switch (alt18) {
+                    	case 1 :
+                    	    // InternalXmu2.g:946:6: otherlv_4= ',' ( (lv_expressions_5_0= rulePatternExpression ) )
+                    	    {
+                    	    otherlv_4=(Token)match(input,20,FOLLOW_3); if (state.failed) return current;
+                    	    if ( state.backtracking==0 ) {
+
+                    	      						newLeafNode(otherlv_4, grammarAccess.getPatternNodeAccess().getCommaKeyword_2_1_1_0());
+                    	      					
+                    	    }
+                    	    // InternalXmu2.g:950:6: ( (lv_expressions_5_0= rulePatternExpression ) )
+                    	    // InternalXmu2.g:951:7: (lv_expressions_5_0= rulePatternExpression )
+                    	    {
+                    	    // InternalXmu2.g:951:7: (lv_expressions_5_0= rulePatternExpression )
+                    	    // InternalXmu2.g:952:8: lv_expressions_5_0= rulePatternExpression
+                    	    {
+                    	    if ( state.backtracking==0 ) {
+
+                    	      								newCompositeNode(grammarAccess.getPatternNodeAccess().getExpressionsPatternExpressionParserRuleCall_2_1_1_1_0());
+                    	      							
+                    	    }
+                    	    pushFollow(FOLLOW_26);
+                    	    lv_expressions_5_0=rulePatternExpression();
+
+                    	    state._fsp--;
+                    	    if (state.failed) return current;
+                    	    if ( state.backtracking==0 ) {
+
+                    	      								if (current==null) {
+                    	      									current = createModelElementForParent(grammarAccess.getPatternNodeRule());
+                    	      								}
+                    	      								add(
+                    	      									current,
+                    	      									"expressions",
+                    	      									lv_expressions_5_0,
+                    	      									"edu.ustb.sei.mde.xmuxtext.Xmu2.PatternExpression");
+                    	      								afterParserOrEnumRuleCall();
+                    	      							
+                    	    }
+
+                    	    }
+
+
+                    	    }
+
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    break loop18;
+                        }
+                    } while (true);
+
 
                     }
                     break;
+
+            }
+
+            otherlv_6=(Token)match(input,27,FOLLOW_2); if (state.failed) return current;
+            if ( state.backtracking==0 ) {
+
+              				newLeafNode(otherlv_6, grammarAccess.getPatternNodeAccess().getRightCurlyBracketKeyword_2_2());
+              			
+            }
 
             }
 
@@ -2740,39 +2718,39 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePatternExpression"
-    // InternalXmu2.g:987:1: rulePatternExpression returns [EObject current=null] : ( ( ( rulePropertyPatternExpression )=>this_PropertyPatternExpression_0= rulePropertyPatternExpression ) | this_ObjectPatternExpression_1= ruleObjectPatternExpression ) ;
+    // InternalXmu2.g:987:1: rulePatternExpression returns [EObject current=null] : ( ( ( ruleObjectPatternExpression )=>this_ObjectPatternExpression_0= ruleObjectPatternExpression ) | ( ( rulePropertyPatternExpression )=>this_PropertyPatternExpression_1= rulePropertyPatternExpression ) ) ;
     public final EObject rulePatternExpression() throws RecognitionException {
         EObject current = null;
 
-        EObject this_PropertyPatternExpression_0 = null;
+        EObject this_ObjectPatternExpression_0 = null;
 
-        EObject this_ObjectPatternExpression_1 = null;
+        EObject this_PropertyPatternExpression_1 = null;
 
 
 
         	enterRule();
 
         try {
-            // InternalXmu2.g:993:2: ( ( ( ( rulePropertyPatternExpression )=>this_PropertyPatternExpression_0= rulePropertyPatternExpression ) | this_ObjectPatternExpression_1= ruleObjectPatternExpression ) )
-            // InternalXmu2.g:994:2: ( ( ( rulePropertyPatternExpression )=>this_PropertyPatternExpression_0= rulePropertyPatternExpression ) | this_ObjectPatternExpression_1= ruleObjectPatternExpression )
+            // InternalXmu2.g:993:2: ( ( ( ( ruleObjectPatternExpression )=>this_ObjectPatternExpression_0= ruleObjectPatternExpression ) | ( ( rulePropertyPatternExpression )=>this_PropertyPatternExpression_1= rulePropertyPatternExpression ) ) )
+            // InternalXmu2.g:994:2: ( ( ( ruleObjectPatternExpression )=>this_ObjectPatternExpression_0= ruleObjectPatternExpression ) | ( ( rulePropertyPatternExpression )=>this_PropertyPatternExpression_1= rulePropertyPatternExpression ) )
             {
-            // InternalXmu2.g:994:2: ( ( ( rulePropertyPatternExpression )=>this_PropertyPatternExpression_0= rulePropertyPatternExpression ) | this_ObjectPatternExpression_1= ruleObjectPatternExpression )
-            int alt21=2;
-            int LA21_0 = input.LA(1);
+            // InternalXmu2.g:994:2: ( ( ( ruleObjectPatternExpression )=>this_ObjectPatternExpression_0= ruleObjectPatternExpression ) | ( ( rulePropertyPatternExpression )=>this_PropertyPatternExpression_1= rulePropertyPatternExpression ) )
+            int alt20=2;
+            int LA20_0 = input.LA(1);
 
-            if ( (LA21_0==RULE_NAME) ) {
-                int LA21_1 = input.LA(2);
+            if ( (LA20_0==RULE_NAME) ) {
+                int LA20_1 = input.LA(2);
 
                 if ( (synpred1_InternalXmu2()) ) {
-                    alt21=1;
+                    alt20=1;
                 }
-                else if ( (true) ) {
-                    alt21=2;
+                else if ( (synpred2_InternalXmu2()) ) {
+                    alt20=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return current;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 21, 1, input);
+                        new NoViableAltException("", 20, 1, input);
 
                     throw nvae;
                 }
@@ -2780,30 +2758,30 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
             else {
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 21, 0, input);
+                    new NoViableAltException("", 20, 0, input);
 
                 throw nvae;
             }
-            switch (alt21) {
+            switch (alt20) {
                 case 1 :
-                    // InternalXmu2.g:995:3: ( ( rulePropertyPatternExpression )=>this_PropertyPatternExpression_0= rulePropertyPatternExpression )
+                    // InternalXmu2.g:995:3: ( ( ruleObjectPatternExpression )=>this_ObjectPatternExpression_0= ruleObjectPatternExpression )
                     {
-                    // InternalXmu2.g:995:3: ( ( rulePropertyPatternExpression )=>this_PropertyPatternExpression_0= rulePropertyPatternExpression )
-                    // InternalXmu2.g:996:4: ( rulePropertyPatternExpression )=>this_PropertyPatternExpression_0= rulePropertyPatternExpression
+                    // InternalXmu2.g:995:3: ( ( ruleObjectPatternExpression )=>this_ObjectPatternExpression_0= ruleObjectPatternExpression )
+                    // InternalXmu2.g:996:4: ( ruleObjectPatternExpression )=>this_ObjectPatternExpression_0= ruleObjectPatternExpression
                     {
                     if ( state.backtracking==0 ) {
 
-                      				newCompositeNode(grammarAccess.getPatternExpressionAccess().getPropertyPatternExpressionParserRuleCall_0());
+                      				newCompositeNode(grammarAccess.getPatternExpressionAccess().getObjectPatternExpressionParserRuleCall_0());
                       			
                     }
                     pushFollow(FOLLOW_2);
-                    this_PropertyPatternExpression_0=rulePropertyPatternExpression();
+                    this_ObjectPatternExpression_0=ruleObjectPatternExpression();
 
                     state._fsp--;
                     if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                      				current = this_PropertyPatternExpression_0;
+                      				current = this_ObjectPatternExpression_0;
                       				afterParserOrEnumRuleCall();
                       			
                     }
@@ -2814,24 +2792,30 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalXmu2.g:1007:3: this_ObjectPatternExpression_1= ruleObjectPatternExpression
+                    // InternalXmu2.g:1007:3: ( ( rulePropertyPatternExpression )=>this_PropertyPatternExpression_1= rulePropertyPatternExpression )
+                    {
+                    // InternalXmu2.g:1007:3: ( ( rulePropertyPatternExpression )=>this_PropertyPatternExpression_1= rulePropertyPatternExpression )
+                    // InternalXmu2.g:1008:4: ( rulePropertyPatternExpression )=>this_PropertyPatternExpression_1= rulePropertyPatternExpression
                     {
                     if ( state.backtracking==0 ) {
 
-                      			newCompositeNode(grammarAccess.getPatternExpressionAccess().getObjectPatternExpressionParserRuleCall_1());
-                      		
+                      				newCompositeNode(grammarAccess.getPatternExpressionAccess().getPropertyPatternExpressionParserRuleCall_1());
+                      			
                     }
                     pushFollow(FOLLOW_2);
-                    this_ObjectPatternExpression_1=ruleObjectPatternExpression();
+                    this_PropertyPatternExpression_1=rulePropertyPatternExpression();
 
                     state._fsp--;
                     if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                      			current = this_ObjectPatternExpression_1;
-                      			afterParserOrEnumRuleCall();
-                      		
+                      				current = this_PropertyPatternExpression_1;
+                      				afterParserOrEnumRuleCall();
+                      			
                     }
+
+                    }
+
 
                     }
                     break;
@@ -2860,7 +2844,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleObjectPatternExpression"
-    // InternalXmu2.g:1019:1: entryRuleObjectPatternExpression returns [EObject current=null] : iv_ruleObjectPatternExpression= ruleObjectPatternExpression EOF ;
+    // InternalXmu2.g:1022:1: entryRuleObjectPatternExpression returns [EObject current=null] : iv_ruleObjectPatternExpression= ruleObjectPatternExpression EOF ;
     public final EObject entryRuleObjectPatternExpression() throws RecognitionException {
         EObject current = null;
 
@@ -2868,8 +2852,8 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalXmu2.g:1019:64: (iv_ruleObjectPatternExpression= ruleObjectPatternExpression EOF )
-            // InternalXmu2.g:1020:2: iv_ruleObjectPatternExpression= ruleObjectPatternExpression EOF
+            // InternalXmu2.g:1022:64: (iv_ruleObjectPatternExpression= ruleObjectPatternExpression EOF )
+            // InternalXmu2.g:1023:2: iv_ruleObjectPatternExpression= ruleObjectPatternExpression EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getObjectPatternExpressionRule()); 
@@ -2900,7 +2884,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleObjectPatternExpression"
-    // InternalXmu2.g:1026:1: ruleObjectPatternExpression returns [EObject current=null] : ( () ( (otherlv_1= RULE_NAME ) ) ( (lv_selector_2_0= ruleLoopPath ) )? ( (lv_position_3_0= rulePositionPath ) )? otherlv_4= '=' ( (lv_nullable_5_0= '?' ) )? ( (lv_targetNode_6_0= rulePatternNode ) ) ) ;
+    // InternalXmu2.g:1029:1: ruleObjectPatternExpression returns [EObject current=null] : ( () ( (otherlv_1= RULE_NAME ) ) ( (lv_selector_2_0= ruleLoopPath ) )? ( (lv_position_3_0= rulePositionPath ) )? otherlv_4= '=' ( (lv_nullable_5_0= '?' ) )? ( (lv_targetNode_6_0= rulePatternNode ) ) ) ;
     public final EObject ruleObjectPatternExpression() throws RecognitionException {
         EObject current = null;
 
@@ -2918,14 +2902,14 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:1032:2: ( ( () ( (otherlv_1= RULE_NAME ) ) ( (lv_selector_2_0= ruleLoopPath ) )? ( (lv_position_3_0= rulePositionPath ) )? otherlv_4= '=' ( (lv_nullable_5_0= '?' ) )? ( (lv_targetNode_6_0= rulePatternNode ) ) ) )
-            // InternalXmu2.g:1033:2: ( () ( (otherlv_1= RULE_NAME ) ) ( (lv_selector_2_0= ruleLoopPath ) )? ( (lv_position_3_0= rulePositionPath ) )? otherlv_4= '=' ( (lv_nullable_5_0= '?' ) )? ( (lv_targetNode_6_0= rulePatternNode ) ) )
+            // InternalXmu2.g:1035:2: ( ( () ( (otherlv_1= RULE_NAME ) ) ( (lv_selector_2_0= ruleLoopPath ) )? ( (lv_position_3_0= rulePositionPath ) )? otherlv_4= '=' ( (lv_nullable_5_0= '?' ) )? ( (lv_targetNode_6_0= rulePatternNode ) ) ) )
+            // InternalXmu2.g:1036:2: ( () ( (otherlv_1= RULE_NAME ) ) ( (lv_selector_2_0= ruleLoopPath ) )? ( (lv_position_3_0= rulePositionPath ) )? otherlv_4= '=' ( (lv_nullable_5_0= '?' ) )? ( (lv_targetNode_6_0= rulePatternNode ) ) )
             {
-            // InternalXmu2.g:1033:2: ( () ( (otherlv_1= RULE_NAME ) ) ( (lv_selector_2_0= ruleLoopPath ) )? ( (lv_position_3_0= rulePositionPath ) )? otherlv_4= '=' ( (lv_nullable_5_0= '?' ) )? ( (lv_targetNode_6_0= rulePatternNode ) ) )
-            // InternalXmu2.g:1034:3: () ( (otherlv_1= RULE_NAME ) ) ( (lv_selector_2_0= ruleLoopPath ) )? ( (lv_position_3_0= rulePositionPath ) )? otherlv_4= '=' ( (lv_nullable_5_0= '?' ) )? ( (lv_targetNode_6_0= rulePatternNode ) )
+            // InternalXmu2.g:1036:2: ( () ( (otherlv_1= RULE_NAME ) ) ( (lv_selector_2_0= ruleLoopPath ) )? ( (lv_position_3_0= rulePositionPath ) )? otherlv_4= '=' ( (lv_nullable_5_0= '?' ) )? ( (lv_targetNode_6_0= rulePatternNode ) ) )
+            // InternalXmu2.g:1037:3: () ( (otherlv_1= RULE_NAME ) ) ( (lv_selector_2_0= ruleLoopPath ) )? ( (lv_position_3_0= rulePositionPath ) )? otherlv_4= '=' ( (lv_nullable_5_0= '?' ) )? ( (lv_targetNode_6_0= rulePatternNode ) )
             {
-            // InternalXmu2.g:1034:3: ()
-            // InternalXmu2.g:1035:4: 
+            // InternalXmu2.g:1037:3: ()
+            // InternalXmu2.g:1038:4: 
             {
             if ( state.backtracking==0 ) {
 
@@ -2937,11 +2921,11 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalXmu2.g:1041:3: ( (otherlv_1= RULE_NAME ) )
-            // InternalXmu2.g:1042:4: (otherlv_1= RULE_NAME )
+            // InternalXmu2.g:1044:3: ( (otherlv_1= RULE_NAME ) )
+            // InternalXmu2.g:1045:4: (otherlv_1= RULE_NAME )
             {
-            // InternalXmu2.g:1042:4: (otherlv_1= RULE_NAME )
-            // InternalXmu2.g:1043:5: otherlv_1= RULE_NAME
+            // InternalXmu2.g:1045:4: (otherlv_1= RULE_NAME )
+            // InternalXmu2.g:1046:5: otherlv_1= RULE_NAME
             {
             if ( state.backtracking==0 ) {
 
@@ -2950,7 +2934,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
               					}
               				
             }
-            otherlv_1=(Token)match(input,RULE_NAME,FOLLOW_28); if (state.failed) return current;
+            otherlv_1=(Token)match(input,RULE_NAME,FOLLOW_27); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
               					newLeafNode(otherlv_1, grammarAccess.getObjectPatternExpressionAccess().getFeatureEStructuralFeatureCrossReference_1_0());
@@ -2962,30 +2946,30 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalXmu2.g:1054:3: ( (lv_selector_2_0= ruleLoopPath ) )?
-            int alt22=2;
-            int LA22_0 = input.LA(1);
+            // InternalXmu2.g:1057:3: ( (lv_selector_2_0= ruleLoopPath ) )?
+            int alt21=2;
+            int LA21_0 = input.LA(1);
 
-            if ( (LA22_0==32) ) {
-                int LA22_1 = input.LA(2);
+            if ( (LA21_0==32) ) {
+                int LA21_1 = input.LA(2);
 
-                if ( ((LA22_1>=52 && LA22_1<=54)) ) {
-                    alt22=1;
+                if ( ((LA21_1>=52 && LA21_1<=54)) ) {
+                    alt21=1;
                 }
             }
-            switch (alt22) {
+            switch (alt21) {
                 case 1 :
-                    // InternalXmu2.g:1055:4: (lv_selector_2_0= ruleLoopPath )
+                    // InternalXmu2.g:1058:4: (lv_selector_2_0= ruleLoopPath )
                     {
-                    // InternalXmu2.g:1055:4: (lv_selector_2_0= ruleLoopPath )
-                    // InternalXmu2.g:1056:5: lv_selector_2_0= ruleLoopPath
+                    // InternalXmu2.g:1058:4: (lv_selector_2_0= ruleLoopPath )
+                    // InternalXmu2.g:1059:5: lv_selector_2_0= ruleLoopPath
                     {
                     if ( state.backtracking==0 ) {
 
                       					newCompositeNode(grammarAccess.getObjectPatternExpressionAccess().getSelectorLoopPathParserRuleCall_2_0());
                       				
                     }
-                    pushFollow(FOLLOW_28);
+                    pushFollow(FOLLOW_27);
                     lv_selector_2_0=ruleLoopPath();
 
                     state._fsp--;
@@ -3012,26 +2996,26 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalXmu2.g:1073:3: ( (lv_position_3_0= rulePositionPath ) )?
-            int alt23=2;
-            int LA23_0 = input.LA(1);
+            // InternalXmu2.g:1076:3: ( (lv_position_3_0= rulePositionPath ) )?
+            int alt22=2;
+            int LA22_0 = input.LA(1);
 
-            if ( (LA23_0==32) ) {
-                alt23=1;
+            if ( (LA22_0==32) ) {
+                alt22=1;
             }
-            switch (alt23) {
+            switch (alt22) {
                 case 1 :
-                    // InternalXmu2.g:1074:4: (lv_position_3_0= rulePositionPath )
+                    // InternalXmu2.g:1077:4: (lv_position_3_0= rulePositionPath )
                     {
-                    // InternalXmu2.g:1074:4: (lv_position_3_0= rulePositionPath )
-                    // InternalXmu2.g:1075:5: lv_position_3_0= rulePositionPath
+                    // InternalXmu2.g:1077:4: (lv_position_3_0= rulePositionPath )
+                    // InternalXmu2.g:1078:5: lv_position_3_0= rulePositionPath
                     {
                     if ( state.backtracking==0 ) {
 
                       					newCompositeNode(grammarAccess.getObjectPatternExpressionAccess().getPositionPositionPathParserRuleCall_3_0());
                       				
                     }
-                    pushFollow(FOLLOW_29);
+                    pushFollow(FOLLOW_28);
                     lv_position_3_0=rulePositionPath();
 
                     state._fsp--;
@@ -3058,27 +3042,27 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_4=(Token)match(input,30,FOLLOW_30); if (state.failed) return current;
+            otherlv_4=(Token)match(input,30,FOLLOW_29); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
               			newLeafNode(otherlv_4, grammarAccess.getObjectPatternExpressionAccess().getEqualsSignKeyword_4());
               		
             }
-            // InternalXmu2.g:1096:3: ( (lv_nullable_5_0= '?' ) )?
-            int alt24=2;
-            int LA24_0 = input.LA(1);
+            // InternalXmu2.g:1099:3: ( (lv_nullable_5_0= '?' ) )?
+            int alt23=2;
+            int LA23_0 = input.LA(1);
 
-            if ( (LA24_0==31) ) {
-                alt24=1;
+            if ( (LA23_0==31) ) {
+                alt23=1;
             }
-            switch (alt24) {
+            switch (alt23) {
                 case 1 :
-                    // InternalXmu2.g:1097:4: (lv_nullable_5_0= '?' )
+                    // InternalXmu2.g:1100:4: (lv_nullable_5_0= '?' )
                     {
-                    // InternalXmu2.g:1097:4: (lv_nullable_5_0= '?' )
-                    // InternalXmu2.g:1098:5: lv_nullable_5_0= '?'
+                    // InternalXmu2.g:1100:4: (lv_nullable_5_0= '?' )
+                    // InternalXmu2.g:1101:5: lv_nullable_5_0= '?'
                     {
-                    lv_nullable_5_0=(Token)match(input,31,FOLLOW_30); if (state.failed) return current;
+                    lv_nullable_5_0=(Token)match(input,31,FOLLOW_29); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                       					newLeafNode(lv_nullable_5_0, grammarAccess.getObjectPatternExpressionAccess().getNullableQuestionMarkKeyword_5_0());
@@ -3101,11 +3085,11 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalXmu2.g:1110:3: ( (lv_targetNode_6_0= rulePatternNode ) )
-            // InternalXmu2.g:1111:4: (lv_targetNode_6_0= rulePatternNode )
+            // InternalXmu2.g:1113:3: ( (lv_targetNode_6_0= rulePatternNode ) )
+            // InternalXmu2.g:1114:4: (lv_targetNode_6_0= rulePatternNode )
             {
-            // InternalXmu2.g:1111:4: (lv_targetNode_6_0= rulePatternNode )
-            // InternalXmu2.g:1112:5: lv_targetNode_6_0= rulePatternNode
+            // InternalXmu2.g:1114:4: (lv_targetNode_6_0= rulePatternNode )
+            // InternalXmu2.g:1115:5: lv_targetNode_6_0= rulePatternNode
             {
             if ( state.backtracking==0 ) {
 
@@ -3161,7 +3145,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRulePropertyPatternExpression"
-    // InternalXmu2.g:1133:1: entryRulePropertyPatternExpression returns [EObject current=null] : iv_rulePropertyPatternExpression= rulePropertyPatternExpression EOF ;
+    // InternalXmu2.g:1136:1: entryRulePropertyPatternExpression returns [EObject current=null] : iv_rulePropertyPatternExpression= rulePropertyPatternExpression EOF ;
     public final EObject entryRulePropertyPatternExpression() throws RecognitionException {
         EObject current = null;
 
@@ -3169,8 +3153,8 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalXmu2.g:1133:66: (iv_rulePropertyPatternExpression= rulePropertyPatternExpression EOF )
-            // InternalXmu2.g:1134:2: iv_rulePropertyPatternExpression= rulePropertyPatternExpression EOF
+            // InternalXmu2.g:1136:66: (iv_rulePropertyPatternExpression= rulePropertyPatternExpression EOF )
+            // InternalXmu2.g:1137:2: iv_rulePropertyPatternExpression= rulePropertyPatternExpression EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getPropertyPatternExpressionRule()); 
@@ -3201,7 +3185,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePropertyPatternExpression"
-    // InternalXmu2.g:1140:1: rulePropertyPatternExpression returns [EObject current=null] : ( () ( (otherlv_1= RULE_NAME ) ) ( (lv_selector_2_0= ruleLoopPath ) )? ( (lv_position_3_0= rulePositionPath ) )? otherlv_4= '=' ( (lv_nullable_5_0= '?' ) )? ( (lv_targetExpression_6_0= ruleExpression ) ) ) ;
+    // InternalXmu2.g:1143:1: rulePropertyPatternExpression returns [EObject current=null] : ( () ( (otherlv_1= RULE_NAME ) ) ( (lv_selector_2_0= ruleLoopPath ) )? ( (lv_position_3_0= rulePositionPath ) )? otherlv_4= '=' ( (lv_nullable_5_0= '?' ) )? ( (lv_targetExpression_6_0= ruleExpression ) ) ) ;
     public final EObject rulePropertyPatternExpression() throws RecognitionException {
         EObject current = null;
 
@@ -3219,14 +3203,14 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:1146:2: ( ( () ( (otherlv_1= RULE_NAME ) ) ( (lv_selector_2_0= ruleLoopPath ) )? ( (lv_position_3_0= rulePositionPath ) )? otherlv_4= '=' ( (lv_nullable_5_0= '?' ) )? ( (lv_targetExpression_6_0= ruleExpression ) ) ) )
-            // InternalXmu2.g:1147:2: ( () ( (otherlv_1= RULE_NAME ) ) ( (lv_selector_2_0= ruleLoopPath ) )? ( (lv_position_3_0= rulePositionPath ) )? otherlv_4= '=' ( (lv_nullable_5_0= '?' ) )? ( (lv_targetExpression_6_0= ruleExpression ) ) )
+            // InternalXmu2.g:1149:2: ( ( () ( (otherlv_1= RULE_NAME ) ) ( (lv_selector_2_0= ruleLoopPath ) )? ( (lv_position_3_0= rulePositionPath ) )? otherlv_4= '=' ( (lv_nullable_5_0= '?' ) )? ( (lv_targetExpression_6_0= ruleExpression ) ) ) )
+            // InternalXmu2.g:1150:2: ( () ( (otherlv_1= RULE_NAME ) ) ( (lv_selector_2_0= ruleLoopPath ) )? ( (lv_position_3_0= rulePositionPath ) )? otherlv_4= '=' ( (lv_nullable_5_0= '?' ) )? ( (lv_targetExpression_6_0= ruleExpression ) ) )
             {
-            // InternalXmu2.g:1147:2: ( () ( (otherlv_1= RULE_NAME ) ) ( (lv_selector_2_0= ruleLoopPath ) )? ( (lv_position_3_0= rulePositionPath ) )? otherlv_4= '=' ( (lv_nullable_5_0= '?' ) )? ( (lv_targetExpression_6_0= ruleExpression ) ) )
-            // InternalXmu2.g:1148:3: () ( (otherlv_1= RULE_NAME ) ) ( (lv_selector_2_0= ruleLoopPath ) )? ( (lv_position_3_0= rulePositionPath ) )? otherlv_4= '=' ( (lv_nullable_5_0= '?' ) )? ( (lv_targetExpression_6_0= ruleExpression ) )
+            // InternalXmu2.g:1150:2: ( () ( (otherlv_1= RULE_NAME ) ) ( (lv_selector_2_0= ruleLoopPath ) )? ( (lv_position_3_0= rulePositionPath ) )? otherlv_4= '=' ( (lv_nullable_5_0= '?' ) )? ( (lv_targetExpression_6_0= ruleExpression ) ) )
+            // InternalXmu2.g:1151:3: () ( (otherlv_1= RULE_NAME ) ) ( (lv_selector_2_0= ruleLoopPath ) )? ( (lv_position_3_0= rulePositionPath ) )? otherlv_4= '=' ( (lv_nullable_5_0= '?' ) )? ( (lv_targetExpression_6_0= ruleExpression ) )
             {
-            // InternalXmu2.g:1148:3: ()
-            // InternalXmu2.g:1149:4: 
+            // InternalXmu2.g:1151:3: ()
+            // InternalXmu2.g:1152:4: 
             {
             if ( state.backtracking==0 ) {
 
@@ -3238,11 +3222,11 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalXmu2.g:1155:3: ( (otherlv_1= RULE_NAME ) )
-            // InternalXmu2.g:1156:4: (otherlv_1= RULE_NAME )
+            // InternalXmu2.g:1158:3: ( (otherlv_1= RULE_NAME ) )
+            // InternalXmu2.g:1159:4: (otherlv_1= RULE_NAME )
             {
-            // InternalXmu2.g:1156:4: (otherlv_1= RULE_NAME )
-            // InternalXmu2.g:1157:5: otherlv_1= RULE_NAME
+            // InternalXmu2.g:1159:4: (otherlv_1= RULE_NAME )
+            // InternalXmu2.g:1160:5: otherlv_1= RULE_NAME
             {
             if ( state.backtracking==0 ) {
 
@@ -3251,7 +3235,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
               					}
               				
             }
-            otherlv_1=(Token)match(input,RULE_NAME,FOLLOW_28); if (state.failed) return current;
+            otherlv_1=(Token)match(input,RULE_NAME,FOLLOW_27); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
               					newLeafNode(otherlv_1, grammarAccess.getPropertyPatternExpressionAccess().getFeatureEStructuralFeatureCrossReference_1_0());
@@ -3263,30 +3247,30 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalXmu2.g:1168:3: ( (lv_selector_2_0= ruleLoopPath ) )?
-            int alt25=2;
-            int LA25_0 = input.LA(1);
+            // InternalXmu2.g:1171:3: ( (lv_selector_2_0= ruleLoopPath ) )?
+            int alt24=2;
+            int LA24_0 = input.LA(1);
 
-            if ( (LA25_0==32) ) {
-                int LA25_1 = input.LA(2);
+            if ( (LA24_0==32) ) {
+                int LA24_1 = input.LA(2);
 
-                if ( ((LA25_1>=52 && LA25_1<=54)) ) {
-                    alt25=1;
+                if ( ((LA24_1>=52 && LA24_1<=54)) ) {
+                    alt24=1;
                 }
             }
-            switch (alt25) {
+            switch (alt24) {
                 case 1 :
-                    // InternalXmu2.g:1169:4: (lv_selector_2_0= ruleLoopPath )
+                    // InternalXmu2.g:1172:4: (lv_selector_2_0= ruleLoopPath )
                     {
-                    // InternalXmu2.g:1169:4: (lv_selector_2_0= ruleLoopPath )
-                    // InternalXmu2.g:1170:5: lv_selector_2_0= ruleLoopPath
+                    // InternalXmu2.g:1172:4: (lv_selector_2_0= ruleLoopPath )
+                    // InternalXmu2.g:1173:5: lv_selector_2_0= ruleLoopPath
                     {
                     if ( state.backtracking==0 ) {
 
                       					newCompositeNode(grammarAccess.getPropertyPatternExpressionAccess().getSelectorLoopPathParserRuleCall_2_0());
                       				
                     }
-                    pushFollow(FOLLOW_28);
+                    pushFollow(FOLLOW_27);
                     lv_selector_2_0=ruleLoopPath();
 
                     state._fsp--;
@@ -3313,26 +3297,26 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalXmu2.g:1187:3: ( (lv_position_3_0= rulePositionPath ) )?
-            int alt26=2;
-            int LA26_0 = input.LA(1);
+            // InternalXmu2.g:1190:3: ( (lv_position_3_0= rulePositionPath ) )?
+            int alt25=2;
+            int LA25_0 = input.LA(1);
 
-            if ( (LA26_0==32) ) {
-                alt26=1;
+            if ( (LA25_0==32) ) {
+                alt25=1;
             }
-            switch (alt26) {
+            switch (alt25) {
                 case 1 :
-                    // InternalXmu2.g:1188:4: (lv_position_3_0= rulePositionPath )
+                    // InternalXmu2.g:1191:4: (lv_position_3_0= rulePositionPath )
                     {
-                    // InternalXmu2.g:1188:4: (lv_position_3_0= rulePositionPath )
-                    // InternalXmu2.g:1189:5: lv_position_3_0= rulePositionPath
+                    // InternalXmu2.g:1191:4: (lv_position_3_0= rulePositionPath )
+                    // InternalXmu2.g:1192:5: lv_position_3_0= rulePositionPath
                     {
                     if ( state.backtracking==0 ) {
 
                       					newCompositeNode(grammarAccess.getPropertyPatternExpressionAccess().getPositionPositionPathParserRuleCall_3_0());
                       				
                     }
-                    pushFollow(FOLLOW_29);
+                    pushFollow(FOLLOW_28);
                     lv_position_3_0=rulePositionPath();
 
                     state._fsp--;
@@ -3359,25 +3343,25 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_4=(Token)match(input,30,FOLLOW_31); if (state.failed) return current;
+            otherlv_4=(Token)match(input,30,FOLLOW_30); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
               			newLeafNode(otherlv_4, grammarAccess.getPropertyPatternExpressionAccess().getEqualsSignKeyword_4());
               		
             }
-            // InternalXmu2.g:1210:3: ( (lv_nullable_5_0= '?' ) )?
-            int alt27=2;
-            int LA27_0 = input.LA(1);
+            // InternalXmu2.g:1213:3: ( (lv_nullable_5_0= '?' ) )?
+            int alt26=2;
+            int LA26_0 = input.LA(1);
 
-            if ( (LA27_0==31) ) {
-                alt27=1;
+            if ( (LA26_0==31) ) {
+                alt26=1;
             }
-            switch (alt27) {
+            switch (alt26) {
                 case 1 :
-                    // InternalXmu2.g:1211:4: (lv_nullable_5_0= '?' )
+                    // InternalXmu2.g:1214:4: (lv_nullable_5_0= '?' )
                     {
-                    // InternalXmu2.g:1211:4: (lv_nullable_5_0= '?' )
-                    // InternalXmu2.g:1212:5: lv_nullable_5_0= '?'
+                    // InternalXmu2.g:1214:4: (lv_nullable_5_0= '?' )
+                    // InternalXmu2.g:1215:5: lv_nullable_5_0= '?'
                     {
                     lv_nullable_5_0=(Token)match(input,31,FOLLOW_24); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -3402,11 +3386,11 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalXmu2.g:1224:3: ( (lv_targetExpression_6_0= ruleExpression ) )
-            // InternalXmu2.g:1225:4: (lv_targetExpression_6_0= ruleExpression )
+            // InternalXmu2.g:1227:3: ( (lv_targetExpression_6_0= ruleExpression ) )
+            // InternalXmu2.g:1228:4: (lv_targetExpression_6_0= ruleExpression )
             {
-            // InternalXmu2.g:1225:4: (lv_targetExpression_6_0= ruleExpression )
-            // InternalXmu2.g:1226:5: lv_targetExpression_6_0= ruleExpression
+            // InternalXmu2.g:1228:4: (lv_targetExpression_6_0= ruleExpression )
+            // InternalXmu2.g:1229:5: lv_targetExpression_6_0= ruleExpression
             {
             if ( state.backtracking==0 ) {
 
@@ -3462,7 +3446,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleLoopPath"
-    // InternalXmu2.g:1247:1: entryRuleLoopPath returns [EObject current=null] : iv_ruleLoopPath= ruleLoopPath EOF ;
+    // InternalXmu2.g:1250:1: entryRuleLoopPath returns [EObject current=null] : iv_ruleLoopPath= ruleLoopPath EOF ;
     public final EObject entryRuleLoopPath() throws RecognitionException {
         EObject current = null;
 
@@ -3470,8 +3454,8 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalXmu2.g:1247:49: (iv_ruleLoopPath= ruleLoopPath EOF )
-            // InternalXmu2.g:1248:2: iv_ruleLoopPath= ruleLoopPath EOF
+            // InternalXmu2.g:1250:49: (iv_ruleLoopPath= ruleLoopPath EOF )
+            // InternalXmu2.g:1251:2: iv_ruleLoopPath= ruleLoopPath EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getLoopPathRule()); 
@@ -3502,7 +3486,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleLoopPath"
-    // InternalXmu2.g:1254:1: ruleLoopPath returns [EObject current=null] : (otherlv_0= '->' ( (lv_operator_1_0= ruleLoopOperator ) ) otherlv_2= '(' ( (lv_variable_3_0= ruleConcreteVariableDeclaration ) ) otherlv_4= '|' ( (lv_body_5_0= ruleExpression ) ) otherlv_6= ')' ) ;
+    // InternalXmu2.g:1257:1: ruleLoopPath returns [EObject current=null] : (otherlv_0= '->' ( (lv_operator_1_0= ruleLoopOperator ) ) otherlv_2= '(' ( (lv_variable_3_0= ruleConcreteVariableDeclaration ) ) otherlv_4= '|' ( (lv_body_5_0= ruleExpression ) ) otherlv_6= ')' ) ;
     public final EObject ruleLoopPath() throws RecognitionException {
         EObject current = null;
 
@@ -3521,23 +3505,23 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:1260:2: ( (otherlv_0= '->' ( (lv_operator_1_0= ruleLoopOperator ) ) otherlv_2= '(' ( (lv_variable_3_0= ruleConcreteVariableDeclaration ) ) otherlv_4= '|' ( (lv_body_5_0= ruleExpression ) ) otherlv_6= ')' ) )
-            // InternalXmu2.g:1261:2: (otherlv_0= '->' ( (lv_operator_1_0= ruleLoopOperator ) ) otherlv_2= '(' ( (lv_variable_3_0= ruleConcreteVariableDeclaration ) ) otherlv_4= '|' ( (lv_body_5_0= ruleExpression ) ) otherlv_6= ')' )
+            // InternalXmu2.g:1263:2: ( (otherlv_0= '->' ( (lv_operator_1_0= ruleLoopOperator ) ) otherlv_2= '(' ( (lv_variable_3_0= ruleConcreteVariableDeclaration ) ) otherlv_4= '|' ( (lv_body_5_0= ruleExpression ) ) otherlv_6= ')' ) )
+            // InternalXmu2.g:1264:2: (otherlv_0= '->' ( (lv_operator_1_0= ruleLoopOperator ) ) otherlv_2= '(' ( (lv_variable_3_0= ruleConcreteVariableDeclaration ) ) otherlv_4= '|' ( (lv_body_5_0= ruleExpression ) ) otherlv_6= ')' )
             {
-            // InternalXmu2.g:1261:2: (otherlv_0= '->' ( (lv_operator_1_0= ruleLoopOperator ) ) otherlv_2= '(' ( (lv_variable_3_0= ruleConcreteVariableDeclaration ) ) otherlv_4= '|' ( (lv_body_5_0= ruleExpression ) ) otherlv_6= ')' )
-            // InternalXmu2.g:1262:3: otherlv_0= '->' ( (lv_operator_1_0= ruleLoopOperator ) ) otherlv_2= '(' ( (lv_variable_3_0= ruleConcreteVariableDeclaration ) ) otherlv_4= '|' ( (lv_body_5_0= ruleExpression ) ) otherlv_6= ')'
+            // InternalXmu2.g:1264:2: (otherlv_0= '->' ( (lv_operator_1_0= ruleLoopOperator ) ) otherlv_2= '(' ( (lv_variable_3_0= ruleConcreteVariableDeclaration ) ) otherlv_4= '|' ( (lv_body_5_0= ruleExpression ) ) otherlv_6= ')' )
+            // InternalXmu2.g:1265:3: otherlv_0= '->' ( (lv_operator_1_0= ruleLoopOperator ) ) otherlv_2= '(' ( (lv_variable_3_0= ruleConcreteVariableDeclaration ) ) otherlv_4= '|' ( (lv_body_5_0= ruleExpression ) ) otherlv_6= ')'
             {
-            otherlv_0=(Token)match(input,32,FOLLOW_32); if (state.failed) return current;
+            otherlv_0=(Token)match(input,32,FOLLOW_31); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
               			newLeafNode(otherlv_0, grammarAccess.getLoopPathAccess().getHyphenMinusGreaterThanSignKeyword_0());
               		
             }
-            // InternalXmu2.g:1266:3: ( (lv_operator_1_0= ruleLoopOperator ) )
-            // InternalXmu2.g:1267:4: (lv_operator_1_0= ruleLoopOperator )
+            // InternalXmu2.g:1269:3: ( (lv_operator_1_0= ruleLoopOperator ) )
+            // InternalXmu2.g:1270:4: (lv_operator_1_0= ruleLoopOperator )
             {
-            // InternalXmu2.g:1267:4: (lv_operator_1_0= ruleLoopOperator )
-            // InternalXmu2.g:1268:5: lv_operator_1_0= ruleLoopOperator
+            // InternalXmu2.g:1270:4: (lv_operator_1_0= ruleLoopOperator )
+            // InternalXmu2.g:1271:5: lv_operator_1_0= ruleLoopOperator
             {
             if ( state.backtracking==0 ) {
 
@@ -3574,18 +3558,18 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
               			newLeafNode(otherlv_2, grammarAccess.getLoopPathAccess().getLeftParenthesisKeyword_2());
               		
             }
-            // InternalXmu2.g:1289:3: ( (lv_variable_3_0= ruleConcreteVariableDeclaration ) )
-            // InternalXmu2.g:1290:4: (lv_variable_3_0= ruleConcreteVariableDeclaration )
+            // InternalXmu2.g:1292:3: ( (lv_variable_3_0= ruleConcreteVariableDeclaration ) )
+            // InternalXmu2.g:1293:4: (lv_variable_3_0= ruleConcreteVariableDeclaration )
             {
-            // InternalXmu2.g:1290:4: (lv_variable_3_0= ruleConcreteVariableDeclaration )
-            // InternalXmu2.g:1291:5: lv_variable_3_0= ruleConcreteVariableDeclaration
+            // InternalXmu2.g:1293:4: (lv_variable_3_0= ruleConcreteVariableDeclaration )
+            // InternalXmu2.g:1294:5: lv_variable_3_0= ruleConcreteVariableDeclaration
             {
             if ( state.backtracking==0 ) {
 
               					newCompositeNode(grammarAccess.getLoopPathAccess().getVariableConcreteVariableDeclarationParserRuleCall_3_0());
               				
             }
-            pushFollow(FOLLOW_33);
+            pushFollow(FOLLOW_32);
             lv_variable_3_0=ruleConcreteVariableDeclaration();
 
             state._fsp--;
@@ -3615,18 +3599,18 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
               			newLeafNode(otherlv_4, grammarAccess.getLoopPathAccess().getVerticalLineKeyword_4());
               		
             }
-            // InternalXmu2.g:1312:3: ( (lv_body_5_0= ruleExpression ) )
-            // InternalXmu2.g:1313:4: (lv_body_5_0= ruleExpression )
+            // InternalXmu2.g:1315:3: ( (lv_body_5_0= ruleExpression ) )
+            // InternalXmu2.g:1316:4: (lv_body_5_0= ruleExpression )
             {
-            // InternalXmu2.g:1313:4: (lv_body_5_0= ruleExpression )
-            // InternalXmu2.g:1314:5: lv_body_5_0= ruleExpression
+            // InternalXmu2.g:1316:4: (lv_body_5_0= ruleExpression )
+            // InternalXmu2.g:1317:5: lv_body_5_0= ruleExpression
             {
             if ( state.backtracking==0 ) {
 
               					newCompositeNode(grammarAccess.getLoopPathAccess().getBodyExpressionParserRuleCall_5_0());
               				
             }
-            pushFollow(FOLLOW_34);
+            pushFollow(FOLLOW_33);
             lv_body_5_0=ruleExpression();
 
             state._fsp--;
@@ -3681,7 +3665,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRulePositionPath"
-    // InternalXmu2.g:1339:1: entryRulePositionPath returns [EObject current=null] : iv_rulePositionPath= rulePositionPath EOF ;
+    // InternalXmu2.g:1342:1: entryRulePositionPath returns [EObject current=null] : iv_rulePositionPath= rulePositionPath EOF ;
     public final EObject entryRulePositionPath() throws RecognitionException {
         EObject current = null;
 
@@ -3689,8 +3673,8 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalXmu2.g:1339:53: (iv_rulePositionPath= rulePositionPath EOF )
-            // InternalXmu2.g:1340:2: iv_rulePositionPath= rulePositionPath EOF
+            // InternalXmu2.g:1342:53: (iv_rulePositionPath= rulePositionPath EOF )
+            // InternalXmu2.g:1343:2: iv_rulePositionPath= rulePositionPath EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getPositionPathRule()); 
@@ -3721,7 +3705,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePositionPath"
-    // InternalXmu2.g:1346:1: rulePositionPath returns [EObject current=null] : (otherlv_0= '->' ( (lv_type_1_0= rulePositionOperator ) ) otherlv_2= '(' ( (lv_value_3_0= ruleExpression ) )? otherlv_4= ')' ) ;
+    // InternalXmu2.g:1349:1: rulePositionPath returns [EObject current=null] : (otherlv_0= '->' ( (lv_type_1_0= rulePositionOperator ) ) otherlv_2= '(' ( (lv_value_3_0= ruleExpression ) )? otherlv_4= ')' ) ;
     public final EObject rulePositionPath() throws RecognitionException {
         EObject current = null;
 
@@ -3737,23 +3721,23 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:1352:2: ( (otherlv_0= '->' ( (lv_type_1_0= rulePositionOperator ) ) otherlv_2= '(' ( (lv_value_3_0= ruleExpression ) )? otherlv_4= ')' ) )
-            // InternalXmu2.g:1353:2: (otherlv_0= '->' ( (lv_type_1_0= rulePositionOperator ) ) otherlv_2= '(' ( (lv_value_3_0= ruleExpression ) )? otherlv_4= ')' )
+            // InternalXmu2.g:1355:2: ( (otherlv_0= '->' ( (lv_type_1_0= rulePositionOperator ) ) otherlv_2= '(' ( (lv_value_3_0= ruleExpression ) )? otherlv_4= ')' ) )
+            // InternalXmu2.g:1356:2: (otherlv_0= '->' ( (lv_type_1_0= rulePositionOperator ) ) otherlv_2= '(' ( (lv_value_3_0= ruleExpression ) )? otherlv_4= ')' )
             {
-            // InternalXmu2.g:1353:2: (otherlv_0= '->' ( (lv_type_1_0= rulePositionOperator ) ) otherlv_2= '(' ( (lv_value_3_0= ruleExpression ) )? otherlv_4= ')' )
-            // InternalXmu2.g:1354:3: otherlv_0= '->' ( (lv_type_1_0= rulePositionOperator ) ) otherlv_2= '(' ( (lv_value_3_0= ruleExpression ) )? otherlv_4= ')'
+            // InternalXmu2.g:1356:2: (otherlv_0= '->' ( (lv_type_1_0= rulePositionOperator ) ) otherlv_2= '(' ( (lv_value_3_0= ruleExpression ) )? otherlv_4= ')' )
+            // InternalXmu2.g:1357:3: otherlv_0= '->' ( (lv_type_1_0= rulePositionOperator ) ) otherlv_2= '(' ( (lv_value_3_0= ruleExpression ) )? otherlv_4= ')'
             {
-            otherlv_0=(Token)match(input,32,FOLLOW_35); if (state.failed) return current;
+            otherlv_0=(Token)match(input,32,FOLLOW_34); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
               			newLeafNode(otherlv_0, grammarAccess.getPositionPathAccess().getHyphenMinusGreaterThanSignKeyword_0());
               		
             }
-            // InternalXmu2.g:1358:3: ( (lv_type_1_0= rulePositionOperator ) )
-            // InternalXmu2.g:1359:4: (lv_type_1_0= rulePositionOperator )
+            // InternalXmu2.g:1361:3: ( (lv_type_1_0= rulePositionOperator ) )
+            // InternalXmu2.g:1362:4: (lv_type_1_0= rulePositionOperator )
             {
-            // InternalXmu2.g:1359:4: (lv_type_1_0= rulePositionOperator )
-            // InternalXmu2.g:1360:5: lv_type_1_0= rulePositionOperator
+            // InternalXmu2.g:1362:4: (lv_type_1_0= rulePositionOperator )
+            // InternalXmu2.g:1363:5: lv_type_1_0= rulePositionOperator
             {
             if ( state.backtracking==0 ) {
 
@@ -3784,32 +3768,32 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,19,FOLLOW_36); if (state.failed) return current;
+            otherlv_2=(Token)match(input,19,FOLLOW_35); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
               			newLeafNode(otherlv_2, grammarAccess.getPositionPathAccess().getLeftParenthesisKeyword_2());
               		
             }
-            // InternalXmu2.g:1381:3: ( (lv_value_3_0= ruleExpression ) )?
-            int alt28=2;
-            int LA28_0 = input.LA(1);
+            // InternalXmu2.g:1384:3: ( (lv_value_3_0= ruleExpression ) )?
+            int alt27=2;
+            int LA27_0 = input.LA(1);
 
-            if ( (LA28_0==RULE_NAME||(LA28_0>=RULE_INT && LA28_0<=RULE_BOOLEAN)||LA28_0==19||(LA28_0>=58 && LA28_0<=61)) ) {
-                alt28=1;
+            if ( (LA27_0==RULE_NAME||(LA27_0>=RULE_INT && LA27_0<=RULE_BOOLEAN)||LA27_0==19||(LA27_0>=58 && LA27_0<=61)) ) {
+                alt27=1;
             }
-            switch (alt28) {
+            switch (alt27) {
                 case 1 :
-                    // InternalXmu2.g:1382:4: (lv_value_3_0= ruleExpression )
+                    // InternalXmu2.g:1385:4: (lv_value_3_0= ruleExpression )
                     {
-                    // InternalXmu2.g:1382:4: (lv_value_3_0= ruleExpression )
-                    // InternalXmu2.g:1383:5: lv_value_3_0= ruleExpression
+                    // InternalXmu2.g:1385:4: (lv_value_3_0= ruleExpression )
+                    // InternalXmu2.g:1386:5: lv_value_3_0= ruleExpression
                     {
                     if ( state.backtracking==0 ) {
 
                       					newCompositeNode(grammarAccess.getPositionPathAccess().getValueExpressionParserRuleCall_3_0());
                       				
                     }
-                    pushFollow(FOLLOW_34);
+                    pushFollow(FOLLOW_33);
                     lv_value_3_0=ruleExpression();
 
                     state._fsp--;
@@ -3867,7 +3851,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleFeaturePath"
-    // InternalXmu2.g:1408:1: entryRuleFeaturePath returns [EObject current=null] : iv_ruleFeaturePath= ruleFeaturePath EOF ;
+    // InternalXmu2.g:1411:1: entryRuleFeaturePath returns [EObject current=null] : iv_ruleFeaturePath= ruleFeaturePath EOF ;
     public final EObject entryRuleFeaturePath() throws RecognitionException {
         EObject current = null;
 
@@ -3875,8 +3859,8 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalXmu2.g:1408:52: (iv_ruleFeaturePath= ruleFeaturePath EOF )
-            // InternalXmu2.g:1409:2: iv_ruleFeaturePath= ruleFeaturePath EOF
+            // InternalXmu2.g:1411:52: (iv_ruleFeaturePath= ruleFeaturePath EOF )
+            // InternalXmu2.g:1412:2: iv_ruleFeaturePath= ruleFeaturePath EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getFeaturePathRule()); 
@@ -3907,7 +3891,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleFeaturePath"
-    // InternalXmu2.g:1415:1: ruleFeaturePath returns [EObject current=null] : (otherlv_0= '.' ( (lv_feature_1_0= RULE_NAME ) ) ) ;
+    // InternalXmu2.g:1418:1: ruleFeaturePath returns [EObject current=null] : (otherlv_0= '.' ( (lv_feature_1_0= RULE_NAME ) ) ) ;
     public final EObject ruleFeaturePath() throws RecognitionException {
         EObject current = null;
 
@@ -3918,11 +3902,11 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:1421:2: ( (otherlv_0= '.' ( (lv_feature_1_0= RULE_NAME ) ) ) )
-            // InternalXmu2.g:1422:2: (otherlv_0= '.' ( (lv_feature_1_0= RULE_NAME ) ) )
+            // InternalXmu2.g:1424:2: ( (otherlv_0= '.' ( (lv_feature_1_0= RULE_NAME ) ) ) )
+            // InternalXmu2.g:1425:2: (otherlv_0= '.' ( (lv_feature_1_0= RULE_NAME ) ) )
             {
-            // InternalXmu2.g:1422:2: (otherlv_0= '.' ( (lv_feature_1_0= RULE_NAME ) ) )
-            // InternalXmu2.g:1423:3: otherlv_0= '.' ( (lv_feature_1_0= RULE_NAME ) )
+            // InternalXmu2.g:1425:2: (otherlv_0= '.' ( (lv_feature_1_0= RULE_NAME ) ) )
+            // InternalXmu2.g:1426:3: otherlv_0= '.' ( (lv_feature_1_0= RULE_NAME ) )
             {
             otherlv_0=(Token)match(input,34,FOLLOW_3); if (state.failed) return current;
             if ( state.backtracking==0 ) {
@@ -3930,11 +3914,11 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
               			newLeafNode(otherlv_0, grammarAccess.getFeaturePathAccess().getFullStopKeyword_0());
               		
             }
-            // InternalXmu2.g:1427:3: ( (lv_feature_1_0= RULE_NAME ) )
-            // InternalXmu2.g:1428:4: (lv_feature_1_0= RULE_NAME )
+            // InternalXmu2.g:1430:3: ( (lv_feature_1_0= RULE_NAME ) )
+            // InternalXmu2.g:1431:4: (lv_feature_1_0= RULE_NAME )
             {
-            // InternalXmu2.g:1428:4: (lv_feature_1_0= RULE_NAME )
-            // InternalXmu2.g:1429:5: lv_feature_1_0= RULE_NAME
+            // InternalXmu2.g:1431:4: (lv_feature_1_0= RULE_NAME )
+            // InternalXmu2.g:1432:5: lv_feature_1_0= RULE_NAME
             {
             lv_feature_1_0=(Token)match(input,RULE_NAME,FOLLOW_2); if (state.failed) return current;
             if ( state.backtracking==0 ) {
@@ -3985,7 +3969,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleOperationPath"
-    // InternalXmu2.g:1449:1: entryRuleOperationPath returns [EObject current=null] : iv_ruleOperationPath= ruleOperationPath EOF ;
+    // InternalXmu2.g:1452:1: entryRuleOperationPath returns [EObject current=null] : iv_ruleOperationPath= ruleOperationPath EOF ;
     public final EObject entryRuleOperationPath() throws RecognitionException {
         EObject current = null;
 
@@ -3993,8 +3977,8 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalXmu2.g:1449:54: (iv_ruleOperationPath= ruleOperationPath EOF )
-            // InternalXmu2.g:1450:2: iv_ruleOperationPath= ruleOperationPath EOF
+            // InternalXmu2.g:1452:54: (iv_ruleOperationPath= ruleOperationPath EOF )
+            // InternalXmu2.g:1453:2: iv_ruleOperationPath= ruleOperationPath EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getOperationPathRule()); 
@@ -4025,7 +4009,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleOperationPath"
-    // InternalXmu2.g:1456:1: ruleOperationPath returns [EObject current=null] : (otherlv_0= '.' ( (lv_operation_1_0= RULE_NAME ) ) otherlv_2= '(' ( ( (lv_parameters_3_0= ruleExpression ) ) (otherlv_4= ',' ( (lv_parameters_5_0= ruleExpression ) ) )* )? otherlv_6= ')' ) ;
+    // InternalXmu2.g:1459:1: ruleOperationPath returns [EObject current=null] : (otherlv_0= '.' ( (lv_operation_1_0= RULE_NAME ) ) otherlv_2= '(' ( ( (lv_parameters_3_0= ruleExpression ) ) (otherlv_4= ',' ( (lv_parameters_5_0= ruleExpression ) ) )* )? otherlv_6= ')' ) ;
     public final EObject ruleOperationPath() throws RecognitionException {
         EObject current = null;
 
@@ -4043,11 +4027,11 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:1462:2: ( (otherlv_0= '.' ( (lv_operation_1_0= RULE_NAME ) ) otherlv_2= '(' ( ( (lv_parameters_3_0= ruleExpression ) ) (otherlv_4= ',' ( (lv_parameters_5_0= ruleExpression ) ) )* )? otherlv_6= ')' ) )
-            // InternalXmu2.g:1463:2: (otherlv_0= '.' ( (lv_operation_1_0= RULE_NAME ) ) otherlv_2= '(' ( ( (lv_parameters_3_0= ruleExpression ) ) (otherlv_4= ',' ( (lv_parameters_5_0= ruleExpression ) ) )* )? otherlv_6= ')' )
+            // InternalXmu2.g:1465:2: ( (otherlv_0= '.' ( (lv_operation_1_0= RULE_NAME ) ) otherlv_2= '(' ( ( (lv_parameters_3_0= ruleExpression ) ) (otherlv_4= ',' ( (lv_parameters_5_0= ruleExpression ) ) )* )? otherlv_6= ')' ) )
+            // InternalXmu2.g:1466:2: (otherlv_0= '.' ( (lv_operation_1_0= RULE_NAME ) ) otherlv_2= '(' ( ( (lv_parameters_3_0= ruleExpression ) ) (otherlv_4= ',' ( (lv_parameters_5_0= ruleExpression ) ) )* )? otherlv_6= ')' )
             {
-            // InternalXmu2.g:1463:2: (otherlv_0= '.' ( (lv_operation_1_0= RULE_NAME ) ) otherlv_2= '(' ( ( (lv_parameters_3_0= ruleExpression ) ) (otherlv_4= ',' ( (lv_parameters_5_0= ruleExpression ) ) )* )? otherlv_6= ')' )
-            // InternalXmu2.g:1464:3: otherlv_0= '.' ( (lv_operation_1_0= RULE_NAME ) ) otherlv_2= '(' ( ( (lv_parameters_3_0= ruleExpression ) ) (otherlv_4= ',' ( (lv_parameters_5_0= ruleExpression ) ) )* )? otherlv_6= ')'
+            // InternalXmu2.g:1466:2: (otherlv_0= '.' ( (lv_operation_1_0= RULE_NAME ) ) otherlv_2= '(' ( ( (lv_parameters_3_0= ruleExpression ) ) (otherlv_4= ',' ( (lv_parameters_5_0= ruleExpression ) ) )* )? otherlv_6= ')' )
+            // InternalXmu2.g:1467:3: otherlv_0= '.' ( (lv_operation_1_0= RULE_NAME ) ) otherlv_2= '(' ( ( (lv_parameters_3_0= ruleExpression ) ) (otherlv_4= ',' ( (lv_parameters_5_0= ruleExpression ) ) )* )? otherlv_6= ')'
             {
             otherlv_0=(Token)match(input,34,FOLLOW_3); if (state.failed) return current;
             if ( state.backtracking==0 ) {
@@ -4055,11 +4039,11 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
               			newLeafNode(otherlv_0, grammarAccess.getOperationPathAccess().getFullStopKeyword_0());
               		
             }
-            // InternalXmu2.g:1468:3: ( (lv_operation_1_0= RULE_NAME ) )
-            // InternalXmu2.g:1469:4: (lv_operation_1_0= RULE_NAME )
+            // InternalXmu2.g:1471:3: ( (lv_operation_1_0= RULE_NAME ) )
+            // InternalXmu2.g:1472:4: (lv_operation_1_0= RULE_NAME )
             {
-            // InternalXmu2.g:1469:4: (lv_operation_1_0= RULE_NAME )
-            // InternalXmu2.g:1470:5: lv_operation_1_0= RULE_NAME
+            // InternalXmu2.g:1472:4: (lv_operation_1_0= RULE_NAME )
+            // InternalXmu2.g:1473:5: lv_operation_1_0= RULE_NAME
             {
             lv_operation_1_0=(Token)match(input,RULE_NAME,FOLLOW_8); if (state.failed) return current;
             if ( state.backtracking==0 ) {
@@ -4085,28 +4069,28 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,19,FOLLOW_36); if (state.failed) return current;
+            otherlv_2=(Token)match(input,19,FOLLOW_35); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
               			newLeafNode(otherlv_2, grammarAccess.getOperationPathAccess().getLeftParenthesisKeyword_2());
               		
             }
-            // InternalXmu2.g:1490:3: ( ( (lv_parameters_3_0= ruleExpression ) ) (otherlv_4= ',' ( (lv_parameters_5_0= ruleExpression ) ) )* )?
-            int alt30=2;
-            int LA30_0 = input.LA(1);
+            // InternalXmu2.g:1493:3: ( ( (lv_parameters_3_0= ruleExpression ) ) (otherlv_4= ',' ( (lv_parameters_5_0= ruleExpression ) ) )* )?
+            int alt29=2;
+            int LA29_0 = input.LA(1);
 
-            if ( (LA30_0==RULE_NAME||(LA30_0>=RULE_INT && LA30_0<=RULE_BOOLEAN)||LA30_0==19||(LA30_0>=58 && LA30_0<=61)) ) {
-                alt30=1;
+            if ( (LA29_0==RULE_NAME||(LA29_0>=RULE_INT && LA29_0<=RULE_BOOLEAN)||LA29_0==19||(LA29_0>=58 && LA29_0<=61)) ) {
+                alt29=1;
             }
-            switch (alt30) {
+            switch (alt29) {
                 case 1 :
-                    // InternalXmu2.g:1491:4: ( (lv_parameters_3_0= ruleExpression ) ) (otherlv_4= ',' ( (lv_parameters_5_0= ruleExpression ) ) )*
+                    // InternalXmu2.g:1494:4: ( (lv_parameters_3_0= ruleExpression ) ) (otherlv_4= ',' ( (lv_parameters_5_0= ruleExpression ) ) )*
                     {
-                    // InternalXmu2.g:1491:4: ( (lv_parameters_3_0= ruleExpression ) )
-                    // InternalXmu2.g:1492:5: (lv_parameters_3_0= ruleExpression )
+                    // InternalXmu2.g:1494:4: ( (lv_parameters_3_0= ruleExpression ) )
+                    // InternalXmu2.g:1495:5: (lv_parameters_3_0= ruleExpression )
                     {
-                    // InternalXmu2.g:1492:5: (lv_parameters_3_0= ruleExpression )
-                    // InternalXmu2.g:1493:6: lv_parameters_3_0= ruleExpression
+                    // InternalXmu2.g:1495:5: (lv_parameters_3_0= ruleExpression )
+                    // InternalXmu2.g:1496:6: lv_parameters_3_0= ruleExpression
                     {
                     if ( state.backtracking==0 ) {
 
@@ -4137,20 +4121,20 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // InternalXmu2.g:1510:4: (otherlv_4= ',' ( (lv_parameters_5_0= ruleExpression ) ) )*
-                    loop29:
+                    // InternalXmu2.g:1513:4: (otherlv_4= ',' ( (lv_parameters_5_0= ruleExpression ) ) )*
+                    loop28:
                     do {
-                        int alt29=2;
-                        int LA29_0 = input.LA(1);
+                        int alt28=2;
+                        int LA28_0 = input.LA(1);
 
-                        if ( (LA29_0==20) ) {
-                            alt29=1;
+                        if ( (LA28_0==20) ) {
+                            alt28=1;
                         }
 
 
-                        switch (alt29) {
+                        switch (alt28) {
                     	case 1 :
-                    	    // InternalXmu2.g:1511:5: otherlv_4= ',' ( (lv_parameters_5_0= ruleExpression ) )
+                    	    // InternalXmu2.g:1514:5: otherlv_4= ',' ( (lv_parameters_5_0= ruleExpression ) )
                     	    {
                     	    otherlv_4=(Token)match(input,20,FOLLOW_24); if (state.failed) return current;
                     	    if ( state.backtracking==0 ) {
@@ -4158,11 +4142,11 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                     	      					newLeafNode(otherlv_4, grammarAccess.getOperationPathAccess().getCommaKeyword_3_1_0());
                     	      				
                     	    }
-                    	    // InternalXmu2.g:1515:5: ( (lv_parameters_5_0= ruleExpression ) )
-                    	    // InternalXmu2.g:1516:6: (lv_parameters_5_0= ruleExpression )
+                    	    // InternalXmu2.g:1518:5: ( (lv_parameters_5_0= ruleExpression ) )
+                    	    // InternalXmu2.g:1519:6: (lv_parameters_5_0= ruleExpression )
                     	    {
-                    	    // InternalXmu2.g:1516:6: (lv_parameters_5_0= ruleExpression )
-                    	    // InternalXmu2.g:1517:7: lv_parameters_5_0= ruleExpression
+                    	    // InternalXmu2.g:1519:6: (lv_parameters_5_0= ruleExpression )
+                    	    // InternalXmu2.g:1520:7: lv_parameters_5_0= ruleExpression
                     	    {
                     	    if ( state.backtracking==0 ) {
 
@@ -4198,7 +4182,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    break loop29;
+                    	    break loop28;
                         }
                     } while (true);
 
@@ -4239,7 +4223,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleVariableExpression"
-    // InternalXmu2.g:1544:1: entryRuleVariableExpression returns [EObject current=null] : iv_ruleVariableExpression= ruleVariableExpression EOF ;
+    // InternalXmu2.g:1547:1: entryRuleVariableExpression returns [EObject current=null] : iv_ruleVariableExpression= ruleVariableExpression EOF ;
     public final EObject entryRuleVariableExpression() throws RecognitionException {
         EObject current = null;
 
@@ -4247,8 +4231,8 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalXmu2.g:1544:59: (iv_ruleVariableExpression= ruleVariableExpression EOF )
-            // InternalXmu2.g:1545:2: iv_ruleVariableExpression= ruleVariableExpression EOF
+            // InternalXmu2.g:1547:59: (iv_ruleVariableExpression= ruleVariableExpression EOF )
+            // InternalXmu2.g:1548:2: iv_ruleVariableExpression= ruleVariableExpression EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getVariableExpressionRule()); 
@@ -4279,7 +4263,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleVariableExpression"
-    // InternalXmu2.g:1551:1: ruleVariableExpression returns [EObject current=null] : ( (lv_variable_0_0= RULE_NAME ) ) ;
+    // InternalXmu2.g:1554:1: ruleVariableExpression returns [EObject current=null] : ( (lv_variable_0_0= RULE_NAME ) ) ;
     public final EObject ruleVariableExpression() throws RecognitionException {
         EObject current = null;
 
@@ -4289,14 +4273,14 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:1557:2: ( ( (lv_variable_0_0= RULE_NAME ) ) )
-            // InternalXmu2.g:1558:2: ( (lv_variable_0_0= RULE_NAME ) )
+            // InternalXmu2.g:1560:2: ( ( (lv_variable_0_0= RULE_NAME ) ) )
+            // InternalXmu2.g:1561:2: ( (lv_variable_0_0= RULE_NAME ) )
             {
-            // InternalXmu2.g:1558:2: ( (lv_variable_0_0= RULE_NAME ) )
-            // InternalXmu2.g:1559:3: (lv_variable_0_0= RULE_NAME )
+            // InternalXmu2.g:1561:2: ( (lv_variable_0_0= RULE_NAME ) )
+            // InternalXmu2.g:1562:3: (lv_variable_0_0= RULE_NAME )
             {
-            // InternalXmu2.g:1559:3: (lv_variable_0_0= RULE_NAME )
-            // InternalXmu2.g:1560:4: lv_variable_0_0= RULE_NAME
+            // InternalXmu2.g:1562:3: (lv_variable_0_0= RULE_NAME )
+            // InternalXmu2.g:1563:4: lv_variable_0_0= RULE_NAME
             {
             lv_variable_0_0=(Token)match(input,RULE_NAME,FOLLOW_2); if (state.failed) return current;
             if ( state.backtracking==0 ) {
@@ -4344,7 +4328,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRulePath"
-    // InternalXmu2.g:1579:1: entryRulePath returns [EObject current=null] : iv_rulePath= rulePath EOF ;
+    // InternalXmu2.g:1582:1: entryRulePath returns [EObject current=null] : iv_rulePath= rulePath EOF ;
     public final EObject entryRulePath() throws RecognitionException {
         EObject current = null;
 
@@ -4352,8 +4336,8 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalXmu2.g:1579:45: (iv_rulePath= rulePath EOF )
-            // InternalXmu2.g:1580:2: iv_rulePath= rulePath EOF
+            // InternalXmu2.g:1582:45: (iv_rulePath= rulePath EOF )
+            // InternalXmu2.g:1583:2: iv_rulePath= rulePath EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getPathRule()); 
@@ -4384,7 +4368,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePath"
-    // InternalXmu2.g:1586:1: rulePath returns [EObject current=null] : ( ( ( ruleLoopPath )=>this_LoopPath_0= ruleLoopPath ) | this_PositionPath_1= rulePositionPath | ( ( ruleFeaturePath )=>this_FeaturePath_2= ruleFeaturePath ) | this_OperationPath_3= ruleOperationPath ) ;
+    // InternalXmu2.g:1589:1: rulePath returns [EObject current=null] : ( ( ( ruleLoopPath )=>this_LoopPath_0= ruleLoopPath ) | this_PositionPath_1= rulePositionPath | ( ( ruleFeaturePath )=>this_FeaturePath_2= ruleFeaturePath ) | this_OperationPath_3= ruleOperationPath ) ;
     public final EObject rulePath() throws RecognitionException {
         EObject current = null;
 
@@ -4401,18 +4385,18 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:1592:2: ( ( ( ( ruleLoopPath )=>this_LoopPath_0= ruleLoopPath ) | this_PositionPath_1= rulePositionPath | ( ( ruleFeaturePath )=>this_FeaturePath_2= ruleFeaturePath ) | this_OperationPath_3= ruleOperationPath ) )
-            // InternalXmu2.g:1593:2: ( ( ( ruleLoopPath )=>this_LoopPath_0= ruleLoopPath ) | this_PositionPath_1= rulePositionPath | ( ( ruleFeaturePath )=>this_FeaturePath_2= ruleFeaturePath ) | this_OperationPath_3= ruleOperationPath )
+            // InternalXmu2.g:1595:2: ( ( ( ( ruleLoopPath )=>this_LoopPath_0= ruleLoopPath ) | this_PositionPath_1= rulePositionPath | ( ( ruleFeaturePath )=>this_FeaturePath_2= ruleFeaturePath ) | this_OperationPath_3= ruleOperationPath ) )
+            // InternalXmu2.g:1596:2: ( ( ( ruleLoopPath )=>this_LoopPath_0= ruleLoopPath ) | this_PositionPath_1= rulePositionPath | ( ( ruleFeaturePath )=>this_FeaturePath_2= ruleFeaturePath ) | this_OperationPath_3= ruleOperationPath )
             {
-            // InternalXmu2.g:1593:2: ( ( ( ruleLoopPath )=>this_LoopPath_0= ruleLoopPath ) | this_PositionPath_1= rulePositionPath | ( ( ruleFeaturePath )=>this_FeaturePath_2= ruleFeaturePath ) | this_OperationPath_3= ruleOperationPath )
-            int alt31=4;
-            alt31 = dfa31.predict(input);
-            switch (alt31) {
+            // InternalXmu2.g:1596:2: ( ( ( ruleLoopPath )=>this_LoopPath_0= ruleLoopPath ) | this_PositionPath_1= rulePositionPath | ( ( ruleFeaturePath )=>this_FeaturePath_2= ruleFeaturePath ) | this_OperationPath_3= ruleOperationPath )
+            int alt30=4;
+            alt30 = dfa30.predict(input);
+            switch (alt30) {
                 case 1 :
-                    // InternalXmu2.g:1594:3: ( ( ruleLoopPath )=>this_LoopPath_0= ruleLoopPath )
+                    // InternalXmu2.g:1597:3: ( ( ruleLoopPath )=>this_LoopPath_0= ruleLoopPath )
                     {
-                    // InternalXmu2.g:1594:3: ( ( ruleLoopPath )=>this_LoopPath_0= ruleLoopPath )
-                    // InternalXmu2.g:1595:4: ( ruleLoopPath )=>this_LoopPath_0= ruleLoopPath
+                    // InternalXmu2.g:1597:3: ( ( ruleLoopPath )=>this_LoopPath_0= ruleLoopPath )
+                    // InternalXmu2.g:1598:4: ( ruleLoopPath )=>this_LoopPath_0= ruleLoopPath
                     {
                     if ( state.backtracking==0 ) {
 
@@ -4437,7 +4421,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalXmu2.g:1606:3: this_PositionPath_1= rulePositionPath
+                    // InternalXmu2.g:1609:3: this_PositionPath_1= rulePositionPath
                     {
                     if ( state.backtracking==0 ) {
 
@@ -4459,10 +4443,10 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalXmu2.g:1615:3: ( ( ruleFeaturePath )=>this_FeaturePath_2= ruleFeaturePath )
+                    // InternalXmu2.g:1618:3: ( ( ruleFeaturePath )=>this_FeaturePath_2= ruleFeaturePath )
                     {
-                    // InternalXmu2.g:1615:3: ( ( ruleFeaturePath )=>this_FeaturePath_2= ruleFeaturePath )
-                    // InternalXmu2.g:1616:4: ( ruleFeaturePath )=>this_FeaturePath_2= ruleFeaturePath
+                    // InternalXmu2.g:1618:3: ( ( ruleFeaturePath )=>this_FeaturePath_2= ruleFeaturePath )
+                    // InternalXmu2.g:1619:4: ( ruleFeaturePath )=>this_FeaturePath_2= ruleFeaturePath
                     {
                     if ( state.backtracking==0 ) {
 
@@ -4487,7 +4471,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // InternalXmu2.g:1627:3: this_OperationPath_3= ruleOperationPath
+                    // InternalXmu2.g:1630:3: this_OperationPath_3= ruleOperationPath
                     {
                     if ( state.backtracking==0 ) {
 
@@ -4533,7 +4517,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleEmptyExpression"
-    // InternalXmu2.g:1639:1: entryRuleEmptyExpression returns [EObject current=null] : iv_ruleEmptyExpression= ruleEmptyExpression EOF ;
+    // InternalXmu2.g:1642:1: entryRuleEmptyExpression returns [EObject current=null] : iv_ruleEmptyExpression= ruleEmptyExpression EOF ;
     public final EObject entryRuleEmptyExpression() throws RecognitionException {
         EObject current = null;
 
@@ -4541,8 +4525,8 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalXmu2.g:1639:56: (iv_ruleEmptyExpression= ruleEmptyExpression EOF )
-            // InternalXmu2.g:1640:2: iv_ruleEmptyExpression= ruleEmptyExpression EOF
+            // InternalXmu2.g:1642:56: (iv_ruleEmptyExpression= ruleEmptyExpression EOF )
+            // InternalXmu2.g:1643:2: iv_ruleEmptyExpression= ruleEmptyExpression EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getEmptyExpressionRule()); 
@@ -4573,7 +4557,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleEmptyExpression"
-    // InternalXmu2.g:1646:1: ruleEmptyExpression returns [EObject current=null] : ( (lv_type_0_0= ruleEmptyValue ) ) ;
+    // InternalXmu2.g:1649:1: ruleEmptyExpression returns [EObject current=null] : ( (lv_type_0_0= ruleEmptyValue ) ) ;
     public final EObject ruleEmptyExpression() throws RecognitionException {
         EObject current = null;
 
@@ -4584,14 +4568,14 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:1652:2: ( ( (lv_type_0_0= ruleEmptyValue ) ) )
-            // InternalXmu2.g:1653:2: ( (lv_type_0_0= ruleEmptyValue ) )
+            // InternalXmu2.g:1655:2: ( ( (lv_type_0_0= ruleEmptyValue ) ) )
+            // InternalXmu2.g:1656:2: ( (lv_type_0_0= ruleEmptyValue ) )
             {
-            // InternalXmu2.g:1653:2: ( (lv_type_0_0= ruleEmptyValue ) )
-            // InternalXmu2.g:1654:3: (lv_type_0_0= ruleEmptyValue )
+            // InternalXmu2.g:1656:2: ( (lv_type_0_0= ruleEmptyValue ) )
+            // InternalXmu2.g:1657:3: (lv_type_0_0= ruleEmptyValue )
             {
-            // InternalXmu2.g:1654:3: (lv_type_0_0= ruleEmptyValue )
-            // InternalXmu2.g:1655:4: lv_type_0_0= ruleEmptyValue
+            // InternalXmu2.g:1657:3: (lv_type_0_0= ruleEmptyValue )
+            // InternalXmu2.g:1658:4: lv_type_0_0= ruleEmptyValue
             {
             if ( state.backtracking==0 ) {
 
@@ -4644,7 +4628,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleStringLiteralExpression"
-    // InternalXmu2.g:1675:1: entryRuleStringLiteralExpression returns [EObject current=null] : iv_ruleStringLiteralExpression= ruleStringLiteralExpression EOF ;
+    // InternalXmu2.g:1678:1: entryRuleStringLiteralExpression returns [EObject current=null] : iv_ruleStringLiteralExpression= ruleStringLiteralExpression EOF ;
     public final EObject entryRuleStringLiteralExpression() throws RecognitionException {
         EObject current = null;
 
@@ -4652,8 +4636,8 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalXmu2.g:1675:64: (iv_ruleStringLiteralExpression= ruleStringLiteralExpression EOF )
-            // InternalXmu2.g:1676:2: iv_ruleStringLiteralExpression= ruleStringLiteralExpression EOF
+            // InternalXmu2.g:1678:64: (iv_ruleStringLiteralExpression= ruleStringLiteralExpression EOF )
+            // InternalXmu2.g:1679:2: iv_ruleStringLiteralExpression= ruleStringLiteralExpression EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getStringLiteralExpressionRule()); 
@@ -4684,7 +4668,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleStringLiteralExpression"
-    // InternalXmu2.g:1682:1: ruleStringLiteralExpression returns [EObject current=null] : ( (lv_value_0_0= RULE_STRING ) ) ;
+    // InternalXmu2.g:1685:1: ruleStringLiteralExpression returns [EObject current=null] : ( (lv_value_0_0= RULE_STRING ) ) ;
     public final EObject ruleStringLiteralExpression() throws RecognitionException {
         EObject current = null;
 
@@ -4694,14 +4678,14 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:1688:2: ( ( (lv_value_0_0= RULE_STRING ) ) )
-            // InternalXmu2.g:1689:2: ( (lv_value_0_0= RULE_STRING ) )
+            // InternalXmu2.g:1691:2: ( ( (lv_value_0_0= RULE_STRING ) ) )
+            // InternalXmu2.g:1692:2: ( (lv_value_0_0= RULE_STRING ) )
             {
-            // InternalXmu2.g:1689:2: ( (lv_value_0_0= RULE_STRING ) )
-            // InternalXmu2.g:1690:3: (lv_value_0_0= RULE_STRING )
+            // InternalXmu2.g:1692:2: ( (lv_value_0_0= RULE_STRING ) )
+            // InternalXmu2.g:1693:3: (lv_value_0_0= RULE_STRING )
             {
-            // InternalXmu2.g:1690:3: (lv_value_0_0= RULE_STRING )
-            // InternalXmu2.g:1691:4: lv_value_0_0= RULE_STRING
+            // InternalXmu2.g:1693:3: (lv_value_0_0= RULE_STRING )
+            // InternalXmu2.g:1694:4: lv_value_0_0= RULE_STRING
             {
             lv_value_0_0=(Token)match(input,RULE_STRING,FOLLOW_2); if (state.failed) return current;
             if ( state.backtracking==0 ) {
@@ -4749,7 +4733,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleIntegerLiteralExpression"
-    // InternalXmu2.g:1710:1: entryRuleIntegerLiteralExpression returns [EObject current=null] : iv_ruleIntegerLiteralExpression= ruleIntegerLiteralExpression EOF ;
+    // InternalXmu2.g:1713:1: entryRuleIntegerLiteralExpression returns [EObject current=null] : iv_ruleIntegerLiteralExpression= ruleIntegerLiteralExpression EOF ;
     public final EObject entryRuleIntegerLiteralExpression() throws RecognitionException {
         EObject current = null;
 
@@ -4757,8 +4741,8 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalXmu2.g:1710:65: (iv_ruleIntegerLiteralExpression= ruleIntegerLiteralExpression EOF )
-            // InternalXmu2.g:1711:2: iv_ruleIntegerLiteralExpression= ruleIntegerLiteralExpression EOF
+            // InternalXmu2.g:1713:65: (iv_ruleIntegerLiteralExpression= ruleIntegerLiteralExpression EOF )
+            // InternalXmu2.g:1714:2: iv_ruleIntegerLiteralExpression= ruleIntegerLiteralExpression EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getIntegerLiteralExpressionRule()); 
@@ -4789,7 +4773,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleIntegerLiteralExpression"
-    // InternalXmu2.g:1717:1: ruleIntegerLiteralExpression returns [EObject current=null] : ( (lv_value_0_0= RULE_INT ) ) ;
+    // InternalXmu2.g:1720:1: ruleIntegerLiteralExpression returns [EObject current=null] : ( (lv_value_0_0= RULE_INT ) ) ;
     public final EObject ruleIntegerLiteralExpression() throws RecognitionException {
         EObject current = null;
 
@@ -4799,14 +4783,14 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:1723:2: ( ( (lv_value_0_0= RULE_INT ) ) )
-            // InternalXmu2.g:1724:2: ( (lv_value_0_0= RULE_INT ) )
+            // InternalXmu2.g:1726:2: ( ( (lv_value_0_0= RULE_INT ) ) )
+            // InternalXmu2.g:1727:2: ( (lv_value_0_0= RULE_INT ) )
             {
-            // InternalXmu2.g:1724:2: ( (lv_value_0_0= RULE_INT ) )
-            // InternalXmu2.g:1725:3: (lv_value_0_0= RULE_INT )
+            // InternalXmu2.g:1727:2: ( (lv_value_0_0= RULE_INT ) )
+            // InternalXmu2.g:1728:3: (lv_value_0_0= RULE_INT )
             {
-            // InternalXmu2.g:1725:3: (lv_value_0_0= RULE_INT )
-            // InternalXmu2.g:1726:4: lv_value_0_0= RULE_INT
+            // InternalXmu2.g:1728:3: (lv_value_0_0= RULE_INT )
+            // InternalXmu2.g:1729:4: lv_value_0_0= RULE_INT
             {
             lv_value_0_0=(Token)match(input,RULE_INT,FOLLOW_2); if (state.failed) return current;
             if ( state.backtracking==0 ) {
@@ -4854,7 +4838,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleBooleanLiteralExpression"
-    // InternalXmu2.g:1745:1: entryRuleBooleanLiteralExpression returns [EObject current=null] : iv_ruleBooleanLiteralExpression= ruleBooleanLiteralExpression EOF ;
+    // InternalXmu2.g:1748:1: entryRuleBooleanLiteralExpression returns [EObject current=null] : iv_ruleBooleanLiteralExpression= ruleBooleanLiteralExpression EOF ;
     public final EObject entryRuleBooleanLiteralExpression() throws RecognitionException {
         EObject current = null;
 
@@ -4862,8 +4846,8 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalXmu2.g:1745:65: (iv_ruleBooleanLiteralExpression= ruleBooleanLiteralExpression EOF )
-            // InternalXmu2.g:1746:2: iv_ruleBooleanLiteralExpression= ruleBooleanLiteralExpression EOF
+            // InternalXmu2.g:1748:65: (iv_ruleBooleanLiteralExpression= ruleBooleanLiteralExpression EOF )
+            // InternalXmu2.g:1749:2: iv_ruleBooleanLiteralExpression= ruleBooleanLiteralExpression EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getBooleanLiteralExpressionRule()); 
@@ -4894,7 +4878,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleBooleanLiteralExpression"
-    // InternalXmu2.g:1752:1: ruleBooleanLiteralExpression returns [EObject current=null] : ( (lv_value_0_0= RULE_BOOLEAN ) ) ;
+    // InternalXmu2.g:1755:1: ruleBooleanLiteralExpression returns [EObject current=null] : ( (lv_value_0_0= RULE_BOOLEAN ) ) ;
     public final EObject ruleBooleanLiteralExpression() throws RecognitionException {
         EObject current = null;
 
@@ -4904,14 +4888,14 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:1758:2: ( ( (lv_value_0_0= RULE_BOOLEAN ) ) )
-            // InternalXmu2.g:1759:2: ( (lv_value_0_0= RULE_BOOLEAN ) )
+            // InternalXmu2.g:1761:2: ( ( (lv_value_0_0= RULE_BOOLEAN ) ) )
+            // InternalXmu2.g:1762:2: ( (lv_value_0_0= RULE_BOOLEAN ) )
             {
-            // InternalXmu2.g:1759:2: ( (lv_value_0_0= RULE_BOOLEAN ) )
-            // InternalXmu2.g:1760:3: (lv_value_0_0= RULE_BOOLEAN )
+            // InternalXmu2.g:1762:2: ( (lv_value_0_0= RULE_BOOLEAN ) )
+            // InternalXmu2.g:1763:3: (lv_value_0_0= RULE_BOOLEAN )
             {
-            // InternalXmu2.g:1760:3: (lv_value_0_0= RULE_BOOLEAN )
-            // InternalXmu2.g:1761:4: lv_value_0_0= RULE_BOOLEAN
+            // InternalXmu2.g:1763:3: (lv_value_0_0= RULE_BOOLEAN )
+            // InternalXmu2.g:1764:4: lv_value_0_0= RULE_BOOLEAN
             {
             lv_value_0_0=(Token)match(input,RULE_BOOLEAN,FOLLOW_2); if (state.failed) return current;
             if ( state.backtracking==0 ) {
@@ -4959,7 +4943,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleEnumLiteralExpression"
-    // InternalXmu2.g:1780:1: entryRuleEnumLiteralExpression returns [EObject current=null] : iv_ruleEnumLiteralExpression= ruleEnumLiteralExpression EOF ;
+    // InternalXmu2.g:1783:1: entryRuleEnumLiteralExpression returns [EObject current=null] : iv_ruleEnumLiteralExpression= ruleEnumLiteralExpression EOF ;
     public final EObject entryRuleEnumLiteralExpression() throws RecognitionException {
         EObject current = null;
 
@@ -4967,8 +4951,8 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalXmu2.g:1780:62: (iv_ruleEnumLiteralExpression= ruleEnumLiteralExpression EOF )
-            // InternalXmu2.g:1781:2: iv_ruleEnumLiteralExpression= ruleEnumLiteralExpression EOF
+            // InternalXmu2.g:1783:62: (iv_ruleEnumLiteralExpression= ruleEnumLiteralExpression EOF )
+            // InternalXmu2.g:1784:2: iv_ruleEnumLiteralExpression= ruleEnumLiteralExpression EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getEnumLiteralExpressionRule()); 
@@ -4999,7 +4983,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleEnumLiteralExpression"
-    // InternalXmu2.g:1787:1: ruleEnumLiteralExpression returns [EObject current=null] : ( ( ( ruleType ) ) otherlv_1= '::' ( (otherlv_2= RULE_NAME ) ) ) ;
+    // InternalXmu2.g:1790:1: ruleEnumLiteralExpression returns [EObject current=null] : ( ( ( ruleType ) ) otherlv_1= '::' ( (otherlv_2= RULE_NAME ) ) ) ;
     public final EObject ruleEnumLiteralExpression() throws RecognitionException {
         EObject current = null;
 
@@ -5010,17 +4994,17 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:1793:2: ( ( ( ( ruleType ) ) otherlv_1= '::' ( (otherlv_2= RULE_NAME ) ) ) )
-            // InternalXmu2.g:1794:2: ( ( ( ruleType ) ) otherlv_1= '::' ( (otherlv_2= RULE_NAME ) ) )
+            // InternalXmu2.g:1796:2: ( ( ( ( ruleType ) ) otherlv_1= '::' ( (otherlv_2= RULE_NAME ) ) ) )
+            // InternalXmu2.g:1797:2: ( ( ( ruleType ) ) otherlv_1= '::' ( (otherlv_2= RULE_NAME ) ) )
             {
-            // InternalXmu2.g:1794:2: ( ( ( ruleType ) ) otherlv_1= '::' ( (otherlv_2= RULE_NAME ) ) )
-            // InternalXmu2.g:1795:3: ( ( ruleType ) ) otherlv_1= '::' ( (otherlv_2= RULE_NAME ) )
+            // InternalXmu2.g:1797:2: ( ( ( ruleType ) ) otherlv_1= '::' ( (otherlv_2= RULE_NAME ) ) )
+            // InternalXmu2.g:1798:3: ( ( ruleType ) ) otherlv_1= '::' ( (otherlv_2= RULE_NAME ) )
             {
-            // InternalXmu2.g:1795:3: ( ( ruleType ) )
-            // InternalXmu2.g:1796:4: ( ruleType )
+            // InternalXmu2.g:1798:3: ( ( ruleType ) )
+            // InternalXmu2.g:1799:4: ( ruleType )
             {
-            // InternalXmu2.g:1796:4: ( ruleType )
-            // InternalXmu2.g:1797:5: ruleType
+            // InternalXmu2.g:1799:4: ( ruleType )
+            // InternalXmu2.g:1800:5: ruleType
             {
             if ( state.backtracking==0 ) {
 
@@ -5034,7 +5018,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
               					newCompositeNode(grammarAccess.getEnumLiteralExpressionAccess().getTypeEEnumCrossReference_0_0());
               				
             }
-            pushFollow(FOLLOW_37);
+            pushFollow(FOLLOW_36);
             ruleType();
 
             state._fsp--;
@@ -5056,11 +5040,11 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
               			newLeafNode(otherlv_1, grammarAccess.getEnumLiteralExpressionAccess().getColonColonKeyword_1());
               		
             }
-            // InternalXmu2.g:1815:3: ( (otherlv_2= RULE_NAME ) )
-            // InternalXmu2.g:1816:4: (otherlv_2= RULE_NAME )
+            // InternalXmu2.g:1818:3: ( (otherlv_2= RULE_NAME ) )
+            // InternalXmu2.g:1819:4: (otherlv_2= RULE_NAME )
             {
-            // InternalXmu2.g:1816:4: (otherlv_2= RULE_NAME )
-            // InternalXmu2.g:1817:5: otherlv_2= RULE_NAME
+            // InternalXmu2.g:1819:4: (otherlv_2= RULE_NAME )
+            // InternalXmu2.g:1820:5: otherlv_2= RULE_NAME
             {
             if ( state.backtracking==0 ) {
 
@@ -5106,7 +5090,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleObjectURIExpression"
-    // InternalXmu2.g:1832:1: entryRuleObjectURIExpression returns [EObject current=null] : iv_ruleObjectURIExpression= ruleObjectURIExpression EOF ;
+    // InternalXmu2.g:1835:1: entryRuleObjectURIExpression returns [EObject current=null] : iv_ruleObjectURIExpression= ruleObjectURIExpression EOF ;
     public final EObject entryRuleObjectURIExpression() throws RecognitionException {
         EObject current = null;
 
@@ -5114,8 +5098,8 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalXmu2.g:1832:60: (iv_ruleObjectURIExpression= ruleObjectURIExpression EOF )
-            // InternalXmu2.g:1833:2: iv_ruleObjectURIExpression= ruleObjectURIExpression EOF
+            // InternalXmu2.g:1835:60: (iv_ruleObjectURIExpression= ruleObjectURIExpression EOF )
+            // InternalXmu2.g:1836:2: iv_ruleObjectURIExpression= ruleObjectURIExpression EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getObjectURIExpressionRule()); 
@@ -5146,7 +5130,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleObjectURIExpression"
-    // InternalXmu2.g:1839:1: ruleObjectURIExpression returns [EObject current=null] : ( (otherlv_0= RULE_OBJ_URI ) ) ;
+    // InternalXmu2.g:1842:1: ruleObjectURIExpression returns [EObject current=null] : ( (otherlv_0= RULE_OBJ_URI ) ) ;
     public final EObject ruleObjectURIExpression() throws RecognitionException {
         EObject current = null;
 
@@ -5156,14 +5140,14 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:1845:2: ( ( (otherlv_0= RULE_OBJ_URI ) ) )
-            // InternalXmu2.g:1846:2: ( (otherlv_0= RULE_OBJ_URI ) )
+            // InternalXmu2.g:1848:2: ( ( (otherlv_0= RULE_OBJ_URI ) ) )
+            // InternalXmu2.g:1849:2: ( (otherlv_0= RULE_OBJ_URI ) )
             {
-            // InternalXmu2.g:1846:2: ( (otherlv_0= RULE_OBJ_URI ) )
-            // InternalXmu2.g:1847:3: (otherlv_0= RULE_OBJ_URI )
+            // InternalXmu2.g:1849:2: ( (otherlv_0= RULE_OBJ_URI ) )
+            // InternalXmu2.g:1850:3: (otherlv_0= RULE_OBJ_URI )
             {
-            // InternalXmu2.g:1847:3: (otherlv_0= RULE_OBJ_URI )
-            // InternalXmu2.g:1848:4: otherlv_0= RULE_OBJ_URI
+            // InternalXmu2.g:1850:3: (otherlv_0= RULE_OBJ_URI )
+            // InternalXmu2.g:1851:4: otherlv_0= RULE_OBJ_URI
             {
             if ( state.backtracking==0 ) {
 
@@ -5206,7 +5190,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleUnaryExpression"
-    // InternalXmu2.g:1862:1: entryRuleUnaryExpression returns [EObject current=null] : iv_ruleUnaryExpression= ruleUnaryExpression EOF ;
+    // InternalXmu2.g:1865:1: entryRuleUnaryExpression returns [EObject current=null] : iv_ruleUnaryExpression= ruleUnaryExpression EOF ;
     public final EObject entryRuleUnaryExpression() throws RecognitionException {
         EObject current = null;
 
@@ -5214,8 +5198,8 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalXmu2.g:1862:56: (iv_ruleUnaryExpression= ruleUnaryExpression EOF )
-            // InternalXmu2.g:1863:2: iv_ruleUnaryExpression= ruleUnaryExpression EOF
+            // InternalXmu2.g:1865:56: (iv_ruleUnaryExpression= ruleUnaryExpression EOF )
+            // InternalXmu2.g:1866:2: iv_ruleUnaryExpression= ruleUnaryExpression EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getUnaryExpressionRule()); 
@@ -5246,7 +5230,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleUnaryExpression"
-    // InternalXmu2.g:1869:1: ruleUnaryExpression returns [EObject current=null] : ( ( (lv_operator_0_0= ruleUnaryOperator ) ) ( (lv_body_1_0= ruleUnaryExpressionChild ) ) ) ;
+    // InternalXmu2.g:1872:1: ruleUnaryExpression returns [EObject current=null] : ( ( (lv_operator_0_0= ruleUnaryOperator ) ) ( (lv_body_1_0= ruleUnaryExpressionChild ) ) ) ;
     public final EObject ruleUnaryExpression() throws RecognitionException {
         EObject current = null;
 
@@ -5259,17 +5243,17 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:1875:2: ( ( ( (lv_operator_0_0= ruleUnaryOperator ) ) ( (lv_body_1_0= ruleUnaryExpressionChild ) ) ) )
-            // InternalXmu2.g:1876:2: ( ( (lv_operator_0_0= ruleUnaryOperator ) ) ( (lv_body_1_0= ruleUnaryExpressionChild ) ) )
+            // InternalXmu2.g:1878:2: ( ( ( (lv_operator_0_0= ruleUnaryOperator ) ) ( (lv_body_1_0= ruleUnaryExpressionChild ) ) ) )
+            // InternalXmu2.g:1879:2: ( ( (lv_operator_0_0= ruleUnaryOperator ) ) ( (lv_body_1_0= ruleUnaryExpressionChild ) ) )
             {
-            // InternalXmu2.g:1876:2: ( ( (lv_operator_0_0= ruleUnaryOperator ) ) ( (lv_body_1_0= ruleUnaryExpressionChild ) ) )
-            // InternalXmu2.g:1877:3: ( (lv_operator_0_0= ruleUnaryOperator ) ) ( (lv_body_1_0= ruleUnaryExpressionChild ) )
+            // InternalXmu2.g:1879:2: ( ( (lv_operator_0_0= ruleUnaryOperator ) ) ( (lv_body_1_0= ruleUnaryExpressionChild ) ) )
+            // InternalXmu2.g:1880:3: ( (lv_operator_0_0= ruleUnaryOperator ) ) ( (lv_body_1_0= ruleUnaryExpressionChild ) )
             {
-            // InternalXmu2.g:1877:3: ( (lv_operator_0_0= ruleUnaryOperator ) )
-            // InternalXmu2.g:1878:4: (lv_operator_0_0= ruleUnaryOperator )
+            // InternalXmu2.g:1880:3: ( (lv_operator_0_0= ruleUnaryOperator ) )
+            // InternalXmu2.g:1881:4: (lv_operator_0_0= ruleUnaryOperator )
             {
-            // InternalXmu2.g:1878:4: (lv_operator_0_0= ruleUnaryOperator )
-            // InternalXmu2.g:1879:5: lv_operator_0_0= ruleUnaryOperator
+            // InternalXmu2.g:1881:4: (lv_operator_0_0= ruleUnaryOperator )
+            // InternalXmu2.g:1882:5: lv_operator_0_0= ruleUnaryOperator
             {
             if ( state.backtracking==0 ) {
 
@@ -5300,11 +5284,11 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalXmu2.g:1896:3: ( (lv_body_1_0= ruleUnaryExpressionChild ) )
-            // InternalXmu2.g:1897:4: (lv_body_1_0= ruleUnaryExpressionChild )
+            // InternalXmu2.g:1899:3: ( (lv_body_1_0= ruleUnaryExpressionChild ) )
+            // InternalXmu2.g:1900:4: (lv_body_1_0= ruleUnaryExpressionChild )
             {
-            // InternalXmu2.g:1897:4: (lv_body_1_0= ruleUnaryExpressionChild )
-            // InternalXmu2.g:1898:5: lv_body_1_0= ruleUnaryExpressionChild
+            // InternalXmu2.g:1900:4: (lv_body_1_0= ruleUnaryExpressionChild )
+            // InternalXmu2.g:1901:5: lv_body_1_0= ruleUnaryExpressionChild
             {
             if ( state.backtracking==0 ) {
 
@@ -5360,7 +5344,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleUnaryExpressionChild"
-    // InternalXmu2.g:1919:1: entryRuleUnaryExpressionChild returns [EObject current=null] : iv_ruleUnaryExpressionChild= ruleUnaryExpressionChild EOF ;
+    // InternalXmu2.g:1922:1: entryRuleUnaryExpressionChild returns [EObject current=null] : iv_ruleUnaryExpressionChild= ruleUnaryExpressionChild EOF ;
     public final EObject entryRuleUnaryExpressionChild() throws RecognitionException {
         EObject current = null;
 
@@ -5368,8 +5352,8 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalXmu2.g:1919:61: (iv_ruleUnaryExpressionChild= ruleUnaryExpressionChild EOF )
-            // InternalXmu2.g:1920:2: iv_ruleUnaryExpressionChild= ruleUnaryExpressionChild EOF
+            // InternalXmu2.g:1922:61: (iv_ruleUnaryExpressionChild= ruleUnaryExpressionChild EOF )
+            // InternalXmu2.g:1923:2: iv_ruleUnaryExpressionChild= ruleUnaryExpressionChild EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getUnaryExpressionChildRule()); 
@@ -5400,7 +5384,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleUnaryExpressionChild"
-    // InternalXmu2.g:1926:1: ruleUnaryExpressionChild returns [EObject current=null] : (this_AtomicExpression_0= ruleAtomicExpression ( () ( (lv_path_2_0= rulePath ) ) ( (lv_path_3_0= rulePath ) )* )? ) ;
+    // InternalXmu2.g:1929:1: ruleUnaryExpressionChild returns [EObject current=null] : (this_AtomicExpression_0= ruleAtomicExpression ( () ( (lv_path_2_0= rulePath ) ) ( (lv_path_3_0= rulePath ) )* )? ) ;
     public final EObject ruleUnaryExpressionChild() throws RecognitionException {
         EObject current = null;
 
@@ -5415,18 +5399,18 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:1932:2: ( (this_AtomicExpression_0= ruleAtomicExpression ( () ( (lv_path_2_0= rulePath ) ) ( (lv_path_3_0= rulePath ) )* )? ) )
-            // InternalXmu2.g:1933:2: (this_AtomicExpression_0= ruleAtomicExpression ( () ( (lv_path_2_0= rulePath ) ) ( (lv_path_3_0= rulePath ) )* )? )
+            // InternalXmu2.g:1935:2: ( (this_AtomicExpression_0= ruleAtomicExpression ( () ( (lv_path_2_0= rulePath ) ) ( (lv_path_3_0= rulePath ) )* )? ) )
+            // InternalXmu2.g:1936:2: (this_AtomicExpression_0= ruleAtomicExpression ( () ( (lv_path_2_0= rulePath ) ) ( (lv_path_3_0= rulePath ) )* )? )
             {
-            // InternalXmu2.g:1933:2: (this_AtomicExpression_0= ruleAtomicExpression ( () ( (lv_path_2_0= rulePath ) ) ( (lv_path_3_0= rulePath ) )* )? )
-            // InternalXmu2.g:1934:3: this_AtomicExpression_0= ruleAtomicExpression ( () ( (lv_path_2_0= rulePath ) ) ( (lv_path_3_0= rulePath ) )* )?
+            // InternalXmu2.g:1936:2: (this_AtomicExpression_0= ruleAtomicExpression ( () ( (lv_path_2_0= rulePath ) ) ( (lv_path_3_0= rulePath ) )* )? )
+            // InternalXmu2.g:1937:3: this_AtomicExpression_0= ruleAtomicExpression ( () ( (lv_path_2_0= rulePath ) ) ( (lv_path_3_0= rulePath ) )* )?
             {
             if ( state.backtracking==0 ) {
 
               			newCompositeNode(grammarAccess.getUnaryExpressionChildAccess().getAtomicExpressionParserRuleCall_0());
               		
             }
-            pushFollow(FOLLOW_38);
+            pushFollow(FOLLOW_37);
             this_AtomicExpression_0=ruleAtomicExpression();
 
             state._fsp--;
@@ -5437,26 +5421,26 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
               			afterParserOrEnumRuleCall();
               		
             }
-            // InternalXmu2.g:1942:3: ( () ( (lv_path_2_0= rulePath ) ) ( (lv_path_3_0= rulePath ) )* )?
-            int alt33=2;
-            int LA33_0 = input.LA(1);
+            // InternalXmu2.g:1945:3: ( () ( (lv_path_2_0= rulePath ) ) ( (lv_path_3_0= rulePath ) )* )?
+            int alt32=2;
+            int LA32_0 = input.LA(1);
 
-            if ( (LA33_0==32) ) {
-                int LA33_1 = input.LA(2);
+            if ( (LA32_0==32) ) {
+                int LA32_1 = input.LA(2);
 
-                if ( ((LA33_1>=52 && LA33_1<=57)) ) {
-                    alt33=1;
+                if ( ((LA32_1>=52 && LA32_1<=57)) ) {
+                    alt32=1;
                 }
             }
-            else if ( (LA33_0==34) ) {
-                alt33=1;
+            else if ( (LA32_0==34) ) {
+                alt32=1;
             }
-            switch (alt33) {
+            switch (alt32) {
                 case 1 :
-                    // InternalXmu2.g:1943:4: () ( (lv_path_2_0= rulePath ) ) ( (lv_path_3_0= rulePath ) )*
+                    // InternalXmu2.g:1946:4: () ( (lv_path_2_0= rulePath ) ) ( (lv_path_3_0= rulePath ) )*
                     {
-                    // InternalXmu2.g:1943:4: ()
-                    // InternalXmu2.g:1944:5: 
+                    // InternalXmu2.g:1946:4: ()
+                    // InternalXmu2.g:1947:5: 
                     {
                     if ( state.backtracking==0 ) {
 
@@ -5468,18 +5452,18 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // InternalXmu2.g:1950:4: ( (lv_path_2_0= rulePath ) )
-                    // InternalXmu2.g:1951:5: (lv_path_2_0= rulePath )
+                    // InternalXmu2.g:1953:4: ( (lv_path_2_0= rulePath ) )
+                    // InternalXmu2.g:1954:5: (lv_path_2_0= rulePath )
                     {
-                    // InternalXmu2.g:1951:5: (lv_path_2_0= rulePath )
-                    // InternalXmu2.g:1952:6: lv_path_2_0= rulePath
+                    // InternalXmu2.g:1954:5: (lv_path_2_0= rulePath )
+                    // InternalXmu2.g:1955:6: lv_path_2_0= rulePath
                     {
                     if ( state.backtracking==0 ) {
 
                       						newCompositeNode(grammarAccess.getUnaryExpressionChildAccess().getPathPathParserRuleCall_1_1_0());
                       					
                     }
-                    pushFollow(FOLLOW_38);
+                    pushFollow(FOLLOW_37);
                     lv_path_2_0=rulePath();
 
                     state._fsp--;
@@ -5503,39 +5487,39 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // InternalXmu2.g:1969:4: ( (lv_path_3_0= rulePath ) )*
-                    loop32:
+                    // InternalXmu2.g:1972:4: ( (lv_path_3_0= rulePath ) )*
+                    loop31:
                     do {
-                        int alt32=2;
-                        int LA32_0 = input.LA(1);
+                        int alt31=2;
+                        int LA31_0 = input.LA(1);
 
-                        if ( (LA32_0==32) ) {
-                            int LA32_2 = input.LA(2);
+                        if ( (LA31_0==32) ) {
+                            int LA31_2 = input.LA(2);
 
-                            if ( ((LA32_2>=52 && LA32_2<=57)) ) {
-                                alt32=1;
+                            if ( ((LA31_2>=52 && LA31_2<=57)) ) {
+                                alt31=1;
                             }
 
 
                         }
-                        else if ( (LA32_0==34) ) {
-                            alt32=1;
+                        else if ( (LA31_0==34) ) {
+                            alt31=1;
                         }
 
 
-                        switch (alt32) {
+                        switch (alt31) {
                     	case 1 :
-                    	    // InternalXmu2.g:1970:5: (lv_path_3_0= rulePath )
+                    	    // InternalXmu2.g:1973:5: (lv_path_3_0= rulePath )
                     	    {
-                    	    // InternalXmu2.g:1970:5: (lv_path_3_0= rulePath )
-                    	    // InternalXmu2.g:1971:6: lv_path_3_0= rulePath
+                    	    // InternalXmu2.g:1973:5: (lv_path_3_0= rulePath )
+                    	    // InternalXmu2.g:1974:6: lv_path_3_0= rulePath
                     	    {
                     	    if ( state.backtracking==0 ) {
 
                     	      						newCompositeNode(grammarAccess.getUnaryExpressionChildAccess().getPathPathParserRuleCall_1_2_0());
                     	      					
                     	    }
-                    	    pushFollow(FOLLOW_38);
+                    	    pushFollow(FOLLOW_37);
                     	    lv_path_3_0=rulePath();
 
                     	    state._fsp--;
@@ -5561,7 +5545,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    break loop32;
+                    	    break loop31;
                         }
                     } while (true);
 
@@ -5596,7 +5580,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleAtomicExpression"
-    // InternalXmu2.g:1993:1: entryRuleAtomicExpression returns [EObject current=null] : iv_ruleAtomicExpression= ruleAtomicExpression EOF ;
+    // InternalXmu2.g:1996:1: entryRuleAtomicExpression returns [EObject current=null] : iv_ruleAtomicExpression= ruleAtomicExpression EOF ;
     public final EObject entryRuleAtomicExpression() throws RecognitionException {
         EObject current = null;
 
@@ -5604,8 +5588,8 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalXmu2.g:1993:57: (iv_ruleAtomicExpression= ruleAtomicExpression EOF )
-            // InternalXmu2.g:1994:2: iv_ruleAtomicExpression= ruleAtomicExpression EOF
+            // InternalXmu2.g:1996:57: (iv_ruleAtomicExpression= ruleAtomicExpression EOF )
+            // InternalXmu2.g:1997:2: iv_ruleAtomicExpression= ruleAtomicExpression EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getAtomicExpressionRule()); 
@@ -5636,7 +5620,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleAtomicExpression"
-    // InternalXmu2.g:2000:1: ruleAtomicExpression returns [EObject current=null] : ( (otherlv_0= '(' () ( (lv_body_2_0= ruleExpression ) ) otherlv_3= ')' ) | this_VariableExpression_4= ruleVariableExpression | this_ConstantExpression_5= ruleConstantExpression ) ;
+    // InternalXmu2.g:2003:1: ruleAtomicExpression returns [EObject current=null] : ( (otherlv_0= '(' () ( (lv_body_2_0= ruleExpression ) ) otherlv_3= ')' ) | this_VariableExpression_4= ruleVariableExpression | this_ConstantExpression_5= ruleConstantExpression ) ;
     public final EObject ruleAtomicExpression() throws RecognitionException {
         EObject current = null;
 
@@ -5653,20 +5637,20 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:2006:2: ( ( (otherlv_0= '(' () ( (lv_body_2_0= ruleExpression ) ) otherlv_3= ')' ) | this_VariableExpression_4= ruleVariableExpression | this_ConstantExpression_5= ruleConstantExpression ) )
-            // InternalXmu2.g:2007:2: ( (otherlv_0= '(' () ( (lv_body_2_0= ruleExpression ) ) otherlv_3= ')' ) | this_VariableExpression_4= ruleVariableExpression | this_ConstantExpression_5= ruleConstantExpression )
+            // InternalXmu2.g:2009:2: ( ( (otherlv_0= '(' () ( (lv_body_2_0= ruleExpression ) ) otherlv_3= ')' ) | this_VariableExpression_4= ruleVariableExpression | this_ConstantExpression_5= ruleConstantExpression ) )
+            // InternalXmu2.g:2010:2: ( (otherlv_0= '(' () ( (lv_body_2_0= ruleExpression ) ) otherlv_3= ')' ) | this_VariableExpression_4= ruleVariableExpression | this_ConstantExpression_5= ruleConstantExpression )
             {
-            // InternalXmu2.g:2007:2: ( (otherlv_0= '(' () ( (lv_body_2_0= ruleExpression ) ) otherlv_3= ')' ) | this_VariableExpression_4= ruleVariableExpression | this_ConstantExpression_5= ruleConstantExpression )
-            int alt34=3;
+            // InternalXmu2.g:2010:2: ( (otherlv_0= '(' () ( (lv_body_2_0= ruleExpression ) ) otherlv_3= ')' ) | this_VariableExpression_4= ruleVariableExpression | this_ConstantExpression_5= ruleConstantExpression )
+            int alt33=3;
             switch ( input.LA(1) ) {
             case 19:
                 {
-                alt34=1;
+                alt33=1;
                 }
                 break;
             case RULE_NAME:
                 {
-                alt34=2;
+                alt33=2;
                 }
                 break;
             case RULE_INT:
@@ -5678,23 +5662,23 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
             case 58:
             case 59:
                 {
-                alt34=3;
+                alt33=3;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 34, 0, input);
+                    new NoViableAltException("", 33, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt34) {
+            switch (alt33) {
                 case 1 :
-                    // InternalXmu2.g:2008:3: (otherlv_0= '(' () ( (lv_body_2_0= ruleExpression ) ) otherlv_3= ')' )
+                    // InternalXmu2.g:2011:3: (otherlv_0= '(' () ( (lv_body_2_0= ruleExpression ) ) otherlv_3= ')' )
                     {
-                    // InternalXmu2.g:2008:3: (otherlv_0= '(' () ( (lv_body_2_0= ruleExpression ) ) otherlv_3= ')' )
-                    // InternalXmu2.g:2009:4: otherlv_0= '(' () ( (lv_body_2_0= ruleExpression ) ) otherlv_3= ')'
+                    // InternalXmu2.g:2011:3: (otherlv_0= '(' () ( (lv_body_2_0= ruleExpression ) ) otherlv_3= ')' )
+                    // InternalXmu2.g:2012:4: otherlv_0= '(' () ( (lv_body_2_0= ruleExpression ) ) otherlv_3= ')'
                     {
                     otherlv_0=(Token)match(input,19,FOLLOW_24); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -5702,8 +5686,8 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                       				newLeafNode(otherlv_0, grammarAccess.getAtomicExpressionAccess().getLeftParenthesisKeyword_0_0());
                       			
                     }
-                    // InternalXmu2.g:2013:4: ()
-                    // InternalXmu2.g:2014:5: 
+                    // InternalXmu2.g:2016:4: ()
+                    // InternalXmu2.g:2017:5: 
                     {
                     if ( state.backtracking==0 ) {
 
@@ -5715,18 +5699,18 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // InternalXmu2.g:2020:4: ( (lv_body_2_0= ruleExpression ) )
-                    // InternalXmu2.g:2021:5: (lv_body_2_0= ruleExpression )
+                    // InternalXmu2.g:2023:4: ( (lv_body_2_0= ruleExpression ) )
+                    // InternalXmu2.g:2024:5: (lv_body_2_0= ruleExpression )
                     {
-                    // InternalXmu2.g:2021:5: (lv_body_2_0= ruleExpression )
-                    // InternalXmu2.g:2022:6: lv_body_2_0= ruleExpression
+                    // InternalXmu2.g:2024:5: (lv_body_2_0= ruleExpression )
+                    // InternalXmu2.g:2025:6: lv_body_2_0= ruleExpression
                     {
                     if ( state.backtracking==0 ) {
 
                       						newCompositeNode(grammarAccess.getAtomicExpressionAccess().getBodyExpressionParserRuleCall_0_2_0());
                       					
                     }
-                    pushFollow(FOLLOW_34);
+                    pushFollow(FOLLOW_33);
                     lv_body_2_0=ruleExpression();
 
                     state._fsp--;
@@ -5763,7 +5747,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalXmu2.g:2045:3: this_VariableExpression_4= ruleVariableExpression
+                    // InternalXmu2.g:2048:3: this_VariableExpression_4= ruleVariableExpression
                     {
                     if ( state.backtracking==0 ) {
 
@@ -5785,7 +5769,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalXmu2.g:2054:3: this_ConstantExpression_5= ruleConstantExpression
+                    // InternalXmu2.g:2057:3: this_ConstantExpression_5= ruleConstantExpression
                     {
                     if ( state.backtracking==0 ) {
 
@@ -5831,7 +5815,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleConstantExpression"
-    // InternalXmu2.g:2066:1: entryRuleConstantExpression returns [EObject current=null] : iv_ruleConstantExpression= ruleConstantExpression EOF ;
+    // InternalXmu2.g:2069:1: entryRuleConstantExpression returns [EObject current=null] : iv_ruleConstantExpression= ruleConstantExpression EOF ;
     public final EObject entryRuleConstantExpression() throws RecognitionException {
         EObject current = null;
 
@@ -5839,8 +5823,8 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalXmu2.g:2066:59: (iv_ruleConstantExpression= ruleConstantExpression EOF )
-            // InternalXmu2.g:2067:2: iv_ruleConstantExpression= ruleConstantExpression EOF
+            // InternalXmu2.g:2069:59: (iv_ruleConstantExpression= ruleConstantExpression EOF )
+            // InternalXmu2.g:2070:2: iv_ruleConstantExpression= ruleConstantExpression EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getConstantExpressionRule()); 
@@ -5871,7 +5855,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleConstantExpression"
-    // InternalXmu2.g:2073:1: ruleConstantExpression returns [EObject current=null] : (this_EmptyExpression_0= ruleEmptyExpression | this_StringLiteralExpression_1= ruleStringLiteralExpression | this_IntegerLiteralExpression_2= ruleIntegerLiteralExpression | this_BooleanLiteralExpression_3= ruleBooleanLiteralExpression | this_EnumLiteralExpression_4= ruleEnumLiteralExpression | this_ObjectURIExpression_5= ruleObjectURIExpression ) ;
+    // InternalXmu2.g:2076:1: ruleConstantExpression returns [EObject current=null] : (this_EmptyExpression_0= ruleEmptyExpression | this_StringLiteralExpression_1= ruleStringLiteralExpression | this_IntegerLiteralExpression_2= ruleIntegerLiteralExpression | this_BooleanLiteralExpression_3= ruleBooleanLiteralExpression | this_EnumLiteralExpression_4= ruleEnumLiteralExpression | this_ObjectURIExpression_5= ruleObjectURIExpression ) ;
     public final EObject ruleConstantExpression() throws RecognitionException {
         EObject current = null;
 
@@ -5892,55 +5876,55 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:2079:2: ( (this_EmptyExpression_0= ruleEmptyExpression | this_StringLiteralExpression_1= ruleStringLiteralExpression | this_IntegerLiteralExpression_2= ruleIntegerLiteralExpression | this_BooleanLiteralExpression_3= ruleBooleanLiteralExpression | this_EnumLiteralExpression_4= ruleEnumLiteralExpression | this_ObjectURIExpression_5= ruleObjectURIExpression ) )
-            // InternalXmu2.g:2080:2: (this_EmptyExpression_0= ruleEmptyExpression | this_StringLiteralExpression_1= ruleStringLiteralExpression | this_IntegerLiteralExpression_2= ruleIntegerLiteralExpression | this_BooleanLiteralExpression_3= ruleBooleanLiteralExpression | this_EnumLiteralExpression_4= ruleEnumLiteralExpression | this_ObjectURIExpression_5= ruleObjectURIExpression )
+            // InternalXmu2.g:2082:2: ( (this_EmptyExpression_0= ruleEmptyExpression | this_StringLiteralExpression_1= ruleStringLiteralExpression | this_IntegerLiteralExpression_2= ruleIntegerLiteralExpression | this_BooleanLiteralExpression_3= ruleBooleanLiteralExpression | this_EnumLiteralExpression_4= ruleEnumLiteralExpression | this_ObjectURIExpression_5= ruleObjectURIExpression ) )
+            // InternalXmu2.g:2083:2: (this_EmptyExpression_0= ruleEmptyExpression | this_StringLiteralExpression_1= ruleStringLiteralExpression | this_IntegerLiteralExpression_2= ruleIntegerLiteralExpression | this_BooleanLiteralExpression_3= ruleBooleanLiteralExpression | this_EnumLiteralExpression_4= ruleEnumLiteralExpression | this_ObjectURIExpression_5= ruleObjectURIExpression )
             {
-            // InternalXmu2.g:2080:2: (this_EmptyExpression_0= ruleEmptyExpression | this_StringLiteralExpression_1= ruleStringLiteralExpression | this_IntegerLiteralExpression_2= ruleIntegerLiteralExpression | this_BooleanLiteralExpression_3= ruleBooleanLiteralExpression | this_EnumLiteralExpression_4= ruleEnumLiteralExpression | this_ObjectURIExpression_5= ruleObjectURIExpression )
-            int alt35=6;
+            // InternalXmu2.g:2083:2: (this_EmptyExpression_0= ruleEmptyExpression | this_StringLiteralExpression_1= ruleStringLiteralExpression | this_IntegerLiteralExpression_2= ruleIntegerLiteralExpression | this_BooleanLiteralExpression_3= ruleBooleanLiteralExpression | this_EnumLiteralExpression_4= ruleEnumLiteralExpression | this_ObjectURIExpression_5= ruleObjectURIExpression )
+            int alt34=6;
             switch ( input.LA(1) ) {
             case 58:
             case 59:
                 {
-                alt35=1;
+                alt34=1;
                 }
                 break;
             case RULE_STRING:
                 {
-                alt35=2;
+                alt34=2;
                 }
                 break;
             case RULE_INT:
                 {
-                alt35=3;
+                alt34=3;
                 }
                 break;
             case RULE_BOOLEAN:
                 {
-                alt35=4;
+                alt34=4;
                 }
                 break;
             case RULE_PRIMITIVE_TYPE:
             case RULE_PATH_NAME:
                 {
-                alt35=5;
+                alt34=5;
                 }
                 break;
             case RULE_OBJ_URI:
                 {
-                alt35=6;
+                alt34=6;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 35, 0, input);
+                    new NoViableAltException("", 34, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt35) {
+            switch (alt34) {
                 case 1 :
-                    // InternalXmu2.g:2081:3: this_EmptyExpression_0= ruleEmptyExpression
+                    // InternalXmu2.g:2084:3: this_EmptyExpression_0= ruleEmptyExpression
                     {
                     if ( state.backtracking==0 ) {
 
@@ -5962,7 +5946,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalXmu2.g:2090:3: this_StringLiteralExpression_1= ruleStringLiteralExpression
+                    // InternalXmu2.g:2093:3: this_StringLiteralExpression_1= ruleStringLiteralExpression
                     {
                     if ( state.backtracking==0 ) {
 
@@ -5984,7 +5968,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalXmu2.g:2099:3: this_IntegerLiteralExpression_2= ruleIntegerLiteralExpression
+                    // InternalXmu2.g:2102:3: this_IntegerLiteralExpression_2= ruleIntegerLiteralExpression
                     {
                     if ( state.backtracking==0 ) {
 
@@ -6006,7 +5990,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // InternalXmu2.g:2108:3: this_BooleanLiteralExpression_3= ruleBooleanLiteralExpression
+                    // InternalXmu2.g:2111:3: this_BooleanLiteralExpression_3= ruleBooleanLiteralExpression
                     {
                     if ( state.backtracking==0 ) {
 
@@ -6028,7 +6012,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // InternalXmu2.g:2117:3: this_EnumLiteralExpression_4= ruleEnumLiteralExpression
+                    // InternalXmu2.g:2120:3: this_EnumLiteralExpression_4= ruleEnumLiteralExpression
                     {
                     if ( state.backtracking==0 ) {
 
@@ -6050,7 +6034,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 6 :
-                    // InternalXmu2.g:2126:3: this_ObjectURIExpression_5= ruleObjectURIExpression
+                    // InternalXmu2.g:2129:3: this_ObjectURIExpression_5= ruleObjectURIExpression
                     {
                     if ( state.backtracking==0 ) {
 
@@ -6096,7 +6080,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleMultiplicativeExpression"
-    // InternalXmu2.g:2138:1: entryRuleMultiplicativeExpression returns [EObject current=null] : iv_ruleMultiplicativeExpression= ruleMultiplicativeExpression EOF ;
+    // InternalXmu2.g:2141:1: entryRuleMultiplicativeExpression returns [EObject current=null] : iv_ruleMultiplicativeExpression= ruleMultiplicativeExpression EOF ;
     public final EObject entryRuleMultiplicativeExpression() throws RecognitionException {
         EObject current = null;
 
@@ -6104,8 +6088,8 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalXmu2.g:2138:65: (iv_ruleMultiplicativeExpression= ruleMultiplicativeExpression EOF )
-            // InternalXmu2.g:2139:2: iv_ruleMultiplicativeExpression= ruleMultiplicativeExpression EOF
+            // InternalXmu2.g:2141:65: (iv_ruleMultiplicativeExpression= ruleMultiplicativeExpression EOF )
+            // InternalXmu2.g:2142:2: iv_ruleMultiplicativeExpression= ruleMultiplicativeExpression EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getMultiplicativeExpressionRule()); 
@@ -6136,7 +6120,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMultiplicativeExpression"
-    // InternalXmu2.g:2145:1: ruleMultiplicativeExpression returns [EObject current=null] : ( ( (lv_operands_0_0= ruleMultiplicativeExpressionChild ) ) ( ( (lv_operators_1_0= ruleMultiplicativeOperator ) ) ( (lv_operands_2_0= ruleMultiplicativeExpressionChild ) ) )+ ) ;
+    // InternalXmu2.g:2148:1: ruleMultiplicativeExpression returns [EObject current=null] : ( ( (lv_operands_0_0= ruleMultiplicativeExpressionChild ) ) ( ( (lv_operators_1_0= ruleMultiplicativeOperator ) ) ( (lv_operands_2_0= ruleMultiplicativeExpressionChild ) ) )+ ) ;
     public final EObject ruleMultiplicativeExpression() throws RecognitionException {
         EObject current = null;
 
@@ -6151,24 +6135,24 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:2151:2: ( ( ( (lv_operands_0_0= ruleMultiplicativeExpressionChild ) ) ( ( (lv_operators_1_0= ruleMultiplicativeOperator ) ) ( (lv_operands_2_0= ruleMultiplicativeExpressionChild ) ) )+ ) )
-            // InternalXmu2.g:2152:2: ( ( (lv_operands_0_0= ruleMultiplicativeExpressionChild ) ) ( ( (lv_operators_1_0= ruleMultiplicativeOperator ) ) ( (lv_operands_2_0= ruleMultiplicativeExpressionChild ) ) )+ )
+            // InternalXmu2.g:2154:2: ( ( ( (lv_operands_0_0= ruleMultiplicativeExpressionChild ) ) ( ( (lv_operators_1_0= ruleMultiplicativeOperator ) ) ( (lv_operands_2_0= ruleMultiplicativeExpressionChild ) ) )+ ) )
+            // InternalXmu2.g:2155:2: ( ( (lv_operands_0_0= ruleMultiplicativeExpressionChild ) ) ( ( (lv_operators_1_0= ruleMultiplicativeOperator ) ) ( (lv_operands_2_0= ruleMultiplicativeExpressionChild ) ) )+ )
             {
-            // InternalXmu2.g:2152:2: ( ( (lv_operands_0_0= ruleMultiplicativeExpressionChild ) ) ( ( (lv_operators_1_0= ruleMultiplicativeOperator ) ) ( (lv_operands_2_0= ruleMultiplicativeExpressionChild ) ) )+ )
-            // InternalXmu2.g:2153:3: ( (lv_operands_0_0= ruleMultiplicativeExpressionChild ) ) ( ( (lv_operators_1_0= ruleMultiplicativeOperator ) ) ( (lv_operands_2_0= ruleMultiplicativeExpressionChild ) ) )+
+            // InternalXmu2.g:2155:2: ( ( (lv_operands_0_0= ruleMultiplicativeExpressionChild ) ) ( ( (lv_operators_1_0= ruleMultiplicativeOperator ) ) ( (lv_operands_2_0= ruleMultiplicativeExpressionChild ) ) )+ )
+            // InternalXmu2.g:2156:3: ( (lv_operands_0_0= ruleMultiplicativeExpressionChild ) ) ( ( (lv_operators_1_0= ruleMultiplicativeOperator ) ) ( (lv_operands_2_0= ruleMultiplicativeExpressionChild ) ) )+
             {
-            // InternalXmu2.g:2153:3: ( (lv_operands_0_0= ruleMultiplicativeExpressionChild ) )
-            // InternalXmu2.g:2154:4: (lv_operands_0_0= ruleMultiplicativeExpressionChild )
+            // InternalXmu2.g:2156:3: ( (lv_operands_0_0= ruleMultiplicativeExpressionChild ) )
+            // InternalXmu2.g:2157:4: (lv_operands_0_0= ruleMultiplicativeExpressionChild )
             {
-            // InternalXmu2.g:2154:4: (lv_operands_0_0= ruleMultiplicativeExpressionChild )
-            // InternalXmu2.g:2155:5: lv_operands_0_0= ruleMultiplicativeExpressionChild
+            // InternalXmu2.g:2157:4: (lv_operands_0_0= ruleMultiplicativeExpressionChild )
+            // InternalXmu2.g:2158:5: lv_operands_0_0= ruleMultiplicativeExpressionChild
             {
             if ( state.backtracking==0 ) {
 
               					newCompositeNode(grammarAccess.getMultiplicativeExpressionAccess().getOperandsMultiplicativeExpressionChildParserRuleCall_0_0());
               				
             }
-            pushFollow(FOLLOW_39);
+            pushFollow(FOLLOW_38);
             lv_operands_0_0=ruleMultiplicativeExpressionChild();
 
             state._fsp--;
@@ -6192,27 +6176,27 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalXmu2.g:2172:3: ( ( (lv_operators_1_0= ruleMultiplicativeOperator ) ) ( (lv_operands_2_0= ruleMultiplicativeExpressionChild ) ) )+
-            int cnt36=0;
-            loop36:
+            // InternalXmu2.g:2175:3: ( ( (lv_operators_1_0= ruleMultiplicativeOperator ) ) ( (lv_operands_2_0= ruleMultiplicativeExpressionChild ) ) )+
+            int cnt35=0;
+            loop35:
             do {
-                int alt36=2;
-                int LA36_0 = input.LA(1);
+                int alt35=2;
+                int LA35_0 = input.LA(1);
 
-                if ( ((LA36_0>=62 && LA36_0<=63)) ) {
-                    alt36=1;
+                if ( ((LA35_0>=62 && LA35_0<=63)) ) {
+                    alt35=1;
                 }
 
 
-                switch (alt36) {
+                switch (alt35) {
             	case 1 :
-            	    // InternalXmu2.g:2173:4: ( (lv_operators_1_0= ruleMultiplicativeOperator ) ) ( (lv_operands_2_0= ruleMultiplicativeExpressionChild ) )
+            	    // InternalXmu2.g:2176:4: ( (lv_operators_1_0= ruleMultiplicativeOperator ) ) ( (lv_operands_2_0= ruleMultiplicativeExpressionChild ) )
             	    {
-            	    // InternalXmu2.g:2173:4: ( (lv_operators_1_0= ruleMultiplicativeOperator ) )
-            	    // InternalXmu2.g:2174:5: (lv_operators_1_0= ruleMultiplicativeOperator )
+            	    // InternalXmu2.g:2176:4: ( (lv_operators_1_0= ruleMultiplicativeOperator ) )
+            	    // InternalXmu2.g:2177:5: (lv_operators_1_0= ruleMultiplicativeOperator )
             	    {
-            	    // InternalXmu2.g:2174:5: (lv_operators_1_0= ruleMultiplicativeOperator )
-            	    // InternalXmu2.g:2175:6: lv_operators_1_0= ruleMultiplicativeOperator
+            	    // InternalXmu2.g:2177:5: (lv_operators_1_0= ruleMultiplicativeOperator )
+            	    // InternalXmu2.g:2178:6: lv_operators_1_0= ruleMultiplicativeOperator
             	    {
             	    if ( state.backtracking==0 ) {
 
@@ -6243,18 +6227,18 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
             	    }
 
-            	    // InternalXmu2.g:2192:4: ( (lv_operands_2_0= ruleMultiplicativeExpressionChild ) )
-            	    // InternalXmu2.g:2193:5: (lv_operands_2_0= ruleMultiplicativeExpressionChild )
+            	    // InternalXmu2.g:2195:4: ( (lv_operands_2_0= ruleMultiplicativeExpressionChild ) )
+            	    // InternalXmu2.g:2196:5: (lv_operands_2_0= ruleMultiplicativeExpressionChild )
             	    {
-            	    // InternalXmu2.g:2193:5: (lv_operands_2_0= ruleMultiplicativeExpressionChild )
-            	    // InternalXmu2.g:2194:6: lv_operands_2_0= ruleMultiplicativeExpressionChild
+            	    // InternalXmu2.g:2196:5: (lv_operands_2_0= ruleMultiplicativeExpressionChild )
+            	    // InternalXmu2.g:2197:6: lv_operands_2_0= ruleMultiplicativeExpressionChild
             	    {
             	    if ( state.backtracking==0 ) {
 
             	      						newCompositeNode(grammarAccess.getMultiplicativeExpressionAccess().getOperandsMultiplicativeExpressionChildParserRuleCall_1_1_0());
             	      					
             	    }
-            	    pushFollow(FOLLOW_40);
+            	    pushFollow(FOLLOW_39);
             	    lv_operands_2_0=ruleMultiplicativeExpressionChild();
 
             	    state._fsp--;
@@ -6283,13 +6267,13 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    if ( cnt36 >= 1 ) break loop36;
+            	    if ( cnt35 >= 1 ) break loop35;
             	    if (state.backtracking>0) {state.failed=true; return current;}
                         EarlyExitException eee =
-                            new EarlyExitException(36, input);
+                            new EarlyExitException(35, input);
                         throw eee;
                 }
-                cnt36++;
+                cnt35++;
             } while (true);
 
 
@@ -6317,7 +6301,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleMultiplicativeExpressionChild"
-    // InternalXmu2.g:2216:1: entryRuleMultiplicativeExpressionChild returns [EObject current=null] : iv_ruleMultiplicativeExpressionChild= ruleMultiplicativeExpressionChild EOF ;
+    // InternalXmu2.g:2219:1: entryRuleMultiplicativeExpressionChild returns [EObject current=null] : iv_ruleMultiplicativeExpressionChild= ruleMultiplicativeExpressionChild EOF ;
     public final EObject entryRuleMultiplicativeExpressionChild() throws RecognitionException {
         EObject current = null;
 
@@ -6325,8 +6309,8 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalXmu2.g:2216:70: (iv_ruleMultiplicativeExpressionChild= ruleMultiplicativeExpressionChild EOF )
-            // InternalXmu2.g:2217:2: iv_ruleMultiplicativeExpressionChild= ruleMultiplicativeExpressionChild EOF
+            // InternalXmu2.g:2219:70: (iv_ruleMultiplicativeExpressionChild= ruleMultiplicativeExpressionChild EOF )
+            // InternalXmu2.g:2220:2: iv_ruleMultiplicativeExpressionChild= ruleMultiplicativeExpressionChild EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getMultiplicativeExpressionChildRule()); 
@@ -6357,7 +6341,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMultiplicativeExpressionChild"
-    // InternalXmu2.g:2223:1: ruleMultiplicativeExpressionChild returns [EObject current=null] : ( ( ( ruleUnaryExpression )=>this_UnaryExpression_0= ruleUnaryExpression ) | this_UnaryExpressionChild_1= ruleUnaryExpressionChild ) ;
+    // InternalXmu2.g:2226:1: ruleMultiplicativeExpressionChild returns [EObject current=null] : ( ( ( ruleUnaryExpression )=>this_UnaryExpression_0= ruleUnaryExpression ) | this_UnaryExpressionChild_1= ruleUnaryExpressionChild ) ;
     public final EObject ruleMultiplicativeExpressionChild() throws RecognitionException {
         EObject current = null;
 
@@ -6370,35 +6354,35 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:2229:2: ( ( ( ( ruleUnaryExpression )=>this_UnaryExpression_0= ruleUnaryExpression ) | this_UnaryExpressionChild_1= ruleUnaryExpressionChild ) )
-            // InternalXmu2.g:2230:2: ( ( ( ruleUnaryExpression )=>this_UnaryExpression_0= ruleUnaryExpression ) | this_UnaryExpressionChild_1= ruleUnaryExpressionChild )
+            // InternalXmu2.g:2232:2: ( ( ( ( ruleUnaryExpression )=>this_UnaryExpression_0= ruleUnaryExpression ) | this_UnaryExpressionChild_1= ruleUnaryExpressionChild ) )
+            // InternalXmu2.g:2233:2: ( ( ( ruleUnaryExpression )=>this_UnaryExpression_0= ruleUnaryExpression ) | this_UnaryExpressionChild_1= ruleUnaryExpressionChild )
             {
-            // InternalXmu2.g:2230:2: ( ( ( ruleUnaryExpression )=>this_UnaryExpression_0= ruleUnaryExpression ) | this_UnaryExpressionChild_1= ruleUnaryExpressionChild )
-            int alt37=2;
-            int LA37_0 = input.LA(1);
+            // InternalXmu2.g:2233:2: ( ( ( ruleUnaryExpression )=>this_UnaryExpression_0= ruleUnaryExpression ) | this_UnaryExpressionChild_1= ruleUnaryExpressionChild )
+            int alt36=2;
+            int LA36_0 = input.LA(1);
 
-            if ( (LA37_0==60) && (synpred4_InternalXmu2())) {
-                alt37=1;
+            if ( (LA36_0==60) && (synpred5_InternalXmu2())) {
+                alt36=1;
             }
-            else if ( (LA37_0==61) && (synpred4_InternalXmu2())) {
-                alt37=1;
+            else if ( (LA36_0==61) && (synpred5_InternalXmu2())) {
+                alt36=1;
             }
-            else if ( (LA37_0==RULE_NAME||(LA37_0>=RULE_INT && LA37_0<=RULE_BOOLEAN)||LA37_0==19||(LA37_0>=58 && LA37_0<=59)) ) {
-                alt37=2;
+            else if ( (LA36_0==RULE_NAME||(LA36_0>=RULE_INT && LA36_0<=RULE_BOOLEAN)||LA36_0==19||(LA36_0>=58 && LA36_0<=59)) ) {
+                alt36=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 37, 0, input);
+                    new NoViableAltException("", 36, 0, input);
 
                 throw nvae;
             }
-            switch (alt37) {
+            switch (alt36) {
                 case 1 :
-                    // InternalXmu2.g:2231:3: ( ( ruleUnaryExpression )=>this_UnaryExpression_0= ruleUnaryExpression )
+                    // InternalXmu2.g:2234:3: ( ( ruleUnaryExpression )=>this_UnaryExpression_0= ruleUnaryExpression )
                     {
-                    // InternalXmu2.g:2231:3: ( ( ruleUnaryExpression )=>this_UnaryExpression_0= ruleUnaryExpression )
-                    // InternalXmu2.g:2232:4: ( ruleUnaryExpression )=>this_UnaryExpression_0= ruleUnaryExpression
+                    // InternalXmu2.g:2234:3: ( ( ruleUnaryExpression )=>this_UnaryExpression_0= ruleUnaryExpression )
+                    // InternalXmu2.g:2235:4: ( ruleUnaryExpression )=>this_UnaryExpression_0= ruleUnaryExpression
                     {
                     if ( state.backtracking==0 ) {
 
@@ -6423,7 +6407,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalXmu2.g:2243:3: this_UnaryExpressionChild_1= ruleUnaryExpressionChild
+                    // InternalXmu2.g:2246:3: this_UnaryExpressionChild_1= ruleUnaryExpressionChild
                     {
                     if ( state.backtracking==0 ) {
 
@@ -6469,7 +6453,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleAdditiveExpression"
-    // InternalXmu2.g:2255:1: entryRuleAdditiveExpression returns [EObject current=null] : iv_ruleAdditiveExpression= ruleAdditiveExpression EOF ;
+    // InternalXmu2.g:2258:1: entryRuleAdditiveExpression returns [EObject current=null] : iv_ruleAdditiveExpression= ruleAdditiveExpression EOF ;
     public final EObject entryRuleAdditiveExpression() throws RecognitionException {
         EObject current = null;
 
@@ -6477,8 +6461,8 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalXmu2.g:2255:59: (iv_ruleAdditiveExpression= ruleAdditiveExpression EOF )
-            // InternalXmu2.g:2256:2: iv_ruleAdditiveExpression= ruleAdditiveExpression EOF
+            // InternalXmu2.g:2258:59: (iv_ruleAdditiveExpression= ruleAdditiveExpression EOF )
+            // InternalXmu2.g:2259:2: iv_ruleAdditiveExpression= ruleAdditiveExpression EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getAdditiveExpressionRule()); 
@@ -6509,7 +6493,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleAdditiveExpression"
-    // InternalXmu2.g:2262:1: ruleAdditiveExpression returns [EObject current=null] : ( ( (lv_operands_0_0= ruleAdditiveExpressionChild ) ) ( ( (lv_operators_1_0= ruleAdditiveOperator ) ) ( (lv_operands_2_0= ruleAdditiveExpressionChild ) ) )+ ) ;
+    // InternalXmu2.g:2265:1: ruleAdditiveExpression returns [EObject current=null] : ( ( (lv_operands_0_0= ruleAdditiveExpressionChild ) ) ( ( (lv_operators_1_0= ruleAdditiveOperator ) ) ( (lv_operands_2_0= ruleAdditiveExpressionChild ) ) )+ ) ;
     public final EObject ruleAdditiveExpression() throws RecognitionException {
         EObject current = null;
 
@@ -6524,24 +6508,24 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:2268:2: ( ( ( (lv_operands_0_0= ruleAdditiveExpressionChild ) ) ( ( (lv_operators_1_0= ruleAdditiveOperator ) ) ( (lv_operands_2_0= ruleAdditiveExpressionChild ) ) )+ ) )
-            // InternalXmu2.g:2269:2: ( ( (lv_operands_0_0= ruleAdditiveExpressionChild ) ) ( ( (lv_operators_1_0= ruleAdditiveOperator ) ) ( (lv_operands_2_0= ruleAdditiveExpressionChild ) ) )+ )
+            // InternalXmu2.g:2271:2: ( ( ( (lv_operands_0_0= ruleAdditiveExpressionChild ) ) ( ( (lv_operators_1_0= ruleAdditiveOperator ) ) ( (lv_operands_2_0= ruleAdditiveExpressionChild ) ) )+ ) )
+            // InternalXmu2.g:2272:2: ( ( (lv_operands_0_0= ruleAdditiveExpressionChild ) ) ( ( (lv_operators_1_0= ruleAdditiveOperator ) ) ( (lv_operands_2_0= ruleAdditiveExpressionChild ) ) )+ )
             {
-            // InternalXmu2.g:2269:2: ( ( (lv_operands_0_0= ruleAdditiveExpressionChild ) ) ( ( (lv_operators_1_0= ruleAdditiveOperator ) ) ( (lv_operands_2_0= ruleAdditiveExpressionChild ) ) )+ )
-            // InternalXmu2.g:2270:3: ( (lv_operands_0_0= ruleAdditiveExpressionChild ) ) ( ( (lv_operators_1_0= ruleAdditiveOperator ) ) ( (lv_operands_2_0= ruleAdditiveExpressionChild ) ) )+
+            // InternalXmu2.g:2272:2: ( ( (lv_operands_0_0= ruleAdditiveExpressionChild ) ) ( ( (lv_operators_1_0= ruleAdditiveOperator ) ) ( (lv_operands_2_0= ruleAdditiveExpressionChild ) ) )+ )
+            // InternalXmu2.g:2273:3: ( (lv_operands_0_0= ruleAdditiveExpressionChild ) ) ( ( (lv_operators_1_0= ruleAdditiveOperator ) ) ( (lv_operands_2_0= ruleAdditiveExpressionChild ) ) )+
             {
-            // InternalXmu2.g:2270:3: ( (lv_operands_0_0= ruleAdditiveExpressionChild ) )
-            // InternalXmu2.g:2271:4: (lv_operands_0_0= ruleAdditiveExpressionChild )
+            // InternalXmu2.g:2273:3: ( (lv_operands_0_0= ruleAdditiveExpressionChild ) )
+            // InternalXmu2.g:2274:4: (lv_operands_0_0= ruleAdditiveExpressionChild )
             {
-            // InternalXmu2.g:2271:4: (lv_operands_0_0= ruleAdditiveExpressionChild )
-            // InternalXmu2.g:2272:5: lv_operands_0_0= ruleAdditiveExpressionChild
+            // InternalXmu2.g:2274:4: (lv_operands_0_0= ruleAdditiveExpressionChild )
+            // InternalXmu2.g:2275:5: lv_operands_0_0= ruleAdditiveExpressionChild
             {
             if ( state.backtracking==0 ) {
 
               					newCompositeNode(grammarAccess.getAdditiveExpressionAccess().getOperandsAdditiveExpressionChildParserRuleCall_0_0());
               				
             }
-            pushFollow(FOLLOW_41);
+            pushFollow(FOLLOW_40);
             lv_operands_0_0=ruleAdditiveExpressionChild();
 
             state._fsp--;
@@ -6565,27 +6549,27 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalXmu2.g:2289:3: ( ( (lv_operators_1_0= ruleAdditiveOperator ) ) ( (lv_operands_2_0= ruleAdditiveExpressionChild ) ) )+
-            int cnt38=0;
-            loop38:
+            // InternalXmu2.g:2292:3: ( ( (lv_operators_1_0= ruleAdditiveOperator ) ) ( (lv_operands_2_0= ruleAdditiveExpressionChild ) ) )+
+            int cnt37=0;
+            loop37:
             do {
-                int alt38=2;
-                int LA38_0 = input.LA(1);
+                int alt37=2;
+                int LA37_0 = input.LA(1);
 
-                if ( (LA38_0==61||(LA38_0>=64 && LA38_0<=65)) ) {
-                    alt38=1;
+                if ( (LA37_0==61||(LA37_0>=64 && LA37_0<=65)) ) {
+                    alt37=1;
                 }
 
 
-                switch (alt38) {
+                switch (alt37) {
             	case 1 :
-            	    // InternalXmu2.g:2290:4: ( (lv_operators_1_0= ruleAdditiveOperator ) ) ( (lv_operands_2_0= ruleAdditiveExpressionChild ) )
+            	    // InternalXmu2.g:2293:4: ( (lv_operators_1_0= ruleAdditiveOperator ) ) ( (lv_operands_2_0= ruleAdditiveExpressionChild ) )
             	    {
-            	    // InternalXmu2.g:2290:4: ( (lv_operators_1_0= ruleAdditiveOperator ) )
-            	    // InternalXmu2.g:2291:5: (lv_operators_1_0= ruleAdditiveOperator )
+            	    // InternalXmu2.g:2293:4: ( (lv_operators_1_0= ruleAdditiveOperator ) )
+            	    // InternalXmu2.g:2294:5: (lv_operators_1_0= ruleAdditiveOperator )
             	    {
-            	    // InternalXmu2.g:2291:5: (lv_operators_1_0= ruleAdditiveOperator )
-            	    // InternalXmu2.g:2292:6: lv_operators_1_0= ruleAdditiveOperator
+            	    // InternalXmu2.g:2294:5: (lv_operators_1_0= ruleAdditiveOperator )
+            	    // InternalXmu2.g:2295:6: lv_operators_1_0= ruleAdditiveOperator
             	    {
             	    if ( state.backtracking==0 ) {
 
@@ -6616,18 +6600,18 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
             	    }
 
-            	    // InternalXmu2.g:2309:4: ( (lv_operands_2_0= ruleAdditiveExpressionChild ) )
-            	    // InternalXmu2.g:2310:5: (lv_operands_2_0= ruleAdditiveExpressionChild )
+            	    // InternalXmu2.g:2312:4: ( (lv_operands_2_0= ruleAdditiveExpressionChild ) )
+            	    // InternalXmu2.g:2313:5: (lv_operands_2_0= ruleAdditiveExpressionChild )
             	    {
-            	    // InternalXmu2.g:2310:5: (lv_operands_2_0= ruleAdditiveExpressionChild )
-            	    // InternalXmu2.g:2311:6: lv_operands_2_0= ruleAdditiveExpressionChild
+            	    // InternalXmu2.g:2313:5: (lv_operands_2_0= ruleAdditiveExpressionChild )
+            	    // InternalXmu2.g:2314:6: lv_operands_2_0= ruleAdditiveExpressionChild
             	    {
             	    if ( state.backtracking==0 ) {
 
             	      						newCompositeNode(grammarAccess.getAdditiveExpressionAccess().getOperandsAdditiveExpressionChildParserRuleCall_1_1_0());
             	      					
             	    }
-            	    pushFollow(FOLLOW_42);
+            	    pushFollow(FOLLOW_41);
             	    lv_operands_2_0=ruleAdditiveExpressionChild();
 
             	    state._fsp--;
@@ -6656,13 +6640,13 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    if ( cnt38 >= 1 ) break loop38;
+            	    if ( cnt37 >= 1 ) break loop37;
             	    if (state.backtracking>0) {state.failed=true; return current;}
                         EarlyExitException eee =
-                            new EarlyExitException(38, input);
+                            new EarlyExitException(37, input);
                         throw eee;
                 }
-                cnt38++;
+                cnt37++;
             } while (true);
 
 
@@ -6690,7 +6674,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleAdditiveExpressionChild"
-    // InternalXmu2.g:2333:1: entryRuleAdditiveExpressionChild returns [EObject current=null] : iv_ruleAdditiveExpressionChild= ruleAdditiveExpressionChild EOF ;
+    // InternalXmu2.g:2336:1: entryRuleAdditiveExpressionChild returns [EObject current=null] : iv_ruleAdditiveExpressionChild= ruleAdditiveExpressionChild EOF ;
     public final EObject entryRuleAdditiveExpressionChild() throws RecognitionException {
         EObject current = null;
 
@@ -6698,8 +6682,8 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalXmu2.g:2333:64: (iv_ruleAdditiveExpressionChild= ruleAdditiveExpressionChild EOF )
-            // InternalXmu2.g:2334:2: iv_ruleAdditiveExpressionChild= ruleAdditiveExpressionChild EOF
+            // InternalXmu2.g:2336:64: (iv_ruleAdditiveExpressionChild= ruleAdditiveExpressionChild EOF )
+            // InternalXmu2.g:2337:2: iv_ruleAdditiveExpressionChild= ruleAdditiveExpressionChild EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getAdditiveExpressionChildRule()); 
@@ -6730,7 +6714,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleAdditiveExpressionChild"
-    // InternalXmu2.g:2340:1: ruleAdditiveExpressionChild returns [EObject current=null] : ( ( ( ruleMultiplicativeExpression )=>this_MultiplicativeExpression_0= ruleMultiplicativeExpression ) | this_MultiplicativeExpressionChild_1= ruleMultiplicativeExpressionChild ) ;
+    // InternalXmu2.g:2343:1: ruleAdditiveExpressionChild returns [EObject current=null] : ( ( ( ruleMultiplicativeExpression )=>this_MultiplicativeExpression_0= ruleMultiplicativeExpression ) | this_MultiplicativeExpressionChild_1= ruleMultiplicativeExpressionChild ) ;
     public final EObject ruleAdditiveExpressionChild() throws RecognitionException {
         EObject current = null;
 
@@ -6743,18 +6727,18 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:2346:2: ( ( ( ( ruleMultiplicativeExpression )=>this_MultiplicativeExpression_0= ruleMultiplicativeExpression ) | this_MultiplicativeExpressionChild_1= ruleMultiplicativeExpressionChild ) )
-            // InternalXmu2.g:2347:2: ( ( ( ruleMultiplicativeExpression )=>this_MultiplicativeExpression_0= ruleMultiplicativeExpression ) | this_MultiplicativeExpressionChild_1= ruleMultiplicativeExpressionChild )
+            // InternalXmu2.g:2349:2: ( ( ( ( ruleMultiplicativeExpression )=>this_MultiplicativeExpression_0= ruleMultiplicativeExpression ) | this_MultiplicativeExpressionChild_1= ruleMultiplicativeExpressionChild ) )
+            // InternalXmu2.g:2350:2: ( ( ( ruleMultiplicativeExpression )=>this_MultiplicativeExpression_0= ruleMultiplicativeExpression ) | this_MultiplicativeExpressionChild_1= ruleMultiplicativeExpressionChild )
             {
-            // InternalXmu2.g:2347:2: ( ( ( ruleMultiplicativeExpression )=>this_MultiplicativeExpression_0= ruleMultiplicativeExpression ) | this_MultiplicativeExpressionChild_1= ruleMultiplicativeExpressionChild )
-            int alt39=2;
-            alt39 = dfa39.predict(input);
-            switch (alt39) {
+            // InternalXmu2.g:2350:2: ( ( ( ruleMultiplicativeExpression )=>this_MultiplicativeExpression_0= ruleMultiplicativeExpression ) | this_MultiplicativeExpressionChild_1= ruleMultiplicativeExpressionChild )
+            int alt38=2;
+            alt38 = dfa38.predict(input);
+            switch (alt38) {
                 case 1 :
-                    // InternalXmu2.g:2348:3: ( ( ruleMultiplicativeExpression )=>this_MultiplicativeExpression_0= ruleMultiplicativeExpression )
+                    // InternalXmu2.g:2351:3: ( ( ruleMultiplicativeExpression )=>this_MultiplicativeExpression_0= ruleMultiplicativeExpression )
                     {
-                    // InternalXmu2.g:2348:3: ( ( ruleMultiplicativeExpression )=>this_MultiplicativeExpression_0= ruleMultiplicativeExpression )
-                    // InternalXmu2.g:2349:4: ( ruleMultiplicativeExpression )=>this_MultiplicativeExpression_0= ruleMultiplicativeExpression
+                    // InternalXmu2.g:2351:3: ( ( ruleMultiplicativeExpression )=>this_MultiplicativeExpression_0= ruleMultiplicativeExpression )
+                    // InternalXmu2.g:2352:4: ( ruleMultiplicativeExpression )=>this_MultiplicativeExpression_0= ruleMultiplicativeExpression
                     {
                     if ( state.backtracking==0 ) {
 
@@ -6779,7 +6763,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalXmu2.g:2360:3: this_MultiplicativeExpressionChild_1= ruleMultiplicativeExpressionChild
+                    // InternalXmu2.g:2363:3: this_MultiplicativeExpressionChild_1= ruleMultiplicativeExpressionChild
                     {
                     if ( state.backtracking==0 ) {
 
@@ -6825,7 +6809,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleRelationalExpression"
-    // InternalXmu2.g:2372:1: entryRuleRelationalExpression returns [EObject current=null] : iv_ruleRelationalExpression= ruleRelationalExpression EOF ;
+    // InternalXmu2.g:2375:1: entryRuleRelationalExpression returns [EObject current=null] : iv_ruleRelationalExpression= ruleRelationalExpression EOF ;
     public final EObject entryRuleRelationalExpression() throws RecognitionException {
         EObject current = null;
 
@@ -6833,8 +6817,8 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalXmu2.g:2372:61: (iv_ruleRelationalExpression= ruleRelationalExpression EOF )
-            // InternalXmu2.g:2373:2: iv_ruleRelationalExpression= ruleRelationalExpression EOF
+            // InternalXmu2.g:2375:61: (iv_ruleRelationalExpression= ruleRelationalExpression EOF )
+            // InternalXmu2.g:2376:2: iv_ruleRelationalExpression= ruleRelationalExpression EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getRelationalExpressionRule()); 
@@ -6865,7 +6849,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleRelationalExpression"
-    // InternalXmu2.g:2379:1: ruleRelationalExpression returns [EObject current=null] : ( ( (lv_left_0_0= ruleRelationalExpressionChild ) ) ( (lv_operator_1_0= ruleRelationalOperator ) ) ( (lv_right_2_0= ruleRelationalExpressionChild ) ) ) ;
+    // InternalXmu2.g:2382:1: ruleRelationalExpression returns [EObject current=null] : ( ( (lv_left_0_0= ruleRelationalExpressionChild ) ) ( (lv_operator_1_0= ruleRelationalOperator ) ) ( (lv_right_2_0= ruleRelationalExpressionChild ) ) ) ;
     public final EObject ruleRelationalExpression() throws RecognitionException {
         EObject current = null;
 
@@ -6880,24 +6864,24 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:2385:2: ( ( ( (lv_left_0_0= ruleRelationalExpressionChild ) ) ( (lv_operator_1_0= ruleRelationalOperator ) ) ( (lv_right_2_0= ruleRelationalExpressionChild ) ) ) )
-            // InternalXmu2.g:2386:2: ( ( (lv_left_0_0= ruleRelationalExpressionChild ) ) ( (lv_operator_1_0= ruleRelationalOperator ) ) ( (lv_right_2_0= ruleRelationalExpressionChild ) ) )
+            // InternalXmu2.g:2388:2: ( ( ( (lv_left_0_0= ruleRelationalExpressionChild ) ) ( (lv_operator_1_0= ruleRelationalOperator ) ) ( (lv_right_2_0= ruleRelationalExpressionChild ) ) ) )
+            // InternalXmu2.g:2389:2: ( ( (lv_left_0_0= ruleRelationalExpressionChild ) ) ( (lv_operator_1_0= ruleRelationalOperator ) ) ( (lv_right_2_0= ruleRelationalExpressionChild ) ) )
             {
-            // InternalXmu2.g:2386:2: ( ( (lv_left_0_0= ruleRelationalExpressionChild ) ) ( (lv_operator_1_0= ruleRelationalOperator ) ) ( (lv_right_2_0= ruleRelationalExpressionChild ) ) )
-            // InternalXmu2.g:2387:3: ( (lv_left_0_0= ruleRelationalExpressionChild ) ) ( (lv_operator_1_0= ruleRelationalOperator ) ) ( (lv_right_2_0= ruleRelationalExpressionChild ) )
+            // InternalXmu2.g:2389:2: ( ( (lv_left_0_0= ruleRelationalExpressionChild ) ) ( (lv_operator_1_0= ruleRelationalOperator ) ) ( (lv_right_2_0= ruleRelationalExpressionChild ) ) )
+            // InternalXmu2.g:2390:3: ( (lv_left_0_0= ruleRelationalExpressionChild ) ) ( (lv_operator_1_0= ruleRelationalOperator ) ) ( (lv_right_2_0= ruleRelationalExpressionChild ) )
             {
-            // InternalXmu2.g:2387:3: ( (lv_left_0_0= ruleRelationalExpressionChild ) )
-            // InternalXmu2.g:2388:4: (lv_left_0_0= ruleRelationalExpressionChild )
+            // InternalXmu2.g:2390:3: ( (lv_left_0_0= ruleRelationalExpressionChild ) )
+            // InternalXmu2.g:2391:4: (lv_left_0_0= ruleRelationalExpressionChild )
             {
-            // InternalXmu2.g:2388:4: (lv_left_0_0= ruleRelationalExpressionChild )
-            // InternalXmu2.g:2389:5: lv_left_0_0= ruleRelationalExpressionChild
+            // InternalXmu2.g:2391:4: (lv_left_0_0= ruleRelationalExpressionChild )
+            // InternalXmu2.g:2392:5: lv_left_0_0= ruleRelationalExpressionChild
             {
             if ( state.backtracking==0 ) {
 
               					newCompositeNode(grammarAccess.getRelationalExpressionAccess().getLeftRelationalExpressionChildParserRuleCall_0_0());
               				
             }
-            pushFollow(FOLLOW_43);
+            pushFollow(FOLLOW_42);
             lv_left_0_0=ruleRelationalExpressionChild();
 
             state._fsp--;
@@ -6921,11 +6905,11 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalXmu2.g:2406:3: ( (lv_operator_1_0= ruleRelationalOperator ) )
-            // InternalXmu2.g:2407:4: (lv_operator_1_0= ruleRelationalOperator )
+            // InternalXmu2.g:2409:3: ( (lv_operator_1_0= ruleRelationalOperator ) )
+            // InternalXmu2.g:2410:4: (lv_operator_1_0= ruleRelationalOperator )
             {
-            // InternalXmu2.g:2407:4: (lv_operator_1_0= ruleRelationalOperator )
-            // InternalXmu2.g:2408:5: lv_operator_1_0= ruleRelationalOperator
+            // InternalXmu2.g:2410:4: (lv_operator_1_0= ruleRelationalOperator )
+            // InternalXmu2.g:2411:5: lv_operator_1_0= ruleRelationalOperator
             {
             if ( state.backtracking==0 ) {
 
@@ -6956,11 +6940,11 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalXmu2.g:2425:3: ( (lv_right_2_0= ruleRelationalExpressionChild ) )
-            // InternalXmu2.g:2426:4: (lv_right_2_0= ruleRelationalExpressionChild )
+            // InternalXmu2.g:2428:3: ( (lv_right_2_0= ruleRelationalExpressionChild ) )
+            // InternalXmu2.g:2429:4: (lv_right_2_0= ruleRelationalExpressionChild )
             {
-            // InternalXmu2.g:2426:4: (lv_right_2_0= ruleRelationalExpressionChild )
-            // InternalXmu2.g:2427:5: lv_right_2_0= ruleRelationalExpressionChild
+            // InternalXmu2.g:2429:4: (lv_right_2_0= ruleRelationalExpressionChild )
+            // InternalXmu2.g:2430:5: lv_right_2_0= ruleRelationalExpressionChild
             {
             if ( state.backtracking==0 ) {
 
@@ -7016,7 +7000,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleRelationalExpressionChild"
-    // InternalXmu2.g:2448:1: entryRuleRelationalExpressionChild returns [EObject current=null] : iv_ruleRelationalExpressionChild= ruleRelationalExpressionChild EOF ;
+    // InternalXmu2.g:2451:1: entryRuleRelationalExpressionChild returns [EObject current=null] : iv_ruleRelationalExpressionChild= ruleRelationalExpressionChild EOF ;
     public final EObject entryRuleRelationalExpressionChild() throws RecognitionException {
         EObject current = null;
 
@@ -7024,8 +7008,8 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalXmu2.g:2448:66: (iv_ruleRelationalExpressionChild= ruleRelationalExpressionChild EOF )
-            // InternalXmu2.g:2449:2: iv_ruleRelationalExpressionChild= ruleRelationalExpressionChild EOF
+            // InternalXmu2.g:2451:66: (iv_ruleRelationalExpressionChild= ruleRelationalExpressionChild EOF )
+            // InternalXmu2.g:2452:2: iv_ruleRelationalExpressionChild= ruleRelationalExpressionChild EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getRelationalExpressionChildRule()); 
@@ -7056,7 +7040,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleRelationalExpressionChild"
-    // InternalXmu2.g:2455:1: ruleRelationalExpressionChild returns [EObject current=null] : ( ( ( ruleAdditiveExpression )=>this_AdditiveExpression_0= ruleAdditiveExpression ) | this_AdditiveExpressionChild_1= ruleAdditiveExpressionChild ) ;
+    // InternalXmu2.g:2458:1: ruleRelationalExpressionChild returns [EObject current=null] : ( ( ( ruleAdditiveExpression )=>this_AdditiveExpression_0= ruleAdditiveExpression ) | this_AdditiveExpressionChild_1= ruleAdditiveExpressionChild ) ;
     public final EObject ruleRelationalExpressionChild() throws RecognitionException {
         EObject current = null;
 
@@ -7069,18 +7053,18 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:2461:2: ( ( ( ( ruleAdditiveExpression )=>this_AdditiveExpression_0= ruleAdditiveExpression ) | this_AdditiveExpressionChild_1= ruleAdditiveExpressionChild ) )
-            // InternalXmu2.g:2462:2: ( ( ( ruleAdditiveExpression )=>this_AdditiveExpression_0= ruleAdditiveExpression ) | this_AdditiveExpressionChild_1= ruleAdditiveExpressionChild )
+            // InternalXmu2.g:2464:2: ( ( ( ( ruleAdditiveExpression )=>this_AdditiveExpression_0= ruleAdditiveExpression ) | this_AdditiveExpressionChild_1= ruleAdditiveExpressionChild ) )
+            // InternalXmu2.g:2465:2: ( ( ( ruleAdditiveExpression )=>this_AdditiveExpression_0= ruleAdditiveExpression ) | this_AdditiveExpressionChild_1= ruleAdditiveExpressionChild )
             {
-            // InternalXmu2.g:2462:2: ( ( ( ruleAdditiveExpression )=>this_AdditiveExpression_0= ruleAdditiveExpression ) | this_AdditiveExpressionChild_1= ruleAdditiveExpressionChild )
-            int alt40=2;
-            alt40 = dfa40.predict(input);
-            switch (alt40) {
+            // InternalXmu2.g:2465:2: ( ( ( ruleAdditiveExpression )=>this_AdditiveExpression_0= ruleAdditiveExpression ) | this_AdditiveExpressionChild_1= ruleAdditiveExpressionChild )
+            int alt39=2;
+            alt39 = dfa39.predict(input);
+            switch (alt39) {
                 case 1 :
-                    // InternalXmu2.g:2463:3: ( ( ruleAdditiveExpression )=>this_AdditiveExpression_0= ruleAdditiveExpression )
+                    // InternalXmu2.g:2466:3: ( ( ruleAdditiveExpression )=>this_AdditiveExpression_0= ruleAdditiveExpression )
                     {
-                    // InternalXmu2.g:2463:3: ( ( ruleAdditiveExpression )=>this_AdditiveExpression_0= ruleAdditiveExpression )
-                    // InternalXmu2.g:2464:4: ( ruleAdditiveExpression )=>this_AdditiveExpression_0= ruleAdditiveExpression
+                    // InternalXmu2.g:2466:3: ( ( ruleAdditiveExpression )=>this_AdditiveExpression_0= ruleAdditiveExpression )
+                    // InternalXmu2.g:2467:4: ( ruleAdditiveExpression )=>this_AdditiveExpression_0= ruleAdditiveExpression
                     {
                     if ( state.backtracking==0 ) {
 
@@ -7105,7 +7089,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalXmu2.g:2475:3: this_AdditiveExpressionChild_1= ruleAdditiveExpressionChild
+                    // InternalXmu2.g:2478:3: this_AdditiveExpressionChild_1= ruleAdditiveExpressionChild
                     {
                     if ( state.backtracking==0 ) {
 
@@ -7151,7 +7135,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleBooleanAndExpression"
-    // InternalXmu2.g:2487:1: entryRuleBooleanAndExpression returns [EObject current=null] : iv_ruleBooleanAndExpression= ruleBooleanAndExpression EOF ;
+    // InternalXmu2.g:2490:1: entryRuleBooleanAndExpression returns [EObject current=null] : iv_ruleBooleanAndExpression= ruleBooleanAndExpression EOF ;
     public final EObject entryRuleBooleanAndExpression() throws RecognitionException {
         EObject current = null;
 
@@ -7159,8 +7143,8 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalXmu2.g:2487:61: (iv_ruleBooleanAndExpression= ruleBooleanAndExpression EOF )
-            // InternalXmu2.g:2488:2: iv_ruleBooleanAndExpression= ruleBooleanAndExpression EOF
+            // InternalXmu2.g:2490:61: (iv_ruleBooleanAndExpression= ruleBooleanAndExpression EOF )
+            // InternalXmu2.g:2491:2: iv_ruleBooleanAndExpression= ruleBooleanAndExpression EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getBooleanAndExpressionRule()); 
@@ -7191,7 +7175,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleBooleanAndExpression"
-    // InternalXmu2.g:2494:1: ruleBooleanAndExpression returns [EObject current=null] : ( ( (lv_operands_0_0= ruleBooleanAndExpressionChild ) ) (otherlv_1= 'and' ( (lv_operands_2_0= ruleBooleanAndExpressionChild ) ) )+ ) ;
+    // InternalXmu2.g:2497:1: ruleBooleanAndExpression returns [EObject current=null] : ( ( (lv_operands_0_0= ruleBooleanAndExpressionChild ) ) (otherlv_1= 'and' ( (lv_operands_2_0= ruleBooleanAndExpressionChild ) ) )+ ) ;
     public final EObject ruleBooleanAndExpression() throws RecognitionException {
         EObject current = null;
 
@@ -7205,24 +7189,24 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:2500:2: ( ( ( (lv_operands_0_0= ruleBooleanAndExpressionChild ) ) (otherlv_1= 'and' ( (lv_operands_2_0= ruleBooleanAndExpressionChild ) ) )+ ) )
-            // InternalXmu2.g:2501:2: ( ( (lv_operands_0_0= ruleBooleanAndExpressionChild ) ) (otherlv_1= 'and' ( (lv_operands_2_0= ruleBooleanAndExpressionChild ) ) )+ )
+            // InternalXmu2.g:2503:2: ( ( ( (lv_operands_0_0= ruleBooleanAndExpressionChild ) ) (otherlv_1= 'and' ( (lv_operands_2_0= ruleBooleanAndExpressionChild ) ) )+ ) )
+            // InternalXmu2.g:2504:2: ( ( (lv_operands_0_0= ruleBooleanAndExpressionChild ) ) (otherlv_1= 'and' ( (lv_operands_2_0= ruleBooleanAndExpressionChild ) ) )+ )
             {
-            // InternalXmu2.g:2501:2: ( ( (lv_operands_0_0= ruleBooleanAndExpressionChild ) ) (otherlv_1= 'and' ( (lv_operands_2_0= ruleBooleanAndExpressionChild ) ) )+ )
-            // InternalXmu2.g:2502:3: ( (lv_operands_0_0= ruleBooleanAndExpressionChild ) ) (otherlv_1= 'and' ( (lv_operands_2_0= ruleBooleanAndExpressionChild ) ) )+
+            // InternalXmu2.g:2504:2: ( ( (lv_operands_0_0= ruleBooleanAndExpressionChild ) ) (otherlv_1= 'and' ( (lv_operands_2_0= ruleBooleanAndExpressionChild ) ) )+ )
+            // InternalXmu2.g:2505:3: ( (lv_operands_0_0= ruleBooleanAndExpressionChild ) ) (otherlv_1= 'and' ( (lv_operands_2_0= ruleBooleanAndExpressionChild ) ) )+
             {
-            // InternalXmu2.g:2502:3: ( (lv_operands_0_0= ruleBooleanAndExpressionChild ) )
-            // InternalXmu2.g:2503:4: (lv_operands_0_0= ruleBooleanAndExpressionChild )
+            // InternalXmu2.g:2505:3: ( (lv_operands_0_0= ruleBooleanAndExpressionChild ) )
+            // InternalXmu2.g:2506:4: (lv_operands_0_0= ruleBooleanAndExpressionChild )
             {
-            // InternalXmu2.g:2503:4: (lv_operands_0_0= ruleBooleanAndExpressionChild )
-            // InternalXmu2.g:2504:5: lv_operands_0_0= ruleBooleanAndExpressionChild
+            // InternalXmu2.g:2506:4: (lv_operands_0_0= ruleBooleanAndExpressionChild )
+            // InternalXmu2.g:2507:5: lv_operands_0_0= ruleBooleanAndExpressionChild
             {
             if ( state.backtracking==0 ) {
 
               					newCompositeNode(grammarAccess.getBooleanAndExpressionAccess().getOperandsBooleanAndExpressionChildParserRuleCall_0_0());
               				
             }
-            pushFollow(FOLLOW_44);
+            pushFollow(FOLLOW_43);
             lv_operands_0_0=ruleBooleanAndExpressionChild();
 
             state._fsp--;
@@ -7246,21 +7230,21 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalXmu2.g:2521:3: (otherlv_1= 'and' ( (lv_operands_2_0= ruleBooleanAndExpressionChild ) ) )+
-            int cnt41=0;
-            loop41:
+            // InternalXmu2.g:2524:3: (otherlv_1= 'and' ( (lv_operands_2_0= ruleBooleanAndExpressionChild ) ) )+
+            int cnt40=0;
+            loop40:
             do {
-                int alt41=2;
-                int LA41_0 = input.LA(1);
+                int alt40=2;
+                int LA40_0 = input.LA(1);
 
-                if ( (LA41_0==36) ) {
-                    alt41=1;
+                if ( (LA40_0==36) ) {
+                    alt40=1;
                 }
 
 
-                switch (alt41) {
+                switch (alt40) {
             	case 1 :
-            	    // InternalXmu2.g:2522:4: otherlv_1= 'and' ( (lv_operands_2_0= ruleBooleanAndExpressionChild ) )
+            	    // InternalXmu2.g:2525:4: otherlv_1= 'and' ( (lv_operands_2_0= ruleBooleanAndExpressionChild ) )
             	    {
             	    otherlv_1=(Token)match(input,36,FOLLOW_24); if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
@@ -7268,18 +7252,18 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
             	      				newLeafNode(otherlv_1, grammarAccess.getBooleanAndExpressionAccess().getAndKeyword_1_0());
             	      			
             	    }
-            	    // InternalXmu2.g:2526:4: ( (lv_operands_2_0= ruleBooleanAndExpressionChild ) )
-            	    // InternalXmu2.g:2527:5: (lv_operands_2_0= ruleBooleanAndExpressionChild )
+            	    // InternalXmu2.g:2529:4: ( (lv_operands_2_0= ruleBooleanAndExpressionChild ) )
+            	    // InternalXmu2.g:2530:5: (lv_operands_2_0= ruleBooleanAndExpressionChild )
             	    {
-            	    // InternalXmu2.g:2527:5: (lv_operands_2_0= ruleBooleanAndExpressionChild )
-            	    // InternalXmu2.g:2528:6: lv_operands_2_0= ruleBooleanAndExpressionChild
+            	    // InternalXmu2.g:2530:5: (lv_operands_2_0= ruleBooleanAndExpressionChild )
+            	    // InternalXmu2.g:2531:6: lv_operands_2_0= ruleBooleanAndExpressionChild
             	    {
             	    if ( state.backtracking==0 ) {
 
             	      						newCompositeNode(grammarAccess.getBooleanAndExpressionAccess().getOperandsBooleanAndExpressionChildParserRuleCall_1_1_0());
             	      					
             	    }
-            	    pushFollow(FOLLOW_45);
+            	    pushFollow(FOLLOW_44);
             	    lv_operands_2_0=ruleBooleanAndExpressionChild();
 
             	    state._fsp--;
@@ -7308,13 +7292,13 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    if ( cnt41 >= 1 ) break loop41;
+            	    if ( cnt40 >= 1 ) break loop40;
             	    if (state.backtracking>0) {state.failed=true; return current;}
                         EarlyExitException eee =
-                            new EarlyExitException(41, input);
+                            new EarlyExitException(40, input);
                         throw eee;
                 }
-                cnt41++;
+                cnt40++;
             } while (true);
 
 
@@ -7342,7 +7326,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleBooleanAndExpressionChild"
-    // InternalXmu2.g:2550:1: entryRuleBooleanAndExpressionChild returns [EObject current=null] : iv_ruleBooleanAndExpressionChild= ruleBooleanAndExpressionChild EOF ;
+    // InternalXmu2.g:2553:1: entryRuleBooleanAndExpressionChild returns [EObject current=null] : iv_ruleBooleanAndExpressionChild= ruleBooleanAndExpressionChild EOF ;
     public final EObject entryRuleBooleanAndExpressionChild() throws RecognitionException {
         EObject current = null;
 
@@ -7350,8 +7334,8 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalXmu2.g:2550:66: (iv_ruleBooleanAndExpressionChild= ruleBooleanAndExpressionChild EOF )
-            // InternalXmu2.g:2551:2: iv_ruleBooleanAndExpressionChild= ruleBooleanAndExpressionChild EOF
+            // InternalXmu2.g:2553:66: (iv_ruleBooleanAndExpressionChild= ruleBooleanAndExpressionChild EOF )
+            // InternalXmu2.g:2554:2: iv_ruleBooleanAndExpressionChild= ruleBooleanAndExpressionChild EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getBooleanAndExpressionChildRule()); 
@@ -7382,7 +7366,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleBooleanAndExpressionChild"
-    // InternalXmu2.g:2557:1: ruleBooleanAndExpressionChild returns [EObject current=null] : ( ( ( ruleRelationalExpression )=>this_RelationalExpression_0= ruleRelationalExpression ) | this_RelationalExpressionChild_1= ruleRelationalExpressionChild ) ;
+    // InternalXmu2.g:2560:1: ruleBooleanAndExpressionChild returns [EObject current=null] : ( ( ( ruleRelationalExpression )=>this_RelationalExpression_0= ruleRelationalExpression ) | this_RelationalExpressionChild_1= ruleRelationalExpressionChild ) ;
     public final EObject ruleBooleanAndExpressionChild() throws RecognitionException {
         EObject current = null;
 
@@ -7395,18 +7379,18 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:2563:2: ( ( ( ( ruleRelationalExpression )=>this_RelationalExpression_0= ruleRelationalExpression ) | this_RelationalExpressionChild_1= ruleRelationalExpressionChild ) )
-            // InternalXmu2.g:2564:2: ( ( ( ruleRelationalExpression )=>this_RelationalExpression_0= ruleRelationalExpression ) | this_RelationalExpressionChild_1= ruleRelationalExpressionChild )
+            // InternalXmu2.g:2566:2: ( ( ( ( ruleRelationalExpression )=>this_RelationalExpression_0= ruleRelationalExpression ) | this_RelationalExpressionChild_1= ruleRelationalExpressionChild ) )
+            // InternalXmu2.g:2567:2: ( ( ( ruleRelationalExpression )=>this_RelationalExpression_0= ruleRelationalExpression ) | this_RelationalExpressionChild_1= ruleRelationalExpressionChild )
             {
-            // InternalXmu2.g:2564:2: ( ( ( ruleRelationalExpression )=>this_RelationalExpression_0= ruleRelationalExpression ) | this_RelationalExpressionChild_1= ruleRelationalExpressionChild )
-            int alt42=2;
-            alt42 = dfa42.predict(input);
-            switch (alt42) {
+            // InternalXmu2.g:2567:2: ( ( ( ruleRelationalExpression )=>this_RelationalExpression_0= ruleRelationalExpression ) | this_RelationalExpressionChild_1= ruleRelationalExpressionChild )
+            int alt41=2;
+            alt41 = dfa41.predict(input);
+            switch (alt41) {
                 case 1 :
-                    // InternalXmu2.g:2565:3: ( ( ruleRelationalExpression )=>this_RelationalExpression_0= ruleRelationalExpression )
+                    // InternalXmu2.g:2568:3: ( ( ruleRelationalExpression )=>this_RelationalExpression_0= ruleRelationalExpression )
                     {
-                    // InternalXmu2.g:2565:3: ( ( ruleRelationalExpression )=>this_RelationalExpression_0= ruleRelationalExpression )
-                    // InternalXmu2.g:2566:4: ( ruleRelationalExpression )=>this_RelationalExpression_0= ruleRelationalExpression
+                    // InternalXmu2.g:2568:3: ( ( ruleRelationalExpression )=>this_RelationalExpression_0= ruleRelationalExpression )
+                    // InternalXmu2.g:2569:4: ( ruleRelationalExpression )=>this_RelationalExpression_0= ruleRelationalExpression
                     {
                     if ( state.backtracking==0 ) {
 
@@ -7431,7 +7415,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalXmu2.g:2577:3: this_RelationalExpressionChild_1= ruleRelationalExpressionChild
+                    // InternalXmu2.g:2580:3: this_RelationalExpressionChild_1= ruleRelationalExpressionChild
                     {
                     if ( state.backtracking==0 ) {
 
@@ -7477,7 +7461,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleBooleanOrExpression"
-    // InternalXmu2.g:2589:1: entryRuleBooleanOrExpression returns [EObject current=null] : iv_ruleBooleanOrExpression= ruleBooleanOrExpression EOF ;
+    // InternalXmu2.g:2592:1: entryRuleBooleanOrExpression returns [EObject current=null] : iv_ruleBooleanOrExpression= ruleBooleanOrExpression EOF ;
     public final EObject entryRuleBooleanOrExpression() throws RecognitionException {
         EObject current = null;
 
@@ -7485,8 +7469,8 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalXmu2.g:2589:60: (iv_ruleBooleanOrExpression= ruleBooleanOrExpression EOF )
-            // InternalXmu2.g:2590:2: iv_ruleBooleanOrExpression= ruleBooleanOrExpression EOF
+            // InternalXmu2.g:2592:60: (iv_ruleBooleanOrExpression= ruleBooleanOrExpression EOF )
+            // InternalXmu2.g:2593:2: iv_ruleBooleanOrExpression= ruleBooleanOrExpression EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getBooleanOrExpressionRule()); 
@@ -7517,7 +7501,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleBooleanOrExpression"
-    // InternalXmu2.g:2596:1: ruleBooleanOrExpression returns [EObject current=null] : ( ( (lv_operands_0_0= ruleBooleanOrExpressionChild ) ) (otherlv_1= 'or' ( (lv_operands_2_0= ruleBooleanOrExpressionChild ) ) )+ ) ;
+    // InternalXmu2.g:2599:1: ruleBooleanOrExpression returns [EObject current=null] : ( ( (lv_operands_0_0= ruleBooleanOrExpressionChild ) ) (otherlv_1= 'or' ( (lv_operands_2_0= ruleBooleanOrExpressionChild ) ) )+ ) ;
     public final EObject ruleBooleanOrExpression() throws RecognitionException {
         EObject current = null;
 
@@ -7531,24 +7515,24 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:2602:2: ( ( ( (lv_operands_0_0= ruleBooleanOrExpressionChild ) ) (otherlv_1= 'or' ( (lv_operands_2_0= ruleBooleanOrExpressionChild ) ) )+ ) )
-            // InternalXmu2.g:2603:2: ( ( (lv_operands_0_0= ruleBooleanOrExpressionChild ) ) (otherlv_1= 'or' ( (lv_operands_2_0= ruleBooleanOrExpressionChild ) ) )+ )
+            // InternalXmu2.g:2605:2: ( ( ( (lv_operands_0_0= ruleBooleanOrExpressionChild ) ) (otherlv_1= 'or' ( (lv_operands_2_0= ruleBooleanOrExpressionChild ) ) )+ ) )
+            // InternalXmu2.g:2606:2: ( ( (lv_operands_0_0= ruleBooleanOrExpressionChild ) ) (otherlv_1= 'or' ( (lv_operands_2_0= ruleBooleanOrExpressionChild ) ) )+ )
             {
-            // InternalXmu2.g:2603:2: ( ( (lv_operands_0_0= ruleBooleanOrExpressionChild ) ) (otherlv_1= 'or' ( (lv_operands_2_0= ruleBooleanOrExpressionChild ) ) )+ )
-            // InternalXmu2.g:2604:3: ( (lv_operands_0_0= ruleBooleanOrExpressionChild ) ) (otherlv_1= 'or' ( (lv_operands_2_0= ruleBooleanOrExpressionChild ) ) )+
+            // InternalXmu2.g:2606:2: ( ( (lv_operands_0_0= ruleBooleanOrExpressionChild ) ) (otherlv_1= 'or' ( (lv_operands_2_0= ruleBooleanOrExpressionChild ) ) )+ )
+            // InternalXmu2.g:2607:3: ( (lv_operands_0_0= ruleBooleanOrExpressionChild ) ) (otherlv_1= 'or' ( (lv_operands_2_0= ruleBooleanOrExpressionChild ) ) )+
             {
-            // InternalXmu2.g:2604:3: ( (lv_operands_0_0= ruleBooleanOrExpressionChild ) )
-            // InternalXmu2.g:2605:4: (lv_operands_0_0= ruleBooleanOrExpressionChild )
+            // InternalXmu2.g:2607:3: ( (lv_operands_0_0= ruleBooleanOrExpressionChild ) )
+            // InternalXmu2.g:2608:4: (lv_operands_0_0= ruleBooleanOrExpressionChild )
             {
-            // InternalXmu2.g:2605:4: (lv_operands_0_0= ruleBooleanOrExpressionChild )
-            // InternalXmu2.g:2606:5: lv_operands_0_0= ruleBooleanOrExpressionChild
+            // InternalXmu2.g:2608:4: (lv_operands_0_0= ruleBooleanOrExpressionChild )
+            // InternalXmu2.g:2609:5: lv_operands_0_0= ruleBooleanOrExpressionChild
             {
             if ( state.backtracking==0 ) {
 
               					newCompositeNode(grammarAccess.getBooleanOrExpressionAccess().getOperandsBooleanOrExpressionChildParserRuleCall_0_0());
               				
             }
-            pushFollow(FOLLOW_46);
+            pushFollow(FOLLOW_45);
             lv_operands_0_0=ruleBooleanOrExpressionChild();
 
             state._fsp--;
@@ -7572,21 +7556,21 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalXmu2.g:2623:3: (otherlv_1= 'or' ( (lv_operands_2_0= ruleBooleanOrExpressionChild ) ) )+
-            int cnt43=0;
-            loop43:
+            // InternalXmu2.g:2626:3: (otherlv_1= 'or' ( (lv_operands_2_0= ruleBooleanOrExpressionChild ) ) )+
+            int cnt42=0;
+            loop42:
             do {
-                int alt43=2;
-                int LA43_0 = input.LA(1);
+                int alt42=2;
+                int LA42_0 = input.LA(1);
 
-                if ( (LA43_0==37) ) {
-                    alt43=1;
+                if ( (LA42_0==37) ) {
+                    alt42=1;
                 }
 
 
-                switch (alt43) {
+                switch (alt42) {
             	case 1 :
-            	    // InternalXmu2.g:2624:4: otherlv_1= 'or' ( (lv_operands_2_0= ruleBooleanOrExpressionChild ) )
+            	    // InternalXmu2.g:2627:4: otherlv_1= 'or' ( (lv_operands_2_0= ruleBooleanOrExpressionChild ) )
             	    {
             	    otherlv_1=(Token)match(input,37,FOLLOW_24); if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
@@ -7594,18 +7578,18 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
             	      				newLeafNode(otherlv_1, grammarAccess.getBooleanOrExpressionAccess().getOrKeyword_1_0());
             	      			
             	    }
-            	    // InternalXmu2.g:2628:4: ( (lv_operands_2_0= ruleBooleanOrExpressionChild ) )
-            	    // InternalXmu2.g:2629:5: (lv_operands_2_0= ruleBooleanOrExpressionChild )
+            	    // InternalXmu2.g:2631:4: ( (lv_operands_2_0= ruleBooleanOrExpressionChild ) )
+            	    // InternalXmu2.g:2632:5: (lv_operands_2_0= ruleBooleanOrExpressionChild )
             	    {
-            	    // InternalXmu2.g:2629:5: (lv_operands_2_0= ruleBooleanOrExpressionChild )
-            	    // InternalXmu2.g:2630:6: lv_operands_2_0= ruleBooleanOrExpressionChild
+            	    // InternalXmu2.g:2632:5: (lv_operands_2_0= ruleBooleanOrExpressionChild )
+            	    // InternalXmu2.g:2633:6: lv_operands_2_0= ruleBooleanOrExpressionChild
             	    {
             	    if ( state.backtracking==0 ) {
 
             	      						newCompositeNode(grammarAccess.getBooleanOrExpressionAccess().getOperandsBooleanOrExpressionChildParserRuleCall_1_1_0());
             	      					
             	    }
-            	    pushFollow(FOLLOW_47);
+            	    pushFollow(FOLLOW_46);
             	    lv_operands_2_0=ruleBooleanOrExpressionChild();
 
             	    state._fsp--;
@@ -7634,13 +7618,13 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    if ( cnt43 >= 1 ) break loop43;
+            	    if ( cnt42 >= 1 ) break loop42;
             	    if (state.backtracking>0) {state.failed=true; return current;}
                         EarlyExitException eee =
-                            new EarlyExitException(43, input);
+                            new EarlyExitException(42, input);
                         throw eee;
                 }
-                cnt43++;
+                cnt42++;
             } while (true);
 
 
@@ -7668,7 +7652,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleBooleanOrExpressionChild"
-    // InternalXmu2.g:2652:1: entryRuleBooleanOrExpressionChild returns [EObject current=null] : iv_ruleBooleanOrExpressionChild= ruleBooleanOrExpressionChild EOF ;
+    // InternalXmu2.g:2655:1: entryRuleBooleanOrExpressionChild returns [EObject current=null] : iv_ruleBooleanOrExpressionChild= ruleBooleanOrExpressionChild EOF ;
     public final EObject entryRuleBooleanOrExpressionChild() throws RecognitionException {
         EObject current = null;
 
@@ -7676,8 +7660,8 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalXmu2.g:2652:65: (iv_ruleBooleanOrExpressionChild= ruleBooleanOrExpressionChild EOF )
-            // InternalXmu2.g:2653:2: iv_ruleBooleanOrExpressionChild= ruleBooleanOrExpressionChild EOF
+            // InternalXmu2.g:2655:65: (iv_ruleBooleanOrExpressionChild= ruleBooleanOrExpressionChild EOF )
+            // InternalXmu2.g:2656:2: iv_ruleBooleanOrExpressionChild= ruleBooleanOrExpressionChild EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getBooleanOrExpressionChildRule()); 
@@ -7708,7 +7692,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleBooleanOrExpressionChild"
-    // InternalXmu2.g:2659:1: ruleBooleanOrExpressionChild returns [EObject current=null] : ( ( ( ruleBooleanAndExpression )=>this_BooleanAndExpression_0= ruleBooleanAndExpression ) | this_BooleanAndExpressionChild_1= ruleBooleanAndExpressionChild ) ;
+    // InternalXmu2.g:2662:1: ruleBooleanOrExpressionChild returns [EObject current=null] : ( ( ( ruleBooleanAndExpression )=>this_BooleanAndExpression_0= ruleBooleanAndExpression ) | this_BooleanAndExpressionChild_1= ruleBooleanAndExpressionChild ) ;
     public final EObject ruleBooleanOrExpressionChild() throws RecognitionException {
         EObject current = null;
 
@@ -7721,18 +7705,18 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:2665:2: ( ( ( ( ruleBooleanAndExpression )=>this_BooleanAndExpression_0= ruleBooleanAndExpression ) | this_BooleanAndExpressionChild_1= ruleBooleanAndExpressionChild ) )
-            // InternalXmu2.g:2666:2: ( ( ( ruleBooleanAndExpression )=>this_BooleanAndExpression_0= ruleBooleanAndExpression ) | this_BooleanAndExpressionChild_1= ruleBooleanAndExpressionChild )
+            // InternalXmu2.g:2668:2: ( ( ( ( ruleBooleanAndExpression )=>this_BooleanAndExpression_0= ruleBooleanAndExpression ) | this_BooleanAndExpressionChild_1= ruleBooleanAndExpressionChild ) )
+            // InternalXmu2.g:2669:2: ( ( ( ruleBooleanAndExpression )=>this_BooleanAndExpression_0= ruleBooleanAndExpression ) | this_BooleanAndExpressionChild_1= ruleBooleanAndExpressionChild )
             {
-            // InternalXmu2.g:2666:2: ( ( ( ruleBooleanAndExpression )=>this_BooleanAndExpression_0= ruleBooleanAndExpression ) | this_BooleanAndExpressionChild_1= ruleBooleanAndExpressionChild )
-            int alt44=2;
-            alt44 = dfa44.predict(input);
-            switch (alt44) {
+            // InternalXmu2.g:2669:2: ( ( ( ruleBooleanAndExpression )=>this_BooleanAndExpression_0= ruleBooleanAndExpression ) | this_BooleanAndExpressionChild_1= ruleBooleanAndExpressionChild )
+            int alt43=2;
+            alt43 = dfa43.predict(input);
+            switch (alt43) {
                 case 1 :
-                    // InternalXmu2.g:2667:3: ( ( ruleBooleanAndExpression )=>this_BooleanAndExpression_0= ruleBooleanAndExpression )
+                    // InternalXmu2.g:2670:3: ( ( ruleBooleanAndExpression )=>this_BooleanAndExpression_0= ruleBooleanAndExpression )
                     {
-                    // InternalXmu2.g:2667:3: ( ( ruleBooleanAndExpression )=>this_BooleanAndExpression_0= ruleBooleanAndExpression )
-                    // InternalXmu2.g:2668:4: ( ruleBooleanAndExpression )=>this_BooleanAndExpression_0= ruleBooleanAndExpression
+                    // InternalXmu2.g:2670:3: ( ( ruleBooleanAndExpression )=>this_BooleanAndExpression_0= ruleBooleanAndExpression )
+                    // InternalXmu2.g:2671:4: ( ruleBooleanAndExpression )=>this_BooleanAndExpression_0= ruleBooleanAndExpression
                     {
                     if ( state.backtracking==0 ) {
 
@@ -7757,7 +7741,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalXmu2.g:2679:3: this_BooleanAndExpressionChild_1= ruleBooleanAndExpressionChild
+                    // InternalXmu2.g:2682:3: this_BooleanAndExpressionChild_1= ruleBooleanAndExpressionChild
                     {
                     if ( state.backtracking==0 ) {
 
@@ -7803,7 +7787,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleExpression"
-    // InternalXmu2.g:2691:1: entryRuleExpression returns [EObject current=null] : iv_ruleExpression= ruleExpression EOF ;
+    // InternalXmu2.g:2694:1: entryRuleExpression returns [EObject current=null] : iv_ruleExpression= ruleExpression EOF ;
     public final EObject entryRuleExpression() throws RecognitionException {
         EObject current = null;
 
@@ -7811,8 +7795,8 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalXmu2.g:2691:51: (iv_ruleExpression= ruleExpression EOF )
-            // InternalXmu2.g:2692:2: iv_ruleExpression= ruleExpression EOF
+            // InternalXmu2.g:2694:51: (iv_ruleExpression= ruleExpression EOF )
+            // InternalXmu2.g:2695:2: iv_ruleExpression= ruleExpression EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getExpressionRule()); 
@@ -7843,7 +7827,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleExpression"
-    // InternalXmu2.g:2698:1: ruleExpression returns [EObject current=null] : ( ( ( ruleBooleanOrExpression )=>this_BooleanOrExpression_0= ruleBooleanOrExpression ) | this_BooleanOrExpressionChild_1= ruleBooleanOrExpressionChild ) ;
+    // InternalXmu2.g:2701:1: ruleExpression returns [EObject current=null] : ( ( ( ruleBooleanOrExpression )=>this_BooleanOrExpression_0= ruleBooleanOrExpression ) | this_BooleanOrExpressionChild_1= ruleBooleanOrExpressionChild ) ;
     public final EObject ruleExpression() throws RecognitionException {
         EObject current = null;
 
@@ -7856,18 +7840,18 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:2704:2: ( ( ( ( ruleBooleanOrExpression )=>this_BooleanOrExpression_0= ruleBooleanOrExpression ) | this_BooleanOrExpressionChild_1= ruleBooleanOrExpressionChild ) )
-            // InternalXmu2.g:2705:2: ( ( ( ruleBooleanOrExpression )=>this_BooleanOrExpression_0= ruleBooleanOrExpression ) | this_BooleanOrExpressionChild_1= ruleBooleanOrExpressionChild )
+            // InternalXmu2.g:2707:2: ( ( ( ( ruleBooleanOrExpression )=>this_BooleanOrExpression_0= ruleBooleanOrExpression ) | this_BooleanOrExpressionChild_1= ruleBooleanOrExpressionChild ) )
+            // InternalXmu2.g:2708:2: ( ( ( ruleBooleanOrExpression )=>this_BooleanOrExpression_0= ruleBooleanOrExpression ) | this_BooleanOrExpressionChild_1= ruleBooleanOrExpressionChild )
             {
-            // InternalXmu2.g:2705:2: ( ( ( ruleBooleanOrExpression )=>this_BooleanOrExpression_0= ruleBooleanOrExpression ) | this_BooleanOrExpressionChild_1= ruleBooleanOrExpressionChild )
-            int alt45=2;
-            alt45 = dfa45.predict(input);
-            switch (alt45) {
+            // InternalXmu2.g:2708:2: ( ( ( ruleBooleanOrExpression )=>this_BooleanOrExpression_0= ruleBooleanOrExpression ) | this_BooleanOrExpressionChild_1= ruleBooleanOrExpressionChild )
+            int alt44=2;
+            alt44 = dfa44.predict(input);
+            switch (alt44) {
                 case 1 :
-                    // InternalXmu2.g:2706:3: ( ( ruleBooleanOrExpression )=>this_BooleanOrExpression_0= ruleBooleanOrExpression )
+                    // InternalXmu2.g:2709:3: ( ( ruleBooleanOrExpression )=>this_BooleanOrExpression_0= ruleBooleanOrExpression )
                     {
-                    // InternalXmu2.g:2706:3: ( ( ruleBooleanOrExpression )=>this_BooleanOrExpression_0= ruleBooleanOrExpression )
-                    // InternalXmu2.g:2707:4: ( ruleBooleanOrExpression )=>this_BooleanOrExpression_0= ruleBooleanOrExpression
+                    // InternalXmu2.g:2709:3: ( ( ruleBooleanOrExpression )=>this_BooleanOrExpression_0= ruleBooleanOrExpression )
+                    // InternalXmu2.g:2710:4: ( ruleBooleanOrExpression )=>this_BooleanOrExpression_0= ruleBooleanOrExpression
                     {
                     if ( state.backtracking==0 ) {
 
@@ -7892,7 +7876,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalXmu2.g:2718:3: this_BooleanOrExpressionChild_1= ruleBooleanOrExpressionChild
+                    // InternalXmu2.g:2721:3: this_BooleanOrExpressionChild_1= ruleBooleanOrExpressionChild
                     {
                     if ( state.backtracking==0 ) {
 
@@ -7938,7 +7922,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleBlockStatement"
-    // InternalXmu2.g:2730:1: entryRuleBlockStatement returns [EObject current=null] : iv_ruleBlockStatement= ruleBlockStatement EOF ;
+    // InternalXmu2.g:2733:1: entryRuleBlockStatement returns [EObject current=null] : iv_ruleBlockStatement= ruleBlockStatement EOF ;
     public final EObject entryRuleBlockStatement() throws RecognitionException {
         EObject current = null;
 
@@ -7946,8 +7930,8 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalXmu2.g:2730:55: (iv_ruleBlockStatement= ruleBlockStatement EOF )
-            // InternalXmu2.g:2731:2: iv_ruleBlockStatement= ruleBlockStatement EOF
+            // InternalXmu2.g:2733:55: (iv_ruleBlockStatement= ruleBlockStatement EOF )
+            // InternalXmu2.g:2734:2: iv_ruleBlockStatement= ruleBlockStatement EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getBlockStatementRule()); 
@@ -7978,7 +7962,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleBlockStatement"
-    // InternalXmu2.g:2737:1: ruleBlockStatement returns [EObject current=null] : ( () otherlv_1= '{' ( ( (lv_body_2_0= ruleStatement ) ) (otherlv_3= ';' ( (lv_body_4_0= ruleStatement ) ) )* )? otherlv_5= '}' ) ;
+    // InternalXmu2.g:2740:1: ruleBlockStatement returns [EObject current=null] : ( () otherlv_1= '{' ( ( (lv_body_2_0= ruleStatement ) ) (otherlv_3= ';' ( (lv_body_4_0= ruleStatement ) ) )* )? otherlv_5= '}' ) ;
     public final EObject ruleBlockStatement() throws RecognitionException {
         EObject current = null;
 
@@ -7994,14 +7978,14 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:2743:2: ( ( () otherlv_1= '{' ( ( (lv_body_2_0= ruleStatement ) ) (otherlv_3= ';' ( (lv_body_4_0= ruleStatement ) ) )* )? otherlv_5= '}' ) )
-            // InternalXmu2.g:2744:2: ( () otherlv_1= '{' ( ( (lv_body_2_0= ruleStatement ) ) (otherlv_3= ';' ( (lv_body_4_0= ruleStatement ) ) )* )? otherlv_5= '}' )
+            // InternalXmu2.g:2746:2: ( ( () otherlv_1= '{' ( ( (lv_body_2_0= ruleStatement ) ) (otherlv_3= ';' ( (lv_body_4_0= ruleStatement ) ) )* )? otherlv_5= '}' ) )
+            // InternalXmu2.g:2747:2: ( () otherlv_1= '{' ( ( (lv_body_2_0= ruleStatement ) ) (otherlv_3= ';' ( (lv_body_4_0= ruleStatement ) ) )* )? otherlv_5= '}' )
             {
-            // InternalXmu2.g:2744:2: ( () otherlv_1= '{' ( ( (lv_body_2_0= ruleStatement ) ) (otherlv_3= ';' ( (lv_body_4_0= ruleStatement ) ) )* )? otherlv_5= '}' )
-            // InternalXmu2.g:2745:3: () otherlv_1= '{' ( ( (lv_body_2_0= ruleStatement ) ) (otherlv_3= ';' ( (lv_body_4_0= ruleStatement ) ) )* )? otherlv_5= '}'
+            // InternalXmu2.g:2747:2: ( () otherlv_1= '{' ( ( (lv_body_2_0= ruleStatement ) ) (otherlv_3= ';' ( (lv_body_4_0= ruleStatement ) ) )* )? otherlv_5= '}' )
+            // InternalXmu2.g:2748:3: () otherlv_1= '{' ( ( (lv_body_2_0= ruleStatement ) ) (otherlv_3= ';' ( (lv_body_4_0= ruleStatement ) ) )* )? otherlv_5= '}'
             {
-            // InternalXmu2.g:2745:3: ()
-            // InternalXmu2.g:2746:4: 
+            // InternalXmu2.g:2748:3: ()
+            // InternalXmu2.g:2749:4: 
             {
             if ( state.backtracking==0 ) {
 
@@ -8019,29 +8003,29 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
               			newLeafNode(otherlv_1, grammarAccess.getBlockStatementAccess().getLeftCurlyBracketKeyword_1());
               		
             }
-            // InternalXmu2.g:2756:3: ( ( (lv_body_2_0= ruleStatement ) ) (otherlv_3= ';' ( (lv_body_4_0= ruleStatement ) ) )* )?
-            int alt47=2;
-            int LA47_0 = input.LA(1);
+            // InternalXmu2.g:2759:3: ( ( (lv_body_2_0= ruleStatement ) ) (otherlv_3= ';' ( (lv_body_4_0= ruleStatement ) ) )* )?
+            int alt46=2;
+            int LA46_0 = input.LA(1);
 
-            if ( (LA47_0==RULE_NAME||LA47_0==25||LA47_0==38||LA47_0==41||(LA47_0>=44 && LA47_0<=48)) ) {
-                alt47=1;
+            if ( (LA46_0==RULE_NAME||LA46_0==25||LA46_0==38||LA46_0==41||(LA46_0>=44 && LA46_0<=48)) ) {
+                alt46=1;
             }
-            switch (alt47) {
+            switch (alt46) {
                 case 1 :
-                    // InternalXmu2.g:2757:4: ( (lv_body_2_0= ruleStatement ) ) (otherlv_3= ';' ( (lv_body_4_0= ruleStatement ) ) )*
+                    // InternalXmu2.g:2760:4: ( (lv_body_2_0= ruleStatement ) ) (otherlv_3= ';' ( (lv_body_4_0= ruleStatement ) ) )*
                     {
-                    // InternalXmu2.g:2757:4: ( (lv_body_2_0= ruleStatement ) )
-                    // InternalXmu2.g:2758:5: (lv_body_2_0= ruleStatement )
+                    // InternalXmu2.g:2760:4: ( (lv_body_2_0= ruleStatement ) )
+                    // InternalXmu2.g:2761:5: (lv_body_2_0= ruleStatement )
                     {
-                    // InternalXmu2.g:2758:5: (lv_body_2_0= ruleStatement )
-                    // InternalXmu2.g:2759:6: lv_body_2_0= ruleStatement
+                    // InternalXmu2.g:2761:5: (lv_body_2_0= ruleStatement )
+                    // InternalXmu2.g:2762:6: lv_body_2_0= ruleStatement
                     {
                     if ( state.backtracking==0 ) {
 
                       						newCompositeNode(grammarAccess.getBlockStatementAccess().getBodyStatementParserRuleCall_2_0_0());
                       					
                     }
-                    pushFollow(FOLLOW_48);
+                    pushFollow(FOLLOW_47);
                     lv_body_2_0=ruleStatement();
 
                     state._fsp--;
@@ -8065,39 +8049,39 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // InternalXmu2.g:2776:4: (otherlv_3= ';' ( (lv_body_4_0= ruleStatement ) ) )*
-                    loop46:
+                    // InternalXmu2.g:2779:4: (otherlv_3= ';' ( (lv_body_4_0= ruleStatement ) ) )*
+                    loop45:
                     do {
-                        int alt46=2;
-                        int LA46_0 = input.LA(1);
+                        int alt45=2;
+                        int LA45_0 = input.LA(1);
 
-                        if ( (LA46_0==26) ) {
-                            alt46=1;
+                        if ( (LA45_0==26) ) {
+                            alt45=1;
                         }
 
 
-                        switch (alt46) {
+                        switch (alt45) {
                     	case 1 :
-                    	    // InternalXmu2.g:2777:5: otherlv_3= ';' ( (lv_body_4_0= ruleStatement ) )
+                    	    // InternalXmu2.g:2780:5: otherlv_3= ';' ( (lv_body_4_0= ruleStatement ) )
                     	    {
-                    	    otherlv_3=(Token)match(input,26,FOLLOW_49); if (state.failed) return current;
+                    	    otherlv_3=(Token)match(input,26,FOLLOW_48); if (state.failed) return current;
                     	    if ( state.backtracking==0 ) {
 
                     	      					newLeafNode(otherlv_3, grammarAccess.getBlockStatementAccess().getSemicolonKeyword_2_1_0());
                     	      				
                     	    }
-                    	    // InternalXmu2.g:2781:5: ( (lv_body_4_0= ruleStatement ) )
-                    	    // InternalXmu2.g:2782:6: (lv_body_4_0= ruleStatement )
+                    	    // InternalXmu2.g:2784:5: ( (lv_body_4_0= ruleStatement ) )
+                    	    // InternalXmu2.g:2785:6: (lv_body_4_0= ruleStatement )
                     	    {
-                    	    // InternalXmu2.g:2782:6: (lv_body_4_0= ruleStatement )
-                    	    // InternalXmu2.g:2783:7: lv_body_4_0= ruleStatement
+                    	    // InternalXmu2.g:2785:6: (lv_body_4_0= ruleStatement )
+                    	    // InternalXmu2.g:2786:7: lv_body_4_0= ruleStatement
                     	    {
                     	    if ( state.backtracking==0 ) {
 
                     	      							newCompositeNode(grammarAccess.getBlockStatementAccess().getBodyStatementParserRuleCall_2_1_1_0());
                     	      						
                     	    }
-                    	    pushFollow(FOLLOW_48);
+                    	    pushFollow(FOLLOW_47);
                     	    lv_body_4_0=ruleStatement();
 
                     	    state._fsp--;
@@ -8126,7 +8110,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    break loop46;
+                    	    break loop45;
                         }
                     } while (true);
 
@@ -8167,7 +8151,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleUpdateStatement"
-    // InternalXmu2.g:2810:1: entryRuleUpdateStatement returns [EObject current=null] : iv_ruleUpdateStatement= ruleUpdateStatement EOF ;
+    // InternalXmu2.g:2813:1: entryRuleUpdateStatement returns [EObject current=null] : iv_ruleUpdateStatement= ruleUpdateStatement EOF ;
     public final EObject entryRuleUpdateStatement() throws RecognitionException {
         EObject current = null;
 
@@ -8175,8 +8159,8 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalXmu2.g:2810:56: (iv_ruleUpdateStatement= ruleUpdateStatement EOF )
-            // InternalXmu2.g:2811:2: iv_ruleUpdateStatement= ruleUpdateStatement EOF
+            // InternalXmu2.g:2813:56: (iv_ruleUpdateStatement= ruleUpdateStatement EOF )
+            // InternalXmu2.g:2814:2: iv_ruleUpdateStatement= ruleUpdateStatement EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getUpdateStatementRule()); 
@@ -8207,7 +8191,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleUpdateStatement"
-    // InternalXmu2.g:2817:1: ruleUpdateStatement returns [EObject current=null] : (otherlv_0= 'update' ( (lv_source_1_0= rulePattern ) ) otherlv_2= 'with' ( (lv_view_3_0= rulePattern ) ) otherlv_4= 'by' ( (lv_clauses_5_0= ruleUpdateClause ) )+ ) ;
+    // InternalXmu2.g:2820:1: ruleUpdateStatement returns [EObject current=null] : (otherlv_0= 'update' ( (lv_source_1_0= rulePattern ) ) otherlv_2= 'with' ( (lv_view_3_0= rulePattern ) ) otherlv_4= 'by' ( (lv_clauses_5_0= ruleUpdateClause ) )+ ) ;
     public final EObject ruleUpdateStatement() throws RecognitionException {
         EObject current = null;
 
@@ -8225,30 +8209,30 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:2823:2: ( (otherlv_0= 'update' ( (lv_source_1_0= rulePattern ) ) otherlv_2= 'with' ( (lv_view_3_0= rulePattern ) ) otherlv_4= 'by' ( (lv_clauses_5_0= ruleUpdateClause ) )+ ) )
-            // InternalXmu2.g:2824:2: (otherlv_0= 'update' ( (lv_source_1_0= rulePattern ) ) otherlv_2= 'with' ( (lv_view_3_0= rulePattern ) ) otherlv_4= 'by' ( (lv_clauses_5_0= ruleUpdateClause ) )+ )
+            // InternalXmu2.g:2826:2: ( (otherlv_0= 'update' ( (lv_source_1_0= rulePattern ) ) otherlv_2= 'with' ( (lv_view_3_0= rulePattern ) ) otherlv_4= 'by' ( (lv_clauses_5_0= ruleUpdateClause ) )+ ) )
+            // InternalXmu2.g:2827:2: (otherlv_0= 'update' ( (lv_source_1_0= rulePattern ) ) otherlv_2= 'with' ( (lv_view_3_0= rulePattern ) ) otherlv_4= 'by' ( (lv_clauses_5_0= ruleUpdateClause ) )+ )
             {
-            // InternalXmu2.g:2824:2: (otherlv_0= 'update' ( (lv_source_1_0= rulePattern ) ) otherlv_2= 'with' ( (lv_view_3_0= rulePattern ) ) otherlv_4= 'by' ( (lv_clauses_5_0= ruleUpdateClause ) )+ )
-            // InternalXmu2.g:2825:3: otherlv_0= 'update' ( (lv_source_1_0= rulePattern ) ) otherlv_2= 'with' ( (lv_view_3_0= rulePattern ) ) otherlv_4= 'by' ( (lv_clauses_5_0= ruleUpdateClause ) )+
+            // InternalXmu2.g:2827:2: (otherlv_0= 'update' ( (lv_source_1_0= rulePattern ) ) otherlv_2= 'with' ( (lv_view_3_0= rulePattern ) ) otherlv_4= 'by' ( (lv_clauses_5_0= ruleUpdateClause ) )+ )
+            // InternalXmu2.g:2828:3: otherlv_0= 'update' ( (lv_source_1_0= rulePattern ) ) otherlv_2= 'with' ( (lv_view_3_0= rulePattern ) ) otherlv_4= 'by' ( (lv_clauses_5_0= ruleUpdateClause ) )+
             {
-            otherlv_0=(Token)match(input,38,FOLLOW_30); if (state.failed) return current;
+            otherlv_0=(Token)match(input,38,FOLLOW_29); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
               			newLeafNode(otherlv_0, grammarAccess.getUpdateStatementAccess().getUpdateKeyword_0());
               		
             }
-            // InternalXmu2.g:2829:3: ( (lv_source_1_0= rulePattern ) )
-            // InternalXmu2.g:2830:4: (lv_source_1_0= rulePattern )
+            // InternalXmu2.g:2832:3: ( (lv_source_1_0= rulePattern ) )
+            // InternalXmu2.g:2833:4: (lv_source_1_0= rulePattern )
             {
-            // InternalXmu2.g:2830:4: (lv_source_1_0= rulePattern )
-            // InternalXmu2.g:2831:5: lv_source_1_0= rulePattern
+            // InternalXmu2.g:2833:4: (lv_source_1_0= rulePattern )
+            // InternalXmu2.g:2834:5: lv_source_1_0= rulePattern
             {
             if ( state.backtracking==0 ) {
 
               					newCompositeNode(grammarAccess.getUpdateStatementAccess().getSourcePatternParserRuleCall_1_0());
               				
             }
-            pushFollow(FOLLOW_50);
+            pushFollow(FOLLOW_49);
             lv_source_1_0=rulePattern();
 
             state._fsp--;
@@ -8272,24 +8256,24 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,39,FOLLOW_30); if (state.failed) return current;
+            otherlv_2=(Token)match(input,39,FOLLOW_29); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
               			newLeafNode(otherlv_2, grammarAccess.getUpdateStatementAccess().getWithKeyword_2());
               		
             }
-            // InternalXmu2.g:2852:3: ( (lv_view_3_0= rulePattern ) )
-            // InternalXmu2.g:2853:4: (lv_view_3_0= rulePattern )
+            // InternalXmu2.g:2855:3: ( (lv_view_3_0= rulePattern ) )
+            // InternalXmu2.g:2856:4: (lv_view_3_0= rulePattern )
             {
-            // InternalXmu2.g:2853:4: (lv_view_3_0= rulePattern )
-            // InternalXmu2.g:2854:5: lv_view_3_0= rulePattern
+            // InternalXmu2.g:2856:4: (lv_view_3_0= rulePattern )
+            // InternalXmu2.g:2857:5: lv_view_3_0= rulePattern
             {
             if ( state.backtracking==0 ) {
 
               					newCompositeNode(grammarAccess.getUpdateStatementAccess().getViewPatternParserRuleCall_3_0());
               				
             }
-            pushFollow(FOLLOW_51);
+            pushFollow(FOLLOW_50);
             lv_view_3_0=rulePattern();
 
             state._fsp--;
@@ -8313,54 +8297,54 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_4=(Token)match(input,40,FOLLOW_52); if (state.failed) return current;
+            otherlv_4=(Token)match(input,40,FOLLOW_51); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
               			newLeafNode(otherlv_4, grammarAccess.getUpdateStatementAccess().getByKeyword_4());
               		
             }
-            // InternalXmu2.g:2875:3: ( (lv_clauses_5_0= ruleUpdateClause ) )+
-            int cnt48=0;
-            loop48:
+            // InternalXmu2.g:2878:3: ( (lv_clauses_5_0= ruleUpdateClause ) )+
+            int cnt47=0;
+            loop47:
             do {
-                int alt48=2;
+                int alt47=2;
                 switch ( input.LA(1) ) {
                 case 70:
                     {
-                    alt48=1;
+                    alt47=1;
                     }
                     break;
                 case 71:
                     {
-                    alt48=1;
+                    alt47=1;
                     }
                     break;
                 case 72:
                     {
-                    alt48=1;
+                    alt47=1;
                     }
                     break;
                 case 73:
                     {
-                    alt48=1;
+                    alt47=1;
                     }
                     break;
 
                 }
 
-                switch (alt48) {
+                switch (alt47) {
             	case 1 :
-            	    // InternalXmu2.g:2876:4: (lv_clauses_5_0= ruleUpdateClause )
+            	    // InternalXmu2.g:2879:4: (lv_clauses_5_0= ruleUpdateClause )
             	    {
-            	    // InternalXmu2.g:2876:4: (lv_clauses_5_0= ruleUpdateClause )
-            	    // InternalXmu2.g:2877:5: lv_clauses_5_0= ruleUpdateClause
+            	    // InternalXmu2.g:2879:4: (lv_clauses_5_0= ruleUpdateClause )
+            	    // InternalXmu2.g:2880:5: lv_clauses_5_0= ruleUpdateClause
             	    {
             	    if ( state.backtracking==0 ) {
 
             	      					newCompositeNode(grammarAccess.getUpdateStatementAccess().getClausesUpdateClauseParserRuleCall_5_0());
             	      				
             	    }
-            	    pushFollow(FOLLOW_53);
+            	    pushFollow(FOLLOW_52);
             	    lv_clauses_5_0=ruleUpdateClause();
 
             	    state._fsp--;
@@ -8386,13 +8370,13 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    if ( cnt48 >= 1 ) break loop48;
+            	    if ( cnt47 >= 1 ) break loop47;
             	    if (state.backtracking>0) {state.failed=true; return current;}
                         EarlyExitException eee =
-                            new EarlyExitException(48, input);
+                            new EarlyExitException(47, input);
                         throw eee;
                 }
-                cnt48++;
+                cnt47++;
             } while (true);
 
 
@@ -8420,7 +8404,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleUpdateClause"
-    // InternalXmu2.g:2898:1: entryRuleUpdateClause returns [EObject current=null] : iv_ruleUpdateClause= ruleUpdateClause EOF ;
+    // InternalXmu2.g:2901:1: entryRuleUpdateClause returns [EObject current=null] : iv_ruleUpdateClause= ruleUpdateClause EOF ;
     public final EObject entryRuleUpdateClause() throws RecognitionException {
         EObject current = null;
 
@@ -8428,8 +8412,8 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalXmu2.g:2898:53: (iv_ruleUpdateClause= ruleUpdateClause EOF )
-            // InternalXmu2.g:2899:2: iv_ruleUpdateClause= ruleUpdateClause EOF
+            // InternalXmu2.g:2901:53: (iv_ruleUpdateClause= ruleUpdateClause EOF )
+            // InternalXmu2.g:2902:2: iv_ruleUpdateClause= ruleUpdateClause EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getUpdateClauseRule()); 
@@ -8460,7 +8444,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleUpdateClause"
-    // InternalXmu2.g:2905:1: ruleUpdateClause returns [EObject current=null] : ( ( (lv_type_0_0= ruleActionType ) ) otherlv_1= '->' ( (lv_statement_2_0= ruleStatement ) ) ) ;
+    // InternalXmu2.g:2908:1: ruleUpdateClause returns [EObject current=null] : ( ( (lv_type_0_0= ruleActionType ) ) otherlv_1= '->' ( (lv_statement_2_0= ruleStatement ) ) ) ;
     public final EObject ruleUpdateClause() throws RecognitionException {
         EObject current = null;
 
@@ -8474,24 +8458,24 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:2911:2: ( ( ( (lv_type_0_0= ruleActionType ) ) otherlv_1= '->' ( (lv_statement_2_0= ruleStatement ) ) ) )
-            // InternalXmu2.g:2912:2: ( ( (lv_type_0_0= ruleActionType ) ) otherlv_1= '->' ( (lv_statement_2_0= ruleStatement ) ) )
+            // InternalXmu2.g:2914:2: ( ( ( (lv_type_0_0= ruleActionType ) ) otherlv_1= '->' ( (lv_statement_2_0= ruleStatement ) ) ) )
+            // InternalXmu2.g:2915:2: ( ( (lv_type_0_0= ruleActionType ) ) otherlv_1= '->' ( (lv_statement_2_0= ruleStatement ) ) )
             {
-            // InternalXmu2.g:2912:2: ( ( (lv_type_0_0= ruleActionType ) ) otherlv_1= '->' ( (lv_statement_2_0= ruleStatement ) ) )
-            // InternalXmu2.g:2913:3: ( (lv_type_0_0= ruleActionType ) ) otherlv_1= '->' ( (lv_statement_2_0= ruleStatement ) )
+            // InternalXmu2.g:2915:2: ( ( (lv_type_0_0= ruleActionType ) ) otherlv_1= '->' ( (lv_statement_2_0= ruleStatement ) ) )
+            // InternalXmu2.g:2916:3: ( (lv_type_0_0= ruleActionType ) ) otherlv_1= '->' ( (lv_statement_2_0= ruleStatement ) )
             {
-            // InternalXmu2.g:2913:3: ( (lv_type_0_0= ruleActionType ) )
-            // InternalXmu2.g:2914:4: (lv_type_0_0= ruleActionType )
+            // InternalXmu2.g:2916:3: ( (lv_type_0_0= ruleActionType ) )
+            // InternalXmu2.g:2917:4: (lv_type_0_0= ruleActionType )
             {
-            // InternalXmu2.g:2914:4: (lv_type_0_0= ruleActionType )
-            // InternalXmu2.g:2915:5: lv_type_0_0= ruleActionType
+            // InternalXmu2.g:2917:4: (lv_type_0_0= ruleActionType )
+            // InternalXmu2.g:2918:5: lv_type_0_0= ruleActionType
             {
             if ( state.backtracking==0 ) {
 
               					newCompositeNode(grammarAccess.getUpdateClauseAccess().getTypeActionTypeEnumRuleCall_0_0());
               				
             }
-            pushFollow(FOLLOW_54);
+            pushFollow(FOLLOW_53);
             lv_type_0_0=ruleActionType();
 
             state._fsp--;
@@ -8515,17 +8499,17 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,32,FOLLOW_49); if (state.failed) return current;
+            otherlv_1=(Token)match(input,32,FOLLOW_48); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
               			newLeafNode(otherlv_1, grammarAccess.getUpdateClauseAccess().getHyphenMinusGreaterThanSignKeyword_1());
               		
             }
-            // InternalXmu2.g:2936:3: ( (lv_statement_2_0= ruleStatement ) )
-            // InternalXmu2.g:2937:4: (lv_statement_2_0= ruleStatement )
+            // InternalXmu2.g:2939:3: ( (lv_statement_2_0= ruleStatement ) )
+            // InternalXmu2.g:2940:4: (lv_statement_2_0= ruleStatement )
             {
-            // InternalXmu2.g:2937:4: (lv_statement_2_0= ruleStatement )
-            // InternalXmu2.g:2938:5: lv_statement_2_0= ruleStatement
+            // InternalXmu2.g:2940:4: (lv_statement_2_0= ruleStatement )
+            // InternalXmu2.g:2941:5: lv_statement_2_0= ruleStatement
             {
             if ( state.backtracking==0 ) {
 
@@ -8581,7 +8565,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleSwitchStatement"
-    // InternalXmu2.g:2959:1: entryRuleSwitchStatement returns [EObject current=null] : iv_ruleSwitchStatement= ruleSwitchStatement EOF ;
+    // InternalXmu2.g:2962:1: entryRuleSwitchStatement returns [EObject current=null] : iv_ruleSwitchStatement= ruleSwitchStatement EOF ;
     public final EObject entryRuleSwitchStatement() throws RecognitionException {
         EObject current = null;
 
@@ -8589,8 +8573,8 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalXmu2.g:2959:56: (iv_ruleSwitchStatement= ruleSwitchStatement EOF )
-            // InternalXmu2.g:2960:2: iv_ruleSwitchStatement= ruleSwitchStatement EOF
+            // InternalXmu2.g:2962:56: (iv_ruleSwitchStatement= ruleSwitchStatement EOF )
+            // InternalXmu2.g:2963:2: iv_ruleSwitchStatement= ruleSwitchStatement EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getSwitchStatementRule()); 
@@ -8621,7 +8605,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleSwitchStatement"
-    // InternalXmu2.g:2966:1: ruleSwitchStatement returns [EObject current=null] : (otherlv_0= 'switch' otherlv_1= '(' ( (lv_root_2_0= ruleVariableExpression ) ) otherlv_3= ')' otherlv_4= '{' ( (lv_cases_5_0= ruleCaseClause ) )+ otherlv_6= '}' ) ;
+    // InternalXmu2.g:2969:1: ruleSwitchStatement returns [EObject current=null] : (otherlv_0= 'switch' otherlv_1= '(' ( (lv_root_2_0= ruleVariableExpression ) ) otherlv_3= ')' otherlv_4= '{' ( (lv_cases_5_0= ruleCaseClause ) )+ otherlv_6= '}' ) ;
     public final EObject ruleSwitchStatement() throws RecognitionException {
         EObject current = null;
 
@@ -8639,11 +8623,11 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:2972:2: ( (otherlv_0= 'switch' otherlv_1= '(' ( (lv_root_2_0= ruleVariableExpression ) ) otherlv_3= ')' otherlv_4= '{' ( (lv_cases_5_0= ruleCaseClause ) )+ otherlv_6= '}' ) )
-            // InternalXmu2.g:2973:2: (otherlv_0= 'switch' otherlv_1= '(' ( (lv_root_2_0= ruleVariableExpression ) ) otherlv_3= ')' otherlv_4= '{' ( (lv_cases_5_0= ruleCaseClause ) )+ otherlv_6= '}' )
+            // InternalXmu2.g:2975:2: ( (otherlv_0= 'switch' otherlv_1= '(' ( (lv_root_2_0= ruleVariableExpression ) ) otherlv_3= ')' otherlv_4= '{' ( (lv_cases_5_0= ruleCaseClause ) )+ otherlv_6= '}' ) )
+            // InternalXmu2.g:2976:2: (otherlv_0= 'switch' otherlv_1= '(' ( (lv_root_2_0= ruleVariableExpression ) ) otherlv_3= ')' otherlv_4= '{' ( (lv_cases_5_0= ruleCaseClause ) )+ otherlv_6= '}' )
             {
-            // InternalXmu2.g:2973:2: (otherlv_0= 'switch' otherlv_1= '(' ( (lv_root_2_0= ruleVariableExpression ) ) otherlv_3= ')' otherlv_4= '{' ( (lv_cases_5_0= ruleCaseClause ) )+ otherlv_6= '}' )
-            // InternalXmu2.g:2974:3: otherlv_0= 'switch' otherlv_1= '(' ( (lv_root_2_0= ruleVariableExpression ) ) otherlv_3= ')' otherlv_4= '{' ( (lv_cases_5_0= ruleCaseClause ) )+ otherlv_6= '}'
+            // InternalXmu2.g:2976:2: (otherlv_0= 'switch' otherlv_1= '(' ( (lv_root_2_0= ruleVariableExpression ) ) otherlv_3= ')' otherlv_4= '{' ( (lv_cases_5_0= ruleCaseClause ) )+ otherlv_6= '}' )
+            // InternalXmu2.g:2977:3: otherlv_0= 'switch' otherlv_1= '(' ( (lv_root_2_0= ruleVariableExpression ) ) otherlv_3= ')' otherlv_4= '{' ( (lv_cases_5_0= ruleCaseClause ) )+ otherlv_6= '}'
             {
             otherlv_0=(Token)match(input,41,FOLLOW_8); if (state.failed) return current;
             if ( state.backtracking==0 ) {
@@ -8651,24 +8635,24 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
               			newLeafNode(otherlv_0, grammarAccess.getSwitchStatementAccess().getSwitchKeyword_0());
               		
             }
-            otherlv_1=(Token)match(input,19,FOLLOW_49); if (state.failed) return current;
+            otherlv_1=(Token)match(input,19,FOLLOW_48); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
               			newLeafNode(otherlv_1, grammarAccess.getSwitchStatementAccess().getLeftParenthesisKeyword_1());
               		
             }
-            // InternalXmu2.g:2982:3: ( (lv_root_2_0= ruleVariableExpression ) )
-            // InternalXmu2.g:2983:4: (lv_root_2_0= ruleVariableExpression )
+            // InternalXmu2.g:2985:3: ( (lv_root_2_0= ruleVariableExpression ) )
+            // InternalXmu2.g:2986:4: (lv_root_2_0= ruleVariableExpression )
             {
-            // InternalXmu2.g:2983:4: (lv_root_2_0= ruleVariableExpression )
-            // InternalXmu2.g:2984:5: lv_root_2_0= ruleVariableExpression
+            // InternalXmu2.g:2986:4: (lv_root_2_0= ruleVariableExpression )
+            // InternalXmu2.g:2987:5: lv_root_2_0= ruleVariableExpression
             {
             if ( state.backtracking==0 ) {
 
               					newCompositeNode(grammarAccess.getSwitchStatementAccess().getRootVariableExpressionParserRuleCall_2_0());
               				
             }
-            pushFollow(FOLLOW_34);
+            pushFollow(FOLLOW_33);
             lv_root_2_0=ruleVariableExpression();
 
             state._fsp--;
@@ -8698,37 +8682,37 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
               			newLeafNode(otherlv_3, grammarAccess.getSwitchStatementAccess().getRightParenthesisKeyword_3());
               		
             }
-            otherlv_4=(Token)match(input,25,FOLLOW_55); if (state.failed) return current;
+            otherlv_4=(Token)match(input,25,FOLLOW_54); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
               			newLeafNode(otherlv_4, grammarAccess.getSwitchStatementAccess().getLeftCurlyBracketKeyword_4());
               		
             }
-            // InternalXmu2.g:3009:3: ( (lv_cases_5_0= ruleCaseClause ) )+
-            int cnt49=0;
-            loop49:
+            // InternalXmu2.g:3012:3: ( (lv_cases_5_0= ruleCaseClause ) )+
+            int cnt48=0;
+            loop48:
             do {
-                int alt49=2;
-                int LA49_0 = input.LA(1);
+                int alt48=2;
+                int LA48_0 = input.LA(1);
 
-                if ( ((LA49_0>=42 && LA49_0<=43)) ) {
-                    alt49=1;
+                if ( ((LA48_0>=42 && LA48_0<=43)) ) {
+                    alt48=1;
                 }
 
 
-                switch (alt49) {
+                switch (alt48) {
             	case 1 :
-            	    // InternalXmu2.g:3010:4: (lv_cases_5_0= ruleCaseClause )
+            	    // InternalXmu2.g:3013:4: (lv_cases_5_0= ruleCaseClause )
             	    {
-            	    // InternalXmu2.g:3010:4: (lv_cases_5_0= ruleCaseClause )
-            	    // InternalXmu2.g:3011:5: lv_cases_5_0= ruleCaseClause
+            	    // InternalXmu2.g:3013:4: (lv_cases_5_0= ruleCaseClause )
+            	    // InternalXmu2.g:3014:5: lv_cases_5_0= ruleCaseClause
             	    {
             	    if ( state.backtracking==0 ) {
 
             	      					newCompositeNode(grammarAccess.getSwitchStatementAccess().getCasesCaseClauseParserRuleCall_5_0());
             	      				
             	    }
-            	    pushFollow(FOLLOW_56);
+            	    pushFollow(FOLLOW_55);
             	    lv_cases_5_0=ruleCaseClause();
 
             	    state._fsp--;
@@ -8754,13 +8738,13 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    if ( cnt49 >= 1 ) break loop49;
+            	    if ( cnt48 >= 1 ) break loop48;
             	    if (state.backtracking>0) {state.failed=true; return current;}
                         EarlyExitException eee =
-                            new EarlyExitException(49, input);
+                            new EarlyExitException(48, input);
                         throw eee;
                 }
-                cnt49++;
+                cnt48++;
             } while (true);
 
             otherlv_6=(Token)match(input,27,FOLLOW_2); if (state.failed) return current;
@@ -8794,7 +8778,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleCaseClause"
-    // InternalXmu2.g:3036:1: entryRuleCaseClause returns [EObject current=null] : iv_ruleCaseClause= ruleCaseClause EOF ;
+    // InternalXmu2.g:3039:1: entryRuleCaseClause returns [EObject current=null] : iv_ruleCaseClause= ruleCaseClause EOF ;
     public final EObject entryRuleCaseClause() throws RecognitionException {
         EObject current = null;
 
@@ -8802,8 +8786,8 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalXmu2.g:3036:51: (iv_ruleCaseClause= ruleCaseClause EOF )
-            // InternalXmu2.g:3037:2: iv_ruleCaseClause= ruleCaseClause EOF
+            // InternalXmu2.g:3039:51: (iv_ruleCaseClause= ruleCaseClause EOF )
+            // InternalXmu2.g:3040:2: iv_ruleCaseClause= ruleCaseClause EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getCaseClauseRule()); 
@@ -8834,7 +8818,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleCaseClause"
-    // InternalXmu2.g:3043:1: ruleCaseClause returns [EObject current=null] : (this_PatternCaseClause_0= rulePatternCaseClause | this_ExpressionCaseClause_1= ruleExpressionCaseClause | this_DefaultCaseClause_2= ruleDefaultCaseClause ) ;
+    // InternalXmu2.g:3046:1: ruleCaseClause returns [EObject current=null] : (this_PatternCaseClause_0= rulePatternCaseClause | this_ExpressionCaseClause_1= ruleExpressionCaseClause | this_DefaultCaseClause_2= ruleDefaultCaseClause ) ;
     public final EObject ruleCaseClause() throws RecognitionException {
         EObject current = null;
 
@@ -8849,32 +8833,32 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:3049:2: ( (this_PatternCaseClause_0= rulePatternCaseClause | this_ExpressionCaseClause_1= ruleExpressionCaseClause | this_DefaultCaseClause_2= ruleDefaultCaseClause ) )
-            // InternalXmu2.g:3050:2: (this_PatternCaseClause_0= rulePatternCaseClause | this_ExpressionCaseClause_1= ruleExpressionCaseClause | this_DefaultCaseClause_2= ruleDefaultCaseClause )
+            // InternalXmu2.g:3052:2: ( (this_PatternCaseClause_0= rulePatternCaseClause | this_ExpressionCaseClause_1= ruleExpressionCaseClause | this_DefaultCaseClause_2= ruleDefaultCaseClause ) )
+            // InternalXmu2.g:3053:2: (this_PatternCaseClause_0= rulePatternCaseClause | this_ExpressionCaseClause_1= ruleExpressionCaseClause | this_DefaultCaseClause_2= ruleDefaultCaseClause )
             {
-            // InternalXmu2.g:3050:2: (this_PatternCaseClause_0= rulePatternCaseClause | this_ExpressionCaseClause_1= ruleExpressionCaseClause | this_DefaultCaseClause_2= ruleDefaultCaseClause )
-            int alt50=3;
-            int LA50_0 = input.LA(1);
+            // InternalXmu2.g:3053:2: (this_PatternCaseClause_0= rulePatternCaseClause | this_ExpressionCaseClause_1= ruleExpressionCaseClause | this_DefaultCaseClause_2= ruleDefaultCaseClause )
+            int alt49=3;
+            int LA49_0 = input.LA(1);
 
-            if ( (LA50_0==42) ) {
-                int LA50_1 = input.LA(2);
+            if ( (LA49_0==42) ) {
+                int LA49_1 = input.LA(2);
 
-                if ( ((LA50_1>=RULE_INT && LA50_1<=RULE_BOOLEAN)||LA50_1==19||(LA50_1>=58 && LA50_1<=61)) ) {
-                    alt50=2;
+                if ( ((LA49_1>=RULE_INT && LA49_1<=RULE_BOOLEAN)||LA49_1==19||(LA49_1>=58 && LA49_1<=61)) ) {
+                    alt49=2;
                 }
-                else if ( (LA50_1==RULE_NAME) ) {
-                    int LA50_4 = input.LA(3);
+                else if ( (LA49_1==RULE_NAME) ) {
+                    int LA49_4 = input.LA(3);
 
-                    if ( (LA50_4==30||LA50_4==32||LA50_4==34||(LA50_4>=36 && LA50_4<=37)||(LA50_4>=61 && LA50_4<=69)) ) {
-                        alt50=2;
+                    if ( (LA49_4==30||LA49_4==32||LA49_4==34||(LA49_4>=36 && LA49_4<=37)||(LA49_4>=61 && LA49_4<=69)) ) {
+                        alt49=2;
                     }
-                    else if ( (LA50_4==29) ) {
-                        alt50=1;
+                    else if ( (LA49_4==29) ) {
+                        alt49=1;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return current;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 50, 4, input);
+                            new NoViableAltException("", 49, 4, input);
 
                         throw nvae;
                     }
@@ -8882,24 +8866,24 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                 else {
                     if (state.backtracking>0) {state.failed=true; return current;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 50, 1, input);
+                        new NoViableAltException("", 49, 1, input);
 
                     throw nvae;
                 }
             }
-            else if ( (LA50_0==43) ) {
-                alt50=3;
+            else if ( (LA49_0==43) ) {
+                alt49=3;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 50, 0, input);
+                    new NoViableAltException("", 49, 0, input);
 
                 throw nvae;
             }
-            switch (alt50) {
+            switch (alt49) {
                 case 1 :
-                    // InternalXmu2.g:3051:3: this_PatternCaseClause_0= rulePatternCaseClause
+                    // InternalXmu2.g:3054:3: this_PatternCaseClause_0= rulePatternCaseClause
                     {
                     if ( state.backtracking==0 ) {
 
@@ -8921,7 +8905,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalXmu2.g:3060:3: this_ExpressionCaseClause_1= ruleExpressionCaseClause
+                    // InternalXmu2.g:3063:3: this_ExpressionCaseClause_1= ruleExpressionCaseClause
                     {
                     if ( state.backtracking==0 ) {
 
@@ -8943,7 +8927,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalXmu2.g:3069:3: this_DefaultCaseClause_2= ruleDefaultCaseClause
+                    // InternalXmu2.g:3072:3: this_DefaultCaseClause_2= ruleDefaultCaseClause
                     {
                     if ( state.backtracking==0 ) {
 
@@ -8989,7 +8973,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRulePatternCaseClause"
-    // InternalXmu2.g:3081:1: entryRulePatternCaseClause returns [EObject current=null] : iv_rulePatternCaseClause= rulePatternCaseClause EOF ;
+    // InternalXmu2.g:3084:1: entryRulePatternCaseClause returns [EObject current=null] : iv_rulePatternCaseClause= rulePatternCaseClause EOF ;
     public final EObject entryRulePatternCaseClause() throws RecognitionException {
         EObject current = null;
 
@@ -8997,8 +8981,8 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalXmu2.g:3081:58: (iv_rulePatternCaseClause= rulePatternCaseClause EOF )
-            // InternalXmu2.g:3082:2: iv_rulePatternCaseClause= rulePatternCaseClause EOF
+            // InternalXmu2.g:3084:58: (iv_rulePatternCaseClause= rulePatternCaseClause EOF )
+            // InternalXmu2.g:3085:2: iv_rulePatternCaseClause= rulePatternCaseClause EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getPatternCaseClauseRule()); 
@@ -9029,7 +9013,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePatternCaseClause"
-    // InternalXmu2.g:3088:1: rulePatternCaseClause returns [EObject current=null] : (otherlv_0= 'case' ( (lv_condition_1_0= rulePattern ) ) otherlv_2= '->' ( (lv_action_3_0= ruleStatement ) ) ) ;
+    // InternalXmu2.g:3091:1: rulePatternCaseClause returns [EObject current=null] : (otherlv_0= 'case' ( (lv_condition_1_0= rulePattern ) ) otherlv_2= '->' ( (lv_action_3_0= ruleStatement ) ) ) ;
     public final EObject rulePatternCaseClause() throws RecognitionException {
         EObject current = null;
 
@@ -9044,30 +9028,30 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:3094:2: ( (otherlv_0= 'case' ( (lv_condition_1_0= rulePattern ) ) otherlv_2= '->' ( (lv_action_3_0= ruleStatement ) ) ) )
-            // InternalXmu2.g:3095:2: (otherlv_0= 'case' ( (lv_condition_1_0= rulePattern ) ) otherlv_2= '->' ( (lv_action_3_0= ruleStatement ) ) )
+            // InternalXmu2.g:3097:2: ( (otherlv_0= 'case' ( (lv_condition_1_0= rulePattern ) ) otherlv_2= '->' ( (lv_action_3_0= ruleStatement ) ) ) )
+            // InternalXmu2.g:3098:2: (otherlv_0= 'case' ( (lv_condition_1_0= rulePattern ) ) otherlv_2= '->' ( (lv_action_3_0= ruleStatement ) ) )
             {
-            // InternalXmu2.g:3095:2: (otherlv_0= 'case' ( (lv_condition_1_0= rulePattern ) ) otherlv_2= '->' ( (lv_action_3_0= ruleStatement ) ) )
-            // InternalXmu2.g:3096:3: otherlv_0= 'case' ( (lv_condition_1_0= rulePattern ) ) otherlv_2= '->' ( (lv_action_3_0= ruleStatement ) )
+            // InternalXmu2.g:3098:2: (otherlv_0= 'case' ( (lv_condition_1_0= rulePattern ) ) otherlv_2= '->' ( (lv_action_3_0= ruleStatement ) ) )
+            // InternalXmu2.g:3099:3: otherlv_0= 'case' ( (lv_condition_1_0= rulePattern ) ) otherlv_2= '->' ( (lv_action_3_0= ruleStatement ) )
             {
-            otherlv_0=(Token)match(input,42,FOLLOW_30); if (state.failed) return current;
+            otherlv_0=(Token)match(input,42,FOLLOW_29); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
               			newLeafNode(otherlv_0, grammarAccess.getPatternCaseClauseAccess().getCaseKeyword_0());
               		
             }
-            // InternalXmu2.g:3100:3: ( (lv_condition_1_0= rulePattern ) )
-            // InternalXmu2.g:3101:4: (lv_condition_1_0= rulePattern )
+            // InternalXmu2.g:3103:3: ( (lv_condition_1_0= rulePattern ) )
+            // InternalXmu2.g:3104:4: (lv_condition_1_0= rulePattern )
             {
-            // InternalXmu2.g:3101:4: (lv_condition_1_0= rulePattern )
-            // InternalXmu2.g:3102:5: lv_condition_1_0= rulePattern
+            // InternalXmu2.g:3104:4: (lv_condition_1_0= rulePattern )
+            // InternalXmu2.g:3105:5: lv_condition_1_0= rulePattern
             {
             if ( state.backtracking==0 ) {
 
               					newCompositeNode(grammarAccess.getPatternCaseClauseAccess().getConditionPatternParserRuleCall_1_0());
               				
             }
-            pushFollow(FOLLOW_54);
+            pushFollow(FOLLOW_53);
             lv_condition_1_0=rulePattern();
 
             state._fsp--;
@@ -9091,17 +9075,17 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,32,FOLLOW_49); if (state.failed) return current;
+            otherlv_2=(Token)match(input,32,FOLLOW_48); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
               			newLeafNode(otherlv_2, grammarAccess.getPatternCaseClauseAccess().getHyphenMinusGreaterThanSignKeyword_2());
               		
             }
-            // InternalXmu2.g:3123:3: ( (lv_action_3_0= ruleStatement ) )
-            // InternalXmu2.g:3124:4: (lv_action_3_0= ruleStatement )
+            // InternalXmu2.g:3126:3: ( (lv_action_3_0= ruleStatement ) )
+            // InternalXmu2.g:3127:4: (lv_action_3_0= ruleStatement )
             {
-            // InternalXmu2.g:3124:4: (lv_action_3_0= ruleStatement )
-            // InternalXmu2.g:3125:5: lv_action_3_0= ruleStatement
+            // InternalXmu2.g:3127:4: (lv_action_3_0= ruleStatement )
+            // InternalXmu2.g:3128:5: lv_action_3_0= ruleStatement
             {
             if ( state.backtracking==0 ) {
 
@@ -9157,7 +9141,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleExpressionCaseClause"
-    // InternalXmu2.g:3146:1: entryRuleExpressionCaseClause returns [EObject current=null] : iv_ruleExpressionCaseClause= ruleExpressionCaseClause EOF ;
+    // InternalXmu2.g:3149:1: entryRuleExpressionCaseClause returns [EObject current=null] : iv_ruleExpressionCaseClause= ruleExpressionCaseClause EOF ;
     public final EObject entryRuleExpressionCaseClause() throws RecognitionException {
         EObject current = null;
 
@@ -9165,8 +9149,8 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalXmu2.g:3146:61: (iv_ruleExpressionCaseClause= ruleExpressionCaseClause EOF )
-            // InternalXmu2.g:3147:2: iv_ruleExpressionCaseClause= ruleExpressionCaseClause EOF
+            // InternalXmu2.g:3149:61: (iv_ruleExpressionCaseClause= ruleExpressionCaseClause EOF )
+            // InternalXmu2.g:3150:2: iv_ruleExpressionCaseClause= ruleExpressionCaseClause EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getExpressionCaseClauseRule()); 
@@ -9197,7 +9181,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleExpressionCaseClause"
-    // InternalXmu2.g:3153:1: ruleExpressionCaseClause returns [EObject current=null] : (otherlv_0= 'case' ( (lv_condition_1_0= ruleExpression ) ) otherlv_2= '->' ( (lv_action_3_0= ruleStatement ) ) ) ;
+    // InternalXmu2.g:3156:1: ruleExpressionCaseClause returns [EObject current=null] : (otherlv_0= 'case' ( (lv_condition_1_0= ruleExpression ) ) otherlv_2= '->' ( (lv_action_3_0= ruleStatement ) ) ) ;
     public final EObject ruleExpressionCaseClause() throws RecognitionException {
         EObject current = null;
 
@@ -9212,11 +9196,11 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:3159:2: ( (otherlv_0= 'case' ( (lv_condition_1_0= ruleExpression ) ) otherlv_2= '->' ( (lv_action_3_0= ruleStatement ) ) ) )
-            // InternalXmu2.g:3160:2: (otherlv_0= 'case' ( (lv_condition_1_0= ruleExpression ) ) otherlv_2= '->' ( (lv_action_3_0= ruleStatement ) ) )
+            // InternalXmu2.g:3162:2: ( (otherlv_0= 'case' ( (lv_condition_1_0= ruleExpression ) ) otherlv_2= '->' ( (lv_action_3_0= ruleStatement ) ) ) )
+            // InternalXmu2.g:3163:2: (otherlv_0= 'case' ( (lv_condition_1_0= ruleExpression ) ) otherlv_2= '->' ( (lv_action_3_0= ruleStatement ) ) )
             {
-            // InternalXmu2.g:3160:2: (otherlv_0= 'case' ( (lv_condition_1_0= ruleExpression ) ) otherlv_2= '->' ( (lv_action_3_0= ruleStatement ) ) )
-            // InternalXmu2.g:3161:3: otherlv_0= 'case' ( (lv_condition_1_0= ruleExpression ) ) otherlv_2= '->' ( (lv_action_3_0= ruleStatement ) )
+            // InternalXmu2.g:3163:2: (otherlv_0= 'case' ( (lv_condition_1_0= ruleExpression ) ) otherlv_2= '->' ( (lv_action_3_0= ruleStatement ) ) )
+            // InternalXmu2.g:3164:3: otherlv_0= 'case' ( (lv_condition_1_0= ruleExpression ) ) otherlv_2= '->' ( (lv_action_3_0= ruleStatement ) )
             {
             otherlv_0=(Token)match(input,42,FOLLOW_24); if (state.failed) return current;
             if ( state.backtracking==0 ) {
@@ -9224,18 +9208,18 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
               			newLeafNode(otherlv_0, grammarAccess.getExpressionCaseClauseAccess().getCaseKeyword_0());
               		
             }
-            // InternalXmu2.g:3165:3: ( (lv_condition_1_0= ruleExpression ) )
-            // InternalXmu2.g:3166:4: (lv_condition_1_0= ruleExpression )
+            // InternalXmu2.g:3168:3: ( (lv_condition_1_0= ruleExpression ) )
+            // InternalXmu2.g:3169:4: (lv_condition_1_0= ruleExpression )
             {
-            // InternalXmu2.g:3166:4: (lv_condition_1_0= ruleExpression )
-            // InternalXmu2.g:3167:5: lv_condition_1_0= ruleExpression
+            // InternalXmu2.g:3169:4: (lv_condition_1_0= ruleExpression )
+            // InternalXmu2.g:3170:5: lv_condition_1_0= ruleExpression
             {
             if ( state.backtracking==0 ) {
 
               					newCompositeNode(grammarAccess.getExpressionCaseClauseAccess().getConditionExpressionParserRuleCall_1_0());
               				
             }
-            pushFollow(FOLLOW_54);
+            pushFollow(FOLLOW_53);
             lv_condition_1_0=ruleExpression();
 
             state._fsp--;
@@ -9259,17 +9243,17 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,32,FOLLOW_49); if (state.failed) return current;
+            otherlv_2=(Token)match(input,32,FOLLOW_48); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
               			newLeafNode(otherlv_2, grammarAccess.getExpressionCaseClauseAccess().getHyphenMinusGreaterThanSignKeyword_2());
               		
             }
-            // InternalXmu2.g:3188:3: ( (lv_action_3_0= ruleStatement ) )
-            // InternalXmu2.g:3189:4: (lv_action_3_0= ruleStatement )
+            // InternalXmu2.g:3191:3: ( (lv_action_3_0= ruleStatement ) )
+            // InternalXmu2.g:3192:4: (lv_action_3_0= ruleStatement )
             {
-            // InternalXmu2.g:3189:4: (lv_action_3_0= ruleStatement )
-            // InternalXmu2.g:3190:5: lv_action_3_0= ruleStatement
+            // InternalXmu2.g:3192:4: (lv_action_3_0= ruleStatement )
+            // InternalXmu2.g:3193:5: lv_action_3_0= ruleStatement
             {
             if ( state.backtracking==0 ) {
 
@@ -9325,7 +9309,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleDefaultCaseClause"
-    // InternalXmu2.g:3211:1: entryRuleDefaultCaseClause returns [EObject current=null] : iv_ruleDefaultCaseClause= ruleDefaultCaseClause EOF ;
+    // InternalXmu2.g:3214:1: entryRuleDefaultCaseClause returns [EObject current=null] : iv_ruleDefaultCaseClause= ruleDefaultCaseClause EOF ;
     public final EObject entryRuleDefaultCaseClause() throws RecognitionException {
         EObject current = null;
 
@@ -9333,8 +9317,8 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalXmu2.g:3211:58: (iv_ruleDefaultCaseClause= ruleDefaultCaseClause EOF )
-            // InternalXmu2.g:3212:2: iv_ruleDefaultCaseClause= ruleDefaultCaseClause EOF
+            // InternalXmu2.g:3214:58: (iv_ruleDefaultCaseClause= ruleDefaultCaseClause EOF )
+            // InternalXmu2.g:3215:2: iv_ruleDefaultCaseClause= ruleDefaultCaseClause EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getDefaultCaseClauseRule()); 
@@ -9365,7 +9349,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleDefaultCaseClause"
-    // InternalXmu2.g:3218:1: ruleDefaultCaseClause returns [EObject current=null] : (otherlv_0= 'otherwise' otherlv_1= '->' ( (lv_action_2_0= ruleStatement ) ) ) ;
+    // InternalXmu2.g:3221:1: ruleDefaultCaseClause returns [EObject current=null] : (otherlv_0= 'otherwise' otherlv_1= '->' ( (lv_action_2_0= ruleStatement ) ) ) ;
     public final EObject ruleDefaultCaseClause() throws RecognitionException {
         EObject current = null;
 
@@ -9378,29 +9362,29 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:3224:2: ( (otherlv_0= 'otherwise' otherlv_1= '->' ( (lv_action_2_0= ruleStatement ) ) ) )
-            // InternalXmu2.g:3225:2: (otherlv_0= 'otherwise' otherlv_1= '->' ( (lv_action_2_0= ruleStatement ) ) )
+            // InternalXmu2.g:3227:2: ( (otherlv_0= 'otherwise' otherlv_1= '->' ( (lv_action_2_0= ruleStatement ) ) ) )
+            // InternalXmu2.g:3228:2: (otherlv_0= 'otherwise' otherlv_1= '->' ( (lv_action_2_0= ruleStatement ) ) )
             {
-            // InternalXmu2.g:3225:2: (otherlv_0= 'otherwise' otherlv_1= '->' ( (lv_action_2_0= ruleStatement ) ) )
-            // InternalXmu2.g:3226:3: otherlv_0= 'otherwise' otherlv_1= '->' ( (lv_action_2_0= ruleStatement ) )
+            // InternalXmu2.g:3228:2: (otherlv_0= 'otherwise' otherlv_1= '->' ( (lv_action_2_0= ruleStatement ) ) )
+            // InternalXmu2.g:3229:3: otherlv_0= 'otherwise' otherlv_1= '->' ( (lv_action_2_0= ruleStatement ) )
             {
-            otherlv_0=(Token)match(input,43,FOLLOW_54); if (state.failed) return current;
+            otherlv_0=(Token)match(input,43,FOLLOW_53); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
               			newLeafNode(otherlv_0, grammarAccess.getDefaultCaseClauseAccess().getOtherwiseKeyword_0());
               		
             }
-            otherlv_1=(Token)match(input,32,FOLLOW_49); if (state.failed) return current;
+            otherlv_1=(Token)match(input,32,FOLLOW_48); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
               			newLeafNode(otherlv_1, grammarAccess.getDefaultCaseClauseAccess().getHyphenMinusGreaterThanSignKeyword_1());
               		
             }
-            // InternalXmu2.g:3234:3: ( (lv_action_2_0= ruleStatement ) )
-            // InternalXmu2.g:3235:4: (lv_action_2_0= ruleStatement )
+            // InternalXmu2.g:3237:3: ( (lv_action_2_0= ruleStatement ) )
+            // InternalXmu2.g:3238:4: (lv_action_2_0= ruleStatement )
             {
-            // InternalXmu2.g:3235:4: (lv_action_2_0= ruleStatement )
-            // InternalXmu2.g:3236:5: lv_action_2_0= ruleStatement
+            // InternalXmu2.g:3238:4: (lv_action_2_0= ruleStatement )
+            // InternalXmu2.g:3239:5: lv_action_2_0= ruleStatement
             {
             if ( state.backtracking==0 ) {
 
@@ -9456,7 +9440,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleDeleteNodeStatement"
-    // InternalXmu2.g:3257:1: entryRuleDeleteNodeStatement returns [EObject current=null] : iv_ruleDeleteNodeStatement= ruleDeleteNodeStatement EOF ;
+    // InternalXmu2.g:3260:1: entryRuleDeleteNodeStatement returns [EObject current=null] : iv_ruleDeleteNodeStatement= ruleDeleteNodeStatement EOF ;
     public final EObject entryRuleDeleteNodeStatement() throws RecognitionException {
         EObject current = null;
 
@@ -9464,8 +9448,8 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalXmu2.g:3257:60: (iv_ruleDeleteNodeStatement= ruleDeleteNodeStatement EOF )
-            // InternalXmu2.g:3258:2: iv_ruleDeleteNodeStatement= ruleDeleteNodeStatement EOF
+            // InternalXmu2.g:3260:60: (iv_ruleDeleteNodeStatement= ruleDeleteNodeStatement EOF )
+            // InternalXmu2.g:3261:2: iv_ruleDeleteNodeStatement= ruleDeleteNodeStatement EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getDeleteNodeStatementRule()); 
@@ -9496,7 +9480,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleDeleteNodeStatement"
-    // InternalXmu2.g:3264:1: ruleDeleteNodeStatement returns [EObject current=null] : (otherlv_0= 'delete' ( (lv_node_1_0= ruleVariableExpression ) ) ) ;
+    // InternalXmu2.g:3267:1: ruleDeleteNodeStatement returns [EObject current=null] : (otherlv_0= 'delete' ( (lv_node_1_0= ruleVariableExpression ) ) ) ;
     public final EObject ruleDeleteNodeStatement() throws RecognitionException {
         EObject current = null;
 
@@ -9508,23 +9492,23 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:3270:2: ( (otherlv_0= 'delete' ( (lv_node_1_0= ruleVariableExpression ) ) ) )
-            // InternalXmu2.g:3271:2: (otherlv_0= 'delete' ( (lv_node_1_0= ruleVariableExpression ) ) )
+            // InternalXmu2.g:3273:2: ( (otherlv_0= 'delete' ( (lv_node_1_0= ruleVariableExpression ) ) ) )
+            // InternalXmu2.g:3274:2: (otherlv_0= 'delete' ( (lv_node_1_0= ruleVariableExpression ) ) )
             {
-            // InternalXmu2.g:3271:2: (otherlv_0= 'delete' ( (lv_node_1_0= ruleVariableExpression ) ) )
-            // InternalXmu2.g:3272:3: otherlv_0= 'delete' ( (lv_node_1_0= ruleVariableExpression ) )
+            // InternalXmu2.g:3274:2: (otherlv_0= 'delete' ( (lv_node_1_0= ruleVariableExpression ) ) )
+            // InternalXmu2.g:3275:3: otherlv_0= 'delete' ( (lv_node_1_0= ruleVariableExpression ) )
             {
-            otherlv_0=(Token)match(input,44,FOLLOW_49); if (state.failed) return current;
+            otherlv_0=(Token)match(input,44,FOLLOW_48); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
               			newLeafNode(otherlv_0, grammarAccess.getDeleteNodeStatementAccess().getDeleteKeyword_0());
               		
             }
-            // InternalXmu2.g:3276:3: ( (lv_node_1_0= ruleVariableExpression ) )
-            // InternalXmu2.g:3277:4: (lv_node_1_0= ruleVariableExpression )
+            // InternalXmu2.g:3279:3: ( (lv_node_1_0= ruleVariableExpression ) )
+            // InternalXmu2.g:3280:4: (lv_node_1_0= ruleVariableExpression )
             {
-            // InternalXmu2.g:3277:4: (lv_node_1_0= ruleVariableExpression )
-            // InternalXmu2.g:3278:5: lv_node_1_0= ruleVariableExpression
+            // InternalXmu2.g:3280:4: (lv_node_1_0= ruleVariableExpression )
+            // InternalXmu2.g:3281:5: lv_node_1_0= ruleVariableExpression
             {
             if ( state.backtracking==0 ) {
 
@@ -9580,7 +9564,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleDeleteLinkStatement"
-    // InternalXmu2.g:3299:1: entryRuleDeleteLinkStatement returns [EObject current=null] : iv_ruleDeleteLinkStatement= ruleDeleteLinkStatement EOF ;
+    // InternalXmu2.g:3302:1: entryRuleDeleteLinkStatement returns [EObject current=null] : iv_ruleDeleteLinkStatement= ruleDeleteLinkStatement EOF ;
     public final EObject entryRuleDeleteLinkStatement() throws RecognitionException {
         EObject current = null;
 
@@ -9588,8 +9572,8 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalXmu2.g:3299:60: (iv_ruleDeleteLinkStatement= ruleDeleteLinkStatement EOF )
-            // InternalXmu2.g:3300:2: iv_ruleDeleteLinkStatement= ruleDeleteLinkStatement EOF
+            // InternalXmu2.g:3302:60: (iv_ruleDeleteLinkStatement= ruleDeleteLinkStatement EOF )
+            // InternalXmu2.g:3303:2: iv_ruleDeleteLinkStatement= ruleDeleteLinkStatement EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getDeleteLinkStatementRule()); 
@@ -9620,7 +9604,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleDeleteLinkStatement"
-    // InternalXmu2.g:3306:1: ruleDeleteLinkStatement returns [EObject current=null] : ( () otherlv_1= 'delete' ( (lv_source_2_0= ruleVariableExpression ) ) otherlv_3= '.' ( (lv_feature_4_0= RULE_NAME ) ) otherlv_5= '=' ( (lv_target_6_0= ruleExpression ) ) ) ;
+    // InternalXmu2.g:3309:1: ruleDeleteLinkStatement returns [EObject current=null] : ( () otherlv_1= 'delete' ( (lv_source_2_0= ruleVariableExpression ) ) otherlv_3= '.' ( (lv_feature_4_0= RULE_NAME ) ) otherlv_5= '=' ( (lv_target_6_0= ruleExpression ) ) ) ;
     public final EObject ruleDeleteLinkStatement() throws RecognitionException {
         EObject current = null;
 
@@ -9637,14 +9621,14 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:3312:2: ( ( () otherlv_1= 'delete' ( (lv_source_2_0= ruleVariableExpression ) ) otherlv_3= '.' ( (lv_feature_4_0= RULE_NAME ) ) otherlv_5= '=' ( (lv_target_6_0= ruleExpression ) ) ) )
-            // InternalXmu2.g:3313:2: ( () otherlv_1= 'delete' ( (lv_source_2_0= ruleVariableExpression ) ) otherlv_3= '.' ( (lv_feature_4_0= RULE_NAME ) ) otherlv_5= '=' ( (lv_target_6_0= ruleExpression ) ) )
+            // InternalXmu2.g:3315:2: ( ( () otherlv_1= 'delete' ( (lv_source_2_0= ruleVariableExpression ) ) otherlv_3= '.' ( (lv_feature_4_0= RULE_NAME ) ) otherlv_5= '=' ( (lv_target_6_0= ruleExpression ) ) ) )
+            // InternalXmu2.g:3316:2: ( () otherlv_1= 'delete' ( (lv_source_2_0= ruleVariableExpression ) ) otherlv_3= '.' ( (lv_feature_4_0= RULE_NAME ) ) otherlv_5= '=' ( (lv_target_6_0= ruleExpression ) ) )
             {
-            // InternalXmu2.g:3313:2: ( () otherlv_1= 'delete' ( (lv_source_2_0= ruleVariableExpression ) ) otherlv_3= '.' ( (lv_feature_4_0= RULE_NAME ) ) otherlv_5= '=' ( (lv_target_6_0= ruleExpression ) ) )
-            // InternalXmu2.g:3314:3: () otherlv_1= 'delete' ( (lv_source_2_0= ruleVariableExpression ) ) otherlv_3= '.' ( (lv_feature_4_0= RULE_NAME ) ) otherlv_5= '=' ( (lv_target_6_0= ruleExpression ) )
+            // InternalXmu2.g:3316:2: ( () otherlv_1= 'delete' ( (lv_source_2_0= ruleVariableExpression ) ) otherlv_3= '.' ( (lv_feature_4_0= RULE_NAME ) ) otherlv_5= '=' ( (lv_target_6_0= ruleExpression ) ) )
+            // InternalXmu2.g:3317:3: () otherlv_1= 'delete' ( (lv_source_2_0= ruleVariableExpression ) ) otherlv_3= '.' ( (lv_feature_4_0= RULE_NAME ) ) otherlv_5= '=' ( (lv_target_6_0= ruleExpression ) )
             {
-            // InternalXmu2.g:3314:3: ()
-            // InternalXmu2.g:3315:4: 
+            // InternalXmu2.g:3317:3: ()
+            // InternalXmu2.g:3318:4: 
             {
             if ( state.backtracking==0 ) {
 
@@ -9656,24 +9640,24 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,44,FOLLOW_49); if (state.failed) return current;
+            otherlv_1=(Token)match(input,44,FOLLOW_48); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
               			newLeafNode(otherlv_1, grammarAccess.getDeleteLinkStatementAccess().getDeleteKeyword_1());
               		
             }
-            // InternalXmu2.g:3325:3: ( (lv_source_2_0= ruleVariableExpression ) )
-            // InternalXmu2.g:3326:4: (lv_source_2_0= ruleVariableExpression )
+            // InternalXmu2.g:3328:3: ( (lv_source_2_0= ruleVariableExpression ) )
+            // InternalXmu2.g:3329:4: (lv_source_2_0= ruleVariableExpression )
             {
-            // InternalXmu2.g:3326:4: (lv_source_2_0= ruleVariableExpression )
-            // InternalXmu2.g:3327:5: lv_source_2_0= ruleVariableExpression
+            // InternalXmu2.g:3329:4: (lv_source_2_0= ruleVariableExpression )
+            // InternalXmu2.g:3330:5: lv_source_2_0= ruleVariableExpression
             {
             if ( state.backtracking==0 ) {
 
               					newCompositeNode(grammarAccess.getDeleteLinkStatementAccess().getSourceVariableExpressionParserRuleCall_2_0());
               				
             }
-            pushFollow(FOLLOW_57);
+            pushFollow(FOLLOW_56);
             lv_source_2_0=ruleVariableExpression();
 
             state._fsp--;
@@ -9703,13 +9687,13 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
               			newLeafNode(otherlv_3, grammarAccess.getDeleteLinkStatementAccess().getFullStopKeyword_3());
               		
             }
-            // InternalXmu2.g:3348:3: ( (lv_feature_4_0= RULE_NAME ) )
-            // InternalXmu2.g:3349:4: (lv_feature_4_0= RULE_NAME )
+            // InternalXmu2.g:3351:3: ( (lv_feature_4_0= RULE_NAME ) )
+            // InternalXmu2.g:3352:4: (lv_feature_4_0= RULE_NAME )
             {
-            // InternalXmu2.g:3349:4: (lv_feature_4_0= RULE_NAME )
-            // InternalXmu2.g:3350:5: lv_feature_4_0= RULE_NAME
+            // InternalXmu2.g:3352:4: (lv_feature_4_0= RULE_NAME )
+            // InternalXmu2.g:3353:5: lv_feature_4_0= RULE_NAME
             {
-            lv_feature_4_0=(Token)match(input,RULE_NAME,FOLLOW_29); if (state.failed) return current;
+            lv_feature_4_0=(Token)match(input,RULE_NAME,FOLLOW_28); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
               					newLeafNode(lv_feature_4_0, grammarAccess.getDeleteLinkStatementAccess().getFeatureNAMETerminalRuleCall_4_0());
@@ -9739,11 +9723,11 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
               			newLeafNode(otherlv_5, grammarAccess.getDeleteLinkStatementAccess().getEqualsSignKeyword_5());
               		
             }
-            // InternalXmu2.g:3370:3: ( (lv_target_6_0= ruleExpression ) )
-            // InternalXmu2.g:3371:4: (lv_target_6_0= ruleExpression )
+            // InternalXmu2.g:3373:3: ( (lv_target_6_0= ruleExpression ) )
+            // InternalXmu2.g:3374:4: (lv_target_6_0= ruleExpression )
             {
-            // InternalXmu2.g:3371:4: (lv_target_6_0= ruleExpression )
-            // InternalXmu2.g:3372:5: lv_target_6_0= ruleExpression
+            // InternalXmu2.g:3374:4: (lv_target_6_0= ruleExpression )
+            // InternalXmu2.g:3375:5: lv_target_6_0= ruleExpression
             {
             if ( state.backtracking==0 ) {
 
@@ -9799,7 +9783,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleEnforcePatternStatement"
-    // InternalXmu2.g:3393:1: entryRuleEnforcePatternStatement returns [EObject current=null] : iv_ruleEnforcePatternStatement= ruleEnforcePatternStatement EOF ;
+    // InternalXmu2.g:3396:1: entryRuleEnforcePatternStatement returns [EObject current=null] : iv_ruleEnforcePatternStatement= ruleEnforcePatternStatement EOF ;
     public final EObject entryRuleEnforcePatternStatement() throws RecognitionException {
         EObject current = null;
 
@@ -9807,8 +9791,8 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalXmu2.g:3393:64: (iv_ruleEnforcePatternStatement= ruleEnforcePatternStatement EOF )
-            // InternalXmu2.g:3394:2: iv_ruleEnforcePatternStatement= ruleEnforcePatternStatement EOF
+            // InternalXmu2.g:3396:64: (iv_ruleEnforcePatternStatement= ruleEnforcePatternStatement EOF )
+            // InternalXmu2.g:3397:2: iv_ruleEnforcePatternStatement= ruleEnforcePatternStatement EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getEnforcePatternStatementRule()); 
@@ -9839,7 +9823,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleEnforcePatternStatement"
-    // InternalXmu2.g:3400:1: ruleEnforcePatternStatement returns [EObject current=null] : (otherlv_0= 'enforce' ( (lv_pattern_1_0= rulePattern ) ) ) ;
+    // InternalXmu2.g:3403:1: ruleEnforcePatternStatement returns [EObject current=null] : (otherlv_0= 'enforce' ( (lv_pattern_1_0= rulePattern ) ) ) ;
     public final EObject ruleEnforcePatternStatement() throws RecognitionException {
         EObject current = null;
 
@@ -9851,23 +9835,23 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:3406:2: ( (otherlv_0= 'enforce' ( (lv_pattern_1_0= rulePattern ) ) ) )
-            // InternalXmu2.g:3407:2: (otherlv_0= 'enforce' ( (lv_pattern_1_0= rulePattern ) ) )
+            // InternalXmu2.g:3409:2: ( (otherlv_0= 'enforce' ( (lv_pattern_1_0= rulePattern ) ) ) )
+            // InternalXmu2.g:3410:2: (otherlv_0= 'enforce' ( (lv_pattern_1_0= rulePattern ) ) )
             {
-            // InternalXmu2.g:3407:2: (otherlv_0= 'enforce' ( (lv_pattern_1_0= rulePattern ) ) )
-            // InternalXmu2.g:3408:3: otherlv_0= 'enforce' ( (lv_pattern_1_0= rulePattern ) )
+            // InternalXmu2.g:3410:2: (otherlv_0= 'enforce' ( (lv_pattern_1_0= rulePattern ) ) )
+            // InternalXmu2.g:3411:3: otherlv_0= 'enforce' ( (lv_pattern_1_0= rulePattern ) )
             {
-            otherlv_0=(Token)match(input,45,FOLLOW_30); if (state.failed) return current;
+            otherlv_0=(Token)match(input,45,FOLLOW_29); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
               			newLeafNode(otherlv_0, grammarAccess.getEnforcePatternStatementAccess().getEnforceKeyword_0());
               		
             }
-            // InternalXmu2.g:3412:3: ( (lv_pattern_1_0= rulePattern ) )
-            // InternalXmu2.g:3413:4: (lv_pattern_1_0= rulePattern )
+            // InternalXmu2.g:3415:3: ( (lv_pattern_1_0= rulePattern ) )
+            // InternalXmu2.g:3416:4: (lv_pattern_1_0= rulePattern )
             {
-            // InternalXmu2.g:3413:4: (lv_pattern_1_0= rulePattern )
-            // InternalXmu2.g:3414:5: lv_pattern_1_0= rulePattern
+            // InternalXmu2.g:3416:4: (lv_pattern_1_0= rulePattern )
+            // InternalXmu2.g:3417:5: lv_pattern_1_0= rulePattern
             {
             if ( state.backtracking==0 ) {
 
@@ -9923,7 +9907,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleForEachStatement"
-    // InternalXmu2.g:3435:1: entryRuleForEachStatement returns [EObject current=null] : iv_ruleForEachStatement= ruleForEachStatement EOF ;
+    // InternalXmu2.g:3438:1: entryRuleForEachStatement returns [EObject current=null] : iv_ruleForEachStatement= ruleForEachStatement EOF ;
     public final EObject entryRuleForEachStatement() throws RecognitionException {
         EObject current = null;
 
@@ -9931,8 +9915,8 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalXmu2.g:3435:57: (iv_ruleForEachStatement= ruleForEachStatement EOF )
-            // InternalXmu2.g:3436:2: iv_ruleForEachStatement= ruleForEachStatement EOF
+            // InternalXmu2.g:3438:57: (iv_ruleForEachStatement= ruleForEachStatement EOF )
+            // InternalXmu2.g:3439:2: iv_ruleForEachStatement= ruleForEachStatement EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getForEachStatementRule()); 
@@ -9963,7 +9947,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleForEachStatement"
-    // InternalXmu2.g:3442:1: ruleForEachStatement returns [EObject current=null] : (otherlv_0= 'foreach' ( (lv_pattern_1_0= rulePattern ) ) otherlv_2= '->' ( (lv_action_3_0= ruleStatement ) ) ) ;
+    // InternalXmu2.g:3445:1: ruleForEachStatement returns [EObject current=null] : (otherlv_0= 'foreach' ( (lv_pattern_1_0= rulePattern ) ) otherlv_2= '->' ( (lv_action_3_0= ruleStatement ) ) ) ;
     public final EObject ruleForEachStatement() throws RecognitionException {
         EObject current = null;
 
@@ -9978,30 +9962,30 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:3448:2: ( (otherlv_0= 'foreach' ( (lv_pattern_1_0= rulePattern ) ) otherlv_2= '->' ( (lv_action_3_0= ruleStatement ) ) ) )
-            // InternalXmu2.g:3449:2: (otherlv_0= 'foreach' ( (lv_pattern_1_0= rulePattern ) ) otherlv_2= '->' ( (lv_action_3_0= ruleStatement ) ) )
+            // InternalXmu2.g:3451:2: ( (otherlv_0= 'foreach' ( (lv_pattern_1_0= rulePattern ) ) otherlv_2= '->' ( (lv_action_3_0= ruleStatement ) ) ) )
+            // InternalXmu2.g:3452:2: (otherlv_0= 'foreach' ( (lv_pattern_1_0= rulePattern ) ) otherlv_2= '->' ( (lv_action_3_0= ruleStatement ) ) )
             {
-            // InternalXmu2.g:3449:2: (otherlv_0= 'foreach' ( (lv_pattern_1_0= rulePattern ) ) otherlv_2= '->' ( (lv_action_3_0= ruleStatement ) ) )
-            // InternalXmu2.g:3450:3: otherlv_0= 'foreach' ( (lv_pattern_1_0= rulePattern ) ) otherlv_2= '->' ( (lv_action_3_0= ruleStatement ) )
+            // InternalXmu2.g:3452:2: (otherlv_0= 'foreach' ( (lv_pattern_1_0= rulePattern ) ) otherlv_2= '->' ( (lv_action_3_0= ruleStatement ) ) )
+            // InternalXmu2.g:3453:3: otherlv_0= 'foreach' ( (lv_pattern_1_0= rulePattern ) ) otherlv_2= '->' ( (lv_action_3_0= ruleStatement ) )
             {
-            otherlv_0=(Token)match(input,46,FOLLOW_30); if (state.failed) return current;
+            otherlv_0=(Token)match(input,46,FOLLOW_29); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
               			newLeafNode(otherlv_0, grammarAccess.getForEachStatementAccess().getForeachKeyword_0());
               		
             }
-            // InternalXmu2.g:3454:3: ( (lv_pattern_1_0= rulePattern ) )
-            // InternalXmu2.g:3455:4: (lv_pattern_1_0= rulePattern )
+            // InternalXmu2.g:3457:3: ( (lv_pattern_1_0= rulePattern ) )
+            // InternalXmu2.g:3458:4: (lv_pattern_1_0= rulePattern )
             {
-            // InternalXmu2.g:3455:4: (lv_pattern_1_0= rulePattern )
-            // InternalXmu2.g:3456:5: lv_pattern_1_0= rulePattern
+            // InternalXmu2.g:3458:4: (lv_pattern_1_0= rulePattern )
+            // InternalXmu2.g:3459:5: lv_pattern_1_0= rulePattern
             {
             if ( state.backtracking==0 ) {
 
               					newCompositeNode(grammarAccess.getForEachStatementAccess().getPatternPatternParserRuleCall_1_0());
               				
             }
-            pushFollow(FOLLOW_54);
+            pushFollow(FOLLOW_53);
             lv_pattern_1_0=rulePattern();
 
             state._fsp--;
@@ -10025,17 +10009,17 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,32,FOLLOW_49); if (state.failed) return current;
+            otherlv_2=(Token)match(input,32,FOLLOW_48); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
               			newLeafNode(otherlv_2, grammarAccess.getForEachStatementAccess().getHyphenMinusGreaterThanSignKeyword_2());
               		
             }
-            // InternalXmu2.g:3477:3: ( (lv_action_3_0= ruleStatement ) )
-            // InternalXmu2.g:3478:4: (lv_action_3_0= ruleStatement )
+            // InternalXmu2.g:3480:3: ( (lv_action_3_0= ruleStatement ) )
+            // InternalXmu2.g:3481:4: (lv_action_3_0= ruleStatement )
             {
-            // InternalXmu2.g:3478:4: (lv_action_3_0= ruleStatement )
-            // InternalXmu2.g:3479:5: lv_action_3_0= ruleStatement
+            // InternalXmu2.g:3481:4: (lv_action_3_0= ruleStatement )
+            // InternalXmu2.g:3482:5: lv_action_3_0= ruleStatement
             {
             if ( state.backtracking==0 ) {
 
@@ -10091,7 +10075,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleRuleCallStatement"
-    // InternalXmu2.g:3500:1: entryRuleRuleCallStatement returns [EObject current=null] : iv_ruleRuleCallStatement= ruleRuleCallStatement EOF ;
+    // InternalXmu2.g:3503:1: entryRuleRuleCallStatement returns [EObject current=null] : iv_ruleRuleCallStatement= ruleRuleCallStatement EOF ;
     public final EObject entryRuleRuleCallStatement() throws RecognitionException {
         EObject current = null;
 
@@ -10099,8 +10083,8 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalXmu2.g:3500:58: (iv_ruleRuleCallStatement= ruleRuleCallStatement EOF )
-            // InternalXmu2.g:3501:2: iv_ruleRuleCallStatement= ruleRuleCallStatement EOF
+            // InternalXmu2.g:3503:58: (iv_ruleRuleCallStatement= ruleRuleCallStatement EOF )
+            // InternalXmu2.g:3504:2: iv_ruleRuleCallStatement= ruleRuleCallStatement EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getRuleCallStatementRule()); 
@@ -10131,7 +10115,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleRuleCallStatement"
-    // InternalXmu2.g:3507:1: ruleRuleCallStatement returns [EObject current=null] : ( ( (otherlv_0= RULE_NAME ) ) otherlv_1= '(' ( ( (lv_parameters_2_0= ruleExpression ) ) (otherlv_3= ',' ( (lv_parameters_4_0= ruleExpression ) ) )* )? otherlv_5= ')' ) ;
+    // InternalXmu2.g:3510:1: ruleRuleCallStatement returns [EObject current=null] : ( ( (otherlv_0= RULE_NAME ) ) otherlv_1= '(' ( ( (lv_parameters_2_0= ruleExpression ) ) (otherlv_3= ',' ( (lv_parameters_4_0= ruleExpression ) ) )* )? otherlv_5= ')' ) ;
     public final EObject ruleRuleCallStatement() throws RecognitionException {
         EObject current = null;
 
@@ -10148,17 +10132,17 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:3513:2: ( ( ( (otherlv_0= RULE_NAME ) ) otherlv_1= '(' ( ( (lv_parameters_2_0= ruleExpression ) ) (otherlv_3= ',' ( (lv_parameters_4_0= ruleExpression ) ) )* )? otherlv_5= ')' ) )
-            // InternalXmu2.g:3514:2: ( ( (otherlv_0= RULE_NAME ) ) otherlv_1= '(' ( ( (lv_parameters_2_0= ruleExpression ) ) (otherlv_3= ',' ( (lv_parameters_4_0= ruleExpression ) ) )* )? otherlv_5= ')' )
+            // InternalXmu2.g:3516:2: ( ( ( (otherlv_0= RULE_NAME ) ) otherlv_1= '(' ( ( (lv_parameters_2_0= ruleExpression ) ) (otherlv_3= ',' ( (lv_parameters_4_0= ruleExpression ) ) )* )? otherlv_5= ')' ) )
+            // InternalXmu2.g:3517:2: ( ( (otherlv_0= RULE_NAME ) ) otherlv_1= '(' ( ( (lv_parameters_2_0= ruleExpression ) ) (otherlv_3= ',' ( (lv_parameters_4_0= ruleExpression ) ) )* )? otherlv_5= ')' )
             {
-            // InternalXmu2.g:3514:2: ( ( (otherlv_0= RULE_NAME ) ) otherlv_1= '(' ( ( (lv_parameters_2_0= ruleExpression ) ) (otherlv_3= ',' ( (lv_parameters_4_0= ruleExpression ) ) )* )? otherlv_5= ')' )
-            // InternalXmu2.g:3515:3: ( (otherlv_0= RULE_NAME ) ) otherlv_1= '(' ( ( (lv_parameters_2_0= ruleExpression ) ) (otherlv_3= ',' ( (lv_parameters_4_0= ruleExpression ) ) )* )? otherlv_5= ')'
+            // InternalXmu2.g:3517:2: ( ( (otherlv_0= RULE_NAME ) ) otherlv_1= '(' ( ( (lv_parameters_2_0= ruleExpression ) ) (otherlv_3= ',' ( (lv_parameters_4_0= ruleExpression ) ) )* )? otherlv_5= ')' )
+            // InternalXmu2.g:3518:3: ( (otherlv_0= RULE_NAME ) ) otherlv_1= '(' ( ( (lv_parameters_2_0= ruleExpression ) ) (otherlv_3= ',' ( (lv_parameters_4_0= ruleExpression ) ) )* )? otherlv_5= ')'
             {
-            // InternalXmu2.g:3515:3: ( (otherlv_0= RULE_NAME ) )
-            // InternalXmu2.g:3516:4: (otherlv_0= RULE_NAME )
+            // InternalXmu2.g:3518:3: ( (otherlv_0= RULE_NAME ) )
+            // InternalXmu2.g:3519:4: (otherlv_0= RULE_NAME )
             {
-            // InternalXmu2.g:3516:4: (otherlv_0= RULE_NAME )
-            // InternalXmu2.g:3517:5: otherlv_0= RULE_NAME
+            // InternalXmu2.g:3519:4: (otherlv_0= RULE_NAME )
+            // InternalXmu2.g:3520:5: otherlv_0= RULE_NAME
             {
             if ( state.backtracking==0 ) {
 
@@ -10179,28 +10163,28 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,19,FOLLOW_36); if (state.failed) return current;
+            otherlv_1=(Token)match(input,19,FOLLOW_35); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
               			newLeafNode(otherlv_1, grammarAccess.getRuleCallStatementAccess().getLeftParenthesisKeyword_1());
               		
             }
-            // InternalXmu2.g:3532:3: ( ( (lv_parameters_2_0= ruleExpression ) ) (otherlv_3= ',' ( (lv_parameters_4_0= ruleExpression ) ) )* )?
-            int alt52=2;
-            int LA52_0 = input.LA(1);
+            // InternalXmu2.g:3535:3: ( ( (lv_parameters_2_0= ruleExpression ) ) (otherlv_3= ',' ( (lv_parameters_4_0= ruleExpression ) ) )* )?
+            int alt51=2;
+            int LA51_0 = input.LA(1);
 
-            if ( (LA52_0==RULE_NAME||(LA52_0>=RULE_INT && LA52_0<=RULE_BOOLEAN)||LA52_0==19||(LA52_0>=58 && LA52_0<=61)) ) {
-                alt52=1;
+            if ( (LA51_0==RULE_NAME||(LA51_0>=RULE_INT && LA51_0<=RULE_BOOLEAN)||LA51_0==19||(LA51_0>=58 && LA51_0<=61)) ) {
+                alt51=1;
             }
-            switch (alt52) {
+            switch (alt51) {
                 case 1 :
-                    // InternalXmu2.g:3533:4: ( (lv_parameters_2_0= ruleExpression ) ) (otherlv_3= ',' ( (lv_parameters_4_0= ruleExpression ) ) )*
+                    // InternalXmu2.g:3536:4: ( (lv_parameters_2_0= ruleExpression ) ) (otherlv_3= ',' ( (lv_parameters_4_0= ruleExpression ) ) )*
                     {
-                    // InternalXmu2.g:3533:4: ( (lv_parameters_2_0= ruleExpression ) )
-                    // InternalXmu2.g:3534:5: (lv_parameters_2_0= ruleExpression )
+                    // InternalXmu2.g:3536:4: ( (lv_parameters_2_0= ruleExpression ) )
+                    // InternalXmu2.g:3537:5: (lv_parameters_2_0= ruleExpression )
                     {
-                    // InternalXmu2.g:3534:5: (lv_parameters_2_0= ruleExpression )
-                    // InternalXmu2.g:3535:6: lv_parameters_2_0= ruleExpression
+                    // InternalXmu2.g:3537:5: (lv_parameters_2_0= ruleExpression )
+                    // InternalXmu2.g:3538:6: lv_parameters_2_0= ruleExpression
                     {
                     if ( state.backtracking==0 ) {
 
@@ -10231,20 +10215,20 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // InternalXmu2.g:3552:4: (otherlv_3= ',' ( (lv_parameters_4_0= ruleExpression ) ) )*
-                    loop51:
+                    // InternalXmu2.g:3555:4: (otherlv_3= ',' ( (lv_parameters_4_0= ruleExpression ) ) )*
+                    loop50:
                     do {
-                        int alt51=2;
-                        int LA51_0 = input.LA(1);
+                        int alt50=2;
+                        int LA50_0 = input.LA(1);
 
-                        if ( (LA51_0==20) ) {
-                            alt51=1;
+                        if ( (LA50_0==20) ) {
+                            alt50=1;
                         }
 
 
-                        switch (alt51) {
+                        switch (alt50) {
                     	case 1 :
-                    	    // InternalXmu2.g:3553:5: otherlv_3= ',' ( (lv_parameters_4_0= ruleExpression ) )
+                    	    // InternalXmu2.g:3556:5: otherlv_3= ',' ( (lv_parameters_4_0= ruleExpression ) )
                     	    {
                     	    otherlv_3=(Token)match(input,20,FOLLOW_24); if (state.failed) return current;
                     	    if ( state.backtracking==0 ) {
@@ -10252,11 +10236,11 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                     	      					newLeafNode(otherlv_3, grammarAccess.getRuleCallStatementAccess().getCommaKeyword_2_1_0());
                     	      				
                     	    }
-                    	    // InternalXmu2.g:3557:5: ( (lv_parameters_4_0= ruleExpression ) )
-                    	    // InternalXmu2.g:3558:6: (lv_parameters_4_0= ruleExpression )
+                    	    // InternalXmu2.g:3560:5: ( (lv_parameters_4_0= ruleExpression ) )
+                    	    // InternalXmu2.g:3561:6: (lv_parameters_4_0= ruleExpression )
                     	    {
-                    	    // InternalXmu2.g:3558:6: (lv_parameters_4_0= ruleExpression )
-                    	    // InternalXmu2.g:3559:7: lv_parameters_4_0= ruleExpression
+                    	    // InternalXmu2.g:3561:6: (lv_parameters_4_0= ruleExpression )
+                    	    // InternalXmu2.g:3562:7: lv_parameters_4_0= ruleExpression
                     	    {
                     	    if ( state.backtracking==0 ) {
 
@@ -10292,7 +10276,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    break loop51;
+                    	    break loop50;
                         }
                     } while (true);
 
@@ -10333,7 +10317,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleSkip"
-    // InternalXmu2.g:3586:1: entryRuleSkip returns [EObject current=null] : iv_ruleSkip= ruleSkip EOF ;
+    // InternalXmu2.g:3589:1: entryRuleSkip returns [EObject current=null] : iv_ruleSkip= ruleSkip EOF ;
     public final EObject entryRuleSkip() throws RecognitionException {
         EObject current = null;
 
@@ -10341,8 +10325,8 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalXmu2.g:3586:45: (iv_ruleSkip= ruleSkip EOF )
-            // InternalXmu2.g:3587:2: iv_ruleSkip= ruleSkip EOF
+            // InternalXmu2.g:3589:45: (iv_ruleSkip= ruleSkip EOF )
+            // InternalXmu2.g:3590:2: iv_ruleSkip= ruleSkip EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getSkipRule()); 
@@ -10373,7 +10357,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleSkip"
-    // InternalXmu2.g:3593:1: ruleSkip returns [EObject current=null] : ( () otherlv_1= 'skip' ) ;
+    // InternalXmu2.g:3596:1: ruleSkip returns [EObject current=null] : ( () otherlv_1= 'skip' ) ;
     public final EObject ruleSkip() throws RecognitionException {
         EObject current = null;
 
@@ -10383,14 +10367,14 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:3599:2: ( ( () otherlv_1= 'skip' ) )
-            // InternalXmu2.g:3600:2: ( () otherlv_1= 'skip' )
+            // InternalXmu2.g:3602:2: ( ( () otherlv_1= 'skip' ) )
+            // InternalXmu2.g:3603:2: ( () otherlv_1= 'skip' )
             {
-            // InternalXmu2.g:3600:2: ( () otherlv_1= 'skip' )
-            // InternalXmu2.g:3601:3: () otherlv_1= 'skip'
+            // InternalXmu2.g:3603:2: ( () otherlv_1= 'skip' )
+            // InternalXmu2.g:3604:3: () otherlv_1= 'skip'
             {
-            // InternalXmu2.g:3601:3: ()
-            // InternalXmu2.g:3602:4: 
+            // InternalXmu2.g:3604:3: ()
+            // InternalXmu2.g:3605:4: 
             {
             if ( state.backtracking==0 ) {
 
@@ -10433,7 +10417,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleFail"
-    // InternalXmu2.g:3616:1: entryRuleFail returns [EObject current=null] : iv_ruleFail= ruleFail EOF ;
+    // InternalXmu2.g:3619:1: entryRuleFail returns [EObject current=null] : iv_ruleFail= ruleFail EOF ;
     public final EObject entryRuleFail() throws RecognitionException {
         EObject current = null;
 
@@ -10441,8 +10425,8 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalXmu2.g:3616:45: (iv_ruleFail= ruleFail EOF )
-            // InternalXmu2.g:3617:2: iv_ruleFail= ruleFail EOF
+            // InternalXmu2.g:3619:45: (iv_ruleFail= ruleFail EOF )
+            // InternalXmu2.g:3620:2: iv_ruleFail= ruleFail EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getFailRule()); 
@@ -10473,7 +10457,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleFail"
-    // InternalXmu2.g:3623:1: ruleFail returns [EObject current=null] : ( () otherlv_1= 'fail' ( (lv_expression_2_0= ruleExpression ) )? ) ;
+    // InternalXmu2.g:3626:1: ruleFail returns [EObject current=null] : ( () otherlv_1= 'fail' ( (lv_expression_2_0= ruleExpression ) )? ) ;
     public final EObject ruleFail() throws RecognitionException {
         EObject current = null;
 
@@ -10485,14 +10469,14 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:3629:2: ( ( () otherlv_1= 'fail' ( (lv_expression_2_0= ruleExpression ) )? ) )
-            // InternalXmu2.g:3630:2: ( () otherlv_1= 'fail' ( (lv_expression_2_0= ruleExpression ) )? )
+            // InternalXmu2.g:3632:2: ( ( () otherlv_1= 'fail' ( (lv_expression_2_0= ruleExpression ) )? ) )
+            // InternalXmu2.g:3633:2: ( () otherlv_1= 'fail' ( (lv_expression_2_0= ruleExpression ) )? )
             {
-            // InternalXmu2.g:3630:2: ( () otherlv_1= 'fail' ( (lv_expression_2_0= ruleExpression ) )? )
-            // InternalXmu2.g:3631:3: () otherlv_1= 'fail' ( (lv_expression_2_0= ruleExpression ) )?
+            // InternalXmu2.g:3633:2: ( () otherlv_1= 'fail' ( (lv_expression_2_0= ruleExpression ) )? )
+            // InternalXmu2.g:3634:3: () otherlv_1= 'fail' ( (lv_expression_2_0= ruleExpression ) )?
             {
-            // InternalXmu2.g:3631:3: ()
-            // InternalXmu2.g:3632:4: 
+            // InternalXmu2.g:3634:3: ()
+            // InternalXmu2.g:3635:4: 
             {
             if ( state.backtracking==0 ) {
 
@@ -10504,32 +10488,32 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,48,FOLLOW_58); if (state.failed) return current;
+            otherlv_1=(Token)match(input,48,FOLLOW_57); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
               			newLeafNode(otherlv_1, grammarAccess.getFailAccess().getFailKeyword_1());
               		
             }
-            // InternalXmu2.g:3642:3: ( (lv_expression_2_0= ruleExpression ) )?
-            int alt53=2;
-            int LA53_0 = input.LA(1);
+            // InternalXmu2.g:3645:3: ( (lv_expression_2_0= ruleExpression ) )?
+            int alt52=2;
+            int LA52_0 = input.LA(1);
 
-            if ( ((LA53_0>=RULE_INT && LA53_0<=RULE_BOOLEAN)||LA53_0==19||(LA53_0>=58 && LA53_0<=61)) ) {
-                alt53=1;
+            if ( ((LA52_0>=RULE_INT && LA52_0<=RULE_BOOLEAN)||LA52_0==19||(LA52_0>=58 && LA52_0<=61)) ) {
+                alt52=1;
             }
-            else if ( (LA53_0==RULE_NAME) ) {
-                int LA53_2 = input.LA(2);
+            else if ( (LA52_0==RULE_NAME) ) {
+                int LA52_2 = input.LA(2);
 
-                if ( (LA53_2==EOF||LA53_2==RULE_NAME||(LA53_2>=25 && LA53_2<=27)||LA53_2==30||LA53_2==32||LA53_2==34||(LA53_2>=36 && LA53_2<=38)||(LA53_2>=41 && LA53_2<=48)||(LA53_2>=61 && LA53_2<=73)) ) {
-                    alt53=1;
+                if ( (LA52_2==EOF||LA52_2==RULE_NAME||(LA52_2>=25 && LA52_2<=27)||LA52_2==30||LA52_2==32||LA52_2==34||(LA52_2>=36 && LA52_2<=38)||(LA52_2>=41 && LA52_2<=48)||(LA52_2>=61 && LA52_2<=73)) ) {
+                    alt52=1;
                 }
             }
-            switch (alt53) {
+            switch (alt52) {
                 case 1 :
-                    // InternalXmu2.g:3643:4: (lv_expression_2_0= ruleExpression )
+                    // InternalXmu2.g:3646:4: (lv_expression_2_0= ruleExpression )
                     {
-                    // InternalXmu2.g:3643:4: (lv_expression_2_0= ruleExpression )
-                    // InternalXmu2.g:3644:5: lv_expression_2_0= ruleExpression
+                    // InternalXmu2.g:3646:4: (lv_expression_2_0= ruleExpression )
+                    // InternalXmu2.g:3647:5: lv_expression_2_0= ruleExpression
                     {
                     if ( state.backtracking==0 ) {
 
@@ -10588,7 +10572,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleAssignStatement"
-    // InternalXmu2.g:3665:1: entryRuleAssignStatement returns [EObject current=null] : iv_ruleAssignStatement= ruleAssignStatement EOF ;
+    // InternalXmu2.g:3668:1: entryRuleAssignStatement returns [EObject current=null] : iv_ruleAssignStatement= ruleAssignStatement EOF ;
     public final EObject entryRuleAssignStatement() throws RecognitionException {
         EObject current = null;
 
@@ -10596,8 +10580,8 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalXmu2.g:3665:56: (iv_ruleAssignStatement= ruleAssignStatement EOF )
-            // InternalXmu2.g:3666:2: iv_ruleAssignStatement= ruleAssignStatement EOF
+            // InternalXmu2.g:3668:56: (iv_ruleAssignStatement= ruleAssignStatement EOF )
+            // InternalXmu2.g:3669:2: iv_ruleAssignStatement= ruleAssignStatement EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getAssignStatementRule()); 
@@ -10628,7 +10612,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleAssignStatement"
-    // InternalXmu2.g:3672:1: ruleAssignStatement returns [EObject current=null] : ( ( (lv_updatedVariable_0_0= ruleVariableExpression ) ) otherlv_1= '::=' ( (lv_value_2_0= ruleExpression ) ) ) ;
+    // InternalXmu2.g:3675:1: ruleAssignStatement returns [EObject current=null] : ( ( (lv_updatedVariable_0_0= ruleVariableExpression ) ) otherlv_1= '::=' ( (lv_value_2_0= ruleExpression ) ) ) ;
     public final EObject ruleAssignStatement() throws RecognitionException {
         EObject current = null;
 
@@ -10642,24 +10626,24 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:3678:2: ( ( ( (lv_updatedVariable_0_0= ruleVariableExpression ) ) otherlv_1= '::=' ( (lv_value_2_0= ruleExpression ) ) ) )
-            // InternalXmu2.g:3679:2: ( ( (lv_updatedVariable_0_0= ruleVariableExpression ) ) otherlv_1= '::=' ( (lv_value_2_0= ruleExpression ) ) )
+            // InternalXmu2.g:3681:2: ( ( ( (lv_updatedVariable_0_0= ruleVariableExpression ) ) otherlv_1= '::=' ( (lv_value_2_0= ruleExpression ) ) ) )
+            // InternalXmu2.g:3682:2: ( ( (lv_updatedVariable_0_0= ruleVariableExpression ) ) otherlv_1= '::=' ( (lv_value_2_0= ruleExpression ) ) )
             {
-            // InternalXmu2.g:3679:2: ( ( (lv_updatedVariable_0_0= ruleVariableExpression ) ) otherlv_1= '::=' ( (lv_value_2_0= ruleExpression ) ) )
-            // InternalXmu2.g:3680:3: ( (lv_updatedVariable_0_0= ruleVariableExpression ) ) otherlv_1= '::=' ( (lv_value_2_0= ruleExpression ) )
+            // InternalXmu2.g:3682:2: ( ( (lv_updatedVariable_0_0= ruleVariableExpression ) ) otherlv_1= '::=' ( (lv_value_2_0= ruleExpression ) ) )
+            // InternalXmu2.g:3683:3: ( (lv_updatedVariable_0_0= ruleVariableExpression ) ) otherlv_1= '::=' ( (lv_value_2_0= ruleExpression ) )
             {
-            // InternalXmu2.g:3680:3: ( (lv_updatedVariable_0_0= ruleVariableExpression ) )
-            // InternalXmu2.g:3681:4: (lv_updatedVariable_0_0= ruleVariableExpression )
+            // InternalXmu2.g:3683:3: ( (lv_updatedVariable_0_0= ruleVariableExpression ) )
+            // InternalXmu2.g:3684:4: (lv_updatedVariable_0_0= ruleVariableExpression )
             {
-            // InternalXmu2.g:3681:4: (lv_updatedVariable_0_0= ruleVariableExpression )
-            // InternalXmu2.g:3682:5: lv_updatedVariable_0_0= ruleVariableExpression
+            // InternalXmu2.g:3684:4: (lv_updatedVariable_0_0= ruleVariableExpression )
+            // InternalXmu2.g:3685:5: lv_updatedVariable_0_0= ruleVariableExpression
             {
             if ( state.backtracking==0 ) {
 
               					newCompositeNode(grammarAccess.getAssignStatementAccess().getUpdatedVariableVariableExpressionParserRuleCall_0_0());
               				
             }
-            pushFollow(FOLLOW_59);
+            pushFollow(FOLLOW_58);
             lv_updatedVariable_0_0=ruleVariableExpression();
 
             state._fsp--;
@@ -10689,11 +10673,11 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
               			newLeafNode(otherlv_1, grammarAccess.getAssignStatementAccess().getColonColonEqualsSignKeyword_1());
               		
             }
-            // InternalXmu2.g:3703:3: ( (lv_value_2_0= ruleExpression ) )
-            // InternalXmu2.g:3704:4: (lv_value_2_0= ruleExpression )
+            // InternalXmu2.g:3706:3: ( (lv_value_2_0= ruleExpression ) )
+            // InternalXmu2.g:3707:4: (lv_value_2_0= ruleExpression )
             {
-            // InternalXmu2.g:3704:4: (lv_value_2_0= ruleExpression )
-            // InternalXmu2.g:3705:5: lv_value_2_0= ruleExpression
+            // InternalXmu2.g:3707:4: (lv_value_2_0= ruleExpression )
+            // InternalXmu2.g:3708:5: lv_value_2_0= ruleExpression
             {
             if ( state.backtracking==0 ) {
 
@@ -10749,7 +10733,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleStatement"
-    // InternalXmu2.g:3726:1: entryRuleStatement returns [EObject current=null] : iv_ruleStatement= ruleStatement EOF ;
+    // InternalXmu2.g:3729:1: entryRuleStatement returns [EObject current=null] : iv_ruleStatement= ruleStatement EOF ;
     public final EObject entryRuleStatement() throws RecognitionException {
         EObject current = null;
 
@@ -10757,8 +10741,8 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalXmu2.g:3726:50: (iv_ruleStatement= ruleStatement EOF )
-            // InternalXmu2.g:3727:2: iv_ruleStatement= ruleStatement EOF
+            // InternalXmu2.g:3729:50: (iv_ruleStatement= ruleStatement EOF )
+            // InternalXmu2.g:3730:2: iv_ruleStatement= ruleStatement EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getStatementRule()); 
@@ -10789,7 +10773,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleStatement"
-    // InternalXmu2.g:3733:1: ruleStatement returns [EObject current=null] : (this_BlockStatement_0= ruleBlockStatement | this_UpdateStatement_1= ruleUpdateStatement | this_SwitchStatement_2= ruleSwitchStatement | this_DeleteNodeStatement_3= ruleDeleteNodeStatement | this_DeleteLinkStatement_4= ruleDeleteLinkStatement | this_EnforcePatternStatement_5= ruleEnforcePatternStatement | this_ForEachStatement_6= ruleForEachStatement | this_RuleCallStatement_7= ruleRuleCallStatement | this_Skip_8= ruleSkip | this_Fail_9= ruleFail | this_AssignStatement_10= ruleAssignStatement ) ;
+    // InternalXmu2.g:3736:1: ruleStatement returns [EObject current=null] : (this_BlockStatement_0= ruleBlockStatement | this_UpdateStatement_1= ruleUpdateStatement | this_SwitchStatement_2= ruleSwitchStatement | this_DeleteNodeStatement_3= ruleDeleteNodeStatement | this_DeleteLinkStatement_4= ruleDeleteLinkStatement | this_EnforcePatternStatement_5= ruleEnforcePatternStatement | this_ForEachStatement_6= ruleForEachStatement | this_RuleCallStatement_7= ruleRuleCallStatement | this_Skip_8= ruleSkip | this_Fail_9= ruleFail | this_AssignStatement_10= ruleAssignStatement ) ;
     public final EObject ruleStatement() throws RecognitionException {
         EObject current = null;
 
@@ -10820,15 +10804,15 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:3739:2: ( (this_BlockStatement_0= ruleBlockStatement | this_UpdateStatement_1= ruleUpdateStatement | this_SwitchStatement_2= ruleSwitchStatement | this_DeleteNodeStatement_3= ruleDeleteNodeStatement | this_DeleteLinkStatement_4= ruleDeleteLinkStatement | this_EnforcePatternStatement_5= ruleEnforcePatternStatement | this_ForEachStatement_6= ruleForEachStatement | this_RuleCallStatement_7= ruleRuleCallStatement | this_Skip_8= ruleSkip | this_Fail_9= ruleFail | this_AssignStatement_10= ruleAssignStatement ) )
-            // InternalXmu2.g:3740:2: (this_BlockStatement_0= ruleBlockStatement | this_UpdateStatement_1= ruleUpdateStatement | this_SwitchStatement_2= ruleSwitchStatement | this_DeleteNodeStatement_3= ruleDeleteNodeStatement | this_DeleteLinkStatement_4= ruleDeleteLinkStatement | this_EnforcePatternStatement_5= ruleEnforcePatternStatement | this_ForEachStatement_6= ruleForEachStatement | this_RuleCallStatement_7= ruleRuleCallStatement | this_Skip_8= ruleSkip | this_Fail_9= ruleFail | this_AssignStatement_10= ruleAssignStatement )
+            // InternalXmu2.g:3742:2: ( (this_BlockStatement_0= ruleBlockStatement | this_UpdateStatement_1= ruleUpdateStatement | this_SwitchStatement_2= ruleSwitchStatement | this_DeleteNodeStatement_3= ruleDeleteNodeStatement | this_DeleteLinkStatement_4= ruleDeleteLinkStatement | this_EnforcePatternStatement_5= ruleEnforcePatternStatement | this_ForEachStatement_6= ruleForEachStatement | this_RuleCallStatement_7= ruleRuleCallStatement | this_Skip_8= ruleSkip | this_Fail_9= ruleFail | this_AssignStatement_10= ruleAssignStatement ) )
+            // InternalXmu2.g:3743:2: (this_BlockStatement_0= ruleBlockStatement | this_UpdateStatement_1= ruleUpdateStatement | this_SwitchStatement_2= ruleSwitchStatement | this_DeleteNodeStatement_3= ruleDeleteNodeStatement | this_DeleteLinkStatement_4= ruleDeleteLinkStatement | this_EnforcePatternStatement_5= ruleEnforcePatternStatement | this_ForEachStatement_6= ruleForEachStatement | this_RuleCallStatement_7= ruleRuleCallStatement | this_Skip_8= ruleSkip | this_Fail_9= ruleFail | this_AssignStatement_10= ruleAssignStatement )
             {
-            // InternalXmu2.g:3740:2: (this_BlockStatement_0= ruleBlockStatement | this_UpdateStatement_1= ruleUpdateStatement | this_SwitchStatement_2= ruleSwitchStatement | this_DeleteNodeStatement_3= ruleDeleteNodeStatement | this_DeleteLinkStatement_4= ruleDeleteLinkStatement | this_EnforcePatternStatement_5= ruleEnforcePatternStatement | this_ForEachStatement_6= ruleForEachStatement | this_RuleCallStatement_7= ruleRuleCallStatement | this_Skip_8= ruleSkip | this_Fail_9= ruleFail | this_AssignStatement_10= ruleAssignStatement )
-            int alt54=11;
-            alt54 = dfa54.predict(input);
-            switch (alt54) {
+            // InternalXmu2.g:3743:2: (this_BlockStatement_0= ruleBlockStatement | this_UpdateStatement_1= ruleUpdateStatement | this_SwitchStatement_2= ruleSwitchStatement | this_DeleteNodeStatement_3= ruleDeleteNodeStatement | this_DeleteLinkStatement_4= ruleDeleteLinkStatement | this_EnforcePatternStatement_5= ruleEnforcePatternStatement | this_ForEachStatement_6= ruleForEachStatement | this_RuleCallStatement_7= ruleRuleCallStatement | this_Skip_8= ruleSkip | this_Fail_9= ruleFail | this_AssignStatement_10= ruleAssignStatement )
+            int alt53=11;
+            alt53 = dfa53.predict(input);
+            switch (alt53) {
                 case 1 :
-                    // InternalXmu2.g:3741:3: this_BlockStatement_0= ruleBlockStatement
+                    // InternalXmu2.g:3744:3: this_BlockStatement_0= ruleBlockStatement
                     {
                     if ( state.backtracking==0 ) {
 
@@ -10850,7 +10834,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalXmu2.g:3750:3: this_UpdateStatement_1= ruleUpdateStatement
+                    // InternalXmu2.g:3753:3: this_UpdateStatement_1= ruleUpdateStatement
                     {
                     if ( state.backtracking==0 ) {
 
@@ -10872,7 +10856,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalXmu2.g:3759:3: this_SwitchStatement_2= ruleSwitchStatement
+                    // InternalXmu2.g:3762:3: this_SwitchStatement_2= ruleSwitchStatement
                     {
                     if ( state.backtracking==0 ) {
 
@@ -10894,7 +10878,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // InternalXmu2.g:3768:3: this_DeleteNodeStatement_3= ruleDeleteNodeStatement
+                    // InternalXmu2.g:3771:3: this_DeleteNodeStatement_3= ruleDeleteNodeStatement
                     {
                     if ( state.backtracking==0 ) {
 
@@ -10916,7 +10900,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // InternalXmu2.g:3777:3: this_DeleteLinkStatement_4= ruleDeleteLinkStatement
+                    // InternalXmu2.g:3780:3: this_DeleteLinkStatement_4= ruleDeleteLinkStatement
                     {
                     if ( state.backtracking==0 ) {
 
@@ -10938,7 +10922,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 6 :
-                    // InternalXmu2.g:3786:3: this_EnforcePatternStatement_5= ruleEnforcePatternStatement
+                    // InternalXmu2.g:3789:3: this_EnforcePatternStatement_5= ruleEnforcePatternStatement
                     {
                     if ( state.backtracking==0 ) {
 
@@ -10960,7 +10944,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 7 :
-                    // InternalXmu2.g:3795:3: this_ForEachStatement_6= ruleForEachStatement
+                    // InternalXmu2.g:3798:3: this_ForEachStatement_6= ruleForEachStatement
                     {
                     if ( state.backtracking==0 ) {
 
@@ -10982,7 +10966,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 8 :
-                    // InternalXmu2.g:3804:3: this_RuleCallStatement_7= ruleRuleCallStatement
+                    // InternalXmu2.g:3807:3: this_RuleCallStatement_7= ruleRuleCallStatement
                     {
                     if ( state.backtracking==0 ) {
 
@@ -11004,7 +10988,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 9 :
-                    // InternalXmu2.g:3813:3: this_Skip_8= ruleSkip
+                    // InternalXmu2.g:3816:3: this_Skip_8= ruleSkip
                     {
                     if ( state.backtracking==0 ) {
 
@@ -11026,7 +11010,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 10 :
-                    // InternalXmu2.g:3822:3: this_Fail_9= ruleFail
+                    // InternalXmu2.g:3825:3: this_Fail_9= ruleFail
                     {
                     if ( state.backtracking==0 ) {
 
@@ -11048,7 +11032,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 11 :
-                    // InternalXmu2.g:3831:3: this_AssignStatement_10= ruleAssignStatement
+                    // InternalXmu2.g:3834:3: this_AssignStatement_10= ruleAssignStatement
                     {
                     if ( state.backtracking==0 ) {
 
@@ -11094,7 +11078,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleTag"
-    // InternalXmu2.g:3843:1: ruleTag returns [Enumerator current=null] : ( (enumLiteral_0= 'source' ) | (enumLiteral_1= 'view' ) ) ;
+    // InternalXmu2.g:3846:1: ruleTag returns [Enumerator current=null] : ( (enumLiteral_0= 'source' ) | (enumLiteral_1= 'view' ) ) ;
     public final Enumerator ruleTag() throws RecognitionException {
         Enumerator current = null;
 
@@ -11105,32 +11089,32 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:3849:2: ( ( (enumLiteral_0= 'source' ) | (enumLiteral_1= 'view' ) ) )
-            // InternalXmu2.g:3850:2: ( (enumLiteral_0= 'source' ) | (enumLiteral_1= 'view' ) )
+            // InternalXmu2.g:3852:2: ( ( (enumLiteral_0= 'source' ) | (enumLiteral_1= 'view' ) ) )
+            // InternalXmu2.g:3853:2: ( (enumLiteral_0= 'source' ) | (enumLiteral_1= 'view' ) )
             {
-            // InternalXmu2.g:3850:2: ( (enumLiteral_0= 'source' ) | (enumLiteral_1= 'view' ) )
-            int alt55=2;
-            int LA55_0 = input.LA(1);
+            // InternalXmu2.g:3853:2: ( (enumLiteral_0= 'source' ) | (enumLiteral_1= 'view' ) )
+            int alt54=2;
+            int LA54_0 = input.LA(1);
 
-            if ( (LA55_0==50) ) {
-                alt55=1;
+            if ( (LA54_0==50) ) {
+                alt54=1;
             }
-            else if ( (LA55_0==51) ) {
-                alt55=2;
+            else if ( (LA54_0==51) ) {
+                alt54=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 55, 0, input);
+                    new NoViableAltException("", 54, 0, input);
 
                 throw nvae;
             }
-            switch (alt55) {
+            switch (alt54) {
                 case 1 :
-                    // InternalXmu2.g:3851:3: (enumLiteral_0= 'source' )
+                    // InternalXmu2.g:3854:3: (enumLiteral_0= 'source' )
                     {
-                    // InternalXmu2.g:3851:3: (enumLiteral_0= 'source' )
-                    // InternalXmu2.g:3852:4: enumLiteral_0= 'source'
+                    // InternalXmu2.g:3854:3: (enumLiteral_0= 'source' )
+                    // InternalXmu2.g:3855:4: enumLiteral_0= 'source'
                     {
                     enumLiteral_0=(Token)match(input,50,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -11146,10 +11130,10 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalXmu2.g:3859:3: (enumLiteral_1= 'view' )
+                    // InternalXmu2.g:3862:3: (enumLiteral_1= 'view' )
                     {
-                    // InternalXmu2.g:3859:3: (enumLiteral_1= 'view' )
-                    // InternalXmu2.g:3860:4: enumLiteral_1= 'view'
+                    // InternalXmu2.g:3862:3: (enumLiteral_1= 'view' )
+                    // InternalXmu2.g:3863:4: enumLiteral_1= 'view'
                     {
                     enumLiteral_1=(Token)match(input,51,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -11189,7 +11173,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleLoopOperator"
-    // InternalXmu2.g:3870:1: ruleLoopOperator returns [Enumerator current=null] : ( (enumLiteral_0= 'select' ) | (enumLiteral_1= 'forAll' ) | (enumLiteral_2= 'exists' ) ) ;
+    // InternalXmu2.g:3873:1: ruleLoopOperator returns [Enumerator current=null] : ( (enumLiteral_0= 'select' ) | (enumLiteral_1= 'forAll' ) | (enumLiteral_2= 'exists' ) ) ;
     public final Enumerator ruleLoopOperator() throws RecognitionException {
         Enumerator current = null;
 
@@ -11201,41 +11185,41 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:3876:2: ( ( (enumLiteral_0= 'select' ) | (enumLiteral_1= 'forAll' ) | (enumLiteral_2= 'exists' ) ) )
-            // InternalXmu2.g:3877:2: ( (enumLiteral_0= 'select' ) | (enumLiteral_1= 'forAll' ) | (enumLiteral_2= 'exists' ) )
+            // InternalXmu2.g:3879:2: ( ( (enumLiteral_0= 'select' ) | (enumLiteral_1= 'forAll' ) | (enumLiteral_2= 'exists' ) ) )
+            // InternalXmu2.g:3880:2: ( (enumLiteral_0= 'select' ) | (enumLiteral_1= 'forAll' ) | (enumLiteral_2= 'exists' ) )
             {
-            // InternalXmu2.g:3877:2: ( (enumLiteral_0= 'select' ) | (enumLiteral_1= 'forAll' ) | (enumLiteral_2= 'exists' ) )
-            int alt56=3;
+            // InternalXmu2.g:3880:2: ( (enumLiteral_0= 'select' ) | (enumLiteral_1= 'forAll' ) | (enumLiteral_2= 'exists' ) )
+            int alt55=3;
             switch ( input.LA(1) ) {
             case 52:
                 {
-                alt56=1;
+                alt55=1;
                 }
                 break;
             case 53:
                 {
-                alt56=2;
+                alt55=2;
                 }
                 break;
             case 54:
                 {
-                alt56=3;
+                alt55=3;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 56, 0, input);
+                    new NoViableAltException("", 55, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt56) {
+            switch (alt55) {
                 case 1 :
-                    // InternalXmu2.g:3878:3: (enumLiteral_0= 'select' )
+                    // InternalXmu2.g:3881:3: (enumLiteral_0= 'select' )
                     {
-                    // InternalXmu2.g:3878:3: (enumLiteral_0= 'select' )
-                    // InternalXmu2.g:3879:4: enumLiteral_0= 'select'
+                    // InternalXmu2.g:3881:3: (enumLiteral_0= 'select' )
+                    // InternalXmu2.g:3882:4: enumLiteral_0= 'select'
                     {
                     enumLiteral_0=(Token)match(input,52,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -11251,10 +11235,10 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalXmu2.g:3886:3: (enumLiteral_1= 'forAll' )
+                    // InternalXmu2.g:3889:3: (enumLiteral_1= 'forAll' )
                     {
-                    // InternalXmu2.g:3886:3: (enumLiteral_1= 'forAll' )
-                    // InternalXmu2.g:3887:4: enumLiteral_1= 'forAll'
+                    // InternalXmu2.g:3889:3: (enumLiteral_1= 'forAll' )
+                    // InternalXmu2.g:3890:4: enumLiteral_1= 'forAll'
                     {
                     enumLiteral_1=(Token)match(input,53,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -11270,10 +11254,10 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalXmu2.g:3894:3: (enumLiteral_2= 'exists' )
+                    // InternalXmu2.g:3897:3: (enumLiteral_2= 'exists' )
                     {
-                    // InternalXmu2.g:3894:3: (enumLiteral_2= 'exists' )
-                    // InternalXmu2.g:3895:4: enumLiteral_2= 'exists'
+                    // InternalXmu2.g:3897:3: (enumLiteral_2= 'exists' )
+                    // InternalXmu2.g:3898:4: enumLiteral_2= 'exists'
                     {
                     enumLiteral_2=(Token)match(input,54,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -11313,7 +11297,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePositionOperator"
-    // InternalXmu2.g:3905:1: rulePositionOperator returns [Enumerator current=null] : ( (enumLiteral_0= 'first' ) | (enumLiteral_1= 'last' ) | (enumLiteral_2= 'at' ) ) ;
+    // InternalXmu2.g:3908:1: rulePositionOperator returns [Enumerator current=null] : ( (enumLiteral_0= 'first' ) | (enumLiteral_1= 'last' ) | (enumLiteral_2= 'at' ) ) ;
     public final Enumerator rulePositionOperator() throws RecognitionException {
         Enumerator current = null;
 
@@ -11325,41 +11309,41 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:3911:2: ( ( (enumLiteral_0= 'first' ) | (enumLiteral_1= 'last' ) | (enumLiteral_2= 'at' ) ) )
-            // InternalXmu2.g:3912:2: ( (enumLiteral_0= 'first' ) | (enumLiteral_1= 'last' ) | (enumLiteral_2= 'at' ) )
+            // InternalXmu2.g:3914:2: ( ( (enumLiteral_0= 'first' ) | (enumLiteral_1= 'last' ) | (enumLiteral_2= 'at' ) ) )
+            // InternalXmu2.g:3915:2: ( (enumLiteral_0= 'first' ) | (enumLiteral_1= 'last' ) | (enumLiteral_2= 'at' ) )
             {
-            // InternalXmu2.g:3912:2: ( (enumLiteral_0= 'first' ) | (enumLiteral_1= 'last' ) | (enumLiteral_2= 'at' ) )
-            int alt57=3;
+            // InternalXmu2.g:3915:2: ( (enumLiteral_0= 'first' ) | (enumLiteral_1= 'last' ) | (enumLiteral_2= 'at' ) )
+            int alt56=3;
             switch ( input.LA(1) ) {
             case 55:
                 {
-                alt57=1;
+                alt56=1;
                 }
                 break;
             case 56:
                 {
-                alt57=2;
+                alt56=2;
                 }
                 break;
             case 57:
                 {
-                alt57=3;
+                alt56=3;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 57, 0, input);
+                    new NoViableAltException("", 56, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt57) {
+            switch (alt56) {
                 case 1 :
-                    // InternalXmu2.g:3913:3: (enumLiteral_0= 'first' )
+                    // InternalXmu2.g:3916:3: (enumLiteral_0= 'first' )
                     {
-                    // InternalXmu2.g:3913:3: (enumLiteral_0= 'first' )
-                    // InternalXmu2.g:3914:4: enumLiteral_0= 'first'
+                    // InternalXmu2.g:3916:3: (enumLiteral_0= 'first' )
+                    // InternalXmu2.g:3917:4: enumLiteral_0= 'first'
                     {
                     enumLiteral_0=(Token)match(input,55,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -11375,10 +11359,10 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalXmu2.g:3921:3: (enumLiteral_1= 'last' )
+                    // InternalXmu2.g:3924:3: (enumLiteral_1= 'last' )
                     {
-                    // InternalXmu2.g:3921:3: (enumLiteral_1= 'last' )
-                    // InternalXmu2.g:3922:4: enumLiteral_1= 'last'
+                    // InternalXmu2.g:3924:3: (enumLiteral_1= 'last' )
+                    // InternalXmu2.g:3925:4: enumLiteral_1= 'last'
                     {
                     enumLiteral_1=(Token)match(input,56,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -11394,10 +11378,10 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalXmu2.g:3929:3: (enumLiteral_2= 'at' )
+                    // InternalXmu2.g:3932:3: (enumLiteral_2= 'at' )
                     {
-                    // InternalXmu2.g:3929:3: (enumLiteral_2= 'at' )
-                    // InternalXmu2.g:3930:4: enumLiteral_2= 'at'
+                    // InternalXmu2.g:3932:3: (enumLiteral_2= 'at' )
+                    // InternalXmu2.g:3933:4: enumLiteral_2= 'at'
                     {
                     enumLiteral_2=(Token)match(input,57,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -11437,7 +11421,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleEmptyValue"
-    // InternalXmu2.g:3940:1: ruleEmptyValue returns [Enumerator current=null] : ( (enumLiteral_0= 'null' ) | (enumLiteral_1= 'undefined' ) ) ;
+    // InternalXmu2.g:3943:1: ruleEmptyValue returns [Enumerator current=null] : ( (enumLiteral_0= 'null' ) | (enumLiteral_1= 'undefined' ) ) ;
     public final Enumerator ruleEmptyValue() throws RecognitionException {
         Enumerator current = null;
 
@@ -11448,32 +11432,32 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:3946:2: ( ( (enumLiteral_0= 'null' ) | (enumLiteral_1= 'undefined' ) ) )
-            // InternalXmu2.g:3947:2: ( (enumLiteral_0= 'null' ) | (enumLiteral_1= 'undefined' ) )
+            // InternalXmu2.g:3949:2: ( ( (enumLiteral_0= 'null' ) | (enumLiteral_1= 'undefined' ) ) )
+            // InternalXmu2.g:3950:2: ( (enumLiteral_0= 'null' ) | (enumLiteral_1= 'undefined' ) )
             {
-            // InternalXmu2.g:3947:2: ( (enumLiteral_0= 'null' ) | (enumLiteral_1= 'undefined' ) )
-            int alt58=2;
-            int LA58_0 = input.LA(1);
+            // InternalXmu2.g:3950:2: ( (enumLiteral_0= 'null' ) | (enumLiteral_1= 'undefined' ) )
+            int alt57=2;
+            int LA57_0 = input.LA(1);
 
-            if ( (LA58_0==58) ) {
-                alt58=1;
+            if ( (LA57_0==58) ) {
+                alt57=1;
             }
-            else if ( (LA58_0==59) ) {
-                alt58=2;
+            else if ( (LA57_0==59) ) {
+                alt57=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 58, 0, input);
+                    new NoViableAltException("", 57, 0, input);
 
                 throw nvae;
             }
-            switch (alt58) {
+            switch (alt57) {
                 case 1 :
-                    // InternalXmu2.g:3948:3: (enumLiteral_0= 'null' )
+                    // InternalXmu2.g:3951:3: (enumLiteral_0= 'null' )
                     {
-                    // InternalXmu2.g:3948:3: (enumLiteral_0= 'null' )
-                    // InternalXmu2.g:3949:4: enumLiteral_0= 'null'
+                    // InternalXmu2.g:3951:3: (enumLiteral_0= 'null' )
+                    // InternalXmu2.g:3952:4: enumLiteral_0= 'null'
                     {
                     enumLiteral_0=(Token)match(input,58,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -11489,10 +11473,10 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalXmu2.g:3956:3: (enumLiteral_1= 'undefined' )
+                    // InternalXmu2.g:3959:3: (enumLiteral_1= 'undefined' )
                     {
-                    // InternalXmu2.g:3956:3: (enumLiteral_1= 'undefined' )
-                    // InternalXmu2.g:3957:4: enumLiteral_1= 'undefined'
+                    // InternalXmu2.g:3959:3: (enumLiteral_1= 'undefined' )
+                    // InternalXmu2.g:3960:4: enumLiteral_1= 'undefined'
                     {
                     enumLiteral_1=(Token)match(input,59,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -11532,7 +11516,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleUnaryOperator"
-    // InternalXmu2.g:3967:1: ruleUnaryOperator returns [Enumerator current=null] : ( (enumLiteral_0= 'not' ) | (enumLiteral_1= '-' ) ) ;
+    // InternalXmu2.g:3970:1: ruleUnaryOperator returns [Enumerator current=null] : ( (enumLiteral_0= 'not' ) | (enumLiteral_1= '-' ) ) ;
     public final Enumerator ruleUnaryOperator() throws RecognitionException {
         Enumerator current = null;
 
@@ -11543,32 +11527,32 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:3973:2: ( ( (enumLiteral_0= 'not' ) | (enumLiteral_1= '-' ) ) )
-            // InternalXmu2.g:3974:2: ( (enumLiteral_0= 'not' ) | (enumLiteral_1= '-' ) )
+            // InternalXmu2.g:3976:2: ( ( (enumLiteral_0= 'not' ) | (enumLiteral_1= '-' ) ) )
+            // InternalXmu2.g:3977:2: ( (enumLiteral_0= 'not' ) | (enumLiteral_1= '-' ) )
             {
-            // InternalXmu2.g:3974:2: ( (enumLiteral_0= 'not' ) | (enumLiteral_1= '-' ) )
-            int alt59=2;
-            int LA59_0 = input.LA(1);
+            // InternalXmu2.g:3977:2: ( (enumLiteral_0= 'not' ) | (enumLiteral_1= '-' ) )
+            int alt58=2;
+            int LA58_0 = input.LA(1);
 
-            if ( (LA59_0==60) ) {
-                alt59=1;
+            if ( (LA58_0==60) ) {
+                alt58=1;
             }
-            else if ( (LA59_0==61) ) {
-                alt59=2;
+            else if ( (LA58_0==61) ) {
+                alt58=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 59, 0, input);
+                    new NoViableAltException("", 58, 0, input);
 
                 throw nvae;
             }
-            switch (alt59) {
+            switch (alt58) {
                 case 1 :
-                    // InternalXmu2.g:3975:3: (enumLiteral_0= 'not' )
+                    // InternalXmu2.g:3978:3: (enumLiteral_0= 'not' )
                     {
-                    // InternalXmu2.g:3975:3: (enumLiteral_0= 'not' )
-                    // InternalXmu2.g:3976:4: enumLiteral_0= 'not'
+                    // InternalXmu2.g:3978:3: (enumLiteral_0= 'not' )
+                    // InternalXmu2.g:3979:4: enumLiteral_0= 'not'
                     {
                     enumLiteral_0=(Token)match(input,60,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -11584,10 +11568,10 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalXmu2.g:3983:3: (enumLiteral_1= '-' )
+                    // InternalXmu2.g:3986:3: (enumLiteral_1= '-' )
                     {
-                    // InternalXmu2.g:3983:3: (enumLiteral_1= '-' )
-                    // InternalXmu2.g:3984:4: enumLiteral_1= '-'
+                    // InternalXmu2.g:3986:3: (enumLiteral_1= '-' )
+                    // InternalXmu2.g:3987:4: enumLiteral_1= '-'
                     {
                     enumLiteral_1=(Token)match(input,61,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -11627,7 +11611,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMultiplicativeOperator"
-    // InternalXmu2.g:3994:1: ruleMultiplicativeOperator returns [Enumerator current=null] : ( (enumLiteral_0= '*' ) | (enumLiteral_1= '/' ) ) ;
+    // InternalXmu2.g:3997:1: ruleMultiplicativeOperator returns [Enumerator current=null] : ( (enumLiteral_0= '*' ) | (enumLiteral_1= '/' ) ) ;
     public final Enumerator ruleMultiplicativeOperator() throws RecognitionException {
         Enumerator current = null;
 
@@ -11638,32 +11622,32 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:4000:2: ( ( (enumLiteral_0= '*' ) | (enumLiteral_1= '/' ) ) )
-            // InternalXmu2.g:4001:2: ( (enumLiteral_0= '*' ) | (enumLiteral_1= '/' ) )
+            // InternalXmu2.g:4003:2: ( ( (enumLiteral_0= '*' ) | (enumLiteral_1= '/' ) ) )
+            // InternalXmu2.g:4004:2: ( (enumLiteral_0= '*' ) | (enumLiteral_1= '/' ) )
             {
-            // InternalXmu2.g:4001:2: ( (enumLiteral_0= '*' ) | (enumLiteral_1= '/' ) )
-            int alt60=2;
-            int LA60_0 = input.LA(1);
+            // InternalXmu2.g:4004:2: ( (enumLiteral_0= '*' ) | (enumLiteral_1= '/' ) )
+            int alt59=2;
+            int LA59_0 = input.LA(1);
 
-            if ( (LA60_0==62) ) {
-                alt60=1;
+            if ( (LA59_0==62) ) {
+                alt59=1;
             }
-            else if ( (LA60_0==63) ) {
-                alt60=2;
+            else if ( (LA59_0==63) ) {
+                alt59=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 60, 0, input);
+                    new NoViableAltException("", 59, 0, input);
 
                 throw nvae;
             }
-            switch (alt60) {
+            switch (alt59) {
                 case 1 :
-                    // InternalXmu2.g:4002:3: (enumLiteral_0= '*' )
+                    // InternalXmu2.g:4005:3: (enumLiteral_0= '*' )
                     {
-                    // InternalXmu2.g:4002:3: (enumLiteral_0= '*' )
-                    // InternalXmu2.g:4003:4: enumLiteral_0= '*'
+                    // InternalXmu2.g:4005:3: (enumLiteral_0= '*' )
+                    // InternalXmu2.g:4006:4: enumLiteral_0= '*'
                     {
                     enumLiteral_0=(Token)match(input,62,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -11679,10 +11663,10 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalXmu2.g:4010:3: (enumLiteral_1= '/' )
+                    // InternalXmu2.g:4013:3: (enumLiteral_1= '/' )
                     {
-                    // InternalXmu2.g:4010:3: (enumLiteral_1= '/' )
-                    // InternalXmu2.g:4011:4: enumLiteral_1= '/'
+                    // InternalXmu2.g:4013:3: (enumLiteral_1= '/' )
+                    // InternalXmu2.g:4014:4: enumLiteral_1= '/'
                     {
                     enumLiteral_1=(Token)match(input,63,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -11722,7 +11706,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleAdditiveOperator"
-    // InternalXmu2.g:4021:1: ruleAdditiveOperator returns [Enumerator current=null] : ( (enumLiteral_0= '+' ) | (enumLiteral_1= '-' ) | (enumLiteral_2= '++' ) ) ;
+    // InternalXmu2.g:4024:1: ruleAdditiveOperator returns [Enumerator current=null] : ( (enumLiteral_0= '+' ) | (enumLiteral_1= '-' ) | (enumLiteral_2= '++' ) ) ;
     public final Enumerator ruleAdditiveOperator() throws RecognitionException {
         Enumerator current = null;
 
@@ -11734,41 +11718,41 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:4027:2: ( ( (enumLiteral_0= '+' ) | (enumLiteral_1= '-' ) | (enumLiteral_2= '++' ) ) )
-            // InternalXmu2.g:4028:2: ( (enumLiteral_0= '+' ) | (enumLiteral_1= '-' ) | (enumLiteral_2= '++' ) )
+            // InternalXmu2.g:4030:2: ( ( (enumLiteral_0= '+' ) | (enumLiteral_1= '-' ) | (enumLiteral_2= '++' ) ) )
+            // InternalXmu2.g:4031:2: ( (enumLiteral_0= '+' ) | (enumLiteral_1= '-' ) | (enumLiteral_2= '++' ) )
             {
-            // InternalXmu2.g:4028:2: ( (enumLiteral_0= '+' ) | (enumLiteral_1= '-' ) | (enumLiteral_2= '++' ) )
-            int alt61=3;
+            // InternalXmu2.g:4031:2: ( (enumLiteral_0= '+' ) | (enumLiteral_1= '-' ) | (enumLiteral_2= '++' ) )
+            int alt60=3;
             switch ( input.LA(1) ) {
             case 64:
                 {
-                alt61=1;
+                alt60=1;
                 }
                 break;
             case 61:
                 {
-                alt61=2;
+                alt60=2;
                 }
                 break;
             case 65:
                 {
-                alt61=3;
+                alt60=3;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 61, 0, input);
+                    new NoViableAltException("", 60, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt61) {
+            switch (alt60) {
                 case 1 :
-                    // InternalXmu2.g:4029:3: (enumLiteral_0= '+' )
+                    // InternalXmu2.g:4032:3: (enumLiteral_0= '+' )
                     {
-                    // InternalXmu2.g:4029:3: (enumLiteral_0= '+' )
-                    // InternalXmu2.g:4030:4: enumLiteral_0= '+'
+                    // InternalXmu2.g:4032:3: (enumLiteral_0= '+' )
+                    // InternalXmu2.g:4033:4: enumLiteral_0= '+'
                     {
                     enumLiteral_0=(Token)match(input,64,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -11784,10 +11768,10 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalXmu2.g:4037:3: (enumLiteral_1= '-' )
+                    // InternalXmu2.g:4040:3: (enumLiteral_1= '-' )
                     {
-                    // InternalXmu2.g:4037:3: (enumLiteral_1= '-' )
-                    // InternalXmu2.g:4038:4: enumLiteral_1= '-'
+                    // InternalXmu2.g:4040:3: (enumLiteral_1= '-' )
+                    // InternalXmu2.g:4041:4: enumLiteral_1= '-'
                     {
                     enumLiteral_1=(Token)match(input,61,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -11803,10 +11787,10 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalXmu2.g:4045:3: (enumLiteral_2= '++' )
+                    // InternalXmu2.g:4048:3: (enumLiteral_2= '++' )
                     {
-                    // InternalXmu2.g:4045:3: (enumLiteral_2= '++' )
-                    // InternalXmu2.g:4046:4: enumLiteral_2= '++'
+                    // InternalXmu2.g:4048:3: (enumLiteral_2= '++' )
+                    // InternalXmu2.g:4049:4: enumLiteral_2= '++'
                     {
                     enumLiteral_2=(Token)match(input,65,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -11846,7 +11830,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleRelationalOperator"
-    // InternalXmu2.g:4056:1: ruleRelationalOperator returns [Enumerator current=null] : ( (enumLiteral_0= '=' ) | (enumLiteral_1= '<' ) | (enumLiteral_2= '<=' ) | (enumLiteral_3= '>' ) | (enumLiteral_4= '>=' ) ) ;
+    // InternalXmu2.g:4059:1: ruleRelationalOperator returns [Enumerator current=null] : ( (enumLiteral_0= '=' ) | (enumLiteral_1= '<' ) | (enumLiteral_2= '<=' ) | (enumLiteral_3= '>' ) | (enumLiteral_4= '>=' ) ) ;
     public final Enumerator ruleRelationalOperator() throws RecognitionException {
         Enumerator current = null;
 
@@ -11860,51 +11844,51 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:4062:2: ( ( (enumLiteral_0= '=' ) | (enumLiteral_1= '<' ) | (enumLiteral_2= '<=' ) | (enumLiteral_3= '>' ) | (enumLiteral_4= '>=' ) ) )
-            // InternalXmu2.g:4063:2: ( (enumLiteral_0= '=' ) | (enumLiteral_1= '<' ) | (enumLiteral_2= '<=' ) | (enumLiteral_3= '>' ) | (enumLiteral_4= '>=' ) )
+            // InternalXmu2.g:4065:2: ( ( (enumLiteral_0= '=' ) | (enumLiteral_1= '<' ) | (enumLiteral_2= '<=' ) | (enumLiteral_3= '>' ) | (enumLiteral_4= '>=' ) ) )
+            // InternalXmu2.g:4066:2: ( (enumLiteral_0= '=' ) | (enumLiteral_1= '<' ) | (enumLiteral_2= '<=' ) | (enumLiteral_3= '>' ) | (enumLiteral_4= '>=' ) )
             {
-            // InternalXmu2.g:4063:2: ( (enumLiteral_0= '=' ) | (enumLiteral_1= '<' ) | (enumLiteral_2= '<=' ) | (enumLiteral_3= '>' ) | (enumLiteral_4= '>=' ) )
-            int alt62=5;
+            // InternalXmu2.g:4066:2: ( (enumLiteral_0= '=' ) | (enumLiteral_1= '<' ) | (enumLiteral_2= '<=' ) | (enumLiteral_3= '>' ) | (enumLiteral_4= '>=' ) )
+            int alt61=5;
             switch ( input.LA(1) ) {
             case 30:
                 {
-                alt62=1;
+                alt61=1;
                 }
                 break;
             case 66:
                 {
-                alt62=2;
+                alt61=2;
                 }
                 break;
             case 67:
                 {
-                alt62=3;
+                alt61=3;
                 }
                 break;
             case 68:
                 {
-                alt62=4;
+                alt61=4;
                 }
                 break;
             case 69:
                 {
-                alt62=5;
+                alt61=5;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 62, 0, input);
+                    new NoViableAltException("", 61, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt62) {
+            switch (alt61) {
                 case 1 :
-                    // InternalXmu2.g:4064:3: (enumLiteral_0= '=' )
+                    // InternalXmu2.g:4067:3: (enumLiteral_0= '=' )
                     {
-                    // InternalXmu2.g:4064:3: (enumLiteral_0= '=' )
-                    // InternalXmu2.g:4065:4: enumLiteral_0= '='
+                    // InternalXmu2.g:4067:3: (enumLiteral_0= '=' )
+                    // InternalXmu2.g:4068:4: enumLiteral_0= '='
                     {
                     enumLiteral_0=(Token)match(input,30,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -11920,10 +11904,10 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalXmu2.g:4072:3: (enumLiteral_1= '<' )
+                    // InternalXmu2.g:4075:3: (enumLiteral_1= '<' )
                     {
-                    // InternalXmu2.g:4072:3: (enumLiteral_1= '<' )
-                    // InternalXmu2.g:4073:4: enumLiteral_1= '<'
+                    // InternalXmu2.g:4075:3: (enumLiteral_1= '<' )
+                    // InternalXmu2.g:4076:4: enumLiteral_1= '<'
                     {
                     enumLiteral_1=(Token)match(input,66,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -11939,10 +11923,10 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalXmu2.g:4080:3: (enumLiteral_2= '<=' )
+                    // InternalXmu2.g:4083:3: (enumLiteral_2= '<=' )
                     {
-                    // InternalXmu2.g:4080:3: (enumLiteral_2= '<=' )
-                    // InternalXmu2.g:4081:4: enumLiteral_2= '<='
+                    // InternalXmu2.g:4083:3: (enumLiteral_2= '<=' )
+                    // InternalXmu2.g:4084:4: enumLiteral_2= '<='
                     {
                     enumLiteral_2=(Token)match(input,67,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -11958,10 +11942,10 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // InternalXmu2.g:4088:3: (enumLiteral_3= '>' )
+                    // InternalXmu2.g:4091:3: (enumLiteral_3= '>' )
                     {
-                    // InternalXmu2.g:4088:3: (enumLiteral_3= '>' )
-                    // InternalXmu2.g:4089:4: enumLiteral_3= '>'
+                    // InternalXmu2.g:4091:3: (enumLiteral_3= '>' )
+                    // InternalXmu2.g:4092:4: enumLiteral_3= '>'
                     {
                     enumLiteral_3=(Token)match(input,68,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -11977,10 +11961,10 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // InternalXmu2.g:4096:3: (enumLiteral_4= '>=' )
+                    // InternalXmu2.g:4099:3: (enumLiteral_4= '>=' )
                     {
-                    // InternalXmu2.g:4096:3: (enumLiteral_4= '>=' )
-                    // InternalXmu2.g:4097:4: enumLiteral_4= '>='
+                    // InternalXmu2.g:4099:3: (enumLiteral_4= '>=' )
+                    // InternalXmu2.g:4100:4: enumLiteral_4= '>='
                     {
                     enumLiteral_4=(Token)match(input,69,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -12020,7 +12004,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleActionType"
-    // InternalXmu2.g:4107:1: ruleActionType returns [Enumerator current=null] : ( (enumLiteral_0= 'match' ) | (enumLiteral_1= 'unmatchs' ) | (enumLiteral_2= 'unmatchv' ) | (enumLiteral_3= 'default' ) ) ;
+    // InternalXmu2.g:4110:1: ruleActionType returns [Enumerator current=null] : ( (enumLiteral_0= 'match' ) | (enumLiteral_1= 'unmatchs' ) | (enumLiteral_2= 'unmatchv' ) | (enumLiteral_3= 'default' ) ) ;
     public final Enumerator ruleActionType() throws RecognitionException {
         Enumerator current = null;
 
@@ -12033,46 +12017,46 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalXmu2.g:4113:2: ( ( (enumLiteral_0= 'match' ) | (enumLiteral_1= 'unmatchs' ) | (enumLiteral_2= 'unmatchv' ) | (enumLiteral_3= 'default' ) ) )
-            // InternalXmu2.g:4114:2: ( (enumLiteral_0= 'match' ) | (enumLiteral_1= 'unmatchs' ) | (enumLiteral_2= 'unmatchv' ) | (enumLiteral_3= 'default' ) )
+            // InternalXmu2.g:4116:2: ( ( (enumLiteral_0= 'match' ) | (enumLiteral_1= 'unmatchs' ) | (enumLiteral_2= 'unmatchv' ) | (enumLiteral_3= 'default' ) ) )
+            // InternalXmu2.g:4117:2: ( (enumLiteral_0= 'match' ) | (enumLiteral_1= 'unmatchs' ) | (enumLiteral_2= 'unmatchv' ) | (enumLiteral_3= 'default' ) )
             {
-            // InternalXmu2.g:4114:2: ( (enumLiteral_0= 'match' ) | (enumLiteral_1= 'unmatchs' ) | (enumLiteral_2= 'unmatchv' ) | (enumLiteral_3= 'default' ) )
-            int alt63=4;
+            // InternalXmu2.g:4117:2: ( (enumLiteral_0= 'match' ) | (enumLiteral_1= 'unmatchs' ) | (enumLiteral_2= 'unmatchv' ) | (enumLiteral_3= 'default' ) )
+            int alt62=4;
             switch ( input.LA(1) ) {
             case 70:
                 {
-                alt63=1;
+                alt62=1;
                 }
                 break;
             case 71:
                 {
-                alt63=2;
+                alt62=2;
                 }
                 break;
             case 72:
                 {
-                alt63=3;
+                alt62=3;
                 }
                 break;
             case 73:
                 {
-                alt63=4;
+                alt62=4;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 63, 0, input);
+                    new NoViableAltException("", 62, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt63) {
+            switch (alt62) {
                 case 1 :
-                    // InternalXmu2.g:4115:3: (enumLiteral_0= 'match' )
+                    // InternalXmu2.g:4118:3: (enumLiteral_0= 'match' )
                     {
-                    // InternalXmu2.g:4115:3: (enumLiteral_0= 'match' )
-                    // InternalXmu2.g:4116:4: enumLiteral_0= 'match'
+                    // InternalXmu2.g:4118:3: (enumLiteral_0= 'match' )
+                    // InternalXmu2.g:4119:4: enumLiteral_0= 'match'
                     {
                     enumLiteral_0=(Token)match(input,70,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -12088,10 +12072,10 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalXmu2.g:4123:3: (enumLiteral_1= 'unmatchs' )
+                    // InternalXmu2.g:4126:3: (enumLiteral_1= 'unmatchs' )
                     {
-                    // InternalXmu2.g:4123:3: (enumLiteral_1= 'unmatchs' )
-                    // InternalXmu2.g:4124:4: enumLiteral_1= 'unmatchs'
+                    // InternalXmu2.g:4126:3: (enumLiteral_1= 'unmatchs' )
+                    // InternalXmu2.g:4127:4: enumLiteral_1= 'unmatchs'
                     {
                     enumLiteral_1=(Token)match(input,71,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -12107,10 +12091,10 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalXmu2.g:4131:3: (enumLiteral_2= 'unmatchv' )
+                    // InternalXmu2.g:4134:3: (enumLiteral_2= 'unmatchv' )
                     {
-                    // InternalXmu2.g:4131:3: (enumLiteral_2= 'unmatchv' )
-                    // InternalXmu2.g:4132:4: enumLiteral_2= 'unmatchv'
+                    // InternalXmu2.g:4134:3: (enumLiteral_2= 'unmatchv' )
+                    // InternalXmu2.g:4135:4: enumLiteral_2= 'unmatchv'
                     {
                     enumLiteral_2=(Token)match(input,72,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -12126,10 +12110,10 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // InternalXmu2.g:4139:3: (enumLiteral_3= 'default' )
+                    // InternalXmu2.g:4142:3: (enumLiteral_3= 'default' )
                     {
-                    // InternalXmu2.g:4139:3: (enumLiteral_3= 'default' )
-                    // InternalXmu2.g:4140:4: enumLiteral_3= 'default'
+                    // InternalXmu2.g:4142:3: (enumLiteral_3= 'default' )
+                    // InternalXmu2.g:4143:4: enumLiteral_3= 'default'
                     {
                     enumLiteral_3=(Token)match(input,73,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -12169,11 +12153,11 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
     // $ANTLR start synpred1_InternalXmu2
     public final void synpred1_InternalXmu2_fragment() throws RecognitionException {   
-        // InternalXmu2.g:996:4: ( rulePropertyPatternExpression )
-        // InternalXmu2.g:996:5: rulePropertyPatternExpression
+        // InternalXmu2.g:996:4: ( ruleObjectPatternExpression )
+        // InternalXmu2.g:996:5: ruleObjectPatternExpression
         {
         pushFollow(FOLLOW_2);
-        rulePropertyPatternExpression();
+        ruleObjectPatternExpression();
 
         state._fsp--;
         if (state.failed) return ;
@@ -12184,11 +12168,11 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
     // $ANTLR start synpred2_InternalXmu2
     public final void synpred2_InternalXmu2_fragment() throws RecognitionException {   
-        // InternalXmu2.g:1595:4: ( ruleLoopPath )
-        // InternalXmu2.g:1595:5: ruleLoopPath
+        // InternalXmu2.g:1008:4: ( rulePropertyPatternExpression )
+        // InternalXmu2.g:1008:5: rulePropertyPatternExpression
         {
         pushFollow(FOLLOW_2);
-        ruleLoopPath();
+        rulePropertyPatternExpression();
 
         state._fsp--;
         if (state.failed) return ;
@@ -12199,11 +12183,11 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
     // $ANTLR start synpred3_InternalXmu2
     public final void synpred3_InternalXmu2_fragment() throws RecognitionException {   
-        // InternalXmu2.g:1616:4: ( ruleFeaturePath )
-        // InternalXmu2.g:1616:5: ruleFeaturePath
+        // InternalXmu2.g:1598:4: ( ruleLoopPath )
+        // InternalXmu2.g:1598:5: ruleLoopPath
         {
         pushFollow(FOLLOW_2);
-        ruleFeaturePath();
+        ruleLoopPath();
 
         state._fsp--;
         if (state.failed) return ;
@@ -12214,11 +12198,11 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
     // $ANTLR start synpred4_InternalXmu2
     public final void synpred4_InternalXmu2_fragment() throws RecognitionException {   
-        // InternalXmu2.g:2232:4: ( ruleUnaryExpression )
-        // InternalXmu2.g:2232:5: ruleUnaryExpression
+        // InternalXmu2.g:1619:4: ( ruleFeaturePath )
+        // InternalXmu2.g:1619:5: ruleFeaturePath
         {
         pushFollow(FOLLOW_2);
-        ruleUnaryExpression();
+        ruleFeaturePath();
 
         state._fsp--;
         if (state.failed) return ;
@@ -12229,11 +12213,11 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
     // $ANTLR start synpred5_InternalXmu2
     public final void synpred5_InternalXmu2_fragment() throws RecognitionException {   
-        // InternalXmu2.g:2349:4: ( ruleMultiplicativeExpression )
-        // InternalXmu2.g:2349:5: ruleMultiplicativeExpression
+        // InternalXmu2.g:2235:4: ( ruleUnaryExpression )
+        // InternalXmu2.g:2235:5: ruleUnaryExpression
         {
         pushFollow(FOLLOW_2);
-        ruleMultiplicativeExpression();
+        ruleUnaryExpression();
 
         state._fsp--;
         if (state.failed) return ;
@@ -12244,11 +12228,11 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
     // $ANTLR start synpred6_InternalXmu2
     public final void synpred6_InternalXmu2_fragment() throws RecognitionException {   
-        // InternalXmu2.g:2464:4: ( ruleAdditiveExpression )
-        // InternalXmu2.g:2464:5: ruleAdditiveExpression
+        // InternalXmu2.g:2352:4: ( ruleMultiplicativeExpression )
+        // InternalXmu2.g:2352:5: ruleMultiplicativeExpression
         {
         pushFollow(FOLLOW_2);
-        ruleAdditiveExpression();
+        ruleMultiplicativeExpression();
 
         state._fsp--;
         if (state.failed) return ;
@@ -12259,11 +12243,11 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
     // $ANTLR start synpred7_InternalXmu2
     public final void synpred7_InternalXmu2_fragment() throws RecognitionException {   
-        // InternalXmu2.g:2566:4: ( ruleRelationalExpression )
-        // InternalXmu2.g:2566:5: ruleRelationalExpression
+        // InternalXmu2.g:2467:4: ( ruleAdditiveExpression )
+        // InternalXmu2.g:2467:5: ruleAdditiveExpression
         {
         pushFollow(FOLLOW_2);
-        ruleRelationalExpression();
+        ruleAdditiveExpression();
 
         state._fsp--;
         if (state.failed) return ;
@@ -12274,11 +12258,11 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
     // $ANTLR start synpred8_InternalXmu2
     public final void synpred8_InternalXmu2_fragment() throws RecognitionException {   
-        // InternalXmu2.g:2668:4: ( ruleBooleanAndExpression )
-        // InternalXmu2.g:2668:5: ruleBooleanAndExpression
+        // InternalXmu2.g:2569:4: ( ruleRelationalExpression )
+        // InternalXmu2.g:2569:5: ruleRelationalExpression
         {
         pushFollow(FOLLOW_2);
-        ruleBooleanAndExpression();
+        ruleRelationalExpression();
 
         state._fsp--;
         if (state.failed) return ;
@@ -12289,8 +12273,23 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
     // $ANTLR start synpred9_InternalXmu2
     public final void synpred9_InternalXmu2_fragment() throws RecognitionException {   
-        // InternalXmu2.g:2707:4: ( ruleBooleanOrExpression )
-        // InternalXmu2.g:2707:5: ruleBooleanOrExpression
+        // InternalXmu2.g:2671:4: ( ruleBooleanAndExpression )
+        // InternalXmu2.g:2671:5: ruleBooleanAndExpression
+        {
+        pushFollow(FOLLOW_2);
+        ruleBooleanAndExpression();
+
+        state._fsp--;
+        if (state.failed) return ;
+
+        }
+    }
+    // $ANTLR end synpred9_InternalXmu2
+
+    // $ANTLR start synpred10_InternalXmu2
+    public final void synpred10_InternalXmu2_fragment() throws RecognitionException {   
+        // InternalXmu2.g:2710:4: ( ruleBooleanOrExpression )
+        // InternalXmu2.g:2710:5: ruleBooleanOrExpression
         {
         pushFollow(FOLLOW_2);
         ruleBooleanOrExpression();
@@ -12300,7 +12299,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
 
         }
     }
-    // $ANTLR end synpred9_InternalXmu2
+    // $ANTLR end synpred10_InternalXmu2
 
     // Delegated rules
 
@@ -12309,6 +12308,20 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         int start = input.mark();
         try {
             synpred9_InternalXmu2_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred10_InternalXmu2() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred10_InternalXmu2_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -12432,19 +12445,19 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
     }
 
 
-    protected DFA31 dfa31 = new DFA31(this);
+    protected DFA30 dfa30 = new DFA30(this);
+    protected DFA38 dfa38 = new DFA38(this);
     protected DFA39 dfa39 = new DFA39(this);
-    protected DFA40 dfa40 = new DFA40(this);
-    protected DFA42 dfa42 = new DFA42(this);
+    protected DFA41 dfa41 = new DFA41(this);
+    protected DFA43 dfa43 = new DFA43(this);
     protected DFA44 dfa44 = new DFA44(this);
-    protected DFA45 dfa45 = new DFA45(this);
-    protected DFA54 dfa54 = new DFA54(this);
+    protected DFA53 dfa53 = new DFA53(this);
     static final String dfa_1s = "\54\uffff";
     static final String dfa_2s = "\7\uffff\1\10\44\uffff";
     static final String dfa_3s = "\1\40\1\64\1\4\4\uffff\1\4\44\uffff";
     static final String dfa_4s = "\1\42\1\71\1\4\4\uffff\1\111\44\uffff";
     static final String dfa_5s = "\3\uffff\1\2\3\1\1\uffff\43\3\1\4";
-    static final String dfa_6s = "\1\uffff\1\1\5\uffff\1\0\44\uffff}>";
+    static final String dfa_6s = "\1\uffff\1\0\5\uffff\1\1\44\uffff}>";
     static final String[] dfa_7s = {
             "\1\1\1\uffff\1\2",
             "\1\4\1\5\1\6\3\3",
@@ -12500,11 +12513,11 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
     static final short[] dfa_6 = DFA.unpackEncodedString(dfa_6s);
     static final short[][] dfa_7 = unpackEncodedStringArray(dfa_7s);
 
-    class DFA31 extends DFA {
+    class DFA30 extends DFA {
 
-        public DFA31(BaseRecognizer recognizer) {
+        public DFA30(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 31;
+            this.decisionNumber = 30;
             this.eot = dfa_1;
             this.eof = dfa_2;
             this.min = dfa_3;
@@ -12514,118 +12527,118 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
             this.transition = dfa_7;
         }
         public String getDescription() {
-            return "1593:2: ( ( ( ruleLoopPath )=>this_LoopPath_0= ruleLoopPath ) | this_PositionPath_1= rulePositionPath | ( ( ruleFeaturePath )=>this_FeaturePath_2= ruleFeaturePath ) | this_OperationPath_3= ruleOperationPath )";
+            return "1596:2: ( ( ( ruleLoopPath )=>this_LoopPath_0= ruleLoopPath ) | this_PositionPath_1= rulePositionPath | ( ( ruleFeaturePath )=>this_FeaturePath_2= ruleFeaturePath ) | this_OperationPath_3= ruleOperationPath )";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA31_7 = input.LA(1);
+                        int LA30_1 = input.LA(1);
 
                          
-                        int index31_7 = input.index();
+                        int index30_1 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (LA31_7==EOF) && (synpred3_InternalXmu2())) {s = 8;}
+                        if ( ((LA30_1>=55 && LA30_1<=57)) ) {s = 3;}
 
-                        else if ( (LA31_7==32) && (synpred3_InternalXmu2())) {s = 9;}
+                        else if ( (LA30_1==52) && (synpred3_InternalXmu2())) {s = 4;}
 
-                        else if ( (LA31_7==34) && (synpred3_InternalXmu2())) {s = 10;}
+                        else if ( (LA30_1==53) && (synpred3_InternalXmu2())) {s = 5;}
 
-                        else if ( (LA31_7==62) && (synpred3_InternalXmu2())) {s = 11;}
-
-                        else if ( (LA31_7==63) && (synpred3_InternalXmu2())) {s = 12;}
-
-                        else if ( (LA31_7==64) && (synpred3_InternalXmu2())) {s = 13;}
-
-                        else if ( (LA31_7==61) && (synpred3_InternalXmu2())) {s = 14;}
-
-                        else if ( (LA31_7==65) && (synpred3_InternalXmu2())) {s = 15;}
-
-                        else if ( (LA31_7==30) && (synpred3_InternalXmu2())) {s = 16;}
-
-                        else if ( (LA31_7==66) && (synpred3_InternalXmu2())) {s = 17;}
-
-                        else if ( (LA31_7==67) && (synpred3_InternalXmu2())) {s = 18;}
-
-                        else if ( (LA31_7==68) && (synpred3_InternalXmu2())) {s = 19;}
-
-                        else if ( (LA31_7==69) && (synpred3_InternalXmu2())) {s = 20;}
-
-                        else if ( (LA31_7==36) && (synpred3_InternalXmu2())) {s = 21;}
-
-                        else if ( (LA31_7==37) && (synpred3_InternalXmu2())) {s = 22;}
-
-                        else if ( (LA31_7==23) && (synpred3_InternalXmu2())) {s = 23;}
-
-                        else if ( (LA31_7==20) && (synpred3_InternalXmu2())) {s = 24;}
-
-                        else if ( (LA31_7==27) && (synpred3_InternalXmu2())) {s = 25;}
-
-                        else if ( (LA31_7==21) && (synpred3_InternalXmu2())) {s = 26;}
-
-                        else if ( (LA31_7==25) && (synpred3_InternalXmu2())) {s = 27;}
-
-                        else if ( (LA31_7==38) && (synpred3_InternalXmu2())) {s = 28;}
-
-                        else if ( (LA31_7==41) && (synpred3_InternalXmu2())) {s = 29;}
-
-                        else if ( (LA31_7==44) && (synpred3_InternalXmu2())) {s = 30;}
-
-                        else if ( (LA31_7==45) && (synpred3_InternalXmu2())) {s = 31;}
-
-                        else if ( (LA31_7==46) && (synpred3_InternalXmu2())) {s = 32;}
-
-                        else if ( (LA31_7==RULE_NAME) && (synpred3_InternalXmu2())) {s = 33;}
-
-                        else if ( (LA31_7==47) && (synpred3_InternalXmu2())) {s = 34;}
-
-                        else if ( (LA31_7==48) && (synpred3_InternalXmu2())) {s = 35;}
-
-                        else if ( (LA31_7==26) && (synpred3_InternalXmu2())) {s = 36;}
-
-                        else if ( (LA31_7==70) && (synpred3_InternalXmu2())) {s = 37;}
-
-                        else if ( (LA31_7==71) && (synpred3_InternalXmu2())) {s = 38;}
-
-                        else if ( (LA31_7==72) && (synpred3_InternalXmu2())) {s = 39;}
-
-                        else if ( (LA31_7==73) && (synpred3_InternalXmu2())) {s = 40;}
-
-                        else if ( (LA31_7==42) && (synpred3_InternalXmu2())) {s = 41;}
-
-                        else if ( (LA31_7==43) && (synpred3_InternalXmu2())) {s = 42;}
-
-                        else if ( (LA31_7==19) ) {s = 43;}
+                        else if ( (LA30_1==54) && (synpred3_InternalXmu2())) {s = 6;}
 
                          
-                        input.seek(index31_7);
+                        input.seek(index30_1);
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
-                        int LA31_1 = input.LA(1);
+                        int LA30_7 = input.LA(1);
 
                          
-                        int index31_1 = input.index();
+                        int index30_7 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( ((LA31_1>=55 && LA31_1<=57)) ) {s = 3;}
+                        if ( (LA30_7==EOF) && (synpred4_InternalXmu2())) {s = 8;}
 
-                        else if ( (LA31_1==52) && (synpred2_InternalXmu2())) {s = 4;}
+                        else if ( (LA30_7==32) && (synpred4_InternalXmu2())) {s = 9;}
 
-                        else if ( (LA31_1==53) && (synpred2_InternalXmu2())) {s = 5;}
+                        else if ( (LA30_7==34) && (synpred4_InternalXmu2())) {s = 10;}
 
-                        else if ( (LA31_1==54) && (synpred2_InternalXmu2())) {s = 6;}
+                        else if ( (LA30_7==62) && (synpred4_InternalXmu2())) {s = 11;}
+
+                        else if ( (LA30_7==63) && (synpred4_InternalXmu2())) {s = 12;}
+
+                        else if ( (LA30_7==64) && (synpred4_InternalXmu2())) {s = 13;}
+
+                        else if ( (LA30_7==61) && (synpred4_InternalXmu2())) {s = 14;}
+
+                        else if ( (LA30_7==65) && (synpred4_InternalXmu2())) {s = 15;}
+
+                        else if ( (LA30_7==30) && (synpred4_InternalXmu2())) {s = 16;}
+
+                        else if ( (LA30_7==66) && (synpred4_InternalXmu2())) {s = 17;}
+
+                        else if ( (LA30_7==67) && (synpred4_InternalXmu2())) {s = 18;}
+
+                        else if ( (LA30_7==68) && (synpred4_InternalXmu2())) {s = 19;}
+
+                        else if ( (LA30_7==69) && (synpred4_InternalXmu2())) {s = 20;}
+
+                        else if ( (LA30_7==36) && (synpred4_InternalXmu2())) {s = 21;}
+
+                        else if ( (LA30_7==37) && (synpred4_InternalXmu2())) {s = 22;}
+
+                        else if ( (LA30_7==23) && (synpred4_InternalXmu2())) {s = 23;}
+
+                        else if ( (LA30_7==20) && (synpred4_InternalXmu2())) {s = 24;}
+
+                        else if ( (LA30_7==27) && (synpred4_InternalXmu2())) {s = 25;}
+
+                        else if ( (LA30_7==21) && (synpred4_InternalXmu2())) {s = 26;}
+
+                        else if ( (LA30_7==25) && (synpred4_InternalXmu2())) {s = 27;}
+
+                        else if ( (LA30_7==38) && (synpred4_InternalXmu2())) {s = 28;}
+
+                        else if ( (LA30_7==41) && (synpred4_InternalXmu2())) {s = 29;}
+
+                        else if ( (LA30_7==44) && (synpred4_InternalXmu2())) {s = 30;}
+
+                        else if ( (LA30_7==45) && (synpred4_InternalXmu2())) {s = 31;}
+
+                        else if ( (LA30_7==46) && (synpred4_InternalXmu2())) {s = 32;}
+
+                        else if ( (LA30_7==RULE_NAME) && (synpred4_InternalXmu2())) {s = 33;}
+
+                        else if ( (LA30_7==47) && (synpred4_InternalXmu2())) {s = 34;}
+
+                        else if ( (LA30_7==48) && (synpred4_InternalXmu2())) {s = 35;}
+
+                        else if ( (LA30_7==26) && (synpred4_InternalXmu2())) {s = 36;}
+
+                        else if ( (LA30_7==70) && (synpred4_InternalXmu2())) {s = 37;}
+
+                        else if ( (LA30_7==71) && (synpred4_InternalXmu2())) {s = 38;}
+
+                        else if ( (LA30_7==72) && (synpred4_InternalXmu2())) {s = 39;}
+
+                        else if ( (LA30_7==73) && (synpred4_InternalXmu2())) {s = 40;}
+
+                        else if ( (LA30_7==42) && (synpred4_InternalXmu2())) {s = 41;}
+
+                        else if ( (LA30_7==43) && (synpred4_InternalXmu2())) {s = 42;}
+
+                        else if ( (LA30_7==19) ) {s = 43;}
 
                          
-                        input.seek(index31_1);
+                        input.seek(index30_7);
                         if ( s>=0 ) return s;
                         break;
             }
             if (state.backtracking>0) {state.failed=true; return -1;}
             NoViableAltException nvae =
-                new NoViableAltException(getDescription(), 31, _s, input);
+                new NoViableAltException(getDescription(), 30, _s, input);
             error(nvae);
             throw nvae;
         }
@@ -12660,6 +12673,215 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
     static final short[] dfa_12 = DFA.unpackEncodedString(dfa_12s);
     static final short[][] dfa_13 = unpackEncodedStringArray(dfa_13s);
 
+    class DFA38 extends DFA {
+
+        public DFA38(BaseRecognizer recognizer) {
+            this.recognizer = recognizer;
+            this.decisionNumber = 38;
+            this.eot = dfa_8;
+            this.eof = dfa_8;
+            this.min = dfa_9;
+            this.max = dfa_10;
+            this.accept = dfa_11;
+            this.special = dfa_12;
+            this.transition = dfa_13;
+        }
+        public String getDescription() {
+            return "2350:2: ( ( ( ruleMultiplicativeExpression )=>this_MultiplicativeExpression_0= ruleMultiplicativeExpression ) | this_MultiplicativeExpressionChild_1= ruleMultiplicativeExpressionChild )";
+        }
+        public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
+            TokenStream input = (TokenStream)_input;
+        	int _s = s;
+            switch ( s ) {
+                    case 0 : 
+                        int LA38_1 = input.LA(1);
+
+                         
+                        int index38_1 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred6_InternalXmu2()) ) {s = 13;}
+
+                        else if ( (true) ) {s = 14;}
+
+                         
+                        input.seek(index38_1);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 1 : 
+                        int LA38_2 = input.LA(1);
+
+                         
+                        int index38_2 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred6_InternalXmu2()) ) {s = 13;}
+
+                        else if ( (true) ) {s = 14;}
+
+                         
+                        input.seek(index38_2);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 2 : 
+                        int LA38_3 = input.LA(1);
+
+                         
+                        int index38_3 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred6_InternalXmu2()) ) {s = 13;}
+
+                        else if ( (true) ) {s = 14;}
+
+                         
+                        input.seek(index38_3);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 3 : 
+                        int LA38_4 = input.LA(1);
+
+                         
+                        int index38_4 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred6_InternalXmu2()) ) {s = 13;}
+
+                        else if ( (true) ) {s = 14;}
+
+                         
+                        input.seek(index38_4);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 4 : 
+                        int LA38_5 = input.LA(1);
+
+                         
+                        int index38_5 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred6_InternalXmu2()) ) {s = 13;}
+
+                        else if ( (true) ) {s = 14;}
+
+                         
+                        input.seek(index38_5);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 5 : 
+                        int LA38_6 = input.LA(1);
+
+                         
+                        int index38_6 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred6_InternalXmu2()) ) {s = 13;}
+
+                        else if ( (true) ) {s = 14;}
+
+                         
+                        input.seek(index38_6);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 6 : 
+                        int LA38_7 = input.LA(1);
+
+                         
+                        int index38_7 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred6_InternalXmu2()) ) {s = 13;}
+
+                        else if ( (true) ) {s = 14;}
+
+                         
+                        input.seek(index38_7);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 7 : 
+                        int LA38_8 = input.LA(1);
+
+                         
+                        int index38_8 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred6_InternalXmu2()) ) {s = 13;}
+
+                        else if ( (true) ) {s = 14;}
+
+                         
+                        input.seek(index38_8);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 8 : 
+                        int LA38_9 = input.LA(1);
+
+                         
+                        int index38_9 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred6_InternalXmu2()) ) {s = 13;}
+
+                        else if ( (true) ) {s = 14;}
+
+                         
+                        input.seek(index38_9);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 9 : 
+                        int LA38_10 = input.LA(1);
+
+                         
+                        int index38_10 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred6_InternalXmu2()) ) {s = 13;}
+
+                        else if ( (true) ) {s = 14;}
+
+                         
+                        input.seek(index38_10);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 10 : 
+                        int LA38_11 = input.LA(1);
+
+                         
+                        int index38_11 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred6_InternalXmu2()) ) {s = 13;}
+
+                        else if ( (true) ) {s = 14;}
+
+                         
+                        input.seek(index38_11);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 11 : 
+                        int LA38_12 = input.LA(1);
+
+                         
+                        int index38_12 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred6_InternalXmu2()) ) {s = 13;}
+
+                        else if ( (true) ) {s = 14;}
+
+                         
+                        input.seek(index38_12);
+                        if ( s>=0 ) return s;
+                        break;
+            }
+            if (state.backtracking>0) {state.failed=true; return -1;}
+            NoViableAltException nvae =
+                new NoViableAltException(getDescription(), 38, _s, input);
+            error(nvae);
+            throw nvae;
+        }
+    }
+
     class DFA39 extends DFA {
 
         public DFA39(BaseRecognizer recognizer) {
@@ -12674,7 +12896,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
             this.transition = dfa_13;
         }
         public String getDescription() {
-            return "2347:2: ( ( ( ruleMultiplicativeExpression )=>this_MultiplicativeExpression_0= ruleMultiplicativeExpression ) | this_MultiplicativeExpressionChild_1= ruleMultiplicativeExpressionChild )";
+            return "2465:2: ( ( ( ruleAdditiveExpression )=>this_AdditiveExpression_0= ruleAdditiveExpression ) | this_AdditiveExpressionChild_1= ruleAdditiveExpressionChild )";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
@@ -12687,7 +12909,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                         int index39_1 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred5_InternalXmu2()) ) {s = 13;}
+                        if ( (synpred7_InternalXmu2()) ) {s = 13;}
 
                         else if ( (true) ) {s = 14;}
 
@@ -12702,7 +12924,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                         int index39_2 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred5_InternalXmu2()) ) {s = 13;}
+                        if ( (synpred7_InternalXmu2()) ) {s = 13;}
 
                         else if ( (true) ) {s = 14;}
 
@@ -12717,7 +12939,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                         int index39_3 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred5_InternalXmu2()) ) {s = 13;}
+                        if ( (synpred7_InternalXmu2()) ) {s = 13;}
 
                         else if ( (true) ) {s = 14;}
 
@@ -12732,7 +12954,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                         int index39_4 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred5_InternalXmu2()) ) {s = 13;}
+                        if ( (synpred7_InternalXmu2()) ) {s = 13;}
 
                         else if ( (true) ) {s = 14;}
 
@@ -12747,7 +12969,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                         int index39_5 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred5_InternalXmu2()) ) {s = 13;}
+                        if ( (synpred7_InternalXmu2()) ) {s = 13;}
 
                         else if ( (true) ) {s = 14;}
 
@@ -12762,7 +12984,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                         int index39_6 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred5_InternalXmu2()) ) {s = 13;}
+                        if ( (synpred7_InternalXmu2()) ) {s = 13;}
 
                         else if ( (true) ) {s = 14;}
 
@@ -12777,7 +12999,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                         int index39_7 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred5_InternalXmu2()) ) {s = 13;}
+                        if ( (synpred7_InternalXmu2()) ) {s = 13;}
 
                         else if ( (true) ) {s = 14;}
 
@@ -12792,7 +13014,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                         int index39_8 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred5_InternalXmu2()) ) {s = 13;}
+                        if ( (synpred7_InternalXmu2()) ) {s = 13;}
 
                         else if ( (true) ) {s = 14;}
 
@@ -12807,7 +13029,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                         int index39_9 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred5_InternalXmu2()) ) {s = 13;}
+                        if ( (synpred7_InternalXmu2()) ) {s = 13;}
 
                         else if ( (true) ) {s = 14;}
 
@@ -12822,7 +13044,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                         int index39_10 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred5_InternalXmu2()) ) {s = 13;}
+                        if ( (synpred7_InternalXmu2()) ) {s = 13;}
 
                         else if ( (true) ) {s = 14;}
 
@@ -12837,7 +13059,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                         int index39_11 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred5_InternalXmu2()) ) {s = 13;}
+                        if ( (synpred7_InternalXmu2()) ) {s = 13;}
 
                         else if ( (true) ) {s = 14;}
 
@@ -12852,7 +13074,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                         int index39_12 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred5_InternalXmu2()) ) {s = 13;}
+                        if ( (synpred7_InternalXmu2()) ) {s = 13;}
 
                         else if ( (true) ) {s = 14;}
 
@@ -12869,11 +13091,11 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
         }
     }
 
-    class DFA40 extends DFA {
+    class DFA41 extends DFA {
 
-        public DFA40(BaseRecognizer recognizer) {
+        public DFA41(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 40;
+            this.decisionNumber = 41;
             this.eot = dfa_8;
             this.eof = dfa_8;
             this.min = dfa_9;
@@ -12883,206 +13105,206 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
             this.transition = dfa_13;
         }
         public String getDescription() {
-            return "2462:2: ( ( ( ruleAdditiveExpression )=>this_AdditiveExpression_0= ruleAdditiveExpression ) | this_AdditiveExpressionChild_1= ruleAdditiveExpressionChild )";
+            return "2567:2: ( ( ( ruleRelationalExpression )=>this_RelationalExpression_0= ruleRelationalExpression ) | this_RelationalExpressionChild_1= ruleRelationalExpressionChild )";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA40_1 = input.LA(1);
+                        int LA41_1 = input.LA(1);
 
                          
-                        int index40_1 = input.index();
+                        int index41_1 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred6_InternalXmu2()) ) {s = 13;}
+                        if ( (synpred8_InternalXmu2()) ) {s = 13;}
 
                         else if ( (true) ) {s = 14;}
 
                          
-                        input.seek(index40_1);
+                        input.seek(index41_1);
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
-                        int LA40_2 = input.LA(1);
+                        int LA41_2 = input.LA(1);
 
                          
-                        int index40_2 = input.index();
+                        int index41_2 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred6_InternalXmu2()) ) {s = 13;}
+                        if ( (synpred8_InternalXmu2()) ) {s = 13;}
 
                         else if ( (true) ) {s = 14;}
 
                          
-                        input.seek(index40_2);
+                        input.seek(index41_2);
                         if ( s>=0 ) return s;
                         break;
                     case 2 : 
-                        int LA40_3 = input.LA(1);
+                        int LA41_3 = input.LA(1);
 
                          
-                        int index40_3 = input.index();
+                        int index41_3 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred6_InternalXmu2()) ) {s = 13;}
+                        if ( (synpred8_InternalXmu2()) ) {s = 13;}
 
                         else if ( (true) ) {s = 14;}
 
                          
-                        input.seek(index40_3);
+                        input.seek(index41_3);
                         if ( s>=0 ) return s;
                         break;
                     case 3 : 
-                        int LA40_4 = input.LA(1);
+                        int LA41_4 = input.LA(1);
 
                          
-                        int index40_4 = input.index();
+                        int index41_4 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred6_InternalXmu2()) ) {s = 13;}
+                        if ( (synpred8_InternalXmu2()) ) {s = 13;}
 
                         else if ( (true) ) {s = 14;}
 
                          
-                        input.seek(index40_4);
+                        input.seek(index41_4);
                         if ( s>=0 ) return s;
                         break;
                     case 4 : 
-                        int LA40_5 = input.LA(1);
+                        int LA41_5 = input.LA(1);
 
                          
-                        int index40_5 = input.index();
+                        int index41_5 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred6_InternalXmu2()) ) {s = 13;}
+                        if ( (synpred8_InternalXmu2()) ) {s = 13;}
 
                         else if ( (true) ) {s = 14;}
 
                          
-                        input.seek(index40_5);
+                        input.seek(index41_5);
                         if ( s>=0 ) return s;
                         break;
                     case 5 : 
-                        int LA40_6 = input.LA(1);
+                        int LA41_6 = input.LA(1);
 
                          
-                        int index40_6 = input.index();
+                        int index41_6 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred6_InternalXmu2()) ) {s = 13;}
+                        if ( (synpred8_InternalXmu2()) ) {s = 13;}
 
                         else if ( (true) ) {s = 14;}
 
                          
-                        input.seek(index40_6);
+                        input.seek(index41_6);
                         if ( s>=0 ) return s;
                         break;
                     case 6 : 
-                        int LA40_7 = input.LA(1);
+                        int LA41_7 = input.LA(1);
 
                          
-                        int index40_7 = input.index();
+                        int index41_7 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred6_InternalXmu2()) ) {s = 13;}
+                        if ( (synpred8_InternalXmu2()) ) {s = 13;}
 
                         else if ( (true) ) {s = 14;}
 
                          
-                        input.seek(index40_7);
+                        input.seek(index41_7);
                         if ( s>=0 ) return s;
                         break;
                     case 7 : 
-                        int LA40_8 = input.LA(1);
+                        int LA41_8 = input.LA(1);
 
                          
-                        int index40_8 = input.index();
+                        int index41_8 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred6_InternalXmu2()) ) {s = 13;}
+                        if ( (synpred8_InternalXmu2()) ) {s = 13;}
 
                         else if ( (true) ) {s = 14;}
 
                          
-                        input.seek(index40_8);
+                        input.seek(index41_8);
                         if ( s>=0 ) return s;
                         break;
                     case 8 : 
-                        int LA40_9 = input.LA(1);
+                        int LA41_9 = input.LA(1);
 
                          
-                        int index40_9 = input.index();
+                        int index41_9 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred6_InternalXmu2()) ) {s = 13;}
+                        if ( (synpred8_InternalXmu2()) ) {s = 13;}
 
                         else if ( (true) ) {s = 14;}
 
                          
-                        input.seek(index40_9);
+                        input.seek(index41_9);
                         if ( s>=0 ) return s;
                         break;
                     case 9 : 
-                        int LA40_10 = input.LA(1);
+                        int LA41_10 = input.LA(1);
 
                          
-                        int index40_10 = input.index();
+                        int index41_10 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred6_InternalXmu2()) ) {s = 13;}
+                        if ( (synpred8_InternalXmu2()) ) {s = 13;}
 
                         else if ( (true) ) {s = 14;}
 
                          
-                        input.seek(index40_10);
+                        input.seek(index41_10);
                         if ( s>=0 ) return s;
                         break;
                     case 10 : 
-                        int LA40_11 = input.LA(1);
+                        int LA41_11 = input.LA(1);
 
                          
-                        int index40_11 = input.index();
+                        int index41_11 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred6_InternalXmu2()) ) {s = 13;}
+                        if ( (synpred8_InternalXmu2()) ) {s = 13;}
 
                         else if ( (true) ) {s = 14;}
 
                          
-                        input.seek(index40_11);
+                        input.seek(index41_11);
                         if ( s>=0 ) return s;
                         break;
                     case 11 : 
-                        int LA40_12 = input.LA(1);
+                        int LA41_12 = input.LA(1);
 
                          
-                        int index40_12 = input.index();
+                        int index41_12 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred6_InternalXmu2()) ) {s = 13;}
+                        if ( (synpred8_InternalXmu2()) ) {s = 13;}
 
                         else if ( (true) ) {s = 14;}
 
                          
-                        input.seek(index40_12);
+                        input.seek(index41_12);
                         if ( s>=0 ) return s;
                         break;
             }
             if (state.backtracking>0) {state.failed=true; return -1;}
             NoViableAltException nvae =
-                new NoViableAltException(getDescription(), 40, _s, input);
+                new NoViableAltException(getDescription(), 41, _s, input);
             error(nvae);
             throw nvae;
         }
     }
 
-    class DFA42 extends DFA {
+    class DFA43 extends DFA {
 
-        public DFA42(BaseRecognizer recognizer) {
+        public DFA43(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 42;
+            this.decisionNumber = 43;
             this.eot = dfa_8;
             this.eof = dfa_8;
             this.min = dfa_9;
@@ -13092,196 +13314,196 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
             this.transition = dfa_13;
         }
         public String getDescription() {
-            return "2564:2: ( ( ( ruleRelationalExpression )=>this_RelationalExpression_0= ruleRelationalExpression ) | this_RelationalExpressionChild_1= ruleRelationalExpressionChild )";
+            return "2669:2: ( ( ( ruleBooleanAndExpression )=>this_BooleanAndExpression_0= ruleBooleanAndExpression ) | this_BooleanAndExpressionChild_1= ruleBooleanAndExpressionChild )";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA42_1 = input.LA(1);
+                        int LA43_1 = input.LA(1);
 
                          
-                        int index42_1 = input.index();
+                        int index43_1 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred7_InternalXmu2()) ) {s = 13;}
+                        if ( (synpred9_InternalXmu2()) ) {s = 13;}
 
                         else if ( (true) ) {s = 14;}
 
                          
-                        input.seek(index42_1);
+                        input.seek(index43_1);
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
-                        int LA42_2 = input.LA(1);
+                        int LA43_2 = input.LA(1);
 
                          
-                        int index42_2 = input.index();
+                        int index43_2 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred7_InternalXmu2()) ) {s = 13;}
+                        if ( (synpred9_InternalXmu2()) ) {s = 13;}
 
                         else if ( (true) ) {s = 14;}
 
                          
-                        input.seek(index42_2);
+                        input.seek(index43_2);
                         if ( s>=0 ) return s;
                         break;
                     case 2 : 
-                        int LA42_3 = input.LA(1);
+                        int LA43_3 = input.LA(1);
 
                          
-                        int index42_3 = input.index();
+                        int index43_3 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred7_InternalXmu2()) ) {s = 13;}
+                        if ( (synpred9_InternalXmu2()) ) {s = 13;}
 
                         else if ( (true) ) {s = 14;}
 
                          
-                        input.seek(index42_3);
+                        input.seek(index43_3);
                         if ( s>=0 ) return s;
                         break;
                     case 3 : 
-                        int LA42_4 = input.LA(1);
+                        int LA43_4 = input.LA(1);
 
                          
-                        int index42_4 = input.index();
+                        int index43_4 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred7_InternalXmu2()) ) {s = 13;}
+                        if ( (synpred9_InternalXmu2()) ) {s = 13;}
 
                         else if ( (true) ) {s = 14;}
 
                          
-                        input.seek(index42_4);
+                        input.seek(index43_4);
                         if ( s>=0 ) return s;
                         break;
                     case 4 : 
-                        int LA42_5 = input.LA(1);
+                        int LA43_5 = input.LA(1);
 
                          
-                        int index42_5 = input.index();
+                        int index43_5 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred7_InternalXmu2()) ) {s = 13;}
+                        if ( (synpred9_InternalXmu2()) ) {s = 13;}
 
                         else if ( (true) ) {s = 14;}
 
                          
-                        input.seek(index42_5);
+                        input.seek(index43_5);
                         if ( s>=0 ) return s;
                         break;
                     case 5 : 
-                        int LA42_6 = input.LA(1);
+                        int LA43_6 = input.LA(1);
 
                          
-                        int index42_6 = input.index();
+                        int index43_6 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred7_InternalXmu2()) ) {s = 13;}
+                        if ( (synpred9_InternalXmu2()) ) {s = 13;}
 
                         else if ( (true) ) {s = 14;}
 
                          
-                        input.seek(index42_6);
+                        input.seek(index43_6);
                         if ( s>=0 ) return s;
                         break;
                     case 6 : 
-                        int LA42_7 = input.LA(1);
+                        int LA43_7 = input.LA(1);
 
                          
-                        int index42_7 = input.index();
+                        int index43_7 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred7_InternalXmu2()) ) {s = 13;}
+                        if ( (synpred9_InternalXmu2()) ) {s = 13;}
 
                         else if ( (true) ) {s = 14;}
 
                          
-                        input.seek(index42_7);
+                        input.seek(index43_7);
                         if ( s>=0 ) return s;
                         break;
                     case 7 : 
-                        int LA42_8 = input.LA(1);
+                        int LA43_8 = input.LA(1);
 
                          
-                        int index42_8 = input.index();
+                        int index43_8 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred7_InternalXmu2()) ) {s = 13;}
+                        if ( (synpred9_InternalXmu2()) ) {s = 13;}
 
                         else if ( (true) ) {s = 14;}
 
                          
-                        input.seek(index42_8);
+                        input.seek(index43_8);
                         if ( s>=0 ) return s;
                         break;
                     case 8 : 
-                        int LA42_9 = input.LA(1);
+                        int LA43_9 = input.LA(1);
 
                          
-                        int index42_9 = input.index();
+                        int index43_9 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred7_InternalXmu2()) ) {s = 13;}
+                        if ( (synpred9_InternalXmu2()) ) {s = 13;}
 
                         else if ( (true) ) {s = 14;}
 
                          
-                        input.seek(index42_9);
+                        input.seek(index43_9);
                         if ( s>=0 ) return s;
                         break;
                     case 9 : 
-                        int LA42_10 = input.LA(1);
+                        int LA43_10 = input.LA(1);
 
                          
-                        int index42_10 = input.index();
+                        int index43_10 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred7_InternalXmu2()) ) {s = 13;}
+                        if ( (synpred9_InternalXmu2()) ) {s = 13;}
 
                         else if ( (true) ) {s = 14;}
 
                          
-                        input.seek(index42_10);
+                        input.seek(index43_10);
                         if ( s>=0 ) return s;
                         break;
                     case 10 : 
-                        int LA42_11 = input.LA(1);
+                        int LA43_11 = input.LA(1);
 
                          
-                        int index42_11 = input.index();
+                        int index43_11 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred7_InternalXmu2()) ) {s = 13;}
+                        if ( (synpred9_InternalXmu2()) ) {s = 13;}
 
                         else if ( (true) ) {s = 14;}
 
                          
-                        input.seek(index42_11);
+                        input.seek(index43_11);
                         if ( s>=0 ) return s;
                         break;
                     case 11 : 
-                        int LA42_12 = input.LA(1);
+                        int LA43_12 = input.LA(1);
 
                          
-                        int index42_12 = input.index();
+                        int index43_12 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred7_InternalXmu2()) ) {s = 13;}
+                        if ( (synpred9_InternalXmu2()) ) {s = 13;}
 
                         else if ( (true) ) {s = 14;}
 
                          
-                        input.seek(index42_12);
+                        input.seek(index43_12);
                         if ( s>=0 ) return s;
                         break;
             }
             if (state.backtracking>0) {state.failed=true; return -1;}
             NoViableAltException nvae =
-                new NoViableAltException(getDescription(), 42, _s, input);
+                new NoViableAltException(getDescription(), 43, _s, input);
             error(nvae);
             throw nvae;
         }
@@ -13301,7 +13523,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
             this.transition = dfa_13;
         }
         public String getDescription() {
-            return "2666:2: ( ( ( ruleBooleanAndExpression )=>this_BooleanAndExpression_0= ruleBooleanAndExpression ) | this_BooleanAndExpressionChild_1= ruleBooleanAndExpressionChild )";
+            return "2708:2: ( ( ( ruleBooleanOrExpression )=>this_BooleanOrExpression_0= ruleBooleanOrExpression ) | this_BooleanOrExpressionChild_1= ruleBooleanOrExpressionChild )";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
@@ -13314,7 +13536,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                         int index44_1 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred8_InternalXmu2()) ) {s = 13;}
+                        if ( (synpred10_InternalXmu2()) ) {s = 13;}
 
                         else if ( (true) ) {s = 14;}
 
@@ -13329,7 +13551,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                         int index44_2 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred8_InternalXmu2()) ) {s = 13;}
+                        if ( (synpred10_InternalXmu2()) ) {s = 13;}
 
                         else if ( (true) ) {s = 14;}
 
@@ -13344,7 +13566,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                         int index44_3 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred8_InternalXmu2()) ) {s = 13;}
+                        if ( (synpred10_InternalXmu2()) ) {s = 13;}
 
                         else if ( (true) ) {s = 14;}
 
@@ -13359,7 +13581,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                         int index44_4 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred8_InternalXmu2()) ) {s = 13;}
+                        if ( (synpred10_InternalXmu2()) ) {s = 13;}
 
                         else if ( (true) ) {s = 14;}
 
@@ -13374,7 +13596,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                         int index44_5 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred8_InternalXmu2()) ) {s = 13;}
+                        if ( (synpred10_InternalXmu2()) ) {s = 13;}
 
                         else if ( (true) ) {s = 14;}
 
@@ -13389,7 +13611,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                         int index44_6 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred8_InternalXmu2()) ) {s = 13;}
+                        if ( (synpred10_InternalXmu2()) ) {s = 13;}
 
                         else if ( (true) ) {s = 14;}
 
@@ -13404,7 +13626,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                         int index44_7 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred8_InternalXmu2()) ) {s = 13;}
+                        if ( (synpred10_InternalXmu2()) ) {s = 13;}
 
                         else if ( (true) ) {s = 14;}
 
@@ -13419,7 +13641,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                         int index44_8 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred8_InternalXmu2()) ) {s = 13;}
+                        if ( (synpred10_InternalXmu2()) ) {s = 13;}
 
                         else if ( (true) ) {s = 14;}
 
@@ -13434,7 +13656,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                         int index44_9 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred8_InternalXmu2()) ) {s = 13;}
+                        if ( (synpred10_InternalXmu2()) ) {s = 13;}
 
                         else if ( (true) ) {s = 14;}
 
@@ -13449,7 +13671,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                         int index44_10 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred8_InternalXmu2()) ) {s = 13;}
+                        if ( (synpred10_InternalXmu2()) ) {s = 13;}
 
                         else if ( (true) ) {s = 14;}
 
@@ -13464,7 +13686,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                         int index44_11 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred8_InternalXmu2()) ) {s = 13;}
+                        if ( (synpred10_InternalXmu2()) ) {s = 13;}
 
                         else if ( (true) ) {s = 14;}
 
@@ -13479,7 +13701,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
                         int index44_12 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred8_InternalXmu2()) ) {s = 13;}
+                        if ( (synpred10_InternalXmu2()) ) {s = 13;}
 
                         else if ( (true) ) {s = 14;}
 
@@ -13495,219 +13717,10 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
             throw nvae;
         }
     }
-
-    class DFA45 extends DFA {
-
-        public DFA45(BaseRecognizer recognizer) {
-            this.recognizer = recognizer;
-            this.decisionNumber = 45;
-            this.eot = dfa_8;
-            this.eof = dfa_8;
-            this.min = dfa_9;
-            this.max = dfa_10;
-            this.accept = dfa_11;
-            this.special = dfa_12;
-            this.transition = dfa_13;
-        }
-        public String getDescription() {
-            return "2705:2: ( ( ( ruleBooleanOrExpression )=>this_BooleanOrExpression_0= ruleBooleanOrExpression ) | this_BooleanOrExpressionChild_1= ruleBooleanOrExpressionChild )";
-        }
-        public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
-            TokenStream input = (TokenStream)_input;
-        	int _s = s;
-            switch ( s ) {
-                    case 0 : 
-                        int LA45_1 = input.LA(1);
-
-                         
-                        int index45_1 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred9_InternalXmu2()) ) {s = 13;}
-
-                        else if ( (true) ) {s = 14;}
-
-                         
-                        input.seek(index45_1);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 1 : 
-                        int LA45_2 = input.LA(1);
-
-                         
-                        int index45_2 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred9_InternalXmu2()) ) {s = 13;}
-
-                        else if ( (true) ) {s = 14;}
-
-                         
-                        input.seek(index45_2);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 2 : 
-                        int LA45_3 = input.LA(1);
-
-                         
-                        int index45_3 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred9_InternalXmu2()) ) {s = 13;}
-
-                        else if ( (true) ) {s = 14;}
-
-                         
-                        input.seek(index45_3);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 3 : 
-                        int LA45_4 = input.LA(1);
-
-                         
-                        int index45_4 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred9_InternalXmu2()) ) {s = 13;}
-
-                        else if ( (true) ) {s = 14;}
-
-                         
-                        input.seek(index45_4);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 4 : 
-                        int LA45_5 = input.LA(1);
-
-                         
-                        int index45_5 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred9_InternalXmu2()) ) {s = 13;}
-
-                        else if ( (true) ) {s = 14;}
-
-                         
-                        input.seek(index45_5);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 5 : 
-                        int LA45_6 = input.LA(1);
-
-                         
-                        int index45_6 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred9_InternalXmu2()) ) {s = 13;}
-
-                        else if ( (true) ) {s = 14;}
-
-                         
-                        input.seek(index45_6);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 6 : 
-                        int LA45_7 = input.LA(1);
-
-                         
-                        int index45_7 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred9_InternalXmu2()) ) {s = 13;}
-
-                        else if ( (true) ) {s = 14;}
-
-                         
-                        input.seek(index45_7);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 7 : 
-                        int LA45_8 = input.LA(1);
-
-                         
-                        int index45_8 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred9_InternalXmu2()) ) {s = 13;}
-
-                        else if ( (true) ) {s = 14;}
-
-                         
-                        input.seek(index45_8);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 8 : 
-                        int LA45_9 = input.LA(1);
-
-                         
-                        int index45_9 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred9_InternalXmu2()) ) {s = 13;}
-
-                        else if ( (true) ) {s = 14;}
-
-                         
-                        input.seek(index45_9);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 9 : 
-                        int LA45_10 = input.LA(1);
-
-                         
-                        int index45_10 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred9_InternalXmu2()) ) {s = 13;}
-
-                        else if ( (true) ) {s = 14;}
-
-                         
-                        input.seek(index45_10);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 10 : 
-                        int LA45_11 = input.LA(1);
-
-                         
-                        int index45_11 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred9_InternalXmu2()) ) {s = 13;}
-
-                        else if ( (true) ) {s = 14;}
-
-                         
-                        input.seek(index45_11);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 11 : 
-                        int LA45_12 = input.LA(1);
-
-                         
-                        int index45_12 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred9_InternalXmu2()) ) {s = 13;}
-
-                        else if ( (true) ) {s = 14;}
-
-                         
-                        input.seek(index45_12);
-                        if ( s>=0 ) return s;
-                        break;
-            }
-            if (state.backtracking>0) {state.failed=true; return -1;}
-            NoViableAltException nvae =
-                new NoViableAltException(getDescription(), 45, _s, input);
-            error(nvae);
-            throw nvae;
-        }
-    }
     static final String dfa_14s = "\12\uffff\1\15\4\uffff";
     static final String dfa_15s = "\1\4\3\uffff\1\4\2\uffff\1\23\2\uffff\1\4\4\uffff";
     static final String dfa_16s = "\1\60\3\uffff\1\4\2\uffff\1\61\2\uffff\1\111\4\uffff";
-    static final String dfa_17s = "\1\uffff\1\1\1\2\1\3\1\uffff\1\6\1\7\1\uffff\1\11\1\12\1\uffff\1\10\1\13\1\4\1\5";
+    static final String dfa_17s = "\1\uffff\1\1\1\2\1\3\1\uffff\1\6\1\7\1\uffff\1\11\1\12\1\uffff\1\13\1\10\1\4\1\5";
     static final String dfa_18s = "\17\uffff}>";
     static final String[] dfa_19s = {
             "\1\7\24\uffff\1\1\14\uffff\1\2\2\uffff\1\3\2\uffff\1\4\1\5\1\6\1\10\1\11",
@@ -13717,7 +13730,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
             "\1\12",
             "",
             "",
-            "\1\13\35\uffff\1\14",
+            "\1\14\35\uffff\1\13",
             "",
             "",
             "\1\15\24\uffff\3\15\6\uffff\1\16\3\uffff\1\15\2\uffff\10\15\25\uffff\4\15",
@@ -13733,11 +13746,11 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
     static final short[] dfa_18 = DFA.unpackEncodedString(dfa_18s);
     static final short[][] dfa_19 = unpackEncodedStringArray(dfa_19s);
 
-    class DFA54 extends DFA {
+    class DFA53 extends DFA {
 
-        public DFA54(BaseRecognizer recognizer) {
+        public DFA53(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 54;
+            this.decisionNumber = 53;
             this.eot = dfa_8;
             this.eof = dfa_14;
             this.min = dfa_15;
@@ -13747,7 +13760,7 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
             this.transition = dfa_19;
         }
         public String getDescription() {
-            return "3740:2: (this_BlockStatement_0= ruleBlockStatement | this_UpdateStatement_1= ruleUpdateStatement | this_SwitchStatement_2= ruleSwitchStatement | this_DeleteNodeStatement_3= ruleDeleteNodeStatement | this_DeleteLinkStatement_4= ruleDeleteLinkStatement | this_EnforcePatternStatement_5= ruleEnforcePatternStatement | this_ForEachStatement_6= ruleForEachStatement | this_RuleCallStatement_7= ruleRuleCallStatement | this_Skip_8= ruleSkip | this_Fail_9= ruleFail | this_AssignStatement_10= ruleAssignStatement )";
+            return "3743:2: (this_BlockStatement_0= ruleBlockStatement | this_UpdateStatement_1= ruleUpdateStatement | this_SwitchStatement_2= ruleSwitchStatement | this_DeleteNodeStatement_3= ruleDeleteNodeStatement | this_DeleteLinkStatement_4= ruleDeleteLinkStatement | this_EnforcePatternStatement_5= ruleEnforcePatternStatement | this_ForEachStatement_6= ruleForEachStatement | this_RuleCallStatement_7= ruleRuleCallStatement | this_Skip_8= ruleSkip | this_Fail_9= ruleFail | this_AssignStatement_10= ruleAssignStatement )";
         }
     }
  
@@ -13776,40 +13789,39 @@ public class InternalXmu2Parser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_22 = new BitSet(new long[]{0x0000000000000300L});
     public static final BitSet FOLLOW_23 = new BitSet(new long[]{0x0000000000400002L});
     public static final BitSet FOLLOW_24 = new BitSet(new long[]{0x3C01F24002080FD0L});
-    public static final BitSet FOLLOW_25 = new BitSet(new long[]{0x0000000002000002L});
-    public static final BitSet FOLLOW_26 = new BitSet(new long[]{0x0000000008000010L});
-    public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x0000000008100000L});
-    public static final BitSet FOLLOW_28 = new BitSet(new long[]{0x0000000140000000L});
-    public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x0000000040000000L});
-    public static final BitSet FOLLOW_30 = new BitSet(new long[]{0x0000000080000010L});
-    public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x3C01F24082080FD0L});
-    public static final BitSet FOLLOW_32 = new BitSet(new long[]{0x0070000000000000L});
-    public static final BitSet FOLLOW_33 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_34 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_35 = new BitSet(new long[]{0x0380000000000000L});
-    public static final BitSet FOLLOW_36 = new BitSet(new long[]{0x3C01F24002280FD0L});
-    public static final BitSet FOLLOW_37 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_38 = new BitSet(new long[]{0x0000000500000002L});
-    public static final BitSet FOLLOW_39 = new BitSet(new long[]{0xC000000000000000L});
-    public static final BitSet FOLLOW_40 = new BitSet(new long[]{0xC000000000000002L});
-    public static final BitSet FOLLOW_41 = new BitSet(new long[]{0x2000000000000000L,0x0000000000000003L});
-    public static final BitSet FOLLOW_42 = new BitSet(new long[]{0x2000000000000002L,0x0000000000000003L});
-    public static final BitSet FOLLOW_43 = new BitSet(new long[]{0x0000000040000000L,0x000000000000003CL});
-    public static final BitSet FOLLOW_44 = new BitSet(new long[]{0x0000001000000000L});
-    public static final BitSet FOLLOW_45 = new BitSet(new long[]{0x0000001000000002L});
-    public static final BitSet FOLLOW_46 = new BitSet(new long[]{0x0000002000000000L});
-    public static final BitSet FOLLOW_47 = new BitSet(new long[]{0x0000002000000002L});
-    public static final BitSet FOLLOW_48 = new BitSet(new long[]{0x000000000C000000L});
-    public static final BitSet FOLLOW_49 = new BitSet(new long[]{0x0001F24002000010L});
-    public static final BitSet FOLLOW_50 = new BitSet(new long[]{0x0000008000000000L});
-    public static final BitSet FOLLOW_51 = new BitSet(new long[]{0x0000010000000000L});
-    public static final BitSet FOLLOW_52 = new BitSet(new long[]{0x0000000000000000L,0x00000000000003C0L});
-    public static final BitSet FOLLOW_53 = new BitSet(new long[]{0x0000000000000002L,0x00000000000003C0L});
-    public static final BitSet FOLLOW_54 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_55 = new BitSet(new long[]{0x00000C0000000000L});
-    public static final BitSet FOLLOW_56 = new BitSet(new long[]{0x00000C0008000000L});
-    public static final BitSet FOLLOW_57 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_58 = new BitSet(new long[]{0x3C01F24002080FD2L});
-    public static final BitSet FOLLOW_59 = new BitSet(new long[]{0x0002000000000000L});
+    public static final BitSet FOLLOW_25 = new BitSet(new long[]{0x0000000008000010L});
+    public static final BitSet FOLLOW_26 = new BitSet(new long[]{0x0000000008100000L});
+    public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x0000000140000000L});
+    public static final BitSet FOLLOW_28 = new BitSet(new long[]{0x0000000040000000L});
+    public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x0000000080000010L});
+    public static final BitSet FOLLOW_30 = new BitSet(new long[]{0x3C01F24082080FD0L});
+    public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x0070000000000000L});
+    public static final BitSet FOLLOW_32 = new BitSet(new long[]{0x0000000200000000L});
+    public static final BitSet FOLLOW_33 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_34 = new BitSet(new long[]{0x0380000000000000L});
+    public static final BitSet FOLLOW_35 = new BitSet(new long[]{0x3C01F24002280FD0L});
+    public static final BitSet FOLLOW_36 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_37 = new BitSet(new long[]{0x0000000500000002L});
+    public static final BitSet FOLLOW_38 = new BitSet(new long[]{0xC000000000000000L});
+    public static final BitSet FOLLOW_39 = new BitSet(new long[]{0xC000000000000002L});
+    public static final BitSet FOLLOW_40 = new BitSet(new long[]{0x2000000000000000L,0x0000000000000003L});
+    public static final BitSet FOLLOW_41 = new BitSet(new long[]{0x2000000000000002L,0x0000000000000003L});
+    public static final BitSet FOLLOW_42 = new BitSet(new long[]{0x0000000040000000L,0x000000000000003CL});
+    public static final BitSet FOLLOW_43 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_44 = new BitSet(new long[]{0x0000001000000002L});
+    public static final BitSet FOLLOW_45 = new BitSet(new long[]{0x0000002000000000L});
+    public static final BitSet FOLLOW_46 = new BitSet(new long[]{0x0000002000000002L});
+    public static final BitSet FOLLOW_47 = new BitSet(new long[]{0x000000000C000000L});
+    public static final BitSet FOLLOW_48 = new BitSet(new long[]{0x0001F24002000010L});
+    public static final BitSet FOLLOW_49 = new BitSet(new long[]{0x0000008000000000L});
+    public static final BitSet FOLLOW_50 = new BitSet(new long[]{0x0000010000000000L});
+    public static final BitSet FOLLOW_51 = new BitSet(new long[]{0x0000000000000000L,0x00000000000003C0L});
+    public static final BitSet FOLLOW_52 = new BitSet(new long[]{0x0000000000000002L,0x00000000000003C0L});
+    public static final BitSet FOLLOW_53 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_54 = new BitSet(new long[]{0x00000C0000000000L});
+    public static final BitSet FOLLOW_55 = new BitSet(new long[]{0x00000C0008000000L});
+    public static final BitSet FOLLOW_56 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_57 = new BitSet(new long[]{0x3C01F24002080FD2L});
+    public static final BitSet FOLLOW_58 = new BitSet(new long[]{0x0002000000000000L});
 
 }
