@@ -9,7 +9,11 @@ package edu.ustb.sei.mde.xmuxtext.ui.launch;
 import java.io.File;
 
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.debug.core.DebugException;
+import org.eclipse.debug.core.ILaunch;
 import org.eclipse.debug.core.ILaunchConfiguration;
+import org.eclipse.debug.core.model.IProcess;
+import org.eclipse.debug.core.model.IStreamsProxy;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 
@@ -194,9 +198,9 @@ public class Xmu2Launcher {
 				Thread executorThread = new Thread(executor);
 				executorThread.start();
 				
-				while(monitor.isCanceled()==false) {
+				while(monitor.isCanceled()==false && executorThread.isAlive()) {
 					try {
-						Thread.sleep(1000);
+						Thread.sleep(500);
 					} catch(Exception e) {
 					}
 				}
@@ -206,7 +210,11 @@ public class Xmu2Launcher {
 			}
 		}; 
 		
-		new Thread(monitorThread).start();
+		Thread core = new Thread(monitorThread);
+		core.start();
+		
+		Xmu2InternalProcess process = new Xmu2InternalProcess(launch, core);
+		launch.addProcess(process);
 		
 	}
 	
@@ -246,5 +254,68 @@ public class Xmu2Launcher {
 			break;
 		}
 		return env;
+	}
+	
+	class Xmu2InternalProcess implements IProcess {
+		
+		
+		private org.eclipse.debug.core.ILaunch launch;
+		public Xmu2InternalProcess(ILaunch launch, Thread coreThread) {
+			super();
+			this.launch = launch;
+			this.coreThread = coreThread;
+		}
+
+		private Thread coreThread;
+		
+		@Override
+		public <T> T getAdapter(Class<T> adapter) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public boolean canTerminate() {
+			return false;
+		}
+
+		@Override
+		public boolean isTerminated() {
+			return !coreThread.isAlive();
+		}
+
+		@Override
+		public void terminate() throws DebugException {
+		}
+
+		@Override
+		public String getLabel() {
+			return "XMU2";
+		}
+
+		@Override
+		public ILaunch getLaunch() {
+			return launch;
+		}
+
+		@Override
+		public IStreamsProxy getStreamsProxy() {
+			return null;
+		}
+
+		@Override
+		public void setAttribute(String key, String value) {
+		}
+
+		@Override
+		public String getAttribute(String key) {
+			return null;
+		}
+
+		@Override
+		public int getExitValue() throws DebugException {
+			return 0;
+		}
+		
 	}
 }

@@ -7,6 +7,7 @@
 package edu.ustb.sei.mde.xmu2.resource.xmu2.launch;
 
 import java.io.File;
+import java.lang.Thread.State;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.DebugException;
@@ -198,9 +199,9 @@ public class Xmu2Launcher extends Xmu2LaunchConfigurationHelper {
 				Thread executorThread = new Thread(executor);
 				executorThread.start();
 				
-				while(monitor.isCanceled()==false) {
+				while(monitor.isCanceled()==false && executorThread.isAlive()) {
 					try {
-						Thread.sleep(1000);
+						Thread.sleep(500);
 					} catch(Exception e) {
 					}
 				}
@@ -294,7 +295,7 @@ public class Xmu2Launcher extends Xmu2LaunchConfigurationHelper {
 
 		@Override
 		public boolean isTerminated() {
-			return coreThread.isAlive();
+			return !coreThread.isAlive();
 		}
 
 		@Override
