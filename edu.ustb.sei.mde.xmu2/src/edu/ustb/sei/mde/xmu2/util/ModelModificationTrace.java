@@ -56,7 +56,9 @@ public class ModelModificationTrace {
 	}
 	
 	public boolean isDeletable(EObject e) {
-		return !isCreatedOrModified(e);
+		ObjectModification m = map.get(e);
+		if(m==null || m.isRequire() ==false) return true;
+		return false;
 	}
 	
 	public boolean isDeletable(EObject s, EStructuralFeature f, Object t) {
@@ -103,6 +105,7 @@ public class ModelModificationTrace {
 		return false;
 	}
 	
+	@Deprecated
 	private boolean isCreatedOrModified(EObject o) {
 		ObjectModification m = map.get(o);
 		if(m!=null && m.isDelete()==false) return true;
@@ -137,6 +140,8 @@ public class ModelModificationTrace {
 			map.put(s, m);
 		}
 		
+		m.setRequire(true);
+		
 		if(feature.isMany()==false) {
 			Object oldValue = s.eGet(feature);
 			if(oldValue!=null && oldValue!=t) {
@@ -164,6 +169,7 @@ public class ModelModificationTrace {
 			m = new ObjectModification(o,false);
 			map.put(o, m);
 		}
+		m.setRequire(true);
 	}
 	
 	public void logCreation(EObject s, EAttribute att, Object t) {
@@ -175,6 +181,7 @@ public class ModelModificationTrace {
 		if(ref.getEOpposite()!=null) {
 			logBasicCreation(t,ref.getEOpposite(),s);
 		}
+		logCreation(t);
 	}
 	
 	//Track Method

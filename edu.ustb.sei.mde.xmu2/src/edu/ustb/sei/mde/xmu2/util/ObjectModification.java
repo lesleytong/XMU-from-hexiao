@@ -10,7 +10,20 @@ import edu.ustb.sei.commonutil.util.Pair;
 public class ObjectModification {
 	@SuppressWarnings("unused")
 	private EObject object;
+	// if the object has been deleted
 	private boolean delete;
+	// if the object is required
+	// !(require && delete)
+	private boolean require;
+	
+	public boolean isRequire() {
+		return require;
+	}
+
+	public void setRequire(boolean require) {
+		this.require = require;
+	}
+
 	public void setDelete(boolean delete) {
 		this.delete = delete;
 	}
