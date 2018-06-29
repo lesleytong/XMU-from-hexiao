@@ -11,7 +11,6 @@ import edu.ustb.sei.mde.xmuxtext.Xmu2StandaloneSetupGenerated;
 @SuppressWarnings("all")
 public class Xmu2StandaloneSetup extends Xmu2StandaloneSetupGenerated {
   public static void doSetup() {
-    Xmu2StandaloneSetup _xmu2StandaloneSetup = new Xmu2StandaloneSetup();
-    _xmu2StandaloneSetup.createInjectorAndDoEMFRegistration();
+    new Xmu2StandaloneSetup().createInjectorAndDoEMFRegistration();
   }
 }

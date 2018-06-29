@@ -9,12 +9,10 @@ import edu.ustb.sei.mde.xmu2.ModelRule;
 import edu.ustb.sei.mde.xmu2.Parameter;
 import edu.ustb.sei.mde.xmu2.VariableDeclaration;
 import edu.ustb.sei.mde.xmu2.Xmu2Package;
-import edu.ustb.sei.mde.xmu2.expression.Expression;
 import edu.ustb.sei.mde.xmu2.expression.ExpressionPackage;
 import edu.ustb.sei.mde.xmu2.expression.LoopPath;
 import edu.ustb.sei.mde.xmu2.expression.VariableExpression;
 import edu.ustb.sei.mde.xmu2.pattern.Pattern;
-import edu.ustb.sei.mde.xmu2.pattern.PatternNode;
 import edu.ustb.sei.mde.xmu2.statement.AssignStatement;
 import edu.ustb.sei.mde.xmu2.statement.CaseClause;
 import edu.ustb.sei.mde.xmu2.statement.DeleteLinkStatement;
@@ -24,7 +22,6 @@ import edu.ustb.sei.mde.xmu2.statement.ExpressionCaseClause;
 import edu.ustb.sei.mde.xmu2.statement.Fail;
 import edu.ustb.sei.mde.xmu2.statement.ForEachStatement;
 import edu.ustb.sei.mde.xmu2.statement.PatternCaseClause;
-import edu.ustb.sei.mde.xmu2.statement.Statement;
 import edu.ustb.sei.mde.xmu2.statement.StatementPackage;
 import edu.ustb.sei.mde.xmu2.statement.SwitchStatement;
 import edu.ustb.sei.mde.xmu2.statement.UpdateClause;
@@ -38,9 +35,7 @@ import java.util.HashSet;
 import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 
 @SuppressWarnings("all")
@@ -54,10 +49,8 @@ public class VariableValidityContext {
   private Set<String> normalVariableNames = new HashSet<String>();
   
   public void addSourceVariableName(final String n) {
-    String _nonUpdatedSourceVariableName = AnalysisUtil.getNonUpdatedSourceVariableName(n);
-    this.sourceVariableNames.add(_nonUpdatedSourceVariableName);
-    String _updatedSourceVariableName = AnalysisUtil.getUpdatedSourceVariableName(n);
-    this.updatedSourceVariableNames.add(_updatedSourceVariableName);
+    this.sourceVariableNames.add(AnalysisUtil.getNonUpdatedSourceVariableName(n));
+    this.updatedSourceVariableNames.add(AnalysisUtil.getUpdatedSourceVariableName(n));
   }
   
   public void addViewVariableName(final String n) {
@@ -65,10 +58,8 @@ public class VariableValidityContext {
   }
   
   public void addUpdatedSourceVariableName(final String n) {
-    String _nonUpdatedSourceVariableName = AnalysisUtil.getNonUpdatedSourceVariableName(n);
-    this.sourceVariableNames.add(_nonUpdatedSourceVariableName);
-    String _updatedSourceVariableName = AnalysisUtil.getUpdatedSourceVariableName(n);
-    this.updatedSourceVariableNames.add(_updatedSourceVariableName);
+    this.sourceVariableNames.add(AnalysisUtil.getNonUpdatedSourceVariableName(n));
+    this.updatedSourceVariableNames.add(AnalysisUtil.getUpdatedSourceVariableName(n));
   }
   
   public void addNormalVariableName(final String n) {
@@ -133,15 +124,13 @@ public class VariableValidityContext {
               boolean _isValidNonUpdatedSourceVariableName = AnalysisUtil.isValidNonUpdatedSourceVariableName(varName);
               boolean _equals_1 = (_isValidNonUpdatedSourceVariableName == false);
               if (_equals_1) {
-                EObject _eContainer_1 = ((VariableDeclaration)o).eContainer();
-                EReference _eContainmentFeature = ((VariableDeclaration)o).eContainmentFeature();
-                resource.addError("the name of a source variable should not end with \'@post\'", _eContainer_1, _eContainmentFeature);
+                resource.addError("the name of a source variable should not end with \'@post\'", 
+                  ((VariableDeclaration)o).eContainer(), ((VariableDeclaration)o).eContainmentFeature());
               }
               boolean _isDuplicateSourceVariable = this.isDuplicateSourceVariable(varName);
               if (_isDuplicateSourceVariable) {
-                EObject _eContainer_2 = ((VariableDeclaration)o).eContainer();
-                EReference _eContainmentFeature_1 = ((VariableDeclaration)o).eContainmentFeature();
-                resource.addError("the source variable has been declared in a conflict context", _eContainer_2, _eContainmentFeature_1);
+                resource.addError("the source variable has been declared in a conflict context", 
+                  ((VariableDeclaration)o).eContainer(), ((VariableDeclaration)o).eContainmentFeature());
               } else {
                 this.addSourceVariableName(varName);
               }
@@ -151,15 +140,11 @@ public class VariableValidityContext {
                 boolean _isValidNonUpdatedSourceVariableName_1 = AnalysisUtil.isValidNonUpdatedSourceVariableName(varName);
                 boolean _equals_3 = (_isValidNonUpdatedSourceVariableName_1 == false);
                 if (_equals_3) {
-                  EObject _eContainer_3 = ((VariableDeclaration)o).eContainer();
-                  EReference _eContainmentFeature_2 = ((VariableDeclaration)o).eContainmentFeature();
-                  resource.addError("the name of a view variable should not end with \'@post\'", _eContainer_3, _eContainmentFeature_2);
+                  resource.addError("the name of a view variable should not end with \'@post\'", ((VariableDeclaration)o).eContainer(), ((VariableDeclaration)o).eContainmentFeature());
                 }
                 boolean _isDuplicateViewVariable = this.isDuplicateViewVariable(varName);
                 if (_isDuplicateViewVariable) {
-                  EObject _eContainer_4 = ((VariableDeclaration)o).eContainer();
-                  EReference _eContainmentFeature_3 = ((VariableDeclaration)o).eContainmentFeature();
-                  resource.addError("the view variable has been declared in a conflict context", _eContainer_4, _eContainmentFeature_3);
+                  resource.addError("the view variable has been declared in a conflict context", ((VariableDeclaration)o).eContainer(), ((VariableDeclaration)o).eContainmentFeature());
                 } else {
                   this.addViewVariableName(varName);
                 }
@@ -168,9 +153,7 @@ public class VariableValidityContext {
                 if (_equals_4) {
                   boolean _isDuplicateUpdatedSourceVariable = this.isDuplicateUpdatedSourceVariable(varName);
                   if (_isDuplicateUpdatedSourceVariable) {
-                    EObject _eContainer_5 = ((VariableDeclaration)o).eContainer();
-                    EReference _eContainmentFeature_4 = ((VariableDeclaration)o).eContainmentFeature();
-                    resource.addError("the updated source variable has been declared in a conflict context", _eContainer_5, _eContainmentFeature_4);
+                    resource.addError("the updated source variable has been declared in a conflict context", ((VariableDeclaration)o).eContainer(), ((VariableDeclaration)o).eContainmentFeature());
                   } else {
                     this.addSourceVariableName(varName);
                   }
@@ -180,14 +163,10 @@ public class VariableValidityContext {
                     boolean _isValidNonUpdatedSourceVariableName_2 = AnalysisUtil.isValidNonUpdatedSourceVariableName(varName);
                     boolean _equals_6 = (_isValidNonUpdatedSourceVariableName_2 == false);
                     if (_equals_6) {
-                      EObject _eContainer_6 = ((VariableDeclaration)o).eContainer();
-                      EReference _eContainmentFeature_5 = ((VariableDeclaration)o).eContainmentFeature();
-                      resource.addError("the name of a normal variable should not end with \'@post\'", _eContainer_6, _eContainmentFeature_5);
+                      resource.addError("the name of a normal variable should not end with \'@post\'", ((VariableDeclaration)o).eContainer(), ((VariableDeclaration)o).eContainmentFeature());
                     }
                     if ((this.existInSourceVariable(varName) || this.existInViewVariable(varName))) {
-                      EObject _eContainer_7 = ((VariableDeclaration)o).eContainer();
-                      EReference _eContainmentFeature_6 = ((VariableDeclaration)o).eContainmentFeature();
-                      resource.addError("the normal variable has been declared in a conflict context", _eContainer_7, _eContainmentFeature_6);
+                      resource.addError("the normal variable has been declared in a conflict context", ((VariableDeclaration)o).eContainer(), ((VariableDeclaration)o).eContainmentFeature());
                     } else {
                       this.addUpdatedSourceVariableName(varName);
                     }
@@ -259,9 +238,7 @@ public class VariableValidityContext {
     } catch (final Throwable _t) {
       if (_t instanceof Exception) {
         final Exception e = (Exception)_t;
-        EObject _eContainer = root.eContainer();
-        EReference _eContainmentFeature = root.eContainmentFeature();
-        res.addWarning("validity check is not finished because of some exceptions", _eContainer, _eContainmentFeature);
+        res.addWarning("validity check is not finished because of some exceptions", root.eContainer(), root.eContainmentFeature());
       } else {
         throw Exceptions.sneakyThrow(_t);
       }
@@ -269,21 +246,17 @@ public class VariableValidityContext {
   }
   
   public boolean isIteratorName(final String name, final EObject root) {
-    EClass _loopPath = ExpressionPackage.eINSTANCE.getLoopPath();
-    EObject _ancestor = AnalysisUtil.getAncestor(root, _loopPath);
+    EObject _ancestor = AnalysisUtil.getAncestor(root, ExpressionPackage.eINSTANCE.getLoopPath());
     LoopPath loop = ((LoopPath) _ancestor);
     boolean _equals = Objects.equal(loop, null);
     if (_equals) {
       return false;
     } else {
-      VariableDeclaration _variable = loop.getVariable();
-      String _name = _variable.getName();
-      boolean _equals_1 = _name.equals(name);
+      boolean _equals_1 = loop.getVariable().getName().equals(name);
       if (_equals_1) {
         return true;
       } else {
-        EObject _eContainer = loop.eContainer();
-        return this.isIteratorName(name, _eContainer);
+        return this.isIteratorName(name, loop.eContainer());
       }
     }
   }
@@ -296,55 +269,46 @@ public class VariableValidityContext {
           DomainTag _tag = ((Parameter) p).getTag();
           boolean _equals = Objects.equal(_tag, DomainTag.NORMAL);
           if (_equals) {
-            String _name = p.getName();
-            boolean _isValidNonUpdatedSourceVariableName = AnalysisUtil.isValidNonUpdatedSourceVariableName(_name);
+            boolean _isValidNonUpdatedSourceVariableName = AnalysisUtil.isValidNonUpdatedSourceVariableName(p.getName());
             boolean _equals_1 = (_isValidNonUpdatedSourceVariableName == false);
             if (_equals_1) {
               resource.addError("the name of a normal variable should not end with \'@post\'", p, Xmu2Package.Literals.NAMED_ELEMENT__NAME);
             }
-            String _name_1 = p.getName();
-            boolean _isDuplicateNormalVariable = this.isDuplicateNormalVariable(_name_1);
+            boolean _isDuplicateNormalVariable = this.isDuplicateNormalVariable(p.getName());
             if (_isDuplicateNormalVariable) {
               resource.addError("the normal variable has been declared in a conflict context", p, Xmu2Package.Literals.NAMED_ELEMENT__NAME);
             } else {
-              String _name_2 = ((Parameter) p).getName();
-              this.addNormalVariableName(_name_2);
+              this.addNormalVariableName(((Parameter) p).getName());
             }
           } else {
             DomainTag _tag_1 = ((Parameter) p).getTag();
             boolean _equals_2 = Objects.equal(_tag_1, DomainTag.SOURCE);
             if (_equals_2) {
-              String _name_3 = p.getName();
-              boolean _isValidNonUpdatedSourceVariableName_1 = AnalysisUtil.isValidNonUpdatedSourceVariableName(_name_3);
+              boolean _isValidNonUpdatedSourceVariableName_1 = AnalysisUtil.isValidNonUpdatedSourceVariableName(p.getName());
               boolean _equals_3 = (_isValidNonUpdatedSourceVariableName_1 == false);
               if (_equals_3) {
                 resource.addError("the name of a source variable should not end with \'@post\'", p, Xmu2Package.Literals.NAMED_ELEMENT__NAME);
               }
-              String _name_4 = p.getName();
-              boolean _isDuplicateSourceVariable = this.isDuplicateSourceVariable(_name_4);
+              boolean _isDuplicateSourceVariable = this.isDuplicateSourceVariable(p.getName());
               if (_isDuplicateSourceVariable) {
                 resource.addError("the source variable has been declared in a conflict context", p, Xmu2Package.Literals.NAMED_ELEMENT__NAME);
               } else {
-                String _name_5 = ((Parameter) p).getName();
-                this.addSourceVariableName(_name_5);
+                this.addSourceVariableName(((Parameter) p).getName());
               }
             } else {
               DomainTag _tag_2 = ((Parameter) p).getTag();
               boolean _equals_4 = Objects.equal(_tag_2, DomainTag.VIEW);
               if (_equals_4) {
-                String _name_6 = p.getName();
-                boolean _isValidNonUpdatedSourceVariableName_2 = AnalysisUtil.isValidNonUpdatedSourceVariableName(_name_6);
+                boolean _isValidNonUpdatedSourceVariableName_2 = AnalysisUtil.isValidNonUpdatedSourceVariableName(p.getName());
                 boolean _equals_5 = (_isValidNonUpdatedSourceVariableName_2 == false);
                 if (_equals_5) {
                   resource.addError("the name of a view variable should not end with \'@post\'", p, Xmu2Package.Literals.NAMED_ELEMENT__NAME);
                 }
-                String _name_7 = p.getName();
-                boolean _isDuplicateViewVariable = this.isDuplicateViewVariable(_name_7);
+                boolean _isDuplicateViewVariable = this.isDuplicateViewVariable(p.getName());
                 if (_isDuplicateViewVariable) {
                   resource.addError("the view variable has been declared in a conflict context", p, Xmu2Package.Literals.NAMED_ELEMENT__NAME);
                 } else {
-                  String _name_8 = ((Parameter) p).getName();
-                  this.addViewVariableName(_name_8);
+                  this.addViewVariableName(((Parameter) p).getName());
                 }
               }
             }
@@ -353,19 +317,16 @@ public class VariableValidityContext {
         EList<VariableDeclaration> _variableDeclarations = ((ModelRule) root).getVariableDeclarations();
         for (final VariableDeclaration vd : _variableDeclarations) {
           {
-            String _name_9 = vd.getName();
-            boolean _isValidNonUpdatedSourceVariableName_3 = AnalysisUtil.isValidNonUpdatedSourceVariableName(_name_9);
+            boolean _isValidNonUpdatedSourceVariableName_3 = AnalysisUtil.isValidNonUpdatedSourceVariableName(vd.getName());
             boolean _equals_6 = (_isValidNonUpdatedSourceVariableName_3 == false);
             if (_equals_6) {
               resource.addError("the name of a normal variable should not end with \'@post\'", vd, Xmu2Package.Literals.NAMED_ELEMENT__NAME);
             }
-            String _name_10 = vd.getName();
-            boolean _isDuplicateNormalVariable_1 = this.isDuplicateNormalVariable(_name_10);
+            boolean _isDuplicateNormalVariable_1 = this.isDuplicateNormalVariable(vd.getName());
             if (_isDuplicateNormalVariable_1) {
               resource.addError("the normal variable has been declared in a conflict context", vd, Xmu2Package.Literals.NAMED_ELEMENT__NAME);
             } else {
-              String _name_11 = vd.getName();
-              this.addNormalVariableName(_name_11);
+              this.addNormalVariableName(vd.getName());
             }
           }
         }
@@ -380,55 +341,46 @@ public class VariableValidityContext {
             DomainTag _tag_3 = ((Parameter) p_1).getTag();
             boolean _equals_6 = Objects.equal(_tag_3, DomainTag.NORMAL);
             if (_equals_6) {
-              String _name_9 = p_1.getName();
-              boolean _isValidNonUpdatedSourceVariableName_3 = AnalysisUtil.isValidNonUpdatedSourceVariableName(_name_9);
+              boolean _isValidNonUpdatedSourceVariableName_3 = AnalysisUtil.isValidNonUpdatedSourceVariableName(p_1.getName());
               boolean _equals_7 = (_isValidNonUpdatedSourceVariableName_3 == false);
               if (_equals_7) {
                 resource.addError("the name of a normal variable should not end with \'@post\'", p_1, Xmu2Package.Literals.NAMED_ELEMENT__NAME);
               }
-              String _name_10 = p_1.getName();
-              boolean _isDuplicateNormalVariable_1 = this.isDuplicateNormalVariable(_name_10);
+              boolean _isDuplicateNormalVariable_1 = this.isDuplicateNormalVariable(p_1.getName());
               if (_isDuplicateNormalVariable_1) {
                 resource.addError("the normal variable has been declared in a conflict context", p_1, Xmu2Package.Literals.NAMED_ELEMENT__NAME);
               } else {
-                String _name_11 = ((Parameter) p_1).getName();
-                this.addNormalVariableName(_name_11);
+                this.addNormalVariableName(((Parameter) p_1).getName());
               }
             } else {
               DomainTag _tag_4 = ((Parameter) p_1).getTag();
               boolean _equals_8 = Objects.equal(_tag_4, DomainTag.SOURCE);
               if (_equals_8) {
-                String _name_12 = p_1.getName();
-                boolean _isValidNonUpdatedSourceVariableName_4 = AnalysisUtil.isValidNonUpdatedSourceVariableName(_name_12);
+                boolean _isValidNonUpdatedSourceVariableName_4 = AnalysisUtil.isValidNonUpdatedSourceVariableName(p_1.getName());
                 boolean _equals_9 = (_isValidNonUpdatedSourceVariableName_4 == false);
                 if (_equals_9) {
                   resource.addError("the name of a source variable should not end with \'@post\'", p_1, Xmu2Package.Literals.NAMED_ELEMENT__NAME);
                 }
-                String _name_13 = p_1.getName();
-                boolean _isDuplicateSourceVariable_1 = this.isDuplicateSourceVariable(_name_13);
+                boolean _isDuplicateSourceVariable_1 = this.isDuplicateSourceVariable(p_1.getName());
                 if (_isDuplicateSourceVariable_1) {
                   resource.addError("the source variable has been declared in a conflict context", p_1, Xmu2Package.Literals.NAMED_ELEMENT__NAME);
                 } else {
-                  String _name_14 = ((Parameter) p_1).getName();
-                  this.addSourceVariableName(_name_14);
+                  this.addSourceVariableName(((Parameter) p_1).getName());
                 }
               } else {
                 DomainTag _tag_5 = ((Parameter) p_1).getTag();
                 boolean _equals_10 = Objects.equal(_tag_5, DomainTag.VIEW);
                 if (_equals_10) {
-                  String _name_15 = p_1.getName();
-                  boolean _isValidNonUpdatedSourceVariableName_5 = AnalysisUtil.isValidNonUpdatedSourceVariableName(_name_15);
+                  boolean _isValidNonUpdatedSourceVariableName_5 = AnalysisUtil.isValidNonUpdatedSourceVariableName(p_1.getName());
                   boolean _equals_11 = (_isValidNonUpdatedSourceVariableName_5 == false);
                   if (_equals_11) {
                     resource.addError("the name of a view variable should not end with \'@post\'", p_1, Xmu2Package.Literals.NAMED_ELEMENT__NAME);
                   }
-                  String _name_16 = p_1.getName();
-                  boolean _isDuplicateViewVariable_1 = this.isDuplicateViewVariable(_name_16);
+                  boolean _isDuplicateViewVariable_1 = this.isDuplicateViewVariable(p_1.getName());
                   if (_isDuplicateViewVariable_1) {
                     resource.addError("the view variable has been declared in a conflict context", p_1, Xmu2Package.Literals.NAMED_ELEMENT__NAME);
                   } else {
-                    String _name_17 = ((Parameter) p_1).getName();
-                    this.addViewVariableName(_name_17);
+                    this.addViewVariableName(((Parameter) p_1).getName());
                   }
                 }
               }
@@ -453,21 +405,15 @@ public class VariableValidityContext {
           } else {
             if ((root instanceof SwitchStatement)) {
               DomainTag flag = null;
-              VariableExpression _root = ((SwitchStatement) root).getRoot();
-              String _variable = _root.getVariable();
-              boolean _existInSourceVariable = this.existInSourceVariable(_variable);
+              boolean _existInSourceVariable = this.existInSourceVariable(((SwitchStatement) root).getRoot().getVariable());
               if (_existInSourceVariable) {
                 flag = DomainTag.SOURCE;
               } else {
-                VariableExpression _root_1 = ((SwitchStatement) root).getRoot();
-                String _variable_1 = _root_1.getVariable();
-                boolean _existInViewVariable = this.existInViewVariable(_variable_1);
+                boolean _existInViewVariable = this.existInViewVariable(((SwitchStatement) root).getRoot().getVariable());
                 if (_existInViewVariable) {
                   flag = DomainTag.VIEW;
                 } else {
-                  VariableExpression _root_2 = ((SwitchStatement) root).getRoot();
-                  String _variable_2 = _root_2.getVariable();
-                  boolean _existInNormalVariable = this.existInNormalVariable(_variable_2);
+                  boolean _existInNormalVariable = this.existInNormalVariable(((SwitchStatement) root).getRoot().getVariable());
                   if (_existInNormalVariable) {
                     flag = DomainTag.NORMAL;
                   } else {
@@ -481,54 +427,44 @@ public class VariableValidityContext {
                   if ((cc instanceof PatternCaseClause)) {
                     boolean _equals_12 = Objects.equal(flag, DomainTag.NORMAL);
                     if (_equals_12) {
-                      Pattern _condition = ((PatternCaseClause) cc).getCondition();
-                      TreeIterator<EObject> rp = _condition.eAllContents();
+                      TreeIterator<EObject> rp = ((PatternCaseClause) cc).getCondition().eAllContents();
                       while (rp.hasNext()) {
                         {
                           EObject o_2 = rp.next();
                           if ((o_2 instanceof VariableDeclaration)) {
                             String name = ((VariableDeclaration) o_2).getName();
                             if (((this.existInSourceVariable(name) || this.existInUpdatedSourceVariable(name)) || this.existInUpdatedSourceVariable(name))) {
-                              EObject _eContainer = ((VariableDeclaration)o_2).eContainer();
-                              EReference _eContainmentFeature = ((VariableDeclaration)o_2).eContainmentFeature();
-                              resource.addError("the normal variable has been declared in a conflict context", _eContainer, _eContainmentFeature);
+                              resource.addError("the normal variable has been declared in a conflict context", 
+                                ((VariableDeclaration)o_2).eContainer(), ((VariableDeclaration)o_2).eContainmentFeature());
                             } else {
                               boolean _existInNormalVariable_1 = this.existInNormalVariable(name);
                               boolean _not = (!_existInNormalVariable_1);
                               if (_not) {
-                                EObject _eContainer_1 = ((VariableDeclaration)o_2).eContainer();
-                                EReference _eContainmentFeature_1 = ((VariableDeclaration)o_2).eContainmentFeature();
-                                resource.addWarning("it is recommended to declare the normal variable", _eContainer_1, _eContainmentFeature_1);
+                                resource.addWarning("it is recommended to declare the normal variable", ((VariableDeclaration)o_2).eContainer(), ((VariableDeclaration)o_2).eContainmentFeature());
                               }
                             }
                           }
                         }
                       }
                     } else {
-                      Pattern _condition_1 = ((PatternCaseClause) cc).getCondition();
-                      this.collectVariablesInPattern(_condition_1, flag, resource);
+                      this.collectVariablesInPattern(((PatternCaseClause) cc).getCondition(), flag, resource);
                     }
-                    Pattern _condition_2 = ((PatternCaseClause) cc).getCondition();
-                    this.checkVariableUsage(_condition_2, resource, flag);
+                    this.checkVariableUsage(((PatternCaseClause) cc).getCondition(), resource, flag);
                   } else {
                     if ((cc instanceof ExpressionCaseClause)) {
-                      Expression _condition_3 = ((ExpressionCaseClause) cc).getCondition();
-                      this.checkVariableUsage(_condition_3, resource, flag);
+                      this.checkVariableUsage(((ExpressionCaseClause) cc).getCondition(), resource, flag);
                     }
                   }
-                  Statement _action = cc.getAction();
-                  this.collectVariableNames(_action, resource);
+                  this.collectVariableNames(cc.getAction(), resource);
                 }
               }
             } else {
               if ((root instanceof EnforcePatternStatement)) {
-                Pattern _pattern = ((EnforcePatternStatement) root).getPattern();
-                this.collectVariablesInPattern(_pattern, DomainTag.UPDATED_SOURCE, resource);
+                this.collectVariablesInPattern(((EnforcePatternStatement) root).getPattern(), DomainTag.UPDATED_SOURCE, resource);
                 this.checkVariableUsage(root, resource, DomainTag.UPDATED_SOURCE);
               } else {
                 if ((root instanceof DeleteNodeStatement)) {
-                  VariableExpression _node = ((DeleteNodeStatement) root).getNode();
-                  String varName = _node.getVariable();
+                  String varName = ((DeleteNodeStatement) root).getNode().getVariable();
                   boolean _isDuplicateUpdatedSourceVariable = this.isDuplicateUpdatedSourceVariable(varName);
                   if (_isDuplicateUpdatedSourceVariable) {
                     resource.addError("the updated source variable has been declared in a conflict context", root, StatementPackage.Literals.DELETE_NODE_STATEMENT__NODE);
@@ -537,42 +473,35 @@ public class VariableValidityContext {
                   }
                 } else {
                   if ((root instanceof DeleteLinkStatement)) {
-                    VariableExpression _source = ((DeleteLinkStatement) root).getSource();
-                    String varName_1 = _source.getVariable();
+                    String varName_1 = ((DeleteLinkStatement) root).getSource().getVariable();
                     boolean _isDuplicateUpdatedSourceVariable_1 = this.isDuplicateUpdatedSourceVariable(varName_1);
                     if (_isDuplicateUpdatedSourceVariable_1) {
                       resource.addError("the updated source variable has been declared in a conflict context", root, StatementPackage.Literals.DELETE_LINK_STATEMENT__SOURCE);
                     } else {
                       this.addUpdatedSourceVariableName(varName_1);
                     }
-                    Expression _target = ((DeleteLinkStatement) root).getTarget();
-                    this.checkVariableUsage(_target, resource, DomainTag.UPDATED_SOURCE);
+                    this.checkVariableUsage(((DeleteLinkStatement) root).getTarget(), resource, DomainTag.UPDATED_SOURCE);
                   } else {
                     if ((root instanceof LoopPath)) {
-                      VariableDeclaration _variable_3 = ((LoopPath) root).getVariable();
-                      String varName_2 = _variable_3.getName();
+                      String varName_2 = ((LoopPath) root).getVariable().getName();
                       boolean _isDuplicateNormalVariable_2 = this.isDuplicateNormalVariable(varName_2);
                       if (_isDuplicateNormalVariable_2) {
                         resource.addError("the iterator variable has been declared", root, ExpressionPackage.Literals.LOOP_PATH__VARIABLE);
                       }
                     } else {
                       if ((root instanceof AssignStatement)) {
-                        VariableExpression _updatedVariable = ((AssignStatement) root).getUpdatedVariable();
-                        String varName_3 = _updatedVariable.getVariable();
+                        String varName_3 = ((AssignStatement) root).getUpdatedVariable().getVariable();
                         boolean _isDuplicateUpdatedSourceVariable_2 = this.isDuplicateUpdatedSourceVariable(varName_3);
                         if (_isDuplicateUpdatedSourceVariable_2) {
                           resource.addError("the updated source variable has been declared in a conflict context", root, StatementPackage.Literals.ASSIGN_STATEMENT__UPDATED_VARIABLE);
                         } else {
                           this.addUpdatedSourceVariableName(varName_3);
                         }
-                        Expression _value = ((AssignStatement) root).getValue();
-                        this.checkVariableUsage(_value, resource, DomainTag.NORMAL);
+                        this.checkVariableUsage(((AssignStatement) root).getValue(), resource, DomainTag.NORMAL);
                       } else {
                         if ((root instanceof ForEachStatement)) {
                           Pattern source_1 = ((ForEachStatement) root).getPattern();
-                          PatternNode _root_3 = source_1.getRoot();
-                          VariableDeclaration _variable_4 = _root_3.getVariable();
-                          String name = _variable_4.getName();
+                          String name = source_1.getRoot().getVariable().getName();
                           boolean _existInSourceVariable_1 = this.existInSourceVariable(name);
                           if (_existInSourceVariable_1) {
                             this.collectVariablesInPattern(source_1, DomainTag.SOURCE, resource);
@@ -588,8 +517,7 @@ public class VariableValidityContext {
                           }
                         } else {
                           if ((root instanceof Fail)) {
-                            Expression _expression = ((Fail) root).getExpression();
-                            this.checkVariableUsage(_expression, resource, DomainTag.NORMAL);
+                            this.checkVariableUsage(((Fail) root).getExpression(), resource, DomainTag.NORMAL);
                           } else {
                             EList<EObject> _eContents_3 = root.eContents();
                             for (final EObject o_3 : _eContents_3) {
@@ -609,9 +537,8 @@ public class VariableValidityContext {
     } catch (final Throwable _t) {
       if (_t instanceof Exception) {
         final Exception e = (Exception)_t;
-        EObject _eContainer = root.eContainer();
-        EReference _eContainmentFeature = root.eContainmentFeature();
-        resource.addWarning("validity check is not finished because of some exceptions", _eContainer, _eContainmentFeature);
+        resource.addWarning("validity check is not finished because of some exceptions", 
+          root.eContainer(), root.eContainmentFeature());
       } else {
         throw Exceptions.sneakyThrow(_t);
       }

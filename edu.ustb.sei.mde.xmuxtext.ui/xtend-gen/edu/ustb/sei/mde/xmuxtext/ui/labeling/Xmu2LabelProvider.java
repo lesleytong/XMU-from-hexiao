@@ -6,7 +6,6 @@ package edu.ustb.sei.mde.xmuxtext.ui.labeling;
 import com.google.common.base.Objects;
 import com.google.inject.Inject;
 import edu.ustb.sei.mde.xmu2.EntryPoint;
-import edu.ustb.sei.mde.xmu2.ModelRule;
 import edu.ustb.sei.mde.xmu2.TransformationModel;
 import edu.ustb.sei.mde.xmu2.expression.BooleanAndExpression;
 import edu.ustb.sei.mde.xmu2.expression.BooleanLiteralExpression;
@@ -18,14 +17,10 @@ import edu.ustb.sei.mde.xmu2.expression.RelationalExpression;
 import edu.ustb.sei.mde.xmu2.expression.StringLiteralExpression;
 import edu.ustb.sei.mde.xmu2.expression.UnaryExpression;
 import edu.ustb.sei.mde.xmu2.expression.VariableExpression;
-import edu.ustb.sei.mde.xmu2.statement.ActionType;
 import edu.ustb.sei.mde.xmu2.statement.UpdateClause;
-import edu.ustb.sei.mde.xmu2common.LoopOperator;
 import edu.ustb.sei.mde.xmu2common.NamedElement;
-import edu.ustb.sei.mde.xmu2common.PositionOperator;
 import edu.ustb.sei.mde.xmu2common.RelationalOperator;
 import edu.ustb.sei.mde.xmu2common.UnaryOperator;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider;
@@ -50,8 +45,7 @@ public class Xmu2LabelProvider extends DefaultEObjectLabelProvider {
     } else {
       Object _xifexpression_1 = null;
       if ((e instanceof EntryPoint)) {
-        ModelRule _rule = ((EntryPoint)e).getRule();
-        String _name_1 = _rule.getName();
+        String _name_1 = ((EntryPoint)e).getRule().getName();
         return ("Entry point " + _name_1);
       } else {
         Object _xifexpression_2 = null;
@@ -94,18 +88,15 @@ public class Xmu2LabelProvider extends DefaultEObjectLabelProvider {
               } else {
                 Object _xifexpression_6 = null;
                 if ((e instanceof LoopPath)) {
-                  LoopOperator _operator_2 = ((LoopPath)e).getOperator();
-                  return _operator_2.getLiteral();
+                  return ((LoopPath)e).getOperator().getLiteral();
                 } else {
                   Object _xifexpression_7 = null;
                   if ((e instanceof PositionPath)) {
-                    PositionOperator _type = ((PositionPath)e).getType();
-                    return _type.getLiteral();
+                    return ((PositionPath)e).getType().getLiteral();
                   } else {
                     Object _xifexpression_8 = null;
                     if ((e instanceof UpdateClause)) {
-                      ActionType _type_1 = ((UpdateClause)e).getType();
-                      return _type_1.getLiteral();
+                      return ((UpdateClause)e).getType().getLiteral();
                     } else {
                       Object _xifexpression_9 = null;
                       if ((e instanceof VariableExpression)) {
@@ -127,14 +118,12 @@ public class Xmu2LabelProvider extends DefaultEObjectLabelProvider {
                               _xifexpression_12 = ((BooleanLiteralExpression)e).isValue();
                             } else {
                               if ((e instanceof NamedElement)) {
-                                EClass _eClass = ((NamedElement)e).eClass();
-                                String _name_2 = _eClass.getName();
+                                String _name_2 = ((NamedElement)e).eClass().getName();
                                 String _plus_1 = (_name_2 + " ");
                                 String _name_3 = ((NamedElement)e).getName();
                                 return (_plus_1 + _name_3);
                               } else {
-                                EClass _eClass_1 = e.eClass();
-                                return _eClass_1.getName();
+                                return e.eClass().getName();
                               }
                             }
                             _xifexpression_11 = Boolean.valueOf(_xifexpression_12);

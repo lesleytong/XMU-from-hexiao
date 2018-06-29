@@ -7,8 +7,6 @@ import edu.ustb.sei.mde.modeling.ui.ConsoleUtil;
 import edu.ustb.sei.mde.xmu2.TransformationModel;
 import edu.ustb.sei.mde.xmu2.runtime.build.BXCodeGenerator;
 import edu.ustb.sei.mde.xmu2.util.AnalysisUtil;
-import edu.ustb.sei.mde.xmu2core.Transformation;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -30,24 +28,19 @@ public class Xmu2Generator extends AbstractGenerator {
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
     ResourceSet set = new ResourceSetImpl();
     AnalysisUtil.initializeResourceSet(set);
-    URI _uRI = resource.getURI();
-    URI uri = Xmu2Generator.getBuildFileURI(_uRI);
+    URI uri = Xmu2Generator.getBuildFileURI(resource.getURI());
     Resource res = set.createResource(uri);
     try {
       BXCodeGenerator bxcg = new BXCodeGenerator();
-      EList<EObject> _contents = resource.getContents();
-      EObject _get = _contents.get(0);
+      EObject _get = resource.getContents().get(0);
       TransformationModel tm = ((TransformationModel) _get);
-      EList<EObject> _contents_1 = res.getContents();
-      Transformation _build = bxcg.build(tm);
-      _contents_1.add(_build);
+      res.getContents().add(bxcg.build(tm));
       res.save(null);
     } catch (final Throwable _t) {
       if (_t instanceof Exception) {
         final Exception e = (Exception)_t;
         e.printStackTrace();
-        String _string = e.toString();
-        ConsoleUtil.printToConsole(_string, "XMU2", true);
+        ConsoleUtil.printToConsole(e.toString(), "XMU2", true);
       } else {
         throw Exceptions.sneakyThrow(_t);
       }
@@ -55,7 +48,6 @@ public class Xmu2Generator extends AbstractGenerator {
   }
   
   public static URI getBuildFileURI(final URI uri) {
-    URI _trimFileExtension = uri.trimFileExtension();
-    return _trimFileExtension.appendFileExtension(AnalysisUtil.CORE_EXTENSION);
+    return uri.trimFileExtension().appendFileExtension(AnalysisUtil.CORE_EXTENSION);
   }
 }

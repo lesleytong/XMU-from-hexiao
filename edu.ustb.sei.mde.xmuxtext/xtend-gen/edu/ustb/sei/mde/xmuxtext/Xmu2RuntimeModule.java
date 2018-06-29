@@ -4,7 +4,6 @@
 package edu.ustb.sei.mde.xmuxtext;
 
 import com.google.inject.Binder;
-import com.google.inject.binder.AnnotatedBindingBuilder;
 import com.google.inject.binder.ScopedBindingBuilder;
 import edu.ustb.sei.mde.xmuxtext.AbstractXmu2RuntimeModule;
 import edu.ustb.sei.mde.xmuxtext.customize.common.DefaultCrossReferenceSerializer;
@@ -24,8 +23,7 @@ import org.eclipse.xtext.serializer.tokens.ICrossReferenceSerializer;
 @SuppressWarnings("all")
 public class Xmu2RuntimeModule extends AbstractXmu2RuntimeModule {
   public ScopedBindingBuilder configureIResolverRegister(final Binder binder) {
-    AnnotatedBindingBuilder<IResolverRegister> _bind = binder.<IResolverRegister>bind(IResolverRegister.class);
-    return _bind.to(Xmu2ResolverRegister.class);
+    return binder.<IResolverRegister>bind(IResolverRegister.class).to(Xmu2ResolverRegister.class);
   }
   
   @Override
@@ -39,12 +37,10 @@ public class Xmu2RuntimeModule extends AbstractXmu2RuntimeModule {
   }
   
   public ScopedBindingBuilder configureIQualifiedNameConverter(final Binder binder) {
-    AnnotatedBindingBuilder<IQualifiedNameConverter> _bind = binder.<IQualifiedNameConverter>bind(IQualifiedNameConverter.class);
-    return _bind.to(Xmu2QualifiedNameConverter.class);
+    return binder.<IQualifiedNameConverter>bind(IQualifiedNameConverter.class).to(Xmu2QualifiedNameConverter.class);
   }
   
   public ScopedBindingBuilder configureCrossReferenceSerializer(final Binder binder) {
-    AnnotatedBindingBuilder<ICrossReferenceSerializer> _bind = binder.<ICrossReferenceSerializer>bind(ICrossReferenceSerializer.class);
-    return _bind.to(DefaultCrossReferenceSerializer.class);
+    return binder.<ICrossReferenceSerializer>bind(ICrossReferenceSerializer.class).to(DefaultCrossReferenceSerializer.class);
   }
 }

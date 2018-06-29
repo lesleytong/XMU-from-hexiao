@@ -10,9 +10,7 @@ import edu.ustb.sei.mde.xmu2.EntryData;
 import edu.ustb.sei.mde.xmu2.EntryPoint;
 import edu.ustb.sei.mde.xmu2.ModelRule;
 import edu.ustb.sei.mde.xmu2.Parameter;
-import edu.ustb.sei.mde.xmu2.VariableDeclaration;
 import edu.ustb.sei.mde.xmu2.Xmu2Package;
-import edu.ustb.sei.mde.xmu2.expression.Expression;
 import edu.ustb.sei.mde.xmu2.pattern.ObjectPatternExpression;
 import edu.ustb.sei.mde.xmu2.pattern.PatternExpression;
 import edu.ustb.sei.mde.xmu2.pattern.PatternNode;
@@ -36,7 +34,6 @@ import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.xbase.lib.Exceptions;
@@ -56,8 +53,7 @@ public class Xmu2Validator extends AbstractXmu2Validator {
       EList<PatternExpression> _expressions = r.getExpressions();
       for (final PatternExpression e : _expressions) {
         {
-          VariableDeclaration _variable = r.getVariable();
-          EClassifier cls = _variable.getType();
+          EClassifier cls = r.getVariable().getType();
           if ((cls instanceof EClass)) {
             if (((!Constants.REFLECTIVE_OBJECT.getEAllStructuralFeatures().contains(e.getFeature())) && 
               (!((EClass) cls).getEAllStructuralFeatures().contains(e.getFeature())))) {
@@ -66,11 +62,8 @@ public class Xmu2Validator extends AbstractXmu2Validator {
           }
           if ((e instanceof ObjectPatternExpression)) {
             EStructuralFeature f = ((ObjectPatternExpression)e).getFeature();
-            PatternNode _targetNode = ((ObjectPatternExpression) e).getTargetNode();
-            VariableDeclaration _variable_1 = _targetNode.getVariable();
-            EClassifier tarType = _variable_1.getType();
-            EClassifier _eType = f.getEType();
-            boolean _isSuperTypeOf = AnalysisUtil.isSuperTypeOf(_eType, tarType);
+            EClassifier tarType = ((ObjectPatternExpression) e).getTargetNode().getVariable().getType();
+            boolean _isSuperTypeOf = AnalysisUtil.isSuperTypeOf(f.getEType(), tarType);
             boolean _not = (!_isSuperTypeOf);
             if (_not) {
               this.error("type inconsistency", e, PatternPackage.Literals.OBJECT_PATTERN_EXPRESSION__TARGET_NODE);
@@ -108,9 +101,7 @@ public class Xmu2Validator extends AbstractXmu2Validator {
             } else {
               if ((o instanceof AssignStatement)) {
                 if ((isArithmeticRule == false)) {
-                  EObject _eContainer = ((AssignStatement)o).eContainer();
-                  EReference _eContainmentFeature = ((AssignStatement)o).eContainmentFeature();
-                  this.error("you cannot use the AssignStatement in a model rule", _eContainer, _eContainmentFeature);
+                  this.error("you cannot use the AssignStatement in a model rule", ((AssignStatement)o).eContainer(), ((AssignStatement)o).eContainmentFeature());
                 }
               } else {
                 if ((o instanceof BlockStatement)) {
@@ -118,9 +109,7 @@ public class Xmu2Validator extends AbstractXmu2Validator {
                   if ((o instanceof Fail)) {
                   } else {
                     if (isArithmeticRule) {
-                      EObject _eContainer_1 = ((Statement)o).eContainer();
-                      EReference _eContainmentFeature_1 = ((Statement)o).eContainmentFeature();
-                      this.error("you cannot use this statement in a function", _eContainer_1, _eContainmentFeature_1);
+                      this.error("you cannot use this statement in a function", ((Statement)o).eContainer(), ((Statement)o).eContainmentFeature());
                     }
                   }
                 }
@@ -148,20 +137,16 @@ public class Xmu2Validator extends AbstractXmu2Validator {
   public void checkEntryPoints(final EntryPoint ep) {
     try {
       ModelRule rule = ep.getRule();
-      EList<Parameter> _parameters = rule.getParameters();
-      int _size = _parameters.size();
-      EList<EntryData> _parameters_1 = ep.getParameters();
-      int _size_1 = _parameters_1.size();
+      int _size = rule.getParameters().size();
+      int _size_1 = ep.getParameters().size();
       boolean _notEquals = (_size != _size_1);
       if (_notEquals) {
         this.error("the number of parameters is incorrect", ep, Xmu2Package.Literals.ENTRY_POINT__PARAMETERS);
       } else {
         for (int i = 0; (i < rule.getParameters().size()); i++) {
           {
-            EList<Parameter> _parameters_2 = rule.getParameters();
-            Parameter fp = _parameters_2.get(i);
-            EList<EntryData> _parameters_3 = ep.getParameters();
-            EntryData ed = _parameters_3.get(i);
+            Parameter fp = rule.getParameters().get(i);
+            EntryData ed = ep.getParameters().get(i);
             DomainTag _tag = fp.getTag();
             DomainTag _tag_1 = ed.getTag();
             boolean _notEquals_1 = (!Objects.equal(_tag, _tag_1));
@@ -202,24 +187,18 @@ public class Xmu2Validator extends AbstractXmu2Validator {
           if ((o instanceof RuleCallStatement)) {
             RuleCallStatement rc = ((RuleCallStatement) o);
             AbstractRule r = rc.getRule();
-            EList<Parameter> _parameters = r.getParameters();
-            int _size = _parameters.size();
-            EList<Expression> _parameters_1 = rc.getParameters();
-            int _size_1 = _parameters_1.size();
+            int _size = r.getParameters().size();
+            int _size_1 = rc.getParameters().size();
             boolean _notEquals = (_size != _size_1);
             if (_notEquals) {
               this.error("the parameter count is inconsistent", rc, StatementPackage.Literals.RULE_CALL_STATEMENT__PARAMETERS);
             } else {
-              EList<Parameter> _parameters_2 = r.getParameters();
-              int size = _parameters_2.size();
+              int size = r.getParameters().size();
               for (int i = 0; (i < size); i++) {
                 {
-                  EList<Expression> _parameters_3 = rc.getParameters();
-                  EObject ap = _parameters_3.get(i);
-                  EList<Parameter> _parameters_4 = r.getParameters();
-                  Parameter fp = _parameters_4.get(i);
-                  DomainTag _tag = fp.getTag();
-                  cont.checkVariableUsage(ap, this, _tag);
+                  EObject ap = rc.getParameters().get(i);
+                  Parameter fp = r.getParameters().get(i);
+                  cont.checkVariableUsage(ap, this, fp.getTag());
                 }
               }
             }
@@ -229,9 +208,7 @@ public class Xmu2Validator extends AbstractXmu2Validator {
     } catch (final Throwable _t) {
       if (_t instanceof Exception) {
         final Exception e = (Exception)_t;
-        EObject _eContainer = rule.eContainer();
-        EReference _eContainmentFeature = rule.eContainmentFeature();
-        this.warning("validity check is not finished because of some exception", _eContainer, _eContainmentFeature);
+        this.warning("validity check is not finished because of some exception", rule.eContainer(), rule.eContainmentFeature());
       } else {
         throw Exceptions.sneakyThrow(_t);
       }

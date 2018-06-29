@@ -7,10 +7,12 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -18,6 +20,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.Resource.Factory;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.resource.impl.URIConverterImpl;
@@ -103,7 +106,7 @@ public class Environment {
 
 			Resource spr = resourceSet.createResource(spuri);
 			
-			Copier copier = new Copier();
+			Copier copier = new CustomizedCopier(spr);
 		    Collection<EObject> result = copier.copyAll(sr.getContents());
 		    copier.copyReferences();
 		    
@@ -121,6 +124,26 @@ public class Environment {
 		    oclResource.setTag(DomainTag.UPDATED_SOURCE);
 			resourceMap.put(spr,oclResource);
 			this.putDefault(resourceMap.get(sr), oclResource);
+		}
+	}
+	
+	/**
+	 * This copier is created to handle the case when a copied object requires to access the resource set
+	 * @author hexiao
+	 *
+	 */
+	class CustomizedCopier extends Copier {
+		private static final long serialVersionUID = -6811066578740405027L;
+		protected CustomizedCopier(Resource copiedResource) {
+			super();
+			this.copiedResource = copiedResource;
+		}
+		private Resource copiedResource;
+		@Override
+		protected EObject createCopy(EObject eObject) {
+			EObject copy = super.createCopy(eObject);
+			copiedResource.getContents().add(copy);
+			return copy;
 		}
 	}
 	
@@ -398,6 +421,17 @@ public class Environment {
 		Transformation t =  (Transformation) res.getContents().get(0);
 		for(EPackage p : t.getPackages()) {
 			resourceSet.getPackageRegistry().put(p.getNsURI(), p);
+			EAnnotation ann = p.getEAnnotation("http://www.ustb.edu.cn/sei/mde/xmu/resource");
+			if(ann!=null) {
+				for(Entry<String,String> e : ann.getDetails()) {
+					try {
+						Class<?> clazz = p.getClass().getClassLoader().loadClass(e.getValue());
+						resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(e.getKey(), clazz.newInstance());
+					} catch(Exception ee) {
+						System.out.println(ee);
+					}
+				}
+			}
 		}
 		return t;
 	}

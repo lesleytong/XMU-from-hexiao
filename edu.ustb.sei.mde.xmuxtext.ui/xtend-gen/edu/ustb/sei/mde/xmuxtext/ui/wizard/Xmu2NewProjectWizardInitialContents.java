@@ -9,15 +9,14 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 @SuppressWarnings("all")
 public class Xmu2NewProjectWizardInitialContents {
   public ByteArrayInputStream generateInitialContents(final String newName, final boolean ecore, final String[] importFiles) {
-    String _generateInitialContentString = this.generateInitialContentString(newName, ecore, importFiles);
-    byte[] _bytes = _generateInitialContentString.getBytes();
+    byte[] _bytes = this.generateInitialContentString(newName, ecore, importFiles).getBytes();
     return new ByteArrayInputStream(_bytes);
   }
   
   public String generateInitialContentString(final String newName, final boolean ecore, final String[] importFiles) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("module ");
-    _builder.append(newName, "");
+    _builder.append(newName);
     _builder.newLineIfNotEmpty();
     _builder.newLine();
     {
@@ -32,7 +31,7 @@ public class Xmu2NewProjectWizardInitialContents {
     {
       for(final String str : importFiles) {
         _builder.append("import <");
-        _builder.append(str, "");
+        _builder.append(str);
         _builder.append(">");
         _builder.newLineIfNotEmpty();
       }

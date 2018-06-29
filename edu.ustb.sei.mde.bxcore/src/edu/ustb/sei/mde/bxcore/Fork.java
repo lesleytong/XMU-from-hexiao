@@ -1,0 +1,263 @@
+package edu.ustb.sei.mde.bxcore;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import edu.ustb.sei.mde.bxcore.exceptions.BidirectionalTransformationDefinitionException;
+import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
+import edu.ustb.sei.mde.bxcore.exceptions.UninitializedException;
+import edu.ustb.sei.mde.bxcore.structures.Context;
+import edu.ustb.sei.mde.bxcore.structures.ContextType;
+import edu.ustb.sei.mde.bxcore.structures.FieldDef;
+import edu.ustb.sei.mde.graph.typedGraph.IndexSystem;
+import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
+import edu.ustb.sei.mde.graph.typedGraph.constraint.GraphConstraint;
+import edu.ustb.sei.mde.structure.Tuple2;
+import edu.ustb.sei.mde.structure.Tuple3;
+
+public class Fork extends XmuCore {
+	private Tuple3<Tuple2<String,String>[],Tuple2<String,String>[], XmuCore>[] forks;
+
+	public Fork(Object key, ContextType sourceDef, ContextType viewDef, Tuple3<Tuple2<String,String>[],Tuple2<String,String>[], XmuCore>[] forks) 
+			throws BidirectionalTransformationDefinitionException {
+		super(key, sourceDef, viewDef);
+		this.forks = forks;
+		
+		checkWellDefinedness();
+	}
+	
+	@Override
+	protected void checkWellDefinedness() throws BidirectionalTransformationDefinitionException {
+		Set<FieldDef<?>> viewFields = new HashSet<>();
+		
+		for(Tuple3<Tuple2<String,String>[],Tuple2<String,String>[], XmuCore> fork : forks) {
+			Set<FieldDef<?>> downSrcFields = new HashSet<>();
+			
+			for(Tuple2<String,String> m : fork.first) {
+				FieldDef<?> up = this.getSourceDef().getField(m.first);
+				FieldDef<?> down = fork.third.getSourceDef().getField(m.second);
+				if(up==null || down==null)
+					throw new BidirectionalTransformationDefinitionException("Invalid mapping "+m);
+				
+				downSrcFields.add(down);
+			}
+			
+			if(!downSrcFields.containsAll(fork.third.getSourceDef().fields()))
+				throw new BidirectionalTransformationDefinitionException("Invalid downstream fork type: "+fork.third.getSerializationKey());
+			
+			Set<FieldDef<?>> downViwFields = new HashSet<>();
+			for(Tuple2<String,String> m : fork.second) {
+				FieldDef<?> up = this.getViewDef().getField(m.first);
+				FieldDef<?> down = fork.third.getViewDef().getField(m.second);
+				if(up==null || down==null)
+					throw new BidirectionalTransformationDefinitionException("Invalid mapping "+m);
+				
+				downViwFields.add(down);
+				viewFields.add(up);
+			}
+			
+			if(!downViwFields.containsAll(fork.third.getViewDef().fields()))
+				throw new BidirectionalTransformationDefinitionException("Invalid downstream fork type: "+fork.third.getSerializationKey());
+		}
+		
+		if(!viewFields.containsAll(this.getViewDef().fields()))
+			throw new BidirectionalTransformationDefinitionException("Not all view fields are converted! "+viewFields);
+	}
+
+
+	@Override
+	protected GraphConstraint generateConsistencyConstraint() {
+		return GraphConstraint.TRUE;
+	}
+
+	@Override
+	public ViewType forward(SourceType s) throws NothingReturnedException {
+		ViewType[] viewResults = new ViewType[this.forks.length];
+		Context[] downStreamSources = new Context[this.forks.length];
+		
+		for(int i=0;i<this.forks.length;i++) {
+//			Context newSource = s.second.downstream(this.forks[i].first, this.forks[i].third.getSourceDef(), false);
+			Context newSource = this.createDownstreamContext(this.forks[i].first, s.second, this.forks[i].third.getSourceDef(), false);
+			
+			newSource.setUpstream(s.second, this.forks[i].first);
+			downStreamSources[i] = newSource;
+			
+			viewResults[i] = forks[i].third.forward(SourceType.makeSource(s.first, newSource, s.third));
+		}
+		
+		ContextType upstreamViewType = this.getViewDef();
+		Context upstreamView = this.createViewContext();
+		
+		for(FieldDef<?> uk : upstreamViewType.fields()) {
+			try {
+				upstreamView.setValue(uk, summarize(viewResults,uk));
+			} catch (Exception e) {
+				if(uk.isElementType()) {
+					Object common = IndexSystem.generateUUID();
+					upstreamView.setValue(uk, common);
+					
+					for(int i=0;i<viewResults.length;i++) {
+						ViewType v = viewResults[i];
+						Tuple2<String,String>[] mappings = this.forks[i].second;
+						Set<FieldDef<?>> dks = XmuCoreUtils.findDownKeys(uk, mappings,this.forks[i].third.getViewDef());
+						for(FieldDef<?> dk : dks) {
+							try {
+								// in principle, we should reset downstream values
+								v.first.addIndex(common, v.first.getElementByIndexObject(v.second.getIndexValue(dk)));
+							} catch (UninitializedException e1) {
+								return nothing(e1);
+							}
+						}
+					}
+					
+				} else return nothing();
+			}
+		}
+		
+		TypedGraph finalView = null;
+		for(ViewType v : viewResults) {
+			v.second.setUpstream(upstreamView);
+			v.second.submit();
+			if(finalView==null) finalView = v.first;
+			else finalView = finalView.additiveMerge(v.first);
+		}
+		
+		this.submit(downStreamSources);
+		finalView.setConstraint(getConsistencyConstraint());
+		
+		return ViewType.makeView(finalView, upstreamView);
+	}
+
+	private Object summarize(ViewType[] result, FieldDef<?> vk) throws NothingReturnedException {
+		Object value = null;
+		boolean init = false;
+		
+		
+		for(int i=0;i<result.length;i++) {
+			ViewType v = result[i];
+			Tuple2<String, String>[] mappings = forks[i].second;
+			
+			for(Tuple2<String, String> m : mappings) {
+				if(m.first.equals(vk.getName())==false) continue;
+				try {
+					Object downValue = v.second.getValue(m.second);
+					if(!init) {
+						value = downValue;
+						init = true;
+					} else if(value.equals(downValue)==false) 
+						return nothing();
+				} catch (Exception e) {
+					return nothing(e);
+				}
+			}
+		}
+		
+		if(init) return value;
+		else return nothing();
+	}
+	
+	private Object summarize(SourceType[] result,  FieldDef<?> sk) throws NothingReturnedException {
+		Object value = null;
+		boolean init = false;
+		
+		
+		for(int i=0;i<result.length;i++) {
+			SourceType s = result[i];
+			Tuple2<String, String>[] mappings = forks[i].first;
+			
+			for(Tuple2<String, String> m : mappings) {
+				if(m.first.equals(sk.getName())==false) continue;
+				
+				try {
+					Object downValue = s.second.getValue(m.second);
+					if(!init) {
+						value = downValue;
+						init = true;
+					} else if(value==downValue || value.equals(downValue)==false)
+						return nothing();
+				} catch (Exception e) {
+					return nothing(e);
+				}
+			}
+		}
+		
+		if(init) return value;
+		else return nothing();
+	}
+
+	@Override
+	public SourceType backward(SourceType s, ViewType v) throws NothingReturnedException {
+		Context[] downstreamSources = new Context[this.forks.length];
+		Context[] downstreamViews = new Context[this.forks.length];
+		
+		SourceType[] sourceResults = new SourceType[this.forks.length];
+		
+		TypedGraph[] interSources = new TypedGraph[this.forks.length];
+		TraceSystem[] interTraces = new TraceSystem[this.forks.length];
+		
+		for(int i=0;i<this.forks.length;i++) {
+//			downstreamSources[i] = s.second.downstream(this.forks[i].first, this.forks[i].third.getSourceDef(), true);
+//			downstreamViews[i] = v.second.downstream(this.forks[i].second, this.forks[i].third.getViewDef(), true);
+			downstreamSources[i] = this.createDownstreamContext(this.forks[i].first, s.second, this.forks[i].third.getSourceDef(), true);
+			downstreamViews[i] = this.createDownstreamContext(this.forks[i].second, v.second, this.forks[i].third.getViewDef(), true);
+			
+			
+			sourceResults[i] = this.forks[i].third.backward(SourceType.makeSource(s.first, downstreamSources[i], s.third), ViewType.makeView(v.first, downstreamViews[i]));
+			
+			interSources[i] = sourceResults[i].first;
+			interTraces[i] = sourceResults[i].third;
+		}
+		
+		if(v.second.horizontalCorrnectness(downstreamViews, interTraces)==false) {
+			XmuCoreUtils.failure("Shared node issue in view detected");
+		}
+		
+		Context finalSourcePost = this.createSourceContext();
+		finalSourcePost.initWith(s.second);
+		
+		ContextType st = this.getSourceDef();
+		
+		for(FieldDef<?> uk : st.fields()) {
+			try {
+				finalSourcePost.setValue(uk, summarize(sourceResults, uk));
+			} catch (Exception e) {
+				if(uk.isElementType()) {
+					Object value = IndexSystem.generateUUID();
+					finalSourcePost.setValue(uk, value);
+					
+					for(int i=0;i<sourceResults.length;i++) {
+						SourceType sp = sourceResults[i];
+						Tuple2<String,String>[] mappings = this.forks[i].second;
+						Set<FieldDef<?>> dks = XmuCoreUtils.findDownKeys(uk, mappings, this.forks[i].third.getSourceDef());
+						
+						for(FieldDef<?> dk : dks) {
+							try {
+								// in principle, we should reset downstream values
+								sp.first.addIndex(value, sp.first.getElementByIndexObject(sp.second.getIndexValue(dk)));
+							} catch (UninitializedException e1) {
+								return nothing(e1);
+							}
+						}
+					}
+				} else return nothing(e);
+			}
+		}
+		
+		TypedGraph finalSource = s.first.merge(interSources);
+		TraceSystem finalTrace = TraceSystem.merge(interTraces);
+		
+		
+		submit(downstreamSources);
+		submit(downstreamViews);
+		for(SourceType r : sourceResults) {
+			r.second.setUpstream(finalSourcePost);
+			r.second.submit();
+		}
+		
+		finalTrace.trace(this.getSerializationKey(), s.second, v.second, finalSourcePost);
+		finalSource.setConstraint(getConsistencyConstraint());
+		
+		return SourceType.makeSource(finalSource, finalSourcePost, finalTrace);
+	}
+
+}
