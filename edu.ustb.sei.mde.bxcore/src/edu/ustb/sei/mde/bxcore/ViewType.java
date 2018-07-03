@@ -14,4 +14,11 @@ public class ViewType extends Tuple2<TypedGraph, Context> {
 		return new ViewType(first, second);
 	}
 
+	public ViewType replaceFirst(TypedGraph f) {
+		return ViewType.makeView(f, second);
+	}
+	
+	public ViewType replaceSecond(Context s) {
+		return ViewType.makeView(first, s);
+	}
 }

@@ -26,4 +26,8 @@ public class PairMap<F, S, V> {
 		}
 		map.put(s, v);
 	}
+	
+	public void clear() {
+		pairMap.clear();
+	}
 }

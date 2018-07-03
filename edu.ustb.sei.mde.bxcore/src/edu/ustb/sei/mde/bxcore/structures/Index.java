@@ -103,4 +103,9 @@ public class Index implements Cloneable {
 	public Object getFixedIndex() {
 		return fixedIndex;
 	}
+	
+	@Override
+	public String toString() {
+		return "@"+this.internalIndices;
+	}
 }

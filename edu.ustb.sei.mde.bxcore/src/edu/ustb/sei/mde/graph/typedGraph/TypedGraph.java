@@ -8,10 +8,11 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import edu.ustb.sei.mde.bxcore.XmuCoreUtils;
 import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
-import edu.ustb.sei.mde.bxcore.structures.Environment;
+import edu.ustb.sei.mde.bxcore.structures.Index;
 import edu.ustb.sei.mde.graph.Derived;
 import edu.ustb.sei.mde.graph.IEdge;
 import edu.ustb.sei.mde.graph.IGraph;
@@ -36,20 +37,28 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		incomingEdgeMap = new HashMap<TypedNode,List<TypedEdge>>();
 		outgoingEdgeMap = new HashMap<TypedNode,List<TypedEdge>>();
 		
+		order = new OrderInformation();
+		
 		constraint = GraphConstraint.TRUE;
 	}
 	
+	public OrderInformation getOrder() {
+		return order;
+	}
+	
+	private OrderInformation order;
+	
 	private GraphConstraint constraint;
 	
-	private Environment environment;
-	
-	public Environment getEnvironment() {
-		return environment;
-	}
-
-	public void setEnvironment(Environment environment) {
-		this.environment = environment;
-	}
+//	private Environment environment;
+//	
+//	public Environment getEnvironment() {
+//		return environment;
+//	}
+//
+//	public void setEnvironment(Environment environment) {
+//		this.environment = environment;
+//	}
 
 	@Override
 	@Derived
@@ -415,6 +424,9 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		copy.getAllValueEdges().addAll(this.getAllValueEdges());
 		
 		copy.indexToObjectMap.putAll(this.indexToObjectMap);
+		
+		copy.order = this.order.getCopy();
+		
 		copy.constraint=this.constraint;
 		
 		return copy;
@@ -460,21 +472,23 @@ public class TypedGraph extends IndexSystem implements IGraph {
 			}
 		});
 		
+		result.order.merge(graph.order);
+		
 		result.constraint=GraphConstraint.and(this.constraint, graph.constraint);
 		// check 
 		
 		return result;
 	}
 	
-	private void remove(TypedNode n) {
+	public void remove(TypedNode n) {
 		this.allTypedNodes.remove(n);
-		this.clear(n);
+		this.clearIndex(n);
 		
 		for(int i = this.allTypedEdges.size()-1;i>=0;i--) {
 			TypedEdge e = this.allTypedEdges.get(i);
 			if(e.getSource()==n || e.getTarget()==n) {
 				this.allTypedEdges.remove(i);
-				this.clear(e);
+				this.clearIndex(e);
 				i++;
 			}
 		}
@@ -483,7 +497,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 			ValueEdge e = this.allValueEdges.get(i);
 			if(e.getSource()==n) {
 				this.allValueEdges.remove(i);
-				this.clear(e);
+				this.clearIndex(e);
 				i++;
 			}
 		}
@@ -532,7 +546,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 						return res;
 					} else {
 						removedTypedEdges.add(e);
-						clear(e);
+						clearIndex(e);
 						return e;
 					}
 				} else if(e.getSource()==nr) {
@@ -546,7 +560,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 						return res;
 					} else {
 						removedTypedEdges.add(e);
-						clear(e);
+						clearIndex(e);
 						return e;
 					}
 				} else if(e.getTarget()==nr) {
@@ -560,7 +574,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 						return res;
 					} else {
 						removedTypedEdges.add(e);
-						clear(e);
+						clearIndex(e);
 						return e;
 					}
 				} else 
@@ -584,7 +598,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 						return res;
 					} else {
 						removedValueEdges.add(e);
-						clear(e);
+						clearIndex(e);
 						return e;
 					}
 				} else return e;
@@ -777,6 +791,11 @@ public class TypedGraph extends IndexSystem implements IGraph {
 			}
 		}
 		
+		OrderInformation[] orders = new OrderInformation[interSources.length];
+		for(int i=0;i<interSources.length;i++)
+			orders[i] = interSources[i].order;
+		result.order.merge(orders);
+		
 		List<GraphConstraint> cons = new ArrayList<>();
 		cons.add(this.getConstraint());
 		for(TypedGraph g : interSources) {
@@ -837,14 +856,14 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		}
 	}
 
-	private void remove(ValueEdge baseEdge) {
+	public void remove(ValueEdge baseEdge) {
 		this.allValueEdges.remove(baseEdge);
-		this.clear(baseEdge);
+		this.clearIndex(baseEdge);
 	}
 
-	private void remove(TypedEdge baseEdge) {
+	public void remove(TypedEdge baseEdge) {
 		this.allTypedEdges.remove(baseEdge);
-		this.clear(baseEdge);
+		this.clearIndex(baseEdge);
 		// compute pre-deleted elements when baseEdge is containment, or not?
 	}
 
@@ -1085,6 +1104,30 @@ public class TypedGraph extends IndexSystem implements IGraph {
 				this.addTypedEdge(e);
 			}
 		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void enforceOrder() throws NothingReturnedException {
+		List<? extends ITypedEdge> results = null;
+		
+		results = reorderEdges(this.allTypedEdges);
+		this.allTypedEdges = (List<TypedEdge>) results;
+		
+		results = reorderEdges(this.allValueEdges);
+		this.allValueEdges = (List<ValueEdge>) results;
+	}
+
+	private List<? extends ITypedEdge> reorderEdges(List<? extends ITypedEdge> edges) throws NothingReturnedException {
+		List<Index> indices = edges.stream().map(e->((IndexableElement)e).getIndex()).collect(Collectors.toList());
+		
+		Index[] orderedIndices = this.order.planOrder(indices);
+		
+		List<? extends ITypedEdge> results = new ArrayList<>();
+		
+		for(Index i : orderedIndices) {
+			results.add(this.getElementByIndexObject(i));
+		}
+		return results;
 	}
 
 }

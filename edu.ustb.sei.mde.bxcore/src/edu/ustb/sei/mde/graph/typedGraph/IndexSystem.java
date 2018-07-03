@@ -42,7 +42,7 @@ public class IndexSystem {
 	
 
 	
-	protected void clear(IndexableElement e) {
+	protected void clearIndex(IndexableElement e) {
 		e.foreach(i->{
 			this.indexToObjectMap.remove(i);
 		});

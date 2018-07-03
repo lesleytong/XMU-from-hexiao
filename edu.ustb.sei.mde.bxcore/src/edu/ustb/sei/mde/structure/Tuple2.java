@@ -41,4 +41,12 @@ public class Tuple2<F, S> {
 	public String toString() {
 		return "<"+first+","+second+">";
 	}
+	
+	public Tuple2<F,S> replaceFirst(F f) {
+		return Tuple2.make(f, second);
+	}
+	
+	public Tuple2<F,S> replaceSecond(S s) {
+		return Tuple2.make(first, s);
+	}
 }

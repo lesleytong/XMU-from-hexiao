@@ -13,5 +13,17 @@ public class SourceType extends Tuple3<TypedGraph, Context, TraceSystem> {
 	public static SourceType makeSource(TypedGraph first, Context second, TraceSystem ts) {
 		return new SourceType(first, second, ts);
 	}
+	
+	public SourceType replaceFirst(TypedGraph g) {
+		return SourceType.makeSource(g, second, third);
+	}
+	
+	public SourceType replaceSecond(Context s) {
+		return SourceType.makeSource(first, s, third);
+	}
+	
+	public SourceType replaceThird(TraceSystem t) {
+		return SourceType.makeSource(first, second, t);
+	}
 
 }
