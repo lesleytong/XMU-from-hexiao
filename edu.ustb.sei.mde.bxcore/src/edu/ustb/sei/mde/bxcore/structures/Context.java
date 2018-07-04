@@ -354,4 +354,8 @@ public class Context {
 		});
 		
 	}
+	
+	static public Context emptyContext() {
+		return ContextType.EMPTY_TYPE.createInstance();
+	}
 }

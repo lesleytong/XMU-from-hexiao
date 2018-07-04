@@ -489,7 +489,6 @@ public class TypedGraph extends IndexSystem implements IGraph {
 			if(e.getSource()==n || e.getTarget()==n) {
 				this.allTypedEdges.remove(i);
 				this.clearIndex(e);
-				i++;
 			}
 		}
 		
@@ -498,7 +497,6 @@ public class TypedGraph extends IndexSystem implements IGraph {
 			if(e.getSource()==n) {
 				this.allValueEdges.remove(i);
 				this.clearIndex(e);
-				i++;
 			}
 		}
 	}
@@ -631,6 +629,9 @@ public class TypedGraph extends IndexSystem implements IGraph {
 				if(finalType==TypeNode.NULL_TYPE) {
 					result.remove(baseNode);
 				} else {
+					if(finalType==TypeNode.ANY_TYPE)
+						finalType = baseNode.getType();
+					
 					TypedNode n = new TypedNode();
 					n.setType(finalType);
 					
@@ -750,7 +751,16 @@ public class TypedGraph extends IndexSystem implements IGraph {
 					try {
 						re = result.getElementByIndexObject(e.getIndex());
 					} catch (Exception ex2) {
-						result.addTypedEdge(e);
+						TypedNode source = result.getElementByIndexObject(e.getSource().getIndex());
+						TypedNode target = result.getElementByIndexObject(e.getTarget().getIndex());
+						if(e.getSource()!=source || e.getTarget()!=target) {
+							TypedEdge ne = new TypedEdge();
+							ne.setSource(source);
+							ne.setTarget(target);
+							ne.setType(e.getType());
+							ne.mergeIndex(e);
+							result.addTypedEdge(ne);
+						} else result.addTypedEdge(e);
 						re = null;
 					} finally {
 						if(re!=null) {
@@ -774,7 +784,17 @@ public class TypedGraph extends IndexSystem implements IGraph {
 					try {
 						re = result.getElementByIndexObject(e.getIndex());
 					} catch (Exception ex2) {
-						result.addValueEdge(e);
+						TypedNode source = result.getElementByIndexObject(e.getSource().getIndex());
+//						ValueNode target = e.getTarget();
+						if(e.getSource()!=source) {
+							ValueEdge ne = new ValueEdge();
+							ne.setSource(source);
+							ne.setTarget(e.getTarget());
+							ne.setType(e.getType());
+							ne.mergeIndex(e);
+							result.addValueEdge(ne);
+						} else result.addValueEdge(e);
+//						result.addValueEdge(e);
 						re = null;
 					} finally {
 						if(re!=null) {

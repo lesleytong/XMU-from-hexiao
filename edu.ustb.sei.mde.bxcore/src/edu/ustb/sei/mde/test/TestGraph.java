@@ -16,6 +16,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import edu.ustb.sei.mde.bxcore.Align;
 import edu.ustb.sei.mde.bxcore.ExpandSource;
 import edu.ustb.sei.mde.bxcore.ExpandView;
 import edu.ustb.sei.mde.bxcore.GraphReplace;
@@ -36,6 +37,7 @@ import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
 import edu.ustb.sei.mde.bxcore.exceptions.UninitializedException;
 import edu.ustb.sei.mde.bxcore.structures.Context;
 import edu.ustb.sei.mde.bxcore.structures.ContextType;
+import edu.ustb.sei.mde.bxcore.structures.FieldDef;
 import edu.ustb.sei.mde.bxcore.structures.Index;
 import edu.ustb.sei.mde.graph.pattern.Pattern;
 import edu.ustb.sei.mde.graph.type.PropertyEdge;
@@ -538,14 +540,8 @@ class TestGraph {
 								)
 						);
 		
-//		System.out.println(typeS.printGraph());
-//		System.out.println(typeV.printGraph());
 		System.out.println(source.printGraph());
 		System.out.println(view.printGraph());
-//		System.out.println(patS1);
-////		System.out.println(patS2);
-//		System.out.println(patV1);
-//		System.out.println(patV1);
 		
 		ViewType v = bx.forward(SourceType.makeSource(source, new Context(ContextType.EMPTY_TYPE), new TraceSystem()));		
 		System.out.println(v.first.printGraph());
@@ -812,6 +808,164 @@ class TestGraph {
 				ViewType.makeView(view, ContextType.EMPTY_TYPE.createInstance()));
 		
 		System.out.println(sp.first.printGraph());
+	}
+	
+	@Test
+	void testOrder() throws NothingReturnedException {
+		TypeGraph type = new TypeGraph();
+		type.declare("A;"
+				+ "B;"
+				+ "String:java.lang.String;"
+				+ "bSet:A->B*;"
+				+ "name:B->String;");
+		
+		TypedGraph graph = new TypedGraph(type);
+		graph.declare("root : A;"
+				+ "b1 : B;"
+				+ "b2 : B;"
+				+ "b3 : B;"
+				+ "b4 : B;"
+				+ "root-bSet->b1;"
+				+ "root-bSet->b2;"
+				+ "root-bSet->b3;"
+				+ "root-bSet->b4;"
+				+ "b1.name=\"b1\";"
+				+ "b2.name=\"b2\";"
+				+ "b3.name=\"b3\";"
+				+ "b4.name=\"b4\";");
+		
+		graph.getOrder().add(graph.getAllTypedEdges().get(1).getIndex(), graph.getAllTypedEdges().get(0).getIndex());
+		graph.getOrder().add(graph.getAllTypedEdges().get(2).getIndex(), graph.getAllTypedEdges().get(1).getIndex());
+		
+		Pattern p = new Pattern();
+		p.setTypeGraph(type);
+		p.declare("r : A;"
+				+ "b : B;"
+				+ "n : String;"
+				+ "r2b : r-bSet->b;"
+				+ "b2n : b-name->n;");
+		
+		p.setOrderBy(p.getPatternElement("r2b"));
+		
+		
+		List<Context> matches = p.match(graph, ContextType.EMPTY_TYPE.createInstance());
+		
+		graph.enforceOrder();
+
+		System.out.println(matches);
+		
+		System.out.println(graph.printGraph());
+		
+	}
+	
+	@Test
+	void testAlign() throws BidirectionalTransformationDefinitionException, NothingReturnedException {
+		TypeGraph typeS = new TypeGraph();
+		typeS.declare("A;"
+				+ "B;"
+				+ "String:java.lang.String;"
+				+ "bSet:A->B*;"
+				+ "name:B->String;");
+		TypedGraph graphS = new TypedGraph(typeS);
+		graphS.declare("root : A;"
+				+ "b1 : B;"
+				+ "b2 : B;"
+				+ "b3 : B;"
+				+ "b4 : B;"
+				+ "root-bSet->b1;"
+				+ "root-bSet->b2;"
+				+ "root-bSet->b3;"
+				+ "root-bSet->b4;"
+				+ "b1.name=\"b1\";"
+				+ "b2.name=\"b2\";"
+				+ "b3.name=\"b3\";"
+				+ "b4.name=\"b4\";");
+		
+		Pattern patS0 = new Pattern();
+		patS0.setTypeGraph(typeS);
+		patS0.declare("r : A;");
+		Pattern patS = new Pattern();
+		patS.setTypeGraph(typeS);
+		patS.declare("r : A;"
+				+ "b : B;"
+				+ "n : String;"
+				+ "r2b : r-bSet->b;"
+				+ "b2n : b-name->n;");
+		patS.setOrderBy(patS.getPatternElement("r2b"));
+		
+		
+		TypeGraph typeV = new TypeGraph();
+		typeV.declare("X;"
+				+ "String:java.lang.String;"
+				+ "keys:X->String*;");
+		TypedGraph graphV = new TypedGraph(typeV);
+		graphV.declare("root : X;"
+				+ "root.keys=\"b5\";"
+				+ "root.keys=\"b6\";"
+				+ "root.keys=\"b3\";"
+				+ "root.keys=\"b4\";");
+		Pattern patV0 = new Pattern();
+		patV0.setTypeGraph(typeV);
+		patV0.declare("r : X;");
+		Pattern patV = new Pattern();
+		patV.setTypeGraph(typeV);
+		patV.declare("r : X;"
+				+ "n : String;"
+				+ "r2n : r-keys->n;");
+		patV.setOrderBy(patV.getPatternElement("r2n"));
+		
+		
+		XmuCore bx = new MatchSource("matchS", ContextType.EMPTY_TYPE, patS0,
+				new MatchView("matchV", ContextType.EMPTY_TYPE, patV0,
+						new Align("align", patS0.getType(), patV0.getType(), patS, patV, 
+								(s,v)->{
+									try {
+										return s.getValue("n").equals(v.getValue("n"));
+									} catch (UninitializedException | NothingReturnedException e) {
+										return false;
+									}
+								},
+								new GraphReplace("replace", patS, patV, new Tuple3[] {Tuple3.make(new String[] {"n"}, new String[] {"n"}, new Replace<Object[]>())}), 
+								(s,v)-> {
+									TypedGraph r = s.first.getCopy();
+									try {
+										Index id = s.second.getIndexValue(patS.getType().getField("b"));
+										r.remove((TypedNode)r.getElementByIndexObject(id));
+									} catch (UninitializedException | NothingReturnedException e) {
+									}
+									return SourceType.makeSource(r, s.second, s.third);
+								}, 
+								(s,v)-> {
+									Context context = patS.getType().createInstance();
+									for(FieldDef<?> k : patS0.getType().fields()) {
+										try {
+											context.setValue(k.getName(), s.second.getValue(k));
+										} catch (NullPointerException|UninitializedException|NothingReturnedException e) {
+										}
+									}
+									patS.getType().initializeSource(context, s.second, v.second, s.third);
+									TypedGraph r = s.first;
+									try {
+										context.setValue("n", v.second.getValue("n"));
+										TypedGraph add = patS.construct(s.first, context);
+										r = s.first.additiveMerge(add);
+									} catch (UninitializedException | NothingReturnedException e) {
+									}
+									
+									return SourceType.makeSource(r, context, s.third);
+								} 
+						)
+				));
+		
+		ViewType v = bx.forward(SourceType.makeSource(graphS, ContextType.EMPTY_TYPE.createInstance(), new TraceSystem()));
+		
+		System.out.println(v.first.printGraph());
+		
+		
+		SourceType sp = bx.backward(SourceType.makeSource(graphS, ContextType.EMPTY_TYPE.createInstance(), new TraceSystem()), ViewType.makeView(graphV, ContextType.EMPTY_TYPE.createInstance()));
+		
+		System.out.println(sp.first.printGraph());
+		
 	}
 
 }

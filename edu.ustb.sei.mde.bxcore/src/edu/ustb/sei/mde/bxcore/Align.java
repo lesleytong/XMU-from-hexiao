@@ -12,7 +12,9 @@ import edu.ustb.sei.mde.bxcore.exceptions.UninitializedException;
 import edu.ustb.sei.mde.bxcore.structures.Context;
 import edu.ustb.sei.mde.bxcore.structures.ContextType;
 import edu.ustb.sei.mde.bxcore.structures.FieldDef;
+import edu.ustb.sei.mde.bxcore.structures.Index;
 import edu.ustb.sei.mde.graph.pattern.Pattern;
+import edu.ustb.sei.mde.graph.pattern.PatternElement;
 import edu.ustb.sei.mde.graph.typedGraph.IndexSystem;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
 import edu.ustb.sei.mde.graph.typedGraph.constraint.GraphConstraint;
@@ -31,7 +33,7 @@ public class Align extends XmuCore {
 		this.match = match;
 		this.unmatchedSource = unmatchedSource;
 		this.unmatchedView = unmatchedView;
-		this.isOrdered = false;
+		this.isOrdered = patV.getOrderBy()!=null;
 		
 		checkWellDefinedness();
 	}
@@ -61,6 +63,15 @@ public class Align extends XmuCore {
 	
 	@Override
 	protected void checkWellDefinedness() throws BidirectionalTransformationDefinitionException {
+		if(Boolean.logicalXor(patS.getOrderBy()!=null, patV.getOrderBy()!=null)) {
+			throw new BidirectionalTransformationDefinitionException("Order inconsistent");
+		}
+		
+		if(isOrdered && (patS.getOrderBy()==null || patV.getOrderBy()==null)) {
+			throw new BidirectionalTransformationDefinitionException("Order inconsistent");
+		}
+		
+		
 		if(patS.getType()!=match.getSourceDef() || patV.getType()!=match.getViewDef())
 			throw new BidirectionalTransformationDefinitionException("Type inconsistent");
 	}
@@ -190,11 +201,14 @@ public class Align extends XmuCore {
 					upstreamView.setValue(vk, summarize(views,vk));
 				} catch (Exception e) {
 					Object common = IndexSystem.generateUUID();
-					upstreamView.setValue(vk, common);
+					Index index = Index.freshIndex(common);
+					upstreamView.setValue(vk, index);
 					for(ViewType v : views) {
 						try {
 							// in principle, we should reset downstream values
-							v.first.addIndex(common, v.first.getElementByIndexObject(v.second.getIndexValue(vk)));
+							v.second.setUpstream(upstreamView);
+							FieldDef<?> dk = v.second.getDownKeyFromUpstreamKey(vk);
+							v.first.addIndex(index, v.first.getElementByIndexObject(v.second.getIndexValue(dk)));
 						} catch (UninitializedException e1) {
 							return nothing(e1);
 						}
@@ -211,14 +225,23 @@ public class Align extends XmuCore {
 			}
 		}
 		
+		List<Context> viewMatches = new ArrayList<>();
+		
 		TypedGraph finalView = null;
 		for(ViewType v : views) {
 			v.second.setUpstream(upstreamView);
 			v.second.submit();
+			
+			viewMatches.add(v.second);
+			
 			if(finalView==null)
 				finalView = v.first;
 			else 
 				finalView = finalView.additiveMerge(v.first);
+		}
+		
+		if(this.isOrdered) {
+			enforceOrder(patV, viewMatches, finalView);
 		}
 		
 		this.submit(sourceMatches);
@@ -264,7 +287,7 @@ public class Align extends XmuCore {
 			sourceMatches.forEach(sm->sm.setUpstream(s.second));
 			viewMatches.forEach(vm->vm.setUpstream(v.second));
 			
-			Context upstreamSourcePost = this.createUpstreamSourceContext(s.second);
+			Context upstreamSourcePost = this.createUpstreamSourceContext(s.second); // in fact, s.second is also an upstream context
 			
 			List<SourceType> updatedSources = new ArrayList<>();
 			for(Tuple2<Context, Context> alignment : alignments) {
@@ -275,7 +298,7 @@ public class Align extends XmuCore {
 			
 			TraceSystem[] interTraces = updatedSources.stream().map(us->us.third).toArray(size->new TraceSystem[size]);
 
-			if(v.second.horizontalCorrnectness(viewMatches.toArray(new Context[viewMatches.size()]), interTraces)) {
+			if(v.second.horizontalCorrnectness(viewMatches.toArray(new Context[viewMatches.size()]), interTraces)==false) {
 				XmuCoreUtils.failure("Shared node issue in view detected");
 			}
 			
@@ -293,21 +316,56 @@ public class Align extends XmuCore {
 	}
 
 	private TypedGraph adaption(SourceType s, ViewType v, List<Tuple2<Context, Context>> alignments) throws NothingReturnedException {
-		List<SourceType> delta = new ArrayList<>();
+		List<TypedGraph> delta = new ArrayList<>();
+//		List<Context> views = new ArrayList<>();
+		List<Context> sources = new ArrayList<>();
 		
 		for(Tuple2<Context, Context> alignment : alignments) {
-			if(alignment.first!=null&&alignment.second!=null) continue;
-			else if(alignment.first==null) { // unmatchV
-				SourceType sp = this.unmatchedView.apply(s,v);
-				delta.add(sp);
+			if(alignment.first!=null&&alignment.second!=null) {
+				sources.add(alignment.first);
+//				views.add(alignment.second);
+			} else if(alignment.first==null) { // unmatchV
+				SourceType sp = this.unmatchedView.apply(s, v.replaceSecond(alignment.second));
+				if(sp.second.getType()!=patS.getType())
+					throw new NothingReturnedException("Adaption must return a valid source match");
+				delta.add(sp.first);
+				sources.add(sp.second);
+//				views.add(alignment.second);
 			} else if(alignment.second==null) { // unmatchS
-				SourceType sp = this.unmatchedSource.apply(s,v);
-				delta.add(sp);
+				SourceType sp = this.unmatchedSource.apply(s.replaceSecond(alignment.first), v);
+				delta.add(sp.first);
 			}
 		}
 		
 		TypedGraph finalSource = s.first.merge(delta.toArray(new TypedGraph[delta.size()]));
+		
+		if(this.isOrdered) {
+			enforceOrder(patS, sources, finalSource);
+		}
+		
 		return finalSource;
+	}
+
+	private void enforceOrder(Pattern pattern, List<Context> matches, 
+			TypedGraph graph) throws NothingReturnedException {
+		
+		PatternElement<?> order = pattern.getOrderBy();
+		FieldDef<?> field = pattern.getType().getField(order.getName());
+		
+		Index prev = null;
+		Index cur = null;
+		
+		for(Context mat : matches) {
+			prev = cur;
+			try {
+				cur = mat.getIndexValue(field);
+				if(prev!=null) {
+					graph.getOrder().add(prev, cur);
+				}
+			} catch (UninitializedException e) {
+				throw new NothingReturnedException(e);
+			}
+		}
 	}
 
 }
