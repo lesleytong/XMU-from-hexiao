@@ -77,7 +77,7 @@ public class Fork extends XmuCore {
 		
 		for(int i=0;i<this.forks.length;i++) {
 //			Context newSource = s.second.downstream(this.forks[i].first, this.forks[i].third.getSourceDef(), false);
-			Context newSource = this.createDownstreamContext(this.forks[i].first, s.second, this.forks[i].third.getSourceDef(), false);
+			Context newSource = s.second.createDownstreamContext(this.forks[i].third.getSourceDef(), this.forks[i].first, false);
 			
 			newSource.setUpstream(s.second, this.forks[i].first);
 			downStreamSources[i] = newSource;
@@ -198,8 +198,8 @@ public class Fork extends XmuCore {
 		for(int i=0;i<this.forks.length;i++) {
 //			downstreamSources[i] = s.second.downstream(this.forks[i].first, this.forks[i].third.getSourceDef(), true);
 //			downstreamViews[i] = v.second.downstream(this.forks[i].second, this.forks[i].third.getViewDef(), true);
-			downstreamSources[i] = this.createDownstreamContext(this.forks[i].first, s.second, this.forks[i].third.getSourceDef(), true);
-			downstreamViews[i] = this.createDownstreamContext(this.forks[i].second, v.second, this.forks[i].third.getViewDef(), true);
+			downstreamSources[i] = s.second.createDownstreamContext(this.forks[i].third.getSourceDef(), this.forks[i].first);
+			downstreamViews[i] = v.second.createDownstreamContext(this.forks[i].third.getViewDef(), this.forks[i].second);
 			
 			
 			sourceResults[i] = this.forks[i].third.backward(SourceType.makeSource(s.first, downstreamSources[i], s.third), ViewType.makeView(v.first, downstreamViews[i]));

@@ -61,7 +61,7 @@ public class ExpandSource extends XmuCore {
 			return nothing();
 		
 //		Context downstreamSourceMatch = s.second.downstream(remappings, body.getSourceDef(), false);
-		Context downstreamSourceMatch = this.createDownstreamContext(remappings, s.second, body.getSourceDef(), false);
+		Context downstreamSourceMatch = s.second.createDownstreamContext(body.getSourceDef(), remappings, false);
 		downstreamSourceMatch.setUpstream(s.second, remappings);
 		
 		ViewType v = body.forward(SourceType.makeSource(s.first, downstreamSourceMatch, s.third));
@@ -77,13 +77,12 @@ public class ExpandSource extends XmuCore {
 	public SourceType backward(SourceType s, ViewType v) throws NothingReturnedException {
 		s.second.setWillCreateElement(true); // shared node issues in source is ignored now
 		
-//		Context downstreamSourceMatch = s.second.downstream(remappings, body.getSourceDef(), false);
-		Context downstreamSourceMatch = this.createDownstreamContext(remappings, s.second, body.getSourceDef(), false);
+		Context downstreamSourceMatch = s.second.createDownstreamContext(body.getSourceDef(), remappings, false);
 		downstreamSourceMatch.setUpstream(s.second, remappings);
 		
 		SourceType sp = body.backward(SourceType.makeSource(s.first, downstreamSourceMatch, s.third), v);
 		
-		Context upstreamSourceMatchPost = this.createUpstreamSourceContext(s.second);
+		Context upstreamSourceMatchPost = s.second.getCopy();
 		
 		Context downstreamSourceMatchPost = sp.second;
 		for(Tuple2<String, String> m : remappings) {

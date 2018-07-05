@@ -65,7 +65,7 @@ public class MatchSource extends XmuCore {
 		SourceType sp;
 		Context downstreamSource = null;
 		if(sourceMatches.size()==0) {
-			downstreamSource = body.createUpstreamSourceContext(upstreamSource);
+			downstreamSource = upstreamSource.createDownstreamContext(body.getSourceDef());
 			downstreamSource.setUpstream(upstreamSource);
 			patS.getType().initializeSource(downstreamSource,s.second,v.second,s.third);
 			sp = body.backward(SourceType.makeSource(s.first, downstreamSource, s.third), v);
@@ -80,7 +80,7 @@ public class MatchSource extends XmuCore {
 		
 		
 		Context downstreamSourcePost = sp.second;
-		Context upstreamSourcePost = this.createUpstreamSourceContext(downstreamSourcePost);
+		Context upstreamSourcePost = downstreamSourcePost.createUpstreamContext(this.getSourceDef());
 		downstreamSourcePost.setUpstream(upstreamSourcePost);
 		
 		List<Context> sourceMatchesPost = patS.match(sp.first, upstreamSourcePost);

@@ -110,8 +110,7 @@ public class ExpandView extends XmuCore {
 			XmuCoreUtils.warning("Shared node issue in view detected");
 		}
 		
-//		Context downstreamViewMatch = v.second.downstream(remappings, body.getViewDef(), false);
-		Context downstreamViewMatch = this.createDownstreamContext(remappings, v.second, body.getViewDef(), false);
+		Context downstreamViewMatch = v.second.createDownstreamContext(body.getViewDef(), remappings, false);
 		downstreamViewMatch.setUpstream(v.second, remappings);
 		
 		SourceType downstreamSourcePost = body.backward(s, ViewType.makeView(v.first, downstreamViewMatch));

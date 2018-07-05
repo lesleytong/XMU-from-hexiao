@@ -44,7 +44,7 @@ public class MatchView extends XmuCore {
 		if(patV.isMatchOf(v.first, downstreamView)==false) 
 			return nothing();
 		
-		Context upstreamView = createUpstreamViewContext(downstreamView);
+		Context upstreamView = downstreamView.createUpstreamContext(this.getViewDef());
 		downstreamView.setUpstream(upstreamView);
 		
 		List<Context> views = patV.match(v.first, upstreamView);

@@ -66,7 +66,7 @@ public class Indexing extends XmuCore {
 
 	@Override
 	public ViewType forward(SourceType s) throws NothingReturnedException {
-		Context source = this.createDownstreamContext(this.sourceKeys, s.second, this.signature.getSourceType(), false);
+		Context source = s.second.createDownstreamContext(this.signature.getSourceType(), this.sourceKeys, false);
 		source.setUpstream(s.second,this.sourceKeys);
 		Context viewIndexing = null;
 		
@@ -106,10 +106,10 @@ public class Indexing extends XmuCore {
 
 	@Override
 	public SourceType backward(SourceType s, ViewType v) throws NothingReturnedException {		
-		Context source = this.createDownstreamContext(this.sourceKeys, s.second, this.signature.getSourceType(), false);
+		Context source = s.second.createDownstreamContext(this.signature.getSourceType(), this.sourceKeys, false);
 		source.setUpstream(s.second,this.sourceKeys);
 		
-		Context view = this.createDownstreamContext(viewKeys, v.second, this.signature.getViewType(), false);
+		Context view = v.second.createDownstreamContext(this.signature.getViewType(), viewKeys, false);
 		view.setUpstream(v.second,this.viewKeys);
 		
 		try {

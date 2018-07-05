@@ -287,7 +287,7 @@ public class Align extends XmuCore {
 			sourceMatches.forEach(sm->sm.setUpstream(s.second));
 			viewMatches.forEach(vm->vm.setUpstream(v.second));
 			
-			Context upstreamSourcePost = this.createUpstreamSourceContext(s.second); // in fact, s.second is also an upstream context
+			Context upstreamSourcePost = s.second.getCopy();
 			
 			List<SourceType> updatedSources = new ArrayList<>();
 			for(Tuple2<Context, Context> alignment : alignments) {

@@ -61,7 +61,7 @@ public class Switch extends XmuCore {
 			for(int i=0;i<branches.size();i++) {
 				Tuple3<BiFunction<SourceType,ViewType,Boolean>,XmuCore,Function<SourceType,Boolean>> branch = branches.get(i);
 				
-				Context downstreamSource = this.createDownstreamSourceContext(s.second, branch.second.getSourceDef());
+				Context downstreamSource = s.second.createDownstreamContext(branch.second.getSourceDef());
 				downstreamSource.setUpstream(s.second);
 				SourceType ds = SourceType.makeSource(s.first, downstreamSource, s.third);
 				
@@ -78,7 +78,7 @@ public class Switch extends XmuCore {
 						throw new InternalBidirectionalTransformationError();
 				}
 				
-				Context upstreamView = this.createUpstreamViewContext(v.second);
+				Context upstreamView = v.second.createUpstreamContext(this.getViewDef());
 				v.second.setUpstream(upstreamView);
 				
 				submit(downstreamSource, v.second);
@@ -113,8 +113,8 @@ public class Switch extends XmuCore {
 		for(int i=0;i<branches.size();i++) {
 			Tuple3<BiFunction<SourceType,ViewType,Boolean>,XmuCore,Function<SourceType,Boolean>> branch = branches.get(i);
 			if(branch.first.apply(s, v)) {
-				Context downstreamSource = this.createDownstreamSourceContext(s.second, branch.second.getSourceDef());
-				Context downstreamView = this.createDownstreamViewContext(v.second, branch.second.getViewDef());
+				Context downstreamSource = s.second.createDownstreamContext(branch.second.getSourceDef());
+				Context downstreamView = v.second.createDownstreamContext(branch.second.getViewDef());
 				downstreamSource.setUpstream(s.second);
 				downstreamView.setUpstream(v.second);
 				
@@ -123,7 +123,7 @@ public class Switch extends XmuCore {
 				
 				SourceType sp = branch.second.backward(ds, dv);
 				
-				Context upstreamSourcePost = this.createUpstreamSourceContext(sp.second);
+				Context upstreamSourcePost = sp.second.createUpstreamContext(this.getSourceDef());
 				sp.second.setUpstream(upstreamSourcePost);
 				
 				SourceType usp = SourceType.makeSource(sp.first, upstreamSourcePost, sp.third);

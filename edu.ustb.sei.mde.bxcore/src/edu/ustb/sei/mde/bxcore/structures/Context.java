@@ -358,4 +358,81 @@ public class Context {
 	static public Context emptyContext() {
 		return ContextType.EMPTY_TYPE.createInstance();
 	}
+	
+	public Context createUpstreamContext(ContextType upstreamType, Tuple2<String,String>[] mappings) {
+		Context context = upstreamType.createInstance();
+		
+		for(Tuple2<String,String> m : mappings) {
+			try {
+				context.setValue(m.first, this.getValue(m.second));
+			} catch (NullPointerException|UninitializedException|NothingReturnedException e) {
+			}
+		}
+		
+		return context;
+	}
+	
+	public Context createUpstreamContext(ContextType upstreamType) {
+		Context context = upstreamType.createInstance();
+		
+		for(FieldDef<?> k : upstreamType.fields()) {
+			try {
+				context.setValue(k, this.getValue(k.getName()));
+			} catch (NullPointerException|UninitializedException|NothingReturnedException e) {
+			}
+		}
+		
+		return context;
+	}
+	
+	public Context createDownstreamContext(ContextType downstreamType, Tuple2<String,String>[] mappings) {
+		Context context = downstreamType.createInstance();
+		
+		for(Tuple2<String,String> m : mappings) {
+			try {
+				context.setValue(m.second, this.getValue(m.first));
+			} catch (NullPointerException|UninitializedException|NothingReturnedException e) {
+			}
+		}
+		
+		return context;
+	}
+	
+	public Context createDownstreamContext(ContextType downstreamType) {
+		Context context = downstreamType.createInstance();
+		
+		for(FieldDef<?> k : this.getType().fields()) {
+			try {
+				context.setValue(k.getName(), this.getValue(k));
+			} catch (NullPointerException|UninitializedException|NothingReturnedException e) {
+			}
+		}
+		
+		return context;
+	}
+	
+	public Context createDownstreamContext(ContextType downstreamType, Tuple2<String,String>[] mappings, boolean ignore) throws NothingReturnedException {
+		Context downstream = downstreamType.createInstance();
+		
+		for(Tuple2<String, String> m : mappings) {
+			try {
+				downstream.setValue(m.second, this.getValue(m.first));
+			} catch (UninitializedException|NothingReturnedException e) {
+				if(ignore) continue;
+				else throw new NothingReturnedException(e);
+			}
+		}
+		return downstream;
+	}
+	
+	public Context getCopy() {
+		Context copy = this.getType().createInstance();
+		for(FieldDef<?> f : this.getType().fields()) {
+			try {
+				copy.setValue(f, this.getValue(f));
+			} catch (UninitializedException | NothingReturnedException e) {
+			}
+		}
+		return copy;
+	}
 }
