@@ -10,6 +10,7 @@ import edu.ustb.sei.mde.bxcore.structures.Context;
 import edu.ustb.sei.mde.bxcore.structures.ContextType;
 import edu.ustb.sei.mde.graph.pattern.Pattern;
 import edu.ustb.sei.mde.graph.typedGraph.constraint.GraphConstraint;
+import edu.ustb.sei.mde.graph.typedGraph.constraint.GraphConstraint.ConstraintStatus;
 
 public class MatchView extends XmuCore {
 
@@ -108,6 +109,22 @@ public class MatchView extends XmuCore {
 				}
 			}
 			if(finalSource!=null) {
+				// check again to ensure PutTwice
+				{
+					GraphConstraint inner = getBodyConstraint();
+					
+					int count = 0;
+					
+					for(Context vc : views) {
+						if(inner.check(finalSource.first, finalSource.second, v.first, vc)!=ConstraintStatus.unenforceable) {
+							count++;
+						}
+					}
+					
+					if(count!=1) throw new NothingReturnedException("PutTwice may be violated!");
+				}
+				
+				
 				submit(downstreamView);
 				finalSource.third.trace(this.getSerializationKey(), s.second, v.second, finalSource.second);
 				
@@ -118,15 +135,34 @@ public class MatchView extends XmuCore {
 			else return nothing();
 		}
 	}
+
+	
+	private GraphConstraint bodyConstraint = null;
+	private GraphConstraint getBodyConstraint() {
+		if(bodyConstraint==null) 
+			bodyConstraint = body.getConsistencyConstraint();
+		return bodyConstraint;
+	}
 	
 	@Override
 	protected GraphConstraint generateConsistencyConstraint() {
 		return (gs,cs, gv,cv) -> {
-			GraphConstraint inner = body.getConsistencyConstraint();
+			GraphConstraint inner = getBodyConstraint();
 			List<Context> vv = patV.match(gv, cv);
-			if(vv.size()==0) return false;
-			else 
-				return vv.stream().filter(vc->inner.check(gs, cs, gv, vc)).count()==1;
+			if(vv.size()==0) return ConstraintStatus.unenforceable;
+			else {
+				ConstraintStatus status = ConstraintStatus.sat;
+				int count = 0;
+				
+				for(Context vc : vv) {
+					if((status = inner.check(gs, cs, gv, vc))!=ConstraintStatus.unenforceable) {
+						count++;
+					}
+				}
+				
+				if(count==1) return status;
+				else return ConstraintStatus.unenforceable;
+			}
 		};
 	}
 

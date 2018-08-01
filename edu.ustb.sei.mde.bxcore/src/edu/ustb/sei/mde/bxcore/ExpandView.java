@@ -12,6 +12,7 @@ import edu.ustb.sei.mde.bxcore.structures.FieldDef;
 import edu.ustb.sei.mde.graph.pattern.Pattern;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
 import edu.ustb.sei.mde.graph.typedGraph.constraint.GraphConstraint;
+import edu.ustb.sei.mde.graph.typedGraph.constraint.GraphConstraint.ConstraintStatus;
 import edu.ustb.sei.mde.structure.Tuple2;
 
 /*
@@ -127,13 +128,13 @@ public class ExpandView extends XmuCore {
 	public GraphConstraint generateConsistencyConstraint() {
 		return (gs,cs,gv,cv)->{
 			GraphConstraint inner = body.getConsistencyConstraint();
-			if(patV.isMatchOf(gv, cv)==false) return false;
+			if(patV.isMatchOf(gv, cv)==false) return ConstraintStatus.enforceable;
 			Context downstreamViewMatch = body.createViewContext();
 			for(Tuple2<String, String> m : remappings) {
 				try {
 					downstreamViewMatch.setValue(m.second, cv.getValue(m.first));
 				} catch (UninitializedException | NothingReturnedException e) {
-					return false;
+					return ConstraintStatus.unenforceable;
 				}
 			}
 			return inner.check(gs, cs, gv, downstreamViewMatch);

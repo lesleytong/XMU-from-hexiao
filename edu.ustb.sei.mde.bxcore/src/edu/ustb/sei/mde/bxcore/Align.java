@@ -18,6 +18,7 @@ import edu.ustb.sei.mde.graph.pattern.PatternElement;
 import edu.ustb.sei.mde.graph.typedGraph.IndexSystem;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
 import edu.ustb.sei.mde.graph.typedGraph.constraint.GraphConstraint;
+import edu.ustb.sei.mde.graph.typedGraph.constraint.GraphConstraint.ConstraintStatus;
 import edu.ustb.sei.mde.structure.Tuple2;
 
 public class Align extends XmuCore {
@@ -84,24 +85,26 @@ public class Align extends XmuCore {
 			List<Context> sources = patS.match(gs, cs);
 			List<Context> views = patV.match(gv, cv);
 			
-			if(sources.size()!=views.size()) return false;
+			if(sources.size()!=views.size()) 
+				return ConstraintStatus.enforceable; // it may not be enforceable
 			
 			// construct one-to-one mapping 
 			List<Tuple2<Context,Context>> alignments = new ArrayList<>();
 			try {
 				if(checkAndConstructAlignment(sources, views, alignments)==false)
-					return false;
-			}catch (Exception e) {
-				return false;
+					return ConstraintStatus.enforceable;
+			} catch (Exception e) {
+				return ConstraintStatus.unenforceable;
 			}
 			
 			// check match condition for each alignment
+			ConstraintStatus status = ConstraintStatus.sat;
+			
 			for(Tuple2<Context, Context> a : alignments) {
-				if(innerCons.check(gs, a.first, gv, a.second)==false)
-					return false;
+				status = GraphConstraint.mergeStatus(status, innerCons.check(gs, a.first, gv, a.second));
 			}
 			
-			return true;
+			return status;
 		};
 	}
 	

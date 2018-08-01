@@ -13,6 +13,7 @@ import edu.ustb.sei.mde.bxcore.structures.FieldDef;
 import edu.ustb.sei.mde.graph.pattern.Pattern;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
 import edu.ustb.sei.mde.graph.typedGraph.constraint.GraphConstraint;
+import edu.ustb.sei.mde.graph.typedGraph.constraint.GraphConstraint.ConstraintStatus;
 import edu.ustb.sei.mde.structure.Tuple3;
 
 public class GraphReplace extends XmuCore {
@@ -222,14 +223,14 @@ public class GraphReplace extends XmuCore {
 	@Override
 	protected GraphConstraint generateConsistencyConstraint() {
 		return (gs,cs, gv, cv)->{
-			if(patS.isMatchOf(gs, cs)==false) return false;
-			if(patV.isMatchOf(gv, cv)==false) return false;
+			if(patS.isMatchOf(gs, cs)==false) return ConstraintStatus.unenforceable;
+			if(patV.isMatchOf(gv, cv)==false) return ConstraintStatus.unenforceable;
 			try {
 				Context sp = computeSourcePost(cs, cv);
-				if(Context.isIdentifical(sp, cs)==false) return false;
-				else return true;
+				if(Context.isIdentifical(sp, cs)==false) return ConstraintStatus.enforceable;
+				else return ConstraintStatus.sat;
 			} catch (Exception e) {
-				return false;
+				return ConstraintStatus.unenforceable;
 			}
 		};
 	}

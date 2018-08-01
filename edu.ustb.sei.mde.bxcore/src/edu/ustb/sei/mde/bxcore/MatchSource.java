@@ -10,6 +10,7 @@ import edu.ustb.sei.mde.bxcore.structures.Context;
 import edu.ustb.sei.mde.bxcore.structures.ContextType;
 import edu.ustb.sei.mde.graph.pattern.Pattern;
 import edu.ustb.sei.mde.graph.typedGraph.constraint.GraphConstraint;
+import edu.ustb.sei.mde.graph.typedGraph.constraint.GraphConstraint.ConstraintStatus;
 
 public class MatchSource extends XmuCore {
 
@@ -102,7 +103,9 @@ public class MatchSource extends XmuCore {
 		return (gs,cs,gv,cv) -> {
 			GraphConstraint inner = body.getConsistencyConstraint();
 			List<Context> ss = patS.match(gs, cs);
-			return ss.size()==1 && inner.check(gs, ss.get(0), gv, cv);
+			if(ss.size()!=1)
+				return ConstraintStatus.unenforceable;
+			else return inner.check(gs, ss.get(0), gv, cv);
 		};
 	}
 

@@ -14,6 +14,7 @@ import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
 import edu.ustb.sei.mde.bxcore.structures.Context;
 import edu.ustb.sei.mde.bxcore.structures.ContextType;
 import edu.ustb.sei.mde.graph.typedGraph.constraint.GraphConstraint;
+import edu.ustb.sei.mde.graph.typedGraph.constraint.GraphConstraint.ConstraintStatus;
 import edu.ustb.sei.mde.structure.Tuple2;
 import edu.ustb.sei.mde.structure.Tuple3;
 
@@ -178,7 +179,7 @@ public class Switch extends XmuCore {
 					return inner.check(gs, cs, gv, cv); // whether it is sufficient (without checking the forward transformation)?
 			}
 			
-			return false;
+			return ConstraintStatus.unenforceable;
 		};
 	}
 }

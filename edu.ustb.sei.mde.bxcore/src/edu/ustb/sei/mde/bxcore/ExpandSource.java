@@ -8,6 +8,7 @@ import edu.ustb.sei.mde.bxcore.structures.FieldDef;
 import edu.ustb.sei.mde.graph.pattern.Pattern;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
 import edu.ustb.sei.mde.graph.typedGraph.constraint.GraphConstraint;
+import edu.ustb.sei.mde.graph.typedGraph.constraint.GraphConstraint.ConstraintStatus;
 import edu.ustb.sei.mde.structure.Tuple2;
 
 public class ExpandSource extends XmuCore {
@@ -119,17 +120,20 @@ public class ExpandSource extends XmuCore {
 		return (gs,cs,gv,cv) -> {
 			GraphConstraint inner = body.getConsistencyConstraint();
 			
-			if(patS.isMatchOf(gs, cs)==false) return false;
+			ConstraintStatus upperCons = ConstraintStatus.sat;
+			if(patS.isMatchOf(gs, cs)==false) 
+				upperCons = ConstraintStatus.enforceable;
 			Context downstreamSourceMatch = body.createSourceContext();
 			for(Tuple2<String, String> m : remappings) {
 				try {
 					downstreamSourceMatch.setValue(m.second, cs.getValue(m.first));
 				} catch (UninitializedException | NothingReturnedException e) {
-					return false;
+					return ConstraintStatus.unenforceable;
 				}
 			}
 			
-			return inner.check(gs, downstreamSourceMatch, gv, cv);
+			return GraphConstraint.mergeStatus(upperCons, 
+					inner.check(gs, downstreamSourceMatch, gv, cv));
 		};
 	}
 

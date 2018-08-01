@@ -67,7 +67,19 @@ public class Fork extends XmuCore {
 
 	@Override
 	protected GraphConstraint generateConsistencyConstraint() {
-		return GraphConstraint.TRUE;
+		GraphConstraint[] cons = new GraphConstraint[forks.length];
+		for(int i=0;i<forks.length;i++) {			
+			GraphConstraint g = forks[i].third.getConsistencyConstraint();
+			Tuple3<Tuple2<String, String>[], Tuple2<String, String>[], XmuCore> fork = forks[i];
+			cons[i] = (gs,cs,gv,cv)->{
+				Context ds = cs.createDownstreamContext(fork.third.getSourceDef(), fork.first);
+				Context dv = cs.createDownstreamContext(fork.third.getViewDef(), fork.second);
+				
+				return g.check(gs, ds, gv, dv);
+			};
+		}
+		
+		return GraphConstraint.and(cons);
 	}
 
 	@Override
