@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: edu.ustb.sei.mde.bxcore.dsl.ide
+Bundle-ManifestVersion: 2
+Bundle-Name: edu.ustb.sei.mde.bxcore.dsl.ide
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: edu.ustb.sei.mde.bxcore.dsl.ide; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: edu.ustb.sei.mde.bxcore.dsl,
+ org.eclipse.xtext.ide,
+ org.eclipse.xtext.xbase.ide,
+ org.antlr.runtime
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: edu.ustb.sei.mde.bxcore.dsl.ide.contentassist.antlr,
+ edu.ustb.sei.mde.bxcore.dsl.ide.contentassist.antlr.internal
+

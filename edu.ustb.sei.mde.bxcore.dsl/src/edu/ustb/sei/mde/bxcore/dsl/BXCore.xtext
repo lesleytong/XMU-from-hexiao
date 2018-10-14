@@ -1,0 +1,185 @@
+grammar edu.ustb.sei.mde.bxcore.dsl.BXCore with org.eclipse.xtext.xbase.Xbase
+
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+
+generate bXCore "http://www.ustb.edu/sei/mde/bxcore/dsl/BXCore"
+
+BXProgram :
+	imports+=ImportSection*
+	javaImports=XImportSection?
+	definitions += Definition*
+;
+
+ImportSection :
+	'import' metamodel=[ecore::EPackage|STRING] 'as' shortName=ValidID
+;
+
+
+Definition :
+	TypeDefinition | PatternDefinition | BXFunctionDefinition | IndexDefinition
+;
+
+BXFunctionDefinition :
+	'function' name=ValidID '<' sourceType=ContextTypeRef ',' viewType=ContextTypeRef '>'  '=' statement = XmuCoreStatement
+;
+
+TypeDefinition :
+	'type' name=ValidID '=' '(' (typeVars+=TypeVar (',' typeVars+=TypeVar)*)? ')'
+;
+
+TypeVar :
+	name=ValidID ':' type=TypeRef
+;
+
+TypeRef :
+	{EcoreTypeRef} type=[ecore::EClassifier|QualifiedValidID] |
+	{PrimitiveTypeRef} type=('int'|'boolean'|'String')
+;
+
+PatternDefinition :
+	'pattern' name=ValidID '=' root=PatternNode ('as' type=ValidID)?
+;
+
+IndexDefinition :
+	'index' name=ValidID '<' sourceType=ContextTypeRef ',' viewType=ContextTypeRef '>'
+;
+
+AnonymousPatternDefinition returns PatternDefinition:
+	root=PatternNode ('as' type=ValidID)?
+;
+
+PatternNode :
+	name=ValidID ':' type=TypeRef ('{' (edges+=PatternEdge (',' edges+=PatternEdge)*)? '}')?
+;
+
+PatternEdge :
+	(name=ValidID ':')? feature=[ecore::EStructuralFeature|ValidID] operator='=' value=PatternValueCondition
+;
+
+PatternValueCondition :
+	PatternNode | PatternNodeRef
+;
+
+PatternNodeRef :
+	node=[PatternNode|ValidID]
+;
+
+Pattern :
+	AnonymousPatternDefinition | PatternDefinitionReference
+;
+
+ContextType :
+	AnonymousPatternDefinition | TypeDefinition
+;
+
+ContextTypeRef :
+	{DefinedContextTypeRef} type=[ContextType|ValidID] | {EmptyContextTypeRef} 'empty'
+;
+
+PatternDefinitionReference :
+	pattern=[PatternDefinition|ValidID]
+;
+
+XmuCoreStatement :
+	XmuCoreFork |
+	XmuCoreParallelComposition |
+	XmuCoreCompositionChildStatement
+;
+
+XmuCoreCompositionChildStatement :
+	XmuCoreMatchSource | XmuCoreMatchView |
+	XmuCoreExpandSource | XmuCoreExpandView | XmuCoreGraphReplace |
+	XmuCoreSwitch | XmuCoreAlign | XmuCoreFunctionCall
+;
+
+XmuCoreMatchSource :
+	'matchS' '<' sourceType=ContextTypeRef '>' pattern=Pattern body=XmuCoreStatement
+;
+
+XmuCoreMatchView :
+	'matchV' '<' viewType=ContextTypeRef '>' pattern=Pattern body=XmuCoreStatement
+;
+
+XmuCoreExpandSource :
+	'expandS' pattern=Pattern '{' mappings+=VarMapping (','  mappings+=VarMapping)* '}' '->' body=XmuCoreStatement
+;
+
+XmuCoreExpandView :
+	'expandV' pattern=Pattern '{' mappings+=VarMapping (','  mappings+=VarMapping)* '}' '->' body=XmuCoreStatement
+;
+
+VarMapping :
+	'(' from=ValidID '->' to=ValidID ')'
+;
+
+XmuCoreGraphReplace :
+	'replace' source=Pattern view=Pattern '{' conversions+=Conversion+ '}'
+;
+
+XmuCoreParallelComposition :
+	'<' sourceType=ContextTypeRef ',' viewType=ContextTypeRef '>' bodies+=XmuCoreCompositionChildStatement (=> '|' bodies+=XmuCoreCompositionChildStatement)+ 
+;
+
+XmuCoreSwitch :
+	'switch' '<' sourceType=ContextTypeRef ',' viewType=ContextTypeRef '>' '['
+		branches+=XmuCoreSwitchBranch+
+		adaptions+=XmuCoreSwitchAdaption*
+	']'
+;
+
+XmuCoreSwitchBranch :
+	'case' condition=ContextAwareCondition '->' action=XmuCoreStatement 
+;
+
+XmuCoreSwitchAdaption:
+	'adaption' condition=ContextAwareCondition '->' action=ContextAwareUnidirectionalAction
+;
+
+Conversion :
+	bigul=BiGULStatement '(' source+=ValidID (',' source+=ValidID)* ')' '(' view+=ValidID (',' view+=ValidID)* ')'
+;
+
+XmuCoreFork :
+	'<' sourceType=ContextTypeRef ',' viewType=ContextTypeRef '>' forks+=XmuCoreForkBranch (=> '|' forks+=XmuCoreForkBranch)+
+;
+
+XmuCoreForkBranch :
+	'(' sourceMappings+=VarMapping (','  sourceMappings+=VarMapping)* ')'
+	'(' viewMappings+=VarMapping (','  viewMappings+=VarMapping)* ')' '->'
+	body=XmuCoreStatement
+;
+
+XmuCoreAlign :
+	'align' '<' sourceType=ContextTypeRef ',' viewType=ContextTypeRef '>' sourcePattern=Pattern viewPattern=Pattern 'with' alignment=ContextAwareCondition
+		(('match' '->' match=XmuCoreStatement) & ('unmatchS' '->' unmatchS=ContextAwareUnidirectionalAction) & ('unmatchV' '->' unmatchV=ContextAwareUnidirectionalAction))
+;
+
+XmuCoreFunctionCall :
+	'(' sourceMappings+=VarMapping (','  sourceMappings+=VarMapping)* ')'
+	'(' viewMappings+=VarMapping (','  viewMappings+=VarMapping)* ')' '->' 
+	target=[BXFunctionDefinition|ValidID]
+;
+
+ContextAwareCondition :
+	'[' condition=XExpression ']'
+;
+
+ContextAwareUnidirectionalAction :
+	action=XBlockExpression
+;
+
+BiGULStatement :
+	BiGULReplace | BiGULSkip
+;
+
+BiGULReplace :
+	{BiGULReplace} 'replace'
+;
+
+BiGULSkip :
+	{BiGULSkip} 'skip'
+;
+
+QualifiedValidID :
+	ValidID '.' ValidID
+;
