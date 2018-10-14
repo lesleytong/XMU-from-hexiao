@@ -151,7 +151,7 @@ class TestGraph {
 		pattern.appendPatternNode("$a", typeGraph.getTypeNode("C"));
 		pattern.appendPatternNode("$b", typeGraph.getTypeNode("F"));
 //		pattern.appendPatternNode("$c", typeGraph.getTypeNode("G"));
-		pattern.appendPatternNode("$c", typeGraph.getDataType("String"));
+		pattern.appendPatternNode("$c", typeGraph.getDataTypeNode("String"));
 		pattern.appendPatternEdge("$e1", "$a","$b", typeGraph.getTypeEdge(typeGraph.getTypeNode("A"),"a_f"));
 //		pattern.appendPatternEdge("$e2", "$a","$c", typeGraph.getTypeEdge(typeGraph.getTypeNode("C"),"c_g"));
 		pattern.appendPatternEdge("$e2", "$b","$c", typeGraph.getPropertyEdge(typeGraph.getTypeNode("F"),"name"));
@@ -281,7 +281,7 @@ class TestGraph {
 		
 		creator.registerNode("n", vv.first.getAllValueEdges().get(0).getSource());
 		
-		creator.createValueNode("nn", "xiao", typeGraph.getDataType("String"));
+		creator.createValueNode("nn", "xiao", typeGraph.getDataTypeNode("String"));
 		
 		creator.createValueEdge("n", "nn", typeGraph.getPropertyEdge(typeGraph.getTypeNode("F"), "name"));
 		
@@ -331,7 +331,7 @@ class TestGraph {
 //		
 //		creator.registerNode("n", view.getAllValueEdges().get(0).getSource());
 //		
-//		creator.createValueNode("nn", "xiao", typeGraph.getDataType("String"));
+//		creator.createValueNode("nn", "xiao", typeGraph.getDataTypeNode("String"));
 //		
 //		creator.createValueEdge("n", "nn", typeGraph.getPropertyEdge(typeGraph.getTypeNode("F"), "name"));
 //		
@@ -514,7 +514,7 @@ class TestGraph {
 		
 		
 		ContextType indexSource = new ContextType();
-		indexSource.addField("s_0", typeS.getDataType("String"));
+		indexSource.addField("s_0", typeS.getDataTypeNode("String"));
 		
 		ContextType indexView = new ContextType();
 		indexView.addField("v_0", typeV.getTypeNode("Person"));
@@ -629,7 +629,7 @@ class TestGraph {
 		
 		
 		ContextType indexSource = new ContextType();
-		indexSource.addField("s_0", typeS.getDataType("String"));
+		indexSource.addField("s_0", typeS.getDataTypeNode("String"));
 		
 		ContextType indexView = new ContextType();
 		indexView.addField("v_0", typeV.getTypeNode("Person"));

@@ -422,7 +422,7 @@ public class Pattern implements IGraph {
 				ITypeNode type = null;
 
 				if ((type = this.typeGraph.getTypeNode(typeName)) == null) {
-					type = this.typeGraph.getDataType(typeName);
+					type = this.typeGraph.getDataTypeNode(typeName);
 				}
 
 				this.appendPatternNode(nodeName, type);

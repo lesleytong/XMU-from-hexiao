@@ -225,9 +225,9 @@ public class TypeGraph implements IGraph {
 		this.addNode(n);
 	}
 	
-	public DataTypeNode getDataType(String name) {
-		return this.getAllDataTypeNodes().stream().filter(d->d.getName().equals(name)).findAny().get();
-	}
+//	public DataTypeNode getDataType(String name) {
+//		return this.getAllDataTypeNodes().stream().filter(d->d.getName().equals(name)).findAny().get();
+//	}
 	
 	
 	static public TypeNode createTypeNode(String name, boolean abs) {

@@ -211,8 +211,9 @@ public class Fork extends XmuCore {
 //			downstreamSources[i] = s.second.downstream(this.forks[i].first, this.forks[i].third.getSourceDef(), true);
 //			downstreamViews[i] = v.second.downstream(this.forks[i].second, this.forks[i].third.getViewDef(), true);
 			downstreamSources[i] = s.second.createDownstreamContext(this.forks[i].third.getSourceDef(), this.forks[i].first);
+			downstreamSources[i].setUpstream(s.second);
 			downstreamViews[i] = v.second.createDownstreamContext(this.forks[i].third.getViewDef(), this.forks[i].second);
-			
+			downstreamViews[i].setUpstream(v.second);
 			
 			sourceResults[i] = this.forks[i].third.backward(SourceType.makeSource(s.first, downstreamSources[i], s.third), ViewType.makeView(v.first, downstreamViews[i]));
 			

@@ -8,5 +8,6 @@
 			<attribute name="javadoc_location" value="jar:platform:/resource/edu.ustb.sei.mde.bxcore/lib/apidocs-4.0.6.zip!/"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
