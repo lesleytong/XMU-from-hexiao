@@ -19,6 +19,8 @@ import org.eclipse.emf.ecore.EClass
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternDefinition
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXFunctionDefinition
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeDefinition
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.FeatureTypeRef
+import java.util.HashSet
 
 /**
  * This class contains custom scoping description.
@@ -32,15 +34,57 @@ class BXCoreScopeProvider extends AbstractBXCoreScopeProvider {
 		if(reference===BXCorePackage.Literals.ECORE_TYPE_REF__TYPE) {
 			val program = context.root;
 			val objects = new ArrayList;
+			
 			program.imports.forEach[i|
+				val visited = new HashSet;
 				val itr = i.metamodel.eAllContents;
 				itr.forEach[c|
 					if(c instanceof EClassifier) {
+						objects.add(EObjectDescription.create(QualifiedName.create(i.shortName, c.name), c));
+						visited.add(c);
+					}
+				];
+				
+				val itr2 = i.metamodel.eAllContents;
+				itr2.forEach[c|
+					if(c instanceof EClass) {
+						c.EAllStructuralFeatures.forEach[f|
+							val t = f.EType;
+							if(visited.contains(t)===false) {
+								objects.add(EObjectDescription.create(QualifiedName.create(i.shortName, t.name), t));
+								visited.add(t);
+							}
+						]
+					}
+				];
+			];
+			return new SimpleScope(objects);
+		} else if(reference===BXCorePackage.Literals.FEATURE_TYPE_REF__TYPE) {
+			val program = context.root;
+			val objects = new ArrayList;
+			program.imports.forEach[i|
+				val itr = i.metamodel.eAllContents;
+				itr.forEach[c|
+					if(c instanceof EClass) {
 						objects.add(EObjectDescription.create(QualifiedName.create(i.shortName, c.name), c));
 					}
 				];
 			];
 			return new SimpleScope(objects);
+		} else if(reference===BXCorePackage.Literals.FEATURE_TYPE_REF__FEATURE) {
+			val type = (context as FeatureTypeRef).type as EClass;
+			if(type===null) {
+				return SimpleScope.NULLSCOPE
+			} else {
+				if(!type.eIsProxy) {
+				val objects = new ArrayList;
+				type.EAllStructuralFeatures.forEach[i|
+					objects.add(EObjectDescription.create(i.name, i));
+				];
+				return new SimpleScope(objects);
+				}
+			}
+			
 		} else if(reference===BXCorePackage.Literals.PATTERN_EDGE__FEATURE) {
 			val node = context.patternNode;
 			if(node.type instanceof EcoreTypeRef) {

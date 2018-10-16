@@ -15,8 +15,10 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.Conversion;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.DefinedContextTypeRef;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.EcoreTypeRef;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.EmptyContextTypeRef;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.FeatureTypeRef;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ImportSection;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.IndexDefinition;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.IndexPart;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternDefinitionReference;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternEdge;
@@ -33,6 +35,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreFork;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreForkBranch;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreFunctionCall;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreGraphReplace;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreIndex;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreMatchSource;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreMatchView;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreParallelComposition;
@@ -140,11 +143,17 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 			case BXCorePackage.EMPTY_CONTEXT_TYPE_REF:
 				sequence_ContextTypeRef(context, (EmptyContextTypeRef) semanticObject); 
 				return; 
+			case BXCorePackage.FEATURE_TYPE_REF:
+				sequence_TypeRef(context, (FeatureTypeRef) semanticObject); 
+				return; 
 			case BXCorePackage.IMPORT_SECTION:
 				sequence_ImportSection(context, (ImportSection) semanticObject); 
 				return; 
 			case BXCorePackage.INDEX_DEFINITION:
 				sequence_IndexDefinition(context, (IndexDefinition) semanticObject); 
+				return; 
+			case BXCorePackage.INDEX_PART:
+				sequence_IndexPart(context, (IndexPart) semanticObject); 
 				return; 
 			case BXCorePackage.PATTERN_DEFINITION:
 				if (rule == grammarAccess.getAnonymousPatternDefinitionRule()
@@ -203,6 +212,9 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 				return; 
 			case BXCorePackage.XMU_CORE_GRAPH_REPLACE:
 				sequence_XmuCoreGraphReplace(context, (XmuCoreGraphReplace) semanticObject); 
+				return; 
+			case BXCorePackage.XMU_CORE_INDEX:
+				sequence_XmuCoreIndex(context, (XmuCoreIndex) semanticObject); 
 				return; 
 			case BXCorePackage.XMU_CORE_MATCH_SOURCE:
 				sequence_XmuCoreMatchSource(context, (XmuCoreMatchSource) semanticObject); 
@@ -676,6 +688,18 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     IndexPart returns IndexPart
+	 *
+	 * Constraint:
+	 *     (signature=[IndexDefinition|ValidID] sourceKeys+=ValidID sourceKeys+=ValidID* viewKeys+=ValidID viewKeys+=ValidID*)
+	 */
+	protected void sequence_IndexPart(ISerializationContext context, IndexPart semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Pattern returns PatternDefinitionReference
 	 *     PatternDefinitionReference returns PatternDefinitionReference
 	 *
@@ -778,6 +802,27 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getTypeRefAccess().getTypeEClassifierQualifiedValidIDParserRuleCall_0_1_0_1(), semanticObject.eGet(BXCorePackage.Literals.ECORE_TYPE_REF__TYPE, false));
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     TypeRef returns FeatureTypeRef
+	 *
+	 * Constraint:
+	 *     (type=[EClassifier|QualifiedValidID] feature=[EStructuralFeature|ValidID])
+	 */
+	protected void sequence_TypeRef(ISerializationContext context, FeatureTypeRef semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.FEATURE_TYPE_REF__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.FEATURE_TYPE_REF__TYPE));
+			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.FEATURE_TYPE_REF__FEATURE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.FEATURE_TYPE_REF__FEATURE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getTypeRefAccess().getTypeEClassifierQualifiedValidIDParserRuleCall_1_1_0_1(), semanticObject.eGet(BXCorePackage.Literals.FEATURE_TYPE_REF__TYPE, false));
+		feeder.accept(grammarAccess.getTypeRefAccess().getFeatureEStructuralFeatureValidIDParserRuleCall_1_2_1_0_1(), semanticObject.eGet(BXCorePackage.Literals.FEATURE_TYPE_REF__FEATURE, false));
 		feeder.finish();
 	}
 	
@@ -934,6 +979,20 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	 *     (source=Pattern view=Pattern conversions+=Conversion+)
 	 */
 	protected void sequence_XmuCoreGraphReplace(ISerializationContext context, XmuCoreGraphReplace semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     XmuCoreStatement returns XmuCoreIndex
+	 *     XmuCoreCompositionChildStatement returns XmuCoreIndex
+	 *     XmuCoreIndex returns XmuCoreIndex
+	 *
+	 * Constraint:
+	 *     (parts+=IndexPart parts+=IndexPart* body=XmuCoreStatement)
+	 */
+	protected void sequence_XmuCoreIndex(ISerializationContext context, XmuCoreIndex semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

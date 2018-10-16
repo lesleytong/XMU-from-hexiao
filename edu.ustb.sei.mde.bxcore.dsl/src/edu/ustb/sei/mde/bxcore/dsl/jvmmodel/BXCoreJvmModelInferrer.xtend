@@ -10,6 +10,8 @@ import edu.ustb.sei.mde.bxcore.ExpandView
 import edu.ustb.sei.mde.bxcore.Fork
 import edu.ustb.sei.mde.bxcore.GraphReplace
 import edu.ustb.sei.mde.bxcore.IndexSignature
+import edu.ustb.sei.mde.bxcore.Indexing
+import edu.ustb.sei.mde.bxcore.Invocation
 import edu.ustb.sei.mde.bxcore.MatchSource
 import edu.ustb.sei.mde.bxcore.MatchView
 import edu.ustb.sei.mde.bxcore.ParallelComposition
@@ -29,6 +31,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareUnidirectionalAction
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextTypeRef
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.DefinedContextTypeRef
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.EcoreTypeRef
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.FeatureTypeRef
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.IndexDefinition
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternDefinition
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternDefinitionReference
@@ -43,6 +46,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreExpandView
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreFork
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreFunctionCall
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreGraphReplace
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreIndex
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreMatchSource
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreMatchView
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreParallelComposition
@@ -58,12 +62,20 @@ import edu.ustb.sei.mde.graph.type.TypeGraph
 import edu.ustb.sei.mde.graph.type.TypeNode
 import edu.ustb.sei.mde.structure.Tuple2
 import edu.ustb.sei.mde.structure.Tuple3
+import java.util.ArrayList
 import java.util.Arrays
 import java.util.List
+import java.util.Set
 import java.util.function.BiFunction
 import java.util.function.Function
+import org.eclipse.core.resources.ResourcesPlugin
+import org.eclipse.emf.common.util.URI
+import org.eclipse.emf.ecore.EAttribute
 import org.eclipse.emf.ecore.EClass
+import org.eclipse.emf.ecore.EDataType
+import org.eclipse.emf.ecore.EEnum
 import org.eclipse.emf.ecore.EReference
+import org.eclipse.jdt.core.JavaCore
 import org.eclipse.xtend2.lib.StringConcatenationClient
 import org.eclipse.xtext.common.types.JvmDeclaredType
 import org.eclipse.xtext.common.types.JvmGenericType
@@ -73,10 +85,6 @@ import org.eclipse.xtext.xbase.compiler.output.ITreeAppendable
 import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
-import edu.ustb.sei.mde.bxcore.Invocation
-import java.util.function.Supplier
-import org.eclipse.emf.ecore.EObject
-import java.util.Collections
 
 /**
  * <p>Infers a JVM model from the source model.</p> 
@@ -116,18 +124,48 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 	 *            <code>true</code>.
 	 */
 	def dispatch void infer(BXProgram element, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
-		val sourceURI = element.eResource.URI;
+		val sourceURI = element.eResource.URI.trimFileExtension.toJavaClassName;
 
-		acceptor.accept(element.toClass('Test') [
+		acceptor.accept(element.toClass(sourceURI) [
 			element.imports.forEach [ i |
 				members += i.toField('typeGraph_' + i.shortName, TypeGraph.typeRef) [
 					visibility = JvmVisibility.PRIVATE
 				];
 				members += i.toMethod('getTypeGraph_' + i.shortName.toFirstUpper, TypeGraph.typeRef) [
 					visibility = JvmVisibility.PUBLIC;
+					
+					val eClasses = i.metamodel.eAllContents.filter[o | o instanceof EClass || o instanceof EReference].map[o| if(o instanceof EClass) o as EClass else (o as EReference).EReferenceType].toSet;
+					val eDataTypes = i.metamodel.eAllContents.filter[o | o instanceof EDataType || o instanceof EAttribute].map[o| if(o instanceof EDataType) o as EDataType else (o as EAttribute).EAttributeType].toSet;
+					val eReferences = i.metamodel.eAllContents.filter[o | o instanceof EReference].map[it as EReference].toSet;
+					val eAttributes = i.metamodel.eAllContents.filter[o | o instanceof EAttribute].map[it as EAttribute].toSet;
+					
+					val ordered = <EClass>newArrayList;
+					
+					for(o : eClasses) {
+						insertInOrder(ordered, o, eClasses);
+					}
+					
 					body = '''
-						// FIXME
-						return null;
+						if(typeGraph_«i.shortName»==null) {
+							typeGraph_«i.shortName» = new «TypeGraph.typeRef.qualifiedName»();
+							«FOR t : ordered»
+								typeGraph_«i.shortName».declare("«IF t.abstract»@«ENDIF»«t.name»«FOR s : t.ESuperTypes»«IF eClasses.contains(s)»,«s.name»«ENDIF»«ENDFOR»");
+							«ENDFOR»
+							«FOR d : eDataTypes»
+								«IF d instanceof EEnum»
+									typeGraph_«i.shortName».declare("«d.name»:java.lang.String");
+								«ELSE»
+									typeGraph_«i.shortName».declare("«d.name»:«d.instanceClass.typeRef.qualifiedName»");
+								«ENDIF»
+							«ENDFOR»
+							«FOR a : eAttributes»
+								typeGraph_«i.shortName».declare("«a.name»:«(a.eContainer as EClass).name»->«a.EAttributeType.name»«IF a.many»«IF a.unique»*«ELSE»#«ENDIF»«ENDIF»");
+							«ENDFOR»
+							«FOR a : eReferences»
+								typeGraph_«i.shortName».declare("«a.name»:«(a.eContainer as EClass).name»->«a.EReferenceType.name»«IF a.many»«IF a.unique»*«ELSE»#«ENDIF»«ENDIF»");
+							«ENDFOR»
+						}
+						return typeGraph_«i.shortName»;
 					'''
 				];
 			];
@@ -225,6 +263,38 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 				}
 			];
 		]);
+	}
+		
+	protected def String toJavaClassName(URI uri) {
+		val root = ResourcesPlugin.getWorkspace().getRoot();
+		val java = JavaCore.create(root);
+		val projects = java.javaProjects;
+		
+		val srcFolders = new ArrayList;
+		
+		projects.forEach[p|
+			p.allPackageFragmentRoots.forEach[r|
+				val path = ((if(uri.scheme===null) '/' else (uri.scheme +':/'+uri.segment(0)+'/')) + p.elementName + '/' + r.elementName)+'/'
+				srcFolders.add(path);
+			]
+		];
+		
+		val filePath = uri.toString;
+		
+		val matched = srcFolders.findFirst[f|filePath.startsWith(f)];
+		
+		if(matched===null) return uri.lastSegment
+		else filePath.substring(matched.length).replace('/', '.');
+		
+	}
+		
+	def void insertInOrder(ArrayList<EClass> objects, EClass o, Set<EClass> classes) {
+		if(objects.contains(o)) return
+		else {
+			if(!classes.contains(o)) return;
+			for(EClass c : o.ESuperTypes) insertInOrder(objects, c, classes);
+			objects.add(o);
+		}
 	}
 		
 //	def computeContext(ContextAwareCondition condition) {
@@ -364,6 +434,14 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 				val vt = (statement as XmuCoreFunctionCall).target.viewType.typeAccessor;
 				appendable.append('''new «Invocation.typeRef.qualifiedName»("«key»", «st», «vt», ()->getXmu_«(statement as XmuCoreFunctionCall).target.name.toFirstUpper»())''')
 			}
+			XmuCoreIndex : {
+				val parts = (statement as XmuCoreIndex).parts;
+				val body = (statement as XmuCoreIndex).body;
+				
+				var scope = appendable.append('''«FOR part : parts»new «Indexing.typeRef.qualifiedName»(getIndex_«part.signature.name.toFirstUpper»(), new String[]{«FOR sk:part.sourceKeys SEPARATOR ','»"«sk»"«ENDFOR»}, new String[]{«FOR vk:part.viewKeys SEPARATOR ','»"«vk»"«ENDFOR»}, «ENDFOR»''');
+				scope = scope.generateXmuCode(body, indexed, pairs, conditions, actions, program);
+				return scope.append('''«FOR part:parts»)«ENDFOR»''')
+			}
 			default:
 				appendable.append('''/* undefined */''')
 		}
@@ -410,12 +488,12 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 //	}
 	
 		
-	def String computeSourceType(XmuCoreStatement statement, List<Pair<Integer, PatternDefinition>> pairs, BXProgram program) {
-		val parent = statement.eContainer;
-		switch parent {
-			BXFunctionDefinition : ContextType.typeRef.qualifiedName+'.EMPTY_TYPE'
-		}
-	}
+//	def String computeSourceType(XmuCoreStatement statement, List<Pair<Integer, PatternDefinition>> pairs, BXProgram program) {
+//		val parent = statement.eContainer;
+//		switch parent {
+//			BXFunctionDefinition : ContextType.typeRef.qualifiedName+'.EMPTY_TYPE'
+//		}
+//	}
 	
 	protected def void generatePatternDefinition(JvmGenericType owner, PatternDefinition patternDefinition, BXProgram program) {
 		owner.members += patternDefinition.toField('pattern_' + patternDefinition.name, Pattern.typeRef) [
@@ -429,7 +507,7 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 			];
 
 		if(patternDefinition.type !== null) {
-			val patternType = if(patternDefinition.type!==null) program.definitions.findFirst[d|d instanceof TypeDefinition] as TypeDefinition else null;
+			val patternType = if(patternDefinition.type!==null) program.definitions.findFirst[d|d instanceof TypeDefinition && d.name.equals(patternDefinition.type)] as TypeDefinition else null;
 			if(patternType===null) {
 				owner.members +=
 					patternDefinition.toMethod('getType_' + patternDefinition.name.toFirstUpper,
@@ -484,7 +562,7 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 		«ENDFOR»
 		«FOR edge : edges»
 		«val tarNode = if(edge.value instanceof PatternNode) edge.value as PatternNode else if(edge.value instanceof PatternNodeRef) (edge.value as PatternNodeRef).node else null»
-		«val edgeName = (edge.eContainer as PatternNode).name+'_'+edge.feature.name+'_'+(if(tarNode!==null) tarNode.name else '?') »
+		«val edgeName = if(edge.name!==null) edge.name else ((edge.eContainer as PatternNode).name+'_'+edge.feature.name+'_'+(if(tarNode!==null) tarNode.name else '?'))»
 		«IStructuralFeatureEdge.typeRef.qualifiedName» type_«edgeName» = typeGraph.«IF edge.feature instanceof EReference»getTypeEdge«ELSE»getPropertyEdge«ENDIF»((«TypeNode.typeRef.qualifiedName») type_«(edge.eContainer as PatternNode).name»,"«edge.feature.name»");
 		pattern_«patternName».appendPatternEdge("«edgeName»", "«(edge.eContainer as PatternNode).name»", "«tarNode.name»", type_«edgeName»);
 		«ENDFOR»
@@ -507,8 +585,10 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 				val t = n.type;
 				if (t instanceof PrimitiveTypeRef) {
 					null
-				} else {
+				} else if(t instanceof EcoreTypeRef) {
 					(t as EcoreTypeRef).type.EPackage
+				} else {
+					(t as FeatureTypeRef).type.EPackage
 				}
 			].filter[it !== null].map[p|program.imports.findFirst[it.metamodel === p]].toSet;
 			val typeGraph = if (typeGraphs.size === 0) {
@@ -525,7 +605,7 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 						«TypeGraph.typeRef.qualifiedName» typeGraph = getTypeGraph_«typeGraph.shortName.toFirstUpper»();
 						type_«typeDef.name» = new «ContextType.typeRef.qualifiedName»();
 						«FOR v : elements»
-						Object «v.name»_type = typeGraph.«IF v.type instanceof EcoreTypeRef»«IF (v.type as EcoreTypeRef).type instanceof EClass»getTypeNode«ELSE»getDataTypeNode«ENDIF»("«(v.type as EcoreTypeRef).type.name»")«ELSE»getDataTypeNode("«(v.type as PrimitiveTypeRef).type»")«ENDIF»;
+						Object «v.name»_type = typeGraph.«IF v.type instanceof EcoreTypeRef»«IF (v.type as EcoreTypeRef).type instanceof EClass»getTypeNode«ELSE»getDataTypeNode«ENDIF»("«(v.type as EcoreTypeRef).type.name»")«ELSEIF v.type instanceof FeatureTypeRef»«IF (v.type as FeatureTypeRef).feature instanceof EReference»getTypeEdge«ELSE»getPropertyEdge«ENDIF»(typeGraph.getTypeNode("«(v.type as FeatureTypeRef).type.name»"),"«(v.type as FeatureTypeRef).feature.name»")«ELSE»getDataTypeNode("«(v.type as PrimitiveTypeRef).type»")«ENDIF»;
 						type_«typeDef.name».addField("«v.name»", «v.name»_type);
 					«ENDFOR»
 					«ENDIF»

@@ -340,6 +340,22 @@ public class BXCoreSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case BXCorePackage.XMU_CORE_INDEX:
+      {
+        XmuCoreIndex xmuCoreIndex = (XmuCoreIndex)theEObject;
+        T result = caseXmuCoreIndex(xmuCoreIndex);
+        if (result == null) result = caseXmuCoreCompositionChildStatement(xmuCoreIndex);
+        if (result == null) result = caseXmuCoreStatement(xmuCoreIndex);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case BXCorePackage.INDEX_PART:
+      {
+        IndexPart indexPart = (IndexPart)theEObject;
+        T result = caseIndexPart(indexPart);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case BXCorePackage.CONTEXT_AWARE_CONDITION:
       {
         ContextAwareCondition contextAwareCondition = (ContextAwareCondition)theEObject;
@@ -382,6 +398,14 @@ public class BXCoreSwitch<T> extends Switch<T>
         EcoreTypeRef ecoreTypeRef = (EcoreTypeRef)theEObject;
         T result = caseEcoreTypeRef(ecoreTypeRef);
         if (result == null) result = caseTypeRef(ecoreTypeRef);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case BXCorePackage.FEATURE_TYPE_REF:
+      {
+        FeatureTypeRef featureTypeRef = (FeatureTypeRef)theEObject;
+        T result = caseFeatureTypeRef(featureTypeRef);
+        if (result == null) result = caseTypeRef(featureTypeRef);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -958,6 +982,38 @@ public class BXCoreSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Xmu Core Index</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Xmu Core Index</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseXmuCoreIndex(XmuCoreIndex object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Index Part</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Index Part</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseIndexPart(IndexPart object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Context Aware Condition</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -1049,6 +1105,22 @@ public class BXCoreSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseEcoreTypeRef(EcoreTypeRef object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Feature Type Ref</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Feature Type Ref</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseFeatureTypeRef(FeatureTypeRef object)
   {
     return null;
   }

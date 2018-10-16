@@ -19,8 +19,10 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.DefinedContextTypeRef;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.Definition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.EcoreTypeRef;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.EmptyContextTypeRef;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.FeatureTypeRef;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ImportSection;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.IndexDefinition;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.IndexPart;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.Pattern;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternDefinitionReference;
@@ -41,6 +43,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreFork;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreForkBranch;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreFunctionCall;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreGraphReplace;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreIndex;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreMatchSource;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreMatchView;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreParallelComposition;
@@ -313,6 +316,20 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass xmuCoreIndexEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass indexPartEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass contextAwareConditionEClass = null;
 
   /**
@@ -349,6 +366,13 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * @generated
    */
   private EClass ecoreTypeRefEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass featureTypeRefEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1514,6 +1538,76 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getXmuCoreIndex()
+  {
+    return xmuCoreIndexEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getXmuCoreIndex_Parts()
+  {
+    return (EReference)xmuCoreIndexEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getXmuCoreIndex_Body()
+  {
+    return (EReference)xmuCoreIndexEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getIndexPart()
+  {
+    return indexPartEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getIndexPart_Signature()
+  {
+    return (EReference)indexPartEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getIndexPart_SourceKeys()
+  {
+    return (EAttribute)indexPartEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getIndexPart_ViewKeys()
+  {
+    return (EAttribute)indexPartEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getContextAwareCondition()
   {
     return contextAwareConditionEClass;
@@ -1597,6 +1691,36 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
   public EReference getEcoreTypeRef_Type()
   {
     return (EReference)ecoreTypeRefEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getFeatureTypeRef()
+  {
+    return featureTypeRefEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getFeatureTypeRef_Type()
+  {
+    return (EReference)featureTypeRefEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getFeatureTypeRef_Feature()
+  {
+    return (EReference)featureTypeRefEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1820,6 +1944,15 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     createEReference(xmuCoreFunctionCallEClass, XMU_CORE_FUNCTION_CALL__VIEW_MAPPINGS);
     createEReference(xmuCoreFunctionCallEClass, XMU_CORE_FUNCTION_CALL__TARGET);
 
+    xmuCoreIndexEClass = createEClass(XMU_CORE_INDEX);
+    createEReference(xmuCoreIndexEClass, XMU_CORE_INDEX__PARTS);
+    createEReference(xmuCoreIndexEClass, XMU_CORE_INDEX__BODY);
+
+    indexPartEClass = createEClass(INDEX_PART);
+    createEReference(indexPartEClass, INDEX_PART__SIGNATURE);
+    createEAttribute(indexPartEClass, INDEX_PART__SOURCE_KEYS);
+    createEAttribute(indexPartEClass, INDEX_PART__VIEW_KEYS);
+
     contextAwareConditionEClass = createEClass(CONTEXT_AWARE_CONDITION);
     createEReference(contextAwareConditionEClass, CONTEXT_AWARE_CONDITION__CONDITION);
 
@@ -1834,6 +1967,10 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
 
     ecoreTypeRefEClass = createEClass(ECORE_TYPE_REF);
     createEReference(ecoreTypeRefEClass, ECORE_TYPE_REF__TYPE);
+
+    featureTypeRefEClass = createEClass(FEATURE_TYPE_REF);
+    createEReference(featureTypeRefEClass, FEATURE_TYPE_REF__TYPE);
+    createEReference(featureTypeRefEClass, FEATURE_TYPE_REF__FEATURE);
 
     primitiveTypeRefEClass = createEClass(PRIMITIVE_TYPE_REF);
     createEAttribute(primitiveTypeRefEClass, PRIMITIVE_TYPE_REF__TYPE);
@@ -1898,9 +2035,11 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     xmuCoreForkEClass.getESuperTypes().add(this.getXmuCoreStatement());
     xmuCoreAlignEClass.getESuperTypes().add(this.getXmuCoreCompositionChildStatement());
     xmuCoreFunctionCallEClass.getESuperTypes().add(this.getXmuCoreCompositionChildStatement());
+    xmuCoreIndexEClass.getESuperTypes().add(this.getXmuCoreCompositionChildStatement());
     biGULReplaceEClass.getESuperTypes().add(this.getBiGULStatement());
     biGULSkipEClass.getESuperTypes().add(this.getBiGULStatement());
     ecoreTypeRefEClass.getESuperTypes().add(this.getTypeRef());
+    featureTypeRefEClass.getESuperTypes().add(this.getTypeRef());
     primitiveTypeRefEClass.getESuperTypes().add(this.getTypeRef());
     definedContextTypeRefEClass.getESuperTypes().add(this.getContextTypeRef());
     emptyContextTypeRefEClass.getESuperTypes().add(this.getContextTypeRef());
@@ -2047,6 +2186,15 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     initEReference(getXmuCoreFunctionCall_ViewMappings(), this.getVarMapping(), null, "viewMappings", null, 0, -1, XmuCoreFunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getXmuCoreFunctionCall_Target(), this.getBXFunctionDefinition(), null, "target", null, 0, 1, XmuCoreFunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+    initEClass(xmuCoreIndexEClass, XmuCoreIndex.class, "XmuCoreIndex", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getXmuCoreIndex_Parts(), this.getIndexPart(), null, "parts", null, 0, -1, XmuCoreIndex.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getXmuCoreIndex_Body(), this.getXmuCoreStatement(), null, "body", null, 0, 1, XmuCoreIndex.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(indexPartEClass, IndexPart.class, "IndexPart", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getIndexPart_Signature(), this.getIndexDefinition(), null, "signature", null, 0, 1, IndexPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getIndexPart_SourceKeys(), ecorePackage.getEString(), "sourceKeys", null, 0, -1, IndexPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getIndexPart_ViewKeys(), ecorePackage.getEString(), "viewKeys", null, 0, -1, IndexPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
     initEClass(contextAwareConditionEClass, ContextAwareCondition.class, "ContextAwareCondition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getContextAwareCondition_Condition(), theXbasePackage.getXExpression(), null, "condition", null, 0, 1, ContextAwareCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -2061,6 +2209,10 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
 
     initEClass(ecoreTypeRefEClass, EcoreTypeRef.class, "EcoreTypeRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getEcoreTypeRef_Type(), ecorePackage.getEClassifier(), null, "type", null, 0, 1, EcoreTypeRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(featureTypeRefEClass, FeatureTypeRef.class, "FeatureTypeRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getFeatureTypeRef_Type(), ecorePackage.getEClassifier(), null, "type", null, 0, 1, FeatureTypeRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFeatureTypeRef_Feature(), ecorePackage.getEStructuralFeature(), null, "feature", null, 0, 1, FeatureTypeRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(primitiveTypeRefEClass, PrimitiveTypeRef.class, "PrimitiveTypeRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getPrimitiveTypeRef_Type(), ecorePackage.getEString(), "type", null, 0, 1, PrimitiveTypeRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

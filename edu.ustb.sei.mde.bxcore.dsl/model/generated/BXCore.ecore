@@ -195,6 +195,19 @@
         eType="#//VarMapping" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//BXFunctionDefinition"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="XmuCoreIndex" eSuperTypes="#//XmuCoreCompositionChildStatement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parts" upperBound="-1"
+        eType="#//IndexPart" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="body" eType="#//XmuCoreStatement"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IndexPart">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="signature" eType="#//IndexDefinition"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourceKeys" unique="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="viewKeys" unique="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ContextAwareCondition">
     <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="ecore:EClass platform:/resource/org.eclipse.xtext.xbase/model/Xbase.ecore#//XExpression"
         containment="true"/>
@@ -208,6 +221,10 @@
   <eClassifiers xsi:type="ecore:EClass" name="BiGULSkip" eSuperTypes="#//BiGULStatement"/>
   <eClassifiers xsi:type="ecore:EClass" name="EcoreTypeRef" eSuperTypes="#//TypeRef">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClassifier"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FeatureTypeRef" eSuperTypes="#//TypeRef">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClassifier"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="feature" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PrimitiveTypeRef" eSuperTypes="#//TypeRef">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

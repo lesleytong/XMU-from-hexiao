@@ -33,6 +33,7 @@ TypeVar :
 
 TypeRef :
 	{EcoreTypeRef} type=[ecore::EClassifier|QualifiedValidID] |
+	{FeatureTypeRef} type=[ecore::EClassifier|QualifiedValidID] (=> '::' feature=[ecore::EStructuralFeature | ValidID]) |
 	{PrimitiveTypeRef} type=('int'|'boolean'|'String')
 ;
 
@@ -89,7 +90,7 @@ XmuCoreStatement :
 XmuCoreCompositionChildStatement :
 	XmuCoreMatchSource | XmuCoreMatchView |
 	XmuCoreExpandSource | XmuCoreExpandView | XmuCoreGraphReplace |
-	XmuCoreSwitch | XmuCoreAlign | XmuCoreFunctionCall
+	XmuCoreSwitch | XmuCoreAlign | XmuCoreFunctionCall | XmuCoreIndex
 ;
 
 XmuCoreMatchSource :
@@ -160,6 +161,14 @@ XmuCoreFunctionCall :
 	target=[BXFunctionDefinition|ValidID]
 ;
 
+XmuCoreIndex :
+	'index' parts+=IndexPart (',' parts+=IndexPart)* 'in' body=XmuCoreStatement
+;
+
+IndexPart :
+	signature=[IndexDefinition|ValidID] '<' sourceKeys+=ValidID (',' sourceKeys+=ValidID)* '|' viewKeys+=ValidID (',' viewKeys+=ValidID)* '>'
+;
+
 ContextAwareCondition :
 	'[' condition=XExpression ']'
 ;
@@ -182,4 +191,9 @@ BiGULSkip :
 
 QualifiedValidID :
 	ValidID '.' ValidID
+;
+
+@Override
+ValidID :
+	ID | 'replace' | 'skip' | 'index' | 'align' | 'match' | 'int' | 'String' |'boolean' | 'type'
 ;

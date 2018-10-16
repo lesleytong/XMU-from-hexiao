@@ -33,7 +33,7 @@ public class BXCoreParser extends AbstractContentAssistParser {
 		private static void init(ImmutableMap.Builder<AbstractElement, String> builder, BXCoreGrammarAccess grammarAccess) {
 			builder.put(grammarAccess.getDefinitionAccess().getAlternatives(), "rule__Definition__Alternatives");
 			builder.put(grammarAccess.getTypeRefAccess().getAlternatives(), "rule__TypeRef__Alternatives");
-			builder.put(grammarAccess.getTypeRefAccess().getTypeAlternatives_1_1_0(), "rule__TypeRef__TypeAlternatives_1_1_0");
+			builder.put(grammarAccess.getTypeRefAccess().getTypeAlternatives_2_1_0(), "rule__TypeRef__TypeAlternatives_2_1_0");
 			builder.put(grammarAccess.getPatternValueConditionAccess().getAlternatives(), "rule__PatternValueCondition__Alternatives");
 			builder.put(grammarAccess.getPatternAccess().getAlternatives(), "rule__Pattern__Alternatives");
 			builder.put(grammarAccess.getContextTypeAccess().getAlternatives(), "rule__ContextType__Alternatives");
@@ -41,6 +41,7 @@ public class BXCoreParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getXmuCoreStatementAccess().getAlternatives(), "rule__XmuCoreStatement__Alternatives");
 			builder.put(grammarAccess.getXmuCoreCompositionChildStatementAccess().getAlternatives(), "rule__XmuCoreCompositionChildStatement__Alternatives");
 			builder.put(grammarAccess.getBiGULStatementAccess().getAlternatives(), "rule__BiGULStatement__Alternatives");
+			builder.put(grammarAccess.getValidIDAccess().getAlternatives(), "rule__ValidID__Alternatives");
 			builder.put(grammarAccess.getXAssignmentAccess().getAlternatives(), "rule__XAssignment__Alternatives");
 			builder.put(grammarAccess.getOpMultiAssignAccess().getAlternatives(), "rule__OpMultiAssign__Alternatives");
 			builder.put(grammarAccess.getOpEqualityAccess().getAlternatives(), "rule__OpEquality__Alternatives");
@@ -89,6 +90,8 @@ public class BXCoreParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getTypeVarAccess().getGroup(), "rule__TypeVar__Group__0");
 			builder.put(grammarAccess.getTypeRefAccess().getGroup_0(), "rule__TypeRef__Group_0__0");
 			builder.put(grammarAccess.getTypeRefAccess().getGroup_1(), "rule__TypeRef__Group_1__0");
+			builder.put(grammarAccess.getTypeRefAccess().getGroup_1_2(), "rule__TypeRef__Group_1_2__0");
+			builder.put(grammarAccess.getTypeRefAccess().getGroup_2(), "rule__TypeRef__Group_2__0");
 			builder.put(grammarAccess.getPatternDefinitionAccess().getGroup(), "rule__PatternDefinition__Group__0");
 			builder.put(grammarAccess.getPatternDefinitionAccess().getGroup_4(), "rule__PatternDefinition__Group_4__0");
 			builder.put(grammarAccess.getIndexDefinitionAccess().getGroup(), "rule__IndexDefinition__Group__0");
@@ -130,6 +133,11 @@ public class BXCoreParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getXmuCoreFunctionCallAccess().getGroup(), "rule__XmuCoreFunctionCall__Group__0");
 			builder.put(grammarAccess.getXmuCoreFunctionCallAccess().getGroup_2(), "rule__XmuCoreFunctionCall__Group_2__0");
 			builder.put(grammarAccess.getXmuCoreFunctionCallAccess().getGroup_6(), "rule__XmuCoreFunctionCall__Group_6__0");
+			builder.put(grammarAccess.getXmuCoreIndexAccess().getGroup(), "rule__XmuCoreIndex__Group__0");
+			builder.put(grammarAccess.getXmuCoreIndexAccess().getGroup_2(), "rule__XmuCoreIndex__Group_2__0");
+			builder.put(grammarAccess.getIndexPartAccess().getGroup(), "rule__IndexPart__Group__0");
+			builder.put(grammarAccess.getIndexPartAccess().getGroup_3(), "rule__IndexPart__Group_3__0");
+			builder.put(grammarAccess.getIndexPartAccess().getGroup_6(), "rule__IndexPart__Group_6__0");
 			builder.put(grammarAccess.getContextAwareConditionAccess().getGroup(), "rule__ContextAwareCondition__Group__0");
 			builder.put(grammarAccess.getBiGULReplaceAccess().getGroup(), "rule__BiGULReplace__Group__0");
 			builder.put(grammarAccess.getBiGULSkipAccess().getGroup(), "rule__BiGULSkip__Group__0");
@@ -329,6 +337,8 @@ public class BXCoreParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getTypeVarAccess().getTypeAssignment_2(), "rule__TypeVar__TypeAssignment_2");
 			builder.put(grammarAccess.getTypeRefAccess().getTypeAssignment_0_1(), "rule__TypeRef__TypeAssignment_0_1");
 			builder.put(grammarAccess.getTypeRefAccess().getTypeAssignment_1_1(), "rule__TypeRef__TypeAssignment_1_1");
+			builder.put(grammarAccess.getTypeRefAccess().getFeatureAssignment_1_2_1(), "rule__TypeRef__FeatureAssignment_1_2_1");
+			builder.put(grammarAccess.getTypeRefAccess().getTypeAssignment_2_1(), "rule__TypeRef__TypeAssignment_2_1");
 			builder.put(grammarAccess.getPatternDefinitionAccess().getNameAssignment_1(), "rule__PatternDefinition__NameAssignment_1");
 			builder.put(grammarAccess.getPatternDefinitionAccess().getRootAssignment_3(), "rule__PatternDefinition__RootAssignment_3");
 			builder.put(grammarAccess.getPatternDefinitionAccess().getTypeAssignment_4_1(), "rule__PatternDefinition__TypeAssignment_4_1");
@@ -406,6 +416,14 @@ public class BXCoreParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getXmuCoreFunctionCallAccess().getViewMappingsAssignment_5(), "rule__XmuCoreFunctionCall__ViewMappingsAssignment_5");
 			builder.put(grammarAccess.getXmuCoreFunctionCallAccess().getViewMappingsAssignment_6_1(), "rule__XmuCoreFunctionCall__ViewMappingsAssignment_6_1");
 			builder.put(grammarAccess.getXmuCoreFunctionCallAccess().getTargetAssignment_9(), "rule__XmuCoreFunctionCall__TargetAssignment_9");
+			builder.put(grammarAccess.getXmuCoreIndexAccess().getPartsAssignment_1(), "rule__XmuCoreIndex__PartsAssignment_1");
+			builder.put(grammarAccess.getXmuCoreIndexAccess().getPartsAssignment_2_1(), "rule__XmuCoreIndex__PartsAssignment_2_1");
+			builder.put(grammarAccess.getXmuCoreIndexAccess().getBodyAssignment_4(), "rule__XmuCoreIndex__BodyAssignment_4");
+			builder.put(grammarAccess.getIndexPartAccess().getSignatureAssignment_0(), "rule__IndexPart__SignatureAssignment_0");
+			builder.put(grammarAccess.getIndexPartAccess().getSourceKeysAssignment_2(), "rule__IndexPart__SourceKeysAssignment_2");
+			builder.put(grammarAccess.getIndexPartAccess().getSourceKeysAssignment_3_1(), "rule__IndexPart__SourceKeysAssignment_3_1");
+			builder.put(grammarAccess.getIndexPartAccess().getViewKeysAssignment_5(), "rule__IndexPart__ViewKeysAssignment_5");
+			builder.put(grammarAccess.getIndexPartAccess().getViewKeysAssignment_6_1(), "rule__IndexPart__ViewKeysAssignment_6_1");
 			builder.put(grammarAccess.getContextAwareConditionAccess().getConditionAssignment_1(), "rule__ContextAwareCondition__ConditionAssignment_1");
 			builder.put(grammarAccess.getContextAwareUnidirectionalActionAccess().getActionAssignment(), "rule__ContextAwareUnidirectionalAction__ActionAssignment");
 			builder.put(grammarAccess.getXAssignmentAccess().getFeatureAssignment_0_1(), "rule__XAssignment__FeatureAssignment_0_1");

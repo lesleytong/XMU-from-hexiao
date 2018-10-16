@@ -11,13 +11,18 @@ public class FieldDef<T> implements INamedElement {
 	}
 	
 	public FieldDef(String name, T type) {
+		this(name, type, false);
+	}
+	
+	public FieldDef(String name, T type, boolean many) {
 		this.name = name;
 		this.type = type;
+		this.many = many;
 	}
 	
 	private T type;
-	
 	private String name;
+	private boolean many;
 
 	public T getType() {
 		return type;
@@ -33,6 +38,10 @@ public class FieldDef<T> implements INamedElement {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public boolean isMany() {
+		return many;
 	}
 	
 	public boolean isElementType() {

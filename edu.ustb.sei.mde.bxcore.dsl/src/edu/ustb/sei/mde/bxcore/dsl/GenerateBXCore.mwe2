@@ -33,6 +33,14 @@ Workflow {
 			validator = {
 				// composedCheck = "org.eclipse.xtext.validation.NamesAreUniqueValidator"
 			}
+			
+			fileWizard = {
+				generate = true
+			}
+			
+			projectWizard = {
+				generate = true
+			}
 		}
 	}
 }

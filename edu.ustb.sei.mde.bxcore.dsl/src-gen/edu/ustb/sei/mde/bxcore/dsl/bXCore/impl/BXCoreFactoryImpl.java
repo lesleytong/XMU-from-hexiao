@@ -99,12 +99,15 @@ public class BXCoreFactoryImpl extends EFactoryImpl implements BXCoreFactory
       case BXCorePackage.XMU_CORE_FORK_BRANCH: return createXmuCoreForkBranch();
       case BXCorePackage.XMU_CORE_ALIGN: return createXmuCoreAlign();
       case BXCorePackage.XMU_CORE_FUNCTION_CALL: return createXmuCoreFunctionCall();
+      case BXCorePackage.XMU_CORE_INDEX: return createXmuCoreIndex();
+      case BXCorePackage.INDEX_PART: return createIndexPart();
       case BXCorePackage.CONTEXT_AWARE_CONDITION: return createContextAwareCondition();
       case BXCorePackage.CONTEXT_AWARE_UNIDIRECTIONAL_ACTION: return createContextAwareUnidirectionalAction();
       case BXCorePackage.BI_GUL_STATEMENT: return createBiGULStatement();
       case BXCorePackage.BI_GUL_REPLACE: return createBiGULReplace();
       case BXCorePackage.BI_GUL_SKIP: return createBiGULSkip();
       case BXCorePackage.ECORE_TYPE_REF: return createEcoreTypeRef();
+      case BXCorePackage.FEATURE_TYPE_REF: return createFeatureTypeRef();
       case BXCorePackage.PRIMITIVE_TYPE_REF: return createPrimitiveTypeRef();
       case BXCorePackage.DEFINED_CONTEXT_TYPE_REF: return createDefinedContextTypeRef();
       case BXCorePackage.EMPTY_CONTEXT_TYPE_REF: return createEmptyContextTypeRef();
@@ -492,6 +495,28 @@ public class BXCoreFactoryImpl extends EFactoryImpl implements BXCoreFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public XmuCoreIndex createXmuCoreIndex()
+  {
+    XmuCoreIndexImpl xmuCoreIndex = new XmuCoreIndexImpl();
+    return xmuCoreIndex;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public IndexPart createIndexPart()
+  {
+    IndexPartImpl indexPart = new IndexPartImpl();
+    return indexPart;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public ContextAwareCondition createContextAwareCondition()
   {
     ContextAwareConditionImpl contextAwareCondition = new ContextAwareConditionImpl();
@@ -551,6 +576,17 @@ public class BXCoreFactoryImpl extends EFactoryImpl implements BXCoreFactory
   {
     EcoreTypeRefImpl ecoreTypeRef = new EcoreTypeRefImpl();
     return ecoreTypeRef;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public FeatureTypeRef createFeatureTypeRef()
+  {
+    FeatureTypeRefImpl featureTypeRef = new FeatureTypeRefImpl();
+    return featureTypeRef;
   }
 
   /**

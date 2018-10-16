@@ -1,10 +1,11 @@
 package edu.ustb.sei.mde.bxcore;
 
 import edu.ustb.sei.mde.bxcore.structures.Context;
+import edu.ustb.sei.mde.bxcore.structures.ContextGraph;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
 import edu.ustb.sei.mde.structure.Tuple2;
 
-public class ViewType extends Tuple2<TypedGraph, Context> {
+public class ViewType extends Tuple2<TypedGraph, Context> implements ContextGraph {
 
 	private ViewType(TypedGraph first, Context second) {
 		super(first, second);

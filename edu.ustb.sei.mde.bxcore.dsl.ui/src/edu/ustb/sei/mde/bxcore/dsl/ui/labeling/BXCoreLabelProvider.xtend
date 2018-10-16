@@ -6,6 +6,14 @@ package edu.ustb.sei.mde.bxcore.dsl.ui.labeling
 import com.google.inject.Inject
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider
 import org.eclipse.xtext.xbase.ui.labeling.XbaseLabelProvider
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXProgram
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.ImportSection
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeDefinition
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternDefinition
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXFunctionDefinition
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.IndexDefinition
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreStatement
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.BiGULStatement
 
 /**
  * Provides labels for EObjects.
@@ -17,6 +25,39 @@ class BXCoreLabelProvider extends XbaseLabelProvider {
 	@Inject
 	new(AdapterFactoryLabelProvider delegate) {
 		super(delegate);
+	}
+	
+	def text(BXProgram p) {
+		'Program '+p.eResource.URI.lastSegment
+	}
+	
+	def text(ImportSection i) {
+		'Load '+i.shortName
+	}
+	
+	def text(TypeDefinition e){
+		'Type '+e.name
+	}
+	
+	def text(PatternDefinition e) {
+		if(e.name===null) 'Pattern (Unnamed)'
+		else 'Pattern '+e.name
+	}
+	
+	def text(BXFunctionDefinition e) {
+		'Function '+e.name
+	}
+	
+	def text(IndexDefinition e) {
+		'Index '+e.name
+	}
+	
+	def text(XmuCoreStatement e) {
+		e.eClass.name
+	}
+	
+	def text(BiGULStatement e) {
+		e.eClass.name
 	}
 
 	// Labels and icons can be computed like this:

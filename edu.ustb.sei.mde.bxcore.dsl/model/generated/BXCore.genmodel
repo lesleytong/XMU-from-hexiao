@@ -140,6 +140,15 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//XmuCoreFunctionCall/viewMappings"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BXCore.ecore#//XmuCoreFunctionCall/target"/>
     </genClasses>
+    <genClasses ecoreClass="BXCore.ecore#//XmuCoreIndex">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//XmuCoreIndex/parts"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//XmuCoreIndex/body"/>
+    </genClasses>
+    <genClasses ecoreClass="BXCore.ecore#//IndexPart">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BXCore.ecore#//IndexPart/signature"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BXCore.ecore#//IndexPart/sourceKeys"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BXCore.ecore#//IndexPart/viewKeys"/>
+    </genClasses>
     <genClasses ecoreClass="BXCore.ecore#//ContextAwareCondition">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//ContextAwareCondition/condition"/>
     </genClasses>
@@ -151,6 +160,10 @@
     <genClasses ecoreClass="BXCore.ecore#//BiGULSkip"/>
     <genClasses ecoreClass="BXCore.ecore#//EcoreTypeRef">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BXCore.ecore#//EcoreTypeRef/type"/>
+    </genClasses>
+    <genClasses ecoreClass="BXCore.ecore#//FeatureTypeRef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BXCore.ecore#//FeatureTypeRef/type"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BXCore.ecore#//FeatureTypeRef/feature"/>
     </genClasses>
     <genClasses ecoreClass="BXCore.ecore#//PrimitiveTypeRef">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BXCore.ecore#//PrimitiveTypeRef/type"/>

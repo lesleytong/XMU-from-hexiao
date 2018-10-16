@@ -1397,6 +1397,89 @@ public interface BXCorePackage extends EPackage
   int XMU_CORE_FUNCTION_CALL_FEATURE_COUNT = XMU_CORE_COMPOSITION_CHILD_STATEMENT_FEATURE_COUNT + 3;
 
   /**
+   * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.XmuCoreIndexImpl <em>Xmu Core Index</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.XmuCoreIndexImpl
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreIndex()
+   * @generated
+   */
+  int XMU_CORE_INDEX = 34;
+
+  /**
+   * The feature id for the '<em><b>Parts</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int XMU_CORE_INDEX__PARTS = XMU_CORE_COMPOSITION_CHILD_STATEMENT_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Body</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int XMU_CORE_INDEX__BODY = XMU_CORE_COMPOSITION_CHILD_STATEMENT_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Xmu Core Index</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int XMU_CORE_INDEX_FEATURE_COUNT = XMU_CORE_COMPOSITION_CHILD_STATEMENT_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.IndexPartImpl <em>Index Part</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.IndexPartImpl
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getIndexPart()
+   * @generated
+   */
+  int INDEX_PART = 35;
+
+  /**
+   * The feature id for the '<em><b>Signature</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INDEX_PART__SIGNATURE = 0;
+
+  /**
+   * The feature id for the '<em><b>Source Keys</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INDEX_PART__SOURCE_KEYS = 1;
+
+  /**
+   * The feature id for the '<em><b>View Keys</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INDEX_PART__VIEW_KEYS = 2;
+
+  /**
+   * The number of structural features of the '<em>Index Part</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INDEX_PART_FEATURE_COUNT = 3;
+
+  /**
    * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.ContextAwareConditionImpl <em>Context Aware Condition</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1404,7 +1487,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getContextAwareCondition()
    * @generated
    */
-  int CONTEXT_AWARE_CONDITION = 34;
+  int CONTEXT_AWARE_CONDITION = 36;
 
   /**
    * The feature id for the '<em><b>Condition</b></em>' containment reference.
@@ -1432,7 +1515,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getContextAwareUnidirectionalAction()
    * @generated
    */
-  int CONTEXT_AWARE_UNIDIRECTIONAL_ACTION = 35;
+  int CONTEXT_AWARE_UNIDIRECTIONAL_ACTION = 37;
 
   /**
    * The feature id for the '<em><b>Action</b></em>' containment reference.
@@ -1460,7 +1543,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getBiGULStatement()
    * @generated
    */
-  int BI_GUL_STATEMENT = 36;
+  int BI_GUL_STATEMENT = 38;
 
   /**
    * The number of structural features of the '<em>Bi GUL Statement</em>' class.
@@ -1479,7 +1562,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getBiGULReplace()
    * @generated
    */
-  int BI_GUL_REPLACE = 37;
+  int BI_GUL_REPLACE = 39;
 
   /**
    * The number of structural features of the '<em>Bi GUL Replace</em>' class.
@@ -1498,7 +1581,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getBiGULSkip()
    * @generated
    */
-  int BI_GUL_SKIP = 38;
+  int BI_GUL_SKIP = 40;
 
   /**
    * The number of structural features of the '<em>Bi GUL Skip</em>' class.
@@ -1517,7 +1600,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getEcoreTypeRef()
    * @generated
    */
-  int ECORE_TYPE_REF = 39;
+  int ECORE_TYPE_REF = 41;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -1538,6 +1621,43 @@ public interface BXCorePackage extends EPackage
   int ECORE_TYPE_REF_FEATURE_COUNT = TYPE_REF_FEATURE_COUNT + 1;
 
   /**
+   * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.FeatureTypeRefImpl <em>Feature Type Ref</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.FeatureTypeRefImpl
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getFeatureTypeRef()
+   * @generated
+   */
+  int FEATURE_TYPE_REF = 42;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FEATURE_TYPE_REF__TYPE = TYPE_REF_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Feature</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FEATURE_TYPE_REF__FEATURE = TYPE_REF_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Feature Type Ref</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FEATURE_TYPE_REF_FEATURE_COUNT = TYPE_REF_FEATURE_COUNT + 2;
+
+  /**
    * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PrimitiveTypeRefImpl <em>Primitive Type Ref</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1545,7 +1665,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getPrimitiveTypeRef()
    * @generated
    */
-  int PRIMITIVE_TYPE_REF = 40;
+  int PRIMITIVE_TYPE_REF = 43;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -1573,7 +1693,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getDefinedContextTypeRef()
    * @generated
    */
-  int DEFINED_CONTEXT_TYPE_REF = 41;
+  int DEFINED_CONTEXT_TYPE_REF = 44;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -1601,7 +1721,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getEmptyContextTypeRef()
    * @generated
    */
-  int EMPTY_CONTEXT_TYPE_REF = 42;
+  int EMPTY_CONTEXT_TYPE_REF = 45;
 
   /**
    * The number of structural features of the '<em>Empty Context Type Ref</em>' class.
@@ -2757,6 +2877,81 @@ public interface BXCorePackage extends EPackage
   EReference getXmuCoreFunctionCall_Target();
 
   /**
+   * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreIndex <em>Xmu Core Index</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Xmu Core Index</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreIndex
+   * @generated
+   */
+  EClass getXmuCoreIndex();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreIndex#getParts <em>Parts</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Parts</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreIndex#getParts()
+   * @see #getXmuCoreIndex()
+   * @generated
+   */
+  EReference getXmuCoreIndex_Parts();
+
+  /**
+   * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreIndex#getBody <em>Body</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Body</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreIndex#getBody()
+   * @see #getXmuCoreIndex()
+   * @generated
+   */
+  EReference getXmuCoreIndex_Body();
+
+  /**
+   * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.IndexPart <em>Index Part</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Index Part</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.IndexPart
+   * @generated
+   */
+  EClass getIndexPart();
+
+  /**
+   * Returns the meta object for the reference '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.IndexPart#getSignature <em>Signature</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Signature</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.IndexPart#getSignature()
+   * @see #getIndexPart()
+   * @generated
+   */
+  EReference getIndexPart_Signature();
+
+  /**
+   * Returns the meta object for the attribute list '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.IndexPart#getSourceKeys <em>Source Keys</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>Source Keys</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.IndexPart#getSourceKeys()
+   * @see #getIndexPart()
+   * @generated
+   */
+  EAttribute getIndexPart_SourceKeys();
+
+  /**
+   * Returns the meta object for the attribute list '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.IndexPart#getViewKeys <em>View Keys</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>View Keys</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.IndexPart#getViewKeys()
+   * @see #getIndexPart()
+   * @generated
+   */
+  EAttribute getIndexPart_ViewKeys();
+
+  /**
    * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareCondition <em>Context Aware Condition</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2848,6 +3043,38 @@ public interface BXCorePackage extends EPackage
    * @generated
    */
   EReference getEcoreTypeRef_Type();
+
+  /**
+   * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.FeatureTypeRef <em>Feature Type Ref</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Feature Type Ref</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.FeatureTypeRef
+   * @generated
+   */
+  EClass getFeatureTypeRef();
+
+  /**
+   * Returns the meta object for the reference '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.FeatureTypeRef#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Type</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.FeatureTypeRef#getType()
+   * @see #getFeatureTypeRef()
+   * @generated
+   */
+  EReference getFeatureTypeRef_Type();
+
+  /**
+   * Returns the meta object for the reference '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.FeatureTypeRef#getFeature <em>Feature</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Feature</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.FeatureTypeRef#getFeature()
+   * @see #getFeatureTypeRef()
+   * @generated
+   */
+  EReference getFeatureTypeRef_Feature();
 
   /**
    * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PrimitiveTypeRef <em>Primitive Type Ref</em>}'.
@@ -3849,6 +4076,66 @@ public interface BXCorePackage extends EPackage
     EReference XMU_CORE_FUNCTION_CALL__TARGET = eINSTANCE.getXmuCoreFunctionCall_Target();
 
     /**
+     * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.XmuCoreIndexImpl <em>Xmu Core Index</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.XmuCoreIndexImpl
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreIndex()
+     * @generated
+     */
+    EClass XMU_CORE_INDEX = eINSTANCE.getXmuCoreIndex();
+
+    /**
+     * The meta object literal for the '<em><b>Parts</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference XMU_CORE_INDEX__PARTS = eINSTANCE.getXmuCoreIndex_Parts();
+
+    /**
+     * The meta object literal for the '<em><b>Body</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference XMU_CORE_INDEX__BODY = eINSTANCE.getXmuCoreIndex_Body();
+
+    /**
+     * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.IndexPartImpl <em>Index Part</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.IndexPartImpl
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getIndexPart()
+     * @generated
+     */
+    EClass INDEX_PART = eINSTANCE.getIndexPart();
+
+    /**
+     * The meta object literal for the '<em><b>Signature</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference INDEX_PART__SIGNATURE = eINSTANCE.getIndexPart_Signature();
+
+    /**
+     * The meta object literal for the '<em><b>Source Keys</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute INDEX_PART__SOURCE_KEYS = eINSTANCE.getIndexPart_SourceKeys();
+
+    /**
+     * The meta object literal for the '<em><b>View Keys</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute INDEX_PART__VIEW_KEYS = eINSTANCE.getIndexPart_ViewKeys();
+
+    /**
      * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.ContextAwareConditionImpl <em>Context Aware Condition</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3931,6 +4218,32 @@ public interface BXCorePackage extends EPackage
      * @generated
      */
     EReference ECORE_TYPE_REF__TYPE = eINSTANCE.getEcoreTypeRef_Type();
+
+    /**
+     * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.FeatureTypeRefImpl <em>Feature Type Ref</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.FeatureTypeRefImpl
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getFeatureTypeRef()
+     * @generated
+     */
+    EClass FEATURE_TYPE_REF = eINSTANCE.getFeatureTypeRef();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference FEATURE_TYPE_REF__TYPE = eINSTANCE.getFeatureTypeRef_Type();
+
+    /**
+     * The meta object literal for the '<em><b>Feature</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference FEATURE_TYPE_REF__FEATURE = eINSTANCE.getFeatureTypeRef_Feature();
 
     /**
      * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PrimitiveTypeRefImpl <em>Primitive Type Ref</em>}' class.

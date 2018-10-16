@@ -330,6 +330,24 @@ public interface BXCoreFactory extends EFactory
   XmuCoreFunctionCall createXmuCoreFunctionCall();
 
   /**
+   * Returns a new object of class '<em>Xmu Core Index</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Xmu Core Index</em>'.
+   * @generated
+   */
+  XmuCoreIndex createXmuCoreIndex();
+
+  /**
+   * Returns a new object of class '<em>Index Part</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Index Part</em>'.
+   * @generated
+   */
+  IndexPart createIndexPart();
+
+  /**
    * Returns a new object of class '<em>Context Aware Condition</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -382,6 +400,15 @@ public interface BXCoreFactory extends EFactory
    * @generated
    */
   EcoreTypeRef createEcoreTypeRef();
+
+  /**
+   * Returns a new object of class '<em>Feature Type Ref</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Feature Type Ref</em>'.
+   * @generated
+   */
+  FeatureTypeRef createFeatureTypeRef();
 
   /**
    * Returns a new object of class '<em>Primitive Type Ref</em>'.

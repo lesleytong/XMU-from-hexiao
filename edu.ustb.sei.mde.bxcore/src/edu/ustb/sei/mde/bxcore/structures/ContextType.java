@@ -28,6 +28,12 @@ public class ContextType {
 		orderedKeys.add(field);
 	}
 	
+	public <T> void addCollectionField(String name, T type) {
+		FieldDef<T> field = new FieldDef<T>(name, type, true);
+		fieldDefs.put(name, field);
+		orderedKeys.add(field);
+	}
+	
 	public FieldDef<?> getField(String name) {
 		return fieldDefs.get(name);
 	}

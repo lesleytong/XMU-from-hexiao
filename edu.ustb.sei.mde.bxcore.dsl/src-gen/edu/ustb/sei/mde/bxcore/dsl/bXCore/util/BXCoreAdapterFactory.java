@@ -246,6 +246,16 @@ public class BXCoreAdapterFactory extends AdapterFactoryImpl
         return createXmuCoreFunctionCallAdapter();
       }
       @Override
+      public Adapter caseXmuCoreIndex(XmuCoreIndex object)
+      {
+        return createXmuCoreIndexAdapter();
+      }
+      @Override
+      public Adapter caseIndexPart(IndexPart object)
+      {
+        return createIndexPartAdapter();
+      }
+      @Override
       public Adapter caseContextAwareCondition(ContextAwareCondition object)
       {
         return createContextAwareConditionAdapter();
@@ -274,6 +284,11 @@ public class BXCoreAdapterFactory extends AdapterFactoryImpl
       public Adapter caseEcoreTypeRef(EcoreTypeRef object)
       {
         return createEcoreTypeRefAdapter();
+      }
+      @Override
+      public Adapter caseFeatureTypeRef(FeatureTypeRef object)
+      {
+        return createFeatureTypeRefAdapter();
       }
       @Override
       public Adapter casePrimitiveTypeRef(PrimitiveTypeRef object)
@@ -823,6 +838,36 @@ public class BXCoreAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreIndex <em>Xmu Core Index</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreIndex
+   * @generated
+   */
+  public Adapter createXmuCoreIndexAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.IndexPart <em>Index Part</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.IndexPart
+   * @generated
+   */
+  public Adapter createIndexPartAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareCondition <em>Context Aware Condition</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -908,6 +953,21 @@ public class BXCoreAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createEcoreTypeRefAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.FeatureTypeRef <em>Feature Type Ref</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.FeatureTypeRef
+   * @generated
+   */
+  public Adapter createFeatureTypeRefAdapter()
   {
     return null;
   }
