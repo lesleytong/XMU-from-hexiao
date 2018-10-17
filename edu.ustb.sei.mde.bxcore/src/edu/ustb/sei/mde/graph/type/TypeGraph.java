@@ -3,6 +3,7 @@ package edu.ustb.sei.mde.graph.type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -357,7 +358,7 @@ public class TypeGraph implements IGraph {
 	public void declare(String statement) {
 		String typeNodeFormat = "\\s*(@?)(\\w+)\\s*(,\\w+)*\\s*";
 		String dataNodeFormat = "\\s*(\\w+)\\s*:\\s*([\\w\\.]+)\\s*";
-		String edgeFormat = "\\s*(\\w+)\\s*:\\s*(\\w+)\\s*->\\s*(\\w+)([\\*#]?)\\s*";
+		String edgeFormat = "\\s*(@?)\\s*(\\w+)\\s*:\\s*(\\w+)\\s*->\\s*(\\w+)([\\*#]?)\\s*";
 		
 		Pattern typeNodePat = Pattern.compile(typeNodeFormat);
 		Pattern dataNodePat = Pattern.compile(dataNodeFormat);
@@ -397,16 +398,17 @@ public class TypeGraph implements IGraph {
 				
 				DataTypeNode dn = new DataTypeNode();
 				try {
-					dn.setDataType(name, Class.forName(javaName));
+					dn.setDataType(name, convertToJavaClass(javaName));
 					this.addNode(dn);
 				} catch (ClassNotFoundException e) {
-					System.out.println("error name "+javaName);
+					XmuCoreUtils.log(Level.SEVERE, "error in declaring DataTypeNode: the Java type name is invalid => "+javaName, e);
 				}
 			} else if((matcher=edgePat.matcher(stat)).matches()) {
-				String name = matcher.group(1);
-				String src = matcher.group(2);
-				String tar = matcher.group(3);
-				String mul = matcher.group(4);
+				String containment = matcher.group(1);
+				String name = matcher.group(2);
+				String src = matcher.group(3);
+				String tar = matcher.group(4);
+				String mul = matcher.group(5);
 				Boolean uni = mul==null || mul.equals("*");
 				
 				TypeNode sn = this.getTypeNode(src);
@@ -422,6 +424,7 @@ public class TypeGraph implements IGraph {
 					e.setTarget((TypeNode) tn);
 					e.setMany(mul.isEmpty()==false);
 					e.setUnique(uni);
+					e.setContainment(!containment.isEmpty());
 					this.addEdge(e);
 				} else if(tn instanceof DataTypeNode) {
 					PropertyEdge e = new PropertyEdge();
@@ -432,8 +435,22 @@ public class TypeGraph implements IGraph {
 					e.setUnique(uni);
 					this.addEdge(e);
 				}
+			} else {
+				XmuCoreUtils.log(Level.SEVERE, "unhandled declaration:"+stat, null);
 			}
 		}
+	}
+
+	protected Class<?> convertToJavaClass(String javaName) throws ClassNotFoundException {
+		if(int.class.getCanonicalName().equals(javaName)) return int.class;
+		else if(boolean.class.getCanonicalName().equals(javaName)) return boolean.class;
+		else if(char.class.getCanonicalName().equals(javaName)) return char.class;
+		else if(short.class.getCanonicalName().equals(javaName)) return short.class;
+		else if(float.class.getCanonicalName().equals(javaName)) return float.class;
+		else if(double.class.getCanonicalName().equals(javaName)) return double.class;
+		else if(byte.class.getCanonicalName().equals(javaName)) return byte.class;
+		else if(long.class.getCanonicalName().equals(javaName)) return long.class;
+		else return Class.forName(javaName);
 	}
 	
 	

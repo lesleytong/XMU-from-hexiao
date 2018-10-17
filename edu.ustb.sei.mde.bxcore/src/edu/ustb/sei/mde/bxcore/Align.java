@@ -210,8 +210,7 @@ public class Align extends XmuCore {
 						try {
 							// in principle, we should reset downstream values
 							v.second.setUpstream(upstreamView);
-							FieldDef<?> dk = v.second.getDownKeyFromUpstreamKey(vk);
-							v.first.addIndex(index, v.first.getElementByIndexObject(v.second.getIndexValue(dk)));
+							v.first.addIndex(index, v.first.getElementByIndexObject((Index) v.second.getValue(vk.getName())));
 						} catch (UninitializedException e1) {
 							return nothing(e1);
 						}
@@ -259,8 +258,8 @@ public class Align extends XmuCore {
 		for(ViewType v : result) {
 			try {
 				if(value==null)
-					value = v.second.getValue(vk);
-				else if(value.equals(v.second.getValue(vk))==false)
+					value = v.second.getValue(vk.getName());
+				else if(value.equals(v.second.getValue(vk.getName()))==false)
 					return nothing();
 			}catch (UninitializedException e) {
 				return nothing();

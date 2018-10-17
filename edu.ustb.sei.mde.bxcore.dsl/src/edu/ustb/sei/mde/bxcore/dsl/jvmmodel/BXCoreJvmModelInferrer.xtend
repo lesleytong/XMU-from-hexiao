@@ -85,6 +85,12 @@ import org.eclipse.xtext.xbase.compiler.output.ITreeAppendable
 import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
+import edu.ustb.sei.mde.graph.typedGraph.TypedGraph
+import org.eclipse.emf.ecore.EPackage
+import edu.ustb.sei.mde.bxcore.util.EcoreModelUtil
+import org.eclipse.emf.ecore.EObject
+import edu.ustb.sei.mde.bxcore.TraceSystem
+import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException
 
 /**
  * <p>Infers a JVM model from the source model.</p> 
@@ -162,18 +168,44 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 								typeGraph_«i.shortName».declare("«a.name»:«(a.eContainer as EClass).name»->«a.EAttributeType.name»«IF a.many»«IF a.unique»*«ELSE»#«ENDIF»«ENDIF»");
 							«ENDFOR»
 							«FOR a : eReferences»
-								typeGraph_«i.shortName».declare("«a.name»:«(a.eContainer as EClass).name»->«a.EReferenceType.name»«IF a.many»«IF a.unique»*«ELSE»#«ENDIF»«ENDIF»");
+								typeGraph_«i.shortName».declare("«IF a.isContainment»@«ENDIF»«a.name»:«(a.eContainer as EClass).name»->«a.EReferenceType.name»«IF a.many»«IF a.unique»*«ELSE»#«ENDIF»«ENDIF»");
 							«ENDFOR»
 						}
 						return typeGraph_«i.shortName»;
 					'''
 				];
+				
+				members += i.toMethod('''load«i.shortName.toFirstUpper»Model''', TypedGraph.typeRef) [
+					parameters += i.toParameter('modelUri', URI.typeRef);
+					parameters += i.toParameter('metamodelUri', URI.typeRef);
+					body = '''
+						«EPackage.typeRef.qualifiedName» pack = «EcoreModelUtil.typeRef.qualifiedName».loadPacakge(metamodelUri);
+						«EObject.typeRef.qualifiedName» root = «EcoreModelUtil.typeRef.qualifiedName».load(modelUri);
+						«TypedGraph.typeRef.qualifiedName» graph = «EcoreModelUtil.typeRef.qualifiedName».load(root, getTypeGraph_«i.shortName.toFirstUpper»());
+						return graph;
+					'''
+				];
+			];
+			
+			members += element.toMethod('execute', ViewType.typeRef) [
+				parameters += element.toParameter('bx', XmuCore.typeRef);
+				parameters += element.toParameter('graph', TypedGraph.typeRef);
+				parameters += element.toParameter('inits', Tuple2.typeRef(String.typeRef, Object.typeRef).addArrayTypeDimension);
+				
+				exceptions += NothingReturnedException.typeRef;
+				
+				body = '''
+				«Context.typeRef.qualifiedName» sourceContext = bx.getSourceDef().createInstance();
+				for(«Tuple2.typeRef(String.typeRef, Object.typeRef).qualifiedName» tuple : inits) {
+					sourceContext.setValue(tuple.first, tuple.second);
+				}
+				return bx.forward(«SourceType.typeRef.qualifiedName».makeSource(graph, sourceContext, new «TraceSystem.typeRef.qualifiedName»()));
+				'''
 			];
 			
 			val conditions = element.eAllContents.filter[e| e instanceof ContextAwareCondition].map[it as ContextAwareCondition].toList;
 			
 			conditions.forEach[cond, id|
-//				val context = cond.computeContext;
 				members += cond.toClass('Condition'+id)[
 					if (cond.eContainer instanceof XmuCoreAlign) {
 						superTypes += BiFunction.typeRef(Context.typeRef, Context.typeRef, Boolean.typeRef);
@@ -233,6 +265,7 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 					members += def.toField('xmu_'+def.name, XmuCore.typeRef)[
 						visibility = JvmVisibility.PRIVATE
 					];
+					
 					members += def.toMethod('getXmu_'+def.name.toFirstUpper, XmuCore.typeRef) [
 						visibility = JvmVisibility.PUBLIC;
 						exceptions += BidirectionalTransformationDefinitionException.typeRef;

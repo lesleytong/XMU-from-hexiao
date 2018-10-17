@@ -13,6 +13,8 @@ import java.util.Set;
 import edu.ustb.sei.mde.bxcore.XmuCoreUtils;
 import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
 import edu.ustb.sei.mde.bxcore.exceptions.UninitializedException;
+import edu.ustb.sei.mde.graph.typedGraph.IndexableElement;
+import edu.ustb.sei.mde.graph.typedGraph.ValueNode;
 import edu.ustb.sei.mde.bxcore.Trace;
 import edu.ustb.sei.mde.bxcore.TraceSystem;
 import edu.ustb.sei.mde.structure.Tuple2;
@@ -82,7 +84,17 @@ public class Context {
 	
 	public <T> void setValue(FieldDef<?> key, T value) {
 		if(key!=null) {
-			valueMap.put(key, Optional.of(value));
+			if(value instanceof java.util.UUID) {
+				valueMap.put(key, Optional.of(Index.freshIndex(value)));
+			} else {
+				if(value instanceof IndexableElement) {
+					if(((IndexableElement) value).isIndexable()) {
+						valueMap.put(key, Optional.of(((IndexableElement) value).getIndex()));
+					} else { // the only un-indexable element is  value node
+						valueMap.put(key, Optional.of(((ValueNode)value).getValue()));
+					}
+				} else valueMap.put(key, Optional.of(value));
+			}
 		} else {
 			XmuCoreUtils.failure("You are trying to map a value onto an unregistered key in the context");
 		}

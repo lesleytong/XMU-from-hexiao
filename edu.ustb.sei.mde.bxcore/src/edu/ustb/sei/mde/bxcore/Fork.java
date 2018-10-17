@@ -144,7 +144,6 @@ public class Fork extends XmuCore {
 		Object value = null;
 		boolean init = false;
 		
-		
 		for(int i=0;i<result.length;i++) {
 			ViewType v = result[i];
 			Tuple2<String, String>[] mappings = forks[i].second;
@@ -156,8 +155,9 @@ public class Fork extends XmuCore {
 					if(!init) {
 						value = downValue;
 						init = true;
-					} else if(value.equals(downValue)==false) 
-						return nothing();
+					} else if(value.equals(downValue)==false)
+						return internalError();
+				} catch(NothingReturnedException e) {
 				} catch (Exception e) {
 					return nothing(e);
 				}
@@ -186,7 +186,8 @@ public class Fork extends XmuCore {
 						value = downValue;
 						init = true;
 					} else if(value==downValue || value.equals(downValue)==false)
-						return nothing();
+						return internalError();
+				} catch (NothingReturnedException e) {
 				} catch (Exception e) {
 					return nothing(e);
 				}

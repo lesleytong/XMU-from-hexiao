@@ -235,6 +235,15 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		return allTypedNodes;
 	}
 	
+	public TypedNode[] getTypedNodesOf(TypeNode type) {
+		TypeGraph typeGraph = this.getTypeGraph();
+		return allTypedNodes.stream().filter(n->{
+			return typeGraph.isSuperTypeOf(n.getType(), type);
+		}).toArray(i->new TypedNode[i]);
+	}
+	
+	
+	
 	private List<ValueNode> allValueNodes;
 	public List<ValueNode> getAllValueNodes() {
 		return allValueNodes;

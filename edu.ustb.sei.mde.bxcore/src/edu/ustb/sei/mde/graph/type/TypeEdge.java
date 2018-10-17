@@ -14,6 +14,15 @@ public class TypeEdge implements IStructuralFeatureEdge {
 
 	private boolean isUnique;
 	
+	private boolean isContainment;
+	
+	public boolean isContainment() {
+		return isContainment;
+	}
+	public void setContainment(boolean isContainment) {
+		this.isContainment = isContainment;
+	}
+	
 	public boolean isUnique() {
 		return isMany==false || isUnique;
 	}

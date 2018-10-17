@@ -1,5 +1,6 @@
 package edu.ustb.sei.mde.bxcore.util;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -10,6 +11,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -17,8 +19,17 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.xmi.XMIResource;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
+import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
+import edu.ustb.sei.mde.bxcore.structures.Index;
 import edu.ustb.sei.mde.graph.type.DataTypeNode;
 import edu.ustb.sei.mde.graph.type.PropertyEdge;
 import edu.ustb.sei.mde.graph.type.TypeEdge;
@@ -117,7 +128,22 @@ public class EcoreModelUtil {
 		return graph;
 	}
 	
-	static public Collection<EObject> save(TypedGraph graph, EPackage pack) {
+	static public void save(URI uri, TypedGraph graph, TypedGraph originalGraph, EPackage pack) {
+		Collection<EObject> roots = save(graph, originalGraph, pack);
+		
+		Resource resource = privateResourceSet.createResource(uri);
+		resource.getContents().addAll(roots);
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put(XMIResource.OPTION_SCHEMA_LOCATION, true);
+		try {
+			resource.save(map);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	static public Collection<EObject> save(TypedGraph graph, TypedGraph originalGraph, EPackage pack) {
 		Map<TypedNode, EObject> nodeMap = new HashMap<>();
 		
 		Map<String, EClass> eclasses = new HashMap<>();
@@ -190,7 +216,28 @@ public class EcoreModelUtil {
 			});
 		});
 		
-		return nodeMap.values().stream().filter(n->n.eContainer()==null).collect(Collectors.toList());
+		List<EObject> roots = nodeMap.values().stream().filter(n->n.eContainer()==null).collect(Collectors.toList());
+		
+		if(roots.size()!=1 && originalGraph!=null)
+			roots = nodeMap.entrySet().stream().filter(entry->{
+				Index ind = entry.getKey().getIndex();
+				TypedNode oldNode = null;
+				try {
+					oldNode = originalGraph.getElementByIndexObject(ind);
+				} catch (NothingReturnedException e) {
+					oldNode = null;
+				}
+				
+				boolean oldRoot = oldNode==null || originalGraph.getIncomingEdges(oldNode).stream().allMatch(l->{
+					EClass sc = eclasses.get(l.getSource().getType().getName());
+					EStructuralFeature feature = sc.getEStructuralFeature(l.getType().getName());
+					return feature instanceof EAttribute || !((EReference)feature).isContainment();
+				});
+				
+				return entry.getValue().eContainer()==null && oldRoot;
+			}).map(entry->entry.getValue()).collect(Collectors.toList());
+		
+		return roots;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -264,4 +311,27 @@ public class EcoreModelUtil {
 	}
 	
 	
+	static private ResourceSet privateResourceSet = new ResourceSetImpl();
+	static {
+		privateResourceSet.getPackageRegistry().put(EcorePackage.eNS_URI, EcorePackage.eINSTANCE);
+		privateResourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
+	}
+	
+	static public EPackage loadPacakge(URI uri) {
+		Resource resource = privateResourceSet.getResource(uri, true);
+		if(resource!=null) {
+			EPackage pkg = (EPackage) resource.getContents().get(0);
+			privateResourceSet.getPackageRegistry().put(pkg.getNsURI(), pkg);
+			return pkg;
+		}
+		return null;
+	}
+	
+	static public EObject load(URI uri) {
+		Resource resource = privateResourceSet.getResource(uri, true);
+		if(resource!=null) {
+			return resource.getContents().get(0);
+		}
+		return null;
+	}
 }

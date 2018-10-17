@@ -111,16 +111,20 @@ public class ParallelComposition extends XmuCore {
 
 	private Object summarize(ViewType[] result, FieldDef<?> vk) throws NothingReturnedException {
 		Object value = null;
+		boolean mayBeEmpty = true;
 		for(ViewType v : result) {
 			try {
 				if(value==null)
-					value = v.second.getValue(vk);
-				else if(value.equals(v.second.getValue(vk))==false)
-					return nothing();
-			}catch (UninitializedException e) {
+					value = v.second.getValue(vk.getName());
+				else if(value.equals(v.second.getValue(vk.getName()))==false)
+					return internalError();
+				mayBeEmpty = false;
+			} catch(NothingReturnedException e) {
+			} catch (Exception e) {
 				return nothing();
 			}
 		}
+		if(mayBeEmpty) nothing();
 		return value;
 	}
 
@@ -203,16 +207,20 @@ public class ParallelComposition extends XmuCore {
 
 	private Object summarize(SourceType[] results, FieldDef<?> sk) throws NothingReturnedException {
 		Object value = null;
+		boolean mayBeEmpty=true;
 		for(SourceType v : results) {
 			try {
 				if(value==null)
-					value = v.second.getValue(sk);
+					value = v.second.getValue(sk.getName());
 				else if(value.equals(v.second.getValue(sk))==false)
-					return nothing();
-			}catch (UninitializedException e) {
+					return internalError();
+				mayBeEmpty = false;
+			} catch (NothingReturnedException e) {
+			}catch (Exception e) {
 				return nothing();
 			}
 		}
+		if(mayBeEmpty) nothing();
 		return value;
 	}
 

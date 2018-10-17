@@ -44,6 +44,19 @@ public class FieldDef<T> implements INamedElement {
 		return many;
 	}
 	
+//	@Override
+//	public int hashCode() {
+//		return name.hashCode();
+//	}
+//	
+//	@Override
+//	public boolean equals(Object obj) {
+//		if(obj!=null && obj instanceof FieldDef<?>) {
+//			return name.equals(((FieldDef<?>)obj).getName());
+//		}
+//		else return false;
+//	}
+	
 	public boolean isElementType() {
 		return type instanceof TypeNode || type instanceof TypeEdge || type instanceof PropertyEdge;
 	}
