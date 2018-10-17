@@ -13,6 +13,10 @@ public class InternalBidirectionalTransformationError extends Exception {
 		super(cause);
 	}
 
+	public InternalBidirectionalTransformationError(String string, Throwable e) {
+		super(string,e);
+	}
+
 	private static final long serialVersionUID = 6710977760581057829L;
 	
 	

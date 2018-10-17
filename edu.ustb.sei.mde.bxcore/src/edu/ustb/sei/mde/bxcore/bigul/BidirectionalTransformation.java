@@ -7,19 +7,19 @@ public abstract class BidirectionalTransformation<S, V> {
 	public abstract V forward(S s)  throws NothingReturnedException;
 	public abstract S backward(S s, V v) throws NothingReturnedException;
 	
-	static public <T> T nothing() throws NothingReturnedException {
+	public <T> T nothing() throws NothingReturnedException {
 		throw new NothingReturnedException();
 	}
 	
-	static public <T> T nothing(Exception e) throws NothingReturnedException {
+	public <T> T nothing(Exception e) throws NothingReturnedException {
 		throw new NothingReturnedException(e);
 	}
 	
-	static public <T> T internalError() throws InternalBidirectionalTransformationError {
+	public <T> T internalError() throws InternalBidirectionalTransformationError {
 		throw new InternalBidirectionalTransformationError();
 	}
 	
-	static public <T> T internalError(Exception e) throws InternalBidirectionalTransformationError {
+	public <T> T internalError(Exception e) throws InternalBidirectionalTransformationError {
 		throw new InternalBidirectionalTransformationError(e);
 	}
 }

@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 
 import edu.ustb.sei.mde.bxcore.structures.ContextType;
 import edu.ustb.sei.mde.bxcore.structures.FieldDef;
+import edu.ustb.sei.mde.graph.type.DataTypeNode;
 import edu.ustb.sei.mde.structure.Tuple2;
 
 public final class XmuCoreUtils {
@@ -78,5 +79,21 @@ public final class XmuCoreUtils {
 	static public <T> void addAllUnique(List<T> col, List<T> app) {
 		for(T a : app)
 			addUnique(col,a);
+	}
+
+	public static Object defaultValue(Object type) {
+		if(type instanceof DataTypeNode) {
+			Class<?> cls = ((DataTypeNode) type).getDataType();
+			if(cls==int.class || cls==Integer.class) return 0;
+			else if(cls==boolean.class || cls==Boolean.class) return (short)0;
+			else if(cls==short.class || cls==Short.class) return (short)0;
+			else if(cls==byte.class || cls==Byte.class) return (byte)0;
+			else if(cls==char.class || cls==Character.class) return (char)0;
+			else if(cls==long.class || cls==Long.class) return 0L;
+			else if(cls==float.class || cls==Float.class) return 0.0f;
+			else if(cls==double.class || cls==Double.class) return 0.0;
+			else if(cls==String.class) return "";
+		}
+		return null;
 	}
 }

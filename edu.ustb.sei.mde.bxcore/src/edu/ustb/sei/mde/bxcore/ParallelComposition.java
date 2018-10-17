@@ -57,7 +57,7 @@ public class ParallelComposition extends XmuCore {
 		for(int i=0;i<this.bodies.length;i++) {
 			Context newSource = s.second.createDownstreamContext(getSourceDef());
 //			newSource.initWith(s.second);
-			newSource.setUpstream(s.second);
+			newSource.setUpstreamJoint(s.second);
 			newSources[i] = newSource;
 			result[i] = bodies[i].forward(SourceType.makeSource(s.first, newSource, s.third));
 		}
@@ -94,7 +94,7 @@ public class ParallelComposition extends XmuCore {
 		
 		TypedGraph finalView = null;
 		for(ViewType v : result) {
-			v.second.setUpstream(finalViewContext);
+			v.second.setUpstreamJoint(finalViewContext);
 			v.second.submit();
 			if(finalView==null)
 				finalView = v.first;
@@ -143,8 +143,8 @@ public class ParallelComposition extends XmuCore {
 			newViews[i] = v.second.createDownstreamContext(getViewDef());
 //			newViews[i].initWith(v.second);
 			
-			newSources[i].setUpstream(s.second);
-			newViews[i].setUpstream(v.second);
+			newSources[i].setUpstreamJoint(s.second);
+			newViews[i].setUpstreamJoint(v.second);
 			
 			results[i] = this.bodies[i].backward(SourceType.makeSource(s.first, newSources[i], s.third), ViewType.makeView(v.first, newViews[i]));
 			interSources[i] = results[i].first;
@@ -194,7 +194,7 @@ public class ParallelComposition extends XmuCore {
 		submit(newSources);
 		submit(newViews);
 		for(SourceType r : results) {
-			r.second.setUpstream(finalSourcePost);
+			r.second.setUpstreamJoint(finalSourcePost);
 			r.second.submit();
 		}
 		

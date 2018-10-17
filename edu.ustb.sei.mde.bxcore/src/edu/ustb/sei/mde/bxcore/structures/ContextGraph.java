@@ -5,6 +5,7 @@ import java.util.Map;
 
 import edu.ustb.sei.mde.bxcore.SourceType;
 import edu.ustb.sei.mde.bxcore.ViewType;
+import edu.ustb.sei.mde.bxcore.XmuCoreUtils;
 import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
 import edu.ustb.sei.mde.bxcore.exceptions.UninitializedException;
 import edu.ustb.sei.mde.graph.pattern.Pattern;
@@ -13,12 +14,14 @@ import edu.ustb.sei.mde.graph.type.PropertyEdge;
 import edu.ustb.sei.mde.graph.type.TypeEdge;
 import edu.ustb.sei.mde.graph.type.TypeGraph;
 import edu.ustb.sei.mde.graph.type.TypeNode;
+import edu.ustb.sei.mde.graph.typedGraph.IndexSystem;
 import edu.ustb.sei.mde.graph.typedGraph.IndexableElement;
 import edu.ustb.sei.mde.graph.typedGraph.TypedEdge;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
 import edu.ustb.sei.mde.graph.typedGraph.TypedNode;
 import edu.ustb.sei.mde.graph.typedGraph.ValueEdge;
 import edu.ustb.sei.mde.graph.typedGraph.ValueNode;
+import edu.ustb.sei.mde.structure.Tuple2;
 
 public interface ContextGraph {
 	default Context getContext() {
@@ -44,12 +47,38 @@ public interface ContextGraph {
 		}
 	}
 	
-	default GraphModification enforce(Pattern pat) {
+	default GraphModification enforce(Pattern pat, Tuple2<String, Object>[] valueMaps) {
 		if(this instanceof SourceType) {
 			TypedGraph delta;
 			try {
-				delta = pat.construct(this.getGraph(), this.getContext());
-				SourceType updated = ((SourceType)this).replaceFirst(((SourceType)this).first.additiveMerge(delta));
+				Context freshContext = pat.getType().createInstance();
+				for(FieldDef<?> f : freshContext.getType().fields()) {
+					FieldDef<?> up = this.getContext().getType().getField(f.getName());
+					if(up==null) {
+						Tuple2<String, Object> tuple = null;
+						for(Tuple2<String, Object> t : valueMaps) {
+							if(t.first.equals(f.getName())) {
+								tuple = t;
+								break;
+							}
+						}
+						if(tuple==null) {
+							if(f.isElementType()) {
+								freshContext.setValue(f, IndexSystem.generateUUID());
+							} else {
+								freshContext.setValue(f, XmuCoreUtils.defaultValue(f.getType()));
+							}
+						} else {
+							freshContext.setValue(f, tuple.second);
+						}
+					} else {
+						freshContext.setValue(f, this.getContext().getValue(up));
+					}
+				}
+				
+				delta = pat.construct(this.getGraph(), freshContext);
+				SourceType updated = SourceType.makeSource(((SourceType)this).first.additiveMerge(delta),
+						freshContext, ((SourceType)this).third); 
 				GraphModification modify = new GraphModification(updated);
 				return modify;
 			} catch (UninitializedException | NothingReturnedException e) {

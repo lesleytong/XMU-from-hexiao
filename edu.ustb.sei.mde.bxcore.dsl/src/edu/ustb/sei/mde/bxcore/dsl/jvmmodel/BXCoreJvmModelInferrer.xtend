@@ -203,6 +203,29 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 				'''
 			];
 			
+			members += element.toMethod('execute', SourceType.typeRef) [
+				parameters += element.toParameter('bx', XmuCore.typeRef);
+				parameters += element.toParameter('source', TypedGraph.typeRef);
+				parameters += element.toParameter('sourceInits', Tuple2.typeRef(String.typeRef, Object.typeRef).addArrayTypeDimension);
+				parameters += element.toParameter('view', TypedGraph.typeRef);
+				parameters += element.toParameter('viewInits', Tuple2.typeRef(String.typeRef, Object.typeRef).addArrayTypeDimension);
+				
+				exceptions += NothingReturnedException.typeRef;
+				
+				body = '''
+				«Context.typeRef.qualifiedName» sourceContext = bx.getSourceDef().createInstance();
+				for(«Tuple2.typeRef(String.typeRef, Object.typeRef).qualifiedName» tuple : sourceInits) {
+					sourceContext.setValue(tuple.first, tuple.second);
+				}
+				«Context.typeRef.qualifiedName» viewContext = bx.getViewDef().createInstance();
+				for(«Tuple2.typeRef(String.typeRef, Object.typeRef).qualifiedName» tuple : viewInits) {
+					viewContext.setValue(tuple.first, tuple.second);
+				}
+				
+				return bx.backward(«SourceType.typeRef.qualifiedName».makeSource(source, sourceContext, new «TraceSystem.typeRef.qualifiedName»()), «ViewType.typeRef.qualifiedName».makeView(view, viewContext));
+				'''
+			];
+			
 			val conditions = element.eAllContents.filter[e| e instanceof ContextAwareCondition].map[it as ContextAwareCondition].toList;
 			
 			conditions.forEach[cond, id|

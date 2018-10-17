@@ -47,11 +47,11 @@ public class Invocation extends XmuCore {
 	public ViewType forward(SourceType s) throws NothingReturnedException {
 		ContextType upstreamViewType = this.getViewDef();
 		Context downstreamSource = s.second.createDownstreamContext(this.getBody().getSourceDef(), sourceKeyMappings);
-		downstreamSource.setUpstream(s.second);
+		downstreamSource.setUpstream(s.second, sourceKeyMappings);
 		
 		ViewType view = this.getBody().forward(SourceType.makeSource(s.first, downstreamSource, s.third));
 		Context upstreamView = view.second.createUpstreamContext(upstreamViewType, viewKeyMappings);
-		view.second.setUpstream(upstreamView);
+		view.second.setUpstream(upstreamView, viewKeyMappings);
 		
 		view.first.setConstraint(getConsistencyConstraint());
 		
@@ -64,15 +64,15 @@ public class Invocation extends XmuCore {
 	@Override
 	public SourceType backward(SourceType s, ViewType v) throws NothingReturnedException {
 		Context downstreamSource = s.second.createDownstreamContext(this.getBody().getSourceDef(), sourceKeyMappings);
-		downstreamSource.setUpstream(s.second);
+		downstreamSource.setUpstream(s.second, sourceKeyMappings);
 		
 		Context downstreamView = v.second.createDownstreamContext(this.getBody().getViewDef(), viewKeyMappings);
-		downstreamView.setUpstream(v.second);
+		downstreamView.setUpstream(v.second, viewKeyMappings);
 		
 		SourceType sourcePost = this.getBody().backward(SourceType.makeSource(s.first, downstreamSource, s.third), ViewType.makeView(v.first, downstreamView));
 		
 		Context upstreamSourcePost = sourcePost.second.createUpstreamContext(getSourceDef(), sourceKeyMappings);
-		sourcePost.second.setUpstream(upstreamSourcePost);
+		sourcePost.second.setUpstream(upstreamSourcePost, sourceKeyMappings);
 		
 		submit(downstreamSource, downstreamView, sourcePost.second);
 		

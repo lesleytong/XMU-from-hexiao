@@ -5,6 +5,8 @@ import java.util.List;
 
 import edu.ustb.sei.mde.bxcore.bigul.BidirectionalTransformation;
 import edu.ustb.sei.mde.bxcore.exceptions.BidirectionalTransformationDefinitionException;
+import edu.ustb.sei.mde.bxcore.exceptions.InternalBidirectionalTransformationError;
+import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
 import edu.ustb.sei.mde.bxcore.structures.Context;
 import edu.ustb.sei.mde.bxcore.structures.ContextType;
 import edu.ustb.sei.mde.bxcore.structures.Environment;
@@ -87,4 +89,24 @@ public abstract class XmuCore extends BidirectionalTransformation<SourceType, Vi
 	}
 	
 	abstract protected GraphConstraint generateConsistencyConstraint();
+	
+	@Override
+	public <T> T nothing() throws NothingReturnedException {
+		throw new NothingReturnedException(this.key.toString());
+	}
+	
+	@Override
+	public <T> T nothing(Exception e) throws NothingReturnedException {
+		throw new NothingReturnedException(this.key.toString(),e);
+	}
+	
+	@Override
+	public <T> T internalError() throws InternalBidirectionalTransformationError {
+		throw new InternalBidirectionalTransformationError(key.toString());
+	}
+	
+	@Override
+	public <T> T internalError(Exception e) throws InternalBidirectionalTransformationError {
+		throw new InternalBidirectionalTransformationError(key.toString(),e);
+	}
 }

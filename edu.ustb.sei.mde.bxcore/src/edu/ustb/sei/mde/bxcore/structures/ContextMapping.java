@@ -93,4 +93,23 @@ public class ContextMapping {
 		}
 		return new ContextMapping(null, down, maps);
 	}
+
+
+	public static ContextMapping include(Context up, Context down) {
+		ContextType downType = down.getType();
+		Collection<FieldDef<?>> fields = downType.fields();
+
+		@SuppressWarnings("unchecked")
+		Tuple2<FieldDef<?>,FieldDef<?>>[] maps = new Tuple2[fields.size()];
+		
+		ContextType upType = up.getType();
+		
+		int i=0;
+		for(FieldDef<?> f : fields) {
+			maps[i] = new Tuple2<FieldDef<?>, FieldDef<?>>(upType.getField(f.getName()),f);
+			i++;
+		}
+		
+		return new ContextMapping(up, down, maps);
+	}
 }

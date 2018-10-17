@@ -127,8 +127,9 @@ public class Fork extends XmuCore {
 		}
 		
 		TypedGraph finalView = null;
-		for(ViewType v : viewResults) {
-			v.second.setUpstream(upstreamView);
+		for(int i=0;i<this.forks.length;i++) {
+			ViewType v = viewResults[i];
+			v.second.setUpstream(upstreamView, this.forks[i].second);
 			v.second.submit();
 			if(finalView==null) finalView = v.first;
 			else finalView = finalView.additiveMerge(v.first);
@@ -185,7 +186,7 @@ public class Fork extends XmuCore {
 					if(!init) {
 						value = downValue;
 						init = true;
-					} else if(value==downValue || value.equals(downValue)==false)
+					} else if(value.equals(downValue)==false)
 						return internalError();
 				} catch (NothingReturnedException e) {
 				} catch (Exception e) {
@@ -212,9 +213,9 @@ public class Fork extends XmuCore {
 //			downstreamSources[i] = s.second.downstream(this.forks[i].first, this.forks[i].third.getSourceDef(), true);
 //			downstreamViews[i] = v.second.downstream(this.forks[i].second, this.forks[i].third.getViewDef(), true);
 			downstreamSources[i] = s.second.createDownstreamContext(this.forks[i].third.getSourceDef(), this.forks[i].first);
-			downstreamSources[i].setUpstream(s.second);
+			downstreamSources[i].setUpstream(s.second, this.forks[i].first);
 			downstreamViews[i] = v.second.createDownstreamContext(this.forks[i].third.getViewDef(), this.forks[i].second);
-			downstreamViews[i].setUpstream(v.second);
+			downstreamViews[i].setUpstream(v.second, this.forks[i].second);
 			
 			sourceResults[i] = this.forks[i].third.backward(SourceType.makeSource(s.first, downstreamSources[i], s.third), ViewType.makeView(v.first, downstreamViews[i]));
 			
@@ -263,8 +264,9 @@ public class Fork extends XmuCore {
 		
 		submit(downstreamSources);
 		submit(downstreamViews);
-		for(SourceType r : sourceResults) {
-			r.second.setUpstream(finalSourcePost);
+		for(int i=0;i<this.forks.length;i++) {
+			SourceType r = sourceResults[i];
+			r.second.setUpstream(finalSourcePost, this.forks[i].first);
 			r.second.submit();
 		}
 		

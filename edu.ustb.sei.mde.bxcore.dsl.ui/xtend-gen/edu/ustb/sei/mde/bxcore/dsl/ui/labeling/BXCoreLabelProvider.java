@@ -14,6 +14,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.IndexDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreStatement;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.xtext.xbase.ui.labeling.XbaseLabelProvider;
 
@@ -81,5 +82,9 @@ public class BXCoreLabelProvider extends XbaseLabelProvider {
   
   public String text(final ContextAwareUnidirectionalAction e) {
     return "Unidirectional Action";
+  }
+  
+  public String text(final EObject e) {
+    return e.eClass().getName();
   }
 }

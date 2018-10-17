@@ -16,6 +16,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreStatement
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BiGULStatement
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareCondition
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareUnidirectionalAction
+import org.eclipse.emf.ecore.EObject
 
 /**
  * Provides labels for EObjects.
@@ -68,6 +69,10 @@ class BXCoreLabelProvider extends XbaseLabelProvider {
 	
 	def text(ContextAwareUnidirectionalAction e) {
 		'Unidirectional Action'
+	}
+	
+	def text(EObject e) {
+		e.eClass.name
 	}
 
 	// Labels and icons can be computed like this:
