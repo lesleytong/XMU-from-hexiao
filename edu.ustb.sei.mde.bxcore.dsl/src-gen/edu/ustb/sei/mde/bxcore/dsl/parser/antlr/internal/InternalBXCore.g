@@ -1678,9 +1678,9 @@ ruleXmuCoreExpandSource returns [EObject current=null]
 				}
 			)
 		)
-		otherlv_2='{'
+		otherlv_2='('
 		{
-			newLeafNode(otherlv_2, grammarAccess.getXmuCoreExpandSourceAccess().getLeftCurlyBracketKeyword_2());
+			newLeafNode(otherlv_2, grammarAccess.getXmuCoreExpandSourceAccess().getLeftParenthesisKeyword_2());
 		}
 		(
 			(
@@ -1726,9 +1726,9 @@ ruleXmuCoreExpandSource returns [EObject current=null]
 				)
 			)
 		)*
-		otherlv_6='}'
+		otherlv_6=')'
 		{
-			newLeafNode(otherlv_6, grammarAccess.getXmuCoreExpandSourceAccess().getRightCurlyBracketKeyword_5());
+			newLeafNode(otherlv_6, grammarAccess.getXmuCoreExpandSourceAccess().getRightParenthesisKeyword_5());
 		}
 		otherlv_7='->'
 		{
@@ -1795,9 +1795,9 @@ ruleXmuCoreExpandView returns [EObject current=null]
 				}
 			)
 		)
-		otherlv_2='{'
+		otherlv_2='('
 		{
-			newLeafNode(otherlv_2, grammarAccess.getXmuCoreExpandViewAccess().getLeftCurlyBracketKeyword_2());
+			newLeafNode(otherlv_2, grammarAccess.getXmuCoreExpandViewAccess().getLeftParenthesisKeyword_2());
 		}
 		(
 			(
@@ -1843,9 +1843,9 @@ ruleXmuCoreExpandView returns [EObject current=null]
 				)
 			)
 		)*
-		otherlv_6='}'
+		otherlv_6=')'
 		{
-			newLeafNode(otherlv_6, grammarAccess.getXmuCoreExpandViewAccess().getRightCurlyBracketKeyword_5());
+			newLeafNode(otherlv_6, grammarAccess.getXmuCoreExpandViewAccess().getRightParenthesisKeyword_5());
 		}
 		otherlv_7='->'
 		{
@@ -1889,16 +1889,12 @@ ruleVarMapping returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		otherlv_0='('
-		{
-			newLeafNode(otherlv_0, grammarAccess.getVarMappingAccess().getLeftParenthesisKeyword_0());
-		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getVarMappingAccess().getFromValidIDParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getVarMappingAccess().getFromValidIDParserRuleCall_0_0());
 				}
-				lv_from_1_0=ruleValidID
+				lv_from_0_0=ruleValidID
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getVarMappingRule());
@@ -1906,22 +1902,22 @@ ruleVarMapping returns [EObject current=null]
 					set(
 						$current,
 						"from",
-						lv_from_1_0,
+						lv_from_0_0,
 						"edu.ustb.sei.mde.bxcore.dsl.BXCore.ValidID");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
-		otherlv_2='->'
+		otherlv_1='->'
 		{
-			newLeafNode(otherlv_2, grammarAccess.getVarMappingAccess().getHyphenMinusGreaterThanSignKeyword_2());
+			newLeafNode(otherlv_1, grammarAccess.getVarMappingAccess().getHyphenMinusGreaterThanSignKeyword_1());
 		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getVarMappingAccess().getToValidIDParserRuleCall_3_0());
+					newCompositeNode(grammarAccess.getVarMappingAccess().getToValidIDParserRuleCall_2_0());
 				}
-				lv_to_3_0=ruleValidID
+				lv_to_2_0=ruleValidID
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getVarMappingRule());
@@ -1929,16 +1925,12 @@ ruleVarMapping returns [EObject current=null]
 					set(
 						$current,
 						"to",
-						lv_to_3_0,
+						lv_to_2_0,
 						"edu.ustb.sei.mde.bxcore.dsl.BXCore.ValidID");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
-		otherlv_4=')'
-		{
-			newLeafNode(otherlv_4, grammarAccess.getVarMappingAccess().getRightParenthesisKeyword_4());
-		}
 	)
 ;
 
@@ -3446,33 +3438,23 @@ ruleContextAwareCondition returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		otherlv_0='['
-		{
-			newLeafNode(otherlv_0, grammarAccess.getContextAwareConditionAccess().getLeftSquareBracketKeyword_0());
-		}
 		(
-			(
-				{
-					newCompositeNode(grammarAccess.getContextAwareConditionAccess().getConditionXExpressionParserRuleCall_1_0());
+			{
+				newCompositeNode(grammarAccess.getContextAwareConditionAccess().getConditionXExpressionParserRuleCall_0());
+			}
+			lv_condition_0_0=ruleXExpression
+			{
+				if ($current==null) {
+					$current = createModelElementForParent(grammarAccess.getContextAwareConditionRule());
 				}
-				lv_condition_1_0=ruleXExpression
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getContextAwareConditionRule());
-					}
-					set(
-						$current,
-						"condition",
-						lv_condition_1_0,
-						"org.eclipse.xtext.xbase.Xbase.XExpression");
-					afterParserOrEnumRuleCall();
-				}
-			)
+				set(
+					$current,
+					"condition",
+					lv_condition_0_0,
+					"org.eclipse.xtext.xbase.Xbase.XExpression");
+				afterParserOrEnumRuleCall();
+			}
 		)
-		otherlv_2=']'
-		{
-			newLeafNode(otherlv_2, grammarAccess.getContextAwareConditionAccess().getRightSquareBracketKeyword_2());
-		}
 	)
 ;
 

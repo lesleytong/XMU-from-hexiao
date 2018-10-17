@@ -102,15 +102,15 @@ XmuCoreMatchView :
 ;
 
 XmuCoreExpandSource :
-	'expandS' pattern=Pattern '{' mappings+=VarMapping (','  mappings+=VarMapping)* '}' '->' body=XmuCoreStatement
+	'expandS' pattern=Pattern '(' mappings+=VarMapping (','  mappings+=VarMapping)* ')' '->' body=XmuCoreStatement
 ;
 
 XmuCoreExpandView :
-	'expandV' pattern=Pattern '{' mappings+=VarMapping (','  mappings+=VarMapping)* '}' '->' body=XmuCoreStatement
+	'expandV' pattern=Pattern '(' mappings+=VarMapping (','  mappings+=VarMapping)* ')' '->' body=XmuCoreStatement
 ;
 
 VarMapping :
-	'(' from=ValidID '->' to=ValidID ')'
+	from=ValidID '->' to=ValidID
 ;
 
 XmuCoreGraphReplace :
@@ -170,7 +170,7 @@ IndexPart :
 ;
 
 ContextAwareCondition :
-	'[' condition=XExpression ']'
+	condition=XExpression
 ;
 
 ContextAwareUnidirectionalAction :

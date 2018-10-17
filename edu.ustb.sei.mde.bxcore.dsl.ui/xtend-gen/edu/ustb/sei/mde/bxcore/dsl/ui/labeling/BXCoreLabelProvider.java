@@ -7,6 +7,8 @@ import com.google.inject.Inject;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXFunctionDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXProgram;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BiGULStatement;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareCondition;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareUnidirectionalAction;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ImportSection;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.IndexDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternDefinition;
@@ -71,5 +73,13 @@ public class BXCoreLabelProvider extends XbaseLabelProvider {
   
   public String text(final BiGULStatement e) {
     return e.eClass().getName();
+  }
+  
+  public String text(final ContextAwareCondition e) {
+    return "Condition";
+  }
+  
+  public String text(final ContextAwareUnidirectionalAction e) {
+    return "Unidirectional Action";
   }
 }

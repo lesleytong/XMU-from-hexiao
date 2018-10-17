@@ -14,6 +14,8 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXFunctionDefinition
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.IndexDefinition
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreStatement
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BiGULStatement
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareCondition
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareUnidirectionalAction
 
 /**
  * Provides labels for EObjects.
@@ -58,6 +60,14 @@ class BXCoreLabelProvider extends XbaseLabelProvider {
 	
 	def text(BiGULStatement e) {
 		e.eClass.name
+	}
+	
+	def text(ContextAwareCondition e) {
+		'Condition'
+	}
+	
+	def text(ContextAwareUnidirectionalAction e) {
+		'Unidirectional Action'
 	}
 
 	// Labels and icons can be computed like this:

@@ -575,7 +575,7 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.CONTEXT_AWARE_CONDITION__CONDITION));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getContextAwareConditionAccess().getConditionXExpressionParserRuleCall_1_0(), semanticObject.getCondition());
+		feeder.accept(grammarAccess.getContextAwareConditionAccess().getConditionXExpressionParserRuleCall_0(), semanticObject.getCondition());
 		feeder.finish();
 	}
 	
@@ -875,8 +875,8 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.VAR_MAPPING__TO));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getVarMappingAccess().getFromValidIDParserRuleCall_1_0(), semanticObject.getFrom());
-		feeder.accept(grammarAccess.getVarMappingAccess().getToValidIDParserRuleCall_3_0(), semanticObject.getTo());
+		feeder.accept(grammarAccess.getVarMappingAccess().getFromValidIDParserRuleCall_0_0(), semanticObject.getFrom());
+		feeder.accept(grammarAccess.getVarMappingAccess().getToValidIDParserRuleCall_2_0(), semanticObject.getTo());
 		feeder.finish();
 	}
 	
