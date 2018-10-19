@@ -33,21 +33,18 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextTypeRef;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.Conversion;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.DefinedContextTypeRef;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.Definition;
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.EcoreTypeRef;
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.FeatureTypeRef;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ImportSection;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.IndexDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.IndexPart;
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternDefinitionReference;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternEdge;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternNode;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternNodeRef;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternTypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternValueCondition;
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.PrimitiveTypeRef;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.TupleTypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeDefinition;
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeRef;
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeVar;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.VarMapping;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreAlign;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreCompositionChildStatement;
@@ -65,6 +62,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreStatement;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreSwitch;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreSwitchAdaption;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreSwitchBranch;
+import edu.ustb.sei.mde.bxcore.dsl.structure.TupleType;
 import edu.ustb.sei.mde.bxcore.exceptions.BidirectionalTransformationDefinitionException;
 import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
 import edu.ustb.sei.mde.bxcore.structures.Context;
@@ -80,7 +78,9 @@ import edu.ustb.sei.mde.structure.Tuple2;
 import edu.ustb.sei.mde.structure.Tuple3;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
@@ -124,10 +124,11 @@ import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
-import org.eclipse.xtext.xbase.lib.ListExtensions;
+import org.eclipse.xtext.xbase.lib.MapExtensions;
 import org.eclipse.xtext.xbase.lib.Pair;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure2;
+import org.eclipse.xtext.xbase.lib.Procedures.Procedure3;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 
 /**
@@ -176,275 +177,7 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
     final String sourceURI = this.toJavaClassName(element.eResource().getURI().trimFileExtension());
     final Procedure1<JvmGenericType> _function = (JvmGenericType it) -> {
       final Consumer<ImportSection> _function_1 = (ImportSection i) -> {
-        EList<JvmMember> _members = it.getMembers();
-        String _shortName = i.getShortName();
-        String _plus = ("typeGraph_" + _shortName);
-        final Procedure1<JvmField> _function_2 = (JvmField it_1) -> {
-          it_1.setVisibility(JvmVisibility.PRIVATE);
-        };
-        JvmField _field = this._jvmTypesBuilder.toField(i, _plus, this._typeReferenceBuilder.typeRef(TypeGraph.class), _function_2);
-        this._jvmTypesBuilder.<JvmField>operator_add(_members, _field);
-        EList<JvmMember> _members_1 = it.getMembers();
-        String _firstUpper = StringExtensions.toFirstUpper(i.getShortName());
-        String _plus_1 = ("getTypeGraph_" + _firstUpper);
-        final Procedure1<JvmOperation> _function_3 = (JvmOperation it_1) -> {
-          it_1.setVisibility(JvmVisibility.PUBLIC);
-          final Function1<EObject, Boolean> _function_4 = (EObject o) -> {
-            return Boolean.valueOf(((o instanceof EClass) || (o instanceof EReference)));
-          };
-          final Function1<EObject, EClass> _function_5 = (EObject o) -> {
-            EClass _xifexpression = null;
-            if ((o instanceof EClass)) {
-              _xifexpression = ((EClass) o);
-            } else {
-              _xifexpression = ((EReference) o).getEReferenceType();
-            }
-            return _xifexpression;
-          };
-          final Set<EClass> eClasses = IteratorExtensions.<EClass>toSet(IteratorExtensions.<EObject, EClass>map(IteratorExtensions.<EObject>filter(i.getMetamodel().eAllContents(), _function_4), _function_5));
-          final Function1<EObject, Boolean> _function_6 = (EObject o) -> {
-            return Boolean.valueOf(((o instanceof EDataType) || (o instanceof EAttribute)));
-          };
-          final Function1<EObject, EDataType> _function_7 = (EObject o) -> {
-            EDataType _xifexpression = null;
-            if ((o instanceof EDataType)) {
-              _xifexpression = ((EDataType) o);
-            } else {
-              _xifexpression = ((EAttribute) o).getEAttributeType();
-            }
-            return _xifexpression;
-          };
-          final Set<EDataType> eDataTypes = IteratorExtensions.<EDataType>toSet(IteratorExtensions.<EObject, EDataType>map(IteratorExtensions.<EObject>filter(i.getMetamodel().eAllContents(), _function_6), _function_7));
-          final Function1<EObject, Boolean> _function_8 = (EObject o) -> {
-            return Boolean.valueOf((o instanceof EReference));
-          };
-          final Function1<EObject, EReference> _function_9 = (EObject it_2) -> {
-            return ((EReference) it_2);
-          };
-          final Set<EReference> eReferences = IteratorExtensions.<EReference>toSet(IteratorExtensions.<EObject, EReference>map(IteratorExtensions.<EObject>filter(i.getMetamodel().eAllContents(), _function_8), _function_9));
-          final Function1<EObject, Boolean> _function_10 = (EObject o) -> {
-            return Boolean.valueOf((o instanceof EAttribute));
-          };
-          final Function1<EObject, EAttribute> _function_11 = (EObject it_2) -> {
-            return ((EAttribute) it_2);
-          };
-          final Set<EAttribute> eAttributes = IteratorExtensions.<EAttribute>toSet(IteratorExtensions.<EObject, EAttribute>map(IteratorExtensions.<EObject>filter(i.getMetamodel().eAllContents(), _function_10), _function_11));
-          final ArrayList<EClass> ordered = CollectionLiterals.<EClass>newArrayList();
-          for (final EClass o : eClasses) {
-            this.insertInOrder(ordered, o, eClasses);
-          }
-          StringConcatenationClient _client = new StringConcatenationClient() {
-            @Override
-            protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
-              _builder.append("if(typeGraph_");
-              String _shortName = i.getShortName();
-              _builder.append(_shortName);
-              _builder.append("==null) {");
-              _builder.newLineIfNotEmpty();
-              _builder.append("\t");
-              _builder.append("typeGraph_");
-              String _shortName_1 = i.getShortName();
-              _builder.append(_shortName_1, "\t");
-              _builder.append(" = new ");
-              String _qualifiedName = BXCoreJvmModelInferrer.this._typeReferenceBuilder.typeRef(TypeGraph.class).getQualifiedName();
-              _builder.append(_qualifiedName, "\t");
-              _builder.append("();");
-              _builder.newLineIfNotEmpty();
-              {
-                for(final EClass t : ordered) {
-                  _builder.append("\t");
-                  _builder.append("typeGraph_");
-                  String _shortName_2 = i.getShortName();
-                  _builder.append(_shortName_2, "\t");
-                  _builder.append(".declare(\"");
-                  {
-                    boolean _isAbstract = t.isAbstract();
-                    if (_isAbstract) {
-                      _builder.append("@");
-                    }
-                  }
-                  String _name = t.getName();
-                  _builder.append(_name, "\t");
-                  {
-                    EList<EClass> _eSuperTypes = t.getESuperTypes();
-                    for(final EClass s : _eSuperTypes) {
-                      {
-                        boolean _contains = eClasses.contains(s);
-                        if (_contains) {
-                          _builder.append(",");
-                          String _name_1 = s.getName();
-                          _builder.append(_name_1, "\t");
-                        }
-                      }
-                    }
-                  }
-                  _builder.append("\");");
-                  _builder.newLineIfNotEmpty();
-                }
-              }
-              {
-                for(final EDataType d : eDataTypes) {
-                  {
-                    if ((d instanceof EEnum)) {
-                      _builder.append("\t");
-                      _builder.append("typeGraph_");
-                      String _shortName_3 = i.getShortName();
-                      _builder.append(_shortName_3, "\t");
-                      _builder.append(".declare(\"");
-                      String _name_2 = ((EEnum)d).getName();
-                      _builder.append(_name_2, "\t");
-                      _builder.append(":java.lang.String\");");
-                      _builder.newLineIfNotEmpty();
-                    } else {
-                      _builder.append("\t");
-                      _builder.append("typeGraph_");
-                      String _shortName_4 = i.getShortName();
-                      _builder.append(_shortName_4, "\t");
-                      _builder.append(".declare(\"");
-                      String _name_3 = d.getName();
-                      _builder.append(_name_3, "\t");
-                      _builder.append(":");
-                      String _qualifiedName_1 = BXCoreJvmModelInferrer.this._typeReferenceBuilder.typeRef(d.getInstanceClass()).getQualifiedName();
-                      _builder.append(_qualifiedName_1, "\t");
-                      _builder.append("\");");
-                      _builder.newLineIfNotEmpty();
-                    }
-                  }
-                }
-              }
-              {
-                for(final EAttribute a : eAttributes) {
-                  _builder.append("\t");
-                  _builder.append("typeGraph_");
-                  String _shortName_5 = i.getShortName();
-                  _builder.append(_shortName_5, "\t");
-                  _builder.append(".declare(\"");
-                  String _name_4 = a.getName();
-                  _builder.append(_name_4, "\t");
-                  _builder.append(":");
-                  EObject _eContainer = a.eContainer();
-                  String _name_5 = ((EClass) _eContainer).getName();
-                  _builder.append(_name_5, "\t");
-                  _builder.append("->");
-                  String _name_6 = a.getEAttributeType().getName();
-                  _builder.append(_name_6, "\t");
-                  {
-                    boolean _isMany = a.isMany();
-                    if (_isMany) {
-                      {
-                        boolean _isUnique = a.isUnique();
-                        if (_isUnique) {
-                          _builder.append("*");
-                        } else {
-                          _builder.append("#");
-                        }
-                      }
-                    }
-                  }
-                  _builder.append("\");");
-                  _builder.newLineIfNotEmpty();
-                }
-              }
-              {
-                for(final EReference a_1 : eReferences) {
-                  _builder.append("\t");
-                  _builder.append("typeGraph_");
-                  String _shortName_6 = i.getShortName();
-                  _builder.append(_shortName_6, "\t");
-                  _builder.append(".declare(\"");
-                  {
-                    boolean _isContainment = a_1.isContainment();
-                    if (_isContainment) {
-                      _builder.append("@");
-                    }
-                  }
-                  String _name_7 = a_1.getName();
-                  _builder.append(_name_7, "\t");
-                  _builder.append(":");
-                  EObject _eContainer_1 = a_1.eContainer();
-                  String _name_8 = ((EClass) _eContainer_1).getName();
-                  _builder.append(_name_8, "\t");
-                  _builder.append("->");
-                  String _name_9 = a_1.getEReferenceType().getName();
-                  _builder.append(_name_9, "\t");
-                  {
-                    boolean _isMany_1 = a_1.isMany();
-                    if (_isMany_1) {
-                      {
-                        boolean _isUnique_1 = a_1.isUnique();
-                        if (_isUnique_1) {
-                          _builder.append("*");
-                        } else {
-                          _builder.append("#");
-                        }
-                      }
-                    }
-                  }
-                  _builder.append("\");");
-                  _builder.newLineIfNotEmpty();
-                }
-              }
-              _builder.append("}");
-              _builder.newLine();
-              _builder.append("return typeGraph_");
-              String _shortName_7 = i.getShortName();
-              _builder.append(_shortName_7);
-              _builder.append(";");
-              _builder.newLineIfNotEmpty();
-            }
-          };
-          this._jvmTypesBuilder.setBody(it_1, _client);
-        };
-        JvmOperation _method = this._jvmTypesBuilder.toMethod(i, _plus_1, this._typeReferenceBuilder.typeRef(TypeGraph.class), _function_3);
-        this._jvmTypesBuilder.<JvmOperation>operator_add(_members_1, _method);
-        EList<JvmMember> _members_2 = it.getMembers();
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append("load");
-        String _firstUpper_1 = StringExtensions.toFirstUpper(i.getShortName());
-        _builder.append(_firstUpper_1);
-        _builder.append("Model");
-        final Procedure1<JvmOperation> _function_4 = (JvmOperation it_1) -> {
-          EList<JvmFormalParameter> _parameters = it_1.getParameters();
-          JvmFormalParameter _parameter = this._jvmTypesBuilder.toParameter(i, "modelUri", this._typeReferenceBuilder.typeRef(URI.class));
-          this._jvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
-          EList<JvmFormalParameter> _parameters_1 = it_1.getParameters();
-          JvmFormalParameter _parameter_1 = this._jvmTypesBuilder.toParameter(i, "metamodelUri", this._typeReferenceBuilder.typeRef(URI.class));
-          this._jvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
-          StringConcatenationClient _client = new StringConcatenationClient() {
-            @Override
-            protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
-              String _qualifiedName = BXCoreJvmModelInferrer.this._typeReferenceBuilder.typeRef(EPackage.class).getQualifiedName();
-              _builder.append(_qualifiedName);
-              _builder.append(" pack = ");
-              String _qualifiedName_1 = BXCoreJvmModelInferrer.this._typeReferenceBuilder.typeRef(EcoreModelUtil.class).getQualifiedName();
-              _builder.append(_qualifiedName_1);
-              _builder.append(".loadPacakge(metamodelUri);");
-              _builder.newLineIfNotEmpty();
-              String _qualifiedName_2 = BXCoreJvmModelInferrer.this._typeReferenceBuilder.typeRef(EObject.class).getQualifiedName();
-              _builder.append(_qualifiedName_2);
-              _builder.append(" root = ");
-              String _qualifiedName_3 = BXCoreJvmModelInferrer.this._typeReferenceBuilder.typeRef(EcoreModelUtil.class).getQualifiedName();
-              _builder.append(_qualifiedName_3);
-              _builder.append(".load(modelUri);");
-              _builder.newLineIfNotEmpty();
-              String _qualifiedName_4 = BXCoreJvmModelInferrer.this._typeReferenceBuilder.typeRef(TypedGraph.class).getQualifiedName();
-              _builder.append(_qualifiedName_4);
-              _builder.append(" graph = ");
-              String _qualifiedName_5 = BXCoreJvmModelInferrer.this._typeReferenceBuilder.typeRef(EcoreModelUtil.class).getQualifiedName();
-              _builder.append(_qualifiedName_5);
-              _builder.append(".load(root, getTypeGraph_");
-              String _firstUpper = StringExtensions.toFirstUpper(i.getShortName());
-              _builder.append(_firstUpper);
-              _builder.append("());");
-              _builder.newLineIfNotEmpty();
-              _builder.append("return graph;");
-              _builder.newLine();
-            }
-          };
-          this._jvmTypesBuilder.setBody(it_1, _client);
-        };
-        JvmOperation _method_1 = this._jvmTypesBuilder.toMethod(i, _builder.toString(), this._typeReferenceBuilder.typeRef(TypedGraph.class), _function_4);
-        this._jvmTypesBuilder.<JvmOperation>operator_add(_members_2, _method_1);
+        this.generateImportSection(i, it);
       };
       element.getImports().forEach(_function_1);
       EList<JvmMember> _members = it.getMembers();
@@ -569,45 +302,7 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
       };
       final List<ContextAwareCondition> conditions = IteratorExtensions.<ContextAwareCondition>toList(IteratorExtensions.<EObject, ContextAwareCondition>map(IteratorExtensions.<EObject>filter(element.eAllContents(), _function_4), _function_5));
       final Procedure2<ContextAwareCondition, Integer> _function_6 = (ContextAwareCondition cond, Integer id) -> {
-        EList<JvmMember> _members_2 = it.getMembers();
-        final Procedure1<JvmGenericType> _function_7 = (JvmGenericType it_1) -> {
-          EObject _eContainer = cond.eContainer();
-          if ((_eContainer instanceof XmuCoreAlign)) {
-            EList<JvmTypeReference> _superTypes = it_1.getSuperTypes();
-            JvmTypeReference _typeRef = this._typeReferenceBuilder.typeRef(BiFunction.class, this._typeReferenceBuilder.typeRef(Context.class), this._typeReferenceBuilder.typeRef(Context.class), this._typeReferenceBuilder.typeRef(Boolean.class));
-            this._jvmTypesBuilder.<JvmTypeReference>operator_add(_superTypes, _typeRef);
-            EList<JvmMember> _members_3 = it_1.getMembers();
-            final Procedure1<JvmOperation> _function_8 = (JvmOperation it_2) -> {
-              EList<JvmFormalParameter> _parameters = it_2.getParameters();
-              JvmFormalParameter _parameter = this._jvmTypesBuilder.toParameter(cond, "source", this._typeReferenceBuilder.typeRef(Context.class));
-              this._jvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
-              EList<JvmFormalParameter> _parameters_1 = it_2.getParameters();
-              JvmFormalParameter _parameter_1 = this._jvmTypesBuilder.toParameter(cond, "view", this._typeReferenceBuilder.typeRef(Context.class));
-              this._jvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
-              this._jvmTypesBuilder.setBody(it_2, cond.getCondition());
-            };
-            JvmOperation _method_2 = this._jvmTypesBuilder.toMethod(cond, "apply", this._typeReferenceBuilder.typeRef(Boolean.class), _function_8);
-            this._jvmTypesBuilder.<JvmOperation>operator_add(_members_3, _method_2);
-          } else {
-            EList<JvmTypeReference> _superTypes_1 = it_1.getSuperTypes();
-            JvmTypeReference _typeRef_1 = this._typeReferenceBuilder.typeRef(BiFunction.class, this._typeReferenceBuilder.typeRef(SourceType.class), this._typeReferenceBuilder.typeRef(ViewType.class), this._typeReferenceBuilder.typeRef(Boolean.class));
-            this._jvmTypesBuilder.<JvmTypeReference>operator_add(_superTypes_1, _typeRef_1);
-            EList<JvmMember> _members_4 = it_1.getMembers();
-            final Procedure1<JvmOperation> _function_9 = (JvmOperation it_2) -> {
-              EList<JvmFormalParameter> _parameters = it_2.getParameters();
-              JvmFormalParameter _parameter = this._jvmTypesBuilder.toParameter(cond, "source", this._typeReferenceBuilder.typeRef(SourceType.class));
-              this._jvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
-              EList<JvmFormalParameter> _parameters_1 = it_2.getParameters();
-              JvmFormalParameter _parameter_1 = this._jvmTypesBuilder.toParameter(cond, "view", this._typeReferenceBuilder.typeRef(ViewType.class));
-              this._jvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
-              this._jvmTypesBuilder.setBody(it_2, cond.getCondition());
-            };
-            JvmOperation _method_3 = this._jvmTypesBuilder.toMethod(cond, "apply", this._typeReferenceBuilder.typeRef(Boolean.class), _function_9);
-            this._jvmTypesBuilder.<JvmOperation>operator_add(_members_4, _method_3);
-          }
-        };
-        JvmGenericType _class = this._jvmTypesBuilder.toClass(cond, ("Condition" + id), _function_7);
-        this._jvmTypesBuilder.<JvmGenericType>operator_add(_members_2, _class);
+        this.generateCondition(cond, id, it);
       };
       IterableExtensions.<ContextAwareCondition>forEach(conditions, _function_6);
       final Function1<EObject, Boolean> _function_7 = (EObject e) -> {
@@ -618,26 +313,7 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
       };
       final List<ContextAwareUnidirectionalAction> actions = IteratorExtensions.<ContextAwareUnidirectionalAction>toList(IteratorExtensions.<EObject, ContextAwareUnidirectionalAction>map(IteratorExtensions.<EObject>filter(element.eAllContents(), _function_7), _function_8));
       final Procedure2<ContextAwareUnidirectionalAction, Integer> _function_9 = (ContextAwareUnidirectionalAction act, Integer id) -> {
-        EList<JvmMember> _members_2 = it.getMembers();
-        final Procedure1<JvmGenericType> _function_10 = (JvmGenericType it_1) -> {
-          EList<JvmTypeReference> _superTypes = it_1.getSuperTypes();
-          JvmTypeReference _typeRef = this._typeReferenceBuilder.typeRef(BiFunction.class, this._typeReferenceBuilder.typeRef(SourceType.class), this._typeReferenceBuilder.typeRef(ViewType.class), this._typeReferenceBuilder.typeRef(SourceType.class));
-          this._jvmTypesBuilder.<JvmTypeReference>operator_add(_superTypes, _typeRef);
-          EList<JvmMember> _members_3 = it_1.getMembers();
-          final Procedure1<JvmOperation> _function_11 = (JvmOperation it_2) -> {
-            EList<JvmFormalParameter> _parameters = it_2.getParameters();
-            JvmFormalParameter _parameter = this._jvmTypesBuilder.toParameter(act, "source", this._typeReferenceBuilder.typeRef(SourceType.class));
-            this._jvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
-            EList<JvmFormalParameter> _parameters_1 = it_2.getParameters();
-            JvmFormalParameter _parameter_1 = this._jvmTypesBuilder.toParameter(act, "view", this._typeReferenceBuilder.typeRef(ViewType.class));
-            this._jvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
-            this._jvmTypesBuilder.setBody(it_2, act.getAction());
-          };
-          JvmOperation _method_2 = this._jvmTypesBuilder.toMethod(act, "apply", this._typeReferenceBuilder.typeRef(SourceType.class), _function_11);
-          this._jvmTypesBuilder.<JvmOperation>operator_add(_members_3, _method_2);
-        };
-        JvmGenericType _class = this._jvmTypesBuilder.toClass(act, ("UnidirectionalAction" + id), _function_10);
-        this._jvmTypesBuilder.<JvmGenericType>operator_add(_members_2, _class);
+        this.generateAction(act, id, it);
       };
       IterableExtensions.<ContextAwareUnidirectionalAction>forEach(actions, _function_9);
       final Function1<EObject, Boolean> _function_10 = (EObject it_1) -> {
@@ -647,163 +323,664 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
         return ((XmuCoreStatement) it_1);
       };
       final List<Pair<Integer, XmuCoreStatement>> statements = IteratorExtensions.<Pair<Integer, XmuCoreStatement>>toList(IteratorExtensions.<XmuCoreStatement>indexed(IteratorExtensions.<EObject, XmuCoreStatement>map(IteratorExtensions.<EObject>filter(element.eAllContents(), _function_10), _function_11)));
-      final Consumer<Definition> _function_12 = (Definition def) -> {
+      final HashMap<EObject, Tuple2<TupleType, Integer>> typeLiteralMap = this.groupTypeLiterals(element);
+      final Consumer<Tuple2<TupleType, Integer>> _function_12 = (Tuple2<TupleType, Integer> pair) -> {
+        this.generateTypeLiteral(it, pair.first, (pair.second).intValue(), element);
+      };
+      IterableExtensions.<Tuple2<TupleType, Integer>>toSet(typeLiteralMap.values()).forEach(_function_12);
+      final Function1<EObject, Boolean> _function_13 = (EObject it_1) -> {
+        return Boolean.valueOf((it_1 instanceof PatternTypeLiteral));
+      };
+      final Function1<EObject, PatternTypeLiteral> _function_14 = (EObject it_1) -> {
+        return ((PatternTypeLiteral) it_1);
+      };
+      final List<Pair<Integer, PatternTypeLiteral>> patternLiterals = IteratorExtensions.<Pair<Integer, PatternTypeLiteral>>toList(IteratorExtensions.<PatternTypeLiteral>indexed(IteratorExtensions.<EObject, PatternTypeLiteral>map(IteratorExtensions.<EObject>filter(element.eAllContents(), _function_13), _function_14)));
+      final Consumer<Pair<Integer, PatternTypeLiteral>> _function_15 = (Pair<Integer, PatternTypeLiteral> p) -> {
+        this.generatePatternLiteral(it, p.getValue(), p.getKey(), typeLiteralMap, element);
+      };
+      patternLiterals.forEach(_function_15);
+      final Consumer<Definition> _function_16 = (Definition def) -> {
         if ((def instanceof TypeDefinition)) {
-          this.generateTypeDefinition(it, ((TypeDefinition)def), element);
+          this.generateTypeDefinition(it, ((TypeDefinition)def), typeLiteralMap, patternLiterals, element);
         } else {
-          if ((def instanceof PatternDefinition)) {
-            this.generatePatternDefinition(it, ((PatternDefinition)def), element);
+          if ((def instanceof IndexDefinition)) {
+            EList<JvmMember> _members_2 = it.getMembers();
+            String _name = ((IndexDefinition)def).getName();
+            String _plus = ("index_" + _name);
+            final Procedure1<JvmField> _function_17 = (JvmField it_1) -> {
+              it_1.setVisibility(JvmVisibility.PRIVATE);
+            };
+            JvmField _field = this._jvmTypesBuilder.toField(def, _plus, this._typeReferenceBuilder.typeRef(IndexSignature.class), _function_17);
+            this._jvmTypesBuilder.<JvmField>operator_add(_members_2, _field);
+            EList<JvmMember> _members_3 = it.getMembers();
+            String _firstUpper = StringExtensions.toFirstUpper(((IndexDefinition)def).getName());
+            String _plus_1 = ("getIndex_" + _firstUpper);
+            final Procedure1<JvmOperation> _function_18 = (JvmOperation it_1) -> {
+              it_1.setVisibility(JvmVisibility.PUBLIC);
+              StringConcatenationClient _client = new StringConcatenationClient() {
+                @Override
+                protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
+                  _builder.append("if(index_");
+                  String _name = ((IndexDefinition)def).getName();
+                  _builder.append(_name);
+                  _builder.append("==null) {");
+                  _builder.newLineIfNotEmpty();
+                  _builder.append("\t");
+                  _builder.append("index_");
+                  String _name_1 = ((IndexDefinition)def).getName();
+                  _builder.append(_name_1, "\t");
+                  _builder.append(" = new ");
+                  String _qualifiedName = BXCoreJvmModelInferrer.this._typeReferenceBuilder.typeRef(IndexSignature.class).getQualifiedName();
+                  _builder.append(_qualifiedName, "\t");
+                  _builder.append("(\"");
+                  String _name_2 = ((IndexDefinition) def).getName();
+                  _builder.append(_name_2, "\t");
+                  _builder.append("\", ");
+                  CharSequence _typeAccessor = BXCoreJvmModelInferrer.this.typeAccessor(((IndexDefinition) def).getSourceType(), typeLiteralMap);
+                  _builder.append(_typeAccessor, "\t");
+                  _builder.append(", ");
+                  CharSequence _typeAccessor_1 = BXCoreJvmModelInferrer.this.typeAccessor(((IndexDefinition) def).getViewType(), typeLiteralMap);
+                  _builder.append(_typeAccessor_1, "\t");
+                  _builder.append(");");
+                  _builder.newLineIfNotEmpty();
+                  _builder.append("}");
+                  _builder.newLine();
+                  _builder.append("return index_");
+                  String _name_3 = ((IndexDefinition)def).getName();
+                  _builder.append(_name_3);
+                  _builder.append(";");
+                  _builder.newLineIfNotEmpty();
+                }
+              };
+              this._jvmTypesBuilder.setBody(it_1, _client);
+            };
+            JvmOperation _method_2 = this._jvmTypesBuilder.toMethod(def, _plus_1, this._typeReferenceBuilder.typeRef(IndexSignature.class), _function_18);
+            this._jvmTypesBuilder.<JvmOperation>operator_add(_members_3, _method_2);
           } else {
-            if ((def instanceof IndexDefinition)) {
-              EList<JvmMember> _members_2 = it.getMembers();
-              String _name = ((IndexDefinition)def).getName();
-              String _plus = ("index_" + _name);
-              final Procedure1<JvmField> _function_13 = (JvmField it_1) -> {
+            if ((def instanceof BXFunctionDefinition)) {
+              EList<JvmMember> _members_4 = it.getMembers();
+              String _name_1 = ((BXFunctionDefinition)def).getName();
+              String _plus_2 = ("xmu_" + _name_1);
+              final Procedure1<JvmField> _function_19 = (JvmField it_1) -> {
                 it_1.setVisibility(JvmVisibility.PRIVATE);
               };
-              JvmField _field = this._jvmTypesBuilder.toField(def, _plus, this._typeReferenceBuilder.typeRef(IndexSignature.class), _function_13);
-              this._jvmTypesBuilder.<JvmField>operator_add(_members_2, _field);
-              EList<JvmMember> _members_3 = it.getMembers();
-              String _firstUpper = StringExtensions.toFirstUpper(((IndexDefinition)def).getName());
-              String _plus_1 = ("getIndex_" + _firstUpper);
-              final Procedure1<JvmOperation> _function_14 = (JvmOperation it_1) -> {
+              JvmField _field_1 = this._jvmTypesBuilder.toField(def, _plus_2, this._typeReferenceBuilder.typeRef(XmuCore.class), _function_19);
+              this._jvmTypesBuilder.<JvmField>operator_add(_members_4, _field_1);
+              EList<JvmMember> _members_5 = it.getMembers();
+              String _firstUpper_1 = StringExtensions.toFirstUpper(((BXFunctionDefinition)def).getName());
+              String _plus_3 = ("getXmu_" + _firstUpper_1);
+              final Procedure1<JvmOperation> _function_20 = (JvmOperation it_1) -> {
                 it_1.setVisibility(JvmVisibility.PUBLIC);
-                StringConcatenationClient _client = new StringConcatenationClient() {
-                  @Override
-                  protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
-                    _builder.append("if(index_");
-                    String _name = ((IndexDefinition)def).getName();
-                    _builder.append(_name);
-                    _builder.append("==null) {");
-                    _builder.newLineIfNotEmpty();
-                    _builder.append("\t");
-                    _builder.append("index_");
-                    String _name_1 = ((IndexDefinition)def).getName();
-                    _builder.append(_name_1, "\t");
-                    _builder.append(" = new ");
-                    String _qualifiedName = BXCoreJvmModelInferrer.this._typeReferenceBuilder.typeRef(IndexSignature.class).getQualifiedName();
-                    _builder.append(_qualifiedName, "\t");
-                    _builder.append("(\"");
-                    String _name_2 = ((IndexDefinition) def).getName();
-                    _builder.append(_name_2, "\t");
-                    _builder.append("\", ");
-                    CharSequence _typeAccessor = BXCoreJvmModelInferrer.this.typeAccessor(((IndexDefinition) def).getSourceType());
-                    _builder.append(_typeAccessor, "\t");
-                    _builder.append(", ");
-                    CharSequence _typeAccessor_1 = BXCoreJvmModelInferrer.this.typeAccessor(((IndexDefinition) def).getViewType());
-                    _builder.append(_typeAccessor_1, "\t");
-                    _builder.append(");");
-                    _builder.newLineIfNotEmpty();
-                    _builder.append("}");
-                    _builder.newLine();
-                    _builder.append("return index_");
-                    String _name_3 = ((IndexDefinition)def).getName();
-                    _builder.append(_name_3);
-                    _builder.append(";");
-                    _builder.newLineIfNotEmpty();
-                  }
+                EList<JvmTypeReference> _exceptions = it_1.getExceptions();
+                JvmTypeReference _typeRef = this._typeReferenceBuilder.typeRef(BidirectionalTransformationDefinitionException.class);
+                this._jvmTypesBuilder.<JvmTypeReference>operator_add(_exceptions, _typeRef);
+                final Procedure1<ITreeAppendable> _function_21 = (ITreeAppendable appendable) -> {
+                  StringConcatenation _builder = new StringConcatenation();
+                  _builder.append("if(xmu_");
+                  String _name_2 = ((BXFunctionDefinition)def).getName();
+                  _builder.append(_name_2);
+                  _builder.append("==null) {");
+                  ITreeAppendable _newLine = appendable.append(_builder).newLine();
+                  StringConcatenation _builder_1 = new StringConcatenation();
+                  _builder_1.append("xmu_");
+                  String _name_3 = ((BXFunctionDefinition)def).getName();
+                  _builder_1.append(_name_3);
+                  _builder_1.append(" = ");
+                  ITreeAppendable _newLine_1 = this.generateXmuCode(_newLine.append(_builder_1), ((BXFunctionDefinition) def).getStatement(), statements, typeLiteralMap, patternLiterals, conditions, actions, element).append(";").newLine().append("}").newLine();
+                  StringConcatenation _builder_2 = new StringConcatenation();
+                  _builder_2.append("return xmu_");
+                  String _name_4 = ((BXFunctionDefinition)def).getName();
+                  _builder_2.append(_name_4);
+                  _builder_2.append(";");
+                  _newLine_1.append(_builder_2);
                 };
-                this._jvmTypesBuilder.setBody(it_1, _client);
+                this._jvmTypesBuilder.setBody(it_1, _function_21);
               };
-              JvmOperation _method_2 = this._jvmTypesBuilder.toMethod(def, _plus_1, this._typeReferenceBuilder.typeRef(IndexSignature.class), _function_14);
-              this._jvmTypesBuilder.<JvmOperation>operator_add(_members_3, _method_2);
-            } else {
-              if ((def instanceof BXFunctionDefinition)) {
-                EList<JvmMember> _members_4 = it.getMembers();
-                String _name_1 = ((BXFunctionDefinition)def).getName();
-                String _plus_2 = ("xmu_" + _name_1);
-                final Procedure1<JvmField> _function_15 = (JvmField it_1) -> {
-                  it_1.setVisibility(JvmVisibility.PRIVATE);
-                };
-                JvmField _field_1 = this._jvmTypesBuilder.toField(def, _plus_2, this._typeReferenceBuilder.typeRef(XmuCore.class), _function_15);
-                this._jvmTypesBuilder.<JvmField>operator_add(_members_4, _field_1);
-                EList<JvmMember> _members_5 = it.getMembers();
-                String _firstUpper_1 = StringExtensions.toFirstUpper(((BXFunctionDefinition)def).getName());
-                String _plus_3 = ("getXmu_" + _firstUpper_1);
-                final Procedure1<JvmOperation> _function_16 = (JvmOperation it_1) -> {
-                  it_1.setVisibility(JvmVisibility.PUBLIC);
-                  EList<JvmTypeReference> _exceptions = it_1.getExceptions();
-                  JvmTypeReference _typeRef = this._typeReferenceBuilder.typeRef(BidirectionalTransformationDefinitionException.class);
-                  this._jvmTypesBuilder.<JvmTypeReference>operator_add(_exceptions, _typeRef);
-                  final Function1<EObject, Boolean> _function_17 = (EObject e) -> {
-                    return Boolean.valueOf((e instanceof PatternDefinition));
-                  };
-                  final Function1<EObject, PatternDefinition> _function_18 = (EObject it_2) -> {
-                    return ((PatternDefinition) it_2);
-                  };
-                  final List<Pair<Integer, PatternDefinition>> privatePatterns = IteratorExtensions.<Pair<Integer, PatternDefinition>>toList(IteratorExtensions.<PatternDefinition>indexed(IteratorExtensions.<EObject, PatternDefinition>map(IteratorExtensions.<EObject>filter(((BXFunctionDefinition)def).eAllContents(), _function_17), _function_18)));
-                  final Procedure1<ITreeAppendable> _function_19 = (ITreeAppendable appendable) -> {
-                    StringConcatenation _builder = new StringConcatenation();
-                    _builder.append("if(xmu_");
-                    String _name_2 = ((BXFunctionDefinition)def).getName();
-                    _builder.append(_name_2);
-                    _builder.append("==null) {");
-                    ITreeAppendable _newLine = appendable.append(_builder).newLine();
-                    StringConcatenation _builder_1 = new StringConcatenation();
-                    {
-                      for(final Pair<Integer, PatternDefinition> pair : privatePatterns) {
-                        String _qualifiedName = this._typeReferenceBuilder.typeRef(Pattern.class).getQualifiedName();
-                        _builder_1.append(_qualifiedName);
-                        _builder_1.append(" pattern__internal");
-                        Integer _key = pair.getKey();
-                        _builder_1.append(_key);
-                        _builder_1.append(";");
-                        _builder_1.newLineIfNotEmpty();
-                        _builder_1.append("{");
-                        _builder_1.newLine();
-                        _builder_1.append("\t");
-                        Integer _key_1 = pair.getKey();
-                        String _plus_4 = ("_internal" + _key_1);
-                        CharSequence _generatePatternConstructionCode = this.generatePatternConstructionCode(pair.getValue(), _plus_4, element);
-                        _builder_1.append(_generatePatternConstructionCode, "\t");
-                        _builder_1.newLineIfNotEmpty();
-                        _builder_1.append("}");
-                        _builder_1.newLine();
-                        {
-                          if (((pair.getValue().getType() != null) && (!IterableExtensions.<Definition>exists(element.getDefinitions(), ((Function1<Definition, Boolean>) (Definition d) -> {
-                            return Boolean.valueOf(((d instanceof TypeDefinition) && d.getName().equals(pair.getValue().getType())));
-                          }))))) {
-                            String _qualifiedName_1 = this._typeReferenceBuilder.typeRef(ContextType.class).getQualifiedName();
-                            _builder_1.append(_qualifiedName_1);
-                            _builder_1.append(" type__internal");
-                            String _firstUpper_2 = StringExtensions.toFirstUpper(pair.getValue().getType());
-                            _builder_1.append(_firstUpper_2);
-                            _builder_1.append(" = pattern__internal");
-                            Integer _key_2 = pair.getKey();
-                            _builder_1.append(_key_2);
-                            _builder_1.append(".getType();");
-                            _builder_1.newLineIfNotEmpty();
-                          }
-                        }
-                      }
-                    }
-                    _builder_1.newLine();
-                    ITreeAppendable _append = _newLine.append(_builder_1);
-                    StringConcatenation _builder_2 = new StringConcatenation();
-                    _builder_2.append("xmu_");
-                    String _name_3 = ((BXFunctionDefinition)def).getName();
-                    _builder_2.append(_name_3);
-                    _builder_2.append(" = ");
-                    ITreeAppendable _newLine_1 = this.generateXmuCode(_append.append(_builder_2), ((BXFunctionDefinition) def).getStatement(), statements, privatePatterns, conditions, actions, element).append(";").newLine().append("}").newLine();
-                    StringConcatenation _builder_3 = new StringConcatenation();
-                    _builder_3.append("return xmu_");
-                    String _name_4 = ((BXFunctionDefinition)def).getName();
-                    _builder_3.append(_name_4);
-                    _builder_3.append(";");
-                    _newLine_1.append(_builder_3);
-                  };
-                  this._jvmTypesBuilder.setBody(it_1, _function_19);
-                };
-                JvmOperation _method_3 = this._jvmTypesBuilder.toMethod(def, _plus_3, this._typeReferenceBuilder.typeRef(XmuCore.class), _function_16);
-                this._jvmTypesBuilder.<JvmOperation>operator_add(_members_5, _method_3);
-              }
+              JvmOperation _method_3 = this._jvmTypesBuilder.toMethod(def, _plus_3, this._typeReferenceBuilder.typeRef(XmuCore.class), _function_20);
+              this._jvmTypesBuilder.<JvmOperation>operator_add(_members_5, _method_3);
             }
           }
         }
       };
-      element.getDefinitions().forEach(_function_12);
+      element.getDefinitions().forEach(_function_16);
     };
     acceptor.<JvmGenericType>accept(this._jvmTypesBuilder.toClass(element, sourceURI, _function));
+  }
+  
+  protected boolean generatePatternLiteral(final JvmGenericType owner, final PatternTypeLiteral literal, final Integer id, final Map<EObject, Tuple2<TupleType, Integer>> typeLiteralMap, final BXProgram program) {
+    boolean _xblockexpression = false;
+    {
+      EList<JvmMember> _members = owner.getMembers();
+      final Procedure1<JvmField> _function = (JvmField it) -> {
+        it.setVisibility(JvmVisibility.PRIVATE);
+      };
+      JvmField _field = this._jvmTypesBuilder.toField(literal, ("pattern_" + id), this._typeReferenceBuilder.typeRef(Pattern.class), _function);
+      this._jvmTypesBuilder.<JvmField>operator_add(_members, _field);
+      final Function1<EObject, Boolean> _function_1 = (EObject it) -> {
+        return Boolean.valueOf((it instanceof PatternNode));
+      };
+      final Function1<EObject, PatternNode> _function_2 = (EObject it) -> {
+        return ((PatternNode) it);
+      };
+      final List<PatternNode> nodes = IteratorExtensions.<PatternNode>toList(IteratorExtensions.<EObject, PatternNode>map(IteratorExtensions.<EObject>filter(literal.eAllContents(), _function_1), _function_2));
+      final Function1<EObject, Boolean> _function_3 = (EObject it) -> {
+        return Boolean.valueOf((it instanceof PatternEdge));
+      };
+      final Function1<EObject, PatternEdge> _function_4 = (EObject it) -> {
+        return ((PatternEdge) it);
+      };
+      final List<PatternEdge> edges = IteratorExtensions.<PatternEdge>toList(IteratorExtensions.<EObject, PatternEdge>map(IteratorExtensions.<EObject>filter(literal.eAllContents(), _function_3), _function_4));
+      final ImportSection typeGraph = literal.getSource();
+      final Integer patternTypeId = typeLiteralMap.get(literal).second;
+      EList<JvmMember> _members_1 = owner.getMembers();
+      final Procedure1<JvmOperation> _function_5 = (JvmOperation it) -> {
+        it.setVisibility(JvmVisibility.PUBLIC);
+        StringConcatenationClient _client = new StringConcatenationClient() {
+          @Override
+          protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
+            _builder.append("if(pattern_");
+            _builder.append(id);
+            _builder.append("==null) {");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            String _qualifiedName = BXCoreJvmModelInferrer.this._typeReferenceBuilder.typeRef(TypeGraph.class).getQualifiedName();
+            _builder.append(_qualifiedName, "\t");
+            _builder.append(" typeGraph = getTypeGraph_");
+            String _firstUpper = StringExtensions.toFirstUpper(typeGraph.getShortName());
+            _builder.append(_firstUpper, "\t");
+            _builder.append("();");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.append("pattern_");
+            _builder.append(id, "\t");
+            _builder.append(" = new ");
+            String _qualifiedName_1 = BXCoreJvmModelInferrer.this._typeReferenceBuilder.typeRef(Pattern.class).getQualifiedName();
+            _builder.append(_qualifiedName_1, "\t");
+            _builder.append("(typeGraph);");
+            _builder.newLineIfNotEmpty();
+            {
+              for(final PatternNode node : nodes) {
+                _builder.append("\t");
+                String _qualifiedName_2 = BXCoreJvmModelInferrer.this._typeReferenceBuilder.typeRef(ITypeNode.class).getQualifiedName();
+                _builder.append(_qualifiedName_2, "\t");
+                _builder.append(" ");
+                String _name = node.getName();
+                _builder.append(_name, "\t");
+                _builder.append("_type = typeGraph.");
+                {
+                  EClassifier _type = node.getType();
+                  if ((_type instanceof EClass)) {
+                    _builder.append("getTypeNode");
+                  } else {
+                    _builder.append("getDataTypeNode");
+                  }
+                }
+                _builder.append("(\"");
+                String _name_1 = node.getType().getName();
+                _builder.append(_name_1, "\t");
+                _builder.append("\");");
+                _builder.newLineIfNotEmpty();
+                _builder.append("\t");
+                _builder.append("pattern_");
+                _builder.append(id, "\t");
+                _builder.append(".appendPatternNode(\"");
+                String _name_2 = node.getName();
+                _builder.append(_name_2, "\t");
+                _builder.append("\", ");
+                String _name_3 = node.getName();
+                _builder.append(_name_3, "\t");
+                _builder.append("_type);");
+                _builder.newLineIfNotEmpty();
+              }
+            }
+            {
+              for(final PatternEdge edge : edges) {
+                _builder.append("\t");
+                PatternNode _xifexpression = null;
+                PatternValueCondition _value = edge.getValue();
+                if ((_value instanceof PatternNode)) {
+                  PatternValueCondition _value_1 = edge.getValue();
+                  _xifexpression = ((PatternNode) _value_1);
+                } else {
+                  PatternNode _xifexpression_1 = null;
+                  PatternValueCondition _value_2 = edge.getValue();
+                  if ((_value_2 instanceof PatternNodeRef)) {
+                    PatternValueCondition _value_3 = edge.getValue();
+                    _xifexpression_1 = ((PatternNodeRef) _value_3).getNode();
+                  } else {
+                    _xifexpression_1 = null;
+                  }
+                  _xifexpression = _xifexpression_1;
+                }
+                final PatternNode tarNode = _xifexpression;
+                _builder.newLineIfNotEmpty();
+                _builder.append("\t");
+                String _xifexpression_2 = null;
+                String _name_4 = edge.getName();
+                boolean _tripleNotEquals = (_name_4 != null);
+                if (_tripleNotEquals) {
+                  _xifexpression_2 = edge.getName();
+                } else {
+                  EObject _eContainer = edge.eContainer();
+                  String _name_5 = ((PatternNode) _eContainer).getName();
+                  String _plus = (_name_5 + "_");
+                  String _name_6 = edge.getFeature().getName();
+                  String _plus_1 = (_plus + _name_6);
+                  String _plus_2 = (_plus_1 + "_");
+                  String _xifexpression_3 = null;
+                  if ((tarNode != null)) {
+                    _xifexpression_3 = tarNode.getName();
+                  } else {
+                    _xifexpression_3 = "?";
+                  }
+                  _xifexpression_2 = (_plus_2 + _xifexpression_3);
+                }
+                final String edgeName = _xifexpression_2;
+                _builder.newLineIfNotEmpty();
+                _builder.append("\t");
+                String _qualifiedName_3 = BXCoreJvmModelInferrer.this._typeReferenceBuilder.typeRef(IStructuralFeatureEdge.class).getQualifiedName();
+                _builder.append(_qualifiedName_3, "\t");
+                _builder.append(" ");
+                _builder.append(edgeName, "\t");
+                _builder.append("_type = typeGraph.");
+                {
+                  EStructuralFeature _feature = edge.getFeature();
+                  if ((_feature instanceof EReference)) {
+                    _builder.append("getTypeEdge");
+                  } else {
+                    _builder.append("getPropertyEdge");
+                  }
+                }
+                _builder.append("((");
+                String _qualifiedName_4 = BXCoreJvmModelInferrer.this._typeReferenceBuilder.typeRef(TypeNode.class).getQualifiedName();
+                _builder.append(_qualifiedName_4, "\t");
+                _builder.append(") ");
+                EObject _eContainer_1 = edge.eContainer();
+                String _name_7 = ((PatternNode) _eContainer_1).getName();
+                _builder.append(_name_7, "\t");
+                _builder.append("_type,\"");
+                String _name_8 = edge.getFeature().getName();
+                _builder.append(_name_8, "\t");
+                _builder.append("\");");
+                _builder.newLineIfNotEmpty();
+                _builder.append("\t");
+                _builder.append("pattern_");
+                _builder.append(id, "\t");
+                _builder.append(".appendPatternEdge(\"");
+                _builder.append(edgeName, "\t");
+                _builder.append("\", \"");
+                EObject _eContainer_2 = edge.eContainer();
+                String _name_9 = ((PatternNode) _eContainer_2).getName();
+                _builder.append(_name_9, "\t");
+                _builder.append("\", \"");
+                String _name_10 = tarNode.getName();
+                _builder.append(_name_10, "\t");
+                _builder.append("\", ");
+                _builder.append(edgeName, "\t");
+                _builder.append("_type);");
+                _builder.newLineIfNotEmpty();
+              }
+            }
+            _builder.append("\t");
+            _builder.newLine();
+            _builder.append("\t");
+            _builder.append("pattern_");
+            _builder.append(id, "\t");
+            _builder.append(".setType(getType_");
+            _builder.append(patternTypeId, "\t");
+            _builder.append("());");
+            _builder.newLineIfNotEmpty();
+            _builder.append("}");
+            _builder.newLine();
+            _builder.append("return pattern_");
+            _builder.append(id);
+            _builder.append(";");
+            _builder.newLineIfNotEmpty();
+          }
+        };
+        this._jvmTypesBuilder.setBody(it, _client);
+      };
+      JvmOperation _method = this._jvmTypesBuilder.toMethod(literal, ("getPattern_" + id), this._typeReferenceBuilder.typeRef(Pattern.class), _function_5);
+      _xblockexpression = this._jvmTypesBuilder.<JvmOperation>operator_add(_members_1, _method);
+    }
+    return _xblockexpression;
+  }
+  
+  protected void generateAction(final ContextAwareUnidirectionalAction act, final Integer id, final JvmGenericType type) {
+    EList<JvmMember> _members = type.getMembers();
+    final Procedure1<JvmGenericType> _function = (JvmGenericType it) -> {
+      EList<JvmTypeReference> _superTypes = it.getSuperTypes();
+      JvmTypeReference _typeRef = this._typeReferenceBuilder.typeRef(BiFunction.class, this._typeReferenceBuilder.typeRef(SourceType.class), this._typeReferenceBuilder.typeRef(ViewType.class), this._typeReferenceBuilder.typeRef(SourceType.class));
+      this._jvmTypesBuilder.<JvmTypeReference>operator_add(_superTypes, _typeRef);
+      EList<JvmMember> _members_1 = it.getMembers();
+      final Procedure1<JvmOperation> _function_1 = (JvmOperation it_1) -> {
+        EList<JvmFormalParameter> _parameters = it_1.getParameters();
+        JvmFormalParameter _parameter = this._jvmTypesBuilder.toParameter(act, "source", this._typeReferenceBuilder.typeRef(SourceType.class));
+        this._jvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+        EList<JvmFormalParameter> _parameters_1 = it_1.getParameters();
+        JvmFormalParameter _parameter_1 = this._jvmTypesBuilder.toParameter(act, "view", this._typeReferenceBuilder.typeRef(ViewType.class));
+        this._jvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
+        this._jvmTypesBuilder.setBody(it_1, act.getAction());
+      };
+      JvmOperation _method = this._jvmTypesBuilder.toMethod(act, "apply", this._typeReferenceBuilder.typeRef(SourceType.class), _function_1);
+      this._jvmTypesBuilder.<JvmOperation>operator_add(_members_1, _method);
+    };
+    JvmGenericType _class = this._jvmTypesBuilder.toClass(act, ("UnidirectionalAction" + id), _function);
+    this._jvmTypesBuilder.<JvmGenericType>operator_add(_members, _class);
+  }
+  
+  protected void generateCondition(final ContextAwareCondition cond, final Integer id, final JvmGenericType type) {
+    EList<JvmMember> _members = type.getMembers();
+    final Procedure1<JvmGenericType> _function = (JvmGenericType it) -> {
+      EObject _eContainer = cond.eContainer();
+      if ((_eContainer instanceof XmuCoreAlign)) {
+        EList<JvmTypeReference> _superTypes = it.getSuperTypes();
+        JvmTypeReference _typeRef = this._typeReferenceBuilder.typeRef(BiFunction.class, this._typeReferenceBuilder.typeRef(Context.class), this._typeReferenceBuilder.typeRef(Context.class), this._typeReferenceBuilder.typeRef(Boolean.class));
+        this._jvmTypesBuilder.<JvmTypeReference>operator_add(_superTypes, _typeRef);
+        EList<JvmMember> _members_1 = it.getMembers();
+        final Procedure1<JvmOperation> _function_1 = (JvmOperation it_1) -> {
+          EList<JvmFormalParameter> _parameters = it_1.getParameters();
+          JvmFormalParameter _parameter = this._jvmTypesBuilder.toParameter(cond, "source", this._typeReferenceBuilder.typeRef(Context.class));
+          this._jvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+          EList<JvmFormalParameter> _parameters_1 = it_1.getParameters();
+          JvmFormalParameter _parameter_1 = this._jvmTypesBuilder.toParameter(cond, "view", this._typeReferenceBuilder.typeRef(Context.class));
+          this._jvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
+          this._jvmTypesBuilder.setBody(it_1, cond.getCondition());
+        };
+        JvmOperation _method = this._jvmTypesBuilder.toMethod(cond, "apply", this._typeReferenceBuilder.typeRef(Boolean.class), _function_1);
+        this._jvmTypesBuilder.<JvmOperation>operator_add(_members_1, _method);
+      } else {
+        EList<JvmTypeReference> _superTypes_1 = it.getSuperTypes();
+        JvmTypeReference _typeRef_1 = this._typeReferenceBuilder.typeRef(BiFunction.class, this._typeReferenceBuilder.typeRef(SourceType.class), this._typeReferenceBuilder.typeRef(ViewType.class), this._typeReferenceBuilder.typeRef(Boolean.class));
+        this._jvmTypesBuilder.<JvmTypeReference>operator_add(_superTypes_1, _typeRef_1);
+        EList<JvmMember> _members_2 = it.getMembers();
+        final Procedure1<JvmOperation> _function_2 = (JvmOperation it_1) -> {
+          EList<JvmFormalParameter> _parameters = it_1.getParameters();
+          JvmFormalParameter _parameter = this._jvmTypesBuilder.toParameter(cond, "source", this._typeReferenceBuilder.typeRef(SourceType.class));
+          this._jvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+          EList<JvmFormalParameter> _parameters_1 = it_1.getParameters();
+          JvmFormalParameter _parameter_1 = this._jvmTypesBuilder.toParameter(cond, "view", this._typeReferenceBuilder.typeRef(ViewType.class));
+          this._jvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
+          this._jvmTypesBuilder.setBody(it_1, cond.getCondition());
+        };
+        JvmOperation _method_1 = this._jvmTypesBuilder.toMethod(cond, "apply", this._typeReferenceBuilder.typeRef(Boolean.class), _function_2);
+        this._jvmTypesBuilder.<JvmOperation>operator_add(_members_2, _method_1);
+      }
+    };
+    JvmGenericType _class = this._jvmTypesBuilder.toClass(cond, ("Condition" + id), _function);
+    this._jvmTypesBuilder.<JvmGenericType>operator_add(_members, _class);
+  }
+  
+  protected void generateImportSection(final ImportSection i, final JvmGenericType type) {
+    EList<JvmMember> _members = type.getMembers();
+    String _shortName = i.getShortName();
+    String _plus = ("typeGraph_" + _shortName);
+    final Procedure1<JvmField> _function = (JvmField it) -> {
+      it.setVisibility(JvmVisibility.PRIVATE);
+    };
+    JvmField _field = this._jvmTypesBuilder.toField(i, _plus, this._typeReferenceBuilder.typeRef(TypeGraph.class), _function);
+    this._jvmTypesBuilder.<JvmField>operator_add(_members, _field);
+    EList<JvmMember> _members_1 = type.getMembers();
+    String _firstUpper = StringExtensions.toFirstUpper(i.getShortName());
+    String _plus_1 = ("getTypeGraph_" + _firstUpper);
+    final Procedure1<JvmOperation> _function_1 = (JvmOperation it) -> {
+      it.setVisibility(JvmVisibility.PUBLIC);
+      final Function1<EObject, Boolean> _function_2 = (EObject o) -> {
+        return Boolean.valueOf(((o instanceof EClass) || (o instanceof EReference)));
+      };
+      final Function1<EObject, EClass> _function_3 = (EObject o) -> {
+        EClass _xifexpression = null;
+        if ((o instanceof EClass)) {
+          _xifexpression = ((EClass) o);
+        } else {
+          _xifexpression = ((EReference) o).getEReferenceType();
+        }
+        return _xifexpression;
+      };
+      final Set<EClass> eClasses = IteratorExtensions.<EClass>toSet(IteratorExtensions.<EObject, EClass>map(IteratorExtensions.<EObject>filter(i.getMetamodel().eAllContents(), _function_2), _function_3));
+      final Function1<EObject, Boolean> _function_4 = (EObject o) -> {
+        return Boolean.valueOf(((o instanceof EDataType) || (o instanceof EAttribute)));
+      };
+      final Function1<EObject, EDataType> _function_5 = (EObject o) -> {
+        EDataType _xifexpression = null;
+        if ((o instanceof EDataType)) {
+          _xifexpression = ((EDataType) o);
+        } else {
+          _xifexpression = ((EAttribute) o).getEAttributeType();
+        }
+        return _xifexpression;
+      };
+      final Set<EDataType> eDataTypes = IteratorExtensions.<EDataType>toSet(IteratorExtensions.<EObject, EDataType>map(IteratorExtensions.<EObject>filter(i.getMetamodel().eAllContents(), _function_4), _function_5));
+      final Function1<EObject, Boolean> _function_6 = (EObject o) -> {
+        return Boolean.valueOf((o instanceof EReference));
+      };
+      final Function1<EObject, EReference> _function_7 = (EObject it_1) -> {
+        return ((EReference) it_1);
+      };
+      final Set<EReference> eReferences = IteratorExtensions.<EReference>toSet(IteratorExtensions.<EObject, EReference>map(IteratorExtensions.<EObject>filter(i.getMetamodel().eAllContents(), _function_6), _function_7));
+      final Function1<EObject, Boolean> _function_8 = (EObject o) -> {
+        return Boolean.valueOf((o instanceof EAttribute));
+      };
+      final Function1<EObject, EAttribute> _function_9 = (EObject it_1) -> {
+        return ((EAttribute) it_1);
+      };
+      final Set<EAttribute> eAttributes = IteratorExtensions.<EAttribute>toSet(IteratorExtensions.<EObject, EAttribute>map(IteratorExtensions.<EObject>filter(i.getMetamodel().eAllContents(), _function_8), _function_9));
+      final ArrayList<EClass> ordered = CollectionLiterals.<EClass>newArrayList();
+      for (final EClass o : eClasses) {
+        this.insertInOrder(ordered, o, eClasses);
+      }
+      StringConcatenationClient _client = new StringConcatenationClient() {
+        @Override
+        protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
+          _builder.append("if(typeGraph_");
+          String _shortName = i.getShortName();
+          _builder.append(_shortName);
+          _builder.append("==null) {");
+          _builder.newLineIfNotEmpty();
+          _builder.append("\t");
+          _builder.append("typeGraph_");
+          String _shortName_1 = i.getShortName();
+          _builder.append(_shortName_1, "\t");
+          _builder.append(" = new ");
+          String _qualifiedName = BXCoreJvmModelInferrer.this._typeReferenceBuilder.typeRef(TypeGraph.class).getQualifiedName();
+          _builder.append(_qualifiedName, "\t");
+          _builder.append("();");
+          _builder.newLineIfNotEmpty();
+          {
+            for(final EClass t : ordered) {
+              _builder.append("\t");
+              _builder.append("typeGraph_");
+              String _shortName_2 = i.getShortName();
+              _builder.append(_shortName_2, "\t");
+              _builder.append(".declare(\"");
+              {
+                boolean _isAbstract = t.isAbstract();
+                if (_isAbstract) {
+                  _builder.append("@");
+                }
+              }
+              String _name = t.getName();
+              _builder.append(_name, "\t");
+              {
+                EList<EClass> _eSuperTypes = t.getESuperTypes();
+                for(final EClass s : _eSuperTypes) {
+                  {
+                    boolean _contains = eClasses.contains(s);
+                    if (_contains) {
+                      _builder.append(",");
+                      String _name_1 = s.getName();
+                      _builder.append(_name_1, "\t");
+                    }
+                  }
+                }
+              }
+              _builder.append("\");");
+              _builder.newLineIfNotEmpty();
+            }
+          }
+          {
+            for(final EDataType d : eDataTypes) {
+              {
+                if ((d instanceof EEnum)) {
+                  _builder.append("\t");
+                  _builder.append("typeGraph_");
+                  String _shortName_3 = i.getShortName();
+                  _builder.append(_shortName_3, "\t");
+                  _builder.append(".declare(\"");
+                  String _name_2 = ((EEnum)d).getName();
+                  _builder.append(_name_2, "\t");
+                  _builder.append(":java.lang.String\");");
+                  _builder.newLineIfNotEmpty();
+                } else {
+                  _builder.append("\t");
+                  _builder.append("typeGraph_");
+                  String _shortName_4 = i.getShortName();
+                  _builder.append(_shortName_4, "\t");
+                  _builder.append(".declare(\"");
+                  String _name_3 = d.getName();
+                  _builder.append(_name_3, "\t");
+                  _builder.append(":");
+                  String _qualifiedName_1 = BXCoreJvmModelInferrer.this._typeReferenceBuilder.typeRef(d.getInstanceClass()).getQualifiedName();
+                  _builder.append(_qualifiedName_1, "\t");
+                  _builder.append("\");");
+                  _builder.newLineIfNotEmpty();
+                }
+              }
+            }
+          }
+          {
+            for(final EAttribute a : eAttributes) {
+              _builder.append("\t");
+              _builder.append("typeGraph_");
+              String _shortName_5 = i.getShortName();
+              _builder.append(_shortName_5, "\t");
+              _builder.append(".declare(\"");
+              String _name_4 = a.getName();
+              _builder.append(_name_4, "\t");
+              _builder.append(":");
+              EObject _eContainer = a.eContainer();
+              String _name_5 = ((EClass) _eContainer).getName();
+              _builder.append(_name_5, "\t");
+              _builder.append("->");
+              String _name_6 = a.getEAttributeType().getName();
+              _builder.append(_name_6, "\t");
+              {
+                boolean _isMany = a.isMany();
+                if (_isMany) {
+                  {
+                    boolean _isUnique = a.isUnique();
+                    if (_isUnique) {
+                      _builder.append("*");
+                    } else {
+                      _builder.append("#");
+                    }
+                  }
+                }
+              }
+              _builder.append("\");");
+              _builder.newLineIfNotEmpty();
+            }
+          }
+          {
+            for(final EReference a_1 : eReferences) {
+              _builder.append("\t");
+              _builder.append("typeGraph_");
+              String _shortName_6 = i.getShortName();
+              _builder.append(_shortName_6, "\t");
+              _builder.append(".declare(\"");
+              {
+                boolean _isContainment = a_1.isContainment();
+                if (_isContainment) {
+                  _builder.append("@");
+                }
+              }
+              String _name_7 = a_1.getName();
+              _builder.append(_name_7, "\t");
+              _builder.append(":");
+              EObject _eContainer_1 = a_1.eContainer();
+              String _name_8 = ((EClass) _eContainer_1).getName();
+              _builder.append(_name_8, "\t");
+              _builder.append("->");
+              String _name_9 = a_1.getEReferenceType().getName();
+              _builder.append(_name_9, "\t");
+              {
+                boolean _isMany_1 = a_1.isMany();
+                if (_isMany_1) {
+                  {
+                    boolean _isUnique_1 = a_1.isUnique();
+                    if (_isUnique_1) {
+                      _builder.append("*");
+                    } else {
+                      _builder.append("#");
+                    }
+                  }
+                }
+              }
+              _builder.append("\");");
+              _builder.newLineIfNotEmpty();
+            }
+          }
+          _builder.append("}");
+          _builder.newLine();
+          _builder.append("return typeGraph_");
+          String _shortName_7 = i.getShortName();
+          _builder.append(_shortName_7);
+          _builder.append(";");
+          _builder.newLineIfNotEmpty();
+        }
+      };
+      this._jvmTypesBuilder.setBody(it, _client);
+    };
+    JvmOperation _method = this._jvmTypesBuilder.toMethod(i, _plus_1, this._typeReferenceBuilder.typeRef(TypeGraph.class), _function_1);
+    this._jvmTypesBuilder.<JvmOperation>operator_add(_members_1, _method);
+    EList<JvmMember> _members_2 = type.getMembers();
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("load");
+    String _firstUpper_1 = StringExtensions.toFirstUpper(i.getShortName());
+    _builder.append(_firstUpper_1);
+    _builder.append("Model");
+    final Procedure1<JvmOperation> _function_2 = (JvmOperation it) -> {
+      EList<JvmFormalParameter> _parameters = it.getParameters();
+      JvmFormalParameter _parameter = this._jvmTypesBuilder.toParameter(i, "modelUri", this._typeReferenceBuilder.typeRef(URI.class));
+      this._jvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+      EList<JvmFormalParameter> _parameters_1 = it.getParameters();
+      JvmFormalParameter _parameter_1 = this._jvmTypesBuilder.toParameter(i, "metamodelUri", this._typeReferenceBuilder.typeRef(URI.class));
+      this._jvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
+      StringConcatenationClient _client = new StringConcatenationClient() {
+        @Override
+        protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
+          String _qualifiedName = BXCoreJvmModelInferrer.this._typeReferenceBuilder.typeRef(EPackage.class).getQualifiedName();
+          _builder.append(_qualifiedName);
+          _builder.append(" pack = ");
+          String _qualifiedName_1 = BXCoreJvmModelInferrer.this._typeReferenceBuilder.typeRef(EcoreModelUtil.class).getQualifiedName();
+          _builder.append(_qualifiedName_1);
+          _builder.append(".loadPacakge(metamodelUri);");
+          _builder.newLineIfNotEmpty();
+          String _qualifiedName_2 = BXCoreJvmModelInferrer.this._typeReferenceBuilder.typeRef(EObject.class).getQualifiedName();
+          _builder.append(_qualifiedName_2);
+          _builder.append(" root = ");
+          String _qualifiedName_3 = BXCoreJvmModelInferrer.this._typeReferenceBuilder.typeRef(EcoreModelUtil.class).getQualifiedName();
+          _builder.append(_qualifiedName_3);
+          _builder.append(".load(modelUri);");
+          _builder.newLineIfNotEmpty();
+          String _qualifiedName_4 = BXCoreJvmModelInferrer.this._typeReferenceBuilder.typeRef(TypedGraph.class).getQualifiedName();
+          _builder.append(_qualifiedName_4);
+          _builder.append(" graph = ");
+          String _qualifiedName_5 = BXCoreJvmModelInferrer.this._typeReferenceBuilder.typeRef(EcoreModelUtil.class).getQualifiedName();
+          _builder.append(_qualifiedName_5);
+          _builder.append(".load(root, getTypeGraph_");
+          String _firstUpper = StringExtensions.toFirstUpper(i.getShortName());
+          _builder.append(_firstUpper);
+          _builder.append("());");
+          _builder.newLineIfNotEmpty();
+          _builder.append("return graph;");
+          _builder.newLine();
+        }
+      };
+      this._jvmTypesBuilder.setBody(it, _client);
+    };
+    JvmOperation _method_1 = this._jvmTypesBuilder.toMethod(i, _builder.toString(), this._typeReferenceBuilder.typeRef(TypedGraph.class), _function_2);
+    this._jvmTypesBuilder.<JvmOperation>operator_add(_members_2, _method_1);
   }
   
   protected String toJavaClassName(final URI uri) {
@@ -880,20 +1057,20 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
     }
   }
   
-  public ITreeAppendable generateXmuCode(final ITreeAppendable appendable, final XmuCoreStatement statement, final List<Pair<Integer, XmuCoreStatement>> indexed, final List<Pair<Integer, PatternDefinition>> pairs, final List<ContextAwareCondition> conditions, final List<ContextAwareUnidirectionalAction> actions, final BXProgram program) {
+  public ITreeAppendable generateXmuCode(final ITreeAppendable appendable, final XmuCoreStatement statement, final List<Pair<Integer, XmuCoreStatement>> indexedStatements, final Map<EObject, Tuple2<TupleType, Integer>> typeLiteralMap, final List<Pair<Integer, PatternTypeLiteral>> patternLiterals, final List<ContextAwareCondition> conditions, final List<ContextAwareUnidirectionalAction> actions, final BXProgram program) {
     ITreeAppendable _xblockexpression = null;
     {
       final Function1<Pair<Integer, XmuCoreStatement>, Boolean> _function = (Pair<Integer, XmuCoreStatement> it) -> {
         XmuCoreStatement _value = it.getValue();
         return Boolean.valueOf((_value == statement));
       };
-      Integer _key = IterableExtensions.<Pair<Integer, XmuCoreStatement>>findFirst(indexed, _function).getKey();
+      Integer _key = IterableExtensions.<Pair<Integer, XmuCoreStatement>>findFirst(indexedStatements, _function).getKey();
       final String key = ("xmu" + _key);
       ITreeAppendable _switchResult = null;
       boolean _matched = false;
       if (statement instanceof XmuCoreMatchSource) {
         _matched=true;
-        final CharSequence srcType = this.typeAccessor(((XmuCoreMatchSource) statement).getSourceType());
+        final CharSequence srcType = this.typeAccessor(((XmuCoreMatchSource) statement).getSourceType(), typeLiteralMap);
         final edu.ustb.sei.mde.bxcore.dsl.bXCore.Pattern pattern = ((XmuCoreMatchSource) statement).getPattern();
         final XmuCoreStatement body = ((XmuCoreMatchSource) statement).getBody();
         StringConcatenation _builder = new StringConcatenation();
@@ -905,15 +1082,15 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
         _builder.append("\", ");
         _builder.append(srcType);
         _builder.append(", ");
-        CharSequence _patternAccessor = this.patternAccessor(pattern, pairs);
+        CharSequence _patternAccessor = this.patternAccessor(pattern, patternLiterals);
         _builder.append(_patternAccessor);
         _builder.append(",");
-        return this.generateXmuCode(appendable.append(_builder).newLine().increaseIndentation(), body, indexed, pairs, conditions, actions, program).newLine().decreaseIndentation().append(")");
+        return this.generateXmuCode(appendable.append(_builder).newLine().increaseIndentation(), body, indexedStatements, typeLiteralMap, patternLiterals, conditions, actions, program).newLine().decreaseIndentation().append(")");
       }
       if (!_matched) {
         if (statement instanceof XmuCoreMatchView) {
           _matched=true;
-          final CharSequence viwType = this.typeAccessor(((XmuCoreMatchView) statement).getViewType());
+          final CharSequence viwType = this.typeAccessor(((XmuCoreMatchView) statement).getViewType(), typeLiteralMap);
           final edu.ustb.sei.mde.bxcore.dsl.bXCore.Pattern pattern = ((XmuCoreMatchView) statement).getPattern();
           final XmuCoreStatement body = ((XmuCoreMatchView) statement).getBody();
           StringConcatenation _builder = new StringConcatenation();
@@ -925,10 +1102,10 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
           _builder.append("\", ");
           _builder.append(viwType);
           _builder.append(", ");
-          CharSequence _patternAccessor = this.patternAccessor(pattern, pairs);
+          CharSequence _patternAccessor = this.patternAccessor(pattern, patternLiterals);
           _builder.append(_patternAccessor);
           _builder.append(",");
-          return this.generateXmuCode(appendable.append(_builder).newLine().increaseIndentation(), body, indexed, pairs, conditions, actions, program).newLine().decreaseIndentation().append(")");
+          return this.generateXmuCode(appendable.append(_builder).newLine().increaseIndentation(), body, indexedStatements, typeLiteralMap, patternLiterals, conditions, actions, program).newLine().decreaseIndentation().append(")");
         }
       }
       if (!_matched) {
@@ -944,10 +1121,10 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
           _builder.append("(\"");
           _builder.append(key);
           _builder.append("\", ");
-          CharSequence _patternAccessor = this.patternAccessor(pattern, pairs);
+          CharSequence _patternAccessor = this.patternAccessor(pattern, patternLiterals);
           _builder.append(_patternAccessor);
           _builder.append(", ");
-          ITreeAppendable _generateXmuCode = this.generateXmuCode(appendable.append(_builder).newLine().increaseIndentation(), body, indexed, pairs, conditions, actions, program);
+          ITreeAppendable _generateXmuCode = this.generateXmuCode(appendable.append(_builder).newLine().increaseIndentation(), body, indexedStatements, typeLiteralMap, patternLiterals, conditions, actions, program);
           StringConcatenation _builder_1 = new StringConcatenation();
           _builder_1.append(",");
           ITreeAppendable _newLine = _generateXmuCode.append(_builder_1).newLine();
@@ -992,10 +1169,10 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
           _builder.append("(\"");
           _builder.append(key);
           _builder.append("\", ");
-          CharSequence _patternAccessor = this.patternAccessor(pattern, pairs);
+          CharSequence _patternAccessor = this.patternAccessor(pattern, patternLiterals);
           _builder.append(_patternAccessor);
           _builder.append(", ");
-          ITreeAppendable _generateXmuCode = this.generateXmuCode(appendable.append(_builder).newLine().increaseIndentation(), body, indexed, pairs, conditions, actions, program);
+          ITreeAppendable _generateXmuCode = this.generateXmuCode(appendable.append(_builder).newLine().increaseIndentation(), body, indexedStatements, typeLiteralMap, patternLiterals, conditions, actions, program);
           StringConcatenation _builder_1 = new StringConcatenation();
           _builder_1.append(",");
           ITreeAppendable _newLine = _generateXmuCode.append(_builder_1).newLine();
@@ -1030,8 +1207,8 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
       if (!_matched) {
         if (statement instanceof XmuCoreParallelComposition) {
           _matched=true;
-          final CharSequence srcType = this.typeAccessor(((XmuCoreParallelComposition) statement).getSourceType());
-          final CharSequence viwType = this.typeAccessor(((XmuCoreParallelComposition) statement).getViewType());
+          final CharSequence srcType = this.typeAccessor(((XmuCoreParallelComposition) statement).getSourceType(), typeLiteralMap);
+          final CharSequence viwType = this.typeAccessor(((XmuCoreParallelComposition) statement).getViewType(), typeLiteralMap);
           final EList<XmuCoreCompositionChildStatement> bodies = ((XmuCoreParallelComposition) statement).getBodies();
           StringConcatenation _builder = new StringConcatenation();
           _builder.append("new ");
@@ -1057,7 +1234,7 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
             } else {
               _xifexpression = scope;
             }
-            scope = this.generateXmuCode(_xifexpression, b, indexed, pairs, conditions, actions, program);
+            scope = this.generateXmuCode(_xifexpression, b, indexedStatements, typeLiteralMap, patternLiterals, conditions, actions, program);
           }
           return scope.newLine().decreaseIndentation().append("})");
         }
@@ -1065,8 +1242,8 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
       if (!_matched) {
         if (statement instanceof XmuCoreFork) {
           _matched=true;
-          final CharSequence srcType = this.typeAccessor(((XmuCoreFork) statement).getSourceType());
-          final CharSequence viwType = this.typeAccessor(((XmuCoreFork) statement).getViewType());
+          final CharSequence srcType = this.typeAccessor(((XmuCoreFork) statement).getSourceType(), typeLiteralMap);
+          final CharSequence viwType = this.typeAccessor(((XmuCoreFork) statement).getViewType(), typeLiteralMap);
           final EList<XmuCoreForkBranch> forks = ((XmuCoreFork) statement).getForks();
           StringConcatenation _builder = new StringConcatenation();
           _builder.append("new ");
@@ -1150,7 +1327,7 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
               }
             }
             _builder_3.append("}, ");
-            scope = this.generateXmuCode(_append_1.append(_builder_3), f.getBody(), indexed, pairs, conditions, actions, program).append(")");
+            scope = this.generateXmuCode(_append_1.append(_builder_3), f.getBody(), indexedStatements, typeLiteralMap, patternLiterals, conditions, actions, program).append(")");
           }
           return scope.newLine().decreaseIndentation().append("})");
         }
@@ -1158,8 +1335,8 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
       if (!_matched) {
         if (statement instanceof XmuCoreSwitch) {
           _matched=true;
-          final CharSequence srcType = this.typeAccessor(((XmuCoreSwitch) statement).getSourceType());
-          final CharSequence viwType = this.typeAccessor(((XmuCoreSwitch) statement).getViewType());
+          final CharSequence srcType = this.typeAccessor(((XmuCoreSwitch) statement).getSourceType(), typeLiteralMap);
+          final CharSequence viwType = this.typeAccessor(((XmuCoreSwitch) statement).getViewType(), typeLiteralMap);
           final EList<XmuCoreSwitchBranch> branches = ((XmuCoreSwitch) statement).getBranches();
           final EList<XmuCoreSwitchAdaption> adaptions = ((XmuCoreSwitch) statement).getAdaptions();
           StringConcatenation _builder = new StringConcatenation();
@@ -1193,7 +1370,7 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
               int _indexOf = conditions.indexOf(b.getCondition());
               _builder_2.append(_indexOf);
               _builder_2.append("(), ");
-              ITreeAppendable _generateXmuCode = this.generateXmuCode(scope.append(_builder_2).newLine().increaseIndentation(), b.getAction(), indexed, pairs, conditions, actions, program);
+              ITreeAppendable _generateXmuCode = this.generateXmuCode(scope.append(_builder_2).newLine().increaseIndentation(), b.getAction(), indexedStatements, typeLiteralMap, patternLiterals, conditions, actions, program);
               StringConcatenation _builder_3 = new StringConcatenation();
               _builder_3.append(", (");
               String _qualifiedName_3 = this._typeReferenceBuilder.typeRef(Function.class, this._typeReferenceBuilder.typeRef(SourceType.class), this._typeReferenceBuilder.typeRef(Boolean.class)).getQualifiedName();
@@ -1240,8 +1417,8 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
           _matched=true;
           ITreeAppendable _xblockexpression_1 = null;
           {
-            final CharSequence srcPat = this.patternAccessor(((XmuCoreGraphReplace) statement).getSource(), pairs);
-            final CharSequence viwPat = this.patternAccessor(((XmuCoreGraphReplace) statement).getView(), pairs);
+            final CharSequence srcPat = this.patternAccessor(((XmuCoreGraphReplace) statement).getSource(), patternLiterals);
+            final CharSequence viwPat = this.patternAccessor(((XmuCoreGraphReplace) statement).getView(), patternLiterals);
             final EList<Conversion> conversions = ((XmuCoreGraphReplace) statement).getConversions();
             StringConcatenation _builder = new StringConcatenation();
             _builder.append("new ");
@@ -1314,10 +1491,10 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
           _matched=true;
           ITreeAppendable _xblockexpression_1 = null;
           {
-            final CharSequence srcType = this.typeAccessor(((XmuCoreAlign) statement).getSourceType());
-            final CharSequence viwType = this.typeAccessor(((XmuCoreAlign) statement).getViewType());
-            final CharSequence srcPat = this.patternAccessor(((XmuCoreAlign) statement).getSourcePattern(), pairs);
-            final CharSequence viwPat = this.patternAccessor(((XmuCoreAlign) statement).getViewPattern(), pairs);
+            final CharSequence srcType = this.typeAccessor(((XmuCoreAlign) statement).getSourceType(), typeLiteralMap);
+            final CharSequence viwType = this.typeAccessor(((XmuCoreAlign) statement).getViewType(), typeLiteralMap);
+            final CharSequence srcPat = this.patternAccessor(((XmuCoreAlign) statement).getSourcePattern(), patternLiterals);
+            final CharSequence viwPat = this.patternAccessor(((XmuCoreAlign) statement).getViewPattern(), patternLiterals);
             final ContextAwareCondition cond = ((XmuCoreAlign) statement).getAlignment();
             final XmuCoreStatement match = ((XmuCoreAlign) statement).getMatch();
             final ContextAwareUnidirectionalAction unmatchS = ((XmuCoreAlign) statement).getUnmatchS();
@@ -1340,7 +1517,7 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
             int _indexOf = conditions.indexOf(cond);
             _builder.append(_indexOf);
             _builder.append("(), ");
-            ITreeAppendable _generateXmuCode = this.generateXmuCode(appendable.append(_builder).newLine().increaseIndentation(), match, indexed, pairs, conditions, actions, program);
+            ITreeAppendable _generateXmuCode = this.generateXmuCode(appendable.append(_builder).newLine().increaseIndentation(), match, indexedStatements, typeLiteralMap, patternLiterals, conditions, actions, program);
             StringConcatenation _builder_1 = new StringConcatenation();
             _builder_1.append(", new UnidirectionalAction");
             int _indexOf_1 = actions.indexOf(unmatchS);
@@ -1359,8 +1536,10 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
           _matched=true;
           ITreeAppendable _xblockexpression_1 = null;
           {
-            final CharSequence st = this.typeAccessor(((XmuCoreFunctionCall) statement).getTarget().getSourceType());
-            final CharSequence vt = this.typeAccessor(((XmuCoreFunctionCall) statement).getTarget().getViewType());
+            final CharSequence st = this.typeAccessor(((XmuCoreFunctionCall) statement).getTarget().getSourceType(), typeLiteralMap);
+            final CharSequence vt = this.typeAccessor(((XmuCoreFunctionCall) statement).getTarget().getViewType(), typeLiteralMap);
+            final EList<VarMapping> sk = ((XmuCoreFunctionCall) statement).getSourceMappings();
+            final EList<VarMapping> vk = ((XmuCoreFunctionCall) statement).getViewMappings();
             StringConcatenation _builder = new StringConcatenation();
             _builder.append("new ");
             String _qualifiedName = this._typeReferenceBuilder.typeRef(Invocation.class).getQualifiedName();
@@ -1371,10 +1550,56 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
             _builder.append(st);
             _builder.append(", ");
             _builder.append(vt);
-            _builder.append(", ()->getXmu_");
+            _builder.append(", new ");
+            String _qualifiedName_1 = this._typeReferenceBuilder.typeRef(Tuple2.class).getQualifiedName();
+            _builder.append(_qualifiedName_1);
+            _builder.append("[]{");
+            {
+              boolean _hasElements = false;
+              for(final VarMapping m : sk) {
+                if (!_hasElements) {
+                  _hasElements = true;
+                } else {
+                  _builder.appendImmediate(",", "");
+                }
+                String _qualifiedName_2 = this._typeReferenceBuilder.typeRef(Tuple2.class).getQualifiedName();
+                _builder.append(_qualifiedName_2);
+                _builder.append(".make(\"");
+                String _from = m.getFrom();
+                _builder.append(_from);
+                _builder.append("\",\"");
+                String _to = m.getTo();
+                _builder.append(_to);
+                _builder.append("\")");
+              }
+            }
+            _builder.append("}, new ");
+            String _qualifiedName_3 = this._typeReferenceBuilder.typeRef(Tuple2.class).getQualifiedName();
+            _builder.append(_qualifiedName_3);
+            _builder.append("[]{");
+            {
+              boolean _hasElements_1 = false;
+              for(final VarMapping m_1 : vk) {
+                if (!_hasElements_1) {
+                  _hasElements_1 = true;
+                } else {
+                  _builder.appendImmediate(",", "");
+                }
+                String _qualifiedName_4 = this._typeReferenceBuilder.typeRef(Tuple2.class).getQualifiedName();
+                _builder.append(_qualifiedName_4);
+                _builder.append(".make(\"");
+                String _from_1 = m_1.getFrom();
+                _builder.append(_from_1);
+                _builder.append("\",\"");
+                String _to_1 = m_1.getTo();
+                _builder.append(_to_1);
+                _builder.append("\")");
+              }
+            }
+            _builder.append("},()->{try {return getXmu_");
             String _firstUpper = StringExtensions.toFirstUpper(((XmuCoreFunctionCall) statement).getTarget().getName());
             _builder.append(_firstUpper);
-            _builder.append("())");
+            _builder.append("();} catch(Exception e){return null;}})");
             _xblockexpression_1 = appendable.append(_builder);
           }
           _switchResult = _xblockexpression_1;
@@ -1428,7 +1653,7 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
             }
           }
           ITreeAppendable scope = appendable.append(_builder);
-          scope = this.generateXmuCode(scope, body, indexed, pairs, conditions, actions, program);
+          scope = this.generateXmuCode(scope, body, indexedStatements, typeLiteralMap, patternLiterals, conditions, actions, program);
           StringConcatenation _builder_1 = new StringConcatenation();
           {
             for(final IndexPart part_1 : parts) {
@@ -1474,489 +1699,85 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
     return _switchResult;
   }
   
-  protected CharSequence patternAccessor(final edu.ustb.sei.mde.bxcore.dsl.bXCore.Pattern pattern, final List<Pair<Integer, PatternDefinition>> pairs) {
+  protected CharSequence patternAccessor(final edu.ustb.sei.mde.bxcore.dsl.bXCore.Pattern pattern, final List<Pair<Integer, PatternTypeLiteral>> pairs) {
     String _xifexpression = null;
-    if ((pattern instanceof PatternDefinition)) {
-      final Function1<Pair<Integer, PatternDefinition>, Boolean> _function = (Pair<Integer, PatternDefinition> p) -> {
-        PatternDefinition _value = p.getValue();
+    if ((pattern instanceof PatternTypeLiteral)) {
+      final Function1<Pair<Integer, PatternTypeLiteral>, Boolean> _function = (Pair<Integer, PatternTypeLiteral> p) -> {
+        PatternTypeLiteral _value = p.getValue();
         return Boolean.valueOf((_value == pattern));
       };
-      Integer _key = IterableExtensions.<Pair<Integer, PatternDefinition>>findFirst(pairs, _function).getKey();
-      _xifexpression = ("pattern__internal" + _key);
-    } else {
-      String _firstUpper = StringExtensions.toFirstUpper(((PatternDefinitionReference) pattern).getPattern().getName());
-      String _plus = ("getPattern_" + _firstUpper);
+      Integer _key = IterableExtensions.<Pair<Integer, PatternTypeLiteral>>findFirst(pairs, _function).getKey();
+      String _plus = ("getPattern_" + _key);
       _xifexpression = (_plus + "()");
+    } else {
+      String _name = ((PatternDefinitionReference) pattern).getPattern().getName();
+      _xifexpression = (_name + "()");
     }
     return _xifexpression;
   }
   
-  protected CharSequence typeAccessor(final Pattern pat) {
+  protected CharSequence typeAccessor(final Pattern pat, final Map<EObject, Pair<TupleType, Integer>> typeLiteralMap) {
     CharSequence _xifexpression = null;
-    if ((pat instanceof PatternDefinitionReference)) {
+    if ((pat instanceof PatternTypeLiteral)) {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("getType_");
-      String _firstUpper = StringExtensions.toFirstUpper(((PatternDefinition) pat).getType());
-      _builder.append(_firstUpper);
+      Integer _value = typeLiteralMap.get(pat).getValue();
+      _builder.append(_value);
       _builder.append("()");
       _xifexpression = _builder;
     } else {
       StringConcatenation _builder_1 = new StringConcatenation();
-      _builder_1.append("type__internal");
-      String _firstUpper_1 = StringExtensions.toFirstUpper(((PatternDefinition) pat).getType());
-      _builder_1.append(_firstUpper_1);
+      _builder_1.append("getType_");
+      String _firstUpper = StringExtensions.toFirstUpper(((PatternDefinitionReference) pat).getPattern().getName());
+      _builder_1.append(_firstUpper);
       _builder_1.append("()");
       _xifexpression = _builder_1;
     }
     return _xifexpression;
   }
   
-  protected CharSequence typeAccessor(final ContextTypeRef type) {
+  protected CharSequence typeAccessor(final ContextTypeRef type, final Map<EObject, Tuple2<TupleType, Integer>> typeLiteralMap) {
     CharSequence _xifexpression = null;
     if ((type instanceof DefinedContextTypeRef)) {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("getType_");
+      String _firstUpper = StringExtensions.toFirstUpper(((DefinedContextTypeRef)type).getType().getName());
+      _builder.append(_firstUpper);
+      _builder.append("()");
+      _xifexpression = _builder;
+    } else {
       CharSequence _xifexpression_1 = null;
-      edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextType _type = ((DefinedContextTypeRef)type).getType();
-      if ((_type instanceof TypeDefinition)) {
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append("getType_");
-        edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextType _type_1 = ((DefinedContextTypeRef)type).getType();
-        String _firstUpper = StringExtensions.toFirstUpper(((TypeDefinition) _type_1).getName());
-        _builder.append(_firstUpper);
-        _builder.append("()");
-        _xifexpression_1 = _builder;
-      } else {
-        CharSequence _xifexpression_2 = null;
-        edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextType _type_2 = ((DefinedContextTypeRef)type).getType();
-        if ((_type_2 instanceof PatternDefinition)) {
-          CharSequence _xifexpression_3 = null;
-          edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextType _type_3 = ((DefinedContextTypeRef)type).getType();
-          String _name = ((PatternDefinition) _type_3).getName();
-          boolean _tripleEquals = (_name == null);
-          if (_tripleEquals) {
-            StringConcatenation _builder_1 = new StringConcatenation();
-            _builder_1.append("type__internal");
-            edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextType _type_4 = ((DefinedContextTypeRef)type).getType();
-            String _firstUpper_1 = StringExtensions.toFirstUpper(((PatternDefinition) _type_4).getType());
-            _builder_1.append(_firstUpper_1);
-            _xifexpression_3 = _builder_1;
-          } else {
-            StringConcatenation _builder_2 = new StringConcatenation();
-            _builder_2.append("getType_");
-            edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextType _type_5 = ((DefinedContextTypeRef)type).getType();
-            String _firstUpper_2 = StringExtensions.toFirstUpper(((PatternDefinition) _type_5).getType());
-            _builder_2.append(_firstUpper_2);
-            _builder_2.append("()");
-            _xifexpression_3 = _builder_2;
-          }
-          _xifexpression_2 = _xifexpression_3;
-        }
-        _xifexpression_1 = _xifexpression_2;
+      if ((type instanceof TupleTypeLiteral)) {
+        StringConcatenation _builder_1 = new StringConcatenation();
+        _builder_1.append("getType_");
+        _builder_1.append(typeLiteralMap.get(type).second);
+        _builder_1.append("()");
+        _xifexpression_1 = _builder_1;
       }
       _xifexpression = _xifexpression_1;
-    } else {
-      StringConcatenation _builder_3 = new StringConcatenation();
-      String _qualifiedName = this._typeReferenceBuilder.typeRef(ContextType.class).getQualifiedName();
-      _builder_3.append(_qualifiedName);
-      _builder_3.append(".EMPTY_TYPE");
-      _xifexpression = _builder_3;
     }
     return _xifexpression;
   }
   
-  protected void generatePatternDefinition(final JvmGenericType owner, final PatternDefinition patternDefinition, final BXProgram program) {
-    EList<JvmMember> _members = owner.getMembers();
-    String _name = patternDefinition.getName();
-    String _plus = ("pattern_" + _name);
-    final Procedure1<JvmField> _function = (JvmField it) -> {
-      it.setVisibility(JvmVisibility.PRIVATE);
-    };
-    JvmField _field = this._jvmTypesBuilder.toField(patternDefinition, _plus, this._typeReferenceBuilder.typeRef(Pattern.class), _function);
-    this._jvmTypesBuilder.<JvmField>operator_add(_members, _field);
-    EList<JvmMember> _members_1 = owner.getMembers();
-    String _firstUpper = StringExtensions.toFirstUpper(patternDefinition.getName());
-    String _plus_1 = ("getPattern_" + _firstUpper);
-    final Procedure1<JvmOperation> _function_1 = (JvmOperation it) -> {
-      it.setVisibility(JvmVisibility.PUBLIC);
-      this._jvmTypesBuilder.setBody(it, this.generatePatternDefinitionCode(patternDefinition, program));
-    };
-    JvmOperation _method = this._jvmTypesBuilder.toMethod(patternDefinition, _plus_1, 
-      this._typeReferenceBuilder.typeRef(Pattern.class), _function_1);
-    this._jvmTypesBuilder.<JvmOperation>operator_add(_members_1, _method);
-    String _type = patternDefinition.getType();
-    boolean _tripleNotEquals = (_type != null);
-    if (_tripleNotEquals) {
-      TypeDefinition _xifexpression = null;
-      String _type_1 = patternDefinition.getType();
-      boolean _tripleNotEquals_1 = (_type_1 != null);
-      if (_tripleNotEquals_1) {
-        final Function1<Definition, Boolean> _function_2 = (Definition d) -> {
-          return Boolean.valueOf(((d instanceof TypeDefinition) && d.getName().equals(patternDefinition.getType())));
-        };
-        Definition _findFirst = IterableExtensions.<Definition>findFirst(program.getDefinitions(), _function_2);
-        _xifexpression = ((TypeDefinition) _findFirst);
-      } else {
-        _xifexpression = null;
-      }
-      final TypeDefinition patternType = _xifexpression;
-      if ((patternType == null)) {
-        EList<JvmMember> _members_2 = owner.getMembers();
-        String _firstUpper_1 = StringExtensions.toFirstUpper(patternDefinition.getName());
-        String _plus_2 = ("getType_" + _firstUpper_1);
-        final Procedure1<JvmOperation> _function_3 = (JvmOperation it) -> {
-          it.setVisibility(JvmVisibility.PUBLIC);
-          StringConcatenationClient _client = new StringConcatenationClient() {
-            @Override
-            protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
-              _builder.append("return getPattern_");
-              String _firstUpper = StringExtensions.toFirstUpper(patternDefinition.getName());
-              _builder.append(_firstUpper);
-              _builder.append("().getType();");
-              _builder.newLineIfNotEmpty();
-            }
-          };
-          this._jvmTypesBuilder.setBody(it, _client);
-        };
-        JvmOperation _method_1 = this._jvmTypesBuilder.toMethod(patternDefinition, _plus_2, 
-          this._typeReferenceBuilder.typeRef(ContextType.class), _function_3);
-        this._jvmTypesBuilder.<JvmOperation>operator_add(_members_2, _method_1);
-      }
-    }
-  }
-  
-  protected StringConcatenationClient generatePatternDefinitionCode(final PatternDefinition patternDefinition, final BXProgram program) {
-    StringConcatenationClient _client = new StringConcatenationClient() {
-      @Override
-      protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
-        _builder.append("if(pattern_");
-        String _name = patternDefinition.getName();
-        _builder.append(_name);
-        _builder.append("==null) {");
-        _builder.newLineIfNotEmpty();
-        _builder.append("\t");
-        CharSequence _generatePatternConstructionCode = BXCoreJvmModelInferrer.this.generatePatternConstructionCode(patternDefinition, patternDefinition.getName(), program);
-        _builder.append(_generatePatternConstructionCode, "\t");
-        _builder.newLineIfNotEmpty();
-        _builder.append("}");
-        _builder.newLine();
-        _builder.append("return pattern_");
-        String _name_1 = patternDefinition.getName();
-        _builder.append(_name_1);
-        _builder.append(";");
-        _builder.newLineIfNotEmpty();
-      }
-    };
-    return _client;
-  }
-  
-  protected CharSequence generatePatternConstructionCode(final PatternDefinition patternDefinition, final String patternName, final BXProgram program) {
-    final Function1<EObject, Boolean> _function = (EObject it) -> {
-      return Boolean.valueOf((it instanceof PatternNode));
-    };
-    final Function1<EObject, PatternNode> _function_1 = (EObject it) -> {
-      return ((PatternNode) it);
-    };
-    final List<PatternNode> nodes = IteratorExtensions.<PatternNode>toList(IteratorExtensions.<EObject, PatternNode>map(IteratorExtensions.<EObject>filter(patternDefinition.eAllContents(), _function), _function_1));
-    final Function1<EObject, Boolean> _function_2 = (EObject it) -> {
-      return Boolean.valueOf((it instanceof PatternEdge));
-    };
-    final Function1<EObject, PatternEdge> _function_3 = (EObject it) -> {
-      return ((PatternEdge) it);
-    };
-    final List<PatternEdge> edges = IteratorExtensions.<PatternEdge>toList(IteratorExtensions.<EObject, PatternEdge>map(IteratorExtensions.<EObject>filter(patternDefinition.eAllContents(), _function_2), _function_3));
-    final Function1<PatternNode, EPackage> _function_4 = (PatternNode n) -> {
-      EPackage _xblockexpression = null;
-      {
-        final TypeRef t = ((PatternNode) n).getType();
-        EPackage _xifexpression = null;
-        if ((t instanceof PrimitiveTypeRef)) {
-          _xifexpression = null;
-        } else {
-          _xifexpression = ((EcoreTypeRef) t).getType().getEPackage();
-        }
-        _xblockexpression = _xifexpression;
-      }
-      return _xblockexpression;
-    };
-    final Function1<EPackage, Boolean> _function_5 = (EPackage it) -> {
-      return Boolean.valueOf((it != null));
-    };
-    final Function1<EPackage, ImportSection> _function_6 = (EPackage p) -> {
-      final Function1<ImportSection, Boolean> _function_7 = (ImportSection it) -> {
-        EPackage _metamodel = it.getMetamodel();
-        return Boolean.valueOf((_metamodel == p));
-      };
-      return IterableExtensions.<ImportSection>findFirst(program.getImports(), _function_7);
-    };
-    final Set<ImportSection> typeGraphs = IterableExtensions.<ImportSection>toSet(IterableExtensions.<EPackage, ImportSection>map(IterableExtensions.<EPackage>filter(ListExtensions.<PatternNode, EPackage>map(nodes, _function_4), _function_5), _function_6));
-    ImportSection _xifexpression = null;
-    int _size = typeGraphs.size();
-    boolean _tripleEquals = (_size == 0);
-    if (_tripleEquals) {
-      _xifexpression = null;
-    } else {
-      ImportSection _xifexpression_1 = null;
-      int _size_1 = typeGraphs.size();
-      boolean _greaterEqualsThan = (_size_1 >= 1);
-      if (_greaterEqualsThan) {
-        final Function1<ImportSection, Boolean> _function_7 = (ImportSection it) -> {
-          return Boolean.valueOf(true);
-        };
-        _xifexpression_1 = IterableExtensions.<ImportSection>findFirst(typeGraphs, _function_7);
-      }
-      _xifexpression = _xifexpression_1;
-    }
-    final ImportSection typeGraph = _xifexpression;
-    TypeDefinition _xifexpression_2 = null;
-    String _type = patternDefinition.getType();
-    boolean _tripleNotEquals = (_type != null);
-    if (_tripleNotEquals) {
-      final Function1<Definition, Boolean> _function_8 = (Definition d) -> {
-        return Boolean.valueOf(((d instanceof TypeDefinition) && d.getName().equals(patternDefinition.getType())));
-      };
-      Definition _findFirst = IterableExtensions.<Definition>findFirst(program.getDefinitions(), _function_8);
-      _xifexpression_2 = ((TypeDefinition) _findFirst);
-    } else {
-      _xifexpression_2 = null;
-    }
-    final TypeDefinition patternType = _xifexpression_2;
-    StringConcatenation _builder = new StringConcatenation();
-    String _qualifiedName = this._typeReferenceBuilder.typeRef(TypeGraph.class).getQualifiedName();
-    _builder.append(_qualifiedName);
-    _builder.append(" typeGraph = getTypeGraph_");
-    String _firstUpper = StringExtensions.toFirstUpper(typeGraph.getShortName());
-    _builder.append(_firstUpper);
-    _builder.append("();");
-    _builder.newLineIfNotEmpty();
-    _builder.append("pattern_");
-    _builder.append(patternName);
-    _builder.append(" = new ");
-    String _qualifiedName_1 = this._typeReferenceBuilder.typeRef(Pattern.class).getQualifiedName();
-    _builder.append(_qualifiedName_1);
-    _builder.append("(typeGraph);");
-    _builder.newLineIfNotEmpty();
-    {
-      for(final PatternNode node : nodes) {
-        String _qualifiedName_2 = this._typeReferenceBuilder.typeRef(ITypeNode.class).getQualifiedName();
-        _builder.append(_qualifiedName_2);
-        _builder.append(" type_");
-        String _name = node.getName();
-        _builder.append(_name);
-        _builder.append(" = typeGraph.");
-        {
-          TypeRef _type_1 = node.getType();
-          if ((_type_1 instanceof EcoreTypeRef)) {
-            {
-              TypeRef _type_2 = node.getType();
-              EClassifier _type_3 = ((EcoreTypeRef) _type_2).getType();
-              if ((_type_3 instanceof EClass)) {
-                _builder.append("getTypeNode");
-              } else {
-                _builder.append("getDataTypeNode");
-              }
-            }
-            _builder.append("(\"");
-            TypeRef _type_4 = node.getType();
-            String _name_1 = ((EcoreTypeRef) _type_4).getType().getName();
-            _builder.append(_name_1);
-            _builder.append("\")");
-          } else {
-            _builder.append("getDataTypeNode(\"");
-            TypeRef _type_5 = node.getType();
-            String _type_6 = ((PrimitiveTypeRef) _type_5).getType();
-            _builder.append(_type_6);
-            _builder.append("\")");
-          }
-        }
-        _builder.append(";");
-        _builder.newLineIfNotEmpty();
-        _builder.append("pattern_");
-        _builder.append(patternName);
-        _builder.append(".appendPatternNode(\"");
-        String _name_2 = node.getName();
-        _builder.append(_name_2);
-        _builder.append("\", type_");
-        String _name_3 = node.getName();
-        _builder.append(_name_3);
-        _builder.append(");");
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    {
-      for(final PatternEdge edge : edges) {
-        PatternNode _xifexpression_3 = null;
-        PatternValueCondition _value = edge.getValue();
-        if ((_value instanceof PatternNode)) {
-          PatternValueCondition _value_1 = edge.getValue();
-          _xifexpression_3 = ((PatternNode) _value_1);
-        } else {
-          PatternNode _xifexpression_4 = null;
-          PatternValueCondition _value_2 = edge.getValue();
-          if ((_value_2 instanceof PatternNodeRef)) {
-            PatternValueCondition _value_3 = edge.getValue();
-            _xifexpression_4 = ((PatternNodeRef) _value_3).getNode();
-          } else {
-            _xifexpression_4 = null;
-          }
-          _xifexpression_3 = _xifexpression_4;
-        }
-        final PatternNode tarNode = _xifexpression_3;
-        _builder.newLineIfNotEmpty();
-        String _xifexpression_5 = null;
-        String _name_4 = edge.getName();
-        boolean _tripleNotEquals_1 = (_name_4 != null);
-        if (_tripleNotEquals_1) {
-          _xifexpression_5 = edge.getName();
-        } else {
-          EObject _eContainer = edge.eContainer();
-          String _name_5 = ((PatternNode) _eContainer).getName();
-          String _plus = (_name_5 + "_");
-          String _name_6 = edge.getFeature().getName();
-          String _plus_1 = (_plus + _name_6);
-          String _plus_2 = (_plus_1 + "_");
-          String _xifexpression_6 = null;
-          if ((tarNode != null)) {
-            _xifexpression_6 = tarNode.getName();
-          } else {
-            _xifexpression_6 = "?";
-          }
-          _xifexpression_5 = (_plus_2 + _xifexpression_6);
-        }
-        final String edgeName = _xifexpression_5;
-        _builder.newLineIfNotEmpty();
-        String _qualifiedName_3 = this._typeReferenceBuilder.typeRef(IStructuralFeatureEdge.class).getQualifiedName();
-        _builder.append(_qualifiedName_3);
-        _builder.append(" type_");
-        _builder.append(edgeName);
-        _builder.append(" = typeGraph.");
-        {
-          EStructuralFeature _feature = edge.getFeature();
-          if ((_feature instanceof EReference)) {
-            _builder.append("getTypeEdge");
-          } else {
-            _builder.append("getPropertyEdge");
-          }
-        }
-        _builder.append("((");
-        String _qualifiedName_4 = this._typeReferenceBuilder.typeRef(TypeNode.class).getQualifiedName();
-        _builder.append(_qualifiedName_4);
-        _builder.append(") type_");
-        EObject _eContainer_1 = edge.eContainer();
-        String _name_7 = ((PatternNode) _eContainer_1).getName();
-        _builder.append(_name_7);
-        _builder.append(",\"");
-        String _name_8 = edge.getFeature().getName();
-        _builder.append(_name_8);
-        _builder.append("\");");
-        _builder.newLineIfNotEmpty();
-        _builder.append("pattern_");
-        _builder.append(patternName);
-        _builder.append(".appendPatternEdge(\"");
-        _builder.append(edgeName);
-        _builder.append("\", \"");
-        EObject _eContainer_2 = edge.eContainer();
-        String _name_9 = ((PatternNode) _eContainer_2).getName();
-        _builder.append(_name_9);
-        _builder.append("\", \"");
-        String _name_10 = tarNode.getName();
-        _builder.append(_name_10);
-        _builder.append("\", type_");
-        _builder.append(edgeName);
-        _builder.append(");");
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    {
-      String _type_7 = patternDefinition.getType();
-      boolean _tripleNotEquals_2 = (_type_7 != null);
-      if (_tripleNotEquals_2) {
-        {
-          if ((patternType != null)) {
-            _builder.append("pattern_");
-            _builder.append(patternName);
-            _builder.append(".setType(getType_");
-            String _type_8 = patternDefinition.getType();
-            _builder.append(_type_8);
-            _builder.append("());");
-            _builder.newLineIfNotEmpty();
-          }
-        }
-      }
-    }
-    return _builder;
-  }
-  
-  protected boolean generateTypeDefinition(final JvmGenericType owner, final TypeDefinition typeDef, final BXProgram program) {
+  protected boolean generateTypeLiteral(final JvmGenericType owner, final TupleType tuple, final int id, final BXProgram program) {
     boolean _xblockexpression = false;
     {
       EList<JvmMember> _members = owner.getMembers();
-      String _name = typeDef.getName();
-      String _plus = ("type_" + _name);
       final Procedure1<JvmField> _function = (JvmField it) -> {
         it.setVisibility(JvmVisibility.PRIVATE);
       };
-      JvmField _field = this._jvmTypesBuilder.toField(typeDef, _plus, this._typeReferenceBuilder.typeRef(ContextType.class), _function);
+      JvmField _field = this._jvmTypesBuilder.toField(program, ("type_" + Integer.valueOf(id)), this._typeReferenceBuilder.typeRef(ContextType.class), _function);
       this._jvmTypesBuilder.<JvmField>operator_add(_members, _field);
+      final ImportSection typeGraph = tuple.importSection;
       EList<JvmMember> _members_1 = owner.getMembers();
-      String _firstUpper = StringExtensions.toFirstUpper(typeDef.getName());
-      String _plus_1 = ("getType_" + _firstUpper);
       final Procedure1<JvmOperation> _function_1 = (JvmOperation it) -> {
         it.setVisibility(JvmVisibility.PUBLIC);
-        final EList<TypeVar> elements = typeDef.getTypeVars();
-        final Function1<TypeVar, EPackage> _function_2 = (TypeVar n) -> {
-          EPackage _xblockexpression_1 = null;
-          {
-            final TypeRef t = n.getType();
-            EPackage _xifexpression = null;
-            if ((t instanceof PrimitiveTypeRef)) {
-              _xifexpression = null;
-            } else {
-              EPackage _xifexpression_1 = null;
-              if ((t instanceof EcoreTypeRef)) {
-                _xifexpression_1 = ((EcoreTypeRef) t).getType().getEPackage();
-              } else {
-                _xifexpression_1 = ((FeatureTypeRef) t).getType().getEPackage();
-              }
-              _xifexpression = _xifexpression_1;
-            }
-            _xblockexpression_1 = _xifexpression;
-          }
-          return _xblockexpression_1;
-        };
-        final Function1<EPackage, Boolean> _function_3 = (EPackage it_1) -> {
-          return Boolean.valueOf((it_1 != null));
-        };
-        final Function1<EPackage, ImportSection> _function_4 = (EPackage p) -> {
-          final Function1<ImportSection, Boolean> _function_5 = (ImportSection it_1) -> {
-            EPackage _metamodel = it_1.getMetamodel();
-            return Boolean.valueOf((_metamodel == p));
-          };
-          return IterableExtensions.<ImportSection>findFirst(program.getImports(), _function_5);
-        };
-        final Set<ImportSection> typeGraphs = IterableExtensions.<ImportSection>toSet(IterableExtensions.<EPackage, ImportSection>map(IterableExtensions.<EPackage>filter(ListExtensions.<TypeVar, EPackage>map(elements, _function_2), _function_3), _function_4));
-        ImportSection _xifexpression = null;
-        int _size = typeGraphs.size();
-        boolean _tripleEquals = (_size == 0);
-        if (_tripleEquals) {
-          _xifexpression = null;
-        } else {
-          ImportSection _xifexpression_1 = null;
-          int _size_1 = typeGraphs.size();
-          boolean _greaterEqualsThan = (_size_1 >= 1);
-          if (_greaterEqualsThan) {
-            final Function1<ImportSection, Boolean> _function_5 = (ImportSection it_1) -> {
-              return Boolean.valueOf(true);
-            };
-            _xifexpression_1 = IterableExtensions.<ImportSection>findFirst(typeGraphs, _function_5);
-          }
-          _xifexpression = _xifexpression_1;
-        }
-        final ImportSection typeGraph = _xifexpression;
+        final List<Tuple2<String, Object>> elements = tuple.tuples;
         StringConcatenationClient _client = new StringConcatenationClient() {
           @Override
           protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
             _builder.append("if(type_");
-            String _name = typeDef.getName();
-            _builder.append(_name);
+            _builder.append(id);
             _builder.append("==null) {");
             _builder.newLineIfNotEmpty();
             {
@@ -1964,8 +1785,7 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
               if (_isEmpty) {
                 _builder.append("\t");
                 _builder.append("type_");
-                String _name_1 = typeDef.getName();
-                _builder.append(_name_1, "\t");
+                _builder.append(id, "\t");
                 _builder.append(" = ");
                 String _qualifiedName = BXCoreJvmModelInferrer.this._typeReferenceBuilder.typeRef(ContextType.class).getQualifiedName();
                 _builder.append(_qualifiedName, "\t");
@@ -1982,64 +1802,51 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
                 _builder.newLineIfNotEmpty();
                 _builder.append("\t");
                 _builder.append("type_");
-                String _name_2 = typeDef.getName();
-                _builder.append(_name_2, "\t");
+                _builder.append(id, "\t");
                 _builder.append(" = new ");
                 String _qualifiedName_2 = BXCoreJvmModelInferrer.this._typeReferenceBuilder.typeRef(ContextType.class).getQualifiedName();
                 _builder.append(_qualifiedName_2, "\t");
                 _builder.append("();");
                 _builder.newLineIfNotEmpty();
                 {
-                  for(final TypeVar v : elements) {
+                  for(final Tuple2<String, Object> v : elements) {
                     _builder.append("\t");
                     _builder.append("Object ");
-                    String _name_3 = v.getName();
-                    _builder.append(_name_3, "\t");
+                    _builder.append(v.first, "\t");
                     _builder.append("_type = typeGraph.");
                     {
-                      TypeRef _type = v.getType();
-                      if ((_type instanceof EcoreTypeRef)) {
+                      if ((v.second instanceof EClassifier)) {
                         {
-                          TypeRef _type_1 = v.getType();
-                          EClassifier _type_2 = ((EcoreTypeRef) _type_1).getType();
-                          if ((_type_2 instanceof EClass)) {
+                          if ((v.second instanceof EClass)) {
                             _builder.append("getTypeNode");
                           } else {
                             _builder.append("getDataTypeNode");
                           }
                         }
                         _builder.append("(\"");
-                        TypeRef _type_3 = v.getType();
-                        String _name_4 = ((EcoreTypeRef) _type_3).getType().getName();
-                        _builder.append(_name_4, "\t");
+                        String _name = ((EClassifier) v.second).getName();
+                        _builder.append(_name, "\t");
                         _builder.append("\")");
                       } else {
-                        TypeRef _type_4 = v.getType();
-                        if ((_type_4 instanceof FeatureTypeRef)) {
+                        if ((v.second instanceof EStructuralFeature)) {
                           {
-                            TypeRef _type_5 = v.getType();
-                            EStructuralFeature _feature = ((FeatureTypeRef) _type_5).getFeature();
-                            if ((_feature instanceof EReference)) {
+                            if ((v.second instanceof EReference)) {
                               _builder.append("getTypeEdge");
                             } else {
                               _builder.append("getPropertyEdge");
                             }
                           }
                           _builder.append("(typeGraph.getTypeNode(\"");
-                          TypeRef _type_6 = v.getType();
-                          String _name_5 = ((FeatureTypeRef) _type_6).getType().getName();
-                          _builder.append(_name_5, "\t");
+                          String _name_1 = ((EStructuralFeature) v.second).getEContainingClass().getName();
+                          _builder.append(_name_1, "\t");
                           _builder.append("\"),\"");
-                          TypeRef _type_7 = v.getType();
-                          String _name_6 = ((FeatureTypeRef) _type_7).getFeature().getName();
-                          _builder.append(_name_6, "\t");
+                          String _name_2 = ((EStructuralFeature) v.second).getName();
+                          _builder.append(_name_2, "\t");
                           _builder.append("\")");
                         } else {
-                          _builder.append("getDataTypeNode(\"");
-                          TypeRef _type_8 = v.getType();
-                          String _type_9 = ((PrimitiveTypeRef) _type_8).getType();
-                          _builder.append(_type_9, "\t");
-                          _builder.append("\")");
+                          _builder.append("/* ERROR ");
+                          _builder.append(v.second, "\t");
+                          _builder.append(" */");
                         }
                       }
                     }
@@ -2047,14 +1854,11 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
                     _builder.newLineIfNotEmpty();
                     _builder.append("\t");
                     _builder.append("type_");
-                    String _name_7 = typeDef.getName();
-                    _builder.append(_name_7, "\t");
+                    _builder.append(id, "\t");
                     _builder.append(".addField(\"");
-                    String _name_8 = v.getName();
-                    _builder.append(_name_8, "\t");
+                    _builder.append(v.first, "\t");
                     _builder.append("\", ");
-                    String _name_9 = v.getName();
-                    _builder.append(_name_9, "\t");
+                    _builder.append(v.first, "\t");
                     _builder.append("_type);");
                     _builder.newLineIfNotEmpty();
                   }
@@ -2064,18 +1868,86 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
             _builder.append("}");
             _builder.newLine();
             _builder.append("return type_");
-            String _name_10 = typeDef.getName();
-            _builder.append(_name_10);
+            _builder.append(id);
             _builder.append(";");
             _builder.newLineIfNotEmpty();
           }
         };
         this._jvmTypesBuilder.setBody(it, _client);
       };
-      JvmOperation _method = this._jvmTypesBuilder.toMethod(typeDef, _plus_1, this._typeReferenceBuilder.typeRef(ContextType.class), _function_1);
+      JvmOperation _method = this._jvmTypesBuilder.toMethod(program, ("getType_" + Integer.valueOf(id)), this._typeReferenceBuilder.typeRef(ContextType.class), _function_1);
       _xblockexpression = this._jvmTypesBuilder.<JvmOperation>operator_add(_members_1, _method);
     }
     return _xblockexpression;
+  }
+  
+  protected void generateTypeDefinition(final JvmGenericType owner, final TypeDefinition typeDef, final Map<EObject, Tuple2<TupleType, Integer>> typeLiteralMap, final List<Pair<Integer, PatternTypeLiteral>> patternLiterals, final BXProgram program) {
+    final TypeLiteral literal = typeDef.getLiteral();
+    EList<JvmMember> _members = owner.getMembers();
+    String _firstUpper = StringExtensions.toFirstUpper(typeDef.getName());
+    String _plus = ("getType_" + _firstUpper);
+    final Procedure1<JvmOperation> _function = (JvmOperation it) -> {
+      it.setVisibility(JvmVisibility.PUBLIC);
+      StringConcatenationClient _client = new StringConcatenationClient() {
+        @Override
+        protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
+          _builder.append("return getType_");
+          _builder.append(typeLiteralMap.get(literal).second);
+          _builder.append("();");
+        }
+      };
+      this._jvmTypesBuilder.setBody(it, _client);
+    };
+    JvmOperation _method = this._jvmTypesBuilder.toMethod(typeDef, _plus, this._typeReferenceBuilder.typeRef(ContextType.class), _function);
+    this._jvmTypesBuilder.<JvmOperation>operator_add(_members, _method);
+    TypeLiteral _literal = typeDef.getLiteral();
+    if ((_literal instanceof PatternTypeLiteral)) {
+      EList<JvmMember> _members_1 = owner.getMembers();
+      final Procedure1<JvmOperation> _function_1 = (JvmOperation it) -> {
+        StringConcatenationClient _client = new StringConcatenationClient() {
+          @Override
+          protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
+            _builder.append("return getPattern_");
+            final Function1<Pair<Integer, PatternTypeLiteral>, Boolean> _function = (Pair<Integer, PatternTypeLiteral> it_1) -> {
+              PatternTypeLiteral _value = it_1.getValue();
+              TypeLiteral _literal = typeDef.getLiteral();
+              return Boolean.valueOf((_value == _literal));
+            };
+            Integer _key = IterableExtensions.<Pair<Integer, PatternTypeLiteral>>findFirst(patternLiterals, _function).getKey();
+            _builder.append(_key);
+            _builder.append("();");
+          }
+        };
+        this._jvmTypesBuilder.setBody(it, _client);
+      };
+      JvmOperation _method_1 = this._jvmTypesBuilder.toMethod(typeDef, typeDef.getName(), this._typeReferenceBuilder.typeRef(Pattern.class), _function_1);
+      this._jvmTypesBuilder.<JvmOperation>operator_add(_members_1, _method_1);
+    }
+  }
+  
+  protected HashMap<EObject, Tuple2<TupleType, Integer>> groupTypeLiterals(final BXProgram program) {
+    final Function1<EObject, Boolean> _function = (EObject e) -> {
+      return Boolean.valueOf((e instanceof TypeLiteral));
+    };
+    final Function1<EObject, Pair<EObject, TupleType>> _function_1 = (EObject it) -> {
+      TupleType _make = TupleType.make(((TypeLiteral) it));
+      return Pair.<EObject, TupleType>of(it, _make);
+    };
+    final List<Pair<EObject, TupleType>> literals = IteratorExtensions.<Pair<EObject, TupleType>>toList(IteratorExtensions.<EObject, Pair<EObject, TupleType>>map(IteratorExtensions.<EObject>filter(program.eAllContents(), _function), _function_1));
+    final Function1<Pair<EObject, TupleType>, TupleType> _function_2 = (Pair<EObject, TupleType> it) -> {
+      return it.getValue();
+    };
+    final Map<TupleType, List<Pair<EObject, TupleType>>> groups = IterableExtensions.<TupleType, Pair<EObject, TupleType>>groupBy(literals, _function_2);
+    final HashMap<EObject, Tuple2<TupleType, Integer>> result = new HashMap<EObject, Tuple2<TupleType, Integer>>();
+    final Procedure3<TupleType, List<Pair<EObject, TupleType>>, Integer> _function_3 = (TupleType k, List<Pair<EObject, TupleType>> v, Integer id) -> {
+      final Tuple2<TupleType, Integer> pair = Tuple2.<TupleType, Integer>make(k, id);
+      final Consumer<Pair<EObject, TupleType>> _function_4 = (Pair<EObject, TupleType> p) -> {
+        result.put(p.getKey(), pair);
+      };
+      v.forEach(_function_4);
+    };
+    MapExtensions.<TupleType, List<Pair<EObject, TupleType>>>forEach(groups, _function_3);
+    return result;
   }
   
   public void infer(final EObject element, final IJvmDeclaredTypeAcceptor acceptor, final boolean isPreIndexingPhase) {

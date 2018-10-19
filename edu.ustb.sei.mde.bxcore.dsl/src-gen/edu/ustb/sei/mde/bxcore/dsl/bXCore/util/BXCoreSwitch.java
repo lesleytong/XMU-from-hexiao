@@ -94,20 +94,39 @@ public class BXCoreSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case BXCorePackage.BX_FUNCTION_DEFINITION:
+      case BXCorePackage.TYPE_LITERAL:
       {
-        BXFunctionDefinition bxFunctionDefinition = (BXFunctionDefinition)theEObject;
-        T result = caseBXFunctionDefinition(bxFunctionDefinition);
-        if (result == null) result = caseDefinition(bxFunctionDefinition);
+        TypeLiteral typeLiteral = (TypeLiteral)theEObject;
+        T result = caseTypeLiteral(typeLiteral);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case BXCorePackage.TYPE_DEFINITION:
+      case BXCorePackage.TUPLE_TYPE_LITERAL:
       {
-        TypeDefinition typeDefinition = (TypeDefinition)theEObject;
-        T result = caseTypeDefinition(typeDefinition);
-        if (result == null) result = caseDefinition(typeDefinition);
-        if (result == null) result = caseContextType(typeDefinition);
+        TupleTypeLiteral tupleTypeLiteral = (TupleTypeLiteral)theEObject;
+        T result = caseTupleTypeLiteral(tupleTypeLiteral);
+        if (result == null) result = caseTypeLiteral(tupleTypeLiteral);
+        if (result == null) result = caseContextTypeRef(tupleTypeLiteral);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case BXCorePackage.UNORDERED_TUPLE_TYPE_LITERAL:
+      {
+        UnorderedTupleTypeLiteral unorderedTupleTypeLiteral = (UnorderedTupleTypeLiteral)theEObject;
+        T result = caseUnorderedTupleTypeLiteral(unorderedTupleTypeLiteral);
+        if (result == null) result = caseTupleTypeLiteral(unorderedTupleTypeLiteral);
+        if (result == null) result = caseTypeLiteral(unorderedTupleTypeLiteral);
+        if (result == null) result = caseContextTypeRef(unorderedTupleTypeLiteral);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case BXCorePackage.ORDERED_TUPLE_TYPE_LITERAL:
+      {
+        OrderedTupleTypeLiteral orderedTupleTypeLiteral = (OrderedTupleTypeLiteral)theEObject;
+        T result = caseOrderedTupleTypeLiteral(orderedTupleTypeLiteral);
+        if (result == null) result = caseTupleTypeLiteral(orderedTupleTypeLiteral);
+        if (result == null) result = caseTypeLiteral(orderedTupleTypeLiteral);
+        if (result == null) result = caseContextTypeRef(orderedTupleTypeLiteral);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -118,10 +137,30 @@ public class BXCoreSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case BXCorePackage.TYPE_REF:
+      case BXCorePackage.PREDEFINED_TYPE_LITERAL:
       {
-        TypeRef typeRef = (TypeRef)theEObject;
-        T result = caseTypeRef(typeRef);
+        PredefinedTypeLiteral predefinedTypeLiteral = (PredefinedTypeLiteral)theEObject;
+        T result = casePredefinedTypeLiteral(predefinedTypeLiteral);
+        if (result == null) result = caseTupleTypeLiteral(predefinedTypeLiteral);
+        if (result == null) result = caseTypeLiteral(predefinedTypeLiteral);
+        if (result == null) result = caseContextTypeRef(predefinedTypeLiteral);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case BXCorePackage.PATTERN_TYPE_LITERAL:
+      {
+        PatternTypeLiteral patternTypeLiteral = (PatternTypeLiteral)theEObject;
+        T result = casePatternTypeLiteral(patternTypeLiteral);
+        if (result == null) result = caseTypeLiteral(patternTypeLiteral);
+        if (result == null) result = casePattern(patternTypeLiteral);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case BXCorePackage.TYPE_DEFINITION:
+      {
+        TypeDefinition typeDefinition = (TypeDefinition)theEObject;
+        T result = caseTypeDefinition(typeDefinition);
+        if (result == null) result = caseDefinition(typeDefinition);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -129,9 +168,30 @@ public class BXCoreSwitch<T> extends Switch<T>
       {
         PatternDefinition patternDefinition = (PatternDefinition)theEObject;
         T result = casePatternDefinition(patternDefinition);
+        if (result == null) result = caseTypeDefinition(patternDefinition);
         if (result == null) result = caseDefinition(patternDefinition);
-        if (result == null) result = casePattern(patternDefinition);
-        if (result == null) result = caseContextType(patternDefinition);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case BXCorePackage.CONTEXT_TYPE_REF:
+      {
+        ContextTypeRef contextTypeRef = (ContextTypeRef)theEObject;
+        T result = caseContextTypeRef(contextTypeRef);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case BXCorePackage.BX_FUNCTION_DEFINITION:
+      {
+        BXFunctionDefinition bxFunctionDefinition = (BXFunctionDefinition)theEObject;
+        T result = caseBXFunctionDefinition(bxFunctionDefinition);
+        if (result == null) result = caseDefinition(bxFunctionDefinition);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case BXCorePackage.TYPE_REF:
+      {
+        TypeRef typeRef = (TypeRef)theEObject;
+        T result = caseTypeRef(typeRef);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -177,20 +237,6 @@ public class BXCoreSwitch<T> extends Switch<T>
       {
         Pattern pattern = (Pattern)theEObject;
         T result = casePattern(pattern);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case BXCorePackage.CONTEXT_TYPE:
-      {
-        ContextType contextType = (ContextType)theEObject;
-        T result = caseContextType(contextType);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case BXCorePackage.CONTEXT_TYPE_REF:
-      {
-        ContextTypeRef contextTypeRef = (ContextTypeRef)theEObject;
-        T result = caseContextTypeRef(contextTypeRef);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -393,6 +439,14 @@ public class BXCoreSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case BXCorePackage.DEFINED_CONTEXT_TYPE_REF:
+      {
+        DefinedContextTypeRef definedContextTypeRef = (DefinedContextTypeRef)theEObject;
+        T result = caseDefinedContextTypeRef(definedContextTypeRef);
+        if (result == null) result = caseContextTypeRef(definedContextTypeRef);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case BXCorePackage.ECORE_TYPE_REF:
       {
         EcoreTypeRef ecoreTypeRef = (EcoreTypeRef)theEObject;
@@ -406,30 +460,6 @@ public class BXCoreSwitch<T> extends Switch<T>
         FeatureTypeRef featureTypeRef = (FeatureTypeRef)theEObject;
         T result = caseFeatureTypeRef(featureTypeRef);
         if (result == null) result = caseTypeRef(featureTypeRef);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case BXCorePackage.PRIMITIVE_TYPE_REF:
-      {
-        PrimitiveTypeRef primitiveTypeRef = (PrimitiveTypeRef)theEObject;
-        T result = casePrimitiveTypeRef(primitiveTypeRef);
-        if (result == null) result = caseTypeRef(primitiveTypeRef);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case BXCorePackage.DEFINED_CONTEXT_TYPE_REF:
-      {
-        DefinedContextTypeRef definedContextTypeRef = (DefinedContextTypeRef)theEObject;
-        T result = caseDefinedContextTypeRef(definedContextTypeRef);
-        if (result == null) result = caseContextTypeRef(definedContextTypeRef);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case BXCorePackage.EMPTY_CONTEXT_TYPE_REF:
-      {
-        EmptyContextTypeRef emptyContextTypeRef = (EmptyContextTypeRef)theEObject;
-        T result = caseEmptyContextTypeRef(emptyContextTypeRef);
-        if (result == null) result = caseContextTypeRef(emptyContextTypeRef);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -486,33 +516,65 @@ public class BXCoreSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>BX Function Definition</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Type Literal</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>BX Function Definition</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Type Literal</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseBXFunctionDefinition(BXFunctionDefinition object)
+  public T caseTypeLiteral(TypeLiteral object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Type Definition</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Tuple Type Literal</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Type Definition</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Tuple Type Literal</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseTypeDefinition(TypeDefinition object)
+  public T caseTupleTypeLiteral(TupleTypeLiteral object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Unordered Tuple Type Literal</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Unordered Tuple Type Literal</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseUnorderedTupleTypeLiteral(UnorderedTupleTypeLiteral object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Ordered Tuple Type Literal</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Ordered Tuple Type Literal</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseOrderedTupleTypeLiteral(OrderedTupleTypeLiteral object)
   {
     return null;
   }
@@ -534,17 +596,49 @@ public class BXCoreSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Type Ref</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Predefined Type Literal</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Type Ref</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Predefined Type Literal</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseTypeRef(TypeRef object)
+  public T casePredefinedTypeLiteral(PredefinedTypeLiteral object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pattern Type Literal</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pattern Type Literal</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePatternTypeLiteral(PatternTypeLiteral object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Type Definition</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Type Definition</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseTypeDefinition(TypeDefinition object)
   {
     return null;
   }
@@ -561,6 +655,54 @@ public class BXCoreSwitch<T> extends Switch<T>
    * @generated
    */
   public T casePatternDefinition(PatternDefinition object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Context Type Ref</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Context Type Ref</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseContextTypeRef(ContextTypeRef object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>BX Function Definition</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>BX Function Definition</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseBXFunctionDefinition(BXFunctionDefinition object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Type Ref</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Type Ref</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseTypeRef(TypeRef object)
   {
     return null;
   }
@@ -657,38 +799,6 @@ public class BXCoreSwitch<T> extends Switch<T>
    * @generated
    */
   public T casePattern(Pattern object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Context Type</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Context Type</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseContextType(ContextType object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Context Type Ref</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Context Type Ref</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseContextTypeRef(ContextTypeRef object)
   {
     return null;
   }
@@ -1094,6 +1204,22 @@ public class BXCoreSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Defined Context Type Ref</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Defined Context Type Ref</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDefinedContextTypeRef(DefinedContextTypeRef object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Ecore Type Ref</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -1121,54 +1247,6 @@ public class BXCoreSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseFeatureTypeRef(FeatureTypeRef object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Primitive Type Ref</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Primitive Type Ref</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T casePrimitiveTypeRef(PrimitiveTypeRef object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Defined Context Type Ref</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Defined Context Type Ref</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseDefinedContextTypeRef(DefinedContextTypeRef object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Empty Context Type Ref</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Empty Context Type Ref</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseEmptyContextTypeRef(EmptyContextTypeRef object)
   {
     return null;
   }

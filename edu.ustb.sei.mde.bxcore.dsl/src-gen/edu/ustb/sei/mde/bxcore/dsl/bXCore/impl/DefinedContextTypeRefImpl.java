@@ -4,8 +4,8 @@
 package edu.ustb.sei.mde.bxcore.dsl.bXCore.impl;
 
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage;
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextType;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.DefinedContextTypeRef;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeDefinition;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -37,7 +37,7 @@ public class DefinedContextTypeRefImpl extends ContextTypeRefImpl implements Def
    * @generated
    * @ordered
    */
-  protected ContextType type;
+  protected TypeDefinition type;
 
   /**
    * <!-- begin-user-doc -->
@@ -65,12 +65,12 @@ public class DefinedContextTypeRefImpl extends ContextTypeRefImpl implements Def
    * <!-- end-user-doc -->
    * @generated
    */
-  public ContextType getType()
+  public TypeDefinition getType()
   {
     if (type != null && type.eIsProxy())
     {
       InternalEObject oldType = (InternalEObject)type;
-      type = (ContextType)eResolveProxy(oldType);
+      type = (TypeDefinition)eResolveProxy(oldType);
       if (type != oldType)
       {
         if (eNotificationRequired())
@@ -85,7 +85,7 @@ public class DefinedContextTypeRefImpl extends ContextTypeRefImpl implements Def
    * <!-- end-user-doc -->
    * @generated
    */
-  public ContextType basicGetType()
+  public TypeDefinition basicGetType()
   {
     return type;
   }
@@ -95,9 +95,9 @@ public class DefinedContextTypeRefImpl extends ContextTypeRefImpl implements Def
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setType(ContextType newType)
+  public void setType(TypeDefinition newType)
   {
-    ContextType oldType = type;
+    TypeDefinition oldType = type;
     type = newType;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, BXCorePackage.DEFINED_CONTEXT_TYPE_REF__TYPE, oldType, type));
@@ -131,7 +131,7 @@ public class DefinedContextTypeRefImpl extends ContextTypeRefImpl implements Def
     switch (featureID)
     {
       case BXCorePackage.DEFINED_CONTEXT_TYPE_REF__TYPE:
-        setType((ContextType)newValue);
+        setType((TypeDefinition)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -148,7 +148,7 @@ public class DefinedContextTypeRefImpl extends ContextTypeRefImpl implements Def
     switch (featureID)
     {
       case BXCorePackage.DEFINED_CONTEXT_TYPE_REF__TYPE:
-        setType((ContextType)null);
+        setType((TypeDefinition)null);
         return;
     }
     super.eUnset(featureID);

@@ -101,7 +101,7 @@ public class BXCoreSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ('{' '}')?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     type=TypeRef (ambiguity) (rule end)
+	 *     type=[EClassifier|ValidID] (ambiguity) (rule end)
 	 */
 	protected void emit_PatternNode___LeftCurlyBracketKeyword_3_0_RightCurlyBracketKeyword_3_2__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

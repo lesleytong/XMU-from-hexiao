@@ -4,27 +4,25 @@
 package edu.ustb.sei.mde.bxcore.dsl.bXCore.impl;
 
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage;
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextType;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.TupleTypeLiteral;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Context Type</b></em>'.
+ * An implementation of the model object '<em><b>Tuple Type Literal</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class ContextTypeImpl extends MinimalEObjectImpl.Container implements ContextType
+public class TupleTypeLiteralImpl extends TypeLiteralImpl implements TupleTypeLiteral
 {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ContextTypeImpl()
+  protected TupleTypeLiteralImpl()
   {
     super();
   }
@@ -37,7 +35,7 @@ public class ContextTypeImpl extends MinimalEObjectImpl.Container implements Con
   @Override
   protected EClass eStaticClass()
   {
-    return BXCorePackage.Literals.CONTEXT_TYPE;
+    return BXCorePackage.Literals.TUPLE_TYPE_LITERAL;
   }
 
-} //ContextTypeImpl
+} //TupleTypeLiteralImpl

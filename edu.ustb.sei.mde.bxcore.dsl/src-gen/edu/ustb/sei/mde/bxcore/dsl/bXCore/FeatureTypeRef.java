@@ -3,7 +3,6 @@
  */
 package edu.ustb.sei.mde.bxcore.dsl.bXCore;
 
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 /**
@@ -15,7 +14,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.FeatureTypeRef#getType <em>Type</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.FeatureTypeRef#getFeature <em>Feature</em>}</li>
  * </ul>
  *
@@ -25,32 +23,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  */
 public interface FeatureTypeRef extends TypeRef
 {
-  /**
-   * Returns the value of the '<em><b>Type</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Type</em>' reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Type</em>' reference.
-   * @see #setType(EClassifier)
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getFeatureTypeRef_Type()
-   * @model
-   * @generated
-   */
-  EClassifier getType();
-
-  /**
-   * Sets the value of the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.FeatureTypeRef#getType <em>Type</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Type</em>' reference.
-   * @see #getType()
-   * @generated
-   */
-  void setType(EClassifier value);
-
   /**
    * Returns the value of the '<em><b>Feature</b></em>' reference.
    * <!-- begin-user-doc -->

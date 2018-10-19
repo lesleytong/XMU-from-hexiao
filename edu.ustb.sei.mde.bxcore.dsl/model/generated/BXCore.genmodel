@@ -18,22 +18,39 @@
     <genClasses ecoreClass="BXCore.ecore#//Definition">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BXCore.ecore#//Definition/name"/>
     </genClasses>
-    <genClasses ecoreClass="BXCore.ecore#//BXFunctionDefinition">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//BXFunctionDefinition/sourceType"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//BXFunctionDefinition/viewType"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//BXFunctionDefinition/statement"/>
+    <genClasses ecoreClass="BXCore.ecore#//TypeLiteral"/>
+    <genClasses ecoreClass="BXCore.ecore#//TupleTypeLiteral"/>
+    <genClasses ecoreClass="BXCore.ecore#//UnorderedTupleTypeLiteral">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BXCore.ecore#//UnorderedTupleTypeLiteral/source"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//UnorderedTupleTypeLiteral/elements"/>
     </genClasses>
-    <genClasses ecoreClass="BXCore.ecore#//TypeDefinition">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//TypeDefinition/typeVars"/>
+    <genClasses ecoreClass="BXCore.ecore#//OrderedTupleTypeLiteral">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BXCore.ecore#//OrderedTupleTypeLiteral/source"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//OrderedTupleTypeLiteral/elements"/>
     </genClasses>
     <genClasses ecoreClass="BXCore.ecore#//TypeVar">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BXCore.ecore#//TypeVar/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//TypeVar/type"/>
     </genClasses>
-    <genClasses ecoreClass="BXCore.ecore#//TypeRef"/>
-    <genClasses ecoreClass="BXCore.ecore#//PatternDefinition">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//PatternDefinition/root"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BXCore.ecore#//PatternDefinition/type"/>
+    <genClasses ecoreClass="BXCore.ecore#//PredefinedTypeLiteral">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BXCore.ecore#//PredefinedTypeLiteral/type"/>
+    </genClasses>
+    <genClasses ecoreClass="BXCore.ecore#//PatternTypeLiteral">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BXCore.ecore#//PatternTypeLiteral/source"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//PatternTypeLiteral/root"/>
+    </genClasses>
+    <genClasses ecoreClass="BXCore.ecore#//TypeDefinition">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//TypeDefinition/literal"/>
+    </genClasses>
+    <genClasses ecoreClass="BXCore.ecore#//PatternDefinition"/>
+    <genClasses ecoreClass="BXCore.ecore#//ContextTypeRef"/>
+    <genClasses ecoreClass="BXCore.ecore#//BXFunctionDefinition">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//BXFunctionDefinition/sourceType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//BXFunctionDefinition/viewType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//BXFunctionDefinition/statement"/>
+    </genClasses>
+    <genClasses ecoreClass="BXCore.ecore#//TypeRef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BXCore.ecore#//TypeRef/type"/>
     </genClasses>
     <genClasses ecoreClass="BXCore.ecore#//IndexDefinition">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//IndexDefinition/sourceType"/>
@@ -41,7 +58,7 @@
     </genClasses>
     <genClasses ecoreClass="BXCore.ecore#//PatternNode">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BXCore.ecore#//PatternNode/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//PatternNode/type"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BXCore.ecore#//PatternNode/type"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//PatternNode/edges"/>
     </genClasses>
     <genClasses ecoreClass="BXCore.ecore#//PatternEdge">
@@ -55,8 +72,6 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BXCore.ecore#//PatternNodeRef/node"/>
     </genClasses>
     <genClasses ecoreClass="BXCore.ecore#//Pattern"/>
-    <genClasses ecoreClass="BXCore.ecore#//ContextType"/>
-    <genClasses ecoreClass="BXCore.ecore#//ContextTypeRef"/>
     <genClasses ecoreClass="BXCore.ecore#//PatternDefinitionReference">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BXCore.ecore#//PatternDefinitionReference/pattern"/>
     </genClasses>
@@ -158,19 +173,12 @@
     <genClasses ecoreClass="BXCore.ecore#//BiGULStatement"/>
     <genClasses ecoreClass="BXCore.ecore#//BiGULReplace"/>
     <genClasses ecoreClass="BXCore.ecore#//BiGULSkip"/>
-    <genClasses ecoreClass="BXCore.ecore#//EcoreTypeRef">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BXCore.ecore#//EcoreTypeRef/type"/>
-    </genClasses>
-    <genClasses ecoreClass="BXCore.ecore#//FeatureTypeRef">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BXCore.ecore#//FeatureTypeRef/type"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BXCore.ecore#//FeatureTypeRef/feature"/>
-    </genClasses>
-    <genClasses ecoreClass="BXCore.ecore#//PrimitiveTypeRef">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BXCore.ecore#//PrimitiveTypeRef/type"/>
-    </genClasses>
     <genClasses ecoreClass="BXCore.ecore#//DefinedContextTypeRef">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BXCore.ecore#//DefinedContextTypeRef/type"/>
     </genClasses>
-    <genClasses ecoreClass="BXCore.ecore#//EmptyContextTypeRef"/>
+    <genClasses ecoreClass="BXCore.ecore#//EcoreTypeRef"/>
+    <genClasses ecoreClass="BXCore.ecore#//FeatureTypeRef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BXCore.ecore#//FeatureTypeRef/feature"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

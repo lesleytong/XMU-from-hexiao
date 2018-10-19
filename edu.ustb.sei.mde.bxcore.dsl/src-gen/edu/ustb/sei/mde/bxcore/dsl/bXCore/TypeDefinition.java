@@ -3,7 +3,6 @@
  */
 package edu.ustb.sei.mde.bxcore.dsl.bXCore;
 
-import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,29 +13,39 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeDefinition#getTypeVars <em>Type Vars</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeDefinition#getLiteral <em>Literal</em>}</li>
  * </ul>
  *
  * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getTypeDefinition()
  * @model
  * @generated
  */
-public interface TypeDefinition extends Definition, ContextType
+public interface TypeDefinition extends Definition
 {
   /**
-   * Returns the value of the '<em><b>Type Vars</b></em>' containment reference list.
-   * The list contents are of type {@link edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeVar}.
+   * Returns the value of the '<em><b>Literal</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Type Vars</em>' containment reference list isn't clear,
+   * If the meaning of the '<em>Literal</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Type Vars</em>' containment reference list.
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getTypeDefinition_TypeVars()
+   * @return the value of the '<em>Literal</em>' containment reference.
+   * @see #setLiteral(TypeLiteral)
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getTypeDefinition_Literal()
    * @model containment="true"
    * @generated
    */
-  EList<TypeVar> getTypeVars();
+  TypeLiteral getLiteral();
+
+  /**
+   * Sets the value of the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeDefinition#getLiteral <em>Literal</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Literal</em>' containment reference.
+   * @see #getLiteral()
+   * @generated
+   */
+  void setLiteral(TypeLiteral value);
 
 } // TypeDefinition

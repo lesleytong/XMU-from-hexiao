@@ -68,19 +68,24 @@ public class BXCoreFactoryImpl extends EFactoryImpl implements BXCoreFactory
       case BXCorePackage.BX_PROGRAM: return createBXProgram();
       case BXCorePackage.IMPORT_SECTION: return createImportSection();
       case BXCorePackage.DEFINITION: return createDefinition();
-      case BXCorePackage.BX_FUNCTION_DEFINITION: return createBXFunctionDefinition();
-      case BXCorePackage.TYPE_DEFINITION: return createTypeDefinition();
+      case BXCorePackage.TYPE_LITERAL: return createTypeLiteral();
+      case BXCorePackage.TUPLE_TYPE_LITERAL: return createTupleTypeLiteral();
+      case BXCorePackage.UNORDERED_TUPLE_TYPE_LITERAL: return createUnorderedTupleTypeLiteral();
+      case BXCorePackage.ORDERED_TUPLE_TYPE_LITERAL: return createOrderedTupleTypeLiteral();
       case BXCorePackage.TYPE_VAR: return createTypeVar();
-      case BXCorePackage.TYPE_REF: return createTypeRef();
+      case BXCorePackage.PREDEFINED_TYPE_LITERAL: return createPredefinedTypeLiteral();
+      case BXCorePackage.PATTERN_TYPE_LITERAL: return createPatternTypeLiteral();
+      case BXCorePackage.TYPE_DEFINITION: return createTypeDefinition();
       case BXCorePackage.PATTERN_DEFINITION: return createPatternDefinition();
+      case BXCorePackage.CONTEXT_TYPE_REF: return createContextTypeRef();
+      case BXCorePackage.BX_FUNCTION_DEFINITION: return createBXFunctionDefinition();
+      case BXCorePackage.TYPE_REF: return createTypeRef();
       case BXCorePackage.INDEX_DEFINITION: return createIndexDefinition();
       case BXCorePackage.PATTERN_NODE: return createPatternNode();
       case BXCorePackage.PATTERN_EDGE: return createPatternEdge();
       case BXCorePackage.PATTERN_VALUE_CONDITION: return createPatternValueCondition();
       case BXCorePackage.PATTERN_NODE_REF: return createPatternNodeRef();
       case BXCorePackage.PATTERN: return createPattern();
-      case BXCorePackage.CONTEXT_TYPE: return createContextType();
-      case BXCorePackage.CONTEXT_TYPE_REF: return createContextTypeRef();
       case BXCorePackage.PATTERN_DEFINITION_REFERENCE: return createPatternDefinitionReference();
       case BXCorePackage.XMU_CORE_STATEMENT: return createXmuCoreStatement();
       case BXCorePackage.XMU_CORE_COMPOSITION_CHILD_STATEMENT: return createXmuCoreCompositionChildStatement();
@@ -106,11 +111,9 @@ public class BXCoreFactoryImpl extends EFactoryImpl implements BXCoreFactory
       case BXCorePackage.BI_GUL_STATEMENT: return createBiGULStatement();
       case BXCorePackage.BI_GUL_REPLACE: return createBiGULReplace();
       case BXCorePackage.BI_GUL_SKIP: return createBiGULSkip();
+      case BXCorePackage.DEFINED_CONTEXT_TYPE_REF: return createDefinedContextTypeRef();
       case BXCorePackage.ECORE_TYPE_REF: return createEcoreTypeRef();
       case BXCorePackage.FEATURE_TYPE_REF: return createFeatureTypeRef();
-      case BXCorePackage.PRIMITIVE_TYPE_REF: return createPrimitiveTypeRef();
-      case BXCorePackage.DEFINED_CONTEXT_TYPE_REF: return createDefinedContextTypeRef();
-      case BXCorePackage.EMPTY_CONTEXT_TYPE_REF: return createEmptyContextTypeRef();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -154,10 +157,10 @@ public class BXCoreFactoryImpl extends EFactoryImpl implements BXCoreFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public BXFunctionDefinition createBXFunctionDefinition()
+  public TypeLiteral createTypeLiteral()
   {
-    BXFunctionDefinitionImpl bxFunctionDefinition = new BXFunctionDefinitionImpl();
-    return bxFunctionDefinition;
+    TypeLiteralImpl typeLiteral = new TypeLiteralImpl();
+    return typeLiteral;
   }
 
   /**
@@ -165,10 +168,32 @@ public class BXCoreFactoryImpl extends EFactoryImpl implements BXCoreFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public TypeDefinition createTypeDefinition()
+  public TupleTypeLiteral createTupleTypeLiteral()
   {
-    TypeDefinitionImpl typeDefinition = new TypeDefinitionImpl();
-    return typeDefinition;
+    TupleTypeLiteralImpl tupleTypeLiteral = new TupleTypeLiteralImpl();
+    return tupleTypeLiteral;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public UnorderedTupleTypeLiteral createUnorderedTupleTypeLiteral()
+  {
+    UnorderedTupleTypeLiteralImpl unorderedTupleTypeLiteral = new UnorderedTupleTypeLiteralImpl();
+    return unorderedTupleTypeLiteral;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public OrderedTupleTypeLiteral createOrderedTupleTypeLiteral()
+  {
+    OrderedTupleTypeLiteralImpl orderedTupleTypeLiteral = new OrderedTupleTypeLiteralImpl();
+    return orderedTupleTypeLiteral;
   }
 
   /**
@@ -187,10 +212,32 @@ public class BXCoreFactoryImpl extends EFactoryImpl implements BXCoreFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public TypeRef createTypeRef()
+  public PredefinedTypeLiteral createPredefinedTypeLiteral()
   {
-    TypeRefImpl typeRef = new TypeRefImpl();
-    return typeRef;
+    PredefinedTypeLiteralImpl predefinedTypeLiteral = new PredefinedTypeLiteralImpl();
+    return predefinedTypeLiteral;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PatternTypeLiteral createPatternTypeLiteral()
+  {
+    PatternTypeLiteralImpl patternTypeLiteral = new PatternTypeLiteralImpl();
+    return patternTypeLiteral;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public TypeDefinition createTypeDefinition()
+  {
+    TypeDefinitionImpl typeDefinition = new TypeDefinitionImpl();
+    return typeDefinition;
   }
 
   /**
@@ -202,6 +249,39 @@ public class BXCoreFactoryImpl extends EFactoryImpl implements BXCoreFactory
   {
     PatternDefinitionImpl patternDefinition = new PatternDefinitionImpl();
     return patternDefinition;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ContextTypeRef createContextTypeRef()
+  {
+    ContextTypeRefImpl contextTypeRef = new ContextTypeRefImpl();
+    return contextTypeRef;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public BXFunctionDefinition createBXFunctionDefinition()
+  {
+    BXFunctionDefinitionImpl bxFunctionDefinition = new BXFunctionDefinitionImpl();
+    return bxFunctionDefinition;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public TypeRef createTypeRef()
+  {
+    TypeRefImpl typeRef = new TypeRefImpl();
+    return typeRef;
   }
 
   /**
@@ -268,28 +348,6 @@ public class BXCoreFactoryImpl extends EFactoryImpl implements BXCoreFactory
   {
     PatternImpl pattern = new PatternImpl();
     return pattern;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ContextType createContextType()
-  {
-    ContextTypeImpl contextType = new ContextTypeImpl();
-    return contextType;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ContextTypeRef createContextTypeRef()
-  {
-    ContextTypeRefImpl contextTypeRef = new ContextTypeRefImpl();
-    return contextTypeRef;
   }
 
   /**
@@ -572,6 +630,17 @@ public class BXCoreFactoryImpl extends EFactoryImpl implements BXCoreFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public DefinedContextTypeRef createDefinedContextTypeRef()
+  {
+    DefinedContextTypeRefImpl definedContextTypeRef = new DefinedContextTypeRefImpl();
+    return definedContextTypeRef;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EcoreTypeRef createEcoreTypeRef()
   {
     EcoreTypeRefImpl ecoreTypeRef = new EcoreTypeRefImpl();
@@ -587,39 +656,6 @@ public class BXCoreFactoryImpl extends EFactoryImpl implements BXCoreFactory
   {
     FeatureTypeRefImpl featureTypeRef = new FeatureTypeRefImpl();
     return featureTypeRef;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public PrimitiveTypeRef createPrimitiveTypeRef()
-  {
-    PrimitiveTypeRefImpl primitiveTypeRef = new PrimitiveTypeRefImpl();
-    return primitiveTypeRef;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public DefinedContextTypeRef createDefinedContextTypeRef()
-  {
-    DefinedContextTypeRefImpl definedContextTypeRef = new DefinedContextTypeRefImpl();
-    return definedContextTypeRef;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EmptyContextTypeRef createEmptyContextTypeRef()
-  {
-    EmptyContextTypeRefImpl emptyContextTypeRef = new EmptyContextTypeRefImpl();
-    return emptyContextTypeRef;
   }
 
   /**

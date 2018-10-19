@@ -9,7 +9,6 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.FeatureTypeRef;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -23,7 +22,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.FeatureTypeRefImpl#getType <em>Type</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.FeatureTypeRefImpl#getFeature <em>Feature</em>}</li>
  * </ul>
  *
@@ -31,16 +29,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class FeatureTypeRefImpl extends TypeRefImpl implements FeatureTypeRef
 {
-  /**
-   * The cached value of the '{@link #getType() <em>Type</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getType()
-   * @generated
-   * @ordered
-   */
-  protected EClassifier type;
-
   /**
    * The cached value of the '{@link #getFeature() <em>Feature</em>}' reference.
    * <!-- begin-user-doc -->
@@ -70,49 +58,6 @@ public class FeatureTypeRefImpl extends TypeRefImpl implements FeatureTypeRef
   protected EClass eStaticClass()
   {
     return BXCorePackage.Literals.FEATURE_TYPE_REF;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClassifier getType()
-  {
-    if (type != null && type.eIsProxy())
-    {
-      InternalEObject oldType = (InternalEObject)type;
-      type = (EClassifier)eResolveProxy(oldType);
-      if (type != oldType)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, BXCorePackage.FEATURE_TYPE_REF__TYPE, oldType, type));
-      }
-    }
-    return type;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClassifier basicGetType()
-  {
-    return type;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setType(EClassifier newType)
-  {
-    EClassifier oldType = type;
-    type = newType;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, BXCorePackage.FEATURE_TYPE_REF__TYPE, oldType, type));
   }
 
   /**
@@ -168,9 +113,6 @@ public class FeatureTypeRefImpl extends TypeRefImpl implements FeatureTypeRef
   {
     switch (featureID)
     {
-      case BXCorePackage.FEATURE_TYPE_REF__TYPE:
-        if (resolve) return getType();
-        return basicGetType();
       case BXCorePackage.FEATURE_TYPE_REF__FEATURE:
         if (resolve) return getFeature();
         return basicGetFeature();
@@ -188,9 +130,6 @@ public class FeatureTypeRefImpl extends TypeRefImpl implements FeatureTypeRef
   {
     switch (featureID)
     {
-      case BXCorePackage.FEATURE_TYPE_REF__TYPE:
-        setType((EClassifier)newValue);
-        return;
       case BXCorePackage.FEATURE_TYPE_REF__FEATURE:
         setFeature((EStructuralFeature)newValue);
         return;
@@ -208,9 +147,6 @@ public class FeatureTypeRefImpl extends TypeRefImpl implements FeatureTypeRef
   {
     switch (featureID)
     {
-      case BXCorePackage.FEATURE_TYPE_REF__TYPE:
-        setType((EClassifier)null);
-        return;
       case BXCorePackage.FEATURE_TYPE_REF__FEATURE:
         setFeature((EStructuralFeature)null);
         return;
@@ -228,8 +164,6 @@ public class FeatureTypeRefImpl extends TypeRefImpl implements FeatureTypeRef
   {
     switch (featureID)
     {
-      case BXCorePackage.FEATURE_TYPE_REF__TYPE:
-        return type != null;
       case BXCorePackage.FEATURE_TYPE_REF__FEATURE:
         return feature != null;
     }

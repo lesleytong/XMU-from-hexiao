@@ -7,14 +7,14 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Context Type</b></em>'.
+ * A representation of the model object '<em><b>Type Literal</b></em>'.
  * <!-- end-user-doc -->
  *
  *
- * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getContextType()
+ * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getTypeLiteral()
  * @model
  * @generated
  */
-public interface ContextType extends EObject
+public interface TypeLiteral extends EObject
 {
-} // ContextType
+} // TypeLiteral

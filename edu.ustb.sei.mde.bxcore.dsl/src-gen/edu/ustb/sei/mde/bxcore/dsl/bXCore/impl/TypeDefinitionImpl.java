@@ -5,19 +5,15 @@ package edu.ustb.sei.mde.bxcore.dsl.bXCore.impl;
 
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeDefinition;
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeVar;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeLiteral;
 
-import java.util.Collection;
-
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,7 +23,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.TypeDefinitionImpl#getTypeVars <em>Type Vars</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.TypeDefinitionImpl#getLiteral <em>Literal</em>}</li>
  * </ul>
  *
  * @generated
@@ -35,14 +31,14 @@ import org.eclipse.emf.ecore.util.InternalEList;
 public class TypeDefinitionImpl extends DefinitionImpl implements TypeDefinition
 {
   /**
-   * The cached value of the '{@link #getTypeVars() <em>Type Vars</em>}' containment reference list.
+   * The cached value of the '{@link #getLiteral() <em>Literal</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getTypeVars()
+   * @see #getLiteral()
    * @generated
    * @ordered
    */
-  protected EList<TypeVar> typeVars;
+  protected TypeLiteral literal;
 
   /**
    * <!-- begin-user-doc -->
@@ -70,13 +66,47 @@ public class TypeDefinitionImpl extends DefinitionImpl implements TypeDefinition
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<TypeVar> getTypeVars()
+  public TypeLiteral getLiteral()
   {
-    if (typeVars == null)
+    return literal;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetLiteral(TypeLiteral newLiteral, NotificationChain msgs)
+  {
+    TypeLiteral oldLiteral = literal;
+    literal = newLiteral;
+    if (eNotificationRequired())
     {
-      typeVars = new EObjectContainmentEList<TypeVar>(TypeVar.class, this, BXCorePackage.TYPE_DEFINITION__TYPE_VARS);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BXCorePackage.TYPE_DEFINITION__LITERAL, oldLiteral, newLiteral);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
     }
-    return typeVars;
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setLiteral(TypeLiteral newLiteral)
+  {
+    if (newLiteral != literal)
+    {
+      NotificationChain msgs = null;
+      if (literal != null)
+        msgs = ((InternalEObject)literal).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BXCorePackage.TYPE_DEFINITION__LITERAL, null, msgs);
+      if (newLiteral != null)
+        msgs = ((InternalEObject)newLiteral).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BXCorePackage.TYPE_DEFINITION__LITERAL, null, msgs);
+      msgs = basicSetLiteral(newLiteral, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, BXCorePackage.TYPE_DEFINITION__LITERAL, newLiteral, newLiteral));
   }
 
   /**
@@ -89,8 +119,8 @@ public class TypeDefinitionImpl extends DefinitionImpl implements TypeDefinition
   {
     switch (featureID)
     {
-      case BXCorePackage.TYPE_DEFINITION__TYPE_VARS:
-        return ((InternalEList<?>)getTypeVars()).basicRemove(otherEnd, msgs);
+      case BXCorePackage.TYPE_DEFINITION__LITERAL:
+        return basicSetLiteral(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -105,8 +135,8 @@ public class TypeDefinitionImpl extends DefinitionImpl implements TypeDefinition
   {
     switch (featureID)
     {
-      case BXCorePackage.TYPE_DEFINITION__TYPE_VARS:
-        return getTypeVars();
+      case BXCorePackage.TYPE_DEFINITION__LITERAL:
+        return getLiteral();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -116,15 +146,13 @@ public class TypeDefinitionImpl extends DefinitionImpl implements TypeDefinition
    * <!-- end-user-doc -->
    * @generated
    */
-  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
-      case BXCorePackage.TYPE_DEFINITION__TYPE_VARS:
-        getTypeVars().clear();
-        getTypeVars().addAll((Collection<? extends TypeVar>)newValue);
+      case BXCorePackage.TYPE_DEFINITION__LITERAL:
+        setLiteral((TypeLiteral)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -140,8 +168,8 @@ public class TypeDefinitionImpl extends DefinitionImpl implements TypeDefinition
   {
     switch (featureID)
     {
-      case BXCorePackage.TYPE_DEFINITION__TYPE_VARS:
-        getTypeVars().clear();
+      case BXCorePackage.TYPE_DEFINITION__LITERAL:
+        setLiteral((TypeLiteral)null);
         return;
     }
     super.eUnset(featureID);
@@ -157,8 +185,8 @@ public class TypeDefinitionImpl extends DefinitionImpl implements TypeDefinition
   {
     switch (featureID)
     {
-      case BXCorePackage.TYPE_DEFINITION__TYPE_VARS:
-        return typeVars != null && !typeVars.isEmpty();
+      case BXCorePackage.TYPE_DEFINITION__LITERAL:
+        return literal != null;
     }
     return super.eIsSet(featureID);
   }

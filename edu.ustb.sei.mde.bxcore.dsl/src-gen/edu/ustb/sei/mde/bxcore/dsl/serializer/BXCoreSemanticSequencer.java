@@ -14,19 +14,21 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareUnidirectionalAction;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.Conversion;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.DefinedContextTypeRef;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.EcoreTypeRef;
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.EmptyContextTypeRef;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.FeatureTypeRef;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ImportSection;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.IndexDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.IndexPart;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.OrderedTupleTypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternDefinitionReference;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternEdge;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternNode;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternNodeRef;
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.PrimitiveTypeRef;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternTypeLiteral;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.PredefinedTypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeVar;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.UnorderedTupleTypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.VarMapping;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreAlign;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreExpandSource;
@@ -140,9 +142,6 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 			case BXCorePackage.ECORE_TYPE_REF:
 				sequence_TypeRef(context, (EcoreTypeRef) semanticObject); 
 				return; 
-			case BXCorePackage.EMPTY_CONTEXT_TYPE_REF:
-				sequence_ContextTypeRef(context, (EmptyContextTypeRef) semanticObject); 
-				return; 
 			case BXCorePackage.FEATURE_TYPE_REF:
 				sequence_TypeRef(context, (FeatureTypeRef) semanticObject); 
 				return; 
@@ -155,19 +154,12 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 			case BXCorePackage.INDEX_PART:
 				sequence_IndexPart(context, (IndexPart) semanticObject); 
 				return; 
+			case BXCorePackage.ORDERED_TUPLE_TYPE_LITERAL:
+				sequence_OrderedTupleTypeLiteral(context, (OrderedTupleTypeLiteral) semanticObject); 
+				return; 
 			case BXCorePackage.PATTERN_DEFINITION:
-				if (rule == grammarAccess.getAnonymousPatternDefinitionRule()
-						|| rule == grammarAccess.getPatternRule()
-						|| rule == grammarAccess.getContextTypeRule()) {
-					sequence_AnonymousPatternDefinition(context, (PatternDefinition) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getDefinitionRule()
-						|| rule == grammarAccess.getPatternDefinitionRule()) {
-					sequence_PatternDefinition(context, (PatternDefinition) semanticObject); 
-					return; 
-				}
-				else break;
+				sequence_PatternDefinition(context, (PatternDefinition) semanticObject); 
+				return; 
 			case BXCorePackage.PATTERN_DEFINITION_REFERENCE:
 				sequence_PatternDefinitionReference(context, (PatternDefinitionReference) semanticObject); 
 				return; 
@@ -180,14 +172,20 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 			case BXCorePackage.PATTERN_NODE_REF:
 				sequence_PatternNodeRef(context, (PatternNodeRef) semanticObject); 
 				return; 
-			case BXCorePackage.PRIMITIVE_TYPE_REF:
-				sequence_TypeRef(context, (PrimitiveTypeRef) semanticObject); 
+			case BXCorePackage.PATTERN_TYPE_LITERAL:
+				sequence_PatternTypeLiteral(context, (PatternTypeLiteral) semanticObject); 
+				return; 
+			case BXCorePackage.PREDEFINED_TYPE_LITERAL:
+				sequence_PredefinedTypeLiteral(context, (PredefinedTypeLiteral) semanticObject); 
 				return; 
 			case BXCorePackage.TYPE_DEFINITION:
 				sequence_TypeDefinition(context, (TypeDefinition) semanticObject); 
 				return; 
 			case BXCorePackage.TYPE_VAR:
 				sequence_TypeVar(context, (TypeVar) semanticObject); 
+				return; 
+			case BXCorePackage.UNORDERED_TUPLE_TYPE_LITERAL:
+				sequence_UnorderedTupleTypeLiteral(context, (UnorderedTupleTypeLiteral) semanticObject); 
 				return; 
 			case BXCorePackage.VAR_MAPPING:
 				sequence_VarMapping(context, (VarMapping) semanticObject); 
@@ -480,20 +478,6 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     AnonymousPatternDefinition returns PatternDefinition
-	 *     Pattern returns PatternDefinition
-	 *     ContextType returns PatternDefinition
-	 *
-	 * Constraint:
-	 *     (root=PatternNode type=ValidID?)
-	 */
-	protected void sequence_AnonymousPatternDefinition(ISerializationContext context, PatternDefinition semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     Definition returns BXFunctionDefinition
 	 *     BXFunctionDefinition returns BXFunctionDefinition
 	 *
@@ -603,7 +587,7 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	 *     ContextTypeRef returns DefinedContextTypeRef
 	 *
 	 * Constraint:
-	 *     type=[ContextType|ValidID]
+	 *     type=[TypeDefinition|ValidID]
 	 */
 	protected void sequence_ContextTypeRef(ISerializationContext context, DefinedContextTypeRef semanticObject) {
 		if (errorAcceptor != null) {
@@ -611,20 +595,8 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.DEFINED_CONTEXT_TYPE_REF__TYPE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getContextTypeRefAccess().getTypeContextTypeValidIDParserRuleCall_0_1_0_1(), semanticObject.eGet(BXCorePackage.Literals.DEFINED_CONTEXT_TYPE_REF__TYPE, false));
+		feeder.accept(grammarAccess.getContextTypeRefAccess().getTypeTypeDefinitionValidIDParserRuleCall_0_1_0_1(), semanticObject.eGet(BXCorePackage.Literals.DEFINED_CONTEXT_TYPE_REF__TYPE, false));
 		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     ContextTypeRef returns EmptyContextTypeRef
-	 *
-	 * Constraint:
-	 *     {EmptyContextTypeRef}
-	 */
-	protected void sequence_ContextTypeRef(ISerializationContext context, EmptyContextTypeRef semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -700,6 +672,21 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     TypeLiteral returns OrderedTupleTypeLiteral
+	 *     TupleTypeLiteral returns OrderedTupleTypeLiteral
+	 *     OrderedTupleTypeLiteral returns OrderedTupleTypeLiteral
+	 *     ContextTypeRef returns OrderedTupleTypeLiteral
+	 *
+	 * Constraint:
+	 *     (source=[ImportSection|ValidID] elements+=TypeVar elements+=TypeVar*)
+	 */
+	protected void sequence_OrderedTupleTypeLiteral(ISerializationContext context, OrderedTupleTypeLiteral semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Pattern returns PatternDefinitionReference
 	 *     PatternDefinitionReference returns PatternDefinitionReference
 	 *
@@ -720,13 +707,23 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	/**
 	 * Contexts:
 	 *     Definition returns PatternDefinition
+	 *     TypeDefinition returns PatternDefinition
 	 *     PatternDefinition returns PatternDefinition
 	 *
 	 * Constraint:
-	 *     (name=ValidID root=PatternNode type=ValidID?)
+	 *     (name=ValidID literal=PatternTypeLiteral)
 	 */
 	protected void sequence_PatternDefinition(ISerializationContext context, PatternDefinition semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.DEFINITION__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.DEFINITION__NAME));
+			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.TYPE_DEFINITION__LITERAL) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.TYPE_DEFINITION__LITERAL));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getPatternDefinitionAccess().getNameValidIDParserRuleCall_1_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getPatternDefinitionAccess().getLiteralPatternTypeLiteralParserRuleCall_3_0(), semanticObject.getLiteral());
+		feeder.finish();
 	}
 	
 	
@@ -735,10 +732,25 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	 *     PatternEdge returns PatternEdge
 	 *
 	 * Constraint:
-	 *     (name=ValidID? feature=[EStructuralFeature|ValidID] operator='=' value=PatternValueCondition)
+	 *     (name=ValidID feature=[EStructuralFeature|ValidID] operator='=' value=PatternValueCondition)
 	 */
 	protected void sequence_PatternEdge(ISerializationContext context, PatternEdge semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.PATTERN_EDGE__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.PATTERN_EDGE__NAME));
+			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.PATTERN_EDGE__FEATURE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.PATTERN_EDGE__FEATURE));
+			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.PATTERN_EDGE__OPERATOR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.PATTERN_EDGE__OPERATOR));
+			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.PATTERN_EDGE__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.PATTERN_EDGE__VALUE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getPatternEdgeAccess().getNameValidIDParserRuleCall_0_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getPatternEdgeAccess().getFeatureEStructuralFeatureValidIDParserRuleCall_2_0_1(), semanticObject.eGet(BXCorePackage.Literals.PATTERN_EDGE__FEATURE, false));
+		feeder.accept(grammarAccess.getPatternEdgeAccess().getOperatorEqualsSignKeyword_3_0(), semanticObject.getOperator());
+		feeder.accept(grammarAccess.getPatternEdgeAccess().getValuePatternValueConditionParserRuleCall_4_0(), semanticObject.getValue());
+		feeder.finish();
 	}
 	
 	
@@ -767,7 +779,7 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	 *     PatternValueCondition returns PatternNode
 	 *
 	 * Constraint:
-	 *     (name=ValidID type=TypeRef (edges+=PatternEdge edges+=PatternEdge*)?)
+	 *     (name=ValidID type=[EClassifier|ValidID] (edges+=PatternEdge edges+=PatternEdge*)?)
 	 */
 	protected void sequence_PatternNode(ISerializationContext context, PatternNode semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -776,15 +788,67 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     Definition returns TypeDefinition
-	 *     TypeDefinition returns TypeDefinition
-	 *     ContextType returns TypeDefinition
+	 *     TypeLiteral returns PatternTypeLiteral
+	 *     PatternTypeLiteral returns PatternTypeLiteral
+	 *     Pattern returns PatternTypeLiteral
 	 *
 	 * Constraint:
-	 *     (name=ValidID (typeVars+=TypeVar typeVars+=TypeVar*)?)
+	 *     (source=[ImportSection|ValidID] root=PatternNode)
+	 */
+	protected void sequence_PatternTypeLiteral(ISerializationContext context, PatternTypeLiteral semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.PATTERN_TYPE_LITERAL__SOURCE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.PATTERN_TYPE_LITERAL__SOURCE));
+			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.PATTERN_TYPE_LITERAL__ROOT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.PATTERN_TYPE_LITERAL__ROOT));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getPatternTypeLiteralAccess().getSourceImportSectionValidIDParserRuleCall_0_0_1(), semanticObject.eGet(BXCorePackage.Literals.PATTERN_TYPE_LITERAL__SOURCE, false));
+		feeder.accept(grammarAccess.getPatternTypeLiteralAccess().getRootPatternNodeParserRuleCall_1_0(), semanticObject.getRoot());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     TypeLiteral returns PredefinedTypeLiteral
+	 *     TupleTypeLiteral returns PredefinedTypeLiteral
+	 *     PredefinedTypeLiteral returns PredefinedTypeLiteral
+	 *     ContextTypeRef returns PredefinedTypeLiteral
+	 *
+	 * Constraint:
+	 *     type='empty'
+	 */
+	protected void sequence_PredefinedTypeLiteral(ISerializationContext context, PredefinedTypeLiteral semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.PREDEFINED_TYPE_LITERAL__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.PREDEFINED_TYPE_LITERAL__TYPE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getPredefinedTypeLiteralAccess().getTypeEmptyKeyword_0(), semanticObject.getType());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Definition returns TypeDefinition
+	 *     TypeDefinition returns TypeDefinition
+	 *
+	 * Constraint:
+	 *     (name=ValidID literal=TypeLiteral)
 	 */
 	protected void sequence_TypeDefinition(ISerializationContext context, TypeDefinition semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.DEFINITION__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.DEFINITION__NAME));
+			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.TYPE_DEFINITION__LITERAL) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.TYPE_DEFINITION__LITERAL));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getTypeDefinitionAccess().getNameValidIDParserRuleCall_0_1_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getTypeDefinitionAccess().getLiteralTypeLiteralParserRuleCall_0_3_0(), semanticObject.getLiteral());
+		feeder.finish();
 	}
 	
 	
@@ -793,15 +857,15 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	 *     TypeRef returns EcoreTypeRef
 	 *
 	 * Constraint:
-	 *     type=[EClassifier|QualifiedValidID]
+	 *     type=[EClassifier|ValidID]
 	 */
 	protected void sequence_TypeRef(ISerializationContext context, EcoreTypeRef semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.ECORE_TYPE_REF__TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.ECORE_TYPE_REF__TYPE));
+			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.TYPE_REF__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.TYPE_REF__TYPE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getTypeRefAccess().getTypeEClassifierQualifiedValidIDParserRuleCall_0_1_0_1(), semanticObject.eGet(BXCorePackage.Literals.ECORE_TYPE_REF__TYPE, false));
+		feeder.accept(grammarAccess.getTypeRefAccess().getTypeEClassifierValidIDParserRuleCall_0_1_0_1(), semanticObject.eGet(BXCorePackage.Literals.TYPE_REF__TYPE, false));
 		feeder.finish();
 	}
 	
@@ -811,31 +875,19 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	 *     TypeRef returns FeatureTypeRef
 	 *
 	 * Constraint:
-	 *     (type=[EClassifier|QualifiedValidID] feature=[EStructuralFeature|ValidID])
+	 *     (type=[EClassifier|ValidID] feature=[EStructuralFeature|ValidID])
 	 */
 	protected void sequence_TypeRef(ISerializationContext context, FeatureTypeRef semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.FEATURE_TYPE_REF__TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.FEATURE_TYPE_REF__TYPE));
+			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.TYPE_REF__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.TYPE_REF__TYPE));
 			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.FEATURE_TYPE_REF__FEATURE) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.FEATURE_TYPE_REF__FEATURE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getTypeRefAccess().getTypeEClassifierQualifiedValidIDParserRuleCall_1_1_0_1(), semanticObject.eGet(BXCorePackage.Literals.FEATURE_TYPE_REF__TYPE, false));
+		feeder.accept(grammarAccess.getTypeRefAccess().getTypeEClassifierValidIDParserRuleCall_1_1_0_1(), semanticObject.eGet(BXCorePackage.Literals.TYPE_REF__TYPE, false));
 		feeder.accept(grammarAccess.getTypeRefAccess().getFeatureEStructuralFeatureValidIDParserRuleCall_1_2_1_0_1(), semanticObject.eGet(BXCorePackage.Literals.FEATURE_TYPE_REF__FEATURE, false));
 		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     TypeRef returns PrimitiveTypeRef
-	 *
-	 * Constraint:
-	 *     (type='int' | type='boolean' | type='String')
-	 */
-	protected void sequence_TypeRef(ISerializationContext context, PrimitiveTypeRef semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -857,6 +909,21 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 		feeder.accept(grammarAccess.getTypeVarAccess().getNameValidIDParserRuleCall_0_0(), semanticObject.getName());
 		feeder.accept(grammarAccess.getTypeVarAccess().getTypeTypeRefParserRuleCall_2_0(), semanticObject.getType());
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     TypeLiteral returns UnorderedTupleTypeLiteral
+	 *     TupleTypeLiteral returns UnorderedTupleTypeLiteral
+	 *     UnorderedTupleTypeLiteral returns UnorderedTupleTypeLiteral
+	 *     ContextTypeRef returns UnorderedTupleTypeLiteral
+	 *
+	 * Constraint:
+	 *     (source=[ImportSection|ValidID] elements+=TypeVar elements+=TypeVar*)
+	 */
+	protected void sequence_UnorderedTupleTypeLiteral(ISerializationContext context, UnorderedTupleTypeLiteral semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

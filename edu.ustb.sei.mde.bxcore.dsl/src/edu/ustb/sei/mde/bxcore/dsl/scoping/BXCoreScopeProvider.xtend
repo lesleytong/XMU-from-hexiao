@@ -3,24 +3,29 @@
  */
 package edu.ustb.sei.mde.bxcore.dsl.scoping
 
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXFunctionDefinition
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXProgram
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.EcoreTypeRef
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.FeatureTypeRef
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.ImportSection
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.OrderedTupleTypeLiteral
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternDefinition
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternNode
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternTypeLiteral
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeDefinition
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.UnorderedTupleTypeLiteral
+import java.util.ArrayList
+import java.util.HashSet
+import org.eclipse.emf.ecore.EClass
+import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage
 import org.eclipse.emf.ecore.util.EcoreUtil
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXProgram
-import java.util.ArrayList
-import org.eclipse.emf.ecore.EClassifier
-import org.eclipse.xtext.resource.EObjectDescription
 import org.eclipse.xtext.naming.QualifiedName
+import org.eclipse.xtext.resource.EObjectDescription
+import org.eclipse.xtext.scoping.IScope
 import org.eclipse.xtext.scoping.impl.SimpleScope
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternNode
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.EcoreTypeRef
-import org.eclipse.emf.ecore.EClass
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternDefinition
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXFunctionDefinition
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeDefinition
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.FeatureTypeRef
-import java.util.HashSet
 
 /**
  * This class contains custom scoping description.
@@ -31,46 +36,14 @@ import java.util.HashSet
 class BXCoreScopeProvider extends AbstractBXCoreScopeProvider {
 
 	override getScope(EObject context, EReference reference) {
-		if(reference===BXCorePackage.Literals.ECORE_TYPE_REF__TYPE) {
-			val program = context.root;
-			val objects = new ArrayList;
-			
-			program.imports.forEach[i|
-				val visited = new HashSet;
-				val itr = i.metamodel.eAllContents;
-				itr.forEach[c|
-					if(c instanceof EClassifier) {
-						objects.add(EObjectDescription.create(QualifiedName.create(i.shortName, c.name), c));
-						visited.add(c);
-					}
-				];
-				
-				val itr2 = i.metamodel.eAllContents;
-				itr2.forEach[c|
-					if(c instanceof EClass) {
-						c.EAllStructuralFeatures.forEach[f|
-							val t = f.EType;
-							if(visited.contains(t)===false) {
-								objects.add(EObjectDescription.create(QualifiedName.create(i.shortName, t.name), t));
-								visited.add(t);
-							}
-						]
-					}
-				];
-			];
-			return new SimpleScope(objects);
-		} else if(reference===BXCorePackage.Literals.FEATURE_TYPE_REF__TYPE) {
-			val program = context.root;
-			val objects = new ArrayList;
-			program.imports.forEach[i|
-				val itr = i.metamodel.eAllContents;
-				itr.forEach[c|
-					if(c instanceof EClass) {
-						objects.add(EObjectDescription.create(QualifiedName.create(i.shortName, c.name), c));
-					}
-				];
-			];
-			return new SimpleScope(objects);
+		if(reference===BXCorePackage.Literals.UNORDERED_TUPLE_TYPE_LITERAL__SOURCE || 
+			reference===BXCorePackage.Literals.ORDERED_TUPLE_TYPE_LITERAL__SOURCE ||
+			reference===BXCorePackage.Literals.PATTERN_TYPE_LITERAL__SOURCE
+		) {
+			return new SimpleScope(context.root.imports.map[EObjectDescription.create(it.shortName, it)].toList);
+		} else if(reference===BXCorePackage.Literals.TYPE_REF__TYPE) {
+			val importSection = context.importSection;
+			return collectTypes(importSection)
 		} else if(reference===BXCorePackage.Literals.FEATURE_TYPE_REF__FEATURE) {
 			val type = (context as FeatureTypeRef).type as EClass;
 			if(type===null) {
@@ -85,13 +58,13 @@ class BXCoreScopeProvider extends AbstractBXCoreScopeProvider {
 				}
 			}
 			
+		} else if(reference===BXCorePackage.Literals.PATTERN_NODE__TYPE) {
+			val importSection = context.importSection;
+			return importSection.collectTypes;
 		} else if(reference===BXCorePackage.Literals.PATTERN_EDGE__FEATURE) {
 			val node = context.patternNode;
-			if(node.type instanceof EcoreTypeRef) {
-				val type = (node.type as EcoreTypeRef).type;
-				if(type instanceof EClass) {
-					return new SimpleScope(type.EAllStructuralFeatures.map[f|EObjectDescription.create(f.name, f)].toList);
-				}
+			if(node.type instanceof EClass) {
+				return new SimpleScope((node.type as EClass).EAllStructuralFeatures.map[f|EObjectDescription.create(f.name, f)].toList);
 			}
 		} else if(reference===BXCorePackage.Literals.PATTERN_NODE_REF__NODE) {
 			val pattern = context.pattern;
@@ -106,27 +79,58 @@ class BXCoreScopeProvider extends AbstractBXCoreScopeProvider {
 			val function = context.eContainer.getFunction(); // skip the context object, because it may be the function definition now
 			val program = context.getProgram();
 			val types = program.definitions.filter[it instanceof TypeDefinition];
-			val namedPatterns = program.definitions.filter[
-				it instanceof PatternDefinition 
-				&& (it as PatternDefinition).name!==null 
-				&& (it as PatternDefinition).type!==null
-				&& !types.exists[t|t.name.equals((it as PatternDefinition).type)]];
-			val patterns = if(function===null) null else function.eAllContents.filter[
-				it instanceof PatternDefinition 
-				&& (it as PatternDefinition).name===null 
-				&& (it as PatternDefinition).type!==null
-				&& !types.exists[t|t.name.equals((it as PatternDefinition).type)]];
+			val namedPatterns = program.definitions.filter[it instanceof PatternDefinition];
+			val patterns = if(function===null) null else function.eAllContents.filter[it instanceof PatternDefinition];
 			
 			val objects = new ArrayList;
 			types.forEach[t| objects+=EObjectDescription.create(t.name, t)];
-			namedPatterns.forEach[p| objects += EObjectDescription.create((p as PatternDefinition).type, p)];
-			if(patterns!==null) patterns.forEach[p| objects += EObjectDescription.create((p as PatternDefinition).type, p)];
+			
+			namedPatterns.forEach[p| objects += EObjectDescription.create((p as PatternDefinition).name, p)];
+			if(patterns!==null) patterns.forEach[p| objects += EObjectDescription.create((p as PatternDefinition).name, p)];
 			
 			return new SimpleScope(objects);
 		}
 		
 		super.getScope(context, reference)
 	}
+	
+	protected def IScope collectTypes(ImportSection importSection) {
+		val objects = new ArrayList;
+		if (importSection === null)
+			SimpleScope.NULLSCOPE
+		else {
+			val visited = new HashSet;
+			val itr = importSection.metamodel.eAllContents;
+			itr.forEach [ c |
+				if (c instanceof EClassifier) {
+					objects.add(EObjectDescription.create(c.name, c));
+					visited.add(c);
+				}
+			];
+		
+			val itr2 = importSection.metamodel.eAllContents;
+			itr2.forEach [ c |
+				if (c instanceof EClass) {
+					c.EAllStructuralFeatures.forEach [ f |
+						val t = f.EType;
+						if (visited.contains(t) === false) {
+							objects.add(EObjectDescription.create(t.name, t));
+							visited.add(t);
+						}
+					]
+				}
+			];
+			new SimpleScope(objects)
+		}
+	}
+		
+    def ImportSection getImportSection(EObject object) {
+    	if(object===null) null
+    	else if(object instanceof OrderedTupleTypeLiteral) object.source
+    	else if(object instanceof UnorderedTupleTypeLiteral) object.source
+    	else if(object instanceof PatternTypeLiteral) object.source
+    	else object.eContainer.importSection;
+    }
 		
 	def BXProgram getProgram(EObject object) {
 		if(object===null) return null

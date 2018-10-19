@@ -4,7 +4,7 @@
 package edu.ustb.sei.mde.bxcore.dsl.bXCore.impl;
 
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage;
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.PrimitiveTypeRef;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.PredefinedTypeLiteral;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -14,18 +14,18 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Primitive Type Ref</b></em>'.
+ * An implementation of the model object '<em><b>Predefined Type Literal</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PrimitiveTypeRefImpl#getType <em>Type</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PredefinedTypeLiteralImpl#getType <em>Type</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class PrimitiveTypeRefImpl extends TypeRefImpl implements PrimitiveTypeRef
+public class PredefinedTypeLiteralImpl extends TupleTypeLiteralImpl implements PredefinedTypeLiteral
 {
   /**
    * The default value of the '{@link #getType() <em>Type</em>}' attribute.
@@ -52,7 +52,7 @@ public class PrimitiveTypeRefImpl extends TypeRefImpl implements PrimitiveTypeRe
    * <!-- end-user-doc -->
    * @generated
    */
-  protected PrimitiveTypeRefImpl()
+  protected PredefinedTypeLiteralImpl()
   {
     super();
   }
@@ -65,7 +65,7 @@ public class PrimitiveTypeRefImpl extends TypeRefImpl implements PrimitiveTypeRe
   @Override
   protected EClass eStaticClass()
   {
-    return BXCorePackage.Literals.PRIMITIVE_TYPE_REF;
+    return BXCorePackage.Literals.PREDEFINED_TYPE_LITERAL;
   }
 
   /**
@@ -88,7 +88,7 @@ public class PrimitiveTypeRefImpl extends TypeRefImpl implements PrimitiveTypeRe
     String oldType = type;
     type = newType;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, BXCorePackage.PRIMITIVE_TYPE_REF__TYPE, oldType, type));
+      eNotify(new ENotificationImpl(this, Notification.SET, BXCorePackage.PREDEFINED_TYPE_LITERAL__TYPE, oldType, type));
   }
 
   /**
@@ -101,7 +101,7 @@ public class PrimitiveTypeRefImpl extends TypeRefImpl implements PrimitiveTypeRe
   {
     switch (featureID)
     {
-      case BXCorePackage.PRIMITIVE_TYPE_REF__TYPE:
+      case BXCorePackage.PREDEFINED_TYPE_LITERAL__TYPE:
         return getType();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -117,7 +117,7 @@ public class PrimitiveTypeRefImpl extends TypeRefImpl implements PrimitiveTypeRe
   {
     switch (featureID)
     {
-      case BXCorePackage.PRIMITIVE_TYPE_REF__TYPE:
+      case BXCorePackage.PREDEFINED_TYPE_LITERAL__TYPE:
         setType((String)newValue);
         return;
     }
@@ -134,7 +134,7 @@ public class PrimitiveTypeRefImpl extends TypeRefImpl implements PrimitiveTypeRe
   {
     switch (featureID)
     {
-      case BXCorePackage.PRIMITIVE_TYPE_REF__TYPE:
+      case BXCorePackage.PREDEFINED_TYPE_LITERAL__TYPE:
         setType(TYPE_EDEFAULT);
         return;
     }
@@ -151,7 +151,7 @@ public class PrimitiveTypeRefImpl extends TypeRefImpl implements PrimitiveTypeRe
   {
     switch (featureID)
     {
-      case BXCorePackage.PRIMITIVE_TYPE_REF__TYPE:
+      case BXCorePackage.PREDEFINED_TYPE_LITERAL__TYPE:
         return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
     }
     return super.eIsSet(featureID);
@@ -174,4 +174,4 @@ public class PrimitiveTypeRefImpl extends TypeRefImpl implements PrimitiveTypeRe
     return result.toString();
   }
 
-} //PrimitiveTypeRefImpl
+} //PredefinedTypeLiteralImpl

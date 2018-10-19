@@ -6,7 +6,6 @@ package edu.ustb.sei.mde.bxcore.dsl.bXCore.impl;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternEdge;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternNode;
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeRef;
 
 import java.util.Collection;
 
@@ -16,6 +15,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -61,14 +61,14 @@ public class PatternNodeImpl extends PatternValueConditionImpl implements Patter
   protected String name = NAME_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
+   * The cached value of the '{@link #getType() <em>Type</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getType()
    * @generated
    * @ordered
    */
-  protected TypeRef type;
+  protected EClassifier type;
 
   /**
    * The cached value of the '{@link #getEdges() <em>Edges</em>}' containment reference list.
@@ -129,7 +129,27 @@ public class PatternNodeImpl extends PatternValueConditionImpl implements Patter
    * <!-- end-user-doc -->
    * @generated
    */
-  public TypeRef getType()
+  public EClassifier getType()
+  {
+    if (type != null && type.eIsProxy())
+    {
+      InternalEObject oldType = (InternalEObject)type;
+      type = (EClassifier)eResolveProxy(oldType);
+      if (type != oldType)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, BXCorePackage.PATTERN_NODE__TYPE, oldType, type));
+      }
+    }
+    return type;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClassifier basicGetType()
   {
     return type;
   }
@@ -139,37 +159,12 @@ public class PatternNodeImpl extends PatternValueConditionImpl implements Patter
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetType(TypeRef newType, NotificationChain msgs)
+  public void setType(EClassifier newType)
   {
-    TypeRef oldType = type;
+    EClassifier oldType = type;
     type = newType;
     if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BXCorePackage.PATTERN_NODE__TYPE, oldType, newType);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setType(TypeRef newType)
-  {
-    if (newType != type)
-    {
-      NotificationChain msgs = null;
-      if (type != null)
-        msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BXCorePackage.PATTERN_NODE__TYPE, null, msgs);
-      if (newType != null)
-        msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BXCorePackage.PATTERN_NODE__TYPE, null, msgs);
-      msgs = basicSetType(newType, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, BXCorePackage.PATTERN_NODE__TYPE, newType, newType));
+      eNotify(new ENotificationImpl(this, Notification.SET, BXCorePackage.PATTERN_NODE__TYPE, oldType, type));
   }
 
   /**
@@ -196,8 +191,6 @@ public class PatternNodeImpl extends PatternValueConditionImpl implements Patter
   {
     switch (featureID)
     {
-      case BXCorePackage.PATTERN_NODE__TYPE:
-        return basicSetType(null, msgs);
       case BXCorePackage.PATTERN_NODE__EDGES:
         return ((InternalEList<?>)getEdges()).basicRemove(otherEnd, msgs);
     }
@@ -217,7 +210,8 @@ public class PatternNodeImpl extends PatternValueConditionImpl implements Patter
       case BXCorePackage.PATTERN_NODE__NAME:
         return getName();
       case BXCorePackage.PATTERN_NODE__TYPE:
-        return getType();
+        if (resolve) return getType();
+        return basicGetType();
       case BXCorePackage.PATTERN_NODE__EDGES:
         return getEdges();
     }
@@ -239,7 +233,7 @@ public class PatternNodeImpl extends PatternValueConditionImpl implements Patter
         setName((String)newValue);
         return;
       case BXCorePackage.PATTERN_NODE__TYPE:
-        setType((TypeRef)newValue);
+        setType((EClassifier)newValue);
         return;
       case BXCorePackage.PATTERN_NODE__EDGES:
         getEdges().clear();
@@ -263,7 +257,7 @@ public class PatternNodeImpl extends PatternValueConditionImpl implements Patter
         setName(NAME_EDEFAULT);
         return;
       case BXCorePackage.PATTERN_NODE__TYPE:
-        setType((TypeRef)null);
+        setType((EClassifier)null);
         return;
       case BXCorePackage.PATTERN_NODE__EDGES:
         getEdges().clear();

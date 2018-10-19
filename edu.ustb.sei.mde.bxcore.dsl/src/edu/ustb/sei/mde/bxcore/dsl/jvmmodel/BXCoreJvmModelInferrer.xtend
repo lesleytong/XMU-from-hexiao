@@ -17,6 +17,7 @@ import edu.ustb.sei.mde.bxcore.MatchView
 import edu.ustb.sei.mde.bxcore.ParallelComposition
 import edu.ustb.sei.mde.bxcore.SourceType
 import edu.ustb.sei.mde.bxcore.Switch
+import edu.ustb.sei.mde.bxcore.TraceSystem
 import edu.ustb.sei.mde.bxcore.ViewType
 import edu.ustb.sei.mde.bxcore.XmuCore
 import edu.ustb.sei.mde.bxcore.bigul.Replace
@@ -31,15 +32,16 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareUnidirectionalAction
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextTypeRef
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.DefinedContextTypeRef
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.EcoreTypeRef
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.FeatureTypeRef
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.ImportSection
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.IndexDefinition
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternDefinition
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternDefinitionReference
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternEdge
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternNode
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternNodeRef
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.PrimitiveTypeRef
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternTypeLiteral
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.TupleTypeLiteral
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeDefinition
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeLiteral
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreAlign
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreExpandSource
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreExpandView
@@ -52,19 +54,25 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreMatchView
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreParallelComposition
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreStatement
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreSwitch
+import edu.ustb.sei.mde.bxcore.dsl.structure.TupleType
 import edu.ustb.sei.mde.bxcore.exceptions.BidirectionalTransformationDefinitionException
+import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException
 import edu.ustb.sei.mde.bxcore.structures.Context
 import edu.ustb.sei.mde.bxcore.structures.ContextType
+import edu.ustb.sei.mde.bxcore.util.EcoreModelUtil
 import edu.ustb.sei.mde.graph.pattern.Pattern
 import edu.ustb.sei.mde.graph.type.IStructuralFeatureEdge
 import edu.ustb.sei.mde.graph.type.ITypeNode
 import edu.ustb.sei.mde.graph.type.TypeGraph
 import edu.ustb.sei.mde.graph.type.TypeNode
+import edu.ustb.sei.mde.graph.typedGraph.TypedGraph
 import edu.ustb.sei.mde.structure.Tuple2
 import edu.ustb.sei.mde.structure.Tuple3
 import java.util.ArrayList
 import java.util.Arrays
+import java.util.HashMap
 import java.util.List
+import java.util.Map
 import java.util.Set
 import java.util.function.BiFunction
 import java.util.function.Function
@@ -72,11 +80,14 @@ import org.eclipse.core.resources.ResourcesPlugin
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EAttribute
 import org.eclipse.emf.ecore.EClass
+import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EDataType
 import org.eclipse.emf.ecore.EEnum
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EReference
+import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.jdt.core.JavaCore
-import org.eclipse.xtend2.lib.StringConcatenationClient
 import org.eclipse.xtext.common.types.JvmDeclaredType
 import org.eclipse.xtext.common.types.JvmGenericType
 import org.eclipse.xtext.common.types.JvmVisibility
@@ -85,12 +96,6 @@ import org.eclipse.xtext.xbase.compiler.output.ITreeAppendable
 import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
-import edu.ustb.sei.mde.graph.typedGraph.TypedGraph
-import org.eclipse.emf.ecore.EPackage
-import edu.ustb.sei.mde.bxcore.util.EcoreModelUtil
-import org.eclipse.emf.ecore.EObject
-import edu.ustb.sei.mde.bxcore.TraceSystem
-import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException
 
 /**
  * <p>Infers a JVM model from the source model.</p> 
@@ -133,59 +138,7 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 		val sourceURI = element.eResource.URI.trimFileExtension.toJavaClassName;
 
 		acceptor.accept(element.toClass(sourceURI) [
-			element.imports.forEach [ i |
-				members += i.toField('typeGraph_' + i.shortName, TypeGraph.typeRef) [
-					visibility = JvmVisibility.PRIVATE
-				];
-				members += i.toMethod('getTypeGraph_' + i.shortName.toFirstUpper, TypeGraph.typeRef) [
-					visibility = JvmVisibility.PUBLIC;
-					
-					val eClasses = i.metamodel.eAllContents.filter[o | o instanceof EClass || o instanceof EReference].map[o| if(o instanceof EClass) o as EClass else (o as EReference).EReferenceType].toSet;
-					val eDataTypes = i.metamodel.eAllContents.filter[o | o instanceof EDataType || o instanceof EAttribute].map[o| if(o instanceof EDataType) o as EDataType else (o as EAttribute).EAttributeType].toSet;
-					val eReferences = i.metamodel.eAllContents.filter[o | o instanceof EReference].map[it as EReference].toSet;
-					val eAttributes = i.metamodel.eAllContents.filter[o | o instanceof EAttribute].map[it as EAttribute].toSet;
-					
-					val ordered = <EClass>newArrayList;
-					
-					for(o : eClasses) {
-						insertInOrder(ordered, o, eClasses);
-					}
-					
-					body = '''
-						if(typeGraph_«i.shortName»==null) {
-							typeGraph_«i.shortName» = new «TypeGraph.typeRef.qualifiedName»();
-							«FOR t : ordered»
-								typeGraph_«i.shortName».declare("«IF t.abstract»@«ENDIF»«t.name»«FOR s : t.ESuperTypes»«IF eClasses.contains(s)»,«s.name»«ENDIF»«ENDFOR»");
-							«ENDFOR»
-							«FOR d : eDataTypes»
-								«IF d instanceof EEnum»
-									typeGraph_«i.shortName».declare("«d.name»:java.lang.String");
-								«ELSE»
-									typeGraph_«i.shortName».declare("«d.name»:«d.instanceClass.typeRef.qualifiedName»");
-								«ENDIF»
-							«ENDFOR»
-							«FOR a : eAttributes»
-								typeGraph_«i.shortName».declare("«a.name»:«(a.eContainer as EClass).name»->«a.EAttributeType.name»«IF a.many»«IF a.unique»*«ELSE»#«ENDIF»«ENDIF»");
-							«ENDFOR»
-							«FOR a : eReferences»
-								typeGraph_«i.shortName».declare("«IF a.isContainment»@«ENDIF»«a.name»:«(a.eContainer as EClass).name»->«a.EReferenceType.name»«IF a.many»«IF a.unique»*«ELSE»#«ENDIF»«ENDIF»");
-							«ENDFOR»
-						}
-						return typeGraph_«i.shortName»;
-					'''
-				];
-				
-				members += i.toMethod('''load«i.shortName.toFirstUpper»Model''', TypedGraph.typeRef) [
-					parameters += i.toParameter('modelUri', URI.typeRef);
-					parameters += i.toParameter('metamodelUri', URI.typeRef);
-					body = '''
-						«EPackage.typeRef.qualifiedName» pack = «EcoreModelUtil.typeRef.qualifiedName».loadPacakge(metamodelUri);
-						«EObject.typeRef.qualifiedName» root = «EcoreModelUtil.typeRef.qualifiedName».load(modelUri);
-						«TypedGraph.typeRef.qualifiedName» graph = «EcoreModelUtil.typeRef.qualifiedName».load(root, getTypeGraph_«i.shortName.toFirstUpper»());
-						return graph;
-					'''
-				];
-			];
+			element.imports.forEach [ i | i.generateImportSection(it);];
 			
 			members += element.toMethod('execute', ViewType.typeRef) [
 				parameters += element.toParameter('bx', XmuCore.typeRef);
@@ -227,48 +180,22 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 			];
 			
 			val conditions = element.eAllContents.filter[e| e instanceof ContextAwareCondition].map[it as ContextAwareCondition].toList;
-			
-			conditions.forEach[cond, id|
-				members += cond.toClass('Condition'+id)[
-					if (cond.eContainer instanceof XmuCoreAlign) {
-						superTypes += BiFunction.typeRef(Context.typeRef, Context.typeRef, Boolean.typeRef);
-						members += cond.toMethod('apply', Boolean.typeRef) [
-							parameters += cond.toParameter('source', Context.typeRef);
-							parameters += cond.toParameter('view', Context.typeRef);
-							body = cond.condition;
-						]
-					} else {
-						superTypes += BiFunction.typeRef(SourceType.typeRef, ViewType.typeRef, Boolean.typeRef);
-						members += cond.toMethod('apply', Boolean.typeRef) [
-							parameters += cond.toParameter('source', SourceType.typeRef);
-							parameters += cond.toParameter('view', ViewType.typeRef);
-							body = cond.condition;
-						]
-					}
-				];
-
-			];
+			conditions.forEach[cond, id| cond.generateCondition(id, it)];
 			
 			val actions = element.eAllContents.filter[e| e instanceof ContextAwareUnidirectionalAction].map[it as ContextAwareUnidirectionalAction].toList;
-			actions.forEach[act, id|
-				members += act.toClass('UnidirectionalAction'+id)[
-					superTypes += BiFunction.typeRef(SourceType.typeRef, ViewType.typeRef, SourceType.typeRef);
-					members += act.toMethod('apply', SourceType.typeRef) [
-						parameters += act.toParameter('source', SourceType.typeRef);
-						parameters += act.toParameter('view', ViewType.typeRef);
-						body = act.action;
-					]
-					 
-				];
-			];
+			actions.forEach[act, id|act.generateAction(id, it)];
 			
 			val statements = element.eAllContents.filter[it instanceof XmuCoreStatement].map[it as XmuCoreStatement].indexed.toList;
-
+			
+			val typeLiteralMap = element.groupTypeLiterals;
+			typeLiteralMap.values.toSet.forEach[pair|generateTypeLiteral(it, pair.first, pair.second, element);];
+			
+			val patternLiterals = element.eAllContents.filter[it instanceof PatternTypeLiteral].map[it as PatternTypeLiteral].indexed.toList;
+			patternLiterals.forEach[p|generatePatternLiteral(it, p.value, p.key, typeLiteralMap, element);];
+			
 			element.definitions.forEach [ def |
 				if (def instanceof TypeDefinition) {
-					generateTypeDefinition(it, def, element);
-				} else if (def instanceof PatternDefinition) {
-					generatePatternDefinition(it, def, element);
+					generateTypeDefinition(it, def, typeLiteralMap, patternLiterals, element);
 				} else if(def instanceof IndexDefinition) {
 					members += def.toField('index_'+def.name, IndexSignature.typeRef) [
 						visibility = JvmVisibility.PRIVATE
@@ -278,7 +205,7 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 						visibility = JvmVisibility.PUBLIC;
 						body='''
 						if(index_«def.name»==null) {
-							index_«def.name» = new «IndexSignature.typeRef.qualifiedName»("«(def as IndexDefinition).name»", «(def as IndexDefinition).sourceType.typeAccessor», «(def as IndexDefinition).viewType.typeAccessor»);
+							index_«def.name» = new «IndexSignature.typeRef.qualifiedName»("«(def as IndexDefinition).name»", «(def as IndexDefinition).sourceType.typeAccessor(typeLiteralMap)», «(def as IndexDefinition).viewType.typeAccessor(typeLiteralMap)»);
 						}
 						return index_«def.name»;
 						'''
@@ -293,25 +220,11 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 						visibility = JvmVisibility.PUBLIC;
 						exceptions += BidirectionalTransformationDefinitionException.typeRef;
 						
-						val privatePatterns = def.eAllContents.filter[e| e instanceof PatternDefinition].map[it as PatternDefinition].indexed.toList;
-						
 						body=[appendable|
 							appendable
 								.append('''if(xmu_«def.name»==null) {''').newLine
-								.append('''
-								«FOR Pair<Integer, PatternDefinition> pair : privatePatterns»
-								«Pattern.typeRef.qualifiedName» pattern__internal«pair.key»;
-								{
-									«pair.value.generatePatternConstructionCode('_internal'+pair.key, element)»
-								}
-								«IF pair.value.type!==null && !element.definitions.exists[d| d instanceof TypeDefinition && d.name.equals(pair.value.type)]»
-								«ContextType.typeRef.qualifiedName» type__internal«pair.value.type.toFirstUpper» = pattern__internal«pair.key».getType();
-								«ENDIF»
-								«ENDFOR»
-								
-								''')
 								.append('''xmu_«def.name» = ''')
-								.generateXmuCode((def as BXFunctionDefinition).statement, statements, privatePatterns, conditions, actions, element).append(';').newLine
+								.generateXmuCode((def as BXFunctionDefinition).statement, statements, typeLiteralMap, patternLiterals, conditions, actions, element).append(';').newLine
 								.append('}').newLine
 								.append('''return xmu_«def.name»;''')
 						]
@@ -319,6 +232,126 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 				}
 			];
 		]);
+	}
+		
+	protected def generatePatternLiteral(JvmGenericType owner, PatternTypeLiteral literal, Integer id, Map<EObject, Tuple2<TupleType, Integer>> typeLiteralMap, BXProgram program) {
+		owner.members += literal.toField('pattern_' + id, Pattern.typeRef) [
+			visibility = JvmVisibility.PRIVATE;
+		];
+		
+		val nodes = literal.eAllContents.filter[it instanceof PatternNode].map[it as PatternNode].toList;
+		val edges = literal.eAllContents.filter[it instanceof PatternEdge].map[it as PatternEdge].toList;
+		val typeGraph = literal.source;
+		val patternTypeId = typeLiteralMap.get(literal).second;
+		
+		owner.members += literal.toMethod('getPattern_'+id, Pattern.typeRef)[
+			visibility = JvmVisibility.PUBLIC;
+			body = '''
+				if(pattern_«id»==null) {
+					«TypeGraph.typeRef.qualifiedName» typeGraph = getTypeGraph_«typeGraph.shortName.toFirstUpper»();
+					pattern_«id» = new «Pattern.typeRef.qualifiedName»(typeGraph);
+					«FOR node : nodes»
+						«ITypeNode.typeRef.qualifiedName» «node.name»_type = typeGraph.«IF node.type instanceof EClass»getTypeNode«ELSE»getDataTypeNode«ENDIF»("«node.type.name»");
+						pattern_«id».appendPatternNode("«node.name»", «node.name»_type);
+					«ENDFOR»
+					«FOR edge : edges»
+						«val tarNode = if(edge.value instanceof PatternNode) edge.value as PatternNode else if(edge.value instanceof PatternNodeRef) (edge.value as PatternNodeRef).node else null»
+						«val edgeName = if(edge.name!==null) edge.name else ((edge.eContainer as PatternNode).name+'_'+edge.feature.name+'_'+(if(tarNode!==null) tarNode.name else '?'))»
+						«IStructuralFeatureEdge.typeRef.qualifiedName» «edgeName»_type = typeGraph.«IF edge.feature instanceof EReference»getTypeEdge«ELSE»getPropertyEdge«ENDIF»((«TypeNode.typeRef.qualifiedName») «(edge.eContainer as PatternNode).name»_type,"«edge.feature.name»");
+						pattern_«id».appendPatternEdge("«edgeName»", "«(edge.eContainer as PatternNode).name»", "«tarNode.name»", «edgeName»_type);
+					«ENDFOR»
+					
+					pattern_«id».setType(getType_«patternTypeId»());
+				}
+				return pattern_«id»;
+			'''
+		]
+	}
+	
+	protected def void generateAction(ContextAwareUnidirectionalAction act, Integer id, JvmGenericType type) {
+		type.members += act.toClass('UnidirectionalAction'+id)[
+			superTypes += BiFunction.typeRef(SourceType.typeRef, ViewType.typeRef, SourceType.typeRef);
+			members += act.toMethod('apply', SourceType.typeRef) [
+				parameters += act.toParameter('source', SourceType.typeRef);
+				parameters += act.toParameter('view', ViewType.typeRef);
+				body = act.action;
+			]
+			 
+		]
+	}
+	
+	protected def void generateCondition(ContextAwareCondition cond, Integer id, JvmGenericType type) {
+		type.members += cond.toClass('Condition'+id)[
+			if (cond.eContainer instanceof XmuCoreAlign) {
+				superTypes += BiFunction.typeRef(Context.typeRef, Context.typeRef, Boolean.typeRef);
+				members += cond.toMethod('apply', Boolean.typeRef) [
+					parameters += cond.toParameter('source', Context.typeRef);
+					parameters += cond.toParameter('view', Context.typeRef);
+					body = cond.condition;
+				]
+			} else {
+				superTypes += BiFunction.typeRef(SourceType.typeRef, ViewType.typeRef, Boolean.typeRef);
+				members += cond.toMethod('apply', Boolean.typeRef) [
+					parameters += cond.toParameter('source', SourceType.typeRef);
+					parameters += cond.toParameter('view', ViewType.typeRef);
+					body = cond.condition;
+				]
+			}
+		]
+	}
+	
+	protected def void generateImportSection(ImportSection i, JvmGenericType type) {
+		type.members += i.toField('typeGraph_' + i.shortName, TypeGraph.typeRef) [
+			visibility = JvmVisibility.PRIVATE
+		];
+		type.members += i.toMethod('getTypeGraph_' + i.shortName.toFirstUpper, TypeGraph.typeRef) [
+			visibility = JvmVisibility.PUBLIC;
+			
+			val eClasses = i.metamodel.eAllContents.filter[o | o instanceof EClass || o instanceof EReference].map[o| if(o instanceof EClass) o as EClass else (o as EReference).EReferenceType].toSet;
+			val eDataTypes = i.metamodel.eAllContents.filter[o | o instanceof EDataType || o instanceof EAttribute].map[o| if(o instanceof EDataType) o as EDataType else (o as EAttribute).EAttributeType].toSet;
+			val eReferences = i.metamodel.eAllContents.filter[o | o instanceof EReference].map[it as EReference].toSet;
+			val eAttributes = i.metamodel.eAllContents.filter[o | o instanceof EAttribute].map[it as EAttribute].toSet;
+			
+			val ordered = <EClass>newArrayList;
+			
+			for(o : eClasses) {
+				insertInOrder(ordered, o, eClasses);
+			}
+			
+			body = '''
+				if(typeGraph_«i.shortName»==null) {
+					typeGraph_«i.shortName» = new «TypeGraph.typeRef.qualifiedName»();
+					«FOR t : ordered»
+						typeGraph_«i.shortName».declare("«IF t.abstract»@«ENDIF»«t.name»«FOR s : t.ESuperTypes»«IF eClasses.contains(s)»,«s.name»«ENDIF»«ENDFOR»");
+					«ENDFOR»
+					«FOR d : eDataTypes»
+						«IF d instanceof EEnum»
+							typeGraph_«i.shortName».declare("«d.name»:java.lang.String");
+						«ELSE»
+							typeGraph_«i.shortName».declare("«d.name»:«d.instanceClass.typeRef.qualifiedName»");
+						«ENDIF»
+					«ENDFOR»
+					«FOR a : eAttributes»
+						typeGraph_«i.shortName».declare("«a.name»:«(a.eContainer as EClass).name»->«a.EAttributeType.name»«IF a.many»«IF a.unique»*«ELSE»#«ENDIF»«ENDIF»");
+					«ENDFOR»
+					«FOR a : eReferences»
+						typeGraph_«i.shortName».declare("«IF a.isContainment»@«ENDIF»«a.name»:«(a.eContainer as EClass).name»->«a.EReferenceType.name»«IF a.many»«IF a.unique»*«ELSE»#«ENDIF»«ENDIF»");
+					«ENDFOR»
+				}
+				return typeGraph_«i.shortName»;
+			'''
+		];
+		
+		type.members += i.toMethod('''load«i.shortName.toFirstUpper»Model''', TypedGraph.typeRef) [
+			parameters += i.toParameter('modelUri', URI.typeRef);
+			parameters += i.toParameter('metamodelUri', URI.typeRef);
+			body = '''
+				«EPackage.typeRef.qualifiedName» pack = «EcoreModelUtil.typeRef.qualifiedName».loadPacakge(metamodelUri);
+				«EObject.typeRef.qualifiedName» root = «EcoreModelUtil.typeRef.qualifiedName».load(modelUri);
+				«TypedGraph.typeRef.qualifiedName» graph = «EcoreModelUtil.typeRef.qualifiedName».load(root, getTypeGraph_«i.shortName.toFirstUpper»());
+				return graph;
+			'''
+		]
 	}
 		
 	protected def String toJavaClassName(URI uri) {
@@ -352,40 +385,27 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 			objects.add(o);
 		}
 	}
-		
-//	def computeContext(ContextAwareCondition condition) {
-//		val container = condition.eContainer;
-//		if(container instanceof XmuCoreSwitchBranch || container instanceof XmuCoreSwitchAdaption) {
-//			val switchStmt = container.eContainer as XmuCoreSwitch;
-//			val sourceType = switchStmt.sourceType;
-//			val viewType = switchStmt.viewType;
-//			
-//			
-//		} else  {
-//			
-//		}
-//	}
 	
-	def ITreeAppendable generateXmuCode(ITreeAppendable appendable, XmuCoreStatement statement, List<Pair<Integer, XmuCoreStatement>> indexed, List<Pair<Integer, PatternDefinition>> pairs, List<ContextAwareCondition> conditions, List<ContextAwareUnidirectionalAction> actions, BXProgram program) {
-		val key = 'xmu'+indexed.findFirst[it.value===statement].key
+	def ITreeAppendable generateXmuCode(ITreeAppendable appendable, XmuCoreStatement statement, List<Pair<Integer, XmuCoreStatement>> indexedStatements, Map<EObject, Tuple2<TupleType, Integer>> typeLiteralMap, List<Pair<Integer, PatternTypeLiteral>> patternLiterals, List<ContextAwareCondition> conditions, List<ContextAwareUnidirectionalAction> actions, BXProgram program) {
+		val key = 'xmu'+indexedStatements.findFirst[it.value===statement].key
 		
 		switch statement {
 			XmuCoreMatchSource : {
-				val srcType = (statement as XmuCoreMatchSource).sourceType.typeAccessor;
+				val srcType = (statement as XmuCoreMatchSource).sourceType.typeAccessor(typeLiteralMap);
 				val pattern = (statement as XmuCoreMatchSource).pattern;
 				val body = (statement as XmuCoreMatchSource).body;
-				return appendable.append('''new «MatchSource.typeRef.qualifiedName»("«key»", «srcType», «pattern.patternAccessor(pairs)»,''')
+				return appendable.append('''new «MatchSource.typeRef.qualifiedName»("«key»", «srcType», «pattern.patternAccessor(patternLiterals)»,''')
 					.newLine.increaseIndentation
-					.generateXmuCode(body, indexed, pairs, conditions, actions, program)
+					.generateXmuCode(body, indexedStatements, typeLiteralMap, patternLiterals, conditions, actions, program)
 					.newLine.decreaseIndentation.append(')')
 			}
 			XmuCoreMatchView : {
-				val viwType = (statement as XmuCoreMatchView).viewType.typeAccessor;
+				val viwType = (statement as XmuCoreMatchView).viewType.typeAccessor(typeLiteralMap);
 				val pattern = (statement as XmuCoreMatchView).pattern;
 				val body = (statement as XmuCoreMatchView).body;
-				return appendable.append('''new «MatchView.typeRef.qualifiedName»("«key»", «viwType», «pattern.patternAccessor(pairs)»,''')
+				return appendable.append('''new «MatchView.typeRef.qualifiedName»("«key»", «viwType», «pattern.patternAccessor(patternLiterals)»,''')
 					.newLine.increaseIndentation
-					.generateXmuCode(body, indexed, pairs, conditions, actions, program)
+					.generateXmuCode(body, indexedStatements, typeLiteralMap, patternLiterals, conditions, actions, program)
 					.newLine.decreaseIndentation.append(')')
 			}
 			XmuCoreExpandSource : {
@@ -393,9 +413,9 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 				val valMappings =  (statement as XmuCoreExpandSource).mappings;
 				val body =  (statement as XmuCoreExpandSource).body;
 				
-				return appendable.append('''new «ExpandSource.typeRef.qualifiedName»("«key»", «pattern.patternAccessor(pairs)», ''')
+				return appendable.append('''new «ExpandSource.typeRef.qualifiedName»("«key»", «pattern.patternAccessor(patternLiterals)», ''')
 					.newLine.increaseIndentation
-					.generateXmuCode(body, indexed, pairs, conditions, actions, program).append(''',''')
+					.generateXmuCode(body, indexedStatements, typeLiteralMap, patternLiterals, conditions, actions, program).append(''',''')
 					.newLine.append('''new «Tuple2.typeRef.qualifiedName»[] {«FOR mapping : valMappings SEPARATOR ','»«Tuple2.typeRef.qualifiedName».make("«mapping.from»", "«mapping.to»")«ENDFOR»}''')
 					.newLine.decreaseIndentation.append(")")
 			}
@@ -404,26 +424,26 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 				val valMappings =  (statement as XmuCoreExpandView).mappings;
 				val body =  (statement as XmuCoreExpandView).body;
 				
-				return appendable.append('''new «ExpandView.typeRef.qualifiedName»("«key»", «pattern.patternAccessor(pairs)», ''')
+				return appendable.append('''new «ExpandView.typeRef.qualifiedName»("«key»", «pattern.patternAccessor(patternLiterals)», ''')
 					.newLine.increaseIndentation
-					.generateXmuCode(body, indexed, pairs, conditions, actions, program).append(''',''')
+					.generateXmuCode(body, indexedStatements, typeLiteralMap, patternLiterals, conditions, actions, program).append(''',''')
 					.newLine.append('''new «Tuple2.typeRef.qualifiedName»[] {«FOR mapping : valMappings SEPARATOR ','»«Tuple2.typeRef.qualifiedName».make("«mapping.from»", "«mapping.to»")«ENDFOR»}''')
 					.newLine.decreaseIndentation.append(")")
 			}
 			XmuCoreParallelComposition : {
-				val srcType = (statement as XmuCoreParallelComposition).sourceType.typeAccessor;
-				val viwType = (statement as XmuCoreParallelComposition).viewType.typeAccessor;
+				val srcType = (statement as XmuCoreParallelComposition).sourceType.typeAccessor(typeLiteralMap);
+				val viwType = (statement as XmuCoreParallelComposition).viewType.typeAccessor(typeLiteralMap);
 				val bodies = (statement as XmuCoreParallelComposition).bodies;
 				var scope = appendable.append('''new «ParallelComposition.typeRef.qualifiedName»("«key»", «srcType», «viwType», new «XmuCore.typeRef.qualifiedName»[] {''')
 					.newLine.increaseIndentation;
 				for(b : bodies) {
-					scope = (if(bodies.indexOf(b)!==0) scope.append(',').newLine else scope).generateXmuCode(b, indexed, pairs, conditions, actions, program);
+					scope = (if(bodies.indexOf(b)!==0) scope.append(',').newLine else scope).generateXmuCode(b, indexedStatements, typeLiteralMap, patternLiterals, conditions, actions, program);
 				}
 				return scope.newLine.decreaseIndentation.append("})")
 			}
 			XmuCoreFork : {
-				val srcType = (statement as XmuCoreFork).sourceType.typeAccessor;
-				val viwType = (statement as XmuCoreFork).viewType.typeAccessor;
+				val srcType = (statement as XmuCoreFork).sourceType.typeAccessor(typeLiteralMap);
+				val viwType = (statement as XmuCoreFork).viewType.typeAccessor(typeLiteralMap);
 				val forks = (statement as XmuCoreFork).forks;
 				var scope = appendable.append('''new «Fork.typeRef.qualifiedName»("«key»", «srcType», «viwType», new «Tuple3.typeRef.qualifiedName»[] {''')
 					.newLine.increaseIndentation;
@@ -432,19 +452,16 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 						.append('''«Tuple3.typeRef.qualifiedName».make(''')
 						.append('''new «Tuple2.typeRef.qualifiedName»[] {«FOR m : f.sourceMappings SEPARATOR ','»«Tuple2.typeRef.qualifiedName».make("«m.from»","«m.to»")«ENDFOR»}, ''')
 						.append('''new «Tuple2.typeRef.qualifiedName»[] {«FOR m : f.viewMappings SEPARATOR ','»«Tuple2.typeRef.qualifiedName».make("«m.from»","«m.to»")«ENDFOR»}, ''')
-						.generateXmuCode(f.body, indexed, pairs, conditions, actions, program).append(')');
+						.generateXmuCode(f.body, indexedStatements, typeLiteralMap, patternLiterals, conditions, actions, program).append(')');
 				}
 				return scope.newLine.decreaseIndentation.append("})")
 			}
 			XmuCoreSwitch: {
-				val srcType = (statement as XmuCoreSwitch).sourceType.typeAccessor;
-				val viwType = (statement as XmuCoreSwitch).viewType.typeAccessor;
+				val srcType = (statement as XmuCoreSwitch).sourceType.typeAccessor(typeLiteralMap);
+				val viwType = (statement as XmuCoreSwitch).viewType.typeAccessor(typeLiteralMap);
 				val branches = (statement as XmuCoreSwitch).branches;
 				val adaptions = (statement as XmuCoreSwitch).adaptions;
-				
-				//Tuple3<BiFunction<SourceType,ViewType,Boolean>,XmuCore,Function<SourceType,Boolean>
-//				val branchType = Tuple3.typeRef(BiFunction.typeRef(SourceType.typeRef, ViewType.typeRef, Boolean.typeRef), XmuCore.typeRef, Function.typeRef(SourceType.typeRef, Boolean.typeRef));
-				
+								
 				var scope = appendable.append('''new «Switch.typeRef.qualifiedName»("«key»", «srcType», «viwType», ''')
 					.newLine.increaseIndentation;
 			
@@ -452,7 +469,7 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 				for(b : branches) {
 					if(branches.get(0)!==b) scope = scope.append(', ');
 					scope = scope.append('''«Tuple3.typeRef.qualifiedName».make(new Condition«conditions.indexOf(b.condition)»(), ''').newLine.increaseIndentation
-							.generateXmuCode(b.action, indexed, pairs, conditions, actions, program).append(''', («Function.typeRef(SourceType.typeRef, Boolean.typeRef).qualifiedName») null)''').newLine.decreaseIndentation;
+							.generateXmuCode(b.action, indexedStatements, typeLiteralMap, patternLiterals, conditions, actions, program).append(''', («Function.typeRef(SourceType.typeRef, Boolean.typeRef).qualifiedName») null)''').newLine.decreaseIndentation;
 				}
 				scope = scope.append('),').newLine.decreaseIndentation
 					.append('''«Arrays.typeRef.qualifiedName».asList(''');
@@ -466,36 +483,38 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 				
 			}
 			XmuCoreGraphReplace : {
-				val srcPat = (statement as XmuCoreGraphReplace).source.patternAccessor(pairs);
-				val viwPat = (statement as XmuCoreGraphReplace).view.patternAccessor(pairs);
+				val srcPat = (statement as XmuCoreGraphReplace).source.patternAccessor(patternLiterals);
+				val viwPat = (statement as XmuCoreGraphReplace).view.patternAccessor(patternLiterals);
 				val conversions = (statement as XmuCoreGraphReplace).conversions;
 				appendable.append('''new «GraphReplace.typeRef.qualifiedName»("«key»", «srcPat», «viwPat», new «Tuple3.typeRef.qualifiedName»[]{«FOR conv : conversions SEPARATOR ','»«Tuple3.typeRef.qualifiedName».make(new String[]{«FOR sk : conv.source SEPARATOR ','»"«sk»"«ENDFOR»}, new String[]{«FOR vk : conv.view SEPARATOR ','»"«vk»"«ENDFOR»}, «conv.bigul.generateBiGuLCode»)«ENDFOR»})''').newLine
 			}
 			XmuCoreAlign : {
-				val srcType = (statement as XmuCoreAlign).sourceType.typeAccessor;
-				val viwType = (statement as XmuCoreAlign).viewType.typeAccessor;
-				val srcPat = (statement as XmuCoreAlign).sourcePattern.patternAccessor(pairs);
-				val viwPat = (statement as XmuCoreAlign).viewPattern.patternAccessor(pairs);
+				val srcType = (statement as XmuCoreAlign).sourceType.typeAccessor(typeLiteralMap);
+				val viwType = (statement as XmuCoreAlign).viewType.typeAccessor(typeLiteralMap);
+				val srcPat = (statement as XmuCoreAlign).sourcePattern.patternAccessor(patternLiterals);
+				val viwPat = (statement as XmuCoreAlign).viewPattern.patternAccessor(patternLiterals);
 				val cond = (statement as XmuCoreAlign).alignment;
 				val match = (statement as XmuCoreAlign).match;
 				val unmatchS = (statement as XmuCoreAlign).unmatchS;
 				val unmatchV = (statement as XmuCoreAlign).unmatchV;
 				
 				appendable.append('''new «Align.typeRef.qualifiedName»("«key»", «srcType», «viwType», «srcPat», «viwPat», new Condition«conditions.indexOf(cond)»(), ''').newLine.increaseIndentation
-					.generateXmuCode(match, indexed, pairs, conditions, actions, program)
+					.generateXmuCode(match, indexedStatements, typeLiteralMap, patternLiterals, conditions, actions, program)
 					.append(''', new UnidirectionalAction«actions.indexOf(unmatchS)»(), new UnidirectionalAction«actions.indexOf(unmatchV)»())''')
 			}
 			XmuCoreFunctionCall : {
-				val st = (statement as XmuCoreFunctionCall).target.sourceType.typeAccessor;
-				val vt = (statement as XmuCoreFunctionCall).target.viewType.typeAccessor;
-				appendable.append('''new «Invocation.typeRef.qualifiedName»("«key»", «st», «vt», ()->getXmu_«(statement as XmuCoreFunctionCall).target.name.toFirstUpper»())''')
+				val st = (statement as XmuCoreFunctionCall).target.sourceType.typeAccessor(typeLiteralMap);
+				val vt = (statement as XmuCoreFunctionCall).target.viewType.typeAccessor(typeLiteralMap);
+				val sk = (statement as XmuCoreFunctionCall).sourceMappings;
+				val vk = (statement as XmuCoreFunctionCall).viewMappings;
+				appendable.append('''new «Invocation.typeRef.qualifiedName»("«key»", «st», «vt», new «Tuple2.typeRef.qualifiedName»[]{«FOR m:sk SEPARATOR ','»«Tuple2.typeRef.qualifiedName».make("«m.from»","«m.to»")«ENDFOR»}, new «Tuple2.typeRef.qualifiedName»[]{«FOR m:vk SEPARATOR ','»«Tuple2.typeRef.qualifiedName».make("«m.from»","«m.to»")«ENDFOR»},()->{try {return getXmu_«(statement as XmuCoreFunctionCall).target.name.toFirstUpper»();} catch(Exception e){return null;}})''')
 			}
 			XmuCoreIndex : {
 				val parts = (statement as XmuCoreIndex).parts;
 				val body = (statement as XmuCoreIndex).body;
 				
 				var scope = appendable.append('''«FOR part : parts»new «Indexing.typeRef.qualifiedName»(getIndex_«part.signature.name.toFirstUpper»(), new String[]{«FOR sk:part.sourceKeys SEPARATOR ','»"«sk»"«ENDFOR»}, new String[]{«FOR vk:part.viewKeys SEPARATOR ','»"«vk»"«ENDFOR»}, «ENDFOR»''');
-				scope = scope.generateXmuCode(body, indexed, pairs, conditions, actions, program);
+				scope = scope.generateXmuCode(body, indexedStatements, typeLiteralMap, patternLiterals, conditions, actions, program);
 				return scope.append('''«FOR part:parts»)«ENDFOR»''')
 			}
 			default:
@@ -510,165 +529,81 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 		}
 	}
 	
-	protected def CharSequence patternAccessor(edu.ustb.sei.mde.bxcore.dsl.bXCore.Pattern pattern, List<Pair<Integer, PatternDefinition>> pairs) {
-		if(pattern instanceof PatternDefinition) 'pattern__internal'+pairs.findFirst[p|p.value===pattern].key
-		else 'getPattern_'+(pattern as PatternDefinitionReference).pattern.name.toFirstUpper+'()'
+	protected def CharSequence patternAccessor(edu.ustb.sei.mde.bxcore.dsl.bXCore.Pattern pattern, List<Pair<Integer, PatternTypeLiteral>> pairs) {
+		if(pattern instanceof PatternTypeLiteral) 'getPattern_'+pairs.findFirst[p|p.value===pattern].key+'()'
+		else (pattern as PatternDefinitionReference).pattern.name+'()'
 	}
 	
-	protected def CharSequence typeAccessor(Pattern pat) {
-		if(pat instanceof PatternDefinitionReference) {
-			'''getType_«(pat as PatternDefinition).type.toFirstUpper»()'''
-		} else {
-			'''type__internal«(pat as PatternDefinition).type.toFirstUpper»()'''
+	protected def CharSequence typeAccessor(Pattern pat, Map<EObject, Pair<TupleType, Integer>> typeLiteralMap) {
+		if(pat instanceof PatternTypeLiteral) {
+			'''getType_«typeLiteralMap.get(pat).value»()'''
+		} else {// for a named pattern, we may use its type function
+			'''getType_«(pat as PatternDefinitionReference).pattern.name.toFirstUpper»()'''
 		}
 	}
 	
-	protected def CharSequence typeAccessor(ContextTypeRef type) {
+	protected def CharSequence typeAccessor(ContextTypeRef type, Map<EObject, Tuple2<TupleType, Integer>> typeLiteralMap) {
 		if(type instanceof DefinedContextTypeRef) {
-			if(type.type instanceof TypeDefinition) '''getType_«(type.type as TypeDefinition).name.toFirstUpper»()'''
-			else if(type.type instanceof PatternDefinition) {
-				if((type.type as PatternDefinition).name===null) '''type__internal«(type.type as PatternDefinition).type.toFirstUpper»'''
-				else '''getType_«(type.type as PatternDefinition).type.toFirstUpper»()'''
-			}
-		} else '''«ContextType.typeRef.qualifiedName».EMPTY_TYPE'''
-	}
-	
-//	protected def CharSequence collectTypeVar(ContextTypeRef type) {
-//		if(type instanceof DefinedContextTypeRef) {
-//			if(type.type instanceof TypeDefinition) '''getType_«(type.type as TypeDefinition).name.toFirstUpper»'''
-//			else if(type.type instanceof PatternDefinition) {
-//				if((type.type as PatternDefinition).name===null) '''type__internal«(type.type as PatternDefinition).type.toFirstUpper»'''
-//				else '''getType_«(type.type as PatternDefinition).type.toFirstUpper»'''
-//			}
-//		} else '''«ContextType.typeRef.qualifiedName».EMPTY_TYPE'''
-//	}
-	
-		
-//	def String computeSourceType(XmuCoreStatement statement, List<Pair<Integer, PatternDefinition>> pairs, BXProgram program) {
-//		val parent = statement.eContainer;
-//		switch parent {
-//			BXFunctionDefinition : ContextType.typeRef.qualifiedName+'.EMPTY_TYPE'
-//		}
-//	}
-	
-	protected def void generatePatternDefinition(JvmGenericType owner, PatternDefinition patternDefinition, BXProgram program) {
-		owner.members += patternDefinition.toField('pattern_' + patternDefinition.name, Pattern.typeRef) [
-			visibility = JvmVisibility.PRIVATE
-		];
-		owner.members +=
-			patternDefinition.toMethod('getPattern_' + patternDefinition.name.toFirstUpper,
-				Pattern.typeRef) [
-				visibility = JvmVisibility.PUBLIC;
-				body = patternDefinition. generatePatternDefinitionCode(program)
-			];
-
-		if(patternDefinition.type !== null) {
-			val patternType = if(patternDefinition.type!==null) program.definitions.findFirst[d|d instanceof TypeDefinition && d.name.equals(patternDefinition.type)] as TypeDefinition else null;
-			if(patternType===null) {
-				owner.members +=
-					patternDefinition.toMethod('getType_' + patternDefinition.name.toFirstUpper,
-						ContextType.typeRef) [
-						visibility = JvmVisibility.PUBLIC;
-						body = '''
-							return getPattern_«patternDefinition.name.toFirstUpper»().getType();
-						'''
-					];
-			}
+			'''getType_«type.type.name.toFirstUpper»()'''
+		} else if(type instanceof TupleTypeLiteral) {
+			'''getType_«typeLiteralMap.get(type).second»()'''
 		}
 	}
 	
-	protected def StringConcatenationClient generatePatternDefinitionCode(PatternDefinition patternDefinition, BXProgram program) {		
-		'''
-			if(pattern_«patternDefinition.name»==null) {
-				«patternDefinition.generatePatternConstructionCode(patternDefinition.name, program)»
-			}
-			return pattern_«patternDefinition.name»;
-		'''
-	}
-	
-	protected def CharSequence generatePatternConstructionCode(PatternDefinition patternDefinition, String patternName, BXProgram program) {
-		val nodes = patternDefinition.eAllContents.filter[it instanceof PatternNode].map[it as PatternNode].
-			toList;
-		val edges = patternDefinition.eAllContents.filter[it instanceof PatternEdge].map[it as PatternEdge].
-			toList;
-				
-		val typeGraphs = nodes.map [ n |
-			val t = (n as PatternNode).type;
-			if (t instanceof PrimitiveTypeRef) {
-				null
-			} else {
-				(t as EcoreTypeRef).type.EPackage
-			}
-		].filter[it !== null].map[p|program.imports.findFirst[it.metamodel === p]].toSet
-				
-		val typeGraph = if (typeGraphs.size === 0) {
-				null
-			} else if (typeGraphs.size >= 1) {
-				typeGraphs.findFirst[true]
-			}
-			 
-		val patternType = if(patternDefinition.type!==null) program.definitions.findFirst[d|d instanceof TypeDefinition && d.name.equals(patternDefinition.type)] as TypeDefinition else null;
-			
-		return '''
-		«TypeGraph.typeRef.qualifiedName» typeGraph = getTypeGraph_«typeGraph.shortName.toFirstUpper»();
-		pattern_«patternName» = new «Pattern.typeRef.qualifiedName»(typeGraph);
-		«FOR node : nodes»
-		«ITypeNode.typeRef.qualifiedName» type_«node.name» = typeGraph.«IF node.type instanceof EcoreTypeRef»«IF (node.type as EcoreTypeRef).type instanceof EClass»getTypeNode«ELSE»getDataTypeNode«ENDIF»("«(node.type as EcoreTypeRef).type.name»")«ELSE»getDataTypeNode("«(node.type as PrimitiveTypeRef).type»")«ENDIF»;
-		pattern_«patternName».appendPatternNode("«node.name»", type_«node.name»);
-		«ENDFOR»
-		«FOR edge : edges»
-		«val tarNode = if(edge.value instanceof PatternNode) edge.value as PatternNode else if(edge.value instanceof PatternNodeRef) (edge.value as PatternNodeRef).node else null»
-		«val edgeName = if(edge.name!==null) edge.name else ((edge.eContainer as PatternNode).name+'_'+edge.feature.name+'_'+(if(tarNode!==null) tarNode.name else '?'))»
-		«IStructuralFeatureEdge.typeRef.qualifiedName» type_«edgeName» = typeGraph.«IF edge.feature instanceof EReference»getTypeEdge«ELSE»getPropertyEdge«ENDIF»((«TypeNode.typeRef.qualifiedName») type_«(edge.eContainer as PatternNode).name»,"«edge.feature.name»");
-		pattern_«patternName».appendPatternEdge("«edgeName»", "«(edge.eContainer as PatternNode).name»", "«tarNode.name»", type_«edgeName»);
-		«ENDFOR»
-		«IF patternDefinition.type!==null»
-			«IF patternType!==null»
-				pattern_«patternName».setType(getType_«patternDefinition.type»());
-			«ENDIF»
-		«ENDIF»
-		'''
-	}
-	
-	protected def boolean generateTypeDefinition(JvmGenericType owner, TypeDefinition typeDef, BXProgram program) {
-		owner.members += typeDef.toField('type_' + typeDef.name, ContextType.typeRef) [
+	protected def generateTypeLiteral(JvmGenericType owner, TupleType tuple, int id, BXProgram program) {
+		owner.members += program.toField('type_' + id, ContextType.typeRef) [
 			visibility = JvmVisibility.PRIVATE
 		];
-		owner.members += typeDef.toMethod('getType_' + typeDef.name.toFirstUpper, ContextType.typeRef) [
+		
+		val typeGraph =tuple.importSection;
+		
+		owner.members += program.toMethod('getType_' + id, ContextType.typeRef) [
 			visibility = JvmVisibility.PUBLIC;
-			val elements = typeDef.typeVars;
-			val typeGraphs = elements.map [ n |
-				val t = n.type;
-				if (t instanceof PrimitiveTypeRef) {
-					null
-				} else if(t instanceof EcoreTypeRef) {
-					(t as EcoreTypeRef).type.EPackage
-				} else {
-					(t as FeatureTypeRef).type.EPackage
-				}
-			].filter[it !== null].map[p|program.imports.findFirst[it.metamodel === p]].toSet;
-			val typeGraph = if (typeGraphs.size === 0) {
-					null
-				} else if (typeGraphs.size >= 1) {
-					typeGraphs.findFirst[true]
-				}
+			val elements = tuple.tuples;
 		
 			body = '''
-				if(type_«typeDef.name»==null) {
+				if(type_«id»==null) {
 					«IF elements.empty»
-						type_«typeDef.name» = «ContextType.typeRef.qualifiedName».EMPTY_TYPE;
+						type_«id» = «ContextType.typeRef.qualifiedName».EMPTY_TYPE;
 					«ELSE»
 						«TypeGraph.typeRef.qualifiedName» typeGraph = getTypeGraph_«typeGraph.shortName.toFirstUpper»();
-						type_«typeDef.name» = new «ContextType.typeRef.qualifiedName»();
+						type_«id» = new «ContextType.typeRef.qualifiedName»();
 						«FOR v : elements»
-						Object «v.name»_type = typeGraph.«IF v.type instanceof EcoreTypeRef»«IF (v.type as EcoreTypeRef).type instanceof EClass»getTypeNode«ELSE»getDataTypeNode«ENDIF»("«(v.type as EcoreTypeRef).type.name»")«ELSEIF v.type instanceof FeatureTypeRef»«IF (v.type as FeatureTypeRef).feature instanceof EReference»getTypeEdge«ELSE»getPropertyEdge«ENDIF»(typeGraph.getTypeNode("«(v.type as FeatureTypeRef).type.name»"),"«(v.type as FeatureTypeRef).feature.name»")«ELSE»getDataTypeNode("«(v.type as PrimitiveTypeRef).type»")«ENDIF»;
-						type_«typeDef.name».addField("«v.name»", «v.name»_type);
+						Object «v.first»_type = typeGraph.«IF v.second instanceof EClassifier»«IF v.second instanceof EClass»getTypeNode«ELSE»getDataTypeNode«ENDIF»("«(v.second as EClassifier).name»")«ELSEIF v.second instanceof EStructuralFeature»«IF v.second instanceof EReference»getTypeEdge«ELSE»getPropertyEdge«ENDIF»(typeGraph.getTypeNode("«(v.second as EStructuralFeature).EContainingClass.name»"),"«(v.second as EStructuralFeature).name»")«ELSE»/* ERROR «v.second» */«ENDIF»;
+						type_«id».addField("«v.first»", «v.first»_type);
 					«ENDFOR»
 					«ENDIF»
 				}
-				return type_«typeDef.name»;
+				return type_«id»;
 			'''
 		
 		]
+	}
+	
+	protected def void generateTypeDefinition(JvmGenericType owner, TypeDefinition typeDef, Map<EObject, Tuple2<TupleType, Integer>> typeLiteralMap, List<Pair<Integer, PatternTypeLiteral>> patternLiterals, BXProgram program) {
+		val literal = typeDef.literal;
+		owner.members += typeDef.toMethod('getType_' + typeDef.name.toFirstUpper, ContextType.typeRef) [
+			visibility = JvmVisibility.PUBLIC;
+			body = '''return getType_«typeLiteralMap.get(literal).second»();'''
+		];
+		
+		if(typeDef.literal instanceof PatternTypeLiteral) {
+			owner.members += typeDef.toMethod(typeDef.name, Pattern.typeRef) [
+				body = '''return getPattern_«patternLiterals.findFirst[it.value===typeDef.literal].key»();'''
+			];
+		}
+	}
+	
+	protected def groupTypeLiterals(BXProgram program) {
+		val literals = program.eAllContents.filter[e|e instanceof TypeLiteral].map[return it->TupleType.make(it as TypeLiteral)].toList;
+		val groups = literals.groupBy[it.value];
+		val result = new HashMap;
+		
+		groups.forEach[k,v,id|
+			val pair = Tuple2.make(k,id);
+			v.forEach[p|result.put(p.key, pair);];
+		];
+		
+		return result;
 	}
 }

@@ -14,47 +14,70 @@ ImportSection :
 	'import' metamodel=[ecore::EPackage|STRING] 'as' shortName=ValidID
 ;
 
-
 Definition :
-	TypeDefinition | PatternDefinition | BXFunctionDefinition | IndexDefinition
+	TypeDefinition | BXFunctionDefinition | IndexDefinition
 ;
 
-BXFunctionDefinition :
-	'function' name=ValidID '<' sourceType=ContextTypeRef ',' viewType=ContextTypeRef '>'  '=' statement = XmuCoreStatement
+TypeLiteral :
+	TupleTypeLiteral | PatternTypeLiteral
 ;
 
-TypeDefinition :
-	'type' name=ValidID '=' '(' (typeVars+=TypeVar (',' typeVars+=TypeVar)*)? ')'
+TupleTypeLiteral :
+	UnorderedTupleTypeLiteral | OrderedTupleTypeLiteral | PredefinedTypeLiteral
+;
+
+UnorderedTupleTypeLiteral :
+	source=[ImportSection|ValidID] ('(' elements+=TypeVar (',' elements+=TypeVar)* ')')
+;
+
+OrderedTupleTypeLiteral :
+	source=[ImportSection|ValidID] ('[' elements+=TypeVar (',' elements+=TypeVar)* ']')
 ;
 
 TypeVar :
 	name=ValidID ':' type=TypeRef
 ;
 
-TypeRef :
-	{EcoreTypeRef} type=[ecore::EClassifier|QualifiedValidID] |
-	{FeatureTypeRef} type=[ecore::EClassifier|QualifiedValidID] (=> '::' feature=[ecore::EStructuralFeature | ValidID]) |
-	{PrimitiveTypeRef} type=('int'|'boolean'|'String')
+PredefinedTypeLiteral :
+	type=('empty')
 ;
 
-PatternDefinition :
-	'pattern' name=ValidID '=' root=PatternNode ('as' type=ValidID)?
+PatternTypeLiteral :
+	source=[ImportSection|ValidID] root=PatternNode
+;
+
+TypeDefinition:
+	('type' name=ValidID '=' literal = TypeLiteral) | PatternDefinition
+;
+
+PatternDefinition:
+	'pattern' name=ValidID '=' literal=PatternTypeLiteral
+;
+
+ContextTypeRef :
+	({DefinedContextTypeRef} type=[TypeDefinition|ValidID]) 
+	| TupleTypeLiteral
+;
+
+BXFunctionDefinition :
+	'function' name=ValidID '<' sourceType=ContextTypeRef ',' viewType=ContextTypeRef '>'  '=' statement = XmuCoreStatement
+;
+
+TypeRef :
+	{EcoreTypeRef} type=[ecore::EClassifier|ValidID] |
+	{FeatureTypeRef} type=[ecore::EClassifier|ValidID] (=> '::' feature=[ecore::EStructuralFeature|ValidID])
 ;
 
 IndexDefinition :
 	'index' name=ValidID '<' sourceType=ContextTypeRef ',' viewType=ContextTypeRef '>'
 ;
 
-AnonymousPatternDefinition returns PatternDefinition:
-	root=PatternNode ('as' type=ValidID)?
-;
-
 PatternNode :
-	name=ValidID ':' type=TypeRef ('{' (edges+=PatternEdge (',' edges+=PatternEdge)*)? '}')?
+	name=ValidID ':' type=[ecore::EClassifier|ValidID] ('{' (edges+=PatternEdge (',' edges+=PatternEdge)*)? '}')?
 ;
 
 PatternEdge :
-	(name=ValidID ':')? feature=[ecore::EStructuralFeature|ValidID] operator='=' value=PatternValueCondition
+	name=ValidID ':' feature=[ecore::EStructuralFeature|ValidID] operator='=' value=PatternValueCondition
 ;
 
 PatternValueCondition :
@@ -66,15 +89,7 @@ PatternNodeRef :
 ;
 
 Pattern :
-	AnonymousPatternDefinition | PatternDefinitionReference
-;
-
-ContextType :
-	AnonymousPatternDefinition | TypeDefinition
-;
-
-ContextTypeRef :
-	{DefinedContextTypeRef} type=[ContextType|ValidID] | {EmptyContextTypeRef} 'empty'
+	PatternTypeLiteral | PatternDefinitionReference
 ;
 
 PatternDefinitionReference :
@@ -187,10 +202,6 @@ BiGULReplace :
 
 BiGULSkip :
 	{BiGULSkip} 'skip'
-;
-
-QualifiedValidID :
-	ValidID '.' ValidID
 ;
 
 @Override

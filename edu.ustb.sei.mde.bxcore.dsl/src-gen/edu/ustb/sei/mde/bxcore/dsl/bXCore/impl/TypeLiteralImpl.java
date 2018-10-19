@@ -4,25 +4,27 @@
 package edu.ustb.sei.mde.bxcore.dsl.bXCore.impl;
 
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage;
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.EmptyContextTypeRef;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeLiteral;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Empty Context Type Ref</b></em>'.
+ * An implementation of the model object '<em><b>Type Literal</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class EmptyContextTypeRefImpl extends ContextTypeRefImpl implements EmptyContextTypeRef
+public class TypeLiteralImpl extends MinimalEObjectImpl.Container implements TypeLiteral
 {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected EmptyContextTypeRefImpl()
+  protected TypeLiteralImpl()
   {
     super();
   }
@@ -35,7 +37,7 @@ public class EmptyContextTypeRefImpl extends ContextTypeRefImpl implements Empty
   @Override
   protected EClass eStaticClass()
   {
-    return BXCorePackage.Literals.EMPTY_CONTEXT_TYPE_REF;
+    return BXCorePackage.Literals.TYPE_LITERAL;
   }
 
-} //EmptyContextTypeRefImpl
+} //TypeLiteralImpl

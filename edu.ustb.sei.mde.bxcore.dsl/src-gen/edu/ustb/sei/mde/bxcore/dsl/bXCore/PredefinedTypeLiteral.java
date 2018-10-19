@@ -6,21 +6,21 @@ package edu.ustb.sei.mde.bxcore.dsl.bXCore;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Primitive Type Ref</b></em>'.
+ * A representation of the model object '<em><b>Predefined Type Literal</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PrimitiveTypeRef#getType <em>Type</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PredefinedTypeLiteral#getType <em>Type</em>}</li>
  * </ul>
  *
- * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getPrimitiveTypeRef()
+ * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getPredefinedTypeLiteral()
  * @model
  * @generated
  */
-public interface PrimitiveTypeRef extends TypeRef
+public interface PredefinedTypeLiteral extends TupleTypeLiteral
 {
   /**
    * Returns the value of the '<em><b>Type</b></em>' attribute.
@@ -32,14 +32,14 @@ public interface PrimitiveTypeRef extends TypeRef
    * <!-- end-user-doc -->
    * @return the value of the '<em>Type</em>' attribute.
    * @see #setType(String)
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getPrimitiveTypeRef_Type()
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getPredefinedTypeLiteral_Type()
    * @model
    * @generated
    */
   String getType();
 
   /**
-   * Sets the value of the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PrimitiveTypeRef#getType <em>Type</em>}' attribute.
+   * Sets the value of the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PredefinedTypeLiteral#getType <em>Type</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Type</em>' attribute.
@@ -48,4 +48,4 @@ public interface PrimitiveTypeRef extends TypeRef
    */
   void setType(String value);
 
-} // PrimitiveTypeRef
+} // PredefinedTypeLiteral

@@ -31,12 +31,12 @@ public interface DefinedContextTypeRef extends ContextTypeRef
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Type</em>' reference.
-   * @see #setType(ContextType)
+   * @see #setType(TypeDefinition)
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getDefinedContextTypeRef_Type()
    * @model
    * @generated
    */
-  ContextType getType();
+  TypeDefinition getType();
 
   /**
    * Sets the value of the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.DefinedContextTypeRef#getType <em>Type</em>}' reference.
@@ -46,6 +46,6 @@ public interface DefinedContextTypeRef extends ContextTypeRef
    * @see #getType()
    * @generated
    */
-  void setType(ContextType value);
+  void setType(TypeDefinition value);
 
 } // DefinedContextTypeRef

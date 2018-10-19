@@ -17,6 +17,37 @@
   <eClassifiers xsi:type="ecore:EClass" name="Definition">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TypeLiteral"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TupleTypeLiteral" eSuperTypes="#//TypeLiteral #//ContextTypeRef"/>
+  <eClassifiers xsi:type="ecore:EClass" name="UnorderedTupleTypeLiteral" eSuperTypes="#//TupleTypeLiteral">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//ImportSection"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
+        eType="#//TypeVar" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OrderedTupleTypeLiteral" eSuperTypes="#//TupleTypeLiteral">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//ImportSection"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
+        eType="#//TypeVar" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TypeVar">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//TypeRef"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PredefinedTypeLiteral" eSuperTypes="#//TupleTypeLiteral">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PatternTypeLiteral" eSuperTypes="#//TypeLiteral #//Pattern">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//ImportSection"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="root" eType="#//PatternNode"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TypeDefinition" eSuperTypes="#//Definition">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="literal" eType="#//TypeLiteral"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PatternDefinition" eSuperTypes="#//TypeDefinition"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ContextTypeRef"/>
   <eClassifiers xsi:type="ecore:EClass" name="BXFunctionDefinition" eSuperTypes="#//Definition">
     <eStructuralFeatures xsi:type="ecore:EReference" name="sourceType" eType="#//ContextTypeRef"
         containment="true"/>
@@ -25,20 +56,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="statement" eType="#//XmuCoreStatement"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TypeDefinition" eSuperTypes="#//Definition #//ContextType">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="typeVars" upperBound="-1"
-        eType="#//TypeVar" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TypeVar">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//TypeRef"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TypeRef"/>
-  <eClassifiers xsi:type="ecore:EClass" name="PatternDefinition" eSuperTypes="#//Definition #//Pattern #//ContextType">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="root" eType="#//PatternNode"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TypeRef">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClassifier"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IndexDefinition" eSuperTypes="#//Definition">
     <eStructuralFeatures xsi:type="ecore:EReference" name="sourceType" eType="#//ContextTypeRef"
@@ -48,8 +67,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PatternNode" eSuperTypes="#//PatternValueCondition">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//TypeRef"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClassifier"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="edges" upperBound="-1"
         eType="#//PatternEdge" containment="true"/>
   </eClassifiers>
@@ -65,8 +83,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="node" eType="#//PatternNode"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Pattern"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ContextType"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ContextTypeRef"/>
   <eClassifiers xsi:type="ecore:EClass" name="PatternDefinitionReference" eSuperTypes="#//Pattern">
     <eStructuralFeatures xsi:type="ecore:EReference" name="pattern" eType="#//PatternDefinition"/>
   </eClassifiers>
@@ -219,18 +235,11 @@
   <eClassifiers xsi:type="ecore:EClass" name="BiGULStatement"/>
   <eClassifiers xsi:type="ecore:EClass" name="BiGULReplace" eSuperTypes="#//BiGULStatement"/>
   <eClassifiers xsi:type="ecore:EClass" name="BiGULSkip" eSuperTypes="#//BiGULStatement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="EcoreTypeRef" eSuperTypes="#//TypeRef">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClassifier"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DefinedContextTypeRef" eSuperTypes="#//ContextTypeRef">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//TypeDefinition"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EcoreTypeRef" eSuperTypes="#//TypeRef"/>
   <eClassifiers xsi:type="ecore:EClass" name="FeatureTypeRef" eSuperTypes="#//TypeRef">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClassifier"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="feature" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PrimitiveTypeRef" eSuperTypes="#//TypeRef">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DefinedContextTypeRef" eSuperTypes="#//ContextTypeRef">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//ContextType"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="EmptyContextTypeRef" eSuperTypes="#//ContextTypeRef"/>
 </ecore:EPackage>

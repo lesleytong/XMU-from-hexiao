@@ -12,28 +12,31 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.BiGULSkip;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BiGULStatement;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareCondition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareUnidirectionalAction;
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextType;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextTypeRef;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.Conversion;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.DefinedContextTypeRef;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.Definition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.EcoreTypeRef;
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.EmptyContextTypeRef;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.FeatureTypeRef;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ImportSection;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.IndexDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.IndexPart;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.OrderedTupleTypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.Pattern;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternDefinitionReference;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternEdge;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternNode;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternNodeRef;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternTypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternValueCondition;
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.PrimitiveTypeRef;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.PredefinedTypeLiteral;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.TupleTypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeDefinition;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeRef;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeVar;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.UnorderedTupleTypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.VarMapping;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreAlign;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreCompositionChildStatement;
@@ -99,14 +102,28 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass bxFunctionDefinitionEClass = null;
+  private EClass typeLiteralEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass typeDefinitionEClass = null;
+  private EClass tupleTypeLiteralEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass unorderedTupleTypeLiteralEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass orderedTupleTypeLiteralEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -120,7 +137,21 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass typeRefEClass = null;
+  private EClass predefinedTypeLiteralEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass patternTypeLiteralEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass typeDefinitionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -128,6 +159,27 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * @generated
    */
   private EClass patternDefinitionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass contextTypeRefEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass bxFunctionDefinitionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass typeRefEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -170,20 +222,6 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * @generated
    */
   private EClass patternEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass contextTypeEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass contextTypeRefEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -365,6 +403,13 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass definedContextTypeRefEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass ecoreTypeRefEClass = null;
 
   /**
@@ -373,27 +418,6 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * @generated
    */
   private EClass featureTypeRefEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass primitiveTypeRefEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass definedContextTypeRefEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass emptyContextTypeRefEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -558,6 +582,206 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getTypeLiteral()
+  {
+    return typeLiteralEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getTupleTypeLiteral()
+  {
+    return tupleTypeLiteralEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getUnorderedTupleTypeLiteral()
+  {
+    return unorderedTupleTypeLiteralEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getUnorderedTupleTypeLiteral_Source()
+  {
+    return (EReference)unorderedTupleTypeLiteralEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getUnorderedTupleTypeLiteral_Elements()
+  {
+    return (EReference)unorderedTupleTypeLiteralEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getOrderedTupleTypeLiteral()
+  {
+    return orderedTupleTypeLiteralEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getOrderedTupleTypeLiteral_Source()
+  {
+    return (EReference)orderedTupleTypeLiteralEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getOrderedTupleTypeLiteral_Elements()
+  {
+    return (EReference)orderedTupleTypeLiteralEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getTypeVar()
+  {
+    return typeVarEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getTypeVar_Name()
+  {
+    return (EAttribute)typeVarEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getTypeVar_Type()
+  {
+    return (EReference)typeVarEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getPredefinedTypeLiteral()
+  {
+    return predefinedTypeLiteralEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPredefinedTypeLiteral_Type()
+  {
+    return (EAttribute)predefinedTypeLiteralEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getPatternTypeLiteral()
+  {
+    return patternTypeLiteralEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPatternTypeLiteral_Source()
+  {
+    return (EReference)patternTypeLiteralEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPatternTypeLiteral_Root()
+  {
+    return (EReference)patternTypeLiteralEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getTypeDefinition()
+  {
+    return typeDefinitionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getTypeDefinition_Literal()
+  {
+    return (EReference)typeDefinitionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getPatternDefinition()
+  {
+    return patternDefinitionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getContextTypeRef()
+  {
+    return contextTypeRefEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getBXFunctionDefinition()
   {
     return bxFunctionDefinitionEClass;
@@ -598,56 +822,6 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getTypeDefinition()
-  {
-    return typeDefinitionEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getTypeDefinition_TypeVars()
-  {
-    return (EReference)typeDefinitionEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getTypeVar()
-  {
-    return typeVarEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getTypeVar_Name()
-  {
-    return (EAttribute)typeVarEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getTypeVar_Type()
-  {
-    return (EReference)typeVarEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EClass getTypeRef()
   {
     return typeRefEClass;
@@ -658,29 +832,9 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getPatternDefinition()
+  public EReference getTypeRef_Type()
   {
-    return patternDefinitionEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getPatternDefinition_Root()
-  {
-    return (EReference)patternDefinitionEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getPatternDefinition_Type()
-  {
-    return (EAttribute)patternDefinitionEClass.getEStructuralFeatures().get(1);
+    return (EReference)typeRefEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -841,26 +995,6 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
   public EClass getPattern()
   {
     return patternEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getContextType()
-  {
-    return contextTypeEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getContextTypeRef()
-  {
-    return contextTypeRefEClass;
   }
 
   /**
@@ -1678,76 +1812,6 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getEcoreTypeRef()
-  {
-    return ecoreTypeRefEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getEcoreTypeRef_Type()
-  {
-    return (EReference)ecoreTypeRefEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getFeatureTypeRef()
-  {
-    return featureTypeRefEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getFeatureTypeRef_Type()
-  {
-    return (EReference)featureTypeRefEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getFeatureTypeRef_Feature()
-  {
-    return (EReference)featureTypeRefEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getPrimitiveTypeRef()
-  {
-    return primitiveTypeRefEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getPrimitiveTypeRef_Type()
-  {
-    return (EAttribute)primitiveTypeRefEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EClass getDefinedContextTypeRef()
   {
     return definedContextTypeRefEClass;
@@ -1768,9 +1832,29 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getEmptyContextTypeRef()
+  public EClass getEcoreTypeRef()
   {
-    return emptyContextTypeRefEClass;
+    return ecoreTypeRefEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getFeatureTypeRef()
+  {
+    return featureTypeRefEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getFeatureTypeRef_Feature()
+  {
+    return (EReference)featureTypeRefEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1815,23 +1899,43 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     definitionEClass = createEClass(DEFINITION);
     createEAttribute(definitionEClass, DEFINITION__NAME);
 
-    bxFunctionDefinitionEClass = createEClass(BX_FUNCTION_DEFINITION);
-    createEReference(bxFunctionDefinitionEClass, BX_FUNCTION_DEFINITION__SOURCE_TYPE);
-    createEReference(bxFunctionDefinitionEClass, BX_FUNCTION_DEFINITION__VIEW_TYPE);
-    createEReference(bxFunctionDefinitionEClass, BX_FUNCTION_DEFINITION__STATEMENT);
+    typeLiteralEClass = createEClass(TYPE_LITERAL);
 
-    typeDefinitionEClass = createEClass(TYPE_DEFINITION);
-    createEReference(typeDefinitionEClass, TYPE_DEFINITION__TYPE_VARS);
+    tupleTypeLiteralEClass = createEClass(TUPLE_TYPE_LITERAL);
+
+    unorderedTupleTypeLiteralEClass = createEClass(UNORDERED_TUPLE_TYPE_LITERAL);
+    createEReference(unorderedTupleTypeLiteralEClass, UNORDERED_TUPLE_TYPE_LITERAL__SOURCE);
+    createEReference(unorderedTupleTypeLiteralEClass, UNORDERED_TUPLE_TYPE_LITERAL__ELEMENTS);
+
+    orderedTupleTypeLiteralEClass = createEClass(ORDERED_TUPLE_TYPE_LITERAL);
+    createEReference(orderedTupleTypeLiteralEClass, ORDERED_TUPLE_TYPE_LITERAL__SOURCE);
+    createEReference(orderedTupleTypeLiteralEClass, ORDERED_TUPLE_TYPE_LITERAL__ELEMENTS);
 
     typeVarEClass = createEClass(TYPE_VAR);
     createEAttribute(typeVarEClass, TYPE_VAR__NAME);
     createEReference(typeVarEClass, TYPE_VAR__TYPE);
 
-    typeRefEClass = createEClass(TYPE_REF);
+    predefinedTypeLiteralEClass = createEClass(PREDEFINED_TYPE_LITERAL);
+    createEAttribute(predefinedTypeLiteralEClass, PREDEFINED_TYPE_LITERAL__TYPE);
+
+    patternTypeLiteralEClass = createEClass(PATTERN_TYPE_LITERAL);
+    createEReference(patternTypeLiteralEClass, PATTERN_TYPE_LITERAL__SOURCE);
+    createEReference(patternTypeLiteralEClass, PATTERN_TYPE_LITERAL__ROOT);
+
+    typeDefinitionEClass = createEClass(TYPE_DEFINITION);
+    createEReference(typeDefinitionEClass, TYPE_DEFINITION__LITERAL);
 
     patternDefinitionEClass = createEClass(PATTERN_DEFINITION);
-    createEReference(patternDefinitionEClass, PATTERN_DEFINITION__ROOT);
-    createEAttribute(patternDefinitionEClass, PATTERN_DEFINITION__TYPE);
+
+    contextTypeRefEClass = createEClass(CONTEXT_TYPE_REF);
+
+    bxFunctionDefinitionEClass = createEClass(BX_FUNCTION_DEFINITION);
+    createEReference(bxFunctionDefinitionEClass, BX_FUNCTION_DEFINITION__SOURCE_TYPE);
+    createEReference(bxFunctionDefinitionEClass, BX_FUNCTION_DEFINITION__VIEW_TYPE);
+    createEReference(bxFunctionDefinitionEClass, BX_FUNCTION_DEFINITION__STATEMENT);
+
+    typeRefEClass = createEClass(TYPE_REF);
+    createEReference(typeRefEClass, TYPE_REF__TYPE);
 
     indexDefinitionEClass = createEClass(INDEX_DEFINITION);
     createEReference(indexDefinitionEClass, INDEX_DEFINITION__SOURCE_TYPE);
@@ -1854,10 +1958,6 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     createEReference(patternNodeRefEClass, PATTERN_NODE_REF__NODE);
 
     patternEClass = createEClass(PATTERN);
-
-    contextTypeEClass = createEClass(CONTEXT_TYPE);
-
-    contextTypeRefEClass = createEClass(CONTEXT_TYPE_REF);
 
     patternDefinitionReferenceEClass = createEClass(PATTERN_DEFINITION_REFERENCE);
     createEReference(patternDefinitionReferenceEClass, PATTERN_DEFINITION_REFERENCE__PATTERN);
@@ -1965,20 +2065,13 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
 
     biGULSkipEClass = createEClass(BI_GUL_SKIP);
 
-    ecoreTypeRefEClass = createEClass(ECORE_TYPE_REF);
-    createEReference(ecoreTypeRefEClass, ECORE_TYPE_REF__TYPE);
-
-    featureTypeRefEClass = createEClass(FEATURE_TYPE_REF);
-    createEReference(featureTypeRefEClass, FEATURE_TYPE_REF__TYPE);
-    createEReference(featureTypeRefEClass, FEATURE_TYPE_REF__FEATURE);
-
-    primitiveTypeRefEClass = createEClass(PRIMITIVE_TYPE_REF);
-    createEAttribute(primitiveTypeRefEClass, PRIMITIVE_TYPE_REF__TYPE);
-
     definedContextTypeRefEClass = createEClass(DEFINED_CONTEXT_TYPE_REF);
     createEReference(definedContextTypeRefEClass, DEFINED_CONTEXT_TYPE_REF__TYPE);
 
-    emptyContextTypeRefEClass = createEClass(EMPTY_CONTEXT_TYPE_REF);
+    ecoreTypeRefEClass = createEClass(ECORE_TYPE_REF);
+
+    featureTypeRefEClass = createEClass(FEATURE_TYPE_REF);
+    createEReference(featureTypeRefEClass, FEATURE_TYPE_REF__FEATURE);
   }
 
   /**
@@ -2014,12 +2107,16 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     // Set bounds for type parameters
 
     // Add supertypes to classes
-    bxFunctionDefinitionEClass.getESuperTypes().add(this.getDefinition());
+    tupleTypeLiteralEClass.getESuperTypes().add(this.getTypeLiteral());
+    tupleTypeLiteralEClass.getESuperTypes().add(this.getContextTypeRef());
+    unorderedTupleTypeLiteralEClass.getESuperTypes().add(this.getTupleTypeLiteral());
+    orderedTupleTypeLiteralEClass.getESuperTypes().add(this.getTupleTypeLiteral());
+    predefinedTypeLiteralEClass.getESuperTypes().add(this.getTupleTypeLiteral());
+    patternTypeLiteralEClass.getESuperTypes().add(this.getTypeLiteral());
+    patternTypeLiteralEClass.getESuperTypes().add(this.getPattern());
     typeDefinitionEClass.getESuperTypes().add(this.getDefinition());
-    typeDefinitionEClass.getESuperTypes().add(this.getContextType());
-    patternDefinitionEClass.getESuperTypes().add(this.getDefinition());
-    patternDefinitionEClass.getESuperTypes().add(this.getPattern());
-    patternDefinitionEClass.getESuperTypes().add(this.getContextType());
+    patternDefinitionEClass.getESuperTypes().add(this.getTypeDefinition());
+    bxFunctionDefinitionEClass.getESuperTypes().add(this.getDefinition());
     indexDefinitionEClass.getESuperTypes().add(this.getDefinition());
     patternNodeEClass.getESuperTypes().add(this.getPatternValueCondition());
     patternNodeRefEClass.getESuperTypes().add(this.getPatternValueCondition());
@@ -2038,11 +2135,9 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     xmuCoreIndexEClass.getESuperTypes().add(this.getXmuCoreCompositionChildStatement());
     biGULReplaceEClass.getESuperTypes().add(this.getBiGULStatement());
     biGULSkipEClass.getESuperTypes().add(this.getBiGULStatement());
+    definedContextTypeRefEClass.getESuperTypes().add(this.getContextTypeRef());
     ecoreTypeRefEClass.getESuperTypes().add(this.getTypeRef());
     featureTypeRefEClass.getESuperTypes().add(this.getTypeRef());
-    primitiveTypeRefEClass.getESuperTypes().add(this.getTypeRef());
-    definedContextTypeRefEClass.getESuperTypes().add(this.getContextTypeRef());
-    emptyContextTypeRefEClass.getESuperTypes().add(this.getContextTypeRef());
 
     // Initialize classes and features; add operations and parameters
     initEClass(bxProgramEClass, BXProgram.class, "BXProgram", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2057,23 +2152,43 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     initEClass(definitionEClass, Definition.class, "Definition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getDefinition_Name(), ecorePackage.getEString(), "name", null, 0, 1, Definition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(bxFunctionDefinitionEClass, BXFunctionDefinition.class, "BXFunctionDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getBXFunctionDefinition_SourceType(), this.getContextTypeRef(), null, "sourceType", null, 0, 1, BXFunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getBXFunctionDefinition_ViewType(), this.getContextTypeRef(), null, "viewType", null, 0, 1, BXFunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getBXFunctionDefinition_Statement(), this.getXmuCoreStatement(), null, "statement", null, 0, 1, BXFunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(typeLiteralEClass, TypeLiteral.class, "TypeLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(typeDefinitionEClass, TypeDefinition.class, "TypeDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getTypeDefinition_TypeVars(), this.getTypeVar(), null, "typeVars", null, 0, -1, TypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(tupleTypeLiteralEClass, TupleTypeLiteral.class, "TupleTypeLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(unorderedTupleTypeLiteralEClass, UnorderedTupleTypeLiteral.class, "UnorderedTupleTypeLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getUnorderedTupleTypeLiteral_Source(), this.getImportSection(), null, "source", null, 0, 1, UnorderedTupleTypeLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getUnorderedTupleTypeLiteral_Elements(), this.getTypeVar(), null, "elements", null, 0, -1, UnorderedTupleTypeLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(orderedTupleTypeLiteralEClass, OrderedTupleTypeLiteral.class, "OrderedTupleTypeLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getOrderedTupleTypeLiteral_Source(), this.getImportSection(), null, "source", null, 0, 1, OrderedTupleTypeLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getOrderedTupleTypeLiteral_Elements(), this.getTypeVar(), null, "elements", null, 0, -1, OrderedTupleTypeLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(typeVarEClass, TypeVar.class, "TypeVar", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getTypeVar_Name(), ecorePackage.getEString(), "name", null, 0, 1, TypeVar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getTypeVar_Type(), this.getTypeRef(), null, "type", null, 0, 1, TypeVar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(typeRefEClass, TypeRef.class, "TypeRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEClass(predefinedTypeLiteralEClass, PredefinedTypeLiteral.class, "PredefinedTypeLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getPredefinedTypeLiteral_Type(), ecorePackage.getEString(), "type", null, 0, 1, PredefinedTypeLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(patternTypeLiteralEClass, PatternTypeLiteral.class, "PatternTypeLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getPatternTypeLiteral_Source(), this.getImportSection(), null, "source", null, 0, 1, PatternTypeLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPatternTypeLiteral_Root(), this.getPatternNode(), null, "root", null, 0, 1, PatternTypeLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(typeDefinitionEClass, TypeDefinition.class, "TypeDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getTypeDefinition_Literal(), this.getTypeLiteral(), null, "literal", null, 0, 1, TypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(patternDefinitionEClass, PatternDefinition.class, "PatternDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getPatternDefinition_Root(), this.getPatternNode(), null, "root", null, 0, 1, PatternDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getPatternDefinition_Type(), ecorePackage.getEString(), "type", null, 0, 1, PatternDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(contextTypeRefEClass, ContextTypeRef.class, "ContextTypeRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(bxFunctionDefinitionEClass, BXFunctionDefinition.class, "BXFunctionDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getBXFunctionDefinition_SourceType(), this.getContextTypeRef(), null, "sourceType", null, 0, 1, BXFunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getBXFunctionDefinition_ViewType(), this.getContextTypeRef(), null, "viewType", null, 0, 1, BXFunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getBXFunctionDefinition_Statement(), this.getXmuCoreStatement(), null, "statement", null, 0, 1, BXFunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(typeRefEClass, TypeRef.class, "TypeRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getTypeRef_Type(), ecorePackage.getEClassifier(), null, "type", null, 0, 1, TypeRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(indexDefinitionEClass, IndexDefinition.class, "IndexDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getIndexDefinition_SourceType(), this.getContextTypeRef(), null, "sourceType", null, 0, 1, IndexDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2081,7 +2196,7 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
 
     initEClass(patternNodeEClass, PatternNode.class, "PatternNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getPatternNode_Name(), ecorePackage.getEString(), "name", null, 0, 1, PatternNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getPatternNode_Type(), this.getTypeRef(), null, "type", null, 0, 1, PatternNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPatternNode_Type(), ecorePackage.getEClassifier(), null, "type", null, 0, 1, PatternNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPatternNode_Edges(), this.getPatternEdge(), null, "edges", null, 0, -1, PatternNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(patternEdgeEClass, PatternEdge.class, "PatternEdge", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2096,10 +2211,6 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     initEReference(getPatternNodeRef_Node(), this.getPatternNode(), null, "node", null, 0, 1, PatternNodeRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(patternEClass, Pattern.class, "Pattern", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-    initEClass(contextTypeEClass, ContextType.class, "ContextType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-    initEClass(contextTypeRefEClass, ContextTypeRef.class, "ContextTypeRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(patternDefinitionReferenceEClass, PatternDefinitionReference.class, "PatternDefinitionReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getPatternDefinitionReference_Pattern(), this.getPatternDefinition(), null, "pattern", null, 0, 1, PatternDefinitionReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2207,20 +2318,13 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
 
     initEClass(biGULSkipEClass, BiGULSkip.class, "BiGULSkip", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
+    initEClass(definedContextTypeRefEClass, DefinedContextTypeRef.class, "DefinedContextTypeRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getDefinedContextTypeRef_Type(), this.getTypeDefinition(), null, "type", null, 0, 1, DefinedContextTypeRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
     initEClass(ecoreTypeRefEClass, EcoreTypeRef.class, "EcoreTypeRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getEcoreTypeRef_Type(), ecorePackage.getEClassifier(), null, "type", null, 0, 1, EcoreTypeRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(featureTypeRefEClass, FeatureTypeRef.class, "FeatureTypeRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getFeatureTypeRef_Type(), ecorePackage.getEClassifier(), null, "type", null, 0, 1, FeatureTypeRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getFeatureTypeRef_Feature(), ecorePackage.getEStructuralFeature(), null, "feature", null, 0, 1, FeatureTypeRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(primitiveTypeRefEClass, PrimitiveTypeRef.class, "PrimitiveTypeRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getPrimitiveTypeRef_Type(), ecorePackage.getEString(), "type", null, 0, 1, PrimitiveTypeRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(definedContextTypeRefEClass, DefinedContextTypeRef.class, "DefinedContextTypeRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getDefinedContextTypeRef_Type(), this.getContextType(), null, "type", null, 0, 1, DefinedContextTypeRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(emptyContextTypeRefEClass, EmptyContextTypeRef.class, "EmptyContextTypeRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     // Create resource
     createResource(eNS_URI);

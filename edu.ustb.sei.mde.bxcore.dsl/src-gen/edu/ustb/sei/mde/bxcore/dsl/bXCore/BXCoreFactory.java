@@ -51,22 +51,40 @@ public interface BXCoreFactory extends EFactory
   Definition createDefinition();
 
   /**
-   * Returns a new object of class '<em>BX Function Definition</em>'.
+   * Returns a new object of class '<em>Type Literal</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>BX Function Definition</em>'.
+   * @return a new object of class '<em>Type Literal</em>'.
    * @generated
    */
-  BXFunctionDefinition createBXFunctionDefinition();
+  TypeLiteral createTypeLiteral();
 
   /**
-   * Returns a new object of class '<em>Type Definition</em>'.
+   * Returns a new object of class '<em>Tuple Type Literal</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Type Definition</em>'.
+   * @return a new object of class '<em>Tuple Type Literal</em>'.
    * @generated
    */
-  TypeDefinition createTypeDefinition();
+  TupleTypeLiteral createTupleTypeLiteral();
+
+  /**
+   * Returns a new object of class '<em>Unordered Tuple Type Literal</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Unordered Tuple Type Literal</em>'.
+   * @generated
+   */
+  UnorderedTupleTypeLiteral createUnorderedTupleTypeLiteral();
+
+  /**
+   * Returns a new object of class '<em>Ordered Tuple Type Literal</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Ordered Tuple Type Literal</em>'.
+   * @generated
+   */
+  OrderedTupleTypeLiteral createOrderedTupleTypeLiteral();
 
   /**
    * Returns a new object of class '<em>Type Var</em>'.
@@ -78,13 +96,31 @@ public interface BXCoreFactory extends EFactory
   TypeVar createTypeVar();
 
   /**
-   * Returns a new object of class '<em>Type Ref</em>'.
+   * Returns a new object of class '<em>Predefined Type Literal</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Type Ref</em>'.
+   * @return a new object of class '<em>Predefined Type Literal</em>'.
    * @generated
    */
-  TypeRef createTypeRef();
+  PredefinedTypeLiteral createPredefinedTypeLiteral();
+
+  /**
+   * Returns a new object of class '<em>Pattern Type Literal</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pattern Type Literal</em>'.
+   * @generated
+   */
+  PatternTypeLiteral createPatternTypeLiteral();
+
+  /**
+   * Returns a new object of class '<em>Type Definition</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Type Definition</em>'.
+   * @generated
+   */
+  TypeDefinition createTypeDefinition();
 
   /**
    * Returns a new object of class '<em>Pattern Definition</em>'.
@@ -94,6 +130,33 @@ public interface BXCoreFactory extends EFactory
    * @generated
    */
   PatternDefinition createPatternDefinition();
+
+  /**
+   * Returns a new object of class '<em>Context Type Ref</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Context Type Ref</em>'.
+   * @generated
+   */
+  ContextTypeRef createContextTypeRef();
+
+  /**
+   * Returns a new object of class '<em>BX Function Definition</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>BX Function Definition</em>'.
+   * @generated
+   */
+  BXFunctionDefinition createBXFunctionDefinition();
+
+  /**
+   * Returns a new object of class '<em>Type Ref</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Type Ref</em>'.
+   * @generated
+   */
+  TypeRef createTypeRef();
 
   /**
    * Returns a new object of class '<em>Index Definition</em>'.
@@ -148,24 +211,6 @@ public interface BXCoreFactory extends EFactory
    * @generated
    */
   Pattern createPattern();
-
-  /**
-   * Returns a new object of class '<em>Context Type</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Context Type</em>'.
-   * @generated
-   */
-  ContextType createContextType();
-
-  /**
-   * Returns a new object of class '<em>Context Type Ref</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Context Type Ref</em>'.
-   * @generated
-   */
-  ContextTypeRef createContextTypeRef();
 
   /**
    * Returns a new object of class '<em>Pattern Definition Reference</em>'.
@@ -393,6 +438,15 @@ public interface BXCoreFactory extends EFactory
   BiGULSkip createBiGULSkip();
 
   /**
+   * Returns a new object of class '<em>Defined Context Type Ref</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Defined Context Type Ref</em>'.
+   * @generated
+   */
+  DefinedContextTypeRef createDefinedContextTypeRef();
+
+  /**
    * Returns a new object of class '<em>Ecore Type Ref</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -409,33 +463,6 @@ public interface BXCoreFactory extends EFactory
    * @generated
    */
   FeatureTypeRef createFeatureTypeRef();
-
-  /**
-   * Returns a new object of class '<em>Primitive Type Ref</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Primitive Type Ref</em>'.
-   * @generated
-   */
-  PrimitiveTypeRef createPrimitiveTypeRef();
-
-  /**
-   * Returns a new object of class '<em>Defined Context Type Ref</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Defined Context Type Ref</em>'.
-   * @generated
-   */
-  DefinedContextTypeRef createDefinedContextTypeRef();
-
-  /**
-   * Returns a new object of class '<em>Empty Context Type Ref</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Empty Context Type Ref</em>'.
-   * @generated
-   */
-  EmptyContextTypeRef createEmptyContextTypeRef();
 
   /**
    * Returns the package supported by this factory.

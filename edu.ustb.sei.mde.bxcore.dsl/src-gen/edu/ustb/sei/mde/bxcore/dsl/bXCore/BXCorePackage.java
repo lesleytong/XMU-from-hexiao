@@ -169,6 +169,313 @@ public interface BXCorePackage extends EPackage
   int DEFINITION_FEATURE_COUNT = 1;
 
   /**
+   * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.TypeLiteralImpl <em>Type Literal</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.TypeLiteralImpl
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getTypeLiteral()
+   * @generated
+   */
+  int TYPE_LITERAL = 3;
+
+  /**
+   * The number of structural features of the '<em>Type Literal</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TYPE_LITERAL_FEATURE_COUNT = 0;
+
+  /**
+   * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.TupleTypeLiteralImpl <em>Tuple Type Literal</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.TupleTypeLiteralImpl
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getTupleTypeLiteral()
+   * @generated
+   */
+  int TUPLE_TYPE_LITERAL = 4;
+
+  /**
+   * The number of structural features of the '<em>Tuple Type Literal</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TUPLE_TYPE_LITERAL_FEATURE_COUNT = TYPE_LITERAL_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.UnorderedTupleTypeLiteralImpl <em>Unordered Tuple Type Literal</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.UnorderedTupleTypeLiteralImpl
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getUnorderedTupleTypeLiteral()
+   * @generated
+   */
+  int UNORDERED_TUPLE_TYPE_LITERAL = 5;
+
+  /**
+   * The feature id for the '<em><b>Source</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int UNORDERED_TUPLE_TYPE_LITERAL__SOURCE = TUPLE_TYPE_LITERAL_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Elements</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int UNORDERED_TUPLE_TYPE_LITERAL__ELEMENTS = TUPLE_TYPE_LITERAL_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Unordered Tuple Type Literal</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int UNORDERED_TUPLE_TYPE_LITERAL_FEATURE_COUNT = TUPLE_TYPE_LITERAL_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.OrderedTupleTypeLiteralImpl <em>Ordered Tuple Type Literal</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.OrderedTupleTypeLiteralImpl
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getOrderedTupleTypeLiteral()
+   * @generated
+   */
+  int ORDERED_TUPLE_TYPE_LITERAL = 6;
+
+  /**
+   * The feature id for the '<em><b>Source</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ORDERED_TUPLE_TYPE_LITERAL__SOURCE = TUPLE_TYPE_LITERAL_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Elements</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ORDERED_TUPLE_TYPE_LITERAL__ELEMENTS = TUPLE_TYPE_LITERAL_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Ordered Tuple Type Literal</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ORDERED_TUPLE_TYPE_LITERAL_FEATURE_COUNT = TUPLE_TYPE_LITERAL_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.TypeVarImpl <em>Type Var</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.TypeVarImpl
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getTypeVar()
+   * @generated
+   */
+  int TYPE_VAR = 7;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TYPE_VAR__NAME = 0;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TYPE_VAR__TYPE = 1;
+
+  /**
+   * The number of structural features of the '<em>Type Var</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TYPE_VAR_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PredefinedTypeLiteralImpl <em>Predefined Type Literal</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PredefinedTypeLiteralImpl
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getPredefinedTypeLiteral()
+   * @generated
+   */
+  int PREDEFINED_TYPE_LITERAL = 8;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PREDEFINED_TYPE_LITERAL__TYPE = TUPLE_TYPE_LITERAL_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Predefined Type Literal</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PREDEFINED_TYPE_LITERAL_FEATURE_COUNT = TUPLE_TYPE_LITERAL_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PatternTypeLiteralImpl <em>Pattern Type Literal</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PatternTypeLiteralImpl
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getPatternTypeLiteral()
+   * @generated
+   */
+  int PATTERN_TYPE_LITERAL = 9;
+
+  /**
+   * The feature id for the '<em><b>Source</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PATTERN_TYPE_LITERAL__SOURCE = TYPE_LITERAL_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Root</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PATTERN_TYPE_LITERAL__ROOT = TYPE_LITERAL_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Pattern Type Literal</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PATTERN_TYPE_LITERAL_FEATURE_COUNT = TYPE_LITERAL_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.TypeDefinitionImpl <em>Type Definition</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.TypeDefinitionImpl
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getTypeDefinition()
+   * @generated
+   */
+  int TYPE_DEFINITION = 10;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TYPE_DEFINITION__NAME = DEFINITION__NAME;
+
+  /**
+   * The feature id for the '<em><b>Literal</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TYPE_DEFINITION__LITERAL = DEFINITION_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Type Definition</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TYPE_DEFINITION_FEATURE_COUNT = DEFINITION_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PatternDefinitionImpl <em>Pattern Definition</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PatternDefinitionImpl
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getPatternDefinition()
+   * @generated
+   */
+  int PATTERN_DEFINITION = 11;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PATTERN_DEFINITION__NAME = TYPE_DEFINITION__NAME;
+
+  /**
+   * The feature id for the '<em><b>Literal</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PATTERN_DEFINITION__LITERAL = TYPE_DEFINITION__LITERAL;
+
+  /**
+   * The number of structural features of the '<em>Pattern Definition</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PATTERN_DEFINITION_FEATURE_COUNT = TYPE_DEFINITION_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.ContextTypeRefImpl <em>Context Type Ref</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.ContextTypeRefImpl
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getContextTypeRef()
+   * @generated
+   */
+  int CONTEXT_TYPE_REF = 12;
+
+  /**
+   * The number of structural features of the '<em>Context Type Ref</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXT_TYPE_REF_FEATURE_COUNT = 0;
+
+  /**
    * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXFunctionDefinitionImpl <em>BX Function Definition</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -176,7 +483,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getBXFunctionDefinition()
    * @generated
    */
-  int BX_FUNCTION_DEFINITION = 3;
+  int BX_FUNCTION_DEFINITION = 13;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -224,80 +531,6 @@ public interface BXCorePackage extends EPackage
   int BX_FUNCTION_DEFINITION_FEATURE_COUNT = DEFINITION_FEATURE_COUNT + 3;
 
   /**
-   * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.TypeDefinitionImpl <em>Type Definition</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.TypeDefinitionImpl
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getTypeDefinition()
-   * @generated
-   */
-  int TYPE_DEFINITION = 4;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TYPE_DEFINITION__NAME = DEFINITION__NAME;
-
-  /**
-   * The feature id for the '<em><b>Type Vars</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TYPE_DEFINITION__TYPE_VARS = DEFINITION_FEATURE_COUNT + 0;
-
-  /**
-   * The number of structural features of the '<em>Type Definition</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TYPE_DEFINITION_FEATURE_COUNT = DEFINITION_FEATURE_COUNT + 1;
-
-  /**
-   * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.TypeVarImpl <em>Type Var</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.TypeVarImpl
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getTypeVar()
-   * @generated
-   */
-  int TYPE_VAR = 5;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TYPE_VAR__NAME = 0;
-
-  /**
-   * The feature id for the '<em><b>Type</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TYPE_VAR__TYPE = 1;
-
-  /**
-   * The number of structural features of the '<em>Type Var</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TYPE_VAR_FEATURE_COUNT = 2;
-
-  /**
    * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.TypeRefImpl <em>Type Ref</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -305,7 +538,16 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getTypeRef()
    * @generated
    */
-  int TYPE_REF = 6;
+  int TYPE_REF = 14;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TYPE_REF__TYPE = 0;
 
   /**
    * The number of structural features of the '<em>Type Ref</em>' class.
@@ -314,53 +556,7 @@ public interface BXCorePackage extends EPackage
    * @generated
    * @ordered
    */
-  int TYPE_REF_FEATURE_COUNT = 0;
-
-  /**
-   * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PatternDefinitionImpl <em>Pattern Definition</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PatternDefinitionImpl
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getPatternDefinition()
-   * @generated
-   */
-  int PATTERN_DEFINITION = 7;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PATTERN_DEFINITION__NAME = DEFINITION__NAME;
-
-  /**
-   * The feature id for the '<em><b>Root</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PATTERN_DEFINITION__ROOT = DEFINITION_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Type</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PATTERN_DEFINITION__TYPE = DEFINITION_FEATURE_COUNT + 1;
-
-  /**
-   * The number of structural features of the '<em>Pattern Definition</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PATTERN_DEFINITION_FEATURE_COUNT = DEFINITION_FEATURE_COUNT + 2;
+  int TYPE_REF_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.IndexDefinitionImpl <em>Index Definition</em>}' class.
@@ -370,7 +566,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getIndexDefinition()
    * @generated
    */
-  int INDEX_DEFINITION = 8;
+  int INDEX_DEFINITION = 15;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -416,7 +612,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getPatternValueCondition()
    * @generated
    */
-  int PATTERN_VALUE_CONDITION = 11;
+  int PATTERN_VALUE_CONDITION = 18;
 
   /**
    * The number of structural features of the '<em>Pattern Value Condition</em>' class.
@@ -435,7 +631,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getPatternNode()
    * @generated
    */
-  int PATTERN_NODE = 9;
+  int PATTERN_NODE = 16;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -447,7 +643,7 @@ public interface BXCorePackage extends EPackage
   int PATTERN_NODE__NAME = PATTERN_VALUE_CONDITION_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Type</b></em>' containment reference.
+   * The feature id for the '<em><b>Type</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -481,7 +677,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getPatternEdge()
    * @generated
    */
-  int PATTERN_EDGE = 10;
+  int PATTERN_EDGE = 17;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -536,7 +732,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getPatternNodeRef()
    * @generated
    */
-  int PATTERN_NODE_REF = 12;
+  int PATTERN_NODE_REF = 19;
 
   /**
    * The feature id for the '<em><b>Node</b></em>' reference.
@@ -564,7 +760,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getPattern()
    * @generated
    */
-  int PATTERN = 13;
+  int PATTERN = 20;
 
   /**
    * The number of structural features of the '<em>Pattern</em>' class.
@@ -576,44 +772,6 @@ public interface BXCorePackage extends EPackage
   int PATTERN_FEATURE_COUNT = 0;
 
   /**
-   * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.ContextTypeImpl <em>Context Type</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.ContextTypeImpl
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getContextType()
-   * @generated
-   */
-  int CONTEXT_TYPE = 14;
-
-  /**
-   * The number of structural features of the '<em>Context Type</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONTEXT_TYPE_FEATURE_COUNT = 0;
-
-  /**
-   * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.ContextTypeRefImpl <em>Context Type Ref</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.ContextTypeRefImpl
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getContextTypeRef()
-   * @generated
-   */
-  int CONTEXT_TYPE_REF = 15;
-
-  /**
-   * The number of structural features of the '<em>Context Type Ref</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONTEXT_TYPE_REF_FEATURE_COUNT = 0;
-
-  /**
    * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PatternDefinitionReferenceImpl <em>Pattern Definition Reference</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -621,7 +779,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getPatternDefinitionReference()
    * @generated
    */
-  int PATTERN_DEFINITION_REFERENCE = 16;
+  int PATTERN_DEFINITION_REFERENCE = 21;
 
   /**
    * The feature id for the '<em><b>Pattern</b></em>' reference.
@@ -649,7 +807,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreStatement()
    * @generated
    */
-  int XMU_CORE_STATEMENT = 17;
+  int XMU_CORE_STATEMENT = 22;
 
   /**
    * The number of structural features of the '<em>Xmu Core Statement</em>' class.
@@ -668,7 +826,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreCompositionChildStatement()
    * @generated
    */
-  int XMU_CORE_COMPOSITION_CHILD_STATEMENT = 18;
+  int XMU_CORE_COMPOSITION_CHILD_STATEMENT = 23;
 
   /**
    * The number of structural features of the '<em>Xmu Core Composition Child Statement</em>' class.
@@ -687,7 +845,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreMatchSource()
    * @generated
    */
-  int XMU_CORE_MATCH_SOURCE = 19;
+  int XMU_CORE_MATCH_SOURCE = 24;
 
   /**
    * The feature id for the '<em><b>Source Type</b></em>' containment reference.
@@ -733,7 +891,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreMatchView()
    * @generated
    */
-  int XMU_CORE_MATCH_VIEW = 20;
+  int XMU_CORE_MATCH_VIEW = 25;
 
   /**
    * The feature id for the '<em><b>View Type</b></em>' containment reference.
@@ -779,7 +937,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreExpandSource()
    * @generated
    */
-  int XMU_CORE_EXPAND_SOURCE = 21;
+  int XMU_CORE_EXPAND_SOURCE = 26;
 
   /**
    * The feature id for the '<em><b>Pattern</b></em>' containment reference.
@@ -825,7 +983,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreExpandView()
    * @generated
    */
-  int XMU_CORE_EXPAND_VIEW = 22;
+  int XMU_CORE_EXPAND_VIEW = 27;
 
   /**
    * The feature id for the '<em><b>Pattern</b></em>' containment reference.
@@ -871,7 +1029,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getVarMapping()
    * @generated
    */
-  int VAR_MAPPING = 23;
+  int VAR_MAPPING = 28;
 
   /**
    * The feature id for the '<em><b>From</b></em>' attribute.
@@ -908,7 +1066,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreGraphReplace()
    * @generated
    */
-  int XMU_CORE_GRAPH_REPLACE = 24;
+  int XMU_CORE_GRAPH_REPLACE = 29;
 
   /**
    * The feature id for the '<em><b>Source</b></em>' containment reference.
@@ -954,7 +1112,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreParallelComposition()
    * @generated
    */
-  int XMU_CORE_PARALLEL_COMPOSITION = 25;
+  int XMU_CORE_PARALLEL_COMPOSITION = 30;
 
   /**
    * The feature id for the '<em><b>Source Type</b></em>' containment reference.
@@ -1000,7 +1158,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreSwitch()
    * @generated
    */
-  int XMU_CORE_SWITCH = 26;
+  int XMU_CORE_SWITCH = 31;
 
   /**
    * The feature id for the '<em><b>Source Type</b></em>' containment reference.
@@ -1055,7 +1213,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreSwitchBranch()
    * @generated
    */
-  int XMU_CORE_SWITCH_BRANCH = 27;
+  int XMU_CORE_SWITCH_BRANCH = 32;
 
   /**
    * The feature id for the '<em><b>Condition</b></em>' containment reference.
@@ -1092,7 +1250,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreSwitchAdaption()
    * @generated
    */
-  int XMU_CORE_SWITCH_ADAPTION = 28;
+  int XMU_CORE_SWITCH_ADAPTION = 33;
 
   /**
    * The feature id for the '<em><b>Condition</b></em>' containment reference.
@@ -1129,7 +1287,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getConversion()
    * @generated
    */
-  int CONVERSION = 29;
+  int CONVERSION = 34;
 
   /**
    * The feature id for the '<em><b>Bigul</b></em>' containment reference.
@@ -1175,7 +1333,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreFork()
    * @generated
    */
-  int XMU_CORE_FORK = 30;
+  int XMU_CORE_FORK = 35;
 
   /**
    * The feature id for the '<em><b>Source Type</b></em>' containment reference.
@@ -1221,7 +1379,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreForkBranch()
    * @generated
    */
-  int XMU_CORE_FORK_BRANCH = 31;
+  int XMU_CORE_FORK_BRANCH = 36;
 
   /**
    * The feature id for the '<em><b>Source Mappings</b></em>' containment reference list.
@@ -1267,7 +1425,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreAlign()
    * @generated
    */
-  int XMU_CORE_ALIGN = 32;
+  int XMU_CORE_ALIGN = 37;
 
   /**
    * The feature id for the '<em><b>Source Type</b></em>' containment reference.
@@ -1358,7 +1516,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreFunctionCall()
    * @generated
    */
-  int XMU_CORE_FUNCTION_CALL = 33;
+  int XMU_CORE_FUNCTION_CALL = 38;
 
   /**
    * The feature id for the '<em><b>Source Mappings</b></em>' containment reference list.
@@ -1404,7 +1562,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreIndex()
    * @generated
    */
-  int XMU_CORE_INDEX = 34;
+  int XMU_CORE_INDEX = 39;
 
   /**
    * The feature id for the '<em><b>Parts</b></em>' containment reference list.
@@ -1441,7 +1599,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getIndexPart()
    * @generated
    */
-  int INDEX_PART = 35;
+  int INDEX_PART = 40;
 
   /**
    * The feature id for the '<em><b>Signature</b></em>' reference.
@@ -1487,7 +1645,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getContextAwareCondition()
    * @generated
    */
-  int CONTEXT_AWARE_CONDITION = 36;
+  int CONTEXT_AWARE_CONDITION = 41;
 
   /**
    * The feature id for the '<em><b>Condition</b></em>' containment reference.
@@ -1515,7 +1673,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getContextAwareUnidirectionalAction()
    * @generated
    */
-  int CONTEXT_AWARE_UNIDIRECTIONAL_ACTION = 37;
+  int CONTEXT_AWARE_UNIDIRECTIONAL_ACTION = 42;
 
   /**
    * The feature id for the '<em><b>Action</b></em>' containment reference.
@@ -1543,7 +1701,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getBiGULStatement()
    * @generated
    */
-  int BI_GUL_STATEMENT = 38;
+  int BI_GUL_STATEMENT = 43;
 
   /**
    * The number of structural features of the '<em>Bi GUL Statement</em>' class.
@@ -1562,7 +1720,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getBiGULReplace()
    * @generated
    */
-  int BI_GUL_REPLACE = 39;
+  int BI_GUL_REPLACE = 44;
 
   /**
    * The number of structural features of the '<em>Bi GUL Replace</em>' class.
@@ -1581,7 +1739,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getBiGULSkip()
    * @generated
    */
-  int BI_GUL_SKIP = 40;
+  int BI_GUL_SKIP = 45;
 
   /**
    * The number of structural features of the '<em>Bi GUL Skip</em>' class.
@@ -1593,99 +1751,6 @@ public interface BXCorePackage extends EPackage
   int BI_GUL_SKIP_FEATURE_COUNT = BI_GUL_STATEMENT_FEATURE_COUNT + 0;
 
   /**
-   * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.EcoreTypeRefImpl <em>Ecore Type Ref</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.EcoreTypeRefImpl
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getEcoreTypeRef()
-   * @generated
-   */
-  int ECORE_TYPE_REF = 41;
-
-  /**
-   * The feature id for the '<em><b>Type</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ECORE_TYPE_REF__TYPE = TYPE_REF_FEATURE_COUNT + 0;
-
-  /**
-   * The number of structural features of the '<em>Ecore Type Ref</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ECORE_TYPE_REF_FEATURE_COUNT = TYPE_REF_FEATURE_COUNT + 1;
-
-  /**
-   * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.FeatureTypeRefImpl <em>Feature Type Ref</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.FeatureTypeRefImpl
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getFeatureTypeRef()
-   * @generated
-   */
-  int FEATURE_TYPE_REF = 42;
-
-  /**
-   * The feature id for the '<em><b>Type</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FEATURE_TYPE_REF__TYPE = TYPE_REF_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Feature</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FEATURE_TYPE_REF__FEATURE = TYPE_REF_FEATURE_COUNT + 1;
-
-  /**
-   * The number of structural features of the '<em>Feature Type Ref</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FEATURE_TYPE_REF_FEATURE_COUNT = TYPE_REF_FEATURE_COUNT + 2;
-
-  /**
-   * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PrimitiveTypeRefImpl <em>Primitive Type Ref</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PrimitiveTypeRefImpl
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getPrimitiveTypeRef()
-   * @generated
-   */
-  int PRIMITIVE_TYPE_REF = 43;
-
-  /**
-   * The feature id for the '<em><b>Type</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PRIMITIVE_TYPE_REF__TYPE = TYPE_REF_FEATURE_COUNT + 0;
-
-  /**
-   * The number of structural features of the '<em>Primitive Type Ref</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PRIMITIVE_TYPE_REF_FEATURE_COUNT = TYPE_REF_FEATURE_COUNT + 1;
-
-  /**
    * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.DefinedContextTypeRefImpl <em>Defined Context Type Ref</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1693,7 +1758,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getDefinedContextTypeRef()
    * @generated
    */
-  int DEFINED_CONTEXT_TYPE_REF = 44;
+  int DEFINED_CONTEXT_TYPE_REF = 46;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -1714,23 +1779,69 @@ public interface BXCorePackage extends EPackage
   int DEFINED_CONTEXT_TYPE_REF_FEATURE_COUNT = CONTEXT_TYPE_REF_FEATURE_COUNT + 1;
 
   /**
-   * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.EmptyContextTypeRefImpl <em>Empty Context Type Ref</em>}' class.
+   * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.EcoreTypeRefImpl <em>Ecore Type Ref</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.EmptyContextTypeRefImpl
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getEmptyContextTypeRef()
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.EcoreTypeRefImpl
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getEcoreTypeRef()
    * @generated
    */
-  int EMPTY_CONTEXT_TYPE_REF = 45;
+  int ECORE_TYPE_REF = 47;
 
   /**
-   * The number of structural features of the '<em>Empty Context Type Ref</em>' class.
+   * The feature id for the '<em><b>Type</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EMPTY_CONTEXT_TYPE_REF_FEATURE_COUNT = CONTEXT_TYPE_REF_FEATURE_COUNT + 0;
+  int ECORE_TYPE_REF__TYPE = TYPE_REF__TYPE;
+
+  /**
+   * The number of structural features of the '<em>Ecore Type Ref</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ECORE_TYPE_REF_FEATURE_COUNT = TYPE_REF_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.FeatureTypeRefImpl <em>Feature Type Ref</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.FeatureTypeRefImpl
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getFeatureTypeRef()
+   * @generated
+   */
+  int FEATURE_TYPE_REF = 48;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FEATURE_TYPE_REF__TYPE = TYPE_REF__TYPE;
+
+  /**
+   * The feature id for the '<em><b>Feature</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FEATURE_TYPE_REF__FEATURE = TYPE_REF_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Feature Type Ref</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FEATURE_TYPE_REF_FEATURE_COUNT = TYPE_REF_FEATURE_COUNT + 1;
 
 
   /**
@@ -1830,6 +1941,216 @@ public interface BXCorePackage extends EPackage
   EAttribute getDefinition_Name();
 
   /**
+   * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeLiteral <em>Type Literal</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Type Literal</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeLiteral
+   * @generated
+   */
+  EClass getTypeLiteral();
+
+  /**
+   * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.TupleTypeLiteral <em>Tuple Type Literal</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Tuple Type Literal</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.TupleTypeLiteral
+   * @generated
+   */
+  EClass getTupleTypeLiteral();
+
+  /**
+   * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.UnorderedTupleTypeLiteral <em>Unordered Tuple Type Literal</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Unordered Tuple Type Literal</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.UnorderedTupleTypeLiteral
+   * @generated
+   */
+  EClass getUnorderedTupleTypeLiteral();
+
+  /**
+   * Returns the meta object for the reference '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.UnorderedTupleTypeLiteral#getSource <em>Source</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Source</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.UnorderedTupleTypeLiteral#getSource()
+   * @see #getUnorderedTupleTypeLiteral()
+   * @generated
+   */
+  EReference getUnorderedTupleTypeLiteral_Source();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.UnorderedTupleTypeLiteral#getElements <em>Elements</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Elements</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.UnorderedTupleTypeLiteral#getElements()
+   * @see #getUnorderedTupleTypeLiteral()
+   * @generated
+   */
+  EReference getUnorderedTupleTypeLiteral_Elements();
+
+  /**
+   * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.OrderedTupleTypeLiteral <em>Ordered Tuple Type Literal</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Ordered Tuple Type Literal</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.OrderedTupleTypeLiteral
+   * @generated
+   */
+  EClass getOrderedTupleTypeLiteral();
+
+  /**
+   * Returns the meta object for the reference '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.OrderedTupleTypeLiteral#getSource <em>Source</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Source</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.OrderedTupleTypeLiteral#getSource()
+   * @see #getOrderedTupleTypeLiteral()
+   * @generated
+   */
+  EReference getOrderedTupleTypeLiteral_Source();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.OrderedTupleTypeLiteral#getElements <em>Elements</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Elements</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.OrderedTupleTypeLiteral#getElements()
+   * @see #getOrderedTupleTypeLiteral()
+   * @generated
+   */
+  EReference getOrderedTupleTypeLiteral_Elements();
+
+  /**
+   * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeVar <em>Type Var</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Type Var</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeVar
+   * @generated
+   */
+  EClass getTypeVar();
+
+  /**
+   * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeVar#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeVar#getName()
+   * @see #getTypeVar()
+   * @generated
+   */
+  EAttribute getTypeVar_Name();
+
+  /**
+   * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeVar#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Type</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeVar#getType()
+   * @see #getTypeVar()
+   * @generated
+   */
+  EReference getTypeVar_Type();
+
+  /**
+   * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PredefinedTypeLiteral <em>Predefined Type Literal</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Predefined Type Literal</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.PredefinedTypeLiteral
+   * @generated
+   */
+  EClass getPredefinedTypeLiteral();
+
+  /**
+   * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PredefinedTypeLiteral#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Type</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.PredefinedTypeLiteral#getType()
+   * @see #getPredefinedTypeLiteral()
+   * @generated
+   */
+  EAttribute getPredefinedTypeLiteral_Type();
+
+  /**
+   * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternTypeLiteral <em>Pattern Type Literal</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Pattern Type Literal</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternTypeLiteral
+   * @generated
+   */
+  EClass getPatternTypeLiteral();
+
+  /**
+   * Returns the meta object for the reference '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternTypeLiteral#getSource <em>Source</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Source</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternTypeLiteral#getSource()
+   * @see #getPatternTypeLiteral()
+   * @generated
+   */
+  EReference getPatternTypeLiteral_Source();
+
+  /**
+   * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternTypeLiteral#getRoot <em>Root</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Root</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternTypeLiteral#getRoot()
+   * @see #getPatternTypeLiteral()
+   * @generated
+   */
+  EReference getPatternTypeLiteral_Root();
+
+  /**
+   * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeDefinition <em>Type Definition</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Type Definition</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeDefinition
+   * @generated
+   */
+  EClass getTypeDefinition();
+
+  /**
+   * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeDefinition#getLiteral <em>Literal</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Literal</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeDefinition#getLiteral()
+   * @see #getTypeDefinition()
+   * @generated
+   */
+  EReference getTypeDefinition_Literal();
+
+  /**
+   * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternDefinition <em>Pattern Definition</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Pattern Definition</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternDefinition
+   * @generated
+   */
+  EClass getPatternDefinition();
+
+  /**
+   * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextTypeRef <em>Context Type Ref</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Context Type Ref</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextTypeRef
+   * @generated
+   */
+  EClass getContextTypeRef();
+
+  /**
    * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.BXFunctionDefinition <em>BX Function Definition</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1873,59 +2194,6 @@ public interface BXCorePackage extends EPackage
   EReference getBXFunctionDefinition_Statement();
 
   /**
-   * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeDefinition <em>Type Definition</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Type Definition</em>'.
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeDefinition
-   * @generated
-   */
-  EClass getTypeDefinition();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeDefinition#getTypeVars <em>Type Vars</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Type Vars</em>'.
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeDefinition#getTypeVars()
-   * @see #getTypeDefinition()
-   * @generated
-   */
-  EReference getTypeDefinition_TypeVars();
-
-  /**
-   * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeVar <em>Type Var</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Type Var</em>'.
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeVar
-   * @generated
-   */
-  EClass getTypeVar();
-
-  /**
-   * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeVar#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeVar#getName()
-   * @see #getTypeVar()
-   * @generated
-   */
-  EAttribute getTypeVar_Name();
-
-  /**
-   * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeVar#getType <em>Type</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Type</em>'.
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeVar#getType()
-   * @see #getTypeVar()
-   * @generated
-   */
-  EReference getTypeVar_Type();
-
-  /**
    * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeRef <em>Type Ref</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1936,36 +2204,15 @@ public interface BXCorePackage extends EPackage
   EClass getTypeRef();
 
   /**
-   * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternDefinition <em>Pattern Definition</em>}'.
+   * Returns the meta object for the reference '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeRef#getType <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Pattern Definition</em>'.
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternDefinition
+   * @return the meta object for the reference '<em>Type</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeRef#getType()
+   * @see #getTypeRef()
    * @generated
    */
-  EClass getPatternDefinition();
-
-  /**
-   * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternDefinition#getRoot <em>Root</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Root</em>'.
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternDefinition#getRoot()
-   * @see #getPatternDefinition()
-   * @generated
-   */
-  EReference getPatternDefinition_Root();
-
-  /**
-   * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternDefinition#getType <em>Type</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Type</em>'.
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternDefinition#getType()
-   * @see #getPatternDefinition()
-   * @generated
-   */
-  EAttribute getPatternDefinition_Type();
+  EReference getTypeRef_Type();
 
   /**
    * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.IndexDefinition <em>Index Definition</em>}'.
@@ -2021,10 +2268,10 @@ public interface BXCorePackage extends EPackage
   EAttribute getPatternNode_Name();
 
   /**
-   * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternNode#getType <em>Type</em>}'.
+   * Returns the meta object for the reference '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternNode#getType <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Type</em>'.
+   * @return the meta object for the reference '<em>Type</em>'.
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternNode#getType()
    * @see #getPatternNode()
    * @generated
@@ -2136,26 +2383,6 @@ public interface BXCorePackage extends EPackage
    * @generated
    */
   EClass getPattern();
-
-  /**
-   * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextType <em>Context Type</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Context Type</em>'.
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextType
-   * @generated
-   */
-  EClass getContextType();
-
-  /**
-   * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextTypeRef <em>Context Type Ref</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Context Type Ref</em>'.
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextTypeRef
-   * @generated
-   */
-  EClass getContextTypeRef();
 
   /**
    * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternDefinitionReference <em>Pattern Definition Reference</em>}'.
@@ -3024,80 +3251,6 @@ public interface BXCorePackage extends EPackage
   EClass getBiGULSkip();
 
   /**
-   * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.EcoreTypeRef <em>Ecore Type Ref</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Ecore Type Ref</em>'.
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.EcoreTypeRef
-   * @generated
-   */
-  EClass getEcoreTypeRef();
-
-  /**
-   * Returns the meta object for the reference '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.EcoreTypeRef#getType <em>Type</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Type</em>'.
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.EcoreTypeRef#getType()
-   * @see #getEcoreTypeRef()
-   * @generated
-   */
-  EReference getEcoreTypeRef_Type();
-
-  /**
-   * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.FeatureTypeRef <em>Feature Type Ref</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Feature Type Ref</em>'.
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.FeatureTypeRef
-   * @generated
-   */
-  EClass getFeatureTypeRef();
-
-  /**
-   * Returns the meta object for the reference '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.FeatureTypeRef#getType <em>Type</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Type</em>'.
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.FeatureTypeRef#getType()
-   * @see #getFeatureTypeRef()
-   * @generated
-   */
-  EReference getFeatureTypeRef_Type();
-
-  /**
-   * Returns the meta object for the reference '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.FeatureTypeRef#getFeature <em>Feature</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Feature</em>'.
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.FeatureTypeRef#getFeature()
-   * @see #getFeatureTypeRef()
-   * @generated
-   */
-  EReference getFeatureTypeRef_Feature();
-
-  /**
-   * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PrimitiveTypeRef <em>Primitive Type Ref</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Primitive Type Ref</em>'.
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.PrimitiveTypeRef
-   * @generated
-   */
-  EClass getPrimitiveTypeRef();
-
-  /**
-   * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PrimitiveTypeRef#getType <em>Type</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Type</em>'.
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.PrimitiveTypeRef#getType()
-   * @see #getPrimitiveTypeRef()
-   * @generated
-   */
-  EAttribute getPrimitiveTypeRef_Type();
-
-  /**
    * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.DefinedContextTypeRef <em>Defined Context Type Ref</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3119,14 +3272,35 @@ public interface BXCorePackage extends EPackage
   EReference getDefinedContextTypeRef_Type();
 
   /**
-   * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.EmptyContextTypeRef <em>Empty Context Type Ref</em>}'.
+   * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.EcoreTypeRef <em>Ecore Type Ref</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Empty Context Type Ref</em>'.
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.EmptyContextTypeRef
+   * @return the meta object for class '<em>Ecore Type Ref</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.EcoreTypeRef
    * @generated
    */
-  EClass getEmptyContextTypeRef();
+  EClass getEcoreTypeRef();
+
+  /**
+   * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.FeatureTypeRef <em>Feature Type Ref</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Feature Type Ref</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.FeatureTypeRef
+   * @generated
+   */
+  EClass getFeatureTypeRef();
+
+  /**
+   * Returns the meta object for the reference '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.FeatureTypeRef#getFeature <em>Feature</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Feature</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.FeatureTypeRef#getFeature()
+   * @see #getFeatureTypeRef()
+   * @generated
+   */
+  EReference getFeatureTypeRef_Feature();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -3230,6 +3404,186 @@ public interface BXCorePackage extends EPackage
     EAttribute DEFINITION__NAME = eINSTANCE.getDefinition_Name();
 
     /**
+     * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.TypeLiteralImpl <em>Type Literal</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.TypeLiteralImpl
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getTypeLiteral()
+     * @generated
+     */
+    EClass TYPE_LITERAL = eINSTANCE.getTypeLiteral();
+
+    /**
+     * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.TupleTypeLiteralImpl <em>Tuple Type Literal</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.TupleTypeLiteralImpl
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getTupleTypeLiteral()
+     * @generated
+     */
+    EClass TUPLE_TYPE_LITERAL = eINSTANCE.getTupleTypeLiteral();
+
+    /**
+     * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.UnorderedTupleTypeLiteralImpl <em>Unordered Tuple Type Literal</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.UnorderedTupleTypeLiteralImpl
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getUnorderedTupleTypeLiteral()
+     * @generated
+     */
+    EClass UNORDERED_TUPLE_TYPE_LITERAL = eINSTANCE.getUnorderedTupleTypeLiteral();
+
+    /**
+     * The meta object literal for the '<em><b>Source</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference UNORDERED_TUPLE_TYPE_LITERAL__SOURCE = eINSTANCE.getUnorderedTupleTypeLiteral_Source();
+
+    /**
+     * The meta object literal for the '<em><b>Elements</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference UNORDERED_TUPLE_TYPE_LITERAL__ELEMENTS = eINSTANCE.getUnorderedTupleTypeLiteral_Elements();
+
+    /**
+     * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.OrderedTupleTypeLiteralImpl <em>Ordered Tuple Type Literal</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.OrderedTupleTypeLiteralImpl
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getOrderedTupleTypeLiteral()
+     * @generated
+     */
+    EClass ORDERED_TUPLE_TYPE_LITERAL = eINSTANCE.getOrderedTupleTypeLiteral();
+
+    /**
+     * The meta object literal for the '<em><b>Source</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ORDERED_TUPLE_TYPE_LITERAL__SOURCE = eINSTANCE.getOrderedTupleTypeLiteral_Source();
+
+    /**
+     * The meta object literal for the '<em><b>Elements</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ORDERED_TUPLE_TYPE_LITERAL__ELEMENTS = eINSTANCE.getOrderedTupleTypeLiteral_Elements();
+
+    /**
+     * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.TypeVarImpl <em>Type Var</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.TypeVarImpl
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getTypeVar()
+     * @generated
+     */
+    EClass TYPE_VAR = eINSTANCE.getTypeVar();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute TYPE_VAR__NAME = eINSTANCE.getTypeVar_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference TYPE_VAR__TYPE = eINSTANCE.getTypeVar_Type();
+
+    /**
+     * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PredefinedTypeLiteralImpl <em>Predefined Type Literal</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PredefinedTypeLiteralImpl
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getPredefinedTypeLiteral()
+     * @generated
+     */
+    EClass PREDEFINED_TYPE_LITERAL = eINSTANCE.getPredefinedTypeLiteral();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PREDEFINED_TYPE_LITERAL__TYPE = eINSTANCE.getPredefinedTypeLiteral_Type();
+
+    /**
+     * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PatternTypeLiteralImpl <em>Pattern Type Literal</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PatternTypeLiteralImpl
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getPatternTypeLiteral()
+     * @generated
+     */
+    EClass PATTERN_TYPE_LITERAL = eINSTANCE.getPatternTypeLiteral();
+
+    /**
+     * The meta object literal for the '<em><b>Source</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PATTERN_TYPE_LITERAL__SOURCE = eINSTANCE.getPatternTypeLiteral_Source();
+
+    /**
+     * The meta object literal for the '<em><b>Root</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PATTERN_TYPE_LITERAL__ROOT = eINSTANCE.getPatternTypeLiteral_Root();
+
+    /**
+     * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.TypeDefinitionImpl <em>Type Definition</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.TypeDefinitionImpl
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getTypeDefinition()
+     * @generated
+     */
+    EClass TYPE_DEFINITION = eINSTANCE.getTypeDefinition();
+
+    /**
+     * The meta object literal for the '<em><b>Literal</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference TYPE_DEFINITION__LITERAL = eINSTANCE.getTypeDefinition_Literal();
+
+    /**
+     * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PatternDefinitionImpl <em>Pattern Definition</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PatternDefinitionImpl
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getPatternDefinition()
+     * @generated
+     */
+    EClass PATTERN_DEFINITION = eINSTANCE.getPatternDefinition();
+
+    /**
+     * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.ContextTypeRefImpl <em>Context Type Ref</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.ContextTypeRefImpl
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getContextTypeRef()
+     * @generated
+     */
+    EClass CONTEXT_TYPE_REF = eINSTANCE.getContextTypeRef();
+
+    /**
      * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXFunctionDefinitionImpl <em>BX Function Definition</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3264,50 +3618,6 @@ public interface BXCorePackage extends EPackage
     EReference BX_FUNCTION_DEFINITION__STATEMENT = eINSTANCE.getBXFunctionDefinition_Statement();
 
     /**
-     * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.TypeDefinitionImpl <em>Type Definition</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.TypeDefinitionImpl
-     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getTypeDefinition()
-     * @generated
-     */
-    EClass TYPE_DEFINITION = eINSTANCE.getTypeDefinition();
-
-    /**
-     * The meta object literal for the '<em><b>Type Vars</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference TYPE_DEFINITION__TYPE_VARS = eINSTANCE.getTypeDefinition_TypeVars();
-
-    /**
-     * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.TypeVarImpl <em>Type Var</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.TypeVarImpl
-     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getTypeVar()
-     * @generated
-     */
-    EClass TYPE_VAR = eINSTANCE.getTypeVar();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute TYPE_VAR__NAME = eINSTANCE.getTypeVar_Name();
-
-    /**
-     * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference TYPE_VAR__TYPE = eINSTANCE.getTypeVar_Type();
-
-    /**
      * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.TypeRefImpl <em>Type Ref</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3318,30 +3628,12 @@ public interface BXCorePackage extends EPackage
     EClass TYPE_REF = eINSTANCE.getTypeRef();
 
     /**
-     * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PatternDefinitionImpl <em>Pattern Definition</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PatternDefinitionImpl
-     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getPatternDefinition()
-     * @generated
-     */
-    EClass PATTERN_DEFINITION = eINSTANCE.getPatternDefinition();
-
-    /**
-     * The meta object literal for the '<em><b>Root</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Type</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference PATTERN_DEFINITION__ROOT = eINSTANCE.getPatternDefinition_Root();
-
-    /**
-     * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute PATTERN_DEFINITION__TYPE = eINSTANCE.getPatternDefinition_Type();
+    EReference TYPE_REF__TYPE = eINSTANCE.getTypeRef_Type();
 
     /**
      * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.IndexDefinitionImpl <em>Index Definition</em>}' class.
@@ -3388,7 +3680,7 @@ public interface BXCorePackage extends EPackage
     EAttribute PATTERN_NODE__NAME = eINSTANCE.getPatternNode_Name();
 
     /**
-     * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Type</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -3482,26 +3774,6 @@ public interface BXCorePackage extends EPackage
      * @generated
      */
     EClass PATTERN = eINSTANCE.getPattern();
-
-    /**
-     * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.ContextTypeImpl <em>Context Type</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.ContextTypeImpl
-     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getContextType()
-     * @generated
-     */
-    EClass CONTEXT_TYPE = eINSTANCE.getContextType();
-
-    /**
-     * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.ContextTypeRefImpl <em>Context Type Ref</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.ContextTypeRefImpl
-     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getContextTypeRef()
-     * @generated
-     */
-    EClass CONTEXT_TYPE_REF = eINSTANCE.getContextTypeRef();
 
     /**
      * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PatternDefinitionReferenceImpl <em>Pattern Definition Reference</em>}' class.
@@ -4202,68 +4474,6 @@ public interface BXCorePackage extends EPackage
     EClass BI_GUL_SKIP = eINSTANCE.getBiGULSkip();
 
     /**
-     * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.EcoreTypeRefImpl <em>Ecore Type Ref</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.EcoreTypeRefImpl
-     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getEcoreTypeRef()
-     * @generated
-     */
-    EClass ECORE_TYPE_REF = eINSTANCE.getEcoreTypeRef();
-
-    /**
-     * The meta object literal for the '<em><b>Type</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ECORE_TYPE_REF__TYPE = eINSTANCE.getEcoreTypeRef_Type();
-
-    /**
-     * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.FeatureTypeRefImpl <em>Feature Type Ref</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.FeatureTypeRefImpl
-     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getFeatureTypeRef()
-     * @generated
-     */
-    EClass FEATURE_TYPE_REF = eINSTANCE.getFeatureTypeRef();
-
-    /**
-     * The meta object literal for the '<em><b>Type</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference FEATURE_TYPE_REF__TYPE = eINSTANCE.getFeatureTypeRef_Type();
-
-    /**
-     * The meta object literal for the '<em><b>Feature</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference FEATURE_TYPE_REF__FEATURE = eINSTANCE.getFeatureTypeRef_Feature();
-
-    /**
-     * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PrimitiveTypeRefImpl <em>Primitive Type Ref</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PrimitiveTypeRefImpl
-     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getPrimitiveTypeRef()
-     * @generated
-     */
-    EClass PRIMITIVE_TYPE_REF = eINSTANCE.getPrimitiveTypeRef();
-
-    /**
-     * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute PRIMITIVE_TYPE_REF__TYPE = eINSTANCE.getPrimitiveTypeRef_Type();
-
-    /**
      * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.DefinedContextTypeRefImpl <em>Defined Context Type Ref</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -4282,14 +4492,32 @@ public interface BXCorePackage extends EPackage
     EReference DEFINED_CONTEXT_TYPE_REF__TYPE = eINSTANCE.getDefinedContextTypeRef_Type();
 
     /**
-     * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.EmptyContextTypeRefImpl <em>Empty Context Type Ref</em>}' class.
+     * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.EcoreTypeRefImpl <em>Ecore Type Ref</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.EmptyContextTypeRefImpl
-     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getEmptyContextTypeRef()
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.EcoreTypeRefImpl
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getEcoreTypeRef()
      * @generated
      */
-    EClass EMPTY_CONTEXT_TYPE_REF = eINSTANCE.getEmptyContextTypeRef();
+    EClass ECORE_TYPE_REF = eINSTANCE.getEcoreTypeRef();
+
+    /**
+     * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.FeatureTypeRefImpl <em>Feature Type Ref</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.FeatureTypeRefImpl
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getFeatureTypeRef()
+     * @generated
+     */
+    EClass FEATURE_TYPE_REF = eINSTANCE.getFeatureTypeRef();
+
+    /**
+     * The meta object literal for the '<em><b>Feature</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference FEATURE_TYPE_REF__FEATURE = eINSTANCE.getFeatureTypeRef_Feature();
 
   }
 

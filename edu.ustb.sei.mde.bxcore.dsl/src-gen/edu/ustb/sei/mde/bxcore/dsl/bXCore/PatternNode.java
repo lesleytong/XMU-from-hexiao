@@ -5,6 +5,8 @@ package edu.ustb.sei.mde.bxcore.dsl.bXCore;
 
 import org.eclipse.emf.common.util.EList;
 
+import org.eclipse.emf.ecore.EClassifier;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Pattern Node</b></em>'.
@@ -52,30 +54,30 @@ public interface PatternNode extends PatternValueCondition
   void setName(String value);
 
   /**
-   * Returns the value of the '<em><b>Type</b></em>' containment reference.
+   * Returns the value of the '<em><b>Type</b></em>' reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Type</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Type</em>' reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Type</em>' containment reference.
-   * @see #setType(TypeRef)
+   * @return the value of the '<em>Type</em>' reference.
+   * @see #setType(EClassifier)
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getPatternNode_Type()
-   * @model containment="true"
+   * @model
    * @generated
    */
-  TypeRef getType();
+  EClassifier getType();
 
   /**
-   * Sets the value of the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternNode#getType <em>Type</em>}' containment reference.
+   * Sets the value of the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternNode#getType <em>Type</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Type</em>' containment reference.
+   * @param value the new value of the '<em>Type</em>' reference.
    * @see #getType()
    * @generated
    */
-  void setType(TypeRef value);
+  void setType(EClassifier value);
 
   /**
    * Returns the value of the '<em><b>Edges</b></em>' containment reference list.

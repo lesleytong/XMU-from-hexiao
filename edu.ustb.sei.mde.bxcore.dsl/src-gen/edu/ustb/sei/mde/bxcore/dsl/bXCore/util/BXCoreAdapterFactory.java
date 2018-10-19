@@ -91,14 +91,24 @@ public class BXCoreAdapterFactory extends AdapterFactoryImpl
         return createDefinitionAdapter();
       }
       @Override
-      public Adapter caseBXFunctionDefinition(BXFunctionDefinition object)
+      public Adapter caseTypeLiteral(TypeLiteral object)
       {
-        return createBXFunctionDefinitionAdapter();
+        return createTypeLiteralAdapter();
       }
       @Override
-      public Adapter caseTypeDefinition(TypeDefinition object)
+      public Adapter caseTupleTypeLiteral(TupleTypeLiteral object)
       {
-        return createTypeDefinitionAdapter();
+        return createTupleTypeLiteralAdapter();
+      }
+      @Override
+      public Adapter caseUnorderedTupleTypeLiteral(UnorderedTupleTypeLiteral object)
+      {
+        return createUnorderedTupleTypeLiteralAdapter();
+      }
+      @Override
+      public Adapter caseOrderedTupleTypeLiteral(OrderedTupleTypeLiteral object)
+      {
+        return createOrderedTupleTypeLiteralAdapter();
       }
       @Override
       public Adapter caseTypeVar(TypeVar object)
@@ -106,14 +116,39 @@ public class BXCoreAdapterFactory extends AdapterFactoryImpl
         return createTypeVarAdapter();
       }
       @Override
-      public Adapter caseTypeRef(TypeRef object)
+      public Adapter casePredefinedTypeLiteral(PredefinedTypeLiteral object)
       {
-        return createTypeRefAdapter();
+        return createPredefinedTypeLiteralAdapter();
+      }
+      @Override
+      public Adapter casePatternTypeLiteral(PatternTypeLiteral object)
+      {
+        return createPatternTypeLiteralAdapter();
+      }
+      @Override
+      public Adapter caseTypeDefinition(TypeDefinition object)
+      {
+        return createTypeDefinitionAdapter();
       }
       @Override
       public Adapter casePatternDefinition(PatternDefinition object)
       {
         return createPatternDefinitionAdapter();
+      }
+      @Override
+      public Adapter caseContextTypeRef(ContextTypeRef object)
+      {
+        return createContextTypeRefAdapter();
+      }
+      @Override
+      public Adapter caseBXFunctionDefinition(BXFunctionDefinition object)
+      {
+        return createBXFunctionDefinitionAdapter();
+      }
+      @Override
+      public Adapter caseTypeRef(TypeRef object)
+      {
+        return createTypeRefAdapter();
       }
       @Override
       public Adapter caseIndexDefinition(IndexDefinition object)
@@ -144,16 +179,6 @@ public class BXCoreAdapterFactory extends AdapterFactoryImpl
       public Adapter casePattern(Pattern object)
       {
         return createPatternAdapter();
-      }
-      @Override
-      public Adapter caseContextType(ContextType object)
-      {
-        return createContextTypeAdapter();
-      }
-      @Override
-      public Adapter caseContextTypeRef(ContextTypeRef object)
-      {
-        return createContextTypeRefAdapter();
       }
       @Override
       public Adapter casePatternDefinitionReference(PatternDefinitionReference object)
@@ -281,6 +306,11 @@ public class BXCoreAdapterFactory extends AdapterFactoryImpl
         return createBiGULSkipAdapter();
       }
       @Override
+      public Adapter caseDefinedContextTypeRef(DefinedContextTypeRef object)
+      {
+        return createDefinedContextTypeRefAdapter();
+      }
+      @Override
       public Adapter caseEcoreTypeRef(EcoreTypeRef object)
       {
         return createEcoreTypeRefAdapter();
@@ -289,21 +319,6 @@ public class BXCoreAdapterFactory extends AdapterFactoryImpl
       public Adapter caseFeatureTypeRef(FeatureTypeRef object)
       {
         return createFeatureTypeRefAdapter();
-      }
-      @Override
-      public Adapter casePrimitiveTypeRef(PrimitiveTypeRef object)
-      {
-        return createPrimitiveTypeRefAdapter();
-      }
-      @Override
-      public Adapter caseDefinedContextTypeRef(DefinedContextTypeRef object)
-      {
-        return createDefinedContextTypeRefAdapter();
-      }
-      @Override
-      public Adapter caseEmptyContextTypeRef(EmptyContextTypeRef object)
-      {
-        return createEmptyContextTypeRefAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -373,31 +388,61 @@ public class BXCoreAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.BXFunctionDefinition <em>BX Function Definition</em>}'.
+   * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeLiteral <em>Type Literal</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXFunctionDefinition
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeLiteral
    * @generated
    */
-  public Adapter createBXFunctionDefinitionAdapter()
+  public Adapter createTypeLiteralAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeDefinition <em>Type Definition</em>}'.
+   * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.TupleTypeLiteral <em>Tuple Type Literal</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeDefinition
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.TupleTypeLiteral
    * @generated
    */
-  public Adapter createTypeDefinitionAdapter()
+  public Adapter createTupleTypeLiteralAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.UnorderedTupleTypeLiteral <em>Unordered Tuple Type Literal</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.UnorderedTupleTypeLiteral
+   * @generated
+   */
+  public Adapter createUnorderedTupleTypeLiteralAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.OrderedTupleTypeLiteral <em>Ordered Tuple Type Literal</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.OrderedTupleTypeLiteral
+   * @generated
+   */
+  public Adapter createOrderedTupleTypeLiteralAdapter()
   {
     return null;
   }
@@ -418,16 +463,46 @@ public class BXCoreAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeRef <em>Type Ref</em>}'.
+   * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PredefinedTypeLiteral <em>Predefined Type Literal</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeRef
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.PredefinedTypeLiteral
    * @generated
    */
-  public Adapter createTypeRefAdapter()
+  public Adapter createPredefinedTypeLiteralAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternTypeLiteral <em>Pattern Type Literal</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternTypeLiteral
+   * @generated
+   */
+  public Adapter createPatternTypeLiteralAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeDefinition <em>Type Definition</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeDefinition
+   * @generated
+   */
+  public Adapter createTypeDefinitionAdapter()
   {
     return null;
   }
@@ -443,6 +518,51 @@ public class BXCoreAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createPatternDefinitionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextTypeRef <em>Context Type Ref</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextTypeRef
+   * @generated
+   */
+  public Adapter createContextTypeRefAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.BXFunctionDefinition <em>BX Function Definition</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXFunctionDefinition
+   * @generated
+   */
+  public Adapter createBXFunctionDefinitionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeRef <em>Type Ref</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeRef
+   * @generated
+   */
+  public Adapter createTypeRefAdapter()
   {
     return null;
   }
@@ -533,36 +653,6 @@ public class BXCoreAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createPatternAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextType <em>Context Type</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextType
-   * @generated
-   */
-  public Adapter createContextTypeAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextTypeRef <em>Context Type Ref</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextTypeRef
-   * @generated
-   */
-  public Adapter createContextTypeRefAdapter()
   {
     return null;
   }
@@ -943,6 +1033,21 @@ public class BXCoreAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.DefinedContextTypeRef <em>Defined Context Type Ref</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.DefinedContextTypeRef
+   * @generated
+   */
+  public Adapter createDefinedContextTypeRefAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.EcoreTypeRef <em>Ecore Type Ref</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -968,51 +1073,6 @@ public class BXCoreAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createFeatureTypeRefAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PrimitiveTypeRef <em>Primitive Type Ref</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.PrimitiveTypeRef
-   * @generated
-   */
-  public Adapter createPrimitiveTypeRefAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.DefinedContextTypeRef <em>Defined Context Type Ref</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.DefinedContextTypeRef
-   * @generated
-   */
-  public Adapter createDefinedContextTypeRefAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.EmptyContextTypeRef <em>Empty Context Type Ref</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.EmptyContextTypeRef
-   * @generated
-   */
-  public Adapter createEmptyContextTypeRefAdapter()
   {
     return null;
   }
