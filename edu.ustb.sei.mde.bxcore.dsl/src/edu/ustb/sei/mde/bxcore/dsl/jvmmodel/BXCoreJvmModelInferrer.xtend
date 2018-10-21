@@ -96,6 +96,9 @@ import org.eclipse.xtext.xbase.compiler.output.ITreeAppendable
 import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
+import edu.ustb.sei.mde.bxcore.dsl.infer.SourceTypeModel
+import edu.ustb.sei.mde.bxcore.dsl.infer.UnsolvedTupleType
+import org.eclipse.emf.ecore.ENamedElement
 
 /**
  * <p>Infers a JVM model from the source model.</p> 
@@ -147,13 +150,15 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 				
 				exceptions += NothingReturnedException.typeRef;
 				
-				body = '''
-				«Context.typeRef.qualifiedName» sourceContext = bx.getSourceDef().createInstance();
-				for(«Tuple2.typeRef(String.typeRef, Object.typeRef).qualifiedName» tuple : inits) {
-					sourceContext.setValue(tuple.first, tuple.second);
+				if (!isPreIndexingPhase) {
+					body = '''
+						«Context.typeRef.qualifiedName» sourceContext = bx.getSourceDef().createInstance();
+						for(«Tuple2.typeRef(String.typeRef, Object.typeRef).qualifiedName» tuple : inits) {
+							sourceContext.setValue(tuple.first, tuple.second);
+						}
+						return bx.forward(«SourceType.typeRef.qualifiedName».makeSource(graph, sourceContext, new «TraceSystem.typeRef.qualifiedName»()));
+					'''
 				}
-				return bx.forward(«SourceType.typeRef.qualifiedName».makeSource(graph, sourceContext, new «TraceSystem.typeRef.qualifiedName»()));
-				'''
 			];
 			
 			members += element.toMethod('execute', SourceType.typeRef) [
@@ -165,18 +170,20 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 				
 				exceptions += NothingReturnedException.typeRef;
 				
-				body = '''
-				«Context.typeRef.qualifiedName» sourceContext = bx.getSourceDef().createInstance();
-				for(«Tuple2.typeRef(String.typeRef, Object.typeRef).qualifiedName» tuple : sourceInits) {
-					sourceContext.setValue(tuple.first, tuple.second);
+				if (!isPreIndexingPhase) {
+					body = '''
+						«Context.typeRef.qualifiedName» sourceContext = bx.getSourceDef().createInstance();
+						for(«Tuple2.typeRef(String.typeRef, Object.typeRef).qualifiedName» tuple : sourceInits) {
+							sourceContext.setValue(tuple.first, tuple.second);
+						}
+						«Context.typeRef.qualifiedName» viewContext = bx.getViewDef().createInstance();
+						for(«Tuple2.typeRef(String.typeRef, Object.typeRef).qualifiedName» tuple : viewInits) {
+							viewContext.setValue(tuple.first, tuple.second);
+						}
+						
+						return bx.backward(«SourceType.typeRef.qualifiedName».makeSource(source, sourceContext, new «TraceSystem.typeRef.qualifiedName»()), «ViewType.typeRef.qualifiedName».makeView(view, viewContext));
+					'''
 				}
-				«Context.typeRef.qualifiedName» viewContext = bx.getViewDef().createInstance();
-				for(«Tuple2.typeRef(String.typeRef, Object.typeRef).qualifiedName» tuple : viewInits) {
-					viewContext.setValue(tuple.first, tuple.second);
-				}
-				
-				return bx.backward(«SourceType.typeRef.qualifiedName».makeSource(source, sourceContext, new «TraceSystem.typeRef.qualifiedName»()), «ViewType.typeRef.qualifiedName».makeView(view, viewContext));
-				'''
 			];
 			
 			val conditions = element.eAllContents.filter[e| e instanceof ContextAwareCondition].map[it as ContextAwareCondition].toList;
@@ -188,7 +195,27 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 			val statements = element.eAllContents.filter[it instanceof XmuCoreStatement].map[it as XmuCoreStatement].indexed.toList;
 			
 			val typeLiteralMap = element.groupTypeLiterals;
-			typeLiteralMap.values.toSet.forEach[pair|generateTypeLiteral(it, pair.first, pair.second, element);];
+			val tupleSet = typeLiteralMap.values.toSet;
+			tupleSet.forEach[pair|generateTypeLiteral(it, pair.first, pair.second, element);];
+			
+			if(!isPreIndexingPhase) {
+				try {
+					val sourceTypeInfer = new SourceTypeModel(element, typeLiteralMap);
+					sourceTypeInfer.solveNames();
+					println('name solved!');
+					sourceTypeInfer.solveTypes();
+					println('type solved!');
+					statements.forEach [ s |
+						val v = sourceTypeInfer.unsolvedTupleTypeMap.get(s.value);
+//						println("key" + s.key + "=>" + (v as UnsolvedTupleType).candidates.map[it.first].toList);
+						println("key" + s.key + "=>" + (v as UnsolvedTupleType).tuples.map[it.first+':'+(it.second as ENamedElement).name].toList);
+					];
+				} catch (Exception e) {
+					e.printStackTrace;
+				}
+			}
+			
+			
 			
 			val patternLiterals = element.eAllContents.filter[it instanceof PatternTypeLiteral].map[it as PatternTypeLiteral].indexed.toList;
 			patternLiterals.forEach[p|generatePatternLiteral(it, p.value, p.key, typeLiteralMap, element);];
@@ -220,21 +247,22 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 						visibility = JvmVisibility.PUBLIC;
 						exceptions += BidirectionalTransformationDefinitionException.typeRef;
 						
-						body=[appendable|
-							appendable
-								.append('''if(xmu_«def.name»==null) {''').newLine
-								.append('''xmu_«def.name» = ''')
-								.generateXmuCode((def as BXFunctionDefinition).statement, statements, typeLiteralMap, patternLiterals, conditions, actions, element).append(';').newLine
-								.append('}').newLine
-								.append('''return xmu_«def.name»;''')
-						]
+						if (!isPreIndexingPhase) {
+							body = [ appendable |
+								appendable.append('''if(xmu_«def.name»==null) {''').newLine.
+									append('''xmu_«def.name» = ''').generateXmuCode(
+										(def as BXFunctionDefinition).statement, statements, typeLiteralMap,
+										patternLiterals, conditions, actions, element).append(';').newLine.append('}').
+									newLine.append('''return xmu_«def.name»;''')
+							]
+						}
 					]
 				}
 			];
 		]);
 	}
 		
-	protected def generatePatternLiteral(JvmGenericType owner, PatternTypeLiteral literal, Integer id, Map<EObject, Tuple2<TupleType, Integer>> typeLiteralMap, BXProgram program) {
+	protected def generatePatternLiteral(JvmGenericType owner, PatternTypeLiteral literal, Integer id, Map<TypeLiteral, Tuple2<TupleType, Integer>> typeLiteralMap, BXProgram program) {
 		owner.members += literal.toField('pattern_' + id, Pattern.typeRef) [
 			visibility = JvmVisibility.PRIVATE;
 		];
@@ -386,7 +414,7 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 		}
 	}
 	
-	def ITreeAppendable generateXmuCode(ITreeAppendable appendable, XmuCoreStatement statement, List<Pair<Integer, XmuCoreStatement>> indexedStatements, Map<EObject, Tuple2<TupleType, Integer>> typeLiteralMap, List<Pair<Integer, PatternTypeLiteral>> patternLiterals, List<ContextAwareCondition> conditions, List<ContextAwareUnidirectionalAction> actions, BXProgram program) {
+	def ITreeAppendable generateXmuCode(ITreeAppendable appendable, XmuCoreStatement statement, List<Pair<Integer, XmuCoreStatement>> indexedStatements, Map<TypeLiteral, Tuple2<TupleType, Integer>> typeLiteralMap, List<Pair<Integer, PatternTypeLiteral>> patternLiterals, List<ContextAwareCondition> conditions, List<ContextAwareUnidirectionalAction> actions, BXProgram program) {
 		val key = 'xmu'+indexedStatements.findFirst[it.value===statement].key
 		
 		switch statement {
@@ -534,7 +562,7 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 		else (pattern as PatternDefinitionReference).pattern.name+'()'
 	}
 	
-	protected def CharSequence typeAccessor(Pattern pat, Map<EObject, Pair<TupleType, Integer>> typeLiteralMap) {
+	protected def CharSequence typeAccessor(Pattern pat, Map<TypeLiteral, Pair<TupleType, Integer>> typeLiteralMap) {
 		if(pat instanceof PatternTypeLiteral) {
 			'''getType_«typeLiteralMap.get(pat).value»()'''
 		} else {// for a named pattern, we may use its type function
@@ -542,7 +570,7 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 		}
 	}
 	
-	protected def CharSequence typeAccessor(ContextTypeRef type, Map<EObject, Tuple2<TupleType, Integer>> typeLiteralMap) {
+	protected def CharSequence typeAccessor(ContextTypeRef type, Map<TypeLiteral, Tuple2<TupleType, Integer>> typeLiteralMap) {
 		if(type instanceof DefinedContextTypeRef) {
 			'''getType_«type.type.name.toFirstUpper»()'''
 		} else if(type instanceof TupleTypeLiteral) {
@@ -580,7 +608,7 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 		]
 	}
 	
-	protected def void generateTypeDefinition(JvmGenericType owner, TypeDefinition typeDef, Map<EObject, Tuple2<TupleType, Integer>> typeLiteralMap, List<Pair<Integer, PatternTypeLiteral>> patternLiterals, BXProgram program) {
+	protected def void generateTypeDefinition(JvmGenericType owner, TypeDefinition typeDef, Map<TypeLiteral, Tuple2<TupleType, Integer>> typeLiteralMap, List<Pair<Integer, PatternTypeLiteral>> patternLiterals, BXProgram program) {
 		val literal = typeDef.literal;
 		owner.members += typeDef.toMethod('getType_' + typeDef.name.toFirstUpper, ContextType.typeRef) [
 			visibility = JvmVisibility.PUBLIC;
@@ -595,7 +623,7 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 	}
 	
 	protected def groupTypeLiterals(BXProgram program) {
-		val literals = program.eAllContents.filter[e|e instanceof TypeLiteral].map[return it->TupleType.make(it as TypeLiteral)].toList;
+		val literals = program.eAllContents.filter[e|e instanceof TypeLiteral].map[return (it as TypeLiteral)->TupleType.make(it as TypeLiteral)].toList;
 		val groups = literals.groupBy[it.value];
 		val result = new HashMap;
 		

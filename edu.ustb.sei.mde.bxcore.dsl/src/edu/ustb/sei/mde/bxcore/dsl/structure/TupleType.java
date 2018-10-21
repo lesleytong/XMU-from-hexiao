@@ -16,6 +16,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.PredefinedTypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeRef;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.UnorderedTupleTypeLiteral;
+import edu.ustb.sei.mde.bxcore.dsl.infer.UnsolvedTupleType;
 import edu.ustb.sei.mde.structure.Tuple2;
 
 public class TupleType {
@@ -24,7 +25,7 @@ public class TupleType {
 	public ImportSection importSection = null;
 	
 	public boolean equals(Object o) {
-		if(o instanceof TupleType) {
+		if(o instanceof TupleType && !(o instanceof UnsolvedTupleType)) {
 			TupleType right = (TupleType) o;
 			if((this.tuples.isEmpty() || this.ordered == right.ordered) && this.tuples.size()==right.tuples.size()) {
 				return this.tuples.stream().allMatch(t->{
