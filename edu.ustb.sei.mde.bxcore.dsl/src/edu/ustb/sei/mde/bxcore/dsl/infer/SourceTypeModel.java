@@ -35,41 +35,63 @@ public class SourceTypeModel extends TypeModel {
 			TupleType st = getType(e);
 			TupleType pt = getType(((XmuCoreMatchSource) e).getPattern());
 			TupleType bt = getType(((XmuCoreMatchSource) e).getBody());
-			this.constraints.add(TypeUnion.makeSubSet(pt, st));
-			this.constraints.add(TypeEqual.makeLeftAbstractEqual(pt, bt));
+			TypeUnion c1 = TypeUnion.makeSubSet(pt, st);
+			this.constraints.add(c1);
+			TypeEqual c2 = TypeEqual.makeLeftAbstractEqual(pt, bt);
+			this.constraints.add(c2);
+			linkCause(c1, e);
+			linkCause(c2, e);
 		} else if(e instanceof XmuCoreMatchView) {
 			TupleType st = getType(e);
-			TupleType bt = getType(((XmuCoreMatchSource) e).getBody());
-			this.constraints.add(TypeEqual.makeEqual(st, bt));
+			TupleType bt = getType(((XmuCoreMatchView) e).getBody());
+			TypeEqual c = TypeEqual.makeEqual(st, bt);
+			this.constraints.add(c);
+			linkCause(c, e);
 		} else if(e instanceof XmuCoreExpandSource) {
 			TupleType st = getType(e);
 			TupleType pt = getType(((XmuCoreExpandSource) e).getPattern());
 			TupleType bt = getType(((XmuCoreExpandSource) e).getBody());
 
-			this.constraints.add(TypeEqual.makeLeftAbstractEqual(st, pt));
+			TypeEqual c1 = TypeEqual.makeLeftAbstractEqual(st, pt);
+			this.constraints.add(c1);
+			linkCause(c1, e);
+			
 			TupleType it = new UnsolvedTupleType();
 			this.types.add(it);
+
+			TypeUnion c3 = TypeUnion.makeSubSet(pt, it);
+			this.constraints.add(c3);
+			linkCause(c3, e);
 			
-			this.constraints.add(TypeEqual.makeEqual(st, pt));
-			this.constraints.add(TypeUnion.makeSubSet(pt, it));
-			this.constraints.add(TypeEqual.makeMapping(it, bt, ((XmuCoreExpandSource) e).getMappings()));
+			TypeEqual c4 = TypeEqual.makeMapping(it, bt, ((XmuCoreExpandSource) e).getMappings());
+			this.constraints.add(c4);
+			linkCause(c4, e);
 		} else if(e instanceof XmuCoreExpandView) {
 			TupleType st = getType(e);
 			TupleType bt = getType(((XmuCoreExpandView) e).getBody());
-			this.constraints.add(TypeEqual.makeEqual(st, bt));
+			TypeEqual c = TypeEqual.makeEqual(st, bt);
+			this.constraints.add(c);
+			linkCause(c, e);
 		} else if(e instanceof XmuCoreSwitch) {
 			TupleType st = getType(e);
 			((XmuCoreSwitch) e).getBranches().forEach(b->{
 				TupleType bt = getType(b.getAction());
-				this.constraints.add(TypeEqual.makeLeftAbstractEqual(st, bt));
+				TypeEqual c = TypeEqual.makeLeftAbstractEqual(st, bt);
+				this.constraints.add(c);
+				linkCause(c, b);
 			});
 		} else if(e instanceof XmuCoreAlign) {
 			TupleType st = getType(e);
 			TupleType pt = getType(((XmuCoreAlign) e).getSourcePattern());
 			TupleType bt = getType(((XmuCoreAlign) e).getMatch());
 			
-			this.constraints.add(TypeUnion.makeSubSet(pt, st));
-			this.constraints.add(TypeEqual.makeLeftAbstractEqual(pt, bt));
+			TypeUnion c1 = TypeUnion.makeSubSet(pt, st);
+			this.constraints.add(c1);
+			TypeEqual c2 = TypeEqual.makeLeftAbstractEqual(pt, bt);
+			this.constraints.add(c2);
+			
+			linkCause(c1, e);
+			linkCause(c2, e);
 		} else if(e instanceof XmuCoreParallelComposition) {
 			TupleType st = getType(e);
 			TypeUnion c = TypeUnion.makeUnion(st);
@@ -78,6 +100,7 @@ public class SourceTypeModel extends TypeModel {
 				c.types.add(bt);
 			});
 			this.constraints.add(c);
+			linkCause(c, e);
 		} else if(e instanceof XmuCoreFork) {
 			TupleType st = getType(e);
 			TypeUnion c = TypeUnion.makeUnion(st);
@@ -88,6 +111,7 @@ public class SourceTypeModel extends TypeModel {
 				this.constraints.add(TypeEqual.makeLeftAbstractMapping(it, bt, b.getSourceMappings()));
 			});
 			this.constraints.add(c);
+			linkCause(c, e);
 		} else if(e instanceof XmuCoreGraphReplace) {
 			TupleType st = getType(e);
 			TupleType pt = getType(((XmuCoreGraphReplace) e).getSource());
@@ -97,13 +121,20 @@ public class SourceTypeModel extends TypeModel {
 			TupleType bt = getType(((XmuCoreFunctionCall) e).getTarget());
 			TupleType it = new UnsolvedTupleType();
 			
-			this.constraints.add(TypeUnion.makeSubSet(st, it));
-			this.constraints.add(TypeEqual.makeRightAbstractMapping(it, bt, ((XmuCoreFunctionCall) e).getSourceMappings()));
+			TypeUnion c1 = TypeUnion.makeSubSet(st, it);
+			this.constraints.add(c1);
+			TypeEqual c2 = TypeEqual.makeRightAbstractMapping(it, bt, ((XmuCoreFunctionCall) e).getSourceMappings());
+			this.constraints.add(c2);
+			
+			linkCause(c1, e);
+			linkCause(c2, e);
 		} else if(e instanceof XmuCoreIndex) {
 			TupleType st = getType(e);
 			TupleType bt = getType(((XmuCoreIndex) e).getBody());
 			
-			this.constraints.add(TypeEqual.makeEqual(st, bt));
+			TypeEqual c1 = TypeEqual.makeEqual(st, bt);
+			this.constraints.add(c1);
+			linkCause(c1, e);
 			
 			((XmuCoreIndex) e).getParts().forEach(part->{
 				TupleType pt = getType(part.getSignature().getSourceType());
@@ -118,8 +149,12 @@ public class SourceTypeModel extends TypeModel {
 				}
 				TupleType it = new UnsolvedTupleType();
 				this.types.add(it);
-				this.constraints.add(TypeUnion.makeSubSet(st, it));
-				this.constraints.add(TypeEqual.makeRightAbstractMapping(it, pt, list));
+				TypeUnion c2 = TypeUnion.makeSubSet(st, it);
+				this.constraints.add(c2);
+				TypeEqual c3 = TypeEqual.makeRightAbstractMapping(it, pt, list);
+				this.constraints.add(c3);
+				linkCause(c2, e);
+				linkCause(c3, e);
 			});
 		}
 	}

@@ -13,6 +13,7 @@ import org.chocosolver.solver.Model;
 import org.chocosolver.solver.constraints.Constraint;
 import org.chocosolver.solver.variables.IntVar;
 import org.chocosolver.solver.variables.SetVar;
+import org.chocosolver.solver.variables.Variable;
 import org.chocosolver.util.objects.setDataStructures.ISetIterator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -51,12 +52,19 @@ public abstract class TypeModel {
 	public Map<TypeLiteral, Tuple2<TupleType, Integer>> literalMap;
 	
 	
+	protected Map<TypeConstraint, EObject> causeMap;
+	protected void linkCause(TypeConstraint c, EObject obj) {
+		causeMap.put(c, obj);
+	}
+	
+	
 	public TypeModel(BXProgram program, Map<TypeLiteral, Tuple2<TupleType, Integer>> literalMap) {
 		this.program = program;
 		this.literalMap = literalMap;
 		this.types = new HashSet<>();
 		this.constraints = new ArrayList<>();
 		this.unsolvedTupleTypeMap = new HashMap<>();
+		this.causeMap = new HashMap<>();
 
 		extractConstraint(program);
 	}
@@ -101,6 +109,7 @@ public abstract class TypeModel {
 		int[] max = new int[nameList.size()];
 		for(int i=0;i<max.length;i++) max[i] = i;
 		
+		Map<Constraint, EObject> reasonMap = new HashMap<>();
 		
 		typeVarMap = new HashMap<>();
 		types.forEach(t->{
@@ -128,6 +137,7 @@ public abstract class TypeModel {
 					}).collect(Collectors.toList());
 					Constraint cons = new Constraint(model.generateName(), new PropSetMapping(left, right, idMaps));
 					model.post(cons);
+					reasonMap.put(cons, causeMap.get(c));
 				} else model.allEqual(left,right).post();
 			} else if(c instanceof TypeUnion) {
 				SetVar union = typeVarMap.get(((TypeUnion)c).unionType);
@@ -137,7 +147,9 @@ public abstract class TypeModel {
 					if(elements[i]==null)
 						throw new RuntimeException();
 				}
-				model.union(elements, union).post();
+				Constraint cons = model.union(elements, union);
+				cons.post();
+				reasonMap.put(cons, causeMap.get(c));
 			}
 		});
 		
@@ -153,8 +165,9 @@ public abstract class TypeModel {
 					}
 				}
 			});
-		} else 
+		} else {
 			throw new RuntimeException();
+		}
 	}
 	
 	static protected Tuple2<List<Object>, boolean[][]> buildTypeTable(BXProgram program) {
@@ -201,7 +214,7 @@ public abstract class TypeModel {
 			this.typeList = t2.first;
 			this.superTypeTable = t2.second;
 		}
-		
+		Map<Constraint, EObject> reasonMap = new HashMap<>();
 		Map<TupleType, Map<String, IntVar>> varMap = new HashMap<>();
 		
 		// build intVar
@@ -247,6 +260,7 @@ public abstract class TypeModel {
 					
 					Constraint c = new Constraint(model.generateName(), new PropTypeCast(liv, riv, typeList, superTypeTable, ((TypeEqual) cons).sort));
 					model.post(c);
+					reasonMap.put(c, causeMap.get(cons));
 				});
 			} else if(cons instanceof TypeUnion) {
 				TupleType left = ((TypeUnion) cons).unionType;
@@ -262,6 +276,7 @@ public abstract class TypeModel {
 						IntVar riv = rv.get(vk);
 						Constraint c = new Constraint(model.generateName(), new PropTypeCast(liv, riv, typeList, superTypeTable, TypeEqual.LEFT_ABSTRACT));
 						model.post(c);
+						reasonMap.put(c, causeMap.get(cons));
 					});
 				}
 			}

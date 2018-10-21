@@ -3,6 +3,17 @@
  */
 package edu.ustb.sei.mde.bxcore.dsl.validation
 
+import org.eclipse.xtext.validation.Check
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXProgram
+import edu.ustb.sei.mde.bxcore.dsl.infer.SourceTypeModel
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreStatement
+import edu.ustb.sei.mde.bxcore.dsl.infer.UnsolvedTupleType
+import org.eclipse.emf.ecore.ENamedElement
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeLiteral
+import edu.ustb.sei.mde.bxcore.dsl.structure.TupleType
+import java.util.HashMap
+import edu.ustb.sei.mde.structure.Tuple2
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage
 
 /**
  * This class contains custom validation rules. 
@@ -10,16 +21,39 @@ package edu.ustb.sei.mde.bxcore.dsl.validation
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
  */
 class BXCoreValidator extends AbstractBXCoreValidator {
+
+	@Check
+	def checkBXProgram(BXProgram program) {
+		val statements = program.eAllContents.filter[it instanceof XmuCoreStatement].map[it as XmuCoreStatement].indexed.toList;
+		val typeLiteralMap = program.groupTypeLiterals;
+		try {
+			val sourceTypeInfer = new SourceTypeModel(program, typeLiteralMap);
+			sourceTypeInfer.solveNames();
+			println('name solved!');
+			sourceTypeInfer.solveTypes();
+			println('type solved!');
+			statements.forEach [ s |
+				val v = sourceTypeInfer.unsolvedTupleTypeMap.get(s.value);
+				println("key" + s.key + "=>" + (v as UnsolvedTupleType).tuples.map [
+					it.first + ':' + (it.second as ENamedElement).name
+				].toList);
+			];
+		} catch (Exception e) {
+			error("type inference failed", program, BXCorePackage.Literals.BX_PROGRAM__DEFINITIONS);
+		}
+	}
 	
-//	public static val INVALID_NAME = 'invalidName'
-//
-//	@Check
-//	def checkGreetingStartsWithCapital(Greeting greeting) {
-//		if (!Character.isUpperCase(greeting.name.charAt(0))) {
-//			warning('Name should start with a capital', 
-//					BXCorePackage.Literals.GREETING__NAME,
-//					INVALID_NAME)
-//		}
-//	}
+	protected def groupTypeLiterals(BXProgram program) {
+		val literals = program.eAllContents.filter[e|e instanceof TypeLiteral].map[return (it as TypeLiteral)->TupleType.make(it as TypeLiteral)].toList;
+		val groups = literals.groupBy[it.value];
+		val result = new HashMap;
+		
+		groups.forEach[k,v,id|
+			val pair = Tuple2.make(k,id);
+			v.forEach[p|result.put(p.key, pair);];
+		];
+		
+		return result;
+	}
 	
 }
