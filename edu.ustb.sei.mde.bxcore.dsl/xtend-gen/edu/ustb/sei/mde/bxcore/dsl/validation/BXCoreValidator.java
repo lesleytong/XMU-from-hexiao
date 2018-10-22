@@ -4,8 +4,10 @@
 package edu.ustb.sei.mde.bxcore.dsl.validation;
 
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXFunctionDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXProgram;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeLiteral;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreStatement;
 import edu.ustb.sei.mde.bxcore.dsl.infer.InferData;
 import edu.ustb.sei.mde.bxcore.dsl.infer.InferManager;
 import edu.ustb.sei.mde.bxcore.dsl.infer.TypeInferenceException;
@@ -20,7 +22,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.eclipse.xtext.xbase.lib.MapExtensions;
@@ -36,40 +37,100 @@ import org.eclipse.xtext.xbase.lib.Procedures.Procedure3;
 public class BXCoreValidator extends AbstractBXCoreValidator {
   @Check
   public InferData checkBXProgram(final BXProgram program) {
-    InferData _xblockexpression = null;
-    {
-      InputOutput.<String>println("check");
-      InferData _xtrycatchfinallyexpression = null;
-      try {
-        _xtrycatchfinallyexpression = InferManager.getInferredTypeModel(program.eResource());
-      } catch (final Throwable _t) {
-        if (_t instanceof Exception) {
-          final Exception e = (Exception)_t;
-          if ((e instanceof TypeInferenceException)) {
-            EObject _reason = ((TypeInferenceException)e).getReason();
-            boolean _tripleNotEquals = (_reason != program);
-            if (_tripleNotEquals) {
-              boolean _isMany = ((TypeInferenceException)e).getReason().eContainingFeature().isMany();
-              if (_isMany) {
-                Object _eGet = ((TypeInferenceException)e).getReason().eContainer().eGet(((TypeInferenceException)e).getReason().eContainingFeature());
-                final List<EObject> list = ((List<EObject>) _eGet);
-                this.error("type inference failed", ((TypeInferenceException)e).getReason().eContainer(), ((TypeInferenceException)e).getReason().eContainingFeature(), list.indexOf(((TypeInferenceException)e).getReason()));
-              } else {
-                this.error("type inference failed", ((TypeInferenceException)e).getReason().eContainer(), ((TypeInferenceException)e).getReason().eContainingFeature());
-              }
-            } else {
-              this.error("type inference failed", program, BXCorePackage.Literals.BX_PROGRAM__DEFINITIONS);
-            }
+    InferData _xtrycatchfinallyexpression = null;
+    try {
+      _xtrycatchfinallyexpression = InferManager.getInferredTypeModel(program.eResource());
+    } catch (final Throwable _t) {
+      if (_t instanceof Exception) {
+        final Exception e = (Exception)_t;
+        if ((e instanceof TypeInferenceException)) {
+          EObject _reason = ((TypeInferenceException)e).getReason();
+          boolean _tripleNotEquals = (_reason != program);
+          if (_tripleNotEquals) {
+            this.error("type inference failed", ((TypeInferenceException)e).getReason());
           } else {
             this.error("type inference failed", program, BXCorePackage.Literals.BX_PROGRAM__DEFINITIONS);
           }
         } else {
-          throw Exceptions.sneakyThrow(_t);
+          this.error("type inference failed", program, BXCorePackage.Literals.BX_PROGRAM__DEFINITIONS);
+        }
+      } else {
+        throw Exceptions.sneakyThrow(_t);
+      }
+    }
+    return _xtrycatchfinallyexpression;
+  }
+  
+  @Check
+  public void checkXmuCoreStatement(final XmuCoreStatement stat) {
+    try {
+      final InferData data = InferManager.safeGetInferredTypeModel(stat.eResource());
+      if (((stat.getTypeIndicator() != null) && (data != null))) {
+        final TupleType inferredSource = data.getSourceInfer().getType(stat);
+        final TupleType definedSource = data.getSourceInfer().getType(stat.getTypeIndicator().getSourceType());
+        boolean _compare = inferredSource.compare(definedSource);
+        boolean _tripleEquals = (Boolean.valueOf(_compare) == Boolean.valueOf(false));
+        if (_tripleEquals) {
+          this.warning("The defined source type is different from the inferred type", stat);
+        }
+        final TupleType inferredView = data.getViewInfer().getType(stat);
+        final TupleType definedView = data.getViewInfer().getType(stat.getTypeIndicator().getViewType());
+        boolean _compare_1 = inferredView.compare(definedView);
+        boolean _tripleEquals_1 = (Boolean.valueOf(_compare_1) == Boolean.valueOf(false));
+        if (_tripleEquals_1) {
+          this.warning("The defined view type is different from the inferred type", stat);
         }
       }
-      _xblockexpression = _xtrycatchfinallyexpression;
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
     }
-    return _xblockexpression;
+  }
+  
+  @Check
+  public void checkBXFunction(final BXFunctionDefinition func) {
+    try {
+      final InferData data = InferManager.safeGetInferredTypeModel(func.eResource());
+      if (((func.getTypeIndicator() != null) && (data != null))) {
+        final TupleType inferredSource = data.getSourceInfer().getType(func);
+        final TupleType definedSource = data.getSourceInfer().getType(func.getTypeIndicator().getSourceType());
+        boolean _compare = inferredSource.compare(definedSource);
+        boolean _tripleEquals = (Boolean.valueOf(_compare) == Boolean.valueOf(false));
+        if (_tripleEquals) {
+          this.warning("The defined source type is different from the inferred type", func);
+        }
+        final TupleType inferredView = data.getViewInfer().getType(func);
+        final TupleType definedView = data.getViewInfer().getType(func.getTypeIndicator().getViewType());
+        boolean _compare_1 = inferredView.compare(definedView);
+        boolean _tripleEquals_1 = (Boolean.valueOf(_compare_1) == Boolean.valueOf(false));
+        if (_tripleEquals_1) {
+          this.warning("The defined view type is different from the inferred type", func);
+        }
+      }
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  public void warning(final String message, final EObject obj) {
+    boolean _isMany = obj.eContainingFeature().isMany();
+    if (_isMany) {
+      Object _eGet = obj.eContainer().eGet(obj.eContainingFeature());
+      final List<EObject> list = ((List<EObject>) _eGet);
+      this.warning(message, obj.eContainer(), obj.eContainingFeature(), list.indexOf(obj));
+    } else {
+      this.warning(message, obj.eContainer(), obj.eContainingFeature());
+    }
+  }
+  
+  public void error(final String message, final EObject obj) {
+    boolean _isMany = obj.eContainingFeature().isMany();
+    if (_isMany) {
+      Object _eGet = obj.eContainer().eGet(obj.eContainingFeature());
+      final List<EObject> list = ((List<EObject>) _eGet);
+      this.error(message, obj.eContainer(), obj.eContainingFeature(), list.indexOf(obj));
+    } else {
+      this.error(message, obj.eContainer(), obj.eContainingFeature());
+    }
   }
   
   protected HashMap<TypeLiteral, Tuple2<TupleType, Integer>> groupTypeLiterals(final BXProgram program) {

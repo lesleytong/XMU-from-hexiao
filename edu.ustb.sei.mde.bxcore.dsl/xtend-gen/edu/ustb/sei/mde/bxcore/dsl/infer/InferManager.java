@@ -35,6 +35,10 @@ public class InferManager {
     }
   }
   
+  public static InferData safeGetInferredTypeModel(final Resource resource) throws Exception {
+    return InferManager.inferredDataMap.get(resource);
+  }
+  
   protected static InferData createInfer(final Resource resource) throws Exception {
     boolean _isTrackingModification = resource.isTrackingModification();
     boolean _tripleEquals = (Boolean.valueOf(_isTrackingModification) == Boolean.valueOf(false));

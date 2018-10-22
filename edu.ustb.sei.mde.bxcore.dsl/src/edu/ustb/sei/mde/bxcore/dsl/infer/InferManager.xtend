@@ -22,6 +22,10 @@ class InferManager {
 		}
 	}
 	
+	static def safeGetInferredTypeModel(Resource resource) throws Exception {
+		inferredDataMap.get(resource);
+	}
+	
 	protected def static createInfer(Resource resource) throws Exception {
 		if(resource.trackingModification===false) 
 			resource.trackingModification=true;

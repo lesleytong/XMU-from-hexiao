@@ -14,6 +14,8 @@ import java.util.HashMap
 import java.util.List
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.xtext.validation.Check
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreStatement
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXFunctionDefinition
 
 /**
  * This class contains custom validation rules. 
@@ -24,23 +26,69 @@ class BXCoreValidator extends AbstractBXCoreValidator {
 
 	@Check
 	def checkBXProgram(BXProgram program) {
-		println("check");
-		
 		try {
 			InferManager.getInferredTypeModel(program.eResource);
 		} catch (Exception e) {
 			if(e instanceof TypeInferenceException) {
 				if(e.reason!==program) {
-					if(e.reason.eContainingFeature.isMany) {
-						val list = e.reason.eContainer.eGet(e.reason.eContainingFeature) as List<EObject>;
-						error("type inference failed", e.reason.eContainer, e.reason.eContainingFeature, list.indexOf(e.reason));
-					} else 
-						error("type inference failed", e.reason.eContainer, e.reason.eContainingFeature);				
+					error("type inference failed", e.reason);				
 				}
 				else error("type inference failed", program, BXCorePackage.Literals.BX_PROGRAM__DEFINITIONS);
 			} else error("type inference failed", program, BXCorePackage.Literals.BX_PROGRAM__DEFINITIONS);
 			
 		}
+	}
+	
+	@Check
+	def checkXmuCoreStatement(XmuCoreStatement stat) {
+		val data = InferManager.safeGetInferredTypeModel(stat.eResource);
+		if(stat.typeIndicator!==null && data!==null) {
+			val inferredSource = data.sourceInfer.getType(stat);
+			val definedSource = data.sourceInfer.getType(stat.typeIndicator.sourceType);
+			if(inferredSource.compare(definedSource)===false) {
+				warning("The defined source type is different from the inferred type", stat);
+			}
+			
+			val inferredView = data.viewInfer.getType(stat);
+			val definedView = data.viewInfer.getType(stat.typeIndicator.viewType);
+			if(inferredView.compare(definedView)===false) {
+				warning("The defined view type is different from the inferred type", stat);
+			}
+		}
+	}
+	
+	@Check
+	def checkBXFunction(BXFunctionDefinition func) {
+		val data = InferManager.safeGetInferredTypeModel(func.eResource);
+		if(func.typeIndicator!==null && data!==null) {
+			val inferredSource = data.sourceInfer.getType(func);
+			val definedSource = data.sourceInfer.getType(func.typeIndicator.sourceType);
+			if(inferredSource.compare(definedSource)===false) {
+				warning("The defined source type is different from the inferred type", func);
+			}
+			
+			val inferredView = data.viewInfer.getType(func);
+			val definedView = data.viewInfer.getType(func.typeIndicator.viewType);
+			if(inferredView.compare(definedView)===false) {
+				warning("The defined view type is different from the inferred type", func);
+			}
+		}
+	}
+	
+	def warning(String message, EObject obj) {
+		if (obj.eContainingFeature.isMany) {
+			val list = obj.eContainer.eGet(obj.eContainingFeature) as List<EObject>;
+			warning(message, obj.eContainer, obj.eContainingFeature, list.indexOf(obj));
+		} else
+			warning(message, obj.eContainer, obj.eContainingFeature);
+	}
+	
+	def error(String message, EObject obj) {
+		if (obj.eContainingFeature.isMany) {
+			val list = obj.eContainer.eGet(obj.eContainingFeature) as List<EObject>;
+			error(message, obj.eContainer, obj.eContainingFeature, list.indexOf(obj));
+		} else
+			error(message, obj.eContainer, obj.eContainingFeature);
 	}
 	
 	protected def groupTypeLiterals(BXProgram program) {
