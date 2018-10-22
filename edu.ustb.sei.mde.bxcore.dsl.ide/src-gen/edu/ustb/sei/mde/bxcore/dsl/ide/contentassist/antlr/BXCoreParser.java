@@ -384,7 +384,7 @@ public class BXCoreParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getXmuCoreGraphReplaceAccess().getSourceAssignment_2(), "rule__XmuCoreGraphReplace__SourceAssignment_2");
 			builder.put(grammarAccess.getXmuCoreGraphReplaceAccess().getViewAssignment_3(), "rule__XmuCoreGraphReplace__ViewAssignment_3");
 			builder.put(grammarAccess.getXmuCoreGraphReplaceAccess().getConversionsAssignment_5(), "rule__XmuCoreGraphReplace__ConversionsAssignment_5");
-			builder.put(grammarAccess.getXmuCoreParallelCompositionAccess().getTypeIndicatorAssignment_1(), "rule__XmuCoreParallelComposition__TypeIndicatorAssignment_1");
+			builder.put(grammarAccess.getXmuCoreParallelCompositionAccess().getTypeIndicatorAssignment_0(), "rule__XmuCoreParallelComposition__TypeIndicatorAssignment_0");
 			builder.put(grammarAccess.getXmuCoreParallelCompositionAccess().getBodiesAssignment_2(), "rule__XmuCoreParallelComposition__BodiesAssignment_2");
 			builder.put(grammarAccess.getXmuCoreParallelCompositionAccess().getBodiesAssignment_3_1(), "rule__XmuCoreParallelComposition__BodiesAssignment_3_1");
 			builder.put(grammarAccess.getXmuCoreSwitchAccess().getTypeIndicatorAssignment_1(), "rule__XmuCoreSwitch__TypeIndicatorAssignment_1");
@@ -399,7 +399,7 @@ public class BXCoreParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getConversionAccess().getSourceAssignment_3_1(), "rule__Conversion__SourceAssignment_3_1");
 			builder.put(grammarAccess.getConversionAccess().getViewAssignment_6(), "rule__Conversion__ViewAssignment_6");
 			builder.put(grammarAccess.getConversionAccess().getViewAssignment_7_1(), "rule__Conversion__ViewAssignment_7_1");
-			builder.put(grammarAccess.getXmuCoreForkAccess().getTypeIndicatorAssignment_1(), "rule__XmuCoreFork__TypeIndicatorAssignment_1");
+			builder.put(grammarAccess.getXmuCoreForkAccess().getTypeIndicatorAssignment_0(), "rule__XmuCoreFork__TypeIndicatorAssignment_0");
 			builder.put(grammarAccess.getXmuCoreForkAccess().getForksAssignment_2(), "rule__XmuCoreFork__ForksAssignment_2");
 			builder.put(grammarAccess.getXmuCoreForkAccess().getForksAssignment_3_1(), "rule__XmuCoreFork__ForksAssignment_3_1");
 			builder.put(grammarAccess.getXmuCoreForkBranchAccess().getSourceMappingsAssignment_1(), "rule__XmuCoreForkBranch__SourceMappingsAssignment_1");

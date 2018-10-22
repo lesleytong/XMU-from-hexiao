@@ -477,6 +477,8 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
       acceptor.<JvmGenericType>accept(this._jvmTypesBuilder.toClass(element, sourceURI, _function));
     } catch (final Throwable _t) {
       if (_t instanceof Exception) {
+        final Exception e = (Exception)_t;
+        e.printStackTrace();
       } else {
         throw Exceptions.sneakyThrow(_t);
       }

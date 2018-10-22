@@ -12,6 +12,7 @@ import java.util.stream.Stream;
 import org.chocosolver.solver.ICause;
 import org.chocosolver.solver.Model;
 import org.chocosolver.solver.constraints.Constraint;
+import org.chocosolver.solver.constraints.Propagator;
 import org.chocosolver.solver.exception.ContradictionException;
 import org.chocosolver.solver.variables.IntVar;
 import org.chocosolver.solver.variables.SetVar;
@@ -112,7 +113,7 @@ public abstract class TypeModel {
 		int[] max = new int[nameList.size()];
 		for(int i=0;i<max.length;i++) max[i] = i;
 		
-		Map<Constraint, EObject> reasonMap = new HashMap<>();
+		Map<Object, EObject> reasonMap = new HashMap<>();
 		
 		typeVarMap = new HashMap<>();
 		types.forEach(t->{
@@ -140,8 +141,12 @@ public abstract class TypeModel {
 					}).collect(Collectors.toList());
 					Constraint cons = new Constraint(model.generateName(), new PropSetMapping(left, right, idMaps));
 					model.post(cons);
-					reasonMap.put(cons, causeMap.get(c));
-				} else model.allEqual(left,right).post();
+					addReason(reasonMap, cons, causeMap.get(c));
+				} else {
+					Constraint cons = model.allEqual(left,right);
+					addReason(reasonMap, cons, causeMap.get(c));
+					cons.post();
+				}
 			} else if(c instanceof TypeUnion) {
 				SetVar union = typeVarMap.get(((TypeUnion)c).unionType);
 				SetVar[] elements = ((TypeUnion) c).types.stream().map(t->typeVarMap.get(t)).toArray(i->new SetVar[i]);
@@ -152,7 +157,7 @@ public abstract class TypeModel {
 				}
 				Constraint cons = model.union(elements, union);
 				cons.post();
-				reasonMap.put(cons, causeMap.get(c));
+				addReason(reasonMap, cons, causeMap.get(c));
 			}
 		});
 		
@@ -170,12 +175,20 @@ public abstract class TypeModel {
 			});
 		} else {
 			ContradictionException ex = model.getSolver().getContradictionException();
-			ICause cause = ex.c;
-			if(ex!=null && cause instanceof Constraint) {
-				throw new TypeInferenceException(reasonMap.get((Constraint)cause), ex);				
+			if(ex!=null) {
+				EObject o = reasonMap.getOrDefault(ex.c, program);
+				throw new TypeInferenceException(o, ex);				
 			} else {
 				throw new TypeInferenceException(program, ex);
 			}
+		}
+	}
+
+
+	private void addReason(Map<Object, EObject> reasonMap, Constraint cons, EObject eObject) {
+		reasonMap.put(cons, eObject);
+		for(Propagator<?> p : cons.getPropagators()) {
+			reasonMap.put(p, eObject);
 		}
 	}
 
@@ -252,7 +265,7 @@ public abstract class TypeModel {
 			this.typeList = t2.first;
 			this.superTypeTable = t2.second;
 		}
-		Map<Constraint, EObject> reasonMap = new HashMap<>();
+		Map<Object, EObject> reasonMap = new HashMap<>();
 		Map<TupleType, Map<String, IntVar>> varMap = new HashMap<>();
 		
 		// build intVar
@@ -288,7 +301,7 @@ public abstract class TypeModel {
 				keys.forEach(sk->{
 					String vk = null;
 					if (((TypeEqual) cons).mappings != null) {
-						vk = ((TypeEqual) cons).mappings.stream().filter(m->m.getFrom()==sk).findFirst().get().getTo();
+						vk = ((TypeEqual) cons).mappings.stream().filter(m->m.getFrom().equals(sk)).findFirst().get().getTo();
 					} else {
 						vk = sk;
 					}
@@ -298,7 +311,7 @@ public abstract class TypeModel {
 					
 					Constraint c = new Constraint(model.generateName(), new PropTypeCast(liv, riv, typeList, superTypeTable, ((TypeEqual) cons).sort));
 					model.post(c);
-					reasonMap.put(c, causeMap.get(cons));
+					addReason(reasonMap, c, causeMap.get(cons));
 				});
 			} else if(cons instanceof TypeUnion) {
 				TupleType left = ((TypeUnion) cons).unionType;
@@ -314,7 +327,7 @@ public abstract class TypeModel {
 						IntVar riv = rv.get(vk);
 						Constraint c = new Constraint(model.generateName(), new PropTypeCast(liv, riv, typeList, superTypeTable, TypeEqual.LEFT_ABSTRACT));
 						model.post(c);
-						reasonMap.put(c, causeMap.get(cons));
+						addReason(reasonMap, c, causeMap.get(cons));
 					});
 				}
 			}
@@ -335,9 +348,9 @@ public abstract class TypeModel {
 			
 		} else {
 			ContradictionException ex = model.getSolver().getContradictionException();
-			ICause cause = ex.c;
-			if(ex!=null && cause instanceof Constraint) {
-				throw new TypeInferenceException(reasonMap.get((Constraint)cause), ex);				
+			if(ex!=null) {
+				EObject o = reasonMap.getOrDefault(ex.c, program);
+				throw new TypeInferenceException(o, ex);				
 			} else {
 				throw new TypeInferenceException(program, ex);
 			}

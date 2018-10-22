@@ -137,7 +137,7 @@ XmuCoreGraphReplace :
 ;
 
 XmuCoreParallelComposition :
-	'parallel' typeIndicator=TypeIndicator? bodies+=XmuCoreCompositionChildStatement (=> '|' bodies+=XmuCoreCompositionChildStatement)+ 
+	typeIndicator=TypeIndicator? '{' bodies+=XmuCoreCompositionChildStatement (=> '|' bodies+=XmuCoreCompositionChildStatement)+ '}' 
 ;
 
 XmuCoreSwitch :
@@ -160,7 +160,7 @@ Conversion :
 ;
 
 XmuCoreFork :
-	'fork' typeIndicator=TypeIndicator? forks+=XmuCoreForkBranch (=> '|' forks+=XmuCoreForkBranch)+
+	typeIndicator=TypeIndicator? '{' forks+=XmuCoreForkBranch (=> '|' forks+=XmuCoreForkBranch)+ '}'
 ;
 
 XmuCoreForkBranch :

@@ -120,10 +120,11 @@ public class ViewTypeModel extends TypeModel {
 			TupleType st = getType(e);
 			TupleType bt = getType(((XmuCoreFunctionCall) e).getTarget());
 			TupleType it = new UnsolvedTupleType();
+			this.types.add(it);
 			
 			TypeUnion c1 = TypeUnion.makeSubSet(st, it);
 			this.constraints.add(c1);
-			TypeEqual c2 = TypeEqual.makeRightAbstractMapping(it, bt, ((XmuCoreFunctionCall) e).getSourceMappings());
+			TypeEqual c2 = TypeEqual.makeRightAbstractMapping(it, bt, ((XmuCoreFunctionCall) e).getViewMappings());
 			this.constraints.add(c2);
 			
 			linkCause(c1, e);

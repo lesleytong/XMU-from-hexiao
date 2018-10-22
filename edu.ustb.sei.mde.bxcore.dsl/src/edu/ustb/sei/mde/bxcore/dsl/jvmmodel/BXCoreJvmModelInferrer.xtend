@@ -274,6 +274,7 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 				];
 			]);
 		} catch (Exception e) {
+			e.printStackTrace
 		}
 		
 	}

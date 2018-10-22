@@ -1276,33 +1276,34 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 	public class XmuCoreParallelCompositionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.bxcore.dsl.BXCore.XmuCoreParallelComposition");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cParallelKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cTypeIndicatorAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cTypeIndicatorTypeIndicatorParserRuleCall_1_0 = (RuleCall)cTypeIndicatorAssignment_1.eContents().get(0);
+		private final Assignment cTypeIndicatorAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cTypeIndicatorTypeIndicatorParserRuleCall_0_0 = (RuleCall)cTypeIndicatorAssignment_0.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cBodiesAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cBodiesXmuCoreCompositionChildStatementParserRuleCall_2_0 = (RuleCall)cBodiesAssignment_2.eContents().get(0);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
 		private final Keyword cVerticalLineKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
 		private final Assignment cBodiesAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
 		private final RuleCall cBodiesXmuCoreCompositionChildStatementParserRuleCall_3_1_0 = (RuleCall)cBodiesAssignment_3_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//XmuCoreParallelComposition:
-		//	'parallel' typeIndicator=TypeIndicator? bodies+=XmuCoreCompositionChildStatement (=> '|'
-		//	bodies+=XmuCoreCompositionChildStatement)+;
+		//	typeIndicator=TypeIndicator? '{' bodies+=XmuCoreCompositionChildStatement (=> '|'
+		//	bodies+=XmuCoreCompositionChildStatement)+ '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'parallel' typeIndicator=TypeIndicator? bodies+=XmuCoreCompositionChildStatement (=> '|'
-		//bodies+=XmuCoreCompositionChildStatement)+
+		//typeIndicator=TypeIndicator? '{' bodies+=XmuCoreCompositionChildStatement (=> '|'
+		//bodies+=XmuCoreCompositionChildStatement)+ '}'
 		public Group getGroup() { return cGroup; }
 		
-		//'parallel'
-		public Keyword getParallelKeyword_0() { return cParallelKeyword_0; }
-		
 		//typeIndicator=TypeIndicator?
-		public Assignment getTypeIndicatorAssignment_1() { return cTypeIndicatorAssignment_1; }
+		public Assignment getTypeIndicatorAssignment_0() { return cTypeIndicatorAssignment_0; }
 		
 		//TypeIndicator
-		public RuleCall getTypeIndicatorTypeIndicatorParserRuleCall_1_0() { return cTypeIndicatorTypeIndicatorParserRuleCall_1_0; }
+		public RuleCall getTypeIndicatorTypeIndicatorParserRuleCall_0_0() { return cTypeIndicatorTypeIndicatorParserRuleCall_0_0; }
+		
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
 		
 		//bodies+=XmuCoreCompositionChildStatement
 		public Assignment getBodiesAssignment_2() { return cBodiesAssignment_2; }
@@ -1321,6 +1322,9 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//XmuCoreCompositionChildStatement
 		public RuleCall getBodiesXmuCoreCompositionChildStatementParserRuleCall_3_1_0() { return cBodiesXmuCoreCompositionChildStatementParserRuleCall_3_1_0; }
+		
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
 	}
 	public class XmuCoreSwitchElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.bxcore.dsl.BXCore.XmuCoreSwitch");
@@ -1528,31 +1532,32 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 	public class XmuCoreForkElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.bxcore.dsl.BXCore.XmuCoreFork");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cForkKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cTypeIndicatorAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cTypeIndicatorTypeIndicatorParserRuleCall_1_0 = (RuleCall)cTypeIndicatorAssignment_1.eContents().get(0);
+		private final Assignment cTypeIndicatorAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cTypeIndicatorTypeIndicatorParserRuleCall_0_0 = (RuleCall)cTypeIndicatorAssignment_0.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cForksAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cForksXmuCoreForkBranchParserRuleCall_2_0 = (RuleCall)cForksAssignment_2.eContents().get(0);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
 		private final Keyword cVerticalLineKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
 		private final Assignment cForksAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
 		private final RuleCall cForksXmuCoreForkBranchParserRuleCall_3_1_0 = (RuleCall)cForksAssignment_3_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//XmuCoreFork:
-		//	'fork' typeIndicator=TypeIndicator? forks+=XmuCoreForkBranch (=> '|' forks+=XmuCoreForkBranch)+;
+		//	typeIndicator=TypeIndicator? '{' forks+=XmuCoreForkBranch (=> '|' forks+=XmuCoreForkBranch)+ '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'fork' typeIndicator=TypeIndicator? forks+=XmuCoreForkBranch (=> '|' forks+=XmuCoreForkBranch)+
+		//typeIndicator=TypeIndicator? '{' forks+=XmuCoreForkBranch (=> '|' forks+=XmuCoreForkBranch)+ '}'
 		public Group getGroup() { return cGroup; }
 		
-		//'fork'
-		public Keyword getForkKeyword_0() { return cForkKeyword_0; }
-		
 		//typeIndicator=TypeIndicator?
-		public Assignment getTypeIndicatorAssignment_1() { return cTypeIndicatorAssignment_1; }
+		public Assignment getTypeIndicatorAssignment_0() { return cTypeIndicatorAssignment_0; }
 		
 		//TypeIndicator
-		public RuleCall getTypeIndicatorTypeIndicatorParserRuleCall_1_0() { return cTypeIndicatorTypeIndicatorParserRuleCall_1_0; }
+		public RuleCall getTypeIndicatorTypeIndicatorParserRuleCall_0_0() { return cTypeIndicatorTypeIndicatorParserRuleCall_0_0; }
+		
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
 		
 		//forks+=XmuCoreForkBranch
 		public Assignment getForksAssignment_2() { return cForksAssignment_2; }
@@ -1571,6 +1576,9 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//XmuCoreForkBranch
 		public RuleCall getForksXmuCoreForkBranchParserRuleCall_3_1_0() { return cForksXmuCoreForkBranchParserRuleCall_3_1_0; }
+		
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
 	}
 	public class XmuCoreForkBranchElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.bxcore.dsl.BXCore.XmuCoreForkBranch");
@@ -2625,8 +2633,8 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//XmuCoreParallelComposition:
-	//	'parallel' typeIndicator=TypeIndicator? bodies+=XmuCoreCompositionChildStatement (=> '|'
-	//	bodies+=XmuCoreCompositionChildStatement)+;
+	//	typeIndicator=TypeIndicator? '{' bodies+=XmuCoreCompositionChildStatement (=> '|'
+	//	bodies+=XmuCoreCompositionChildStatement)+ '}';
 	public XmuCoreParallelCompositionElements getXmuCoreParallelCompositionAccess() {
 		return pXmuCoreParallelComposition;
 	}
@@ -2679,7 +2687,7 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//XmuCoreFork:
-	//	'fork' typeIndicator=TypeIndicator? forks+=XmuCoreForkBranch (=> '|' forks+=XmuCoreForkBranch)+;
+	//	typeIndicator=TypeIndicator? '{' forks+=XmuCoreForkBranch (=> '|' forks+=XmuCoreForkBranch)+ '}';
 	public XmuCoreForkElements getXmuCoreForkAccess() {
 		return pXmuCoreFork;
 	}

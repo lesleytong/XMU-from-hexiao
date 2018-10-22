@@ -2282,16 +2282,12 @@ ruleXmuCoreParallelComposition returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		otherlv_0='parallel'
-		{
-			newLeafNode(otherlv_0, grammarAccess.getXmuCoreParallelCompositionAccess().getParallelKeyword_0());
-		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getXmuCoreParallelCompositionAccess().getTypeIndicatorTypeIndicatorParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getXmuCoreParallelCompositionAccess().getTypeIndicatorTypeIndicatorParserRuleCall_0_0());
 				}
-				lv_typeIndicator_1_0=ruleTypeIndicator
+				lv_typeIndicator_0_0=ruleTypeIndicator
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getXmuCoreParallelCompositionRule());
@@ -2299,12 +2295,16 @@ ruleXmuCoreParallelComposition returns [EObject current=null]
 					set(
 						$current,
 						"typeIndicator",
-						lv_typeIndicator_1_0,
+						lv_typeIndicator_0_0,
 						"edu.ustb.sei.mde.bxcore.dsl.BXCore.TypeIndicator");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)?
+		otherlv_1='{'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getXmuCoreParallelCompositionAccess().getLeftCurlyBracketKeyword_1());
+		}
 		(
 			(
 				{
@@ -2352,6 +2352,10 @@ ruleXmuCoreParallelComposition returns [EObject current=null]
 				)
 			)
 		)+
+		otherlv_5='}'
+		{
+			newLeafNode(otherlv_5, grammarAccess.getXmuCoreParallelCompositionAccess().getRightCurlyBracketKeyword_4());
+		}
 	)
 ;
 
@@ -2731,16 +2735,12 @@ ruleXmuCoreFork returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		otherlv_0='fork'
-		{
-			newLeafNode(otherlv_0, grammarAccess.getXmuCoreForkAccess().getForkKeyword_0());
-		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getXmuCoreForkAccess().getTypeIndicatorTypeIndicatorParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getXmuCoreForkAccess().getTypeIndicatorTypeIndicatorParserRuleCall_0_0());
 				}
-				lv_typeIndicator_1_0=ruleTypeIndicator
+				lv_typeIndicator_0_0=ruleTypeIndicator
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getXmuCoreForkRule());
@@ -2748,12 +2748,16 @@ ruleXmuCoreFork returns [EObject current=null]
 					set(
 						$current,
 						"typeIndicator",
-						lv_typeIndicator_1_0,
+						lv_typeIndicator_0_0,
 						"edu.ustb.sei.mde.bxcore.dsl.BXCore.TypeIndicator");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)?
+		otherlv_1='{'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getXmuCoreForkAccess().getLeftCurlyBracketKeyword_1());
+		}
 		(
 			(
 				{
@@ -2801,6 +2805,10 @@ ruleXmuCoreFork returns [EObject current=null]
 				)
 			)
 		)+
+		otherlv_5='}'
+		{
+			newLeafNode(otherlv_5, grammarAccess.getXmuCoreForkAccess().getRightCurlyBracketKeyword_4());
+		}
 	)
 ;
 

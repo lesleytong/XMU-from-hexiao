@@ -120,6 +120,7 @@ public class SourceTypeModel extends TypeModel {
 			TupleType st = getType(e);
 			TupleType bt = getType(((XmuCoreFunctionCall) e).getTarget());
 			TupleType it = new UnsolvedTupleType();
+			this.types.add(it);
 			
 			TypeUnion c1 = TypeUnion.makeSubSet(st, it);
 			this.constraints.add(c1);
