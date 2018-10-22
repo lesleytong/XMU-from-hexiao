@@ -99,6 +99,9 @@ import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 import edu.ustb.sei.mde.bxcore.dsl.infer.SourceTypeModel
 import edu.ustb.sei.mde.bxcore.dsl.infer.UnsolvedTupleType
 import org.eclipse.emf.ecore.ENamedElement
+import org.eclipse.xtext.resource.XtextResource
+import edu.ustb.sei.mde.bxcore.dsl.infer.InferManager
+import edu.ustb.sei.mde.bxcore.dsl.infer.InferData
 
 /**
  * <p>Infers a JVM model from the source model.</p> 
@@ -138,128 +141,141 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 	 *            <code>true</code>.
 	 */
 	def dispatch void infer(BXProgram element, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
-		val sourceURI = element.eResource.URI.trimFileExtension.toJavaClassName;
+		if(element.eResource.errors.empty===false) return;
+		
+		try {
+			val data = InferManager.getInferredTypeModel(element.eResource);
+			val typeLiteralMap = data.literalMap;
+			val unsolvedTypes = data.unsolvedTypeMap;
 
-		acceptor.accept(element.toClass(sourceURI) [
-			element.imports.forEach [ i | i.generateImportSection(it);];
-			
-			members += element.toMethod('execute', ViewType.typeRef) [
-				parameters += element.toParameter('bx', XmuCore.typeRef);
-				parameters += element.toParameter('graph', TypedGraph.typeRef);
-				parameters += element.toParameter('inits', Tuple2.typeRef(String.typeRef, Object.typeRef).addArrayTypeDimension);
-				
-				exceptions += NothingReturnedException.typeRef;
-				
-				if (!isPreIndexingPhase) {
-					body = '''
-						«Context.typeRef.qualifiedName» sourceContext = bx.getSourceDef().createInstance();
-						for(«Tuple2.typeRef(String.typeRef, Object.typeRef).qualifiedName» tuple : inits) {
-							sourceContext.setValue(tuple.first, tuple.second);
-						}
-						return bx.forward(«SourceType.typeRef.qualifiedName».makeSource(graph, sourceContext, new «TraceSystem.typeRef.qualifiedName»()));
-					'''
-				}
-			];
-			
-			members += element.toMethod('execute', SourceType.typeRef) [
-				parameters += element.toParameter('bx', XmuCore.typeRef);
-				parameters += element.toParameter('source', TypedGraph.typeRef);
-				parameters += element.toParameter('sourceInits', Tuple2.typeRef(String.typeRef, Object.typeRef).addArrayTypeDimension);
-				parameters += element.toParameter('view', TypedGraph.typeRef);
-				parameters += element.toParameter('viewInits', Tuple2.typeRef(String.typeRef, Object.typeRef).addArrayTypeDimension);
-				
-				exceptions += NothingReturnedException.typeRef;
-				
-				if (!isPreIndexingPhase) {
-					body = '''
-						«Context.typeRef.qualifiedName» sourceContext = bx.getSourceDef().createInstance();
-						for(«Tuple2.typeRef(String.typeRef, Object.typeRef).qualifiedName» tuple : sourceInits) {
-							sourceContext.setValue(tuple.first, tuple.second);
-						}
-						«Context.typeRef.qualifiedName» viewContext = bx.getViewDef().createInstance();
-						for(«Tuple2.typeRef(String.typeRef, Object.typeRef).qualifiedName» tuple : viewInits) {
-							viewContext.setValue(tuple.first, tuple.second);
-						}
-						
-						return bx.backward(«SourceType.typeRef.qualifiedName».makeSource(source, sourceContext, new «TraceSystem.typeRef.qualifiedName»()), «ViewType.typeRef.qualifiedName».makeView(view, viewContext));
-					'''
-				}
-			];
-			
-			val conditions = element.eAllContents.filter[e| e instanceof ContextAwareCondition].map[it as ContextAwareCondition].toList;
-			conditions.forEach[cond, id| cond.generateCondition(id, it)];
-			
-			val actions = element.eAllContents.filter[e| e instanceof ContextAwareUnidirectionalAction].map[it as ContextAwareUnidirectionalAction].toList;
-			actions.forEach[act, id|act.generateAction(id, it)];
-			
-			val statements = element.eAllContents.filter[it instanceof XmuCoreStatement].map[it as XmuCoreStatement].indexed.toList;
-			
-			val typeLiteralMap = element.groupTypeLiterals;
-			val tupleSet = typeLiteralMap.values.toSet;
-			tupleSet.forEach[pair|generateTypeLiteral(it, pair.first, pair.second, element);];
-			
-			if(!isPreIndexingPhase) {
-				try {
-					val sourceTypeInfer = new SourceTypeModel(element, typeLiteralMap);
-					sourceTypeInfer.solveNames();
-					println('name solved!');
-					sourceTypeInfer.solveTypes();
-					println('type solved!');
-					statements.forEach [ s |
-						val v = sourceTypeInfer.unsolvedTupleTypeMap.get(s.value);
-//						println("key" + s.key + "=>" + (v as UnsolvedTupleType).candidates.map[it.first].toList);
-						println("key" + s.key + "=>" + (v as UnsolvedTupleType).tuples.map[it.first+':'+(it.second as ENamedElement).name].toList);
-					];
-				} catch (Exception e) {
-					e.printStackTrace;
-				}
-			}
-			
-			
-			
-			val patternLiterals = element.eAllContents.filter[it instanceof PatternTypeLiteral].map[it as PatternTypeLiteral].indexed.toList;
-			patternLiterals.forEach[p|generatePatternLiteral(it, p.value, p.key, typeLiteralMap, element);];
-			
-			element.definitions.forEach [ def |
-				if (def instanceof TypeDefinition) {
-					generateTypeDefinition(it, def, typeLiteralMap, patternLiterals, element);
-				} else if(def instanceof IndexDefinition) {
-					members += def.toField('index_'+def.name, IndexSignature.typeRef) [
-						visibility = JvmVisibility.PRIVATE
-					];
-					
-					members += def.toMethod('getIndex_'+def.name.toFirstUpper, IndexSignature.typeRef) [
-						visibility = JvmVisibility.PUBLIC;
-						body='''
-						if(index_«def.name»==null) {
-							index_«def.name» = new «IndexSignature.typeRef.qualifiedName»("«(def as IndexDefinition).name»", «(def as IndexDefinition).sourceType.typeAccessor(typeLiteralMap)», «(def as IndexDefinition).viewType.typeAccessor(typeLiteralMap)»);
-						}
-						return index_«def.name»;
+			val sourceURI = element.eResource.URI.trimFileExtension.toJavaClassName;
+
+			acceptor.accept(element.toClass(sourceURI) [
+				element.imports.forEach[i|i.generateImportSection(it);];
+
+				members += element.toMethod('execute', ViewType.typeRef) [
+					parameters += element.toParameter('bx', XmuCore.typeRef);
+					parameters += element.toParameter('graph', TypedGraph.typeRef);
+					parameters +=
+						element.toParameter('inits',
+							Tuple2.typeRef(String.typeRef, Object.typeRef).addArrayTypeDimension);
+
+					exceptions += NothingReturnedException.typeRef;
+
+					if (!isPreIndexingPhase) {
+						body = '''
+							«Context.typeRef.qualifiedName» sourceContext = bx.getSourceDef().createInstance();
+							for(«Tuple2.typeRef(String.typeRef, Object.typeRef).qualifiedName» tuple : inits) {
+								sourceContext.setValue(tuple.first, tuple.second);
+							}
+							return bx.forward(«SourceType.typeRef.qualifiedName».makeSource(graph, sourceContext, new «TraceSystem.typeRef.qualifiedName»()));
 						'''
-					];
-					
-				} else if(def instanceof BXFunctionDefinition) {
-					members += def.toField('xmu_'+def.name, XmuCore.typeRef)[
-						visibility = JvmVisibility.PRIVATE
-					];
-					
-					members += def.toMethod('getXmu_'+def.name.toFirstUpper, XmuCore.typeRef) [
-						visibility = JvmVisibility.PUBLIC;
-						exceptions += BidirectionalTransformationDefinitionException.typeRef;
-						
-						if (!isPreIndexingPhase) {
-							body = [ appendable |
-								appendable.append('''if(xmu_«def.name»==null) {''').newLine.
-									append('''xmu_«def.name» = ''').generateXmuCode(
-										(def as BXFunctionDefinition).statement, statements, typeLiteralMap,
-										patternLiterals, conditions, actions, element).append(';').newLine.append('}').
-									newLine.append('''return xmu_«def.name»;''')
-							]
-						}
-					]
-				}
-			];
-		]);
+					}
+				];
+
+				members += element.toMethod('execute', SourceType.typeRef) [
+					parameters += element.toParameter('bx', XmuCore.typeRef);
+					parameters += element.toParameter('source', TypedGraph.typeRef);
+					parameters +=
+						element.toParameter('sourceInits',
+							Tuple2.typeRef(String.typeRef, Object.typeRef).addArrayTypeDimension);
+					parameters += element.toParameter('view', TypedGraph.typeRef);
+					parameters +=
+						element.toParameter('viewInits',
+							Tuple2.typeRef(String.typeRef, Object.typeRef).addArrayTypeDimension);
+
+					exceptions += NothingReturnedException.typeRef;
+
+					if (!isPreIndexingPhase) {
+						body = '''
+							«Context.typeRef.qualifiedName» sourceContext = bx.getSourceDef().createInstance();
+							for(«Tuple2.typeRef(String.typeRef, Object.typeRef).qualifiedName» tuple : sourceInits) {
+								sourceContext.setValue(tuple.first, tuple.second);
+							}
+							«Context.typeRef.qualifiedName» viewContext = bx.getViewDef().createInstance();
+							for(«Tuple2.typeRef(String.typeRef, Object.typeRef).qualifiedName» tuple : viewInits) {
+								viewContext.setValue(tuple.first, tuple.second);
+							}
+							
+							return bx.backward(«SourceType.typeRef.qualifiedName».makeSource(source, sourceContext, new «TraceSystem.typeRef.qualifiedName»()), «ViewType.typeRef.qualifiedName».makeView(view, viewContext));
+						'''
+					}
+				];
+
+				val conditions = element.eAllContents.filter[e|e instanceof ContextAwareCondition].map [
+					it as ContextAwareCondition
+				].toList;
+				conditions.forEach[cond, id|cond.generateCondition(id, it)];
+
+				val actions = element.eAllContents.filter[e|e instanceof ContextAwareUnidirectionalAction].map [
+					it as ContextAwareUnidirectionalAction
+				].toList;
+				actions.forEach[act, id|act.generateAction(id, it)];
+
+				val statements = element.eAllContents.filter[it instanceof XmuCoreStatement].
+					map[it as XmuCoreStatement].indexed.toList;
+
+				val tupleSet = data.tupleSet;
+				tupleSet.forEach[pair|generateTypeLiteral(it, pair.first, pair.second, element);];
+				
+				val unsolvedTupleSet = data.unsolvedTypeMap.values.toSet;
+				unsolvedTupleSet.forEach[pair|
+					if(pair.second<0) generateTypeLiteral(it, pair.first, pair.second, element);
+				];
+				
+
+				val patternLiterals = element.eAllContents.filter[it instanceof PatternTypeLiteral].map [
+					it as PatternTypeLiteral
+				].indexed.toList;
+				
+				if(!isPreIndexingPhase)
+					patternLiterals.forEach[p|generatePatternLiteral(it, p.value, p.key, typeLiteralMap, element);];
+
+				element.definitions.forEach [ def |
+					if (def instanceof TypeDefinition) {
+						generateTypeDefinition(it, def, typeLiteralMap, patternLiterals, element, isPreIndexingPhase);
+					} else if (def instanceof IndexDefinition) {
+						members += def.toField('index_' + def.name, IndexSignature.typeRef) [
+							visibility = JvmVisibility.PRIVATE
+						];
+
+						members += def.toMethod('getIndex_' + def.name.toFirstUpper, IndexSignature.typeRef) [
+							visibility = JvmVisibility.PUBLIC;
+							if (!isPreIndexingPhase) {
+								body = '''
+									if(index_«def.name»==null) {
+										index_«def.name» = new «IndexSignature.typeRef.qualifiedName»("«(def as IndexDefinition).name»", «(def as IndexDefinition).sourceType.typeAccessor(typeLiteralMap, null)», «(def as IndexDefinition).viewType.typeAccessor(typeLiteralMap, null)»);
+									}
+									return index_«def.name»;
+								'''
+							}
+						];
+
+					} else if (def instanceof BXFunctionDefinition) {
+						members += def.toField('xmu_' + def.name, XmuCore.typeRef) [
+							visibility = JvmVisibility.PRIVATE
+						];
+
+						members += def.toMethod('getXmu_' + def.name.toFirstUpper, XmuCore.typeRef) [
+							visibility = JvmVisibility.PUBLIC;
+							exceptions += BidirectionalTransformationDefinitionException.typeRef;
+
+							if (!isPreIndexingPhase) {
+								body = [ appendable |
+									appendable.append('''if(xmu_«def.name»==null) {''').newLine.
+										append('''xmu_«def.name» = ''').generateXmuCode(
+											(def as BXFunctionDefinition).statement, statements, typeLiteralMap,
+											patternLiterals, conditions, actions, unsolvedTypes, data, element).append(';').newLine.
+										append('}').newLine.append('''return xmu_«def.name»;''')
+								]
+							}
+						]
+					}
+				];
+			]);
+		} catch (Exception e) {
+		}
+		
 	}
 		
 	protected def generatePatternLiteral(JvmGenericType owner, PatternTypeLiteral literal, Integer id, Map<TypeLiteral, Tuple2<TupleType, Integer>> typeLiteralMap, BXProgram program) {
@@ -414,26 +430,35 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 		}
 	}
 	
-	def ITreeAppendable generateXmuCode(ITreeAppendable appendable, XmuCoreStatement statement, List<Pair<Integer, XmuCoreStatement>> indexedStatements, Map<TypeLiteral, Tuple2<TupleType, Integer>> typeLiteralMap, List<Pair<Integer, PatternTypeLiteral>> patternLiterals, List<ContextAwareCondition> conditions, List<ContextAwareUnidirectionalAction> actions, BXProgram program) {
+	def ITreeAppendable generateXmuCode(ITreeAppendable appendable, 
+		XmuCoreStatement statement, List<Pair<Integer, XmuCoreStatement>> indexedStatements, 
+		Map<TypeLiteral, Tuple2<TupleType, Integer>> typeLiteralMap, 
+		List<Pair<Integer, PatternTypeLiteral>> patternLiterals, 
+		List<ContextAwareCondition> conditions, 
+		List<ContextAwareUnidirectionalAction> actions, 
+		Map<UnsolvedTupleType, Tuple2<TupleType, Integer>> unsolvedTypes, 
+		InferData data,
+		BXProgram program
+	) {
 		val key = 'xmu'+indexedStatements.findFirst[it.value===statement].key
 		
 		switch statement {
 			XmuCoreMatchSource : {
-				val srcType = (statement as XmuCoreMatchSource).sourceType.typeAccessor(typeLiteralMap);
+				val srcType = (statement as XmuCoreMatchSource).sourceType(data).typeAccessor(typeLiteralMap, unsolvedTypes);
 				val pattern = (statement as XmuCoreMatchSource).pattern;
 				val body = (statement as XmuCoreMatchSource).body;
 				return appendable.append('''new «MatchSource.typeRef.qualifiedName»("«key»", «srcType», «pattern.patternAccessor(patternLiterals)»,''')
 					.newLine.increaseIndentation
-					.generateXmuCode(body, indexedStatements, typeLiteralMap, patternLiterals, conditions, actions, program)
+					.generateXmuCode(body, indexedStatements, typeLiteralMap, patternLiterals, conditions, actions, unsolvedTypes, data, program)
 					.newLine.decreaseIndentation.append(')')
 			}
 			XmuCoreMatchView : {
-				val viwType = (statement as XmuCoreMatchView).viewType.typeAccessor(typeLiteralMap);
+				val viwType = (statement as XmuCoreMatchView).viewType(data).typeAccessor(typeLiteralMap, unsolvedTypes);
 				val pattern = (statement as XmuCoreMatchView).pattern;
 				val body = (statement as XmuCoreMatchView).body;
 				return appendable.append('''new «MatchView.typeRef.qualifiedName»("«key»", «viwType», «pattern.patternAccessor(patternLiterals)»,''')
 					.newLine.increaseIndentation
-					.generateXmuCode(body, indexedStatements, typeLiteralMap, patternLiterals, conditions, actions, program)
+					.generateXmuCode(body, indexedStatements, typeLiteralMap, patternLiterals, conditions, actions, unsolvedTypes, data, program)
 					.newLine.decreaseIndentation.append(')')
 			}
 			XmuCoreExpandSource : {
@@ -443,7 +468,7 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 				
 				return appendable.append('''new «ExpandSource.typeRef.qualifiedName»("«key»", «pattern.patternAccessor(patternLiterals)», ''')
 					.newLine.increaseIndentation
-					.generateXmuCode(body, indexedStatements, typeLiteralMap, patternLiterals, conditions, actions, program).append(''',''')
+					.generateXmuCode(body, indexedStatements, typeLiteralMap, patternLiterals, conditions, actions, unsolvedTypes, data, program).append(''',''')
 					.newLine.append('''new «Tuple2.typeRef.qualifiedName»[] {«FOR mapping : valMappings SEPARATOR ','»«Tuple2.typeRef.qualifiedName».make("«mapping.from»", "«mapping.to»")«ENDFOR»}''')
 					.newLine.decreaseIndentation.append(")")
 			}
@@ -454,24 +479,24 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 				
 				return appendable.append('''new «ExpandView.typeRef.qualifiedName»("«key»", «pattern.patternAccessor(patternLiterals)», ''')
 					.newLine.increaseIndentation
-					.generateXmuCode(body, indexedStatements, typeLiteralMap, patternLiterals, conditions, actions, program).append(''',''')
+					.generateXmuCode(body, indexedStatements, typeLiteralMap, patternLiterals, conditions, actions, unsolvedTypes, data, program).append(''',''')
 					.newLine.append('''new «Tuple2.typeRef.qualifiedName»[] {«FOR mapping : valMappings SEPARATOR ','»«Tuple2.typeRef.qualifiedName».make("«mapping.from»", "«mapping.to»")«ENDFOR»}''')
 					.newLine.decreaseIndentation.append(")")
 			}
 			XmuCoreParallelComposition : {
-				val srcType = (statement as XmuCoreParallelComposition).sourceType.typeAccessor(typeLiteralMap);
-				val viwType = (statement as XmuCoreParallelComposition).viewType.typeAccessor(typeLiteralMap);
+				val srcType = (statement as XmuCoreParallelComposition).sourceType(data).typeAccessor(typeLiteralMap, unsolvedTypes);
+				val viwType = (statement as XmuCoreParallelComposition).viewType(data).typeAccessor(typeLiteralMap, unsolvedTypes);
 				val bodies = (statement as XmuCoreParallelComposition).bodies;
 				var scope = appendable.append('''new «ParallelComposition.typeRef.qualifiedName»("«key»", «srcType», «viwType», new «XmuCore.typeRef.qualifiedName»[] {''')
 					.newLine.increaseIndentation;
 				for(b : bodies) {
-					scope = (if(bodies.indexOf(b)!==0) scope.append(',').newLine else scope).generateXmuCode(b, indexedStatements, typeLiteralMap, patternLiterals, conditions, actions, program);
+					scope = (if(bodies.indexOf(b)!==0) scope.append(',').newLine else scope).generateXmuCode(b, indexedStatements, typeLiteralMap, patternLiterals, conditions, actions, unsolvedTypes, data, program);
 				}
 				return scope.newLine.decreaseIndentation.append("})")
 			}
 			XmuCoreFork : {
-				val srcType = (statement as XmuCoreFork).sourceType.typeAccessor(typeLiteralMap);
-				val viwType = (statement as XmuCoreFork).viewType.typeAccessor(typeLiteralMap);
+				val srcType = (statement as XmuCoreFork).sourceType(data).typeAccessor(typeLiteralMap, unsolvedTypes);
+				val viwType = (statement as XmuCoreFork).viewType(data).typeAccessor(typeLiteralMap, unsolvedTypes);
 				val forks = (statement as XmuCoreFork).forks;
 				var scope = appendable.append('''new «Fork.typeRef.qualifiedName»("«key»", «srcType», «viwType», new «Tuple3.typeRef.qualifiedName»[] {''')
 					.newLine.increaseIndentation;
@@ -480,13 +505,13 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 						.append('''«Tuple3.typeRef.qualifiedName».make(''')
 						.append('''new «Tuple2.typeRef.qualifiedName»[] {«FOR m : f.sourceMappings SEPARATOR ','»«Tuple2.typeRef.qualifiedName».make("«m.from»","«m.to»")«ENDFOR»}, ''')
 						.append('''new «Tuple2.typeRef.qualifiedName»[] {«FOR m : f.viewMappings SEPARATOR ','»«Tuple2.typeRef.qualifiedName».make("«m.from»","«m.to»")«ENDFOR»}, ''')
-						.generateXmuCode(f.body, indexedStatements, typeLiteralMap, patternLiterals, conditions, actions, program).append(')');
+						.generateXmuCode(f.body, indexedStatements, typeLiteralMap, patternLiterals, conditions, actions, unsolvedTypes, data, program).append(')');
 				}
 				return scope.newLine.decreaseIndentation.append("})")
 			}
 			XmuCoreSwitch: {
-				val srcType = (statement as XmuCoreSwitch).sourceType.typeAccessor(typeLiteralMap);
-				val viwType = (statement as XmuCoreSwitch).viewType.typeAccessor(typeLiteralMap);
+				val srcType = (statement as XmuCoreSwitch).sourceType(data).typeAccessor(typeLiteralMap, unsolvedTypes);
+				val viwType = (statement as XmuCoreSwitch).viewType(data).typeAccessor(typeLiteralMap, unsolvedTypes);
 				val branches = (statement as XmuCoreSwitch).branches;
 				val adaptions = (statement as XmuCoreSwitch).adaptions;
 								
@@ -497,7 +522,7 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 				for(b : branches) {
 					if(branches.get(0)!==b) scope = scope.append(', ');
 					scope = scope.append('''«Tuple3.typeRef.qualifiedName».make(new Condition«conditions.indexOf(b.condition)»(), ''').newLine.increaseIndentation
-							.generateXmuCode(b.action, indexedStatements, typeLiteralMap, patternLiterals, conditions, actions, program).append(''', («Function.typeRef(SourceType.typeRef, Boolean.typeRef).qualifiedName») null)''').newLine.decreaseIndentation;
+							.generateXmuCode(b.action, indexedStatements, typeLiteralMap, patternLiterals, conditions, actions, unsolvedTypes, data, program).append(''', («Function.typeRef(SourceType.typeRef, Boolean.typeRef).qualifiedName») null)''').newLine.decreaseIndentation;
 				}
 				scope = scope.append('),').newLine.decreaseIndentation
 					.append('''«Arrays.typeRef.qualifiedName».asList(''');
@@ -517,8 +542,8 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 				appendable.append('''new «GraphReplace.typeRef.qualifiedName»("«key»", «srcPat», «viwPat», new «Tuple3.typeRef.qualifiedName»[]{«FOR conv : conversions SEPARATOR ','»«Tuple3.typeRef.qualifiedName».make(new String[]{«FOR sk : conv.source SEPARATOR ','»"«sk»"«ENDFOR»}, new String[]{«FOR vk : conv.view SEPARATOR ','»"«vk»"«ENDFOR»}, «conv.bigul.generateBiGuLCode»)«ENDFOR»})''').newLine
 			}
 			XmuCoreAlign : {
-				val srcType = (statement as XmuCoreAlign).sourceType.typeAccessor(typeLiteralMap);
-				val viwType = (statement as XmuCoreAlign).viewType.typeAccessor(typeLiteralMap);
+				val srcType = (statement as XmuCoreAlign).sourceType(data).typeAccessor(typeLiteralMap, unsolvedTypes);
+				val viwType = (statement as XmuCoreAlign).viewType(data).typeAccessor(typeLiteralMap, unsolvedTypes);
 				val srcPat = (statement as XmuCoreAlign).sourcePattern.patternAccessor(patternLiterals);
 				val viwPat = (statement as XmuCoreAlign).viewPattern.patternAccessor(patternLiterals);
 				val cond = (statement as XmuCoreAlign).alignment;
@@ -527,12 +552,12 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 				val unmatchV = (statement as XmuCoreAlign).unmatchV;
 				
 				appendable.append('''new «Align.typeRef.qualifiedName»("«key»", «srcType», «viwType», «srcPat», «viwPat», new Condition«conditions.indexOf(cond)»(), ''').newLine.increaseIndentation
-					.generateXmuCode(match, indexedStatements, typeLiteralMap, patternLiterals, conditions, actions, program)
+					.generateXmuCode(match, indexedStatements, typeLiteralMap, patternLiterals, conditions, actions, unsolvedTypes, data, program)
 					.append(''', new UnidirectionalAction«actions.indexOf(unmatchS)»(), new UnidirectionalAction«actions.indexOf(unmatchV)»())''')
 			}
 			XmuCoreFunctionCall : {
-				val st = (statement as XmuCoreFunctionCall).target.sourceType.typeAccessor(typeLiteralMap);
-				val vt = (statement as XmuCoreFunctionCall).target.viewType.typeAccessor(typeLiteralMap);
+				val st = (statement as XmuCoreFunctionCall).target.sourceType(data).typeAccessor(typeLiteralMap, unsolvedTypes);
+				val vt = (statement as XmuCoreFunctionCall).target.viewType(data).typeAccessor(typeLiteralMap, unsolvedTypes);
 				val sk = (statement as XmuCoreFunctionCall).sourceMappings;
 				val vk = (statement as XmuCoreFunctionCall).viewMappings;
 				appendable.append('''new «Invocation.typeRef.qualifiedName»("«key»", «st», «vt», new «Tuple2.typeRef.qualifiedName»[]{«FOR m:sk SEPARATOR ','»«Tuple2.typeRef.qualifiedName».make("«m.from»","«m.to»")«ENDFOR»}, new «Tuple2.typeRef.qualifiedName»[]{«FOR m:vk SEPARATOR ','»«Tuple2.typeRef.qualifiedName».make("«m.from»","«m.to»")«ENDFOR»},()->{try {return getXmu_«(statement as XmuCoreFunctionCall).target.name.toFirstUpper»();} catch(Exception e){return null;}})''')
@@ -542,11 +567,37 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 				val body = (statement as XmuCoreIndex).body;
 				
 				var scope = appendable.append('''«FOR part : parts»new «Indexing.typeRef.qualifiedName»(getIndex_«part.signature.name.toFirstUpper»(), new String[]{«FOR sk:part.sourceKeys SEPARATOR ','»"«sk»"«ENDFOR»}, new String[]{«FOR vk:part.viewKeys SEPARATOR ','»"«vk»"«ENDFOR»}, «ENDFOR»''');
-				scope = scope.generateXmuCode(body, indexedStatements, typeLiteralMap, patternLiterals, conditions, actions, program);
+				scope = scope.generateXmuCode(body, indexedStatements, typeLiteralMap, patternLiterals, conditions, actions, unsolvedTypes, data, program);
 				return scope.append('''«FOR part:parts»)«ENDFOR»''')
 			}
 			default:
 				appendable.append('''/* undefined */''')
+		}
+	}
+	
+	def Object sourceType(BXFunctionDefinition func, InferData data) {
+		if(func.typeIndicator!==null) func.typeIndicator.sourceType
+		else func.statement.sourceType(data)
+	}
+	
+	def Object viewType(BXFunctionDefinition func, InferData data) {
+		if(func.typeIndicator!==null) func.typeIndicator.viewType
+		else func.statement.viewType(data)
+	}
+		
+	def Object sourceType(XmuCoreStatement source, InferData data) {
+		if(source.typeIndicator !== null) 
+			source.typeIndicator.sourceType
+		else {
+			data.sourceInfer.getType(source)
+		}
+	}
+	
+	def Object viewType(XmuCoreStatement source, InferData data) {
+		if(source.typeIndicator !== null) 
+			source.typeIndicator.viewType
+		else {
+			data.viewInfer.getType(source)
 		}
 	}
 		
@@ -570,68 +621,65 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 		}
 	}
 	
-	protected def CharSequence typeAccessor(ContextTypeRef type, Map<TypeLiteral, Tuple2<TupleType, Integer>> typeLiteralMap) {
+	protected def CharSequence typeAccessor(Object type, Map<TypeLiteral, Tuple2<TupleType, Integer>> typeLiteralMap, Map<UnsolvedTupleType, Tuple2<TupleType, Integer>> unsolvedTypes) {
 		if(type instanceof DefinedContextTypeRef) {
 			'''getType_«type.type.name.toFirstUpper»()'''
 		} else if(type instanceof TupleTypeLiteral) {
 			'''getType_«typeLiteralMap.get(type).second»()'''
+		} else if(type instanceof UnsolvedTupleType) {
+			val tuple = unsolvedTypes.get(type as UnsolvedTupleType);
+			if(tuple.second>=0) '''getType_«tuple.second»()'''
+			else '''getType_U«-unsolvedTypes.get(type as UnsolvedTupleType).second»()'''
 		}
 	}
 	
 	protected def generateTypeLiteral(JvmGenericType owner, TupleType tuple, int id, BXProgram program) {
-		owner.members += program.toField('type_' + id, ContextType.typeRef) [
-			visibility = JvmVisibility.PRIVATE
+		val varName = 'type_'+(if(id>=0) id else 'u'+(-id));
+		val methodName = 'getType_'+(if(id>=0) id else 'U'+(-id));
+		
+		owner.members += program.toField(varName, ContextType.typeRef) [
+			visibility = JvmVisibility.PRIVATE;
+			documentation = 'id:'+id;
 		];
 		
 		val typeGraph =tuple.importSection;
 		
-		owner.members += program.toMethod('getType_' + id, ContextType.typeRef) [
+		owner.members += program.toMethod(methodName, ContextType.typeRef) [
 			visibility = JvmVisibility.PUBLIC;
 			val elements = tuple.tuples;
 		
 			body = '''
-				if(type_«id»==null) {
+				if(«varName»==null) {
 					«IF elements.empty»
-						type_«id» = «ContextType.typeRef.qualifiedName».EMPTY_TYPE;
+						«varName» = «ContextType.typeRef.qualifiedName».EMPTY_TYPE;
 					«ELSE»
 						«TypeGraph.typeRef.qualifiedName» typeGraph = getTypeGraph_«typeGraph.shortName.toFirstUpper»();
-						type_«id» = new «ContextType.typeRef.qualifiedName»();
+						«varName» = new «ContextType.typeRef.qualifiedName»();
 						«FOR v : elements»
 						Object «v.first»_type = typeGraph.«IF v.second instanceof EClassifier»«IF v.second instanceof EClass»getTypeNode«ELSE»getDataTypeNode«ENDIF»("«(v.second as EClassifier).name»")«ELSEIF v.second instanceof EStructuralFeature»«IF v.second instanceof EReference»getTypeEdge«ELSE»getPropertyEdge«ENDIF»(typeGraph.getTypeNode("«(v.second as EStructuralFeature).EContainingClass.name»"),"«(v.second as EStructuralFeature).name»")«ELSE»/* ERROR «v.second» */«ENDIF»;
-						type_«id».addField("«v.first»", «v.first»_type);
+						«varName».addField("«v.first»", «v.first»_type);
 					«ENDFOR»
 					«ENDIF»
 				}
-				return type_«id»;
+				return «varName»;
 			'''
 		
 		]
 	}
 	
-	protected def void generateTypeDefinition(JvmGenericType owner, TypeDefinition typeDef, Map<TypeLiteral, Tuple2<TupleType, Integer>> typeLiteralMap, List<Pair<Integer, PatternTypeLiteral>> patternLiterals, BXProgram program) {
+	protected def void generateTypeDefinition(JvmGenericType owner, TypeDefinition typeDef, Map<TypeLiteral, Tuple2<TupleType, Integer>> typeLiteralMap, List<Pair<Integer, PatternTypeLiteral>> patternLiterals, BXProgram program, boolean isPreIndexing) {
 		val literal = typeDef.literal;
 		owner.members += typeDef.toMethod('getType_' + typeDef.name.toFirstUpper, ContextType.typeRef) [
 			visibility = JvmVisibility.PUBLIC;
-			body = '''return getType_«typeLiteralMap.get(literal).second»();'''
+			if(!isPreIndexing)
+				body = '''return getType_«typeLiteralMap.get(literal).second»();'''
 		];
 		
 		if(typeDef.literal instanceof PatternTypeLiteral) {
 			owner.members += typeDef.toMethod(typeDef.name, Pattern.typeRef) [
-				body = '''return getPattern_«patternLiterals.findFirst[it.value===typeDef.literal].key»();'''
+				if(!isPreIndexing)
+					body = '''return getPattern_«patternLiterals.findFirst[it.value===typeDef.literal].key»();'''
 			];
 		}
-	}
-	
-	protected def groupTypeLiterals(BXProgram program) {
-		val literals = program.eAllContents.filter[e|e instanceof TypeLiteral].map[return (it as TypeLiteral)->TupleType.make(it as TypeLiteral)].toList;
-		val groups = literals.groupBy[it.value];
-		val result = new HashMap;
-		
-		groups.forEach[k,v,id|
-			val pair = Tuple2.make(k,id);
-			v.forEach[p|result.put(p.key, pair);];
-		];
-		
-		return result;
 	}
 }

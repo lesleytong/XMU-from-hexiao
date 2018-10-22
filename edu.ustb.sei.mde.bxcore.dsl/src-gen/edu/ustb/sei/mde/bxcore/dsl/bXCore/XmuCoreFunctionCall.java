@@ -14,9 +14,9 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreFunctionCall#getTarget <em>Target</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreFunctionCall#getSourceMappings <em>Source Mappings</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreFunctionCall#getViewMappings <em>View Mappings</em>}</li>
- *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreFunctionCall#getTarget <em>Target</em>}</li>
  * </ul>
  *
  * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getXmuCoreFunctionCall()
@@ -25,6 +25,32 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface XmuCoreFunctionCall extends XmuCoreCompositionChildStatement
 {
+  /**
+   * Returns the value of the '<em><b>Target</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Target</em>' reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Target</em>' reference.
+   * @see #setTarget(BXFunctionDefinition)
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getXmuCoreFunctionCall_Target()
+   * @model
+   * @generated
+   */
+  BXFunctionDefinition getTarget();
+
+  /**
+   * Sets the value of the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreFunctionCall#getTarget <em>Target</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Target</em>' reference.
+   * @see #getTarget()
+   * @generated
+   */
+  void setTarget(BXFunctionDefinition value);
+
   /**
    * Returns the value of the '<em><b>Source Mappings</b></em>' containment reference list.
    * The list contents are of type {@link edu.ustb.sei.mde.bxcore.dsl.bXCore.VarMapping}.
@@ -56,31 +82,5 @@ public interface XmuCoreFunctionCall extends XmuCoreCompositionChildStatement
    * @generated
    */
   EList<VarMapping> getViewMappings();
-
-  /**
-   * Returns the value of the '<em><b>Target</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Target</em>' reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Target</em>' reference.
-   * @see #setTarget(BXFunctionDefinition)
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getXmuCoreFunctionCall_Target()
-   * @model
-   * @generated
-   */
-  BXFunctionDefinition getTarget();
-
-  /**
-   * Sets the value of the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreFunctionCall#getTarget <em>Target</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Target</em>' reference.
-   * @see #getTarget()
-   * @generated
-   */
-  void setTarget(BXFunctionDefinition value);
 
 } // XmuCoreFunctionCall

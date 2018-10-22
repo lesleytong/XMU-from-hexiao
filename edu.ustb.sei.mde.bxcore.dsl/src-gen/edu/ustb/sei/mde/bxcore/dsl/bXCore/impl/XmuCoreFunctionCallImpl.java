@@ -31,15 +31,25 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.XmuCoreFunctionCallImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.XmuCoreFunctionCallImpl#getSourceMappings <em>Source Mappings</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.XmuCoreFunctionCallImpl#getViewMappings <em>View Mappings</em>}</li>
- *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.XmuCoreFunctionCallImpl#getTarget <em>Target</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class XmuCoreFunctionCallImpl extends XmuCoreCompositionChildStatementImpl implements XmuCoreFunctionCall
 {
+  /**
+   * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getTarget()
+   * @generated
+   * @ordered
+   */
+  protected BXFunctionDefinition target;
+
   /**
    * The cached value of the '{@link #getSourceMappings() <em>Source Mappings</em>}' containment reference list.
    * <!-- begin-user-doc -->
@@ -61,16 +71,6 @@ public class XmuCoreFunctionCallImpl extends XmuCoreCompositionChildStatementImp
   protected EList<VarMapping> viewMappings;
 
   /**
-   * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getTarget()
-   * @generated
-   * @ordered
-   */
-  protected BXFunctionDefinition target;
-
-  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -89,34 +89,6 @@ public class XmuCoreFunctionCallImpl extends XmuCoreCompositionChildStatementImp
   protected EClass eStaticClass()
   {
     return BXCorePackage.Literals.XMU_CORE_FUNCTION_CALL;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<VarMapping> getSourceMappings()
-  {
-    if (sourceMappings == null)
-    {
-      sourceMappings = new EObjectContainmentEList<VarMapping>(VarMapping.class, this, BXCorePackage.XMU_CORE_FUNCTION_CALL__SOURCE_MAPPINGS);
-    }
-    return sourceMappings;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<VarMapping> getViewMappings()
-  {
-    if (viewMappings == null)
-    {
-      viewMappings = new EObjectContainmentEList<VarMapping>(VarMapping.class, this, BXCorePackage.XMU_CORE_FUNCTION_CALL__VIEW_MAPPINGS);
-    }
-    return viewMappings;
   }
 
   /**
@@ -167,6 +139,34 @@ public class XmuCoreFunctionCallImpl extends XmuCoreCompositionChildStatementImp
    * <!-- end-user-doc -->
    * @generated
    */
+  public EList<VarMapping> getSourceMappings()
+  {
+    if (sourceMappings == null)
+    {
+      sourceMappings = new EObjectContainmentEList<VarMapping>(VarMapping.class, this, BXCorePackage.XMU_CORE_FUNCTION_CALL__SOURCE_MAPPINGS);
+    }
+    return sourceMappings;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<VarMapping> getViewMappings()
+  {
+    if (viewMappings == null)
+    {
+      viewMappings = new EObjectContainmentEList<VarMapping>(VarMapping.class, this, BXCorePackage.XMU_CORE_FUNCTION_CALL__VIEW_MAPPINGS);
+    }
+    return viewMappings;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -190,13 +190,13 @@ public class XmuCoreFunctionCallImpl extends XmuCoreCompositionChildStatementImp
   {
     switch (featureID)
     {
+      case BXCorePackage.XMU_CORE_FUNCTION_CALL__TARGET:
+        if (resolve) return getTarget();
+        return basicGetTarget();
       case BXCorePackage.XMU_CORE_FUNCTION_CALL__SOURCE_MAPPINGS:
         return getSourceMappings();
       case BXCorePackage.XMU_CORE_FUNCTION_CALL__VIEW_MAPPINGS:
         return getViewMappings();
-      case BXCorePackage.XMU_CORE_FUNCTION_CALL__TARGET:
-        if (resolve) return getTarget();
-        return basicGetTarget();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -212,6 +212,9 @@ public class XmuCoreFunctionCallImpl extends XmuCoreCompositionChildStatementImp
   {
     switch (featureID)
     {
+      case BXCorePackage.XMU_CORE_FUNCTION_CALL__TARGET:
+        setTarget((BXFunctionDefinition)newValue);
+        return;
       case BXCorePackage.XMU_CORE_FUNCTION_CALL__SOURCE_MAPPINGS:
         getSourceMappings().clear();
         getSourceMappings().addAll((Collection<? extends VarMapping>)newValue);
@@ -219,9 +222,6 @@ public class XmuCoreFunctionCallImpl extends XmuCoreCompositionChildStatementImp
       case BXCorePackage.XMU_CORE_FUNCTION_CALL__VIEW_MAPPINGS:
         getViewMappings().clear();
         getViewMappings().addAll((Collection<? extends VarMapping>)newValue);
-        return;
-      case BXCorePackage.XMU_CORE_FUNCTION_CALL__TARGET:
-        setTarget((BXFunctionDefinition)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -237,14 +237,14 @@ public class XmuCoreFunctionCallImpl extends XmuCoreCompositionChildStatementImp
   {
     switch (featureID)
     {
+      case BXCorePackage.XMU_CORE_FUNCTION_CALL__TARGET:
+        setTarget((BXFunctionDefinition)null);
+        return;
       case BXCorePackage.XMU_CORE_FUNCTION_CALL__SOURCE_MAPPINGS:
         getSourceMappings().clear();
         return;
       case BXCorePackage.XMU_CORE_FUNCTION_CALL__VIEW_MAPPINGS:
         getViewMappings().clear();
-        return;
-      case BXCorePackage.XMU_CORE_FUNCTION_CALL__TARGET:
-        setTarget((BXFunctionDefinition)null);
         return;
     }
     super.eUnset(featureID);
@@ -260,12 +260,12 @@ public class XmuCoreFunctionCallImpl extends XmuCoreCompositionChildStatementImp
   {
     switch (featureID)
     {
+      case BXCorePackage.XMU_CORE_FUNCTION_CALL__TARGET:
+        return target != null;
       case BXCorePackage.XMU_CORE_FUNCTION_CALL__SOURCE_MAPPINGS:
         return sourceMappings != null && !sourceMappings.isEmpty();
       case BXCorePackage.XMU_CORE_FUNCTION_CALL__VIEW_MAPPINGS:
         return viewMappings != null && !viewMappings.isEmpty();
-      case BXCorePackage.XMU_CORE_FUNCTION_CALL__TARGET:
-        return target != null;
     }
     return super.eIsSet(featureID);
   }

@@ -4,21 +4,17 @@
 package edu.ustb.sei.mde.bxcore.dsl.bXCore.impl;
 
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage;
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextTypeRef;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreFork;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreForkBranch;
 
 import java.util.Collection;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -31,8 +27,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.XmuCoreForkImpl#getSourceType <em>Source Type</em>}</li>
- *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.XmuCoreForkImpl#getViewType <em>View Type</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.XmuCoreForkImpl#getForks <em>Forks</em>}</li>
  * </ul>
  *
@@ -40,26 +34,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class XmuCoreForkImpl extends XmuCoreStatementImpl implements XmuCoreFork
 {
-  /**
-   * The cached value of the '{@link #getSourceType() <em>Source Type</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getSourceType()
-   * @generated
-   * @ordered
-   */
-  protected ContextTypeRef sourceType;
-
-  /**
-   * The cached value of the '{@link #getViewType() <em>View Type</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getViewType()
-   * @generated
-   * @ordered
-   */
-  protected ContextTypeRef viewType;
-
   /**
    * The cached value of the '{@link #getForks() <em>Forks</em>}' containment reference list.
    * <!-- begin-user-doc -->
@@ -96,102 +70,6 @@ public class XmuCoreForkImpl extends XmuCoreStatementImpl implements XmuCoreFork
    * <!-- end-user-doc -->
    * @generated
    */
-  public ContextTypeRef getSourceType()
-  {
-    return sourceType;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetSourceType(ContextTypeRef newSourceType, NotificationChain msgs)
-  {
-    ContextTypeRef oldSourceType = sourceType;
-    sourceType = newSourceType;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BXCorePackage.XMU_CORE_FORK__SOURCE_TYPE, oldSourceType, newSourceType);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setSourceType(ContextTypeRef newSourceType)
-  {
-    if (newSourceType != sourceType)
-    {
-      NotificationChain msgs = null;
-      if (sourceType != null)
-        msgs = ((InternalEObject)sourceType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BXCorePackage.XMU_CORE_FORK__SOURCE_TYPE, null, msgs);
-      if (newSourceType != null)
-        msgs = ((InternalEObject)newSourceType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BXCorePackage.XMU_CORE_FORK__SOURCE_TYPE, null, msgs);
-      msgs = basicSetSourceType(newSourceType, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, BXCorePackage.XMU_CORE_FORK__SOURCE_TYPE, newSourceType, newSourceType));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ContextTypeRef getViewType()
-  {
-    return viewType;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetViewType(ContextTypeRef newViewType, NotificationChain msgs)
-  {
-    ContextTypeRef oldViewType = viewType;
-    viewType = newViewType;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BXCorePackage.XMU_CORE_FORK__VIEW_TYPE, oldViewType, newViewType);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setViewType(ContextTypeRef newViewType)
-  {
-    if (newViewType != viewType)
-    {
-      NotificationChain msgs = null;
-      if (viewType != null)
-        msgs = ((InternalEObject)viewType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BXCorePackage.XMU_CORE_FORK__VIEW_TYPE, null, msgs);
-      if (newViewType != null)
-        msgs = ((InternalEObject)newViewType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BXCorePackage.XMU_CORE_FORK__VIEW_TYPE, null, msgs);
-      msgs = basicSetViewType(newViewType, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, BXCorePackage.XMU_CORE_FORK__VIEW_TYPE, newViewType, newViewType));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EList<XmuCoreForkBranch> getForks()
   {
     if (forks == null)
@@ -211,10 +89,6 @@ public class XmuCoreForkImpl extends XmuCoreStatementImpl implements XmuCoreFork
   {
     switch (featureID)
     {
-      case BXCorePackage.XMU_CORE_FORK__SOURCE_TYPE:
-        return basicSetSourceType(null, msgs);
-      case BXCorePackage.XMU_CORE_FORK__VIEW_TYPE:
-        return basicSetViewType(null, msgs);
       case BXCorePackage.XMU_CORE_FORK__FORKS:
         return ((InternalEList<?>)getForks()).basicRemove(otherEnd, msgs);
     }
@@ -231,10 +105,6 @@ public class XmuCoreForkImpl extends XmuCoreStatementImpl implements XmuCoreFork
   {
     switch (featureID)
     {
-      case BXCorePackage.XMU_CORE_FORK__SOURCE_TYPE:
-        return getSourceType();
-      case BXCorePackage.XMU_CORE_FORK__VIEW_TYPE:
-        return getViewType();
       case BXCorePackage.XMU_CORE_FORK__FORKS:
         return getForks();
     }
@@ -252,12 +122,6 @@ public class XmuCoreForkImpl extends XmuCoreStatementImpl implements XmuCoreFork
   {
     switch (featureID)
     {
-      case BXCorePackage.XMU_CORE_FORK__SOURCE_TYPE:
-        setSourceType((ContextTypeRef)newValue);
-        return;
-      case BXCorePackage.XMU_CORE_FORK__VIEW_TYPE:
-        setViewType((ContextTypeRef)newValue);
-        return;
       case BXCorePackage.XMU_CORE_FORK__FORKS:
         getForks().clear();
         getForks().addAll((Collection<? extends XmuCoreForkBranch>)newValue);
@@ -276,12 +140,6 @@ public class XmuCoreForkImpl extends XmuCoreStatementImpl implements XmuCoreFork
   {
     switch (featureID)
     {
-      case BXCorePackage.XMU_CORE_FORK__SOURCE_TYPE:
-        setSourceType((ContextTypeRef)null);
-        return;
-      case BXCorePackage.XMU_CORE_FORK__VIEW_TYPE:
-        setViewType((ContextTypeRef)null);
-        return;
       case BXCorePackage.XMU_CORE_FORK__FORKS:
         getForks().clear();
         return;
@@ -299,10 +157,6 @@ public class XmuCoreForkImpl extends XmuCoreStatementImpl implements XmuCoreFork
   {
     switch (featureID)
     {
-      case BXCorePackage.XMU_CORE_FORK__SOURCE_TYPE:
-        return sourceType != null;
-      case BXCorePackage.XMU_CORE_FORK__VIEW_TYPE:
-        return viewType != null;
       case BXCorePackage.XMU_CORE_FORK__FORKS:
         return forks != null && !forks.isEmpty();
     }

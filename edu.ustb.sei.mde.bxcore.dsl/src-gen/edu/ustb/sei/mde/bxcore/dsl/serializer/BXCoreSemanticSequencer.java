@@ -27,6 +27,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternNodeRef;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternTypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PredefinedTypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeDefinition;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeIndicator;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeVar;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.UnorderedTupleTypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.VarMapping;
@@ -180,6 +181,9 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 				return; 
 			case BXCorePackage.TYPE_DEFINITION:
 				sequence_TypeDefinition(context, (TypeDefinition) semanticObject); 
+				return; 
+			case BXCorePackage.TYPE_INDICATOR:
+				sequence_TypeIndicator(context, (TypeIndicator) semanticObject); 
 				return; 
 			case BXCorePackage.TYPE_VAR:
 				sequence_TypeVar(context, (TypeVar) semanticObject); 
@@ -482,25 +486,10 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	 *     BXFunctionDefinition returns BXFunctionDefinition
 	 *
 	 * Constraint:
-	 *     (name=ValidID sourceType=ContextTypeRef viewType=ContextTypeRef statement=XmuCoreStatement)
+	 *     (name=ValidID typeIndicator=TypeIndicator? statement=XmuCoreStatement)
 	 */
 	protected void sequence_BXFunctionDefinition(ISerializationContext context, BXFunctionDefinition semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.DEFINITION__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.DEFINITION__NAME));
-			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.BX_FUNCTION_DEFINITION__SOURCE_TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.BX_FUNCTION_DEFINITION__SOURCE_TYPE));
-			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.BX_FUNCTION_DEFINITION__VIEW_TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.BX_FUNCTION_DEFINITION__VIEW_TYPE));
-			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.BX_FUNCTION_DEFINITION__STATEMENT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.BX_FUNCTION_DEFINITION__STATEMENT));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getBXFunctionDefinitionAccess().getNameValidIDParserRuleCall_1_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getBXFunctionDefinitionAccess().getSourceTypeContextTypeRefParserRuleCall_3_0(), semanticObject.getSourceType());
-		feeder.accept(grammarAccess.getBXFunctionDefinitionAccess().getViewTypeContextTypeRefParserRuleCall_5_0(), semanticObject.getViewType());
-		feeder.accept(grammarAccess.getBXFunctionDefinitionAccess().getStatementXmuCoreStatementParserRuleCall_8_0(), semanticObject.getStatement());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -854,6 +843,27 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     TypeIndicator returns TypeIndicator
+	 *
+	 * Constraint:
+	 *     (sourceType=ContextTypeRef viewType=ContextTypeRef)
+	 */
+	protected void sequence_TypeIndicator(ISerializationContext context, TypeIndicator semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.TYPE_INDICATOR__SOURCE_TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.TYPE_INDICATOR__SOURCE_TYPE));
+			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.TYPE_INDICATOR__VIEW_TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.TYPE_INDICATOR__VIEW_TYPE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getTypeIndicatorAccess().getSourceTypeContextTypeRefParserRuleCall_1_0(), semanticObject.getSourceType());
+		feeder.accept(grammarAccess.getTypeIndicatorAccess().getViewTypeContextTypeRefParserRuleCall_3_0(), semanticObject.getViewType());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     TypeRef returns EcoreTypeRef
 	 *
 	 * Constraint:
@@ -956,8 +966,7 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         sourceType=ContextTypeRef 
-	 *         viewType=ContextTypeRef 
+	 *         typeIndicator=TypeIndicator? 
 	 *         sourcePattern=Pattern 
 	 *         viewPattern=Pattern 
 	 *         alignment=ContextAwareCondition 
@@ -976,7 +985,7 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	 *     XmuCoreExpandSource returns XmuCoreExpandSource
 	 *
 	 * Constraint:
-	 *     (pattern=Pattern mappings+=VarMapping mappings+=VarMapping* body=XmuCoreStatement)
+	 *     (typeIndicator=TypeIndicator? pattern=Pattern mappings+=VarMapping mappings+=VarMapping* body=XmuCoreStatement)
 	 */
 	protected void sequence_XmuCoreExpandSource(ISerializationContext context, XmuCoreExpandSource semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -990,7 +999,7 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	 *     XmuCoreExpandView returns XmuCoreExpandView
 	 *
 	 * Constraint:
-	 *     (pattern=Pattern mappings+=VarMapping mappings+=VarMapping* body=XmuCoreStatement)
+	 *     (typeIndicator=TypeIndicator? pattern=Pattern mappings+=VarMapping mappings+=VarMapping* body=XmuCoreStatement)
 	 */
 	protected void sequence_XmuCoreExpandView(ISerializationContext context, XmuCoreExpandView semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1015,7 +1024,7 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	 *     XmuCoreFork returns XmuCoreFork
 	 *
 	 * Constraint:
-	 *     (sourceType=ContextTypeRef viewType=ContextTypeRef forks+=XmuCoreForkBranch forks+=XmuCoreForkBranch+)
+	 *     (typeIndicator=TypeIndicator? forks+=XmuCoreForkBranch forks+=XmuCoreForkBranch+)
 	 */
 	protected void sequence_XmuCoreFork(ISerializationContext context, XmuCoreFork semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1029,7 +1038,14 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	 *     XmuCoreFunctionCall returns XmuCoreFunctionCall
 	 *
 	 * Constraint:
-	 *     (sourceMappings+=VarMapping sourceMappings+=VarMapping* viewMappings+=VarMapping viewMappings+=VarMapping* target=[BXFunctionDefinition|ValidID])
+	 *     (
+	 *         target=[BXFunctionDefinition|ValidID] 
+	 *         typeIndicator=TypeIndicator? 
+	 *         sourceMappings+=VarMapping 
+	 *         sourceMappings+=VarMapping* 
+	 *         viewMappings+=VarMapping 
+	 *         viewMappings+=VarMapping*
+	 *     )
 	 */
 	protected void sequence_XmuCoreFunctionCall(ISerializationContext context, XmuCoreFunctionCall semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1043,7 +1059,7 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	 *     XmuCoreGraphReplace returns XmuCoreGraphReplace
 	 *
 	 * Constraint:
-	 *     (source=Pattern view=Pattern conversions+=Conversion+)
+	 *     (typeIndicator=TypeIndicator? source=Pattern view=Pattern conversions+=Conversion+)
 	 */
 	protected void sequence_XmuCoreGraphReplace(ISerializationContext context, XmuCoreGraphReplace semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1057,7 +1073,7 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	 *     XmuCoreIndex returns XmuCoreIndex
 	 *
 	 * Constraint:
-	 *     (parts+=IndexPart parts+=IndexPart* body=XmuCoreStatement)
+	 *     (typeIndicator=TypeIndicator? parts+=IndexPart parts+=IndexPart* body=XmuCoreStatement)
 	 */
 	protected void sequence_XmuCoreIndex(ISerializationContext context, XmuCoreIndex semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1071,22 +1087,10 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	 *     XmuCoreMatchSource returns XmuCoreMatchSource
 	 *
 	 * Constraint:
-	 *     (sourceType=ContextTypeRef pattern=Pattern body=XmuCoreStatement)
+	 *     (typeIndicator=TypeIndicator? pattern=Pattern body=XmuCoreStatement)
 	 */
 	protected void sequence_XmuCoreMatchSource(ISerializationContext context, XmuCoreMatchSource semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.XMU_CORE_MATCH_SOURCE__SOURCE_TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.XMU_CORE_MATCH_SOURCE__SOURCE_TYPE));
-			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.XMU_CORE_MATCH_SOURCE__PATTERN) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.XMU_CORE_MATCH_SOURCE__PATTERN));
-			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.XMU_CORE_MATCH_SOURCE__BODY) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.XMU_CORE_MATCH_SOURCE__BODY));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getXmuCoreMatchSourceAccess().getSourceTypeContextTypeRefParserRuleCall_2_0(), semanticObject.getSourceType());
-		feeder.accept(grammarAccess.getXmuCoreMatchSourceAccess().getPatternPatternParserRuleCall_4_0(), semanticObject.getPattern());
-		feeder.accept(grammarAccess.getXmuCoreMatchSourceAccess().getBodyXmuCoreStatementParserRuleCall_5_0(), semanticObject.getBody());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1097,22 +1101,10 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	 *     XmuCoreMatchView returns XmuCoreMatchView
 	 *
 	 * Constraint:
-	 *     (viewType=ContextTypeRef pattern=Pattern body=XmuCoreStatement)
+	 *     (typeIndicator=TypeIndicator? pattern=Pattern body=XmuCoreStatement)
 	 */
 	protected void sequence_XmuCoreMatchView(ISerializationContext context, XmuCoreMatchView semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.XMU_CORE_MATCH_VIEW__VIEW_TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.XMU_CORE_MATCH_VIEW__VIEW_TYPE));
-			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.XMU_CORE_MATCH_VIEW__PATTERN) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.XMU_CORE_MATCH_VIEW__PATTERN));
-			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.XMU_CORE_MATCH_VIEW__BODY) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.XMU_CORE_MATCH_VIEW__BODY));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getXmuCoreMatchViewAccess().getViewTypeContextTypeRefParserRuleCall_2_0(), semanticObject.getViewType());
-		feeder.accept(grammarAccess.getXmuCoreMatchViewAccess().getPatternPatternParserRuleCall_4_0(), semanticObject.getPattern());
-		feeder.accept(grammarAccess.getXmuCoreMatchViewAccess().getBodyXmuCoreStatementParserRuleCall_5_0(), semanticObject.getBody());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1122,7 +1114,7 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	 *     XmuCoreParallelComposition returns XmuCoreParallelComposition
 	 *
 	 * Constraint:
-	 *     (sourceType=ContextTypeRef viewType=ContextTypeRef bodies+=XmuCoreCompositionChildStatement bodies+=XmuCoreCompositionChildStatement+)
+	 *     (typeIndicator=TypeIndicator? bodies+=XmuCoreCompositionChildStatement bodies+=XmuCoreCompositionChildStatement+)
 	 */
 	protected void sequence_XmuCoreParallelComposition(ISerializationContext context, XmuCoreParallelComposition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1178,7 +1170,7 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	 *     XmuCoreSwitch returns XmuCoreSwitch
 	 *
 	 * Constraint:
-	 *     (sourceType=ContextTypeRef viewType=ContextTypeRef branches+=XmuCoreSwitchBranch+ adaptions+=XmuCoreSwitchAdaption*)
+	 *     (typeIndicator=TypeIndicator? branches+=XmuCoreSwitchBranch+ adaptions+=XmuCoreSwitchAdaption*)
 	 */
 	protected void sequence_XmuCoreSwitch(ISerializationContext context, XmuCoreSwitch semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

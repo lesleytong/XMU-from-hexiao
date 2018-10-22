@@ -3,17 +3,17 @@
  */
 package edu.ustb.sei.mde.bxcore.dsl.validation
 
-import org.eclipse.xtext.validation.Check
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXProgram
-import edu.ustb.sei.mde.bxcore.dsl.infer.SourceTypeModel
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreStatement
-import edu.ustb.sei.mde.bxcore.dsl.infer.UnsolvedTupleType
-import org.eclipse.emf.ecore.ENamedElement
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeLiteral
-import edu.ustb.sei.mde.bxcore.dsl.structure.TupleType
-import java.util.HashMap
-import edu.ustb.sei.mde.structure.Tuple2
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXProgram
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeLiteral
+import edu.ustb.sei.mde.bxcore.dsl.infer.InferManager
+import edu.ustb.sei.mde.bxcore.dsl.infer.TypeInferenceException
+import edu.ustb.sei.mde.bxcore.dsl.structure.TupleType
+import edu.ustb.sei.mde.structure.Tuple2
+import java.util.HashMap
+import java.util.List
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.xtext.validation.Check
 
 /**
  * This class contains custom validation rules. 
@@ -24,22 +24,22 @@ class BXCoreValidator extends AbstractBXCoreValidator {
 
 	@Check
 	def checkBXProgram(BXProgram program) {
-		val statements = program.eAllContents.filter[it instanceof XmuCoreStatement].map[it as XmuCoreStatement].indexed.toList;
-		val typeLiteralMap = program.groupTypeLiterals;
+		println("check");
+		
 		try {
-			val sourceTypeInfer = new SourceTypeModel(program, typeLiteralMap);
-			sourceTypeInfer.solveNames();
-			println('name solved!');
-			sourceTypeInfer.solveTypes();
-			println('type solved!');
-			statements.forEach [ s |
-				val v = sourceTypeInfer.unsolvedTupleTypeMap.get(s.value);
-				println("key" + s.key + "=>" + (v as UnsolvedTupleType).tuples.map [
-					it.first + ':' + (it.second as ENamedElement).name
-				].toList);
-			];
+			InferManager.getInferredTypeModel(program.eResource);
 		} catch (Exception e) {
-			error("type inference failed", program, BXCorePackage.Literals.BX_PROGRAM__DEFINITIONS);
+			if(e instanceof TypeInferenceException) {
+				if(e.reason!==program) {
+					if(e.reason.eContainingFeature.isMany) {
+						val list = e.reason.eContainer.eGet(e.reason.eContainingFeature) as List<EObject>;
+						error("type inference failed", e.reason.eContainer, e.reason.eContainingFeature, list.indexOf(e.reason));
+					} else 
+						error("type inference failed", e.reason.eContainer, e.reason.eContainingFeature);				
+				}
+				else error("type inference failed", program, BXCorePackage.Literals.BX_PROGRAM__DEFINITIONS);
+			} else error("type inference failed", program, BXCorePackage.Literals.BX_PROGRAM__DEFINITIONS);
+			
 		}
 	}
 	

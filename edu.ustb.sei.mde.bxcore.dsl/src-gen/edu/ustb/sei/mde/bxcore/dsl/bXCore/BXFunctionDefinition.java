@@ -13,8 +13,7 @@ package edu.ustb.sei.mde.bxcore.dsl.bXCore;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.BXFunctionDefinition#getSourceType <em>Source Type</em>}</li>
- *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.BXFunctionDefinition#getViewType <em>View Type</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.BXFunctionDefinition#getTypeIndicator <em>Type Indicator</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.BXFunctionDefinition#getStatement <em>Statement</em>}</li>
  * </ul>
  *
@@ -25,56 +24,30 @@ package edu.ustb.sei.mde.bxcore.dsl.bXCore;
 public interface BXFunctionDefinition extends Definition
 {
   /**
-   * Returns the value of the '<em><b>Source Type</b></em>' containment reference.
+   * Returns the value of the '<em><b>Type Indicator</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Source Type</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Type Indicator</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Source Type</em>' containment reference.
-   * @see #setSourceType(ContextTypeRef)
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getBXFunctionDefinition_SourceType()
+   * @return the value of the '<em>Type Indicator</em>' containment reference.
+   * @see #setTypeIndicator(TypeIndicator)
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getBXFunctionDefinition_TypeIndicator()
    * @model containment="true"
    * @generated
    */
-  ContextTypeRef getSourceType();
+  TypeIndicator getTypeIndicator();
 
   /**
-   * Sets the value of the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.BXFunctionDefinition#getSourceType <em>Source Type</em>}' containment reference.
+   * Sets the value of the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.BXFunctionDefinition#getTypeIndicator <em>Type Indicator</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Source Type</em>' containment reference.
-   * @see #getSourceType()
+   * @param value the new value of the '<em>Type Indicator</em>' containment reference.
+   * @see #getTypeIndicator()
    * @generated
    */
-  void setSourceType(ContextTypeRef value);
-
-  /**
-   * Returns the value of the '<em><b>View Type</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>View Type</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>View Type</em>' containment reference.
-   * @see #setViewType(ContextTypeRef)
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getBXFunctionDefinition_ViewType()
-   * @model containment="true"
-   * @generated
-   */
-  ContextTypeRef getViewType();
-
-  /**
-   * Sets the value of the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.BXFunctionDefinition#getViewType <em>View Type</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>View Type</em>' containment reference.
-   * @see #getViewType()
-   * @generated
-   */
-  void setViewType(ContextTypeRef value);
+  void setTypeIndicator(TypeIndicator value);
 
   /**
    * Returns the value of the '<em><b>Statement</b></em>' containment reference.

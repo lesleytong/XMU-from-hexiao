@@ -481,22 +481,17 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cFunctionKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameValidIDParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Keyword cLessThanSignKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cSourceTypeAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cSourceTypeContextTypeRefParserRuleCall_3_0 = (RuleCall)cSourceTypeAssignment_3.eContents().get(0);
-		private final Keyword cCommaKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Assignment cViewTypeAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cViewTypeContextTypeRefParserRuleCall_5_0 = (RuleCall)cViewTypeAssignment_5.eContents().get(0);
-		private final Keyword cGreaterThanSignKeyword_6 = (Keyword)cGroup.eContents().get(6);
-		private final Keyword cEqualsSignKeyword_7 = (Keyword)cGroup.eContents().get(7);
-		private final Assignment cStatementAssignment_8 = (Assignment)cGroup.eContents().get(8);
-		private final RuleCall cStatementXmuCoreStatementParserRuleCall_8_0 = (RuleCall)cStatementAssignment_8.eContents().get(0);
+		private final Assignment cTypeIndicatorAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cTypeIndicatorTypeIndicatorParserRuleCall_2_0 = (RuleCall)cTypeIndicatorAssignment_2.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cStatementAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cStatementXmuCoreStatementParserRuleCall_4_0 = (RuleCall)cStatementAssignment_4.eContents().get(0);
 		
 		//BXFunctionDefinition:
-		//	'function' name=ValidID '<' sourceType=ContextTypeRef ',' viewType=ContextTypeRef '>' '=' statement=XmuCoreStatement;
+		//	'function' name=ValidID typeIndicator=TypeIndicator? '=' statement=XmuCoreStatement;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'function' name=ValidID '<' sourceType=ContextTypeRef ',' viewType=ContextTypeRef '>' '=' statement=XmuCoreStatement
+		//'function' name=ValidID typeIndicator=TypeIndicator? '=' statement=XmuCoreStatement
 		public Group getGroup() { return cGroup; }
 		
 		//'function'
@@ -508,35 +503,20 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		//ValidID
 		public RuleCall getNameValidIDParserRuleCall_1_0() { return cNameValidIDParserRuleCall_1_0; }
 		
-		//'<'
-		public Keyword getLessThanSignKeyword_2() { return cLessThanSignKeyword_2; }
+		//typeIndicator=TypeIndicator?
+		public Assignment getTypeIndicatorAssignment_2() { return cTypeIndicatorAssignment_2; }
 		
-		//sourceType=ContextTypeRef
-		public Assignment getSourceTypeAssignment_3() { return cSourceTypeAssignment_3; }
-		
-		//ContextTypeRef
-		public RuleCall getSourceTypeContextTypeRefParserRuleCall_3_0() { return cSourceTypeContextTypeRefParserRuleCall_3_0; }
-		
-		//','
-		public Keyword getCommaKeyword_4() { return cCommaKeyword_4; }
-		
-		//viewType=ContextTypeRef
-		public Assignment getViewTypeAssignment_5() { return cViewTypeAssignment_5; }
-		
-		//ContextTypeRef
-		public RuleCall getViewTypeContextTypeRefParserRuleCall_5_0() { return cViewTypeContextTypeRefParserRuleCall_5_0; }
-		
-		//'>'
-		public Keyword getGreaterThanSignKeyword_6() { return cGreaterThanSignKeyword_6; }
+		//TypeIndicator
+		public RuleCall getTypeIndicatorTypeIndicatorParserRuleCall_2_0() { return cTypeIndicatorTypeIndicatorParserRuleCall_2_0; }
 		
 		//'='
-		public Keyword getEqualsSignKeyword_7() { return cEqualsSignKeyword_7; }
+		public Keyword getEqualsSignKeyword_3() { return cEqualsSignKeyword_3; }
 		
 		//statement=XmuCoreStatement
-		public Assignment getStatementAssignment_8() { return cStatementAssignment_8; }
+		public Assignment getStatementAssignment_4() { return cStatementAssignment_4; }
 		
 		//XmuCoreStatement
-		public RuleCall getStatementXmuCoreStatementParserRuleCall_8_0() { return cStatementXmuCoreStatementParserRuleCall_8_0; }
+		public RuleCall getStatementXmuCoreStatementParserRuleCall_4_0() { return cStatementXmuCoreStatementParserRuleCall_4_0; }
 	}
 	public class TypeRefElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.bxcore.dsl.BXCore.TypeRef");
@@ -936,233 +916,276 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		//XmuCoreIndex
 		public RuleCall getXmuCoreIndexParserRuleCall_8() { return cXmuCoreIndexParserRuleCall_8; }
 	}
+	public class TypeIndicatorElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.bxcore.dsl.BXCore.TypeIndicator");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cLessThanSignKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cSourceTypeAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cSourceTypeContextTypeRefParserRuleCall_1_0 = (RuleCall)cSourceTypeAssignment_1.eContents().get(0);
+		private final Keyword cCommaKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cViewTypeAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cViewTypeContextTypeRefParserRuleCall_3_0 = (RuleCall)cViewTypeAssignment_3.eContents().get(0);
+		private final Keyword cGreaterThanSignKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		
+		//TypeIndicator:
+		//	'<' sourceType=ContextTypeRef ',' viewType=ContextTypeRef '>';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'<' sourceType=ContextTypeRef ',' viewType=ContextTypeRef '>'
+		public Group getGroup() { return cGroup; }
+		
+		//'<'
+		public Keyword getLessThanSignKeyword_0() { return cLessThanSignKeyword_0; }
+		
+		//sourceType=ContextTypeRef
+		public Assignment getSourceTypeAssignment_1() { return cSourceTypeAssignment_1; }
+		
+		//ContextTypeRef
+		public RuleCall getSourceTypeContextTypeRefParserRuleCall_1_0() { return cSourceTypeContextTypeRefParserRuleCall_1_0; }
+		
+		//','
+		public Keyword getCommaKeyword_2() { return cCommaKeyword_2; }
+		
+		//viewType=ContextTypeRef
+		public Assignment getViewTypeAssignment_3() { return cViewTypeAssignment_3; }
+		
+		//ContextTypeRef
+		public RuleCall getViewTypeContextTypeRefParserRuleCall_3_0() { return cViewTypeContextTypeRefParserRuleCall_3_0; }
+		
+		//'>'
+		public Keyword getGreaterThanSignKeyword_4() { return cGreaterThanSignKeyword_4; }
+	}
 	public class XmuCoreMatchSourceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.bxcore.dsl.BXCore.XmuCoreMatchSource");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cMatchSKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Keyword cLessThanSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cSourceTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cSourceTypeContextTypeRefParserRuleCall_2_0 = (RuleCall)cSourceTypeAssignment_2.eContents().get(0);
-		private final Keyword cGreaterThanSignKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cPatternAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cPatternPatternParserRuleCall_4_0 = (RuleCall)cPatternAssignment_4.eContents().get(0);
-		private final Assignment cBodyAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cBodyXmuCoreStatementParserRuleCall_5_0 = (RuleCall)cBodyAssignment_5.eContents().get(0);
+		private final Assignment cTypeIndicatorAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cTypeIndicatorTypeIndicatorParserRuleCall_1_0 = (RuleCall)cTypeIndicatorAssignment_1.eContents().get(0);
+		private final Assignment cPatternAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cPatternPatternParserRuleCall_2_0 = (RuleCall)cPatternAssignment_2.eContents().get(0);
+		private final Assignment cBodyAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cBodyXmuCoreStatementParserRuleCall_3_0 = (RuleCall)cBodyAssignment_3.eContents().get(0);
 		
 		//XmuCoreMatchSource:
-		//	'matchS' '<' sourceType=ContextTypeRef '>' pattern=Pattern body=XmuCoreStatement;
+		//	'matchS' typeIndicator=TypeIndicator? pattern=Pattern body=XmuCoreStatement;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'matchS' '<' sourceType=ContextTypeRef '>' pattern=Pattern body=XmuCoreStatement
+		//'matchS' typeIndicator=TypeIndicator? pattern=Pattern body=XmuCoreStatement
 		public Group getGroup() { return cGroup; }
 		
 		//'matchS'
 		public Keyword getMatchSKeyword_0() { return cMatchSKeyword_0; }
 		
-		//'<'
-		public Keyword getLessThanSignKeyword_1() { return cLessThanSignKeyword_1; }
+		//typeIndicator=TypeIndicator?
+		public Assignment getTypeIndicatorAssignment_1() { return cTypeIndicatorAssignment_1; }
 		
-		//sourceType=ContextTypeRef
-		public Assignment getSourceTypeAssignment_2() { return cSourceTypeAssignment_2; }
-		
-		//ContextTypeRef
-		public RuleCall getSourceTypeContextTypeRefParserRuleCall_2_0() { return cSourceTypeContextTypeRefParserRuleCall_2_0; }
-		
-		//'>'
-		public Keyword getGreaterThanSignKeyword_3() { return cGreaterThanSignKeyword_3; }
+		//TypeIndicator
+		public RuleCall getTypeIndicatorTypeIndicatorParserRuleCall_1_0() { return cTypeIndicatorTypeIndicatorParserRuleCall_1_0; }
 		
 		//pattern=Pattern
-		public Assignment getPatternAssignment_4() { return cPatternAssignment_4; }
+		public Assignment getPatternAssignment_2() { return cPatternAssignment_2; }
 		
 		//Pattern
-		public RuleCall getPatternPatternParserRuleCall_4_0() { return cPatternPatternParserRuleCall_4_0; }
+		public RuleCall getPatternPatternParserRuleCall_2_0() { return cPatternPatternParserRuleCall_2_0; }
 		
 		//body=XmuCoreStatement
-		public Assignment getBodyAssignment_5() { return cBodyAssignment_5; }
+		public Assignment getBodyAssignment_3() { return cBodyAssignment_3; }
 		
 		//XmuCoreStatement
-		public RuleCall getBodyXmuCoreStatementParserRuleCall_5_0() { return cBodyXmuCoreStatementParserRuleCall_5_0; }
+		public RuleCall getBodyXmuCoreStatementParserRuleCall_3_0() { return cBodyXmuCoreStatementParserRuleCall_3_0; }
 	}
 	public class XmuCoreMatchViewElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.bxcore.dsl.BXCore.XmuCoreMatchView");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cMatchVKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Keyword cLessThanSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cViewTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cViewTypeContextTypeRefParserRuleCall_2_0 = (RuleCall)cViewTypeAssignment_2.eContents().get(0);
-		private final Keyword cGreaterThanSignKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cPatternAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cPatternPatternParserRuleCall_4_0 = (RuleCall)cPatternAssignment_4.eContents().get(0);
-		private final Assignment cBodyAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cBodyXmuCoreStatementParserRuleCall_5_0 = (RuleCall)cBodyAssignment_5.eContents().get(0);
+		private final Assignment cTypeIndicatorAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cTypeIndicatorTypeIndicatorParserRuleCall_1_0 = (RuleCall)cTypeIndicatorAssignment_1.eContents().get(0);
+		private final Assignment cPatternAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cPatternPatternParserRuleCall_2_0 = (RuleCall)cPatternAssignment_2.eContents().get(0);
+		private final Assignment cBodyAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cBodyXmuCoreStatementParserRuleCall_3_0 = (RuleCall)cBodyAssignment_3.eContents().get(0);
 		
 		//XmuCoreMatchView:
-		//	'matchV' '<' viewType=ContextTypeRef '>' pattern=Pattern body=XmuCoreStatement;
+		//	'matchV' typeIndicator=TypeIndicator? pattern=Pattern body=XmuCoreStatement;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'matchV' '<' viewType=ContextTypeRef '>' pattern=Pattern body=XmuCoreStatement
+		//'matchV' typeIndicator=TypeIndicator? pattern=Pattern body=XmuCoreStatement
 		public Group getGroup() { return cGroup; }
 		
 		//'matchV'
 		public Keyword getMatchVKeyword_0() { return cMatchVKeyword_0; }
 		
-		//'<'
-		public Keyword getLessThanSignKeyword_1() { return cLessThanSignKeyword_1; }
+		//typeIndicator=TypeIndicator?
+		public Assignment getTypeIndicatorAssignment_1() { return cTypeIndicatorAssignment_1; }
 		
-		//viewType=ContextTypeRef
-		public Assignment getViewTypeAssignment_2() { return cViewTypeAssignment_2; }
-		
-		//ContextTypeRef
-		public RuleCall getViewTypeContextTypeRefParserRuleCall_2_0() { return cViewTypeContextTypeRefParserRuleCall_2_0; }
-		
-		//'>'
-		public Keyword getGreaterThanSignKeyword_3() { return cGreaterThanSignKeyword_3; }
+		//TypeIndicator
+		public RuleCall getTypeIndicatorTypeIndicatorParserRuleCall_1_0() { return cTypeIndicatorTypeIndicatorParserRuleCall_1_0; }
 		
 		//pattern=Pattern
-		public Assignment getPatternAssignment_4() { return cPatternAssignment_4; }
+		public Assignment getPatternAssignment_2() { return cPatternAssignment_2; }
 		
 		//Pattern
-		public RuleCall getPatternPatternParserRuleCall_4_0() { return cPatternPatternParserRuleCall_4_0; }
+		public RuleCall getPatternPatternParserRuleCall_2_0() { return cPatternPatternParserRuleCall_2_0; }
 		
 		//body=XmuCoreStatement
-		public Assignment getBodyAssignment_5() { return cBodyAssignment_5; }
+		public Assignment getBodyAssignment_3() { return cBodyAssignment_3; }
 		
 		//XmuCoreStatement
-		public RuleCall getBodyXmuCoreStatementParserRuleCall_5_0() { return cBodyXmuCoreStatementParserRuleCall_5_0; }
+		public RuleCall getBodyXmuCoreStatementParserRuleCall_3_0() { return cBodyXmuCoreStatementParserRuleCall_3_0; }
 	}
 	public class XmuCoreExpandSourceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.bxcore.dsl.BXCore.XmuCoreExpandSource");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cExpandSKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cPatternAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cPatternPatternParserRuleCall_1_0 = (RuleCall)cPatternAssignment_1.eContents().get(0);
-		private final Keyword cLeftParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cMappingsAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cMappingsVarMappingParserRuleCall_3_0 = (RuleCall)cMappingsAssignment_3.eContents().get(0);
-		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
-		private final Keyword cCommaKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
-		private final Assignment cMappingsAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final RuleCall cMappingsVarMappingParserRuleCall_4_1_0 = (RuleCall)cMappingsAssignment_4_1.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
-		private final Keyword cHyphenMinusGreaterThanSignKeyword_6 = (Keyword)cGroup.eContents().get(6);
-		private final Assignment cBodyAssignment_7 = (Assignment)cGroup.eContents().get(7);
-		private final RuleCall cBodyXmuCoreStatementParserRuleCall_7_0 = (RuleCall)cBodyAssignment_7.eContents().get(0);
+		private final Assignment cTypeIndicatorAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cTypeIndicatorTypeIndicatorParserRuleCall_1_0 = (RuleCall)cTypeIndicatorAssignment_1.eContents().get(0);
+		private final Assignment cPatternAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cPatternPatternParserRuleCall_2_0 = (RuleCall)cPatternAssignment_2.eContents().get(0);
+		private final Keyword cLeftParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cMappingsAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cMappingsVarMappingParserRuleCall_4_0 = (RuleCall)cMappingsAssignment_4.eContents().get(0);
+		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
+		private final Keyword cCommaKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
+		private final Assignment cMappingsAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
+		private final RuleCall cMappingsVarMappingParserRuleCall_5_1_0 = (RuleCall)cMappingsAssignment_5_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Keyword cHyphenMinusGreaterThanSignKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		private final Assignment cBodyAssignment_8 = (Assignment)cGroup.eContents().get(8);
+		private final RuleCall cBodyXmuCoreStatementParserRuleCall_8_0 = (RuleCall)cBodyAssignment_8.eContents().get(0);
 		
 		//XmuCoreExpandSource:
-		//	'expandS' pattern=Pattern '(' mappings+=VarMapping (',' mappings+=VarMapping)* ')' '->' body=XmuCoreStatement;
+		//	'expandS' typeIndicator=TypeIndicator? pattern=Pattern '(' mappings+=VarMapping (',' mappings+=VarMapping)* ')' '->'
+		//	body=XmuCoreStatement;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'expandS' pattern=Pattern '(' mappings+=VarMapping (',' mappings+=VarMapping)* ')' '->' body=XmuCoreStatement
+		//'expandS' typeIndicator=TypeIndicator? pattern=Pattern '(' mappings+=VarMapping (',' mappings+=VarMapping)* ')' '->'
+		//body=XmuCoreStatement
 		public Group getGroup() { return cGroup; }
 		
 		//'expandS'
 		public Keyword getExpandSKeyword_0() { return cExpandSKeyword_0; }
 		
+		//typeIndicator=TypeIndicator?
+		public Assignment getTypeIndicatorAssignment_1() { return cTypeIndicatorAssignment_1; }
+		
+		//TypeIndicator
+		public RuleCall getTypeIndicatorTypeIndicatorParserRuleCall_1_0() { return cTypeIndicatorTypeIndicatorParserRuleCall_1_0; }
+		
 		//pattern=Pattern
-		public Assignment getPatternAssignment_1() { return cPatternAssignment_1; }
+		public Assignment getPatternAssignment_2() { return cPatternAssignment_2; }
 		
 		//Pattern
-		public RuleCall getPatternPatternParserRuleCall_1_0() { return cPatternPatternParserRuleCall_1_0; }
+		public RuleCall getPatternPatternParserRuleCall_2_0() { return cPatternPatternParserRuleCall_2_0; }
 		
 		//'('
-		public Keyword getLeftParenthesisKeyword_2() { return cLeftParenthesisKeyword_2; }
+		public Keyword getLeftParenthesisKeyword_3() { return cLeftParenthesisKeyword_3; }
 		
 		//mappings+=VarMapping
-		public Assignment getMappingsAssignment_3() { return cMappingsAssignment_3; }
+		public Assignment getMappingsAssignment_4() { return cMappingsAssignment_4; }
 		
 		//VarMapping
-		public RuleCall getMappingsVarMappingParserRuleCall_3_0() { return cMappingsVarMappingParserRuleCall_3_0; }
+		public RuleCall getMappingsVarMappingParserRuleCall_4_0() { return cMappingsVarMappingParserRuleCall_4_0; }
 		
 		//(',' mappings+=VarMapping)*
-		public Group getGroup_4() { return cGroup_4; }
+		public Group getGroup_5() { return cGroup_5; }
 		
 		//','
-		public Keyword getCommaKeyword_4_0() { return cCommaKeyword_4_0; }
+		public Keyword getCommaKeyword_5_0() { return cCommaKeyword_5_0; }
 		
 		//mappings+=VarMapping
-		public Assignment getMappingsAssignment_4_1() { return cMappingsAssignment_4_1; }
+		public Assignment getMappingsAssignment_5_1() { return cMappingsAssignment_5_1; }
 		
 		//VarMapping
-		public RuleCall getMappingsVarMappingParserRuleCall_4_1_0() { return cMappingsVarMappingParserRuleCall_4_1_0; }
+		public RuleCall getMappingsVarMappingParserRuleCall_5_1_0() { return cMappingsVarMappingParserRuleCall_5_1_0; }
 		
 		//')'
-		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
+		public Keyword getRightParenthesisKeyword_6() { return cRightParenthesisKeyword_6; }
 		
 		//'->'
-		public Keyword getHyphenMinusGreaterThanSignKeyword_6() { return cHyphenMinusGreaterThanSignKeyword_6; }
+		public Keyword getHyphenMinusGreaterThanSignKeyword_7() { return cHyphenMinusGreaterThanSignKeyword_7; }
 		
 		//body=XmuCoreStatement
-		public Assignment getBodyAssignment_7() { return cBodyAssignment_7; }
+		public Assignment getBodyAssignment_8() { return cBodyAssignment_8; }
 		
 		//XmuCoreStatement
-		public RuleCall getBodyXmuCoreStatementParserRuleCall_7_0() { return cBodyXmuCoreStatementParserRuleCall_7_0; }
+		public RuleCall getBodyXmuCoreStatementParserRuleCall_8_0() { return cBodyXmuCoreStatementParserRuleCall_8_0; }
 	}
 	public class XmuCoreExpandViewElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.bxcore.dsl.BXCore.XmuCoreExpandView");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cExpandVKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cPatternAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cPatternPatternParserRuleCall_1_0 = (RuleCall)cPatternAssignment_1.eContents().get(0);
-		private final Keyword cLeftParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cMappingsAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cMappingsVarMappingParserRuleCall_3_0 = (RuleCall)cMappingsAssignment_3.eContents().get(0);
-		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
-		private final Keyword cCommaKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
-		private final Assignment cMappingsAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final RuleCall cMappingsVarMappingParserRuleCall_4_1_0 = (RuleCall)cMappingsAssignment_4_1.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
-		private final Keyword cHyphenMinusGreaterThanSignKeyword_6 = (Keyword)cGroup.eContents().get(6);
-		private final Assignment cBodyAssignment_7 = (Assignment)cGroup.eContents().get(7);
-		private final RuleCall cBodyXmuCoreStatementParserRuleCall_7_0 = (RuleCall)cBodyAssignment_7.eContents().get(0);
+		private final Assignment cTypeIndicatorAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cTypeIndicatorTypeIndicatorParserRuleCall_1_0 = (RuleCall)cTypeIndicatorAssignment_1.eContents().get(0);
+		private final Assignment cPatternAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cPatternPatternParserRuleCall_2_0 = (RuleCall)cPatternAssignment_2.eContents().get(0);
+		private final Keyword cLeftParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cMappingsAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cMappingsVarMappingParserRuleCall_4_0 = (RuleCall)cMappingsAssignment_4.eContents().get(0);
+		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
+		private final Keyword cCommaKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
+		private final Assignment cMappingsAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
+		private final RuleCall cMappingsVarMappingParserRuleCall_5_1_0 = (RuleCall)cMappingsAssignment_5_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Keyword cHyphenMinusGreaterThanSignKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		private final Assignment cBodyAssignment_8 = (Assignment)cGroup.eContents().get(8);
+		private final RuleCall cBodyXmuCoreStatementParserRuleCall_8_0 = (RuleCall)cBodyAssignment_8.eContents().get(0);
 		
 		//XmuCoreExpandView:
-		//	'expandV' pattern=Pattern '(' mappings+=VarMapping (',' mappings+=VarMapping)* ')' '->' body=XmuCoreStatement;
+		//	'expandV' typeIndicator=TypeIndicator? pattern=Pattern '(' mappings+=VarMapping (',' mappings+=VarMapping)* ')' '->'
+		//	body=XmuCoreStatement;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'expandV' pattern=Pattern '(' mappings+=VarMapping (',' mappings+=VarMapping)* ')' '->' body=XmuCoreStatement
+		//'expandV' typeIndicator=TypeIndicator? pattern=Pattern '(' mappings+=VarMapping (',' mappings+=VarMapping)* ')' '->'
+		//body=XmuCoreStatement
 		public Group getGroup() { return cGroup; }
 		
 		//'expandV'
 		public Keyword getExpandVKeyword_0() { return cExpandVKeyword_0; }
 		
+		//typeIndicator=TypeIndicator?
+		public Assignment getTypeIndicatorAssignment_1() { return cTypeIndicatorAssignment_1; }
+		
+		//TypeIndicator
+		public RuleCall getTypeIndicatorTypeIndicatorParserRuleCall_1_0() { return cTypeIndicatorTypeIndicatorParserRuleCall_1_0; }
+		
 		//pattern=Pattern
-		public Assignment getPatternAssignment_1() { return cPatternAssignment_1; }
+		public Assignment getPatternAssignment_2() { return cPatternAssignment_2; }
 		
 		//Pattern
-		public RuleCall getPatternPatternParserRuleCall_1_0() { return cPatternPatternParserRuleCall_1_0; }
+		public RuleCall getPatternPatternParserRuleCall_2_0() { return cPatternPatternParserRuleCall_2_0; }
 		
 		//'('
-		public Keyword getLeftParenthesisKeyword_2() { return cLeftParenthesisKeyword_2; }
+		public Keyword getLeftParenthesisKeyword_3() { return cLeftParenthesisKeyword_3; }
 		
 		//mappings+=VarMapping
-		public Assignment getMappingsAssignment_3() { return cMappingsAssignment_3; }
+		public Assignment getMappingsAssignment_4() { return cMappingsAssignment_4; }
 		
 		//VarMapping
-		public RuleCall getMappingsVarMappingParserRuleCall_3_0() { return cMappingsVarMappingParserRuleCall_3_0; }
+		public RuleCall getMappingsVarMappingParserRuleCall_4_0() { return cMappingsVarMappingParserRuleCall_4_0; }
 		
 		//(',' mappings+=VarMapping)*
-		public Group getGroup_4() { return cGroup_4; }
+		public Group getGroup_5() { return cGroup_5; }
 		
 		//','
-		public Keyword getCommaKeyword_4_0() { return cCommaKeyword_4_0; }
+		public Keyword getCommaKeyword_5_0() { return cCommaKeyword_5_0; }
 		
 		//mappings+=VarMapping
-		public Assignment getMappingsAssignment_4_1() { return cMappingsAssignment_4_1; }
+		public Assignment getMappingsAssignment_5_1() { return cMappingsAssignment_5_1; }
 		
 		//VarMapping
-		public RuleCall getMappingsVarMappingParserRuleCall_4_1_0() { return cMappingsVarMappingParserRuleCall_4_1_0; }
+		public RuleCall getMappingsVarMappingParserRuleCall_5_1_0() { return cMappingsVarMappingParserRuleCall_5_1_0; }
 		
 		//')'
-		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
+		public Keyword getRightParenthesisKeyword_6() { return cRightParenthesisKeyword_6; }
 		
 		//'->'
-		public Keyword getHyphenMinusGreaterThanSignKeyword_6() { return cHyphenMinusGreaterThanSignKeyword_6; }
+		public Keyword getHyphenMinusGreaterThanSignKeyword_7() { return cHyphenMinusGreaterThanSignKeyword_7; }
 		
 		//body=XmuCoreStatement
-		public Assignment getBodyAssignment_7() { return cBodyAssignment_7; }
+		public Assignment getBodyAssignment_8() { return cBodyAssignment_8; }
 		
 		//XmuCoreStatement
-		public RuleCall getBodyXmuCoreStatementParserRuleCall_7_0() { return cBodyXmuCoreStatementParserRuleCall_7_0; }
+		public RuleCall getBodyXmuCoreStatementParserRuleCall_8_0() { return cBodyXmuCoreStatementParserRuleCall_8_0; }
 	}
 	public class VarMappingElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.bxcore.dsl.BXCore.VarMapping");
@@ -1199,184 +1222,155 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.bxcore.dsl.BXCore.XmuCoreGraphReplace");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cReplaceKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cSourceAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cSourcePatternParserRuleCall_1_0 = (RuleCall)cSourceAssignment_1.eContents().get(0);
-		private final Assignment cViewAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cViewPatternParserRuleCall_2_0 = (RuleCall)cViewAssignment_2.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cConversionsAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cConversionsConversionParserRuleCall_4_0 = (RuleCall)cConversionsAssignment_4.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cTypeIndicatorAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cTypeIndicatorTypeIndicatorParserRuleCall_1_0 = (RuleCall)cTypeIndicatorAssignment_1.eContents().get(0);
+		private final Assignment cSourceAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cSourcePatternParserRuleCall_2_0 = (RuleCall)cSourceAssignment_2.eContents().get(0);
+		private final Assignment cViewAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cViewPatternParserRuleCall_3_0 = (RuleCall)cViewAssignment_3.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cConversionsAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cConversionsConversionParserRuleCall_5_0 = (RuleCall)cConversionsAssignment_5.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//XmuCoreGraphReplace:
-		//	'replace' source=Pattern view=Pattern '{' conversions+=Conversion+ '}';
+		//	'replace' typeIndicator=TypeIndicator? source=Pattern view=Pattern '{' conversions+=Conversion+ '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'replace' source=Pattern view=Pattern '{' conversions+=Conversion+ '}'
+		//'replace' typeIndicator=TypeIndicator? source=Pattern view=Pattern '{' conversions+=Conversion+ '}'
 		public Group getGroup() { return cGroup; }
 		
 		//'replace'
 		public Keyword getReplaceKeyword_0() { return cReplaceKeyword_0; }
 		
+		//typeIndicator=TypeIndicator?
+		public Assignment getTypeIndicatorAssignment_1() { return cTypeIndicatorAssignment_1; }
+		
+		//TypeIndicator
+		public RuleCall getTypeIndicatorTypeIndicatorParserRuleCall_1_0() { return cTypeIndicatorTypeIndicatorParserRuleCall_1_0; }
+		
 		//source=Pattern
-		public Assignment getSourceAssignment_1() { return cSourceAssignment_1; }
+		public Assignment getSourceAssignment_2() { return cSourceAssignment_2; }
 		
 		//Pattern
-		public RuleCall getSourcePatternParserRuleCall_1_0() { return cSourcePatternParserRuleCall_1_0; }
+		public RuleCall getSourcePatternParserRuleCall_2_0() { return cSourcePatternParserRuleCall_2_0; }
 		
 		//view=Pattern
-		public Assignment getViewAssignment_2() { return cViewAssignment_2; }
+		public Assignment getViewAssignment_3() { return cViewAssignment_3; }
 		
 		//Pattern
-		public RuleCall getViewPatternParserRuleCall_2_0() { return cViewPatternParserRuleCall_2_0; }
+		public RuleCall getViewPatternParserRuleCall_3_0() { return cViewPatternParserRuleCall_3_0; }
 		
 		//'{'
-		public Keyword getLeftCurlyBracketKeyword_3() { return cLeftCurlyBracketKeyword_3; }
+		public Keyword getLeftCurlyBracketKeyword_4() { return cLeftCurlyBracketKeyword_4; }
 		
 		//conversions+=Conversion+
-		public Assignment getConversionsAssignment_4() { return cConversionsAssignment_4; }
+		public Assignment getConversionsAssignment_5() { return cConversionsAssignment_5; }
 		
 		//Conversion
-		public RuleCall getConversionsConversionParserRuleCall_4_0() { return cConversionsConversionParserRuleCall_4_0; }
+		public RuleCall getConversionsConversionParserRuleCall_5_0() { return cConversionsConversionParserRuleCall_5_0; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
+		public Keyword getRightCurlyBracketKeyword_6() { return cRightCurlyBracketKeyword_6; }
 	}
 	public class XmuCoreParallelCompositionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.bxcore.dsl.BXCore.XmuCoreParallelComposition");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cLessThanSignKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cSourceTypeAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cSourceTypeContextTypeRefParserRuleCall_1_0 = (RuleCall)cSourceTypeAssignment_1.eContents().get(0);
-		private final Keyword cCommaKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cViewTypeAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cViewTypeContextTypeRefParserRuleCall_3_0 = (RuleCall)cViewTypeAssignment_3.eContents().get(0);
-		private final Keyword cGreaterThanSignKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Assignment cBodiesAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cBodiesXmuCoreCompositionChildStatementParserRuleCall_5_0 = (RuleCall)cBodiesAssignment_5.eContents().get(0);
-		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
-		private final Keyword cVerticalLineKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
-		private final Assignment cBodiesAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
-		private final RuleCall cBodiesXmuCoreCompositionChildStatementParserRuleCall_6_1_0 = (RuleCall)cBodiesAssignment_6_1.eContents().get(0);
+		private final Keyword cParallelKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cTypeIndicatorAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cTypeIndicatorTypeIndicatorParserRuleCall_1_0 = (RuleCall)cTypeIndicatorAssignment_1.eContents().get(0);
+		private final Assignment cBodiesAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cBodiesXmuCoreCompositionChildStatementParserRuleCall_2_0 = (RuleCall)cBodiesAssignment_2.eContents().get(0);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Keyword cVerticalLineKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Assignment cBodiesAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cBodiesXmuCoreCompositionChildStatementParserRuleCall_3_1_0 = (RuleCall)cBodiesAssignment_3_1.eContents().get(0);
 		
 		//XmuCoreParallelComposition:
-		//	'<' sourceType=ContextTypeRef ',' viewType=ContextTypeRef '>' bodies+=XmuCoreCompositionChildStatement (=> '|'
+		//	'parallel' typeIndicator=TypeIndicator? bodies+=XmuCoreCompositionChildStatement (=> '|'
 		//	bodies+=XmuCoreCompositionChildStatement)+;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'<' sourceType=ContextTypeRef ',' viewType=ContextTypeRef '>' bodies+=XmuCoreCompositionChildStatement (=> '|'
+		//'parallel' typeIndicator=TypeIndicator? bodies+=XmuCoreCompositionChildStatement (=> '|'
 		//bodies+=XmuCoreCompositionChildStatement)+
 		public Group getGroup() { return cGroup; }
 		
-		//'<'
-		public Keyword getLessThanSignKeyword_0() { return cLessThanSignKeyword_0; }
+		//'parallel'
+		public Keyword getParallelKeyword_0() { return cParallelKeyword_0; }
 		
-		//sourceType=ContextTypeRef
-		public Assignment getSourceTypeAssignment_1() { return cSourceTypeAssignment_1; }
+		//typeIndicator=TypeIndicator?
+		public Assignment getTypeIndicatorAssignment_1() { return cTypeIndicatorAssignment_1; }
 		
-		//ContextTypeRef
-		public RuleCall getSourceTypeContextTypeRefParserRuleCall_1_0() { return cSourceTypeContextTypeRefParserRuleCall_1_0; }
-		
-		//','
-		public Keyword getCommaKeyword_2() { return cCommaKeyword_2; }
-		
-		//viewType=ContextTypeRef
-		public Assignment getViewTypeAssignment_3() { return cViewTypeAssignment_3; }
-		
-		//ContextTypeRef
-		public RuleCall getViewTypeContextTypeRefParserRuleCall_3_0() { return cViewTypeContextTypeRefParserRuleCall_3_0; }
-		
-		//'>'
-		public Keyword getGreaterThanSignKeyword_4() { return cGreaterThanSignKeyword_4; }
+		//TypeIndicator
+		public RuleCall getTypeIndicatorTypeIndicatorParserRuleCall_1_0() { return cTypeIndicatorTypeIndicatorParserRuleCall_1_0; }
 		
 		//bodies+=XmuCoreCompositionChildStatement
-		public Assignment getBodiesAssignment_5() { return cBodiesAssignment_5; }
+		public Assignment getBodiesAssignment_2() { return cBodiesAssignment_2; }
 		
 		//XmuCoreCompositionChildStatement
-		public RuleCall getBodiesXmuCoreCompositionChildStatementParserRuleCall_5_0() { return cBodiesXmuCoreCompositionChildStatementParserRuleCall_5_0; }
+		public RuleCall getBodiesXmuCoreCompositionChildStatementParserRuleCall_2_0() { return cBodiesXmuCoreCompositionChildStatementParserRuleCall_2_0; }
 		
 		//(=> '|' bodies+=XmuCoreCompositionChildStatement)+
-		public Group getGroup_6() { return cGroup_6; }
+		public Group getGroup_3() { return cGroup_3; }
 		
 		//=> '|'
-		public Keyword getVerticalLineKeyword_6_0() { return cVerticalLineKeyword_6_0; }
+		public Keyword getVerticalLineKeyword_3_0() { return cVerticalLineKeyword_3_0; }
 		
 		//bodies+=XmuCoreCompositionChildStatement
-		public Assignment getBodiesAssignment_6_1() { return cBodiesAssignment_6_1; }
+		public Assignment getBodiesAssignment_3_1() { return cBodiesAssignment_3_1; }
 		
 		//XmuCoreCompositionChildStatement
-		public RuleCall getBodiesXmuCoreCompositionChildStatementParserRuleCall_6_1_0() { return cBodiesXmuCoreCompositionChildStatementParserRuleCall_6_1_0; }
+		public RuleCall getBodiesXmuCoreCompositionChildStatementParserRuleCall_3_1_0() { return cBodiesXmuCoreCompositionChildStatementParserRuleCall_3_1_0; }
 	}
 	public class XmuCoreSwitchElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.bxcore.dsl.BXCore.XmuCoreSwitch");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cSwitchKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Keyword cLessThanSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cSourceTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cSourceTypeContextTypeRefParserRuleCall_2_0 = (RuleCall)cSourceTypeAssignment_2.eContents().get(0);
-		private final Keyword cCommaKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cViewTypeAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cViewTypeContextTypeRefParserRuleCall_4_0 = (RuleCall)cViewTypeAssignment_4.eContents().get(0);
-		private final Keyword cGreaterThanSignKeyword_5 = (Keyword)cGroup.eContents().get(5);
-		private final Keyword cLeftSquareBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
-		private final Assignment cBranchesAssignment_7 = (Assignment)cGroup.eContents().get(7);
-		private final RuleCall cBranchesXmuCoreSwitchBranchParserRuleCall_7_0 = (RuleCall)cBranchesAssignment_7.eContents().get(0);
-		private final Assignment cAdaptionsAssignment_8 = (Assignment)cGroup.eContents().get(8);
-		private final RuleCall cAdaptionsXmuCoreSwitchAdaptionParserRuleCall_8_0 = (RuleCall)cAdaptionsAssignment_8.eContents().get(0);
-		private final Keyword cRightSquareBracketKeyword_9 = (Keyword)cGroup.eContents().get(9);
+		private final Assignment cTypeIndicatorAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cTypeIndicatorTypeIndicatorParserRuleCall_1_0 = (RuleCall)cTypeIndicatorAssignment_1.eContents().get(0);
+		private final Keyword cLeftSquareBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cBranchesAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cBranchesXmuCoreSwitchBranchParserRuleCall_3_0 = (RuleCall)cBranchesAssignment_3.eContents().get(0);
+		private final Assignment cAdaptionsAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cAdaptionsXmuCoreSwitchAdaptionParserRuleCall_4_0 = (RuleCall)cAdaptionsAssignment_4.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//XmuCoreSwitch:
-		//	'switch' '<' sourceType=ContextTypeRef ',' viewType=ContextTypeRef '>' '['
+		//	'switch' typeIndicator=TypeIndicator? '['
 		//	branches+=XmuCoreSwitchBranch+
 		//	adaptions+=XmuCoreSwitchAdaption*
 		//	']';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'switch' '<' sourceType=ContextTypeRef ',' viewType=ContextTypeRef '>' '[' branches+=XmuCoreSwitchBranch+
-		//adaptions+=XmuCoreSwitchAdaption* ']'
+		//'switch' typeIndicator=TypeIndicator? '[' branches+=XmuCoreSwitchBranch+ adaptions+=XmuCoreSwitchAdaption* ']'
 		public Group getGroup() { return cGroup; }
 		
 		//'switch'
 		public Keyword getSwitchKeyword_0() { return cSwitchKeyword_0; }
 		
-		//'<'
-		public Keyword getLessThanSignKeyword_1() { return cLessThanSignKeyword_1; }
+		//typeIndicator=TypeIndicator?
+		public Assignment getTypeIndicatorAssignment_1() { return cTypeIndicatorAssignment_1; }
 		
-		//sourceType=ContextTypeRef
-		public Assignment getSourceTypeAssignment_2() { return cSourceTypeAssignment_2; }
-		
-		//ContextTypeRef
-		public RuleCall getSourceTypeContextTypeRefParserRuleCall_2_0() { return cSourceTypeContextTypeRefParserRuleCall_2_0; }
-		
-		//','
-		public Keyword getCommaKeyword_3() { return cCommaKeyword_3; }
-		
-		//viewType=ContextTypeRef
-		public Assignment getViewTypeAssignment_4() { return cViewTypeAssignment_4; }
-		
-		//ContextTypeRef
-		public RuleCall getViewTypeContextTypeRefParserRuleCall_4_0() { return cViewTypeContextTypeRefParserRuleCall_4_0; }
-		
-		//'>'
-		public Keyword getGreaterThanSignKeyword_5() { return cGreaterThanSignKeyword_5; }
+		//TypeIndicator
+		public RuleCall getTypeIndicatorTypeIndicatorParserRuleCall_1_0() { return cTypeIndicatorTypeIndicatorParserRuleCall_1_0; }
 		
 		//'['
-		public Keyword getLeftSquareBracketKeyword_6() { return cLeftSquareBracketKeyword_6; }
+		public Keyword getLeftSquareBracketKeyword_2() { return cLeftSquareBracketKeyword_2; }
 		
 		//branches+=XmuCoreSwitchBranch+
-		public Assignment getBranchesAssignment_7() { return cBranchesAssignment_7; }
+		public Assignment getBranchesAssignment_3() { return cBranchesAssignment_3; }
 		
 		//XmuCoreSwitchBranch
-		public RuleCall getBranchesXmuCoreSwitchBranchParserRuleCall_7_0() { return cBranchesXmuCoreSwitchBranchParserRuleCall_7_0; }
+		public RuleCall getBranchesXmuCoreSwitchBranchParserRuleCall_3_0() { return cBranchesXmuCoreSwitchBranchParserRuleCall_3_0; }
 		
 		//adaptions+=XmuCoreSwitchAdaption*
-		public Assignment getAdaptionsAssignment_8() { return cAdaptionsAssignment_8; }
+		public Assignment getAdaptionsAssignment_4() { return cAdaptionsAssignment_4; }
 		
 		//XmuCoreSwitchAdaption
-		public RuleCall getAdaptionsXmuCoreSwitchAdaptionParserRuleCall_8_0() { return cAdaptionsXmuCoreSwitchAdaptionParserRuleCall_8_0; }
+		public RuleCall getAdaptionsXmuCoreSwitchAdaptionParserRuleCall_4_0() { return cAdaptionsXmuCoreSwitchAdaptionParserRuleCall_4_0; }
 		
 		//']'
-		public Keyword getRightSquareBracketKeyword_9() { return cRightSquareBracketKeyword_9; }
+		public Keyword getRightSquareBracketKeyword_5() { return cRightSquareBracketKeyword_5; }
 	}
 	public class XmuCoreSwitchBranchElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.bxcore.dsl.BXCore.XmuCoreSwitchBranch");
@@ -1534,67 +1528,49 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 	public class XmuCoreForkElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.bxcore.dsl.BXCore.XmuCoreFork");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cLessThanSignKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cSourceTypeAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cSourceTypeContextTypeRefParserRuleCall_1_0 = (RuleCall)cSourceTypeAssignment_1.eContents().get(0);
-		private final Keyword cCommaKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cViewTypeAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cViewTypeContextTypeRefParserRuleCall_3_0 = (RuleCall)cViewTypeAssignment_3.eContents().get(0);
-		private final Keyword cGreaterThanSignKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Assignment cForksAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cForksXmuCoreForkBranchParserRuleCall_5_0 = (RuleCall)cForksAssignment_5.eContents().get(0);
-		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
-		private final Keyword cVerticalLineKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
-		private final Assignment cForksAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
-		private final RuleCall cForksXmuCoreForkBranchParserRuleCall_6_1_0 = (RuleCall)cForksAssignment_6_1.eContents().get(0);
+		private final Keyword cForkKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cTypeIndicatorAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cTypeIndicatorTypeIndicatorParserRuleCall_1_0 = (RuleCall)cTypeIndicatorAssignment_1.eContents().get(0);
+		private final Assignment cForksAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cForksXmuCoreForkBranchParserRuleCall_2_0 = (RuleCall)cForksAssignment_2.eContents().get(0);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Keyword cVerticalLineKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Assignment cForksAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cForksXmuCoreForkBranchParserRuleCall_3_1_0 = (RuleCall)cForksAssignment_3_1.eContents().get(0);
 		
 		//XmuCoreFork:
-		//	'<' sourceType=ContextTypeRef ',' viewType=ContextTypeRef '>' forks+=XmuCoreForkBranch (=> '|'
-		//	forks+=XmuCoreForkBranch)+;
+		//	'fork' typeIndicator=TypeIndicator? forks+=XmuCoreForkBranch (=> '|' forks+=XmuCoreForkBranch)+;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'<' sourceType=ContextTypeRef ',' viewType=ContextTypeRef '>' forks+=XmuCoreForkBranch (=> '|'
-		//forks+=XmuCoreForkBranch)+
+		//'fork' typeIndicator=TypeIndicator? forks+=XmuCoreForkBranch (=> '|' forks+=XmuCoreForkBranch)+
 		public Group getGroup() { return cGroup; }
 		
-		//'<'
-		public Keyword getLessThanSignKeyword_0() { return cLessThanSignKeyword_0; }
+		//'fork'
+		public Keyword getForkKeyword_0() { return cForkKeyword_0; }
 		
-		//sourceType=ContextTypeRef
-		public Assignment getSourceTypeAssignment_1() { return cSourceTypeAssignment_1; }
+		//typeIndicator=TypeIndicator?
+		public Assignment getTypeIndicatorAssignment_1() { return cTypeIndicatorAssignment_1; }
 		
-		//ContextTypeRef
-		public RuleCall getSourceTypeContextTypeRefParserRuleCall_1_0() { return cSourceTypeContextTypeRefParserRuleCall_1_0; }
-		
-		//','
-		public Keyword getCommaKeyword_2() { return cCommaKeyword_2; }
-		
-		//viewType=ContextTypeRef
-		public Assignment getViewTypeAssignment_3() { return cViewTypeAssignment_3; }
-		
-		//ContextTypeRef
-		public RuleCall getViewTypeContextTypeRefParserRuleCall_3_0() { return cViewTypeContextTypeRefParserRuleCall_3_0; }
-		
-		//'>'
-		public Keyword getGreaterThanSignKeyword_4() { return cGreaterThanSignKeyword_4; }
+		//TypeIndicator
+		public RuleCall getTypeIndicatorTypeIndicatorParserRuleCall_1_0() { return cTypeIndicatorTypeIndicatorParserRuleCall_1_0; }
 		
 		//forks+=XmuCoreForkBranch
-		public Assignment getForksAssignment_5() { return cForksAssignment_5; }
+		public Assignment getForksAssignment_2() { return cForksAssignment_2; }
 		
 		//XmuCoreForkBranch
-		public RuleCall getForksXmuCoreForkBranchParserRuleCall_5_0() { return cForksXmuCoreForkBranchParserRuleCall_5_0; }
+		public RuleCall getForksXmuCoreForkBranchParserRuleCall_2_0() { return cForksXmuCoreForkBranchParserRuleCall_2_0; }
 		
 		//(=> '|' forks+=XmuCoreForkBranch)+
-		public Group getGroup_6() { return cGroup_6; }
+		public Group getGroup_3() { return cGroup_3; }
 		
 		//=> '|'
-		public Keyword getVerticalLineKeyword_6_0() { return cVerticalLineKeyword_6_0; }
+		public Keyword getVerticalLineKeyword_3_0() { return cVerticalLineKeyword_3_0; }
 		
 		//forks+=XmuCoreForkBranch
-		public Assignment getForksAssignment_6_1() { return cForksAssignment_6_1; }
+		public Assignment getForksAssignment_3_1() { return cForksAssignment_3_1; }
 		
 		//XmuCoreForkBranch
-		public RuleCall getForksXmuCoreForkBranchParserRuleCall_6_1_0() { return cForksXmuCoreForkBranchParserRuleCall_6_1_0; }
+		public RuleCall getForksXmuCoreForkBranchParserRuleCall_3_1_0() { return cForksXmuCoreForkBranchParserRuleCall_3_1_0; }
 	}
 	public class XmuCoreForkBranchElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.bxcore.dsl.BXCore.XmuCoreForkBranch");
@@ -1690,286 +1666,278 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.bxcore.dsl.BXCore.XmuCoreAlign");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cAlignKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Keyword cLessThanSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cSourceTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cSourceTypeContextTypeRefParserRuleCall_2_0 = (RuleCall)cSourceTypeAssignment_2.eContents().get(0);
-		private final Keyword cCommaKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cViewTypeAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cViewTypeContextTypeRefParserRuleCall_4_0 = (RuleCall)cViewTypeAssignment_4.eContents().get(0);
-		private final Keyword cGreaterThanSignKeyword_5 = (Keyword)cGroup.eContents().get(5);
-		private final Assignment cSourcePatternAssignment_6 = (Assignment)cGroup.eContents().get(6);
-		private final RuleCall cSourcePatternPatternParserRuleCall_6_0 = (RuleCall)cSourcePatternAssignment_6.eContents().get(0);
-		private final Assignment cViewPatternAssignment_7 = (Assignment)cGroup.eContents().get(7);
-		private final RuleCall cViewPatternPatternParserRuleCall_7_0 = (RuleCall)cViewPatternAssignment_7.eContents().get(0);
-		private final Keyword cWithKeyword_8 = (Keyword)cGroup.eContents().get(8);
-		private final Assignment cAlignmentAssignment_9 = (Assignment)cGroup.eContents().get(9);
-		private final RuleCall cAlignmentContextAwareConditionParserRuleCall_9_0 = (RuleCall)cAlignmentAssignment_9.eContents().get(0);
-		private final UnorderedGroup cUnorderedGroup_10 = (UnorderedGroup)cGroup.eContents().get(10);
-		private final Group cGroup_10_0 = (Group)cUnorderedGroup_10.eContents().get(0);
-		private final Keyword cMatchKeyword_10_0_0 = (Keyword)cGroup_10_0.eContents().get(0);
-		private final Keyword cHyphenMinusGreaterThanSignKeyword_10_0_1 = (Keyword)cGroup_10_0.eContents().get(1);
-		private final Assignment cMatchAssignment_10_0_2 = (Assignment)cGroup_10_0.eContents().get(2);
-		private final RuleCall cMatchXmuCoreStatementParserRuleCall_10_0_2_0 = (RuleCall)cMatchAssignment_10_0_2.eContents().get(0);
-		private final Group cGroup_10_1 = (Group)cUnorderedGroup_10.eContents().get(1);
-		private final Keyword cUnmatchSKeyword_10_1_0 = (Keyword)cGroup_10_1.eContents().get(0);
-		private final Keyword cHyphenMinusGreaterThanSignKeyword_10_1_1 = (Keyword)cGroup_10_1.eContents().get(1);
-		private final Assignment cUnmatchSAssignment_10_1_2 = (Assignment)cGroup_10_1.eContents().get(2);
-		private final RuleCall cUnmatchSContextAwareUnidirectionalActionParserRuleCall_10_1_2_0 = (RuleCall)cUnmatchSAssignment_10_1_2.eContents().get(0);
-		private final Group cGroup_10_2 = (Group)cUnorderedGroup_10.eContents().get(2);
-		private final Keyword cUnmatchVKeyword_10_2_0 = (Keyword)cGroup_10_2.eContents().get(0);
-		private final Keyword cHyphenMinusGreaterThanSignKeyword_10_2_1 = (Keyword)cGroup_10_2.eContents().get(1);
-		private final Assignment cUnmatchVAssignment_10_2_2 = (Assignment)cGroup_10_2.eContents().get(2);
-		private final RuleCall cUnmatchVContextAwareUnidirectionalActionParserRuleCall_10_2_2_0 = (RuleCall)cUnmatchVAssignment_10_2_2.eContents().get(0);
+		private final Assignment cTypeIndicatorAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cTypeIndicatorTypeIndicatorParserRuleCall_1_0 = (RuleCall)cTypeIndicatorAssignment_1.eContents().get(0);
+		private final Assignment cSourcePatternAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cSourcePatternPatternParserRuleCall_2_0 = (RuleCall)cSourcePatternAssignment_2.eContents().get(0);
+		private final Assignment cViewPatternAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cViewPatternPatternParserRuleCall_3_0 = (RuleCall)cViewPatternAssignment_3.eContents().get(0);
+		private final Keyword cWithKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cAlignmentAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cAlignmentContextAwareConditionParserRuleCall_5_0 = (RuleCall)cAlignmentAssignment_5.eContents().get(0);
+		private final UnorderedGroup cUnorderedGroup_6 = (UnorderedGroup)cGroup.eContents().get(6);
+		private final Group cGroup_6_0 = (Group)cUnorderedGroup_6.eContents().get(0);
+		private final Keyword cMatchKeyword_6_0_0 = (Keyword)cGroup_6_0.eContents().get(0);
+		private final Keyword cHyphenMinusGreaterThanSignKeyword_6_0_1 = (Keyword)cGroup_6_0.eContents().get(1);
+		private final Assignment cMatchAssignment_6_0_2 = (Assignment)cGroup_6_0.eContents().get(2);
+		private final RuleCall cMatchXmuCoreStatementParserRuleCall_6_0_2_0 = (RuleCall)cMatchAssignment_6_0_2.eContents().get(0);
+		private final Group cGroup_6_1 = (Group)cUnorderedGroup_6.eContents().get(1);
+		private final Keyword cUnmatchSKeyword_6_1_0 = (Keyword)cGroup_6_1.eContents().get(0);
+		private final Keyword cHyphenMinusGreaterThanSignKeyword_6_1_1 = (Keyword)cGroup_6_1.eContents().get(1);
+		private final Assignment cUnmatchSAssignment_6_1_2 = (Assignment)cGroup_6_1.eContents().get(2);
+		private final RuleCall cUnmatchSContextAwareUnidirectionalActionParserRuleCall_6_1_2_0 = (RuleCall)cUnmatchSAssignment_6_1_2.eContents().get(0);
+		private final Group cGroup_6_2 = (Group)cUnorderedGroup_6.eContents().get(2);
+		private final Keyword cUnmatchVKeyword_6_2_0 = (Keyword)cGroup_6_2.eContents().get(0);
+		private final Keyword cHyphenMinusGreaterThanSignKeyword_6_2_1 = (Keyword)cGroup_6_2.eContents().get(1);
+		private final Assignment cUnmatchVAssignment_6_2_2 = (Assignment)cGroup_6_2.eContents().get(2);
+		private final RuleCall cUnmatchVContextAwareUnidirectionalActionParserRuleCall_6_2_2_0 = (RuleCall)cUnmatchVAssignment_6_2_2.eContents().get(0);
 		
 		//XmuCoreAlign:
-		//	'align' '<' sourceType=ContextTypeRef ',' viewType=ContextTypeRef '>' sourcePattern=Pattern viewPattern=Pattern 'with'
-		//	alignment=ContextAwareCondition ('match' '->' match=XmuCoreStatement & 'unmatchS' '->'
-		//	unmatchS=ContextAwareUnidirectionalAction & 'unmatchV' '->' unmatchV=ContextAwareUnidirectionalAction);
+		//	'align' typeIndicator=TypeIndicator? sourcePattern=Pattern viewPattern=Pattern 'with' alignment=ContextAwareCondition
+		//	('match' '->' match=XmuCoreStatement & 'unmatchS' '->' unmatchS=ContextAwareUnidirectionalAction & 'unmatchV' '->'
+		//	unmatchV=ContextAwareUnidirectionalAction);
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'align' '<' sourceType=ContextTypeRef ',' viewType=ContextTypeRef '>' sourcePattern=Pattern viewPattern=Pattern 'with'
-		//alignment=ContextAwareCondition ('match' '->' match=XmuCoreStatement & 'unmatchS' '->'
-		//unmatchS=ContextAwareUnidirectionalAction & 'unmatchV' '->' unmatchV=ContextAwareUnidirectionalAction)
+		//'align' typeIndicator=TypeIndicator? sourcePattern=Pattern viewPattern=Pattern 'with' alignment=ContextAwareCondition
+		//('match' '->' match=XmuCoreStatement & 'unmatchS' '->' unmatchS=ContextAwareUnidirectionalAction & 'unmatchV' '->'
+		//unmatchV=ContextAwareUnidirectionalAction)
 		public Group getGroup() { return cGroup; }
 		
 		//'align'
 		public Keyword getAlignKeyword_0() { return cAlignKeyword_0; }
 		
-		//'<'
-		public Keyword getLessThanSignKeyword_1() { return cLessThanSignKeyword_1; }
+		//typeIndicator=TypeIndicator?
+		public Assignment getTypeIndicatorAssignment_1() { return cTypeIndicatorAssignment_1; }
 		
-		//sourceType=ContextTypeRef
-		public Assignment getSourceTypeAssignment_2() { return cSourceTypeAssignment_2; }
-		
-		//ContextTypeRef
-		public RuleCall getSourceTypeContextTypeRefParserRuleCall_2_0() { return cSourceTypeContextTypeRefParserRuleCall_2_0; }
-		
-		//','
-		public Keyword getCommaKeyword_3() { return cCommaKeyword_3; }
-		
-		//viewType=ContextTypeRef
-		public Assignment getViewTypeAssignment_4() { return cViewTypeAssignment_4; }
-		
-		//ContextTypeRef
-		public RuleCall getViewTypeContextTypeRefParserRuleCall_4_0() { return cViewTypeContextTypeRefParserRuleCall_4_0; }
-		
-		//'>'
-		public Keyword getGreaterThanSignKeyword_5() { return cGreaterThanSignKeyword_5; }
+		//TypeIndicator
+		public RuleCall getTypeIndicatorTypeIndicatorParserRuleCall_1_0() { return cTypeIndicatorTypeIndicatorParserRuleCall_1_0; }
 		
 		//sourcePattern=Pattern
-		public Assignment getSourcePatternAssignment_6() { return cSourcePatternAssignment_6; }
+		public Assignment getSourcePatternAssignment_2() { return cSourcePatternAssignment_2; }
 		
 		//Pattern
-		public RuleCall getSourcePatternPatternParserRuleCall_6_0() { return cSourcePatternPatternParserRuleCall_6_0; }
+		public RuleCall getSourcePatternPatternParserRuleCall_2_0() { return cSourcePatternPatternParserRuleCall_2_0; }
 		
 		//viewPattern=Pattern
-		public Assignment getViewPatternAssignment_7() { return cViewPatternAssignment_7; }
+		public Assignment getViewPatternAssignment_3() { return cViewPatternAssignment_3; }
 		
 		//Pattern
-		public RuleCall getViewPatternPatternParserRuleCall_7_0() { return cViewPatternPatternParserRuleCall_7_0; }
+		public RuleCall getViewPatternPatternParserRuleCall_3_0() { return cViewPatternPatternParserRuleCall_3_0; }
 		
 		//'with'
-		public Keyword getWithKeyword_8() { return cWithKeyword_8; }
+		public Keyword getWithKeyword_4() { return cWithKeyword_4; }
 		
 		//alignment=ContextAwareCondition
-		public Assignment getAlignmentAssignment_9() { return cAlignmentAssignment_9; }
+		public Assignment getAlignmentAssignment_5() { return cAlignmentAssignment_5; }
 		
 		//ContextAwareCondition
-		public RuleCall getAlignmentContextAwareConditionParserRuleCall_9_0() { return cAlignmentContextAwareConditionParserRuleCall_9_0; }
+		public RuleCall getAlignmentContextAwareConditionParserRuleCall_5_0() { return cAlignmentContextAwareConditionParserRuleCall_5_0; }
 		
 		//'match' '->' match=XmuCoreStatement & 'unmatchS' '->' unmatchS=ContextAwareUnidirectionalAction & 'unmatchV' '->'
 		//unmatchV=ContextAwareUnidirectionalAction
-		public UnorderedGroup getUnorderedGroup_10() { return cUnorderedGroup_10; }
+		public UnorderedGroup getUnorderedGroup_6() { return cUnorderedGroup_6; }
 		
 		//'match' '->' match=XmuCoreStatement
-		public Group getGroup_10_0() { return cGroup_10_0; }
+		public Group getGroup_6_0() { return cGroup_6_0; }
 		
 		//'match'
-		public Keyword getMatchKeyword_10_0_0() { return cMatchKeyword_10_0_0; }
+		public Keyword getMatchKeyword_6_0_0() { return cMatchKeyword_6_0_0; }
 		
 		//'->'
-		public Keyword getHyphenMinusGreaterThanSignKeyword_10_0_1() { return cHyphenMinusGreaterThanSignKeyword_10_0_1; }
+		public Keyword getHyphenMinusGreaterThanSignKeyword_6_0_1() { return cHyphenMinusGreaterThanSignKeyword_6_0_1; }
 		
 		//match=XmuCoreStatement
-		public Assignment getMatchAssignment_10_0_2() { return cMatchAssignment_10_0_2; }
+		public Assignment getMatchAssignment_6_0_2() { return cMatchAssignment_6_0_2; }
 		
 		//XmuCoreStatement
-		public RuleCall getMatchXmuCoreStatementParserRuleCall_10_0_2_0() { return cMatchXmuCoreStatementParserRuleCall_10_0_2_0; }
+		public RuleCall getMatchXmuCoreStatementParserRuleCall_6_0_2_0() { return cMatchXmuCoreStatementParserRuleCall_6_0_2_0; }
 		
 		//'unmatchS' '->' unmatchS=ContextAwareUnidirectionalAction
-		public Group getGroup_10_1() { return cGroup_10_1; }
+		public Group getGroup_6_1() { return cGroup_6_1; }
 		
 		//'unmatchS'
-		public Keyword getUnmatchSKeyword_10_1_0() { return cUnmatchSKeyword_10_1_0; }
+		public Keyword getUnmatchSKeyword_6_1_0() { return cUnmatchSKeyword_6_1_0; }
 		
 		//'->'
-		public Keyword getHyphenMinusGreaterThanSignKeyword_10_1_1() { return cHyphenMinusGreaterThanSignKeyword_10_1_1; }
+		public Keyword getHyphenMinusGreaterThanSignKeyword_6_1_1() { return cHyphenMinusGreaterThanSignKeyword_6_1_1; }
 		
 		//unmatchS=ContextAwareUnidirectionalAction
-		public Assignment getUnmatchSAssignment_10_1_2() { return cUnmatchSAssignment_10_1_2; }
+		public Assignment getUnmatchSAssignment_6_1_2() { return cUnmatchSAssignment_6_1_2; }
 		
 		//ContextAwareUnidirectionalAction
-		public RuleCall getUnmatchSContextAwareUnidirectionalActionParserRuleCall_10_1_2_0() { return cUnmatchSContextAwareUnidirectionalActionParserRuleCall_10_1_2_0; }
+		public RuleCall getUnmatchSContextAwareUnidirectionalActionParserRuleCall_6_1_2_0() { return cUnmatchSContextAwareUnidirectionalActionParserRuleCall_6_1_2_0; }
 		
 		//'unmatchV' '->' unmatchV=ContextAwareUnidirectionalAction
-		public Group getGroup_10_2() { return cGroup_10_2; }
+		public Group getGroup_6_2() { return cGroup_6_2; }
 		
 		//'unmatchV'
-		public Keyword getUnmatchVKeyword_10_2_0() { return cUnmatchVKeyword_10_2_0; }
+		public Keyword getUnmatchVKeyword_6_2_0() { return cUnmatchVKeyword_6_2_0; }
 		
 		//'->'
-		public Keyword getHyphenMinusGreaterThanSignKeyword_10_2_1() { return cHyphenMinusGreaterThanSignKeyword_10_2_1; }
+		public Keyword getHyphenMinusGreaterThanSignKeyword_6_2_1() { return cHyphenMinusGreaterThanSignKeyword_6_2_1; }
 		
 		//unmatchV=ContextAwareUnidirectionalAction
-		public Assignment getUnmatchVAssignment_10_2_2() { return cUnmatchVAssignment_10_2_2; }
+		public Assignment getUnmatchVAssignment_6_2_2() { return cUnmatchVAssignment_6_2_2; }
 		
 		//ContextAwareUnidirectionalAction
-		public RuleCall getUnmatchVContextAwareUnidirectionalActionParserRuleCall_10_2_2_0() { return cUnmatchVContextAwareUnidirectionalActionParserRuleCall_10_2_2_0; }
+		public RuleCall getUnmatchVContextAwareUnidirectionalActionParserRuleCall_6_2_2_0() { return cUnmatchVContextAwareUnidirectionalActionParserRuleCall_6_2_2_0; }
 	}
 	public class XmuCoreFunctionCallElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.bxcore.dsl.BXCore.XmuCoreFunctionCall");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cLeftParenthesisKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cSourceMappingsAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cSourceMappingsVarMappingParserRuleCall_1_0 = (RuleCall)cSourceMappingsAssignment_1.eContents().get(0);
-		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final Keyword cCommaKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
-		private final Assignment cSourceMappingsAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final RuleCall cSourceMappingsVarMappingParserRuleCall_2_1_0 = (RuleCall)cSourceMappingsAssignment_2_1.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Keyword cLeftParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Assignment cViewMappingsAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cViewMappingsVarMappingParserRuleCall_5_0 = (RuleCall)cViewMappingsAssignment_5.eContents().get(0);
-		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
-		private final Keyword cCommaKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
-		private final Assignment cViewMappingsAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
-		private final RuleCall cViewMappingsVarMappingParserRuleCall_6_1_0 = (RuleCall)cViewMappingsAssignment_6_1.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_7 = (Keyword)cGroup.eContents().get(7);
-		private final Keyword cHyphenMinusGreaterThanSignKeyword_8 = (Keyword)cGroup.eContents().get(8);
-		private final Assignment cTargetAssignment_9 = (Assignment)cGroup.eContents().get(9);
-		private final CrossReference cTargetBXFunctionDefinitionCrossReference_9_0 = (CrossReference)cTargetAssignment_9.eContents().get(0);
-		private final RuleCall cTargetBXFunctionDefinitionValidIDParserRuleCall_9_0_1 = (RuleCall)cTargetBXFunctionDefinitionCrossReference_9_0.eContents().get(1);
+		private final Assignment cTargetAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final CrossReference cTargetBXFunctionDefinitionCrossReference_0_0 = (CrossReference)cTargetAssignment_0.eContents().get(0);
+		private final RuleCall cTargetBXFunctionDefinitionValidIDParserRuleCall_0_0_1 = (RuleCall)cTargetBXFunctionDefinitionCrossReference_0_0.eContents().get(1);
+		private final Assignment cTypeIndicatorAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cTypeIndicatorTypeIndicatorParserRuleCall_1_0 = (RuleCall)cTypeIndicatorAssignment_1.eContents().get(0);
+		private final Keyword cLeftParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cSourceMappingsAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cSourceMappingsVarMappingParserRuleCall_3_0 = (RuleCall)cSourceMappingsAssignment_3.eContents().get(0);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final Keyword cCommaKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
+		private final Assignment cSourceMappingsAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cSourceMappingsVarMappingParserRuleCall_4_1_0 = (RuleCall)cSourceMappingsAssignment_4_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Keyword cLeftParenthesisKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Assignment cViewMappingsAssignment_7 = (Assignment)cGroup.eContents().get(7);
+		private final RuleCall cViewMappingsVarMappingParserRuleCall_7_0 = (RuleCall)cViewMappingsAssignment_7.eContents().get(0);
+		private final Group cGroup_8 = (Group)cGroup.eContents().get(8);
+		private final Keyword cCommaKeyword_8_0 = (Keyword)cGroup_8.eContents().get(0);
+		private final Assignment cViewMappingsAssignment_8_1 = (Assignment)cGroup_8.eContents().get(1);
+		private final RuleCall cViewMappingsVarMappingParserRuleCall_8_1_0 = (RuleCall)cViewMappingsAssignment_8_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_9 = (Keyword)cGroup.eContents().get(9);
 		
 		//XmuCoreFunctionCall:
-		//	'(' sourceMappings+=VarMapping (',' sourceMappings+=VarMapping)* ')'
-		//	'(' viewMappings+=VarMapping (',' viewMappings+=VarMapping)* ')' '->'
-		//	target=[BXFunctionDefinition|ValidID];
+		//	target=[BXFunctionDefinition|ValidID] typeIndicator=TypeIndicator? '(' sourceMappings+=VarMapping (','
+		//	sourceMappings+=VarMapping)* ')'
+		//	'(' viewMappings+=VarMapping (',' viewMappings+=VarMapping)* ')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'(' sourceMappings+=VarMapping (',' sourceMappings+=VarMapping)* ')' '(' viewMappings+=VarMapping (','
-		//viewMappings+=VarMapping)* ')' '->' target=[BXFunctionDefinition|ValidID]
+		//target=[BXFunctionDefinition|ValidID] typeIndicator=TypeIndicator? '(' sourceMappings+=VarMapping (','
+		//sourceMappings+=VarMapping)* ')' '(' viewMappings+=VarMapping (',' viewMappings+=VarMapping)* ')'
 		public Group getGroup() { return cGroup; }
 		
-		//'('
-		public Keyword getLeftParenthesisKeyword_0() { return cLeftParenthesisKeyword_0; }
-		
-		//sourceMappings+=VarMapping
-		public Assignment getSourceMappingsAssignment_1() { return cSourceMappingsAssignment_1; }
-		
-		//VarMapping
-		public RuleCall getSourceMappingsVarMappingParserRuleCall_1_0() { return cSourceMappingsVarMappingParserRuleCall_1_0; }
-		
-		//(',' sourceMappings+=VarMapping)*
-		public Group getGroup_2() { return cGroup_2; }
-		
-		//','
-		public Keyword getCommaKeyword_2_0() { return cCommaKeyword_2_0; }
-		
-		//sourceMappings+=VarMapping
-		public Assignment getSourceMappingsAssignment_2_1() { return cSourceMappingsAssignment_2_1; }
-		
-		//VarMapping
-		public RuleCall getSourceMappingsVarMappingParserRuleCall_2_1_0() { return cSourceMappingsVarMappingParserRuleCall_2_1_0; }
-		
-		//')'
-		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
-		
-		//'('
-		public Keyword getLeftParenthesisKeyword_4() { return cLeftParenthesisKeyword_4; }
-		
-		//viewMappings+=VarMapping
-		public Assignment getViewMappingsAssignment_5() { return cViewMappingsAssignment_5; }
-		
-		//VarMapping
-		public RuleCall getViewMappingsVarMappingParserRuleCall_5_0() { return cViewMappingsVarMappingParserRuleCall_5_0; }
-		
-		//(',' viewMappings+=VarMapping)*
-		public Group getGroup_6() { return cGroup_6; }
-		
-		//','
-		public Keyword getCommaKeyword_6_0() { return cCommaKeyword_6_0; }
-		
-		//viewMappings+=VarMapping
-		public Assignment getViewMappingsAssignment_6_1() { return cViewMappingsAssignment_6_1; }
-		
-		//VarMapping
-		public RuleCall getViewMappingsVarMappingParserRuleCall_6_1_0() { return cViewMappingsVarMappingParserRuleCall_6_1_0; }
-		
-		//')'
-		public Keyword getRightParenthesisKeyword_7() { return cRightParenthesisKeyword_7; }
-		
-		//'->'
-		public Keyword getHyphenMinusGreaterThanSignKeyword_8() { return cHyphenMinusGreaterThanSignKeyword_8; }
-		
 		//target=[BXFunctionDefinition|ValidID]
-		public Assignment getTargetAssignment_9() { return cTargetAssignment_9; }
+		public Assignment getTargetAssignment_0() { return cTargetAssignment_0; }
 		
 		//[BXFunctionDefinition|ValidID]
-		public CrossReference getTargetBXFunctionDefinitionCrossReference_9_0() { return cTargetBXFunctionDefinitionCrossReference_9_0; }
+		public CrossReference getTargetBXFunctionDefinitionCrossReference_0_0() { return cTargetBXFunctionDefinitionCrossReference_0_0; }
 		
 		//ValidID
-		public RuleCall getTargetBXFunctionDefinitionValidIDParserRuleCall_9_0_1() { return cTargetBXFunctionDefinitionValidIDParserRuleCall_9_0_1; }
+		public RuleCall getTargetBXFunctionDefinitionValidIDParserRuleCall_0_0_1() { return cTargetBXFunctionDefinitionValidIDParserRuleCall_0_0_1; }
+		
+		//typeIndicator=TypeIndicator?
+		public Assignment getTypeIndicatorAssignment_1() { return cTypeIndicatorAssignment_1; }
+		
+		//TypeIndicator
+		public RuleCall getTypeIndicatorTypeIndicatorParserRuleCall_1_0() { return cTypeIndicatorTypeIndicatorParserRuleCall_1_0; }
+		
+		//'('
+		public Keyword getLeftParenthesisKeyword_2() { return cLeftParenthesisKeyword_2; }
+		
+		//sourceMappings+=VarMapping
+		public Assignment getSourceMappingsAssignment_3() { return cSourceMappingsAssignment_3; }
+		
+		//VarMapping
+		public RuleCall getSourceMappingsVarMappingParserRuleCall_3_0() { return cSourceMappingsVarMappingParserRuleCall_3_0; }
+		
+		//(',' sourceMappings+=VarMapping)*
+		public Group getGroup_4() { return cGroup_4; }
+		
+		//','
+		public Keyword getCommaKeyword_4_0() { return cCommaKeyword_4_0; }
+		
+		//sourceMappings+=VarMapping
+		public Assignment getSourceMappingsAssignment_4_1() { return cSourceMappingsAssignment_4_1; }
+		
+		//VarMapping
+		public RuleCall getSourceMappingsVarMappingParserRuleCall_4_1_0() { return cSourceMappingsVarMappingParserRuleCall_4_1_0; }
+		
+		//')'
+		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
+		
+		//'('
+		public Keyword getLeftParenthesisKeyword_6() { return cLeftParenthesisKeyword_6; }
+		
+		//viewMappings+=VarMapping
+		public Assignment getViewMappingsAssignment_7() { return cViewMappingsAssignment_7; }
+		
+		//VarMapping
+		public RuleCall getViewMappingsVarMappingParserRuleCall_7_0() { return cViewMappingsVarMappingParserRuleCall_7_0; }
+		
+		//(',' viewMappings+=VarMapping)*
+		public Group getGroup_8() { return cGroup_8; }
+		
+		//','
+		public Keyword getCommaKeyword_8_0() { return cCommaKeyword_8_0; }
+		
+		//viewMappings+=VarMapping
+		public Assignment getViewMappingsAssignment_8_1() { return cViewMappingsAssignment_8_1; }
+		
+		//VarMapping
+		public RuleCall getViewMappingsVarMappingParserRuleCall_8_1_0() { return cViewMappingsVarMappingParserRuleCall_8_1_0; }
+		
+		//')'
+		public Keyword getRightParenthesisKeyword_9() { return cRightParenthesisKeyword_9; }
 	}
 	public class XmuCoreIndexElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.bxcore.dsl.BXCore.XmuCoreIndex");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cIndexKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cPartsAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cPartsIndexPartParserRuleCall_1_0 = (RuleCall)cPartsAssignment_1.eContents().get(0);
-		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final Keyword cCommaKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
-		private final Assignment cPartsAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final RuleCall cPartsIndexPartParserRuleCall_2_1_0 = (RuleCall)cPartsAssignment_2_1.eContents().get(0);
-		private final Keyword cInKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cBodyAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cBodyXmuCoreStatementParserRuleCall_4_0 = (RuleCall)cBodyAssignment_4.eContents().get(0);
+		private final Assignment cTypeIndicatorAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cTypeIndicatorTypeIndicatorParserRuleCall_1_0 = (RuleCall)cTypeIndicatorAssignment_1.eContents().get(0);
+		private final Assignment cPartsAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cPartsIndexPartParserRuleCall_2_0 = (RuleCall)cPartsAssignment_2.eContents().get(0);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Keyword cCommaKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Assignment cPartsAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cPartsIndexPartParserRuleCall_3_1_0 = (RuleCall)cPartsAssignment_3_1.eContents().get(0);
+		private final Keyword cInKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cBodyAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cBodyXmuCoreStatementParserRuleCall_5_0 = (RuleCall)cBodyAssignment_5.eContents().get(0);
 		
 		//XmuCoreIndex:
-		//	'index' parts+=IndexPart (',' parts+=IndexPart)* 'in' body=XmuCoreStatement;
+		//	'index' typeIndicator=TypeIndicator? parts+=IndexPart (',' parts+=IndexPart)* 'in' body=XmuCoreStatement;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'index' parts+=IndexPart (',' parts+=IndexPart)* 'in' body=XmuCoreStatement
+		//'index' typeIndicator=TypeIndicator? parts+=IndexPart (',' parts+=IndexPart)* 'in' body=XmuCoreStatement
 		public Group getGroup() { return cGroup; }
 		
 		//'index'
 		public Keyword getIndexKeyword_0() { return cIndexKeyword_0; }
 		
+		//typeIndicator=TypeIndicator?
+		public Assignment getTypeIndicatorAssignment_1() { return cTypeIndicatorAssignment_1; }
+		
+		//TypeIndicator
+		public RuleCall getTypeIndicatorTypeIndicatorParserRuleCall_1_0() { return cTypeIndicatorTypeIndicatorParserRuleCall_1_0; }
+		
 		//parts+=IndexPart
-		public Assignment getPartsAssignment_1() { return cPartsAssignment_1; }
+		public Assignment getPartsAssignment_2() { return cPartsAssignment_2; }
 		
 		//IndexPart
-		public RuleCall getPartsIndexPartParserRuleCall_1_0() { return cPartsIndexPartParserRuleCall_1_0; }
+		public RuleCall getPartsIndexPartParserRuleCall_2_0() { return cPartsIndexPartParserRuleCall_2_0; }
 		
 		//(',' parts+=IndexPart)*
-		public Group getGroup_2() { return cGroup_2; }
+		public Group getGroup_3() { return cGroup_3; }
 		
 		//','
-		public Keyword getCommaKeyword_2_0() { return cCommaKeyword_2_0; }
+		public Keyword getCommaKeyword_3_0() { return cCommaKeyword_3_0; }
 		
 		//parts+=IndexPart
-		public Assignment getPartsAssignment_2_1() { return cPartsAssignment_2_1; }
+		public Assignment getPartsAssignment_3_1() { return cPartsAssignment_3_1; }
 		
 		//IndexPart
-		public RuleCall getPartsIndexPartParserRuleCall_2_1_0() { return cPartsIndexPartParserRuleCall_2_1_0; }
+		public RuleCall getPartsIndexPartParserRuleCall_3_1_0() { return cPartsIndexPartParserRuleCall_3_1_0; }
 		
 		//'in'
-		public Keyword getInKeyword_3() { return cInKeyword_3; }
+		public Keyword getInKeyword_4() { return cInKeyword_4; }
 		
 		//body=XmuCoreStatement
-		public Assignment getBodyAssignment_4() { return cBodyAssignment_4; }
+		public Assignment getBodyAssignment_5() { return cBodyAssignment_5; }
 		
 		//XmuCoreStatement
-		public RuleCall getBodyXmuCoreStatementParserRuleCall_4_0() { return cBodyXmuCoreStatementParserRuleCall_4_0; }
+		public RuleCall getBodyXmuCoreStatementParserRuleCall_5_0() { return cBodyXmuCoreStatementParserRuleCall_5_0; }
 	}
 	public class IndexPartElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.bxcore.dsl.BXCore.IndexPart");
@@ -2221,6 +2189,7 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 	private final PatternDefinitionReferenceElements pPatternDefinitionReference;
 	private final XmuCoreStatementElements pXmuCoreStatement;
 	private final XmuCoreCompositionChildStatementElements pXmuCoreCompositionChildStatement;
+	private final TypeIndicatorElements pTypeIndicator;
 	private final XmuCoreMatchSourceElements pXmuCoreMatchSource;
 	private final XmuCoreMatchViewElements pXmuCoreMatchView;
 	private final XmuCoreExpandSourceElements pXmuCoreExpandSource;
@@ -2282,6 +2251,7 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		this.pPatternDefinitionReference = new PatternDefinitionReferenceElements();
 		this.pXmuCoreStatement = new XmuCoreStatementElements();
 		this.pXmuCoreCompositionChildStatement = new XmuCoreCompositionChildStatementElements();
+		this.pTypeIndicator = new TypeIndicatorElements();
 		this.pXmuCoreMatchSource = new XmuCoreMatchSourceElements();
 		this.pXmuCoreMatchView = new XmuCoreMatchViewElements();
 		this.pXmuCoreExpandSource = new XmuCoreExpandSourceElements();
@@ -2471,7 +2441,7 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//BXFunctionDefinition:
-	//	'function' name=ValidID '<' sourceType=ContextTypeRef ',' viewType=ContextTypeRef '>' '=' statement=XmuCoreStatement;
+	//	'function' name=ValidID typeIndicator=TypeIndicator? '=' statement=XmuCoreStatement;
 	public BXFunctionDefinitionElements getBXFunctionDefinitionAccess() {
 		return pBXFunctionDefinition;
 	}
@@ -2582,8 +2552,18 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		return getXmuCoreCompositionChildStatementAccess().getRule();
 	}
 	
+	//TypeIndicator:
+	//	'<' sourceType=ContextTypeRef ',' viewType=ContextTypeRef '>';
+	public TypeIndicatorElements getTypeIndicatorAccess() {
+		return pTypeIndicator;
+	}
+	
+	public ParserRule getTypeIndicatorRule() {
+		return getTypeIndicatorAccess().getRule();
+	}
+	
 	//XmuCoreMatchSource:
-	//	'matchS' '<' sourceType=ContextTypeRef '>' pattern=Pattern body=XmuCoreStatement;
+	//	'matchS' typeIndicator=TypeIndicator? pattern=Pattern body=XmuCoreStatement;
 	public XmuCoreMatchSourceElements getXmuCoreMatchSourceAccess() {
 		return pXmuCoreMatchSource;
 	}
@@ -2593,7 +2573,7 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//XmuCoreMatchView:
-	//	'matchV' '<' viewType=ContextTypeRef '>' pattern=Pattern body=XmuCoreStatement;
+	//	'matchV' typeIndicator=TypeIndicator? pattern=Pattern body=XmuCoreStatement;
 	public XmuCoreMatchViewElements getXmuCoreMatchViewAccess() {
 		return pXmuCoreMatchView;
 	}
@@ -2603,7 +2583,8 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//XmuCoreExpandSource:
-	//	'expandS' pattern=Pattern '(' mappings+=VarMapping (',' mappings+=VarMapping)* ')' '->' body=XmuCoreStatement;
+	//	'expandS' typeIndicator=TypeIndicator? pattern=Pattern '(' mappings+=VarMapping (',' mappings+=VarMapping)* ')' '->'
+	//	body=XmuCoreStatement;
 	public XmuCoreExpandSourceElements getXmuCoreExpandSourceAccess() {
 		return pXmuCoreExpandSource;
 	}
@@ -2613,7 +2594,8 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//XmuCoreExpandView:
-	//	'expandV' pattern=Pattern '(' mappings+=VarMapping (',' mappings+=VarMapping)* ')' '->' body=XmuCoreStatement;
+	//	'expandV' typeIndicator=TypeIndicator? pattern=Pattern '(' mappings+=VarMapping (',' mappings+=VarMapping)* ')' '->'
+	//	body=XmuCoreStatement;
 	public XmuCoreExpandViewElements getXmuCoreExpandViewAccess() {
 		return pXmuCoreExpandView;
 	}
@@ -2633,7 +2615,7 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//XmuCoreGraphReplace:
-	//	'replace' source=Pattern view=Pattern '{' conversions+=Conversion+ '}';
+	//	'replace' typeIndicator=TypeIndicator? source=Pattern view=Pattern '{' conversions+=Conversion+ '}';
 	public XmuCoreGraphReplaceElements getXmuCoreGraphReplaceAccess() {
 		return pXmuCoreGraphReplace;
 	}
@@ -2643,7 +2625,7 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//XmuCoreParallelComposition:
-	//	'<' sourceType=ContextTypeRef ',' viewType=ContextTypeRef '>' bodies+=XmuCoreCompositionChildStatement (=> '|'
+	//	'parallel' typeIndicator=TypeIndicator? bodies+=XmuCoreCompositionChildStatement (=> '|'
 	//	bodies+=XmuCoreCompositionChildStatement)+;
 	public XmuCoreParallelCompositionElements getXmuCoreParallelCompositionAccess() {
 		return pXmuCoreParallelComposition;
@@ -2654,7 +2636,7 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//XmuCoreSwitch:
-	//	'switch' '<' sourceType=ContextTypeRef ',' viewType=ContextTypeRef '>' '['
+	//	'switch' typeIndicator=TypeIndicator? '['
 	//	branches+=XmuCoreSwitchBranch+
 	//	adaptions+=XmuCoreSwitchAdaption*
 	//	']';
@@ -2697,8 +2679,7 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//XmuCoreFork:
-	//	'<' sourceType=ContextTypeRef ',' viewType=ContextTypeRef '>' forks+=XmuCoreForkBranch (=> '|'
-	//	forks+=XmuCoreForkBranch)+;
+	//	'fork' typeIndicator=TypeIndicator? forks+=XmuCoreForkBranch (=> '|' forks+=XmuCoreForkBranch)+;
 	public XmuCoreForkElements getXmuCoreForkAccess() {
 		return pXmuCoreFork;
 	}
@@ -2720,9 +2701,9 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//XmuCoreAlign:
-	//	'align' '<' sourceType=ContextTypeRef ',' viewType=ContextTypeRef '>' sourcePattern=Pattern viewPattern=Pattern 'with'
-	//	alignment=ContextAwareCondition ('match' '->' match=XmuCoreStatement & 'unmatchS' '->'
-	//	unmatchS=ContextAwareUnidirectionalAction & 'unmatchV' '->' unmatchV=ContextAwareUnidirectionalAction);
+	//	'align' typeIndicator=TypeIndicator? sourcePattern=Pattern viewPattern=Pattern 'with' alignment=ContextAwareCondition
+	//	('match' '->' match=XmuCoreStatement & 'unmatchS' '->' unmatchS=ContextAwareUnidirectionalAction & 'unmatchV' '->'
+	//	unmatchV=ContextAwareUnidirectionalAction);
 	public XmuCoreAlignElements getXmuCoreAlignAccess() {
 		return pXmuCoreAlign;
 	}
@@ -2732,9 +2713,9 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//XmuCoreFunctionCall:
-	//	'(' sourceMappings+=VarMapping (',' sourceMappings+=VarMapping)* ')'
-	//	'(' viewMappings+=VarMapping (',' viewMappings+=VarMapping)* ')' '->'
-	//	target=[BXFunctionDefinition|ValidID];
+	//	target=[BXFunctionDefinition|ValidID] typeIndicator=TypeIndicator? '(' sourceMappings+=VarMapping (','
+	//	sourceMappings+=VarMapping)* ')'
+	//	'(' viewMappings+=VarMapping (',' viewMappings+=VarMapping)* ')';
 	public XmuCoreFunctionCallElements getXmuCoreFunctionCallAccess() {
 		return pXmuCoreFunctionCall;
 	}
@@ -2744,7 +2725,7 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//XmuCoreIndex:
-	//	'index' parts+=IndexPart (',' parts+=IndexPart)* 'in' body=XmuCoreStatement;
+	//	'index' typeIndicator=TypeIndicator? parts+=IndexPart (',' parts+=IndexPart)* 'in' body=XmuCoreStatement;
 	public XmuCoreIndexElements getXmuCoreIndexAccess() {
 		return pXmuCoreIndex;
 	}

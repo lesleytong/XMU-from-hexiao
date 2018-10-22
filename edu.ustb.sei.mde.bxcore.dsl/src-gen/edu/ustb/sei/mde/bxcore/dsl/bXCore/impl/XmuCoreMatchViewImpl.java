@@ -4,7 +4,6 @@
 package edu.ustb.sei.mde.bxcore.dsl.bXCore.impl;
 
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage;
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextTypeRef;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.Pattern;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreMatchView;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreStatement;
@@ -25,7 +24,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.XmuCoreMatchViewImpl#getViewType <em>View Type</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.XmuCoreMatchViewImpl#getPattern <em>Pattern</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.XmuCoreMatchViewImpl#getBody <em>Body</em>}</li>
  * </ul>
@@ -34,16 +32,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class XmuCoreMatchViewImpl extends XmuCoreCompositionChildStatementImpl implements XmuCoreMatchView
 {
-  /**
-   * The cached value of the '{@link #getViewType() <em>View Type</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getViewType()
-   * @generated
-   * @ordered
-   */
-  protected ContextTypeRef viewType;
-
   /**
    * The cached value of the '{@link #getPattern() <em>Pattern</em>}' containment reference.
    * <!-- begin-user-doc -->
@@ -83,54 +71,6 @@ public class XmuCoreMatchViewImpl extends XmuCoreCompositionChildStatementImpl i
   protected EClass eStaticClass()
   {
     return BXCorePackage.Literals.XMU_CORE_MATCH_VIEW;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ContextTypeRef getViewType()
-  {
-    return viewType;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetViewType(ContextTypeRef newViewType, NotificationChain msgs)
-  {
-    ContextTypeRef oldViewType = viewType;
-    viewType = newViewType;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BXCorePackage.XMU_CORE_MATCH_VIEW__VIEW_TYPE, oldViewType, newViewType);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setViewType(ContextTypeRef newViewType)
-  {
-    if (newViewType != viewType)
-    {
-      NotificationChain msgs = null;
-      if (viewType != null)
-        msgs = ((InternalEObject)viewType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BXCorePackage.XMU_CORE_MATCH_VIEW__VIEW_TYPE, null, msgs);
-      if (newViewType != null)
-        msgs = ((InternalEObject)newViewType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BXCorePackage.XMU_CORE_MATCH_VIEW__VIEW_TYPE, null, msgs);
-      msgs = basicSetViewType(newViewType, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, BXCorePackage.XMU_CORE_MATCH_VIEW__VIEW_TYPE, newViewType, newViewType));
   }
 
   /**
@@ -239,8 +179,6 @@ public class XmuCoreMatchViewImpl extends XmuCoreCompositionChildStatementImpl i
   {
     switch (featureID)
     {
-      case BXCorePackage.XMU_CORE_MATCH_VIEW__VIEW_TYPE:
-        return basicSetViewType(null, msgs);
       case BXCorePackage.XMU_CORE_MATCH_VIEW__PATTERN:
         return basicSetPattern(null, msgs);
       case BXCorePackage.XMU_CORE_MATCH_VIEW__BODY:
@@ -259,8 +197,6 @@ public class XmuCoreMatchViewImpl extends XmuCoreCompositionChildStatementImpl i
   {
     switch (featureID)
     {
-      case BXCorePackage.XMU_CORE_MATCH_VIEW__VIEW_TYPE:
-        return getViewType();
       case BXCorePackage.XMU_CORE_MATCH_VIEW__PATTERN:
         return getPattern();
       case BXCorePackage.XMU_CORE_MATCH_VIEW__BODY:
@@ -279,9 +215,6 @@ public class XmuCoreMatchViewImpl extends XmuCoreCompositionChildStatementImpl i
   {
     switch (featureID)
     {
-      case BXCorePackage.XMU_CORE_MATCH_VIEW__VIEW_TYPE:
-        setViewType((ContextTypeRef)newValue);
-        return;
       case BXCorePackage.XMU_CORE_MATCH_VIEW__PATTERN:
         setPattern((Pattern)newValue);
         return;
@@ -302,9 +235,6 @@ public class XmuCoreMatchViewImpl extends XmuCoreCompositionChildStatementImpl i
   {
     switch (featureID)
     {
-      case BXCorePackage.XMU_CORE_MATCH_VIEW__VIEW_TYPE:
-        setViewType((ContextTypeRef)null);
-        return;
       case BXCorePackage.XMU_CORE_MATCH_VIEW__PATTERN:
         setPattern((Pattern)null);
         return;
@@ -325,8 +255,6 @@ public class XmuCoreMatchViewImpl extends XmuCoreCompositionChildStatementImpl i
   {
     switch (featureID)
     {
-      case BXCorePackage.XMU_CORE_MATCH_VIEW__VIEW_TYPE:
-        return viewType != null;
       case BXCorePackage.XMU_CORE_MATCH_VIEW__PATTERN:
         return pattern != null;
       case BXCorePackage.XMU_CORE_MATCH_VIEW__BODY:

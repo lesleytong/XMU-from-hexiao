@@ -25,15 +25,17 @@ public class TupleType {
 	public ImportSection importSection = null;
 	
 	public boolean equals(Object o) {
-		if(o instanceof TupleType && !(o instanceof UnsolvedTupleType)) {
-			TupleType right = (TupleType) o;
-			if((this.tuples.isEmpty() || this.ordered == right.ordered) && this.tuples.size()==right.tuples.size()) {
-				return this.tuples.stream().allMatch(t->{
-					return right.tuples.contains(t);
-				});
-			} else return false;
-		} else
-			return false;
+		if(o instanceof TupleType && !(o instanceof UnsolvedTupleType)) return compare((TupleType)o);
+		return false;
+	}
+
+	public boolean compare(TupleType o) {
+		TupleType right = o;
+		if ((this.tuples.isEmpty() || this.ordered == right.ordered) && this.tuples.size() == right.tuples.size()) {
+			return this.tuples.stream().allMatch(t -> {
+				return right.tuples.contains(t);
+			});
+		} else return false;
 	}
 	
 	static final public TupleType empty = new TupleType();

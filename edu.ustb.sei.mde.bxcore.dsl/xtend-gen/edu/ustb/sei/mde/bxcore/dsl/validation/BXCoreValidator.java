@@ -6,9 +6,9 @@ package edu.ustb.sei.mde.bxcore.dsl.validation;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXProgram;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeLiteral;
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreStatement;
-import edu.ustb.sei.mde.bxcore.dsl.infer.SourceTypeModel;
-import edu.ustb.sei.mde.bxcore.dsl.infer.UnsolvedTupleType;
+import edu.ustb.sei.mde.bxcore.dsl.infer.InferData;
+import edu.ustb.sei.mde.bxcore.dsl.infer.InferManager;
+import edu.ustb.sei.mde.bxcore.dsl.infer.TypeInferenceException;
 import edu.ustb.sei.mde.bxcore.dsl.structure.TupleType;
 import edu.ustb.sei.mde.bxcore.dsl.validation.AbstractBXCoreValidator;
 import edu.ustb.sei.mde.structure.Tuple2;
@@ -16,7 +16,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
-import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.xbase.lib.Exceptions;
@@ -24,7 +23,6 @@ import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
-import org.eclipse.xtext.xbase.lib.ListExtensions;
 import org.eclipse.xtext.xbase.lib.MapExtensions;
 import org.eclipse.xtext.xbase.lib.Pair;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure3;
@@ -37,42 +35,41 @@ import org.eclipse.xtext.xbase.lib.Procedures.Procedure3;
 @SuppressWarnings("all")
 public class BXCoreValidator extends AbstractBXCoreValidator {
   @Check
-  public void checkBXProgram(final BXProgram program) {
-    final Function1<EObject, Boolean> _function = (EObject it) -> {
-      return Boolean.valueOf((it instanceof XmuCoreStatement));
-    };
-    final Function1<EObject, XmuCoreStatement> _function_1 = (EObject it) -> {
-      return ((XmuCoreStatement) it);
-    };
-    final List<Pair<Integer, XmuCoreStatement>> statements = IteratorExtensions.<Pair<Integer, XmuCoreStatement>>toList(IteratorExtensions.<XmuCoreStatement>indexed(IteratorExtensions.<EObject, XmuCoreStatement>map(IteratorExtensions.<EObject>filter(program.eAllContents(), _function), _function_1)));
-    final HashMap<TypeLiteral, Tuple2<TupleType, Integer>> typeLiteralMap = this.groupTypeLiterals(program);
-    try {
-      final SourceTypeModel sourceTypeInfer = new SourceTypeModel(program, typeLiteralMap);
-      sourceTypeInfer.solveNames();
-      InputOutput.<String>println("name solved!");
-      sourceTypeInfer.solveTypes();
-      InputOutput.<String>println("type solved!");
-      final Consumer<Pair<Integer, XmuCoreStatement>> _function_2 = (Pair<Integer, XmuCoreStatement> s) -> {
-        final TupleType v = sourceTypeInfer.unsolvedTupleTypeMap.get(s.getValue());
-        Integer _key = s.getKey();
-        String _plus = ("key" + _key);
-        String _plus_1 = (_plus + "=>");
-        final Function1<Tuple2<String, Object>, String> _function_3 = (Tuple2<String, Object> it) -> {
-          String _name = ((ENamedElement) it.second).getName();
-          return ((it.first + ":") + _name);
-        };
-        List<String> _list = IterableExtensions.<String>toList(ListExtensions.<Tuple2<String, Object>, String>map(((UnsolvedTupleType) v).tuples, _function_3));
-        String _plus_2 = (_plus_1 + _list);
-        InputOutput.<String>println(_plus_2);
-      };
-      statements.forEach(_function_2);
-    } catch (final Throwable _t) {
-      if (_t instanceof Exception) {
-        this.error("type inference failed", program, BXCorePackage.Literals.BX_PROGRAM__DEFINITIONS);
-      } else {
-        throw Exceptions.sneakyThrow(_t);
+  public InferData checkBXProgram(final BXProgram program) {
+    InferData _xblockexpression = null;
+    {
+      InputOutput.<String>println("check");
+      InferData _xtrycatchfinallyexpression = null;
+      try {
+        _xtrycatchfinallyexpression = InferManager.getInferredTypeModel(program.eResource());
+      } catch (final Throwable _t) {
+        if (_t instanceof Exception) {
+          final Exception e = (Exception)_t;
+          if ((e instanceof TypeInferenceException)) {
+            EObject _reason = ((TypeInferenceException)e).getReason();
+            boolean _tripleNotEquals = (_reason != program);
+            if (_tripleNotEquals) {
+              boolean _isMany = ((TypeInferenceException)e).getReason().eContainingFeature().isMany();
+              if (_isMany) {
+                Object _eGet = ((TypeInferenceException)e).getReason().eContainer().eGet(((TypeInferenceException)e).getReason().eContainingFeature());
+                final List<EObject> list = ((List<EObject>) _eGet);
+                this.error("type inference failed", ((TypeInferenceException)e).getReason().eContainer(), ((TypeInferenceException)e).getReason().eContainingFeature(), list.indexOf(((TypeInferenceException)e).getReason()));
+              } else {
+                this.error("type inference failed", ((TypeInferenceException)e).getReason().eContainer(), ((TypeInferenceException)e).getReason().eContainingFeature());
+              }
+            } else {
+              this.error("type inference failed", program, BXCorePackage.Literals.BX_PROGRAM__DEFINITIONS);
+            }
+          } else {
+            this.error("type inference failed", program, BXCorePackage.Literals.BX_PROGRAM__DEFINITIONS);
+          }
+        } else {
+          throw Exceptions.sneakyThrow(_t);
+        }
       }
+      _xblockexpression = _xtrycatchfinallyexpression;
     }
+    return _xblockexpression;
   }
   
   protected HashMap<TypeLiteral, Tuple2<TupleType, Integer>> groupTypeLiterals(final BXProgram program) {

@@ -13,7 +13,6 @@ package edu.ustb.sei.mde.bxcore.dsl.bXCore;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreMatchView#getViewType <em>View Type</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreMatchView#getPattern <em>Pattern</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreMatchView#getBody <em>Body</em>}</li>
  * </ul>
@@ -24,32 +23,6 @@ package edu.ustb.sei.mde.bxcore.dsl.bXCore;
  */
 public interface XmuCoreMatchView extends XmuCoreCompositionChildStatement
 {
-  /**
-   * Returns the value of the '<em><b>View Type</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>View Type</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>View Type</em>' containment reference.
-   * @see #setViewType(ContextTypeRef)
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getXmuCoreMatchView_ViewType()
-   * @model containment="true"
-   * @generated
-   */
-  ContextTypeRef getViewType();
-
-  /**
-   * Sets the value of the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreMatchView#getViewType <em>View Type</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>View Type</em>' containment reference.
-   * @see #getViewType()
-   * @generated
-   */
-  void setViewType(ContextTypeRef value);
-
   /**
    * Returns the value of the '<em><b>Pattern</b></em>' containment reference.
    * <!-- begin-user-doc -->

@@ -33,6 +33,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternValueCondition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PredefinedTypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TupleTypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeDefinition;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeIndicator;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeRef;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeVar;
@@ -243,6 +244,13 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * @generated
    */
   private EClass xmuCoreCompositionChildStatementEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass typeIndicatorEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -792,7 +800,7 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getBXFunctionDefinition_SourceType()
+  public EReference getBXFunctionDefinition_TypeIndicator()
   {
     return (EReference)bxFunctionDefinitionEClass.getEStructuralFeatures().get(0);
   }
@@ -802,19 +810,9 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getBXFunctionDefinition_ViewType()
-  {
-    return (EReference)bxFunctionDefinitionEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EReference getBXFunctionDefinition_Statement()
   {
-    return (EReference)bxFunctionDefinitionEClass.getEStructuralFeatures().get(2);
+    return (EReference)bxFunctionDefinitionEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1032,9 +1030,49 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getXmuCoreStatement_TypeIndicator()
+  {
+    return (EReference)xmuCoreStatementEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getXmuCoreCompositionChildStatement()
   {
     return xmuCoreCompositionChildStatementEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getTypeIndicator()
+  {
+    return typeIndicatorEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getTypeIndicator_SourceType()
+  {
+    return (EReference)typeIndicatorEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getTypeIndicator_ViewType()
+  {
+    return (EReference)typeIndicatorEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1052,7 +1090,7 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getXmuCoreMatchSource_SourceType()
+  public EReference getXmuCoreMatchSource_Pattern()
   {
     return (EReference)xmuCoreMatchSourceEClass.getEStructuralFeatures().get(0);
   }
@@ -1062,19 +1100,9 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getXmuCoreMatchSource_Pattern()
-  {
-    return (EReference)xmuCoreMatchSourceEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EReference getXmuCoreMatchSource_Body()
   {
-    return (EReference)xmuCoreMatchSourceEClass.getEStructuralFeatures().get(2);
+    return (EReference)xmuCoreMatchSourceEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1092,7 +1120,7 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getXmuCoreMatchView_ViewType()
+  public EReference getXmuCoreMatchView_Pattern()
   {
     return (EReference)xmuCoreMatchViewEClass.getEStructuralFeatures().get(0);
   }
@@ -1102,19 +1130,9 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getXmuCoreMatchView_Pattern()
-  {
-    return (EReference)xmuCoreMatchViewEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EReference getXmuCoreMatchView_Body()
   {
-    return (EReference)xmuCoreMatchViewEClass.getEStructuralFeatures().get(2);
+    return (EReference)xmuCoreMatchViewEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1282,29 +1300,9 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getXmuCoreParallelComposition_SourceType()
-  {
-    return (EReference)xmuCoreParallelCompositionEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getXmuCoreParallelComposition_ViewType()
-  {
-    return (EReference)xmuCoreParallelCompositionEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EReference getXmuCoreParallelComposition_Bodies()
   {
-    return (EReference)xmuCoreParallelCompositionEClass.getEStructuralFeatures().get(2);
+    return (EReference)xmuCoreParallelCompositionEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1322,7 +1320,7 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getXmuCoreSwitch_SourceType()
+  public EReference getXmuCoreSwitch_Branches()
   {
     return (EReference)xmuCoreSwitchEClass.getEStructuralFeatures().get(0);
   }
@@ -1332,29 +1330,9 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getXmuCoreSwitch_ViewType()
-  {
-    return (EReference)xmuCoreSwitchEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getXmuCoreSwitch_Branches()
-  {
-    return (EReference)xmuCoreSwitchEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EReference getXmuCoreSwitch_Adaptions()
   {
-    return (EReference)xmuCoreSwitchEClass.getEStructuralFeatures().get(3);
+    return (EReference)xmuCoreSwitchEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1472,29 +1450,9 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getXmuCoreFork_SourceType()
-  {
-    return (EReference)xmuCoreForkEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getXmuCoreFork_ViewType()
-  {
-    return (EReference)xmuCoreForkEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EReference getXmuCoreFork_Forks()
   {
-    return (EReference)xmuCoreForkEClass.getEStructuralFeatures().get(2);
+    return (EReference)xmuCoreForkEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1552,7 +1510,7 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getXmuCoreAlign_SourceType()
+  public EReference getXmuCoreAlign_SourcePattern()
   {
     return (EReference)xmuCoreAlignEClass.getEStructuralFeatures().get(0);
   }
@@ -1562,7 +1520,7 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getXmuCoreAlign_ViewType()
+  public EReference getXmuCoreAlign_ViewPattern()
   {
     return (EReference)xmuCoreAlignEClass.getEStructuralFeatures().get(1);
   }
@@ -1572,7 +1530,7 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getXmuCoreAlign_SourcePattern()
+  public EReference getXmuCoreAlign_Alignment()
   {
     return (EReference)xmuCoreAlignEClass.getEStructuralFeatures().get(2);
   }
@@ -1582,7 +1540,7 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getXmuCoreAlign_ViewPattern()
+  public EReference getXmuCoreAlign_Match()
   {
     return (EReference)xmuCoreAlignEClass.getEStructuralFeatures().get(3);
   }
@@ -1592,7 +1550,7 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getXmuCoreAlign_Alignment()
+  public EReference getXmuCoreAlign_UnmatchS()
   {
     return (EReference)xmuCoreAlignEClass.getEStructuralFeatures().get(4);
   }
@@ -1602,29 +1560,9 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getXmuCoreAlign_Match()
-  {
-    return (EReference)xmuCoreAlignEClass.getEStructuralFeatures().get(5);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getXmuCoreAlign_UnmatchS()
-  {
-    return (EReference)xmuCoreAlignEClass.getEStructuralFeatures().get(6);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EReference getXmuCoreAlign_UnmatchV()
   {
-    return (EReference)xmuCoreAlignEClass.getEStructuralFeatures().get(7);
+    return (EReference)xmuCoreAlignEClass.getEStructuralFeatures().get(5);
   }
 
   /**
@@ -1642,7 +1580,7 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getXmuCoreFunctionCall_SourceMappings()
+  public EReference getXmuCoreFunctionCall_Target()
   {
     return (EReference)xmuCoreFunctionCallEClass.getEStructuralFeatures().get(0);
   }
@@ -1652,7 +1590,7 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getXmuCoreFunctionCall_ViewMappings()
+  public EReference getXmuCoreFunctionCall_SourceMappings()
   {
     return (EReference)xmuCoreFunctionCallEClass.getEStructuralFeatures().get(1);
   }
@@ -1662,7 +1600,7 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getXmuCoreFunctionCall_Target()
+  public EReference getXmuCoreFunctionCall_ViewMappings()
   {
     return (EReference)xmuCoreFunctionCallEClass.getEStructuralFeatures().get(2);
   }
@@ -1930,8 +1868,7 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     contextTypeRefEClass = createEClass(CONTEXT_TYPE_REF);
 
     bxFunctionDefinitionEClass = createEClass(BX_FUNCTION_DEFINITION);
-    createEReference(bxFunctionDefinitionEClass, BX_FUNCTION_DEFINITION__SOURCE_TYPE);
-    createEReference(bxFunctionDefinitionEClass, BX_FUNCTION_DEFINITION__VIEW_TYPE);
+    createEReference(bxFunctionDefinitionEClass, BX_FUNCTION_DEFINITION__TYPE_INDICATOR);
     createEReference(bxFunctionDefinitionEClass, BX_FUNCTION_DEFINITION__STATEMENT);
 
     typeRefEClass = createEClass(TYPE_REF);
@@ -1963,16 +1900,19 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     createEReference(patternDefinitionReferenceEClass, PATTERN_DEFINITION_REFERENCE__PATTERN);
 
     xmuCoreStatementEClass = createEClass(XMU_CORE_STATEMENT);
+    createEReference(xmuCoreStatementEClass, XMU_CORE_STATEMENT__TYPE_INDICATOR);
 
     xmuCoreCompositionChildStatementEClass = createEClass(XMU_CORE_COMPOSITION_CHILD_STATEMENT);
 
+    typeIndicatorEClass = createEClass(TYPE_INDICATOR);
+    createEReference(typeIndicatorEClass, TYPE_INDICATOR__SOURCE_TYPE);
+    createEReference(typeIndicatorEClass, TYPE_INDICATOR__VIEW_TYPE);
+
     xmuCoreMatchSourceEClass = createEClass(XMU_CORE_MATCH_SOURCE);
-    createEReference(xmuCoreMatchSourceEClass, XMU_CORE_MATCH_SOURCE__SOURCE_TYPE);
     createEReference(xmuCoreMatchSourceEClass, XMU_CORE_MATCH_SOURCE__PATTERN);
     createEReference(xmuCoreMatchSourceEClass, XMU_CORE_MATCH_SOURCE__BODY);
 
     xmuCoreMatchViewEClass = createEClass(XMU_CORE_MATCH_VIEW);
-    createEReference(xmuCoreMatchViewEClass, XMU_CORE_MATCH_VIEW__VIEW_TYPE);
     createEReference(xmuCoreMatchViewEClass, XMU_CORE_MATCH_VIEW__PATTERN);
     createEReference(xmuCoreMatchViewEClass, XMU_CORE_MATCH_VIEW__BODY);
 
@@ -1996,13 +1936,9 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     createEReference(xmuCoreGraphReplaceEClass, XMU_CORE_GRAPH_REPLACE__CONVERSIONS);
 
     xmuCoreParallelCompositionEClass = createEClass(XMU_CORE_PARALLEL_COMPOSITION);
-    createEReference(xmuCoreParallelCompositionEClass, XMU_CORE_PARALLEL_COMPOSITION__SOURCE_TYPE);
-    createEReference(xmuCoreParallelCompositionEClass, XMU_CORE_PARALLEL_COMPOSITION__VIEW_TYPE);
     createEReference(xmuCoreParallelCompositionEClass, XMU_CORE_PARALLEL_COMPOSITION__BODIES);
 
     xmuCoreSwitchEClass = createEClass(XMU_CORE_SWITCH);
-    createEReference(xmuCoreSwitchEClass, XMU_CORE_SWITCH__SOURCE_TYPE);
-    createEReference(xmuCoreSwitchEClass, XMU_CORE_SWITCH__VIEW_TYPE);
     createEReference(xmuCoreSwitchEClass, XMU_CORE_SWITCH__BRANCHES);
     createEReference(xmuCoreSwitchEClass, XMU_CORE_SWITCH__ADAPTIONS);
 
@@ -2020,8 +1956,6 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     createEAttribute(conversionEClass, CONVERSION__VIEW);
 
     xmuCoreForkEClass = createEClass(XMU_CORE_FORK);
-    createEReference(xmuCoreForkEClass, XMU_CORE_FORK__SOURCE_TYPE);
-    createEReference(xmuCoreForkEClass, XMU_CORE_FORK__VIEW_TYPE);
     createEReference(xmuCoreForkEClass, XMU_CORE_FORK__FORKS);
 
     xmuCoreForkBranchEClass = createEClass(XMU_CORE_FORK_BRANCH);
@@ -2030,8 +1964,6 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     createEReference(xmuCoreForkBranchEClass, XMU_CORE_FORK_BRANCH__BODY);
 
     xmuCoreAlignEClass = createEClass(XMU_CORE_ALIGN);
-    createEReference(xmuCoreAlignEClass, XMU_CORE_ALIGN__SOURCE_TYPE);
-    createEReference(xmuCoreAlignEClass, XMU_CORE_ALIGN__VIEW_TYPE);
     createEReference(xmuCoreAlignEClass, XMU_CORE_ALIGN__SOURCE_PATTERN);
     createEReference(xmuCoreAlignEClass, XMU_CORE_ALIGN__VIEW_PATTERN);
     createEReference(xmuCoreAlignEClass, XMU_CORE_ALIGN__ALIGNMENT);
@@ -2040,9 +1972,9 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     createEReference(xmuCoreAlignEClass, XMU_CORE_ALIGN__UNMATCH_V);
 
     xmuCoreFunctionCallEClass = createEClass(XMU_CORE_FUNCTION_CALL);
+    createEReference(xmuCoreFunctionCallEClass, XMU_CORE_FUNCTION_CALL__TARGET);
     createEReference(xmuCoreFunctionCallEClass, XMU_CORE_FUNCTION_CALL__SOURCE_MAPPINGS);
     createEReference(xmuCoreFunctionCallEClass, XMU_CORE_FUNCTION_CALL__VIEW_MAPPINGS);
-    createEReference(xmuCoreFunctionCallEClass, XMU_CORE_FUNCTION_CALL__TARGET);
 
     xmuCoreIndexEClass = createEClass(XMU_CORE_INDEX);
     createEReference(xmuCoreIndexEClass, XMU_CORE_INDEX__PARTS);
@@ -2183,8 +2115,7 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     initEClass(contextTypeRefEClass, ContextTypeRef.class, "ContextTypeRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(bxFunctionDefinitionEClass, BXFunctionDefinition.class, "BXFunctionDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getBXFunctionDefinition_SourceType(), this.getContextTypeRef(), null, "sourceType", null, 0, 1, BXFunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getBXFunctionDefinition_ViewType(), this.getContextTypeRef(), null, "viewType", null, 0, 1, BXFunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getBXFunctionDefinition_TypeIndicator(), this.getTypeIndicator(), null, "typeIndicator", null, 0, 1, BXFunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getBXFunctionDefinition_Statement(), this.getXmuCoreStatement(), null, "statement", null, 0, 1, BXFunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(typeRefEClass, TypeRef.class, "TypeRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2216,16 +2147,19 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     initEReference(getPatternDefinitionReference_Pattern(), this.getPatternDefinition(), null, "pattern", null, 0, 1, PatternDefinitionReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(xmuCoreStatementEClass, XmuCoreStatement.class, "XmuCoreStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getXmuCoreStatement_TypeIndicator(), this.getTypeIndicator(), null, "typeIndicator", null, 0, 1, XmuCoreStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(xmuCoreCompositionChildStatementEClass, XmuCoreCompositionChildStatement.class, "XmuCoreCompositionChildStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
+    initEClass(typeIndicatorEClass, TypeIndicator.class, "TypeIndicator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getTypeIndicator_SourceType(), this.getContextTypeRef(), null, "sourceType", null, 0, 1, TypeIndicator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getTypeIndicator_ViewType(), this.getContextTypeRef(), null, "viewType", null, 0, 1, TypeIndicator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
     initEClass(xmuCoreMatchSourceEClass, XmuCoreMatchSource.class, "XmuCoreMatchSource", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getXmuCoreMatchSource_SourceType(), this.getContextTypeRef(), null, "sourceType", null, 0, 1, XmuCoreMatchSource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getXmuCoreMatchSource_Pattern(), this.getPattern(), null, "pattern", null, 0, 1, XmuCoreMatchSource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getXmuCoreMatchSource_Body(), this.getXmuCoreStatement(), null, "body", null, 0, 1, XmuCoreMatchSource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(xmuCoreMatchViewEClass, XmuCoreMatchView.class, "XmuCoreMatchView", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getXmuCoreMatchView_ViewType(), this.getContextTypeRef(), null, "viewType", null, 0, 1, XmuCoreMatchView.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getXmuCoreMatchView_Pattern(), this.getPattern(), null, "pattern", null, 0, 1, XmuCoreMatchView.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getXmuCoreMatchView_Body(), this.getXmuCoreStatement(), null, "body", null, 0, 1, XmuCoreMatchView.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -2249,13 +2183,9 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     initEReference(getXmuCoreGraphReplace_Conversions(), this.getConversion(), null, "conversions", null, 0, -1, XmuCoreGraphReplace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(xmuCoreParallelCompositionEClass, XmuCoreParallelComposition.class, "XmuCoreParallelComposition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getXmuCoreParallelComposition_SourceType(), this.getContextTypeRef(), null, "sourceType", null, 0, 1, XmuCoreParallelComposition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getXmuCoreParallelComposition_ViewType(), this.getContextTypeRef(), null, "viewType", null, 0, 1, XmuCoreParallelComposition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getXmuCoreParallelComposition_Bodies(), this.getXmuCoreCompositionChildStatement(), null, "bodies", null, 0, -1, XmuCoreParallelComposition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(xmuCoreSwitchEClass, XmuCoreSwitch.class, "XmuCoreSwitch", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getXmuCoreSwitch_SourceType(), this.getContextTypeRef(), null, "sourceType", null, 0, 1, XmuCoreSwitch.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getXmuCoreSwitch_ViewType(), this.getContextTypeRef(), null, "viewType", null, 0, 1, XmuCoreSwitch.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getXmuCoreSwitch_Branches(), this.getXmuCoreSwitchBranch(), null, "branches", null, 0, -1, XmuCoreSwitch.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getXmuCoreSwitch_Adaptions(), this.getXmuCoreSwitchAdaption(), null, "adaptions", null, 0, -1, XmuCoreSwitch.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -2273,8 +2203,6 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     initEAttribute(getConversion_View(), ecorePackage.getEString(), "view", null, 0, -1, Conversion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(xmuCoreForkEClass, XmuCoreFork.class, "XmuCoreFork", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getXmuCoreFork_SourceType(), this.getContextTypeRef(), null, "sourceType", null, 0, 1, XmuCoreFork.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getXmuCoreFork_ViewType(), this.getContextTypeRef(), null, "viewType", null, 0, 1, XmuCoreFork.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getXmuCoreFork_Forks(), this.getXmuCoreForkBranch(), null, "forks", null, 0, -1, XmuCoreFork.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(xmuCoreForkBranchEClass, XmuCoreForkBranch.class, "XmuCoreForkBranch", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2283,8 +2211,6 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     initEReference(getXmuCoreForkBranch_Body(), this.getXmuCoreStatement(), null, "body", null, 0, 1, XmuCoreForkBranch.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(xmuCoreAlignEClass, XmuCoreAlign.class, "XmuCoreAlign", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getXmuCoreAlign_SourceType(), this.getContextTypeRef(), null, "sourceType", null, 0, 1, XmuCoreAlign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getXmuCoreAlign_ViewType(), this.getContextTypeRef(), null, "viewType", null, 0, 1, XmuCoreAlign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getXmuCoreAlign_SourcePattern(), this.getPattern(), null, "sourcePattern", null, 0, 1, XmuCoreAlign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getXmuCoreAlign_ViewPattern(), this.getPattern(), null, "viewPattern", null, 0, 1, XmuCoreAlign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getXmuCoreAlign_Alignment(), this.getContextAwareCondition(), null, "alignment", null, 0, 1, XmuCoreAlign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2293,9 +2219,9 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     initEReference(getXmuCoreAlign_UnmatchV(), this.getContextAwareUnidirectionalAction(), null, "unmatchV", null, 0, 1, XmuCoreAlign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(xmuCoreFunctionCallEClass, XmuCoreFunctionCall.class, "XmuCoreFunctionCall", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getXmuCoreFunctionCall_Target(), this.getBXFunctionDefinition(), null, "target", null, 0, 1, XmuCoreFunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getXmuCoreFunctionCall_SourceMappings(), this.getVarMapping(), null, "sourceMappings", null, 0, -1, XmuCoreFunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getXmuCoreFunctionCall_ViewMappings(), this.getVarMapping(), null, "viewMappings", null, 0, -1, XmuCoreFunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getXmuCoreFunctionCall_Target(), this.getBXFunctionDefinition(), null, "target", null, 0, 1, XmuCoreFunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(xmuCoreIndexEClass, XmuCoreIndex.class, "XmuCoreIndex", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getXmuCoreIndex_Parts(), this.getIndexPart(), null, "parts", null, 0, -1, XmuCoreIndex.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

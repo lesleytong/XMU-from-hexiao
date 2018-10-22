@@ -196,6 +196,11 @@ public class BXCoreAdapterFactory extends AdapterFactoryImpl
         return createXmuCoreCompositionChildStatementAdapter();
       }
       @Override
+      public Adapter caseTypeIndicator(TypeIndicator object)
+      {
+        return createTypeIndicatorAdapter();
+      }
+      @Override
       public Adapter caseXmuCoreMatchSource(XmuCoreMatchSource object)
       {
         return createXmuCoreMatchSourceAdapter();
@@ -698,6 +703,21 @@ public class BXCoreAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createXmuCoreCompositionChildStatementAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeIndicator <em>Type Indicator</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeIndicator
+   * @generated
+   */
+  public Adapter createTypeIndicatorAdapter()
   {
     return null;
   }

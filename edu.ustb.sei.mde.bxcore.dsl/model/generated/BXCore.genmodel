@@ -45,8 +45,7 @@
     <genClasses ecoreClass="BXCore.ecore#//PatternDefinition"/>
     <genClasses ecoreClass="BXCore.ecore#//ContextTypeRef"/>
     <genClasses ecoreClass="BXCore.ecore#//BXFunctionDefinition">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//BXFunctionDefinition/sourceType"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//BXFunctionDefinition/viewType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//BXFunctionDefinition/typeIndicator"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//BXFunctionDefinition/statement"/>
     </genClasses>
     <genClasses ecoreClass="BXCore.ecore#//TypeRef">
@@ -75,15 +74,19 @@
     <genClasses ecoreClass="BXCore.ecore#//PatternDefinitionReference">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BXCore.ecore#//PatternDefinitionReference/pattern"/>
     </genClasses>
-    <genClasses ecoreClass="BXCore.ecore#//XmuCoreStatement"/>
+    <genClasses ecoreClass="BXCore.ecore#//XmuCoreStatement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//XmuCoreStatement/typeIndicator"/>
+    </genClasses>
     <genClasses ecoreClass="BXCore.ecore#//XmuCoreCompositionChildStatement"/>
+    <genClasses ecoreClass="BXCore.ecore#//TypeIndicator">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//TypeIndicator/sourceType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//TypeIndicator/viewType"/>
+    </genClasses>
     <genClasses ecoreClass="BXCore.ecore#//XmuCoreMatchSource">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//XmuCoreMatchSource/sourceType"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//XmuCoreMatchSource/pattern"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//XmuCoreMatchSource/body"/>
     </genClasses>
     <genClasses ecoreClass="BXCore.ecore#//XmuCoreMatchView">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//XmuCoreMatchView/viewType"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//XmuCoreMatchView/pattern"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//XmuCoreMatchView/body"/>
     </genClasses>
@@ -107,13 +110,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//XmuCoreGraphReplace/conversions"/>
     </genClasses>
     <genClasses ecoreClass="BXCore.ecore#//XmuCoreParallelComposition">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//XmuCoreParallelComposition/sourceType"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//XmuCoreParallelComposition/viewType"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//XmuCoreParallelComposition/bodies"/>
     </genClasses>
     <genClasses ecoreClass="BXCore.ecore#//XmuCoreSwitch">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//XmuCoreSwitch/sourceType"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//XmuCoreSwitch/viewType"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//XmuCoreSwitch/branches"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//XmuCoreSwitch/adaptions"/>
     </genClasses>
@@ -131,8 +130,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BXCore.ecore#//Conversion/view"/>
     </genClasses>
     <genClasses ecoreClass="BXCore.ecore#//XmuCoreFork">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//XmuCoreFork/sourceType"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//XmuCoreFork/viewType"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//XmuCoreFork/forks"/>
     </genClasses>
     <genClasses ecoreClass="BXCore.ecore#//XmuCoreForkBranch">
@@ -141,8 +138,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//XmuCoreForkBranch/body"/>
     </genClasses>
     <genClasses ecoreClass="BXCore.ecore#//XmuCoreAlign">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//XmuCoreAlign/sourceType"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//XmuCoreAlign/viewType"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//XmuCoreAlign/sourcePattern"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//XmuCoreAlign/viewPattern"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//XmuCoreAlign/alignment"/>
@@ -151,9 +146,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//XmuCoreAlign/unmatchV"/>
     </genClasses>
     <genClasses ecoreClass="BXCore.ecore#//XmuCoreFunctionCall">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BXCore.ecore#//XmuCoreFunctionCall/target"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//XmuCoreFunctionCall/sourceMappings"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//XmuCoreFunctionCall/viewMappings"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BXCore.ecore#//XmuCoreFunctionCall/target"/>
     </genClasses>
     <genClasses ecoreClass="BXCore.ecore#//XmuCoreIndex">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//XmuCoreIndex/parts"/>

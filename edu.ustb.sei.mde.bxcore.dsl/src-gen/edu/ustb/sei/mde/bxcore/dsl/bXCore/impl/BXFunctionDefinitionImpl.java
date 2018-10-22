@@ -5,7 +5,7 @@ package edu.ustb.sei.mde.bxcore.dsl.bXCore.impl;
 
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXFunctionDefinition;
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextTypeRef;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeIndicator;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreStatement;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -24,8 +24,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXFunctionDefinitionImpl#getSourceType <em>Source Type</em>}</li>
- *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXFunctionDefinitionImpl#getViewType <em>View Type</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXFunctionDefinitionImpl#getTypeIndicator <em>Type Indicator</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXFunctionDefinitionImpl#getStatement <em>Statement</em>}</li>
  * </ul>
  *
@@ -34,24 +33,14 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 public class BXFunctionDefinitionImpl extends DefinitionImpl implements BXFunctionDefinition
 {
   /**
-   * The cached value of the '{@link #getSourceType() <em>Source Type</em>}' containment reference.
+   * The cached value of the '{@link #getTypeIndicator() <em>Type Indicator</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getSourceType()
+   * @see #getTypeIndicator()
    * @generated
    * @ordered
    */
-  protected ContextTypeRef sourceType;
-
-  /**
-   * The cached value of the '{@link #getViewType() <em>View Type</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getViewType()
-   * @generated
-   * @ordered
-   */
-  protected ContextTypeRef viewType;
+  protected TypeIndicator typeIndicator;
 
   /**
    * The cached value of the '{@link #getStatement() <em>Statement</em>}' containment reference.
@@ -89,9 +78,9 @@ public class BXFunctionDefinitionImpl extends DefinitionImpl implements BXFuncti
    * <!-- end-user-doc -->
    * @generated
    */
-  public ContextTypeRef getSourceType()
+  public TypeIndicator getTypeIndicator()
   {
-    return sourceType;
+    return typeIndicator;
   }
 
   /**
@@ -99,13 +88,13 @@ public class BXFunctionDefinitionImpl extends DefinitionImpl implements BXFuncti
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetSourceType(ContextTypeRef newSourceType, NotificationChain msgs)
+  public NotificationChain basicSetTypeIndicator(TypeIndicator newTypeIndicator, NotificationChain msgs)
   {
-    ContextTypeRef oldSourceType = sourceType;
-    sourceType = newSourceType;
+    TypeIndicator oldTypeIndicator = typeIndicator;
+    typeIndicator = newTypeIndicator;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BXCorePackage.BX_FUNCTION_DEFINITION__SOURCE_TYPE, oldSourceType, newSourceType);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BXCorePackage.BX_FUNCTION_DEFINITION__TYPE_INDICATOR, oldTypeIndicator, newTypeIndicator);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -116,68 +105,20 @@ public class BXFunctionDefinitionImpl extends DefinitionImpl implements BXFuncti
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setSourceType(ContextTypeRef newSourceType)
+  public void setTypeIndicator(TypeIndicator newTypeIndicator)
   {
-    if (newSourceType != sourceType)
+    if (newTypeIndicator != typeIndicator)
     {
       NotificationChain msgs = null;
-      if (sourceType != null)
-        msgs = ((InternalEObject)sourceType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BXCorePackage.BX_FUNCTION_DEFINITION__SOURCE_TYPE, null, msgs);
-      if (newSourceType != null)
-        msgs = ((InternalEObject)newSourceType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BXCorePackage.BX_FUNCTION_DEFINITION__SOURCE_TYPE, null, msgs);
-      msgs = basicSetSourceType(newSourceType, msgs);
+      if (typeIndicator != null)
+        msgs = ((InternalEObject)typeIndicator).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BXCorePackage.BX_FUNCTION_DEFINITION__TYPE_INDICATOR, null, msgs);
+      if (newTypeIndicator != null)
+        msgs = ((InternalEObject)newTypeIndicator).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BXCorePackage.BX_FUNCTION_DEFINITION__TYPE_INDICATOR, null, msgs);
+      msgs = basicSetTypeIndicator(newTypeIndicator, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, BXCorePackage.BX_FUNCTION_DEFINITION__SOURCE_TYPE, newSourceType, newSourceType));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ContextTypeRef getViewType()
-  {
-    return viewType;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetViewType(ContextTypeRef newViewType, NotificationChain msgs)
-  {
-    ContextTypeRef oldViewType = viewType;
-    viewType = newViewType;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BXCorePackage.BX_FUNCTION_DEFINITION__VIEW_TYPE, oldViewType, newViewType);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setViewType(ContextTypeRef newViewType)
-  {
-    if (newViewType != viewType)
-    {
-      NotificationChain msgs = null;
-      if (viewType != null)
-        msgs = ((InternalEObject)viewType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BXCorePackage.BX_FUNCTION_DEFINITION__VIEW_TYPE, null, msgs);
-      if (newViewType != null)
-        msgs = ((InternalEObject)newViewType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BXCorePackage.BX_FUNCTION_DEFINITION__VIEW_TYPE, null, msgs);
-      msgs = basicSetViewType(newViewType, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, BXCorePackage.BX_FUNCTION_DEFINITION__VIEW_TYPE, newViewType, newViewType));
+      eNotify(new ENotificationImpl(this, Notification.SET, BXCorePackage.BX_FUNCTION_DEFINITION__TYPE_INDICATOR, newTypeIndicator, newTypeIndicator));
   }
 
   /**
@@ -238,10 +179,8 @@ public class BXFunctionDefinitionImpl extends DefinitionImpl implements BXFuncti
   {
     switch (featureID)
     {
-      case BXCorePackage.BX_FUNCTION_DEFINITION__SOURCE_TYPE:
-        return basicSetSourceType(null, msgs);
-      case BXCorePackage.BX_FUNCTION_DEFINITION__VIEW_TYPE:
-        return basicSetViewType(null, msgs);
+      case BXCorePackage.BX_FUNCTION_DEFINITION__TYPE_INDICATOR:
+        return basicSetTypeIndicator(null, msgs);
       case BXCorePackage.BX_FUNCTION_DEFINITION__STATEMENT:
         return basicSetStatement(null, msgs);
     }
@@ -258,10 +197,8 @@ public class BXFunctionDefinitionImpl extends DefinitionImpl implements BXFuncti
   {
     switch (featureID)
     {
-      case BXCorePackage.BX_FUNCTION_DEFINITION__SOURCE_TYPE:
-        return getSourceType();
-      case BXCorePackage.BX_FUNCTION_DEFINITION__VIEW_TYPE:
-        return getViewType();
+      case BXCorePackage.BX_FUNCTION_DEFINITION__TYPE_INDICATOR:
+        return getTypeIndicator();
       case BXCorePackage.BX_FUNCTION_DEFINITION__STATEMENT:
         return getStatement();
     }
@@ -278,11 +215,8 @@ public class BXFunctionDefinitionImpl extends DefinitionImpl implements BXFuncti
   {
     switch (featureID)
     {
-      case BXCorePackage.BX_FUNCTION_DEFINITION__SOURCE_TYPE:
-        setSourceType((ContextTypeRef)newValue);
-        return;
-      case BXCorePackage.BX_FUNCTION_DEFINITION__VIEW_TYPE:
-        setViewType((ContextTypeRef)newValue);
+      case BXCorePackage.BX_FUNCTION_DEFINITION__TYPE_INDICATOR:
+        setTypeIndicator((TypeIndicator)newValue);
         return;
       case BXCorePackage.BX_FUNCTION_DEFINITION__STATEMENT:
         setStatement((XmuCoreStatement)newValue);
@@ -301,11 +235,8 @@ public class BXFunctionDefinitionImpl extends DefinitionImpl implements BXFuncti
   {
     switch (featureID)
     {
-      case BXCorePackage.BX_FUNCTION_DEFINITION__SOURCE_TYPE:
-        setSourceType((ContextTypeRef)null);
-        return;
-      case BXCorePackage.BX_FUNCTION_DEFINITION__VIEW_TYPE:
-        setViewType((ContextTypeRef)null);
+      case BXCorePackage.BX_FUNCTION_DEFINITION__TYPE_INDICATOR:
+        setTypeIndicator((TypeIndicator)null);
         return;
       case BXCorePackage.BX_FUNCTION_DEFINITION__STATEMENT:
         setStatement((XmuCoreStatement)null);
@@ -324,10 +255,8 @@ public class BXFunctionDefinitionImpl extends DefinitionImpl implements BXFuncti
   {
     switch (featureID)
     {
-      case BXCorePackage.BX_FUNCTION_DEFINITION__SOURCE_TYPE:
-        return sourceType != null;
-      case BXCorePackage.BX_FUNCTION_DEFINITION__VIEW_TYPE:
-        return viewType != null;
+      case BXCorePackage.BX_FUNCTION_DEFINITION__TYPE_INDICATOR:
+        return typeIndicator != null;
       case BXCorePackage.BX_FUNCTION_DEFINITION__STATEMENT:
         return statement != null;
     }

@@ -89,6 +89,7 @@ public class BXCoreFactoryImpl extends EFactoryImpl implements BXCoreFactory
       case BXCorePackage.PATTERN_DEFINITION_REFERENCE: return createPatternDefinitionReference();
       case BXCorePackage.XMU_CORE_STATEMENT: return createXmuCoreStatement();
       case BXCorePackage.XMU_CORE_COMPOSITION_CHILD_STATEMENT: return createXmuCoreCompositionChildStatement();
+      case BXCorePackage.TYPE_INDICATOR: return createTypeIndicator();
       case BXCorePackage.XMU_CORE_MATCH_SOURCE: return createXmuCoreMatchSource();
       case BXCorePackage.XMU_CORE_MATCH_VIEW: return createXmuCoreMatchView();
       case BXCorePackage.XMU_CORE_EXPAND_SOURCE: return createXmuCoreExpandSource();
@@ -381,6 +382,17 @@ public class BXCoreFactoryImpl extends EFactoryImpl implements BXCoreFactory
   {
     XmuCoreCompositionChildStatementImpl xmuCoreCompositionChildStatement = new XmuCoreCompositionChildStatementImpl();
     return xmuCoreCompositionChildStatement;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public TypeIndicator createTypeIndicator()
+  {
+    TypeIndicatorImpl typeIndicator = new TypeIndicatorImpl();
+    return typeIndicator;
   }
 
   /**

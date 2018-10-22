@@ -13,8 +13,6 @@ package edu.ustb.sei.mde.bxcore.dsl.bXCore;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreAlign#getSourceType <em>Source Type</em>}</li>
- *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreAlign#getViewType <em>View Type</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreAlign#getSourcePattern <em>Source Pattern</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreAlign#getViewPattern <em>View Pattern</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreAlign#getAlignment <em>Alignment</em>}</li>
@@ -29,58 +27,6 @@ package edu.ustb.sei.mde.bxcore.dsl.bXCore;
  */
 public interface XmuCoreAlign extends XmuCoreCompositionChildStatement
 {
-  /**
-   * Returns the value of the '<em><b>Source Type</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Source Type</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Source Type</em>' containment reference.
-   * @see #setSourceType(ContextTypeRef)
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getXmuCoreAlign_SourceType()
-   * @model containment="true"
-   * @generated
-   */
-  ContextTypeRef getSourceType();
-
-  /**
-   * Sets the value of the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreAlign#getSourceType <em>Source Type</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Source Type</em>' containment reference.
-   * @see #getSourceType()
-   * @generated
-   */
-  void setSourceType(ContextTypeRef value);
-
-  /**
-   * Returns the value of the '<em><b>View Type</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>View Type</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>View Type</em>' containment reference.
-   * @see #setViewType(ContextTypeRef)
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getXmuCoreAlign_ViewType()
-   * @model containment="true"
-   * @generated
-   */
-  ContextTypeRef getViewType();
-
-  /**
-   * Sets the value of the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreAlign#getViewType <em>View Type</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>View Type</em>' containment reference.
-   * @see #getViewType()
-   * @generated
-   */
-  void setViewType(ContextTypeRef value);
-
   /**
    * Returns the value of the '<em><b>Source Pattern</b></em>' containment reference.
    * <!-- begin-user-doc -->

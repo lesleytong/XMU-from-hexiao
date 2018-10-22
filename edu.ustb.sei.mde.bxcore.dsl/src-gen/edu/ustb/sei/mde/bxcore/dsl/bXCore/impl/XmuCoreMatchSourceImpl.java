@@ -4,7 +4,6 @@
 package edu.ustb.sei.mde.bxcore.dsl.bXCore.impl;
 
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage;
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextTypeRef;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.Pattern;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreMatchSource;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreStatement;
@@ -25,7 +24,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.XmuCoreMatchSourceImpl#getSourceType <em>Source Type</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.XmuCoreMatchSourceImpl#getPattern <em>Pattern</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.XmuCoreMatchSourceImpl#getBody <em>Body</em>}</li>
  * </ul>
@@ -34,16 +32,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class XmuCoreMatchSourceImpl extends XmuCoreCompositionChildStatementImpl implements XmuCoreMatchSource
 {
-  /**
-   * The cached value of the '{@link #getSourceType() <em>Source Type</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getSourceType()
-   * @generated
-   * @ordered
-   */
-  protected ContextTypeRef sourceType;
-
   /**
    * The cached value of the '{@link #getPattern() <em>Pattern</em>}' containment reference.
    * <!-- begin-user-doc -->
@@ -83,54 +71,6 @@ public class XmuCoreMatchSourceImpl extends XmuCoreCompositionChildStatementImpl
   protected EClass eStaticClass()
   {
     return BXCorePackage.Literals.XMU_CORE_MATCH_SOURCE;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ContextTypeRef getSourceType()
-  {
-    return sourceType;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetSourceType(ContextTypeRef newSourceType, NotificationChain msgs)
-  {
-    ContextTypeRef oldSourceType = sourceType;
-    sourceType = newSourceType;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BXCorePackage.XMU_CORE_MATCH_SOURCE__SOURCE_TYPE, oldSourceType, newSourceType);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setSourceType(ContextTypeRef newSourceType)
-  {
-    if (newSourceType != sourceType)
-    {
-      NotificationChain msgs = null;
-      if (sourceType != null)
-        msgs = ((InternalEObject)sourceType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BXCorePackage.XMU_CORE_MATCH_SOURCE__SOURCE_TYPE, null, msgs);
-      if (newSourceType != null)
-        msgs = ((InternalEObject)newSourceType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BXCorePackage.XMU_CORE_MATCH_SOURCE__SOURCE_TYPE, null, msgs);
-      msgs = basicSetSourceType(newSourceType, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, BXCorePackage.XMU_CORE_MATCH_SOURCE__SOURCE_TYPE, newSourceType, newSourceType));
   }
 
   /**
@@ -239,8 +179,6 @@ public class XmuCoreMatchSourceImpl extends XmuCoreCompositionChildStatementImpl
   {
     switch (featureID)
     {
-      case BXCorePackage.XMU_CORE_MATCH_SOURCE__SOURCE_TYPE:
-        return basicSetSourceType(null, msgs);
       case BXCorePackage.XMU_CORE_MATCH_SOURCE__PATTERN:
         return basicSetPattern(null, msgs);
       case BXCorePackage.XMU_CORE_MATCH_SOURCE__BODY:
@@ -259,8 +197,6 @@ public class XmuCoreMatchSourceImpl extends XmuCoreCompositionChildStatementImpl
   {
     switch (featureID)
     {
-      case BXCorePackage.XMU_CORE_MATCH_SOURCE__SOURCE_TYPE:
-        return getSourceType();
       case BXCorePackage.XMU_CORE_MATCH_SOURCE__PATTERN:
         return getPattern();
       case BXCorePackage.XMU_CORE_MATCH_SOURCE__BODY:
@@ -279,9 +215,6 @@ public class XmuCoreMatchSourceImpl extends XmuCoreCompositionChildStatementImpl
   {
     switch (featureID)
     {
-      case BXCorePackage.XMU_CORE_MATCH_SOURCE__SOURCE_TYPE:
-        setSourceType((ContextTypeRef)newValue);
-        return;
       case BXCorePackage.XMU_CORE_MATCH_SOURCE__PATTERN:
         setPattern((Pattern)newValue);
         return;
@@ -302,9 +235,6 @@ public class XmuCoreMatchSourceImpl extends XmuCoreCompositionChildStatementImpl
   {
     switch (featureID)
     {
-      case BXCorePackage.XMU_CORE_MATCH_SOURCE__SOURCE_TYPE:
-        setSourceType((ContextTypeRef)null);
-        return;
       case BXCorePackage.XMU_CORE_MATCH_SOURCE__PATTERN:
         setPattern((Pattern)null);
         return;
@@ -325,8 +255,6 @@ public class XmuCoreMatchSourceImpl extends XmuCoreCompositionChildStatementImpl
   {
     switch (featureID)
     {
-      case BXCorePackage.XMU_CORE_MATCH_SOURCE__SOURCE_TYPE:
-        return sourceType != null;
       case BXCorePackage.XMU_CORE_MATCH_SOURCE__PATTERN:
         return pattern != null;
       case BXCorePackage.XMU_CORE_MATCH_SOURCE__BODY:

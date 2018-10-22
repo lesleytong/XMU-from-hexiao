@@ -9,11 +9,12 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.chocosolver.solver.ICause;
 import org.chocosolver.solver.Model;
 import org.chocosolver.solver.constraints.Constraint;
+import org.chocosolver.solver.exception.ContradictionException;
 import org.chocosolver.solver.variables.IntVar;
 import org.chocosolver.solver.variables.SetVar;
-import org.chocosolver.solver.variables.Variable;
 import org.chocosolver.util.objects.setDataStructures.ISetIterator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -38,15 +39,15 @@ public abstract class TypeModel {
 	
 	private List<String> nameList;
 	private Map<TupleType, SetVar> typeVarMap;
+	protected Set<ImportSection> imports;
 	
 	// could be shared
 	private BXProgram program;
 	protected List<Object> typeList;
 	protected boolean[][] superTypeTable;
 	
-	
 	// derived from input
-	public Map<XmuCoreStatement, TupleType> unsolvedTupleTypeMap;
+	public Map<XmuCoreStatement, UnsolvedTupleType> unsolvedTupleTypeMap;
 	
 	// input
 	public Map<TypeLiteral, Tuple2<TupleType, Integer>> literalMap;
@@ -67,6 +68,8 @@ public abstract class TypeModel {
 		this.causeMap = new HashMap<>();
 
 		extractConstraint(program);
+		
+		imports = summarizeImport();
 	}
 	
 	protected void extractConstraint(BXProgram program) {
@@ -161,13 +164,42 @@ public abstract class TypeModel {
 					while(iter.hasNext()) {
 						int v = iter.nextInt();
 						String key = nameList.get(v);
-						((UnsolvedTupleType) t).candidates.add(Tuple2.make(key, null));
+						((UnsolvedTupleType) t).candidates.add(key);
 					}
 				}
 			});
 		} else {
-			throw new RuntimeException();
+			ContradictionException ex = model.getSolver().getContradictionException();
+			ICause cause = ex.c;
+			if(ex!=null && cause instanceof Constraint) {
+				throw new TypeInferenceException(reasonMap.get((Constraint)cause), ex);				
+			} else {
+				throw new TypeInferenceException(program, ex);
+			}
 		}
+	}
+
+
+	protected Set<ImportSection> summarizeImport() {
+		Set<ImportSection> imports = new HashSet<>();
+		
+		constraints.forEach(c->{
+			if(c instanceof TypeEqual) {
+				if(((TypeEqual) c).left.importSection!=null) 
+					imports.add(((TypeEqual) c).left.importSection);
+				if(((TypeEqual) c).right.importSection!=null)
+					imports.add(((TypeEqual) c).right.importSection);
+			} else if(c instanceof TypeUnion){
+				if(((TypeUnion) c).unionType.importSection!=null) 
+					imports.add(((TypeUnion) c).unionType.importSection);
+				
+				((TypeUnion) c).types.forEach(cc->{
+					if(cc.importSection!=null) imports.add(cc.importSection);
+				});
+			}
+		});
+		
+		return imports;
 	}
 	
 	static protected Tuple2<List<Object>, boolean[][]> buildTypeTable(BXProgram program) {
@@ -209,6 +241,12 @@ public abstract class TypeModel {
 	}
 	
 	public void solveTypes() {
+		if(imports.size()!=1) {
+			throw new TypeInferenceException(program, null);
+		}
+		
+		ImportSection im = imports.iterator().next();
+		
 		if(this.typeList==null || this.superTypeTable ==null) {
 			Tuple2<List<Object>, boolean[][]> t2 = buildTypeTable(this.program);
 			this.typeList = t2.first;
@@ -224,7 +262,7 @@ public abstract class TypeModel {
 				Map<String, IntVar> map = new HashMap<>();
 				varMap.put(t, map);
 				((UnsolvedTupleType) t).candidates.forEach(s->{
-					map.put(s.first, model.intVar(0, this.typeList.size()-1));
+					map.put(s, model.intVar(0, this.typeList.size()-1));
 				});
 			} else {
 				Map<String, IntVar> map = new HashMap<>();
@@ -244,7 +282,7 @@ public abstract class TypeModel {
 				Map<String,IntVar> rv = varMap.get(right);
 				
 				Stream<String> keys;
-				if(left instanceof UnsolvedTupleType) keys = ((UnsolvedTupleType) left).candidates.stream().map(s->s.first);
+				if(left instanceof UnsolvedTupleType) keys = ((UnsolvedTupleType) left).candidates.stream();
 				else keys = left.tuples.stream().map(s->s.first);
 				
 				keys.forEach(sk->{
@@ -268,7 +306,7 @@ public abstract class TypeModel {
 				for(TupleType right : ((TypeUnion) cons).types) {
 					Map<String,IntVar> rv = varMap.get(right);
 					Stream<String> keys;
-					if(right instanceof UnsolvedTupleType) keys = ((UnsolvedTupleType) right).candidates.stream().map(s->s.first);
+					if(right instanceof UnsolvedTupleType) keys = ((UnsolvedTupleType) right).candidates.stream();
 					else keys = right.tuples.stream().map(s->s.first);
 					
 					keys.forEach(vk->{
@@ -287,14 +325,23 @@ public abstract class TypeModel {
 				if(t instanceof UnsolvedTupleType) {
 					Map<String, IntVar> map = varMap.get(t);
 					((UnsolvedTupleType) t).candidates.forEach(tp->{
-						IntVar var = map.get(tp.first);
+						IntVar var = map.get(tp);
 						Object type = this.typeList.get(var.getValue());
-						t.tuples.add(Tuple2.make(tp.first, type));
+						t.tuples.add(Tuple2.make(tp, type));
 					});
+					t.importSection = im;
 				}
 			});
 			
-		} else throw new RuntimeException();
+		} else {
+			ContradictionException ex = model.getSolver().getContradictionException();
+			ICause cause = ex.c;
+			if(ex!=null && cause instanceof Constraint) {
+				throw new TypeInferenceException(reasonMap.get((Constraint)cause), ex);				
+			} else {
+				throw new TypeInferenceException(program, ex);
+			}
+		}
 	}
 	
 	static public Tuple2<SourceTypeModel, ViewTypeModel> buildTypeInfers(BXProgram program, Map<TypeLiteral, Tuple2<TupleType, Integer>> literalMap) {

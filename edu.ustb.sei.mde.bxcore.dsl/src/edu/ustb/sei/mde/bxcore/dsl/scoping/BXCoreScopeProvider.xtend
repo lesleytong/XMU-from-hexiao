@@ -6,7 +6,6 @@ package edu.ustb.sei.mde.bxcore.dsl.scoping
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXFunctionDefinition
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXProgram
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.EcoreTypeRef
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.FeatureTypeRef
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ImportSection
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.OrderedTupleTypeLiteral
@@ -22,7 +21,6 @@ import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.emf.ecore.util.EcoreUtil
-import org.eclipse.xtext.naming.QualifiedName
 import org.eclipse.xtext.resource.EObjectDescription
 import org.eclipse.xtext.scoping.IScope
 import org.eclipse.xtext.scoping.impl.SimpleScope

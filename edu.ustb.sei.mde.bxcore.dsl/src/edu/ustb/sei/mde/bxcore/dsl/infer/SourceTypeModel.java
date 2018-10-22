@@ -131,7 +131,6 @@ public class SourceTypeModel extends TypeModel {
 		} else if(e instanceof XmuCoreIndex) {
 			TupleType st = getType(e);
 			TupleType bt = getType(((XmuCoreIndex) e).getBody());
-			
 			TypeEqual c1 = TypeEqual.makeEqual(st, bt);
 			this.constraints.add(c1);
 			linkCause(c1, e);

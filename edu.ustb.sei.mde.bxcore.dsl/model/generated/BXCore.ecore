@@ -49,9 +49,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="PatternDefinition" eSuperTypes="#//TypeDefinition"/>
   <eClassifiers xsi:type="ecore:EClass" name="ContextTypeRef"/>
   <eClassifiers xsi:type="ecore:EClass" name="BXFunctionDefinition" eSuperTypes="#//Definition">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceType" eType="#//ContextTypeRef"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="viewType" eType="#//ContextTypeRef"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typeIndicator" eType="#//TypeIndicator"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="statement" eType="#//XmuCoreStatement"
         containment="true"/>
@@ -86,19 +84,24 @@
   <eClassifiers xsi:type="ecore:EClass" name="PatternDefinitionReference" eSuperTypes="#//Pattern">
     <eStructuralFeatures xsi:type="ecore:EReference" name="pattern" eType="#//PatternDefinition"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="XmuCoreStatement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="XmuCoreStatement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typeIndicator" eType="#//TypeIndicator"
+        containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="XmuCoreCompositionChildStatement" eSuperTypes="#//XmuCoreStatement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="XmuCoreMatchSource" eSuperTypes="#//XmuCoreCompositionChildStatement">
+  <eClassifiers xsi:type="ecore:EClass" name="TypeIndicator">
     <eStructuralFeatures xsi:type="ecore:EReference" name="sourceType" eType="#//ContextTypeRef"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="viewType" eType="#//ContextTypeRef"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="XmuCoreMatchSource" eSuperTypes="#//XmuCoreCompositionChildStatement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="pattern" eType="#//Pattern"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="body" eType="#//XmuCoreStatement"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="XmuCoreMatchView" eSuperTypes="#//XmuCoreCompositionChildStatement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="viewType" eType="#//ContextTypeRef"
-        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="pattern" eType="#//Pattern"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="body" eType="#//XmuCoreStatement"
@@ -133,18 +136,10 @@
         eType="#//Conversion" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="XmuCoreParallelComposition" eSuperTypes="#//XmuCoreStatement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceType" eType="#//ContextTypeRef"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="viewType" eType="#//ContextTypeRef"
-        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="bodies" upperBound="-1"
         eType="#//XmuCoreCompositionChildStatement" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="XmuCoreSwitch" eSuperTypes="#//XmuCoreCompositionChildStatement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceType" eType="#//ContextTypeRef"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="viewType" eType="#//ContextTypeRef"
-        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="branches" upperBound="-1"
         eType="#//XmuCoreSwitchBranch" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="adaptions" upperBound="-1"
@@ -171,10 +166,6 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="XmuCoreFork" eSuperTypes="#//XmuCoreStatement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceType" eType="#//ContextTypeRef"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="viewType" eType="#//ContextTypeRef"
-        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="forks" upperBound="-1"
         eType="#//XmuCoreForkBranch" containment="true"/>
   </eClassifiers>
@@ -187,10 +178,6 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="XmuCoreAlign" eSuperTypes="#//XmuCoreCompositionChildStatement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceType" eType="#//ContextTypeRef"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="viewType" eType="#//ContextTypeRef"
-        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sourcePattern" eType="#//Pattern"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="viewPattern" eType="#//Pattern"
@@ -205,11 +192,11 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="XmuCoreFunctionCall" eSuperTypes="#//XmuCoreCompositionChildStatement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//BXFunctionDefinition"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sourceMappings" upperBound="-1"
         eType="#//VarMapping" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="viewMappings" upperBound="-1"
         eType="#//VarMapping" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//BXFunctionDefinition"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="XmuCoreIndex" eSuperTypes="#//XmuCoreCompositionChildStatement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="parts" upperBound="-1"

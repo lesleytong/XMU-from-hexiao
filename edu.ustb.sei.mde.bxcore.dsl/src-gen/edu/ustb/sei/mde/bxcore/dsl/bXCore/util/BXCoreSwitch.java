@@ -263,6 +263,13 @@ public class BXCoreSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case BXCorePackage.TYPE_INDICATOR:
+      {
+        TypeIndicator typeIndicator = (TypeIndicator)theEObject;
+        T result = caseTypeIndicator(typeIndicator);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case BXCorePackage.XMU_CORE_MATCH_SOURCE:
       {
         XmuCoreMatchSource xmuCoreMatchSource = (XmuCoreMatchSource)theEObject;
@@ -847,6 +854,22 @@ public class BXCoreSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseXmuCoreCompositionChildStatement(XmuCoreCompositionChildStatement object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Type Indicator</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Type Indicator</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseTypeIndicator(TypeIndicator object)
   {
     return null;
   }

@@ -60,7 +60,7 @@ ContextTypeRef :
 ;
 
 BXFunctionDefinition :
-	'function' name=ValidID '<' sourceType=ContextTypeRef ',' viewType=ContextTypeRef '>'  '=' statement = XmuCoreStatement
+	'function' name=ValidID typeIndicator=TypeIndicator?  '=' statement = XmuCoreStatement
 ;
 
 TypeRef :
@@ -108,20 +108,24 @@ XmuCoreCompositionChildStatement :
 	XmuCoreSwitch | XmuCoreAlign | XmuCoreFunctionCall | XmuCoreIndex
 ;
 
+TypeIndicator :
+	'<' sourceType=ContextTypeRef ',' viewType=ContextTypeRef '>'
+;
+
 XmuCoreMatchSource :
-	'matchS' '<' sourceType=ContextTypeRef '>' pattern=Pattern body=XmuCoreStatement
+	'matchS' typeIndicator=TypeIndicator? pattern=Pattern body=XmuCoreStatement
 ;
 
 XmuCoreMatchView :
-	'matchV' '<' viewType=ContextTypeRef '>' pattern=Pattern body=XmuCoreStatement
+	'matchV' typeIndicator=TypeIndicator? pattern=Pattern body=XmuCoreStatement
 ;
 
 XmuCoreExpandSource :
-	'expandS' pattern=Pattern '(' mappings+=VarMapping (','  mappings+=VarMapping)* ')' '->' body=XmuCoreStatement
+	'expandS' typeIndicator=TypeIndicator? pattern=Pattern '(' mappings+=VarMapping (','  mappings+=VarMapping)* ')' '->' body=XmuCoreStatement
 ;
 
 XmuCoreExpandView :
-	'expandV' pattern=Pattern '(' mappings+=VarMapping (','  mappings+=VarMapping)* ')' '->' body=XmuCoreStatement
+	'expandV' typeIndicator=TypeIndicator? pattern=Pattern '(' mappings+=VarMapping (','  mappings+=VarMapping)* ')' '->' body=XmuCoreStatement
 ;
 
 VarMapping :
@@ -129,15 +133,15 @@ VarMapping :
 ;
 
 XmuCoreGraphReplace :
-	'replace' source=Pattern view=Pattern '{' conversions+=Conversion+ '}'
+	'replace' typeIndicator=TypeIndicator? source=Pattern view=Pattern '{' conversions+=Conversion+ '}'
 ;
 
 XmuCoreParallelComposition :
-	'<' sourceType=ContextTypeRef ',' viewType=ContextTypeRef '>' bodies+=XmuCoreCompositionChildStatement (=> '|' bodies+=XmuCoreCompositionChildStatement)+ 
+	'parallel' typeIndicator=TypeIndicator? bodies+=XmuCoreCompositionChildStatement (=> '|' bodies+=XmuCoreCompositionChildStatement)+ 
 ;
 
 XmuCoreSwitch :
-	'switch' '<' sourceType=ContextTypeRef ',' viewType=ContextTypeRef '>' '['
+	'switch' typeIndicator=TypeIndicator? '['
 		branches+=XmuCoreSwitchBranch+
 		adaptions+=XmuCoreSwitchAdaption*
 	']'
@@ -156,7 +160,7 @@ Conversion :
 ;
 
 XmuCoreFork :
-	'<' sourceType=ContextTypeRef ',' viewType=ContextTypeRef '>' forks+=XmuCoreForkBranch (=> '|' forks+=XmuCoreForkBranch)+
+	'fork' typeIndicator=TypeIndicator? forks+=XmuCoreForkBranch (=> '|' forks+=XmuCoreForkBranch)+
 ;
 
 XmuCoreForkBranch :
@@ -166,18 +170,17 @@ XmuCoreForkBranch :
 ;
 
 XmuCoreAlign :
-	'align' '<' sourceType=ContextTypeRef ',' viewType=ContextTypeRef '>' sourcePattern=Pattern viewPattern=Pattern 'with' alignment=ContextAwareCondition
+	'align' typeIndicator=TypeIndicator? sourcePattern=Pattern viewPattern=Pattern 'with' alignment=ContextAwareCondition
 		(('match' '->' match=XmuCoreStatement) & ('unmatchS' '->' unmatchS=ContextAwareUnidirectionalAction) & ('unmatchV' '->' unmatchV=ContextAwareUnidirectionalAction))
 ;
 
 XmuCoreFunctionCall :
-	'(' sourceMappings+=VarMapping (','  sourceMappings+=VarMapping)* ')'
-	'(' viewMappings+=VarMapping (','  viewMappings+=VarMapping)* ')' '->' 
-	target=[BXFunctionDefinition|ValidID]
+	target=[BXFunctionDefinition|ValidID] typeIndicator=TypeIndicator?  '(' sourceMappings+=VarMapping (','  sourceMappings+=VarMapping)* ')'
+	'(' viewMappings+=VarMapping (','  viewMappings+=VarMapping)* ')'
 ;
 
 XmuCoreIndex :
-	'index' parts+=IndexPart (',' parts+=IndexPart)* 'in' body=XmuCoreStatement
+	'index' typeIndicator=TypeIndicator? parts+=IndexPart (',' parts+=IndexPart)* 'in' body=XmuCoreStatement
 ;
 
 IndexPart :

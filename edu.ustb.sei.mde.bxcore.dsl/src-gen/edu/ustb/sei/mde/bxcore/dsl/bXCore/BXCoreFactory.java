@@ -240,6 +240,15 @@ public interface BXCoreFactory extends EFactory
   XmuCoreCompositionChildStatement createXmuCoreCompositionChildStatement();
 
   /**
+   * Returns a new object of class '<em>Type Indicator</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Type Indicator</em>'.
+   * @generated
+   */
+  TypeIndicator createTypeIndicator();
+
+  /**
    * Returns a new object of class '<em>Xmu Core Match Source</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
