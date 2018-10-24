@@ -6,7 +6,14 @@ package edu.ustb.sei.mde.bxcore.dsl.validation;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXFunctionDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXProgram;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.Conversion;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeLiteral;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreExpandSource;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreExpandView;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreFork;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreFunctionCall;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreGraphReplace;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreIndex;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreStatement;
 import edu.ustb.sei.mde.bxcore.dsl.infer.InferData;
 import edu.ustb.sei.mde.bxcore.dsl.infer.InferManager;
@@ -47,12 +54,12 @@ public class BXCoreValidator extends AbstractBXCoreValidator {
           EObject _reason = ((TypeInferenceException)e).getReason();
           boolean _tripleNotEquals = (_reason != program);
           if (_tripleNotEquals) {
-            this.error("type inference failed", ((TypeInferenceException)e).getReason());
+            this.error(((TypeInferenceException)e).getMessage(), ((TypeInferenceException)e).getReason());
           } else {
-            this.error("type inference failed", program, BXCorePackage.Literals.BX_PROGRAM__DEFINITIONS);
+            this.error(((TypeInferenceException)e).getMessage(), program, BXCorePackage.Literals.BX_PROGRAM__DEFINITIONS);
           }
         } else {
-          this.error("type inference failed", program, BXCorePackage.Literals.BX_PROGRAM__DEFINITIONS);
+          this.error(e.getMessage(), program, BXCorePackage.Literals.BX_PROGRAM__DEFINITIONS);
         }
       } else {
         throw Exceptions.sneakyThrow(_t);
@@ -81,8 +88,58 @@ public class BXCoreValidator extends AbstractBXCoreValidator {
           this.warning("The defined view type is different from the inferred type", stat);
         }
       }
+      if ((data != null)) {
+        this.checkVarMappings(stat, data);
+      }
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  public void checkVarMappings(final XmuCoreStatement statement, final InferData data) {
+    if ((statement instanceof XmuCoreExpandSource)) {
+    } else {
+      if ((statement instanceof XmuCoreExpandView)) {
+      } else {
+        if ((statement instanceof XmuCoreFork)) {
+        } else {
+          if ((statement instanceof XmuCoreGraphReplace)) {
+            final TupleType srcType = data.getSourceInfer().getType(statement);
+            final TupleType viwType = data.getViewInfer().getType(statement);
+            final Consumer<Conversion> _function = (Conversion c) -> {
+              final Function1<String, Boolean> _function_1 = (String s) -> {
+                final Function1<Tuple2<String, Object>, Boolean> _function_2 = (Tuple2<String, Object> t) -> {
+                  return Boolean.valueOf(t.first.equals(s));
+                };
+                boolean _exists = IterableExtensions.<Tuple2<String, Object>>exists(srcType.tuples, _function_2);
+                return Boolean.valueOf((!_exists));
+              };
+              boolean _exists = IterableExtensions.<String>exists(c.getSource(), _function_1);
+              if (_exists) {
+                this.error("undefined source variable", c);
+              }
+              final Function1<String, Boolean> _function_2 = (String s) -> {
+                final Function1<Tuple2<String, Object>, Boolean> _function_3 = (Tuple2<String, Object> t) -> {
+                  return Boolean.valueOf(t.first.equals(s));
+                };
+                boolean _exists_1 = IterableExtensions.<Tuple2<String, Object>>exists(viwType.tuples, _function_3);
+                return Boolean.valueOf((!_exists_1));
+              };
+              boolean _exists_1 = IterableExtensions.<String>exists(c.getView(), _function_2);
+              if (_exists_1) {
+                this.error("undefined source variable", c);
+              }
+            };
+            ((XmuCoreGraphReplace)statement).getConversions().forEach(_function);
+          } else {
+            if ((statement instanceof XmuCoreFunctionCall)) {
+            } else {
+              if ((statement instanceof XmuCoreIndex)) {
+              }
+            }
+          }
+        }
+      }
     }
   }
   

@@ -15,6 +15,7 @@ package edu.ustb.sei.mde.bxcore.dsl.bXCore;
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternTypeLiteral#getSource <em>Source</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternTypeLiteral#getRoot <em>Root</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternTypeLiteral#getFilter <em>Filter</em>}</li>
  * </ul>
  *
  * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getPatternTypeLiteral()
@@ -74,5 +75,31 @@ public interface PatternTypeLiteral extends TypeLiteral, Pattern
    * @generated
    */
   void setRoot(PatternNode value);
+
+  /**
+   * Returns the value of the '<em><b>Filter</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Filter</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Filter</em>' containment reference.
+   * @see #setFilter(ContextAwareCondition)
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getPatternTypeLiteral_Filter()
+   * @model containment="true"
+   * @generated
+   */
+  ContextAwareCondition getFilter();
+
+  /**
+   * Sets the value of the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternTypeLiteral#getFilter <em>Filter</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Filter</em>' containment reference.
+   * @see #getFilter()
+   * @generated
+   */
+  void setFilter(ContextAwareCondition value);
 
 } // PatternTypeLiteral

@@ -15,7 +15,7 @@ class ModelInferrerUtils {
 		while(itr.hasNext()) {
 			val e = itr.next;
 			if(e.eIsProxy) {
-				throw new TypeInferenceException(e,null);
+				throw new TypeInferenceException(e,null,null,null);
 			} else {
 				if(e instanceof TypeLiteral) {
 					literals.add((e as TypeLiteral)->TupleType.make(e as TypeLiteral));

@@ -4,8 +4,17 @@
 package edu.ustb.sei.mde.bxcore.dsl.validation
 
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXFunctionDefinition
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXProgram
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeLiteral
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreExpandSource
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreExpandView
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreFork
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreFunctionCall
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreGraphReplace
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreIndex
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreStatement
+import edu.ustb.sei.mde.bxcore.dsl.infer.InferData
 import edu.ustb.sei.mde.bxcore.dsl.infer.InferManager
 import edu.ustb.sei.mde.bxcore.dsl.infer.TypeInferenceException
 import edu.ustb.sei.mde.bxcore.dsl.structure.TupleType
@@ -14,8 +23,6 @@ import java.util.HashMap
 import java.util.List
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.xtext.validation.Check
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreStatement
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXFunctionDefinition
 
 /**
  * This class contains custom validation rules. 
@@ -31,10 +38,10 @@ class BXCoreValidator extends AbstractBXCoreValidator {
 		} catch (Exception e) {
 			if(e instanceof TypeInferenceException) {
 				if(e.reason!==program) {
-					error("type inference failed", e.reason);				
+					error(e.message, e.reason);				
 				}
-				else error("type inference failed", program, BXCorePackage.Literals.BX_PROGRAM__DEFINITIONS);
-			} else error("type inference failed", program, BXCorePackage.Literals.BX_PROGRAM__DEFINITIONS);
+				else error(e.message, program, BXCorePackage.Literals.BX_PROGRAM__DEFINITIONS);
+			} else error(e.message, program, BXCorePackage.Literals.BX_PROGRAM__DEFINITIONS);
 			
 		}
 	}
@@ -54,6 +61,32 @@ class BXCoreValidator extends AbstractBXCoreValidator {
 			if(inferredView.compare(definedView)===false) {
 				warning("The defined view type is different from the inferred type", stat);
 			}
+		}
+		if(data!==null) stat.checkVarMappings(data);
+	}
+		
+	def void checkVarMappings(XmuCoreStatement statement, InferData data) {
+		if(statement instanceof XmuCoreExpandSource) {
+			// checked by sovler
+		} else if(statement instanceof XmuCoreExpandView) {
+			// checked by sovler
+		} else if(statement instanceof XmuCoreFork) {
+			// checked by sovler
+		} else if(statement instanceof XmuCoreGraphReplace) {
+			val srcType = data.sourceInfer.getType(statement);
+			val viwType = data.viewInfer.getType(statement);
+			statement.conversions.forEach[c|
+				if(c.source.exists[s|!srcType.tuples.exists[t|t.first.equals(s)]]) {
+					error('undefined source variable', c);
+				}
+				if(c.view.exists[s|!viwType.tuples.exists[t|t.first.equals(s)]]) {
+					error('undefined source variable', c);
+				}
+			];
+		} else if(statement instanceof XmuCoreFunctionCall) {
+			// checked by sovler
+		} else if(statement instanceof XmuCoreIndex) {
+			// checked by sovler
 		}
 	}
 	

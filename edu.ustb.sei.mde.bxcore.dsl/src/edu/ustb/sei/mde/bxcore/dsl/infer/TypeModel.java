@@ -16,16 +16,19 @@ import org.chocosolver.solver.exception.ContradictionException;
 import org.chocosolver.solver.variables.IntVar;
 import org.chocosolver.solver.variables.SetVar;
 import org.chocosolver.util.objects.setDataStructures.ISetIterator;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.xtext.xbase.XExpression;
 
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXFunctionDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXProgram;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.DefinedContextTypeRef;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ImportSection;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.Pattern;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternDefinitionReference;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeLiteral;
@@ -36,8 +39,8 @@ import edu.ustb.sei.mde.structure.Tuple2;
 public abstract class TypeModel {
 	protected Set<TupleType> types;
 	protected List<TypeConstraint> constraints;
+	protected List<String> nameList;
 	
-	private List<String> nameList;
 	private Map<TupleType, SetVar> typeVarMap;
 	protected Set<ImportSection> imports;
 	
@@ -73,21 +76,31 @@ public abstract class TypeModel {
 	}
 	
 	protected void extractConstraint(BXProgram program) {
-		program.eAllContents().forEachRemaining(e->{
+		TreeIterator<EObject> itr = null;
+		itr = program.eAllContents();
+		while(itr.hasNext()) {
+			EObject e = itr.next();
 			if(e instanceof XmuCoreStatement) {
 				UnsolvedTupleType st = new UnsolvedTupleType();
 				unsolvedTupleTypeMap.put((XmuCoreStatement)e, st);
+			} else if(e instanceof Pattern || e instanceof TypeLiteral || e instanceof XExpression) {
+				itr.prune();
 			}
-		});
-		
+			
+		}
+				
 		literalMap.values().forEach(v->types.add(v.first));
 		unsolvedTupleTypeMap.values().forEach(v->types.add(v));
 		
-		program.eAllContents().forEachRemaining(e->{
+		itr = program.eAllContents();
+		while(itr.hasNext()) {
+			EObject e = itr.next();
 			if(e instanceof XmuCoreStatement) {
 				extractConstraint((XmuCoreStatement)e);
+			} else if(e instanceof Pattern || e instanceof TypeLiteral || e instanceof XExpression) {
+				itr.prune();
 			}
-		});
+		}
 	}
 
 	protected abstract void extractConstraint(XmuCoreStatement e);
@@ -103,6 +116,7 @@ public abstract class TypeModel {
 	}
 	
 	public void solveNames() {
+		if(this.constraints.isEmpty()) return;
 		Model model = new Model("name infer");
 		Set<String> names = new HashSet<>();
 		types.forEach(t->{t.tuples.stream().map(k->k.first).forEach(n->names.add(n));});
@@ -149,14 +163,22 @@ public abstract class TypeModel {
 			} else if(c instanceof TypeUnion) {
 				SetVar union = typeVarMap.get(((TypeUnion)c).unionType);
 				SetVar[] elements = ((TypeUnion) c).types.stream().map(t->typeVarMap.get(t)).toArray(i->new SetVar[i]);
-				if(union==null) throw new RuntimeException();
+				if(union==null) throw new RuntimeException("Type inference error");
 				for(int i=0;i<elements.length;i++) {
 					if(elements[i]==null)
-						throw new RuntimeException();
+						throw new RuntimeException("Type inference error");
 				}
-				Constraint cons = model.union(elements, union);
-				cons.post();
-				addReason(reasonMap, cons, causeMap.get(c));
+				if(((TypeUnion) c).subset) {
+					for(SetVar st : elements) {
+						Constraint cons = model.subsetEq(st, union);
+						cons.post();
+						addReason(reasonMap, cons, causeMap.get(c));
+					}
+				} else {
+					Constraint cons = model.union(elements, union);
+					cons.post();
+					addReason(reasonMap, cons, causeMap.get(c));
+				}
 			}
 		});
 		
@@ -176,9 +198,9 @@ public abstract class TypeModel {
 			ContradictionException ex = model.getSolver().getContradictionException();
 			if(ex!=null) {
 				EObject o = reasonMap.getOrDefault(ex.c, program);
-				throw new TypeInferenceException(o, ex);				
+				throw new TypeInferenceException(getName()+":an error occurs in inferring names", o, ex, model, this);				
 			} else {
-				throw new TypeInferenceException(program, ex);
+				throw new TypeInferenceException(getName()+":an error occurs in inferring names", program, ex, model, this);
 			}
 		}
 	}
@@ -253,8 +275,11 @@ public abstract class TypeModel {
 	}
 	
 	public void solveTypes() {
-		if(imports.size()!=1) {
-			throw new TypeInferenceException(program, null);
+		if(this.constraints.isEmpty()) return;
+		if(imports.isEmpty()) {
+			throw new TypeInferenceException(getName()+": no import is used under the context", program, null, null, this);
+		} else if(imports.size()!=1) {
+			throw new TypeInferenceException(getName()+":multiple imports are used", program, null, null, this);
 		}
 		
 		ImportSection im = imports.iterator().next();
@@ -349,12 +374,14 @@ public abstract class TypeModel {
 			ContradictionException ex = model.getSolver().getContradictionException();
 			if(ex!=null) {
 				EObject o = reasonMap.getOrDefault(ex.c, program);
-				throw new TypeInferenceException(o, ex);				
+				throw new TypeInferenceException(getName()+": an error occurs in inferring types", o, ex, model, this);				
 			} else {
-				throw new TypeInferenceException(program, ex);
+				throw new TypeInferenceException(getName()+": an error occurs in inferring types", program, ex, model, this);
 			}
 		}
 	}
+	
+	protected abstract String getName();
 	
 	static public Tuple2<SourceTypeModel, ViewTypeModel> buildTypeInfers(BXProgram program, Map<TypeLiteral, Tuple2<TupleType, Integer>> literalMap) {
 		Tuple2<List<Object>, boolean[][]> t2 = buildTypeTable(program);

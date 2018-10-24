@@ -229,7 +229,7 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 				].indexed.toList;
 				
 				if(!isPreIndexingPhase)
-					patternLiterals.forEach[p|generatePatternLiteral(it, p.value, p.key, typeLiteralMap, element);];
+					patternLiterals.forEach[p|generatePatternLiteral(it, p.value, p.key, typeLiteralMap, conditions, element);];
 
 				element.definitions.forEach [ def |
 					if (def instanceof TypeDefinition) {
@@ -279,7 +279,12 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 		
 	}
 		
-	protected def generatePatternLiteral(JvmGenericType owner, PatternTypeLiteral literal, Integer id, Map<TypeLiteral, Tuple2<TupleType, Integer>> typeLiteralMap, BXProgram program) {
+	protected def generatePatternLiteral(JvmGenericType owner, 
+		PatternTypeLiteral literal, Integer id, 
+		Map<TypeLiteral, Tuple2<TupleType, Integer>> typeLiteralMap,
+		List<ContextAwareCondition> conditions,  
+		BXProgram program
+	) {
 		owner.members += literal.toField('pattern_' + id, Pattern.typeRef) [
 			visibility = JvmVisibility.PRIVATE;
 		];
@@ -307,6 +312,9 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 					«ENDFOR»
 					
 					pattern_«id».setType(getType_«patternTypeId»());
+					«IF literal.filter!==null»
+					pattern_«id».setFilter(new Condition«conditions.indexOf(literal.filter)»());
+					«ENDIF»
 				}
 				return pattern_«id»;
 			'''

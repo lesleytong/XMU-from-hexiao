@@ -4,6 +4,7 @@
 package edu.ustb.sei.mde.bxcore.dsl.bXCore.impl;
 
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareCondition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ImportSection;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternNode;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternTypeLiteral;
@@ -26,6 +27,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PatternTypeLiteralImpl#getSource <em>Source</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PatternTypeLiteralImpl#getRoot <em>Root</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PatternTypeLiteralImpl#getFilter <em>Filter</em>}</li>
  * </ul>
  *
  * @generated
@@ -51,6 +53,16 @@ public class PatternTypeLiteralImpl extends TypeLiteralImpl implements PatternTy
    * @ordered
    */
   protected PatternNode root;
+
+  /**
+   * The cached value of the '{@link #getFilter() <em>Filter</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getFilter()
+   * @generated
+   * @ordered
+   */
+  protected ContextAwareCondition filter;
 
   /**
    * <!-- begin-user-doc -->
@@ -169,6 +181,54 @@ public class PatternTypeLiteralImpl extends TypeLiteralImpl implements PatternTy
    * <!-- end-user-doc -->
    * @generated
    */
+  public ContextAwareCondition getFilter()
+  {
+    return filter;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetFilter(ContextAwareCondition newFilter, NotificationChain msgs)
+  {
+    ContextAwareCondition oldFilter = filter;
+    filter = newFilter;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BXCorePackage.PATTERN_TYPE_LITERAL__FILTER, oldFilter, newFilter);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setFilter(ContextAwareCondition newFilter)
+  {
+    if (newFilter != filter)
+    {
+      NotificationChain msgs = null;
+      if (filter != null)
+        msgs = ((InternalEObject)filter).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BXCorePackage.PATTERN_TYPE_LITERAL__FILTER, null, msgs);
+      if (newFilter != null)
+        msgs = ((InternalEObject)newFilter).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BXCorePackage.PATTERN_TYPE_LITERAL__FILTER, null, msgs);
+      msgs = basicSetFilter(newFilter, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, BXCorePackage.PATTERN_TYPE_LITERAL__FILTER, newFilter, newFilter));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -176,6 +236,8 @@ public class PatternTypeLiteralImpl extends TypeLiteralImpl implements PatternTy
     {
       case BXCorePackage.PATTERN_TYPE_LITERAL__ROOT:
         return basicSetRoot(null, msgs);
+      case BXCorePackage.PATTERN_TYPE_LITERAL__FILTER:
+        return basicSetFilter(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -195,6 +257,8 @@ public class PatternTypeLiteralImpl extends TypeLiteralImpl implements PatternTy
         return basicGetSource();
       case BXCorePackage.PATTERN_TYPE_LITERAL__ROOT:
         return getRoot();
+      case BXCorePackage.PATTERN_TYPE_LITERAL__FILTER:
+        return getFilter();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -214,6 +278,9 @@ public class PatternTypeLiteralImpl extends TypeLiteralImpl implements PatternTy
         return;
       case BXCorePackage.PATTERN_TYPE_LITERAL__ROOT:
         setRoot((PatternNode)newValue);
+        return;
+      case BXCorePackage.PATTERN_TYPE_LITERAL__FILTER:
+        setFilter((ContextAwareCondition)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -235,6 +302,9 @@ public class PatternTypeLiteralImpl extends TypeLiteralImpl implements PatternTy
       case BXCorePackage.PATTERN_TYPE_LITERAL__ROOT:
         setRoot((PatternNode)null);
         return;
+      case BXCorePackage.PATTERN_TYPE_LITERAL__FILTER:
+        setFilter((ContextAwareCondition)null);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -253,6 +323,8 @@ public class PatternTypeLiteralImpl extends TypeLiteralImpl implements PatternTy
         return source != null;
       case BXCorePackage.PATTERN_TYPE_LITERAL__ROOT:
         return root != null;
+      case BXCorePackage.PATTERN_TYPE_LITERAL__FILTER:
+        return filter != null;
     }
     return super.eIsSet(featureID);
   }

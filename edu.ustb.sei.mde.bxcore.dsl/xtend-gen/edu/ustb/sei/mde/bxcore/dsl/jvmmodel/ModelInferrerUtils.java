@@ -28,7 +28,7 @@ public class ModelInferrerUtils {
         final EObject e = itr.next();
         boolean _eIsProxy = e.eIsProxy();
         if (_eIsProxy) {
-          throw new TypeInferenceException(e, null);
+          throw new TypeInferenceException(e, null, null, null);
         } else {
           if ((e instanceof TypeLiteral)) {
             TupleType _make = TupleType.make(((TypeLiteral) e));

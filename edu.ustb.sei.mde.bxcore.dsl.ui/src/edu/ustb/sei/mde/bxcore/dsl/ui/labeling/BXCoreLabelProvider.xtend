@@ -56,7 +56,14 @@ class BXCoreLabelProvider extends XbaseLabelProvider {
 	}
 	
 	def text(XmuCoreStatement e) {
-		e.eClass.name
+		val program = e.program as BXProgram;
+		val id = program.eAllContents.filter[it instanceof XmuCoreStatement].indexed.findFirst[it.value===e].key;
+		e.eClass.name + ('('+id+')')
+	}
+		
+	def BXProgram getProgram(EObject e) {
+		if(e instanceof BXProgram) e
+		else e.eContainer.program;
 	}
 	
 	def text(BiGULStatement e) {

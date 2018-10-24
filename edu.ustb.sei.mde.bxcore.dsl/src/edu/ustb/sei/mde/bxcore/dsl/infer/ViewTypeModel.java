@@ -160,4 +160,9 @@ public class ViewTypeModel extends TypeModel {
 		}
 	}
 
+	@Override
+	protected String getName() {
+		return "source type infer";
+	}
+
 }

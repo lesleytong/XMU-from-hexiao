@@ -5,6 +5,8 @@ import edu.ustb.sei.mde.bxcore.dsl.jvmmodel.ModelInferrerUtils
 import java.util.HashMap
 import java.util.Map
 import org.eclipse.emf.ecore.resource.Resource
+import edu.ustb.sei.mde.bxcore.XmuCoreUtils
+import java.util.logging.Level
 
 class InferManager {
 	static public Map<Resource, InferData> inferredDataMap = new HashMap;
@@ -16,7 +18,6 @@ class InferManager {
 		} else {
 			if(resource.modified) { // incremental
 				resource.modified=false;
-				println(resource.modified);
 				return createInfer(resource);
 			} else return data;
 		}
@@ -44,7 +45,7 @@ class InferManager {
 		data.setViewInfer(infer.second);
 		
 		inferredDataMap.put(resource,data);
-		println('create infer');		
+		XmuCoreUtils.log(Level.INFO, "infer created",null);
 		return data;
 	}
 }

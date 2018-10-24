@@ -339,12 +339,17 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cSourceImportSectionValidIDParserRuleCall_0_0_1 = (RuleCall)cSourceImportSectionCrossReference_0_0.eContents().get(1);
 		private final Assignment cRootAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cRootPatternNodeParserRuleCall_1_0 = (RuleCall)cRootAssignment_1.eContents().get(0);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cLeftSquareBracketKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cFilterAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cFilterContextAwareConditionParserRuleCall_2_1_0 = (RuleCall)cFilterAssignment_2_1.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_2_2 = (Keyword)cGroup_2.eContents().get(2);
 		
 		//PatternTypeLiteral:
-		//	source=[ImportSection|ValidID] root=PatternNode;
+		//	source=[ImportSection|ValidID] root=PatternNode ('[' filter=ContextAwareCondition ']')?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//source=[ImportSection|ValidID] root=PatternNode
+		//source=[ImportSection|ValidID] root=PatternNode ('[' filter=ContextAwareCondition ']')?
 		public Group getGroup() { return cGroup; }
 		
 		//source=[ImportSection|ValidID]
@@ -361,6 +366,21 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//PatternNode
 		public RuleCall getRootPatternNodeParserRuleCall_1_0() { return cRootPatternNodeParserRuleCall_1_0; }
+		
+		//('[' filter=ContextAwareCondition ']')?
+		public Group getGroup_2() { return cGroup_2; }
+		
+		//'['
+		public Keyword getLeftSquareBracketKeyword_2_0() { return cLeftSquareBracketKeyword_2_0; }
+		
+		//filter=ContextAwareCondition
+		public Assignment getFilterAssignment_2_1() { return cFilterAssignment_2_1; }
+		
+		//ContextAwareCondition
+		public RuleCall getFilterContextAwareConditionParserRuleCall_2_1_0() { return cFilterContextAwareConditionParserRuleCall_2_1_0; }
+		
+		//']'
+		public Keyword getRightSquareBracketKeyword_2_2() { return cRightSquareBracketKeyword_2_2; }
 	}
 	public class TypeDefinitionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.bxcore.dsl.BXCore.TypeDefinition");
@@ -1228,16 +1248,17 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cSourcePatternParserRuleCall_2_0 = (RuleCall)cSourceAssignment_2.eContents().get(0);
 		private final Assignment cViewAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cViewPatternParserRuleCall_3_0 = (RuleCall)cViewAssignment_3.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Assignment cConversionsAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cConversionsConversionParserRuleCall_5_0 = (RuleCall)cConversionsAssignment_5.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final Keyword cLeftCurlyBracketKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
+		private final Assignment cConversionsAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cConversionsConversionParserRuleCall_4_1_0 = (RuleCall)cConversionsAssignment_4_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_4_2 = (Keyword)cGroup_4.eContents().get(2);
 		
 		//XmuCoreGraphReplace:
-		//	'replace' typeIndicator=TypeIndicator? source=Pattern view=Pattern '{' conversions+=Conversion+ '}';
+		//	'replace' typeIndicator=TypeIndicator? source=Pattern view=Pattern ('{' conversions+=Conversion+ '}')?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'replace' typeIndicator=TypeIndicator? source=Pattern view=Pattern '{' conversions+=Conversion+ '}'
+		//'replace' typeIndicator=TypeIndicator? source=Pattern view=Pattern ('{' conversions+=Conversion+ '}')?
 		public Group getGroup() { return cGroup; }
 		
 		//'replace'
@@ -1261,17 +1282,20 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		//Pattern
 		public RuleCall getViewPatternParserRuleCall_3_0() { return cViewPatternParserRuleCall_3_0; }
 		
+		//('{' conversions+=Conversion+ '}')?
+		public Group getGroup_4() { return cGroup_4; }
+		
 		//'{'
-		public Keyword getLeftCurlyBracketKeyword_4() { return cLeftCurlyBracketKeyword_4; }
+		public Keyword getLeftCurlyBracketKeyword_4_0() { return cLeftCurlyBracketKeyword_4_0; }
 		
 		//conversions+=Conversion+
-		public Assignment getConversionsAssignment_5() { return cConversionsAssignment_5; }
+		public Assignment getConversionsAssignment_4_1() { return cConversionsAssignment_4_1; }
 		
 		//Conversion
-		public RuleCall getConversionsConversionParserRuleCall_5_0() { return cConversionsConversionParserRuleCall_5_0; }
+		public RuleCall getConversionsConversionParserRuleCall_4_1_0() { return cConversionsConversionParserRuleCall_4_1_0; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_6() { return cRightCurlyBracketKeyword_6; }
+		public Keyword getRightCurlyBracketKeyword_4_2() { return cRightCurlyBracketKeyword_4_2; }
 	}
 	public class XmuCoreParallelCompositionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.bxcore.dsl.BXCore.XmuCoreParallelComposition");
@@ -2409,7 +2433,7 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//PatternTypeLiteral:
-	//	source=[ImportSection|ValidID] root=PatternNode;
+	//	source=[ImportSection|ValidID] root=PatternNode ('[' filter=ContextAwareCondition ']')?;
 	public PatternTypeLiteralElements getPatternTypeLiteralAccess() {
 		return pPatternTypeLiteral;
 	}
@@ -2623,7 +2647,7 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//XmuCoreGraphReplace:
-	//	'replace' typeIndicator=TypeIndicator? source=Pattern view=Pattern '{' conversions+=Conversion+ '}';
+	//	'replace' typeIndicator=TypeIndicator? source=Pattern view=Pattern ('{' conversions+=Conversion+ '}')?;
 	public XmuCoreGraphReplaceElements getXmuCoreGraphReplaceAccess() {
 		return pXmuCoreGraphReplace;
 	}

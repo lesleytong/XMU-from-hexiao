@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.regex.Matcher;
 
 import org.chocosolver.solver.Solver;
@@ -43,6 +44,11 @@ public class Pattern implements IGraph {
 	private List<INode> nodes = new ArrayList<INode>();
 	private List<IEdge> edges = new ArrayList<IEdge>();
 	private TypeGraph typeGraph;
+	private Function<Context, Boolean> filter;
+
+	public void setFilter(Function<Context, Boolean> filter) {
+		this.filter = filter;
+	}
 
 	private PatternElement<?> orderBy = null;
 	
@@ -111,8 +117,9 @@ public class Pattern implements IGraph {
 				Object idx = so.isIndexable() ? so.getIndex() : so;
 				m.setValue(ev.getName(), idx);
 			});
-
-			matches.add(m);
+			
+			if(this.filter==null || this.filter.apply(m))
+				matches.add(m);
 		}
 		
 		if(this.orderBy!=null) {
@@ -384,7 +391,7 @@ public class Pattern implements IGraph {
 			return false;
 		Solver solver = model.getSolver();
 		boolean matched = solver.solve();
-		return matched;
+		return matched && (this.filter==null || this.filter.apply(match));
 	}
 
 	private ContextType type = null;

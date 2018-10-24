@@ -782,19 +782,10 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	 *     Pattern returns PatternTypeLiteral
 	 *
 	 * Constraint:
-	 *     (source=[ImportSection|ValidID] root=PatternNode)
+	 *     (source=[ImportSection|ValidID] root=PatternNode filter=ContextAwareCondition?)
 	 */
 	protected void sequence_PatternTypeLiteral(ISerializationContext context, PatternTypeLiteral semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.PATTERN_TYPE_LITERAL__SOURCE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.PATTERN_TYPE_LITERAL__SOURCE));
-			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.PATTERN_TYPE_LITERAL__ROOT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.PATTERN_TYPE_LITERAL__ROOT));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getPatternTypeLiteralAccess().getSourceImportSectionValidIDParserRuleCall_0_0_1(), semanticObject.eGet(BXCorePackage.Literals.PATTERN_TYPE_LITERAL__SOURCE, false));
-		feeder.accept(grammarAccess.getPatternTypeLiteralAccess().getRootPatternNodeParserRuleCall_1_0(), semanticObject.getRoot());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1059,7 +1050,7 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	 *     XmuCoreGraphReplace returns XmuCoreGraphReplace
 	 *
 	 * Constraint:
-	 *     (typeIndicator=TypeIndicator? source=Pattern view=Pattern conversions+=Conversion+)
+	 *     (typeIndicator=TypeIndicator? source=Pattern view=Pattern conversions+=Conversion*)
 	 */
 	protected void sequence_XmuCoreGraphReplace(ISerializationContext context, XmuCoreGraphReplace semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

@@ -1,5 +1,6 @@
 grammar edu.ustb.sei.mde.bxcore.dsl.BXCore with org.eclipse.xtext.xbase.Xbase
 
+import "http://www.eclipse.org/xtext/xbase/Xbase" as xbase
 import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 
 generate bXCore "http://www.ustb.edu/sei/mde/bxcore/dsl/BXCore"
@@ -43,7 +44,7 @@ PredefinedTypeLiteral :
 ;
 
 PatternTypeLiteral :
-	source=[ImportSection|ValidID] root=PatternNode
+	source=[ImportSection|ValidID] root=PatternNode ('[' filter=ContextAwareCondition ']')?
 ;
 
 TypeDefinition:
@@ -133,7 +134,7 @@ VarMapping :
 ;
 
 XmuCoreGraphReplace :
-	'replace' typeIndicator=TypeIndicator? source=Pattern view=Pattern '{' conversions+=Conversion+ '}'
+	'replace' typeIndicator=TypeIndicator? source=Pattern view=Pattern ('{' conversions+=Conversion+ '}')?
 ;
 
 XmuCoreParallelComposition :
@@ -211,3 +212,5 @@ BiGULSkip :
 ValidID :
 	ID | 'replace' | 'skip' | 'index' | 'align' | 'match' | 'int' | 'String' |'boolean' | 'type'
 ;
+
+

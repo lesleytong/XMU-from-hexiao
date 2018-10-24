@@ -38,6 +38,7 @@
     <genClasses ecoreClass="BXCore.ecore#//PatternTypeLiteral">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BXCore.ecore#//PatternTypeLiteral/source"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//PatternTypeLiteral/root"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//PatternTypeLiteral/filter"/>
     </genClasses>
     <genClasses ecoreClass="BXCore.ecore#//TypeDefinition">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//TypeDefinition/literal"/>

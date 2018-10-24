@@ -16,6 +16,9 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreStatement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.IteratorExtensions;
+import org.eclipse.xtext.xbase.lib.Pair;
 import org.eclipse.xtext.xbase.ui.labeling.XbaseLabelProvider;
 
 /**
@@ -69,7 +72,32 @@ public class BXCoreLabelProvider extends XbaseLabelProvider {
   }
   
   public String text(final XmuCoreStatement e) {
-    return e.eClass().getName();
+    String _xblockexpression = null;
+    {
+      BXProgram _program = this.getProgram(e);
+      final BXProgram program = ((BXProgram) _program);
+      final Function1<EObject, Boolean> _function = (EObject it) -> {
+        return Boolean.valueOf((it instanceof XmuCoreStatement));
+      };
+      final Function1<Pair<Integer, EObject>, Boolean> _function_1 = (Pair<Integer, EObject> it) -> {
+        EObject _value = it.getValue();
+        return Boolean.valueOf((_value == e));
+      };
+      final Integer id = IteratorExtensions.<Pair<Integer, EObject>>findFirst(IteratorExtensions.<EObject>indexed(IteratorExtensions.<EObject>filter(program.eAllContents(), _function)), _function_1).getKey();
+      String _name = e.eClass().getName();
+      _xblockexpression = (_name + (("(" + id) + ")"));
+    }
+    return _xblockexpression;
+  }
+  
+  public BXProgram getProgram(final EObject e) {
+    BXProgram _xifexpression = null;
+    if ((e instanceof BXProgram)) {
+      _xifexpression = ((BXProgram)e);
+    } else {
+      _xifexpression = this.getProgram(e.eContainer());
+    }
+    return _xifexpression;
   }
   
   public String text(final BiGULStatement e) {

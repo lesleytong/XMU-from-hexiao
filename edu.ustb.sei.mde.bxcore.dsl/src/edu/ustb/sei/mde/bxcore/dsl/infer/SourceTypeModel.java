@@ -159,4 +159,9 @@ public class SourceTypeModel extends TypeModel {
 		}
 	}
 
+	@Override
+	protected String getName() {
+		return "source type infer";
+	}
+
 }

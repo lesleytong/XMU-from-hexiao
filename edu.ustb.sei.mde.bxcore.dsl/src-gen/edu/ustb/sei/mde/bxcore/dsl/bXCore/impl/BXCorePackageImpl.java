@@ -750,6 +750,16 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getPatternTypeLiteral_Filter()
+  {
+    return (EReference)patternTypeLiteralEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getTypeDefinition()
   {
     return typeDefinitionEClass;
@@ -1859,6 +1869,7 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     patternTypeLiteralEClass = createEClass(PATTERN_TYPE_LITERAL);
     createEReference(patternTypeLiteralEClass, PATTERN_TYPE_LITERAL__SOURCE);
     createEReference(patternTypeLiteralEClass, PATTERN_TYPE_LITERAL__ROOT);
+    createEReference(patternTypeLiteralEClass, PATTERN_TYPE_LITERAL__FILTER);
 
     typeDefinitionEClass = createEClass(TYPE_DEFINITION);
     createEReference(typeDefinitionEClass, TYPE_DEFINITION__LITERAL);
@@ -2106,6 +2117,7 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     initEClass(patternTypeLiteralEClass, PatternTypeLiteral.class, "PatternTypeLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getPatternTypeLiteral_Source(), this.getImportSection(), null, "source", null, 0, 1, PatternTypeLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPatternTypeLiteral_Root(), this.getPatternNode(), null, "root", null, 0, 1, PatternTypeLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPatternTypeLiteral_Filter(), this.getContextAwareCondition(), null, "filter", null, 0, 1, PatternTypeLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(typeDefinitionEClass, TypeDefinition.class, "TypeDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getTypeDefinition_Literal(), this.getTypeLiteral(), null, "literal", null, 0, 1, TypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

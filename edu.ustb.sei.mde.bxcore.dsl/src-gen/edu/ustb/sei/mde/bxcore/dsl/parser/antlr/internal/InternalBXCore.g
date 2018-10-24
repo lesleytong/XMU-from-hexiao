@@ -642,6 +642,35 @@ rulePatternTypeLiteral returns [EObject current=null]
 				}
 			)
 		)
+		(
+			otherlv_2='['
+			{
+				newLeafNode(otherlv_2, grammarAccess.getPatternTypeLiteralAccess().getLeftSquareBracketKeyword_2_0());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getPatternTypeLiteralAccess().getFilterContextAwareConditionParserRuleCall_2_1_0());
+					}
+					lv_filter_3_0=ruleContextAwareCondition
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getPatternTypeLiteralRule());
+						}
+						set(
+							$current,
+							"filter",
+							lv_filter_3_0,
+							"edu.ustb.sei.mde.bxcore.dsl.BXCore.ContextAwareCondition");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			otherlv_4=']'
+			{
+				newLeafNode(otherlv_4, grammarAccess.getPatternTypeLiteralAccess().getRightSquareBracketKeyword_2_2());
+			}
+		)?
 	)
 ;
 
@@ -2236,33 +2265,35 @@ ruleXmuCoreGraphReplace returns [EObject current=null]
 				}
 			)
 		)
-		otherlv_4='{'
-		{
-			newLeafNode(otherlv_4, grammarAccess.getXmuCoreGraphReplaceAccess().getLeftCurlyBracketKeyword_4());
-		}
 		(
+			otherlv_4='{'
+			{
+				newLeafNode(otherlv_4, grammarAccess.getXmuCoreGraphReplaceAccess().getLeftCurlyBracketKeyword_4_0());
+			}
 			(
-				{
-					newCompositeNode(grammarAccess.getXmuCoreGraphReplaceAccess().getConversionsConversionParserRuleCall_5_0());
-				}
-				lv_conversions_5_0=ruleConversion
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getXmuCoreGraphReplaceRule());
+				(
+					{
+						newCompositeNode(grammarAccess.getXmuCoreGraphReplaceAccess().getConversionsConversionParserRuleCall_4_1_0());
 					}
-					add(
-						$current,
-						"conversions",
-						lv_conversions_5_0,
-						"edu.ustb.sei.mde.bxcore.dsl.BXCore.Conversion");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)+
-		otherlv_6='}'
-		{
-			newLeafNode(otherlv_6, grammarAccess.getXmuCoreGraphReplaceAccess().getRightCurlyBracketKeyword_6());
-		}
+					lv_conversions_5_0=ruleConversion
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getXmuCoreGraphReplaceRule());
+						}
+						add(
+							$current,
+							"conversions",
+							lv_conversions_5_0,
+							"edu.ustb.sei.mde.bxcore.dsl.BXCore.Conversion");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)+
+			otherlv_6='}'
+			{
+				newLeafNode(otherlv_6, grammarAccess.getXmuCoreGraphReplaceAccess().getRightCurlyBracketKeyword_4_2());
+			}
+		)?
 	)
 ;
 

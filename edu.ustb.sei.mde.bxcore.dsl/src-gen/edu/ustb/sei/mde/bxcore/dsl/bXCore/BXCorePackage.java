@@ -374,13 +374,22 @@ public interface BXCorePackage extends EPackage
   int PATTERN_TYPE_LITERAL__ROOT = TYPE_LITERAL_FEATURE_COUNT + 1;
 
   /**
+   * The feature id for the '<em><b>Filter</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PATTERN_TYPE_LITERAL__FILTER = TYPE_LITERAL_FEATURE_COUNT + 2;
+
+  /**
    * The number of structural features of the '<em>Pattern Type Literal</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PATTERN_TYPE_LITERAL_FEATURE_COUNT = TYPE_LITERAL_FEATURE_COUNT + 2;
+  int PATTERN_TYPE_LITERAL_FEATURE_COUNT = TYPE_LITERAL_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.TypeDefinitionImpl <em>Type Definition</em>}' class.
@@ -2165,6 +2174,17 @@ public interface BXCorePackage extends EPackage
   EReference getPatternTypeLiteral_Root();
 
   /**
+   * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternTypeLiteral#getFilter <em>Filter</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Filter</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternTypeLiteral#getFilter()
+   * @see #getPatternTypeLiteral()
+   * @generated
+   */
+  EReference getPatternTypeLiteral_Filter();
+
+  /**
    * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeDefinition <em>Type Definition</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3521,6 +3541,14 @@ public interface BXCorePackage extends EPackage
      * @generated
      */
     EReference PATTERN_TYPE_LITERAL__ROOT = eINSTANCE.getPatternTypeLiteral_Root();
+
+    /**
+     * The meta object literal for the '<em><b>Filter</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PATTERN_TYPE_LITERAL__FILTER = eINSTANCE.getPatternTypeLiteral_Filter();
 
     /**
      * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.TypeDefinitionImpl <em>Type Definition</em>}' class.

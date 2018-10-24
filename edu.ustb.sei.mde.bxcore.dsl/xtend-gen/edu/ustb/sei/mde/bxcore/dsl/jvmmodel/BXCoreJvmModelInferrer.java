@@ -360,7 +360,7 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
         final List<Pair<Integer, PatternTypeLiteral>> patternLiterals = IteratorExtensions.<Pair<Integer, PatternTypeLiteral>>toList(IteratorExtensions.<PatternTypeLiteral>indexed(IteratorExtensions.<EObject, PatternTypeLiteral>map(IteratorExtensions.<EObject>filter(element.eAllContents(), _function_14), _function_15)));
         if ((!isPreIndexingPhase)) {
           final Consumer<Pair<Integer, PatternTypeLiteral>> _function_16 = (Pair<Integer, PatternTypeLiteral> p) -> {
-            this.generatePatternLiteral(it, p.getValue(), p.getKey(), typeLiteralMap, element);
+            this.generatePatternLiteral(it, p.getValue(), p.getKey(), typeLiteralMap, conditions, element);
           };
           patternLiterals.forEach(_function_16);
         }
@@ -485,7 +485,7 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
     }
   }
   
-  protected boolean generatePatternLiteral(final JvmGenericType owner, final PatternTypeLiteral literal, final Integer id, final Map<TypeLiteral, Tuple2<TupleType, Integer>> typeLiteralMap, final BXProgram program) {
+  protected boolean generatePatternLiteral(final JvmGenericType owner, final PatternTypeLiteral literal, final Integer id, final Map<TypeLiteral, Tuple2<TupleType, Integer>> typeLiteralMap, final List<ContextAwareCondition> conditions, final BXProgram program) {
     boolean _xblockexpression = false;
     {
       EList<JvmMember> _members = owner.getMembers();
@@ -668,6 +668,20 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
             _builder.append(patternTypeId, "\t");
             _builder.append("());");
             _builder.newLineIfNotEmpty();
+            {
+              ContextAwareCondition _filter = literal.getFilter();
+              boolean _tripleNotEquals_1 = (_filter != null);
+              if (_tripleNotEquals_1) {
+                _builder.append("\t");
+                _builder.append("pattern_");
+                _builder.append(id, "\t");
+                _builder.append(".setFilter(new Condition");
+                int _indexOf = conditions.indexOf(literal.getFilter());
+                _builder.append(_indexOf, "\t");
+                _builder.append("());");
+                _builder.newLineIfNotEmpty();
+              }
+            }
             _builder.append("}");
             _builder.newLine();
             _builder.append("return pattern_");
