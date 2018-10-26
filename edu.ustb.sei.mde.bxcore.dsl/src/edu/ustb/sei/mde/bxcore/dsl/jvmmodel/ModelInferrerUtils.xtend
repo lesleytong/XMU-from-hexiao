@@ -22,6 +22,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextExpression
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextVarExpression
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.NavigationExpression
 import org.eclipse.emf.ecore.EClass
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.SideEnum
 
 class ModelInferrerUtils {
 	static def groupTypeLiterals(BXProgram program) {
@@ -49,34 +50,42 @@ class ModelInferrerUtils {
 		return result;
 	}
 	
-	static def TupleType context(EObject e, boolean inSource) {
+	static def TupleType context(EObject e, SideEnum side) {
     	try {
     		if (e === null) null
 			else if (e instanceof Pattern) {
-	    		val inferData = InferManager.getInferredTypeModel(e.eResource);
-				if (e instanceof PatternDefinitionReference) {
-					inferData.literalMap.get(e.pattern.literal).first
-				} else if(e instanceof PatternTypeLiteral) {
-					inferData.literalMap.get(e).first
-				} else null
+//				if (side === SideEnum.SELF) {
+					val inferData = InferManager.getInferredTypeModel(e.eResource);
+					if (e instanceof PatternDefinitionReference) {
+						inferData.literalMap.get(e.pattern.literal).first
+					} else if (e instanceof PatternTypeLiteral) {
+						inferData.literalMap.get(e).first
+					} else
+						null
+//				} else
+//					null
 			} else if(e instanceof ContextAwareCondition) {
 				if(e.eContainingFeature===BXCorePackage.Literals.XMU_CORE_ALIGN__ALIGNMENT) {
-					if(inSource) (e.eContainer as XmuCoreAlign).sourcePattern.context(true)
-					else (e.eContainer as XmuCoreAlign).viewPattern.context(false)
-				} else e.eContainer.context(inSource)
+					if(side===SideEnum.SOURCE) (e.eContainer as XmuCoreAlign).sourcePattern.context(SideEnum.SOURCE)
+					else if(side===SideEnum.VIEW)  (e.eContainer as XmuCoreAlign).viewPattern.context(SideEnum.VIEW)
+					else null
+				} else e.eContainer.context(side)
 			} else if(e instanceof ContextAwareUnidirectionalAction) {
 				if(e.eContainingFeature===BXCorePackage.Literals.XMU_CORE_ALIGN__UNMATCH_S) {
-					if(inSource) (e.eContainer as XmuCoreAlign).sourcePattern.context(true)
-					else (e.eContainer as XmuCoreAlign).context(false)
+					if(side===SideEnum.SOURCE) (e.eContainer as XmuCoreAlign).sourcePattern.context(SideEnum.SOURCE)
+					else if(side===SideEnum.VIEW) (e.eContainer as XmuCoreAlign).context(SideEnum.VIEW)
+					else null
 				} else if(e.eContainingFeature===BXCorePackage.Literals.XMU_CORE_ALIGN__UNMATCH_V) {
-					if(inSource) (e.eContainer as XmuCoreAlign).context(true)
-					else (e.eContainer as XmuCoreAlign).viewPattern.context(false)
-				} else e.eContainer.context(inSource)
+					if(side===SideEnum.SOURCE) (e.eContainer as XmuCoreAlign).context(SideEnum.SOURCE)
+					else if(side===SideEnum.VIEW) (e.eContainer as XmuCoreAlign).viewPattern.context(SideEnum.VIEW)
+					else null
+				} else e.eContainer.context(side)
 			} else if (e instanceof XmuCoreStatement) {
 				val inferData = InferManager.getInferredTypeModel(e.eResource);
-				if(inSource) inferData.sourceInfer.unsolvedTupleTypeMap.get(e)
-				else inferData.viewInfer.unsolvedTupleTypeMap.get(e)
-			} else e.eContainer.context(inSource)
+				if(side===SideEnum.SOURCE) inferData.sourceInfer.unsolvedTupleTypeMap.get(e)
+				else if(side===SideEnum.VIEW) inferData.viewInfer.unsolvedTupleTypeMap.get(e)
+				else null
+			} else e.eContainer.context(side)
     		
     	} catch(Exception exp) {
     		return null;
@@ -97,7 +106,7 @@ class ModelInferrerUtils {
     		val side = e.side;
 			val varName = e.name;
 			try {
-				val tupleType = ModelInferrerUtils.context(e, side.equals("source"));
+				val tupleType = ModelInferrerUtils.context(e, side);
 				if (tupleType === null)
 					null
 				else {

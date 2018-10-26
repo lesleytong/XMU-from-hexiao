@@ -93,6 +93,11 @@ public class BXCoreAdapterFactory extends AdapterFactoryImpl
         return createDefinitionAdapter();
       }
       @Override
+      public Adapter caseCustomizedBiGULDefinition(CustomizedBiGULDefinition object)
+      {
+        return createCustomizedBiGULDefinitionAdapter();
+      }
+      @Override
       public Adapter caseTypeLiteral(TypeLiteral object)
       {
         return createTypeLiteralAdapter();
@@ -313,6 +318,11 @@ public class BXCoreAdapterFactory extends AdapterFactoryImpl
         return createBiGULSkipAdapter();
       }
       @Override
+      public Adapter caseCustomizedBiGULReference(CustomizedBiGULReference object)
+      {
+        return createCustomizedBiGULReferenceAdapter();
+      }
+      @Override
       public Adapter caseContextExpression(ContextExpression object)
       {
         return createContextExpressionAdapter();
@@ -430,6 +440,21 @@ public class BXCoreAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createDefinitionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.CustomizedBiGULDefinition <em>Customized Bi GUL Definition</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.CustomizedBiGULDefinition
+   * @generated
+   */
+  public Adapter createCustomizedBiGULDefinitionAdapter()
   {
     return null;
   }
@@ -1090,6 +1115,21 @@ public class BXCoreAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createBiGULSkipAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.CustomizedBiGULReference <em>Customized Bi GUL Reference</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.CustomizedBiGULReference
+   * @generated
+   */
+  public Adapter createCustomizedBiGULReferenceAdapter()
   {
     return null;
   }

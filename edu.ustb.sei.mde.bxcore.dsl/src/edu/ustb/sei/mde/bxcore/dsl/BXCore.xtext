@@ -17,7 +17,14 @@ ImportSection :
 ;
 
 Definition :
-	TypeDefinition | BXFunctionDefinition | IndexDefinition
+	CustomizedBiGULDefinition | TypeDefinition | BXFunctionDefinition | IndexDefinition
+;
+
+CustomizedBiGULDefinition :
+	'bigul' name=ValidID 
+		'(' sourceParams+=JvmFormalParameter (',' sourceParams+=JvmFormalParameter)* ')' 
+		'(' viewParams+=JvmFormalParameter (',' viewParams+=JvmFormalParameter)* ')'
+	(('get' get = XExpression) & ('put' put = XExpression))
 ;
 
 TypeLiteral :
@@ -198,20 +205,24 @@ ContextAwareUnidirectionalAction :
 ;
 
 BiGULStatement :
-	BiGULReplace | BiGULSkip
+	BiGULReplace | BiGULSkip | CustomizedBiGULReference
 ;
 
 BiGULReplace :
-	{BiGULReplace} 'replace'
+	{BiGULReplace} => 'replace'
 ;
 
 BiGULSkip :
-	{BiGULSkip} 'skip'
+	{BiGULSkip} =>  'skip'
+;
+
+CustomizedBiGULReference :
+	function=[CustomizedBiGULDefinition|ValidID]
 ;
 
 @Override
 ValidID :
-	ID | 'replace' | 'skip' | 'index' | 'align' | 'match' | 'int' | 'String' |'boolean' | 'type' |'source' |'view'
+	ID | 'index' | 'align' | 'match' | 'int' | 'String' |'boolean' | 'type' |'source' |'view'
 ;
 
  @Override
@@ -224,7 +235,11 @@ ContextExpression returns ContextExpression:
 ;
 
 ContextVarExpression returns ContextExpression :
-	({ContextVarExpression} name=ValidID '@' side=('source'|'view'))
+	({ContextVarExpression} name=ValidID '@' side=SideEnum)
+;
+
+enum SideEnum :
+	source='source' | view='view' | context='context'
 ;
 
 @Override
@@ -242,5 +257,5 @@ ModificationExpression returns xbase::XExpression:
 ;
 
 ValueMapping :
-	varName=ValidID '->' expression=XExpression
+	varName=ValidID '=' expression=XExpression
 ;

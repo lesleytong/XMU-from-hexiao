@@ -16,6 +16,8 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextTypeRef;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextVarExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.Conversion;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.CustomizedBiGULDefinition;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.CustomizedBiGULReference;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.DefinedContextTypeRef;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.Definition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.DeleteElementExpression;
@@ -37,6 +39,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternNodeRef;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternTypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternValueCondition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PredefinedTypeLiteral;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.SideEnum;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TupleTypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeIndicator;
@@ -65,6 +68,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreSwitchBranch;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -104,6 +108,13 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * @generated
    */
   private EClass definitionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass customizedBiGULDefinitionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -418,6 +429,13 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass customizedBiGULReferenceEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass contextExpressionEClass = null;
 
   /**
@@ -484,6 +502,13 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
   private EClass deleteElementExpressionEClass = null;
 
   /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum sideEnumEEnum = null;
+
+  /**
    * Creates an instance of the model <b>Package</b>, registered with
    * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
    * package URI value.
@@ -533,9 +558,9 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     isInited = true;
 
     // Initialize simple dependencies
+    TypesPackage.eINSTANCE.eClass();
     XbasePackage.eINSTANCE.eClass();
     XtypePackage.eINSTANCE.eClass();
-    TypesPackage.eINSTANCE.eClass();
 
     // Create package meta-data objects
     theBXCorePackage.createPackageContents();
@@ -639,6 +664,56 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
   public EAttribute getDefinition_Name()
   {
     return (EAttribute)definitionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getCustomizedBiGULDefinition()
+  {
+    return customizedBiGULDefinitionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getCustomizedBiGULDefinition_SourceParams()
+  {
+    return (EReference)customizedBiGULDefinitionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getCustomizedBiGULDefinition_ViewParams()
+  {
+    return (EReference)customizedBiGULDefinitionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getCustomizedBiGULDefinition_Get()
+  {
+    return (EReference)customizedBiGULDefinitionEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getCustomizedBiGULDefinition_Put()
+  {
+    return (EReference)customizedBiGULDefinitionEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -1816,6 +1891,26 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getCustomizedBiGULReference()
+  {
+    return customizedBiGULReferenceEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getCustomizedBiGULReference_Function()
+  {
+    return (EReference)customizedBiGULReferenceEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getContextExpression()
   {
     return contextExpressionEClass;
@@ -2036,6 +2131,16 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EEnum getSideEnum()
+  {
+    return sideEnumEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public BXCoreFactory getBXCoreFactory()
   {
     return (BXCoreFactory)getEFactoryInstance();
@@ -2072,6 +2177,12 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
 
     definitionEClass = createEClass(DEFINITION);
     createEAttribute(definitionEClass, DEFINITION__NAME);
+
+    customizedBiGULDefinitionEClass = createEClass(CUSTOMIZED_BI_GUL_DEFINITION);
+    createEReference(customizedBiGULDefinitionEClass, CUSTOMIZED_BI_GUL_DEFINITION__SOURCE_PARAMS);
+    createEReference(customizedBiGULDefinitionEClass, CUSTOMIZED_BI_GUL_DEFINITION__VIEW_PARAMS);
+    createEReference(customizedBiGULDefinitionEClass, CUSTOMIZED_BI_GUL_DEFINITION__GET);
+    createEReference(customizedBiGULDefinitionEClass, CUSTOMIZED_BI_GUL_DEFINITION__PUT);
 
     typeLiteralEClass = createEClass(TYPE_LITERAL);
 
@@ -2234,6 +2345,9 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
 
     biGULSkipEClass = createEClass(BI_GUL_SKIP);
 
+    customizedBiGULReferenceEClass = createEClass(CUSTOMIZED_BI_GUL_REFERENCE);
+    createEReference(customizedBiGULReferenceEClass, CUSTOMIZED_BI_GUL_REFERENCE__FUNCTION);
+
     contextExpressionEClass = createEClass(CONTEXT_EXPRESSION);
 
     modificationExpressionBlockEClass = createEClass(MODIFICATION_EXPRESSION_BLOCK);
@@ -2265,6 +2379,9 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
 
     deleteElementExpressionEClass = createEClass(DELETE_ELEMENT_EXPRESSION);
     createEReference(deleteElementExpressionEClass, DELETE_ELEMENT_EXPRESSION__ELEMENT);
+
+    // Create enums
+    sideEnumEEnum = createEEnum(SIDE_ENUM);
   }
 
   /**
@@ -2293,6 +2410,7 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
 
     // Obtain other dependent packages
     XtypePackage theXtypePackage = (XtypePackage)EPackage.Registry.INSTANCE.getEPackage(XtypePackage.eNS_URI);
+    TypesPackage theTypesPackage = (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
     XbasePackage theXbasePackage = (XbasePackage)EPackage.Registry.INSTANCE.getEPackage(XbasePackage.eNS_URI);
 
     // Create type parameters
@@ -2300,6 +2418,7 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     // Set bounds for type parameters
 
     // Add supertypes to classes
+    customizedBiGULDefinitionEClass.getESuperTypes().add(this.getDefinition());
     tupleTypeLiteralEClass.getESuperTypes().add(this.getTypeLiteral());
     tupleTypeLiteralEClass.getESuperTypes().add(this.getContextTypeRef());
     unorderedTupleTypeLiteralEClass.getESuperTypes().add(this.getTupleTypeLiteral());
@@ -2328,6 +2447,7 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     xmuCoreIndexEClass.getESuperTypes().add(this.getXmuCoreCompositionChildStatement());
     biGULReplaceEClass.getESuperTypes().add(this.getBiGULStatement());
     biGULSkipEClass.getESuperTypes().add(this.getBiGULStatement());
+    customizedBiGULReferenceEClass.getESuperTypes().add(this.getBiGULStatement());
     contextExpressionEClass.getESuperTypes().add(theXbasePackage.getXExpression());
     modificationExpressionBlockEClass.getESuperTypes().add(theXbasePackage.getXExpression());
     definedContextTypeRefEClass.getESuperTypes().add(this.getContextTypeRef());
@@ -2350,6 +2470,12 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
 
     initEClass(definitionEClass, Definition.class, "Definition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getDefinition_Name(), ecorePackage.getEString(), "name", null, 0, 1, Definition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(customizedBiGULDefinitionEClass, CustomizedBiGULDefinition.class, "CustomizedBiGULDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getCustomizedBiGULDefinition_SourceParams(), theTypesPackage.getJvmFormalParameter(), null, "sourceParams", null, 0, -1, CustomizedBiGULDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getCustomizedBiGULDefinition_ViewParams(), theTypesPackage.getJvmFormalParameter(), null, "viewParams", null, 0, -1, CustomizedBiGULDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getCustomizedBiGULDefinition_Get(), theXbasePackage.getXExpression(), null, "get", null, 0, 1, CustomizedBiGULDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getCustomizedBiGULDefinition_Put(), theXbasePackage.getXExpression(), null, "put", null, 0, 1, CustomizedBiGULDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(typeLiteralEClass, TypeLiteral.class, "TypeLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -2512,6 +2638,9 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
 
     initEClass(biGULSkipEClass, BiGULSkip.class, "BiGULSkip", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
+    initEClass(customizedBiGULReferenceEClass, CustomizedBiGULReference.class, "CustomizedBiGULReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getCustomizedBiGULReference_Function(), this.getCustomizedBiGULDefinition(), null, "function", null, 0, 1, CustomizedBiGULReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
     initEClass(contextExpressionEClass, ContextExpression.class, "ContextExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(modificationExpressionBlockEClass, ModificationExpressionBlock.class, "ModificationExpressionBlock", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2535,7 +2664,7 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
 
     initEClass(contextVarExpressionEClass, ContextVarExpression.class, "ContextVarExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getContextVarExpression_Name(), ecorePackage.getEString(), "name", null, 0, 1, ContextVarExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getContextVarExpression_Side(), ecorePackage.getEString(), "side", null, 0, 1, ContextVarExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getContextVarExpression_Side(), this.getSideEnum(), "side", null, 0, 1, ContextVarExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(enforcementExpressionEClass, EnforcementExpression.class, "EnforcementExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getEnforcementExpression_Pattern(), this.getPattern(), null, "pattern", null, 0, 1, EnforcementExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2543,6 +2672,12 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
 
     initEClass(deleteElementExpressionEClass, DeleteElementExpression.class, "DeleteElementExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getDeleteElementExpression_Element(), theXbasePackage.getXExpression(), null, "element", null, 0, 1, DeleteElementExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    // Initialize enums and add enum literals
+    initEEnum(sideEnumEEnum, SideEnum.class, "SideEnum");
+    addEEnumLiteral(sideEnumEEnum, SideEnum.SOURCE);
+    addEEnumLiteral(sideEnumEEnum, SideEnum.VIEW);
+    addEEnumLiteral(sideEnumEEnum, SideEnum.CONTEXT);
 
     // Create resource
     createResource(eNS_URI);

@@ -21,6 +21,7 @@ import edu.ustb.sei.mde.bxcore.dsl.infer.InferManager
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.Pattern
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternTypeLiteral
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternDefinitionReference
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.SideEnum
 
 class XmuCoreCompiler extends XbaseCompiler {
 	def patternAccessor(Pattern p) {
@@ -42,10 +43,10 @@ class XmuCoreCompiler extends XbaseCompiler {
 			if (isReferenced) {
 				val name = a.declareSyntheticVariable(e, "_contextValue");
 				a.newLine.append('''«expectedType.qualifiedName» «name» = ''');
-				e.internalToJavaExpression(a);
+				a.append('''((«expectedType.qualifiedName») «ExceptionSafeInferface.canonicalName».getValue(«e.side.literal»,"«e.name»"))''')
 				a.append(";")
 			} else {
-				e.internalToJavaExpression(a);
+				a.append('''((«expectedType.qualifiedName») «ExceptionSafeInferface.canonicalName».getValue(«e.side.literal»,"«e.name»"))''')
 				a.append(";")
 			}
 		} else if(e instanceof NavigationExpression) {
@@ -56,11 +57,11 @@ class XmuCoreCompiler extends XbaseCompiler {
 			
 			if(isReferenced) {
 				val name = a.declareSyntheticVariable(e, "_navExp");
-				a.newLine.append('''«expectedType.qualifiedName» «name» = «ExceptionSafeInferface.canonicalName».navigate(«e.side», ''');
+				a.newLine.append('''«expectedType.qualifiedName» «name» = «ExceptionSafeInferface.canonicalName».navigate(«e.side.literal», ''');
 				e.host.internalToJavaExpression(a);
 				a.append(''', "«e.pathName»", «ecoreType.key instanceof EClass», «ecoreType.value»);''');
 			} else {
-				a.newLine.append('''«ExceptionSafeInferface.canonicalName».navigate(«e.side», ''');
+				a.newLine.append('''«ExceptionSafeInferface.canonicalName».navigate(«e.side.literal», ''');
 				e.host.internalToJavaExpression(a);
 				a.append(''', "«e.pathName»", «ecoreType.key instanceof EClass», «ecoreType.value»);''');
 			}
@@ -119,7 +120,7 @@ class XmuCoreCompiler extends XbaseCompiler {
 			super.doInternalToJavaStatement(e, a, isReferenced)
 	}
 	
-	def String side(ContextExpression expression) {
+	def SideEnum side(ContextExpression expression) {
 		if(expression instanceof ContextVarExpression) expression.getSide
 		else if(expression instanceof NavigationExpression) expression.host.side
 		else null;
@@ -127,8 +128,7 @@ class XmuCoreCompiler extends XbaseCompiler {
 	
 	override protected internalToConvertedExpression(XExpression e, ITreeAppendable a) {
 		if (e instanceof ContextVarExpression) {
-			val type = getType(e);
-			a.append('''((«type.qualifiedName») «ExceptionSafeInferface.canonicalName».getValue(«e.side»,"«e.name»"))''')			
+			a.append(getVarName(e, a))	
 		} else if(e instanceof NavigationExpression) {
 			a.append(getVarName(e, a))
 		}  else if(e instanceof EnforcementExpression || e instanceof DeleteElementExpression) {

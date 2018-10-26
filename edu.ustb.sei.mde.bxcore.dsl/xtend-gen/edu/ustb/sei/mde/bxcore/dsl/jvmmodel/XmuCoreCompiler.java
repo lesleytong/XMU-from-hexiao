@@ -10,6 +10,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.NavigationExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.Pattern;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternDefinitionReference;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternTypeLiteral;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.SideEnum;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ValueMapping;
 import edu.ustb.sei.mde.bxcore.dsl.infer.InferData;
 import edu.ustb.sei.mde.bxcore.dsl.infer.InferManager;
@@ -78,10 +79,38 @@ public class XmuCoreCompiler extends XbaseCompiler {
         _builder.append(name);
         _builder.append(" = ");
         _newLine.append(_builder);
-        this.internalToJavaExpression(e, a);
+        StringConcatenation _builder_1 = new StringConcatenation();
+        _builder_1.append("((");
+        String _qualifiedName_1 = expectedType.getQualifiedName();
+        _builder_1.append(_qualifiedName_1);
+        _builder_1.append(") ");
+        String _canonicalName = ExceptionSafeInferface.class.getCanonicalName();
+        _builder_1.append(_canonicalName);
+        _builder_1.append(".getValue(");
+        String _literal = ((ContextVarExpression)e).getSide().getLiteral();
+        _builder_1.append(_literal);
+        _builder_1.append(",\"");
+        String _name = ((ContextVarExpression)e).getName();
+        _builder_1.append(_name);
+        _builder_1.append("\"))");
+        a.append(_builder_1);
         a.append(";");
       } else {
-        this.internalToJavaExpression(e, a);
+        StringConcatenation _builder_2 = new StringConcatenation();
+        _builder_2.append("((");
+        String _qualifiedName_2 = expectedType.getQualifiedName();
+        _builder_2.append(_qualifiedName_2);
+        _builder_2.append(") ");
+        String _canonicalName_1 = ExceptionSafeInferface.class.getCanonicalName();
+        _builder_2.append(_canonicalName_1);
+        _builder_2.append(".getValue(");
+        String _literal_1 = ((ContextVarExpression)e).getSide().getLiteral();
+        _builder_2.append(_literal_1);
+        _builder_2.append(",\"");
+        String _name_1 = ((ContextVarExpression)e).getName();
+        _builder_2.append(_name_1);
+        _builder_2.append("\"))");
+        a.append(_builder_2);
         a.append(";");
       }
     } else {
@@ -93,55 +122,55 @@ public class XmuCoreCompiler extends XbaseCompiler {
         if (isReferenced) {
           final String name_1 = a.declareSyntheticVariable(e, "_navExp");
           ITreeAppendable _newLine_1 = a.newLine();
-          StringConcatenation _builder_1 = new StringConcatenation();
-          String _qualifiedName_1 = expectedType_1.getQualifiedName();
-          _builder_1.append(_qualifiedName_1);
-          _builder_1.append(" ");
-          _builder_1.append(name_1);
-          _builder_1.append(" = ");
-          String _canonicalName = ExceptionSafeInferface.class.getCanonicalName();
-          _builder_1.append(_canonicalName);
-          _builder_1.append(".navigate(");
-          String _side = this.side(((ContextExpression)e));
-          _builder_1.append(_side);
-          _builder_1.append(", ");
-          _newLine_1.append(_builder_1);
-          this.internalToJavaExpression(((NavigationExpression)e).getHost(), a);
-          StringConcatenation _builder_2 = new StringConcatenation();
-          _builder_2.append(", \"");
-          String _pathName = ((NavigationExpression)e).getPathName();
-          _builder_2.append(_pathName);
-          _builder_2.append("\", ");
-          EClassifier _key = ecoreType.getKey();
-          _builder_2.append((_key instanceof EClass));
-          _builder_2.append(", ");
-          Boolean _value = ecoreType.getValue();
-          _builder_2.append(_value);
-          _builder_2.append(");");
-          a.append(_builder_2);
-        } else {
-          ITreeAppendable _newLine_2 = a.newLine();
           StringConcatenation _builder_3 = new StringConcatenation();
-          String _canonicalName_1 = ExceptionSafeInferface.class.getCanonicalName();
-          _builder_3.append(_canonicalName_1);
+          String _qualifiedName_3 = expectedType_1.getQualifiedName();
+          _builder_3.append(_qualifiedName_3);
+          _builder_3.append(" ");
+          _builder_3.append(name_1);
+          _builder_3.append(" = ");
+          String _canonicalName_2 = ExceptionSafeInferface.class.getCanonicalName();
+          _builder_3.append(_canonicalName_2);
           _builder_3.append(".navigate(");
-          String _side_1 = this.side(((ContextExpression)e));
-          _builder_3.append(_side_1);
+          String _literal_2 = this.side(((ContextExpression)e)).getLiteral();
+          _builder_3.append(_literal_2);
           _builder_3.append(", ");
-          _newLine_2.append(_builder_3);
+          _newLine_1.append(_builder_3);
           this.internalToJavaExpression(((NavigationExpression)e).getHost(), a);
           StringConcatenation _builder_4 = new StringConcatenation();
           _builder_4.append(", \"");
-          String _pathName_1 = ((NavigationExpression)e).getPathName();
-          _builder_4.append(_pathName_1);
+          String _pathName = ((NavigationExpression)e).getPathName();
+          _builder_4.append(_pathName);
           _builder_4.append("\", ");
-          EClassifier _key_1 = ecoreType.getKey();
-          _builder_4.append((_key_1 instanceof EClass));
+          EClassifier _key = ecoreType.getKey();
+          _builder_4.append((_key instanceof EClass));
           _builder_4.append(", ");
-          Boolean _value_1 = ecoreType.getValue();
-          _builder_4.append(_value_1);
+          Boolean _value = ecoreType.getValue();
+          _builder_4.append(_value);
           _builder_4.append(");");
           a.append(_builder_4);
+        } else {
+          ITreeAppendable _newLine_2 = a.newLine();
+          StringConcatenation _builder_5 = new StringConcatenation();
+          String _canonicalName_3 = ExceptionSafeInferface.class.getCanonicalName();
+          _builder_5.append(_canonicalName_3);
+          _builder_5.append(".navigate(");
+          String _literal_3 = this.side(((ContextExpression)e)).getLiteral();
+          _builder_5.append(_literal_3);
+          _builder_5.append(", ");
+          _newLine_2.append(_builder_5);
+          this.internalToJavaExpression(((NavigationExpression)e).getHost(), a);
+          StringConcatenation _builder_6 = new StringConcatenation();
+          _builder_6.append(", \"");
+          String _pathName_1 = ((NavigationExpression)e).getPathName();
+          _builder_6.append(_pathName_1);
+          _builder_6.append("\", ");
+          EClassifier _key_1 = ecoreType.getKey();
+          _builder_6.append((_key_1 instanceof EClass));
+          _builder_6.append(", ");
+          Boolean _value_1 = ecoreType.getValue();
+          _builder_6.append(_value_1);
+          _builder_6.append(");");
+          a.append(_builder_6);
         }
       } else {
         if ((e instanceof ModificationExpressionBlock)) {
@@ -151,25 +180,25 @@ public class XmuCoreCompiler extends XbaseCompiler {
           ((ModificationExpressionBlock)e).getExpressions().forEach(_function);
           if (isReferenced) {
             final String v = a.declareSyntheticVariable(e, "_modRes");
-            StringConcatenation _builder_5 = new StringConcatenation();
-            String _canonicalName_2 = SourceType.class.getCanonicalName();
-            _builder_5.append(_canonicalName_2);
-            _builder_5.append(" ");
-            _builder_5.append(v);
-            _builder_5.append(" =");
-            a.append(_builder_5);
-            this.internalToJavaExpression(e, a);
-            StringConcatenation _builder_6 = new StringConcatenation();
-            _builder_6.append(";");
-            a.append(_builder_6);
-          } else {
             StringConcatenation _builder_7 = new StringConcatenation();
-            _builder_7.append("return ");
+            String _canonicalName_4 = SourceType.class.getCanonicalName();
+            _builder_7.append(_canonicalName_4);
+            _builder_7.append(" ");
+            _builder_7.append(v);
+            _builder_7.append(" =");
             a.append(_builder_7);
             this.internalToJavaExpression(e, a);
             StringConcatenation _builder_8 = new StringConcatenation();
             _builder_8.append(";");
             a.append(_builder_8);
+          } else {
+            StringConcatenation _builder_9 = new StringConcatenation();
+            _builder_9.append("return ");
+            a.append(_builder_9);
+            this.internalToJavaExpression(e, a);
+            StringConcatenation _builder_10 = new StringConcatenation();
+            _builder_10.append(";");
+            a.append(_builder_10);
           }
         } else {
           if ((e instanceof EnforcementExpression)) {
@@ -186,13 +215,13 @@ public class XmuCoreCompiler extends XbaseCompiler {
               {
                 final String init = a.declareSyntheticVariable(e, "_mod");
                 ITreeAppendable _newLine_3 = a.newLine();
-                StringConcatenation _builder_9 = new StringConcatenation();
-                String _canonicalName_3 = ContextGraph.GraphModification.class.getCanonicalName();
-                _builder_9.append(_canonicalName_3);
-                _builder_9.append(" ");
-                _builder_9.append(init);
-                _builder_9.append(" = source.modification();");
-                _newLine_3.append(_builder_9);
+                StringConcatenation _builder_11 = new StringConcatenation();
+                String _canonicalName_5 = ContextGraph.GraphModification.class.getCanonicalName();
+                _builder_11.append(_canonicalName_5);
+                _builder_11.append(" ");
+                _builder_11.append(init);
+                _builder_11.append(" = source.modification();");
+                _newLine_3.append(_builder_11);
                 _xblockexpression = init;
               }
               _xifexpression = _xblockexpression;
@@ -202,37 +231,37 @@ public class XmuCoreCompiler extends XbaseCompiler {
             final String prev = _xifexpression;
             final String cur = a.declareSyntheticVariable(e, "_mod");
             ITreeAppendable _newLine_3 = a.newLine();
-            StringConcatenation _builder_9 = new StringConcatenation();
-            String _canonicalName_3 = ContextGraph.GraphModification.class.getCanonicalName();
-            _builder_9.append(_canonicalName_3);
-            _builder_9.append(" ");
-            _builder_9.append(cur);
-            _builder_9.append(" = ");
-            _builder_9.append(prev);
-            _builder_9.append(".enforce(");
+            StringConcatenation _builder_11 = new StringConcatenation();
+            String _canonicalName_5 = ContextGraph.GraphModification.class.getCanonicalName();
+            _builder_11.append(_canonicalName_5);
+            _builder_11.append(" ");
+            _builder_11.append(cur);
+            _builder_11.append(" = ");
+            _builder_11.append(prev);
+            _builder_11.append(".enforce(");
             String _patternAccessor = this.patternAccessor(((EnforcementExpression)e).getPattern());
-            _builder_9.append(_patternAccessor);
-            _builder_9.append("(), new edu.ustb.sei.mde.structure.Tuple2[] {");
-            _newLine_3.append(_builder_9);
+            _builder_11.append(_patternAccessor);
+            _builder_11.append("(), new edu.ustb.sei.mde.structure.Tuple2[] {");
+            _newLine_3.append(_builder_11);
             final Procedure2<ValueMapping, Integer> _function_2 = (ValueMapping m, Integer id) -> {
               if (((id).intValue() > 0)) {
                 a.append(",");
               }
-              StringConcatenation _builder_10 = new StringConcatenation();
-              _builder_10.append("edu.ustb.sei.mde.structure.Tuple2.make(\"");
+              StringConcatenation _builder_12 = new StringConcatenation();
+              _builder_12.append("edu.ustb.sei.mde.structure.Tuple2.make(\"");
               String _varName = m.getVarName();
-              _builder_10.append(_varName);
-              _builder_10.append("\",");
-              a.append(_builder_10);
+              _builder_12.append(_varName);
+              _builder_12.append("\",");
+              a.append(_builder_12);
               this.internalToJavaExpression(m.getExpression(), a);
-              StringConcatenation _builder_11 = new StringConcatenation();
-              _builder_11.append(")");
-              a.append(_builder_11);
+              StringConcatenation _builder_13 = new StringConcatenation();
+              _builder_13.append(")");
+              a.append(_builder_13);
             };
             IterableExtensions.<ValueMapping>forEach(((EnforcementExpression)e).getValueMappings(), _function_2);
-            StringConcatenation _builder_10 = new StringConcatenation();
-            _builder_10.append("});");
-            a.append(_builder_10).newLine();
+            StringConcatenation _builder_12 = new StringConcatenation();
+            _builder_12.append("});");
+            a.append(_builder_12).newLine();
           } else {
             if ((e instanceof DeleteElementExpression)) {
               EObject _eContainer_1 = ((DeleteElementExpression)e).eContainer();
@@ -244,13 +273,13 @@ public class XmuCoreCompiler extends XbaseCompiler {
                 {
                   final String init = a.declareSyntheticVariable(e, "_mod");
                   ITreeAppendable _newLine_4 = a.newLine();
-                  StringConcatenation _builder_11 = new StringConcatenation();
-                  String _canonicalName_4 = ContextGraph.GraphModification.class.getCanonicalName();
-                  _builder_11.append(_canonicalName_4);
-                  _builder_11.append(" ");
-                  _builder_11.append(init);
-                  _builder_11.append(" = source.modification();");
-                  _newLine_4.append(_builder_11);
+                  StringConcatenation _builder_13 = new StringConcatenation();
+                  String _canonicalName_6 = ContextGraph.GraphModification.class.getCanonicalName();
+                  _builder_13.append(_canonicalName_6);
+                  _builder_13.append(" ");
+                  _builder_13.append(init);
+                  _builder_13.append(" = source.modification();");
+                  _newLine_4.append(_builder_13);
                   _xblockexpression_1 = init;
                 }
                 _xifexpression_1 = _xblockexpression_1;
@@ -261,19 +290,19 @@ public class XmuCoreCompiler extends XbaseCompiler {
               final String cur_1 = a.declareSyntheticVariable(e, "_mod");
               this.internalToJavaStatement(((DeleteElementExpression)e).getElement(), a, true);
               ITreeAppendable _newLine_4 = a.newLine();
-              StringConcatenation _builder_11 = new StringConcatenation();
-              String _canonicalName_4 = ContextGraph.GraphModification.class.getCanonicalName();
-              _builder_11.append(_canonicalName_4);
-              _builder_11.append(" ");
-              _builder_11.append(cur_1);
-              _builder_11.append(" = ");
-              _builder_11.append(prev_1);
-              _builder_11.append(".remove(");
-              _newLine_4.append(_builder_11);
+              StringConcatenation _builder_13 = new StringConcatenation();
+              String _canonicalName_6 = ContextGraph.GraphModification.class.getCanonicalName();
+              _builder_13.append(_canonicalName_6);
+              _builder_13.append(" ");
+              _builder_13.append(cur_1);
+              _builder_13.append(" = ");
+              _builder_13.append(prev_1);
+              _builder_13.append(".remove(");
+              _newLine_4.append(_builder_13);
               this.internalToJavaExpression(((DeleteElementExpression)e).getElement(), a);
-              StringConcatenation _builder_12 = new StringConcatenation();
-              _builder_12.append(");");
-              a.append(_builder_12).newLine();
+              StringConcatenation _builder_14 = new StringConcatenation();
+              _builder_14.append(");");
+              a.append(_builder_14).newLine();
             } else {
               super.doInternalToJavaStatement(e, a, isReferenced);
             }
@@ -283,12 +312,12 @@ public class XmuCoreCompiler extends XbaseCompiler {
     }
   }
   
-  public String side(final ContextExpression expression) {
-    String _xifexpression = null;
+  public SideEnum side(final ContextExpression expression) {
+    SideEnum _xifexpression = null;
     if ((expression instanceof ContextVarExpression)) {
       _xifexpression = ((ContextVarExpression)expression).getSide();
     } else {
-      String _xifexpression_1 = null;
+      SideEnum _xifexpression_1 = null;
       if ((expression instanceof NavigationExpression)) {
         _xifexpression_1 = this.side(((NavigationExpression)expression).getHost());
       } else {
@@ -302,22 +331,7 @@ public class XmuCoreCompiler extends XbaseCompiler {
   @Override
   protected void internalToConvertedExpression(final XExpression e, final ITreeAppendable a) {
     if ((e instanceof ContextVarExpression)) {
-      final JvmTypeReference type = this.getType(e);
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("((");
-      String _qualifiedName = type.getQualifiedName();
-      _builder.append(_qualifiedName);
-      _builder.append(") ");
-      String _canonicalName = ExceptionSafeInferface.class.getCanonicalName();
-      _builder.append(_canonicalName);
-      _builder.append(".getValue(");
-      String _side = ((ContextVarExpression)e).getSide();
-      _builder.append(_side);
-      _builder.append(",\"");
-      String _name = ((ContextVarExpression)e).getName();
-      _builder.append(_name);
-      _builder.append("\"))");
-      a.append(_builder);
+      a.append(this.getVarName(e, a));
     } else {
       if ((e instanceof NavigationExpression)) {
         a.append(this.getVarName(e, a));
@@ -327,10 +341,10 @@ public class XmuCoreCompiler extends XbaseCompiler {
         } else {
           if ((e instanceof ModificationExpressionBlock)) {
             final String lastResult = this.getVarName(IterableExtensions.<XExpression>last(((ModificationExpressionBlock)e).getExpressions()), a);
-            StringConcatenation _builder_1 = new StringConcatenation();
-            _builder_1.append(lastResult);
-            _builder_1.append(".get()");
-            a.append(_builder_1);
+            StringConcatenation _builder = new StringConcatenation();
+            _builder.append(lastResult);
+            _builder.append(".get()");
+            a.append(_builder);
           } else {
             super.internalToConvertedExpression(e, a);
           }

@@ -8,6 +8,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.DeleteElementExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.EnforcementExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpressionBlock;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.NavigationExpression;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.SideEnum;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ValueMapping;
 import edu.ustb.sei.mde.bxcore.dsl.jvmmodel.ModelInferrerUtils;
 import edu.ustb.sei.mde.bxcore.dsl.structure.TupleType;
@@ -70,9 +71,9 @@ import org.eclipse.xtext.xbase.validation.IssueCodes;
 @SuppressWarnings("all")
 public class XmuCoreTypeComputer extends XbaseTypeComputer {
   protected void _computeTypes(final ContextVarExpression cvar, final ITypeComputationState state) {
-    final String side = cvar.getSide();
+    final SideEnum side = cvar.getSide();
     final String varName = cvar.getName();
-    final TupleType tupleType = ModelInferrerUtils.context(cvar, side.equals("source"));
+    final TupleType tupleType = ModelInferrerUtils.context(cvar, side);
     if ((tupleType == null)) {
       state.acceptActualType(this.getRawTypeForName(Object.class, state));
     } else {

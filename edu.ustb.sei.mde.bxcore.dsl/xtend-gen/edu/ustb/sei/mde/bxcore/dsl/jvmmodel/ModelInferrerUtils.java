@@ -10,6 +10,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.NavigationExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.Pattern;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternDefinitionReference;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternTypeLiteral;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.SideEnum;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreAlign;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreStatement;
@@ -72,7 +73,7 @@ public class ModelInferrerUtils {
     return result;
   }
   
-  public static TupleType context(final EObject e, final boolean inSource) {
+  public static TupleType context(final EObject e, final SideEnum side) {
     TupleType _xtrycatchfinallyexpression = null;
     try {
       TupleType _xifexpression = null;
@@ -107,75 +108,99 @@ public class ModelInferrerUtils {
             boolean _tripleEquals = (_eContainingFeature == BXCorePackage.Literals.XMU_CORE_ALIGN__ALIGNMENT);
             if (_tripleEquals) {
               TupleType _xifexpression_4 = null;
-              if (inSource) {
+              if ((side == SideEnum.SOURCE)) {
                 EObject _eContainer = ((ContextAwareCondition)e).eContainer();
-                _xifexpression_4 = ModelInferrerUtils.context(((XmuCoreAlign) _eContainer).getSourcePattern(), true);
+                _xifexpression_4 = ModelInferrerUtils.context(((XmuCoreAlign) _eContainer).getSourcePattern(), SideEnum.SOURCE);
               } else {
-                EObject _eContainer_1 = ((ContextAwareCondition)e).eContainer();
-                _xifexpression_4 = ModelInferrerUtils.context(((XmuCoreAlign) _eContainer_1).getViewPattern(), false);
+                TupleType _xifexpression_5 = null;
+                if ((side == SideEnum.VIEW)) {
+                  EObject _eContainer_1 = ((ContextAwareCondition)e).eContainer();
+                  _xifexpression_5 = ModelInferrerUtils.context(((XmuCoreAlign) _eContainer_1).getViewPattern(), SideEnum.VIEW);
+                } else {
+                  _xifexpression_5 = null;
+                }
+                _xifexpression_4 = _xifexpression_5;
               }
               _xifexpression_3 = _xifexpression_4;
             } else {
-              _xifexpression_3 = ModelInferrerUtils.context(((ContextAwareCondition)e).eContainer(), inSource);
+              _xifexpression_3 = ModelInferrerUtils.context(((ContextAwareCondition)e).eContainer(), side);
             }
             _xifexpression_2 = _xifexpression_3;
           } else {
-            TupleType _xifexpression_5 = null;
+            TupleType _xifexpression_6 = null;
             if ((e instanceof ContextAwareUnidirectionalAction)) {
-              TupleType _xifexpression_6 = null;
+              TupleType _xifexpression_7 = null;
               EStructuralFeature _eContainingFeature_1 = ((ContextAwareUnidirectionalAction)e).eContainingFeature();
               boolean _tripleEquals_1 = (_eContainingFeature_1 == BXCorePackage.Literals.XMU_CORE_ALIGN__UNMATCH_S);
               if (_tripleEquals_1) {
-                TupleType _xifexpression_7 = null;
-                if (inSource) {
-                  EObject _eContainer_2 = ((ContextAwareUnidirectionalAction)e).eContainer();
-                  _xifexpression_7 = ModelInferrerUtils.context(((XmuCoreAlign) _eContainer_2).getSourcePattern(), true);
-                } else {
-                  EObject _eContainer_3 = ((ContextAwareUnidirectionalAction)e).eContainer();
-                  _xifexpression_7 = ModelInferrerUtils.context(((XmuCoreAlign) _eContainer_3), false);
-                }
-                _xifexpression_6 = _xifexpression_7;
-              } else {
                 TupleType _xifexpression_8 = null;
+                if ((side == SideEnum.SOURCE)) {
+                  EObject _eContainer_2 = ((ContextAwareUnidirectionalAction)e).eContainer();
+                  _xifexpression_8 = ModelInferrerUtils.context(((XmuCoreAlign) _eContainer_2).getSourcePattern(), SideEnum.SOURCE);
+                } else {
+                  TupleType _xifexpression_9 = null;
+                  if ((side == SideEnum.VIEW)) {
+                    EObject _eContainer_3 = ((ContextAwareUnidirectionalAction)e).eContainer();
+                    _xifexpression_9 = ModelInferrerUtils.context(((XmuCoreAlign) _eContainer_3), SideEnum.VIEW);
+                  } else {
+                    _xifexpression_9 = null;
+                  }
+                  _xifexpression_8 = _xifexpression_9;
+                }
+                _xifexpression_7 = _xifexpression_8;
+              } else {
+                TupleType _xifexpression_10 = null;
                 EStructuralFeature _eContainingFeature_2 = ((ContextAwareUnidirectionalAction)e).eContainingFeature();
                 boolean _tripleEquals_2 = (_eContainingFeature_2 == BXCorePackage.Literals.XMU_CORE_ALIGN__UNMATCH_V);
                 if (_tripleEquals_2) {
-                  TupleType _xifexpression_9 = null;
-                  if (inSource) {
+                  TupleType _xifexpression_11 = null;
+                  if ((side == SideEnum.SOURCE)) {
                     EObject _eContainer_4 = ((ContextAwareUnidirectionalAction)e).eContainer();
-                    _xifexpression_9 = ModelInferrerUtils.context(((XmuCoreAlign) _eContainer_4), true);
+                    _xifexpression_11 = ModelInferrerUtils.context(((XmuCoreAlign) _eContainer_4), SideEnum.SOURCE);
                   } else {
-                    EObject _eContainer_5 = ((ContextAwareUnidirectionalAction)e).eContainer();
-                    _xifexpression_9 = ModelInferrerUtils.context(((XmuCoreAlign) _eContainer_5).getViewPattern(), false);
+                    TupleType _xifexpression_12 = null;
+                    if ((side == SideEnum.VIEW)) {
+                      EObject _eContainer_5 = ((ContextAwareUnidirectionalAction)e).eContainer();
+                      _xifexpression_12 = ModelInferrerUtils.context(((XmuCoreAlign) _eContainer_5).getViewPattern(), SideEnum.VIEW);
+                    } else {
+                      _xifexpression_12 = null;
+                    }
+                    _xifexpression_11 = _xifexpression_12;
                   }
-                  _xifexpression_8 = _xifexpression_9;
+                  _xifexpression_10 = _xifexpression_11;
                 } else {
-                  _xifexpression_8 = ModelInferrerUtils.context(((ContextAwareUnidirectionalAction)e).eContainer(), inSource);
+                  _xifexpression_10 = ModelInferrerUtils.context(((ContextAwareUnidirectionalAction)e).eContainer(), side);
                 }
-                _xifexpression_6 = _xifexpression_8;
+                _xifexpression_7 = _xifexpression_10;
               }
-              _xifexpression_5 = _xifexpression_6;
+              _xifexpression_6 = _xifexpression_7;
             } else {
-              TupleType _xifexpression_10 = null;
+              TupleType _xifexpression_13 = null;
               if ((e instanceof XmuCoreStatement)) {
                 UnsolvedTupleType _xblockexpression_1 = null;
                 {
                   final InferData inferData = InferManager.getInferredTypeModel(((XmuCoreStatement)e).eResource());
-                  UnsolvedTupleType _xifexpression_11 = null;
-                  if (inSource) {
-                    _xifexpression_11 = inferData.getSourceInfer().unsolvedTupleTypeMap.get(e);
+                  UnsolvedTupleType _xifexpression_14 = null;
+                  if ((side == SideEnum.SOURCE)) {
+                    _xifexpression_14 = inferData.getSourceInfer().unsolvedTupleTypeMap.get(e);
                   } else {
-                    _xifexpression_11 = inferData.getViewInfer().unsolvedTupleTypeMap.get(e);
+                    UnsolvedTupleType _xifexpression_15 = null;
+                    if ((side == SideEnum.VIEW)) {
+                      _xifexpression_15 = inferData.getViewInfer().unsolvedTupleTypeMap.get(e);
+                    } else {
+                      _xifexpression_15 = null;
+                    }
+                    _xifexpression_14 = _xifexpression_15;
                   }
-                  _xblockexpression_1 = _xifexpression_11;
+                  _xblockexpression_1 = _xifexpression_14;
                 }
-                _xifexpression_10 = _xblockexpression_1;
+                _xifexpression_13 = _xblockexpression_1;
               } else {
-                _xifexpression_10 = ModelInferrerUtils.context(e.eContainer(), inSource);
+                _xifexpression_13 = ModelInferrerUtils.context(e.eContainer(), side);
               }
-              _xifexpression_5 = _xifexpression_10;
+              _xifexpression_6 = _xifexpression_13;
             }
-            _xifexpression_2 = _xifexpression_5;
+            _xifexpression_2 = _xifexpression_6;
           }
           _xifexpression_1 = _xifexpression_2;
         }
@@ -219,13 +244,13 @@ public class ModelInferrerUtils {
     if ((e instanceof ContextVarExpression)) {
       Pair<EClassifier, Boolean> _xblockexpression = null;
       {
-        final String side = ((ContextVarExpression)e).getSide();
+        final SideEnum side = ((ContextVarExpression)e).getSide();
         final String varName = ((ContextVarExpression)e).getName();
         Pair<EClassifier, Boolean> _xtrycatchfinallyexpression = null;
         try {
           Pair<EClassifier, Boolean> _xblockexpression_1 = null;
           {
-            final TupleType tupleType = ModelInferrerUtils.context(e, side.equals("source"));
+            final TupleType tupleType = ModelInferrerUtils.context(e, side);
             Pair<EClassifier, Boolean> _xifexpression_1 = null;
             if ((tupleType == null)) {
               _xifexpression_1 = null;

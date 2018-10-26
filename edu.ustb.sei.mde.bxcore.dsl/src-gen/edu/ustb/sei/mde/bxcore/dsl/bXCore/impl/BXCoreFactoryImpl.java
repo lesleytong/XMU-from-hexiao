@@ -6,6 +6,7 @@ package edu.ustb.sei.mde.bxcore.dsl.bXCore.impl;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.*;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -68,6 +69,7 @@ public class BXCoreFactoryImpl extends EFactoryImpl implements BXCoreFactory
       case BXCorePackage.BX_PROGRAM: return createBXProgram();
       case BXCorePackage.IMPORT_SECTION: return createImportSection();
       case BXCorePackage.DEFINITION: return createDefinition();
+      case BXCorePackage.CUSTOMIZED_BI_GUL_DEFINITION: return createCustomizedBiGULDefinition();
       case BXCorePackage.TYPE_LITERAL: return createTypeLiteral();
       case BXCorePackage.TUPLE_TYPE_LITERAL: return createTupleTypeLiteral();
       case BXCorePackage.UNORDERED_TUPLE_TYPE_LITERAL: return createUnorderedTupleTypeLiteral();
@@ -112,6 +114,7 @@ public class BXCoreFactoryImpl extends EFactoryImpl implements BXCoreFactory
       case BXCorePackage.BI_GUL_STATEMENT: return createBiGULStatement();
       case BXCorePackage.BI_GUL_REPLACE: return createBiGULReplace();
       case BXCorePackage.BI_GUL_SKIP: return createBiGULSkip();
+      case BXCorePackage.CUSTOMIZED_BI_GUL_REFERENCE: return createCustomizedBiGULReference();
       case BXCorePackage.CONTEXT_EXPRESSION: return createContextExpression();
       case BXCorePackage.MODIFICATION_EXPRESSION_BLOCK: return createModificationExpressionBlock();
       case BXCorePackage.VALUE_MAPPING: return createValueMapping();
@@ -124,6 +127,40 @@ public class BXCoreFactoryImpl extends EFactoryImpl implements BXCoreFactory
       case BXCorePackage.DELETE_ELEMENT_EXPRESSION: return createDeleteElementExpression();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+    }
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Object createFromString(EDataType eDataType, String initialValue)
+  {
+    switch (eDataType.getClassifierID())
+    {
+      case BXCorePackage.SIDE_ENUM:
+        return createSideEnumFromString(eDataType, initialValue);
+      default:
+        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+    }
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String convertToString(EDataType eDataType, Object instanceValue)
+  {
+    switch (eDataType.getClassifierID())
+    {
+      case BXCorePackage.SIDE_ENUM:
+        return convertSideEnumToString(eDataType, instanceValue);
+      default:
+        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
   }
 
@@ -158,6 +195,17 @@ public class BXCoreFactoryImpl extends EFactoryImpl implements BXCoreFactory
   {
     DefinitionImpl definition = new DefinitionImpl();
     return definition;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public CustomizedBiGULDefinition createCustomizedBiGULDefinition()
+  {
+    CustomizedBiGULDefinitionImpl customizedBiGULDefinition = new CustomizedBiGULDefinitionImpl();
+    return customizedBiGULDefinition;
   }
 
   /**
@@ -649,6 +697,17 @@ public class BXCoreFactoryImpl extends EFactoryImpl implements BXCoreFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public CustomizedBiGULReference createCustomizedBiGULReference()
+  {
+    CustomizedBiGULReferenceImpl customizedBiGULReference = new CustomizedBiGULReferenceImpl();
+    return customizedBiGULReference;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public ContextExpression createContextExpression()
   {
     ContextExpressionImpl contextExpression = new ContextExpressionImpl();
@@ -752,6 +811,28 @@ public class BXCoreFactoryImpl extends EFactoryImpl implements BXCoreFactory
   {
     DeleteElementExpressionImpl deleteElementExpression = new DeleteElementExpressionImpl();
     return deleteElementExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public SideEnum createSideEnumFromString(EDataType eDataType, String initialValue)
+  {
+    SideEnum result = SideEnum.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertSideEnumToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
   }
 
   /**

@@ -51,6 +51,7 @@ public interface ContextVarExpression extends ContextExpression
 
   /**
    * Returns the value of the '<em><b>Side</b></em>' attribute.
+   * The literals are from the enumeration {@link edu.ustb.sei.mde.bxcore.dsl.bXCore.SideEnum}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Side</em>' attribute isn't clear,
@@ -58,21 +59,23 @@ public interface ContextVarExpression extends ContextExpression
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Side</em>' attribute.
-   * @see #setSide(String)
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.SideEnum
+   * @see #setSide(SideEnum)
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getContextVarExpression_Side()
    * @model
    * @generated
    */
-  String getSide();
+  SideEnum getSide();
 
   /**
    * Sets the value of the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextVarExpression#getSide <em>Side</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Side</em>' attribute.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.SideEnum
    * @see #getSide()
    * @generated
    */
-  void setSide(String value);
+  void setSide(SideEnum value);
 
 } // ContextVarExpression

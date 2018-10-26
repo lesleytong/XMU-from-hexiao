@@ -13,6 +13,8 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareCondition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareUnidirectionalAction;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextVarExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.Conversion;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.CustomizedBiGULDefinition;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.CustomizedBiGULReference;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.DefinedContextTypeRef;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.DeleteElementExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.EcoreTypeRef;
@@ -145,6 +147,12 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 				return; 
 			case BXCorePackage.CONVERSION:
 				sequence_Conversion(context, (Conversion) semanticObject); 
+				return; 
+			case BXCorePackage.CUSTOMIZED_BI_GUL_DEFINITION:
+				sequence_CustomizedBiGULDefinition(context, (CustomizedBiGULDefinition) semanticObject); 
+				return; 
+			case BXCorePackage.CUSTOMIZED_BI_GUL_REFERENCE:
+				sequence_CustomizedBiGULReference(context, (CustomizedBiGULReference) semanticObject); 
 				return; 
 			case BXCorePackage.DEFINED_CONTEXT_TYPE_REF:
 				sequence_ContextTypeRef(context, (DefinedContextTypeRef) semanticObject); 
@@ -703,10 +711,19 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	 *     XExpressionOrVarDeclaration returns ContextVarExpression
 	 *
 	 * Constraint:
-	 *     (name=ValidID (side='source' | side='view'))
+	 *     (name=ValidID side=SideEnum)
 	 */
 	protected void sequence_ContextVarExpression(ISerializationContext context, ContextVarExpression semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.CONTEXT_VAR_EXPRESSION__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.CONTEXT_VAR_EXPRESSION__NAME));
+			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.CONTEXT_VAR_EXPRESSION__SIDE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.CONTEXT_VAR_EXPRESSION__SIDE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getContextVarExpressionAccess().getNameValidIDParserRuleCall_1_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getContextVarExpressionAccess().getSideSideEnumEnumRuleCall_3_0(), semanticObject.getSide());
+		feeder.finish();
 	}
 	
 	
@@ -719,6 +736,45 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	 */
 	protected void sequence_Conversion(ISerializationContext context, Conversion semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Definition returns CustomizedBiGULDefinition
+	 *     CustomizedBiGULDefinition returns CustomizedBiGULDefinition
+	 *
+	 * Constraint:
+	 *     (
+	 *         name=ValidID 
+	 *         sourceParams+=JvmFormalParameter 
+	 *         sourceParams+=JvmFormalParameter* 
+	 *         viewParams+=JvmFormalParameter 
+	 *         viewParams+=JvmFormalParameter* 
+	 *         (get=XExpression | put=XExpression)+
+	 *     )
+	 */
+	protected void sequence_CustomizedBiGULDefinition(ISerializationContext context, CustomizedBiGULDefinition semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     BiGULStatement returns CustomizedBiGULReference
+	 *     CustomizedBiGULReference returns CustomizedBiGULReference
+	 *
+	 * Constraint:
+	 *     function=[CustomizedBiGULDefinition|ValidID]
+	 */
+	protected void sequence_CustomizedBiGULReference(ISerializationContext context, CustomizedBiGULReference semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.CUSTOMIZED_BI_GUL_REFERENCE__FUNCTION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.CUSTOMIZED_BI_GUL_REFERENCE__FUNCTION));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getCustomizedBiGULReferenceAccess().getFunctionCustomizedBiGULDefinitionValidIDParserRuleCall_0_1(), semanticObject.eGet(BXCorePackage.Literals.CUSTOMIZED_BI_GUL_REFERENCE__FUNCTION, false));
+		feeder.finish();
 	}
 	
 	

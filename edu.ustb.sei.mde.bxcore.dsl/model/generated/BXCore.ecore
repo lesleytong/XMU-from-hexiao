@@ -17,6 +17,18 @@
   <eClassifiers xsi:type="ecore:EClass" name="Definition">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CustomizedBiGULDefinition" eSuperTypes="#//Definition">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceParams" upperBound="-1"
+        eType="ecore:EClass platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmFormalParameter"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="viewParams" upperBound="-1"
+        eType="ecore:EClass platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmFormalParameter"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="get" eType="ecore:EClass platform:/resource/org.eclipse.xtext.xbase/model/Xbase.ecore#//XExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="put" eType="ecore:EClass platform:/resource/org.eclipse.xtext.xbase/model/Xbase.ecore#//XExpression"
+        containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeLiteral"/>
   <eClassifiers xsi:type="ecore:EClass" name="TupleTypeLiteral" eSuperTypes="#//TypeLiteral #//ContextTypeRef"/>
   <eClassifiers xsi:type="ecore:EClass" name="UnorderedTupleTypeLiteral" eSuperTypes="#//TupleTypeLiteral">
@@ -224,7 +236,15 @@
   <eClassifiers xsi:type="ecore:EClass" name="BiGULStatement"/>
   <eClassifiers xsi:type="ecore:EClass" name="BiGULReplace" eSuperTypes="#//BiGULStatement"/>
   <eClassifiers xsi:type="ecore:EClass" name="BiGULSkip" eSuperTypes="#//BiGULStatement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CustomizedBiGULReference" eSuperTypes="#//BiGULStatement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="function" eType="#//CustomizedBiGULDefinition"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ContextExpression" eSuperTypes="platform:/resource/org.eclipse.xtext.xbase/model/Xbase.ecore#//XExpression"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="SideEnum">
+    <eLiterals name="source" literal="source"/>
+    <eLiterals name="view" value="1" literal="view"/>
+    <eLiterals name="context" value="2" literal="context"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ModificationExpressionBlock" eSuperTypes="platform:/resource/org.eclipse.xtext.xbase/model/Xbase.ecore#//XExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="expressions" upperBound="-1"
         eType="ecore:EClass platform:/resource/org.eclipse.xtext.xbase/model/Xbase.ecore#//XExpression"
@@ -249,7 +269,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ContextVarExpression" eSuperTypes="#//ContextExpression">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="side" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="side" eType="#//SideEnum"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EnforcementExpression" eSuperTypes="platform:/resource/org.eclipse.xtext.xbase/model/Xbase.ecore#//XExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="pattern" eType="#//Pattern"

@@ -10,6 +10,8 @@ import org.eclipse.xtext.Action;
 import org.eclipse.xtext.Alternatives;
 import org.eclipse.xtext.Assignment;
 import org.eclipse.xtext.CrossReference;
+import org.eclipse.xtext.EnumLiteralDeclaration;
+import org.eclipse.xtext.EnumRule;
 import org.eclipse.xtext.Grammar;
 import org.eclipse.xtext.GrammarUtil;
 import org.eclipse.xtext.Group;
@@ -18,6 +20,7 @@ import org.eclipse.xtext.ParserRule;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.TerminalRule;
 import org.eclipse.xtext.UnorderedGroup;
+import org.eclipse.xtext.service.AbstractElementFinder.AbstractEnumRuleElementFinder;
 import org.eclipse.xtext.service.AbstractElementFinder.AbstractGrammarElementFinder;
 import org.eclipse.xtext.service.GrammarProvider;
 import org.eclipse.xtext.xbase.services.XbaseGrammarAccess;
@@ -105,25 +108,157 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 	public class DefinitionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.bxcore.dsl.BXCore.Definition");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cTypeDefinitionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cBXFunctionDefinitionParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cIndexDefinitionParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cCustomizedBiGULDefinitionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cTypeDefinitionParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cBXFunctionDefinitionParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cIndexDefinitionParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		
 		//Definition:
-		//	TypeDefinition | BXFunctionDefinition | IndexDefinition;
+		//	CustomizedBiGULDefinition | TypeDefinition | BXFunctionDefinition | IndexDefinition;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//TypeDefinition | BXFunctionDefinition | IndexDefinition
+		//CustomizedBiGULDefinition | TypeDefinition | BXFunctionDefinition | IndexDefinition
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
+		//CustomizedBiGULDefinition
+		public RuleCall getCustomizedBiGULDefinitionParserRuleCall_0() { return cCustomizedBiGULDefinitionParserRuleCall_0; }
+		
 		//TypeDefinition
-		public RuleCall getTypeDefinitionParserRuleCall_0() { return cTypeDefinitionParserRuleCall_0; }
+		public RuleCall getTypeDefinitionParserRuleCall_1() { return cTypeDefinitionParserRuleCall_1; }
 		
 		//BXFunctionDefinition
-		public RuleCall getBXFunctionDefinitionParserRuleCall_1() { return cBXFunctionDefinitionParserRuleCall_1; }
+		public RuleCall getBXFunctionDefinitionParserRuleCall_2() { return cBXFunctionDefinitionParserRuleCall_2; }
 		
 		//IndexDefinition
-		public RuleCall getIndexDefinitionParserRuleCall_2() { return cIndexDefinitionParserRuleCall_2; }
+		public RuleCall getIndexDefinitionParserRuleCall_3() { return cIndexDefinitionParserRuleCall_3; }
+	}
+	public class CustomizedBiGULDefinitionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.bxcore.dsl.BXCore.CustomizedBiGULDefinition");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cBigulKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameValidIDParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Keyword cLeftParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cSourceParamsAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cSourceParamsJvmFormalParameterParserRuleCall_3_0 = (RuleCall)cSourceParamsAssignment_3.eContents().get(0);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final Keyword cCommaKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
+		private final Assignment cSourceParamsAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cSourceParamsJvmFormalParameterParserRuleCall_4_1_0 = (RuleCall)cSourceParamsAssignment_4_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Keyword cLeftParenthesisKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Assignment cViewParamsAssignment_7 = (Assignment)cGroup.eContents().get(7);
+		private final RuleCall cViewParamsJvmFormalParameterParserRuleCall_7_0 = (RuleCall)cViewParamsAssignment_7.eContents().get(0);
+		private final Group cGroup_8 = (Group)cGroup.eContents().get(8);
+		private final Keyword cCommaKeyword_8_0 = (Keyword)cGroup_8.eContents().get(0);
+		private final Assignment cViewParamsAssignment_8_1 = (Assignment)cGroup_8.eContents().get(1);
+		private final RuleCall cViewParamsJvmFormalParameterParserRuleCall_8_1_0 = (RuleCall)cViewParamsAssignment_8_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_9 = (Keyword)cGroup.eContents().get(9);
+		private final UnorderedGroup cUnorderedGroup_10 = (UnorderedGroup)cGroup.eContents().get(10);
+		private final Group cGroup_10_0 = (Group)cUnorderedGroup_10.eContents().get(0);
+		private final Keyword cGetKeyword_10_0_0 = (Keyword)cGroup_10_0.eContents().get(0);
+		private final Assignment cGetAssignment_10_0_1 = (Assignment)cGroup_10_0.eContents().get(1);
+		private final RuleCall cGetXExpressionParserRuleCall_10_0_1_0 = (RuleCall)cGetAssignment_10_0_1.eContents().get(0);
+		private final Group cGroup_10_1 = (Group)cUnorderedGroup_10.eContents().get(1);
+		private final Keyword cPutKeyword_10_1_0 = (Keyword)cGroup_10_1.eContents().get(0);
+		private final Assignment cPutAssignment_10_1_1 = (Assignment)cGroup_10_1.eContents().get(1);
+		private final RuleCall cPutXExpressionParserRuleCall_10_1_1_0 = (RuleCall)cPutAssignment_10_1_1.eContents().get(0);
+		
+		//CustomizedBiGULDefinition:
+		//	'bigul' name=ValidID
+		//	'(' sourceParams+=JvmFormalParameter (',' sourceParams+=JvmFormalParameter)* ')'
+		//	'(' viewParams+=JvmFormalParameter (',' viewParams+=JvmFormalParameter)* ')' ('get' get=XExpression & 'put'
+		//	put=XExpression);
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'bigul' name=ValidID '(' sourceParams+=JvmFormalParameter (',' sourceParams+=JvmFormalParameter)* ')' '('
+		//viewParams+=JvmFormalParameter (',' viewParams+=JvmFormalParameter)* ')' ('get' get=XExpression & 'put'
+		//put=XExpression)
+		public Group getGroup() { return cGroup; }
+		
+		//'bigul'
+		public Keyword getBigulKeyword_0() { return cBigulKeyword_0; }
+		
+		//name=ValidID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		
+		//ValidID
+		public RuleCall getNameValidIDParserRuleCall_1_0() { return cNameValidIDParserRuleCall_1_0; }
+		
+		//'('
+		public Keyword getLeftParenthesisKeyword_2() { return cLeftParenthesisKeyword_2; }
+		
+		//sourceParams+=JvmFormalParameter
+		public Assignment getSourceParamsAssignment_3() { return cSourceParamsAssignment_3; }
+		
+		//JvmFormalParameter
+		public RuleCall getSourceParamsJvmFormalParameterParserRuleCall_3_0() { return cSourceParamsJvmFormalParameterParserRuleCall_3_0; }
+		
+		//(',' sourceParams+=JvmFormalParameter)*
+		public Group getGroup_4() { return cGroup_4; }
+		
+		//','
+		public Keyword getCommaKeyword_4_0() { return cCommaKeyword_4_0; }
+		
+		//sourceParams+=JvmFormalParameter
+		public Assignment getSourceParamsAssignment_4_1() { return cSourceParamsAssignment_4_1; }
+		
+		//JvmFormalParameter
+		public RuleCall getSourceParamsJvmFormalParameterParserRuleCall_4_1_0() { return cSourceParamsJvmFormalParameterParserRuleCall_4_1_0; }
+		
+		//')'
+		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
+		
+		//'('
+		public Keyword getLeftParenthesisKeyword_6() { return cLeftParenthesisKeyword_6; }
+		
+		//viewParams+=JvmFormalParameter
+		public Assignment getViewParamsAssignment_7() { return cViewParamsAssignment_7; }
+		
+		//JvmFormalParameter
+		public RuleCall getViewParamsJvmFormalParameterParserRuleCall_7_0() { return cViewParamsJvmFormalParameterParserRuleCall_7_0; }
+		
+		//(',' viewParams+=JvmFormalParameter)*
+		public Group getGroup_8() { return cGroup_8; }
+		
+		//','
+		public Keyword getCommaKeyword_8_0() { return cCommaKeyword_8_0; }
+		
+		//viewParams+=JvmFormalParameter
+		public Assignment getViewParamsAssignment_8_1() { return cViewParamsAssignment_8_1; }
+		
+		//JvmFormalParameter
+		public RuleCall getViewParamsJvmFormalParameterParserRuleCall_8_1_0() { return cViewParamsJvmFormalParameterParserRuleCall_8_1_0; }
+		
+		//')'
+		public Keyword getRightParenthesisKeyword_9() { return cRightParenthesisKeyword_9; }
+		
+		//'get' get=XExpression & 'put' put=XExpression
+		public UnorderedGroup getUnorderedGroup_10() { return cUnorderedGroup_10; }
+		
+		//'get' get=XExpression
+		public Group getGroup_10_0() { return cGroup_10_0; }
+		
+		//'get'
+		public Keyword getGetKeyword_10_0_0() { return cGetKeyword_10_0_0; }
+		
+		//get=XExpression
+		public Assignment getGetAssignment_10_0_1() { return cGetAssignment_10_0_1; }
+		
+		//XExpression
+		public RuleCall getGetXExpressionParserRuleCall_10_0_1_0() { return cGetXExpressionParserRuleCall_10_0_1_0; }
+		
+		//'put' put=XExpression
+		public Group getGroup_10_1() { return cGroup_10_1; }
+		
+		//'put'
+		public Keyword getPutKeyword_10_1_0() { return cPutKeyword_10_1_0; }
+		
+		//put=XExpression
+		public Assignment getPutAssignment_10_1_1() { return cPutAssignment_10_1_1; }
+		
+		//XExpression
+		public RuleCall getPutXExpressionParserRuleCall_10_1_1_0() { return cPutXExpressionParserRuleCall_10_1_1_0; }
 	}
 	public class TypeLiteralElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.bxcore.dsl.BXCore.TypeLiteral");
@@ -2091,12 +2226,13 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cBiGULReplaceParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cBiGULSkipParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cCustomizedBiGULReferenceParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
 		//BiGULStatement:
-		//	BiGULReplace | BiGULSkip;
+		//	BiGULReplace | BiGULSkip | CustomizedBiGULReference;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//BiGULReplace | BiGULSkip
+		//BiGULReplace | BiGULSkip | CustomizedBiGULReference
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//BiGULReplace
@@ -2104,6 +2240,9 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//BiGULSkip
 		public RuleCall getBiGULSkipParserRuleCall_1() { return cBiGULSkipParserRuleCall_1; }
+		
+		//CustomizedBiGULReference
+		public RuleCall getCustomizedBiGULReferenceParserRuleCall_2() { return cCustomizedBiGULReferenceParserRuleCall_2; }
 	}
 	public class BiGULReplaceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.bxcore.dsl.BXCore.BiGULReplace");
@@ -2112,16 +2251,16 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cReplaceKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		
 		//BiGULReplace:
-		//	{BiGULReplace} 'replace';
+		//	{BiGULReplace} => 'replace';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{BiGULReplace} 'replace'
+		//{BiGULReplace} => 'replace'
 		public Group getGroup() { return cGroup; }
 		
 		//{BiGULReplace}
 		public Action getBiGULReplaceAction_0() { return cBiGULReplaceAction_0; }
 		
-		//'replace'
+		//=> 'replace'
 		public Keyword getReplaceKeyword_1() { return cReplaceKeyword_1; }
 	}
 	public class BiGULSkipElements extends AbstractParserRuleElementFinder {
@@ -2131,77 +2270,88 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSkipKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		
 		//BiGULSkip:
-		//	{BiGULSkip} 'skip';
+		//	{BiGULSkip} => 'skip';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{BiGULSkip} 'skip'
+		//{BiGULSkip} => 'skip'
 		public Group getGroup() { return cGroup; }
 		
 		//{BiGULSkip}
 		public Action getBiGULSkipAction_0() { return cBiGULSkipAction_0; }
 		
-		//'skip'
+		//=> 'skip'
 		public Keyword getSkipKeyword_1() { return cSkipKeyword_1; }
+	}
+	public class CustomizedBiGULReferenceElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.bxcore.dsl.BXCore.CustomizedBiGULReference");
+		private final Assignment cFunctionAssignment = (Assignment)rule.eContents().get(1);
+		private final CrossReference cFunctionCustomizedBiGULDefinitionCrossReference_0 = (CrossReference)cFunctionAssignment.eContents().get(0);
+		private final RuleCall cFunctionCustomizedBiGULDefinitionValidIDParserRuleCall_0_1 = (RuleCall)cFunctionCustomizedBiGULDefinitionCrossReference_0.eContents().get(1);
+		
+		//CustomizedBiGULReference:
+		//	function=[CustomizedBiGULDefinition|ValidID];
+		@Override public ParserRule getRule() { return rule; }
+		
+		//function=[CustomizedBiGULDefinition|ValidID]
+		public Assignment getFunctionAssignment() { return cFunctionAssignment; }
+		
+		//[CustomizedBiGULDefinition|ValidID]
+		public CrossReference getFunctionCustomizedBiGULDefinitionCrossReference_0() { return cFunctionCustomizedBiGULDefinitionCrossReference_0; }
+		
+		//ValidID
+		public RuleCall getFunctionCustomizedBiGULDefinitionValidIDParserRuleCall_0_1() { return cFunctionCustomizedBiGULDefinitionValidIDParserRuleCall_0_1; }
 	}
 	public class ValidIDElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.bxcore.dsl.BXCore.ValidID");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cIDTerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final Keyword cReplaceKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
-		private final Keyword cSkipKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
-		private final Keyword cIndexKeyword_3 = (Keyword)cAlternatives.eContents().get(3);
-		private final Keyword cAlignKeyword_4 = (Keyword)cAlternatives.eContents().get(4);
-		private final Keyword cMatchKeyword_5 = (Keyword)cAlternatives.eContents().get(5);
-		private final Keyword cIntKeyword_6 = (Keyword)cAlternatives.eContents().get(6);
-		private final Keyword cStringKeyword_7 = (Keyword)cAlternatives.eContents().get(7);
-		private final Keyword cBooleanKeyword_8 = (Keyword)cAlternatives.eContents().get(8);
-		private final Keyword cTypeKeyword_9 = (Keyword)cAlternatives.eContents().get(9);
-		private final Keyword cSourceKeyword_10 = (Keyword)cAlternatives.eContents().get(10);
-		private final Keyword cViewKeyword_11 = (Keyword)cAlternatives.eContents().get(11);
+		private final Keyword cIndexKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
+		private final Keyword cAlignKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
+		private final Keyword cMatchKeyword_3 = (Keyword)cAlternatives.eContents().get(3);
+		private final Keyword cIntKeyword_4 = (Keyword)cAlternatives.eContents().get(4);
+		private final Keyword cStringKeyword_5 = (Keyword)cAlternatives.eContents().get(5);
+		private final Keyword cBooleanKeyword_6 = (Keyword)cAlternatives.eContents().get(6);
+		private final Keyword cTypeKeyword_7 = (Keyword)cAlternatives.eContents().get(7);
+		private final Keyword cSourceKeyword_8 = (Keyword)cAlternatives.eContents().get(8);
+		private final Keyword cViewKeyword_9 = (Keyword)cAlternatives.eContents().get(9);
 		
 		//@Override
 		//ValidID:
-		//	ID | 'replace' | 'skip' | 'index' | 'align' | 'match' | 'int' | 'String' | 'boolean' | 'type' | 'source' | 'view';
+		//	ID | 'index' | 'align' | 'match' | 'int' | 'String' | 'boolean' | 'type' | 'source' | 'view';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//ID | 'replace' | 'skip' | 'index' | 'align' | 'match' | 'int' | 'String' | 'boolean' | 'type' | 'source' | 'view'
+		//ID | 'index' | 'align' | 'match' | 'int' | 'String' | 'boolean' | 'type' | 'source' | 'view'
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//ID
 		public RuleCall getIDTerminalRuleCall_0() { return cIDTerminalRuleCall_0; }
 		
-		//'replace'
-		public Keyword getReplaceKeyword_1() { return cReplaceKeyword_1; }
-		
-		//'skip'
-		public Keyword getSkipKeyword_2() { return cSkipKeyword_2; }
-		
 		//'index'
-		public Keyword getIndexKeyword_3() { return cIndexKeyword_3; }
+		public Keyword getIndexKeyword_1() { return cIndexKeyword_1; }
 		
 		//'align'
-		public Keyword getAlignKeyword_4() { return cAlignKeyword_4; }
+		public Keyword getAlignKeyword_2() { return cAlignKeyword_2; }
 		
 		//'match'
-		public Keyword getMatchKeyword_5() { return cMatchKeyword_5; }
+		public Keyword getMatchKeyword_3() { return cMatchKeyword_3; }
 		
 		//'int'
-		public Keyword getIntKeyword_6() { return cIntKeyword_6; }
+		public Keyword getIntKeyword_4() { return cIntKeyword_4; }
 		
 		//'String'
-		public Keyword getStringKeyword_7() { return cStringKeyword_7; }
+		public Keyword getStringKeyword_5() { return cStringKeyword_5; }
 		
 		//'boolean'
-		public Keyword getBooleanKeyword_8() { return cBooleanKeyword_8; }
+		public Keyword getBooleanKeyword_6() { return cBooleanKeyword_6; }
 		
 		//'type'
-		public Keyword getTypeKeyword_9() { return cTypeKeyword_9; }
+		public Keyword getTypeKeyword_7() { return cTypeKeyword_7; }
 		
 		//'source'
-		public Keyword getSourceKeyword_10() { return cSourceKeyword_10; }
+		public Keyword getSourceKeyword_8() { return cSourceKeyword_8; }
 		
 		//'view'
-		public Keyword getViewKeyword_11() { return cViewKeyword_11; }
+		public Keyword getViewKeyword_9() { return cViewKeyword_9; }
 	}
 	public class XPrimaryExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.bxcore.dsl.BXCore.XPrimaryExpression");
@@ -2270,15 +2420,13 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNameValidIDParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Keyword cCommercialAtKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cSideAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final Alternatives cSideAlternatives_3_0 = (Alternatives)cSideAssignment_3.eContents().get(0);
-		private final Keyword cSideSourceKeyword_3_0_0 = (Keyword)cSideAlternatives_3_0.eContents().get(0);
-		private final Keyword cSideViewKeyword_3_0_1 = (Keyword)cSideAlternatives_3_0.eContents().get(1);
+		private final RuleCall cSideSideEnumEnumRuleCall_3_0 = (RuleCall)cSideAssignment_3.eContents().get(0);
 		
 		//ContextVarExpression ContextExpression:
-		//	{ContextVarExpression} name=ValidID '@' side=('source' | 'view');
+		//	{ContextVarExpression} name=ValidID '@' side=SideEnum;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{ContextVarExpression} name=ValidID '@' side=('source' | 'view')
+		//{ContextVarExpression} name=ValidID '@' side=SideEnum
 		public Group getGroup() { return cGroup; }
 		
 		//{ContextVarExpression}
@@ -2293,17 +2441,11 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		//'@'
 		public Keyword getCommercialAtKeyword_2() { return cCommercialAtKeyword_2; }
 		
-		//side=('source' | 'view')
+		//side=SideEnum
 		public Assignment getSideAssignment_3() { return cSideAssignment_3; }
 		
-		//('source' | 'view')
-		public Alternatives getSideAlternatives_3_0() { return cSideAlternatives_3_0; }
-		
-		//'source'
-		public Keyword getSideSourceKeyword_3_0_0() { return cSideSourceKeyword_3_0_0; }
-		
-		//'view'
-		public Keyword getSideViewKeyword_3_0_1() { return cSideViewKeyword_3_0_1; }
+		//SideEnum
+		public RuleCall getSideSideEnumEnumRuleCall_3_0() { return cSideSideEnumEnumRuleCall_3_0; }
 	}
 	public class XReturnExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.bxcore.dsl.BXCore.XReturnExpression");
@@ -2447,15 +2589,15 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cVarNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cVarNameValidIDParserRuleCall_0_0 = (RuleCall)cVarNameAssignment_0.eContents().get(0);
-		private final Keyword cHyphenMinusGreaterThanSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cExpressionAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cExpressionXExpressionParserRuleCall_2_0 = (RuleCall)cExpressionAssignment_2.eContents().get(0);
 		
 		//ValueMapping:
-		//	varName=ValidID '->' expression=XExpression;
+		//	varName=ValidID '=' expression=XExpression;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//varName=ValidID '->' expression=XExpression
+		//varName=ValidID '=' expression=XExpression
 		public Group getGroup() { return cGroup; }
 		
 		//varName=ValidID
@@ -2464,8 +2606,8 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		//ValidID
 		public RuleCall getVarNameValidIDParserRuleCall_0_0() { return cVarNameValidIDParserRuleCall_0_0; }
 		
-		//'->'
-		public Keyword getHyphenMinusGreaterThanSignKeyword_1() { return cHyphenMinusGreaterThanSignKeyword_1; }
+		//'='
+		public Keyword getEqualsSignKeyword_1() { return cEqualsSignKeyword_1; }
 		
 		//expression=XExpression
 		public Assignment getExpressionAssignment_2() { return cExpressionAssignment_2; }
@@ -2474,10 +2616,46 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getExpressionXExpressionParserRuleCall_2_0() { return cExpressionXExpressionParserRuleCall_2_0; }
 	}
 	
+	public class SideEnumElements extends AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.bxcore.dsl.BXCore.SideEnum");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final EnumLiteralDeclaration cSourceEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cSourceSourceKeyword_0_0 = (Keyword)cSourceEnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cViewEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cViewViewKeyword_1_0 = (Keyword)cViewEnumLiteralDeclaration_1.eContents().get(0);
+		private final EnumLiteralDeclaration cContextEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
+		private final Keyword cContextContextKeyword_2_0 = (Keyword)cContextEnumLiteralDeclaration_2.eContents().get(0);
+		
+		//enum SideEnum:
+		//	source | view | context;
+		public EnumRule getRule() { return rule; }
+		
+		//source | view | context
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//source
+		public EnumLiteralDeclaration getSourceEnumLiteralDeclaration_0() { return cSourceEnumLiteralDeclaration_0; }
+		
+		//'source'
+		public Keyword getSourceSourceKeyword_0_0() { return cSourceSourceKeyword_0_0; }
+		
+		//view
+		public EnumLiteralDeclaration getViewEnumLiteralDeclaration_1() { return cViewEnumLiteralDeclaration_1; }
+		
+		//'view'
+		public Keyword getViewViewKeyword_1_0() { return cViewViewKeyword_1_0; }
+		
+		//context
+		public EnumLiteralDeclaration getContextEnumLiteralDeclaration_2() { return cContextEnumLiteralDeclaration_2; }
+		
+		//'context'
+		public Keyword getContextContextKeyword_2_0() { return cContextContextKeyword_2_0; }
+	}
 	
 	private final BXProgramElements pBXProgram;
 	private final ImportSectionElements pImportSection;
 	private final DefinitionElements pDefinition;
+	private final CustomizedBiGULDefinitionElements pCustomizedBiGULDefinition;
 	private final TypeLiteralElements pTypeLiteral;
 	private final TupleTypeLiteralElements pTupleTypeLiteral;
 	private final UnorderedTupleTypeLiteralElements pUnorderedTupleTypeLiteral;
@@ -2522,10 +2700,12 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 	private final BiGULStatementElements pBiGULStatement;
 	private final BiGULReplaceElements pBiGULReplace;
 	private final BiGULSkipElements pBiGULSkip;
+	private final CustomizedBiGULReferenceElements pCustomizedBiGULReference;
 	private final ValidIDElements pValidID;
 	private final XPrimaryExpressionElements pXPrimaryExpression;
 	private final ContextExpressionElements pContextExpression;
 	private final ContextVarExpressionElements pContextVarExpression;
+	private final SideEnumElements eSideEnum;
 	private final XReturnExpressionElements pXReturnExpression;
 	private final ModificationExpressionBlockElements pModificationExpressionBlock;
 	private final ModificationExpressionElements pModificationExpression;
@@ -2547,6 +2727,7 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		this.pBXProgram = new BXProgramElements();
 		this.pImportSection = new ImportSectionElements();
 		this.pDefinition = new DefinitionElements();
+		this.pCustomizedBiGULDefinition = new CustomizedBiGULDefinitionElements();
 		this.pTypeLiteral = new TypeLiteralElements();
 		this.pTupleTypeLiteral = new TupleTypeLiteralElements();
 		this.pUnorderedTupleTypeLiteral = new UnorderedTupleTypeLiteralElements();
@@ -2591,10 +2772,12 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		this.pBiGULStatement = new BiGULStatementElements();
 		this.pBiGULReplace = new BiGULReplaceElements();
 		this.pBiGULSkip = new BiGULSkipElements();
+		this.pCustomizedBiGULReference = new CustomizedBiGULReferenceElements();
 		this.pValidID = new ValidIDElements();
 		this.pXPrimaryExpression = new XPrimaryExpressionElements();
 		this.pContextExpression = new ContextExpressionElements();
 		this.pContextVarExpression = new ContextVarExpressionElements();
+		this.eSideEnum = new SideEnumElements();
 		this.pXReturnExpression = new XReturnExpressionElements();
 		this.pModificationExpressionBlock = new ModificationExpressionBlockElements();
 		this.pModificationExpression = new ModificationExpressionElements();
@@ -2655,13 +2838,26 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Definition:
-	//	TypeDefinition | BXFunctionDefinition | IndexDefinition;
+	//	CustomizedBiGULDefinition | TypeDefinition | BXFunctionDefinition | IndexDefinition;
 	public DefinitionElements getDefinitionAccess() {
 		return pDefinition;
 	}
 	
 	public ParserRule getDefinitionRule() {
 		return getDefinitionAccess().getRule();
+	}
+	
+	//CustomizedBiGULDefinition:
+	//	'bigul' name=ValidID
+	//	'(' sourceParams+=JvmFormalParameter (',' sourceParams+=JvmFormalParameter)* ')'
+	//	'(' viewParams+=JvmFormalParameter (',' viewParams+=JvmFormalParameter)* ')' ('get' get=XExpression & 'put'
+	//	put=XExpression);
+	public CustomizedBiGULDefinitionElements getCustomizedBiGULDefinitionAccess() {
+		return pCustomizedBiGULDefinition;
+	}
+	
+	public ParserRule getCustomizedBiGULDefinitionRule() {
+		return getCustomizedBiGULDefinitionAccess().getRule();
 	}
 	
 	//TypeLiteral:
@@ -3090,7 +3286,7 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//BiGULStatement:
-	//	BiGULReplace | BiGULSkip;
+	//	BiGULReplace | BiGULSkip | CustomizedBiGULReference;
 	public BiGULStatementElements getBiGULStatementAccess() {
 		return pBiGULStatement;
 	}
@@ -3100,7 +3296,7 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//BiGULReplace:
-	//	{BiGULReplace} 'replace';
+	//	{BiGULReplace} => 'replace';
 	public BiGULReplaceElements getBiGULReplaceAccess() {
 		return pBiGULReplace;
 	}
@@ -3110,7 +3306,7 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//BiGULSkip:
-	//	{BiGULSkip} 'skip';
+	//	{BiGULSkip} => 'skip';
 	public BiGULSkipElements getBiGULSkipAccess() {
 		return pBiGULSkip;
 	}
@@ -3119,9 +3315,19 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		return getBiGULSkipAccess().getRule();
 	}
 	
+	//CustomizedBiGULReference:
+	//	function=[CustomizedBiGULDefinition|ValidID];
+	public CustomizedBiGULReferenceElements getCustomizedBiGULReferenceAccess() {
+		return pCustomizedBiGULReference;
+	}
+	
+	public ParserRule getCustomizedBiGULReferenceRule() {
+		return getCustomizedBiGULReferenceAccess().getRule();
+	}
+	
 	//@Override
 	//ValidID:
-	//	ID | 'replace' | 'skip' | 'index' | 'align' | 'match' | 'int' | 'String' | 'boolean' | 'type' | 'source' | 'view';
+	//	ID | 'index' | 'align' | 'match' | 'int' | 'String' | 'boolean' | 'type' | 'source' | 'view';
 	public ValidIDElements getValidIDAccess() {
 		return pValidID;
 	}
@@ -3152,13 +3358,23 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ContextVarExpression ContextExpression:
-	//	{ContextVarExpression} name=ValidID '@' side=('source' | 'view');
+	//	{ContextVarExpression} name=ValidID '@' side=SideEnum;
 	public ContextVarExpressionElements getContextVarExpressionAccess() {
 		return pContextVarExpression;
 	}
 	
 	public ParserRule getContextVarExpressionRule() {
 		return getContextVarExpressionAccess().getRule();
+	}
+	
+	//enum SideEnum:
+	//	source | view | context;
+	public SideEnumElements getSideEnumAccess() {
+		return eSideEnum;
+	}
+	
+	public EnumRule getSideEnumRule() {
+		return getSideEnumAccess().getRule();
 	}
 	
 	//@Override
@@ -3194,7 +3410,7 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ValueMapping:
-	//	varName=ValidID '->' expression=XExpression;
+	//	varName=ValidID '=' expression=XExpression;
 	public ValueMappingElements getValueMappingAccess() {
 		return pValueMapping;
 	}

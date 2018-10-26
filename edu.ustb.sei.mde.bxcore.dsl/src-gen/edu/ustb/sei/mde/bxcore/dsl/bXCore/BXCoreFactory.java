@@ -51,6 +51,15 @@ public interface BXCoreFactory extends EFactory
   Definition createDefinition();
 
   /**
+   * Returns a new object of class '<em>Customized Bi GUL Definition</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Customized Bi GUL Definition</em>'.
+   * @generated
+   */
+  CustomizedBiGULDefinition createCustomizedBiGULDefinition();
+
+  /**
    * Returns a new object of class '<em>Type Literal</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -445,6 +454,15 @@ public interface BXCoreFactory extends EFactory
    * @generated
    */
   BiGULSkip createBiGULSkip();
+
+  /**
+   * Returns a new object of class '<em>Customized Bi GUL Reference</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Customized Bi GUL Reference</em>'.
+   * @generated
+   */
+  CustomizedBiGULReference createCustomizedBiGULReference();
 
   /**
    * Returns a new object of class '<em>Context Expression</em>'.

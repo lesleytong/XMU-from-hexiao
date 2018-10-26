@@ -5,6 +5,7 @@ package edu.ustb.sei.mde.bxcore.dsl.bXCore.impl;
 
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextVarExpression;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.SideEnum;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -56,7 +57,7 @@ public class ContextVarExpressionImpl extends ContextExpressionImpl implements C
    * @generated
    * @ordered
    */
-  protected static final String SIDE_EDEFAULT = null;
+  protected static final SideEnum SIDE_EDEFAULT = SideEnum.SOURCE;
 
   /**
    * The cached value of the '{@link #getSide() <em>Side</em>}' attribute.
@@ -66,7 +67,7 @@ public class ContextVarExpressionImpl extends ContextExpressionImpl implements C
    * @generated
    * @ordered
    */
-  protected String side = SIDE_EDEFAULT;
+  protected SideEnum side = SIDE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -117,7 +118,7 @@ public class ContextVarExpressionImpl extends ContextExpressionImpl implements C
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getSide()
+  public SideEnum getSide()
   {
     return side;
   }
@@ -127,10 +128,10 @@ public class ContextVarExpressionImpl extends ContextExpressionImpl implements C
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setSide(String newSide)
+  public void setSide(SideEnum newSide)
   {
-    String oldSide = side;
-    side = newSide;
+    SideEnum oldSide = side;
+    side = newSide == null ? SIDE_EDEFAULT : newSide;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, BXCorePackage.CONTEXT_VAR_EXPRESSION__SIDE, oldSide, side));
   }
@@ -167,7 +168,7 @@ public class ContextVarExpressionImpl extends ContextExpressionImpl implements C
         setName((String)newValue);
         return;
       case BXCorePackage.CONTEXT_VAR_EXPRESSION__SIDE:
-        setSide((String)newValue);
+        setSide((SideEnum)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -206,7 +207,7 @@ public class ContextVarExpressionImpl extends ContextExpressionImpl implements C
       case BXCorePackage.CONTEXT_VAR_EXPRESSION__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case BXCorePackage.CONTEXT_VAR_EXPRESSION__SIDE:
-        return SIDE_EDEFAULT == null ? side != null : !SIDE_EDEFAULT.equals(side);
+        return side != SIDE_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }

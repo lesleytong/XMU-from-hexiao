@@ -96,6 +96,14 @@ public class BXCoreSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case BXCorePackage.CUSTOMIZED_BI_GUL_DEFINITION:
+      {
+        CustomizedBiGULDefinition customizedBiGULDefinition = (CustomizedBiGULDefinition)theEObject;
+        T result = caseCustomizedBiGULDefinition(customizedBiGULDefinition);
+        if (result == null) result = caseDefinition(customizedBiGULDefinition);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case BXCorePackage.TYPE_LITERAL:
       {
         TypeLiteral typeLiteral = (TypeLiteral)theEObject;
@@ -448,6 +456,14 @@ public class BXCoreSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case BXCorePackage.CUSTOMIZED_BI_GUL_REFERENCE:
+      {
+        CustomizedBiGULReference customizedBiGULReference = (CustomizedBiGULReference)theEObject;
+        T result = caseCustomizedBiGULReference(customizedBiGULReference);
+        if (result == null) result = caseBiGULStatement(customizedBiGULReference);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case BXCorePackage.CONTEXT_EXPRESSION:
       {
         ContextExpression contextExpression = (ContextExpression)theEObject;
@@ -577,6 +593,22 @@ public class BXCoreSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseDefinition(Definition object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Customized Bi GUL Definition</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Customized Bi GUL Definition</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseCustomizedBiGULDefinition(CustomizedBiGULDefinition object)
   {
     return null;
   }
@@ -1281,6 +1313,22 @@ public class BXCoreSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseBiGULSkip(BiGULSkip object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Customized Bi GUL Reference</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Customized Bi GUL Reference</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseCustomizedBiGULReference(CustomizedBiGULReference object)
   {
     return null;
   }

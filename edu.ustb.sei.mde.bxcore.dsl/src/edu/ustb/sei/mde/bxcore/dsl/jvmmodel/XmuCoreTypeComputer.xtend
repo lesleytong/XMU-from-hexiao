@@ -33,7 +33,7 @@ class XmuCoreTypeComputer extends XbaseTypeComputer {
 		val side = cvar.side;
 		val varName = cvar.name;
 		
-		val tupleType = ModelInferrerUtils.context(cvar, side.equals("source"));
+		val tupleType = ModelInferrerUtils.context(cvar, side);
 		if(tupleType===null) {
 			state.acceptActualType(getRawTypeForName(Object, state))
 		} else {

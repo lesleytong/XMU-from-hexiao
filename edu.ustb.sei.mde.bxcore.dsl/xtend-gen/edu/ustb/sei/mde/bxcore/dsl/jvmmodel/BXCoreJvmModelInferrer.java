@@ -20,6 +20,7 @@ import edu.ustb.sei.mde.bxcore.Switch;
 import edu.ustb.sei.mde.bxcore.TraceSystem;
 import edu.ustb.sei.mde.bxcore.ViewType;
 import edu.ustb.sei.mde.bxcore.XmuCore;
+import edu.ustb.sei.mde.bxcore.bigul.BidirectionalTransformation;
 import edu.ustb.sei.mde.bxcore.bigul.Replace;
 import edu.ustb.sei.mde.bxcore.bigul.Skip;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXFunctionDefinition;
@@ -30,6 +31,8 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.BiGULStatement;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareCondition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareUnidirectionalAction;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.Conversion;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.CustomizedBiGULDefinition;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.CustomizedBiGULReference;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.DefinedContextTypeRef;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.Definition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ImportSection;
@@ -123,8 +126,10 @@ import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.IntegerRange;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
+import org.eclipse.xtext.xbase.lib.ListExtensions;
 import org.eclipse.xtext.xbase.lib.Pair;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure2;
@@ -419,50 +424,218 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
               JvmOperation _method_2 = this._jvmTypesBuilder.toMethod(def, _plus_1, this._typeReferenceBuilder.typeRef(IndexSignature.class), _function_19);
               this._jvmTypesBuilder.<JvmOperation>operator_add(_members_3, _method_2);
             } else {
-              if ((def instanceof BXFunctionDefinition)) {
+              if ((def instanceof CustomizedBiGULDefinition)) {
                 EList<JvmMember> _members_4 = it.getMembers();
-                String _name_1 = ((BXFunctionDefinition)def).getName();
-                String _plus_2 = ("xmu_" + _name_1);
-                final Procedure1<JvmField> _function_20 = (JvmField it_1) -> {
-                  it_1.setVisibility(JvmVisibility.PRIVATE);
-                };
-                JvmField _field_1 = this._jvmTypesBuilder.toField(def, _plus_2, this._typeReferenceBuilder.typeRef(XmuCore.class), _function_20);
-                this._jvmTypesBuilder.<JvmField>operator_add(_members_4, _field_1);
-                EList<JvmMember> _members_5 = it.getMembers();
-                String _firstUpper_1 = StringExtensions.toFirstUpper(((BXFunctionDefinition)def).getName());
-                String _plus_3 = ("getXmu_" + _firstUpper_1);
-                final Procedure1<JvmOperation> _function_21 = (JvmOperation it_1) -> {
-                  it_1.setVisibility(JvmVisibility.PUBLIC);
-                  EList<JvmTypeReference> _exceptions = it_1.getExceptions();
-                  JvmTypeReference _typeRef = this._typeReferenceBuilder.typeRef(BidirectionalTransformationDefinitionException.class);
-                  this._jvmTypesBuilder.<JvmTypeReference>operator_add(_exceptions, _typeRef);
-                  if ((!isPreIndexingPhase)) {
-                    final Procedure1<ITreeAppendable> _function_22 = (ITreeAppendable appendable) -> {
-                      StringConcatenation _builder = new StringConcatenation();
-                      _builder.append("if(xmu_");
-                      String _name_2 = ((BXFunctionDefinition)def).getName();
-                      _builder.append(_name_2);
-                      _builder.append("==null) {");
-                      ITreeAppendable _newLine = appendable.append(_builder).newLine();
-                      StringConcatenation _builder_1 = new StringConcatenation();
-                      _builder_1.append("xmu_");
-                      String _name_3 = ((BXFunctionDefinition)def).getName();
-                      _builder_1.append(_name_3);
-                      _builder_1.append(" = ");
-                      ITreeAppendable _newLine_1 = this.generateXmuCode(_newLine.append(_builder_1), 
-                        ((BXFunctionDefinition) def).getStatement(), statements, typeLiteralMap, patternLiterals, conditions, actions, unsolvedTypes, data, element).append(";").newLine().append("}").newLine();
-                      StringConcatenation _builder_2 = new StringConcatenation();
-                      _builder_2.append("return xmu_");
-                      String _name_4 = ((BXFunctionDefinition)def).getName();
-                      _builder_2.append(_name_4);
-                      _builder_2.append(";");
-                      _newLine_1.append(_builder_2);
+                String _firstUpper_1 = StringExtensions.toFirstUpper(((CustomizedBiGULDefinition)def).getName());
+                String _plus_2 = ("BiGUL" + _firstUpper_1);
+                final Procedure1<JvmGenericType> _function_20 = (JvmGenericType it_1) -> {
+                  EList<JvmTypeReference> _superTypes = it_1.getSuperTypes();
+                  JvmTypeReference _typeRef = this._typeReferenceBuilder.typeRef(BidirectionalTransformation.class, this._jvmTypesBuilder.addArrayTypeDimension(this._typeReferenceBuilder.typeRef(Object.class)), this._jvmTypesBuilder.addArrayTypeDimension(this._typeReferenceBuilder.typeRef(Object.class)));
+                  this._jvmTypesBuilder.<JvmTypeReference>operator_add(_superTypes, _typeRef);
+                  EList<JvmMember> _members_5 = it_1.getMembers();
+                  final Function1<JvmFormalParameter, JvmField> _function_21 = (JvmFormalParameter s) -> {
+                    final Procedure1<JvmField> _function_22 = (JvmField it_2) -> {
+                      it_2.setVisibility(JvmVisibility.PRIVATE);
                     };
-                    this._jvmTypesBuilder.setBody(it_1, _function_22);
-                  }
+                    return this._jvmTypesBuilder.toField(s, s.getName(), s.getParameterType(), _function_22);
+                  };
+                  List<JvmField> _list = IterableExtensions.<JvmField>toList(ListExtensions.<JvmFormalParameter, JvmField>map(((CustomizedBiGULDefinition)def).getSourceParams(), _function_21));
+                  this._jvmTypesBuilder.<JvmMember>operator_add(_members_5, _list);
+                  EList<JvmMember> _members_6 = it_1.getMembers();
+                  final Function1<JvmFormalParameter, JvmField> _function_22 = (JvmFormalParameter s) -> {
+                    final Procedure1<JvmField> _function_23 = (JvmField it_2) -> {
+                      it_2.setVisibility(JvmVisibility.PRIVATE);
+                    };
+                    return this._jvmTypesBuilder.toField(s, s.getName(), s.getParameterType(), _function_23);
+                  };
+                  List<JvmField> _list_1 = IterableExtensions.<JvmField>toList(ListExtensions.<JvmFormalParameter, JvmField>map(((CustomizedBiGULDefinition)def).getViewParams(), _function_22));
+                  this._jvmTypesBuilder.<JvmMember>operator_add(_members_6, _list_1);
+                  EList<JvmMember> _members_7 = it_1.getMembers();
+                  final Procedure1<JvmOperation> _function_23 = (JvmOperation it_2) -> {
+                    it_2.setVisibility(JvmVisibility.PRIVATE);
+                    this._jvmTypesBuilder.setBody(it_2, ((CustomizedBiGULDefinition)def).getGet());
+                  };
+                  JvmOperation _method_3 = this._jvmTypesBuilder.toMethod(def, "internalGet", this._typeReferenceBuilder.typeRef(void.class), _function_23);
+                  this._jvmTypesBuilder.<JvmOperation>operator_add(_members_7, _method_3);
+                  EList<JvmMember> _members_8 = it_1.getMembers();
+                  final Procedure1<JvmOperation> _function_24 = (JvmOperation it_2) -> {
+                    it_2.setVisibility(JvmVisibility.PRIVATE);
+                    this._jvmTypesBuilder.setBody(it_2, ((CustomizedBiGULDefinition)def).getPut());
+                  };
+                  JvmOperation _method_4 = this._jvmTypesBuilder.toMethod(def, "internalPut", this._typeReferenceBuilder.typeRef(void.class), _function_24);
+                  this._jvmTypesBuilder.<JvmOperation>operator_add(_members_8, _method_4);
+                  EList<JvmMember> _members_9 = it_1.getMembers();
+                  final Procedure1<JvmOperation> _function_25 = (JvmOperation it_2) -> {
+                    it_2.setVisibility(JvmVisibility.PUBLIC);
+                    EList<JvmFormalParameter> _parameters = it_2.getParameters();
+                    JvmFormalParameter _parameter = this._jvmTypesBuilder.toParameter(def, "s", this._jvmTypesBuilder.addArrayTypeDimension(this._typeReferenceBuilder.typeRef(Object.class)));
+                    this._jvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+                    StringConcatenationClient _client = new StringConcatenationClient() {
+                      @Override
+                      protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
+                        {
+                          int _size = ((CustomizedBiGULDefinition)def).getSourceParams().size();
+                          int _minus = (_size - 1);
+                          IntegerRange _upTo = new IntegerRange(0, _minus);
+                          for(final Integer i : _upTo) {
+                            final JvmFormalParameter s = ((CustomizedBiGULDefinition)def).getSourceParams().get((i).intValue());
+                            _builder.newLineIfNotEmpty();
+                            String _name = s.getName();
+                            _builder.append(_name);
+                            _builder.append(" = (");
+                            String _qualifiedName = s.getParameterType().getQualifiedName();
+                            _builder.append(_qualifiedName);
+                            _builder.append(") s[");
+                            _builder.append(i);
+                            _builder.append("];");
+                            _builder.newLineIfNotEmpty();
+                          }
+                        }
+                        _builder.append("internalGet();");
+                        _builder.newLine();
+                        _builder.append("return new Object[]{");
+                        {
+                          EList<JvmFormalParameter> _viewParams = ((CustomizedBiGULDefinition)def).getViewParams();
+                          boolean _hasElements = false;
+                          for(final JvmFormalParameter v : _viewParams) {
+                            if (!_hasElements) {
+                              _hasElements = true;
+                            } else {
+                              _builder.appendImmediate(",", "");
+                            }
+                            String _name_1 = v.getName();
+                            _builder.append(_name_1);
+                          }
+                        }
+                        _builder.append("};");
+                        _builder.newLineIfNotEmpty();
+                      }
+                    };
+                    this._jvmTypesBuilder.setBody(it_2, _client);
+                  };
+                  JvmOperation _method_5 = this._jvmTypesBuilder.toMethod(def, "forward", this._jvmTypesBuilder.addArrayTypeDimension(this._typeReferenceBuilder.typeRef(Object.class)), _function_25);
+                  this._jvmTypesBuilder.<JvmOperation>operator_add(_members_9, _method_5);
+                  EList<JvmMember> _members_10 = it_1.getMembers();
+                  final Procedure1<JvmOperation> _function_26 = (JvmOperation it_2) -> {
+                    it_2.setVisibility(JvmVisibility.PUBLIC);
+                    EList<JvmFormalParameter> _parameters = it_2.getParameters();
+                    JvmFormalParameter _parameter = this._jvmTypesBuilder.toParameter(def, "s", this._jvmTypesBuilder.addArrayTypeDimension(this._typeReferenceBuilder.typeRef(Object.class)));
+                    this._jvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+                    EList<JvmFormalParameter> _parameters_1 = it_2.getParameters();
+                    JvmFormalParameter _parameter_1 = this._jvmTypesBuilder.toParameter(def, "v", this._jvmTypesBuilder.addArrayTypeDimension(this._typeReferenceBuilder.typeRef(Object.class)));
+                    this._jvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
+                    StringConcatenationClient _client = new StringConcatenationClient() {
+                      @Override
+                      protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
+                        {
+                          int _size = ((CustomizedBiGULDefinition)def).getSourceParams().size();
+                          int _minus = (_size - 1);
+                          IntegerRange _upTo = new IntegerRange(0, _minus);
+                          for(final Integer i : _upTo) {
+                            final JvmFormalParameter s = ((CustomizedBiGULDefinition)def).getSourceParams().get((i).intValue());
+                            _builder.newLineIfNotEmpty();
+                            String _name = s.getName();
+                            _builder.append(_name);
+                            _builder.append(" = (");
+                            String _qualifiedName = s.getParameterType().getQualifiedName();
+                            _builder.append(_qualifiedName);
+                            _builder.append(") s[");
+                            _builder.append(i);
+                            _builder.append("];");
+                            _builder.newLineIfNotEmpty();
+                          }
+                        }
+                        {
+                          int _size_1 = ((CustomizedBiGULDefinition)def).getViewParams().size();
+                          int _minus_1 = (_size_1 - 1);
+                          IntegerRange _upTo_1 = new IntegerRange(0, _minus_1);
+                          for(final Integer i_1 : _upTo_1) {
+                            final JvmFormalParameter s_1 = ((CustomizedBiGULDefinition)def).getViewParams().get((i_1).intValue());
+                            _builder.newLineIfNotEmpty();
+                            String _name_1 = s_1.getName();
+                            _builder.append(_name_1);
+                            _builder.append(" = (");
+                            String _qualifiedName_1 = s_1.getParameterType().getQualifiedName();
+                            _builder.append(_qualifiedName_1);
+                            _builder.append(") s[");
+                            _builder.append(i_1);
+                            _builder.append("];");
+                            _builder.newLineIfNotEmpty();
+                          }
+                        }
+                        _builder.append("internalPut();");
+                        _builder.newLine();
+                        _builder.append("return new Object[]{");
+                        {
+                          EList<JvmFormalParameter> _sourceParams = ((CustomizedBiGULDefinition)def).getSourceParams();
+                          boolean _hasElements = false;
+                          for(final JvmFormalParameter s_2 : _sourceParams) {
+                            if (!_hasElements) {
+                              _hasElements = true;
+                            } else {
+                              _builder.appendImmediate(",", "");
+                            }
+                            String _name_2 = s_2.getName();
+                            _builder.append(_name_2);
+                          }
+                        }
+                        _builder.append("};");
+                        _builder.newLineIfNotEmpty();
+                      }
+                    };
+                    this._jvmTypesBuilder.setBody(it_2, _client);
+                  };
+                  JvmOperation _method_6 = this._jvmTypesBuilder.toMethod(def, "backward", this._jvmTypesBuilder.addArrayTypeDimension(this._typeReferenceBuilder.typeRef(Object.class)), _function_26);
+                  this._jvmTypesBuilder.<JvmOperation>operator_add(_members_10, _method_6);
                 };
-                JvmOperation _method_3 = this._jvmTypesBuilder.toMethod(def, _plus_3, this._typeReferenceBuilder.typeRef(XmuCore.class), _function_21);
-                this._jvmTypesBuilder.<JvmOperation>operator_add(_members_5, _method_3);
+                JvmGenericType _class = this._jvmTypesBuilder.toClass(def, _plus_2, _function_20);
+                this._jvmTypesBuilder.<JvmGenericType>operator_add(_members_4, _class);
+              } else {
+                if ((def instanceof BXFunctionDefinition)) {
+                  EList<JvmMember> _members_5 = it.getMembers();
+                  String _name_1 = ((BXFunctionDefinition)def).getName();
+                  String _plus_3 = ("xmu_" + _name_1);
+                  final Procedure1<JvmField> _function_21 = (JvmField it_1) -> {
+                    it_1.setVisibility(JvmVisibility.PRIVATE);
+                  };
+                  JvmField _field_1 = this._jvmTypesBuilder.toField(def, _plus_3, this._typeReferenceBuilder.typeRef(XmuCore.class), _function_21);
+                  this._jvmTypesBuilder.<JvmField>operator_add(_members_5, _field_1);
+                  EList<JvmMember> _members_6 = it.getMembers();
+                  String _firstUpper_2 = StringExtensions.toFirstUpper(((BXFunctionDefinition)def).getName());
+                  String _plus_4 = ("getXmu_" + _firstUpper_2);
+                  final Procedure1<JvmOperation> _function_22 = (JvmOperation it_1) -> {
+                    it_1.setVisibility(JvmVisibility.PUBLIC);
+                    EList<JvmTypeReference> _exceptions = it_1.getExceptions();
+                    JvmTypeReference _typeRef = this._typeReferenceBuilder.typeRef(BidirectionalTransformationDefinitionException.class);
+                    this._jvmTypesBuilder.<JvmTypeReference>operator_add(_exceptions, _typeRef);
+                    if ((!isPreIndexingPhase)) {
+                      final Procedure1<ITreeAppendable> _function_23 = (ITreeAppendable appendable) -> {
+                        StringConcatenation _builder = new StringConcatenation();
+                        _builder.append("if(xmu_");
+                        String _name_2 = ((BXFunctionDefinition)def).getName();
+                        _builder.append(_name_2);
+                        _builder.append("==null) {");
+                        ITreeAppendable _newLine = appendable.append(_builder).newLine();
+                        StringConcatenation _builder_1 = new StringConcatenation();
+                        _builder_1.append("xmu_");
+                        String _name_3 = ((BXFunctionDefinition)def).getName();
+                        _builder_1.append(_name_3);
+                        _builder_1.append(" = ");
+                        ITreeAppendable _newLine_1 = this.generateXmuCode(_newLine.append(_builder_1), 
+                          ((BXFunctionDefinition) def).getStatement(), statements, typeLiteralMap, patternLiterals, conditions, actions, unsolvedTypes, data, element).append(";").newLine().append("}").newLine();
+                        StringConcatenation _builder_2 = new StringConcatenation();
+                        _builder_2.append("return xmu_");
+                        String _name_4 = ((BXFunctionDefinition)def).getName();
+                        _builder_2.append(_name_4);
+                        _builder_2.append(";");
+                        _newLine_1.append(_builder_2);
+                      };
+                      this._jvmTypesBuilder.setBody(it_1, _function_23);
+                    }
+                  };
+                  JvmOperation _method_3 = this._jvmTypesBuilder.toMethod(def, _plus_4, this._typeReferenceBuilder.typeRef(XmuCore.class), _function_22);
+                  this._jvmTypesBuilder.<JvmOperation>operator_add(_members_6, _method_3);
+                }
               }
             }
           }
@@ -737,21 +910,37 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
         JvmOperation _method = this._jvmTypesBuilder.toMethod(cond, "apply", this._typeReferenceBuilder.typeRef(Boolean.class), _function_1);
         this._jvmTypesBuilder.<JvmOperation>operator_add(_members_1, _method);
       } else {
-        EList<JvmTypeReference> _superTypes_1 = it.getSuperTypes();
-        JvmTypeReference _typeRef_1 = this._typeReferenceBuilder.typeRef(BiFunction.class, this._typeReferenceBuilder.typeRef(SourceType.class), this._typeReferenceBuilder.typeRef(ViewType.class), this._typeReferenceBuilder.typeRef(Boolean.class));
-        this._jvmTypesBuilder.<JvmTypeReference>operator_add(_superTypes_1, _typeRef_1);
-        EList<JvmMember> _members_2 = it.getMembers();
-        final Procedure1<JvmOperation> _function_2 = (JvmOperation it_1) -> {
-          EList<JvmFormalParameter> _parameters = it_1.getParameters();
-          JvmFormalParameter _parameter = this._jvmTypesBuilder.toParameter(cond, "source", this._typeReferenceBuilder.typeRef(SourceType.class));
-          this._jvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
-          EList<JvmFormalParameter> _parameters_1 = it_1.getParameters();
-          JvmFormalParameter _parameter_1 = this._jvmTypesBuilder.toParameter(cond, "view", this._typeReferenceBuilder.typeRef(ViewType.class));
-          this._jvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
-          this._jvmTypesBuilder.setBody(it_1, cond.getCondition());
-        };
-        JvmOperation _method_1 = this._jvmTypesBuilder.toMethod(cond, "apply", this._typeReferenceBuilder.typeRef(Boolean.class), _function_2);
-        this._jvmTypesBuilder.<JvmOperation>operator_add(_members_2, _method_1);
+        EObject _eContainer_1 = cond.eContainer();
+        if ((_eContainer_1 instanceof PatternTypeLiteral)) {
+          EList<JvmTypeReference> _superTypes_1 = it.getSuperTypes();
+          JvmTypeReference _typeRef_1 = this._typeReferenceBuilder.typeRef(Function.class, this._typeReferenceBuilder.typeRef(Context.class), this._typeReferenceBuilder.typeRef(Boolean.class));
+          this._jvmTypesBuilder.<JvmTypeReference>operator_add(_superTypes_1, _typeRef_1);
+          EList<JvmMember> _members_2 = it.getMembers();
+          final Procedure1<JvmOperation> _function_2 = (JvmOperation it_1) -> {
+            EList<JvmFormalParameter> _parameters = it_1.getParameters();
+            JvmFormalParameter _parameter = this._jvmTypesBuilder.toParameter(cond, "context", this._typeReferenceBuilder.typeRef(Context.class));
+            this._jvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+            this._jvmTypesBuilder.setBody(it_1, cond.getCondition());
+          };
+          JvmOperation _method_1 = this._jvmTypesBuilder.toMethod(cond, "apply", this._typeReferenceBuilder.typeRef(Boolean.class), _function_2);
+          this._jvmTypesBuilder.<JvmOperation>operator_add(_members_2, _method_1);
+        } else {
+          EList<JvmTypeReference> _superTypes_2 = it.getSuperTypes();
+          JvmTypeReference _typeRef_2 = this._typeReferenceBuilder.typeRef(BiFunction.class, this._typeReferenceBuilder.typeRef(SourceType.class), this._typeReferenceBuilder.typeRef(ViewType.class), this._typeReferenceBuilder.typeRef(Boolean.class));
+          this._jvmTypesBuilder.<JvmTypeReference>operator_add(_superTypes_2, _typeRef_2);
+          EList<JvmMember> _members_3 = it.getMembers();
+          final Procedure1<JvmOperation> _function_3 = (JvmOperation it_1) -> {
+            EList<JvmFormalParameter> _parameters = it_1.getParameters();
+            JvmFormalParameter _parameter = this._jvmTypesBuilder.toParameter(cond, "source", this._typeReferenceBuilder.typeRef(SourceType.class));
+            this._jvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+            EList<JvmFormalParameter> _parameters_1 = it_1.getParameters();
+            JvmFormalParameter _parameter_1 = this._jvmTypesBuilder.toParameter(cond, "view", this._typeReferenceBuilder.typeRef(ViewType.class));
+            this._jvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
+            this._jvmTypesBuilder.setBody(it_1, cond.getCondition());
+          };
+          JvmOperation _method_2 = this._jvmTypesBuilder.toMethod(cond, "apply", this._typeReferenceBuilder.typeRef(Boolean.class), _function_3);
+          this._jvmTypesBuilder.<JvmOperation>operator_add(_members_3, _method_2);
+        }
       }
     };
     JvmGenericType _class = this._jvmTypesBuilder.toClass(cond, ("Condition" + id), _function);
@@ -1768,7 +1957,7 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
     return _xifexpression;
   }
   
-  public CharSequence generateBiGuLCode(final BiGULStatement statement) {
+  protected CharSequence generateBiGuLCode(final BiGULStatement statement) {
     CharSequence _switchResult = null;
     boolean _matched = false;
     if (statement instanceof BiGULReplace) {
@@ -1787,6 +1976,17 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
         _builder.append("new ");
         String _qualifiedName = this._typeReferenceBuilder.typeRef(Skip.class, this._jvmTypesBuilder.addArrayTypeDimension(this._typeReferenceBuilder.typeRef(Object.class))).getQualifiedName();
         _builder.append(_qualifiedName);
+        _builder.append("()");
+        _switchResult = _builder;
+      }
+    }
+    if (!_matched) {
+      if (statement instanceof CustomizedBiGULReference) {
+        _matched=true;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("new BiGUL");
+        String _firstUpper = StringExtensions.toFirstUpper(((CustomizedBiGULReference)statement).getFunction().getName());
+        _builder.append(_firstUpper);
         _builder.append("()");
         _switchResult = _builder;
       }

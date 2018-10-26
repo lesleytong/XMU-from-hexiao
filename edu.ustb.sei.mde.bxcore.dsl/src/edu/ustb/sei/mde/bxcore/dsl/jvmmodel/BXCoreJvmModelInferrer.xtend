@@ -95,6 +95,9 @@ import org.eclipse.xtext.xbase.compiler.output.ITreeAppendable
 import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.CustomizedBiGULDefinition
+import edu.ustb.sei.mde.bxcore.bigul.BidirectionalTransformation
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.CustomizedBiGULReference
 
 /**
  * <p>Infers a JVM model from the source model.</p> 
@@ -242,7 +245,49 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 								'''
 							}
 						];
-
+					} else if(def instanceof CustomizedBiGULDefinition) {
+						members += def.toClass('BiGUL'+def.name.toFirstUpper)[
+							superTypes+=BidirectionalTransformation.typeRef(Object.typeRef.addArrayTypeDimension, Object.typeRef.addArrayTypeDimension);
+							members += def.sourceParams.map[s|s.toField(s.name,s.parameterType)[visibility=JvmVisibility.PRIVATE]].toList;
+							members += def.viewParams.map[s|s.toField(s.name,s.parameterType)[visibility=JvmVisibility.PRIVATE]].toList;
+							members += def.toMethod('internalGet',void.typeRef)[
+								visibility=JvmVisibility.PRIVATE;
+								body = def.get
+							];
+							members += def.toMethod('internalPut',void.typeRef)[
+								visibility=JvmVisibility.PRIVATE;
+								body = def.put
+							];
+							members += def.toMethod('forward',Object.typeRef.addArrayTypeDimension)[
+								visibility=JvmVisibility.PUBLIC;
+								parameters += def.toParameter('s', Object.typeRef.addArrayTypeDimension);
+								body='''
+								«FOR i : 0..def.sourceParams.size-1»
+								«val s = def.sourceParams.get(i)»
+								«s.name» = («s.parameterType.qualifiedName») s[«i»];
+								«ENDFOR»
+								internalGet();
+								return new Object[]{«FOR v:def.viewParams SEPARATOR ','»«v.name»«ENDFOR»};
+								'''
+							];
+							members += def.toMethod('backward',Object.typeRef.addArrayTypeDimension)[
+								visibility=JvmVisibility.PUBLIC;
+								parameters += def.toParameter('s', Object.typeRef.addArrayTypeDimension);
+								parameters += def.toParameter('v', Object.typeRef.addArrayTypeDimension);
+								body='''
+								«FOR i : 0..def.sourceParams.size-1»
+								«val s = def.sourceParams.get(i)»
+								«s.name» = («s.parameterType.qualifiedName») s[«i»];
+								«ENDFOR»
+								«FOR i : 0..def.viewParams.size-1»
+								«val s = def.viewParams.get(i)»
+								«s.name» = («s.parameterType.qualifiedName») s[«i»];
+								«ENDFOR»
+								internalPut();
+								return new Object[]{«FOR s:def.sourceParams SEPARATOR ','»«s.name»«ENDFOR»};
+								'''
+							];
+						];
 					} else if (def instanceof BXFunctionDefinition) {
 						members += def.toField('xmu_' + def.name, XmuCore.typeRef) [
 							visibility = JvmVisibility.PRIVATE
@@ -332,6 +377,12 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 				members += cond.toMethod('apply', Boolean.typeRef) [
 					parameters += cond.toParameter('source', Context.typeRef);
 					parameters += cond.toParameter('view', Context.typeRef);
+					body = cond.condition;
+				]
+			} else if (cond.eContainer instanceof PatternTypeLiteral) {
+				superTypes += Function.typeRef(Context.typeRef, Boolean.typeRef);
+				members += cond.toMethod('apply', Boolean.typeRef) [
+					parameters += cond.toParameter('context', Context.typeRef);
 					body = cond.condition;
 				]
 			} else {
@@ -602,10 +653,11 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 		}
 	}
 		
-	def CharSequence generateBiGuLCode(BiGULStatement statement) {
+	protected def CharSequence generateBiGuLCode(BiGULStatement statement) {
 		switch statement {
 			BiGULReplace : '''new «Replace.typeRef(Object.typeRef.addArrayTypeDimension).qualifiedName»()'''
 			BiGULSkip : '''new «Skip.typeRef(Object.typeRef.addArrayTypeDimension).qualifiedName»()'''
+			CustomizedBiGULReference : '''new BiGUL«statement.function.name.toFirstUpper»()'''
 		}
 	}
 	

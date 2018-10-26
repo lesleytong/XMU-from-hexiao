@@ -5,6 +5,7 @@ package edu.ustb.sei.mde.bxcore.dsl.bXCore;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -171,6 +172,70 @@ public interface BXCorePackage extends EPackage
   int DEFINITION_FEATURE_COUNT = 1;
 
   /**
+   * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.CustomizedBiGULDefinitionImpl <em>Customized Bi GUL Definition</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.CustomizedBiGULDefinitionImpl
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getCustomizedBiGULDefinition()
+   * @generated
+   */
+  int CUSTOMIZED_BI_GUL_DEFINITION = 3;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CUSTOMIZED_BI_GUL_DEFINITION__NAME = DEFINITION__NAME;
+
+  /**
+   * The feature id for the '<em><b>Source Params</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CUSTOMIZED_BI_GUL_DEFINITION__SOURCE_PARAMS = DEFINITION_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>View Params</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CUSTOMIZED_BI_GUL_DEFINITION__VIEW_PARAMS = DEFINITION_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Get</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CUSTOMIZED_BI_GUL_DEFINITION__GET = DEFINITION_FEATURE_COUNT + 2;
+
+  /**
+   * The feature id for the '<em><b>Put</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CUSTOMIZED_BI_GUL_DEFINITION__PUT = DEFINITION_FEATURE_COUNT + 3;
+
+  /**
+   * The number of structural features of the '<em>Customized Bi GUL Definition</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CUSTOMIZED_BI_GUL_DEFINITION_FEATURE_COUNT = DEFINITION_FEATURE_COUNT + 4;
+
+  /**
    * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.TypeLiteralImpl <em>Type Literal</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -178,7 +243,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getTypeLiteral()
    * @generated
    */
-  int TYPE_LITERAL = 3;
+  int TYPE_LITERAL = 4;
 
   /**
    * The number of structural features of the '<em>Type Literal</em>' class.
@@ -197,7 +262,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getTupleTypeLiteral()
    * @generated
    */
-  int TUPLE_TYPE_LITERAL = 4;
+  int TUPLE_TYPE_LITERAL = 5;
 
   /**
    * The number of structural features of the '<em>Tuple Type Literal</em>' class.
@@ -216,7 +281,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getUnorderedTupleTypeLiteral()
    * @generated
    */
-  int UNORDERED_TUPLE_TYPE_LITERAL = 5;
+  int UNORDERED_TUPLE_TYPE_LITERAL = 6;
 
   /**
    * The feature id for the '<em><b>Source</b></em>' reference.
@@ -253,7 +318,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getOrderedTupleTypeLiteral()
    * @generated
    */
-  int ORDERED_TUPLE_TYPE_LITERAL = 6;
+  int ORDERED_TUPLE_TYPE_LITERAL = 7;
 
   /**
    * The feature id for the '<em><b>Source</b></em>' reference.
@@ -290,7 +355,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getTypeVar()
    * @generated
    */
-  int TYPE_VAR = 7;
+  int TYPE_VAR = 8;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -327,7 +392,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getPredefinedTypeLiteral()
    * @generated
    */
-  int PREDEFINED_TYPE_LITERAL = 8;
+  int PREDEFINED_TYPE_LITERAL = 9;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -355,7 +420,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getPatternTypeLiteral()
    * @generated
    */
-  int PATTERN_TYPE_LITERAL = 9;
+  int PATTERN_TYPE_LITERAL = 10;
 
   /**
    * The feature id for the '<em><b>Source</b></em>' reference.
@@ -401,7 +466,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getTypeDefinition()
    * @generated
    */
-  int TYPE_DEFINITION = 10;
+  int TYPE_DEFINITION = 11;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -438,7 +503,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getPatternDefinition()
    * @generated
    */
-  int PATTERN_DEFINITION = 11;
+  int PATTERN_DEFINITION = 12;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -475,7 +540,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getContextTypeRef()
    * @generated
    */
-  int CONTEXT_TYPE_REF = 12;
+  int CONTEXT_TYPE_REF = 13;
 
   /**
    * The number of structural features of the '<em>Context Type Ref</em>' class.
@@ -494,7 +559,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getBXFunctionDefinition()
    * @generated
    */
-  int BX_FUNCTION_DEFINITION = 13;
+  int BX_FUNCTION_DEFINITION = 14;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -540,7 +605,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getTypeRef()
    * @generated
    */
-  int TYPE_REF = 14;
+  int TYPE_REF = 15;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -568,7 +633,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getIndexDefinition()
    * @generated
    */
-  int INDEX_DEFINITION = 15;
+  int INDEX_DEFINITION = 16;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -614,7 +679,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getPatternValueCondition()
    * @generated
    */
-  int PATTERN_VALUE_CONDITION = 18;
+  int PATTERN_VALUE_CONDITION = 19;
 
   /**
    * The number of structural features of the '<em>Pattern Value Condition</em>' class.
@@ -633,7 +698,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getPatternNode()
    * @generated
    */
-  int PATTERN_NODE = 16;
+  int PATTERN_NODE = 17;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -679,7 +744,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getPatternEdge()
    * @generated
    */
-  int PATTERN_EDGE = 17;
+  int PATTERN_EDGE = 18;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -734,7 +799,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getPatternNodeRef()
    * @generated
    */
-  int PATTERN_NODE_REF = 19;
+  int PATTERN_NODE_REF = 20;
 
   /**
    * The feature id for the '<em><b>Node</b></em>' reference.
@@ -762,7 +827,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getPattern()
    * @generated
    */
-  int PATTERN = 20;
+  int PATTERN = 21;
 
   /**
    * The number of structural features of the '<em>Pattern</em>' class.
@@ -781,7 +846,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getPatternDefinitionReference()
    * @generated
    */
-  int PATTERN_DEFINITION_REFERENCE = 21;
+  int PATTERN_DEFINITION_REFERENCE = 22;
 
   /**
    * The feature id for the '<em><b>Pattern</b></em>' reference.
@@ -809,7 +874,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreStatement()
    * @generated
    */
-  int XMU_CORE_STATEMENT = 22;
+  int XMU_CORE_STATEMENT = 23;
 
   /**
    * The feature id for the '<em><b>Type Indicator</b></em>' containment reference.
@@ -837,7 +902,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreCompositionChildStatement()
    * @generated
    */
-  int XMU_CORE_COMPOSITION_CHILD_STATEMENT = 23;
+  int XMU_CORE_COMPOSITION_CHILD_STATEMENT = 24;
 
   /**
    * The feature id for the '<em><b>Type Indicator</b></em>' containment reference.
@@ -865,7 +930,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getTypeIndicator()
    * @generated
    */
-  int TYPE_INDICATOR = 24;
+  int TYPE_INDICATOR = 25;
 
   /**
    * The feature id for the '<em><b>Source Type</b></em>' containment reference.
@@ -902,7 +967,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreMatchSource()
    * @generated
    */
-  int XMU_CORE_MATCH_SOURCE = 25;
+  int XMU_CORE_MATCH_SOURCE = 26;
 
   /**
    * The feature id for the '<em><b>Type Indicator</b></em>' containment reference.
@@ -948,7 +1013,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreMatchView()
    * @generated
    */
-  int XMU_CORE_MATCH_VIEW = 26;
+  int XMU_CORE_MATCH_VIEW = 27;
 
   /**
    * The feature id for the '<em><b>Type Indicator</b></em>' containment reference.
@@ -994,7 +1059,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreExpandSource()
    * @generated
    */
-  int XMU_CORE_EXPAND_SOURCE = 27;
+  int XMU_CORE_EXPAND_SOURCE = 28;
 
   /**
    * The feature id for the '<em><b>Type Indicator</b></em>' containment reference.
@@ -1049,7 +1114,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreExpandView()
    * @generated
    */
-  int XMU_CORE_EXPAND_VIEW = 28;
+  int XMU_CORE_EXPAND_VIEW = 29;
 
   /**
    * The feature id for the '<em><b>Type Indicator</b></em>' containment reference.
@@ -1104,7 +1169,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getVarMapping()
    * @generated
    */
-  int VAR_MAPPING = 29;
+  int VAR_MAPPING = 30;
 
   /**
    * The feature id for the '<em><b>From</b></em>' attribute.
@@ -1141,7 +1206,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreGraphReplace()
    * @generated
    */
-  int XMU_CORE_GRAPH_REPLACE = 30;
+  int XMU_CORE_GRAPH_REPLACE = 31;
 
   /**
    * The feature id for the '<em><b>Type Indicator</b></em>' containment reference.
@@ -1196,7 +1261,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreParallelComposition()
    * @generated
    */
-  int XMU_CORE_PARALLEL_COMPOSITION = 31;
+  int XMU_CORE_PARALLEL_COMPOSITION = 32;
 
   /**
    * The feature id for the '<em><b>Type Indicator</b></em>' containment reference.
@@ -1233,7 +1298,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreSwitch()
    * @generated
    */
-  int XMU_CORE_SWITCH = 32;
+  int XMU_CORE_SWITCH = 33;
 
   /**
    * The feature id for the '<em><b>Type Indicator</b></em>' containment reference.
@@ -1279,7 +1344,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreSwitchBranch()
    * @generated
    */
-  int XMU_CORE_SWITCH_BRANCH = 33;
+  int XMU_CORE_SWITCH_BRANCH = 34;
 
   /**
    * The feature id for the '<em><b>Condition</b></em>' containment reference.
@@ -1316,7 +1381,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreSwitchAdaption()
    * @generated
    */
-  int XMU_CORE_SWITCH_ADAPTION = 34;
+  int XMU_CORE_SWITCH_ADAPTION = 35;
 
   /**
    * The feature id for the '<em><b>Condition</b></em>' containment reference.
@@ -1353,7 +1418,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getConversion()
    * @generated
    */
-  int CONVERSION = 35;
+  int CONVERSION = 36;
 
   /**
    * The feature id for the '<em><b>Bigul</b></em>' containment reference.
@@ -1399,7 +1464,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreFork()
    * @generated
    */
-  int XMU_CORE_FORK = 36;
+  int XMU_CORE_FORK = 37;
 
   /**
    * The feature id for the '<em><b>Type Indicator</b></em>' containment reference.
@@ -1436,7 +1501,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreForkBranch()
    * @generated
    */
-  int XMU_CORE_FORK_BRANCH = 37;
+  int XMU_CORE_FORK_BRANCH = 38;
 
   /**
    * The feature id for the '<em><b>Source Mappings</b></em>' containment reference list.
@@ -1482,7 +1547,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreAlign()
    * @generated
    */
-  int XMU_CORE_ALIGN = 38;
+  int XMU_CORE_ALIGN = 39;
 
   /**
    * The feature id for the '<em><b>Type Indicator</b></em>' containment reference.
@@ -1564,7 +1629,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreFunctionCall()
    * @generated
    */
-  int XMU_CORE_FUNCTION_CALL = 39;
+  int XMU_CORE_FUNCTION_CALL = 40;
 
   /**
    * The feature id for the '<em><b>Type Indicator</b></em>' containment reference.
@@ -1619,7 +1684,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreIndex()
    * @generated
    */
-  int XMU_CORE_INDEX = 40;
+  int XMU_CORE_INDEX = 41;
 
   /**
    * The feature id for the '<em><b>Type Indicator</b></em>' containment reference.
@@ -1665,7 +1730,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getIndexPart()
    * @generated
    */
-  int INDEX_PART = 41;
+  int INDEX_PART = 42;
 
   /**
    * The feature id for the '<em><b>Signature</b></em>' reference.
@@ -1711,7 +1776,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getContextAwareCondition()
    * @generated
    */
-  int CONTEXT_AWARE_CONDITION = 42;
+  int CONTEXT_AWARE_CONDITION = 43;
 
   /**
    * The feature id for the '<em><b>Condition</b></em>' containment reference.
@@ -1739,7 +1804,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getContextAwareUnidirectionalAction()
    * @generated
    */
-  int CONTEXT_AWARE_UNIDIRECTIONAL_ACTION = 43;
+  int CONTEXT_AWARE_UNIDIRECTIONAL_ACTION = 44;
 
   /**
    * The feature id for the '<em><b>Action</b></em>' containment reference.
@@ -1767,7 +1832,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getBiGULStatement()
    * @generated
    */
-  int BI_GUL_STATEMENT = 44;
+  int BI_GUL_STATEMENT = 45;
 
   /**
    * The number of structural features of the '<em>Bi GUL Statement</em>' class.
@@ -1786,7 +1851,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getBiGULReplace()
    * @generated
    */
-  int BI_GUL_REPLACE = 45;
+  int BI_GUL_REPLACE = 46;
 
   /**
    * The number of structural features of the '<em>Bi GUL Replace</em>' class.
@@ -1805,7 +1870,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getBiGULSkip()
    * @generated
    */
-  int BI_GUL_SKIP = 46;
+  int BI_GUL_SKIP = 47;
 
   /**
    * The number of structural features of the '<em>Bi GUL Skip</em>' class.
@@ -1817,6 +1882,34 @@ public interface BXCorePackage extends EPackage
   int BI_GUL_SKIP_FEATURE_COUNT = BI_GUL_STATEMENT_FEATURE_COUNT + 0;
 
   /**
+   * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.CustomizedBiGULReferenceImpl <em>Customized Bi GUL Reference</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.CustomizedBiGULReferenceImpl
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getCustomizedBiGULReference()
+   * @generated
+   */
+  int CUSTOMIZED_BI_GUL_REFERENCE = 48;
+
+  /**
+   * The feature id for the '<em><b>Function</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CUSTOMIZED_BI_GUL_REFERENCE__FUNCTION = BI_GUL_STATEMENT_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Customized Bi GUL Reference</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CUSTOMIZED_BI_GUL_REFERENCE_FEATURE_COUNT = BI_GUL_STATEMENT_FEATURE_COUNT + 1;
+
+  /**
    * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.ContextExpressionImpl <em>Context Expression</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1824,7 +1917,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getContextExpression()
    * @generated
    */
-  int CONTEXT_EXPRESSION = 47;
+  int CONTEXT_EXPRESSION = 49;
 
   /**
    * The number of structural features of the '<em>Context Expression</em>' class.
@@ -1843,7 +1936,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getModificationExpressionBlock()
    * @generated
    */
-  int MODIFICATION_EXPRESSION_BLOCK = 48;
+  int MODIFICATION_EXPRESSION_BLOCK = 50;
 
   /**
    * The feature id for the '<em><b>Expressions</b></em>' containment reference list.
@@ -1871,7 +1964,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getValueMapping()
    * @generated
    */
-  int VALUE_MAPPING = 49;
+  int VALUE_MAPPING = 51;
 
   /**
    * The feature id for the '<em><b>Var Name</b></em>' attribute.
@@ -1908,7 +2001,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getDefinedContextTypeRef()
    * @generated
    */
-  int DEFINED_CONTEXT_TYPE_REF = 50;
+  int DEFINED_CONTEXT_TYPE_REF = 52;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -1936,7 +2029,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getEcoreTypeRef()
    * @generated
    */
-  int ECORE_TYPE_REF = 51;
+  int ECORE_TYPE_REF = 53;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -1964,7 +2057,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getFeatureTypeRef()
    * @generated
    */
-  int FEATURE_TYPE_REF = 52;
+  int FEATURE_TYPE_REF = 54;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -2001,7 +2094,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getNavigationExpression()
    * @generated
    */
-  int NAVIGATION_EXPRESSION = 53;
+  int NAVIGATION_EXPRESSION = 55;
 
   /**
    * The feature id for the '<em><b>Host</b></em>' containment reference.
@@ -2038,7 +2131,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getContextVarExpression()
    * @generated
    */
-  int CONTEXT_VAR_EXPRESSION = 54;
+  int CONTEXT_VAR_EXPRESSION = 56;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2075,7 +2168,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getEnforcementExpression()
    * @generated
    */
-  int ENFORCEMENT_EXPRESSION = 55;
+  int ENFORCEMENT_EXPRESSION = 57;
 
   /**
    * The feature id for the '<em><b>Pattern</b></em>' containment reference.
@@ -2112,7 +2205,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getDeleteElementExpression()
    * @generated
    */
-  int DELETE_ELEMENT_EXPRESSION = 56;
+  int DELETE_ELEMENT_EXPRESSION = 58;
 
   /**
    * The feature id for the '<em><b>Element</b></em>' containment reference.
@@ -2131,6 +2224,16 @@ public interface BXCorePackage extends EPackage
    * @ordered
    */
   int DELETE_ELEMENT_EXPRESSION_FEATURE_COUNT = XbasePackage.XEXPRESSION_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.SideEnum <em>Side Enum</em>}' enum.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.SideEnum
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getSideEnum()
+   * @generated
+   */
+  int SIDE_ENUM = 59;
 
 
   /**
@@ -2228,6 +2331,60 @@ public interface BXCorePackage extends EPackage
    * @generated
    */
   EAttribute getDefinition_Name();
+
+  /**
+   * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.CustomizedBiGULDefinition <em>Customized Bi GUL Definition</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Customized Bi GUL Definition</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.CustomizedBiGULDefinition
+   * @generated
+   */
+  EClass getCustomizedBiGULDefinition();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.CustomizedBiGULDefinition#getSourceParams <em>Source Params</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Source Params</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.CustomizedBiGULDefinition#getSourceParams()
+   * @see #getCustomizedBiGULDefinition()
+   * @generated
+   */
+  EReference getCustomizedBiGULDefinition_SourceParams();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.CustomizedBiGULDefinition#getViewParams <em>View Params</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>View Params</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.CustomizedBiGULDefinition#getViewParams()
+   * @see #getCustomizedBiGULDefinition()
+   * @generated
+   */
+  EReference getCustomizedBiGULDefinition_ViewParams();
+
+  /**
+   * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.CustomizedBiGULDefinition#getGet <em>Get</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Get</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.CustomizedBiGULDefinition#getGet()
+   * @see #getCustomizedBiGULDefinition()
+   * @generated
+   */
+  EReference getCustomizedBiGULDefinition_Get();
+
+  /**
+   * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.CustomizedBiGULDefinition#getPut <em>Put</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Put</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.CustomizedBiGULDefinition#getPut()
+   * @see #getCustomizedBiGULDefinition()
+   * @generated
+   */
+  EReference getCustomizedBiGULDefinition_Put();
 
   /**
    * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeLiteral <em>Type Literal</em>}'.
@@ -3473,6 +3630,27 @@ public interface BXCorePackage extends EPackage
   EClass getBiGULSkip();
 
   /**
+   * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.CustomizedBiGULReference <em>Customized Bi GUL Reference</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Customized Bi GUL Reference</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.CustomizedBiGULReference
+   * @generated
+   */
+  EClass getCustomizedBiGULReference();
+
+  /**
+   * Returns the meta object for the reference '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.CustomizedBiGULReference#getFunction <em>Function</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Function</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.CustomizedBiGULReference#getFunction()
+   * @see #getCustomizedBiGULReference()
+   * @generated
+   */
+  EReference getCustomizedBiGULReference_Function();
+
+  /**
    * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextExpression <em>Context Expression</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3705,6 +3883,16 @@ public interface BXCorePackage extends EPackage
   EReference getDeleteElementExpression_Element();
 
   /**
+   * Returns the meta object for enum '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.SideEnum <em>Side Enum</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for enum '<em>Side Enum</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.SideEnum
+   * @generated
+   */
+  EEnum getSideEnum();
+
+  /**
    * Returns the factory that creates the instances of the model.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3804,6 +3992,48 @@ public interface BXCorePackage extends EPackage
      * @generated
      */
     EAttribute DEFINITION__NAME = eINSTANCE.getDefinition_Name();
+
+    /**
+     * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.CustomizedBiGULDefinitionImpl <em>Customized Bi GUL Definition</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.CustomizedBiGULDefinitionImpl
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getCustomizedBiGULDefinition()
+     * @generated
+     */
+    EClass CUSTOMIZED_BI_GUL_DEFINITION = eINSTANCE.getCustomizedBiGULDefinition();
+
+    /**
+     * The meta object literal for the '<em><b>Source Params</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CUSTOMIZED_BI_GUL_DEFINITION__SOURCE_PARAMS = eINSTANCE.getCustomizedBiGULDefinition_SourceParams();
+
+    /**
+     * The meta object literal for the '<em><b>View Params</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CUSTOMIZED_BI_GUL_DEFINITION__VIEW_PARAMS = eINSTANCE.getCustomizedBiGULDefinition_ViewParams();
+
+    /**
+     * The meta object literal for the '<em><b>Get</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CUSTOMIZED_BI_GUL_DEFINITION__GET = eINSTANCE.getCustomizedBiGULDefinition_Get();
+
+    /**
+     * The meta object literal for the '<em><b>Put</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CUSTOMIZED_BI_GUL_DEFINITION__PUT = eINSTANCE.getCustomizedBiGULDefinition_Put();
 
     /**
      * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.TypeLiteralImpl <em>Type Literal</em>}' class.
@@ -4830,6 +5060,24 @@ public interface BXCorePackage extends EPackage
     EClass BI_GUL_SKIP = eINSTANCE.getBiGULSkip();
 
     /**
+     * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.CustomizedBiGULReferenceImpl <em>Customized Bi GUL Reference</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.CustomizedBiGULReferenceImpl
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getCustomizedBiGULReference()
+     * @generated
+     */
+    EClass CUSTOMIZED_BI_GUL_REFERENCE = eINSTANCE.getCustomizedBiGULReference();
+
+    /**
+     * The meta object literal for the '<em><b>Function</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CUSTOMIZED_BI_GUL_REFERENCE__FUNCTION = eINSTANCE.getCustomizedBiGULReference_Function();
+
+    /**
      * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.ContextExpressionImpl <em>Context Expression</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -5024,6 +5272,16 @@ public interface BXCorePackage extends EPackage
      * @generated
      */
     EReference DELETE_ELEMENT_EXPRESSION__ELEMENT = eINSTANCE.getDeleteElementExpression_Element();
+
+    /**
+     * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.SideEnum <em>Side Enum</em>}' enum.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.SideEnum
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getSideEnum()
+     * @generated
+     */
+    EEnum SIDE_ENUM = eINSTANCE.getSideEnum();
 
   }
 
