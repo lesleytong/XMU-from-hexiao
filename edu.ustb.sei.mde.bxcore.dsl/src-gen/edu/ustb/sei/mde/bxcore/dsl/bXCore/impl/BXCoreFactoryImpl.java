@@ -112,9 +112,16 @@ public class BXCoreFactoryImpl extends EFactoryImpl implements BXCoreFactory
       case BXCorePackage.BI_GUL_STATEMENT: return createBiGULStatement();
       case BXCorePackage.BI_GUL_REPLACE: return createBiGULReplace();
       case BXCorePackage.BI_GUL_SKIP: return createBiGULSkip();
+      case BXCorePackage.CONTEXT_EXPRESSION: return createContextExpression();
+      case BXCorePackage.MODIFICATION_EXPRESSION_BLOCK: return createModificationExpressionBlock();
+      case BXCorePackage.VALUE_MAPPING: return createValueMapping();
       case BXCorePackage.DEFINED_CONTEXT_TYPE_REF: return createDefinedContextTypeRef();
       case BXCorePackage.ECORE_TYPE_REF: return createEcoreTypeRef();
       case BXCorePackage.FEATURE_TYPE_REF: return createFeatureTypeRef();
+      case BXCorePackage.NAVIGATION_EXPRESSION: return createNavigationExpression();
+      case BXCorePackage.CONTEXT_VAR_EXPRESSION: return createContextVarExpression();
+      case BXCorePackage.ENFORCEMENT_EXPRESSION: return createEnforcementExpression();
+      case BXCorePackage.DELETE_ELEMENT_EXPRESSION: return createDeleteElementExpression();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -642,6 +649,39 @@ public class BXCoreFactoryImpl extends EFactoryImpl implements BXCoreFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public ContextExpression createContextExpression()
+  {
+    ContextExpressionImpl contextExpression = new ContextExpressionImpl();
+    return contextExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ModificationExpressionBlock createModificationExpressionBlock()
+  {
+    ModificationExpressionBlockImpl modificationExpressionBlock = new ModificationExpressionBlockImpl();
+    return modificationExpressionBlock;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ValueMapping createValueMapping()
+  {
+    ValueMappingImpl valueMapping = new ValueMappingImpl();
+    return valueMapping;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public DefinedContextTypeRef createDefinedContextTypeRef()
   {
     DefinedContextTypeRefImpl definedContextTypeRef = new DefinedContextTypeRefImpl();
@@ -668,6 +708,50 @@ public class BXCoreFactoryImpl extends EFactoryImpl implements BXCoreFactory
   {
     FeatureTypeRefImpl featureTypeRef = new FeatureTypeRefImpl();
     return featureTypeRef;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NavigationExpression createNavigationExpression()
+  {
+    NavigationExpressionImpl navigationExpression = new NavigationExpressionImpl();
+    return navigationExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ContextVarExpression createContextVarExpression()
+  {
+    ContextVarExpressionImpl contextVarExpression = new ContextVarExpressionImpl();
+    return contextVarExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EnforcementExpression createEnforcementExpression()
+  {
+    EnforcementExpressionImpl enforcementExpression = new EnforcementExpressionImpl();
+    return enforcementExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public DeleteElementExpression createDeleteElementExpression()
+  {
+    DeleteElementExpressionImpl deleteElementExpression = new DeleteElementExpressionImpl();
+    return deleteElementExpression;
   }
 
   /**

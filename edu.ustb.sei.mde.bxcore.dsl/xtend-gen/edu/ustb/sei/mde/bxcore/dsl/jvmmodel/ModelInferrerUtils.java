@@ -1,8 +1,22 @@
 package edu.ustb.sei.mde.bxcore.dsl.jvmmodel;
 
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXProgram;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareCondition;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareUnidirectionalAction;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextExpression;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextVarExpression;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.NavigationExpression;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.Pattern;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternDefinitionReference;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternTypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeLiteral;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreAlign;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreStatement;
+import edu.ustb.sei.mde.bxcore.dsl.infer.InferData;
+import edu.ustb.sei.mde.bxcore.dsl.infer.InferManager;
 import edu.ustb.sei.mde.bxcore.dsl.infer.TypeInferenceException;
+import edu.ustb.sei.mde.bxcore.dsl.infer.UnsolvedTupleType;
 import edu.ustb.sei.mde.bxcore.dsl.structure.TupleType;
 import edu.ustb.sei.mde.structure.Tuple2;
 import java.util.ArrayList;
@@ -11,7 +25,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.MapExtensions;
@@ -52,5 +70,240 @@ public class ModelInferrerUtils {
     };
     MapExtensions.<TupleType, List<Pair<TypeLiteral, TupleType>>>forEach(groups, _function_1);
     return result;
+  }
+  
+  public static TupleType context(final EObject e, final boolean inSource) {
+    TupleType _xtrycatchfinallyexpression = null;
+    try {
+      TupleType _xifexpression = null;
+      if ((e == null)) {
+        _xifexpression = null;
+      } else {
+        TupleType _xifexpression_1 = null;
+        if ((e instanceof Pattern)) {
+          TupleType _xblockexpression = null;
+          {
+            final InferData inferData = InferManager.getInferredTypeModel(((Pattern)e).eResource());
+            TupleType _xifexpression_2 = null;
+            if ((e instanceof PatternDefinitionReference)) {
+              _xifexpression_2 = inferData.getLiteralMap().get(((PatternDefinitionReference)e).getPattern().getLiteral()).first;
+            } else {
+              TupleType _xifexpression_3 = null;
+              if ((e instanceof PatternTypeLiteral)) {
+                _xifexpression_3 = inferData.getLiteralMap().get(e).first;
+              } else {
+                _xifexpression_3 = null;
+              }
+              _xifexpression_2 = _xifexpression_3;
+            }
+            _xblockexpression = _xifexpression_2;
+          }
+          _xifexpression_1 = _xblockexpression;
+        } else {
+          TupleType _xifexpression_2 = null;
+          if ((e instanceof ContextAwareCondition)) {
+            TupleType _xifexpression_3 = null;
+            EStructuralFeature _eContainingFeature = ((ContextAwareCondition)e).eContainingFeature();
+            boolean _tripleEquals = (_eContainingFeature == BXCorePackage.Literals.XMU_CORE_ALIGN__ALIGNMENT);
+            if (_tripleEquals) {
+              TupleType _xifexpression_4 = null;
+              if (inSource) {
+                EObject _eContainer = ((ContextAwareCondition)e).eContainer();
+                _xifexpression_4 = ModelInferrerUtils.context(((XmuCoreAlign) _eContainer).getSourcePattern(), true);
+              } else {
+                EObject _eContainer_1 = ((ContextAwareCondition)e).eContainer();
+                _xifexpression_4 = ModelInferrerUtils.context(((XmuCoreAlign) _eContainer_1).getViewPattern(), false);
+              }
+              _xifexpression_3 = _xifexpression_4;
+            } else {
+              _xifexpression_3 = ModelInferrerUtils.context(((ContextAwareCondition)e).eContainer(), inSource);
+            }
+            _xifexpression_2 = _xifexpression_3;
+          } else {
+            TupleType _xifexpression_5 = null;
+            if ((e instanceof ContextAwareUnidirectionalAction)) {
+              TupleType _xifexpression_6 = null;
+              EStructuralFeature _eContainingFeature_1 = ((ContextAwareUnidirectionalAction)e).eContainingFeature();
+              boolean _tripleEquals_1 = (_eContainingFeature_1 == BXCorePackage.Literals.XMU_CORE_ALIGN__UNMATCH_S);
+              if (_tripleEquals_1) {
+                TupleType _xifexpression_7 = null;
+                if (inSource) {
+                  EObject _eContainer_2 = ((ContextAwareUnidirectionalAction)e).eContainer();
+                  _xifexpression_7 = ModelInferrerUtils.context(((XmuCoreAlign) _eContainer_2).getSourcePattern(), true);
+                } else {
+                  EObject _eContainer_3 = ((ContextAwareUnidirectionalAction)e).eContainer();
+                  _xifexpression_7 = ModelInferrerUtils.context(((XmuCoreAlign) _eContainer_3), false);
+                }
+                _xifexpression_6 = _xifexpression_7;
+              } else {
+                TupleType _xifexpression_8 = null;
+                EStructuralFeature _eContainingFeature_2 = ((ContextAwareUnidirectionalAction)e).eContainingFeature();
+                boolean _tripleEquals_2 = (_eContainingFeature_2 == BXCorePackage.Literals.XMU_CORE_ALIGN__UNMATCH_V);
+                if (_tripleEquals_2) {
+                  TupleType _xifexpression_9 = null;
+                  if (inSource) {
+                    EObject _eContainer_4 = ((ContextAwareUnidirectionalAction)e).eContainer();
+                    _xifexpression_9 = ModelInferrerUtils.context(((XmuCoreAlign) _eContainer_4), true);
+                  } else {
+                    EObject _eContainer_5 = ((ContextAwareUnidirectionalAction)e).eContainer();
+                    _xifexpression_9 = ModelInferrerUtils.context(((XmuCoreAlign) _eContainer_5).getViewPattern(), false);
+                  }
+                  _xifexpression_8 = _xifexpression_9;
+                } else {
+                  _xifexpression_8 = ModelInferrerUtils.context(((ContextAwareUnidirectionalAction)e).eContainer(), inSource);
+                }
+                _xifexpression_6 = _xifexpression_8;
+              }
+              _xifexpression_5 = _xifexpression_6;
+            } else {
+              TupleType _xifexpression_10 = null;
+              if ((e instanceof XmuCoreStatement)) {
+                UnsolvedTupleType _xblockexpression_1 = null;
+                {
+                  final InferData inferData = InferManager.getInferredTypeModel(((XmuCoreStatement)e).eResource());
+                  UnsolvedTupleType _xifexpression_11 = null;
+                  if (inSource) {
+                    _xifexpression_11 = inferData.getSourceInfer().unsolvedTupleTypeMap.get(e);
+                  } else {
+                    _xifexpression_11 = inferData.getViewInfer().unsolvedTupleTypeMap.get(e);
+                  }
+                  _xblockexpression_1 = _xifexpression_11;
+                }
+                _xifexpression_10 = _xblockexpression_1;
+              } else {
+                _xifexpression_10 = ModelInferrerUtils.context(e.eContainer(), inSource);
+              }
+              _xifexpression_5 = _xifexpression_10;
+            }
+            _xifexpression_2 = _xifexpression_5;
+          }
+          _xifexpression_1 = _xifexpression_2;
+        }
+        _xifexpression = _xifexpression_1;
+      }
+      _xtrycatchfinallyexpression = _xifexpression;
+    } catch (final Throwable _t) {
+      if (_t instanceof Exception) {
+        return null;
+      } else {
+        throw Exceptions.sneakyThrow(_t);
+      }
+    }
+    return _xtrycatchfinallyexpression;
+  }
+  
+  public static boolean isContextOnly(final EObject e) {
+    boolean _xifexpression = false;
+    if ((e == null)) {
+      _xifexpression = false;
+    } else {
+      boolean _xifexpression_1 = false;
+      if ((e instanceof ContextAwareCondition)) {
+        _xifexpression_1 = ((((ContextAwareCondition)e).eContainingFeature() == BXCorePackage.Literals.PATTERN_TYPE_LITERAL__FILTER) || (((ContextAwareCondition)e).eContainingFeature() == BXCorePackage.Literals.XMU_CORE_ALIGN__ALIGNMENT));
+      } else {
+        boolean _xifexpression_2 = false;
+        if ((e instanceof ContextAwareUnidirectionalAction)) {
+          _xifexpression_2 = false;
+        } else {
+          _xifexpression_2 = ModelInferrerUtils.isContextOnly(e.eContainer());
+        }
+        _xifexpression_1 = _xifexpression_2;
+      }
+      _xifexpression = _xifexpression_1;
+    }
+    return _xifexpression;
+  }
+  
+  public static Pair<EClassifier, Boolean> navEcoreType(final ContextExpression e) {
+    Pair<EClassifier, Boolean> _xifexpression = null;
+    if ((e instanceof ContextVarExpression)) {
+      Pair<EClassifier, Boolean> _xblockexpression = null;
+      {
+        final String side = ((ContextVarExpression)e).getSide();
+        final String varName = ((ContextVarExpression)e).getName();
+        Pair<EClassifier, Boolean> _xtrycatchfinallyexpression = null;
+        try {
+          Pair<EClassifier, Boolean> _xblockexpression_1 = null;
+          {
+            final TupleType tupleType = ModelInferrerUtils.context(e, side.equals("source"));
+            Pair<EClassifier, Boolean> _xifexpression_1 = null;
+            if ((tupleType == null)) {
+              _xifexpression_1 = null;
+            } else {
+              Pair<EClassifier, Boolean> _xblockexpression_2 = null;
+              {
+                final Function1<Tuple2<String, Object>, Boolean> _function = (Tuple2<String, Object> it) -> {
+                  return Boolean.valueOf(it.first.equals(varName));
+                };
+                final Tuple2<String, Object> typeDef = IterableExtensions.<Tuple2<String, Object>>findFirst(tupleType.tuples, _function);
+                Pair<EClassifier, Boolean> _xifexpression_2 = null;
+                if ((typeDef == null)) {
+                  _xifexpression_2 = null;
+                } else {
+                  Pair<EClassifier, Boolean> _xifexpression_3 = null;
+                  if ((typeDef.second instanceof EClass)) {
+                    _xifexpression_3 = Pair.<EClassifier, Boolean>of(((EClass) typeDef.second), Boolean.valueOf(false));
+                  } else {
+                    _xifexpression_3 = null;
+                  }
+                  _xifexpression_2 = _xifexpression_3;
+                }
+                _xblockexpression_2 = _xifexpression_2;
+              }
+              _xifexpression_1 = _xblockexpression_2;
+            }
+            _xblockexpression_1 = _xifexpression_1;
+          }
+          _xtrycatchfinallyexpression = _xblockexpression_1;
+        } catch (final Throwable _t) {
+          if (_t instanceof Exception) {
+            _xtrycatchfinallyexpression = null;
+          } else {
+            throw Exceptions.sneakyThrow(_t);
+          }
+        }
+        _xblockexpression = _xtrycatchfinallyexpression;
+      }
+      _xifexpression = _xblockexpression;
+    } else {
+      Pair<EClassifier, Boolean> _xifexpression_1 = null;
+      if ((e instanceof NavigationExpression)) {
+        Pair<EClassifier, Boolean> _xblockexpression_1 = null;
+        {
+          final Pair<EClassifier, Boolean> hostType = ModelInferrerUtils.navEcoreType(((NavigationExpression)e).getHost());
+          final String path = ((NavigationExpression)e).getPathName();
+          Pair<EClassifier, Boolean> _xifexpression_2 = null;
+          if ((hostType == null)) {
+            _xifexpression_2 = null;
+          } else {
+            Pair<EClassifier, Boolean> _xifexpression_3 = null;
+            EClassifier _key = hostType.getKey();
+            if ((_key instanceof EClass)) {
+              Pair<EClassifier, Boolean> _xblockexpression_2 = null;
+              {
+                EClassifier _key_1 = hostType.getKey();
+                final EStructuralFeature pathType = ((EClass) _key_1).getEStructuralFeature(path);
+                Pair<EClassifier, Boolean> _xifexpression_4 = null;
+                if ((pathType == null)) {
+                  _xifexpression_4 = null;
+                } else {
+                  EClassifier _eType = pathType.getEType();
+                  _xifexpression_4 = Pair.<EClassifier, Boolean>of(_eType, Boolean.valueOf(((hostType.getValue()).booleanValue() || pathType.isMany())));
+                }
+                _xblockexpression_2 = _xifexpression_4;
+              }
+              _xifexpression_3 = _xblockexpression_2;
+            } else {
+              _xifexpression_3 = null;
+            }
+            _xifexpression_2 = _xifexpression_3;
+          }
+          _xblockexpression_1 = _xifexpression_2;
+        }
+        _xifexpression_1 = _xblockexpression_1;
+      }
+      _xifexpression = _xifexpression_1;
+    }
+    return _xifexpression;
   }
 }

@@ -29,9 +29,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.BiGULSkip
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BiGULStatement
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareCondition
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareUnidirectionalAction
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextTypeRef
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.DefinedContextTypeRef
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.EcoreTypeRef
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ImportSection
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.IndexDefinition
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternDefinitionReference
@@ -54,6 +52,9 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreMatchView
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreParallelComposition
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreStatement
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreSwitch
+import edu.ustb.sei.mde.bxcore.dsl.infer.InferData
+import edu.ustb.sei.mde.bxcore.dsl.infer.InferManager
+import edu.ustb.sei.mde.bxcore.dsl.infer.UnsolvedTupleType
 import edu.ustb.sei.mde.bxcore.dsl.structure.TupleType
 import edu.ustb.sei.mde.bxcore.exceptions.BidirectionalTransformationDefinitionException
 import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException
@@ -70,7 +71,6 @@ import edu.ustb.sei.mde.structure.Tuple2
 import edu.ustb.sei.mde.structure.Tuple3
 import java.util.ArrayList
 import java.util.Arrays
-import java.util.HashMap
 import java.util.List
 import java.util.Map
 import java.util.Set
@@ -91,17 +91,10 @@ import org.eclipse.jdt.core.JavaCore
 import org.eclipse.xtext.common.types.JvmDeclaredType
 import org.eclipse.xtext.common.types.JvmGenericType
 import org.eclipse.xtext.common.types.JvmVisibility
-import org.eclipse.xtext.xbase.compiler.JvmModelGenerator
 import org.eclipse.xtext.xbase.compiler.output.ITreeAppendable
 import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
-import edu.ustb.sei.mde.bxcore.dsl.infer.SourceTypeModel
-import edu.ustb.sei.mde.bxcore.dsl.infer.UnsolvedTupleType
-import org.eclipse.emf.ecore.ENamedElement
-import org.eclipse.xtext.resource.XtextResource
-import edu.ustb.sei.mde.bxcore.dsl.infer.InferManager
-import edu.ustb.sei.mde.bxcore.dsl.infer.InferData
 
 /**
  * <p>Infers a JVM model from the source model.</p> 
@@ -115,7 +108,6 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 	 * convenience API to build and initialize JVM types and their members.
 	 */
 	@Inject extension JvmTypesBuilder
-	@Inject extension JvmModelGenerator
 
 	/**
 	 * The dispatch method {@code infer} is called for each instance of the

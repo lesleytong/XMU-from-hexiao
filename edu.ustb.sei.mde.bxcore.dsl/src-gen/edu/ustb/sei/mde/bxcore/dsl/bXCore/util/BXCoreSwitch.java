@@ -10,6 +10,8 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
 
+import org.eclipse.xtext.xbase.XExpression;
+
 /**
  * <!-- begin-user-doc -->
  * The <b>Switch</b> for the model's inheritance hierarchy.
@@ -446,6 +448,29 @@ public class BXCoreSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case BXCorePackage.CONTEXT_EXPRESSION:
+      {
+        ContextExpression contextExpression = (ContextExpression)theEObject;
+        T result = caseContextExpression(contextExpression);
+        if (result == null) result = caseXExpression(contextExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case BXCorePackage.MODIFICATION_EXPRESSION_BLOCK:
+      {
+        ModificationExpressionBlock modificationExpressionBlock = (ModificationExpressionBlock)theEObject;
+        T result = caseModificationExpressionBlock(modificationExpressionBlock);
+        if (result == null) result = caseXExpression(modificationExpressionBlock);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case BXCorePackage.VALUE_MAPPING:
+      {
+        ValueMapping valueMapping = (ValueMapping)theEObject;
+        T result = caseValueMapping(valueMapping);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case BXCorePackage.DEFINED_CONTEXT_TYPE_REF:
       {
         DefinedContextTypeRef definedContextTypeRef = (DefinedContextTypeRef)theEObject;
@@ -467,6 +492,40 @@ public class BXCoreSwitch<T> extends Switch<T>
         FeatureTypeRef featureTypeRef = (FeatureTypeRef)theEObject;
         T result = caseFeatureTypeRef(featureTypeRef);
         if (result == null) result = caseTypeRef(featureTypeRef);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case BXCorePackage.NAVIGATION_EXPRESSION:
+      {
+        NavigationExpression navigationExpression = (NavigationExpression)theEObject;
+        T result = caseNavigationExpression(navigationExpression);
+        if (result == null) result = caseContextExpression(navigationExpression);
+        if (result == null) result = caseXExpression(navigationExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case BXCorePackage.CONTEXT_VAR_EXPRESSION:
+      {
+        ContextVarExpression contextVarExpression = (ContextVarExpression)theEObject;
+        T result = caseContextVarExpression(contextVarExpression);
+        if (result == null) result = caseContextExpression(contextVarExpression);
+        if (result == null) result = caseXExpression(contextVarExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case BXCorePackage.ENFORCEMENT_EXPRESSION:
+      {
+        EnforcementExpression enforcementExpression = (EnforcementExpression)theEObject;
+        T result = caseEnforcementExpression(enforcementExpression);
+        if (result == null) result = caseXExpression(enforcementExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case BXCorePackage.DELETE_ELEMENT_EXPRESSION:
+      {
+        DeleteElementExpression deleteElementExpression = (DeleteElementExpression)theEObject;
+        T result = caseDeleteElementExpression(deleteElementExpression);
+        if (result == null) result = caseXExpression(deleteElementExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1227,6 +1286,54 @@ public class BXCoreSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Context Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Context Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseContextExpression(ContextExpression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Modification Expression Block</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Modification Expression Block</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseModificationExpressionBlock(ModificationExpressionBlock object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Value Mapping</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Value Mapping</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseValueMapping(ValueMapping object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Defined Context Type Ref</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -1270,6 +1377,87 @@ public class BXCoreSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseFeatureTypeRef(FeatureTypeRef object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Navigation Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Navigation Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseNavigationExpression(NavigationExpression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Context Var Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Context Var Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseContextVarExpression(ContextVarExpression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Enforcement Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Enforcement Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEnforcementExpression(EnforcementExpression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Delete Element Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Delete Element Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDeleteElementExpression(DeleteElementExpression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>XExpression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>XExpression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @since 2.7
+   * @generated
+   */
+  public T caseXExpression(XExpression object)
   {
     return null;
   }

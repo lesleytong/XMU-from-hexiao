@@ -4,8 +4,12 @@
 package edu.ustb.sei.mde.bxcore.dsl;
 
 import edu.ustb.sei.mde.bxcore.dsl.AbstractBXCoreRuntimeModule;
+import edu.ustb.sei.mde.bxcore.dsl.jvmmodel.XmuCoreCompiler;
+import edu.ustb.sei.mde.bxcore.dsl.jvmmodel.XmuCoreTypeComputer;
 import edu.ustb.sei.mde.bxcore.dsl.scoping.BXCoreLinkingService;
 import org.eclipse.xtext.linking.ILinkingService;
+import org.eclipse.xtext.xbase.compiler.XbaseCompiler;
+import org.eclipse.xtext.xbase.typesystem.computation.ITypeComputer;
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
@@ -15,5 +19,13 @@ public class BXCoreRuntimeModule extends AbstractBXCoreRuntimeModule {
   @Override
   public Class<? extends ILinkingService> bindILinkingService() {
     return BXCoreLinkingService.class;
+  }
+  
+  public Class<? extends ITypeComputer> bindITypeComputer() {
+    return XmuCoreTypeComputer.class;
+  }
+  
+  public Class<? extends XbaseCompiler> bindXbaseCompiler() {
+    return XmuCoreCompiler.class;
   }
 }

@@ -2,6 +2,7 @@ grammar edu.ustb.sei.mde.bxcore.dsl.BXCore with org.eclipse.xtext.xbase.Xbase
 
 import "http://www.eclipse.org/xtext/xbase/Xbase" as xbase
 import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+import "http://www.eclipse.org/xtext/common/JavaVMTypes" as types
 
 generate bXCore "http://www.ustb.edu/sei/mde/bxcore/dsl/BXCore"
 
@@ -210,7 +211,36 @@ BiGULSkip :
 
 @Override
 ValidID :
-	ID | 'replace' | 'skip' | 'index' | 'align' | 'match' | 'int' | 'String' |'boolean' | 'type'
+	ID | 'replace' | 'skip' | 'index' | 'align' | 'match' | 'int' | 'String' |'boolean' | 'type' |'source' |'view'
 ;
 
+ @Override
+XPrimaryExpression returns xbase::XExpression :
+	ContextExpression | super
+;
+ 
+ContextExpression returns ContextExpression:
+	ContextVarExpression ({NavigationExpression.host=current} '.' '@' pathName=ValidID)?
+;
 
+ContextVarExpression returns ContextExpression :
+	({ContextVarExpression} name=ValidID '@' side=('source'|'view'))
+;
+
+@Override
+XReturnExpression returns xbase::XExpression: 
+	ModificationExpressionBlock | super
+;
+
+ModificationExpressionBlock:
+	'begin' (expressions+=ModificationExpression)+ 'end'
+;
+
+ModificationExpression returns xbase::XExpression:
+	({EnforcementExpression} 'enforce' pattern=Pattern ('{' valueMappings+=ValueMapping (',' valueMappings+=ValueMapping)*'}')?) |
+	({DeleteElementExpression} 'delete' element=XExpression)
+;
+
+ValueMapping :
+	varName=ValidID '->' expression=XExpression
+;

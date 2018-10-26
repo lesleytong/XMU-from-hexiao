@@ -23,6 +23,8 @@ import java.util.HashMap
 import java.util.List
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.xtext.validation.Check
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareUnidirectionalAction
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpressionBlock
 
 /**
  * This class contains custom validation rules. 
@@ -135,6 +137,15 @@ class BXCoreValidator extends AbstractBXCoreValidator {
 		];
 		
 		return result;
+	}
+	
+	@Check
+	def checkContextAwareUnidirectionalAction(ContextAwareUnidirectionalAction act) {
+		act.eAllContents.filter[it instanceof ModificationExpressionBlock].forEach[b,id|
+			if(id>0)
+				error('More than one modification block in the context',b);
+		];
+		
 	}
 	
 }

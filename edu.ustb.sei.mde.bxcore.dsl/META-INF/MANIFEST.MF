@@ -31,6 +31,7 @@ Export-Package: edu.ustb.sei.mde.bxcore.dsl,
  edu.ustb.sei.mde.bxcore.dsl.scoping,
  edu.ustb.sei.mde.bxcore.dsl.serializer,
  edu.ustb.sei.mde.bxcore.dsl.services,
+ edu.ustb.sei.mde.bxcore.dsl.structure,
  edu.ustb.sei.mde.bxcore.dsl.validation,
  edu.ustb.sei.mde.bxcore.util
 Import-Package: org.apache.log4j

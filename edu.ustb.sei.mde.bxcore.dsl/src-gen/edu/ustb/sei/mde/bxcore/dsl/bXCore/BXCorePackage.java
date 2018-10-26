@@ -8,6 +8,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
+import org.eclipse.xtext.xbase.XbasePackage;
+
 /**
  * <!-- begin-user-doc -->
  * The <b>Package</b> for the model.
@@ -1815,6 +1817,90 @@ public interface BXCorePackage extends EPackage
   int BI_GUL_SKIP_FEATURE_COUNT = BI_GUL_STATEMENT_FEATURE_COUNT + 0;
 
   /**
+   * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.ContextExpressionImpl <em>Context Expression</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.ContextExpressionImpl
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getContextExpression()
+   * @generated
+   */
+  int CONTEXT_EXPRESSION = 47;
+
+  /**
+   * The number of structural features of the '<em>Context Expression</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXT_EXPRESSION_FEATURE_COUNT = XbasePackage.XEXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.ModificationExpressionBlockImpl <em>Modification Expression Block</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.ModificationExpressionBlockImpl
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getModificationExpressionBlock()
+   * @generated
+   */
+  int MODIFICATION_EXPRESSION_BLOCK = 48;
+
+  /**
+   * The feature id for the '<em><b>Expressions</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MODIFICATION_EXPRESSION_BLOCK__EXPRESSIONS = XbasePackage.XEXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Modification Expression Block</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MODIFICATION_EXPRESSION_BLOCK_FEATURE_COUNT = XbasePackage.XEXPRESSION_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.ValueMappingImpl <em>Value Mapping</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.ValueMappingImpl
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getValueMapping()
+   * @generated
+   */
+  int VALUE_MAPPING = 49;
+
+  /**
+   * The feature id for the '<em><b>Var Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VALUE_MAPPING__VAR_NAME = 0;
+
+  /**
+   * The feature id for the '<em><b>Expression</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VALUE_MAPPING__EXPRESSION = 1;
+
+  /**
+   * The number of structural features of the '<em>Value Mapping</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VALUE_MAPPING_FEATURE_COUNT = 2;
+
+  /**
    * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.DefinedContextTypeRefImpl <em>Defined Context Type Ref</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1822,7 +1908,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getDefinedContextTypeRef()
    * @generated
    */
-  int DEFINED_CONTEXT_TYPE_REF = 47;
+  int DEFINED_CONTEXT_TYPE_REF = 50;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -1850,7 +1936,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getEcoreTypeRef()
    * @generated
    */
-  int ECORE_TYPE_REF = 48;
+  int ECORE_TYPE_REF = 51;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -1878,7 +1964,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getFeatureTypeRef()
    * @generated
    */
-  int FEATURE_TYPE_REF = 49;
+  int FEATURE_TYPE_REF = 52;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -1906,6 +1992,145 @@ public interface BXCorePackage extends EPackage
    * @ordered
    */
   int FEATURE_TYPE_REF_FEATURE_COUNT = TYPE_REF_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.NavigationExpressionImpl <em>Navigation Expression</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.NavigationExpressionImpl
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getNavigationExpression()
+   * @generated
+   */
+  int NAVIGATION_EXPRESSION = 53;
+
+  /**
+   * The feature id for the '<em><b>Host</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NAVIGATION_EXPRESSION__HOST = CONTEXT_EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Path Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NAVIGATION_EXPRESSION__PATH_NAME = CONTEXT_EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Navigation Expression</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NAVIGATION_EXPRESSION_FEATURE_COUNT = CONTEXT_EXPRESSION_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.ContextVarExpressionImpl <em>Context Var Expression</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.ContextVarExpressionImpl
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getContextVarExpression()
+   * @generated
+   */
+  int CONTEXT_VAR_EXPRESSION = 54;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXT_VAR_EXPRESSION__NAME = CONTEXT_EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Side</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXT_VAR_EXPRESSION__SIDE = CONTEXT_EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Context Var Expression</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXT_VAR_EXPRESSION_FEATURE_COUNT = CONTEXT_EXPRESSION_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.EnforcementExpressionImpl <em>Enforcement Expression</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.EnforcementExpressionImpl
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getEnforcementExpression()
+   * @generated
+   */
+  int ENFORCEMENT_EXPRESSION = 55;
+
+  /**
+   * The feature id for the '<em><b>Pattern</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENFORCEMENT_EXPRESSION__PATTERN = XbasePackage.XEXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Value Mappings</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENFORCEMENT_EXPRESSION__VALUE_MAPPINGS = XbasePackage.XEXPRESSION_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Enforcement Expression</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENFORCEMENT_EXPRESSION_FEATURE_COUNT = XbasePackage.XEXPRESSION_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.DeleteElementExpressionImpl <em>Delete Element Expression</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.DeleteElementExpressionImpl
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getDeleteElementExpression()
+   * @generated
+   */
+  int DELETE_ELEMENT_EXPRESSION = 56;
+
+  /**
+   * The feature id for the '<em><b>Element</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DELETE_ELEMENT_EXPRESSION__ELEMENT = XbasePackage.XEXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Delete Element Expression</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DELETE_ELEMENT_EXPRESSION_FEATURE_COUNT = XbasePackage.XEXPRESSION_FEATURE_COUNT + 1;
 
 
   /**
@@ -3248,6 +3473,69 @@ public interface BXCorePackage extends EPackage
   EClass getBiGULSkip();
 
   /**
+   * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextExpression <em>Context Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Context Expression</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextExpression
+   * @generated
+   */
+  EClass getContextExpression();
+
+  /**
+   * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpressionBlock <em>Modification Expression Block</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Modification Expression Block</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpressionBlock
+   * @generated
+   */
+  EClass getModificationExpressionBlock();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpressionBlock#getExpressions <em>Expressions</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Expressions</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpressionBlock#getExpressions()
+   * @see #getModificationExpressionBlock()
+   * @generated
+   */
+  EReference getModificationExpressionBlock_Expressions();
+
+  /**
+   * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.ValueMapping <em>Value Mapping</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Value Mapping</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.ValueMapping
+   * @generated
+   */
+  EClass getValueMapping();
+
+  /**
+   * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.ValueMapping#getVarName <em>Var Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Var Name</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.ValueMapping#getVarName()
+   * @see #getValueMapping()
+   * @generated
+   */
+  EAttribute getValueMapping_VarName();
+
+  /**
+   * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.ValueMapping#getExpression <em>Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Expression</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.ValueMapping#getExpression()
+   * @see #getValueMapping()
+   * @generated
+   */
+  EReference getValueMapping_Expression();
+
+  /**
    * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.DefinedContextTypeRef <em>Defined Context Type Ref</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3298,6 +3586,123 @@ public interface BXCorePackage extends EPackage
    * @generated
    */
   EReference getFeatureTypeRef_Feature();
+
+  /**
+   * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.NavigationExpression <em>Navigation Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Navigation Expression</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.NavigationExpression
+   * @generated
+   */
+  EClass getNavigationExpression();
+
+  /**
+   * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.NavigationExpression#getHost <em>Host</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Host</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.NavigationExpression#getHost()
+   * @see #getNavigationExpression()
+   * @generated
+   */
+  EReference getNavigationExpression_Host();
+
+  /**
+   * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.NavigationExpression#getPathName <em>Path Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Path Name</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.NavigationExpression#getPathName()
+   * @see #getNavigationExpression()
+   * @generated
+   */
+  EAttribute getNavigationExpression_PathName();
+
+  /**
+   * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextVarExpression <em>Context Var Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Context Var Expression</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextVarExpression
+   * @generated
+   */
+  EClass getContextVarExpression();
+
+  /**
+   * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextVarExpression#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextVarExpression#getName()
+   * @see #getContextVarExpression()
+   * @generated
+   */
+  EAttribute getContextVarExpression_Name();
+
+  /**
+   * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextVarExpression#getSide <em>Side</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Side</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextVarExpression#getSide()
+   * @see #getContextVarExpression()
+   * @generated
+   */
+  EAttribute getContextVarExpression_Side();
+
+  /**
+   * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.EnforcementExpression <em>Enforcement Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Enforcement Expression</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.EnforcementExpression
+   * @generated
+   */
+  EClass getEnforcementExpression();
+
+  /**
+   * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.EnforcementExpression#getPattern <em>Pattern</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Pattern</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.EnforcementExpression#getPattern()
+   * @see #getEnforcementExpression()
+   * @generated
+   */
+  EReference getEnforcementExpression_Pattern();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.EnforcementExpression#getValueMappings <em>Value Mappings</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Value Mappings</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.EnforcementExpression#getValueMappings()
+   * @see #getEnforcementExpression()
+   * @generated
+   */
+  EReference getEnforcementExpression_ValueMappings();
+
+  /**
+   * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.DeleteElementExpression <em>Delete Element Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Delete Element Expression</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.DeleteElementExpression
+   * @generated
+   */
+  EClass getDeleteElementExpression();
+
+  /**
+   * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.DeleteElementExpression#getElement <em>Element</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Element</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.DeleteElementExpression#getElement()
+   * @see #getDeleteElementExpression()
+   * @generated
+   */
+  EReference getDeleteElementExpression_Element();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -4425,6 +4830,60 @@ public interface BXCorePackage extends EPackage
     EClass BI_GUL_SKIP = eINSTANCE.getBiGULSkip();
 
     /**
+     * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.ContextExpressionImpl <em>Context Expression</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.ContextExpressionImpl
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getContextExpression()
+     * @generated
+     */
+    EClass CONTEXT_EXPRESSION = eINSTANCE.getContextExpression();
+
+    /**
+     * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.ModificationExpressionBlockImpl <em>Modification Expression Block</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.ModificationExpressionBlockImpl
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getModificationExpressionBlock()
+     * @generated
+     */
+    EClass MODIFICATION_EXPRESSION_BLOCK = eINSTANCE.getModificationExpressionBlock();
+
+    /**
+     * The meta object literal for the '<em><b>Expressions</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference MODIFICATION_EXPRESSION_BLOCK__EXPRESSIONS = eINSTANCE.getModificationExpressionBlock_Expressions();
+
+    /**
+     * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.ValueMappingImpl <em>Value Mapping</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.ValueMappingImpl
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getValueMapping()
+     * @generated
+     */
+    EClass VALUE_MAPPING = eINSTANCE.getValueMapping();
+
+    /**
+     * The meta object literal for the '<em><b>Var Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute VALUE_MAPPING__VAR_NAME = eINSTANCE.getValueMapping_VarName();
+
+    /**
+     * The meta object literal for the '<em><b>Expression</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference VALUE_MAPPING__EXPRESSION = eINSTANCE.getValueMapping_Expression();
+
+    /**
      * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.DefinedContextTypeRefImpl <em>Defined Context Type Ref</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -4469,6 +4928,102 @@ public interface BXCorePackage extends EPackage
      * @generated
      */
     EReference FEATURE_TYPE_REF__FEATURE = eINSTANCE.getFeatureTypeRef_Feature();
+
+    /**
+     * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.NavigationExpressionImpl <em>Navigation Expression</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.NavigationExpressionImpl
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getNavigationExpression()
+     * @generated
+     */
+    EClass NAVIGATION_EXPRESSION = eINSTANCE.getNavigationExpression();
+
+    /**
+     * The meta object literal for the '<em><b>Host</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference NAVIGATION_EXPRESSION__HOST = eINSTANCE.getNavigationExpression_Host();
+
+    /**
+     * The meta object literal for the '<em><b>Path Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute NAVIGATION_EXPRESSION__PATH_NAME = eINSTANCE.getNavigationExpression_PathName();
+
+    /**
+     * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.ContextVarExpressionImpl <em>Context Var Expression</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.ContextVarExpressionImpl
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getContextVarExpression()
+     * @generated
+     */
+    EClass CONTEXT_VAR_EXPRESSION = eINSTANCE.getContextVarExpression();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CONTEXT_VAR_EXPRESSION__NAME = eINSTANCE.getContextVarExpression_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Side</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CONTEXT_VAR_EXPRESSION__SIDE = eINSTANCE.getContextVarExpression_Side();
+
+    /**
+     * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.EnforcementExpressionImpl <em>Enforcement Expression</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.EnforcementExpressionImpl
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getEnforcementExpression()
+     * @generated
+     */
+    EClass ENFORCEMENT_EXPRESSION = eINSTANCE.getEnforcementExpression();
+
+    /**
+     * The meta object literal for the '<em><b>Pattern</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ENFORCEMENT_EXPRESSION__PATTERN = eINSTANCE.getEnforcementExpression_Pattern();
+
+    /**
+     * The meta object literal for the '<em><b>Value Mappings</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ENFORCEMENT_EXPRESSION__VALUE_MAPPINGS = eINSTANCE.getEnforcementExpression_ValueMappings();
+
+    /**
+     * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.DeleteElementExpressionImpl <em>Delete Element Expression</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.DeleteElementExpressionImpl
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getDeleteElementExpression()
+     * @generated
+     */
+    EClass DELETE_ELEMENT_EXPRESSION = eINSTANCE.getDeleteElementExpression();
+
+    /**
+     * The meta object literal for the '<em><b>Element</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference DELETE_ELEMENT_EXPRESSION__ELEMENT = eINSTANCE.getDeleteElementExpression_Element();
 
   }
 

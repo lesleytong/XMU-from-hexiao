@@ -447,6 +447,33 @@ public interface BXCoreFactory extends EFactory
   BiGULSkip createBiGULSkip();
 
   /**
+   * Returns a new object of class '<em>Context Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Context Expression</em>'.
+   * @generated
+   */
+  ContextExpression createContextExpression();
+
+  /**
+   * Returns a new object of class '<em>Modification Expression Block</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Modification Expression Block</em>'.
+   * @generated
+   */
+  ModificationExpressionBlock createModificationExpressionBlock();
+
+  /**
+   * Returns a new object of class '<em>Value Mapping</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Value Mapping</em>'.
+   * @generated
+   */
+  ValueMapping createValueMapping();
+
+  /**
    * Returns a new object of class '<em>Defined Context Type Ref</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -472,6 +499,42 @@ public interface BXCoreFactory extends EFactory
    * @generated
    */
   FeatureTypeRef createFeatureTypeRef();
+
+  /**
+   * Returns a new object of class '<em>Navigation Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Navigation Expression</em>'.
+   * @generated
+   */
+  NavigationExpression createNavigationExpression();
+
+  /**
+   * Returns a new object of class '<em>Context Var Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Context Var Expression</em>'.
+   * @generated
+   */
+  ContextVarExpression createContextVarExpression();
+
+  /**
+   * Returns a new object of class '<em>Enforcement Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Enforcement Expression</em>'.
+   * @generated
+   */
+  EnforcementExpression createEnforcementExpression();
+
+  /**
+   * Returns a new object of class '<em>Delete Element Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Delete Element Expression</em>'.
+   * @generated
+   */
+  DeleteElementExpression createDeleteElementExpression();
 
   /**
    * Returns the package supported by this factory.

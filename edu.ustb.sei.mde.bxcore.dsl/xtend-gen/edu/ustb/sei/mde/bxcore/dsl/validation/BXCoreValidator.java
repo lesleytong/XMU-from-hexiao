@@ -6,7 +6,9 @@ package edu.ustb.sei.mde.bxcore.dsl.validation;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXFunctionDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXProgram;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareUnidirectionalAction;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.Conversion;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpressionBlock;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreExpandSource;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreExpandView;
@@ -33,6 +35,7 @@ import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.eclipse.xtext.xbase.lib.MapExtensions;
 import org.eclipse.xtext.xbase.lib.Pair;
+import org.eclipse.xtext.xbase.lib.Procedures.Procedure2;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure3;
 
 /**
@@ -213,5 +216,18 @@ public class BXCoreValidator extends AbstractBXCoreValidator {
     };
     MapExtensions.<TupleType, List<Pair<TypeLiteral, TupleType>>>forEach(groups, _function_3);
     return result;
+  }
+  
+  @Check
+  public void checkContextAwareUnidirectionalAction(final ContextAwareUnidirectionalAction act) {
+    final Function1<EObject, Boolean> _function = (EObject it) -> {
+      return Boolean.valueOf((it instanceof ModificationExpressionBlock));
+    };
+    final Procedure2<EObject, Integer> _function_1 = (EObject b, Integer id) -> {
+      if (((id).intValue() > 0)) {
+        this.error("More than one modification block in the context", b);
+      }
+    };
+    IteratorExtensions.<EObject>forEach(IteratorExtensions.<EObject>filter(act.eAllContents(), _function), _function_1);
   }
 }

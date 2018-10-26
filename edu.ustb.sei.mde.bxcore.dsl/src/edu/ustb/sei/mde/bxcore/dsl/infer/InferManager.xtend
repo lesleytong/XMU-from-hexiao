@@ -11,7 +11,7 @@ import java.util.logging.Level
 class InferManager {
 	static public Map<Resource, InferData> inferredDataMap = new HashMap;
 	
-	static def getInferredTypeModel(Resource resource) throws Exception {
+	static def InferData getInferredTypeModel(Resource resource) throws Exception {
 		val data = inferredDataMap.get(resource);
 		if(data===null) {
 			return createInfer(resource);

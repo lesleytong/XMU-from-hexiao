@@ -1,6 +1,7 @@
 package edu.ustb.sei.mde.bxcore.structures;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import edu.ustb.sei.mde.bxcore.SourceType;
@@ -253,6 +254,14 @@ public interface ContextGraph {
 			return this;
 		}
 		
+		public GraphModification remove(List<? extends IndexableElement> e) {
+			GraphModification m = this;
+			for(IndexableElement x : e) {
+				m = m.remove(x);
+			}
+			return m;
+		}
+		
 		public GraphModification remove(IndexableElement e) {
 			TypedGraph graph = data.getGraph();
 			if(e instanceof TypedNode)
@@ -263,6 +272,58 @@ public interface ContextGraph {
 				graph.remove((ValueEdge)e);
 			
 			return this;
+		}
+		
+		public GraphModification remove(Index id) {
+			TypedGraph graph = data.getGraph();
+			try {
+				IndexableElement e = graph.getElementByIndexObject(id);
+				return remove(e);
+			} catch (NothingReturnedException e1) {
+				return this;
+			}
+		}
+		
+		public GraphModification enforce(Pattern pat, Tuple2<String, Object>[] valueMaps) {
+			if(data instanceof SourceType) {
+				TypedGraph delta;
+				try {
+					Context freshContext = pat.getType().createInstance();
+					for(FieldDef<?> f : freshContext.getType().fields()) {
+						FieldDef<?> up = data.getContext().getType().getField(f.getName());
+						if(up==null) {
+							Tuple2<String, Object> tuple = null;
+							for(Tuple2<String, Object> t : valueMaps) {
+								if(t.first.equals(f.getName())) {
+									tuple = t;
+									break;
+								}
+							}
+							if(tuple==null) {
+								if(f.isElementType()) {
+									freshContext.setValue(f, IndexSystem.generateUUID());
+								} else {
+									freshContext.setValue(f, XmuCoreUtils.defaultValue(f.getType()));
+								}
+							} else {
+								freshContext.setValue(f, tuple.second);
+							}
+						} else {
+							freshContext.setValue(f, data.getContext().getValue(up));
+						}
+					}
+					
+					delta = pat.construct(data.getGraph(), freshContext);
+					SourceType updated = SourceType.makeSource(((SourceType)data).first.additiveMerge(delta),
+							freshContext, ((SourceType)data).third); 
+					GraphModification modify = new GraphModification(updated);
+					return modify;
+				} catch (UninitializedException | NothingReturnedException e) {
+					return null;
+				}
+			} else {
+				return null;
+			}
 		}
 		
 		@SuppressWarnings("unchecked")

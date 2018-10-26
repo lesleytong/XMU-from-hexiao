@@ -170,6 +170,7 @@ public class BXCoreSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) '[' declaredFormalParameters+=JvmFormalParameter
 	 *     (rule start) (ambiguity) '[' explicitSyntax?='|'
 	 *     (rule start) (ambiguity) '[' expression=XExpressionInClosure
+	 *     (rule start) (ambiguity) 'begin' expressions+=ModificationExpression
 	 *     (rule start) (ambiguity) 'do' body=XExpression
 	 *     (rule start) (ambiguity) 'false' (rule start)
 	 *     (rule start) (ambiguity) 'for' '(' ';' ';' ')' eachExpression=XExpression
@@ -196,8 +197,10 @@ public class BXCoreSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) feature=[JvmIdentifiableElement|IdOrSuper]
 	 *     (rule start) (ambiguity) feature=[JvmIdentifiableElement|OpUnary]
 	 *     (rule start) (ambiguity) isTrue?='true'
+	 *     (rule start) (ambiguity) name=ValidID
 	 *     (rule start) (ambiguity) value=Number
 	 *     (rule start) (ambiguity) value=STRING
+	 *     (rule start) (ambiguity) {NavigationExpression.host=}
 	 *     (rule start) (ambiguity) {XAssignment.assignable=}
 	 *     (rule start) (ambiguity) {XBinaryOperation.leftOperand=}
 	 *     (rule start) (ambiguity) {XCastedExpression.target=}
@@ -222,6 +225,7 @@ public class BXCoreSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) '[' declaredFormalParameters+=JvmFormalParameter
 	 *     (rule start) (ambiguity) '[' explicitSyntax?='|'
 	 *     (rule start) (ambiguity) '[' expression=XExpressionInClosure
+	 *     (rule start) (ambiguity) 'begin' expressions+=ModificationExpression
 	 *     (rule start) (ambiguity) 'do' body=XExpression
 	 *     (rule start) (ambiguity) 'false' ')' (rule start)
 	 *     (rule start) (ambiguity) 'for' '(' ';' ';' ')' eachExpression=XExpression
@@ -248,8 +252,10 @@ public class BXCoreSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) feature=[JvmIdentifiableElement|IdOrSuper]
 	 *     (rule start) (ambiguity) feature=[JvmIdentifiableElement|OpUnary]
 	 *     (rule start) (ambiguity) isTrue?='true'
+	 *     (rule start) (ambiguity) name=ValidID
 	 *     (rule start) (ambiguity) value=Number
 	 *     (rule start) (ambiguity) value=STRING
+	 *     (rule start) (ambiguity) {NavigationExpression.host=}
 	 *     (rule start) (ambiguity) {XAssignment.assignable=}
 	 *     (rule start) (ambiguity) {XBinaryOperation.leftOperand=}
 	 *     (rule start) (ambiguity) {XCastedExpression.target=}

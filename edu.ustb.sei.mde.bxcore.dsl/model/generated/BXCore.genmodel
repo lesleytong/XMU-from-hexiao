@@ -169,12 +169,35 @@
     <genClasses ecoreClass="BXCore.ecore#//BiGULStatement"/>
     <genClasses ecoreClass="BXCore.ecore#//BiGULReplace"/>
     <genClasses ecoreClass="BXCore.ecore#//BiGULSkip"/>
+    <genClasses ecoreClass="BXCore.ecore#//ContextExpression"/>
+    <genClasses ecoreClass="BXCore.ecore#//ModificationExpressionBlock">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//ModificationExpressionBlock/expressions"/>
+    </genClasses>
+    <genClasses ecoreClass="BXCore.ecore#//ValueMapping">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BXCore.ecore#//ValueMapping/varName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//ValueMapping/expression"/>
+    </genClasses>
     <genClasses ecoreClass="BXCore.ecore#//DefinedContextTypeRef">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BXCore.ecore#//DefinedContextTypeRef/type"/>
     </genClasses>
     <genClasses ecoreClass="BXCore.ecore#//EcoreTypeRef"/>
     <genClasses ecoreClass="BXCore.ecore#//FeatureTypeRef">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BXCore.ecore#//FeatureTypeRef/feature"/>
+    </genClasses>
+    <genClasses ecoreClass="BXCore.ecore#//NavigationExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//NavigationExpression/host"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BXCore.ecore#//NavigationExpression/pathName"/>
+    </genClasses>
+    <genClasses ecoreClass="BXCore.ecore#//ContextVarExpression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BXCore.ecore#//ContextVarExpression/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BXCore.ecore#//ContextVarExpression/side"/>
+    </genClasses>
+    <genClasses ecoreClass="BXCore.ecore#//EnforcementExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//EnforcementExpression/pattern"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//EnforcementExpression/valueMappings"/>
+    </genClasses>
+    <genClasses ecoreClass="BXCore.ecore#//DeleteElementExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//DeleteElementExpression/element"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
