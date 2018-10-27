@@ -72,11 +72,11 @@ public class InferData {
 				for(j=0;j<i;j++) {
 					UnsolvedTupleType tj = allUnsovledTypes.get(j);
 					if(t.compare(tj)) {
-						unsolvedTypeMap.put(t, Tuple2.make(tj, -j));
+						unsolvedTypeMap.put(t, Tuple2.make(tj, -j-1));
 						break;
 					}
 				}
-				if(i==j) unsolvedTypeMap.put(t, Tuple2.make(t, -i));
+				if(i==j) unsolvedTypeMap.put(t, Tuple2.make(t, -i-1));
 			}
 		}
 		return unsolvedTypeMap;

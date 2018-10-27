@@ -61,14 +61,13 @@ public class ExpandSource extends XmuCore {
 		if(patS.isMatchOf(s.first, s.second)==false) 
 			return nothing();
 		
-//		Context downstreamSourceMatch = s.second.downstream(remappings, body.getSourceDef(), false);
 		Context downstreamSourceMatch = s.second.createDownstreamContext(body.getSourceDef(), remappings, false);
 		downstreamSourceMatch.setUpstream(s.second, remappings);
 		
 		ViewType v = body.forward(SourceType.makeSource(s.first, downstreamSourceMatch, s.third));
 		
+		if(v==null) return null;
 		downstreamSourceMatch.submit();
-		
 		v.first.setConstraint(getConsistencyConstraint());
 		
 		return v;

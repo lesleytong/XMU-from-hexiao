@@ -39,7 +39,9 @@ public class MatchView extends XmuCore {
 
 	@Override
 	public ViewType forward(SourceType s) throws NothingReturnedException {
-		ViewType v = body.forward(s);		
+		ViewType v = body.forward(s);
+		if(v==null) nothing();
+		
 		Context downstreamView = v.second;
 		
 		if(patV.isMatchOf(v.first, downstreamView)==false) 

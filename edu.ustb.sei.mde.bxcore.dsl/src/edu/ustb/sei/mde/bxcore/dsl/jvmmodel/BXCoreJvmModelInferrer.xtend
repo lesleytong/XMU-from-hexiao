@@ -144,7 +144,7 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 			val unsolvedTypes = data.unsolvedTypeMap;
 
 			val sourceURI = element.eResource.URI.trimFileExtension.toJavaClassName;
-
+			
 			acceptor.accept(element.toClass(sourceURI) [
 				element.imports.forEach[i|i.generateImportSection(it);];
 
@@ -281,7 +281,7 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 								«ENDFOR»
 								«FOR i : 0..def.viewParams.size-1»
 								«val s = def.viewParams.get(i)»
-								«s.name» = («s.parameterType.qualifiedName») s[«i»];
+								«s.name» = («s.parameterType.qualifiedName») v[«i»];
 								«ENDFOR»
 								internalPut();
 								return new Object[]{«FOR s:def.sourceParams SEPARATOR ','»«s.name»«ENDFOR»};
@@ -612,7 +612,12 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 				val vt = (statement as XmuCoreFunctionCall).target.viewType(data).typeAccessor(typeLiteralMap, unsolvedTypes);
 				val sk = (statement as XmuCoreFunctionCall).sourceMappings;
 				val vk = (statement as XmuCoreFunctionCall).viewMappings;
-				appendable.append('''new «Invocation.typeRef.qualifiedName»("«key»", «st», «vt», new «Tuple2.typeRef.qualifiedName»[]{«FOR m:sk SEPARATOR ','»«Tuple2.typeRef.qualifiedName».make("«m.from»","«m.to»")«ENDFOR»}, new «Tuple2.typeRef.qualifiedName»[]{«FOR m:vk SEPARATOR ','»«Tuple2.typeRef.qualifiedName».make("«m.from»","«m.to»")«ENDFOR»},()->{try {return getXmu_«(statement as XmuCoreFunctionCall).target.name.toFirstUpper»();} catch(Exception e){return null;}})''')
+				appendable.append('''new «Invocation.typeRef.qualifiedName»("«key»", «st», «vt», new «Tuple2.typeRef.qualifiedName»[]{«FOR m:sk SEPARATOR ','»«Tuple2.typeRef.qualifiedName».make("«m.from»","«m.to»")«ENDFOR»}, new «Tuple2.typeRef.qualifiedName»[]{«FOR m:vk SEPARATOR ','»«Tuple2.typeRef.qualifiedName».make("«m.from»","«m.to»")«ENDFOR»},()->{try {
+					return getXmu_«(statement as XmuCoreFunctionCall).target.name.toFirstUpper»();
+				} catch(Exception e){
+					e.printStackTrace();
+					return null;
+				}})''')
 			}
 			XmuCoreIndex : {
 				val parts = (statement as XmuCoreIndex).parts;
@@ -700,7 +705,7 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 		owner.members += program.toMethod(methodName, ContextType.typeRef) [
 			visibility = JvmVisibility.PUBLIC;
 			val elements = tuple.tuples;
-		
+			if(tuple.info!==null) documentation = tuple.info;
 			body = '''
 				if(«varName»==null) {
 					«IF elements.empty»

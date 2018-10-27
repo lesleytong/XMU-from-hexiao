@@ -84,6 +84,7 @@ class XmuCoreCompiler extends XbaseCompiler {
 			val idx = block.expressions.indexOf(e);
 			
 			e.valueMappings.forEach[it.expression.internalToJavaStatement(a,true)];
+			val cur = a.declareSyntheticVariable(e, '_mod');
 			val prev = if (idx === 0) {
 					val init = a.declareSyntheticVariable(e, '_mod');
 					a.newLine.append('''«GraphModification.canonicalName» «init» = source.modification();''');
@@ -91,7 +92,6 @@ class XmuCoreCompiler extends XbaseCompiler {
 				} else {
 					getVarName(block.expressions.get(idx - 1), a)
 				}
-			val cur = a.declareSyntheticVariable(e, '_mod');
 			a.newLine.append('''«GraphModification.canonicalName» «cur» = «prev».enforce(«e.pattern.patternAccessor»(), new edu.ustb.sei.mde.structure.Tuple2[] {''');
 			
 			e.valueMappings.forEach [ m, id |
@@ -104,6 +104,7 @@ class XmuCoreCompiler extends XbaseCompiler {
 		} else if(e instanceof DeleteElementExpression) {
 			val block = e.eContainer as ModificationExpressionBlock;
 			val idx = block.expressions.indexOf(e);
+			val cur = a.declareSyntheticVariable(e, '_mod');
 			val prev = if (idx === 0) {
 					val init = a.declareSyntheticVariable(e, '_mod');
 					a.newLine.append('''«GraphModification.canonicalName» «init» = source.modification();''');
@@ -111,7 +112,6 @@ class XmuCoreCompiler extends XbaseCompiler {
 				} else {
 					getVarName(block.expressions.get(idx - 1), a)
 				}
-			val cur = a.declareSyntheticVariable(e, '_mod');
 			e.element.internalToJavaStatement(a, true);
 			a.newLine.append('''«GraphModification.canonicalName» «cur» = «prev».remove(''');
 			e.element.internalToJavaExpression(a);

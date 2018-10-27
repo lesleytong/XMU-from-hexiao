@@ -82,6 +82,7 @@ public class Indexing extends XmuCore {
 		newSystem.trace(this.getSerializationKey(), source, viewIndexing, source); // if trace exists, viewIndexing should not be record
 		
 		ViewType v = this.body.forward(SourceType.makeSource(s.first, s.second, newSystem));
+		if(v==null) return null;
 		
 		viewIndexing.setUpstream(v.second,this.viewKeys); // useless in forward transformation
 		

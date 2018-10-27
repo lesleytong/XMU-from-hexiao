@@ -231,7 +231,7 @@ XPrimaryExpression returns xbase::XExpression :
 ;
  
 ContextExpression returns ContextExpression:
-	ContextVarExpression ({NavigationExpression.host=current} '.' '@' pathName=ValidID)?
+	ContextVarExpression ({NavigationExpression.host=current} '.' '@' pathName=ValidID)*
 ;
 
 ContextVarExpression returns ContextExpression :

@@ -1,7 +1,11 @@
 package edu.ustb.sei.mde.bxcore;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import edu.ustb.sei.mde.bxcore.exceptions.BidirectionalTransformationDefinitionException;
 import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
@@ -12,14 +16,38 @@ import edu.ustb.sei.mde.bxcore.structures.FieldDef;
 import edu.ustb.sei.mde.graph.typedGraph.IndexSystem;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
 import edu.ustb.sei.mde.graph.typedGraph.constraint.GraphConstraint;
+import edu.ustb.sei.mde.structure.Tuple2;
 
 public class ParallelComposition extends XmuCore {
 	
 	private XmuCore[] bodies;
+	private List<Tuple2<String,String>[]> sourceMappings;
+	private List<Tuple2<String,String>[]> viewMappings;
 
+	@SuppressWarnings("unchecked")
 	public ParallelComposition(Object key, ContextType sourceDef, ContextType viewDef, XmuCore[] bodies) throws BidirectionalTransformationDefinitionException {
 		super(key, sourceDef, viewDef);
 		this.bodies = bodies;
+		
+		sourceMappings = new ArrayList<>();
+		viewMappings = new ArrayList<>();
+		
+		Collection<String> sk = sourceDef.fields().stream().map(f->f.getName()).collect(Collectors.toSet());
+		Collection<String> vk = viewDef.fields().stream().map(f->f.getName()).collect(Collectors.toSet());
+		
+		for(XmuCore b : bodies) {
+			Collection<String> bsk = b.getSourceDef().fields().stream().map(f->f.getName()).collect(Collectors.toSet());
+			Collection<String> bvk = b.getViewDef().fields().stream().map(f->f.getName()).collect(Collectors.toSet());
+			
+			bsk.retainAll(sk);
+			bvk.retainAll(vk);
+			
+			if(bsk.isEmpty() || bvk.isEmpty()) 
+				throw new BidirectionalTransformationDefinitionException("A body statement is disjoint with the parallel composition");
+			
+			sourceMappings.add(bsk.stream().map(k->Tuple2.make(k, k)).toArray(i->new Tuple2[i]));
+			viewMappings.add(bvk.stream().map(k->Tuple2.make(k, k)).toArray(i->new Tuple2[i]));
+		}
 		
 		checkWellDefinedness();
 	}
@@ -55,9 +83,8 @@ public class ParallelComposition extends XmuCore {
 		ViewType[] result = new ViewType[this.bodies.length];
 		Context[] newSources = new Context[this.bodies.length];
 		for(int i=0;i<this.bodies.length;i++) {
-			Context newSource = s.second.createDownstreamContext(getSourceDef());
-//			newSource.initWith(s.second);
-			newSource.setUpstreamJoint(s.second);
+			Context newSource = s.second.createDownstreamContext(getSourceDef(), sourceMappings.get(i));
+			newSource.setUpstream(s.second, sourceMappings.get(i));
 			newSources[i] = newSource;
 			result[i] = bodies[i].forward(SourceType.makeSource(s.first, newSource, s.third));
 		}
@@ -74,6 +101,7 @@ public class ParallelComposition extends XmuCore {
 					finalViewContext.setValue(vk, common);
 					for(ViewType v : result) {
 						try {
+							if(v==null) continue;
 							// in principle, we should reset downstream values
 							v.first.addIndex(common, v.first.getElementByIndexObject(v.second.getIndexValue(vk)));
 						} catch (UninitializedException e1) {
@@ -93,8 +121,10 @@ public class ParallelComposition extends XmuCore {
 		}
 		
 		TypedGraph finalView = null;
-		for(ViewType v : result) {
-			v.second.setUpstreamJoint(finalViewContext);
+		for(int i=0;i<result.length;i++) {
+			ViewType v = result[i];
+			if(v==null) continue;
+			v.second.setUpstream(finalViewContext, viewMappings.get(i));
 			v.second.submit();
 			if(finalView==null)
 				finalView = v.first;
@@ -113,6 +143,7 @@ public class ParallelComposition extends XmuCore {
 		Object value = null;
 		boolean mayBeEmpty = true;
 		for(ViewType v : result) {
+			if(v==null) continue;
 			try {
 				if(value==null)
 					value = v.second.getValue(vk.getName());
@@ -137,14 +168,14 @@ public class ParallelComposition extends XmuCore {
 		TraceSystem[] interTraces = new TraceSystem[this.bodies.length];
 		
 		for(int i=0;i<this.bodies.length;i++) {
-			newSources[i] = s.second.createDownstreamContext(getSourceDef());
+			newSources[i] = s.second.createDownstreamContext(getSourceDef(), sourceMappings.get(i));
 //			newSources[i].initWith(s.second);
 			
-			newViews[i] = v.second.createDownstreamContext(getViewDef());
+			newViews[i] = v.second.createDownstreamContext(getViewDef(), viewMappings.get(i));
 //			newViews[i].initWith(v.second);
 			
-			newSources[i].setUpstreamJoint(s.second);
-			newViews[i].setUpstreamJoint(v.second);
+			newSources[i].setUpstream(s.second,sourceMappings.get(i));
+			newViews[i].setUpstream(v.second, viewMappings.get(i));
 			
 			results[i] = this.bodies[i].backward(SourceType.makeSource(s.first, newSources[i], s.third), ViewType.makeView(v.first, newViews[i]));
 			interSources[i] = results[i].first;
@@ -193,8 +224,9 @@ public class ParallelComposition extends XmuCore {
 		
 		submit(newSources);
 		submit(newViews);
-		for(SourceType r : results) {
-			r.second.setUpstreamJoint(finalSourcePost);
+		for(int i=0;i<results.length;i++) {
+			SourceType r = results[i];
+			r.second.setUpstream(finalSourcePost,sourceMappings.get(i));
 			r.second.submit();
 		}
 		
@@ -228,7 +260,15 @@ public class ParallelComposition extends XmuCore {
 	protected GraphConstraint generateConsistencyConstraint() {
 		GraphConstraint[] cons = new GraphConstraint[bodies.length];
 		for(int i=0;i<bodies.length;i++) {
-			cons[i] = bodies[i].getConsistencyConstraint();
+			XmuCore b = bodies[i];
+			GraphConstraint cc = b.getConsistencyConstraint();
+			Tuple2<String, String>[] sm = sourceMappings.get(i);
+			Tuple2<String, String>[] vm = viewMappings.get(i);
+			cons[i] = (gs,cs, gv, cv)->{
+				Context dsc = cs.createDownstreamContext(b.getSourceDef(), sm);
+				Context dvc = cv.createDownstreamContext(b.getViewDef(), vm);
+				return cc.check(gs, dsc, gv, dvc);
+			};
 		}
 		return GraphConstraint.and(cons);
 	}

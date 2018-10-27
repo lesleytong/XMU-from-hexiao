@@ -11664,7 +11664,7 @@ public class InternalBXCoreParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleContextExpression"
-    // InternalBXCore.g:4205:1: ruleContextExpression returns [EObject current=null] : (this_ContextVarExpression_0= ruleContextVarExpression ( () otherlv_2= '.' otherlv_3= '@' ( (lv_pathName_4_0= ruleValidID ) ) )? ) ;
+    // InternalBXCore.g:4205:1: ruleContextExpression returns [EObject current=null] : (this_ContextVarExpression_0= ruleContextVarExpression ( () otherlv_2= '.' otherlv_3= '@' ( (lv_pathName_4_0= ruleValidID ) ) )* ) ;
     public final EObject ruleContextExpression() throws RecognitionException {
         EObject current = null;
 
@@ -11679,11 +11679,11 @@ public class InternalBXCoreParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalBXCore.g:4211:2: ( (this_ContextVarExpression_0= ruleContextVarExpression ( () otherlv_2= '.' otherlv_3= '@' ( (lv_pathName_4_0= ruleValidID ) ) )? ) )
-            // InternalBXCore.g:4212:2: (this_ContextVarExpression_0= ruleContextVarExpression ( () otherlv_2= '.' otherlv_3= '@' ( (lv_pathName_4_0= ruleValidID ) ) )? )
+            // InternalBXCore.g:4211:2: ( (this_ContextVarExpression_0= ruleContextVarExpression ( () otherlv_2= '.' otherlv_3= '@' ( (lv_pathName_4_0= ruleValidID ) ) )* ) )
+            // InternalBXCore.g:4212:2: (this_ContextVarExpression_0= ruleContextVarExpression ( () otherlv_2= '.' otherlv_3= '@' ( (lv_pathName_4_0= ruleValidID ) ) )* )
             {
-            // InternalBXCore.g:4212:2: (this_ContextVarExpression_0= ruleContextVarExpression ( () otherlv_2= '.' otherlv_3= '@' ( (lv_pathName_4_0= ruleValidID ) ) )? )
-            // InternalBXCore.g:4213:3: this_ContextVarExpression_0= ruleContextVarExpression ( () otherlv_2= '.' otherlv_3= '@' ( (lv_pathName_4_0= ruleValidID ) ) )?
+            // InternalBXCore.g:4212:2: (this_ContextVarExpression_0= ruleContextVarExpression ( () otherlv_2= '.' otherlv_3= '@' ( (lv_pathName_4_0= ruleValidID ) ) )* )
+            // InternalBXCore.g:4213:3: this_ContextVarExpression_0= ruleContextVarExpression ( () otherlv_2= '.' otherlv_3= '@' ( (lv_pathName_4_0= ruleValidID ) ) )*
             {
             if ( state.backtracking==0 ) {
 
@@ -11701,86 +11701,95 @@ public class InternalBXCoreParser extends AbstractInternalAntlrParser {
               			afterParserOrEnumRuleCall();
               		
             }
-            // InternalBXCore.g:4221:3: ( () otherlv_2= '.' otherlv_3= '@' ( (lv_pathName_4_0= ruleValidID ) ) )?
-            int alt56=2;
-            int LA56_0 = input.LA(1);
+            // InternalBXCore.g:4221:3: ( () otherlv_2= '.' otherlv_3= '@' ( (lv_pathName_4_0= ruleValidID ) ) )*
+            loop56:
+            do {
+                int alt56=2;
+                int LA56_0 = input.LA(1);
 
-            if ( (LA56_0==57) ) {
-                int LA56_1 = input.LA(2);
+                if ( (LA56_0==57) ) {
+                    int LA56_2 = input.LA(2);
 
-                if ( (LA56_1==58) ) {
-                    alt56=1;
+                    if ( (LA56_2==58) ) {
+                        alt56=1;
+                    }
+
+
                 }
-            }
-            switch (alt56) {
-                case 1 :
-                    // InternalBXCore.g:4222:4: () otherlv_2= '.' otherlv_3= '@' ( (lv_pathName_4_0= ruleValidID ) )
-                    {
-                    // InternalBXCore.g:4222:4: ()
-                    // InternalBXCore.g:4223:5: 
-                    {
-                    if ( state.backtracking==0 ) {
-
-                      					current = forceCreateModelElementAndSet(
-                      						grammarAccess.getContextExpressionAccess().getNavigationExpressionHostAction_1_0(),
-                      						current);
-                      				
-                    }
-
-                    }
-
-                    otherlv_2=(Token)match(input,57,FOLLOW_50); if (state.failed) return current;
-                    if ( state.backtracking==0 ) {
-
-                      				newLeafNode(otherlv_2, grammarAccess.getContextExpressionAccess().getFullStopKeyword_1_1());
-                      			
-                    }
-                    otherlv_3=(Token)match(input,58,FOLLOW_7); if (state.failed) return current;
-                    if ( state.backtracking==0 ) {
-
-                      				newLeafNode(otherlv_3, grammarAccess.getContextExpressionAccess().getCommercialAtKeyword_1_2());
-                      			
-                    }
-                    // InternalBXCore.g:4237:4: ( (lv_pathName_4_0= ruleValidID ) )
-                    // InternalBXCore.g:4238:5: (lv_pathName_4_0= ruleValidID )
-                    {
-                    // InternalBXCore.g:4238:5: (lv_pathName_4_0= ruleValidID )
-                    // InternalBXCore.g:4239:6: lv_pathName_4_0= ruleValidID
-                    {
-                    if ( state.backtracking==0 ) {
-
-                      						newCompositeNode(grammarAccess.getContextExpressionAccess().getPathNameValidIDParserRuleCall_1_3_0());
-                      					
-                    }
-                    pushFollow(FOLLOW_2);
-                    lv_pathName_4_0=ruleValidID();
-
-                    state._fsp--;
-                    if (state.failed) return current;
-                    if ( state.backtracking==0 ) {
-
-                      						if (current==null) {
-                      							current = createModelElementForParent(grammarAccess.getContextExpressionRule());
-                      						}
-                      						set(
-                      							current,
-                      							"pathName",
-                      							lv_pathName_4_0,
-                      							"edu.ustb.sei.mde.bxcore.dsl.BXCore.ValidID");
-                      						afterParserOrEnumRuleCall();
-                      					
-                    }
-
-                    }
 
 
-                    }
+                switch (alt56) {
+            	case 1 :
+            	    // InternalBXCore.g:4222:4: () otherlv_2= '.' otherlv_3= '@' ( (lv_pathName_4_0= ruleValidID ) )
+            	    {
+            	    // InternalBXCore.g:4222:4: ()
+            	    // InternalBXCore.g:4223:5: 
+            	    {
+            	    if ( state.backtracking==0 ) {
+
+            	      					current = forceCreateModelElementAndSet(
+            	      						grammarAccess.getContextExpressionAccess().getNavigationExpressionHostAction_1_0(),
+            	      						current);
+            	      				
+            	    }
+
+            	    }
+
+            	    otherlv_2=(Token)match(input,57,FOLLOW_50); if (state.failed) return current;
+            	    if ( state.backtracking==0 ) {
+
+            	      				newLeafNode(otherlv_2, grammarAccess.getContextExpressionAccess().getFullStopKeyword_1_1());
+            	      			
+            	    }
+            	    otherlv_3=(Token)match(input,58,FOLLOW_7); if (state.failed) return current;
+            	    if ( state.backtracking==0 ) {
+
+            	      				newLeafNode(otherlv_3, grammarAccess.getContextExpressionAccess().getCommercialAtKeyword_1_2());
+            	      			
+            	    }
+            	    // InternalBXCore.g:4237:4: ( (lv_pathName_4_0= ruleValidID ) )
+            	    // InternalBXCore.g:4238:5: (lv_pathName_4_0= ruleValidID )
+            	    {
+            	    // InternalBXCore.g:4238:5: (lv_pathName_4_0= ruleValidID )
+            	    // InternalBXCore.g:4239:6: lv_pathName_4_0= ruleValidID
+            	    {
+            	    if ( state.backtracking==0 ) {
+
+            	      						newCompositeNode(grammarAccess.getContextExpressionAccess().getPathNameValidIDParserRuleCall_1_3_0());
+            	      					
+            	    }
+            	    pushFollow(FOLLOW_49);
+            	    lv_pathName_4_0=ruleValidID();
+
+            	    state._fsp--;
+            	    if (state.failed) return current;
+            	    if ( state.backtracking==0 ) {
+
+            	      						if (current==null) {
+            	      							current = createModelElementForParent(grammarAccess.getContextExpressionRule());
+            	      						}
+            	      						set(
+            	      							current,
+            	      							"pathName",
+            	      							lv_pathName_4_0,
+            	      							"edu.ustb.sei.mde.bxcore.dsl.BXCore.ValidID");
+            	      						afterParserOrEnumRuleCall();
+            	      					
+            	    }
+
+            	    }
 
 
-                    }
-                    break;
+            	    }
 
-            }
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop56;
+                }
+            } while (true);
 
 
             }
@@ -33760,7 +33769,7 @@ public class InternalBXCoreParser extends AbstractInternalAntlrParser {
     static final String dfa_60s = "\1\4\7\0\2\uffff";
     static final String dfa_61s = "\1\163\7\0\2\uffff";
     static final String dfa_62s = "\10\uffff\1\2\1\1";
-    static final String dfa_63s = "\1\uffff\1\2\1\3\1\4\1\5\1\6\1\0\1\1\2\uffff}>";
+    static final String dfa_63s = "\1\uffff\1\2\1\3\1\4\1\5\1\6\1\1\1\0\2\uffff}>";
     static final String[] dfa_64s = {
             "\5\10\4\uffff\13\10\1\uffff\1\10\1\uffff\4\10\1\6\1\7\2\10\3\uffff\1\10\3\uffff\2\10\1\uffff\1\10\1\uffff\3\10\2\uffff\6\10\1\uffff\4\10\1\1\1\2\1\3\1\4\1\5\60\10",
             "\1\uffff",
@@ -33803,21 +33812,6 @@ public class InternalBXCoreParser extends AbstractInternalAntlrParser {
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA62_6 = input.LA(1);
-
-                         
-                        int index62_6 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred6_InternalBXCore()) ) {s = 9;}
-
-                        else if ( (true) ) {s = 8;}
-
-                         
-                        input.seek(index62_6);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 1 : 
                         int LA62_7 = input.LA(1);
 
                          
@@ -33830,6 +33824,21 @@ public class InternalBXCoreParser extends AbstractInternalAntlrParser {
 
                          
                         input.seek(index62_7);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 1 : 
+                        int LA62_6 = input.LA(1);
+
+                         
+                        int index62_6 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred6_InternalBXCore()) ) {s = 9;}
+
+                        else if ( (true) ) {s = 8;}
+
+                         
+                        input.seek(index62_6);
                         if ( s>=0 ) return s;
                         break;
                     case 2 : 
@@ -33920,7 +33929,7 @@ public class InternalBXCoreParser extends AbstractInternalAntlrParser {
     static final String dfa_67s = "\1\4\1\uffff\10\0\1\uffff";
     static final String dfa_68s = "\1\163\1\uffff\10\0\1\uffff";
     static final String dfa_69s = "\1\uffff\1\2\10\uffff\1\1";
-    static final String dfa_70s = "\2\uffff\1\1\1\7\1\0\1\2\1\3\1\4\1\5\1\6\1\uffff}>";
+    static final String dfa_70s = "\2\uffff\1\5\1\2\1\1\1\0\1\3\1\4\1\6\1\7\1\uffff}>";
     static final String[] dfa_71s = {
             "\5\1\4\uffff\13\1\1\uffff\1\1\1\uffff\4\1\1\2\1\3\2\1\3\uffff\1\4\3\uffff\2\1\1\uffff\1\1\1\uffff\3\1\2\uffff\6\1\1\uffff\21\1\1\5\1\6\1\7\1\10\1\11\43\1",
             "",
@@ -33964,6 +33973,21 @@ public class InternalBXCoreParser extends AbstractInternalAntlrParser {
         	int _s = s;
             switch ( s ) {
                     case 0 : 
+                        int LA72_5 = input.LA(1);
+
+                         
+                        int index72_5 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred12_InternalBXCore()) ) {s = 10;}
+
+                        else if ( (true) ) {s = 1;}
+
+                         
+                        input.seek(index72_5);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 1 : 
                         int LA72_4 = input.LA(1);
 
                          
@@ -33978,26 +34002,11 @@ public class InternalBXCoreParser extends AbstractInternalAntlrParser {
                         input.seek(index72_4);
                         if ( s>=0 ) return s;
                         break;
-                    case 1 : 
-                        int LA72_2 = input.LA(1);
-
-                         
-                        int index72_2 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred12_InternalBXCore()) ) {s = 10;}
-
-                        else if ( (true) ) {s = 1;}
-
-                         
-                        input.seek(index72_2);
-                        if ( s>=0 ) return s;
-                        break;
                     case 2 : 
-                        int LA72_5 = input.LA(1);
+                        int LA72_3 = input.LA(1);
 
                          
-                        int index72_5 = input.index();
+                        int index72_3 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred12_InternalBXCore()) ) {s = 10;}
@@ -34005,7 +34014,7 @@ public class InternalBXCoreParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 1;}
 
                          
-                        input.seek(index72_5);
+                        input.seek(index72_3);
                         if ( s>=0 ) return s;
                         break;
                     case 3 : 
@@ -34039,6 +34048,21 @@ public class InternalBXCoreParser extends AbstractInternalAntlrParser {
                         if ( s>=0 ) return s;
                         break;
                     case 5 : 
+                        int LA72_2 = input.LA(1);
+
+                         
+                        int index72_2 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred12_InternalBXCore()) ) {s = 10;}
+
+                        else if ( (true) ) {s = 1;}
+
+                         
+                        input.seek(index72_2);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 6 : 
                         int LA72_8 = input.LA(1);
 
                          
@@ -34053,7 +34077,7 @@ public class InternalBXCoreParser extends AbstractInternalAntlrParser {
                         input.seek(index72_8);
                         if ( s>=0 ) return s;
                         break;
-                    case 6 : 
+                    case 7 : 
                         int LA72_9 = input.LA(1);
 
                          
@@ -34066,21 +34090,6 @@ public class InternalBXCoreParser extends AbstractInternalAntlrParser {
 
                          
                         input.seek(index72_9);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 7 : 
-                        int LA72_3 = input.LA(1);
-
-                         
-                        int index72_3 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred12_InternalBXCore()) ) {s = 10;}
-
-                        else if ( (true) ) {s = 1;}
-
-                         
-                        input.seek(index72_3);
                         if ( s>=0 ) return s;
                         break;
             }
@@ -37395,7 +37404,7 @@ public class InternalBXCoreParser extends AbstractInternalAntlrParser {
     static final String dfa_130s = "\1\4\1\uffff\1\5\12\0\1\uffff";
     static final String dfa_131s = "\1\165\1\uffff\1\150\12\0\1\uffff";
     static final String dfa_132s = "\1\uffff\1\2\13\uffff\1\1";
-    static final String dfa_133s = "\3\uffff\1\2\1\3\1\0\1\10\1\6\1\4\1\1\1\11\1\7\1\5\1\uffff}>";
+    static final String dfa_133s = "\3\uffff\1\4\1\5\1\2\1\0\1\10\1\6\1\3\1\1\1\11\1\7\1\uffff}>";
     static final String[] dfa_134s = {
             "\5\1\4\uffff\13\1\1\uffff\1\1\1\uffff\10\1\3\uffff\1\1\3\uffff\2\1\1\uffff\1\1\1\uffff\3\1\2\uffff\5\1\1\2\1\uffff\71\1\1\uffff\1\1",
             "",
@@ -37440,126 +37449,6 @@ public class InternalBXCoreParser extends AbstractInternalAntlrParser {
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA148_5 = input.LA(1);
-
-                         
-                        int index148_5 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred47_InternalBXCore()) ) {s = 13;}
-
-                        else if ( (true) ) {s = 1;}
-
-                         
-                        input.seek(index148_5);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 1 : 
-                        int LA148_9 = input.LA(1);
-
-                         
-                        int index148_9 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred47_InternalBXCore()) ) {s = 13;}
-
-                        else if ( (true) ) {s = 1;}
-
-                         
-                        input.seek(index148_9);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 2 : 
-                        int LA148_3 = input.LA(1);
-
-                         
-                        int index148_3 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred47_InternalBXCore()) ) {s = 13;}
-
-                        else if ( (true) ) {s = 1;}
-
-                         
-                        input.seek(index148_3);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 3 : 
-                        int LA148_4 = input.LA(1);
-
-                         
-                        int index148_4 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred47_InternalBXCore()) ) {s = 13;}
-
-                        else if ( (true) ) {s = 1;}
-
-                         
-                        input.seek(index148_4);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 4 : 
-                        int LA148_8 = input.LA(1);
-
-                         
-                        int index148_8 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred47_InternalBXCore()) ) {s = 13;}
-
-                        else if ( (true) ) {s = 1;}
-
-                         
-                        input.seek(index148_8);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 5 : 
-                        int LA148_12 = input.LA(1);
-
-                         
-                        int index148_12 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred47_InternalBXCore()) ) {s = 13;}
-
-                        else if ( (true) ) {s = 1;}
-
-                         
-                        input.seek(index148_12);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 6 : 
-                        int LA148_7 = input.LA(1);
-
-                         
-                        int index148_7 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred47_InternalBXCore()) ) {s = 13;}
-
-                        else if ( (true) ) {s = 1;}
-
-                         
-                        input.seek(index148_7);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 7 : 
-                        int LA148_11 = input.LA(1);
-
-                         
-                        int index148_11 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred47_InternalBXCore()) ) {s = 13;}
-
-                        else if ( (true) ) {s = 1;}
-
-                         
-                        input.seek(index148_11);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 8 : 
                         int LA148_6 = input.LA(1);
 
                          
@@ -37574,7 +37463,7 @@ public class InternalBXCoreParser extends AbstractInternalAntlrParser {
                         input.seek(index148_6);
                         if ( s>=0 ) return s;
                         break;
-                    case 9 : 
+                    case 1 : 
                         int LA148_10 = input.LA(1);
 
                          
@@ -37587,6 +37476,126 @@ public class InternalBXCoreParser extends AbstractInternalAntlrParser {
 
                          
                         input.seek(index148_10);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 2 : 
+                        int LA148_5 = input.LA(1);
+
+                         
+                        int index148_5 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred47_InternalBXCore()) ) {s = 13;}
+
+                        else if ( (true) ) {s = 1;}
+
+                         
+                        input.seek(index148_5);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 3 : 
+                        int LA148_9 = input.LA(1);
+
+                         
+                        int index148_9 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred47_InternalBXCore()) ) {s = 13;}
+
+                        else if ( (true) ) {s = 1;}
+
+                         
+                        input.seek(index148_9);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 4 : 
+                        int LA148_3 = input.LA(1);
+
+                         
+                        int index148_3 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred47_InternalBXCore()) ) {s = 13;}
+
+                        else if ( (true) ) {s = 1;}
+
+                         
+                        input.seek(index148_3);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 5 : 
+                        int LA148_4 = input.LA(1);
+
+                         
+                        int index148_4 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred47_InternalBXCore()) ) {s = 13;}
+
+                        else if ( (true) ) {s = 1;}
+
+                         
+                        input.seek(index148_4);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 6 : 
+                        int LA148_8 = input.LA(1);
+
+                         
+                        int index148_8 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred47_InternalBXCore()) ) {s = 13;}
+
+                        else if ( (true) ) {s = 1;}
+
+                         
+                        input.seek(index148_8);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 7 : 
+                        int LA148_12 = input.LA(1);
+
+                         
+                        int index148_12 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred47_InternalBXCore()) ) {s = 13;}
+
+                        else if ( (true) ) {s = 1;}
+
+                         
+                        input.seek(index148_12);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 8 : 
+                        int LA148_7 = input.LA(1);
+
+                         
+                        int index148_7 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred47_InternalBXCore()) ) {s = 13;}
+
+                        else if ( (true) ) {s = 1;}
+
+                         
+                        input.seek(index148_7);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 9 : 
+                        int LA148_11 = input.LA(1);
+
+                         
+                        int index148_11 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred47_InternalBXCore()) ) {s = 13;}
+
+                        else if ( (true) ) {s = 1;}
+
+                         
+                        input.seek(index148_11);
                         if ( s>=0 ) return s;
                         break;
             }
@@ -37756,7 +37765,7 @@ public class InternalBXCoreParser extends AbstractInternalAntlrParser {
             throw nvae;
         }
     }
-    static final String dfa_142s = "\3\uffff\1\3\1\0\1\10\1\6\1\4\1\1\1\11\1\7\1\5\1\2\1\uffff}>";
+    static final String dfa_142s = "\3\uffff\1\5\1\2\1\0\1\10\1\6\1\3\1\1\1\11\1\7\1\4\1\uffff}>";
     static final String[] dfa_143s = {
             "\5\1\4\uffff\13\1\1\uffff\1\1\1\uffff\10\1\3\uffff\1\1\3\uffff\2\1\1\uffff\1\1\1\uffff\3\1\2\uffff\5\1\1\2\1\uffff\71\1\1\uffff\1\1",
             "",
@@ -37797,126 +37806,6 @@ public class InternalBXCoreParser extends AbstractInternalAntlrParser {
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA161_4 = input.LA(1);
-
-                         
-                        int index161_4 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred50_InternalBXCore()) ) {s = 13;}
-
-                        else if ( (true) ) {s = 1;}
-
-                         
-                        input.seek(index161_4);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 1 : 
-                        int LA161_8 = input.LA(1);
-
-                         
-                        int index161_8 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred50_InternalBXCore()) ) {s = 13;}
-
-                        else if ( (true) ) {s = 1;}
-
-                         
-                        input.seek(index161_8);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 2 : 
-                        int LA161_12 = input.LA(1);
-
-                         
-                        int index161_12 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred50_InternalBXCore()) ) {s = 13;}
-
-                        else if ( (true) ) {s = 1;}
-
-                         
-                        input.seek(index161_12);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 3 : 
-                        int LA161_3 = input.LA(1);
-
-                         
-                        int index161_3 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred50_InternalBXCore()) ) {s = 13;}
-
-                        else if ( (true) ) {s = 1;}
-
-                         
-                        input.seek(index161_3);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 4 : 
-                        int LA161_7 = input.LA(1);
-
-                         
-                        int index161_7 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred50_InternalBXCore()) ) {s = 13;}
-
-                        else if ( (true) ) {s = 1;}
-
-                         
-                        input.seek(index161_7);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 5 : 
-                        int LA161_11 = input.LA(1);
-
-                         
-                        int index161_11 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred50_InternalBXCore()) ) {s = 13;}
-
-                        else if ( (true) ) {s = 1;}
-
-                         
-                        input.seek(index161_11);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 6 : 
-                        int LA161_6 = input.LA(1);
-
-                         
-                        int index161_6 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred50_InternalBXCore()) ) {s = 13;}
-
-                        else if ( (true) ) {s = 1;}
-
-                         
-                        input.seek(index161_6);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 7 : 
-                        int LA161_10 = input.LA(1);
-
-                         
-                        int index161_10 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred50_InternalBXCore()) ) {s = 13;}
-
-                        else if ( (true) ) {s = 1;}
-
-                         
-                        input.seek(index161_10);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 8 : 
                         int LA161_5 = input.LA(1);
 
                          
@@ -37931,7 +37820,7 @@ public class InternalBXCoreParser extends AbstractInternalAntlrParser {
                         input.seek(index161_5);
                         if ( s>=0 ) return s;
                         break;
-                    case 9 : 
+                    case 1 : 
                         int LA161_9 = input.LA(1);
 
                          
@@ -37944,6 +37833,126 @@ public class InternalBXCoreParser extends AbstractInternalAntlrParser {
 
                          
                         input.seek(index161_9);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 2 : 
+                        int LA161_4 = input.LA(1);
+
+                         
+                        int index161_4 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred50_InternalBXCore()) ) {s = 13;}
+
+                        else if ( (true) ) {s = 1;}
+
+                         
+                        input.seek(index161_4);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 3 : 
+                        int LA161_8 = input.LA(1);
+
+                         
+                        int index161_8 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred50_InternalBXCore()) ) {s = 13;}
+
+                        else if ( (true) ) {s = 1;}
+
+                         
+                        input.seek(index161_8);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 4 : 
+                        int LA161_12 = input.LA(1);
+
+                         
+                        int index161_12 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred50_InternalBXCore()) ) {s = 13;}
+
+                        else if ( (true) ) {s = 1;}
+
+                         
+                        input.seek(index161_12);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 5 : 
+                        int LA161_3 = input.LA(1);
+
+                         
+                        int index161_3 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred50_InternalBXCore()) ) {s = 13;}
+
+                        else if ( (true) ) {s = 1;}
+
+                         
+                        input.seek(index161_3);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 6 : 
+                        int LA161_7 = input.LA(1);
+
+                         
+                        int index161_7 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred50_InternalBXCore()) ) {s = 13;}
+
+                        else if ( (true) ) {s = 1;}
+
+                         
+                        input.seek(index161_7);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 7 : 
+                        int LA161_11 = input.LA(1);
+
+                         
+                        int index161_11 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred50_InternalBXCore()) ) {s = 13;}
+
+                        else if ( (true) ) {s = 1;}
+
+                         
+                        input.seek(index161_11);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 8 : 
+                        int LA161_6 = input.LA(1);
+
+                         
+                        int index161_6 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred50_InternalBXCore()) ) {s = 13;}
+
+                        else if ( (true) ) {s = 1;}
+
+                         
+                        input.seek(index161_6);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 9 : 
+                        int LA161_10 = input.LA(1);
+
+                         
+                        int index161_10 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred50_InternalBXCore()) ) {s = 13;}
+
+                        else if ( (true) ) {s = 1;}
+
+                         
+                        input.seek(index161_10);
                         if ( s>=0 ) return s;
                         break;
             }

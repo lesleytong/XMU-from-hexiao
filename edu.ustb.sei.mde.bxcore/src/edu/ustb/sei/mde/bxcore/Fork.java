@@ -110,6 +110,7 @@ public class Fork extends XmuCore {
 					
 					for(int i=0;i<viewResults.length;i++) {
 						ViewType v = viewResults[i];
+						if(v==null) continue;
 						Tuple2<String,String>[] mappings = this.forks[i].second;
 						Set<FieldDef<?>> dks = XmuCoreUtils.findDownKeys(uk, mappings,this.forks[i].third.getViewDef());
 						for(FieldDef<?> dk : dks) {
@@ -129,6 +130,7 @@ public class Fork extends XmuCore {
 		TypedGraph finalView = null;
 		for(int i=0;i<this.forks.length;i++) {
 			ViewType v = viewResults[i];
+			if(v==null) continue;
 			v.second.setUpstream(upstreamView, this.forks[i].second);
 			v.second.submit();
 			if(finalView==null) finalView = v.first;
@@ -147,6 +149,7 @@ public class Fork extends XmuCore {
 		
 		for(int i=0;i<result.length;i++) {
 			ViewType v = result[i];
+			if(v==null) continue;
 			Tuple2<String, String>[] mappings = forks[i].second;
 			
 			for(Tuple2<String, String> m : mappings) {

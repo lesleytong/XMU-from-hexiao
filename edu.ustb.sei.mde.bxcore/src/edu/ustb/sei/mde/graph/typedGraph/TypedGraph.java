@@ -999,27 +999,25 @@ public class TypedGraph extends IndexSystem implements IGraph {
 			List<TypedEdge> imageEdges = imageGraph.getOutgoingEdges(imageNode);
 			List<TypedEdge> baseEdges = baseGraph.getOutgoingEdges(baseNode);
 			
-			if(imageEdges.size()!=baseEdges.size()) 
+			if(imageEdges.size()>baseEdges.size()) 
 				return true;
-			
-			for(int i=0;i<baseEdges.size();i++) {
-				TypedEdge imageEdge = imageEdges.get(i);
-				TypedEdge baseEdge = baseEdges.get(i);
-				
-				
-				if(!baseEdge.getIndex().equals(imageEdge.getIndex()))
-					return true;
-				else {
-					if(imageEdge.getType()!=baseEdge.getType())
-						return true;
+			for(TypedEdge imageEdge : imageEdges) {
+				if(baseEdges.stream().noneMatch(baseEdge-> {
 					TypedNode imageTarget = imageEdge.getTarget();
 					TypedNode baseTarget = baseEdge.getTarget();
 					
-					if(!baseTarget.getIndex().equals(imageTarget.getIndex()))
-						return true;
-				}
-			}
-			
+					if(imageEdge.getType()==baseEdge.getType()) {
+						if(!baseTarget.getIndex().equals(imageTarget.getIndex()))
+							return false; // target inconsistent
+						if(imageEdge.getType().isUnique()) {
+							return baseEdge.getIndex().equals(imageEdge.getIndex()); // for a non-unique reference, the edge index determines the result
+						} else
+							return true; // for a unique reference, the edge index is determined by the source and target indices
+					} else {
+						return false; // type inconsistent
+					}
+				})) return true; // we found that imageEdge is a new edge
+			} // end for
 		} catch (Exception e) {
 			return true;
 		}
@@ -1028,31 +1026,30 @@ public class TypedGraph extends IndexSystem implements IGraph {
 			List<ValueEdge> imageEdges = imageGraph.getValueEdges(imageNode);
 			List<ValueEdge> baseEdges = baseGraph.getValueEdges(baseNode);
 			
-			if(imageEdges.size()!=baseEdges.size()) 
+			if(imageEdges.size()>baseEdges.size()) 
 				return true;
 			
-			for(int i=0;i<baseEdges.size();i++) {
-				ValueEdge imageEdge = imageEdges.get(i);
-				ValueEdge baseEdge = baseEdges.get(i);
-				
-				if(!baseEdge.getIndex().equals(imageEdge.getIndex()))
-					return true;
-				else {
-					if(imageEdge.getType()!=baseEdge.getType())
-						return true;
-
+			for(ValueEdge imageEdge : imageEdges) {
+				if(baseEdges.stream().noneMatch(baseEdge-> {
 					ValueNode imageTarget = imageEdge.getTarget();
 					ValueNode baseTarget = baseEdge.getTarget();
 					
-					if(!baseTarget.equals(imageTarget))
-						return true;
-				}
-			}
+					if(imageEdge.getType()==baseEdge.getType()) {
+						if(baseTarget!=imageTarget)
+							return false; // target inconsistent
+						if(imageEdge.getType().isUnique()) {
+							return baseEdge.getIndex().equals(imageEdge.getIndex()); // for a non-unique reference, the edge index determines the result
+						} else
+							return true; // for a unique reference, the edge index is determined by the source and target indices
+					} else {
+						return false; // type inconsistent
+					}
+				})) return true; // we found that imageEdge is a new edge
+			} // end for
 		} catch (Exception e) {
 			return true;
 		}
-		
-		
+
 		return false;
 	}
 	

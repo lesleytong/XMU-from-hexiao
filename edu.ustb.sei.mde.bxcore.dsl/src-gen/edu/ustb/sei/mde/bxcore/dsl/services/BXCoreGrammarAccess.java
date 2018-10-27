@@ -2385,16 +2385,16 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cPathNameValidIDParserRuleCall_1_3_0 = (RuleCall)cPathNameAssignment_1_3.eContents().get(0);
 		
 		//ContextExpression:
-		//	ContextVarExpression ({NavigationExpression.host=current} '.' '@' pathName=ValidID)?;
+		//	ContextVarExpression ({NavigationExpression.host=current} '.' '@' pathName=ValidID)*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//ContextVarExpression ({NavigationExpression.host=current} '.' '@' pathName=ValidID)?
+		//ContextVarExpression ({NavigationExpression.host=current} '.' '@' pathName=ValidID)*
 		public Group getGroup() { return cGroup; }
 		
 		//ContextVarExpression
 		public RuleCall getContextVarExpressionParserRuleCall_0() { return cContextVarExpressionParserRuleCall_0; }
 		
-		//({NavigationExpression.host=current} '.' '@' pathName=ValidID)?
+		//({NavigationExpression.host=current} '.' '@' pathName=ValidID)*
 		public Group getGroup_1() { return cGroup_1; }
 		
 		//{NavigationExpression.host=current}
@@ -3348,7 +3348,7 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ContextExpression:
-	//	ContextVarExpression ({NavigationExpression.host=current} '.' '@' pathName=ValidID)?;
+	//	ContextVarExpression ({NavigationExpression.host=current} '.' '@' pathName=ValidID)*;
 	public ContextExpressionElements getContextExpressionAccess() {
 		return pContextExpression;
 	}

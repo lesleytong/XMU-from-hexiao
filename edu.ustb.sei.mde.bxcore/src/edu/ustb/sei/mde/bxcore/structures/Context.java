@@ -46,9 +46,9 @@ public class Context {
 		upstreamMapping =  ContextMapping.expend(c, this);
 	}
 	
-	public void setUpstreamJoint(Context c) {
-		upstreamMapping =  ContextMapping.include(c, this);
-	}
+//	public void setUpstreamJoint(Context c) {
+//		upstreamMapping =  ContextMapping.include(c, this);
+//	}
 	
 	public void setUpstream(Context c, Tuple2<String,String>[] keyMappings) {
 		upstreamMapping = ContextMapping.transform(c, this, keyMappings);

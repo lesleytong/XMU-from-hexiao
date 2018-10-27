@@ -4253,7 +4253,7 @@ ruleContextExpression returns [EObject current=null]
 					}
 				)
 			)
-		)?
+		)*
 	)
 ;
 

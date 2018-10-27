@@ -11777,7 +11777,7 @@ rule__ContextExpression__Group__1__Impl
 :
 (
 	{ before(grammarAccess.getContextExpressionAccess().getGroup_1()); }
-	(rule__ContextExpression__Group_1__0)?
+	(rule__ContextExpression__Group_1__0)*
 	{ after(grammarAccess.getContextExpressionAccess().getGroup_1()); }
 )
 ;

@@ -557,7 +557,7 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
                             _builder.append(" = (");
                             String _qualifiedName_1 = s_1.getParameterType().getQualifiedName();
                             _builder.append(_qualifiedName_1);
-                            _builder.append(") s[");
+                            _builder.append(") v[");
                             _builder.append(i_1);
                             _builder.append("];");
                             _builder.newLineIfNotEmpty();
@@ -1832,10 +1832,25 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
                 _builder.append("\")");
               }
             }
-            _builder.append("},()->{try {return getXmu_");
+            _builder.append("},()->{try {");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t\t\t\t\t");
+            _builder.append("return getXmu_");
             String _firstUpper = StringExtensions.toFirstUpper(((XmuCoreFunctionCall) statement).getTarget().getName());
-            _builder.append(_firstUpper);
-            _builder.append("();} catch(Exception e){return null;}})");
+            _builder.append(_firstUpper, "\t\t\t\t\t");
+            _builder.append("();");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t\t\t\t");
+            _builder.append("} catch(Exception e){");
+            _builder.newLine();
+            _builder.append("\t\t\t\t\t");
+            _builder.append("e.printStackTrace();");
+            _builder.newLine();
+            _builder.append("\t\t\t\t\t");
+            _builder.append("return null;");
+            _builder.newLine();
+            _builder.append("\t\t\t\t");
+            _builder.append("}})");
             _xblockexpression_1 = appendable.append(_builder);
           }
           _switchResult = _xblockexpression_1;
@@ -2108,6 +2123,9 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
       final Procedure1<JvmOperation> _function_1 = (JvmOperation it) -> {
         it.setVisibility(JvmVisibility.PUBLIC);
         final List<Tuple2<String, Object>> elements = tuple.tuples;
+        if ((tuple.info != null)) {
+          this._jvmTypesBuilder.setDocumentation(it, tuple.info);
+        }
         StringConcatenationClient _client = new StringConcatenationClient() {
           @Override
           protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {

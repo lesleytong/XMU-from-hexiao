@@ -198,52 +198,54 @@ public class Align extends XmuCore {
 		
 		ContextType vt = this.getViewDef();
 		Context upstreamView = this.createViewContext();
-		for(FieldDef<?> vk : vt.fields()) {
-			if(vk.isElementType()) {
-				try {
-					upstreamView.setValue(vk, summarize(views,vk));
-				} catch (Exception e) {
-					Object common = IndexSystem.generateUUID();
-					Index index = Index.freshIndex(common);
-					upstreamView.setValue(vk, index);
-					for(ViewType v : views) {
-						try {
-							// in principle, we should reset downstream values
-							v.second.setUpstream(upstreamView);
-							v.first.addIndex(index, v.first.getElementByIndexObject((Index) v.second.getValue(vk.getName())));
-						} catch (UninitializedException e1) {
-							return nothing(e1);
+		TypedGraph finalView = null;
+		
+		if(views.isEmpty()) {
+			return null;
+		} else {
+			for(FieldDef<?> vk : vt.fields()) {
+				if(vk.isElementType()) {
+					try {
+						upstreamView.setValue(vk, summarize(views,vk));
+					} catch (Exception e) {
+						Object common = IndexSystem.generateUUID();
+						Index index = Index.freshIndex(common);
+						upstreamView.setValue(vk, index);
+						for(ViewType v : views) {
+							try {
+								// in principle, we should reset downstream values
+								v.second.setUpstream(upstreamView);
+								v.first.addIndex(index, v.first.getElementByIndexObject((Index) v.second.getValue(vk.getName())));
+							} catch (UninitializedException e1) {
+								return nothing(e1);
+							}
 						}
 					}
-				}
-				
-			} else {
-				try {
-					upstreamView.setValue(vk, summarize(views,vk));
-				} catch (Exception e) {
-					// not confluent
-					return nothing(e);
+					
+				} else {
+					try {
+						upstreamView.setValue(vk, summarize(views,vk));
+					} catch (Exception e) {
+						// not confluent
+						return nothing(e);
+					}
 				}
 			}
-		}
-		
-		List<Context> viewMatches = new ArrayList<>();
-		
-		TypedGraph finalView = null;
-		for(ViewType v : views) {
-			v.second.setUpstream(upstreamView);
-			v.second.submit();
-			
-			viewMatches.add(v.second);
-			
-			if(finalView==null)
-				finalView = v.first;
-			else 
-				finalView = finalView.additiveMerge(v.first);
-		}
-		
-		if(this.isOrdered) {
-			enforceOrder(patV, viewMatches, finalView);
+			List<Context> viewMatches = new ArrayList<>();
+			for(ViewType v : views) {
+				v.second.setUpstream(upstreamView);
+				v.second.submit();
+				
+				viewMatches.add(v.second);
+				
+				if(finalView==null)
+					finalView = v.first;
+				else 
+					finalView = finalView.additiveMerge(v.first);
+			}
+			if(this.isOrdered) {
+				enforceOrder(patV, viewMatches, finalView);
+			}
 		}
 		
 		this.submit(sourceMatches);

@@ -6,7 +6,6 @@ package edu.ustb.sei.mde.bxcore.dsl.validation;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXFunctionDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXProgram;
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareUnidirectionalAction;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.Conversion;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpressionBlock;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeLiteral;
@@ -29,6 +28,8 @@ import java.util.Map;
 import java.util.function.Consumer;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.validation.Check;
+import org.eclipse.xtext.xbase.XBlockExpression;
+import org.eclipse.xtext.xbase.XExpression;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
@@ -130,7 +131,7 @@ public class BXCoreValidator extends AbstractBXCoreValidator {
               };
               boolean _exists_1 = IterableExtensions.<String>exists(c.getView(), _function_2);
               if (_exists_1) {
-                this.error("undefined source variable", c);
+                this.error("undefined view variable", c);
               }
             };
             ((XmuCoreGraphReplace)statement).getConversions().forEach(_function);
@@ -219,15 +220,15 @@ public class BXCoreValidator extends AbstractBXCoreValidator {
   }
   
   @Check
-  public void checkContextAwareUnidirectionalAction(final ContextAwareUnidirectionalAction act) {
-    final Function1<EObject, Boolean> _function = (EObject it) -> {
+  public void checkContextAwareUnidirectionalAction(final XBlockExpression block) {
+    final Function1<XExpression, Boolean> _function = (XExpression it) -> {
       return Boolean.valueOf((it instanceof ModificationExpressionBlock));
     };
-    final Procedure2<EObject, Integer> _function_1 = (EObject b, Integer id) -> {
+    final Procedure2<XExpression, Integer> _function_1 = (XExpression b, Integer id) -> {
       if (((id).intValue() > 0)) {
         this.error("More than one modification block in the context", b);
       }
     };
-    IteratorExtensions.<EObject>forEach(IteratorExtensions.<EObject>filter(act.eAllContents(), _function), _function_1);
+    IterableExtensions.<XExpression>forEach(IterableExtensions.<XExpression>filter(block.getExpressions(), _function), _function_1);
   }
 }

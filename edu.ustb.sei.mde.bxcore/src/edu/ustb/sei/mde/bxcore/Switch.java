@@ -69,7 +69,7 @@ public class Switch extends XmuCore {
 				ViewType v = null;
 				try {
 					v = getBranch(branch,ds);
-					
+					if(v==null) continue; // should I continue?
 				} catch(NothingReturnedException e) {
 					continue;
 				}

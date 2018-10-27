@@ -609,6 +609,7 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	 * Contexts:
 	 *     XPrimaryExpression returns NavigationExpression
 	 *     ContextExpression returns NavigationExpression
+	 *     ContextExpression.NavigationExpression_1_0 returns NavigationExpression
 	 *     XExpression returns NavigationExpression
 	 *     XAssignment returns NavigationExpression
 	 *     XAssignment.XBinaryOperation_1_1_0_0_0 returns NavigationExpression

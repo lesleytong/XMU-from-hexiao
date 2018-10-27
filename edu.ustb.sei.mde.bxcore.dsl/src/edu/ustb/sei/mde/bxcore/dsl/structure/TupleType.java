@@ -23,6 +23,7 @@ public class TupleType {
 	public boolean ordered=false;
 	public List<Tuple2<String,Object>> tuples = new ArrayList<Tuple2<String,Object>>();
 	public ImportSection importSection = null;
+	public String info;
 	
 	public boolean equals(Object o) {
 		if(o instanceof TupleType && !(o instanceof UnsolvedTupleType)) return compare((TupleType)o);

@@ -80,28 +80,37 @@ public class ExpandView extends XmuCore {
 		Context upstreamViewMatch = this.createViewContext();
 		patV.getType().initializeView(upstreamViewMatch, s.second, s.third);
 		
-		downstreamView.second.setUpstream(upstreamViewMatch, remappings);
-		
-		for(Tuple2<String, String> m : remappings) {
+		if(downstreamView==null) {
 			try {
-				upstreamViewMatch.setValue(m.first, downstreamView.second.getValue(m.second));
+				TypedGraph view = patV.construct(null, upstreamViewMatch);
+				return ViewType.makeView(view, upstreamViewMatch);
+			} catch (UninitializedException e) {
+				return nothing();
+			}
+		} else {
+			downstreamView.second.setUpstream(upstreamViewMatch, remappings);
+			
+			for(Tuple2<String, String> m : remappings) {
+				try {
+					upstreamViewMatch.setValue(m.first, downstreamView.second.getValue(m.second));
+				} catch (UninitializedException e) {
+					return nothing();
+				}
+			}
+			TypedGraph view;
+			try {
+				view = patV.construct(downstreamView.first, upstreamViewMatch);
+				TypedGraph mergedView = downstreamView.first.additiveMerge(view);	
+				downstreamView.second.submit();
+				
+				mergedView.setConstraint(getConsistencyConstraint());
+				
+				return ViewType.makeView(mergedView, upstreamViewMatch);
 			} catch (UninitializedException e) {
 				return nothing();
 			}
 		}
 		
-		TypedGraph view;
-		try {
-			view = patV.construct(downstreamView.first, upstreamViewMatch);
-			TypedGraph mergedView = downstreamView.first.additiveMerge(view);	
-			downstreamView.second.submit();
-			
-			mergedView.setConstraint(getConsistencyConstraint());
-			
-			return ViewType.makeView(mergedView, upstreamViewMatch);
-		} catch (UninitializedException e) {
-			return nothing();
-		}
 	}
 
 	@Override

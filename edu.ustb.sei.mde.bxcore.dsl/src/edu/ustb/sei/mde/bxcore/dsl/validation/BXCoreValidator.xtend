@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EObject
 import org.eclipse.xtext.validation.Check
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareUnidirectionalAction
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpressionBlock
+import org.eclipse.xtext.xbase.XBlockExpression
 
 /**
  * This class contains custom validation rules. 
@@ -82,7 +83,7 @@ class BXCoreValidator extends AbstractBXCoreValidator {
 					error('undefined source variable', c);
 				}
 				if(c.view.exists[s|!viwType.tuples.exists[t|t.first.equals(s)]]) {
-					error('undefined source variable', c);
+					error('undefined view variable', c);
 				}
 			];
 		} else if(statement instanceof XmuCoreFunctionCall) {
@@ -140,8 +141,8 @@ class BXCoreValidator extends AbstractBXCoreValidator {
 	}
 	
 	@Check
-	def checkContextAwareUnidirectionalAction(ContextAwareUnidirectionalAction act) {
-		act.eAllContents.filter[it instanceof ModificationExpressionBlock].forEach[b,id|
+	def checkContextAwareUnidirectionalAction(XBlockExpression block) {
+		block.expressions.filter[it instanceof ModificationExpressionBlock].forEach[b,id|
 			if(id>0)
 				error('More than one modification block in the context',b);
 		];

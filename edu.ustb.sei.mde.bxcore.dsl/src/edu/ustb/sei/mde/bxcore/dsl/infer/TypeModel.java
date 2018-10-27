@@ -78,17 +78,20 @@ public abstract class TypeModel {
 	protected void extractConstraint(BXProgram program) {
 		TreeIterator<EObject> itr = null;
 		itr = program.eAllContents();
+		int id = 0;
 		while(itr.hasNext()) {
 			EObject e = itr.next();
 			if(e instanceof XmuCoreStatement) {
 				UnsolvedTupleType st = new UnsolvedTupleType();
+				st.info = e.eClass().getName()+"(xmu"+id+")";
+				id++;
 				unsolvedTupleTypeMap.put((XmuCoreStatement)e, st);
 			} else if(e instanceof Pattern || e instanceof TypeLiteral || e instanceof XExpression) {
 				itr.prune();
 			}
 			
 		}
-				
+		
 		literalMap.values().forEach(v->types.add(v.first));
 		unsolvedTupleTypeMap.values().forEach(v->types.add(v));
 		
@@ -131,7 +134,10 @@ public abstract class TypeModel {
 		typeVarMap = new HashMap<>();
 		types.forEach(t->{
 			if(t instanceof UnsolvedTupleType) {
-				SetVar var = model.setVar(min, max);
+				SetVar var;
+				if(((UnsolvedTupleType) t).info!=null)
+					var = model.setVar(((UnsolvedTupleType) t).info, min, max);
+				else var = model.setVar(min, max);
 				typeVarMap.put(t, var);
 			} else {
 				int[] vals = new int[t.tuples.size()];

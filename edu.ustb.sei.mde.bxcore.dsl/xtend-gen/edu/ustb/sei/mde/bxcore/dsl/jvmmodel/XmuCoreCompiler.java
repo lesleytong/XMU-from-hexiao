@@ -209,6 +209,7 @@ public class XmuCoreCompiler extends XbaseCompiler {
               this.internalToJavaStatement(it.getExpression(), a, true);
             };
             ((EnforcementExpression)e).getValueMappings().forEach(_function_1);
+            final String cur = a.declareSyntheticVariable(e, "_mod");
             String _xifexpression = null;
             if ((idx == 0)) {
               String _xblockexpression = null;
@@ -229,7 +230,6 @@ public class XmuCoreCompiler extends XbaseCompiler {
               _xifexpression = this.getVarName(block.getExpressions().get((idx - 1)), a);
             }
             final String prev = _xifexpression;
-            final String cur = a.declareSyntheticVariable(e, "_mod");
             ITreeAppendable _newLine_3 = a.newLine();
             StringConcatenation _builder_11 = new StringConcatenation();
             String _canonicalName_5 = ContextGraph.GraphModification.class.getCanonicalName();
@@ -267,6 +267,7 @@ public class XmuCoreCompiler extends XbaseCompiler {
               EObject _eContainer_1 = ((DeleteElementExpression)e).eContainer();
               final ModificationExpressionBlock block_1 = ((ModificationExpressionBlock) _eContainer_1);
               final int idx_1 = block_1.getExpressions().indexOf(e);
+              final String cur_1 = a.declareSyntheticVariable(e, "_mod");
               String _xifexpression_1 = null;
               if ((idx_1 == 0)) {
                 String _xblockexpression_1 = null;
@@ -287,7 +288,6 @@ public class XmuCoreCompiler extends XbaseCompiler {
                 _xifexpression_1 = this.getVarName(block_1.getExpressions().get((idx_1 - 1)), a);
               }
               final String prev_1 = _xifexpression_1;
-              final String cur_1 = a.declareSyntheticVariable(e, "_mod");
               this.internalToJavaStatement(((DeleteElementExpression)e).getElement(), a, true);
               ITreeAppendable _newLine_4 = a.newLine();
               StringConcatenation _builder_13 = new StringConcatenation();
