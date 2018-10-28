@@ -4,7 +4,8 @@
 package edu.ustb.sei.mde.bxcore.dsl.bXCore.impl;
 
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage;
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextVarExpression;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextPrimaryExpression;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.SideEnum;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -14,45 +15,45 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Context Var Expression</b></em>'.
+ * An implementation of the model object '<em><b>Context Primary Expression</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.ContextVarExpressionImpl#getName <em>Name</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.ContextPrimaryExpressionImpl#getSide <em>Side</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ContextVarExpressionImpl extends ContextPrimaryExpressionImpl implements ContextVarExpression
+public class ContextPrimaryExpressionImpl extends ContextExpressionImpl implements ContextPrimaryExpression
 {
   /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The default value of the '{@link #getSide() <em>Side</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getSide()
    * @generated
    * @ordered
    */
-  protected static final String NAME_EDEFAULT = null;
+  protected static final SideEnum SIDE_EDEFAULT = SideEnum.SOURCE;
 
   /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The cached value of the '{@link #getSide() <em>Side</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getSide()
    * @generated
    * @ordered
    */
-  protected String name = NAME_EDEFAULT;
+  protected SideEnum side = SIDE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ContextVarExpressionImpl()
+  protected ContextPrimaryExpressionImpl()
   {
     super();
   }
@@ -65,7 +66,7 @@ public class ContextVarExpressionImpl extends ContextPrimaryExpressionImpl imple
   @Override
   protected EClass eStaticClass()
   {
-    return BXCorePackage.Literals.CONTEXT_VAR_EXPRESSION;
+    return BXCorePackage.Literals.CONTEXT_PRIMARY_EXPRESSION;
   }
 
   /**
@@ -73,9 +74,9 @@ public class ContextVarExpressionImpl extends ContextPrimaryExpressionImpl imple
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getName()
+  public SideEnum getSide()
   {
-    return name;
+    return side;
   }
 
   /**
@@ -83,12 +84,12 @@ public class ContextVarExpressionImpl extends ContextPrimaryExpressionImpl imple
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setName(String newName)
+  public void setSide(SideEnum newSide)
   {
-    String oldName = name;
-    name = newName;
+    SideEnum oldSide = side;
+    side = newSide == null ? SIDE_EDEFAULT : newSide;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, BXCorePackage.CONTEXT_VAR_EXPRESSION__NAME, oldName, name));
+      eNotify(new ENotificationImpl(this, Notification.SET, BXCorePackage.CONTEXT_PRIMARY_EXPRESSION__SIDE, oldSide, side));
   }
 
   /**
@@ -101,8 +102,8 @@ public class ContextVarExpressionImpl extends ContextPrimaryExpressionImpl imple
   {
     switch (featureID)
     {
-      case BXCorePackage.CONTEXT_VAR_EXPRESSION__NAME:
-        return getName();
+      case BXCorePackage.CONTEXT_PRIMARY_EXPRESSION__SIDE:
+        return getSide();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -117,8 +118,8 @@ public class ContextVarExpressionImpl extends ContextPrimaryExpressionImpl imple
   {
     switch (featureID)
     {
-      case BXCorePackage.CONTEXT_VAR_EXPRESSION__NAME:
-        setName((String)newValue);
+      case BXCorePackage.CONTEXT_PRIMARY_EXPRESSION__SIDE:
+        setSide((SideEnum)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -134,8 +135,8 @@ public class ContextVarExpressionImpl extends ContextPrimaryExpressionImpl imple
   {
     switch (featureID)
     {
-      case BXCorePackage.CONTEXT_VAR_EXPRESSION__NAME:
-        setName(NAME_EDEFAULT);
+      case BXCorePackage.CONTEXT_PRIMARY_EXPRESSION__SIDE:
+        setSide(SIDE_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -151,8 +152,8 @@ public class ContextVarExpressionImpl extends ContextPrimaryExpressionImpl imple
   {
     switch (featureID)
     {
-      case BXCorePackage.CONTEXT_VAR_EXPRESSION__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case BXCorePackage.CONTEXT_PRIMARY_EXPRESSION__SIDE:
+        return side != SIDE_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -168,10 +169,10 @@ public class ContextVarExpressionImpl extends ContextPrimaryExpressionImpl imple
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (name: ");
-    result.append(name);
+    result.append(" (side: ");
+    result.append(side);
     result.append(')');
     return result.toString();
   }
 
-} //ContextVarExpressionImpl
+} //ContextPrimaryExpressionImpl

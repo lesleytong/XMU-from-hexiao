@@ -222,20 +222,28 @@ CustomizedBiGULReference :
 
 @Override
 ValidID :
-	ID | 'index' | 'align' | 'match' | 'int' | 'String' |'boolean' | 'type' |'source' |'view'
+	ID | 'index' | 'align' | 'match' | 'int' | 'String' |'boolean' | 'type' |'source' |'view' | 'get' | 'put' | 'context'
 ;
 
  @Override
 XPrimaryExpression returns xbase::XExpression :
-	ContextExpression | super
+	ContextExpression
+	| super
+//	| (super::XPrimaryExpression (=>({AnnotatedVariableExpression.value=current} '@') side=SideEnum ':' metamodel=[ImportSection|ValidID] '!' type=[ecore::EClass|ValidID])?)
 ;
  
 ContextExpression returns ContextExpression:
-	ContextVarExpression ({NavigationExpression.host=current} '.' '@' pathName=ValidID)*
+	(ContextPrimaryExpression ({NavigationExpression.host=current} '.' '@' pathName=ValidID)*)
 ;
 
-ContextVarExpression returns ContextExpression :
-	({ContextVarExpression} name=ValidID '@' side=SideEnum)
+ContextPrimaryExpression returns ContextExpression :
+	ContextVarExpression
+;
+ContextVarExpression returns ContextPrimaryExpression:
+	{ContextVarExpression} name=ValidID '@' side=SideEnum
+;
+AnnotatedVariableExpression returns ContextPrimaryExpression:
+	{AnnotatedVariableExpression} value=XFeatureCall '@'  side=SideEnum ':' metamodel=[ImportSection|ValidID] '!' type=[ecore::EClass|ValidID]
 ;
 
 enum SideEnum :

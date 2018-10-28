@@ -328,6 +328,11 @@ public class BXCoreAdapterFactory extends AdapterFactoryImpl
         return createContextExpressionAdapter();
       }
       @Override
+      public Adapter caseContextPrimaryExpression(ContextPrimaryExpression object)
+      {
+        return createContextPrimaryExpressionAdapter();
+      }
+      @Override
       public Adapter caseModificationExpressionBlock(ModificationExpressionBlock object)
       {
         return createModificationExpressionBlockAdapter();
@@ -361,6 +366,11 @@ public class BXCoreAdapterFactory extends AdapterFactoryImpl
       public Adapter caseContextVarExpression(ContextVarExpression object)
       {
         return createContextVarExpressionAdapter();
+      }
+      @Override
+      public Adapter caseAnnotatedVariableExpression(AnnotatedVariableExpression object)
+      {
+        return createAnnotatedVariableExpressionAdapter();
       }
       @Override
       public Adapter caseEnforcementExpression(EnforcementExpression object)
@@ -1150,6 +1160,21 @@ public class BXCoreAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextPrimaryExpression <em>Context Primary Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextPrimaryExpression
+   * @generated
+   */
+  public Adapter createContextPrimaryExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpressionBlock <em>Modification Expression Block</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -1250,6 +1275,21 @@ public class BXCoreAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createContextVarExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.AnnotatedVariableExpression <em>Annotated Variable Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.AnnotatedVariableExpression
+   * @generated
+   */
+  public Adapter createAnnotatedVariableExpressionAdapter()
   {
     return null;
   }

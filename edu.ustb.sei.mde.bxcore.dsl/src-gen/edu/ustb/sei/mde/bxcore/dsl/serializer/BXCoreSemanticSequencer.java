@@ -4,6 +4,7 @@
 package edu.ustb.sei.mde.bxcore.dsl.serializer;
 
 import com.google.inject.Inject;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.AnnotatedVariableExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXFunctionDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXProgram;
@@ -124,6 +125,9 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
 		if (epackage == BXCorePackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
+			case BXCorePackage.ANNOTATED_VARIABLE_EXPRESSION:
+				sequence_AnnotatedVariableExpression(context, (AnnotatedVariableExpression) semanticObject); 
+				return; 
 			case BXCorePackage.BX_FUNCTION_DEFINITION:
 				sequence_BXFunctionDefinition(context, (BXFunctionDefinition) semanticObject); 
 				return; 
@@ -516,6 +520,33 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     AnnotatedVariableExpression returns AnnotatedVariableExpression
+	 *
+	 * Constraint:
+	 *     (value=XFeatureCall side=SideEnum metamodel=[ImportSection|ValidID] type=[EClass|ValidID])
+	 */
+	protected void sequence_AnnotatedVariableExpression(ISerializationContext context, AnnotatedVariableExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.ANNOTATED_VARIABLE_EXPRESSION__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.ANNOTATED_VARIABLE_EXPRESSION__VALUE));
+			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.CONTEXT_PRIMARY_EXPRESSION__SIDE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.CONTEXT_PRIMARY_EXPRESSION__SIDE));
+			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.ANNOTATED_VARIABLE_EXPRESSION__METAMODEL) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.ANNOTATED_VARIABLE_EXPRESSION__METAMODEL));
+			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.ANNOTATED_VARIABLE_EXPRESSION__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.ANNOTATED_VARIABLE_EXPRESSION__TYPE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getAnnotatedVariableExpressionAccess().getValueXFeatureCallParserRuleCall_1_0(), semanticObject.getValue());
+		feeder.accept(grammarAccess.getAnnotatedVariableExpressionAccess().getSideSideEnumEnumRuleCall_3_0(), semanticObject.getSide());
+		feeder.accept(grammarAccess.getAnnotatedVariableExpressionAccess().getMetamodelImportSectionValidIDParserRuleCall_5_0_1(), semanticObject.eGet(BXCorePackage.Literals.ANNOTATED_VARIABLE_EXPRESSION__METAMODEL, false));
+		feeder.accept(grammarAccess.getAnnotatedVariableExpressionAccess().getTypeEClassValidIDParserRuleCall_7_0_1(), semanticObject.eGet(BXCorePackage.Literals.ANNOTATED_VARIABLE_EXPRESSION__TYPE, false));
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Definition returns BXFunctionDefinition
 	 *     BXFunctionDefinition returns BXFunctionDefinition
 	 *
@@ -680,6 +711,7 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	 *     XPrimaryExpression returns ContextVarExpression
 	 *     ContextExpression returns ContextVarExpression
 	 *     ContextExpression.NavigationExpression_1_0 returns ContextVarExpression
+	 *     ContextPrimaryExpression returns ContextVarExpression
 	 *     ContextVarExpression returns ContextVarExpression
 	 *     XExpression returns ContextVarExpression
 	 *     XAssignment returns ContextVarExpression
@@ -718,8 +750,8 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 		if (errorAcceptor != null) {
 			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.CONTEXT_VAR_EXPRESSION__NAME) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.CONTEXT_VAR_EXPRESSION__NAME));
-			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.CONTEXT_VAR_EXPRESSION__SIDE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.CONTEXT_VAR_EXPRESSION__SIDE));
+			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.CONTEXT_PRIMARY_EXPRESSION__SIDE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.CONTEXT_PRIMARY_EXPRESSION__SIDE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getContextVarExpressionAccess().getNameValidIDParserRuleCall_1_0(), semanticObject.getName());

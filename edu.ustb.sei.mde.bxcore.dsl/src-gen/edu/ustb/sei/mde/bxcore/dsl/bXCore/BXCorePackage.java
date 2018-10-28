@@ -1929,6 +1929,34 @@ public interface BXCorePackage extends EPackage
   int CONTEXT_EXPRESSION_FEATURE_COUNT = XbasePackage.XEXPRESSION_FEATURE_COUNT + 0;
 
   /**
+   * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.ContextPrimaryExpressionImpl <em>Context Primary Expression</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.ContextPrimaryExpressionImpl
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getContextPrimaryExpression()
+   * @generated
+   */
+  int CONTEXT_PRIMARY_EXPRESSION = 50;
+
+  /**
+   * The feature id for the '<em><b>Side</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXT_PRIMARY_EXPRESSION__SIDE = CONTEXT_EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Context Primary Expression</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXT_PRIMARY_EXPRESSION_FEATURE_COUNT = CONTEXT_EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
    * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.ModificationExpressionBlockImpl <em>Modification Expression Block</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1936,7 +1964,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getModificationExpressionBlock()
    * @generated
    */
-  int MODIFICATION_EXPRESSION_BLOCK = 50;
+  int MODIFICATION_EXPRESSION_BLOCK = 51;
 
   /**
    * The feature id for the '<em><b>Expressions</b></em>' containment reference list.
@@ -1964,7 +1992,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getValueMapping()
    * @generated
    */
-  int VALUE_MAPPING = 51;
+  int VALUE_MAPPING = 52;
 
   /**
    * The feature id for the '<em><b>Var Name</b></em>' attribute.
@@ -2001,7 +2029,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getDefinedContextTypeRef()
    * @generated
    */
-  int DEFINED_CONTEXT_TYPE_REF = 52;
+  int DEFINED_CONTEXT_TYPE_REF = 53;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -2029,7 +2057,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getEcoreTypeRef()
    * @generated
    */
-  int ECORE_TYPE_REF = 53;
+  int ECORE_TYPE_REF = 54;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -2057,7 +2085,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getFeatureTypeRef()
    * @generated
    */
-  int FEATURE_TYPE_REF = 54;
+  int FEATURE_TYPE_REF = 55;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -2094,7 +2122,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getNavigationExpression()
    * @generated
    */
-  int NAVIGATION_EXPRESSION = 55;
+  int NAVIGATION_EXPRESSION = 56;
 
   /**
    * The feature id for the '<em><b>Host</b></em>' containment reference.
@@ -2131,16 +2159,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getContextVarExpression()
    * @generated
    */
-  int CONTEXT_VAR_EXPRESSION = 56;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONTEXT_VAR_EXPRESSION__NAME = CONTEXT_EXPRESSION_FEATURE_COUNT + 0;
+  int CONTEXT_VAR_EXPRESSION = 57;
 
   /**
    * The feature id for the '<em><b>Side</b></em>' attribute.
@@ -2149,7 +2168,16 @@ public interface BXCorePackage extends EPackage
    * @generated
    * @ordered
    */
-  int CONTEXT_VAR_EXPRESSION__SIDE = CONTEXT_EXPRESSION_FEATURE_COUNT + 1;
+  int CONTEXT_VAR_EXPRESSION__SIDE = CONTEXT_PRIMARY_EXPRESSION__SIDE;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXT_VAR_EXPRESSION__NAME = CONTEXT_PRIMARY_EXPRESSION_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Context Var Expression</em>' class.
@@ -2158,7 +2186,62 @@ public interface BXCorePackage extends EPackage
    * @generated
    * @ordered
    */
-  int CONTEXT_VAR_EXPRESSION_FEATURE_COUNT = CONTEXT_EXPRESSION_FEATURE_COUNT + 2;
+  int CONTEXT_VAR_EXPRESSION_FEATURE_COUNT = CONTEXT_PRIMARY_EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.AnnotatedVariableExpressionImpl <em>Annotated Variable Expression</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.AnnotatedVariableExpressionImpl
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getAnnotatedVariableExpression()
+   * @generated
+   */
+  int ANNOTATED_VARIABLE_EXPRESSION = 58;
+
+  /**
+   * The feature id for the '<em><b>Side</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ANNOTATED_VARIABLE_EXPRESSION__SIDE = CONTEXT_PRIMARY_EXPRESSION__SIDE;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ANNOTATED_VARIABLE_EXPRESSION__VALUE = CONTEXT_PRIMARY_EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Metamodel</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ANNOTATED_VARIABLE_EXPRESSION__METAMODEL = CONTEXT_PRIMARY_EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ANNOTATED_VARIABLE_EXPRESSION__TYPE = CONTEXT_PRIMARY_EXPRESSION_FEATURE_COUNT + 2;
+
+  /**
+   * The number of structural features of the '<em>Annotated Variable Expression</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ANNOTATED_VARIABLE_EXPRESSION_FEATURE_COUNT = CONTEXT_PRIMARY_EXPRESSION_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.EnforcementExpressionImpl <em>Enforcement Expression</em>}' class.
@@ -2168,7 +2251,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getEnforcementExpression()
    * @generated
    */
-  int ENFORCEMENT_EXPRESSION = 57;
+  int ENFORCEMENT_EXPRESSION = 59;
 
   /**
    * The feature id for the '<em><b>Pattern</b></em>' containment reference.
@@ -2205,7 +2288,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getDeleteElementExpression()
    * @generated
    */
-  int DELETE_ELEMENT_EXPRESSION = 58;
+  int DELETE_ELEMENT_EXPRESSION = 60;
 
   /**
    * The feature id for the '<em><b>Element</b></em>' containment reference.
@@ -2233,7 +2316,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getSideEnum()
    * @generated
    */
-  int SIDE_ENUM = 59;
+  int SIDE_ENUM = 61;
 
 
   /**
@@ -3661,6 +3744,27 @@ public interface BXCorePackage extends EPackage
   EClass getContextExpression();
 
   /**
+   * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextPrimaryExpression <em>Context Primary Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Context Primary Expression</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextPrimaryExpression
+   * @generated
+   */
+  EClass getContextPrimaryExpression();
+
+  /**
+   * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextPrimaryExpression#getSide <em>Side</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Side</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextPrimaryExpression#getSide()
+   * @see #getContextPrimaryExpression()
+   * @generated
+   */
+  EAttribute getContextPrimaryExpression_Side();
+
+  /**
    * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpressionBlock <em>Modification Expression Block</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3819,15 +3923,47 @@ public interface BXCorePackage extends EPackage
   EAttribute getContextVarExpression_Name();
 
   /**
-   * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextVarExpression#getSide <em>Side</em>}'.
+   * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.AnnotatedVariableExpression <em>Annotated Variable Expression</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Side</em>'.
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextVarExpression#getSide()
-   * @see #getContextVarExpression()
+   * @return the meta object for class '<em>Annotated Variable Expression</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.AnnotatedVariableExpression
    * @generated
    */
-  EAttribute getContextVarExpression_Side();
+  EClass getAnnotatedVariableExpression();
+
+  /**
+   * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.AnnotatedVariableExpression#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Value</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.AnnotatedVariableExpression#getValue()
+   * @see #getAnnotatedVariableExpression()
+   * @generated
+   */
+  EReference getAnnotatedVariableExpression_Value();
+
+  /**
+   * Returns the meta object for the reference '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.AnnotatedVariableExpression#getMetamodel <em>Metamodel</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Metamodel</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.AnnotatedVariableExpression#getMetamodel()
+   * @see #getAnnotatedVariableExpression()
+   * @generated
+   */
+  EReference getAnnotatedVariableExpression_Metamodel();
+
+  /**
+   * Returns the meta object for the reference '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.AnnotatedVariableExpression#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Type</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.AnnotatedVariableExpression#getType()
+   * @see #getAnnotatedVariableExpression()
+   * @generated
+   */
+  EReference getAnnotatedVariableExpression_Type();
 
   /**
    * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.EnforcementExpression <em>Enforcement Expression</em>}'.
@@ -5088,6 +5224,24 @@ public interface BXCorePackage extends EPackage
     EClass CONTEXT_EXPRESSION = eINSTANCE.getContextExpression();
 
     /**
+     * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.ContextPrimaryExpressionImpl <em>Context Primary Expression</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.ContextPrimaryExpressionImpl
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getContextPrimaryExpression()
+     * @generated
+     */
+    EClass CONTEXT_PRIMARY_EXPRESSION = eINSTANCE.getContextPrimaryExpression();
+
+    /**
+     * The meta object literal for the '<em><b>Side</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CONTEXT_PRIMARY_EXPRESSION__SIDE = eINSTANCE.getContextPrimaryExpression_Side();
+
+    /**
      * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.ModificationExpressionBlockImpl <em>Modification Expression Block</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -5222,12 +5376,38 @@ public interface BXCorePackage extends EPackage
     EAttribute CONTEXT_VAR_EXPRESSION__NAME = eINSTANCE.getContextVarExpression_Name();
 
     /**
-     * The meta object literal for the '<em><b>Side</b></em>' attribute feature.
+     * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.AnnotatedVariableExpressionImpl <em>Annotated Variable Expression</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.AnnotatedVariableExpressionImpl
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getAnnotatedVariableExpression()
+     * @generated
+     */
+    EClass ANNOTATED_VARIABLE_EXPRESSION = eINSTANCE.getAnnotatedVariableExpression();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute CONTEXT_VAR_EXPRESSION__SIDE = eINSTANCE.getContextVarExpression_Side();
+    EReference ANNOTATED_VARIABLE_EXPRESSION__VALUE = eINSTANCE.getAnnotatedVariableExpression_Value();
+
+    /**
+     * The meta object literal for the '<em><b>Metamodel</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ANNOTATED_VARIABLE_EXPRESSION__METAMODEL = eINSTANCE.getAnnotatedVariableExpression_Metamodel();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ANNOTATED_VARIABLE_EXPRESSION__TYPE = eINSTANCE.getAnnotatedVariableExpression_Type();
 
     /**
      * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.EnforcementExpressionImpl <em>Enforcement Expression</em>}' class.

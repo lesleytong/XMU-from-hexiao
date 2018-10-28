@@ -2314,13 +2314,17 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cTypeKeyword_7 = (Keyword)cAlternatives.eContents().get(7);
 		private final Keyword cSourceKeyword_8 = (Keyword)cAlternatives.eContents().get(8);
 		private final Keyword cViewKeyword_9 = (Keyword)cAlternatives.eContents().get(9);
+		private final Keyword cGetKeyword_10 = (Keyword)cAlternatives.eContents().get(10);
+		private final Keyword cPutKeyword_11 = (Keyword)cAlternatives.eContents().get(11);
+		private final Keyword cContextKeyword_12 = (Keyword)cAlternatives.eContents().get(12);
 		
 		//@Override
 		//ValidID:
-		//	ID | 'index' | 'align' | 'match' | 'int' | 'String' | 'boolean' | 'type' | 'source' | 'view';
+		//	ID | 'index' | 'align' | 'match' | 'int' | 'String' | 'boolean' | 'type' | 'source' | 'view' | 'get' | 'put' |
+		//	'context';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//ID | 'index' | 'align' | 'match' | 'int' | 'String' | 'boolean' | 'type' | 'source' | 'view'
+		//ID | 'index' | 'align' | 'match' | 'int' | 'String' | 'boolean' | 'type' | 'source' | 'view' | 'get' | 'put' | 'context'
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//ID
@@ -2352,6 +2356,15 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//'view'
 		public Keyword getViewKeyword_9() { return cViewKeyword_9; }
+		
+		//'get'
+		public Keyword getGetKeyword_10() { return cGetKeyword_10; }
+		
+		//'put'
+		public Keyword getPutKeyword_11() { return cPutKeyword_11; }
+		
+		//'context'
+		public Keyword getContextKeyword_12() { return cContextKeyword_12; }
 	}
 	public class XPrimaryExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.bxcore.dsl.BXCore.XPrimaryExpression");
@@ -2361,7 +2374,10 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//@Override
 		//XPrimaryExpression xbase::XExpression:
-		//	ContextExpression | super;
+		//	ContextExpression
+		//	| super
+		//	//	| (super::XPrimaryExpression (=>({AnnotatedVariableExpression.value=current} '@') side=SideEnum ':' metamodel=[ImportSection|ValidID] '!' type=[ecore::EClass|ValidID])?)
+		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//ContextExpression | super
@@ -2376,7 +2392,7 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 	public class ContextExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.bxcore.dsl.BXCore.ContextExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cContextVarExpressionParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final RuleCall cContextPrimaryExpressionParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final Action cNavigationExpressionHostAction_1_0 = (Action)cGroup_1.eContents().get(0);
 		private final Keyword cFullStopKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
@@ -2385,14 +2401,14 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cPathNameValidIDParserRuleCall_1_3_0 = (RuleCall)cPathNameAssignment_1_3.eContents().get(0);
 		
 		//ContextExpression:
-		//	ContextVarExpression ({NavigationExpression.host=current} '.' '@' pathName=ValidID)*;
+		//	ContextPrimaryExpression ({NavigationExpression.host=current} '.' '@' pathName=ValidID)*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//ContextVarExpression ({NavigationExpression.host=current} '.' '@' pathName=ValidID)*
+		//ContextPrimaryExpression ({NavigationExpression.host=current} '.' '@' pathName=ValidID)*
 		public Group getGroup() { return cGroup; }
 		
-		//ContextVarExpression
-		public RuleCall getContextVarExpressionParserRuleCall_0() { return cContextVarExpressionParserRuleCall_0; }
+		//ContextPrimaryExpression
+		public RuleCall getContextPrimaryExpressionParserRuleCall_0() { return cContextPrimaryExpressionParserRuleCall_0; }
 		
 		//({NavigationExpression.host=current} '.' '@' pathName=ValidID)*
 		public Group getGroup_1() { return cGroup_1; }
@@ -2412,6 +2428,17 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		//ValidID
 		public RuleCall getPathNameValidIDParserRuleCall_1_3_0() { return cPathNameValidIDParserRuleCall_1_3_0; }
 	}
+	public class ContextPrimaryExpressionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.bxcore.dsl.BXCore.ContextPrimaryExpression");
+		private final RuleCall cContextVarExpressionParserRuleCall = (RuleCall)rule.eContents().get(1);
+		
+		//ContextPrimaryExpression ContextExpression:
+		//	ContextVarExpression;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//ContextVarExpression
+		public RuleCall getContextVarExpressionParserRuleCall() { return cContextVarExpressionParserRuleCall; }
+	}
 	public class ContextVarExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.bxcore.dsl.BXCore.ContextVarExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -2422,7 +2449,7 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cSideAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cSideSideEnumEnumRuleCall_3_0 = (RuleCall)cSideAssignment_3.eContents().get(0);
 		
-		//ContextVarExpression ContextExpression:
+		//ContextVarExpression ContextPrimaryExpression:
 		//	{ContextVarExpression} name=ValidID '@' side=SideEnum;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -2446,6 +2473,75 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//SideEnum
 		public RuleCall getSideSideEnumEnumRuleCall_3_0() { return cSideSideEnumEnumRuleCall_3_0; }
+	}
+	public class AnnotatedVariableExpressionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.bxcore.dsl.BXCore.AnnotatedVariableExpression");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cAnnotatedVariableExpressionAction_0 = (Action)cGroup.eContents().get(0);
+		private final Assignment cValueAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cValueXFeatureCallParserRuleCall_1_0 = (RuleCall)cValueAssignment_1.eContents().get(0);
+		private final Keyword cCommercialAtKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cSideAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cSideSideEnumEnumRuleCall_3_0 = (RuleCall)cSideAssignment_3.eContents().get(0);
+		private final Keyword cColonKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cMetamodelAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final CrossReference cMetamodelImportSectionCrossReference_5_0 = (CrossReference)cMetamodelAssignment_5.eContents().get(0);
+		private final RuleCall cMetamodelImportSectionValidIDParserRuleCall_5_0_1 = (RuleCall)cMetamodelImportSectionCrossReference_5_0.eContents().get(1);
+		private final Keyword cExclamationMarkKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Assignment cTypeAssignment_7 = (Assignment)cGroup.eContents().get(7);
+		private final CrossReference cTypeEClassCrossReference_7_0 = (CrossReference)cTypeAssignment_7.eContents().get(0);
+		private final RuleCall cTypeEClassValidIDParserRuleCall_7_0_1 = (RuleCall)cTypeEClassCrossReference_7_0.eContents().get(1);
+		
+		//AnnotatedVariableExpression ContextPrimaryExpression:
+		//	{AnnotatedVariableExpression} value=XFeatureCall '@' side=SideEnum ':' metamodel=[ImportSection|ValidID] '!'
+		//	type=[ecore::EClass|ValidID];
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{AnnotatedVariableExpression} value=XFeatureCall '@' side=SideEnum ':' metamodel=[ImportSection|ValidID] '!'
+		//type=[ecore::EClass|ValidID]
+		public Group getGroup() { return cGroup; }
+		
+		//{AnnotatedVariableExpression}
+		public Action getAnnotatedVariableExpressionAction_0() { return cAnnotatedVariableExpressionAction_0; }
+		
+		//value=XFeatureCall
+		public Assignment getValueAssignment_1() { return cValueAssignment_1; }
+		
+		//XFeatureCall
+		public RuleCall getValueXFeatureCallParserRuleCall_1_0() { return cValueXFeatureCallParserRuleCall_1_0; }
+		
+		//'@'
+		public Keyword getCommercialAtKeyword_2() { return cCommercialAtKeyword_2; }
+		
+		//side=SideEnum
+		public Assignment getSideAssignment_3() { return cSideAssignment_3; }
+		
+		//SideEnum
+		public RuleCall getSideSideEnumEnumRuleCall_3_0() { return cSideSideEnumEnumRuleCall_3_0; }
+		
+		//':'
+		public Keyword getColonKeyword_4() { return cColonKeyword_4; }
+		
+		//metamodel=[ImportSection|ValidID]
+		public Assignment getMetamodelAssignment_5() { return cMetamodelAssignment_5; }
+		
+		//[ImportSection|ValidID]
+		public CrossReference getMetamodelImportSectionCrossReference_5_0() { return cMetamodelImportSectionCrossReference_5_0; }
+		
+		//ValidID
+		public RuleCall getMetamodelImportSectionValidIDParserRuleCall_5_0_1() { return cMetamodelImportSectionValidIDParserRuleCall_5_0_1; }
+		
+		//'!'
+		public Keyword getExclamationMarkKeyword_6() { return cExclamationMarkKeyword_6; }
+		
+		//type=[ecore::EClass|ValidID]
+		public Assignment getTypeAssignment_7() { return cTypeAssignment_7; }
+		
+		//[ecore::EClass|ValidID]
+		public CrossReference getTypeEClassCrossReference_7_0() { return cTypeEClassCrossReference_7_0; }
+		
+		//ValidID
+		public RuleCall getTypeEClassValidIDParserRuleCall_7_0_1() { return cTypeEClassValidIDParserRuleCall_7_0_1; }
 	}
 	public class XReturnExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.bxcore.dsl.BXCore.XReturnExpression");
@@ -2704,7 +2800,9 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 	private final ValidIDElements pValidID;
 	private final XPrimaryExpressionElements pXPrimaryExpression;
 	private final ContextExpressionElements pContextExpression;
+	private final ContextPrimaryExpressionElements pContextPrimaryExpression;
 	private final ContextVarExpressionElements pContextVarExpression;
+	private final AnnotatedVariableExpressionElements pAnnotatedVariableExpression;
 	private final SideEnumElements eSideEnum;
 	private final XReturnExpressionElements pXReturnExpression;
 	private final ModificationExpressionBlockElements pModificationExpressionBlock;
@@ -2776,7 +2874,9 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		this.pValidID = new ValidIDElements();
 		this.pXPrimaryExpression = new XPrimaryExpressionElements();
 		this.pContextExpression = new ContextExpressionElements();
+		this.pContextPrimaryExpression = new ContextPrimaryExpressionElements();
 		this.pContextVarExpression = new ContextVarExpressionElements();
+		this.pAnnotatedVariableExpression = new AnnotatedVariableExpressionElements();
 		this.eSideEnum = new SideEnumElements();
 		this.pXReturnExpression = new XReturnExpressionElements();
 		this.pModificationExpressionBlock = new ModificationExpressionBlockElements();
@@ -3327,7 +3427,8 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//@Override
 	//ValidID:
-	//	ID | 'index' | 'align' | 'match' | 'int' | 'String' | 'boolean' | 'type' | 'source' | 'view';
+	//	ID | 'index' | 'align' | 'match' | 'int' | 'String' | 'boolean' | 'type' | 'source' | 'view' | 'get' | 'put' |
+	//	'context';
 	public ValidIDElements getValidIDAccess() {
 		return pValidID;
 	}
@@ -3338,7 +3439,10 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//@Override
 	//XPrimaryExpression xbase::XExpression:
-	//	ContextExpression | super;
+	//	ContextExpression
+	//	| super
+	//	//	| (super::XPrimaryExpression (=>({AnnotatedVariableExpression.value=current} '@') side=SideEnum ':' metamodel=[ImportSection|ValidID] '!' type=[ecore::EClass|ValidID])?)
+	//;
 	public XPrimaryExpressionElements getXPrimaryExpressionAccess() {
 		return pXPrimaryExpression;
 	}
@@ -3348,7 +3452,7 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ContextExpression:
-	//	ContextVarExpression ({NavigationExpression.host=current} '.' '@' pathName=ValidID)*;
+	//	ContextPrimaryExpression ({NavigationExpression.host=current} '.' '@' pathName=ValidID)*;
 	public ContextExpressionElements getContextExpressionAccess() {
 		return pContextExpression;
 	}
@@ -3357,7 +3461,17 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		return getContextExpressionAccess().getRule();
 	}
 	
-	//ContextVarExpression ContextExpression:
+	//ContextPrimaryExpression ContextExpression:
+	//	ContextVarExpression;
+	public ContextPrimaryExpressionElements getContextPrimaryExpressionAccess() {
+		return pContextPrimaryExpression;
+	}
+	
+	public ParserRule getContextPrimaryExpressionRule() {
+		return getContextPrimaryExpressionAccess().getRule();
+	}
+	
+	//ContextVarExpression ContextPrimaryExpression:
 	//	{ContextVarExpression} name=ValidID '@' side=SideEnum;
 	public ContextVarExpressionElements getContextVarExpressionAccess() {
 		return pContextVarExpression;
@@ -3365,6 +3479,17 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getContextVarExpressionRule() {
 		return getContextVarExpressionAccess().getRule();
+	}
+	
+	//AnnotatedVariableExpression ContextPrimaryExpression:
+	//	{AnnotatedVariableExpression} value=XFeatureCall '@' side=SideEnum ':' metamodel=[ImportSection|ValidID] '!'
+	//	type=[ecore::EClass|ValidID];
+	public AnnotatedVariableExpressionElements getAnnotatedVariableExpressionAccess() {
+		return pAnnotatedVariableExpression;
+	}
+	
+	public ParserRule getAnnotatedVariableExpressionRule() {
+		return getAnnotatedVariableExpressionAccess().getRule();
 	}
 	
 	//enum SideEnum:

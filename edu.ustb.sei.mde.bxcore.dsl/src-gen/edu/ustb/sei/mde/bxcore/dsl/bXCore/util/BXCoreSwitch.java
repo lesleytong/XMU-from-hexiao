@@ -472,6 +472,15 @@ public class BXCoreSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case BXCorePackage.CONTEXT_PRIMARY_EXPRESSION:
+      {
+        ContextPrimaryExpression contextPrimaryExpression = (ContextPrimaryExpression)theEObject;
+        T result = caseContextPrimaryExpression(contextPrimaryExpression);
+        if (result == null) result = caseContextExpression(contextPrimaryExpression);
+        if (result == null) result = caseXExpression(contextPrimaryExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case BXCorePackage.MODIFICATION_EXPRESSION_BLOCK:
       {
         ModificationExpressionBlock modificationExpressionBlock = (ModificationExpressionBlock)theEObject;
@@ -524,8 +533,19 @@ public class BXCoreSwitch<T> extends Switch<T>
       {
         ContextVarExpression contextVarExpression = (ContextVarExpression)theEObject;
         T result = caseContextVarExpression(contextVarExpression);
+        if (result == null) result = caseContextPrimaryExpression(contextVarExpression);
         if (result == null) result = caseContextExpression(contextVarExpression);
         if (result == null) result = caseXExpression(contextVarExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case BXCorePackage.ANNOTATED_VARIABLE_EXPRESSION:
+      {
+        AnnotatedVariableExpression annotatedVariableExpression = (AnnotatedVariableExpression)theEObject;
+        T result = caseAnnotatedVariableExpression(annotatedVariableExpression);
+        if (result == null) result = caseContextPrimaryExpression(annotatedVariableExpression);
+        if (result == null) result = caseContextExpression(annotatedVariableExpression);
+        if (result == null) result = caseXExpression(annotatedVariableExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1350,6 +1370,22 @@ public class BXCoreSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Context Primary Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Context Primary Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseContextPrimaryExpression(ContextPrimaryExpression object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Modification Expression Block</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -1457,6 +1493,22 @@ public class BXCoreSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseContextVarExpression(ContextVarExpression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Annotated Variable Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Annotated Variable Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAnnotatedVariableExpression(AnnotatedVariableExpression object)
   {
     return null;
   }

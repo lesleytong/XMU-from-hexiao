@@ -23,6 +23,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextVarExpression
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.NavigationExpression
 import org.eclipse.emf.ecore.EClass
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.SideEnum
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.AnnotatedVariableExpression
 
 class ModelInferrerUtils {
 	static def groupTypeLiterals(BXProgram program) {
@@ -131,6 +132,10 @@ class ModelInferrerUtils {
     				else pathType.EType -> (hostType.value || pathType.isMany)
     			} else null
     		}
+    	} else if(e instanceof AnnotatedVariableExpression) {
+    		val side = e.side;
+    		val type = e.type;
+    		return type->false
     	}
     }
 }

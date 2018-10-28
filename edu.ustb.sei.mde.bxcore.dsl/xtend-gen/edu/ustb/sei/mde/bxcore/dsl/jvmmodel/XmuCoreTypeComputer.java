@@ -1,6 +1,7 @@
 package edu.ustb.sei.mde.bxcore.dsl.jvmmodel;
 
 import edu.ustb.sei.mde.bxcore.SourceType;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.AnnotatedVariableExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextVarExpression;
@@ -70,6 +71,11 @@ import org.eclipse.xtext.xbase.validation.IssueCodes;
 
 @SuppressWarnings("all")
 public class XmuCoreTypeComputer extends XbaseTypeComputer {
+  protected void _computeTypes(final AnnotatedVariableExpression cvar, final ITypeComputationState state) {
+    final ITypeComputationResult valueTypeResult = state.withNonVoidExpectation().computeTypes(cvar.getValue());
+    state.acceptActualType(valueTypeResult.getActualExpressionType());
+  }
+  
   protected void _computeTypes(final ContextVarExpression cvar, final ITypeComputationState state) {
     final SideEnum side = cvar.getSide();
     final String varName = cvar.getName();
@@ -215,7 +221,10 @@ public class XmuCoreTypeComputer extends XbaseTypeComputer {
   }
   
   public void computeTypes(final XExpression cvar, final ITypeComputationState state) {
-    if (cvar instanceof ContextVarExpression) {
+    if (cvar instanceof AnnotatedVariableExpression) {
+      _computeTypes((AnnotatedVariableExpression)cvar, state);
+      return;
+    } else if (cvar instanceof ContextVarExpression) {
       _computeTypes((ContextVarExpression)cvar, state);
       return;
     } else if (cvar instanceof NavigationExpression) {

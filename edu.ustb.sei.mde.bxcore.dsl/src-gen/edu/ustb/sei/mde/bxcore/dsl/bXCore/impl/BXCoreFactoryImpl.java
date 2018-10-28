@@ -116,6 +116,7 @@ public class BXCoreFactoryImpl extends EFactoryImpl implements BXCoreFactory
       case BXCorePackage.BI_GUL_SKIP: return createBiGULSkip();
       case BXCorePackage.CUSTOMIZED_BI_GUL_REFERENCE: return createCustomizedBiGULReference();
       case BXCorePackage.CONTEXT_EXPRESSION: return createContextExpression();
+      case BXCorePackage.CONTEXT_PRIMARY_EXPRESSION: return createContextPrimaryExpression();
       case BXCorePackage.MODIFICATION_EXPRESSION_BLOCK: return createModificationExpressionBlock();
       case BXCorePackage.VALUE_MAPPING: return createValueMapping();
       case BXCorePackage.DEFINED_CONTEXT_TYPE_REF: return createDefinedContextTypeRef();
@@ -123,6 +124,7 @@ public class BXCoreFactoryImpl extends EFactoryImpl implements BXCoreFactory
       case BXCorePackage.FEATURE_TYPE_REF: return createFeatureTypeRef();
       case BXCorePackage.NAVIGATION_EXPRESSION: return createNavigationExpression();
       case BXCorePackage.CONTEXT_VAR_EXPRESSION: return createContextVarExpression();
+      case BXCorePackage.ANNOTATED_VARIABLE_EXPRESSION: return createAnnotatedVariableExpression();
       case BXCorePackage.ENFORCEMENT_EXPRESSION: return createEnforcementExpression();
       case BXCorePackage.DELETE_ELEMENT_EXPRESSION: return createDeleteElementExpression();
       default:
@@ -719,6 +721,17 @@ public class BXCoreFactoryImpl extends EFactoryImpl implements BXCoreFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public ContextPrimaryExpression createContextPrimaryExpression()
+  {
+    ContextPrimaryExpressionImpl contextPrimaryExpression = new ContextPrimaryExpressionImpl();
+    return contextPrimaryExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public ModificationExpressionBlock createModificationExpressionBlock()
   {
     ModificationExpressionBlockImpl modificationExpressionBlock = new ModificationExpressionBlockImpl();
@@ -789,6 +802,17 @@ public class BXCoreFactoryImpl extends EFactoryImpl implements BXCoreFactory
   {
     ContextVarExpressionImpl contextVarExpression = new ContextVarExpressionImpl();
     return contextVarExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AnnotatedVariableExpression createAnnotatedVariableExpression()
+  {
+    AnnotatedVariableExpressionImpl annotatedVariableExpression = new AnnotatedVariableExpressionImpl();
+    return annotatedVariableExpression;
   }
 
   /**

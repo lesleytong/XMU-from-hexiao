@@ -1350,6 +1350,31 @@ finally {
 	restoreStackSize(stackSize);
 }
 
+// Entry rule entryRuleContextPrimaryExpression
+entryRuleContextPrimaryExpression
+:
+{ before(grammarAccess.getContextPrimaryExpressionRule()); }
+	 ruleContextPrimaryExpression
+{ after(grammarAccess.getContextPrimaryExpressionRule()); } 
+	 EOF 
+;
+
+// Rule ContextPrimaryExpression
+ruleContextPrimaryExpression 
+	@init {
+		int stackSize = keepStackSize();
+	}
+	:
+	(
+		{ before(grammarAccess.getContextPrimaryExpressionAccess().getContextVarExpressionParserRuleCall()); }
+		ruleContextVarExpression
+		{ after(grammarAccess.getContextPrimaryExpressionAccess().getContextVarExpressionParserRuleCall()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
 // Entry rule entryRuleContextVarExpression
 entryRuleContextVarExpression
 :
@@ -3754,6 +3779,24 @@ rule__ValidID__Alternatives
 		{ before(grammarAccess.getValidIDAccess().getViewKeyword_9()); }
 		'view'
 		{ after(grammarAccess.getValidIDAccess().getViewKeyword_9()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getValidIDAccess().getGetKeyword_10()); }
+		'get'
+		{ after(grammarAccess.getValidIDAccess().getGetKeyword_10()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getValidIDAccess().getPutKeyword_11()); }
+		'put'
+		{ after(grammarAccess.getValidIDAccess().getPutKeyword_11()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getValidIDAccess().getContextKeyword_12()); }
+		'context'
+		{ after(grammarAccess.getValidIDAccess().getContextKeyword_12()); }
 	)
 ;
 finally {
@@ -11750,9 +11793,9 @@ rule__ContextExpression__Group__0__Impl
 	}
 :
 (
-	{ before(grammarAccess.getContextExpressionAccess().getContextVarExpressionParserRuleCall_0()); }
-	ruleContextVarExpression
-	{ after(grammarAccess.getContextExpressionAccess().getContextVarExpressionParserRuleCall_0()); }
+	{ before(grammarAccess.getContextExpressionAccess().getContextPrimaryExpressionParserRuleCall_0()); }
+	ruleContextPrimaryExpression
+	{ after(grammarAccess.getContextExpressionAccess().getContextPrimaryExpressionParserRuleCall_0()); }
 )
 ;
 finally {

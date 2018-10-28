@@ -1,5 +1,6 @@
 package edu.ustb.sei.mde.bxcore.dsl.jvmmodel;
 
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.AnnotatedVariableExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXProgram;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareCondition;
@@ -326,6 +327,12 @@ public class ModelInferrerUtils {
           _xblockexpression_1 = _xifexpression_2;
         }
         _xifexpression_1 = _xblockexpression_1;
+      } else {
+        if ((e instanceof AnnotatedVariableExpression)) {
+          final SideEnum side = ((AnnotatedVariableExpression)e).getSide();
+          final EClass type = ((AnnotatedVariableExpression)e).getType();
+          return Pair.<EClassifier, Boolean>of(type, Boolean.valueOf(false));
+        }
       }
       _xifexpression = _xifexpression_1;
     }

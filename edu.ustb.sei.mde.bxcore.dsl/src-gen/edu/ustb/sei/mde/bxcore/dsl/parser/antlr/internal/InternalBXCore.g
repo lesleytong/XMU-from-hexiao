@@ -4155,6 +4155,24 @@ ruleValidID returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()
 			$current.merge(kw);
 			newLeafNode(kw, grammarAccess.getValidIDAccess().getViewKeyword_9());
 		}
+		    |
+		kw='get'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getValidIDAccess().getGetKeyword_10());
+		}
+		    |
+		kw='put'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getValidIDAccess().getPutKeyword_11());
+		}
+		    |
+		kw='context'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getValidIDAccess().getContextKeyword_12());
+		}
 	)
 ;
 
@@ -4211,11 +4229,11 @@ ruleContextExpression returns [EObject current=null]
 }:
 	(
 		{
-			newCompositeNode(grammarAccess.getContextExpressionAccess().getContextVarExpressionParserRuleCall_0());
+			newCompositeNode(grammarAccess.getContextExpressionAccess().getContextPrimaryExpressionParserRuleCall_0());
 		}
-		this_ContextVarExpression_0=ruleContextVarExpression
+		this_ContextPrimaryExpression_0=ruleContextPrimaryExpression
 		{
-			$current = $this_ContextVarExpression_0.current;
+			$current = $this_ContextPrimaryExpression_0.current;
 			afterParserOrEnumRuleCall();
 		}
 		(
@@ -4255,6 +4273,31 @@ ruleContextExpression returns [EObject current=null]
 			)
 		)*
 	)
+;
+
+// Entry rule entryRuleContextPrimaryExpression
+entryRuleContextPrimaryExpression returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getContextPrimaryExpressionRule()); }
+	iv_ruleContextPrimaryExpression=ruleContextPrimaryExpression
+	{ $current=$iv_ruleContextPrimaryExpression.current; }
+	EOF;
+
+// Rule ContextPrimaryExpression
+ruleContextPrimaryExpression returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	{
+		newCompositeNode(grammarAccess.getContextPrimaryExpressionAccess().getContextVarExpressionParserRuleCall());
+	}
+	this_ContextVarExpression_0=ruleContextVarExpression
+	{
+		$current = $this_ContextVarExpression_0.current;
+		afterParserOrEnumRuleCall();
+	}
 ;
 
 // Entry rule entryRuleContextVarExpression
@@ -9511,7 +9554,7 @@ superXReturnExpression returns [EObject current=null]
 			newLeafNode(otherlv_1, grammarAccess.getXbaseXReturnExpressionAccess().getReturnKeyword_1());
 		}
 		(
-			('index' | 'align' | 'match' | 'int' | 'String' | 'boolean' | 'type' | 'source' | 'view' | 'extends' | 'static' | 'import' | 'extension' | '!' | '-' | '+' | 'new' | '{' | 'switch' | 'synchronized' | '<' | 'super' | '#' | '[' | 'false' | 'true' | 'null' | 'typeof' | 'if' | 'for' | 'while' | 'do' | 'throw' | 'begin' | 'return' | 'try' | '(' | RULE_ID | RULE_HEX | RULE_INT | RULE_DECIMAL | RULE_STRING)=>
+			('index' | 'align' | 'match' | 'int' | 'String' | 'boolean' | 'type' | 'source' | 'view' | 'get' | 'put' | 'context' | 'extends' | 'static' | 'import' | 'extension' | '!' | '-' | '+' | 'new' | '{' | 'switch' | 'synchronized' | '<' | 'super' | '#' | '[' | 'false' | 'true' | 'null' | 'typeof' | 'if' | 'for' | 'while' | 'do' | 'throw' | 'begin' | 'return' | 'try' | '(' | RULE_ID | RULE_HEX | RULE_INT | RULE_DECIMAL | RULE_STRING)=>
 			(
 				{
 					newCompositeNode(grammarAccess.getXbaseXReturnExpressionAccess().getExpressionXExpressionParserRuleCall_2_0());

@@ -3,6 +3,7 @@
  */
 package edu.ustb.sei.mde.bxcore.dsl.scoping;
 
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.AnnotatedVariableExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXFunctionDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXProgram;
@@ -25,6 +26,7 @@ import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -149,6 +151,26 @@ public class BXCoreScopeProvider extends AbstractBXCoreScopeProvider {
                       IteratorExtensions.<EObject>forEach(patterns, _function_9);
                     }
                     return new SimpleScope(objects_2);
+                  } else {
+                    if ((reference == BXCorePackage.Literals.ANNOTATED_VARIABLE_EXPRESSION__METAMODEL)) {
+                      final Function1<ImportSection, IEObjectDescription> _function_10 = (ImportSection it) -> {
+                        return EObjectDescription.create(it.getShortName(), it);
+                      };
+                      List<IEObjectDescription> _map = ListExtensions.<ImportSection, IEObjectDescription>map(this.getProgram(context).getImports(), _function_10);
+                      return new SimpleScope(_map);
+                    } else {
+                      if ((reference == BXCorePackage.Literals.ANNOTATED_VARIABLE_EXPRESSION__TYPE)) {
+                        final EPackage pkg = ((AnnotatedVariableExpression) context).getMetamodel().getMetamodel();
+                        final Function1<EObject, Boolean> _function_11 = (EObject it) -> {
+                          return Boolean.valueOf((it instanceof EClass));
+                        };
+                        final Function1<EObject, IEObjectDescription> _function_12 = (EObject it) -> {
+                          return EObjectDescription.create(((EClass) it).getName(), ((EClass) it));
+                        };
+                        final List<IEObjectDescription> classes = IteratorExtensions.<IEObjectDescription>toList(IteratorExtensions.<EObject, IEObjectDescription>map(IteratorExtensions.<EObject>filter(pkg.eAllContents(), _function_11), _function_12));
+                        return new SimpleScope(classes);
+                      }
+                    }
                   }
                 }
               }

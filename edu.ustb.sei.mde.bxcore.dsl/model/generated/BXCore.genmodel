@@ -184,6 +184,9 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BXCore.ecore#//CustomizedBiGULReference/function"/>
     </genClasses>
     <genClasses ecoreClass="BXCore.ecore#//ContextExpression"/>
+    <genClasses ecoreClass="BXCore.ecore#//ContextPrimaryExpression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BXCore.ecore#//ContextPrimaryExpression/side"/>
+    </genClasses>
     <genClasses ecoreClass="BXCore.ecore#//ModificationExpressionBlock">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//ModificationExpressionBlock/expressions"/>
     </genClasses>
@@ -204,7 +207,11 @@
     </genClasses>
     <genClasses ecoreClass="BXCore.ecore#//ContextVarExpression">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BXCore.ecore#//ContextVarExpression/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BXCore.ecore#//ContextVarExpression/side"/>
+    </genClasses>
+    <genClasses ecoreClass="BXCore.ecore#//AnnotatedVariableExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//AnnotatedVariableExpression/value"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BXCore.ecore#//AnnotatedVariableExpression/metamodel"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BXCore.ecore#//AnnotatedVariableExpression/type"/>
     </genClasses>
     <genClasses ecoreClass="BXCore.ecore#//EnforcementExpression">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//EnforcementExpression/pattern"/>

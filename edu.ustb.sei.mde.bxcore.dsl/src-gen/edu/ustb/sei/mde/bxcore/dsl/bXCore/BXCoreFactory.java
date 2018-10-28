@@ -474,6 +474,15 @@ public interface BXCoreFactory extends EFactory
   ContextExpression createContextExpression();
 
   /**
+   * Returns a new object of class '<em>Context Primary Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Context Primary Expression</em>'.
+   * @generated
+   */
+  ContextPrimaryExpression createContextPrimaryExpression();
+
+  /**
    * Returns a new object of class '<em>Modification Expression Block</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -535,6 +544,15 @@ public interface BXCoreFactory extends EFactory
    * @generated
    */
   ContextVarExpression createContextVarExpression();
+
+  /**
+   * Returns a new object of class '<em>Annotated Variable Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Annotated Variable Expression</em>'.
+   * @generated
+   */
+  AnnotatedVariableExpression createAnnotatedVariableExpression();
 
   /**
    * Returns a new object of class '<em>Enforcement Expression</em>'.

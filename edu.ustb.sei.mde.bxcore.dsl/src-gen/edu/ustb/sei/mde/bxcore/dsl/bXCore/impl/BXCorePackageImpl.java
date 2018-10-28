@@ -3,6 +3,7 @@
  */
 package edu.ustb.sei.mde.bxcore.dsl.bXCore.impl;
 
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.AnnotatedVariableExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCoreFactory;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXFunctionDefinition;
@@ -13,6 +14,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.BiGULStatement;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareCondition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareUnidirectionalAction;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextExpression;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextPrimaryExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextTypeRef;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextVarExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.Conversion;
@@ -443,6 +445,13 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass contextPrimaryExpressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass modificationExpressionBlockEClass = null;
 
   /**
@@ -486,6 +495,13 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * @generated
    */
   private EClass contextVarExpressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass annotatedVariableExpressionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1921,6 +1937,26 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getContextPrimaryExpression()
+  {
+    return contextPrimaryExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getContextPrimaryExpression_Side()
+  {
+    return (EAttribute)contextPrimaryExpressionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getModificationExpressionBlock()
   {
     return modificationExpressionBlockEClass;
@@ -2071,9 +2107,39 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getContextVarExpression_Side()
+  public EClass getAnnotatedVariableExpression()
   {
-    return (EAttribute)contextVarExpressionEClass.getEStructuralFeatures().get(1);
+    return annotatedVariableExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getAnnotatedVariableExpression_Value()
+  {
+    return (EReference)annotatedVariableExpressionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getAnnotatedVariableExpression_Metamodel()
+  {
+    return (EReference)annotatedVariableExpressionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getAnnotatedVariableExpression_Type()
+  {
+    return (EReference)annotatedVariableExpressionEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -2350,6 +2416,9 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
 
     contextExpressionEClass = createEClass(CONTEXT_EXPRESSION);
 
+    contextPrimaryExpressionEClass = createEClass(CONTEXT_PRIMARY_EXPRESSION);
+    createEAttribute(contextPrimaryExpressionEClass, CONTEXT_PRIMARY_EXPRESSION__SIDE);
+
     modificationExpressionBlockEClass = createEClass(MODIFICATION_EXPRESSION_BLOCK);
     createEReference(modificationExpressionBlockEClass, MODIFICATION_EXPRESSION_BLOCK__EXPRESSIONS);
 
@@ -2371,7 +2440,11 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
 
     contextVarExpressionEClass = createEClass(CONTEXT_VAR_EXPRESSION);
     createEAttribute(contextVarExpressionEClass, CONTEXT_VAR_EXPRESSION__NAME);
-    createEAttribute(contextVarExpressionEClass, CONTEXT_VAR_EXPRESSION__SIDE);
+
+    annotatedVariableExpressionEClass = createEClass(ANNOTATED_VARIABLE_EXPRESSION);
+    createEReference(annotatedVariableExpressionEClass, ANNOTATED_VARIABLE_EXPRESSION__VALUE);
+    createEReference(annotatedVariableExpressionEClass, ANNOTATED_VARIABLE_EXPRESSION__METAMODEL);
+    createEReference(annotatedVariableExpressionEClass, ANNOTATED_VARIABLE_EXPRESSION__TYPE);
 
     enforcementExpressionEClass = createEClass(ENFORCEMENT_EXPRESSION);
     createEReference(enforcementExpressionEClass, ENFORCEMENT_EXPRESSION__PATTERN);
@@ -2449,12 +2522,14 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     biGULSkipEClass.getESuperTypes().add(this.getBiGULStatement());
     customizedBiGULReferenceEClass.getESuperTypes().add(this.getBiGULStatement());
     contextExpressionEClass.getESuperTypes().add(theXbasePackage.getXExpression());
+    contextPrimaryExpressionEClass.getESuperTypes().add(this.getContextExpression());
     modificationExpressionBlockEClass.getESuperTypes().add(theXbasePackage.getXExpression());
     definedContextTypeRefEClass.getESuperTypes().add(this.getContextTypeRef());
     ecoreTypeRefEClass.getESuperTypes().add(this.getTypeRef());
     featureTypeRefEClass.getESuperTypes().add(this.getTypeRef());
     navigationExpressionEClass.getESuperTypes().add(this.getContextExpression());
-    contextVarExpressionEClass.getESuperTypes().add(this.getContextExpression());
+    contextVarExpressionEClass.getESuperTypes().add(this.getContextPrimaryExpression());
+    annotatedVariableExpressionEClass.getESuperTypes().add(this.getContextPrimaryExpression());
     enforcementExpressionEClass.getESuperTypes().add(theXbasePackage.getXExpression());
     deleteElementExpressionEClass.getESuperTypes().add(theXbasePackage.getXExpression());
 
@@ -2643,6 +2718,9 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
 
     initEClass(contextExpressionEClass, ContextExpression.class, "ContextExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
+    initEClass(contextPrimaryExpressionEClass, ContextPrimaryExpression.class, "ContextPrimaryExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getContextPrimaryExpression_Side(), this.getSideEnum(), "side", null, 0, 1, ContextPrimaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
     initEClass(modificationExpressionBlockEClass, ModificationExpressionBlock.class, "ModificationExpressionBlock", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getModificationExpressionBlock_Expressions(), theXbasePackage.getXExpression(), null, "expressions", null, 0, -1, ModificationExpressionBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -2664,7 +2742,11 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
 
     initEClass(contextVarExpressionEClass, ContextVarExpression.class, "ContextVarExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getContextVarExpression_Name(), ecorePackage.getEString(), "name", null, 0, 1, ContextVarExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getContextVarExpression_Side(), this.getSideEnum(), "side", null, 0, 1, ContextVarExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(annotatedVariableExpressionEClass, AnnotatedVariableExpression.class, "AnnotatedVariableExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getAnnotatedVariableExpression_Value(), theXbasePackage.getXExpression(), null, "value", null, 0, 1, AnnotatedVariableExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAnnotatedVariableExpression_Metamodel(), this.getImportSection(), null, "metamodel", null, 0, 1, AnnotatedVariableExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAnnotatedVariableExpression_Type(), ecorePackage.getEClass(), null, "type", null, 0, 1, AnnotatedVariableExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(enforcementExpressionEClass, EnforcementExpression.class, "EnforcementExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getEnforcementExpression_Pattern(), this.getPattern(), null, "pattern", null, 0, 1, EnforcementExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

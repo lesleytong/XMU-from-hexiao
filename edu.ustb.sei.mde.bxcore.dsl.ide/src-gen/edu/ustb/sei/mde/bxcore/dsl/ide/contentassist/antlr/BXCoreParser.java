@@ -155,6 +155,7 @@ public class BXCoreParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getContextExpressionAccess().getGroup(), "rule__ContextExpression__Group__0");
 			builder.put(grammarAccess.getContextExpressionAccess().getGroup_1(), "rule__ContextExpression__Group_1__0");
 			builder.put(grammarAccess.getContextVarExpressionAccess().getGroup(), "rule__ContextVarExpression__Group__0");
+			builder.put(grammarAccess.getAnnotatedVariableExpressionAccess().getGroup(), "rule__AnnotatedVariableExpression__Group__0");
 			builder.put(grammarAccess.getModificationExpressionBlockAccess().getGroup(), "rule__ModificationExpressionBlock__Group__0");
 			builder.put(grammarAccess.getModificationExpressionAccess().getGroup_0(), "rule__ModificationExpression__Group_0__0");
 			builder.put(grammarAccess.getModificationExpressionAccess().getGroup_0_3(), "rule__ModificationExpression__Group_0_3__0");
@@ -463,6 +464,10 @@ public class BXCoreParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getContextExpressionAccess().getPathNameAssignment_1_3(), "rule__ContextExpression__PathNameAssignment_1_3");
 			builder.put(grammarAccess.getContextVarExpressionAccess().getNameAssignment_1(), "rule__ContextVarExpression__NameAssignment_1");
 			builder.put(grammarAccess.getContextVarExpressionAccess().getSideAssignment_3(), "rule__ContextVarExpression__SideAssignment_3");
+			builder.put(grammarAccess.getAnnotatedVariableExpressionAccess().getValueAssignment_1(), "rule__AnnotatedVariableExpression__ValueAssignment_1");
+			builder.put(grammarAccess.getAnnotatedVariableExpressionAccess().getSideAssignment_3(), "rule__AnnotatedVariableExpression__SideAssignment_3");
+			builder.put(grammarAccess.getAnnotatedVariableExpressionAccess().getMetamodelAssignment_5(), "rule__AnnotatedVariableExpression__MetamodelAssignment_5");
+			builder.put(grammarAccess.getAnnotatedVariableExpressionAccess().getTypeAssignment_7(), "rule__AnnotatedVariableExpression__TypeAssignment_7");
 			builder.put(grammarAccess.getModificationExpressionBlockAccess().getExpressionsAssignment_1(), "rule__ModificationExpressionBlock__ExpressionsAssignment_1");
 			builder.put(grammarAccess.getModificationExpressionAccess().getPatternAssignment_0_2(), "rule__ModificationExpression__PatternAssignment_0_2");
 			builder.put(grammarAccess.getModificationExpressionAccess().getValueMappingsAssignment_0_3_1(), "rule__ModificationExpression__ValueMappingsAssignment_0_3_1");

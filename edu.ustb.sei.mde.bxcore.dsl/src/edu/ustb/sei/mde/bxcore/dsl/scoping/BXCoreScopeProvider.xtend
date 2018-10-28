@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.xtext.resource.EObjectDescription
 import org.eclipse.xtext.scoping.IScope
 import org.eclipse.xtext.scoping.impl.SimpleScope
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.AnnotatedVariableExpression
 
 /**
  * This class contains custom scoping description.
@@ -87,6 +88,12 @@ class BXCoreScopeProvider extends AbstractBXCoreScopeProvider {
 			if(patterns!==null) patterns.forEach[p| objects += EObjectDescription.create((p as PatternDefinition).name, p)];
 			
 			return new SimpleScope(objects);
+		} else if(reference===BXCorePackage.Literals.ANNOTATED_VARIABLE_EXPRESSION__METAMODEL) {
+			return new SimpleScope(context.program.imports.map[EObjectDescription.create(it.shortName, it)]);
+		} else if(reference===BXCorePackage.Literals.ANNOTATED_VARIABLE_EXPRESSION__TYPE) {
+			val pkg = (context as AnnotatedVariableExpression).metamodel.metamodel;
+			val classes = pkg.eAllContents.filter[it instanceof EClass].map[EObjectDescription.create((it as EClass).name, it as EClass)].toList;
+			return new SimpleScope(classes);
 		}
 		
 		super.getScope(context, reference)
