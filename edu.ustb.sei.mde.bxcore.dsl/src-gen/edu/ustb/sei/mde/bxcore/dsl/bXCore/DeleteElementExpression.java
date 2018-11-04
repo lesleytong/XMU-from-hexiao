@@ -21,7 +21,7 @@ import org.eclipse.xtext.xbase.XExpression;
  * @model
  * @generated
  */
-public interface DeleteElementExpression extends XExpression
+public interface DeleteElementExpression extends ModificationExpression
 {
   /**
    * Returns the value of the '<em><b>Element</b></em>' containment reference.

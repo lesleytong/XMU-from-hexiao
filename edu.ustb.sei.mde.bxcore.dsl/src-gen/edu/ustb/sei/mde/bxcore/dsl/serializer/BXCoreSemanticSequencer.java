@@ -4,7 +4,6 @@
 package edu.ustb.sei.mde.bxcore.dsl.serializer;
 
 import com.google.inject.Inject;
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.AnnotatedVariableExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXFunctionDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXProgram;
@@ -20,6 +19,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.DefinedContextTypeRef;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.DeleteElementExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.EcoreTypeRef;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.EnforcementExpression;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.ExpressionConversion;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.FeatureTypeRef;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ImportSection;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.IndexDefinition;
@@ -125,9 +125,6 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
 		if (epackage == BXCorePackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
-			case BXCorePackage.ANNOTATED_VARIABLE_EXPRESSION:
-				sequence_AnnotatedVariableExpression(context, (AnnotatedVariableExpression) semanticObject); 
-				return; 
 			case BXCorePackage.BX_FUNCTION_DEFINITION:
 				sequence_BXFunctionDefinition(context, (BXFunctionDefinition) semanticObject); 
 				return; 
@@ -162,13 +159,16 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 				sequence_ContextTypeRef(context, (DefinedContextTypeRef) semanticObject); 
 				return; 
 			case BXCorePackage.DELETE_ELEMENT_EXPRESSION:
-				sequence_ModificationExpression(context, (DeleteElementExpression) semanticObject); 
+				sequence_DeleteElementExpression(context, (DeleteElementExpression) semanticObject); 
 				return; 
 			case BXCorePackage.ECORE_TYPE_REF:
 				sequence_TypeRef(context, (EcoreTypeRef) semanticObject); 
 				return; 
 			case BXCorePackage.ENFORCEMENT_EXPRESSION:
-				sequence_ModificationExpression(context, (EnforcementExpression) semanticObject); 
+				sequence_EnforcementExpression(context, (EnforcementExpression) semanticObject); 
+				return; 
+			case BXCorePackage.EXPRESSION_CONVERSION:
+				sequence_ContextVarExpression(context, (ExpressionConversion) semanticObject); 
 				return; 
 			case BXCorePackage.FEATURE_TYPE_REF:
 				sequence_TypeRef(context, (FeatureTypeRef) semanticObject); 
@@ -344,6 +344,7 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 				return; 
 			case XbasePackage.XBLOCK_EXPRESSION:
 				if (rule == grammarAccess.getXPrimaryExpressionRule()
+						|| rule == grammarAccess.getModificationExpressionOrSuperExpressionRule()
 						|| rule == grammarAccess.getXExpressionRule()
 						|| rule == grammarAccess.getXAssignmentRule()
 						|| action == grammarAccess.getXAssignmentAccess().getXBinaryOperationLeftOperandAction_1_1_0_0_0()
@@ -396,6 +397,7 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 				return; 
 			case XbasePackage.XCLOSURE:
 				if (rule == grammarAccess.getXPrimaryExpressionRule()
+						|| rule == grammarAccess.getModificationExpressionOrSuperExpressionRule()
 						|| rule == grammarAccess.getXExpressionRule()
 						|| rule == grammarAccess.getXAssignmentRule()
 						|| action == grammarAccess.getXAssignmentAccess().getXBinaryOperationLeftOperandAction_1_1_0_0_0()
@@ -520,33 +522,6 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     AnnotatedVariableExpression returns AnnotatedVariableExpression
-	 *
-	 * Constraint:
-	 *     (value=XFeatureCall side=SideEnum metamodel=[ImportSection|ValidID] type=[EClass|ValidID])
-	 */
-	protected void sequence_AnnotatedVariableExpression(ISerializationContext context, AnnotatedVariableExpression semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.ANNOTATED_VARIABLE_EXPRESSION__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.ANNOTATED_VARIABLE_EXPRESSION__VALUE));
-			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.CONTEXT_PRIMARY_EXPRESSION__SIDE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.CONTEXT_PRIMARY_EXPRESSION__SIDE));
-			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.ANNOTATED_VARIABLE_EXPRESSION__METAMODEL) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.ANNOTATED_VARIABLE_EXPRESSION__METAMODEL));
-			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.ANNOTATED_VARIABLE_EXPRESSION__TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.ANNOTATED_VARIABLE_EXPRESSION__TYPE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getAnnotatedVariableExpressionAccess().getValueXFeatureCallParserRuleCall_1_0(), semanticObject.getValue());
-		feeder.accept(grammarAccess.getAnnotatedVariableExpressionAccess().getSideSideEnumEnumRuleCall_3_0(), semanticObject.getSide());
-		feeder.accept(grammarAccess.getAnnotatedVariableExpressionAccess().getMetamodelImportSectionValidIDParserRuleCall_5_0_1(), semanticObject.eGet(BXCorePackage.Literals.ANNOTATED_VARIABLE_EXPRESSION__METAMODEL, false));
-		feeder.accept(grammarAccess.getAnnotatedVariableExpressionAccess().getTypeEClassValidIDParserRuleCall_7_0_1(), semanticObject.eGet(BXCorePackage.Literals.ANNOTATED_VARIABLE_EXPRESSION__TYPE, false));
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     Definition returns BXFunctionDefinition
 	 *     BXFunctionDefinition returns BXFunctionDefinition
 	 *
@@ -641,6 +616,7 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	 *     XPrimaryExpression returns NavigationExpression
 	 *     ContextExpression returns NavigationExpression
 	 *     ContextExpression.NavigationExpression_1_0 returns NavigationExpression
+	 *     ModificationExpressionOrSuperExpression returns NavigationExpression
 	 *     XExpression returns NavigationExpression
 	 *     XAssignment returns NavigationExpression
 	 *     XAssignment.XBinaryOperation_1_1_0_0_0 returns NavigationExpression
@@ -713,6 +689,7 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	 *     ContextExpression.NavigationExpression_1_0 returns ContextVarExpression
 	 *     ContextPrimaryExpression returns ContextVarExpression
 	 *     ContextVarExpression returns ContextVarExpression
+	 *     ModificationExpressionOrSuperExpression returns ContextVarExpression
 	 *     XExpression returns ContextVarExpression
 	 *     XAssignment returns ContextVarExpression
 	 *     XAssignment.XBinaryOperation_1_1_0_0_0 returns ContextVarExpression
@@ -754,9 +731,55 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.CONTEXT_PRIMARY_EXPRESSION__SIDE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getContextVarExpressionAccess().getNameValidIDParserRuleCall_1_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getContextVarExpressionAccess().getSideSideEnumEnumRuleCall_3_0(), semanticObject.getSide());
+		feeder.accept(grammarAccess.getContextVarExpressionAccess().getNameValidIDParserRuleCall_0_1_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getContextVarExpressionAccess().getSideSideEnumEnumRuleCall_0_3_0(), semanticObject.getSide());
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     XPrimaryExpression returns ExpressionConversion
+	 *     ContextExpression returns ExpressionConversion
+	 *     ContextExpression.NavigationExpression_1_0 returns ExpressionConversion
+	 *     ContextPrimaryExpression returns ExpressionConversion
+	 *     ContextVarExpression returns ExpressionConversion
+	 *     ModificationExpressionOrSuperExpression returns ExpressionConversion
+	 *     XExpression returns ExpressionConversion
+	 *     XAssignment returns ExpressionConversion
+	 *     XAssignment.XBinaryOperation_1_1_0_0_0 returns ExpressionConversion
+	 *     XOrExpression returns ExpressionConversion
+	 *     XOrExpression.XBinaryOperation_1_0_0_0 returns ExpressionConversion
+	 *     XAndExpression returns ExpressionConversion
+	 *     XAndExpression.XBinaryOperation_1_0_0_0 returns ExpressionConversion
+	 *     XEqualityExpression returns ExpressionConversion
+	 *     XEqualityExpression.XBinaryOperation_1_0_0_0 returns ExpressionConversion
+	 *     XRelationalExpression returns ExpressionConversion
+	 *     XRelationalExpression.XInstanceOfExpression_1_0_0_0_0 returns ExpressionConversion
+	 *     XRelationalExpression.XBinaryOperation_1_1_0_0_0 returns ExpressionConversion
+	 *     XOtherOperatorExpression returns ExpressionConversion
+	 *     XOtherOperatorExpression.XBinaryOperation_1_0_0_0 returns ExpressionConversion
+	 *     XAdditiveExpression returns ExpressionConversion
+	 *     XAdditiveExpression.XBinaryOperation_1_0_0_0 returns ExpressionConversion
+	 *     XMultiplicativeExpression returns ExpressionConversion
+	 *     XMultiplicativeExpression.XBinaryOperation_1_0_0_0 returns ExpressionConversion
+	 *     XUnaryOperation returns ExpressionConversion
+	 *     XCastedExpression returns ExpressionConversion
+	 *     XCastedExpression.XCastedExpression_1_0_0_0 returns ExpressionConversion
+	 *     XPostfixOperation returns ExpressionConversion
+	 *     XPostfixOperation.XPostfixOperation_1_0_0 returns ExpressionConversion
+	 *     XMemberFeatureCall returns ExpressionConversion
+	 *     XMemberFeatureCall.XAssignment_1_0_0_0_0 returns ExpressionConversion
+	 *     XMemberFeatureCall.XMemberFeatureCall_1_1_0_0_0 returns ExpressionConversion
+	 *     XPrimaryExpression returns ExpressionConversion
+	 *     XParenthesizedExpression returns ExpressionConversion
+	 *     XExpressionOrVarDeclaration returns ExpressionConversion
+	 *
+	 * Constraint:
+	 *     (side=SideEnum metamodel=[ImportSection|ValidID] type=[EClass|ValidID] many?='[]'? expression=XExpression)
+	 */
+	protected void sequence_ContextVarExpression(ISerializationContext context, ExpressionConversion semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -808,6 +831,100 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getCustomizedBiGULReferenceAccess().getFunctionCustomizedBiGULDefinitionValidIDParserRuleCall_0_1(), semanticObject.eGet(BXCorePackage.Literals.CUSTOMIZED_BI_GUL_REFERENCE__FUNCTION, false));
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     XPrimaryExpression returns DeleteElementExpression
+	 *     ModificationExpressionOrSuperExpression returns DeleteElementExpression
+	 *     ModificationExpression returns DeleteElementExpression
+	 *     DeleteElementExpression returns DeleteElementExpression
+	 *     XExpression returns DeleteElementExpression
+	 *     XAssignment returns DeleteElementExpression
+	 *     XAssignment.XBinaryOperation_1_1_0_0_0 returns DeleteElementExpression
+	 *     XOrExpression returns DeleteElementExpression
+	 *     XOrExpression.XBinaryOperation_1_0_0_0 returns DeleteElementExpression
+	 *     XAndExpression returns DeleteElementExpression
+	 *     XAndExpression.XBinaryOperation_1_0_0_0 returns DeleteElementExpression
+	 *     XEqualityExpression returns DeleteElementExpression
+	 *     XEqualityExpression.XBinaryOperation_1_0_0_0 returns DeleteElementExpression
+	 *     XRelationalExpression returns DeleteElementExpression
+	 *     XRelationalExpression.XInstanceOfExpression_1_0_0_0_0 returns DeleteElementExpression
+	 *     XRelationalExpression.XBinaryOperation_1_1_0_0_0 returns DeleteElementExpression
+	 *     XOtherOperatorExpression returns DeleteElementExpression
+	 *     XOtherOperatorExpression.XBinaryOperation_1_0_0_0 returns DeleteElementExpression
+	 *     XAdditiveExpression returns DeleteElementExpression
+	 *     XAdditiveExpression.XBinaryOperation_1_0_0_0 returns DeleteElementExpression
+	 *     XMultiplicativeExpression returns DeleteElementExpression
+	 *     XMultiplicativeExpression.XBinaryOperation_1_0_0_0 returns DeleteElementExpression
+	 *     XUnaryOperation returns DeleteElementExpression
+	 *     XCastedExpression returns DeleteElementExpression
+	 *     XCastedExpression.XCastedExpression_1_0_0_0 returns DeleteElementExpression
+	 *     XPostfixOperation returns DeleteElementExpression
+	 *     XPostfixOperation.XPostfixOperation_1_0_0 returns DeleteElementExpression
+	 *     XMemberFeatureCall returns DeleteElementExpression
+	 *     XMemberFeatureCall.XAssignment_1_0_0_0_0 returns DeleteElementExpression
+	 *     XMemberFeatureCall.XMemberFeatureCall_1_1_0_0_0 returns DeleteElementExpression
+	 *     XPrimaryExpression returns DeleteElementExpression
+	 *     XParenthesizedExpression returns DeleteElementExpression
+	 *     XExpressionOrVarDeclaration returns DeleteElementExpression
+	 *
+	 * Constraint:
+	 *     element=XExpression
+	 */
+	protected void sequence_DeleteElementExpression(ISerializationContext context, DeleteElementExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.DELETE_ELEMENT_EXPRESSION__ELEMENT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.DELETE_ELEMENT_EXPRESSION__ELEMENT));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getDeleteElementExpressionAccess().getElementXExpressionParserRuleCall_1_0(), semanticObject.getElement());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     XPrimaryExpression returns EnforcementExpression
+	 *     ModificationExpressionOrSuperExpression returns EnforcementExpression
+	 *     ModificationExpression returns EnforcementExpression
+	 *     EnforcementExpression returns EnforcementExpression
+	 *     XExpression returns EnforcementExpression
+	 *     XAssignment returns EnforcementExpression
+	 *     XAssignment.XBinaryOperation_1_1_0_0_0 returns EnforcementExpression
+	 *     XOrExpression returns EnforcementExpression
+	 *     XOrExpression.XBinaryOperation_1_0_0_0 returns EnforcementExpression
+	 *     XAndExpression returns EnforcementExpression
+	 *     XAndExpression.XBinaryOperation_1_0_0_0 returns EnforcementExpression
+	 *     XEqualityExpression returns EnforcementExpression
+	 *     XEqualityExpression.XBinaryOperation_1_0_0_0 returns EnforcementExpression
+	 *     XRelationalExpression returns EnforcementExpression
+	 *     XRelationalExpression.XInstanceOfExpression_1_0_0_0_0 returns EnforcementExpression
+	 *     XRelationalExpression.XBinaryOperation_1_1_0_0_0 returns EnforcementExpression
+	 *     XOtherOperatorExpression returns EnforcementExpression
+	 *     XOtherOperatorExpression.XBinaryOperation_1_0_0_0 returns EnforcementExpression
+	 *     XAdditiveExpression returns EnforcementExpression
+	 *     XAdditiveExpression.XBinaryOperation_1_0_0_0 returns EnforcementExpression
+	 *     XMultiplicativeExpression returns EnforcementExpression
+	 *     XMultiplicativeExpression.XBinaryOperation_1_0_0_0 returns EnforcementExpression
+	 *     XUnaryOperation returns EnforcementExpression
+	 *     XCastedExpression returns EnforcementExpression
+	 *     XCastedExpression.XCastedExpression_1_0_0_0 returns EnforcementExpression
+	 *     XPostfixOperation returns EnforcementExpression
+	 *     XPostfixOperation.XPostfixOperation_1_0_0 returns EnforcementExpression
+	 *     XMemberFeatureCall returns EnforcementExpression
+	 *     XMemberFeatureCall.XAssignment_1_0_0_0_0 returns EnforcementExpression
+	 *     XMemberFeatureCall.XMemberFeatureCall_1_1_0_0_0 returns EnforcementExpression
+	 *     XPrimaryExpression returns EnforcementExpression
+	 *     XParenthesizedExpression returns EnforcementExpression
+	 *     XExpressionOrVarDeclaration returns EnforcementExpression
+	 *
+	 * Constraint:
+	 *     (pattern=Pattern (valueMappings+=ValueMapping valueMappings+=ValueMapping*)?)
+	 */
+	protected void sequence_EnforcementExpression(ISerializationContext context, EnforcementExpression semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -872,8 +989,8 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	/**
 	 * Contexts:
 	 *     XPrimaryExpression returns ModificationExpressionBlock
-	 *     XReturnExpression returns ModificationExpressionBlock
 	 *     ModificationExpressionBlock returns ModificationExpressionBlock
+	 *     ModificationExpressionOrSuperExpression returns ModificationExpressionBlock
 	 *     XExpression returns ModificationExpressionBlock
 	 *     XAssignment returns ModificationExpressionBlock
 	 *     XAssignment.XBinaryOperation_1_1_0_0_0 returns ModificationExpressionBlock
@@ -905,39 +1022,9 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	 *     XExpressionOrVarDeclaration returns ModificationExpressionBlock
 	 *
 	 * Constraint:
-	 *     expressions+=ModificationExpression+
+	 *     expressions+=XExpression*
 	 */
 	protected void sequence_ModificationExpressionBlock(ISerializationContext context, ModificationExpressionBlock semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     ModificationExpression returns DeleteElementExpression
-	 *
-	 * Constraint:
-	 *     element=XExpression
-	 */
-	protected void sequence_ModificationExpression(ISerializationContext context, DeleteElementExpression semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.DELETE_ELEMENT_EXPRESSION__ELEMENT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.DELETE_ELEMENT_EXPRESSION__ELEMENT));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getModificationExpressionAccess().getElementXExpressionParserRuleCall_1_2_0(), semanticObject.getElement());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     ModificationExpression returns EnforcementExpression
-	 *
-	 * Constraint:
-	 *     (pattern=Pattern (valueMappings+=ValueMapping valueMappings+=ValueMapping*)?)
-	 */
-	protected void sequence_ModificationExpression(ISerializationContext context, EnforcementExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

@@ -16,8 +16,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.xtext.xbase.XExpression;
 
-import org.eclipse.xtext.xbase.impl.XExpressionImpl;
-
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Delete Element Expression</b></em>'.
@@ -31,7 +29,7 @@ import org.eclipse.xtext.xbase.impl.XExpressionImpl;
  *
  * @generated
  */
-public class DeleteElementExpressionImpl extends XExpressionImpl implements DeleteElementExpression
+public class DeleteElementExpressionImpl extends ModificationExpressionImpl implements DeleteElementExpression
 {
   /**
    * The cached value of the '{@link #getElement() <em>Element</em>}' containment reference.

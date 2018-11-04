@@ -1,12 +1,12 @@
 package edu.ustb.sei.mde.bxcore.dsl.jvmmodel;
 
 import edu.ustb.sei.mde.bxcore.SourceType;
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.AnnotatedVariableExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextVarExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.DeleteElementExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.EnforcementExpression;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.ExpressionConversion;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpressionBlock;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.NavigationExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.SideEnum;
@@ -71,8 +71,8 @@ import org.eclipse.xtext.xbase.validation.IssueCodes;
 
 @SuppressWarnings("all")
 public class XmuCoreTypeComputer extends XbaseTypeComputer {
-  protected void _computeTypes(final AnnotatedVariableExpression cvar, final ITypeComputationState state) {
-    final ITypeComputationResult valueTypeResult = state.withNonVoidExpectation().computeTypes(cvar.getValue());
+  protected void _computeTypes(final ExpressionConversion cvar, final ITypeComputationState state) {
+    final ITypeComputationResult valueTypeResult = state.withNonVoidExpectation().computeTypes(cvar.getExpression());
     state.acceptActualType(valueTypeResult.getActualExpressionType());
   }
   
@@ -221,11 +221,17 @@ public class XmuCoreTypeComputer extends XbaseTypeComputer {
   }
   
   public void computeTypes(final XExpression cvar, final ITypeComputationState state) {
-    if (cvar instanceof AnnotatedVariableExpression) {
-      _computeTypes((AnnotatedVariableExpression)cvar, state);
-      return;
-    } else if (cvar instanceof ContextVarExpression) {
+    if (cvar instanceof ContextVarExpression) {
       _computeTypes((ContextVarExpression)cvar, state);
+      return;
+    } else if (cvar instanceof ExpressionConversion) {
+      _computeTypes((ExpressionConversion)cvar, state);
+      return;
+    } else if (cvar instanceof DeleteElementExpression) {
+      _computeTypes((DeleteElementExpression)cvar, state);
+      return;
+    } else if (cvar instanceof EnforcementExpression) {
+      _computeTypes((EnforcementExpression)cvar, state);
       return;
     } else if (cvar instanceof NavigationExpression) {
       _computeTypes((NavigationExpression)cvar, state);
@@ -244,12 +250,6 @@ public class XmuCoreTypeComputer extends XbaseTypeComputer {
       return;
     } else if (cvar instanceof XWhileExpression) {
       _computeTypes((XWhileExpression)cvar, state);
-      return;
-    } else if (cvar instanceof DeleteElementExpression) {
-      _computeTypes((DeleteElementExpression)cvar, state);
-      return;
-    } else if (cvar instanceof EnforcementExpression) {
-      _computeTypes((EnforcementExpression)cvar, state);
       return;
     } else if (cvar instanceof ModificationExpressionBlock) {
       _computeTypes((ModificationExpressionBlock)cvar, state);

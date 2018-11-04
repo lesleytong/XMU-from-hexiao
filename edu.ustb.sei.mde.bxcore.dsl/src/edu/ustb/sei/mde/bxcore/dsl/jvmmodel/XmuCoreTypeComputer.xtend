@@ -26,14 +26,15 @@ import org.eclipse.xtext.xbase.typesystem.conformance.ConformanceFlags
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.EnforcementExpression
 import edu.ustb.sei.mde.bxcore.structures.ContextGraph.GraphModification
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.DeleteElementExpression
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.AnnotatedVariableExpression
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.ExpressionConversion
 
 class XmuCoreTypeComputer extends XbaseTypeComputer {
 	
-	def dispatch void computeTypes(AnnotatedVariableExpression cvar, ITypeComputationState state) {
-		val valueTypeResult = state.withNonVoidExpectation.computeTypes(cvar.value);
+	def dispatch void computeTypes(ExpressionConversion cvar, ITypeComputationState state) {
+		val valueTypeResult = state.withNonVoidExpectation.computeTypes(cvar.expression);
 		state.acceptActualType(valueTypeResult.actualExpressionType);
 	}
+	
 	
 	def dispatch void computeTypes(ContextVarExpression cvar, ITypeComputationState state) {
 		val side = cvar.side;

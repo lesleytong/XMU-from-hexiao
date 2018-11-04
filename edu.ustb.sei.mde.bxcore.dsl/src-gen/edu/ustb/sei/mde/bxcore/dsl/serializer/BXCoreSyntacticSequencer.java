@@ -167,11 +167,15 @@ public class BXCoreSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) '#' '{' '}' (rule start)
 	 *     (rule start) (ambiguity) '#' '{' elements+=XExpression
 	 *     (rule start) (ambiguity) '<' typeArguments+=JvmArgumentTypeReference
+	 *     (rule start) (ambiguity) '@' side=SideEnum
 	 *     (rule start) (ambiguity) '[' declaredFormalParameters+=JvmFormalParameter
 	 *     (rule start) (ambiguity) '[' explicitSyntax?='|'
 	 *     (rule start) (ambiguity) '[' expression=XExpressionInClosure
-	 *     (rule start) (ambiguity) 'begin' expressions+=ModificationExpression
+	 *     (rule start) (ambiguity) 'begin' 'end' (rule start)
+	 *     (rule start) (ambiguity) 'begin' expressions+=XExpression
+	 *     (rule start) (ambiguity) 'delete' element=XExpression
 	 *     (rule start) (ambiguity) 'do' body=XExpression
+	 *     (rule start) (ambiguity) 'enforce' pattern=Pattern
 	 *     (rule start) (ambiguity) 'false' (rule start)
 	 *     (rule start) (ambiguity) 'for' '(' ';' ';' ')' eachExpression=XExpression
 	 *     (rule start) (ambiguity) 'for' '(' ';' ';' updateExpressions+=XExpression
@@ -222,11 +226,15 @@ public class BXCoreSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) '#' '{' '}' ')' (rule start)
 	 *     (rule start) (ambiguity) '#' '{' elements+=XExpression
 	 *     (rule start) (ambiguity) '<' typeArguments+=JvmArgumentTypeReference
+	 *     (rule start) (ambiguity) '@' side=SideEnum
 	 *     (rule start) (ambiguity) '[' declaredFormalParameters+=JvmFormalParameter
 	 *     (rule start) (ambiguity) '[' explicitSyntax?='|'
 	 *     (rule start) (ambiguity) '[' expression=XExpressionInClosure
-	 *     (rule start) (ambiguity) 'begin' expressions+=ModificationExpression
+	 *     (rule start) (ambiguity) 'begin' 'end' ')' (rule start)
+	 *     (rule start) (ambiguity) 'begin' expressions+=XExpression
+	 *     (rule start) (ambiguity) 'delete' element=XExpression
 	 *     (rule start) (ambiguity) 'do' body=XExpression
+	 *     (rule start) (ambiguity) 'enforce' pattern=Pattern
 	 *     (rule start) (ambiguity) 'false' ')' (rule start)
 	 *     (rule start) (ambiguity) 'for' '(' ';' ';' ')' eachExpression=XExpression
 	 *     (rule start) (ambiguity) 'for' '(' ';' ';' updateExpressions+=XExpression

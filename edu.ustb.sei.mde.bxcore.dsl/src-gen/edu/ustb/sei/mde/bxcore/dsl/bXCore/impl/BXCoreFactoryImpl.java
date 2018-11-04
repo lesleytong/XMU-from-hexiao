@@ -117,16 +117,17 @@ public class BXCoreFactoryImpl extends EFactoryImpl implements BXCoreFactory
       case BXCorePackage.CUSTOMIZED_BI_GUL_REFERENCE: return createCustomizedBiGULReference();
       case BXCorePackage.CONTEXT_EXPRESSION: return createContextExpression();
       case BXCorePackage.CONTEXT_PRIMARY_EXPRESSION: return createContextPrimaryExpression();
-      case BXCorePackage.MODIFICATION_EXPRESSION_BLOCK: return createModificationExpressionBlock();
+      case BXCorePackage.MODIFICATION_EXPRESSION: return createModificationExpression();
+      case BXCorePackage.ENFORCEMENT_EXPRESSION: return createEnforcementExpression();
+      case BXCorePackage.DELETE_ELEMENT_EXPRESSION: return createDeleteElementExpression();
       case BXCorePackage.VALUE_MAPPING: return createValueMapping();
       case BXCorePackage.DEFINED_CONTEXT_TYPE_REF: return createDefinedContextTypeRef();
       case BXCorePackage.ECORE_TYPE_REF: return createEcoreTypeRef();
       case BXCorePackage.FEATURE_TYPE_REF: return createFeatureTypeRef();
       case BXCorePackage.NAVIGATION_EXPRESSION: return createNavigationExpression();
       case BXCorePackage.CONTEXT_VAR_EXPRESSION: return createContextVarExpression();
-      case BXCorePackage.ANNOTATED_VARIABLE_EXPRESSION: return createAnnotatedVariableExpression();
-      case BXCorePackage.ENFORCEMENT_EXPRESSION: return createEnforcementExpression();
-      case BXCorePackage.DELETE_ELEMENT_EXPRESSION: return createDeleteElementExpression();
+      case BXCorePackage.EXPRESSION_CONVERSION: return createExpressionConversion();
+      case BXCorePackage.MODIFICATION_EXPRESSION_BLOCK: return createModificationExpressionBlock();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -732,10 +733,32 @@ public class BXCoreFactoryImpl extends EFactoryImpl implements BXCoreFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public ModificationExpressionBlock createModificationExpressionBlock()
+  public ModificationExpression createModificationExpression()
   {
-    ModificationExpressionBlockImpl modificationExpressionBlock = new ModificationExpressionBlockImpl();
-    return modificationExpressionBlock;
+    ModificationExpressionImpl modificationExpression = new ModificationExpressionImpl();
+    return modificationExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EnforcementExpression createEnforcementExpression()
+  {
+    EnforcementExpressionImpl enforcementExpression = new EnforcementExpressionImpl();
+    return enforcementExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public DeleteElementExpression createDeleteElementExpression()
+  {
+    DeleteElementExpressionImpl deleteElementExpression = new DeleteElementExpressionImpl();
+    return deleteElementExpression;
   }
 
   /**
@@ -809,10 +832,10 @@ public class BXCoreFactoryImpl extends EFactoryImpl implements BXCoreFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public AnnotatedVariableExpression createAnnotatedVariableExpression()
+  public ExpressionConversion createExpressionConversion()
   {
-    AnnotatedVariableExpressionImpl annotatedVariableExpression = new AnnotatedVariableExpressionImpl();
-    return annotatedVariableExpression;
+    ExpressionConversionImpl expressionConversion = new ExpressionConversionImpl();
+    return expressionConversion;
   }
 
   /**
@@ -820,21 +843,10 @@ public class BXCoreFactoryImpl extends EFactoryImpl implements BXCoreFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public EnforcementExpression createEnforcementExpression()
+  public ModificationExpressionBlock createModificationExpressionBlock()
   {
-    EnforcementExpressionImpl enforcementExpression = new EnforcementExpressionImpl();
-    return enforcementExpression;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public DeleteElementExpression createDeleteElementExpression()
-  {
-    DeleteElementExpressionImpl deleteElementExpression = new DeleteElementExpressionImpl();
-    return deleteElementExpression;
+    ModificationExpressionBlockImpl modificationExpressionBlock = new ModificationExpressionBlockImpl();
+    return modificationExpressionBlock;
   }
 
   /**

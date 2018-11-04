@@ -481,11 +481,29 @@ public class BXCoreSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case BXCorePackage.MODIFICATION_EXPRESSION_BLOCK:
+      case BXCorePackage.MODIFICATION_EXPRESSION:
       {
-        ModificationExpressionBlock modificationExpressionBlock = (ModificationExpressionBlock)theEObject;
-        T result = caseModificationExpressionBlock(modificationExpressionBlock);
-        if (result == null) result = caseXExpression(modificationExpressionBlock);
+        ModificationExpression modificationExpression = (ModificationExpression)theEObject;
+        T result = caseModificationExpression(modificationExpression);
+        if (result == null) result = caseXExpression(modificationExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case BXCorePackage.ENFORCEMENT_EXPRESSION:
+      {
+        EnforcementExpression enforcementExpression = (EnforcementExpression)theEObject;
+        T result = caseEnforcementExpression(enforcementExpression);
+        if (result == null) result = caseModificationExpression(enforcementExpression);
+        if (result == null) result = caseXExpression(enforcementExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case BXCorePackage.DELETE_ELEMENT_EXPRESSION:
+      {
+        DeleteElementExpression deleteElementExpression = (DeleteElementExpression)theEObject;
+        T result = caseDeleteElementExpression(deleteElementExpression);
+        if (result == null) result = caseModificationExpression(deleteElementExpression);
+        if (result == null) result = caseXExpression(deleteElementExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -539,29 +557,21 @@ public class BXCoreSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case BXCorePackage.ANNOTATED_VARIABLE_EXPRESSION:
+      case BXCorePackage.EXPRESSION_CONVERSION:
       {
-        AnnotatedVariableExpression annotatedVariableExpression = (AnnotatedVariableExpression)theEObject;
-        T result = caseAnnotatedVariableExpression(annotatedVariableExpression);
-        if (result == null) result = caseContextPrimaryExpression(annotatedVariableExpression);
-        if (result == null) result = caseContextExpression(annotatedVariableExpression);
-        if (result == null) result = caseXExpression(annotatedVariableExpression);
+        ExpressionConversion expressionConversion = (ExpressionConversion)theEObject;
+        T result = caseExpressionConversion(expressionConversion);
+        if (result == null) result = caseContextPrimaryExpression(expressionConversion);
+        if (result == null) result = caseContextExpression(expressionConversion);
+        if (result == null) result = caseXExpression(expressionConversion);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case BXCorePackage.ENFORCEMENT_EXPRESSION:
+      case BXCorePackage.MODIFICATION_EXPRESSION_BLOCK:
       {
-        EnforcementExpression enforcementExpression = (EnforcementExpression)theEObject;
-        T result = caseEnforcementExpression(enforcementExpression);
-        if (result == null) result = caseXExpression(enforcementExpression);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case BXCorePackage.DELETE_ELEMENT_EXPRESSION:
-      {
-        DeleteElementExpression deleteElementExpression = (DeleteElementExpression)theEObject;
-        T result = caseDeleteElementExpression(deleteElementExpression);
-        if (result == null) result = caseXExpression(deleteElementExpression);
+        ModificationExpressionBlock modificationExpressionBlock = (ModificationExpressionBlock)theEObject;
+        T result = caseModificationExpressionBlock(modificationExpressionBlock);
+        if (result == null) result = caseXExpression(modificationExpressionBlock);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1386,17 +1396,49 @@ public class BXCoreSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Modification Expression Block</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Modification Expression</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Modification Expression Block</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Modification Expression</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseModificationExpressionBlock(ModificationExpressionBlock object)
+  public T caseModificationExpression(ModificationExpression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Enforcement Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Enforcement Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEnforcementExpression(EnforcementExpression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Delete Element Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Delete Element Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDeleteElementExpression(DeleteElementExpression object)
   {
     return null;
   }
@@ -1498,49 +1540,33 @@ public class BXCoreSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Annotated Variable Expression</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Expression Conversion</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Annotated Variable Expression</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Expression Conversion</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseAnnotatedVariableExpression(AnnotatedVariableExpression object)
+  public T caseExpressionConversion(ExpressionConversion object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Enforcement Expression</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Modification Expression Block</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Enforcement Expression</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Modification Expression Block</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseEnforcementExpression(EnforcementExpression object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Delete Element Expression</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Delete Element Expression</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseDeleteElementExpression(DeleteElementExpression object)
+  public T caseModificationExpressionBlock(ModificationExpressionBlock object)
   {
     return null;
   }

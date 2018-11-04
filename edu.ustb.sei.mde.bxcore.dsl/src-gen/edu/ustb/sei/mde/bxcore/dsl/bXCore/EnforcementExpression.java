@@ -5,8 +5,6 @@ package edu.ustb.sei.mde.bxcore.dsl.bXCore;
 
 import org.eclipse.emf.common.util.EList;
 
-import org.eclipse.xtext.xbase.XExpression;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Enforcement Expression</b></em>'.
@@ -24,7 +22,7 @@ import org.eclipse.xtext.xbase.XExpression;
  * @model
  * @generated
  */
-public interface EnforcementExpression extends XExpression
+public interface EnforcementExpression extends ModificationExpression
 {
   /**
    * Returns the value of the '<em><b>Pattern</b></em>' containment reference.

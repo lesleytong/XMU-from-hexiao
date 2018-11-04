@@ -1,12 +1,12 @@
 package edu.ustb.sei.mde.bxcore.dsl.jvmmodel;
 
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.AnnotatedVariableExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXProgram;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareCondition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareUnidirectionalAction;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextVarExpression;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.ExpressionConversion;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.NavigationExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.Pattern;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternDefinitionReference;
@@ -328,10 +328,10 @@ public class ModelInferrerUtils {
         }
         _xifexpression_1 = _xblockexpression_1;
       } else {
-        if ((e instanceof AnnotatedVariableExpression)) {
-          final SideEnum side = ((AnnotatedVariableExpression)e).getSide();
-          final EClass type = ((AnnotatedVariableExpression)e).getType();
-          return Pair.<EClassifier, Boolean>of(type, Boolean.valueOf(false));
+        if ((e instanceof ExpressionConversion)) {
+          final EClass type = ((ExpressionConversion)e).getType();
+          boolean _isMany = ((ExpressionConversion)e).isMany();
+          return Pair.<EClassifier, Boolean>of(type, Boolean.valueOf(_isMany));
         }
       }
       _xifexpression = _xifexpression_1;

@@ -23,8 +23,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.eclipse.xtext.xbase.impl.XExpressionImpl;
-
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Enforcement Expression</b></em>'.
@@ -39,7 +37,7 @@ import org.eclipse.xtext.xbase.impl.XExpressionImpl;
  *
  * @generated
  */
-public class EnforcementExpressionImpl extends XExpressionImpl implements EnforcementExpression
+public class EnforcementExpressionImpl extends ModificationExpressionImpl implements EnforcementExpression
 {
   /**
    * The cached value of the '{@link #getPattern() <em>Pattern</em>}' containment reference.

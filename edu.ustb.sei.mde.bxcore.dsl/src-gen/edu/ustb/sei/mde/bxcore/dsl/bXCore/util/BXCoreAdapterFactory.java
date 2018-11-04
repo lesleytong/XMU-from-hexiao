@@ -333,9 +333,19 @@ public class BXCoreAdapterFactory extends AdapterFactoryImpl
         return createContextPrimaryExpressionAdapter();
       }
       @Override
-      public Adapter caseModificationExpressionBlock(ModificationExpressionBlock object)
+      public Adapter caseModificationExpression(ModificationExpression object)
       {
-        return createModificationExpressionBlockAdapter();
+        return createModificationExpressionAdapter();
+      }
+      @Override
+      public Adapter caseEnforcementExpression(EnforcementExpression object)
+      {
+        return createEnforcementExpressionAdapter();
+      }
+      @Override
+      public Adapter caseDeleteElementExpression(DeleteElementExpression object)
+      {
+        return createDeleteElementExpressionAdapter();
       }
       @Override
       public Adapter caseValueMapping(ValueMapping object)
@@ -368,19 +378,14 @@ public class BXCoreAdapterFactory extends AdapterFactoryImpl
         return createContextVarExpressionAdapter();
       }
       @Override
-      public Adapter caseAnnotatedVariableExpression(AnnotatedVariableExpression object)
+      public Adapter caseExpressionConversion(ExpressionConversion object)
       {
-        return createAnnotatedVariableExpressionAdapter();
+        return createExpressionConversionAdapter();
       }
       @Override
-      public Adapter caseEnforcementExpression(EnforcementExpression object)
+      public Adapter caseModificationExpressionBlock(ModificationExpressionBlock object)
       {
-        return createEnforcementExpressionAdapter();
-      }
-      @Override
-      public Adapter caseDeleteElementExpression(DeleteElementExpression object)
-      {
-        return createDeleteElementExpressionAdapter();
+        return createModificationExpressionBlockAdapter();
       }
       @Override
       public Adapter caseXExpression(XExpression object)
@@ -1175,16 +1180,46 @@ public class BXCoreAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpressionBlock <em>Modification Expression Block</em>}'.
+   * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpression <em>Modification Expression</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpressionBlock
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpression
    * @generated
    */
-  public Adapter createModificationExpressionBlockAdapter()
+  public Adapter createModificationExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.EnforcementExpression <em>Enforcement Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.EnforcementExpression
+   * @generated
+   */
+  public Adapter createEnforcementExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.DeleteElementExpression <em>Delete Element Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.DeleteElementExpression
+   * @generated
+   */
+  public Adapter createDeleteElementExpressionAdapter()
   {
     return null;
   }
@@ -1280,46 +1315,31 @@ public class BXCoreAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.AnnotatedVariableExpression <em>Annotated Variable Expression</em>}'.
+   * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.ExpressionConversion <em>Expression Conversion</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.AnnotatedVariableExpression
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.ExpressionConversion
    * @generated
    */
-  public Adapter createAnnotatedVariableExpressionAdapter()
+  public Adapter createExpressionConversionAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.EnforcementExpression <em>Enforcement Expression</em>}'.
+   * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpressionBlock <em>Modification Expression Block</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.EnforcementExpression
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpressionBlock
    * @generated
    */
-  public Adapter createEnforcementExpressionAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.DeleteElementExpression <em>Delete Element Expression</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.DeleteElementExpression
-   * @generated
-   */
-  public Adapter createDeleteElementExpressionAdapter()
+  public Adapter createModificationExpressionBlockAdapter()
   {
     return null;
   }

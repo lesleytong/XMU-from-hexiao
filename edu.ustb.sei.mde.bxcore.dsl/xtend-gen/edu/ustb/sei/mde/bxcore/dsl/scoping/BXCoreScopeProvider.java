@@ -3,11 +3,11 @@
  */
 package edu.ustb.sei.mde.bxcore.dsl.scoping;
 
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.AnnotatedVariableExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXFunctionDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXProgram;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.Definition;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.ExpressionConversion;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.FeatureTypeRef;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ImportSection;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.OrderedTupleTypeLiteral;
@@ -152,15 +152,15 @@ public class BXCoreScopeProvider extends AbstractBXCoreScopeProvider {
                     }
                     return new SimpleScope(objects_2);
                   } else {
-                    if ((reference == BXCorePackage.Literals.ANNOTATED_VARIABLE_EXPRESSION__METAMODEL)) {
+                    if ((reference == BXCorePackage.Literals.EXPRESSION_CONVERSION__METAMODEL)) {
                       final Function1<ImportSection, IEObjectDescription> _function_10 = (ImportSection it) -> {
                         return EObjectDescription.create(it.getShortName(), it);
                       };
                       List<IEObjectDescription> _map = ListExtensions.<ImportSection, IEObjectDescription>map(this.getProgram(context).getImports(), _function_10);
                       return new SimpleScope(_map);
                     } else {
-                      if ((reference == BXCorePackage.Literals.ANNOTATED_VARIABLE_EXPRESSION__TYPE)) {
-                        final EPackage pkg = ((AnnotatedVariableExpression) context).getMetamodel().getMetamodel();
+                      if ((reference == BXCorePackage.Literals.EXPRESSION_CONVERSION__TYPE)) {
+                        final EPackage pkg = ((ExpressionConversion) context).getMetamodel().getMetamodel();
                         final Function1<EObject, Boolean> _function_11 = (EObject it) -> {
                           return Boolean.valueOf((it instanceof EClass));
                         };

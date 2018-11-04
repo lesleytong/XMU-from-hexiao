@@ -227,43 +227,47 @@ ValidID :
 
  @Override
 XPrimaryExpression returns xbase::XExpression :
-	ContextExpression
+	ModificationExpressionBlock
+	| ModificationExpression
+	| ContextExpression
 	| super
-//	| (super::XPrimaryExpression (=>({AnnotatedVariableExpression.value=current} '@') side=SideEnum ':' metamodel=[ImportSection|ValidID] '!' type=[ecore::EClass|ValidID])?)
 ;
  
 ContextExpression returns ContextExpression:
 	(ContextPrimaryExpression ({NavigationExpression.host=current} '.' '@' pathName=ValidID)*)
 ;
 
-ContextPrimaryExpression returns ContextExpression :
+ContextPrimaryExpression:
 	ContextVarExpression
 ;
 ContextVarExpression returns ContextPrimaryExpression:
-	{ContextVarExpression} name=ValidID '@' side=SideEnum
-;
-AnnotatedVariableExpression returns ContextPrimaryExpression:
-	{AnnotatedVariableExpression} value=XFeatureCall '@'  side=SideEnum ':' metamodel=[ImportSection|ValidID] '!' type=[ecore::EClass|ValidID]
+	({ContextVarExpression} name=ValidID '@' side=SideEnum) |
+	({ExpressionConversion} '@'  side=SideEnum ':' metamodel=[ImportSection|ValidID] '!' type=[ecore::EClass|ValidID] (many?='[]')? '(' expression=XExpression ')')
 ;
 
 enum SideEnum :
 	source='source' | view='view' | context='context'
 ;
 
-@Override
-XReturnExpression returns xbase::XExpression: 
-	ModificationExpressionBlock | super
+
+ModificationExpressionBlock returns xbase::XExpression:
+	{ModificationExpressionBlock} 'begin' (expressions+=XExpression)* 'end'
 ;
 
-ModificationExpressionBlock:
-	'begin' (expressions+=ModificationExpression)+ 'end'
+ModificationExpression returns ModificationExpression :
+	EnforcementExpression | DeleteElementExpression
 ;
 
-ModificationExpression returns xbase::XExpression:
-	({EnforcementExpression} 'enforce' pattern=Pattern ('{' valueMappings+=ValueMapping (',' valueMappings+=ValueMapping)*'}')?) |
-	({DeleteElementExpression} 'delete' element=XExpression)
+EnforcementExpression:
+	'enforce' pattern=Pattern ('{' valueMappings+=ValueMapping (',' valueMappings+=ValueMapping)*'}')? ';'
+;
+
+DeleteElementExpression:
+	=>'delete' element=XExpression ';'
 ;
 
 ValueMapping :
 	varName=ValidID '=' expression=XExpression
 ;
+
+

@@ -483,13 +483,31 @@ public interface BXCoreFactory extends EFactory
   ContextPrimaryExpression createContextPrimaryExpression();
 
   /**
-   * Returns a new object of class '<em>Modification Expression Block</em>'.
+   * Returns a new object of class '<em>Modification Expression</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Modification Expression Block</em>'.
+   * @return a new object of class '<em>Modification Expression</em>'.
    * @generated
    */
-  ModificationExpressionBlock createModificationExpressionBlock();
+  ModificationExpression createModificationExpression();
+
+  /**
+   * Returns a new object of class '<em>Enforcement Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Enforcement Expression</em>'.
+   * @generated
+   */
+  EnforcementExpression createEnforcementExpression();
+
+  /**
+   * Returns a new object of class '<em>Delete Element Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Delete Element Expression</em>'.
+   * @generated
+   */
+  DeleteElementExpression createDeleteElementExpression();
 
   /**
    * Returns a new object of class '<em>Value Mapping</em>'.
@@ -546,31 +564,22 @@ public interface BXCoreFactory extends EFactory
   ContextVarExpression createContextVarExpression();
 
   /**
-   * Returns a new object of class '<em>Annotated Variable Expression</em>'.
+   * Returns a new object of class '<em>Expression Conversion</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Annotated Variable Expression</em>'.
+   * @return a new object of class '<em>Expression Conversion</em>'.
    * @generated
    */
-  AnnotatedVariableExpression createAnnotatedVariableExpression();
+  ExpressionConversion createExpressionConversion();
 
   /**
-   * Returns a new object of class '<em>Enforcement Expression</em>'.
+   * Returns a new object of class '<em>Modification Expression Block</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Enforcement Expression</em>'.
+   * @return a new object of class '<em>Modification Expression Block</em>'.
    * @generated
    */
-  EnforcementExpression createEnforcementExpression();
-
-  /**
-   * Returns a new object of class '<em>Delete Element Expression</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Delete Element Expression</em>'.
-   * @generated
-   */
-  DeleteElementExpression createDeleteElementExpression();
+  ModificationExpressionBlock createModificationExpressionBlock();
 
   /**
    * Returns the package supported by this factory.
