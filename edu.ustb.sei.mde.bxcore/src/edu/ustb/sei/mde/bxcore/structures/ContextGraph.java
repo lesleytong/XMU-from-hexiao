@@ -1,5 +1,6 @@
 package edu.ustb.sei.mde.bxcore.structures;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,6 +49,24 @@ public interface ContextGraph {
 		}
 	}
 	
+	static public TypedNode newTypedNode() {
+		TypedNode node = new TypedNode(TypeNode.ANY_TYPE);
+		node.appendIndexValue(IndexSystem.generateUUID());
+		return node;
+	}
+	
+	static public TypedEdge newTypedEdge() {
+		TypedEdge edge = new TypedEdge();
+		edge.appendIndexValue(IndexSystem.generateUUID());
+		return edge;
+	}
+	
+	static public ValueEdge newValueEdge() {
+		ValueEdge edge = new ValueEdge();
+		edge.appendIndexValue(IndexSystem.generateUUID());
+		return edge;
+	}
+	
 	default GraphModification enforce(Pattern pat, Tuple2<String, Object>[] valueMaps) {
 		if(this instanceof SourceType) {
 			TypedGraph delta;
@@ -64,10 +83,14 @@ public interface ContextGraph {
 							}
 						}
 						if(tuple==null) {
-							if(f.isElementType()) {
-								freshContext.setValue(f, IndexSystem.generateUUID());
+							if(f.isMany()) {
+								freshContext.setValue(f, new ArrayList<>());
 							} else {
-								freshContext.setValue(f, XmuCoreUtils.defaultValue(f.getType()));
+								if(f.isElementType()) {
+									freshContext.setValue(f, IndexSystem.generateUUID());
+								} else {
+									freshContext.setValue(f, XmuCoreUtils.defaultValue(f.getType()));
+								}
 							}
 						} else {
 							freshContext.setValue(f, tuple.second);
@@ -300,10 +323,14 @@ public interface ContextGraph {
 								}
 							}
 							if(tuple==null) {
-								if(f.isElementType()) {
-									freshContext.setValue(f, IndexSystem.generateUUID());
+								if(f.isMany()) {
+									freshContext.setValue(f, new ArrayList<>());
 								} else {
-									freshContext.setValue(f, XmuCoreUtils.defaultValue(f.getType()));
+									if(f.isElementType()) {
+										freshContext.setValue(f, IndexSystem.generateUUID());
+									} else {
+										freshContext.setValue(f, XmuCoreUtils.defaultValue(f.getType()));
+									}
 								}
 							} else {
 								freshContext.setValue(f, tuple.second);

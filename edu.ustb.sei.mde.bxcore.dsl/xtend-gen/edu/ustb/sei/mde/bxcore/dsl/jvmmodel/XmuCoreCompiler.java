@@ -8,6 +8,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.ExpressionConversion;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpressionBlock;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.NavigationExpression;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.Pattern;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternDefinitionReference;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternTypeLiteral;
@@ -18,16 +19,24 @@ import edu.ustb.sei.mde.bxcore.dsl.infer.InferManager;
 import edu.ustb.sei.mde.bxcore.dsl.jvmmodel.ModelInferrerUtils;
 import edu.ustb.sei.mde.bxcore.dsl.structure.ExceptionSafeInferface;
 import edu.ustb.sei.mde.bxcore.structures.ContextGraph;
+import edu.ustb.sei.mde.graph.typedGraph.IndexableElement;
+import edu.ustb.sei.mde.graph.typedGraph.TypedEdge;
+import edu.ustb.sei.mde.graph.typedGraph.TypedNode;
+import edu.ustb.sei.mde.graph.typedGraph.ValueEdge;
 import java.util.function.Consumer;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.common.types.JvmTypeReference;
 import org.eclipse.xtext.xbase.XExpression;
 import org.eclipse.xtext.xbase.compiler.XbaseCompiler;
 import org.eclipse.xtext.xbase.compiler.output.ITreeAppendable;
 import org.eclipse.xtext.xbase.lib.Exceptions;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.Pair;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure2;
@@ -41,9 +50,25 @@ public class XmuCoreCompiler extends XbaseCompiler {
       String _xblockexpression = null;
       {
         final InferData data = InferManager.getInferredTypeModel(p.eResource());
+        if ((data == null)) {
+          InputOutput.<String>println("null");
+        }
         String _xifexpression = null;
         if ((p instanceof PatternTypeLiteral)) {
-          _xifexpression = ("getPattern_" + data.getLiteralMap().get(data).second);
+          String _xblockexpression_1 = null;
+          {
+            final Function1<Pair<Integer, PatternTypeLiteral>, Boolean> _function = (Pair<Integer, PatternTypeLiteral> it) -> {
+              PatternTypeLiteral _value = it.getValue();
+              return Boolean.valueOf((_value == p));
+            };
+            final Pair<Integer, PatternTypeLiteral> lit = IterableExtensions.<Pair<Integer, PatternTypeLiteral>>findFirst(data.getPatternLiterals(), _function);
+            if ((lit == null)) {
+              InputOutput.<String>println("null");
+            }
+            Integer _key = lit.getKey();
+            _xblockexpression_1 = ("getPattern_" + _key);
+          }
+          _xifexpression = _xblockexpression_1;
         } else {
           String _xifexpression_1 = null;
           if ((p instanceof PatternDefinitionReference)) {
@@ -58,7 +83,13 @@ public class XmuCoreCompiler extends XbaseCompiler {
       _xtrycatchfinallyexpression = _xblockexpression;
     } catch (final Throwable _t) {
       if (_t instanceof Exception) {
-        _xtrycatchfinallyexpression = "/* ERROR */";
+        final Exception e = (Exception)_t;
+        String _xblockexpression_1 = null;
+        {
+          e.printStackTrace();
+          _xblockexpression_1 = "/* ERROR */";
+        }
+        _xtrycatchfinallyexpression = _xblockexpression_1;
       } else {
         throw Exceptions.sneakyThrow(_t);
       }
@@ -286,7 +317,83 @@ public class XmuCoreCompiler extends XbaseCompiler {
                 }
               }
             } else {
-              super.doInternalToJavaStatement(e, a, isReferenced);
+              if ((e instanceof NewInstanceExpression)) {
+                XExpression _size = ((NewInstanceExpression)e).getSize();
+                boolean _tripleNotEquals = (_size != null);
+                if (_tripleNotEquals) {
+                  this.internalToJavaStatement(((NewInstanceExpression)e).getSize(), a, true);
+                }
+                Class<? extends IndexableElement> _xifexpression = null;
+                EStructuralFeature _feature = ((NewInstanceExpression)e).getFeature();
+                boolean _tripleEquals = (_feature == null);
+                if (_tripleEquals) {
+                  _xifexpression = TypedNode.class;
+                } else {
+                  Class<? extends IndexableElement> _xifexpression_1 = null;
+                  EStructuralFeature _feature_1 = ((NewInstanceExpression)e).getFeature();
+                  if ((_feature_1 instanceof EReference)) {
+                    _xifexpression_1 = TypedEdge.class;
+                  } else {
+                    _xifexpression_1 = ValueEdge.class;
+                  }
+                  _xifexpression = _xifexpression_1;
+                }
+                final Class<? extends IndexableElement> componentType = _xifexpression;
+                final String v = a.declareSyntheticVariable(e, "newInstance");
+                XExpression _size_1 = ((NewInstanceExpression)e).getSize();
+                boolean _tripleNotEquals_1 = (_size_1 != null);
+                if (_tripleNotEquals_1) {
+                  final String iv = a.declareUniqueNameVariable(e, "it");
+                  ITreeAppendable _newLine_6 = a.newLine();
+                  StringConcatenation _builder_16 = new StringConcatenation();
+                  _builder_16.append("java.util.List<");
+                  String _canonicalName_7 = componentType.getCanonicalName();
+                  _builder_16.append(_canonicalName_7);
+                  _builder_16.append("> ");
+                  _builder_16.append(v);
+                  _builder_16.append(" = new java.util.ArrayList<>();");
+                  _newLine_6.append(_builder_16);
+                  ITreeAppendable _newLine_7 = a.newLine();
+                  StringConcatenation _builder_17 = new StringConcatenation();
+                  _builder_17.append("for(int ");
+                  _builder_17.append(iv);
+                  _builder_17.append("=0;");
+                  _builder_17.append(iv);
+                  _builder_17.append("<");
+                  _newLine_7.append(_builder_17);
+                  this.internalToJavaExpression(((NewInstanceExpression)e).getSize(), a);
+                  StringConcatenation _builder_18 = new StringConcatenation();
+                  _builder_18.append(";");
+                  _builder_18.append(iv);
+                  _builder_18.append("++) ");
+                  _builder_18.append(v);
+                  _builder_18.append(".add(");
+                  String _canonicalName_8 = ContextGraph.class.getCanonicalName();
+                  _builder_18.append(_canonicalName_8);
+                  _builder_18.append(".new");
+                  String _simpleName = componentType.getSimpleName();
+                  _builder_18.append(_simpleName);
+                  _builder_18.append("());");
+                  a.append(_builder_18);
+                } else {
+                  ITreeAppendable _newLine_8 = a.newLine();
+                  StringConcatenation _builder_19 = new StringConcatenation();
+                  String _canonicalName_9 = componentType.getCanonicalName();
+                  _builder_19.append(_canonicalName_9);
+                  _builder_19.append(" ");
+                  _builder_19.append(v);
+                  _builder_19.append(" = ");
+                  String _canonicalName_10 = ContextGraph.class.getCanonicalName();
+                  _builder_19.append(_canonicalName_10);
+                  _builder_19.append(".new");
+                  String _simpleName_1 = componentType.getSimpleName();
+                  _builder_19.append(_simpleName_1);
+                  _builder_19.append("();");
+                  _newLine_8.append(_builder_19);
+                }
+              } else {
+                super.doInternalToJavaStatement(e, a, isReferenced);
+              }
             }
           }
         }
@@ -337,7 +444,12 @@ public class XmuCoreCompiler extends XbaseCompiler {
               _builder.append(".get()");
               a.append(_builder);
             } else {
-              super.internalToConvertedExpression(e, a);
+              if ((e instanceof NewInstanceExpression)) {
+                final String v = this.getVarName(e, a);
+                a.append(v);
+              } else {
+                super.internalToConvertedExpression(e, a);
+              }
             }
           }
         }

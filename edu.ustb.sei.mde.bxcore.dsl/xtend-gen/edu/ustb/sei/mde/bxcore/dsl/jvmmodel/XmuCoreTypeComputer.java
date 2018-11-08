@@ -9,6 +9,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.EnforcementExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ExpressionConversion;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpressionBlock;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.NavigationExpression;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.SideEnum;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ValueMapping;
 import edu.ustb.sei.mde.bxcore.dsl.jvmmodel.ModelInferrerUtils;
@@ -18,7 +19,7 @@ import edu.ustb.sei.mde.bxcore.structures.Index;
 import edu.ustb.sei.mde.graph.typedGraph.TypedEdge;
 import edu.ustb.sei.mde.graph.typedGraph.TypedNode;
 import edu.ustb.sei.mde.graph.typedGraph.ValueEdge;
-import edu.ustb.sei.mde.structure.Tuple2;
+import edu.ustb.sei.mde.structure.Tuple3;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
@@ -28,6 +29,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.xtext.diagnostics.Severity;
 import org.eclipse.xtext.validation.EObjectDiagnosticImpl;
@@ -83,10 +85,10 @@ public class XmuCoreTypeComputer extends XbaseTypeComputer {
     if ((tupleType == null)) {
       state.acceptActualType(this.getRawTypeForName(Object.class, state));
     } else {
-      final Function1<Tuple2<String, Object>, Boolean> _function = (Tuple2<String, Object> it) -> {
+      final Function1<Tuple3<String, Object, Boolean>, Boolean> _function = (Tuple3<String, Object, Boolean> it) -> {
         return Boolean.valueOf(it.first.equals(varName));
       };
-      final Tuple2<String, Object> typeDef = IterableExtensions.<Tuple2<String, Object>>findFirst(tupleType.tuples, _function);
+      final Tuple3<String, Object, Boolean> typeDef = IterableExtensions.<Tuple3<String, Object, Boolean>>findFirst(tupleType.tuples, _function);
       if ((typeDef == null)) {
         String _string = EcoreUtil.getURI(cvar).toString();
         EObjectDiagnosticImpl _eObjectDiagnosticImpl = new EObjectDiagnosticImpl(Severity.ERROR, 
@@ -95,55 +97,98 @@ public class XmuCoreTypeComputer extends XbaseTypeComputer {
       } else {
         final Object type = typeDef.second;
         final boolean contextOnly = ModelInferrerUtils.isContextOnly(cvar);
-        if (contextOnly) {
-          if ((type instanceof EClass)) {
-            state.acceptActualType(this.getRawTypeForName(Index.class, state));
-          } else {
-            if ((type instanceof EEnum)) {
-              state.acceptActualType(this.getRawTypeForName(String.class, state));
-            } else {
-              if ((type instanceof EDataType)) {
-                state.acceptActualType(this.getRawTypeForName(((EDataType)type).getInstanceClass(), state));
-              } else {
-                if ((type instanceof EReference)) {
-                  state.acceptActualType(this.getRawTypeForName(Index.class, state));
-                } else {
-                  if ((type instanceof EAttribute)) {
-                    state.acceptActualType(
-                      this.getRawTypeForName(Index.class, state));
-                  } else {
-                    state.acceptActualType(this.getRawTypeForName(Object.class, state));
-                  }
-                }
-              }
-            }
-          }
-        } else {
-          if ((type instanceof EClass)) {
-            state.acceptActualType(this.getRawTypeForName(TypedNode.class, state));
-          } else {
-            if ((type instanceof EEnum)) {
-              state.acceptActualType(this.getRawTypeForName(String.class, state));
-            } else {
-              if ((type instanceof EDataType)) {
-                state.acceptActualType(this.getRawTypeForName(((EDataType)type).getInstanceClass(), state));
-              } else {
-                if ((type instanceof EReference)) {
-                  state.acceptActualType(this.getRawTypeForName(TypedEdge.class, state));
-                } else {
-                  if ((type instanceof EAttribute)) {
-                    state.acceptActualType(
-                      this.getRawTypeForName(ValueEdge.class, state));
-                  } else {
-                    state.acceptActualType(this.getRawTypeForName(Object.class, state));
-                  }
-                }
-              }
-            }
-          }
-        }
+        final Boolean isList = typeDef.third;
+        state.acceptActualType(this.actualType(contextOnly, type, state, (isList).booleanValue()));
       }
     }
+  }
+  
+  protected LightweightTypeReference actualType(final boolean contextOnly, final Object type, final ITypeComputationState state, final boolean isList) {
+    LightweightTypeReference _xblockexpression = null;
+    {
+      LightweightTypeReference _xifexpression = null;
+      if (contextOnly) {
+        LightweightTypeReference _xifexpression_1 = null;
+        if ((type instanceof EClass)) {
+          _xifexpression_1 = this.getRawTypeForName(Index.class, state);
+        } else {
+          LightweightTypeReference _xifexpression_2 = null;
+          if ((type instanceof EEnum)) {
+            _xifexpression_2 = this.getRawTypeForName(String.class, state);
+          } else {
+            LightweightTypeReference _xifexpression_3 = null;
+            if ((type instanceof EDataType)) {
+              _xifexpression_3 = this.getRawTypeForName(((EDataType)type).getInstanceClass(), state);
+            } else {
+              LightweightTypeReference _xifexpression_4 = null;
+              if ((type instanceof EReference)) {
+                _xifexpression_4 = this.getRawTypeForName(Index.class, state);
+              } else {
+                LightweightTypeReference _xifexpression_5 = null;
+                if ((type instanceof EAttribute)) {
+                  _xifexpression_5 = this.getRawTypeForName(Index.class, state);
+                } else {
+                  _xifexpression_5 = this.getRawTypeForName(Object.class, state);
+                }
+                _xifexpression_4 = _xifexpression_5;
+              }
+              _xifexpression_3 = _xifexpression_4;
+            }
+            _xifexpression_2 = _xifexpression_3;
+          }
+          _xifexpression_1 = _xifexpression_2;
+        }
+        _xifexpression = _xifexpression_1;
+      } else {
+        LightweightTypeReference _xifexpression_6 = null;
+        if ((type instanceof EClass)) {
+          _xifexpression_6 = this.getRawTypeForName(TypedNode.class, state);
+        } else {
+          LightweightTypeReference _xifexpression_7 = null;
+          if ((type instanceof EEnum)) {
+            _xifexpression_7 = this.getRawTypeForName(String.class, state);
+          } else {
+            LightweightTypeReference _xifexpression_8 = null;
+            if ((type instanceof EDataType)) {
+              _xifexpression_8 = this.getRawTypeForName(((EDataType)type).getInstanceClass(), state);
+            } else {
+              LightweightTypeReference _xifexpression_9 = null;
+              if ((type instanceof EReference)) {
+                _xifexpression_9 = this.getRawTypeForName(TypedEdge.class, state);
+              } else {
+                LightweightTypeReference _xifexpression_10 = null;
+                if ((type instanceof EAttribute)) {
+                  _xifexpression_10 = this.getRawTypeForName(ValueEdge.class, state);
+                } else {
+                  _xifexpression_10 = this.getRawTypeForName(Object.class, state);
+                }
+                _xifexpression_9 = _xifexpression_10;
+              }
+              _xifexpression_8 = _xifexpression_9;
+            }
+            _xifexpression_7 = _xifexpression_8;
+          }
+          _xifexpression_6 = _xifexpression_7;
+        }
+        _xifexpression = _xifexpression_6;
+      }
+      final LightweightTypeReference elementType = _xifexpression;
+      LightweightTypeReference _xifexpression_11 = null;
+      if (isList) {
+        ParameterizedTypeReference _xblockexpression_1 = null;
+        {
+          final ITypeReferenceOwner owner = state.getReferenceOwner();
+          final ParameterizedTypeReference array = owner.newParameterizedTypeReference(owner.newReferenceTo(List.class).getType());
+          array.addTypeArgument(elementType);
+          _xblockexpression_1 = array;
+        }
+        _xifexpression_11 = _xblockexpression_1;
+      } else {
+        _xifexpression_11 = elementType;
+      }
+      _xblockexpression = _xifexpression_11;
+    }
+    return _xblockexpression;
   }
   
   protected void _computeTypes(final NavigationExpression pathExp, final ITypeComputationState state) {
@@ -199,9 +244,8 @@ public class XmuCoreTypeComputer extends XbaseTypeComputer {
   }
   
   protected void _computeTypes(final ModificationExpressionBlock modification, final ITypeComputationState state) {
-    final LightweightTypeReference type = this.getRawTypeForName(ContextGraph.GraphModification.class, state);
     final Consumer<XExpression> _function = (XExpression e) -> {
-      state.withExpectation(type).computeTypes(e);
+      state.withoutExpectation().computeTypes(e);
     };
     modification.getExpressions().forEach(_function);
     state.acceptActualType(this.getRawTypeForName(SourceType.class, state), ConformanceFlags.NO_IMPLICIT_RETURN);
@@ -218,6 +262,40 @@ public class XmuCoreTypeComputer extends XbaseTypeComputer {
   protected void _computeTypes(final DeleteElementExpression modification, final ITypeComputationState state) {
     state.withNonVoidExpectation().computeTypes(modification.getElement());
     state.acceptActualType(this.getRawTypeForName(ContextGraph.GraphModification.class, state));
+  }
+  
+  protected void _computeTypes(final NewInstanceExpression instance, final ITypeComputationState state) {
+    XExpression _size = instance.getSize();
+    boolean _tripleNotEquals = (_size != null);
+    if (_tripleNotEquals) {
+      state.withExpectation(this.getRawTypeForName(int.class, state)).computeTypes(instance.getSize());
+    }
+    LightweightTypeReference _xifexpression = null;
+    EStructuralFeature _feature = instance.getFeature();
+    boolean _tripleEquals = (_feature == null);
+    if (_tripleEquals) {
+      _xifexpression = this.getRawTypeForName(TypedNode.class, state);
+    } else {
+      LightweightTypeReference _xifexpression_1 = null;
+      EStructuralFeature _feature_1 = instance.getFeature();
+      if ((_feature_1 instanceof EAttribute)) {
+        _xifexpression_1 = this.getRawTypeForName(ValueEdge.class, state);
+      } else {
+        _xifexpression_1 = this.getRawTypeForName(TypedEdge.class, state);
+      }
+      _xifexpression = _xifexpression_1;
+    }
+    final LightweightTypeReference elementType = _xifexpression;
+    XExpression _size_1 = instance.getSize();
+    boolean _tripleNotEquals_1 = (_size_1 != null);
+    if (_tripleNotEquals_1) {
+      final ITypeReferenceOwner owner = state.getReferenceOwner();
+      final ParameterizedTypeReference array = owner.newParameterizedTypeReference(owner.newReferenceTo(List.class).getType());
+      array.addTypeArgument(elementType);
+      state.acceptActualType(array);
+    } else {
+      state.acceptActualType(elementType);
+    }
   }
   
   public void computeTypes(final XExpression cvar, final ITypeComputationState state) {
@@ -253,6 +331,9 @@ public class XmuCoreTypeComputer extends XbaseTypeComputer {
       return;
     } else if (cvar instanceof ModificationExpressionBlock) {
       _computeTypes((ModificationExpressionBlock)cvar, state);
+      return;
+    } else if (cvar instanceof NewInstanceExpression) {
+      _computeTypes((NewInstanceExpression)cvar, state);
       return;
     } else if (cvar instanceof XAbstractFeatureCall) {
       _computeTypes((XAbstractFeatureCall)cvar, state);

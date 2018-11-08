@@ -148,10 +148,10 @@ class TestGraph {
 		pattern = new Pattern();
 		pattern.setTypeGraph(typeGraph);
 		
-		pattern.appendPatternNode("$a", typeGraph.getTypeNode("C"));
-		pattern.appendPatternNode("$b", typeGraph.getTypeNode("F"));
+		pattern.appendPatternNode("$a", typeGraph.getTypeNode("C"), false);
+		pattern.appendPatternNode("$b", typeGraph.getTypeNode("F"), false);
 //		pattern.appendPatternNode("$c", typeGraph.getTypeNode("G"));
-		pattern.appendPatternNode("$c", typeGraph.getDataTypeNode("String"));
+		pattern.appendPatternNode("$c", typeGraph.getDataTypeNode("String"), false);
 		pattern.appendPatternEdge("$e1", "$a","$b", typeGraph.getTypeEdge(typeGraph.getTypeNode("A"),"a_f"));
 //		pattern.appendPatternEdge("$e2", "$a","$c", typeGraph.getTypeEdge(typeGraph.getTypeNode("C"),"c_g"));
 		pattern.appendPatternEdge("$e2", "$b","$c", typeGraph.getPropertyEdge(typeGraph.getTypeNode("F"),"name"));

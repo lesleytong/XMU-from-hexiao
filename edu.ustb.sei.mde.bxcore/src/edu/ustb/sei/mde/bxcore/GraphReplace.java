@@ -57,16 +57,16 @@ public class GraphReplace extends XmuCore {
 				FieldDef<?> field = sourceType.getField(sk);
 				if(field==null)
 					throw new BidirectionalTransformationDefinitionException("Invalid parameter ("+sk+")");
-				else if(field.isElementType()) 
-					throw new BidirectionalTransformationDefinitionException("The body conversion of a GraphReplace must convert primitive values only ("+sk+" is a "+field.getName()+")");
+//				else if(field.isElementType()) 
+//					throw new BidirectionalTransformationDefinitionException("The body conversion of a GraphReplace must convert primitive values only ("+sk+" is a "+field.getName()+")");
 			}
 			
 			for(String vk : body.second) {
 				FieldDef<?> field = viewType.getField(vk);
 				if(field==null)
 					throw new BidirectionalTransformationDefinitionException("Invalid parameter ("+vk+")");
-				else if(field.isElementType()) 
-					throw new BidirectionalTransformationDefinitionException("The body conversion of a GraphReplace must convert primitive values only ("+vk+" is a "+field.getName()+")");
+//				else if(field.isElementType()) 
+//					throw new BidirectionalTransformationDefinitionException("The body conversion of a GraphReplace must convert primitive values only ("+vk+" is a "+field.getName()+")");
 				
 				views.add(field);
 			}

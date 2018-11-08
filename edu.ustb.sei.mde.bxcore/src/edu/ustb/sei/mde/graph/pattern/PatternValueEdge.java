@@ -14,12 +14,14 @@ public class PatternValueEdge extends PatternElement<PropertyEdge> implements IE
 	}
 	public void setSource(PatternNode source) {
 		this.source = source;
+		if(source.isMany()) this.setMany(true);
 	}
 	public PatternValueNode getTarget() {
 		return target;
 	}
 	public void setTarget(PatternValueNode target) {
 		this.target = target;
+		if(target.isMany()) this.setMany(true);
 	}
 	
 	public String toString() {

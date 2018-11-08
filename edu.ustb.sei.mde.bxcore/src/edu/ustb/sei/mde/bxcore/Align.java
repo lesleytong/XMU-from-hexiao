@@ -76,6 +76,34 @@ public class Align extends XmuCore {
 		if(patS.getType()!=match.getSourceDef() || patV.getType()!=match.getViewDef())
 			throw new BidirectionalTransformationDefinitionException("Type inconsistent");
 	}
+	
+//	protected GraphConstraint generateConsistencyConstraint(List<Context> views) {
+//		GraphConstraint innerCons = match.getConsistencyConstraint();
+//		return (gs,cs,gv,cv) -> {
+//			List<Context> sources = patS.match(gs, cs);
+//			
+//			if(sources.size()!=views.size()) 
+//				return ConstraintStatus.enforceable; // it may not be enforceable
+//			
+//			// construct one-to-one mapping 
+//			List<Tuple2<Context,Context>> alignments = new ArrayList<>();
+//			try {
+//				if(checkAndConstructAlignment(sources, views, alignments)==false)
+//					return ConstraintStatus.enforceable;
+//			} catch (Exception e) {
+//				return ConstraintStatus.unenforceable;
+//			}
+//			
+//			// check match condition for each alignment
+//			ConstraintStatus status = ConstraintStatus.sat;
+//			
+//			for(Tuple2<Context, Context> a : alignments) {
+//				status = GraphConstraint.mergeStatus(status, innerCons.check(gs, a.first, gv, a.second));
+//			}
+//			
+//			return status;
+//		};
+//	}
 
 	@Override
 	protected GraphConstraint generateConsistencyConstraint() {
@@ -188,25 +216,27 @@ public class Align extends XmuCore {
 	@Override
 	public ViewType forward(SourceType s) throws NothingReturnedException {
 		List<Context> sourceMatches = patS.match(s.first, s.second);
-		List<ViewType> views = new ArrayList<>();
+		ViewType[] views = new ViewType[sourceMatches.size()];
 		
+		int i=0;
 		for(Context sc : sourceMatches) {
 			sc.setUpstream(s.second);
 			ViewType v = match.forward(SourceType.makeSource(s.first, sc, s.third));
-			views.add(v);
+			views[i] = v;
+			i++;
 		}
 		
 		ContextType vt = this.getViewDef();
 		Context upstreamView = this.createViewContext();
 		TypedGraph finalView = null;
 		
-		if(views.isEmpty()) {
-			return null;
+		if(views.length==0) {
+			return ViewType.empty();
 		} else {
 			for(FieldDef<?> vk : vt.fields()) {
 				if(vk.isElementType()) {
 					try {
-						upstreamView.setValue(vk, summarize(views,vk));
+						upstreamView.setValue(vk,  ViewType.summarize(views,vk,this));
 					} catch (Exception e) {
 						Object common = IndexSystem.generateUUID();
 						Index index = Index.freshIndex(common);
@@ -224,7 +254,7 @@ public class Align extends XmuCore {
 					
 				} else {
 					try {
-						upstreamView.setValue(vk, summarize(views,vk));
+						upstreamView.setValue(vk, ViewType.summarize(views,vk,this));
 					} catch (Exception e) {
 						// not confluent
 						return nothing(e);
@@ -255,37 +285,40 @@ public class Align extends XmuCore {
 		return ViewType.makeView(finalView, upstreamView);
 	}
 	
-	private Object summarize(List<ViewType> result, FieldDef<?> vk) throws NothingReturnedException {
-		Object value = null;
-		for(ViewType v : result) {
-			try {
-				if(value==null)
-					value = v.second.getValue(vk.getName());
-				else if(value.equals(v.second.getValue(vk.getName()))==false)
-					return nothing();
-			}catch (UninitializedException e) {
-				return nothing();
-			}
-		}
-		return value;
-	}
+//	private Object summarize(List<ViewType> result, FieldDef<?> vk) throws NothingReturnedException {
+//		Object value = null;
+//		for(ViewType v : result) {
+//			try {
+//				if(value==null)
+//					value = v.second.getValue(vk.getName());
+//				else if(value.equals(v.second.getValue(vk.getName()))==false)
+//					return nothing();
+//			}catch (UninitializedException e) {
+//				return nothing();
+//			}
+//		}
+//		return value;
+//	}
 
 	@Override
 	public SourceType backward(SourceType s, ViewType v) throws NothingReturnedException {
-		return plainBackward(s, v, true);
+		return plainBackward(s, v, true, null, new ArrayList<>());
 	}
 
-	protected SourceType plainBackward(SourceType s, ViewType v, boolean adaption) throws NothingReturnedException {
+	protected SourceType plainBackward(SourceType s, ViewType v, boolean adaption, List<Context> viewMatches, List<Context> skippedViews) throws NothingReturnedException {
 		List<Context> sourceMatches = patS.match(s.first, s.second);
-		List<Context> viewMatches = patV.match(v.first, v.second);
+		if(viewMatches==null)
+			viewMatches = patV.match(v.first, v.second);
+		viewMatches.removeIf(vm->skippedViews.stream().anyMatch(svm->(svm==vm)));
+		
 		List<Tuple2<Context,Context>> alignments = new ArrayList<>();
 		
 		boolean aligned = checkAndConstructAlignment(sourceMatches, viewMatches, alignments);
 		
 		if(!aligned) {
 			if(adaption) {
-				TypedGraph ma = adaption(s,v,alignments);
-				return plainBackward(SourceType.makeSource(ma, s.second, s.third), v, false);
+				TypedGraph ma = adaption(s,v,alignments,skippedViews);
+				return plainBackward(SourceType.makeSource(ma, s.second, s.third), v, false, viewMatches, skippedViews);
 			} else return nothing();
 		} else {
 			sourceMatches.forEach(sm->sm.setUpstream(s.second));
@@ -309,6 +342,7 @@ public class Align extends XmuCore {
 			TypedGraph finalSourcePost = s.first.merge(updatedSources.stream().map(us->us.first).toArray(size->new TypedGraph[size]));
 			TraceSystem finalTs = TraceSystem.merge(interTraces);
 			
+			/* call a special constraint generator for backward transformation, because we may skip some view matches */
 			finalSourcePost.setConstraint(getConsistencyConstraint());
 			
 			this.submit(sourceMatches);
@@ -319,7 +353,11 @@ public class Align extends XmuCore {
 		}
 	}
 
-	private TypedGraph adaption(SourceType s, ViewType v, List<Tuple2<Context, Context>> alignments) throws NothingReturnedException {
+//	private GraphConstraint getConsistencyConstraint(List<Context> viewMatches) {
+//		return generateConsistencyConstraint(viewMatches);
+//	}
+
+	private TypedGraph adaption(SourceType s, ViewType v, List<Tuple2<Context, Context>> alignments, List<Context> skippedViews) throws NothingReturnedException {
 		List<TypedGraph> delta = new ArrayList<>();
 //		List<Context> views = new ArrayList<>();
 		List<Context> sources = new ArrayList<>();
@@ -330,11 +368,14 @@ public class Align extends XmuCore {
 //				views.add(alignment.second);
 			} else if(alignment.first==null) { // unmatchV
 				SourceType sp = this.unmatchedView.apply(s, v.replaceSecond(alignment.second));
-				if(sp.second.getType()!=patS.getType())
-					throw new NothingReturnedException("Adaption must return a valid source match");
-				delta.add(sp.first);
-				sources.add(sp.second);
-//				views.add(alignment.second);
+				if(sp==SourceType.empty()) { // drop view!
+					skippedViews.add(alignment.second);
+				} else {
+					if(sp.second.getType()!=patS.getType())
+						throw new NothingReturnedException("Adaption must return a valid source match");
+					delta.add(sp.first);
+					sources.add(sp.second);					
+				} 
 			} else if(alignment.second==null) { // unmatchS
 				SourceType sp = this.unmatchedSource.apply(s.replaceSecond(alignment.first), v);
 				delta.add(sp.first);

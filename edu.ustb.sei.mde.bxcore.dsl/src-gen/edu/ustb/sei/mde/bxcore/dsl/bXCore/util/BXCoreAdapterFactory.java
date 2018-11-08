@@ -333,6 +333,11 @@ public class BXCoreAdapterFactory extends AdapterFactoryImpl
         return createContextPrimaryExpressionAdapter();
       }
       @Override
+      public Adapter caseNewInstanceExpression(NewInstanceExpression object)
+      {
+        return createNewInstanceExpressionAdapter();
+      }
+      @Override
       public Adapter caseModificationExpression(ModificationExpression object)
       {
         return createModificationExpressionAdapter();
@@ -1175,6 +1180,21 @@ public class BXCoreAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createContextPrimaryExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression <em>New Instance Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression
+   * @generated
+   */
+  public Adapter createNewInstanceExpressionAdapter()
   {
     return null;
   }

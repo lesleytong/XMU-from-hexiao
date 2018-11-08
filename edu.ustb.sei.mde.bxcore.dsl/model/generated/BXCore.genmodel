@@ -42,6 +42,7 @@
     <genClasses ecoreClass="BXCore.ecore#//TypeVar">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BXCore.ecore#//TypeVar/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//TypeVar/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BXCore.ecore#//TypeVar/many"/>
     </genClasses>
     <genClasses ecoreClass="BXCore.ecore#//PredefinedTypeLiteral">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BXCore.ecore#//PredefinedTypeLiteral/type"/>
@@ -70,11 +71,13 @@
     <genClasses ecoreClass="BXCore.ecore#//PatternNode">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BXCore.ecore#//PatternNode/name"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BXCore.ecore#//PatternNode/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BXCore.ecore#//PatternNode/many"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//PatternNode/edges"/>
     </genClasses>
     <genClasses ecoreClass="BXCore.ecore#//PatternEdge">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BXCore.ecore#//PatternEdge/name"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BXCore.ecore#//PatternEdge/feature"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BXCore.ecore#//PatternEdge/many"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BXCore.ecore#//PatternEdge/operator"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//PatternEdge/value"/>
     </genClasses>
@@ -186,6 +189,13 @@
     <genClasses ecoreClass="BXCore.ecore#//ContextExpression"/>
     <genClasses ecoreClass="BXCore.ecore#//ContextPrimaryExpression">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BXCore.ecore#//ContextPrimaryExpression/side"/>
+    </genClasses>
+    <genClasses ecoreClass="BXCore.ecore#//NewInstanceExpression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BXCore.ecore#//NewInstanceExpression/side"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BXCore.ecore#//NewInstanceExpression/metamodel"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BXCore.ecore#//NewInstanceExpression/type"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BXCore.ecore#//NewInstanceExpression/feature"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//NewInstanceExpression/size"/>
     </genClasses>
     <genClasses ecoreClass="BXCore.ecore#//ModificationExpression"/>
     <genClasses ecoreClass="BXCore.ecore#//EnforcementExpression">

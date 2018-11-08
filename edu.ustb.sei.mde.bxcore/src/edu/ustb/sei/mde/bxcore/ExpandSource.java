@@ -66,7 +66,8 @@ public class ExpandSource extends XmuCore {
 		
 		ViewType v = body.forward(SourceType.makeSource(s.first, downstreamSourceMatch, s.third));
 		
-		if(v==null) return null;
+		if(v==null || v==ViewType.empty()) return v;
+		
 		downstreamSourceMatch.submit();
 		v.first.setConstraint(getConsistencyConstraint());
 		

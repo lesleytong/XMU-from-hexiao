@@ -13,8 +13,10 @@ import org.chocosolver.solver.Model;
 import org.chocosolver.solver.constraints.Constraint;
 import org.chocosolver.solver.constraints.Propagator;
 import org.chocosolver.solver.exception.ContradictionException;
+import org.chocosolver.solver.variables.BoolVar;
 import org.chocosolver.solver.variables.IntVar;
 import org.chocosolver.solver.variables.SetVar;
+import org.chocosolver.util.ESat;
 import org.chocosolver.util.objects.setDataStructures.ISetIterator;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
@@ -35,6 +37,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreStatement;
 import edu.ustb.sei.mde.bxcore.dsl.structure.TupleType;
 import edu.ustb.sei.mde.structure.Tuple2;
+import edu.ustb.sei.mde.structure.Tuple3;
 
 public abstract class TypeModel {
 	protected Set<TupleType> types;
@@ -297,6 +300,7 @@ public abstract class TypeModel {
 		}
 		Map<Object, EObject> reasonMap = new HashMap<>();
 		Map<TupleType, Map<String, IntVar>> varMap = new HashMap<>();
+		Map<TupleType, Map<String, BoolVar>> multiMap = new HashMap<>();
 		
 		// build intVar
 		Model model = new Model("type infer");
@@ -304,25 +308,39 @@ public abstract class TypeModel {
 			if(t instanceof UnsolvedTupleType) {
 				Map<String, IntVar> map = new HashMap<>();
 				varMap.put(t, map);
+				Map<String, BoolVar> mmap = new HashMap<>();
+				multiMap.put(t, mmap);
+
 				((UnsolvedTupleType) t).candidates.forEach(s->{
 					map.put(s, model.intVar(0, this.typeList.size()-1));
+					mmap.put(s, model.boolVar());
 				});
+				
 			} else {
 				Map<String, IntVar> map = new HashMap<>();
 				varMap.put(t, map);
+				Map<String, BoolVar> mmap = new HashMap<>();
+				multiMap.put(t, mmap);
+				
 				t.tuples.forEach(s->{
 					map.put(s.first, model.intVar(this.typeList.indexOf(s.second)));
+					mmap.put(s.first, model.boolVar(s.third));
 				});
 			}
 		});
 		
 		// build constraint
 		constraints.forEach(cons->{
+			EObject causeObject = causeMap.get(cons);
+			
 			if(cons instanceof TypeEqual) {
 				TupleType left = ((TypeEqual) cons).left;
 				TupleType right = ((TypeEqual) cons).right;
 				Map<String,IntVar> lv = varMap.get(left);
 				Map<String,IntVar> rv = varMap.get(right);
+				
+				Map<String,BoolVar> lvm = multiMap.get(left);
+				Map<String,BoolVar> rvm = multiMap.get(right);
 				
 				Stream<String> keys;
 				if(left instanceof UnsolvedTupleType) keys = ((UnsolvedTupleType) left).candidates.stream();
@@ -341,13 +359,19 @@ public abstract class TypeModel {
 					
 					Constraint c = new Constraint(model.generateName(), new PropTypeCast(liv, riv, typeList, superTypeTable, ((TypeEqual) cons).sort));
 					model.post(c);
-					addReason(reasonMap, c, causeMap.get(cons));
+					addReason(reasonMap, c, causeObject);
+					
+					Constraint c2 = model.allEqual(lvm.get(sk), rvm.get(vk));
+					model.post(c2);
+					addReason(reasonMap, c2, causeObject);
 				});
 			} else if(cons instanceof TypeUnion) {
 				TupleType left = ((TypeUnion) cons).unionType;
 				Map<String,IntVar> lv = varMap.get(left);
+				Map<String,BoolVar> lvm = multiMap.get(left);
 				for(TupleType right : ((TypeUnion) cons).types) {
 					Map<String,IntVar> rv = varMap.get(right);
+					Map<String,BoolVar> rvm = multiMap.get(right);
 					Stream<String> keys;
 					if(right instanceof UnsolvedTupleType) keys = ((UnsolvedTupleType) right).candidates.stream();
 					else keys = right.tuples.stream().map(s->s.first);
@@ -357,7 +381,11 @@ public abstract class TypeModel {
 						IntVar riv = rv.get(vk);
 						Constraint c = new Constraint(model.generateName(), new PropTypeCast(liv, riv, typeList, superTypeTable, TypeEqual.LEFT_ABSTRACT));
 						model.post(c);
-						addReason(reasonMap, c, causeMap.get(cons));
+						addReason(reasonMap, c, causeObject);
+						
+						Constraint c2 = model.allEqual(lvm.get(vk), rvm.get(vk));
+						model.post(c2);
+						addReason(reasonMap, c2, causeObject);
 					});
 				}
 			}
@@ -367,10 +395,13 @@ public abstract class TypeModel {
 			types.forEach(t->{
 				if(t instanceof UnsolvedTupleType) {
 					Map<String, IntVar> map = varMap.get(t);
+					Map<String, BoolVar> mmap = multiMap.get(t);
 					((UnsolvedTupleType) t).candidates.forEach(tp->{
 						IntVar var = map.get(tp);
 						Object type = this.typeList.get(var.getValue());
-						t.tuples.add(Tuple2.make(tp, type));
+						BoolVar mul = mmap.get(tp);
+						
+						t.tuples.add(Tuple3.make(tp, type, mul.getBooleanValue()==ESat.TRUE));
 					});
 					t.importSection = im;
 				}

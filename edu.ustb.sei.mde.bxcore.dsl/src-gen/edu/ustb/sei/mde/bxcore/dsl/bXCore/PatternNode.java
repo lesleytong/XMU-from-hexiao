@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EClassifier;
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternNode#getName <em>Name</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternNode#getType <em>Type</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternNode#isMany <em>Many</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternNode#getEdges <em>Edges</em>}</li>
  * </ul>
  *
@@ -78,6 +79,32 @@ public interface PatternNode extends PatternValueCondition
    * @generated
    */
   void setType(EClassifier value);
+
+  /**
+   * Returns the value of the '<em><b>Many</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Many</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Many</em>' attribute.
+   * @see #setMany(boolean)
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getPatternNode_Many()
+   * @model
+   * @generated
+   */
+  boolean isMany();
+
+  /**
+   * Sets the value of the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternNode#isMany <em>Many</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Many</em>' attribute.
+   * @see #isMany()
+   * @generated
+   */
+  void setMany(boolean value);
 
   /**
    * Returns the value of the '<em><b>Edges</b></em>' containment reference list.

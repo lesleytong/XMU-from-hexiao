@@ -32,6 +32,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.IndexPart;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpressionBlock;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.NavigationExpression;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.OrderedTupleTypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.Pattern;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternDefinition;
@@ -453,6 +454,13 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass newInstanceExpressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass modificationExpressionEClass = null;
 
   /**
@@ -855,6 +863,16 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getTypeVar_Many()
+  {
+    return (EAttribute)typeVarEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getPredefinedTypeLiteral()
   {
     return predefinedTypeLiteralEClass;
@@ -1065,9 +1083,19 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getPatternNode_Many()
+  {
+    return (EAttribute)patternNodeEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EReference getPatternNode_Edges()
   {
-    return (EReference)patternNodeEClass.getEStructuralFeatures().get(2);
+    return (EReference)patternNodeEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -1105,7 +1133,7 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getPatternEdge_Operator()
+  public EAttribute getPatternEdge_Many()
   {
     return (EAttribute)patternEdgeEClass.getEStructuralFeatures().get(2);
   }
@@ -1115,9 +1143,19 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getPatternEdge_Operator()
+  {
+    return (EAttribute)patternEdgeEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EReference getPatternEdge_Value()
   {
-    return (EReference)patternEdgeEClass.getEStructuralFeatures().get(3);
+    return (EReference)patternEdgeEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -1965,6 +2003,66 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getNewInstanceExpression()
+  {
+    return newInstanceExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getNewInstanceExpression_Side()
+  {
+    return (EAttribute)newInstanceExpressionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getNewInstanceExpression_Metamodel()
+  {
+    return (EReference)newInstanceExpressionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getNewInstanceExpression_Type()
+  {
+    return (EReference)newInstanceExpressionEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getNewInstanceExpression_Feature()
+  {
+    return (EReference)newInstanceExpressionEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getNewInstanceExpression_Size()
+  {
+    return (EReference)newInstanceExpressionEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getModificationExpression()
   {
     return modificationExpressionEClass;
@@ -2293,6 +2391,7 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     typeVarEClass = createEClass(TYPE_VAR);
     createEAttribute(typeVarEClass, TYPE_VAR__NAME);
     createEReference(typeVarEClass, TYPE_VAR__TYPE);
+    createEAttribute(typeVarEClass, TYPE_VAR__MANY);
 
     predefinedTypeLiteralEClass = createEClass(PREDEFINED_TYPE_LITERAL);
     createEAttribute(predefinedTypeLiteralEClass, PREDEFINED_TYPE_LITERAL__TYPE);
@@ -2323,11 +2422,13 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     patternNodeEClass = createEClass(PATTERN_NODE);
     createEAttribute(patternNodeEClass, PATTERN_NODE__NAME);
     createEReference(patternNodeEClass, PATTERN_NODE__TYPE);
+    createEAttribute(patternNodeEClass, PATTERN_NODE__MANY);
     createEReference(patternNodeEClass, PATTERN_NODE__EDGES);
 
     patternEdgeEClass = createEClass(PATTERN_EDGE);
     createEAttribute(patternEdgeEClass, PATTERN_EDGE__NAME);
     createEReference(patternEdgeEClass, PATTERN_EDGE__FEATURE);
+    createEAttribute(patternEdgeEClass, PATTERN_EDGE__MANY);
     createEAttribute(patternEdgeEClass, PATTERN_EDGE__OPERATOR);
     createEReference(patternEdgeEClass, PATTERN_EDGE__VALUE);
 
@@ -2447,6 +2548,13 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     contextPrimaryExpressionEClass = createEClass(CONTEXT_PRIMARY_EXPRESSION);
     createEAttribute(contextPrimaryExpressionEClass, CONTEXT_PRIMARY_EXPRESSION__SIDE);
 
+    newInstanceExpressionEClass = createEClass(NEW_INSTANCE_EXPRESSION);
+    createEAttribute(newInstanceExpressionEClass, NEW_INSTANCE_EXPRESSION__SIDE);
+    createEReference(newInstanceExpressionEClass, NEW_INSTANCE_EXPRESSION__METAMODEL);
+    createEReference(newInstanceExpressionEClass, NEW_INSTANCE_EXPRESSION__TYPE);
+    createEReference(newInstanceExpressionEClass, NEW_INSTANCE_EXPRESSION__FEATURE);
+    createEReference(newInstanceExpressionEClass, NEW_INSTANCE_EXPRESSION__SIZE);
+
     modificationExpressionEClass = createEClass(MODIFICATION_EXPRESSION);
 
     enforcementExpressionEClass = createEClass(ENFORCEMENT_EXPRESSION);
@@ -2554,6 +2662,7 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     customizedBiGULReferenceEClass.getESuperTypes().add(this.getBiGULStatement());
     contextExpressionEClass.getESuperTypes().add(theXbasePackage.getXExpression());
     contextPrimaryExpressionEClass.getESuperTypes().add(this.getContextExpression());
+    newInstanceExpressionEClass.getESuperTypes().add(theXbasePackage.getXExpression());
     modificationExpressionEClass.getESuperTypes().add(theXbasePackage.getXExpression());
     enforcementExpressionEClass.getESuperTypes().add(this.getModificationExpression());
     deleteElementExpressionEClass.getESuperTypes().add(this.getModificationExpression());
@@ -2599,6 +2708,7 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     initEClass(typeVarEClass, TypeVar.class, "TypeVar", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getTypeVar_Name(), ecorePackage.getEString(), "name", null, 0, 1, TypeVar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getTypeVar_Type(), this.getTypeRef(), null, "type", null, 0, 1, TypeVar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getTypeVar_Many(), ecorePackage.getEBoolean(), "many", null, 0, 1, TypeVar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(predefinedTypeLiteralEClass, PredefinedTypeLiteral.class, "PredefinedTypeLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getPredefinedTypeLiteral_Type(), ecorePackage.getEString(), "type", null, 0, 1, PredefinedTypeLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2629,11 +2739,13 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     initEClass(patternNodeEClass, PatternNode.class, "PatternNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getPatternNode_Name(), ecorePackage.getEString(), "name", null, 0, 1, PatternNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPatternNode_Type(), ecorePackage.getEClassifier(), null, "type", null, 0, 1, PatternNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPatternNode_Many(), ecorePackage.getEBoolean(), "many", null, 0, 1, PatternNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPatternNode_Edges(), this.getPatternEdge(), null, "edges", null, 0, -1, PatternNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(patternEdgeEClass, PatternEdge.class, "PatternEdge", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getPatternEdge_Name(), ecorePackage.getEString(), "name", null, 0, 1, PatternEdge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPatternEdge_Feature(), ecorePackage.getEStructuralFeature(), null, "feature", null, 0, 1, PatternEdge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPatternEdge_Many(), ecorePackage.getEBoolean(), "many", null, 0, 1, PatternEdge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPatternEdge_Operator(), ecorePackage.getEString(), "operator", null, 0, 1, PatternEdge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPatternEdge_Value(), this.getPatternValueCondition(), null, "value", null, 0, 1, PatternEdge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -2752,6 +2864,13 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
 
     initEClass(contextPrimaryExpressionEClass, ContextPrimaryExpression.class, "ContextPrimaryExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getContextPrimaryExpression_Side(), this.getSideEnum(), "side", null, 0, 1, ContextPrimaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(newInstanceExpressionEClass, NewInstanceExpression.class, "NewInstanceExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getNewInstanceExpression_Side(), this.getSideEnum(), "side", null, 0, 1, NewInstanceExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getNewInstanceExpression_Metamodel(), this.getImportSection(), null, "metamodel", null, 0, 1, NewInstanceExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getNewInstanceExpression_Type(), ecorePackage.getEClass(), null, "type", null, 0, 1, NewInstanceExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getNewInstanceExpression_Feature(), ecorePackage.getEStructuralFeature(), null, "feature", null, 0, 1, NewInstanceExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getNewInstanceExpression_Size(), theXbasePackage.getXExpression(), null, "size", null, 0, 1, NewInstanceExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(modificationExpressionEClass, ModificationExpression.class, "ModificationExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

@@ -33,6 +33,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PatternNodeImpl#getName <em>Name</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PatternNodeImpl#getType <em>Type</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PatternNodeImpl#isMany <em>Many</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PatternNodeImpl#getEdges <em>Edges</em>}</li>
  * </ul>
  *
@@ -69,6 +70,26 @@ public class PatternNodeImpl extends PatternValueConditionImpl implements Patter
    * @ordered
    */
   protected EClassifier type;
+
+  /**
+   * The default value of the '{@link #isMany() <em>Many</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isMany()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean MANY_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isMany() <em>Many</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isMany()
+   * @generated
+   * @ordered
+   */
+  protected boolean many = MANY_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getEdges() <em>Edges</em>}' containment reference list.
@@ -172,6 +193,29 @@ public class PatternNodeImpl extends PatternValueConditionImpl implements Patter
    * <!-- end-user-doc -->
    * @generated
    */
+  public boolean isMany()
+  {
+    return many;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setMany(boolean newMany)
+  {
+    boolean oldMany = many;
+    many = newMany;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, BXCorePackage.PATTERN_NODE__MANY, oldMany, many));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EList<PatternEdge> getEdges()
   {
     if (edges == null)
@@ -212,6 +256,8 @@ public class PatternNodeImpl extends PatternValueConditionImpl implements Patter
       case BXCorePackage.PATTERN_NODE__TYPE:
         if (resolve) return getType();
         return basicGetType();
+      case BXCorePackage.PATTERN_NODE__MANY:
+        return isMany();
       case BXCorePackage.PATTERN_NODE__EDGES:
         return getEdges();
     }
@@ -234,6 +280,9 @@ public class PatternNodeImpl extends PatternValueConditionImpl implements Patter
         return;
       case BXCorePackage.PATTERN_NODE__TYPE:
         setType((EClassifier)newValue);
+        return;
+      case BXCorePackage.PATTERN_NODE__MANY:
+        setMany((Boolean)newValue);
         return;
       case BXCorePackage.PATTERN_NODE__EDGES:
         getEdges().clear();
@@ -259,6 +308,9 @@ public class PatternNodeImpl extends PatternValueConditionImpl implements Patter
       case BXCorePackage.PATTERN_NODE__TYPE:
         setType((EClassifier)null);
         return;
+      case BXCorePackage.PATTERN_NODE__MANY:
+        setMany(MANY_EDEFAULT);
+        return;
       case BXCorePackage.PATTERN_NODE__EDGES:
         getEdges().clear();
         return;
@@ -280,6 +332,8 @@ public class PatternNodeImpl extends PatternValueConditionImpl implements Patter
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case BXCorePackage.PATTERN_NODE__TYPE:
         return type != null;
+      case BXCorePackage.PATTERN_NODE__MANY:
+        return many != MANY_EDEFAULT;
       case BXCorePackage.PATTERN_NODE__EDGES:
         return edges != null && !edges.isEmpty();
     }
@@ -299,6 +353,8 @@ public class PatternNodeImpl extends PatternValueConditionImpl implements Patter
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (name: ");
     result.append(name);
+    result.append(", many: ");
+    result.append(many);
     result.append(')');
     return result.toString();
   }

@@ -50,7 +50,7 @@ public class Invocation extends XmuCore {
 		downstreamSource.setUpstream(s.second, sourceKeyMappings);
 		
 		ViewType view = this.getBody().forward(SourceType.makeSource(s.first, downstreamSource, s.third));
-		if(view==null) return null;
+		if(view==null || view==ViewType.empty()) return view;
 		
 		Context upstreamView = view.second.createUpstreamContext(upstreamViewType, viewKeyMappings);
 		view.second.setUpstream(upstreamView, viewKeyMappings);

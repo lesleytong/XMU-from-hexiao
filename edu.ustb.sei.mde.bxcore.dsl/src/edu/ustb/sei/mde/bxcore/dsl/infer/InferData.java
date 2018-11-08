@@ -8,6 +8,9 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.eclipse.xtext.xbase.lib.Pair;
+
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternTypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.structure.TupleType;
 import edu.ustb.sei.mde.structure.Tuple2;
@@ -15,7 +18,14 @@ import edu.ustb.sei.mde.structure.Tuple2;
 public class InferData {
 	protected Map<TypeLiteral, Tuple2<TupleType, Integer>> literalMap;
 	protected Set<Tuple2<TupleType, Integer>> tupleSet;
+	protected List<Pair<Integer, PatternTypeLiteral>> patternLiterals;
 	
+	public List<Pair<Integer, PatternTypeLiteral>> getPatternLiterals() {
+		return patternLiterals;
+	}
+	public void setPatternLiterals(List<Pair<Integer, PatternTypeLiteral>>  patternLiterals) {
+		this.patternLiterals = patternLiterals;
+	}
 	public Set<Tuple2<TupleType, Integer>> getTupleSet() {
 		return tupleSet;
 	}

@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.regex.Matcher;
 
@@ -82,6 +84,12 @@ public class Pattern implements IGraph {
 	}
 
 	public void addEdge(IEdge edge) {
+		boolean manyCons = 
+				Boolean.logicalXor(((PatternElement<?>) edge).isMany(), ((PatternElement<?>) edge.getSource()).isMany() ||  ((PatternElement<?>) edge.getTarget()).isMany())
+				|| Boolean.logicalAnd(((PatternElement<?>) edge.getSource()).isMany(), ((PatternElement<?>) edge.getTarget()).isMany());
+		if(manyCons) {
+			throw new RuntimeException("Invalid pattern edge");
+		}
 		this.edges.add(edge);
 	}
 
@@ -122,6 +130,8 @@ public class Pattern implements IGraph {
 				matches.add(m);
 		}
 		
+		group(matches);
+		
 		if(this.orderBy!=null) {
 			List<Index> set = new ArrayList<>();
 			Map<Index, Context> map = new HashMap<>();
@@ -155,6 +165,24 @@ public class Pattern implements IGraph {
 			
 		} else 
 			return matches;
+	}
+
+	private void group(List<Context> matches) {
+		List<FieldDef<?>> singleValuedFields = getType().singleValuedFields();
+		if(singleValuedFields.size()==getType().fields().size()) return;
+		
+		List<Context> results = new ArrayList<>();
+		for(Context c : matches) {
+			Optional<Context> equal = results.stream().filter(x->x.isEqualForSingleValuedFields(c)).findFirst();
+			if(equal.isPresent()) {
+				equal.get().mergeMultiValuedFields(c);
+			} else {
+				results.add(c);
+			}
+		}
+		
+		matches.clear();
+		matches.addAll(results);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -248,16 +276,18 @@ public class Pattern implements IGraph {
 		return model;
 	}
 
-	public void appendPatternNode(String name, ITypeNode type) {
+	public void appendPatternNode(String name, ITypeNode type, boolean many) {
 		if (type instanceof TypeNode) {
 			PatternNode node = new PatternNode();
 			node.setName(name);
 			node.setType((TypeNode) type);
+			node.setMany(many);
 			this.addNode(node);
 		} else if (type instanceof DataTypeNode) {
 			PatternValueNode node = new PatternValueNode();
 			node.setName(name);
 			node.setType((DataTypeNode) type);
+			node.setMany(many);
 			this.addNode(node);
 		}
 	}
@@ -311,6 +341,7 @@ public class Pattern implements IGraph {
 		return builder.toString();
 	}
 
+	@SuppressWarnings("unchecked")
 	public TypedGraph construct(TypedGraph referenceGraph, Context context)
 			throws UninitializedException, NothingReturnedException {
 		TypedGraph graph = new TypedGraph(typeGraph);
@@ -319,79 +350,226 @@ public class Pattern implements IGraph {
 		TypedGraphCreator creator = new TypedGraphCreator(graph);
 
 		for (INode n : this.nodes) {
-			if (n instanceof PatternNode) {
-				Index index = context.getIndexValue(contextType.getField(((PatternNode) n).getName()));
-				TypedNode node = null;
-
-				try {
-					node = referenceGraph.getElementByIndexObject(index);
-
-					if (typeGraph.isSuperTypeOf(node.getType(), ((PatternNode) n).getType())) {
-						graph.addTypedNode(node);
-						creator.registerNode(((PatternNode) n).getName(), node);
-					} else {
-						throw new NothingReturnedException();
-					}
-
-				} catch (NothingReturnedException | NullPointerException e) {
-					node = creator.createTypedNode(((PatternNode) n).getName(), ((PatternNode) n).getType(), index);
+			Object value = context.getValue(((PatternElement<?>) n).getName());
+			if(((PatternElement<?>) n).isMany()) {
+				List<Object> values = (List<Object>) value;
+				int id = 0;
+				for(Object v : values) {
+					createNode(id, n, v, creator, graph, referenceGraph);
+					id++;
 				}
-
-			} else if (n instanceof PatternValueNode) {
-				creator.createValueNode(((PatternValueNode) n).getName(),
-						context.getPrimitiveValue(contextType.getField(((PatternValueNode) n).getName())),
-						((PatternValueNode) n).getType());
+			} else {
+				createNode(-1, n, value, creator, graph, referenceGraph);				
 			}
 		}
 
 		for (IEdge n : this.edges) {
-			if (n instanceof PatternEdge) {
-				Index index = context.getIndexValue(contextType.getField(((PatternEdge) n).getName()));
-				TypedEdge edge = null;
-
-				try {
-					edge = referenceGraph.getElementByIndexObject(index);
-					if (edge.getType() == ((PatternEdge) n).getType()
-							&& edge.getSource() == creator.getNode(((PatternElement<?>) n.getSource()).getName())
-							&& edge.getTarget() == creator.getNode(((PatternElement<?>) n.getTarget()).getName()))
-						graph.addTypedEdge(edge);
-					else {
-						throw new NothingReturnedException();
-					}
-				} catch (NothingReturnedException | NullPointerException e) {
-					edge = creator.createTypedEdge(((PatternElement<?>) n.getSource()).getName(),
-							((PatternElement<?>) n.getTarget()).getName(), ((PatternEdge) n).getType(), index);
+			Object value = context.getValue(contextType.getField(((PatternElement<?>) n).getName()));
+			
+			if(((PatternElement<?>) n).isMany()) {
+				List<Index> values = (List<Index>) value;
+				int id = 0;
+				for(Index v : values) {
+					createEdge(id, n, v, creator, graph, referenceGraph);
+					id++;
 				}
-
-			} else if (n instanceof PatternValueEdge) {
-				Index index = context.getIndexValue(contextType.getField(((PatternValueEdge) n).getName()));
-				ValueEdge edge = null;
-				try {
-					edge = referenceGraph.getElementByIndexObject(index);
-					if (edge.getType() == ((PatternValueEdge) n).getType()
-							&& edge.getSource() == creator.getNode(((PatternElement<?>) n.getSource()).getName())
-							&& edge.getTarget() == creator.getNode(((PatternElement<?>) n.getTarget()).getName()))
-						graph.addValueEdge(edge);
-					else {
-						throw new NothingReturnedException();
-					}
-				} catch (NothingReturnedException | NullPointerException e) {
-					edge = creator.createValueEdge(((PatternElement<?>) n.getSource()).getName(),
-							((PatternElement<?>) n.getTarget()).getName(), ((PatternValueEdge) n).getType(), index);
-				}
+			} else {
+				Index index = (Index) value;
+				createEdge(-1, n, index, creator, graph, referenceGraph);				
 			}
 		}
 
 		return graph;
 	}
 
-	public boolean isMatchOf(TypedGraph graph, Context match) {
-		GraphModel model = getSolverModel(graph, match);
-		if (model == null)
+	protected void createEdge(int id, IEdge n, Index index, TypedGraphCreator creator, TypedGraph graph, TypedGraph referenceGraph) {
+		String sourceNodeName = ((PatternElement<?>) n.getSource()).isMany() ? ((PatternElement<?>) n.getSource()).getName()+'-'+id : ((PatternElement<?>) n.getSource()).getName();
+		String targetNodeName = ((PatternElement<?>) n.getTarget()).isMany() ? ((PatternElement<?>) n.getTarget()).getName()+'-'+id : ((PatternElement<?>) n.getTarget()).getName();
+		
+		if (n instanceof PatternEdge) {
+			TypedEdge edge = null;
+			try {
+				edge = referenceGraph.getElementByIndexObject(index);
+				if (edge.getType() == ((PatternEdge) n).getType()
+						&& edge.getSource() == creator.getNode(sourceNodeName)
+						&& edge.getTarget() == creator.getNode(targetNodeName))
+					graph.addTypedEdge(edge);
+				else {
+					throw new NothingReturnedException();
+				}
+			} catch (NothingReturnedException | NullPointerException e) {
+				edge = creator.createTypedEdge(sourceNodeName, targetNodeName, ((PatternEdge) n).getType(), index);
+			}
+
+		} else if (n instanceof PatternValueEdge) {
+			ValueEdge edge = null;
+			try {
+				edge = referenceGraph.getElementByIndexObject(index);
+				if (edge.getType() == ((PatternValueEdge) n).getType()
+						&& edge.getSource() == creator.getNode(sourceNodeName)
+						&& edge.getTarget() == creator.getNode(targetNodeName))
+					graph.addValueEdge(edge);
+				else {
+					throw new NothingReturnedException();
+				}
+			} catch (NothingReturnedException | NullPointerException e) {
+				edge = creator.createValueEdge(sourceNodeName, targetNodeName, ((PatternValueEdge) n).getType(), index);
+			}
+		}
+	}
+
+	protected void createNode(int id, INode n, Object value, TypedGraphCreator creator, TypedGraph graph,
+			TypedGraph referenceGraph) {
+		String nodeName = id!=-1 ? ((PatternElement<?>) n).getName()+'-'+id : ((PatternElement<?>) n).getName();
+		
+		if (n instanceof PatternNode) {
+			Index index = (Index) value;
+			TypedNode node = null;
+
+			try {
+				node = referenceGraph.getElementByIndexObject(index);
+
+				if (typeGraph.isSuperTypeOf(node.getType(), ((PatternNode) n).getType())) {
+					graph.addTypedNode(node);
+					creator.registerNode(nodeName, node);
+				} else {
+					throw new NothingReturnedException();
+				}
+
+			} catch (NothingReturnedException | NullPointerException e) {
+				node = creator.createTypedNode(nodeName, ((PatternNode) n).getType(), index);
+			}
+		} else if (n instanceof PatternValueNode) {
+			creator.createValueNode(nodeName, value, ((PatternValueNode) n).getType());
+		}
+	}
+
+	public boolean isMatchOf(TypedGraph graph, Context match) {		
+		boolean nodeConsistent = this.nodes.stream().allMatch(n->{
+			try {
+				if(n instanceof PatternNode) {
+					if(!((PatternNode)n).isMany()) {
+						Index value = match.getValue(((PatternNode)n).getName());
+						TypedNode e = graph.getElementByIndexObject(value);
+						return graph.getTypeGraph().isSuperTypeOf(e.getType(), ((PatternNode)n).getType());
+					} else {
+						List<Index> values = match.getValue(((PatternNode)n).getName());
+						return values.stream().allMatch(value->{
+							try {
+								TypedNode e = graph.getElementByIndexObject(value);
+								return graph.getTypeGraph().isSuperTypeOf(e.getType(), ((PatternNode)n).getType());
+							} catch (Exception e) {
+								return false;
+							}
+						});
+					}
+				} else {
+					match.getValue(((PatternValueNode)n).getName()); // we do not check value type
+					return true;
+				}
+			} catch (Exception e) {
+				return false;
+			}
+		});
+		
+		if(!nodeConsistent) return false;
+		
+		boolean edgeConsistent = this.edges.stream().allMatch(e->{
+			try {
+				if(e instanceof PatternEdge) {
+					PatternNode sn = (PatternNode) e.getSource();
+					PatternNode tn = (PatternNode) e.getTarget();
+					Object sv = match.getValue(sn.getName());
+					Object vv = match.getValue(tn.getName());
+					
+					if(((PatternEdge) e).isMany()) {
+						BiFunction<Object, Integer, Object> sid = sn.isMany() ? LIST : ELEMENT;
+						BiFunction<Object, Integer, Object> tid = tn.isMany() ? LIST : ELEMENT;
+						List<Index> edgeIndices = match.getValue(((PatternEdge) e).getName());
+						for(int i=0;i<edgeIndices.size();i++) {
+							Index idx = edgeIndices.get(i);
+							TypedEdge edge = graph.getElementByIndexObject(idx);
+							if(edge.getType()==((PatternEdge) e).getType()) {
+								if(!(isNodeEqual(edge.getSource(),(Index) sid.apply(sv,i)) 
+										&& isNodeEqual(edge.getTarget(), (Index) tid.apply(vv,i))))
+									return false;
+							} else return false;
+						}
+						return true;
+					} else {
+						Index edgeIndex = match.getValue(((PatternEdge) e).getName());
+						TypedEdge edge = graph.getElementByIndexObject(edgeIndex);
+						if(edge.getType()==((PatternEdge) e).getType()) {
+							return isNodeEqual(edge.getSource(),(Index)sv) 
+									&& isNodeEqual(edge.getTarget(), (Index)vv);
+						} else return false;
+					}
+				} else {
+					PatternNode sn = (PatternNode) e.getSource();
+					PatternValueNode tn = (PatternValueNode) e.getTarget();
+					Object sv = match.getValue(sn.getName());
+					Object vv = match.getValue(tn.getName());
+					
+					if(((PatternValueEdge)e).isMany()) {
+						BiFunction<Object, Integer, Object> sid = sn.isMany() ? LIST : ELEMENT;
+						BiFunction<Object, Integer, Object> tid = tn.isMany() ? LIST : ELEMENT;
+						List<Index> edgeIndices = match.getValue(((PatternValueEdge) e).getName());
+						for(int i=0;i<edgeIndices.size();i++) {
+							Index idx = edgeIndices.get(i);
+							ValueEdge edge = graph.getElementByIndexObject(idx);
+							if(edge.getType()==((PatternValueEdge) e).getType()) {
+								if(!(isNodeEqual(edge.getSource(),(Index) sid.apply(sv,i)) 
+										&& isValueEqual(edge.getTarget(), tid.apply(vv,i))))
+									return false;
+							} else return false;
+						}
+						return true;
+					} else {
+						Index edgeIndex = match.getValue(((PatternValueEdge) e).getName());
+						ValueEdge edge = graph.getElementByIndexObject(edgeIndex);
+						if(edge.getType()==((PatternValueEdge) e).getType()) {
+							return isNodeEqual(edge.getSource(),(Index) sv) 
+									&& isValueEqual(edge.getTarget(), vv);
+						} else return false;
+					}
+				}
+			} catch (Exception x) {
+				return false;
+			}
+		});
+		
+		
+		return edgeConsistent;
+	}
+
+	protected boolean isValueEqual(ValueNode valueNode, Object value) {
+		if(valueNode.getValue()==null) return value==null;
+		else return valueNode.getValue().equals(value);
+	}
+	
+	protected boolean isNodeEqual(TypedNode node, Index index) {
+		return node.getIndex().equals(index);
+	}
+	
+	@SuppressWarnings("unchecked")
+	static BiFunction<Object,Integer,Object> LIST = (v,i)->((List<Object>)v).get(i);
+	static BiFunction<Object,Integer,Object> ELEMENT = (v,i)->v;
+
+	private boolean checkTypeMatch(Object value, FieldDef<?> f, TypedGraph graph) {
+		try {
+			if(f.isElementType()) {
+				IndexableElement e = graph.getElementByIndexObject((Index)value);
+				if(e instanceof TypedNode && f.getType() instanceof TypeNode) {
+					return graph.getTypeGraph().isSuperTypeOf(((TypedNode) e).getType(), (TypeNode)f.getType());
+				} else if(e instanceof ITypedEdge && f.getType() instanceof IStructuralFeatureEdge) {
+					return ((ITypedEdge) e).getType()==f.getType();
+				} else return false;
+			} else {
+				return value.getClass() == ((DataTypeNode)f.getType()).getDataType(); // or simply ignore?
+			}
+		} catch(Exception e) {
 			return false;
-		Solver solver = model.getSolver();
-		boolean matched = solver.solve();
-		return matched && (this.filter==null || this.filter.apply(match));
+		}
 	}
 
 	private ContextType type = null;
@@ -400,10 +578,10 @@ public class Pattern implements IGraph {
 		if (type == null) {
 			type = new ContextType();
 			this.getNodes().forEach(n -> {
-				type.addField(((PatternElement<?>) n).getName(), ((PatternElement<?>) n).getType());
+				type.addField(((PatternElement<?>) n).getName(), ((PatternElement<?>) n).getType(), ((PatternElement<?>) n).isMany());
 			});
 			this.getEdges().forEach(e -> {
-				type.addField(((PatternElement<?>) e).getName(), ((PatternElement<?>) e).getType());
+				type.addField(((PatternElement<?>) e).getName(), ((PatternElement<?>) e).getType(), ((PatternElement<?>) e).isMany());
 			});
 		}
 		return type;
@@ -415,7 +593,7 @@ public class Pattern implements IGraph {
 
 	public void declare(String patternShape) {
 		String[] statements = patternShape.split(";");
-		String nodeDecl = "\\s*(\\w+)\\s*:\\s*(\\w+)\\s*";
+		String nodeDecl = "\\s*(\\w+)\\s*:\\s*(\\w+)\\s*(\\*)?\\s*";
 		String edgeDecl = "\\s*(\\w+)\\s*(!?)\\s*:\\s*(\\w+)\\s*\\-(\\w+)->\\s*(\\w+)\\s*";
 		java.util.regex.Pattern nodePat = java.util.regex.Pattern.compile(nodeDecl);
 		java.util.regex.Pattern edgePat = java.util.regex.Pattern.compile(edgeDecl);
@@ -425,14 +603,15 @@ public class Pattern implements IGraph {
 			if ((matcher = nodePat.matcher(stat)).matches()) {
 				String nodeName = matcher.group(1);
 				String typeName = matcher.group(2);
-
+				String many = matcher.group(3);
+				
 				ITypeNode type = null;
 
 				if ((type = this.typeGraph.getTypeNode(typeName)) == null) {
 					type = this.typeGraph.getDataTypeNode(typeName);
 				}
 
-				this.appendPatternNode(nodeName, type);
+				this.appendPatternNode(nodeName, type, many!=null && many.length()!=0);
 			} else if ((matcher = edgePat.matcher(stat)).matches()) {
 				String edgeName = matcher.group(1);
 				String orderBy = matcher.group(2);

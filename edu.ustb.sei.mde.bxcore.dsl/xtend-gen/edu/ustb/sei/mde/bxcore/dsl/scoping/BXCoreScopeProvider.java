@@ -3,6 +3,7 @@
  */
 package edu.ustb.sei.mde.bxcore.dsl.scoping;
 
+import com.google.common.base.Predicate;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXFunctionDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXProgram;
@@ -10,6 +11,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.Definition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ExpressionConversion;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.FeatureTypeRef;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ImportSection;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.OrderedTupleTypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternNode;
@@ -33,7 +35,9 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.xtext.resource.EObjectDescription;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
+import org.eclipse.xtext.scoping.impl.FilteringScope;
 import org.eclipse.xtext.scoping.impl.SimpleScope;
+import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
@@ -48,127 +52,146 @@ import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
  */
 @SuppressWarnings("all")
 public class BXCoreScopeProvider extends AbstractBXCoreScopeProvider {
+  public IScope featureScope(final EClass type) {
+    if ((type == null)) {
+      return SimpleScope.NULLSCOPE;
+    } else {
+      boolean _eIsProxy = type.eIsProxy();
+      boolean _not = (!_eIsProxy);
+      if (_not) {
+        final ArrayList<IEObjectDescription> objects = new ArrayList<IEObjectDescription>();
+        final Consumer<EStructuralFeature> _function = (EStructuralFeature i) -> {
+          objects.add(EObjectDescription.create(i.getName(), i));
+        };
+        type.getEAllStructuralFeatures().forEach(_function);
+        return new SimpleScope(objects);
+      }
+    }
+    return null;
+  }
+  
   @Override
   public IScope getScope(final EObject context, final EReference reference) {
     IScope _xblockexpression = null;
     {
-      if ((((reference == BXCorePackage.Literals.UNORDERED_TUPLE_TYPE_LITERAL__SOURCE) || 
-        (reference == BXCorePackage.Literals.ORDERED_TUPLE_TYPE_LITERAL__SOURCE)) || 
-        (reference == BXCorePackage.Literals.PATTERN_TYPE_LITERAL__SOURCE))) {
-        final Function1<ImportSection, IEObjectDescription> _function = (ImportSection it) -> {
-          return EObjectDescription.create(it.getShortName(), it);
-        };
-        List<IEObjectDescription> _list = IterableExtensions.<IEObjectDescription>toList(ListExtensions.<ImportSection, IEObjectDescription>map(this.getRoot(context).getImports(), _function));
-        return new SimpleScope(_list);
-      } else {
-        if ((reference == BXCorePackage.Literals.TYPE_REF__TYPE)) {
-          final ImportSection importSection = this.getImportSection(context);
-          return this.collectTypes(importSection);
+      try {
+        if ((((reference == BXCorePackage.Literals.UNORDERED_TUPLE_TYPE_LITERAL__SOURCE) || 
+          (reference == BXCorePackage.Literals.ORDERED_TUPLE_TYPE_LITERAL__SOURCE)) || 
+          (reference == BXCorePackage.Literals.PATTERN_TYPE_LITERAL__SOURCE))) {
+          final Function1<ImportSection, IEObjectDescription> _function = (ImportSection it) -> {
+            return EObjectDescription.create(it.getShortName(), it);
+          };
+          List<IEObjectDescription> _list = IterableExtensions.<IEObjectDescription>toList(ListExtensions.<ImportSection, IEObjectDescription>map(this.getRoot(context).getImports(), _function));
+          return new SimpleScope(_list);
         } else {
-          if ((reference == BXCorePackage.Literals.FEATURE_TYPE_REF__FEATURE)) {
-            EClassifier _type = ((FeatureTypeRef) context).getType();
-            final EClass type = ((EClass) _type);
-            if ((type == null)) {
-              return SimpleScope.NULLSCOPE;
-            } else {
-              boolean _eIsProxy = type.eIsProxy();
-              boolean _not = (!_eIsProxy);
-              if (_not) {
-                final ArrayList<IEObjectDescription> objects = new ArrayList<IEObjectDescription>();
-                final Consumer<EStructuralFeature> _function_1 = (EStructuralFeature i) -> {
-                  objects.add(EObjectDescription.create(i.getName(), i));
-                };
-                type.getEAllStructuralFeatures().forEach(_function_1);
-                return new SimpleScope(objects);
-              }
-            }
+          if ((reference == BXCorePackage.Literals.TYPE_REF__TYPE)) {
+            final ImportSection importSection = this.getImportSection(context);
+            return this.collectTypes(importSection.getMetamodel());
           } else {
-            if ((reference == BXCorePackage.Literals.PATTERN_NODE__TYPE)) {
-              final ImportSection importSection_1 = this.getImportSection(context);
-              return this.collectTypes(importSection_1);
+            if ((reference == BXCorePackage.Literals.FEATURE_TYPE_REF__FEATURE)) {
+              EClassifier _type = ((FeatureTypeRef) context).getType();
+              final EClass type = ((EClass) _type);
+              return this.featureScope(type);
             } else {
-              if ((reference == BXCorePackage.Literals.PATTERN_EDGE__FEATURE)) {
-                final PatternNode node = this.getPatternNode(context);
-                EClassifier _type_1 = node.getType();
-                if ((_type_1 instanceof EClass)) {
-                  EClassifier _type_2 = node.getType();
-                  final Function1<EStructuralFeature, IEObjectDescription> _function_2 = (EStructuralFeature f) -> {
-                    return EObjectDescription.create(f.getName(), f);
-                  };
-                  List<IEObjectDescription> _list_1 = IterableExtensions.<IEObjectDescription>toList(ListExtensions.<EStructuralFeature, IEObjectDescription>map(((EClass) _type_2).getEAllStructuralFeatures(), _function_2));
-                  return new SimpleScope(_list_1);
-                }
+              if ((reference == BXCorePackage.Literals.PATTERN_NODE__TYPE)) {
+                final ImportSection importSection_1 = this.getImportSection(context);
+                return this.collectTypes(importSection_1.getMetamodel());
               } else {
-                if ((reference == BXCorePackage.Literals.PATTERN_NODE_REF__NODE)) {
-                  final PatternDefinition pattern = this.getPattern(context);
-                  final ArrayList<IEObjectDescription> objects_1 = new ArrayList<IEObjectDescription>();
-                  final Procedure1<EObject> _function_3 = (EObject e) -> {
-                    if ((e instanceof PatternNode)) {
-                      IEObjectDescription _create = EObjectDescription.create(((PatternNode)e).getName(), e);
-                      objects_1.add(_create);
-                    }
-                  };
-                  IteratorExtensions.<EObject>forEach(pattern.eAllContents(), _function_3);
-                  return new SimpleScope(objects_1);
+                if ((reference == BXCorePackage.Literals.PATTERN_EDGE__FEATURE)) {
+                  final PatternNode node = this.getPatternNode(context);
+                  EClassifier _type_1 = node.getType();
+                  if ((_type_1 instanceof EClass)) {
+                    EClassifier _type_2 = node.getType();
+                    return this.featureScope(((EClass) _type_2));
+                  } else {
+                    return IScope.NULLSCOPE;
+                  }
                 } else {
-                  if ((reference == BXCorePackage.Literals.DEFINED_CONTEXT_TYPE_REF__TYPE)) {
-                    final BXFunctionDefinition function = this.getFunction(context.eContainer());
-                    final BXProgram program = this.getProgram(context);
-                    final Function1<Definition, Boolean> _function_4 = (Definition it) -> {
-                      return Boolean.valueOf((it instanceof TypeDefinition));
+                  if ((reference == BXCorePackage.Literals.PATTERN_NODE_REF__NODE)) {
+                    final PatternDefinition pattern = this.getPattern(context);
+                    final ArrayList<IEObjectDescription> objects = new ArrayList<IEObjectDescription>();
+                    final Procedure1<EObject> _function_1 = (EObject e) -> {
+                      if ((e instanceof PatternNode)) {
+                        IEObjectDescription _create = EObjectDescription.create(((PatternNode)e).getName(), e);
+                        objects.add(_create);
+                      }
                     };
-                    final Iterable<Definition> types = IterableExtensions.<Definition>filter(program.getDefinitions(), _function_4);
-                    final Function1<Definition, Boolean> _function_5 = (Definition it) -> {
-                      return Boolean.valueOf((it instanceof PatternDefinition));
-                    };
-                    final Iterable<Definition> namedPatterns = IterableExtensions.<Definition>filter(program.getDefinitions(), _function_5);
-                    Iterator<EObject> _xifexpression = null;
-                    if ((function == null)) {
-                      _xifexpression = null;
-                    } else {
-                      final Function1<EObject, Boolean> _function_6 = (EObject it) -> {
+                    IteratorExtensions.<EObject>forEach(pattern.eAllContents(), _function_1);
+                    return new SimpleScope(objects);
+                  } else {
+                    if ((reference == BXCorePackage.Literals.DEFINED_CONTEXT_TYPE_REF__TYPE)) {
+                      final BXFunctionDefinition function = this.getFunction(context.eContainer());
+                      final BXProgram program = this.getProgram(context);
+                      final Function1<Definition, Boolean> _function_2 = (Definition it) -> {
+                        return Boolean.valueOf((it instanceof TypeDefinition));
+                      };
+                      final Iterable<Definition> types = IterableExtensions.<Definition>filter(program.getDefinitions(), _function_2);
+                      final Function1<Definition, Boolean> _function_3 = (Definition it) -> {
                         return Boolean.valueOf((it instanceof PatternDefinition));
                       };
-                      _xifexpression = IteratorExtensions.<EObject>filter(function.eAllContents(), _function_6);
-                    }
-                    final Iterator<EObject> patterns = _xifexpression;
-                    final ArrayList<IEObjectDescription> objects_2 = new ArrayList<IEObjectDescription>();
-                    final Consumer<Definition> _function_7 = (Definition t) -> {
-                      IEObjectDescription _create = EObjectDescription.create(t.getName(), t);
-                      objects_2.add(_create);
-                    };
-                    types.forEach(_function_7);
-                    final Consumer<Definition> _function_8 = (Definition p) -> {
-                      IEObjectDescription _create = EObjectDescription.create(((PatternDefinition) p).getName(), p);
-                      objects_2.add(_create);
-                    };
-                    namedPatterns.forEach(_function_8);
-                    if ((patterns != null)) {
-                      final Procedure1<EObject> _function_9 = (EObject p) -> {
+                      final Iterable<Definition> namedPatterns = IterableExtensions.<Definition>filter(program.getDefinitions(), _function_3);
+                      Iterator<EObject> _xifexpression = null;
+                      if ((function == null)) {
+                        _xifexpression = null;
+                      } else {
+                        final Function1<EObject, Boolean> _function_4 = (EObject it) -> {
+                          return Boolean.valueOf((it instanceof PatternDefinition));
+                        };
+                        _xifexpression = IteratorExtensions.<EObject>filter(function.eAllContents(), _function_4);
+                      }
+                      final Iterator<EObject> patterns = _xifexpression;
+                      final ArrayList<IEObjectDescription> objects_1 = new ArrayList<IEObjectDescription>();
+                      final Consumer<Definition> _function_5 = (Definition t) -> {
+                        IEObjectDescription _create = EObjectDescription.create(t.getName(), t);
+                        objects_1.add(_create);
+                      };
+                      types.forEach(_function_5);
+                      final Consumer<Definition> _function_6 = (Definition p) -> {
                         IEObjectDescription _create = EObjectDescription.create(((PatternDefinition) p).getName(), p);
-                        objects_2.add(_create);
+                        objects_1.add(_create);
                       };
-                      IteratorExtensions.<EObject>forEach(patterns, _function_9);
-                    }
-                    return new SimpleScope(objects_2);
-                  } else {
-                    if ((reference == BXCorePackage.Literals.EXPRESSION_CONVERSION__METAMODEL)) {
-                      final Function1<ImportSection, IEObjectDescription> _function_10 = (ImportSection it) -> {
-                        return EObjectDescription.create(it.getShortName(), it);
-                      };
-                      List<IEObjectDescription> _map = ListExtensions.<ImportSection, IEObjectDescription>map(this.getProgram(context).getImports(), _function_10);
-                      return new SimpleScope(_map);
+                      namedPatterns.forEach(_function_6);
+                      if ((patterns != null)) {
+                        final Procedure1<EObject> _function_7 = (EObject p) -> {
+                          IEObjectDescription _create = EObjectDescription.create(((PatternDefinition) p).getName(), p);
+                          objects_1.add(_create);
+                        };
+                        IteratorExtensions.<EObject>forEach(patterns, _function_7);
+                      }
+                      return new SimpleScope(objects_1);
                     } else {
-                      if ((reference == BXCorePackage.Literals.EXPRESSION_CONVERSION__TYPE)) {
-                        final EPackage pkg = ((ExpressionConversion) context).getMetamodel().getMetamodel();
-                        final Function1<EObject, Boolean> _function_11 = (EObject it) -> {
-                          return Boolean.valueOf((it instanceof EClass));
+                      if (((reference == BXCorePackage.Literals.EXPRESSION_CONVERSION__METAMODEL) || 
+                        (reference == BXCorePackage.Literals.NEW_INSTANCE_EXPRESSION__METAMODEL))) {
+                        final Function1<ImportSection, IEObjectDescription> _function_8 = (ImportSection it) -> {
+                          return EObjectDescription.create(it.getShortName(), it);
                         };
-                        final Function1<EObject, IEObjectDescription> _function_12 = (EObject it) -> {
-                          return EObjectDescription.create(((EClass) it).getName(), ((EClass) it));
-                        };
-                        final List<IEObjectDescription> classes = IteratorExtensions.<IEObjectDescription>toList(IteratorExtensions.<EObject, IEObjectDescription>map(IteratorExtensions.<EObject>filter(pkg.eAllContents(), _function_11), _function_12));
-                        return new SimpleScope(classes);
+                        List<IEObjectDescription> _map = ListExtensions.<ImportSection, IEObjectDescription>map(this.getProgram(context).getImports(), _function_8);
+                        return new SimpleScope(_map);
+                      } else {
+                        if ((reference == BXCorePackage.Literals.EXPRESSION_CONVERSION__TYPE)) {
+                          final EPackage pkg = ((ExpressionConversion) context).getMetamodel().getMetamodel();
+                          IScope _collectTypes = this.collectTypes(pkg);
+                          final Predicate<IEObjectDescription> _function_9 = (IEObjectDescription d) -> {
+                            EObject _eObjectOrProxy = d.getEObjectOrProxy();
+                            return (_eObjectOrProxy instanceof EClass);
+                          };
+                          return new FilteringScope(_collectTypes, _function_9);
+                        } else {
+                          if ((reference == BXCorePackage.Literals.NEW_INSTANCE_EXPRESSION__TYPE)) {
+                            final EPackage pkg_1 = ((NewInstanceExpression) context).getMetamodel().getMetamodel();
+                            IScope _collectTypes_1 = this.collectTypes(pkg_1);
+                            final Predicate<IEObjectDescription> _function_10 = (IEObjectDescription d) -> {
+                              EObject _eObjectOrProxy = d.getEObjectOrProxy();
+                              return (_eObjectOrProxy instanceof EClass);
+                            };
+                            return new FilteringScope(_collectTypes_1, _function_10);
+                          } else {
+                            if ((reference == BXCorePackage.Literals.NEW_INSTANCE_EXPRESSION__FEATURE)) {
+                              final EClass type_1 = ((NewInstanceExpression) context).getType();
+                              return this.featureScope(type_1);
+                            }
+                          }
+                        }
                       }
                     }
                   }
@@ -177,24 +200,29 @@ public class BXCoreScopeProvider extends AbstractBXCoreScopeProvider {
             }
           }
         }
+      } catch (final Throwable _t) {
+        if (_t instanceof Exception) {
+        } else {
+          throw Exceptions.sneakyThrow(_t);
+        }
       }
       _xblockexpression = super.getScope(context, reference);
     }
     return _xblockexpression;
   }
   
-  protected IScope collectTypes(final ImportSection importSection) {
+  protected IScope collectTypes(final EPackage metamodel) {
     IScope _xblockexpression = null;
     {
       final ArrayList<IEObjectDescription> objects = new ArrayList<IEObjectDescription>();
       IScope _xifexpression = null;
-      if ((importSection == null)) {
+      if ((metamodel == null)) {
         _xifexpression = SimpleScope.NULLSCOPE;
       } else {
         SimpleScope _xblockexpression_1 = null;
         {
           final HashSet<EClassifier> visited = new HashSet<EClassifier>();
-          final TreeIterator<EObject> itr = importSection.getMetamodel().eAllContents();
+          final TreeIterator<EObject> itr = metamodel.eAllContents();
           final Procedure1<EObject> _function = (EObject c) -> {
             if ((c instanceof EClassifier)) {
               objects.add(EObjectDescription.create(((EClassifier)c).getName(), c));
@@ -202,7 +230,7 @@ public class BXCoreScopeProvider extends AbstractBXCoreScopeProvider {
             }
           };
           IteratorExtensions.<EObject>forEach(itr, _function);
-          final TreeIterator<EObject> itr2 = importSection.getMetamodel().eAllContents();
+          final TreeIterator<EObject> itr2 = metamodel.eAllContents();
           final Procedure1<EObject> _function_1 = (EObject c) -> {
             if ((c instanceof EClass)) {
               final Consumer<EStructuralFeature> _function_2 = (EStructuralFeature f) -> {

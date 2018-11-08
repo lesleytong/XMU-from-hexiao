@@ -13,12 +13,14 @@ public class PatternEdge extends PatternElement<TypeEdge> implements IEdge {
 	}
 	public void setSource(PatternNode source) {
 		this.source = source;
+		if(source.isMany()) this.setMany(true);
 	}
 	public PatternNode getTarget() {
 		return target;
 	}
 	public void setTarget(PatternNode target) {
 		this.target = target;
+		if(target.isMany()) this.setMany(true);
 	}
 	
 	public String toString() {

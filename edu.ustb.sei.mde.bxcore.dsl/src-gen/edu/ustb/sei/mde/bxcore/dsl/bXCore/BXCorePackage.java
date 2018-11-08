@@ -376,13 +376,22 @@ public interface BXCorePackage extends EPackage
   int TYPE_VAR__TYPE = 1;
 
   /**
+   * The feature id for the '<em><b>Many</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TYPE_VAR__MANY = 2;
+
+  /**
    * The number of structural features of the '<em>Type Var</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int TYPE_VAR_FEATURE_COUNT = 2;
+  int TYPE_VAR_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PredefinedTypeLiteralImpl <em>Predefined Type Literal</em>}' class.
@@ -719,13 +728,22 @@ public interface BXCorePackage extends EPackage
   int PATTERN_NODE__TYPE = PATTERN_VALUE_CONDITION_FEATURE_COUNT + 1;
 
   /**
+   * The feature id for the '<em><b>Many</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PATTERN_NODE__MANY = PATTERN_VALUE_CONDITION_FEATURE_COUNT + 2;
+
+  /**
    * The feature id for the '<em><b>Edges</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PATTERN_NODE__EDGES = PATTERN_VALUE_CONDITION_FEATURE_COUNT + 2;
+  int PATTERN_NODE__EDGES = PATTERN_VALUE_CONDITION_FEATURE_COUNT + 3;
 
   /**
    * The number of structural features of the '<em>Pattern Node</em>' class.
@@ -734,7 +752,7 @@ public interface BXCorePackage extends EPackage
    * @generated
    * @ordered
    */
-  int PATTERN_NODE_FEATURE_COUNT = PATTERN_VALUE_CONDITION_FEATURE_COUNT + 3;
+  int PATTERN_NODE_FEATURE_COUNT = PATTERN_VALUE_CONDITION_FEATURE_COUNT + 4;
 
   /**
    * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PatternEdgeImpl <em>Pattern Edge</em>}' class.
@@ -765,13 +783,22 @@ public interface BXCorePackage extends EPackage
   int PATTERN_EDGE__FEATURE = 1;
 
   /**
+   * The feature id for the '<em><b>Many</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PATTERN_EDGE__MANY = 2;
+
+  /**
    * The feature id for the '<em><b>Operator</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PATTERN_EDGE__OPERATOR = 2;
+  int PATTERN_EDGE__OPERATOR = 3;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' containment reference.
@@ -780,7 +807,7 @@ public interface BXCorePackage extends EPackage
    * @generated
    * @ordered
    */
-  int PATTERN_EDGE__VALUE = 3;
+  int PATTERN_EDGE__VALUE = 4;
 
   /**
    * The number of structural features of the '<em>Pattern Edge</em>' class.
@@ -789,7 +816,7 @@ public interface BXCorePackage extends EPackage
    * @generated
    * @ordered
    */
-  int PATTERN_EDGE_FEATURE_COUNT = 4;
+  int PATTERN_EDGE_FEATURE_COUNT = 5;
 
   /**
    * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PatternNodeRefImpl <em>Pattern Node Ref</em>}' class.
@@ -1957,6 +1984,70 @@ public interface BXCorePackage extends EPackage
   int CONTEXT_PRIMARY_EXPRESSION_FEATURE_COUNT = CONTEXT_EXPRESSION_FEATURE_COUNT + 1;
 
   /**
+   * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.NewInstanceExpressionImpl <em>New Instance Expression</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.NewInstanceExpressionImpl
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getNewInstanceExpression()
+   * @generated
+   */
+  int NEW_INSTANCE_EXPRESSION = 51;
+
+  /**
+   * The feature id for the '<em><b>Side</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NEW_INSTANCE_EXPRESSION__SIDE = XbasePackage.XEXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Metamodel</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NEW_INSTANCE_EXPRESSION__METAMODEL = XbasePackage.XEXPRESSION_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NEW_INSTANCE_EXPRESSION__TYPE = XbasePackage.XEXPRESSION_FEATURE_COUNT + 2;
+
+  /**
+   * The feature id for the '<em><b>Feature</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NEW_INSTANCE_EXPRESSION__FEATURE = XbasePackage.XEXPRESSION_FEATURE_COUNT + 3;
+
+  /**
+   * The feature id for the '<em><b>Size</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NEW_INSTANCE_EXPRESSION__SIZE = XbasePackage.XEXPRESSION_FEATURE_COUNT + 4;
+
+  /**
+   * The number of structural features of the '<em>New Instance Expression</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NEW_INSTANCE_EXPRESSION_FEATURE_COUNT = XbasePackage.XEXPRESSION_FEATURE_COUNT + 5;
+
+  /**
    * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.ModificationExpressionImpl <em>Modification Expression</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1964,7 +2055,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getModificationExpression()
    * @generated
    */
-  int MODIFICATION_EXPRESSION = 51;
+  int MODIFICATION_EXPRESSION = 52;
 
   /**
    * The number of structural features of the '<em>Modification Expression</em>' class.
@@ -1983,7 +2074,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getEnforcementExpression()
    * @generated
    */
-  int ENFORCEMENT_EXPRESSION = 52;
+  int ENFORCEMENT_EXPRESSION = 53;
 
   /**
    * The feature id for the '<em><b>Pattern</b></em>' containment reference.
@@ -2020,7 +2111,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getDeleteElementExpression()
    * @generated
    */
-  int DELETE_ELEMENT_EXPRESSION = 53;
+  int DELETE_ELEMENT_EXPRESSION = 54;
 
   /**
    * The feature id for the '<em><b>Element</b></em>' containment reference.
@@ -2048,7 +2139,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getValueMapping()
    * @generated
    */
-  int VALUE_MAPPING = 54;
+  int VALUE_MAPPING = 55;
 
   /**
    * The feature id for the '<em><b>Var Name</b></em>' attribute.
@@ -2085,7 +2176,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getDefinedContextTypeRef()
    * @generated
    */
-  int DEFINED_CONTEXT_TYPE_REF = 55;
+  int DEFINED_CONTEXT_TYPE_REF = 56;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -2113,7 +2204,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getEcoreTypeRef()
    * @generated
    */
-  int ECORE_TYPE_REF = 56;
+  int ECORE_TYPE_REF = 57;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -2141,7 +2232,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getFeatureTypeRef()
    * @generated
    */
-  int FEATURE_TYPE_REF = 57;
+  int FEATURE_TYPE_REF = 58;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -2178,7 +2269,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getNavigationExpression()
    * @generated
    */
-  int NAVIGATION_EXPRESSION = 58;
+  int NAVIGATION_EXPRESSION = 59;
 
   /**
    * The feature id for the '<em><b>Host</b></em>' containment reference.
@@ -2215,7 +2306,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getContextVarExpression()
    * @generated
    */
-  int CONTEXT_VAR_EXPRESSION = 59;
+  int CONTEXT_VAR_EXPRESSION = 60;
 
   /**
    * The feature id for the '<em><b>Side</b></em>' attribute.
@@ -2252,7 +2343,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getExpressionConversion()
    * @generated
    */
-  int EXPRESSION_CONVERSION = 60;
+  int EXPRESSION_CONVERSION = 61;
 
   /**
    * The feature id for the '<em><b>Side</b></em>' attribute.
@@ -2316,7 +2407,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getModificationExpressionBlock()
    * @generated
    */
-  int MODIFICATION_EXPRESSION_BLOCK = 61;
+  int MODIFICATION_EXPRESSION_BLOCK = 62;
 
   /**
    * The feature id for the '<em><b>Expressions</b></em>' containment reference list.
@@ -2344,7 +2435,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getSideEnum()
    * @generated
    */
-  int SIDE_ENUM = 62;
+  int SIDE_ENUM = 63;
 
 
   /**
@@ -2614,6 +2705,17 @@ public interface BXCorePackage extends EPackage
   EReference getTypeVar_Type();
 
   /**
+   * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeVar#isMany <em>Many</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Many</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeVar#isMany()
+   * @see #getTypeVar()
+   * @generated
+   */
+  EAttribute getTypeVar_Many();
+
+  /**
    * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PredefinedTypeLiteral <em>Predefined Type Literal</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2836,6 +2938,17 @@ public interface BXCorePackage extends EPackage
   EReference getPatternNode_Type();
 
   /**
+   * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternNode#isMany <em>Many</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Many</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternNode#isMany()
+   * @see #getPatternNode()
+   * @generated
+   */
+  EAttribute getPatternNode_Many();
+
+  /**
    * Returns the meta object for the containment reference list '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternNode#getEdges <em>Edges</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2877,6 +2990,17 @@ public interface BXCorePackage extends EPackage
    * @generated
    */
   EReference getPatternEdge_Feature();
+
+  /**
+   * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternEdge#isMany <em>Many</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Many</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternEdge#isMany()
+   * @see #getPatternEdge()
+   * @generated
+   */
+  EAttribute getPatternEdge_Many();
 
   /**
    * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternEdge#getOperator <em>Operator</em>}'.
@@ -3793,6 +3917,71 @@ public interface BXCorePackage extends EPackage
   EAttribute getContextPrimaryExpression_Side();
 
   /**
+   * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression <em>New Instance Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>New Instance Expression</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression
+   * @generated
+   */
+  EClass getNewInstanceExpression();
+
+  /**
+   * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression#getSide <em>Side</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Side</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression#getSide()
+   * @see #getNewInstanceExpression()
+   * @generated
+   */
+  EAttribute getNewInstanceExpression_Side();
+
+  /**
+   * Returns the meta object for the reference '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression#getMetamodel <em>Metamodel</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Metamodel</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression#getMetamodel()
+   * @see #getNewInstanceExpression()
+   * @generated
+   */
+  EReference getNewInstanceExpression_Metamodel();
+
+  /**
+   * Returns the meta object for the reference '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Type</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression#getType()
+   * @see #getNewInstanceExpression()
+   * @generated
+   */
+  EReference getNewInstanceExpression_Type();
+
+  /**
+   * Returns the meta object for the reference '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression#getFeature <em>Feature</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Feature</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression#getFeature()
+   * @see #getNewInstanceExpression()
+   * @generated
+   */
+  EReference getNewInstanceExpression_Feature();
+
+  /**
+   * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression#getSize <em>Size</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Size</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression#getSize()
+   * @see #getNewInstanceExpression()
+   * @generated
+   */
+  EReference getNewInstanceExpression_Size();
+
+  /**
    * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpression <em>Modification Expression</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -4319,6 +4508,14 @@ public interface BXCorePackage extends EPackage
     EReference TYPE_VAR__TYPE = eINSTANCE.getTypeVar_Type();
 
     /**
+     * The meta object literal for the '<em><b>Many</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute TYPE_VAR__MANY = eINSTANCE.getTypeVar_Many();
+
+    /**
      * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PredefinedTypeLiteralImpl <em>Predefined Type Literal</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -4505,6 +4702,14 @@ public interface BXCorePackage extends EPackage
     EReference PATTERN_NODE__TYPE = eINSTANCE.getPatternNode_Type();
 
     /**
+     * The meta object literal for the '<em><b>Many</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PATTERN_NODE__MANY = eINSTANCE.getPatternNode_Many();
+
+    /**
      * The meta object literal for the '<em><b>Edges</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -4537,6 +4742,14 @@ public interface BXCorePackage extends EPackage
      * @generated
      */
     EReference PATTERN_EDGE__FEATURE = eINSTANCE.getPatternEdge_Feature();
+
+    /**
+     * The meta object literal for the '<em><b>Many</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PATTERN_EDGE__MANY = eINSTANCE.getPatternEdge_Many();
 
     /**
      * The meta object literal for the '<em><b>Operator</b></em>' attribute feature.
@@ -5289,6 +5502,56 @@ public interface BXCorePackage extends EPackage
      * @generated
      */
     EAttribute CONTEXT_PRIMARY_EXPRESSION__SIDE = eINSTANCE.getContextPrimaryExpression_Side();
+
+    /**
+     * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.NewInstanceExpressionImpl <em>New Instance Expression</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.NewInstanceExpressionImpl
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getNewInstanceExpression()
+     * @generated
+     */
+    EClass NEW_INSTANCE_EXPRESSION = eINSTANCE.getNewInstanceExpression();
+
+    /**
+     * The meta object literal for the '<em><b>Side</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute NEW_INSTANCE_EXPRESSION__SIDE = eINSTANCE.getNewInstanceExpression_Side();
+
+    /**
+     * The meta object literal for the '<em><b>Metamodel</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference NEW_INSTANCE_EXPRESSION__METAMODEL = eINSTANCE.getNewInstanceExpression_Metamodel();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference NEW_INSTANCE_EXPRESSION__TYPE = eINSTANCE.getNewInstanceExpression_Type();
+
+    /**
+     * The meta object literal for the '<em><b>Feature</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference NEW_INSTANCE_EXPRESSION__FEATURE = eINSTANCE.getNewInstanceExpression_Feature();
+
+    /**
+     * The meta object literal for the '<em><b>Size</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference NEW_INSTANCE_EXPRESSION__SIZE = eINSTANCE.getNewInstanceExpression_Size();
 
     /**
      * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.ModificationExpressionImpl <em>Modification Expression</em>}' class.

@@ -1,5 +1,6 @@
 package edu.ustb.sei.mde.bxcore;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,11 +18,16 @@ import edu.ustb.sei.mde.structure.Tuple3;
 
 public class Fork extends XmuCore {
 	private Tuple3<Tuple2<String,String>[],Tuple2<String,String>[], XmuCore>[] forks;
+	private Tuple2<String,String>[][] allSourceMappings;
+	private Tuple2<String,String>[][] allViewMappings;
 
+	@SuppressWarnings("unchecked")
 	public Fork(Object key, ContextType sourceDef, ContextType viewDef, Tuple3<Tuple2<String,String>[],Tuple2<String,String>[], XmuCore>[] forks) 
 			throws BidirectionalTransformationDefinitionException {
 		super(key, sourceDef, viewDef);
 		this.forks = forks;
+		this.allSourceMappings = (Tuple2<String, String>[][]) Arrays.stream(forks).map(f->f.first).toArray(i->new Tuple2[i][]);
+		this.allViewMappings = (Tuple2<String, String>[][]) Arrays.stream(forks).map(f->f.second).toArray(i->new Tuple2[i][]);
 		
 		checkWellDefinedness();
 	}
@@ -102,7 +108,7 @@ public class Fork extends XmuCore {
 		
 		for(FieldDef<?> uk : upstreamViewType.fields()) {
 			try {
-				upstreamView.setValue(uk, summarize(viewResults,uk));
+				upstreamView.setValue(uk, ViewType.summarize(viewResults,uk,allViewMappings, this));
 			} catch (Exception e) {
 				if(uk.isElementType()) {
 					Object common = IndexSystem.generateUUID();
@@ -110,7 +116,7 @@ public class Fork extends XmuCore {
 					
 					for(int i=0;i<viewResults.length;i++) {
 						ViewType v = viewResults[i];
-						if(v==null) continue;
+						if(v==null || v==ViewType.empty()) continue;
 						Tuple2<String,String>[] mappings = this.forks[i].second;
 						Set<FieldDef<?>> dks = XmuCoreUtils.findDownKeys(uk, mappings,this.forks[i].third.getViewDef());
 						for(FieldDef<?> dk : dks) {
@@ -130,7 +136,7 @@ public class Fork extends XmuCore {
 		TypedGraph finalView = null;
 		for(int i=0;i<this.forks.length;i++) {
 			ViewType v = viewResults[i];
-			if(v==null) continue;
+			if(v==null || v==ViewType.empty()) continue;
 			v.second.setUpstream(upstreamView, this.forks[i].second);
 			v.second.submit();
 			if(finalView==null) finalView = v.first;
@@ -143,64 +149,64 @@ public class Fork extends XmuCore {
 		return ViewType.makeView(finalView, upstreamView);
 	}
 
-	private Object summarize(ViewType[] result, FieldDef<?> vk) throws NothingReturnedException {
-		Object value = null;
-		boolean init = false;
-		
-		for(int i=0;i<result.length;i++) {
-			ViewType v = result[i];
-			if(v==null) continue;
-			Tuple2<String, String>[] mappings = forks[i].second;
-			
-			for(Tuple2<String, String> m : mappings) {
-				if(m.first.equals(vk.getName())==false) continue;
-				try {
-					Object downValue = v.second.getValue(m.second);
-					if(!init) {
-						value = downValue;
-						init = true;
-					} else if(value.equals(downValue)==false)
-						return internalError();
-				} catch(NothingReturnedException e) {
-				} catch (Exception e) {
-					return nothing(e);
-				}
-			}
-		}
-		
-		if(init) return value;
-		else return nothing();
-	}
+//	private Object summarize(ViewType[] result, FieldDef<?> vk) throws NothingReturnedException {
+//		Object value = null;
+//		boolean init = false;
+//		
+//		for(int i=0;i<result.length;i++) {
+//			ViewType v = result[i];
+//			if(v==null || v==ViewType.empty()) continue;
+//			Tuple2<String, String>[] mappings = forks[i].second;
+//			
+//			for(Tuple2<String, String> m : mappings) {
+//				if(m.first.equals(vk.getName())==false) continue;
+//				try {
+//					Object downValue = v.second.getValue(m.second);
+//					if(!init) {
+//						value = downValue;
+//						init = true;
+//					} else if(value.equals(downValue)==false)
+//						return internalError();
+//				} catch(NothingReturnedException e) {
+//				} catch (Exception e) {
+//					return nothing(e);
+//				}
+//			}
+//		}
+//		
+//		if(init) return value;
+//		else return nothing();
+//	}
 	
-	private Object summarize(SourceType[] result,  FieldDef<?> sk) throws NothingReturnedException {
-		Object value = null;
-		boolean init = false;
-		
-		
-		for(int i=0;i<result.length;i++) {
-			SourceType s = result[i];
-			Tuple2<String, String>[] mappings = forks[i].first;
-			
-			for(Tuple2<String, String> m : mappings) {
-				if(m.first.equals(sk.getName())==false) continue;
-				
-				try {
-					Object downValue = s.second.getValue(m.second);
-					if(!init) {
-						value = downValue;
-						init = true;
-					} else if(value.equals(downValue)==false)
-						return internalError();
-				} catch (NothingReturnedException e) {
-				} catch (Exception e) {
-					return nothing(e);
-				}
-			}
-		}
-		
-		if(init) return value;
-		else return nothing();
-	}
+//	private Object summarize(SourceType[] result,  FieldDef<?> sk) throws NothingReturnedException {
+//		Object value = null;
+//		boolean init = false;
+//		
+//		
+//		for(int i=0;i<result.length;i++) {
+//			SourceType s = result[i];
+//			Tuple2<String, String>[] mappings = forks[i].first;
+//			
+//			for(Tuple2<String, String> m : mappings) {
+//				if(m.first.equals(sk.getName())==false) continue;
+//				
+//				try {
+//					Object downValue = s.second.getValue(m.second);
+//					if(!init) {
+//						value = downValue;
+//						init = true;
+//					} else if(value.equals(downValue)==false)
+//						return internalError();
+//				} catch (NothingReturnedException e) {
+//				} catch (Exception e) {
+//					return nothing(e);
+//				}
+//			}
+//		}
+//		
+//		if(init) return value;
+//		else return nothing();
+//	}
 
 	@Override
 	public SourceType backward(SourceType s, ViewType v) throws NothingReturnedException {
@@ -237,7 +243,7 @@ public class Fork extends XmuCore {
 		
 		for(FieldDef<?> uk : st.fields()) {
 			try {
-				finalSourcePost.setValue(uk, summarize(sourceResults, uk));
+				finalSourcePost.setValue(uk, SourceType.summarize(sourceResults, uk, allSourceMappings, this));
 			} catch (Exception e) {
 				if(uk.isElementType()) {
 					Object value = IndexSystem.generateUUID();

@@ -21,6 +21,7 @@ import edu.ustb.sei.mde.bxcore.dsl.infer.TypeInferenceException;
 import edu.ustb.sei.mde.bxcore.dsl.infer.UnsolvedTupleType;
 import edu.ustb.sei.mde.bxcore.dsl.structure.TupleType;
 import edu.ustb.sei.mde.structure.Tuple2;
+import edu.ustb.sei.mde.structure.Tuple3;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -258,10 +259,10 @@ public class ModelInferrerUtils {
             } else {
               Pair<EClassifier, Boolean> _xblockexpression_2 = null;
               {
-                final Function1<Tuple2<String, Object>, Boolean> _function = (Tuple2<String, Object> it) -> {
+                final Function1<Tuple3<String, Object, Boolean>, Boolean> _function = (Tuple3<String, Object, Boolean> it) -> {
                   return Boolean.valueOf(it.first.equals(varName));
                 };
-                final Tuple2<String, Object> typeDef = IterableExtensions.<Tuple2<String, Object>>findFirst(tupleType.tuples, _function);
+                final Tuple3<String, Object, Boolean> typeDef = IterableExtensions.<Tuple3<String, Object, Boolean>>findFirst(tupleType.tuples, _function);
                 Pair<EClassifier, Boolean> _xifexpression_2 = null;
                 if ((typeDef == null)) {
                   _xifexpression_2 = null;

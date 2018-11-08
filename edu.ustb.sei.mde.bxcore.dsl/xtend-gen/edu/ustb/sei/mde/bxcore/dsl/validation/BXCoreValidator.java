@@ -22,6 +22,7 @@ import edu.ustb.sei.mde.bxcore.dsl.infer.TypeInferenceException;
 import edu.ustb.sei.mde.bxcore.dsl.structure.TupleType;
 import edu.ustb.sei.mde.bxcore.dsl.validation.AbstractBXCoreValidator;
 import edu.ustb.sei.mde.structure.Tuple2;
+import edu.ustb.sei.mde.structure.Tuple3;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -112,10 +113,10 @@ public class BXCoreValidator extends AbstractBXCoreValidator {
             final TupleType viwType = data.getViewInfer().getType(statement);
             final Consumer<Conversion> _function = (Conversion c) -> {
               final Function1<String, Boolean> _function_1 = (String s) -> {
-                final Function1<Tuple2<String, Object>, Boolean> _function_2 = (Tuple2<String, Object> t) -> {
+                final Function1<Tuple3<String, Object, Boolean>, Boolean> _function_2 = (Tuple3<String, Object, Boolean> t) -> {
                   return Boolean.valueOf(t.first.equals(s));
                 };
-                boolean _exists = IterableExtensions.<Tuple2<String, Object>>exists(srcType.tuples, _function_2);
+                boolean _exists = IterableExtensions.<Tuple3<String, Object, Boolean>>exists(srcType.tuples, _function_2);
                 return Boolean.valueOf((!_exists));
               };
               boolean _exists = IterableExtensions.<String>exists(c.getSource(), _function_1);
@@ -123,10 +124,10 @@ public class BXCoreValidator extends AbstractBXCoreValidator {
                 this.error("undefined source variable", c);
               }
               final Function1<String, Boolean> _function_2 = (String s) -> {
-                final Function1<Tuple2<String, Object>, Boolean> _function_3 = (Tuple2<String, Object> t) -> {
+                final Function1<Tuple3<String, Object, Boolean>, Boolean> _function_3 = (Tuple3<String, Object, Boolean> t) -> {
                   return Boolean.valueOf(t.first.equals(s));
                 };
-                boolean _exists_1 = IterableExtensions.<Tuple2<String, Object>>exists(viwType.tuples, _function_3);
+                boolean _exists_1 = IterableExtensions.<Tuple3<String, Object, Boolean>>exists(viwType.tuples, _function_3);
                 return Boolean.valueOf((!_exists_1));
               };
               boolean _exists_1 = IterableExtensions.<String>exists(c.getView(), _function_2);

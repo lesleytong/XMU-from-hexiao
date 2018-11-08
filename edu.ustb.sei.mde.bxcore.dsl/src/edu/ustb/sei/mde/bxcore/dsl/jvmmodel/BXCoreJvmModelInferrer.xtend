@@ -219,9 +219,7 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 				];
 				
 
-				val patternLiterals = element.eAllContents.filter[it instanceof PatternTypeLiteral].map [
-					it as PatternTypeLiteral
-				].indexed.toList;
+				val patternLiterals = data.patternLiterals;
 				
 				if(!isPreIndexingPhase)
 					patternLiterals.forEach[p|generatePatternLiteral(it, p.value, p.key, typeLiteralMap, conditions, element);];
@@ -339,7 +337,7 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 					pattern_«id» = new «Pattern.typeRef.qualifiedName»(typeGraph);
 					«FOR node : nodes»
 						«ITypeNode.typeRef.qualifiedName» «node.name»_type = typeGraph.«IF node.type instanceof EClass»getTypeNode«ELSE»getDataTypeNode«ENDIF»("«node.type.name»");
-						pattern_«id».appendPatternNode("«node.name»", «node.name»_type);
+						pattern_«id».appendPatternNode("«node.name»", «node.name»_type,«node.many»);
 					«ENDFOR»
 					«FOR edge : edges»
 						«val tarNode = if(edge.value instanceof PatternNode) edge.value as PatternNode else if(edge.value instanceof PatternNodeRef) (edge.value as PatternNodeRef).node else null»
@@ -715,7 +713,7 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 						«varName» = new «ContextType.typeRef.qualifiedName»();
 						«FOR v : elements»
 						Object «v.first»_type = typeGraph.«IF v.second instanceof EClassifier»«IF v.second instanceof EClass»getTypeNode«ELSE»getDataTypeNode«ENDIF»("«(v.second as EClassifier).name»")«ELSEIF v.second instanceof EStructuralFeature»«IF v.second instanceof EReference»getTypeEdge«ELSE»getPropertyEdge«ENDIF»(typeGraph.getTypeNode("«(v.second as EStructuralFeature).EContainingClass.name»"),"«(v.second as EStructuralFeature).name»")«ELSE»/* ERROR «v.second» */«ENDIF»;
-						«varName».addField("«v.first»", «v.first»_type);
+						«varName».addField("«v.first»", «v.first»_type, «v.third»);
 					«ENDFOR»
 					«ENDIF»
 				}

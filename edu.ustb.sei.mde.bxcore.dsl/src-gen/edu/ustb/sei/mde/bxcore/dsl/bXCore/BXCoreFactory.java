@@ -483,6 +483,15 @@ public interface BXCoreFactory extends EFactory
   ContextPrimaryExpression createContextPrimaryExpression();
 
   /**
+   * Returns a new object of class '<em>New Instance Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>New Instance Expression</em>'.
+   * @generated
+   */
+  NewInstanceExpression createNewInstanceExpression();
+
+  /**
    * Returns a new object of class '<em>Modification Expression</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

@@ -7,6 +7,7 @@ import java.util.Map
 import org.eclipse.emf.ecore.resource.Resource
 import edu.ustb.sei.mde.bxcore.XmuCoreUtils
 import java.util.logging.Level
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternTypeLiteral
 
 class InferManager {
 	static public Map<Resource, InferData> inferredDataMap = new HashMap;
@@ -43,6 +44,9 @@ class InferManager {
 		data.setLiteralMap(literalMap);
 		data.setSourceInfer(infer.first);
 		data.setViewInfer(infer.second);
+		
+		val patternLiterals = program.eAllContents.filter[it instanceof PatternTypeLiteral].map [it as PatternTypeLiteral].indexed.toList;
+		data.patternLiterals = patternLiterals;
 		
 		inferredDataMap.put(resource,data);
 		XmuCoreUtils.log(Level.INFO, "infer created",null);

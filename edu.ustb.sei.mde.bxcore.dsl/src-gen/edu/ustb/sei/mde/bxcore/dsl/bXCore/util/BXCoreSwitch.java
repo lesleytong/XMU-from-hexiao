@@ -481,6 +481,14 @@ public class BXCoreSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case BXCorePackage.NEW_INSTANCE_EXPRESSION:
+      {
+        NewInstanceExpression newInstanceExpression = (NewInstanceExpression)theEObject;
+        T result = caseNewInstanceExpression(newInstanceExpression);
+        if (result == null) result = caseXExpression(newInstanceExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case BXCorePackage.MODIFICATION_EXPRESSION:
       {
         ModificationExpression modificationExpression = (ModificationExpression)theEObject;
@@ -1391,6 +1399,22 @@ public class BXCoreSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseContextPrimaryExpression(ContextPrimaryExpression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>New Instance Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>New Instance Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseNewInstanceExpression(NewInstanceExpression object)
   {
     return null;
   }

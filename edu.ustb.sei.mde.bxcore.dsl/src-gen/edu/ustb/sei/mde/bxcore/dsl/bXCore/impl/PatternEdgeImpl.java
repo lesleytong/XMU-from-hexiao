@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PatternEdgeImpl#getName <em>Name</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PatternEdgeImpl#getFeature <em>Feature</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PatternEdgeImpl#isMany <em>Many</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PatternEdgeImpl#getOperator <em>Operator</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PatternEdgeImpl#getValue <em>Value</em>}</li>
  * </ul>
@@ -64,6 +65,26 @@ public class PatternEdgeImpl extends MinimalEObjectImpl.Container implements Pat
    * @ordered
    */
   protected EStructuralFeature feature;
+
+  /**
+   * The default value of the '{@link #isMany() <em>Many</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isMany()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean MANY_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isMany() <em>Many</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isMany()
+   * @generated
+   * @ordered
+   */
+  protected boolean many = MANY_EDEFAULT;
 
   /**
    * The default value of the '{@link #getOperator() <em>Operator</em>}' attribute.
@@ -187,6 +208,29 @@ public class PatternEdgeImpl extends MinimalEObjectImpl.Container implements Pat
    * <!-- end-user-doc -->
    * @generated
    */
+  public boolean isMany()
+  {
+    return many;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setMany(boolean newMany)
+  {
+    boolean oldMany = many;
+    many = newMany;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, BXCorePackage.PATTERN_EDGE__MANY, oldMany, many));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public String getOperator()
   {
     return operator;
@@ -284,6 +328,8 @@ public class PatternEdgeImpl extends MinimalEObjectImpl.Container implements Pat
       case BXCorePackage.PATTERN_EDGE__FEATURE:
         if (resolve) return getFeature();
         return basicGetFeature();
+      case BXCorePackage.PATTERN_EDGE__MANY:
+        return isMany();
       case BXCorePackage.PATTERN_EDGE__OPERATOR:
         return getOperator();
       case BXCorePackage.PATTERN_EDGE__VALUE:
@@ -307,6 +353,9 @@ public class PatternEdgeImpl extends MinimalEObjectImpl.Container implements Pat
         return;
       case BXCorePackage.PATTERN_EDGE__FEATURE:
         setFeature((EStructuralFeature)newValue);
+        return;
+      case BXCorePackage.PATTERN_EDGE__MANY:
+        setMany((Boolean)newValue);
         return;
       case BXCorePackage.PATTERN_EDGE__OPERATOR:
         setOperator((String)newValue);
@@ -334,6 +383,9 @@ public class PatternEdgeImpl extends MinimalEObjectImpl.Container implements Pat
       case BXCorePackage.PATTERN_EDGE__FEATURE:
         setFeature((EStructuralFeature)null);
         return;
+      case BXCorePackage.PATTERN_EDGE__MANY:
+        setMany(MANY_EDEFAULT);
+        return;
       case BXCorePackage.PATTERN_EDGE__OPERATOR:
         setOperator(OPERATOR_EDEFAULT);
         return;
@@ -358,6 +410,8 @@ public class PatternEdgeImpl extends MinimalEObjectImpl.Container implements Pat
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case BXCorePackage.PATTERN_EDGE__FEATURE:
         return feature != null;
+      case BXCorePackage.PATTERN_EDGE__MANY:
+        return many != MANY_EDEFAULT;
       case BXCorePackage.PATTERN_EDGE__OPERATOR:
         return OPERATOR_EDEFAULT == null ? operator != null : !OPERATOR_EDEFAULT.equals(operator);
       case BXCorePackage.PATTERN_EDGE__VALUE:
@@ -379,6 +433,8 @@ public class PatternEdgeImpl extends MinimalEObjectImpl.Container implements Pat
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (name: ");
     result.append(name);
+    result.append(", many: ");
+    result.append(many);
     result.append(", operator: ");
     result.append(operator);
     result.append(')');

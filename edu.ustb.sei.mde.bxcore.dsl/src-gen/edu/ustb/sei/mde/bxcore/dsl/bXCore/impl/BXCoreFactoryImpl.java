@@ -117,6 +117,7 @@ public class BXCoreFactoryImpl extends EFactoryImpl implements BXCoreFactory
       case BXCorePackage.CUSTOMIZED_BI_GUL_REFERENCE: return createCustomizedBiGULReference();
       case BXCorePackage.CONTEXT_EXPRESSION: return createContextExpression();
       case BXCorePackage.CONTEXT_PRIMARY_EXPRESSION: return createContextPrimaryExpression();
+      case BXCorePackage.NEW_INSTANCE_EXPRESSION: return createNewInstanceExpression();
       case BXCorePackage.MODIFICATION_EXPRESSION: return createModificationExpression();
       case BXCorePackage.ENFORCEMENT_EXPRESSION: return createEnforcementExpression();
       case BXCorePackage.DELETE_ELEMENT_EXPRESSION: return createDeleteElementExpression();
@@ -726,6 +727,17 @@ public class BXCoreFactoryImpl extends EFactoryImpl implements BXCoreFactory
   {
     ContextPrimaryExpressionImpl contextPrimaryExpression = new ContextPrimaryExpressionImpl();
     return contextPrimaryExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NewInstanceExpression createNewInstanceExpression()
+  {
+    NewInstanceExpressionImpl newInstanceExpression = new NewInstanceExpressionImpl();
+    return newInstanceExpression;
   }
 
   /**

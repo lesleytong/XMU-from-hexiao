@@ -28,4 +28,21 @@ public class Tuple3<F, S, T> {
 	public Tuple3<F, S, T> replaceThird(T t) {
 		return Tuple3.make(first, second, t);
 	}
+	
+	@Override
+	public int hashCode() {
+		int firstCode = first==null ? 0 : first.hashCode();
+		int secondCode = second==null ? 0 : second.hashCode();
+		int thirdCode = third==null ? 0 : third.hashCode();
+		return ((firstCode&0xFFFF)<<20) & ((secondCode&0xFFFF)<<10) & (thirdCode&0xFFFF);
+	}
+	
+	@SuppressWarnings("rawtypes")
+	public boolean equals(Object o) {
+		if(o==null || ! (o instanceof Tuple3))
+			return false;
+		else return ((first!=null && first.equals(((Tuple3)o).first)) || (first==null && ((Tuple3)o).first==null))
+				&& ((second!=null && second.equals(((Tuple3)o).second)) || (second==null && ((Tuple3)o).second==null))
+				&& ((third!=null && third.equals(((Tuple3)o).third)) || (third==null && ((Tuple3)o).third==null));
+	}
 }

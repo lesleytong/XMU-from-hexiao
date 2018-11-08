@@ -48,7 +48,7 @@ public class MatchSource extends XmuCore {
 			
 			SourceType innerSource = SourceType.makeSource(s.first, downstreamSource, s.third);
 			ViewType v = body.forward(innerSource);
-			if(v==null) return null;
+			if(v==null || v==ViewType.empty()) return v;
 			
 			submit(downstreamSource);
 			v.first.setConstraint(getConsistencyConstraint());

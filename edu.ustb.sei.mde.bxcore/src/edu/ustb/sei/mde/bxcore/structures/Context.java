@@ -46,10 +46,6 @@ public class Context {
 		upstreamMapping =  ContextMapping.expend(c, this);
 	}
 	
-//	public void setUpstreamJoint(Context c) {
-//		upstreamMapping =  ContextMapping.include(c, this);
-//	}
-	
 	public void setUpstream(Context c, Tuple2<String,String>[] keyMappings) {
 		upstreamMapping = ContextMapping.transform(c, this, keyMappings);
 	}
@@ -76,6 +72,7 @@ public class Context {
 	@Override
 	public boolean equals(Object obj) {
 		if(obj==null || !(obj instanceof Context)) return false;
+		if(this==obj) return true;
 		return isIdentifical(this, (Context)obj);
 	}
 		
@@ -86,24 +83,57 @@ public class Context {
 		setValue(field, value);
 	}
 	
+	@SuppressWarnings("unchecked")
 	public <T> void setValue(FieldDef<?> key, T value) {
 		if(key!=null) {
-			if(value instanceof java.util.UUID) {
-				valueMap.put(key, Optional.of(Index.freshIndex(value)));
+			if(key.isMany()) {
+				List<Object> values = null;
+				if(value==null) values = Collections.emptyList();
+				else if(value instanceof List) 
+					values = new ArrayList<>((List<Object>) value);
+				else {
+					values = new ArrayList<>();
+					values.add((Object)value);
+				}
+				
+				for(int i=0;i<values.size();i++) {
+					values.set(i, unboxing(values.get(i)));
+				}
+				
+				valueMap.put(key, Optional.of(values));
 			} else {
-				if(value instanceof IndexableElement) {
-					if(((IndexableElement) value).isIndexable()) {
-						valueMap.put(key, Optional.of(((IndexableElement) value).getIndex()));
-					} else { // the only un-indexable element is  value node
-						valueMap.put(key, Optional.of(((ValueNode)value).getValue()));
-					}
-				} else valueMap.put(key, Optional.of(value));
+				valueMap.put(key, Optional.of(unboxing(value)));
+//				if(value instanceof java.util.UUID) {
+//					valueMap.put(key, Optional.of(Index.freshIndex(value)));
+//				} else {
+//					if(value instanceof IndexableElement) {
+//						if(((IndexableElement) value).isIndexable()) {
+//							valueMap.put(key, Optional.of(((IndexableElement) value).getIndex()));
+//						} else { // the only un-indexable element is  value node
+//							valueMap.put(key, Optional.of(((ValueNode)value).getValue()));
+//						}
+//					} else valueMap.put(key, Optional.of(value));
+//				}
 			}
 		} else {
 			XmuCoreUtils.failure("You are trying to map a value onto an unregistered key in the context");
 		}
 	}
 	
+	private Object unboxing(Object value) {
+		if(value instanceof java.util.UUID) {
+			return Index.freshIndex(value);
+		} else {
+			if(value instanceof IndexableElement) {
+				if(((IndexableElement) value).isIndexable()) {
+					return ((IndexableElement) value).getIndex();
+				} else { // the only un-indexable element is  value node
+					return ((ValueNode)value).getValue();
+				}
+			} else return value;
+		}
+	}
+
 	public void register(FieldDef<?> key) {
 		if(isRegistered(key)==false)
 			valueMap.put(key, Optional.empty());
@@ -134,10 +164,10 @@ public class Context {
 	public <T> T getPrimitiveValue(FieldDef<?> key) throws UninitializedException, NothingReturnedException {
 		return getValue(key);
 	}
-
-//	public boolean isRegistered(String name) {
-//		return valueMap.keySet().stream().anyMatch(k->k.getName().equals(name));
-//	}
+	
+	public <T> List<T> getListValue(FieldDef<?> key) throws UninitializedException, NothingReturnedException {
+		return getValue(key);
+	}
 	
 	public boolean isRegistered(FieldDef<?> def) {
 		return valueMap.containsKey(def);
@@ -154,7 +184,9 @@ public class Context {
 		if(left.getType().equals(right.getType())) {
 			return leftKeys.stream().allMatch(k->{
 				try {
-					return left.getValue(k).equals(right.getValue(k));
+					Object lv = left.getValue(k);
+					Object rv = right.getValue(k);
+					return lv==rv && (lv!=null && lv.equals(rv));
 				} catch(Exception e) {
 					return false;
 				}
@@ -450,5 +482,41 @@ public class Context {
 			}
 		}
 		return copy;
+	}
+	
+	public boolean isEqualForSingleValuedFields(Context context) {
+		for(FieldDef<?> f : this.getType().singleValuedFields()) {
+			Object lv = null;
+			Object rv = null;
+			
+			try {
+				lv = this.getValue(f);
+			} catch (Exception e) {
+				lv = null;
+			}
+			try {
+				rv = context.getValue(f);				
+			} catch (Exception e) {
+				rv = null;
+			}
+			
+			if(lv==rv || (lv!=null && lv.equals(rv))) continue;
+			else return false;
+		}
+		return true;
+	}
+
+	public void mergeMultiValuedFields(Context c) {
+		for(FieldDef<?> f : this.getType().fields()) {
+			if(f.isMany()) {
+				try {
+					List<Object> col = getListValue(f);
+					List<Object> add = c.getListValue(f);
+					col.addAll(add);
+				} catch (UninitializedException | NothingReturnedException e) {
+					// what should I do?
+				}
+			}
+		}
 	}
 }

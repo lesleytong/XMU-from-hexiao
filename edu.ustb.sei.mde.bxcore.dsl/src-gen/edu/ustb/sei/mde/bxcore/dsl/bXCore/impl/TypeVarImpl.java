@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.TypeVarImpl#getName <em>Name</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.TypeVarImpl#getType <em>Type</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.TypeVarImpl#isMany <em>Many</em>}</li>
  * </ul>
  *
  * @generated
@@ -61,6 +62,26 @@ public class TypeVarImpl extends MinimalEObjectImpl.Container implements TypeVar
    * @ordered
    */
   protected TypeRef type;
+
+  /**
+   * The default value of the '{@link #isMany() <em>Many</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isMany()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean MANY_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isMany() <em>Many</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isMany()
+   * @generated
+   * @ordered
+   */
+  protected boolean many = MANY_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -159,6 +180,29 @@ public class TypeVarImpl extends MinimalEObjectImpl.Container implements TypeVar
    * <!-- end-user-doc -->
    * @generated
    */
+  public boolean isMany()
+  {
+    return many;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setMany(boolean newMany)
+  {
+    boolean oldMany = many;
+    many = newMany;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, BXCorePackage.TYPE_VAR__MANY, oldMany, many));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -184,6 +228,8 @@ public class TypeVarImpl extends MinimalEObjectImpl.Container implements TypeVar
         return getName();
       case BXCorePackage.TYPE_VAR__TYPE:
         return getType();
+      case BXCorePackage.TYPE_VAR__MANY:
+        return isMany();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -203,6 +249,9 @@ public class TypeVarImpl extends MinimalEObjectImpl.Container implements TypeVar
         return;
       case BXCorePackage.TYPE_VAR__TYPE:
         setType((TypeRef)newValue);
+        return;
+      case BXCorePackage.TYPE_VAR__MANY:
+        setMany((Boolean)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -224,6 +273,9 @@ public class TypeVarImpl extends MinimalEObjectImpl.Container implements TypeVar
       case BXCorePackage.TYPE_VAR__TYPE:
         setType((TypeRef)null);
         return;
+      case BXCorePackage.TYPE_VAR__MANY:
+        setMany(MANY_EDEFAULT);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -242,6 +294,8 @@ public class TypeVarImpl extends MinimalEObjectImpl.Container implements TypeVar
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case BXCorePackage.TYPE_VAR__TYPE:
         return type != null;
+      case BXCorePackage.TYPE_VAR__MANY:
+        return many != MANY_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -259,6 +313,8 @@ public class TypeVarImpl extends MinimalEObjectImpl.Container implements TypeVar
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (name: ");
     result.append(name);
+    result.append(", many: ");
+    result.append(many);
     result.append(')');
     return result.toString();
   }

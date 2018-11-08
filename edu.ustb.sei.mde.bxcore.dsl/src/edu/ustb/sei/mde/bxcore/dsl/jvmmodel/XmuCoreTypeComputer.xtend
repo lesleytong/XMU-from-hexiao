@@ -1,8 +1,14 @@
 package edu.ustb.sei.mde.bxcore.dsl.jvmmodel
 
+import edu.ustb.sei.mde.bxcore.SourceType
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextVarExpression
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.DeleteElementExpression
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.EnforcementExpression
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.ExpressionConversion
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpressionBlock
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.NavigationExpression
+import edu.ustb.sei.mde.bxcore.structures.ContextGraph.GraphModification
 import edu.ustb.sei.mde.bxcore.structures.Index
 import edu.ustb.sei.mde.graph.typedGraph.TypedEdge
 import edu.ustb.sei.mde.graph.typedGraph.TypedNode
@@ -18,15 +24,10 @@ import org.eclipse.xtext.diagnostics.Severity
 import org.eclipse.xtext.validation.EObjectDiagnosticImpl
 import org.eclipse.xtext.xbase.typesystem.computation.ITypeComputationState
 import org.eclipse.xtext.xbase.typesystem.computation.XbaseTypeComputer
-import org.eclipse.xtext.xbase.validation.IssueCodes
-import org.eclipse.xtext.xbase.XExpression
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpressionBlock
-import edu.ustb.sei.mde.bxcore.SourceType
 import org.eclipse.xtext.xbase.typesystem.conformance.ConformanceFlags
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.EnforcementExpression
-import edu.ustb.sei.mde.bxcore.structures.ContextGraph.GraphModification
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.DeleteElementExpression
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.ExpressionConversion
+import org.eclipse.xtext.xbase.typesystem.references.LightweightTypeReference
+import org.eclipse.xtext.xbase.validation.IssueCodes
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression
 
 class XmuCoreTypeComputer extends XbaseTypeComputer {
 	
@@ -54,34 +55,48 @@ class XmuCoreTypeComputer extends XbaseTypeComputer {
 			else {
 				val type = typeDef.second;
 				val contextOnly = ModelInferrerUtils.isContextOnly(cvar);
-				if (contextOnly) {
-					if (type instanceof EClass)
-						state.acceptActualType(getRawTypeForName(Index, state))
-					else if (type instanceof EEnum)
-						state.acceptActualType(getRawTypeForName(String, state))
-					else if (type instanceof EDataType)
-						state.acceptActualType(getRawTypeForName(type.instanceClass, state))
-					else if (type instanceof EReference)
-						state.acceptActualType(getRawTypeForName(Index, state))
-					else if(type instanceof EAttribute) state.acceptActualType(
-						getRawTypeForName(Index, state)) 
-					else state.acceptActualType(getRawTypeForName(Object, state))
-				} else {
-					if (type instanceof EClass)
-						state.acceptActualType(getRawTypeForName(TypedNode, state))
-					else if (type instanceof EEnum)
-						state.acceptActualType(getRawTypeForName(String, state))
-					else if (type instanceof EDataType)
-						state.acceptActualType(getRawTypeForName(type.instanceClass, state))
-					else if (type instanceof EReference)
-						state.acceptActualType(getRawTypeForName(TypedEdge, state))
-					else if(type instanceof EAttribute) state.acceptActualType(
-						getRawTypeForName(ValueEdge, state)) 
-					else state.acceptActualType(getRawTypeForName(Object, state))
-				}
+				val isList = typeDef.third;
+				
+				state.acceptActualType(actualType(contextOnly, type, state, isList))
 			}
 		}
     }
+				
+	protected def LightweightTypeReference actualType(boolean contextOnly, Object type,
+		ITypeComputationState state, boolean isList) {
+
+		val elementType = if (contextOnly) {
+				if (type instanceof EClass)
+					getRawTypeForName(Index, state)
+				else if (type instanceof EEnum)
+					getRawTypeForName(String, state)
+				else if (type instanceof EDataType)
+					getRawTypeForName(type.instanceClass, state)
+				else if (type instanceof EReference)
+					getRawTypeForName(Index, state)
+				else if(type instanceof EAttribute) getRawTypeForName(Index, state) else getRawTypeForName(Object,
+					state)
+			} else {
+				if (type instanceof EClass)
+					getRawTypeForName(TypedNode, state)
+				else if (type instanceof EEnum)
+					getRawTypeForName(String, state)
+				else if (type instanceof EDataType)
+					getRawTypeForName(type.instanceClass, state)
+				else if (type instanceof EReference)
+					getRawTypeForName(TypedEdge, state)
+				else if(type instanceof EAttribute) getRawTypeForName(ValueEdge, state) else getRawTypeForName(Object,
+					state)
+			}
+
+		if (isList) {
+			val owner = state.getReferenceOwner();
+			val array = owner.newParameterizedTypeReference(owner.newReferenceTo(List).type);
+			array.addTypeArgument(elementType);
+			array
+		} else
+			elementType
+	}
     
     def dispatch void computeTypes(NavigationExpression pathExp, ITypeComputationState state) {
     	val host = pathExp.host;
@@ -116,8 +131,7 @@ class XmuCoreTypeComputer extends XbaseTypeComputer {
     }
     
     def dispatch void computeTypes(ModificationExpressionBlock modification, ITypeComputationState state) {
-    	val type = getRawTypeForName(GraphModification, state);
-    	modification.expressions.forEach[e| state.withExpectation(type).computeTypes(e)];
+    	modification.expressions.forEach[e| state.withoutExpectation.computeTypes(e)];
     	state.acceptActualType(getRawTypeForName(SourceType, state),ConformanceFlags.NO_IMPLICIT_RETURN);
     }
     
@@ -129,6 +143,27 @@ class XmuCoreTypeComputer extends XbaseTypeComputer {
     def dispatch void computeTypes(DeleteElementExpression modification, ITypeComputationState state) {
     	state.withNonVoidExpectation.computeTypes(modification.element);
     	state.acceptActualType(getRawTypeForName(GraphModification, state));
+    }
+    
+    def dispatch void computeTypes(NewInstanceExpression instance, ITypeComputationState state) {
+    	if(instance.size!==null)
+    		state.withExpectation(getRawTypeForName(int,state)).computeTypes(instance.size);
+    		
+    	val elementType = if (instance.feature === null) {
+				getRawTypeForName(TypedNode, state)
+			} else {
+				if(instance.feature instanceof EAttribute) getRawTypeForName(ValueEdge, state) 
+				else getRawTypeForName(TypedEdge, state)
+			}
+		
+		if(instance.size!==null) {
+			val owner = state.getReferenceOwner();
+			val array = owner.newParameterizedTypeReference(owner.newReferenceTo(List).type);
+			array.addTypeArgument(elementType);
+			state.acceptActualType(array)
+		} else {
+			state.acceptActualType(elementType)
+		}
     }
     
 }

@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import edu.ustb.sei.mde.bxcore.structures.Context;
 import edu.ustb.sei.mde.bxcore.structures.ContextGraph;
+import edu.ustb.sei.mde.bxcore.structures.FieldDef;
 import edu.ustb.sei.mde.bxcore.structures.Index;
 import edu.ustb.sei.mde.graph.type.IStructuralFeatureEdge;
 import edu.ustb.sei.mde.graph.type.PropertyEdge;
@@ -34,14 +35,27 @@ public class ExceptionSafeInferface {
 		}
 	}
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static <T> T getValue(ContextGraph context, String name) {
 		try {
-			Object value = context.getContext().getValue(name);
-			if(value instanceof Index) {
-				return context.getGraph().getElementByIndexObject((Index)value);
-			} else 
-				return (T) value;
+			FieldDef<?> field = context.getContext().getType().getField(name);
+			if(field.isMany()) {
+				List values = new ArrayList((List) context.getContext().getValue(field));
+				for(int i=0;i<values.size();i++) {
+					Object value = values.get(i);
+					if(value instanceof Index) {
+						values.set(i, context.getGraph().getElementByIndexObject((Index)value));					
+					}
+				}
+				return (T) values;
+			} else {				
+				Object value = context.getContext().getValue(name);
+				if(value instanceof Index) {
+					return context.getGraph().getElementByIndexObject((Index)value);
+				} else 
+					return (T) value;
+			}
+			
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}

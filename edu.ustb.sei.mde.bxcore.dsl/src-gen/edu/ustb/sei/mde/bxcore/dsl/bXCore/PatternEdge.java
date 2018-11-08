@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternEdge#getName <em>Name</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternEdge#getFeature <em>Feature</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternEdge#isMany <em>Many</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternEdge#getOperator <em>Operator</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternEdge#getValue <em>Value</em>}</li>
  * </ul>
@@ -78,6 +79,32 @@ public interface PatternEdge extends EObject
    * @generated
    */
   void setFeature(EStructuralFeature value);
+
+  /**
+   * Returns the value of the '<em><b>Many</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Many</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Many</em>' attribute.
+   * @see #setMany(boolean)
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getPatternEdge_Many()
+   * @model
+   * @generated
+   */
+  boolean isMany();
+
+  /**
+   * Sets the value of the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternEdge#isMany <em>Many</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Many</em>' attribute.
+   * @see #isMany()
+   * @generated
+   */
+  void setMany(boolean value);
 
   /**
    * Returns the value of the '<em><b>Operator</b></em>' attribute.

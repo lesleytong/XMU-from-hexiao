@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import edu.ustb.sei.mde.bxcore.TraceSystem;
 import edu.ustb.sei.mde.graph.type.IStructuralFeatureEdge;
@@ -22,29 +23,23 @@ public class ContextType {
 		orderedKeys = new ArrayList<>();
 	}
 	
-	public <T> void addField(String name, T type) {
-		FieldDef<T> field = new FieldDef<T>(name, type);
+	public <T> void addField(String name, T type, boolean many) {
+		FieldDef<T> field = new FieldDef<T>(name, type, many);
 		fieldDefs.put(name, field);
 		orderedKeys.add(field);
 	}
 	
+	public <T> void addField(String name, T type) {
+		addField(name, type, false);
+	}
+	
 	public <T> void addCollectionField(String name, T type) {
-		FieldDef<T> field = new FieldDef<T>(name, type, true);
-		fieldDefs.put(name, field);
-		orderedKeys.add(field);
+		addField(name, type, true);
 	}
 	
 	public FieldDef<?> getField(String name) {
 		return fieldDefs.get(name);
 	}
-//	public void addPrimitiveType(String name, Class<?> type) {
-//		fieldDefs.put(name, DataTypeNode.normalizeDateType(type));
-//	}
-//	
-//	public void addElementType(String name, boolean sharable) {
-//		fieldDefs.put(name, Index.class);
-//		if(sharable) this.sharable.add(name);
-//	}
 	
 	public boolean isSharable(String key) {
 		FieldDef<?> var = this.fieldDefs.get(key);
@@ -67,10 +62,6 @@ public class ContextType {
 		return orderedKeys;
 	}
 	
-//	public Class<?> getType(String name) {
-//		return fieldDefs.get(name);
-//	}
-	
 	public boolean equals(Object r) {
 		if(r==null || !(r instanceof ContextType)) 
 			return false;
@@ -82,10 +73,6 @@ public class ContextType {
 	}
 	
 	public boolean isTypeOf(Context c) {
-//		Set<String> keys = c.keys();
-//		Set<String> keySet = fieldDefs.keySet();
-//		return keys.containsAll(keySet)
-//				&& keySet.containsAll(keys);
 		return c.getType()==this;
 	}
 	
@@ -152,5 +139,13 @@ public class ContextType {
 		ContextType copy = new ContextType();
 		this.fields().forEach(f->copy.addField(f.getName(), f.getType()));
 		return copy;
+	}
+
+	private List<FieldDef<?>> singleValuedFields;
+	public List<FieldDef<?>> singleValuedFields() {
+		if(singleValuedFields==null) {
+			singleValuedFields = fields().stream().filter(f->f.isMany()==false).collect(Collectors.toList());
+		}
+		return singleValuedFields;
 	}
 }

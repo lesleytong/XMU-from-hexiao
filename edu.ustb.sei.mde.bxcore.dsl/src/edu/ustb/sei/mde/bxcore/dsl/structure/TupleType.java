@@ -3,6 +3,7 @@ package edu.ustb.sei.mde.bxcore.dsl.structure;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.EcoreTypeRef;
@@ -11,17 +12,20 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.ImportSection;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.OrderedTupleTypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternEdge;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternNode;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternNodeRef;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternTypeLiteral;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternValueCondition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PredefinedTypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeRef;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.UnorderedTupleTypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.infer.UnsolvedTupleType;
 import edu.ustb.sei.mde.structure.Tuple2;
+import edu.ustb.sei.mde.structure.Tuple3;
 
 public class TupleType {
 	public boolean ordered=false;
-	public List<Tuple2<String,Object>> tuples = new ArrayList<Tuple2<String,Object>>();
+	public List<Tuple3<String,Object, Boolean>> tuples = new ArrayList<Tuple3<String,Object,Boolean>>();
 	public ImportSection importSection = null;
 	public String info;
 	
@@ -48,13 +52,13 @@ public class TupleType {
 		} else if(literal instanceof OrderedTupleTypeLiteral) {
 			TupleType t = new TupleType();
 			t.ordered = true;
-			((OrderedTupleTypeLiteral) literal).getElements().forEach(e->t.tuples.add(Tuple2.make(e.getName(), getType(e.getType()))));
+			((OrderedTupleTypeLiteral) literal).getElements().forEach(e->t.tuples.add(Tuple3.make(e.getName(), getType(e.getType()), e.isMany())));
 			t.importSection  = ((OrderedTupleTypeLiteral) literal).getSource();
 			return t;
 		}  else if(literal instanceof UnorderedTupleTypeLiteral) {
 			TupleType t = new TupleType();
 			t.ordered = true;
-			((UnorderedTupleTypeLiteral) literal).getElements().forEach(e->t.tuples.add(Tuple2.make(e.getName(), getType(e.getType()))));
+			((UnorderedTupleTypeLiteral) literal).getElements().forEach(e->t.tuples.add(Tuple3.make(e.getName(), getType(e.getType()), e.isMany())));
 			t.tuples.sort((l,r)->l.first.compareTo(r.first));
 			t.importSection  = ((UnorderedTupleTypeLiteral) literal).getSource();
 			return t;
@@ -62,9 +66,9 @@ public class TupleType {
 			TupleType t = new TupleType();
 			literal.eAllContents().forEachRemaining(e->{
 				if(e instanceof PatternNode) {
-					t.tuples.add(Tuple2.make(((PatternNode)e).getName(), ((PatternNode)e).getType()));
+					t.tuples.add(Tuple3.make(((PatternNode)e).getName(), ((PatternNode)e).getType(), ((PatternNode)e).isMany()));
 				} else if(e instanceof PatternEdge) {
-					t.tuples.add(Tuple2.make(((PatternEdge)e).getName(), ((PatternEdge)e).getFeature()));
+					t.tuples.add(Tuple3.make(((PatternEdge)e).getName(), ((PatternEdge)e).getFeature(), isMany((PatternEdge)e)));
 				}
 				
 			});
@@ -72,6 +76,18 @@ public class TupleType {
 			t.tuples.sort((l,r)->l.first.compareTo(r.first));
 			return t;
 		} else return empty;
+	}
+
+	protected static boolean isMany(PatternEdge e) {
+		PatternNode con = (PatternNode) e.eContainer();
+		if(con.isMany()) return true;
+		PatternValueCondition target = e.getValue();
+		if(target instanceof PatternNode) {
+			return ((PatternNode) target).isMany();
+		} else if(target instanceof PatternNodeRef) {
+			return ((PatternNodeRef) target).getNode().isMany();
+		}
+		return ((PatternEdge)e).isMany();
 	}
 	
 	static public Object getType(TypeRef ref) {

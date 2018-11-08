@@ -44,7 +44,7 @@ OrderedTupleTypeLiteral :
 ;
 
 TypeVar :
-	name=ValidID ':' type=TypeRef
+	name=ValidID ':' type=TypeRef (many?='*')?
 ;
 
 PredefinedTypeLiteral :
@@ -82,11 +82,11 @@ IndexDefinition :
 ;
 
 PatternNode :
-	name=ValidID ':' type=[ecore::EClassifier|ValidID] ('{' (edges+=PatternEdge (',' edges+=PatternEdge)*)? '}')?
+	name=ValidID ':' type=[ecore::EClassifier|ValidID] (many?='[]')? ('{' (edges+=PatternEdge (',' edges+=PatternEdge)*)? '}')?
 ;
 
 PatternEdge :
-	name=ValidID ':' feature=[ecore::EStructuralFeature|ValidID] operator='=' value=PatternValueCondition
+	name=ValidID ':' feature=[ecore::EStructuralFeature|ValidID] (many?='[]')? operator='=' value=PatternValueCondition
 ;
 
 PatternValueCondition :
@@ -230,6 +230,7 @@ XPrimaryExpression returns xbase::XExpression :
 	ModificationExpressionBlock
 	| ModificationExpression
 	| ContextExpression
+	| NewInstanceExpression
 	| super
 ;
  
@@ -243,6 +244,10 @@ ContextPrimaryExpression:
 ContextVarExpression returns ContextPrimaryExpression:
 	({ContextVarExpression} name=ValidID '@' side=SideEnum) |
 	({ExpressionConversion} '@'  side=SideEnum ':' metamodel=[ImportSection|ValidID] '!' type=[ecore::EClass|ValidID] (many?='[]')? '(' expression=XExpression ')')
+;
+
+NewInstanceExpression :
+	'new' '@' side=SideEnum ':' metamodel=[ImportSection|ValidID] '!' type=[ecore::EClass|ValidID] (=>'::' feature=[ecore::EStructuralFeature|ValidID])? (=>'[' size=XExpression ']')?
 ;
 
 enum SideEnum :

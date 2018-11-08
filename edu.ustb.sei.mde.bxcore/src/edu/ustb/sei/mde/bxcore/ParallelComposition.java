@@ -95,13 +95,13 @@ public class ParallelComposition extends XmuCore {
 		for(FieldDef<?> vk : vt.fields()) {
 			if(vk.isElementType()) {
 				try {
-					finalViewContext.setValue(vk, summarize(result,vk));
+					finalViewContext.setValue(vk, ViewType.summarize(result,vk, this));
 				} catch (Exception e) {
 					Object common = IndexSystem.generateUUID();
 					finalViewContext.setValue(vk, common);
 					for(ViewType v : result) {
 						try {
-							if(v==null) continue;
+							if(v==null || v==ViewType.empty()) continue;
 							// in principle, we should reset downstream values
 							v.first.addIndex(common, v.first.getElementByIndexObject(v.second.getIndexValue(vk)));
 						} catch (UninitializedException e1) {
@@ -112,7 +112,7 @@ public class ParallelComposition extends XmuCore {
 				
 			} else {
 				try {
-					finalViewContext.setValue(vk, summarize(result,vk));
+					finalViewContext.setValue(vk, ViewType.summarize(result,vk,this));
 				} catch (Exception e) {
 					// not confluent
 					return nothing(e);
@@ -123,7 +123,7 @@ public class ParallelComposition extends XmuCore {
 		TypedGraph finalView = null;
 		for(int i=0;i<result.length;i++) {
 			ViewType v = result[i];
-			if(v==null) continue;
+			if(v==null || v==ViewType.empty()) continue;
 			v.second.setUpstream(finalViewContext, viewMappings.get(i));
 			v.second.submit();
 			if(finalView==null)
@@ -139,25 +139,25 @@ public class ParallelComposition extends XmuCore {
 		return ViewType.makeView(finalView, finalViewContext);
 	}
 
-	private Object summarize(ViewType[] result, FieldDef<?> vk) throws NothingReturnedException {
-		Object value = null;
-		boolean mayBeEmpty = true;
-		for(ViewType v : result) {
-			if(v==null) continue;
-			try {
-				if(value==null)
-					value = v.second.getValue(vk.getName());
-				else if(value.equals(v.second.getValue(vk.getName()))==false)
-					return internalError();
-				mayBeEmpty = false;
-			} catch(NothingReturnedException e) {
-			} catch (Exception e) {
-				return nothing();
-			}
-		}
-		if(mayBeEmpty) nothing();
-		return value;
-	}
+//	private Object summarize(ViewType[] result, FieldDef<?> vk) throws NothingReturnedException {
+//		Object value = null;
+//		boolean mayBeEmpty = true;
+//		for(ViewType v : result) {
+//			if(v==null || v==ViewType.empty()) continue;
+//			try {
+//				if(value==null)
+//					value = v.second.getValue(vk.getName());
+//				else if(value.equals(v.second.getValue(vk.getName()))==false)
+//					return internalError();
+//				mayBeEmpty = false;
+//			} catch(NothingReturnedException e) {
+//			} catch (Exception e) {
+//				return nothing();
+//			}
+//		}
+//		if(mayBeEmpty) nothing();
+//		return value;
+//	}
 
 	@Override
 	public SourceType backward(SourceType s, ViewType v) throws NothingReturnedException {
@@ -194,7 +194,7 @@ public class ParallelComposition extends XmuCore {
 		for(FieldDef<?> sk : st.fields()) {
 			if(sk.isElementType()) {
 				try {
-					finalSourcePost.setValue(sk, summarize(results, sk));
+					finalSourcePost.setValue(sk, SourceType.summarize(results, sk,this));
 				} catch (Exception e) {
 					Object value = IndexSystem.generateUUID();
 					finalSourcePost.setValue(sk, value);
@@ -209,7 +209,7 @@ public class ParallelComposition extends XmuCore {
 				}
 			} else {
 				try {
-					finalSourcePost.setValue(sk, summarize(results, sk));
+					finalSourcePost.setValue(sk, SourceType.summarize(results, sk,this));
 				} catch (Exception e) {
 					return nothing(e);
 				}
@@ -237,24 +237,24 @@ public class ParallelComposition extends XmuCore {
 		return SourceType.makeSource(finalSource, finalSourcePost, finalTrace);
 	}
 
-	private Object summarize(SourceType[] results, FieldDef<?> sk) throws NothingReturnedException {
-		Object value = null;
-		boolean mayBeEmpty=true;
-		for(SourceType v : results) {
-			try {
-				if(value==null)
-					value = v.second.getValue(sk.getName());
-				else if(value.equals(v.second.getValue(sk))==false)
-					return internalError();
-				mayBeEmpty = false;
-			} catch (NothingReturnedException e) {
-			}catch (Exception e) {
-				return nothing();
-			}
-		}
-		if(mayBeEmpty) nothing();
-		return value;
-	}
+//	private Object summarize(SourceType[] results, FieldDef<?> sk) throws NothingReturnedException {
+//		Object value = null;
+//		boolean mayBeEmpty=true;
+//		for(SourceType v : results) {
+//			try {
+//				if(value==null)
+//					value = v.second.getValue(sk.getName());
+//				else if(value.equals(v.second.getValue(sk))==false)
+//					return internalError();
+//				mayBeEmpty = false;
+//			} catch (NothingReturnedException e) {
+//			}catch (Exception e) {
+//				return nothing();
+//			}
+//		}
+//		if(mayBeEmpty) nothing();
+//		return value;
+//	}
 
 	@Override
 	protected GraphConstraint generateConsistencyConstraint() {

@@ -44,6 +44,10 @@ public class FieldDef<T> implements INamedElement {
 		return many;
 	}
 	
+	public void setMany(boolean many) {
+		this.many = many;
+	}
+	
 	@Override
 	public int hashCode() {
 		return (name.hashCode()<<16) | (type.hashCode() & 0xFF);

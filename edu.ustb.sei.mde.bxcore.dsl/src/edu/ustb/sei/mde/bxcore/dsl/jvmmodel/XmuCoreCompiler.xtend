@@ -1,42 +1,59 @@
 package edu.ustb.sei.mde.bxcore.dsl.jvmmodel
 
-import org.eclipse.xtext.xbase.compiler.XbaseCompiler
-import org.eclipse.xtext.xbase.XExpression
-import org.eclipse.xtext.xbase.compiler.output.ITreeAppendable
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextVarExpression
-import org.eclipse.xtext.xbase.typesystem.references.LightweightTypeReference
-import org.eclipse.emf.ecore.EObject
-import edu.ustb.sei.mde.bxcore.dsl.structure.ExceptionSafeInferface
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.NavigationExpression
-import org.eclipse.emf.ecore.EClass
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextExpression
-import java.util.List
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpressionBlock
-import edu.ustb.sei.mde.bxcore.structures.ContextGraph.GraphModification
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.EnforcementExpression
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.DeleteElementExpression
-import edu.ustb.sei.mde.structure.Tuple2
 import edu.ustb.sei.mde.bxcore.SourceType
-import edu.ustb.sei.mde.bxcore.dsl.infer.InferManager
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.Pattern
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternTypeLiteral
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternDefinitionReference
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.SideEnum
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextExpression
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextVarExpression
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.DeleteElementExpression
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.EnforcementExpression
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ExpressionConversion
-import org.eclipse.xtext.xbase.XBlockExpression
-import org.eclipse.xtext.xbase.XIfExpression
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpression
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpressionBlock
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.NavigationExpression
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.Pattern
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternDefinitionReference
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternTypeLiteral
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.SideEnum
+import edu.ustb.sei.mde.bxcore.dsl.infer.InferManager
+import edu.ustb.sei.mde.bxcore.dsl.structure.ExceptionSafeInferface
+import edu.ustb.sei.mde.bxcore.structures.ContextGraph
+import edu.ustb.sei.mde.bxcore.structures.ContextGraph.GraphModification
+import edu.ustb.sei.mde.bxcore.structures.Index
+import edu.ustb.sei.mde.graph.typedGraph.TypedEdge
+import edu.ustb.sei.mde.graph.typedGraph.TypedNode
+import edu.ustb.sei.mde.graph.typedGraph.ValueEdge
+import edu.ustb.sei.mde.structure.Tuple2
+import java.util.ArrayList
+import java.util.List
+import org.eclipse.emf.ecore.EClass
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.emf.ecore.EReference
+import org.eclipse.xtext.xbase.XBlockExpression
+import org.eclipse.xtext.xbase.XExpression
+import org.eclipse.xtext.xbase.XIfExpression
+import org.eclipse.xtext.xbase.compiler.XbaseCompiler
+import org.eclipse.xtext.xbase.compiler.output.ITreeAppendable
+import org.eclipse.xtext.xbase.typesystem.references.LightweightTypeReference
 
 class XmuCoreCompiler extends XbaseCompiler {
 	def patternAccessor(Pattern p) {
 		try {
 			val data = InferManager.getInferredTypeModel(p.eResource);
-			if (p instanceof PatternTypeLiteral)
-				'getPattern_' + data.literalMap.get(data).second
+			if(data===null) {
+				println('null');
+			}
+			if (p instanceof PatternTypeLiteral) {
+				val lit = data.patternLiterals.findFirst[it.value===p]
+				if(lit===null) {
+					println('null');
+				}
+				'getPattern_' + lit.key
+			}
 			else if(p instanceof PatternDefinitionReference)
 				p.pattern.name.toFirstUpper
 			else '/* ERROR */'
 		} catch (Exception e) {
+			e.printStackTrace
 			'/* ERROR */'
 		}
 	}
@@ -123,6 +140,25 @@ class XmuCoreCompiler extends XbaseCompiler {
 				a.append(''');''').newLine;
 			}
 			
+		} else if(e instanceof NewInstanceExpression) {
+			if(e.size!==null) {
+				e.size.internalToJavaStatement(a, true);
+			}
+			
+			val componentType = if (e.feature === null)
+					TypedNode
+				else if(e.feature instanceof EReference) TypedEdge else ValueEdge;
+
+			val v = a.declareSyntheticVariable(e, 'newInstance');
+			if (e.size !== null) {
+				val iv = a.declareUniqueNameVariable(e, 'it');
+				a.newLine.append('''java.util.List<«componentType.canonicalName»> «v» = new java.util.ArrayList<>();''');
+				a.newLine.append('''for(int «iv»=0;«iv»<''');
+				e.size.internalToJavaExpression(a);
+				a.append(''';«iv»++) «v».add(«ContextGraph.canonicalName».new«componentType.simpleName»());''')
+			} else {
+				a.newLine.append('''«componentType.canonicalName» «v» = «ContextGraph.canonicalName».new«componentType.simpleName»();''');
+			}
 		} else
 			super.doInternalToJavaStatement(e, a, isReferenced)
 	}
@@ -146,6 +182,9 @@ class XmuCoreCompiler extends XbaseCompiler {
 		} else if(e instanceof ModificationExpressionBlock) {
 			val lastResult = getVarName(e, a);
 			a.append('''«lastResult».get()''')
+		} else if(e instanceof NewInstanceExpression) {
+			val v = getVarName(e,a);
+			a.append(v);
 		}
 		else
 			super.internalToConvertedExpression(e, a)

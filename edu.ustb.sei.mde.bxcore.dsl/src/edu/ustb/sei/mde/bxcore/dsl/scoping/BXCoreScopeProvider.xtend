@@ -25,6 +25,9 @@ import org.eclipse.xtext.resource.EObjectDescription
 import org.eclipse.xtext.scoping.IScope
 import org.eclipse.xtext.scoping.impl.SimpleScope
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ExpressionConversion
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression
+import org.eclipse.emf.ecore.EPackage
+import org.eclipse.xtext.scoping.impl.FilteringScope
 
 /**
  * This class contains custom scoping description.
@@ -33,79 +36,93 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.ExpressionConversion
  * on how and when to use it.
  */
 class BXCoreScopeProvider extends AbstractBXCoreScopeProvider {
-
-	override getScope(EObject context, EReference reference) {
-		if(reference===BXCorePackage.Literals.UNORDERED_TUPLE_TYPE_LITERAL__SOURCE || 
-			reference===BXCorePackage.Literals.ORDERED_TUPLE_TYPE_LITERAL__SOURCE ||
-			reference===BXCorePackage.Literals.PATTERN_TYPE_LITERAL__SOURCE
-		) {
-			return new SimpleScope(context.root.imports.map[EObjectDescription.create(it.shortName, it)].toList);
-		} else if(reference===BXCorePackage.Literals.TYPE_REF__TYPE) {
-			val importSection = context.importSection;
-			return collectTypes(importSection)
-		} else if(reference===BXCorePackage.Literals.FEATURE_TYPE_REF__FEATURE) {
-			val type = (context as FeatureTypeRef).type as EClass;
-			if(type===null) {
-				return SimpleScope.NULLSCOPE
-			} else {
-				if(!type.eIsProxy) {
+	
+	def featureScope(EClass type) {
+		if (type === null) {
+			return SimpleScope.NULLSCOPE
+		} else {
+			if (!type.eIsProxy) {
 				val objects = new ArrayList;
-				type.EAllStructuralFeatures.forEach[i|
+				type.EAllStructuralFeatures.forEach [ i |
 					objects.add(EObjectDescription.create(i.name, i));
 				];
 				return new SimpleScope(objects);
-				}
 			}
-			
-		} else if(reference===BXCorePackage.Literals.PATTERN_NODE__TYPE) {
-			val importSection = context.importSection;
-			return importSection.collectTypes;
-		} else if(reference===BXCorePackage.Literals.PATTERN_EDGE__FEATURE) {
-			val node = context.patternNode;
-			if(node.type instanceof EClass) {
-				return new SimpleScope((node.type as EClass).EAllStructuralFeatures.map[f|EObjectDescription.create(f.name, f)].toList);
+		}
+	}
+
+	override getScope(EObject context, EReference reference) {
+		try{
+			if(reference===BXCorePackage.Literals.UNORDERED_TUPLE_TYPE_LITERAL__SOURCE || 
+				reference===BXCorePackage.Literals.ORDERED_TUPLE_TYPE_LITERAL__SOURCE ||
+				reference===BXCorePackage.Literals.PATTERN_TYPE_LITERAL__SOURCE
+			) {
+				return new SimpleScope(context.root.imports.map[EObjectDescription.create(it.shortName, it)].toList);
+			} else if(reference===BXCorePackage.Literals.TYPE_REF__TYPE) {
+				val importSection = context.importSection;
+				return importSection.metamodel.collectTypes
+			} else if(reference===BXCorePackage.Literals.FEATURE_TYPE_REF__FEATURE) {
+				val type = (context as FeatureTypeRef).type as EClass;
+				return type.featureScope;
+			} else if(reference===BXCorePackage.Literals.PATTERN_NODE__TYPE) {
+				val importSection = context.importSection;
+				return importSection.metamodel.collectTypes;
+			} else if(reference===BXCorePackage.Literals.PATTERN_EDGE__FEATURE) {
+				val node = context.patternNode;
+				if(node.type instanceof EClass) {
+					return (node.type as EClass).featureScope;
+				} else return IScope.NULLSCOPE;
+			} else if(reference===BXCorePackage.Literals.PATTERN_NODE_REF__NODE) {
+				val pattern = context.pattern;
+				val objects = new ArrayList;
+				pattern.eAllContents.forEach[e|
+					if(e instanceof PatternNode) {
+						objects+=EObjectDescription.create(e.name,e);
+					}
+				];
+				return new SimpleScope(objects);
+			} else if(reference===BXCorePackage.Literals.DEFINED_CONTEXT_TYPE_REF__TYPE) {
+				val function = context.eContainer.getFunction(); // skip the context object, because it may be the function definition now
+				val program = context.getProgram();
+				val types = program.definitions.filter[it instanceof TypeDefinition];
+				val namedPatterns = program.definitions.filter[it instanceof PatternDefinition];
+				val patterns = if(function===null) null else function.eAllContents.filter[it instanceof PatternDefinition];
+				
+				val objects = new ArrayList;
+				types.forEach[t| objects+=EObjectDescription.create(t.name, t)];
+				
+				namedPatterns.forEach[p| objects += EObjectDescription.create((p as PatternDefinition).name, p)];
+				if(patterns!==null) patterns.forEach[p| objects += EObjectDescription.create((p as PatternDefinition).name, p)];
+				
+				return new SimpleScope(objects);
+			} else if(reference===BXCorePackage.Literals.EXPRESSION_CONVERSION__METAMODEL||
+				reference===BXCorePackage.Literals.NEW_INSTANCE_EXPRESSION__METAMODEL
+			) {
+				return new SimpleScope(context.program.imports.map[EObjectDescription.create(it.shortName, it)]);
+			} else if(reference===BXCorePackage.Literals.EXPRESSION_CONVERSION__TYPE
+			) {
+				val pkg = (context as ExpressionConversion).metamodel.metamodel;
+				return new FilteringScope(pkg.collectTypes, [d|d.EObjectOrProxy instanceof EClass]);
+			} else if(reference===BXCorePackage.Literals.NEW_INSTANCE_EXPRESSION__TYPE) {
+				val pkg = (context as NewInstanceExpression).metamodel.metamodel;
+				return new FilteringScope(pkg.collectTypes, [d|d.EObjectOrProxy instanceof EClass]);
+			} else if(reference===BXCorePackage.Literals.NEW_INSTANCE_EXPRESSION__FEATURE) {
+				val type = (context as NewInstanceExpression).type;
+				return type.featureScope;
 			}
-		} else if(reference===BXCorePackage.Literals.PATTERN_NODE_REF__NODE) {
-			val pattern = context.pattern;
-			val objects = new ArrayList;
-			pattern.eAllContents.forEach[e|
-				if(e instanceof PatternNode) {
-					objects+=EObjectDescription.create(e.name,e);
-				}
-			];
-			return new SimpleScope(objects);
-		} else if(reference===BXCorePackage.Literals.DEFINED_CONTEXT_TYPE_REF__TYPE) {
-			val function = context.eContainer.getFunction(); // skip the context object, because it may be the function definition now
-			val program = context.getProgram();
-			val types = program.definitions.filter[it instanceof TypeDefinition];
-			val namedPatterns = program.definitions.filter[it instanceof PatternDefinition];
-			val patterns = if(function===null) null else function.eAllContents.filter[it instanceof PatternDefinition];
-			
-			val objects = new ArrayList;
-			types.forEach[t| objects+=EObjectDescription.create(t.name, t)];
-			
-			namedPatterns.forEach[p| objects += EObjectDescription.create((p as PatternDefinition).name, p)];
-			if(patterns!==null) patterns.forEach[p| objects += EObjectDescription.create((p as PatternDefinition).name, p)];
-			
-			return new SimpleScope(objects);
-		} else if(reference===BXCorePackage.Literals.EXPRESSION_CONVERSION__METAMODEL) {
-			return new SimpleScope(context.program.imports.map[EObjectDescription.create(it.shortName, it)]);
-		} else if(reference===BXCorePackage.Literals.EXPRESSION_CONVERSION__TYPE) {
-			val pkg = (context as ExpressionConversion).metamodel.metamodel;
-			val classes = pkg.eAllContents.filter[it instanceof EClass].map[EObjectDescription.create((it as EClass).name, it as EClass)].toList;
-			return new SimpleScope(classes);
+		} catch(Exception e) {
 		}
 		
 		super.getScope(context, reference)
 	}
 	
-	protected def IScope collectTypes(ImportSection importSection) {
+	protected def IScope collectTypes(EPackage metamodel) {
 		val objects = new ArrayList;
-		if (importSection === null)
+		if (metamodel === null)
 			SimpleScope.NULLSCOPE
 		else {
 			val visited = new HashSet;
-			val itr = importSection.metamodel.eAllContents;
+			val itr = metamodel.eAllContents;
 			itr.forEach [ c |
 				if (c instanceof EClassifier) {
 					objects.add(EObjectDescription.create(c.name, c));
@@ -113,7 +130,7 @@ class BXCoreScopeProvider extends AbstractBXCoreScopeProvider {
 				}
 			];
 		
-			val itr2 = importSection.metamodel.eAllContents;
+			val itr2 = metamodel.eAllContents;
 			itr2.forEach [ c |
 				if (c instanceof EClass) {
 					c.EAllStructuralFeatures.forEach [ f |
