@@ -411,6 +411,15 @@ public interface BXCoreFactory extends EFactory
   IndexPart createIndexPart();
 
   /**
+   * Returns a new object of class '<em>Xmu Core For Each Match Source</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Xmu Core For Each Match Source</em>'.
+   * @generated
+   */
+  XmuCoreForEachMatchSource createXmuCoreForEachMatchSource();
+
+  /**
    * Returns a new object of class '<em>Context Aware Condition</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -490,6 +499,24 @@ public interface BXCoreFactory extends EFactory
    * @generated
    */
   NewInstanceExpression createNewInstanceExpression();
+
+  /**
+   * Returns a new object of class '<em>Annotated Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Annotated Type</em>'.
+   * @generated
+   */
+  AnnotatedType createAnnotatedType();
+
+  /**
+   * Returns a new object of class '<em>All Instance Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>All Instance Expression</em>'.
+   * @generated
+   */
+  AllInstanceExpression createAllInstanceExpression();
 
   /**
    * Returns a new object of class '<em>Modification Expression</em>'.

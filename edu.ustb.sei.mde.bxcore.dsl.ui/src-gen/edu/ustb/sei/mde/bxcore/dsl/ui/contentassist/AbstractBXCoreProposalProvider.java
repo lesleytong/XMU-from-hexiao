@@ -321,6 +321,15 @@ public abstract class AbstractBXCoreProposalProvider extends XbaseProposalProvid
 	public void completeIndexPart_ViewKeys(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
+	public void completeXmuCoreForEachMatchSource_TypeIndicator(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
+	}
+	public void completeXmuCoreForEachMatchSource_Pattern(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
+	}
+	public void completeXmuCoreForEachMatchSource_Body(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
+	}
 	public void completeContextAwareCondition_Condition(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
@@ -351,19 +360,25 @@ public abstract class AbstractBXCoreProposalProvider extends XbaseProposalProvid
 	public void completeContextVarExpression_Expression(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
-	public void completeNewInstanceExpression_Side(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+	public void completeNewInstanceExpression_Type(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
-	public void completeNewInstanceExpression_Metamodel(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		lookupCrossReference(((CrossReference)assignment.getTerminal()), context, acceptor);
-	}
-	public void completeNewInstanceExpression_Type(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		lookupCrossReference(((CrossReference)assignment.getTerminal()), context, acceptor);
-	}
-	public void completeNewInstanceExpression_Feature(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		lookupCrossReference(((CrossReference)assignment.getTerminal()), context, acceptor);
-	}
 	public void completeNewInstanceExpression_Size(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
+	}
+	public void completeAnnotatedType_Side(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
+	}
+	public void completeAnnotatedType_Metamodel(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		lookupCrossReference(((CrossReference)assignment.getTerminal()), context, acceptor);
+	}
+	public void completeAnnotatedType_Type(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		lookupCrossReference(((CrossReference)assignment.getTerminal()), context, acceptor);
+	}
+	public void completeAnnotatedType_Feature(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		lookupCrossReference(((CrossReference)assignment.getTerminal()), context, acceptor);
+	}
+	public void completeAllInstanceExpression_Type(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
 	public void completeModificationExpressionBlock_Expressions(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
@@ -514,6 +529,9 @@ public abstract class AbstractBXCoreProposalProvider extends XbaseProposalProvid
 	public void complete_IndexPart(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		// subclasses may override
 	}
+	public void complete_XmuCoreForEachMatchSource(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		// subclasses may override
+	}
 	public void complete_ContextAwareCondition(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		// subclasses may override
 	}
@@ -542,6 +560,12 @@ public abstract class AbstractBXCoreProposalProvider extends XbaseProposalProvid
 		// subclasses may override
 	}
 	public void complete_NewInstanceExpression(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		// subclasses may override
+	}
+	public void complete_AnnotatedType(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		// subclasses may override
+	}
+	public void complete_AllInstanceExpression(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		// subclasses may override
 	}
 	public void complete_SideEnum(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {

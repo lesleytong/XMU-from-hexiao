@@ -26,6 +26,7 @@ import org.eclipse.xtext.validation.Check
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareUnidirectionalAction
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpressionBlock
 import org.eclipse.xtext.xbase.XBlockExpression
+import org.eclipse.emf.ecore.ENamedElement
 
 /**
  * This class contains custom validation rules. 
@@ -56,16 +57,27 @@ class BXCoreValidator extends AbstractBXCoreValidator {
 			val inferredSource = data.sourceInfer.getType(stat);
 			val definedSource = data.sourceInfer.getType(stat.typeIndicator.sourceType);
 			if(inferredSource.compare(definedSource)===false) {
-				warning("The defined source type is different from the inferred type", stat);
+				warning('''The defined source type is different from the inferred type
+				The inferred type is «inferredSource.text»''', stat);
 			}
 			
 			val inferredView = data.viewInfer.getType(stat);
 			val definedView = data.viewInfer.getType(stat.typeIndicator.viewType);
 			if(inferredView.compare(definedView)===false) {
-				warning("The defined view type is different from the inferred type", stat);
+				warning('''The defined view type is different from the inferred type
+				The inferred type is «inferredSource.text»''', stat);
 			}
 		}
 		if(data!==null) stat.checkVarMappings(data);
+	}
+		
+	def text(TupleType type) {
+		'''(«FOR t:type.tuples SEPARATOR ','»«t.first»:«t.second.text»«IF t.third»[]«ENDIF»«ENDFOR»)'''
+	}
+		
+	def text(Object object) {
+		if(object instanceof ENamedElement) object.name
+		else object.toString
 	}
 		
 	def void checkVarMappings(XmuCoreStatement statement, InferData data) {
@@ -100,13 +112,15 @@ class BXCoreValidator extends AbstractBXCoreValidator {
 			val inferredSource = data.sourceInfer.getType(func);
 			val definedSource = data.sourceInfer.getType(func.typeIndicator.sourceType);
 			if(inferredSource.compare(definedSource)===false) {
-				warning("The defined source type is different from the inferred type", func);
+				warning('''The defined source type is different from the inferred type
+				The inferred type is «inferredSource.text»''', func);
 			}
 			
 			val inferredView = data.viewInfer.getType(func);
 			val definedView = data.viewInfer.getType(func.typeIndicator.viewType);
 			if(inferredView.compare(definedView)===false) {
-				warning("The defined view type is different from the inferred type", func);
+				warning('''The defined view type is different from the inferred type
+				The inferred type is «inferredSource.text»''', func);
 			}
 		}
 	}

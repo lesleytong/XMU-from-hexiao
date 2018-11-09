@@ -28,6 +28,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.ExpressionConversion
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.xtext.scoping.impl.FilteringScope
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.AnnotatedType
 
 /**
  * This class contains custom scoping description.
@@ -96,18 +97,18 @@ class BXCoreScopeProvider extends AbstractBXCoreScopeProvider {
 				
 				return new SimpleScope(objects);
 			} else if(reference===BXCorePackage.Literals.EXPRESSION_CONVERSION__METAMODEL||
-				reference===BXCorePackage.Literals.NEW_INSTANCE_EXPRESSION__METAMODEL
+				reference===BXCorePackage.Literals.ANNOTATED_TYPE__METAMODEL
 			) {
 				return new SimpleScope(context.program.imports.map[EObjectDescription.create(it.shortName, it)]);
 			} else if(reference===BXCorePackage.Literals.EXPRESSION_CONVERSION__TYPE
 			) {
 				val pkg = (context as ExpressionConversion).metamodel.metamodel;
 				return new FilteringScope(pkg.collectTypes, [d|d.EObjectOrProxy instanceof EClass]);
-			} else if(reference===BXCorePackage.Literals.NEW_INSTANCE_EXPRESSION__TYPE) {
-				val pkg = (context as NewInstanceExpression).metamodel.metamodel;
+			} else if(reference===BXCorePackage.Literals.ANNOTATED_TYPE__TYPE) {
+				val pkg = (context as AnnotatedType).metamodel.metamodel;
 				return new FilteringScope(pkg.collectTypes, [d|d.EObjectOrProxy instanceof EClass]);
-			} else if(reference===BXCorePackage.Literals.NEW_INSTANCE_EXPRESSION__FEATURE) {
-				val type = (context as NewInstanceExpression).type;
+			} else if(reference===BXCorePackage.Literals.ANNOTATED_TYPE__FEATURE) {
+				val type = (context as AnnotatedType).type;
 				return type.featureScope;
 			}
 		} catch(Exception e) {

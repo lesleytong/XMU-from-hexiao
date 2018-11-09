@@ -114,7 +114,8 @@ XmuCoreStatement :
 XmuCoreCompositionChildStatement :
 	XmuCoreMatchSource | XmuCoreMatchView |
 	XmuCoreExpandSource | XmuCoreExpandView | XmuCoreGraphReplace |
-	XmuCoreSwitch | XmuCoreAlign | XmuCoreFunctionCall | XmuCoreIndex
+	XmuCoreSwitch | XmuCoreAlign | XmuCoreFunctionCall | XmuCoreIndex |
+	XmuCoreForEachMatchSource
 ;
 
 TypeIndicator :
@@ -157,11 +158,11 @@ XmuCoreSwitch :
 ;
 
 XmuCoreSwitchBranch :
-	'case' condition=ContextAwareCondition '->' action=XmuCoreStatement 
+	'case' condition=ContextAwareCondition ':' action=XmuCoreStatement 
 ;
 
 XmuCoreSwitchAdaption:
-	'adaption' condition=ContextAwareCondition '->' action=ContextAwareUnidirectionalAction
+	'adaption' condition=ContextAwareCondition ':' action=ContextAwareUnidirectionalAction
 ;
 
 Conversion :
@@ -194,6 +195,10 @@ XmuCoreIndex :
 
 IndexPart :
 	signature=[IndexDefinition|ValidID] '<' sourceKeys+=ValidID (',' sourceKeys+=ValidID)* '|' viewKeys+=ValidID (',' viewKeys+=ValidID)* '>'
+;
+
+XmuCoreForEachMatchSource :
+	'foreach' typeIndicator=TypeIndicator? pattern=Pattern 'do' body=XmuCoreStatement
 ;
 
 ContextAwareCondition :
@@ -231,6 +236,7 @@ XPrimaryExpression returns xbase::XExpression :
 	| ModificationExpression
 	| ContextExpression
 	| NewInstanceExpression
+	| AllInstanceExpression
 	| super
 ;
  
@@ -247,7 +253,15 @@ ContextVarExpression returns ContextPrimaryExpression:
 ;
 
 NewInstanceExpression :
-	'new' '@' side=SideEnum ':' metamodel=[ImportSection|ValidID] '!' type=[ecore::EClass|ValidID] (=>'::' feature=[ecore::EStructuralFeature|ValidID])? (=>'[' size=XExpression ']')?
+	'new' type=AnnotatedType (=>'[' size=XExpression ']')?
+;
+
+AnnotatedType :
+	'@' side=SideEnum ':' metamodel=[ImportSection|ValidID] '!' type=[ecore::EClass|ValidID] (=>'::' feature=[ecore::EStructuralFeature|ValidID])?
+;
+
+AllInstanceExpression :
+	type=AnnotatedType '.' 'allInstances'
 ;
 
 enum SideEnum :

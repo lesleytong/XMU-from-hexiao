@@ -18,11 +18,6 @@ public class TraceSystem {
 		traces.add(t);
 	}
 	
-//	public void trace(Object key, Context source, Context view) {
-//		Trace t = new Trace(key, source, view, source);
-//		traces.add(t);
-//	}
-	
 	public void additiveMerge(TraceSystem ts) {
 		traces.addAll(ts.traces);
 	}

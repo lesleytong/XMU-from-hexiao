@@ -57,13 +57,14 @@ public class TupleType {
 			return t;
 		}  else if(literal instanceof UnorderedTupleTypeLiteral) {
 			TupleType t = new TupleType();
-			t.ordered = true;
+			t.ordered = false;
 			((UnorderedTupleTypeLiteral) literal).getElements().forEach(e->t.tuples.add(Tuple3.make(e.getName(), getType(e.getType()), e.isMany())));
 			t.tuples.sort((l,r)->l.first.compareTo(r.first));
 			t.importSection  = ((UnorderedTupleTypeLiteral) literal).getSource();
 			return t;
 		} else if(literal instanceof PatternTypeLiteral) {
 			TupleType t = new TupleType();
+			t.ordered = false;
 			literal.eAllContents().forEachRemaining(e->{
 				if(e instanceof PatternNode) {
 					t.tuples.add(Tuple3.make(((PatternNode)e).getName(), ((PatternNode)e).getType(), ((PatternNode)e).isMany()));

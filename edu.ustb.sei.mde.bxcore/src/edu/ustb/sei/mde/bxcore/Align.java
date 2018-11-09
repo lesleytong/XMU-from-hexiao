@@ -368,8 +368,10 @@ public class Align extends XmuCore {
 //				views.add(alignment.second);
 			} else if(alignment.first==null) { // unmatchV
 				SourceType sp = this.unmatchedView.apply(s, v.replaceSecond(alignment.second));
-				if(sp==SourceType.empty()) { // drop view!
+				if(sp==SourceType.drop()) { // drop this view!
 					skippedViews.add(alignment.second);
+				} else if(sp==SourceType.skip()) {
+					// do nothing
 				} else {
 					if(sp.second.getType()!=patS.getType())
 						throw new NothingReturnedException("Adaption must return a valid source match");

@@ -1,6 +1,7 @@
 package edu.ustb.sei.mde.bxcore.dsl.jvmmodel;
 
 import edu.ustb.sei.mde.bxcore.SourceType;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.AllInstanceExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextVarExpression;
@@ -271,13 +272,13 @@ public class XmuCoreTypeComputer extends XbaseTypeComputer {
       state.withExpectation(this.getRawTypeForName(int.class, state)).computeTypes(instance.getSize());
     }
     LightweightTypeReference _xifexpression = null;
-    EStructuralFeature _feature = instance.getFeature();
+    EStructuralFeature _feature = instance.getType().getFeature();
     boolean _tripleEquals = (_feature == null);
     if (_tripleEquals) {
       _xifexpression = this.getRawTypeForName(TypedNode.class, state);
     } else {
       LightweightTypeReference _xifexpression_1 = null;
-      EStructuralFeature _feature_1 = instance.getFeature();
+      EStructuralFeature _feature_1 = instance.getType().getFeature();
       if ((_feature_1 instanceof EAttribute)) {
         _xifexpression_1 = this.getRawTypeForName(ValueEdge.class, state);
       } else {
@@ -296,6 +297,29 @@ public class XmuCoreTypeComputer extends XbaseTypeComputer {
     } else {
       state.acceptActualType(elementType);
     }
+  }
+  
+  protected void _computeTypes(final AllInstanceExpression instance, final ITypeComputationState state) {
+    LightweightTypeReference _xifexpression = null;
+    EStructuralFeature _feature = instance.getType().getFeature();
+    boolean _tripleEquals = (_feature == null);
+    if (_tripleEquals) {
+      _xifexpression = this.getRawTypeForName(TypedNode.class, state);
+    } else {
+      LightweightTypeReference _xifexpression_1 = null;
+      EStructuralFeature _feature_1 = instance.getType().getFeature();
+      if ((_feature_1 instanceof EAttribute)) {
+        _xifexpression_1 = this.getRawTypeForName(ValueEdge.class, state);
+      } else {
+        _xifexpression_1 = this.getRawTypeForName(TypedEdge.class, state);
+      }
+      _xifexpression = _xifexpression_1;
+    }
+    final LightweightTypeReference elementType = _xifexpression;
+    final ITypeReferenceOwner owner = state.getReferenceOwner();
+    final ParameterizedTypeReference array = owner.newParameterizedTypeReference(owner.newReferenceTo(List.class).getType());
+    array.addTypeArgument(elementType);
+    state.acceptActualType(array);
   }
   
   public void computeTypes(final XExpression cvar, final ITypeComputationState state) {
@@ -328,6 +352,9 @@ public class XmuCoreTypeComputer extends XbaseTypeComputer {
       return;
     } else if (cvar instanceof XWhileExpression) {
       _computeTypes((XWhileExpression)cvar, state);
+      return;
+    } else if (cvar instanceof AllInstanceExpression) {
+      _computeTypes((AllInstanceExpression)cvar, state);
       return;
     } else if (cvar instanceof ModificationExpressionBlock) {
       _computeTypes((ModificationExpressionBlock)cvar, state);

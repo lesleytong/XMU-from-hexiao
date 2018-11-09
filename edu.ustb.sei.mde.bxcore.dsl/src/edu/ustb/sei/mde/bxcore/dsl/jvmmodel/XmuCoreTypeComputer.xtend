@@ -28,6 +28,7 @@ import org.eclipse.xtext.xbase.typesystem.conformance.ConformanceFlags
 import org.eclipse.xtext.xbase.typesystem.references.LightweightTypeReference
 import org.eclipse.xtext.xbase.validation.IssueCodes
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.AllInstanceExpression
 
 class XmuCoreTypeComputer extends XbaseTypeComputer {
 	
@@ -149,10 +150,10 @@ class XmuCoreTypeComputer extends XbaseTypeComputer {
     	if(instance.size!==null)
     		state.withExpectation(getRawTypeForName(int,state)).computeTypes(instance.size);
     		
-    	val elementType = if (instance.feature === null) {
+    	val elementType = if (instance.type.feature === null) {
 				getRawTypeForName(TypedNode, state)
 			} else {
-				if(instance.feature instanceof EAttribute) getRawTypeForName(ValueEdge, state) 
+				if(instance.type.feature instanceof EAttribute) getRawTypeForName(ValueEdge, state) 
 				else getRawTypeForName(TypedEdge, state)
 			}
 		
@@ -164,6 +165,19 @@ class XmuCoreTypeComputer extends XbaseTypeComputer {
 		} else {
 			state.acceptActualType(elementType)
 		}
+    }
+    
+    def dispatch void computeTypes(AllInstanceExpression instance, ITypeComputationState state) {
+    	val elementType = if (instance.type.feature === null) {
+				getRawTypeForName(TypedNode, state)
+			} else {
+				if(instance.type.feature instanceof EAttribute) getRawTypeForName(ValueEdge, state) 
+				else getRawTypeForName(TypedEdge, state)
+			}
+		val owner = state.getReferenceOwner();
+			val array = owner.newParameterizedTypeReference(owner.newReferenceTo(List).type);
+			array.addTypeArgument(elementType);
+			state.acceptActualType(array)
     }
     
 }

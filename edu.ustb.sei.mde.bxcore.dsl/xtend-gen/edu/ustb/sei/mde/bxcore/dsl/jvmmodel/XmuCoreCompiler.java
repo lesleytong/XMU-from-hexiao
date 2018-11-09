@@ -1,5 +1,6 @@
 package edu.ustb.sei.mde.bxcore.dsl.jvmmodel;
 
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.AllInstanceExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextVarExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.DeleteElementExpression;
@@ -44,8 +45,8 @@ import org.eclipse.xtext.xbase.lib.StringExtensions;
 
 @SuppressWarnings("all")
 public class XmuCoreCompiler extends XbaseCompiler {
-  public String patternAccessor(final Pattern p) {
-    String _xtrycatchfinallyexpression = null;
+  public CharSequence patternAccessor(final Pattern p) {
+    CharSequence _xtrycatchfinallyexpression = null;
     try {
       String _xblockexpression = null;
       {
@@ -74,7 +75,7 @@ public class XmuCoreCompiler extends XbaseCompiler {
           if ((p instanceof PatternDefinitionReference)) {
             _xifexpression_1 = StringExtensions.toFirstUpper(((PatternDefinitionReference)p).getPattern().getName());
           } else {
-            _xifexpression_1 = "/* ERROR */";
+            _xifexpression_1 = "/* ERROR: unknown pattern type */";
           }
           _xifexpression = _xifexpression_1;
         }
@@ -84,12 +85,12 @@ public class XmuCoreCompiler extends XbaseCompiler {
     } catch (final Throwable _t) {
       if (_t instanceof Exception) {
         final Exception e = (Exception)_t;
-        String _xblockexpression_1 = null;
-        {
-          e.printStackTrace();
-          _xblockexpression_1 = "/* ERROR */";
-        }
-        _xtrycatchfinallyexpression = _xblockexpression_1;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("/* ERROR: ");
+        String _message = e.getMessage();
+        _builder.append(_message);
+        _builder.append("*/");
+        _xtrycatchfinallyexpression = _builder;
       } else {
         throw Exceptions.sneakyThrow(_t);
       }
@@ -268,7 +269,7 @@ public class XmuCoreCompiler extends XbaseCompiler {
                 _builder_11.append(" = ");
                 _builder_11.append(blockVar);
                 _builder_11.append(".enforce(");
-                String _patternAccessor = this.patternAccessor(((EnforcementExpression)e).getPattern());
+                CharSequence _patternAccessor = this.patternAccessor(((EnforcementExpression)e).getPattern());
                 _builder_11.append(_patternAccessor);
                 _builder_11.append("(), new edu.ustb.sei.mde.structure.Tuple2[] {");
                 _newLine_4.append(_builder_11);
@@ -324,13 +325,13 @@ public class XmuCoreCompiler extends XbaseCompiler {
                   this.internalToJavaStatement(((NewInstanceExpression)e).getSize(), a, true);
                 }
                 Class<? extends IndexableElement> _xifexpression = null;
-                EStructuralFeature _feature = ((NewInstanceExpression)e).getFeature();
+                EStructuralFeature _feature = ((NewInstanceExpression)e).getType().getFeature();
                 boolean _tripleEquals = (_feature == null);
                 if (_tripleEquals) {
                   _xifexpression = TypedNode.class;
                 } else {
                   Class<? extends IndexableElement> _xifexpression_1 = null;
-                  EStructuralFeature _feature_1 = ((NewInstanceExpression)e).getFeature();
+                  EStructuralFeature _feature_1 = ((NewInstanceExpression)e).getType().getFeature();
                   if ((_feature_1 instanceof EReference)) {
                     _xifexpression_1 = TypedEdge.class;
                   } else {
@@ -392,7 +393,82 @@ public class XmuCoreCompiler extends XbaseCompiler {
                   _newLine_8.append(_builder_19);
                 }
               } else {
-                super.doInternalToJavaStatement(e, a, isReferenced);
+                if ((e instanceof AllInstanceExpression)) {
+                  Class<? extends IndexableElement> _xifexpression_2 = null;
+                  EStructuralFeature _feature_2 = ((AllInstanceExpression)e).getType().getFeature();
+                  boolean _tripleEquals_1 = (_feature_2 == null);
+                  if (_tripleEquals_1) {
+                    _xifexpression_2 = TypedNode.class;
+                  } else {
+                    Class<? extends IndexableElement> _xifexpression_3 = null;
+                    EStructuralFeature _feature_3 = ((AllInstanceExpression)e).getType().getFeature();
+                    if ((_feature_3 instanceof EReference)) {
+                      _xifexpression_3 = TypedEdge.class;
+                    } else {
+                      _xifexpression_3 = ValueEdge.class;
+                    }
+                    _xifexpression_2 = _xifexpression_3;
+                  }
+                  final Class<? extends IndexableElement> componentType_1 = _xifexpression_2;
+                  if (isReferenced) {
+                    final String v_1 = a.declareSyntheticVariable(e, "allInstances");
+                    ITreeAppendable _newLine_9 = a.newLine();
+                    StringConcatenation _builder_20 = new StringConcatenation();
+                    _builder_20.append("java.util.List<");
+                    String _canonicalName_11 = componentType_1.getCanonicalName();
+                    _builder_20.append(_canonicalName_11);
+                    _builder_20.append("> ");
+                    _builder_20.append(v_1);
+                    _builder_20.append(" = ");
+                    String _literal_4 = ((AllInstanceExpression)e).getType().getSide().getLiteral();
+                    _builder_20.append(_literal_4);
+                    _builder_20.append(".all");
+                    String _simpleName_2 = componentType_1.getSimpleName();
+                    _builder_20.append(_simpleName_2);
+                    _builder_20.append("s(\"");
+                    String _name_2 = ((AllInstanceExpression)e).getType().getType().getName();
+                    _builder_20.append(_name_2);
+                    _builder_20.append("\"");
+                    {
+                      EStructuralFeature _feature_4 = ((AllInstanceExpression)e).getType().getFeature();
+                      boolean _tripleNotEquals_2 = (_feature_4 != null);
+                      if (_tripleNotEquals_2) {
+                        _builder_20.append(",\"");
+                        String _name_3 = ((AllInstanceExpression)e).getType().getFeature().getName();
+                        _builder_20.append(_name_3);
+                        _builder_20.append("\"");
+                      }
+                    }
+                    _builder_20.append(");");
+                    _newLine_9.append(_builder_20);
+                  } else {
+                    ITreeAppendable _newLine_10 = a.newLine();
+                    StringConcatenation _builder_21 = new StringConcatenation();
+                    String _literal_5 = ((AllInstanceExpression)e).getType().getSide().getLiteral();
+                    _builder_21.append(_literal_5);
+                    _builder_21.append(".all");
+                    String _simpleName_3 = componentType_1.getSimpleName();
+                    _builder_21.append(_simpleName_3);
+                    _builder_21.append("s(\"");
+                    String _name_4 = ((AllInstanceExpression)e).getType().getType().getName();
+                    _builder_21.append(_name_4);
+                    _builder_21.append("\"");
+                    {
+                      EStructuralFeature _feature_5 = ((AllInstanceExpression)e).getType().getFeature();
+                      boolean _tripleNotEquals_3 = (_feature_5 != null);
+                      if (_tripleNotEquals_3) {
+                        _builder_21.append(",\"");
+                        String _name_5 = ((AllInstanceExpression)e).getType().getFeature().getName();
+                        _builder_21.append(_name_5);
+                        _builder_21.append("\"");
+                      }
+                    }
+                    _builder_21.append(");");
+                    _newLine_10.append(_builder_21);
+                  }
+                } else {
+                  super.doInternalToJavaStatement(e, a, isReferenced);
+                }
               }
             }
           }
@@ -448,7 +524,12 @@ public class XmuCoreCompiler extends XbaseCompiler {
                 final String v = this.getVarName(e, a);
                 a.append(v);
               } else {
-                super.internalToConvertedExpression(e, a);
+                if ((e instanceof AllInstanceExpression)) {
+                  final String v_1 = this.getVarName(e, a);
+                  a.append(v_1);
+                } else {
+                  super.internalToConvertedExpression(e, a);
+                }
               }
             }
           }

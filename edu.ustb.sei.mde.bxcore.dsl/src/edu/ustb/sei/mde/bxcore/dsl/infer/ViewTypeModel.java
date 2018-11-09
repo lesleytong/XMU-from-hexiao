@@ -5,12 +5,14 @@ import java.util.List;
 import java.util.Map;
 
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCoreFactory;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXFunctionDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXProgram;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.VarMapping;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreAlign;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreExpandSource;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreExpandView;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreForEachMatchSource;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreFork;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreFunctionCall;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreGraphReplace;
@@ -157,12 +159,38 @@ public class ViewTypeModel extends TypeModel {
 				linkCause(c2, e);
 				linkCause(c3, e);
 			});
+		} else if(e instanceof XmuCoreForEachMatchSource) {
+			TupleType st = getType(e);
+			TupleType bt = getType(((XmuCoreForEachMatchSource) e).getBody());
+			TypeEqual c = TypeEqual.makeEqual(st, bt);
+			this.constraints.add(c);
+			linkCause(c, e);
 		}
+	}
+	
+	@Override
+	protected void handleTypeIndicator(XmuCoreStatement e) {
+		TupleType st = getType(e);
+		TupleType it = getType(e.getTypeIndicator().getViewType());
+		
+		TypeEqual c = TypeEqual.makeEqual(st, it);
+		this.constraints.add(c);
+		linkCause(c, e);
 	}
 
 	@Override
 	protected String getName() {
 		return "source type infer";
+	}
+
+	@Override
+	protected void handleTypeIndicator(BXFunctionDefinition e) {
+		TupleType st = getType(e.getStatement());
+		TupleType it = getType(e.getTypeIndicator().getViewType());
+		
+		TypeEqual c = TypeEqual.makeEqual(st, it);
+		this.constraints.add(c);
+		linkCause(c, e);
 	}
 
 }

@@ -293,6 +293,11 @@ public class BXCoreAdapterFactory extends AdapterFactoryImpl
         return createIndexPartAdapter();
       }
       @Override
+      public Adapter caseXmuCoreForEachMatchSource(XmuCoreForEachMatchSource object)
+      {
+        return createXmuCoreForEachMatchSourceAdapter();
+      }
+      @Override
       public Adapter caseContextAwareCondition(ContextAwareCondition object)
       {
         return createContextAwareConditionAdapter();
@@ -336,6 +341,16 @@ public class BXCoreAdapterFactory extends AdapterFactoryImpl
       public Adapter caseNewInstanceExpression(NewInstanceExpression object)
       {
         return createNewInstanceExpressionAdapter();
+      }
+      @Override
+      public Adapter caseAnnotatedType(AnnotatedType object)
+      {
+        return createAnnotatedTypeAdapter();
+      }
+      @Override
+      public Adapter caseAllInstanceExpression(AllInstanceExpression object)
+      {
+        return createAllInstanceExpressionAdapter();
       }
       @Override
       public Adapter caseModificationExpression(ModificationExpression object)
@@ -1065,6 +1080,21 @@ public class BXCoreAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreForEachMatchSource <em>Xmu Core For Each Match Source</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreForEachMatchSource
+   * @generated
+   */
+  public Adapter createXmuCoreForEachMatchSourceAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareCondition <em>Context Aware Condition</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -1195,6 +1225,36 @@ public class BXCoreAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createNewInstanceExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.AnnotatedType <em>Annotated Type</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.AnnotatedType
+   * @generated
+   */
+  public Adapter createAnnotatedTypeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.AllInstanceExpression <em>All Instance Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.AllInstanceExpression
+   * @generated
+   */
+  public Adapter createAllInstanceExpressionAdapter()
   {
     return null;
   }

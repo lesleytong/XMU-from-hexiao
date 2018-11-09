@@ -3,9 +3,6 @@
  */
 package edu.ustb.sei.mde.bxcore.dsl.bXCore;
 
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.xtext.xbase.XExpression;
 
 /**
@@ -17,10 +14,7 @@ import org.eclipse.xtext.xbase.XExpression;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression#getSide <em>Side</em>}</li>
- *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression#getMetamodel <em>Metamodel</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression#getType <em>Type</em>}</li>
- *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression#getFeature <em>Feature</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression#getSize <em>Size</em>}</li>
  * </ul>
  *
@@ -31,111 +25,30 @@ import org.eclipse.xtext.xbase.XExpression;
 public interface NewInstanceExpression extends XExpression
 {
   /**
-   * Returns the value of the '<em><b>Side</b></em>' attribute.
-   * The literals are from the enumeration {@link edu.ustb.sei.mde.bxcore.dsl.bXCore.SideEnum}.
+   * Returns the value of the '<em><b>Type</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Side</em>' attribute isn't clear,
+   * If the meaning of the '<em>Type</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Side</em>' attribute.
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.SideEnum
-   * @see #setSide(SideEnum)
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getNewInstanceExpression_Side()
-   * @model
-   * @generated
-   */
-  SideEnum getSide();
-
-  /**
-   * Sets the value of the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression#getSide <em>Side</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Side</em>' attribute.
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.SideEnum
-   * @see #getSide()
-   * @generated
-   */
-  void setSide(SideEnum value);
-
-  /**
-   * Returns the value of the '<em><b>Metamodel</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Metamodel</em>' reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Metamodel</em>' reference.
-   * @see #setMetamodel(ImportSection)
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getNewInstanceExpression_Metamodel()
-   * @model
-   * @generated
-   */
-  ImportSection getMetamodel();
-
-  /**
-   * Sets the value of the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression#getMetamodel <em>Metamodel</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Metamodel</em>' reference.
-   * @see #getMetamodel()
-   * @generated
-   */
-  void setMetamodel(ImportSection value);
-
-  /**
-   * Returns the value of the '<em><b>Type</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Type</em>' reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Type</em>' reference.
-   * @see #setType(EClass)
+   * @return the value of the '<em>Type</em>' containment reference.
+   * @see #setType(AnnotatedType)
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getNewInstanceExpression_Type()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  EClass getType();
+  AnnotatedType getType();
 
   /**
-   * Sets the value of the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression#getType <em>Type</em>}' reference.
+   * Sets the value of the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression#getType <em>Type</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Type</em>' reference.
+   * @param value the new value of the '<em>Type</em>' containment reference.
    * @see #getType()
    * @generated
    */
-  void setType(EClass value);
-
-  /**
-   * Returns the value of the '<em><b>Feature</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Feature</em>' reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Feature</em>' reference.
-   * @see #setFeature(EStructuralFeature)
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getNewInstanceExpression_Feature()
-   * @model
-   * @generated
-   */
-  EStructuralFeature getFeature();
-
-  /**
-   * Sets the value of the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression#getFeature <em>Feature</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Feature</em>' reference.
-   * @see #getFeature()
-   * @generated
-   */
-  void setFeature(EStructuralFeature value);
+  void setType(AnnotatedType value);
 
   /**
    * Returns the value of the '<em><b>Size</b></em>' containment reference.

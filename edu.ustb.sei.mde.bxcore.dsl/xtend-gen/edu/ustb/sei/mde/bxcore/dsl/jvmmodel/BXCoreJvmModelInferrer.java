@@ -7,6 +7,7 @@ import com.google.inject.Inject;
 import edu.ustb.sei.mde.bxcore.Align;
 import edu.ustb.sei.mde.bxcore.ExpandSource;
 import edu.ustb.sei.mde.bxcore.ExpandView;
+import edu.ustb.sei.mde.bxcore.ForEachMatchSource;
 import edu.ustb.sei.mde.bxcore.Fork;
 import edu.ustb.sei.mde.bxcore.GraphReplace;
 import edu.ustb.sei.mde.bxcore.IndexSignature;
@@ -53,6 +54,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreAlign;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreCompositionChildStatement;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreExpandSource;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreExpandView;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreForEachMatchSource;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreFork;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreForkBranch;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreFunctionCall;
@@ -1909,6 +1911,27 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
             }
           }
           return scope.append(_builder_1);
+        }
+      }
+      if (!_matched) {
+        if (statement instanceof XmuCoreForEachMatchSource) {
+          _matched=true;
+          final CharSequence srcType = this.typeAccessor(this.sourceType(statement, data), typeLiteralMap, unsolvedTypes);
+          final edu.ustb.sei.mde.bxcore.dsl.bXCore.Pattern pattern = ((XmuCoreForEachMatchSource)statement).getPattern();
+          final XmuCoreStatement body = ((XmuCoreForEachMatchSource)statement).getBody();
+          StringConcatenation _builder = new StringConcatenation();
+          _builder.append("new ");
+          String _qualifiedName = this._typeReferenceBuilder.typeRef(ForEachMatchSource.class).getQualifiedName();
+          _builder.append(_qualifiedName);
+          _builder.append("(\"");
+          _builder.append(key);
+          _builder.append("\", ");
+          _builder.append(srcType);
+          _builder.append(", ");
+          CharSequence _patternAccessor = this.patternAccessor(pattern, patternLiterals);
+          _builder.append(_patternAccessor);
+          _builder.append(",");
+          return this.generateXmuCode(appendable.append(_builder).newLine().increaseIndentation(), body, indexedStatements, typeLiteralMap, patternLiterals, conditions, actions, unsolvedTypes, data, program).newLine().decreaseIndentation().append(")");
         }
       }
       if (!_matched) {

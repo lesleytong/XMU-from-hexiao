@@ -4,6 +4,8 @@
 package edu.ustb.sei.mde.bxcore.dsl.serializer;
 
 import com.google.inject.Inject;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.AllInstanceExpression;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.AnnotatedType;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXFunctionDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXProgram;
@@ -44,6 +46,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.VarMapping;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreAlign;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreExpandSource;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreExpandView;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreForEachMatchSource;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreFork;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreForkBranch;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreFunctionCall;
@@ -126,6 +129,12 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
 		if (epackage == BXCorePackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
+			case BXCorePackage.ALL_INSTANCE_EXPRESSION:
+				sequence_AllInstanceExpression(context, (AllInstanceExpression) semanticObject); 
+				return; 
+			case BXCorePackage.ANNOTATED_TYPE:
+				sequence_AnnotatedType(context, (AnnotatedType) semanticObject); 
+				return; 
 			case BXCorePackage.BX_FUNCTION_DEFINITION:
 				sequence_BXFunctionDefinition(context, (BXFunctionDefinition) semanticObject); 
 				return; 
@@ -242,6 +251,9 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 				return; 
 			case BXCorePackage.XMU_CORE_EXPAND_VIEW:
 				sequence_XmuCoreExpandView(context, (XmuCoreExpandView) semanticObject); 
+				return; 
+			case BXCorePackage.XMU_CORE_FOR_EACH_MATCH_SOURCE:
+				sequence_XmuCoreForEachMatchSource(context, (XmuCoreForEachMatchSource) semanticObject); 
 				return; 
 			case BXCorePackage.XMU_CORE_FORK:
 				sequence_XmuCoreFork(context, (XmuCoreFork) semanticObject); 
@@ -521,6 +533,66 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 		if (errorAcceptor != null)
 			errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
 	}
+	
+	/**
+	 * Contexts:
+	 *     XPrimaryExpression returns AllInstanceExpression
+	 *     AllInstanceExpression returns AllInstanceExpression
+	 *     XExpression returns AllInstanceExpression
+	 *     XAssignment returns AllInstanceExpression
+	 *     XAssignment.XBinaryOperation_1_1_0_0_0 returns AllInstanceExpression
+	 *     XOrExpression returns AllInstanceExpression
+	 *     XOrExpression.XBinaryOperation_1_0_0_0 returns AllInstanceExpression
+	 *     XAndExpression returns AllInstanceExpression
+	 *     XAndExpression.XBinaryOperation_1_0_0_0 returns AllInstanceExpression
+	 *     XEqualityExpression returns AllInstanceExpression
+	 *     XEqualityExpression.XBinaryOperation_1_0_0_0 returns AllInstanceExpression
+	 *     XRelationalExpression returns AllInstanceExpression
+	 *     XRelationalExpression.XInstanceOfExpression_1_0_0_0_0 returns AllInstanceExpression
+	 *     XRelationalExpression.XBinaryOperation_1_1_0_0_0 returns AllInstanceExpression
+	 *     XOtherOperatorExpression returns AllInstanceExpression
+	 *     XOtherOperatorExpression.XBinaryOperation_1_0_0_0 returns AllInstanceExpression
+	 *     XAdditiveExpression returns AllInstanceExpression
+	 *     XAdditiveExpression.XBinaryOperation_1_0_0_0 returns AllInstanceExpression
+	 *     XMultiplicativeExpression returns AllInstanceExpression
+	 *     XMultiplicativeExpression.XBinaryOperation_1_0_0_0 returns AllInstanceExpression
+	 *     XUnaryOperation returns AllInstanceExpression
+	 *     XCastedExpression returns AllInstanceExpression
+	 *     XCastedExpression.XCastedExpression_1_0_0_0 returns AllInstanceExpression
+	 *     XPostfixOperation returns AllInstanceExpression
+	 *     XPostfixOperation.XPostfixOperation_1_0_0 returns AllInstanceExpression
+	 *     XMemberFeatureCall returns AllInstanceExpression
+	 *     XMemberFeatureCall.XAssignment_1_0_0_0_0 returns AllInstanceExpression
+	 *     XMemberFeatureCall.XMemberFeatureCall_1_1_0_0_0 returns AllInstanceExpression
+	 *     XPrimaryExpression returns AllInstanceExpression
+	 *     XParenthesizedExpression returns AllInstanceExpression
+	 *     XExpressionOrVarDeclaration returns AllInstanceExpression
+	 *
+	 * Constraint:
+	 *     type=AnnotatedType
+	 */
+	protected void sequence_AllInstanceExpression(ISerializationContext context, AllInstanceExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.ALL_INSTANCE_EXPRESSION__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.ALL_INSTANCE_EXPRESSION__TYPE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getAllInstanceExpressionAccess().getTypeAnnotatedTypeParserRuleCall_0_0(), semanticObject.getType());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     AnnotatedType returns AnnotatedType
+	 *
+	 * Constraint:
+	 *     (side=SideEnum metamodel=[ImportSection|ValidID] type=[EClass|ValidID] feature=[EStructuralFeature|ValidID]?)
+	 */
+	protected void sequence_AnnotatedType(ISerializationContext context, AnnotatedType semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
 	
 	/**
 	 * Contexts:
@@ -1060,7 +1132,7 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	 *     XExpressionOrVarDeclaration returns NewInstanceExpression
 	 *
 	 * Constraint:
-	 *     (side=SideEnum metamodel=[ImportSection|ValidID] type=[EClass|ValidID] feature=[EStructuralFeature|ValidID]? size=XExpression?)
+	 *     (type=AnnotatedType size=XExpression?)
 	 */
 	protected void sequence_NewInstanceExpression(ISerializationContext context, NewInstanceExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1398,6 +1470,20 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	 *     (typeIndicator=TypeIndicator? pattern=Pattern mappings+=VarMapping mappings+=VarMapping* body=XmuCoreStatement)
 	 */
 	protected void sequence_XmuCoreExpandView(ISerializationContext context, XmuCoreExpandView semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     XmuCoreStatement returns XmuCoreForEachMatchSource
+	 *     XmuCoreCompositionChildStatement returns XmuCoreForEachMatchSource
+	 *     XmuCoreForEachMatchSource returns XmuCoreForEachMatchSource
+	 *
+	 * Constraint:
+	 *     (typeIndicator=TypeIndicator? pattern=Pattern body=XmuCoreStatement)
+	 */
+	protected void sequence_XmuCoreForEachMatchSource(ISerializationContext context, XmuCoreForEachMatchSource semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

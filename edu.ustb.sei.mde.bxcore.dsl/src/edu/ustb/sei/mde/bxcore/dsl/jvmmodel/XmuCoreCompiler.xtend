@@ -34,6 +34,7 @@ import org.eclipse.xtext.xbase.XIfExpression
 import org.eclipse.xtext.xbase.compiler.XbaseCompiler
 import org.eclipse.xtext.xbase.compiler.output.ITreeAppendable
 import org.eclipse.xtext.xbase.typesystem.references.LightweightTypeReference
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.AllInstanceExpression
 
 class XmuCoreCompiler extends XbaseCompiler {
 	def patternAccessor(Pattern p) {
@@ -51,10 +52,9 @@ class XmuCoreCompiler extends XbaseCompiler {
 			}
 			else if(p instanceof PatternDefinitionReference)
 				p.pattern.name.toFirstUpper
-			else '/* ERROR */'
+			else '/* ERROR: unknown pattern type */'
 		} catch (Exception e) {
-			e.printStackTrace
-			'/* ERROR */'
+			'''/* ERROR: «e.message»*/'''
 		}
 	}
 	
@@ -145,9 +145,9 @@ class XmuCoreCompiler extends XbaseCompiler {
 				e.size.internalToJavaStatement(a, true);
 			}
 			
-			val componentType = if (e.feature === null)
+			val componentType = if (e.type.feature === null)
 					TypedNode
-				else if(e.feature instanceof EReference) TypedEdge else ValueEdge;
+				else if(e.type.feature instanceof EReference) TypedEdge else ValueEdge;
 
 			val v = a.declareSyntheticVariable(e, 'newInstance');
 			if (e.size !== null) {
@@ -159,6 +159,18 @@ class XmuCoreCompiler extends XbaseCompiler {
 			} else {
 				a.newLine.append('''«componentType.canonicalName» «v» = «ContextGraph.canonicalName».new«componentType.simpleName»();''');
 			}
+		} else if(e instanceof AllInstanceExpression) {
+			val componentType = if (e.type.feature === null)
+					TypedNode
+				else if(e.type.feature instanceof EReference) TypedEdge else ValueEdge;
+			
+			if(isReferenced) {
+				val v = a.declareSyntheticVariable(e, 'allInstances');
+				a.newLine.append('''java.util.List<«componentType.canonicalName»> «v» = «e.type.side.literal».all«componentType.simpleName»s("«e.type.type.name»"«IF e.type.feature!==null»,"«e.type.feature.name»"«ENDIF»);''')
+			} else {
+				a.newLine.append('''«e.type.side.literal».all«componentType.simpleName»s("«e.type.type.name»"«IF e.type.feature!==null»,"«e.type.feature.name»"«ENDIF»);''');
+			}
+			
 		} else
 			super.doInternalToJavaStatement(e, a, isReferenced)
 	}
@@ -183,6 +195,9 @@ class XmuCoreCompiler extends XbaseCompiler {
 			val lastResult = getVarName(e, a);
 			a.append('''«lastResult».get()''')
 		} else if(e instanceof NewInstanceExpression) {
+			val v = getVarName(e,a);
+			a.append(v);
+		} else if(e instanceof AllInstanceExpression) {
 			val v = getVarName(e,a);
 			a.append(v);
 		}

@@ -35,6 +35,16 @@ public class SourceType extends Tuple3<TypedGraph, Context, TraceSystem> impleme
 		return EMPTY_SOURCE;
 	}
 	
+	private static SourceType DROP_SOURCE = makeSource(null, null, null);
+	static public SourceType drop() {
+		return DROP_SOURCE;
+	}
+	
+	private static SourceType SKIP_SOURCE = makeSource(null, null, null);
+	static public SourceType skip() {
+		return SKIP_SOURCE;
+	}
+	
 	static public Object summarize(SourceType[] results, FieldDef<?> sk, XmuCore stmt) throws NothingReturnedException {
 		Object value = null;
 		boolean initialized=false;

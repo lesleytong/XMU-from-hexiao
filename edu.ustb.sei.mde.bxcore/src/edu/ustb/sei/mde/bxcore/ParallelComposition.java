@@ -132,6 +132,9 @@ public class ParallelComposition extends XmuCore {
 				finalView = finalView.additiveMerge(v.first);
 		}
 		
+		if(finalView==null) 
+			return ViewType.empty();
+		
 		this.submit(newSources);
 		
 		finalView.setConstraint(getConsistencyConstraint());

@@ -101,13 +101,20 @@ public abstract class TypeModel {
 		itr = program.eAllContents();
 		while(itr.hasNext()) {
 			EObject e = itr.next();
-			if(e instanceof XmuCoreStatement) {
+			if(e instanceof BXFunctionDefinition) {
+				handleTypeIndicator((BXFunctionDefinition)e);
+			} else if(e instanceof XmuCoreStatement) {
 				extractConstraint((XmuCoreStatement)e);
+				if(((XmuCoreStatement) e).getTypeIndicator()!=null)
+					handleTypeIndicator((XmuCoreStatement)e);
 			} else if(e instanceof Pattern || e instanceof TypeLiteral || e instanceof XExpression) {
 				itr.prune();
 			}
 		}
 	}
+	
+	protected abstract void handleTypeIndicator(BXFunctionDefinition e);
+	protected abstract void handleTypeIndicator(XmuCoreStatement e);
 
 	protected abstract void extractConstraint(XmuCoreStatement e);
 

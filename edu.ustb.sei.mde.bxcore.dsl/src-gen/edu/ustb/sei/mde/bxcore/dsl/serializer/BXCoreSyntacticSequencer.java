@@ -184,8 +184,8 @@ public class BXCoreSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) 'for' '(' declaredParam=JvmFormalParameter
 	 *     (rule start) (ambiguity) 'for' '(' initExpressions+=XExpressionOrVarDeclaration
 	 *     (rule start) (ambiguity) 'if' '(' if=XExpression
-	 *     (rule start) (ambiguity) 'new' '@' side=SideEnum
 	 *     (rule start) (ambiguity) 'new' constructor=[JvmConstructor|QualifiedName]
+	 *     (rule start) (ambiguity) 'new' type=AnnotatedType
 	 *     (rule start) (ambiguity) 'null' (rule start)
 	 *     (rule start) (ambiguity) 'return' (rule start)
 	 *     (rule start) (ambiguity) 'return' expression=XExpression
@@ -204,6 +204,7 @@ public class BXCoreSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) feature=[JvmIdentifiableElement|OpUnary]
 	 *     (rule start) (ambiguity) isTrue?='true'
 	 *     (rule start) (ambiguity) name=ValidID
+	 *     (rule start) (ambiguity) type=AnnotatedType
 	 *     (rule start) (ambiguity) value=Number
 	 *     (rule start) (ambiguity) value=STRING
 	 *     (rule start) (ambiguity) {NavigationExpression.host=}
@@ -244,8 +245,8 @@ public class BXCoreSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) 'for' '(' declaredParam=JvmFormalParameter
 	 *     (rule start) (ambiguity) 'for' '(' initExpressions+=XExpressionOrVarDeclaration
 	 *     (rule start) (ambiguity) 'if' '(' if=XExpression
-	 *     (rule start) (ambiguity) 'new' '@' side=SideEnum
 	 *     (rule start) (ambiguity) 'new' constructor=[JvmConstructor|QualifiedName]
+	 *     (rule start) (ambiguity) 'new' type=AnnotatedType
 	 *     (rule start) (ambiguity) 'null' ')' (rule start)
 	 *     (rule start) (ambiguity) 'return' ')' (rule start)
 	 *     (rule start) (ambiguity) 'return' expression=XExpression
@@ -264,6 +265,7 @@ public class BXCoreSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) feature=[JvmIdentifiableElement|OpUnary]
 	 *     (rule start) (ambiguity) isTrue?='true'
 	 *     (rule start) (ambiguity) name=ValidID
+	 *     (rule start) (ambiguity) type=AnnotatedType
 	 *     (rule start) (ambiguity) value=Number
 	 *     (rule start) (ambiguity) value=STRING
 	 *     (rule start) (ambiguity) {NavigationExpression.host=}

@@ -1,9 +1,12 @@
 package edu.ustb.sei.mde.bxcore.structures;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import edu.ustb.sei.mde.bxcore.SourceType;
 import edu.ustb.sei.mde.bxcore.ViewType;
@@ -356,6 +359,34 @@ public interface ContextGraph {
 		@SuppressWarnings("unchecked")
 		public <T extends ContextGraph> T get() {
 			return (T) data;
+		}
+	}
+	
+	default public List<TypedNode> allTypedNodes(String typeName) {
+		TypeNode type = this.getTypeNode(typeName);
+		if(type==null) return Collections.emptyList();
+		else {
+			return Arrays.asList(this.getGraph().getTypedNodesOf(type));
+		}
+	}
+	
+	default public List<TypedEdge> allTypedEdges(String typeName, String featureName) {
+		TypeNode type = this.getTypeNode(typeName);
+		if(type==null) return Collections.emptyList();
+		else {
+			TypeEdge feature = this.getTypeEdge(type, featureName);
+			if(feature==null) return Collections.emptyList();
+			return this.getGraph().getAllTypedEdges().stream().filter(e->e.getType()==feature).collect(Collectors.toList());
+		}
+	}
+	
+	default public List<ValueEdge> allValueEdges(String typeName, String featureName) {
+		TypeNode type = this.getTypeNode(typeName);
+		if(type==null) return Collections.emptyList();
+		else {
+			PropertyEdge feature = this.getPropertyEdge(type, featureName);
+			if(feature==null) return Collections.emptyList();
+			return this.getGraph().getAllValueEdges().stream().filter(e->e.getType()==feature).collect(Collectors.toList());
 		}
 	}
 }

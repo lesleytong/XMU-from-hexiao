@@ -98,6 +98,8 @@ import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.CustomizedBiGULDefinition
 import edu.ustb.sei.mde.bxcore.bigul.BidirectionalTransformation
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.CustomizedBiGULReference
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreForEachMatchSource
+import edu.ustb.sei.mde.bxcore.ForEachMatchSource
 
 /**
  * <p>Infers a JVM model from the source model.</p> 
@@ -624,6 +626,16 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 				var scope = appendable.append('''«FOR part : parts»new «Indexing.typeRef.qualifiedName»(getIndex_«part.signature.name.toFirstUpper»(), new String[]{«FOR sk:part.sourceKeys SEPARATOR ','»"«sk»"«ENDFOR»}, new String[]{«FOR vk:part.viewKeys SEPARATOR ','»"«vk»"«ENDFOR»}, «ENDFOR»''');
 				scope = scope.generateXmuCode(body, indexedStatements, typeLiteralMap, patternLiterals, conditions, actions, unsolvedTypes, data, program);
 				return scope.append('''«FOR part:parts»)«ENDFOR»''')
+			}
+			XmuCoreForEachMatchSource : {
+				val srcType = statement.sourceType(data).typeAccessor(typeLiteralMap, unsolvedTypes);
+				val pattern = statement.pattern;
+				val body = statement.body;
+				return appendable.append('''new «ForEachMatchSource.typeRef.qualifiedName»("«key»", «srcType», «pattern.patternAccessor(patternLiterals)»,''')
+					.newLine.increaseIndentation
+					.generateXmuCode(body, indexedStatements, typeLiteralMap, patternLiterals, conditions, actions, unsolvedTypes, data, program)
+					.newLine.decreaseIndentation.append(')')
+				
 			}
 			default:
 				appendable.append('''/* undefined */''')

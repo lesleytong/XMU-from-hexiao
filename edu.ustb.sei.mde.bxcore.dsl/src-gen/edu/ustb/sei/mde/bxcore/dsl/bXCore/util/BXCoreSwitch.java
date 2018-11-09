@@ -419,6 +419,15 @@ public class BXCoreSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case BXCorePackage.XMU_CORE_FOR_EACH_MATCH_SOURCE:
+      {
+        XmuCoreForEachMatchSource xmuCoreForEachMatchSource = (XmuCoreForEachMatchSource)theEObject;
+        T result = caseXmuCoreForEachMatchSource(xmuCoreForEachMatchSource);
+        if (result == null) result = caseXmuCoreCompositionChildStatement(xmuCoreForEachMatchSource);
+        if (result == null) result = caseXmuCoreStatement(xmuCoreForEachMatchSource);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case BXCorePackage.CONTEXT_AWARE_CONDITION:
       {
         ContextAwareCondition contextAwareCondition = (ContextAwareCondition)theEObject;
@@ -486,6 +495,21 @@ public class BXCoreSwitch<T> extends Switch<T>
         NewInstanceExpression newInstanceExpression = (NewInstanceExpression)theEObject;
         T result = caseNewInstanceExpression(newInstanceExpression);
         if (result == null) result = caseXExpression(newInstanceExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case BXCorePackage.ANNOTATED_TYPE:
+      {
+        AnnotatedType annotatedType = (AnnotatedType)theEObject;
+        T result = caseAnnotatedType(annotatedType);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case BXCorePackage.ALL_INSTANCE_EXPRESSION:
+      {
+        AllInstanceExpression allInstanceExpression = (AllInstanceExpression)theEObject;
+        T result = caseAllInstanceExpression(allInstanceExpression);
+        if (result == null) result = caseXExpression(allInstanceExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1276,6 +1300,22 @@ public class BXCoreSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Xmu Core For Each Match Source</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Xmu Core For Each Match Source</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseXmuCoreForEachMatchSource(XmuCoreForEachMatchSource object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Context Aware Condition</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -1415,6 +1455,38 @@ public class BXCoreSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseNewInstanceExpression(NewInstanceExpression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Annotated Type</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Annotated Type</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAnnotatedType(AnnotatedType object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>All Instance Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>All Instance Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAllInstanceExpression(AllInstanceExpression object)
   {
     return null;
   }

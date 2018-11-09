@@ -27,7 +27,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
+import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.xbase.XBlockExpression;
 import org.eclipse.xtext.xbase.XExpression;
@@ -83,14 +85,28 @@ public class BXCoreValidator extends AbstractBXCoreValidator {
         boolean _compare = inferredSource.compare(definedSource);
         boolean _tripleEquals = (Boolean.valueOf(_compare) == Boolean.valueOf(false));
         if (_tripleEquals) {
-          this.warning("The defined source type is different from the inferred type", stat);
+          StringConcatenation _builder = new StringConcatenation();
+          _builder.append("The defined source type is different from the inferred type");
+          _builder.newLine();
+          _builder.append("\t\t\t\t");
+          _builder.append("The inferred type is ");
+          CharSequence _text = this.text(inferredSource);
+          _builder.append(_text, "\t\t\t\t");
+          this.warning(_builder.toString(), stat);
         }
         final TupleType inferredView = data.getViewInfer().getType(stat);
         final TupleType definedView = data.getViewInfer().getType(stat.getTypeIndicator().getViewType());
         boolean _compare_1 = inferredView.compare(definedView);
         boolean _tripleEquals_1 = (Boolean.valueOf(_compare_1) == Boolean.valueOf(false));
         if (_tripleEquals_1) {
-          this.warning("The defined view type is different from the inferred type", stat);
+          StringConcatenation _builder_1 = new StringConcatenation();
+          _builder_1.append("The defined view type is different from the inferred type");
+          _builder_1.newLine();
+          _builder_1.append("\t\t\t\t");
+          _builder_1.append("The inferred type is ");
+          CharSequence _text_1 = this.text(inferredSource);
+          _builder_1.append(_text_1, "\t\t\t\t");
+          this.warning(_builder_1.toString(), stat);
         }
       }
       if ((data != null)) {
@@ -99,6 +115,42 @@ public class BXCoreValidator extends AbstractBXCoreValidator {
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
+  }
+  
+  public CharSequence text(final TupleType type) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("(");
+    {
+      boolean _hasElements = false;
+      for(final Tuple3<String, Object, Boolean> t : type.tuples) {
+        if (!_hasElements) {
+          _hasElements = true;
+        } else {
+          _builder.appendImmediate(",", "");
+        }
+        _builder.append(t.first);
+        _builder.append(":");
+        String _text = this.text(t.second);
+        _builder.append(_text);
+        {
+          if ((t.third).booleanValue()) {
+            _builder.append("[]");
+          }
+        }
+      }
+    }
+    _builder.append(")");
+    return _builder;
+  }
+  
+  public String text(final Object object) {
+    String _xifexpression = null;
+    if ((object instanceof ENamedElement)) {
+      _xifexpression = ((ENamedElement)object).getName();
+    } else {
+      _xifexpression = object.toString();
+    }
+    return _xifexpression;
   }
   
   public void checkVarMappings(final XmuCoreStatement statement, final InferData data) {
@@ -158,14 +210,28 @@ public class BXCoreValidator extends AbstractBXCoreValidator {
         boolean _compare = inferredSource.compare(definedSource);
         boolean _tripleEquals = (Boolean.valueOf(_compare) == Boolean.valueOf(false));
         if (_tripleEquals) {
-          this.warning("The defined source type is different from the inferred type", func);
+          StringConcatenation _builder = new StringConcatenation();
+          _builder.append("The defined source type is different from the inferred type");
+          _builder.newLine();
+          _builder.append("\t\t\t\t");
+          _builder.append("The inferred type is ");
+          CharSequence _text = this.text(inferredSource);
+          _builder.append(_text, "\t\t\t\t");
+          this.warning(_builder.toString(), func);
         }
         final TupleType inferredView = data.getViewInfer().getType(func);
         final TupleType definedView = data.getViewInfer().getType(func.getTypeIndicator().getViewType());
         boolean _compare_1 = inferredView.compare(definedView);
         boolean _tripleEquals_1 = (Boolean.valueOf(_compare_1) == Boolean.valueOf(false));
         if (_tripleEquals_1) {
-          this.warning("The defined view type is different from the inferred type", func);
+          StringConcatenation _builder_1 = new StringConcatenation();
+          _builder_1.append("The defined view type is different from the inferred type");
+          _builder_1.newLine();
+          _builder_1.append("\t\t\t\t");
+          _builder_1.append("The inferred type is ");
+          CharSequence _text_1 = this.text(inferredSource);
+          _builder_1.append(_text_1, "\t\t\t\t");
+          this.warning(_builder_1.toString(), func);
         }
       }
     } catch (Throwable _e) {

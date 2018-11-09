@@ -4,6 +4,7 @@
 package edu.ustb.sei.mde.bxcore.dsl.scoping;
 
 import com.google.common.base.Predicate;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.AnnotatedType;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXFunctionDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXProgram;
@@ -11,7 +12,6 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.Definition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ExpressionConversion;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.FeatureTypeRef;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ImportSection;
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.OrderedTupleTypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternNode;
@@ -161,7 +161,7 @@ public class BXCoreScopeProvider extends AbstractBXCoreScopeProvider {
                       return new SimpleScope(objects_1);
                     } else {
                       if (((reference == BXCorePackage.Literals.EXPRESSION_CONVERSION__METAMODEL) || 
-                        (reference == BXCorePackage.Literals.NEW_INSTANCE_EXPRESSION__METAMODEL))) {
+                        (reference == BXCorePackage.Literals.ANNOTATED_TYPE__METAMODEL))) {
                         final Function1<ImportSection, IEObjectDescription> _function_8 = (ImportSection it) -> {
                           return EObjectDescription.create(it.getShortName(), it);
                         };
@@ -177,8 +177,8 @@ public class BXCoreScopeProvider extends AbstractBXCoreScopeProvider {
                           };
                           return new FilteringScope(_collectTypes, _function_9);
                         } else {
-                          if ((reference == BXCorePackage.Literals.NEW_INSTANCE_EXPRESSION__TYPE)) {
-                            final EPackage pkg_1 = ((NewInstanceExpression) context).getMetamodel().getMetamodel();
+                          if ((reference == BXCorePackage.Literals.ANNOTATED_TYPE__TYPE)) {
+                            final EPackage pkg_1 = ((AnnotatedType) context).getMetamodel().getMetamodel();
                             IScope _collectTypes_1 = this.collectTypes(pkg_1);
                             final Predicate<IEObjectDescription> _function_10 = (IEObjectDescription d) -> {
                               EObject _eObjectOrProxy = d.getEObjectOrProxy();
@@ -186,8 +186,8 @@ public class BXCoreScopeProvider extends AbstractBXCoreScopeProvider {
                             };
                             return new FilteringScope(_collectTypes_1, _function_10);
                           } else {
-                            if ((reference == BXCorePackage.Literals.NEW_INSTANCE_EXPRESSION__FEATURE)) {
-                              final EClass type_1 = ((NewInstanceExpression) context).getType();
+                            if ((reference == BXCorePackage.Literals.ANNOTATED_TYPE__FEATURE)) {
+                              final EClass type_1 = ((AnnotatedType) context).getType();
                               return this.featureScope(type_1);
                             }
                           }

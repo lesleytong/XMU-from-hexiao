@@ -3,6 +3,8 @@
  */
 package edu.ustb.sei.mde.bxcore.dsl.bXCore.impl;
 
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.AllInstanceExpression;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.AnnotatedType;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCoreFactory;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXFunctionDefinition;
@@ -57,6 +59,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreAlign;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreCompositionChildStatement;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreExpandSource;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreExpandView;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreForEachMatchSource;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreFork;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreForkBranch;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreFunctionCall;
@@ -398,6 +401,13 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass xmuCoreForEachMatchSourceEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass contextAwareConditionEClass = null;
 
   /**
@@ -455,6 +465,20 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * @generated
    */
   private EClass newInstanceExpressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass annotatedTypeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass allInstanceExpressionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1883,6 +1907,36 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getXmuCoreForEachMatchSource()
+  {
+    return xmuCoreForEachMatchSourceEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getXmuCoreForEachMatchSource_Pattern()
+  {
+    return (EReference)xmuCoreForEachMatchSourceEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getXmuCoreForEachMatchSource_Body()
+  {
+    return (EReference)xmuCoreForEachMatchSourceEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getContextAwareCondition()
   {
     return contextAwareConditionEClass;
@@ -2013,39 +2067,9 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getNewInstanceExpression_Side()
-  {
-    return (EAttribute)newInstanceExpressionEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getNewInstanceExpression_Metamodel()
-  {
-    return (EReference)newInstanceExpressionEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EReference getNewInstanceExpression_Type()
   {
-    return (EReference)newInstanceExpressionEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getNewInstanceExpression_Feature()
-  {
-    return (EReference)newInstanceExpressionEClass.getEStructuralFeatures().get(3);
+    return (EReference)newInstanceExpressionEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -2055,7 +2079,77 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    */
   public EReference getNewInstanceExpression_Size()
   {
-    return (EReference)newInstanceExpressionEClass.getEStructuralFeatures().get(4);
+    return (EReference)newInstanceExpressionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getAnnotatedType()
+  {
+    return annotatedTypeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getAnnotatedType_Side()
+  {
+    return (EAttribute)annotatedTypeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getAnnotatedType_Metamodel()
+  {
+    return (EReference)annotatedTypeEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getAnnotatedType_Type()
+  {
+    return (EReference)annotatedTypeEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getAnnotatedType_Feature()
+  {
+    return (EReference)annotatedTypeEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getAllInstanceExpression()
+  {
+    return allInstanceExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getAllInstanceExpression_Type()
+  {
+    return (EReference)allInstanceExpressionEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -2528,6 +2622,10 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     createEAttribute(indexPartEClass, INDEX_PART__SOURCE_KEYS);
     createEAttribute(indexPartEClass, INDEX_PART__VIEW_KEYS);
 
+    xmuCoreForEachMatchSourceEClass = createEClass(XMU_CORE_FOR_EACH_MATCH_SOURCE);
+    createEReference(xmuCoreForEachMatchSourceEClass, XMU_CORE_FOR_EACH_MATCH_SOURCE__PATTERN);
+    createEReference(xmuCoreForEachMatchSourceEClass, XMU_CORE_FOR_EACH_MATCH_SOURCE__BODY);
+
     contextAwareConditionEClass = createEClass(CONTEXT_AWARE_CONDITION);
     createEReference(contextAwareConditionEClass, CONTEXT_AWARE_CONDITION__CONDITION);
 
@@ -2549,11 +2647,17 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     createEAttribute(contextPrimaryExpressionEClass, CONTEXT_PRIMARY_EXPRESSION__SIDE);
 
     newInstanceExpressionEClass = createEClass(NEW_INSTANCE_EXPRESSION);
-    createEAttribute(newInstanceExpressionEClass, NEW_INSTANCE_EXPRESSION__SIDE);
-    createEReference(newInstanceExpressionEClass, NEW_INSTANCE_EXPRESSION__METAMODEL);
     createEReference(newInstanceExpressionEClass, NEW_INSTANCE_EXPRESSION__TYPE);
-    createEReference(newInstanceExpressionEClass, NEW_INSTANCE_EXPRESSION__FEATURE);
     createEReference(newInstanceExpressionEClass, NEW_INSTANCE_EXPRESSION__SIZE);
+
+    annotatedTypeEClass = createEClass(ANNOTATED_TYPE);
+    createEAttribute(annotatedTypeEClass, ANNOTATED_TYPE__SIDE);
+    createEReference(annotatedTypeEClass, ANNOTATED_TYPE__METAMODEL);
+    createEReference(annotatedTypeEClass, ANNOTATED_TYPE__TYPE);
+    createEReference(annotatedTypeEClass, ANNOTATED_TYPE__FEATURE);
+
+    allInstanceExpressionEClass = createEClass(ALL_INSTANCE_EXPRESSION);
+    createEReference(allInstanceExpressionEClass, ALL_INSTANCE_EXPRESSION__TYPE);
 
     modificationExpressionEClass = createEClass(MODIFICATION_EXPRESSION);
 
@@ -2657,12 +2761,14 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     xmuCoreAlignEClass.getESuperTypes().add(this.getXmuCoreCompositionChildStatement());
     xmuCoreFunctionCallEClass.getESuperTypes().add(this.getXmuCoreCompositionChildStatement());
     xmuCoreIndexEClass.getESuperTypes().add(this.getXmuCoreCompositionChildStatement());
+    xmuCoreForEachMatchSourceEClass.getESuperTypes().add(this.getXmuCoreCompositionChildStatement());
     biGULReplaceEClass.getESuperTypes().add(this.getBiGULStatement());
     biGULSkipEClass.getESuperTypes().add(this.getBiGULStatement());
     customizedBiGULReferenceEClass.getESuperTypes().add(this.getBiGULStatement());
     contextExpressionEClass.getESuperTypes().add(theXbasePackage.getXExpression());
     contextPrimaryExpressionEClass.getESuperTypes().add(this.getContextExpression());
     newInstanceExpressionEClass.getESuperTypes().add(theXbasePackage.getXExpression());
+    allInstanceExpressionEClass.getESuperTypes().add(theXbasePackage.getXExpression());
     modificationExpressionEClass.getESuperTypes().add(theXbasePackage.getXExpression());
     enforcementExpressionEClass.getESuperTypes().add(this.getModificationExpression());
     deleteElementExpressionEClass.getESuperTypes().add(this.getModificationExpression());
@@ -2845,6 +2951,10 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     initEAttribute(getIndexPart_SourceKeys(), ecorePackage.getEString(), "sourceKeys", null, 0, -1, IndexPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getIndexPart_ViewKeys(), ecorePackage.getEString(), "viewKeys", null, 0, -1, IndexPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+    initEClass(xmuCoreForEachMatchSourceEClass, XmuCoreForEachMatchSource.class, "XmuCoreForEachMatchSource", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getXmuCoreForEachMatchSource_Pattern(), this.getPattern(), null, "pattern", null, 0, 1, XmuCoreForEachMatchSource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getXmuCoreForEachMatchSource_Body(), this.getXmuCoreStatement(), null, "body", null, 0, 1, XmuCoreForEachMatchSource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
     initEClass(contextAwareConditionEClass, ContextAwareCondition.class, "ContextAwareCondition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getContextAwareCondition_Condition(), theXbasePackage.getXExpression(), null, "condition", null, 0, 1, ContextAwareCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -2866,11 +2976,17 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     initEAttribute(getContextPrimaryExpression_Side(), this.getSideEnum(), "side", null, 0, 1, ContextPrimaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(newInstanceExpressionEClass, NewInstanceExpression.class, "NewInstanceExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getNewInstanceExpression_Side(), this.getSideEnum(), "side", null, 0, 1, NewInstanceExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getNewInstanceExpression_Metamodel(), this.getImportSection(), null, "metamodel", null, 0, 1, NewInstanceExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getNewInstanceExpression_Type(), ecorePackage.getEClass(), null, "type", null, 0, 1, NewInstanceExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getNewInstanceExpression_Feature(), ecorePackage.getEStructuralFeature(), null, "feature", null, 0, 1, NewInstanceExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getNewInstanceExpression_Type(), this.getAnnotatedType(), null, "type", null, 0, 1, NewInstanceExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getNewInstanceExpression_Size(), theXbasePackage.getXExpression(), null, "size", null, 0, 1, NewInstanceExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(annotatedTypeEClass, AnnotatedType.class, "AnnotatedType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getAnnotatedType_Side(), this.getSideEnum(), "side", null, 0, 1, AnnotatedType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAnnotatedType_Metamodel(), this.getImportSection(), null, "metamodel", null, 0, 1, AnnotatedType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAnnotatedType_Type(), ecorePackage.getEClass(), null, "type", null, 0, 1, AnnotatedType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAnnotatedType_Feature(), ecorePackage.getEStructuralFeature(), null, "feature", null, 0, 1, AnnotatedType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(allInstanceExpressionEClass, AllInstanceExpression.class, "AllInstanceExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getAllInstanceExpression_Type(), this.getAnnotatedType(), null, "type", null, 0, 1, AllInstanceExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(modificationExpressionEClass, ModificationExpression.class, "ModificationExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

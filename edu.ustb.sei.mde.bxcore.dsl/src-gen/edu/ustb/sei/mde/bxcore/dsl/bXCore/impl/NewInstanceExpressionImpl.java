@@ -3,16 +3,14 @@
  */
 package edu.ustb.sei.mde.bxcore.dsl.bXCore.impl;
 
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.AnnotatedType;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage;
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.ImportSection;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression;
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.SideEnum;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -29,10 +27,7 @@ import org.eclipse.xtext.xbase.impl.XExpressionImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.NewInstanceExpressionImpl#getSide <em>Side</em>}</li>
- *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.NewInstanceExpressionImpl#getMetamodel <em>Metamodel</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.NewInstanceExpressionImpl#getType <em>Type</em>}</li>
- *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.NewInstanceExpressionImpl#getFeature <em>Feature</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.NewInstanceExpressionImpl#getSize <em>Size</em>}</li>
  * </ul>
  *
@@ -41,54 +36,14 @@ import org.eclipse.xtext.xbase.impl.XExpressionImpl;
 public class NewInstanceExpressionImpl extends XExpressionImpl implements NewInstanceExpression
 {
   /**
-   * The default value of the '{@link #getSide() <em>Side</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getSide()
-   * @generated
-   * @ordered
-   */
-  protected static final SideEnum SIDE_EDEFAULT = SideEnum.SOURCE;
-
-  /**
-   * The cached value of the '{@link #getSide() <em>Side</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getSide()
-   * @generated
-   * @ordered
-   */
-  protected SideEnum side = SIDE_EDEFAULT;
-
-  /**
-   * The cached value of the '{@link #getMetamodel() <em>Metamodel</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getMetamodel()
-   * @generated
-   * @ordered
-   */
-  protected ImportSection metamodel;
-
-  /**
-   * The cached value of the '{@link #getType() <em>Type</em>}' reference.
+   * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getType()
    * @generated
    * @ordered
    */
-  protected EClass type;
-
-  /**
-   * The cached value of the '{@link #getFeature() <em>Feature</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getFeature()
-   * @generated
-   * @ordered
-   */
-  protected EStructuralFeature feature;
+  protected AnnotatedType type;
 
   /**
    * The cached value of the '{@link #getSize() <em>Size</em>}' containment reference.
@@ -126,93 +81,7 @@ public class NewInstanceExpressionImpl extends XExpressionImpl implements NewIns
    * <!-- end-user-doc -->
    * @generated
    */
-  public SideEnum getSide()
-  {
-    return side;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setSide(SideEnum newSide)
-  {
-    SideEnum oldSide = side;
-    side = newSide == null ? SIDE_EDEFAULT : newSide;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, BXCorePackage.NEW_INSTANCE_EXPRESSION__SIDE, oldSide, side));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ImportSection getMetamodel()
-  {
-    if (metamodel != null && metamodel.eIsProxy())
-    {
-      InternalEObject oldMetamodel = (InternalEObject)metamodel;
-      metamodel = (ImportSection)eResolveProxy(oldMetamodel);
-      if (metamodel != oldMetamodel)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, BXCorePackage.NEW_INSTANCE_EXPRESSION__METAMODEL, oldMetamodel, metamodel));
-      }
-    }
-    return metamodel;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ImportSection basicGetMetamodel()
-  {
-    return metamodel;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setMetamodel(ImportSection newMetamodel)
-  {
-    ImportSection oldMetamodel = metamodel;
-    metamodel = newMetamodel;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, BXCorePackage.NEW_INSTANCE_EXPRESSION__METAMODEL, oldMetamodel, metamodel));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getType()
-  {
-    if (type != null && type.eIsProxy())
-    {
-      InternalEObject oldType = (InternalEObject)type;
-      type = (EClass)eResolveProxy(oldType);
-      if (type != oldType)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, BXCorePackage.NEW_INSTANCE_EXPRESSION__TYPE, oldType, type));
-      }
-    }
-    return type;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass basicGetType()
+  public AnnotatedType getType()
   {
     return type;
   }
@@ -222,32 +91,16 @@ public class NewInstanceExpressionImpl extends XExpressionImpl implements NewIns
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setType(EClass newType)
+  public NotificationChain basicSetType(AnnotatedType newType, NotificationChain msgs)
   {
-    EClass oldType = type;
+    AnnotatedType oldType = type;
     type = newType;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, BXCorePackage.NEW_INSTANCE_EXPRESSION__TYPE, oldType, type));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EStructuralFeature getFeature()
-  {
-    if (feature != null && feature.eIsProxy())
     {
-      InternalEObject oldFeature = (InternalEObject)feature;
-      feature = (EStructuralFeature)eResolveProxy(oldFeature);
-      if (feature != oldFeature)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, BXCorePackage.NEW_INSTANCE_EXPRESSION__FEATURE, oldFeature, feature));
-      }
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BXCorePackage.NEW_INSTANCE_EXPRESSION__TYPE, oldType, newType);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
     }
-    return feature;
+    return msgs;
   }
 
   /**
@@ -255,22 +108,20 @@ public class NewInstanceExpressionImpl extends XExpressionImpl implements NewIns
    * <!-- end-user-doc -->
    * @generated
    */
-  public EStructuralFeature basicGetFeature()
+  public void setType(AnnotatedType newType)
   {
-    return feature;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setFeature(EStructuralFeature newFeature)
-  {
-    EStructuralFeature oldFeature = feature;
-    feature = newFeature;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, BXCorePackage.NEW_INSTANCE_EXPRESSION__FEATURE, oldFeature, feature));
+    if (newType != type)
+    {
+      NotificationChain msgs = null;
+      if (type != null)
+        msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BXCorePackage.NEW_INSTANCE_EXPRESSION__TYPE, null, msgs);
+      if (newType != null)
+        msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BXCorePackage.NEW_INSTANCE_EXPRESSION__TYPE, null, msgs);
+      msgs = basicSetType(newType, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, BXCorePackage.NEW_INSTANCE_EXPRESSION__TYPE, newType, newType));
   }
 
   /**
@@ -331,6 +182,8 @@ public class NewInstanceExpressionImpl extends XExpressionImpl implements NewIns
   {
     switch (featureID)
     {
+      case BXCorePackage.NEW_INSTANCE_EXPRESSION__TYPE:
+        return basicSetType(null, msgs);
       case BXCorePackage.NEW_INSTANCE_EXPRESSION__SIZE:
         return basicSetSize(null, msgs);
     }
@@ -347,17 +200,8 @@ public class NewInstanceExpressionImpl extends XExpressionImpl implements NewIns
   {
     switch (featureID)
     {
-      case BXCorePackage.NEW_INSTANCE_EXPRESSION__SIDE:
-        return getSide();
-      case BXCorePackage.NEW_INSTANCE_EXPRESSION__METAMODEL:
-        if (resolve) return getMetamodel();
-        return basicGetMetamodel();
       case BXCorePackage.NEW_INSTANCE_EXPRESSION__TYPE:
-        if (resolve) return getType();
-        return basicGetType();
-      case BXCorePackage.NEW_INSTANCE_EXPRESSION__FEATURE:
-        if (resolve) return getFeature();
-        return basicGetFeature();
+        return getType();
       case BXCorePackage.NEW_INSTANCE_EXPRESSION__SIZE:
         return getSize();
     }
@@ -374,17 +218,8 @@ public class NewInstanceExpressionImpl extends XExpressionImpl implements NewIns
   {
     switch (featureID)
     {
-      case BXCorePackage.NEW_INSTANCE_EXPRESSION__SIDE:
-        setSide((SideEnum)newValue);
-        return;
-      case BXCorePackage.NEW_INSTANCE_EXPRESSION__METAMODEL:
-        setMetamodel((ImportSection)newValue);
-        return;
       case BXCorePackage.NEW_INSTANCE_EXPRESSION__TYPE:
-        setType((EClass)newValue);
-        return;
-      case BXCorePackage.NEW_INSTANCE_EXPRESSION__FEATURE:
-        setFeature((EStructuralFeature)newValue);
+        setType((AnnotatedType)newValue);
         return;
       case BXCorePackage.NEW_INSTANCE_EXPRESSION__SIZE:
         setSize((XExpression)newValue);
@@ -403,17 +238,8 @@ public class NewInstanceExpressionImpl extends XExpressionImpl implements NewIns
   {
     switch (featureID)
     {
-      case BXCorePackage.NEW_INSTANCE_EXPRESSION__SIDE:
-        setSide(SIDE_EDEFAULT);
-        return;
-      case BXCorePackage.NEW_INSTANCE_EXPRESSION__METAMODEL:
-        setMetamodel((ImportSection)null);
-        return;
       case BXCorePackage.NEW_INSTANCE_EXPRESSION__TYPE:
-        setType((EClass)null);
-        return;
-      case BXCorePackage.NEW_INSTANCE_EXPRESSION__FEATURE:
-        setFeature((EStructuralFeature)null);
+        setType((AnnotatedType)null);
         return;
       case BXCorePackage.NEW_INSTANCE_EXPRESSION__SIZE:
         setSize((XExpression)null);
@@ -432,35 +258,12 @@ public class NewInstanceExpressionImpl extends XExpressionImpl implements NewIns
   {
     switch (featureID)
     {
-      case BXCorePackage.NEW_INSTANCE_EXPRESSION__SIDE:
-        return side != SIDE_EDEFAULT;
-      case BXCorePackage.NEW_INSTANCE_EXPRESSION__METAMODEL:
-        return metamodel != null;
       case BXCorePackage.NEW_INSTANCE_EXPRESSION__TYPE:
         return type != null;
-      case BXCorePackage.NEW_INSTANCE_EXPRESSION__FEATURE:
-        return feature != null;
       case BXCorePackage.NEW_INSTANCE_EXPRESSION__SIZE:
         return size != null;
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (side: ");
-    result.append(side);
-    result.append(')');
-    return result.toString();
   }
 
 } //NewInstanceExpressionImpl

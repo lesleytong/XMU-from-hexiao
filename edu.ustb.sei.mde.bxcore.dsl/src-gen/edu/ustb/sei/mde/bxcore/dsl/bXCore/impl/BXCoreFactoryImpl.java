@@ -109,6 +109,7 @@ public class BXCoreFactoryImpl extends EFactoryImpl implements BXCoreFactory
       case BXCorePackage.XMU_CORE_FUNCTION_CALL: return createXmuCoreFunctionCall();
       case BXCorePackage.XMU_CORE_INDEX: return createXmuCoreIndex();
       case BXCorePackage.INDEX_PART: return createIndexPart();
+      case BXCorePackage.XMU_CORE_FOR_EACH_MATCH_SOURCE: return createXmuCoreForEachMatchSource();
       case BXCorePackage.CONTEXT_AWARE_CONDITION: return createContextAwareCondition();
       case BXCorePackage.CONTEXT_AWARE_UNIDIRECTIONAL_ACTION: return createContextAwareUnidirectionalAction();
       case BXCorePackage.BI_GUL_STATEMENT: return createBiGULStatement();
@@ -118,6 +119,8 @@ public class BXCoreFactoryImpl extends EFactoryImpl implements BXCoreFactory
       case BXCorePackage.CONTEXT_EXPRESSION: return createContextExpression();
       case BXCorePackage.CONTEXT_PRIMARY_EXPRESSION: return createContextPrimaryExpression();
       case BXCorePackage.NEW_INSTANCE_EXPRESSION: return createNewInstanceExpression();
+      case BXCorePackage.ANNOTATED_TYPE: return createAnnotatedType();
+      case BXCorePackage.ALL_INSTANCE_EXPRESSION: return createAllInstanceExpression();
       case BXCorePackage.MODIFICATION_EXPRESSION: return createModificationExpression();
       case BXCorePackage.ENFORCEMENT_EXPRESSION: return createEnforcementExpression();
       case BXCorePackage.DELETE_ELEMENT_EXPRESSION: return createDeleteElementExpression();
@@ -646,6 +649,17 @@ public class BXCoreFactoryImpl extends EFactoryImpl implements BXCoreFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public XmuCoreForEachMatchSource createXmuCoreForEachMatchSource()
+  {
+    XmuCoreForEachMatchSourceImpl xmuCoreForEachMatchSource = new XmuCoreForEachMatchSourceImpl();
+    return xmuCoreForEachMatchSource;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public ContextAwareCondition createContextAwareCondition()
   {
     ContextAwareConditionImpl contextAwareCondition = new ContextAwareConditionImpl();
@@ -738,6 +752,28 @@ public class BXCoreFactoryImpl extends EFactoryImpl implements BXCoreFactory
   {
     NewInstanceExpressionImpl newInstanceExpression = new NewInstanceExpressionImpl();
     return newInstanceExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AnnotatedType createAnnotatedType()
+  {
+    AnnotatedTypeImpl annotatedType = new AnnotatedTypeImpl();
+    return annotatedType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AllInstanceExpression createAllInstanceExpression()
+  {
+    AllInstanceExpressionImpl allInstanceExpression = new AllInstanceExpressionImpl();
+    return allInstanceExpression;
   }
 
   /**

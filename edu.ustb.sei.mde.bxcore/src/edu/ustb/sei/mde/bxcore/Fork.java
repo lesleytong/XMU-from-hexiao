@@ -143,6 +143,9 @@ public class Fork extends XmuCore {
 			else finalView = finalView.additiveMerge(v.first);
 		}
 		
+		if(finalView==null) 
+			return ViewType.empty();
+		
 		this.submit(downStreamSources);
 		finalView.setConstraint(getConsistencyConstraint());
 		
