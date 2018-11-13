@@ -92,6 +92,7 @@ public class BXCoreFactoryImpl extends EFactoryImpl implements BXCoreFactory
       case BXCorePackage.XMU_CORE_STATEMENT: return createXmuCoreStatement();
       case BXCorePackage.XMU_CORE_COMPOSITION_CHILD_STATEMENT: return createXmuCoreCompositionChildStatement();
       case BXCorePackage.TYPE_INDICATOR: return createTypeIndicator();
+      case BXCorePackage.XMU_CORE_CONTEXT_SOURCE: return createXmuCoreContextSource();
       case BXCorePackage.XMU_CORE_MATCH_SOURCE: return createXmuCoreMatchSource();
       case BXCorePackage.XMU_CORE_MATCH_VIEW: return createXmuCoreMatchView();
       case BXCorePackage.XMU_CORE_EXPAND_SOURCE: return createXmuCoreExpandSource();
@@ -455,6 +456,17 @@ public class BXCoreFactoryImpl extends EFactoryImpl implements BXCoreFactory
   {
     TypeIndicatorImpl typeIndicator = new TypeIndicatorImpl();
     return typeIndicator;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public XmuCoreContextSource createXmuCoreContextSource()
+  {
+    XmuCoreContextSourceImpl xmuCoreContextSource = new XmuCoreContextSourceImpl();
+    return xmuCoreContextSource;
   }
 
   /**

@@ -24,6 +24,8 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.NavigationExpression
 import org.eclipse.emf.ecore.EClass
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.SideEnum
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ExpressionConversion
+import org.eclipse.emf.ecore.EStructuralFeature
+import org.eclipse.emf.ecore.EReference
 
 class ModelInferrerUtils {
 	static def groupTypeLiterals(BXProgram program) {
@@ -102,7 +104,7 @@ class ModelInferrerUtils {
 		else e.eContainer.isContextOnly
 	}
 	
-	static def Pair<EClassifier, Boolean> navEcoreType(ContextExpression e) {
+	static def Pair<Object, Boolean> navEcoreType(ContextExpression e) {
     	if(e instanceof ContextVarExpression) {
     		val side = e.side;
 			val varName = e.name;
@@ -114,8 +116,7 @@ class ModelInferrerUtils {
 					val typeDef = tupleType.tuples.findFirst[it.first.equals(varName)];
 					if(typeDef === null) null 
 					else {
-						if(typeDef.second instanceof EClass) typeDef.second as EClass -> false
-						else null
+						typeDef.second -> typeDef.third
 					}
 				}
 			} catch (Exception x) {
@@ -124,12 +125,18 @@ class ModelInferrerUtils {
     	} else if(e instanceof NavigationExpression) {
     		val hostType = e.host.navEcoreType;
     		val path = e.pathName;
+    		val isNode = e.navOp.equals('@');
+    		
     		if(hostType===null) null
     		else {
     			if(hostType.key instanceof EClass) {
     				val pathType = (hostType.key as EClass).getEStructuralFeature(path);
     				if(pathType===null) null
-    				else pathType.EType -> (hostType.value || pathType.isMany)
+    				else {
+    					if(isNode)
+    						pathType.EType -> (hostType.value || pathType.isMany)
+    					else pathType -> (hostType.value || pathType.isMany)
+    				}
     			} else null
     		}
     	} else if(e instanceof ExpressionConversion) {

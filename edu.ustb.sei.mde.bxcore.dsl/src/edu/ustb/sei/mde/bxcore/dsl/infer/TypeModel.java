@@ -102,7 +102,8 @@ public abstract class TypeModel {
 		while(itr.hasNext()) {
 			EObject e = itr.next();
 			if(e instanceof BXFunctionDefinition) {
-				handleTypeIndicator((BXFunctionDefinition)e);
+				if(((BXFunctionDefinition) e).getTypeIndicator()!=null)
+					handleTypeIndicator((BXFunctionDefinition)e);
 			} else if(e instanceof XmuCoreStatement) {
 				extractConstraint((XmuCoreStatement)e);
 				if(((XmuCoreStatement) e).getTypeIndicator()!=null)
@@ -195,6 +196,18 @@ public abstract class TypeModel {
 					cons.post();
 					addReason(reasonMap, cons, causeMap.get(c));
 				}
+			} else if(c instanceof TypeSubset) {
+				SetVar complete = typeVarMap.get(((TypeSubset) c).complete);
+				SetVar subset = typeVarMap.get(((TypeSubset) c).subset);
+				Constraint cons = model.subsetEq(subset, complete);
+				cons.post();
+				addReason(reasonMap, cons, causeMap.get(c));
+			} else if(c instanceof TypeDisjoint) {
+				SetVar left = typeVarMap.get(((TypeDisjoint) c).left);
+				SetVar right = typeVarMap.get(((TypeDisjoint) c).right);
+				Constraint cons = model.disjoint(left, right);
+				cons.post();
+				addReason(reasonMap, cons, causeMap.get(c));
 			}
 		});
 		
@@ -239,13 +252,23 @@ public abstract class TypeModel {
 					imports.add(((TypeEqual) c).left.importSection);
 				if(((TypeEqual) c).right.importSection!=null)
 					imports.add(((TypeEqual) c).right.importSection);
-			} else if(c instanceof TypeUnion){
+			} else if(c instanceof TypeUnion) {
 				if(((TypeUnion) c).unionType.importSection!=null) 
 					imports.add(((TypeUnion) c).unionType.importSection);
 				
 				((TypeUnion) c).types.forEach(cc->{
 					if(cc.importSection!=null) imports.add(cc.importSection);
 				});
+			} else if(c instanceof TypeSubset) {
+				if(((TypeSubset) c).complete.importSection!=null) 
+					imports.add(((TypeSubset) c).complete.importSection);
+				if(((TypeSubset) c).subset.importSection!=null)
+					imports.add(((TypeSubset) c).subset.importSection);
+			} else if(c instanceof TypeDisjoint) {
+				if(((TypeDisjoint) c).left.importSection!=null) 
+					imports.add(((TypeDisjoint) c).left.importSection);
+				if(((TypeDisjoint) c).left.importSection!=null)
+					imports.add(((TypeDisjoint) c).left.importSection);
 			}
 		});
 		
@@ -395,6 +418,29 @@ public abstract class TypeModel {
 						addReason(reasonMap, c2, causeObject);
 					});
 				}
+			} else if(cons instanceof TypeSubset) {
+				TupleType left = ((TypeSubset) cons).complete;
+				TupleType right = ((TypeSubset) cons).subset;
+				
+				Map<String,IntVar> lv = varMap.get(left);
+				Map<String,BoolVar> lvm = multiMap.get(left);
+				Map<String,IntVar> rv = varMap.get(right);
+				Map<String,BoolVar> rvm = multiMap.get(right);
+				Stream<String> keys;
+				if(right instanceof UnsolvedTupleType) keys = ((UnsolvedTupleType) right).candidates.stream();
+				else keys = right.tuples.stream().map(s->s.first);
+				
+				keys.forEach(vk->{
+					IntVar liv = lv.get(vk);
+					IntVar riv = rv.get(vk);
+					Constraint c = new Constraint(model.generateName(), new PropTypeCast(liv, riv, typeList, superTypeTable, TypeEqual.EQUAL));
+					model.post(c);
+					addReason(reasonMap, c, causeObject);
+					
+					Constraint c2 = model.allEqual(lvm.get(vk), rvm.get(vk));
+					model.post(c2);
+					addReason(reasonMap, c2, causeObject);
+				});
 			}
 		});
 		

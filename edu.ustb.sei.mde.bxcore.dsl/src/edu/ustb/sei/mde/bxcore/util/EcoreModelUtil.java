@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Level;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.Enumerator;
@@ -28,6 +29,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
+import edu.ustb.sei.mde.bxcore.XmuCoreUtils;
 import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
 import edu.ustb.sei.mde.bxcore.structures.Index;
 import edu.ustb.sei.mde.graph.type.DataTypeNode;
@@ -119,12 +121,12 @@ public class EcoreModelUtil {
 		}
 	}
 
-	static public TypedGraph load(EObject root, TypeGraph typeGraph) {
+	static public TypedGraph load(List<EObject> roots, TypeGraph typeGraph) {
 		Map<EObject, TypedNode> nodeMap = new HashMap<>();
 		TypedGraph graph = new TypedGraph(typeGraph);
-		addTypedNode(root, typeGraph, nodeMap, graph);
-		root.eAllContents().forEachRemaining(o->addTypedNode(o, typeGraph, nodeMap, graph));
-		addTypedEdges(root, typeGraph, nodeMap, graph);
+		roots.forEach(root->addTypedNode(root, typeGraph, nodeMap, graph));
+		roots.forEach(root->root.eAllContents().forEachRemaining(o->addTypedNode(o, typeGraph, nodeMap, graph)));
+		roots.forEach(root->addTypedEdges(root, typeGraph, nodeMap, graph));
 		return graph;
 	}
 	
@@ -166,6 +168,8 @@ public class EcoreModelUtil {
 			nodeMap.put(n, obj);
 			
 			tc.getEAllAttributes().forEach(a->{
+				if(a.isChangeable()==false || a.isDerived() || a.isTransient()) return;
+				
 				PropertyEdge edge = graph.getTypeGraph().getPropertyEdge(n.getType(), a.getName());
 				
 				if(a.isMany()) {
@@ -188,8 +192,11 @@ public class EcoreModelUtil {
 							if(value!=null) value = EcoreUtil.createFromString(a.getEAttributeType(), value.toString());
 						}
 						obj.eSet(a, value);
-					} else
-						obj.eSet(a, null);
+					} else {
+						// currently, we do not set default value
+//						if(a.isChangeable())
+//							obj.eSet(a, );
+					}
 					
 				}
 			});
@@ -199,6 +206,8 @@ public class EcoreModelUtil {
 			EClass tc = eclasses.get(n.getType().getName());
 			EObject src = nodeMap.get(n);
 			tc.getEAllReferences().forEach(r->{
+				if(r.isChangeable()==false || r.isDerived() || r.isTransient()) return;
+				
 				TypeEdge edge = graph.getTypeGraph().getTypeEdge(n.getType(), r.getName());
 				if(r.isMany()) {
 					List<EObject> values = new ArrayList<>();
@@ -251,18 +260,28 @@ public class EcoreModelUtil {
 			if(r.isMany()) {
 				Collection<EObject> targets = (Collection<EObject>) root.eGet(r);
 				targets.forEach(t->{
-					TypedEdge edge = new TypedEdge(nodeMap.get(root), nodeMap.get(t), typeEdge);
-					graph.addTypedEdge(edge);
-					if(r.isContainment())
-						addTypedEdges(t, typeGraph, nodeMap, graph);
+					TypedNode targetNode = nodeMap.get(t);
+					if(targetNode==null) {
+						XmuCoreUtils.log(Level.WARNING, "The target node is not registered. The loader will ignore this edge: "+r, null);
+					} else {
+						TypedEdge edge = new TypedEdge(nodeMap.get(root), targetNode, typeEdge);
+						graph.addTypedEdge(edge);
+						if(r.isContainment())
+							addTypedEdges(t, typeGraph, nodeMap, graph);
+					}
 				});
 			} else {
 				EObject t = (EObject) root.eGet(r);
 				if(t!=null) {
-					TypedEdge edge = new TypedEdge(nodeMap.get(root), nodeMap.get(t), typeEdge);
-					graph.addTypedEdge(edge);
-					if(r.isContainment())
-						addTypedEdges(t, typeGraph, nodeMap, graph);					
+					TypedNode targetNode = nodeMap.get(t);
+					if(targetNode==null) {
+						XmuCoreUtils.log(Level.WARNING, "The target node is not registered. The loader will ignore this edge: "+r, null);
+					} else {
+						TypedEdge edge = new TypedEdge(nodeMap.get(root), targetNode, typeEdge);
+						graph.addTypedEdge(edge);
+						if(r.isContainment())
+							addTypedEdges(t, typeGraph, nodeMap, graph);
+					}
 				}
 			}
 		});
@@ -327,10 +346,10 @@ public class EcoreModelUtil {
 		return null;
 	}
 	
-	static public EObject load(URI uri) {
+	static public List<EObject> load(URI uri) {
 		Resource resource = privateResourceSet.getResource(uri, true);
 		if(resource!=null) {
-			return resource.getContents().get(0);
+			return resource.getContents();
 		}
 		return null;
 	}

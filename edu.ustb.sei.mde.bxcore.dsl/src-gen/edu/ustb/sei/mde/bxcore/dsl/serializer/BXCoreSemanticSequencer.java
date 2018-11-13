@@ -44,6 +44,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.UnorderedTupleTypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ValueMapping;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.VarMapping;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreAlign;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreContextSource;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreExpandSource;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreExpandView;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreForEachMatchSource;
@@ -245,6 +246,9 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 				return; 
 			case BXCorePackage.XMU_CORE_ALIGN:
 				sequence_XmuCoreAlign(context, (XmuCoreAlign) semanticObject); 
+				return; 
+			case BXCorePackage.XMU_CORE_CONTEXT_SOURCE:
+				sequence_XmuCoreContextSource(context, (XmuCoreContextSource) semanticObject); 
 				return; 
 			case BXCorePackage.XMU_CORE_EXPAND_SOURCE:
 				sequence_XmuCoreExpandSource(context, (XmuCoreExpandSource) semanticObject); 
@@ -721,19 +725,10 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	 *     XExpressionOrVarDeclaration returns NavigationExpression
 	 *
 	 * Constraint:
-	 *     (host=ContextExpression_NavigationExpression_1_0 pathName=ValidID)
+	 *     (host=ContextExpression_NavigationExpression_1_0 (navOp='@' | navOp='@@') pathName=ValidID)
 	 */
 	protected void sequence_ContextExpression(ISerializationContext context, NavigationExpression semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.NAVIGATION_EXPRESSION__HOST) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.NAVIGATION_EXPRESSION__HOST));
-			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.NAVIGATION_EXPRESSION__PATH_NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.NAVIGATION_EXPRESSION__PATH_NAME));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getContextExpressionAccess().getNavigationExpressionHostAction_1_0(), semanticObject.getHost());
-		feeder.accept(grammarAccess.getContextExpressionAccess().getPathNameValidIDParserRuleCall_1_3_0(), semanticObject.getPathName());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1442,6 +1437,20 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	 *     )
 	 */
 	protected void sequence_XmuCoreAlign(ISerializationContext context, XmuCoreAlign semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     XmuCoreStatement returns XmuCoreContextSource
+	 *     XmuCoreCompositionChildStatement returns XmuCoreContextSource
+	 *     XmuCoreContextSource returns XmuCoreContextSource
+	 *
+	 * Constraint:
+	 *     (typeIndicator=TypeIndicator? mappingSource=OrderedTupleTypeLiteral mappingView=OrderedTupleTypeLiteral body=XmuCoreStatement)
+	 */
+	protected void sequence_XmuCoreContextSource(ISerializationContext context, XmuCoreContextSource semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

@@ -27,6 +27,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareUnidirectionalAction
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpressionBlock
 import org.eclipse.xtext.xbase.XBlockExpression
 import org.eclipse.emf.ecore.ENamedElement
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreContextSource
 
 /**
  * This class contains custom validation rules. 
@@ -69,6 +70,14 @@ class BXCoreValidator extends AbstractBXCoreValidator {
 			}
 		}
 		if(data!==null) stat.checkVarMappings(data);
+		
+		if(stat instanceof XmuCoreContextSource) {
+			if(stat.mappingSource.elements.size!==stat.mappingView.elements.size) {
+				error('''The count of source vars should be equal to the count of the view vars''', 
+					stat
+				);
+			}
+		}
 	}
 		
 	def text(TupleType type) {

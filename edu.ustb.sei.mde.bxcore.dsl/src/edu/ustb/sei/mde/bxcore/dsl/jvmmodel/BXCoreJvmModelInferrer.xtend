@@ -100,6 +100,11 @@ import edu.ustb.sei.mde.bxcore.bigul.BidirectionalTransformation
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.CustomizedBiGULReference
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreForEachMatchSource
 import edu.ustb.sei.mde.bxcore.ForEachMatchSource
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreContextSource
+import edu.ustb.sei.mde.bxcore.ContextSource
+import edu.ustb.sei.mde.bxcore.structures.FieldDef
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeVar
+import edu.ustb.sei.mde.bxcore.util.XmuProgram
 
 /**
  * <p>Infers a JVM model from the source model.</p> 
@@ -148,7 +153,10 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 			val sourceURI = element.eResource.URI.trimFileExtension.toJavaClassName;
 			
 			acceptor.accept(element.toClass(sourceURI) [
+				superTypes+=XmuProgram.typeRef;
+				
 				element.imports.forEach[i|i.generateImportSection(it);];
+				
 
 				members += element.toMethod('execute', ViewType.typeRef) [
 					parameters += element.toParameter('bx', XmuCore.typeRef);
@@ -397,6 +405,8 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 	}
 	
 	protected def void generateImportSection(ImportSection i, JvmGenericType type) {
+		
+		
 		type.members += i.toField('typeGraph_' + i.shortName, TypeGraph.typeRef) [
 			visibility = JvmVisibility.PRIVATE
 		];
@@ -438,13 +448,17 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 			'''
 		];
 		
+		type.members += i.toMethod('''register«i.shortName.toFirstUpper»Package''', void.typeRef) [
+			parameters += i.toParameter('metamodelUri', URI.typeRef);
+			body = '''registerPackage("«i.shortName»", metamodelUri);'''
+		];
+		
 		type.members += i.toMethod('''load«i.shortName.toFirstUpper»Model''', TypedGraph.typeRef) [
 			parameters += i.toParameter('modelUri', URI.typeRef);
-			parameters += i.toParameter('metamodelUri', URI.typeRef);
 			body = '''
-				«EPackage.typeRef.qualifiedName» pack = «EcoreModelUtil.typeRef.qualifiedName».loadPacakge(metamodelUri);
-				«EObject.typeRef.qualifiedName» root = «EcoreModelUtil.typeRef.qualifiedName».load(modelUri);
-				«TypedGraph.typeRef.qualifiedName» graph = «EcoreModelUtil.typeRef.qualifiedName».load(root, getTypeGraph_«i.shortName.toFirstUpper»());
+				«EPackage.typeRef.qualifiedName» pack = getPacakge("«i.shortName»");
+				«List.typeRef(EObject.typeRef).qualifiedName» roots = «EcoreModelUtil.typeRef.qualifiedName».load(modelUri);
+				«TypedGraph.typeRef.qualifiedName» graph = «EcoreModelUtil.typeRef.qualifiedName».load(roots, getTypeGraph_«i.shortName.toFirstUpper»());
 				return graph;
 			'''
 		]
@@ -634,6 +648,24 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 				return appendable.append('''new «ForEachMatchSource.typeRef.qualifiedName»("«key»", «srcType», «pattern.patternAccessor(patternLiterals)»,''')
 					.newLine.increaseIndentation
 					.generateXmuCode(body, indexedStatements, typeLiteralMap, patternLiterals, conditions, actions, unsolvedTypes, data, program)
+					.newLine.decreaseIndentation.append(')')
+				
+			}
+			XmuCoreContextSource : {
+				val viewType = statement.viewType(data).typeAccessor(typeLiteralMap, unsolvedTypes);
+				val body = statement.body;
+				val mappingSrc = statement.mappingSource;
+				val mappingViw = statement.mappingView;
+				val size = mappingSrc.elements.size;
+				
+				val msType = mappingSrc.typeAccessor(typeLiteralMap, unsolvedTypes);
+				val mvType = mappingViw.typeAccessor(typeLiteralMap, unsolvedTypes);
+				
+				return appendable.append('''new «ContextSource.typeRef.qualifiedName»("«key»", «viewType», ''')
+					.newLine.increaseIndentation
+					.generateXmuCode(body,indexedStatements, typeLiteralMap, patternLiterals, conditions, actions, unsolvedTypes, data, program)
+					.append(',').newLine
+					.append('''new «Tuple2.typeRef.qualifiedName»[]{«FOR i:0..size-1 SEPARATOR ','»«val sv = mappingSrc.elements.get(i)»«val vv = mappingViw.elements.get(i)»«Tuple2.typeRef.qualifiedName».make(«msType».getField("«sv.name»"), «mvType».getField("«vv.name»"))«ENDFOR»}''')
 					.newLine.decreaseIndentation.append(')')
 				
 			}

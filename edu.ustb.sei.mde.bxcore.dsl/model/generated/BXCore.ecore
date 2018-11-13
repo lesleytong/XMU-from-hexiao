@@ -112,6 +112,14 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="viewType" eType="#//ContextTypeRef"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="XmuCoreContextSource" eSuperTypes="#//XmuCoreCompositionChildStatement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mappingSource" eType="#//OrderedTupleTypeLiteral"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mappingView" eType="#//OrderedTupleTypeLiteral"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="body" eType="#//XmuCoreStatement"
+        containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="XmuCoreMatchSource" eSuperTypes="#//XmuCoreCompositionChildStatement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="pattern" eType="#//Pattern"
         containment="true"/>
@@ -299,6 +307,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="NavigationExpression" eSuperTypes="#//ContextExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="host" eType="#//ContextExpression"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="navOp" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="pathName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ContextVarExpression" eSuperTypes="#//ContextPrimaryExpression">

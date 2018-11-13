@@ -9,6 +9,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXProgram;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.Conversion;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpressionBlock;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeLiteral;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreContextSource;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreExpandSource;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreExpandView;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreFork;
@@ -111,6 +112,16 @@ public class BXCoreValidator extends AbstractBXCoreValidator {
       }
       if ((data != null)) {
         this.checkVarMappings(stat, data);
+      }
+      if ((stat instanceof XmuCoreContextSource)) {
+        int _size = ((XmuCoreContextSource)stat).getMappingSource().getElements().size();
+        int _size_1 = ((XmuCoreContextSource)stat).getMappingView().getElements().size();
+        boolean _tripleNotEquals = (_size != _size_1);
+        if (_tripleNotEquals) {
+          StringConcatenation _builder_2 = new StringConcatenation();
+          _builder_2.append("The count of source vars should be equal to the count of the view vars");
+          this.error(_builder_2.toString(), stat);
+        }
       }
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);

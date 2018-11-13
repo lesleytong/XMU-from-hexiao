@@ -258,6 +258,15 @@ public interface BXCoreFactory extends EFactory
   TypeIndicator createTypeIndicator();
 
   /**
+   * Returns a new object of class '<em>Xmu Core Context Source</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Xmu Core Context Source</em>'.
+   * @generated
+   */
+  XmuCoreContextSource createXmuCoreContextSource();
+
+  /**
    * Returns a new object of class '<em>Xmu Core Match Source</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

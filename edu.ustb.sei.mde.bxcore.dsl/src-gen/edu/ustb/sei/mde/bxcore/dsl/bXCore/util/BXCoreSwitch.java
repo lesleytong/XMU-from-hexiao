@@ -280,6 +280,15 @@ public class BXCoreSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case BXCorePackage.XMU_CORE_CONTEXT_SOURCE:
+      {
+        XmuCoreContextSource xmuCoreContextSource = (XmuCoreContextSource)theEObject;
+        T result = caseXmuCoreContextSource(xmuCoreContextSource);
+        if (result == null) result = caseXmuCoreCompositionChildStatement(xmuCoreContextSource);
+        if (result == null) result = caseXmuCoreStatement(xmuCoreContextSource);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case BXCorePackage.XMU_CORE_MATCH_SOURCE:
       {
         XmuCoreMatchSource xmuCoreMatchSource = (XmuCoreMatchSource)theEObject;
@@ -1023,6 +1032,22 @@ public class BXCoreSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseTypeIndicator(TypeIndicator object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Xmu Core Context Source</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Xmu Core Context Source</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseXmuCoreContextSource(XmuCoreContextSource object)
   {
     return null;
   }

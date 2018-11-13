@@ -208,6 +208,11 @@ public class BXCoreAdapterFactory extends AdapterFactoryImpl
         return createTypeIndicatorAdapter();
       }
       @Override
+      public Adapter caseXmuCoreContextSource(XmuCoreContextSource object)
+      {
+        return createXmuCoreContextSourceAdapter();
+      }
+      @Override
       public Adapter caseXmuCoreMatchSource(XmuCoreMatchSource object)
       {
         return createXmuCoreMatchSourceAdapter();
@@ -820,6 +825,21 @@ public class BXCoreAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createTypeIndicatorAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreContextSource <em>Xmu Core Context Source</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreContextSource
+   * @generated
+   */
+  public Adapter createXmuCoreContextSourceAdapter()
   {
     return null;
   }

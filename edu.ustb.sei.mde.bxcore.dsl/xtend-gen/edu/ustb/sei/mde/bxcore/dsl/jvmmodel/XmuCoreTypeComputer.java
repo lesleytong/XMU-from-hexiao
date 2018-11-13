@@ -26,7 +26,6 @@ import java.util.List;
 import java.util.function.Consumer;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EReference;
@@ -196,7 +195,7 @@ public class XmuCoreTypeComputer extends XbaseTypeComputer {
     final ContextExpression host = pathExp.getHost();
     final String path = pathExp.getPathName();
     final ITypeComputationResult hostType = state.withNonVoidExpectation().computeTypes(host);
-    final Pair<EClassifier, Boolean> ecoreType = ModelInferrerUtils.navEcoreType(pathExp);
+    final Pair<Object, Boolean> ecoreType = ModelInferrerUtils.navEcoreType(pathExp);
     if ((ecoreType == null)) {
       String _string = EcoreUtil.getURI(pathExp).toString();
       EObjectDiagnosticImpl _eObjectDiagnosticImpl = new EObjectDiagnosticImpl(Severity.ERROR, IssueCodes.INVALID_IDENTIFIER, ("cannot navigate to " + path), pathExp, BXCorePackage.Literals.NAVIGATION_EXPRESSION__PATH_NAME, (-1), 
@@ -205,28 +204,43 @@ public class XmuCoreTypeComputer extends XbaseTypeComputer {
     } else {
       final ITypeReferenceOwner owner = state.getReferenceOwner();
       LightweightTypeReference _xifexpression = null;
-      EClassifier _key = ecoreType.getKey();
+      Object _key = ecoreType.getKey();
       if ((_key instanceof EClass)) {
         _xifexpression = this.getRawTypeForName(TypedNode.class, state);
       } else {
         LightweightTypeReference _xifexpression_1 = null;
-        EClassifier _key_1 = ecoreType.getKey();
+        Object _key_1 = ecoreType.getKey();
         if ((_key_1 instanceof EEnum)) {
           _xifexpression_1 = this.getRawTypeForName(String.class, state);
         } else {
           LightweightTypeReference _xifexpression_2 = null;
-          EClassifier _key_2 = ecoreType.getKey();
+          Object _key_2 = ecoreType.getKey();
           if ((_key_2 instanceof EDataType)) {
-            _xifexpression_2 = this.getRawTypeForName(ecoreType.getKey().getInstanceClass(), state);
+            Object _key_3 = ecoreType.getKey();
+            _xifexpression_2 = this.getRawTypeForName(((EDataType) _key_3).getInstanceClass(), state);
           } else {
-            _xifexpression_2 = this.getRawTypeForName(Object.class, state);
+            LightweightTypeReference _xifexpression_3 = null;
+            Object _key_4 = ecoreType.getKey();
+            if ((_key_4 instanceof EAttribute)) {
+              _xifexpression_3 = this.getRawTypeForName(ValueEdge.class, state);
+            } else {
+              LightweightTypeReference _xifexpression_4 = null;
+              Object _key_5 = ecoreType.getKey();
+              if ((_key_5 instanceof EReference)) {
+                _xifexpression_4 = this.getRawTypeForName(TypedEdge.class, state);
+              } else {
+                _xifexpression_4 = this.getRawTypeForName(Object.class, state);
+              }
+              _xifexpression_3 = _xifexpression_4;
+            }
+            _xifexpression_2 = _xifexpression_3;
           }
           _xifexpression_1 = _xifexpression_2;
         }
         _xifexpression = _xifexpression_1;
       }
       final LightweightTypeReference componmentType = _xifexpression;
-      LightweightTypeReference _xifexpression_3 = null;
+      LightweightTypeReference _xifexpression_5 = null;
       Boolean _value = ecoreType.getValue();
       if ((_value).booleanValue()) {
         ParameterizedTypeReference _xblockexpression = null;
@@ -235,11 +249,11 @@ public class XmuCoreTypeComputer extends XbaseTypeComputer {
           array.addTypeArgument(componmentType);
           _xblockexpression = array;
         }
-        _xifexpression_3 = _xblockexpression;
+        _xifexpression_5 = _xblockexpression;
       } else {
-        _xifexpression_3 = componmentType;
+        _xifexpression_5 = componmentType;
       }
-      final LightweightTypeReference type = _xifexpression_3;
+      final LightweightTypeReference type = _xifexpression_5;
       state.acceptActualType(type);
     }
   }

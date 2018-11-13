@@ -88,16 +88,17 @@ class XmuCoreCompiler extends XbaseCompiler {
 			a.newLine;
 			val expectedType = getType(e);
 			val ecoreType = ModelInferrerUtils.navEcoreType(e);
+			val navEdge = e.navOp.equals('@');
 			
 			if(isReferenced) {
 				val name = a.declareSyntheticVariable(e, "_navExp");
 				a.newLine.append('''«expectedType.qualifiedName» «name» = «ExceptionSafeInferface.canonicalName».navigate(«e.side.literal», ''');
 				e.host.internalToJavaExpression(a);
-				a.append(''', "«e.pathName»", «ecoreType.key instanceof EClass», «ecoreType.value»);''');
+				a.append(''', "«e.pathName»", «ecoreType.key instanceof EClass», «ecoreType.value», «navEdge»);''');
 			} else {
 				a.newLine.append('''«ExceptionSafeInferface.canonicalName».navigate(«e.side.literal», ''');
 				e.host.internalToJavaExpression(a);
-				a.append(''', "«e.pathName»", «ecoreType.key instanceof EClass», «ecoreType.value»);''');
+				a.append(''', "«e.pathName»", «ecoreType.key instanceof EClass», «ecoreType.value», «navEdge»);''');
 			}
 		} else if(e instanceof ModificationExpressionBlock) {
 			a.newLine;

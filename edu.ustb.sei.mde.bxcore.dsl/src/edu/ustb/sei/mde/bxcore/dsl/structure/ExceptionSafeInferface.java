@@ -69,12 +69,12 @@ public class ExceptionSafeInferface {
 		}
 	}
 	
-	public static <T> T navigate(ContextGraph context, Index start, String featureName, boolean reference, boolean many) {
+	public static <T> T navigate(ContextGraph context, Index start, String featureName, boolean reference, boolean many, boolean navEdge) {
 		try {
 			TypedGraph graph = context.getGraph();
 			Object startNode = graph.getElementByIndexObject(start);
 			if(startNode instanceof TypedNode) {
-				return internalNavigate(context, (TypedNode)startNode, featureName, reference, many);
+				return internalNavigate(context, (TypedNode)startNode, featureName, reference, many, navEdge);
 			} else {
 				return defaultValue(many);
 			}
@@ -83,16 +83,17 @@ public class ExceptionSafeInferface {
 		}
 	}
 	
-	public static <T> T navigate(ContextGraph context, TypedNode start, String featureName, boolean reference, boolean many) {
+	public static <T> T navigate(ContextGraph context, TypedNode start, String featureName, boolean reference, boolean many, boolean navEdge) {
 		try {
-			return internalNavigate(context, start, featureName, reference, many);
+			return internalNavigate(context, start, featureName, reference, many, navEdge);
 		} catch (Exception e) {
 			return defaultValue(many);
 		}
 	}
 
+	// not used?
 	protected static <T> T internalNavigate(ContextGraph context, TypedNode start, String featureName, boolean reference,
-			boolean many) {
+			boolean many, boolean navEdge) {
 		TypeNode classNode = ((TypedNode) start).getType();
 		IStructuralFeatureEdge edge = null;
 		if(reference) {
@@ -100,38 +101,58 @@ public class ExceptionSafeInferface {
 		} else 
 			edge = context.getPropertyEdge(classNode, featureName);
 		
-		return internalNavigate(context, start, edge, reference, many);
+		return internalNavigate(context, start, edge, reference, many, navEdge);
 	}
 
+	// not used?
 	@SuppressWarnings("unchecked")
-	protected static <T> T internalNavigate(ContextGraph context, TypedNode start, IStructuralFeatureEdge edge, boolean reference, boolean many) {
+	protected static <T> T internalNavigate(ContextGraph context, TypedNode start, IStructuralFeatureEdge edge, boolean reference, boolean many, boolean navEdge) {
 		TypedGraph graph = context.getGraph();
 		if(reference) {
 			List<TypedEdge> results = graph.getOutgoingEdges(start, (TypeEdge)edge);
-			if(many) return (T) results.stream().map(e->e.getTarget()).collect(Collectors.toList());
-			else {
+			
+			if(many) {
+				if(navEdge) return (T) results.stream().map(e->e.getTarget()).collect(Collectors.toList());
+				else return (T) results;
+			} else {
 				if(results.isEmpty()) return null;
-				else return (T) results.get(0).getTarget();
+				else {
+					if(navEdge) return (T) results.get(0).getTarget();
+					else return (T) results.get(0);
+				}
 			}
 		} else {
 			List<ValueEdge> results = graph.getValueEdges(start, (PropertyEdge)edge);
-			if(many) return (T) results.stream().map(e->e.getTarget().getValue()).collect(Collectors.toList());
+			if(many) {
+				if(navEdge)
+					return (T) results.stream().map(e->e.getTarget().getValue()).collect(Collectors.toList());
+				else return (T) results;
+			}
 			else {
 				if(results.isEmpty()) return null;
-				else return (T) results.get(0).getTarget().getValue();
+				else {
+					if(navEdge) return (T) results.get(0).getTarget().getValue();
+					else return (T) results.get(0);
+				}
 			}
 		}
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	protected static <T> T internalNavigate(ContextGraph context, List<TypedNode> starts, IStructuralFeatureEdge edge, boolean reference, boolean many) {
+	protected static <T> T internalNavigate(ContextGraph context, List<TypedNode> starts, IStructuralFeatureEdge edge, boolean reference, boolean many, boolean navEdge) {
 		List results = new ArrayList<>();
 		TypedGraph graph = context.getGraph();
 		for(TypedNode start : starts) {
 			if(reference) {
-				graph.getOutgoingEdges(start, (TypeEdge) edge).forEach(l->results.add(l.getTarget()));				
+				graph.getOutgoingEdges(start, (TypeEdge) edge).forEach(l->{
+					if(navEdge) results.add(l.getTarget());
+					else results.add(l);
+				});				
 			} else {
-				graph.getValueEdges(start, (PropertyEdge) edge).forEach(l->results.add(l.getTarget().getValue()));
+				graph.getValueEdges(start, (PropertyEdge) edge).forEach(l->{
+					if(navEdge) results.add(l.getTarget().getValue());
+					else results.add(l);
+				});
 			}
 		}
 		if(many) return (T) results;
@@ -139,7 +160,7 @@ public class ExceptionSafeInferface {
 		else return (T) results.get(0);
 	}
 	
-	public static <T> T navigate(ContextGraph context, List<TypedNode> starts, String featureName, boolean reference, boolean many) {
+	public static <T> T navigate(ContextGraph context, List<TypedNode> starts, String featureName, boolean reference, boolean many, boolean navEdge) {
 		if(starts.isEmpty()) return defaultValue(many);
 		try {
 			TypedNode first = starts.get(0);
@@ -149,7 +170,7 @@ public class ExceptionSafeInferface {
 				edge = context.getTypeEdge(classNode, featureName);
 			} else 
 				edge = context.getPropertyEdge(classNode, featureName);
-			return internalNavigate(context, starts, edge, reference, many);
+			return internalNavigate(context, starts, edge, reference, many, navEdge);
 		} catch (Exception e) {
 			return defaultValue(many);
 		}

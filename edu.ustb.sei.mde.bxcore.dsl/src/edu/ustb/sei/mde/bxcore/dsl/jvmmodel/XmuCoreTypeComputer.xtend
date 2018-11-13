@@ -105,7 +105,8 @@ class XmuCoreTypeComputer extends XbaseTypeComputer {
     	
     	val hostType = state.withNonVoidExpectation.computeTypes(host);
     	
-    	val ecoreType = ModelInferrerUtils.navEcoreType(pathExp)
+    	val ecoreType = ModelInferrerUtils.navEcoreType(pathExp);
+    	
     	if(ecoreType===null) {
     		state.addDiagnostic(
 				new EObjectDiagnosticImpl(Severity.ERROR, IssueCodes.INVALID_IDENTIFIER, "cannot navigate to " + path,
@@ -118,8 +119,14 @@ class XmuCoreTypeComputer extends XbaseTypeComputer {
 				else if (ecoreType.key instanceof EEnum)
 					getRawTypeForName(String, state)
 				else if (ecoreType.key instanceof EDataType)
-					getRawTypeForName(ecoreType.key.instanceClass, state) 
-				else getRawTypeForName(Object, state);
+					getRawTypeForName((ecoreType.key as EDataType).instanceClass, state)
+				else if(ecoreType.key instanceof EAttribute)
+					getRawTypeForName(ValueEdge, state)
+				else if(ecoreType.key instanceof EReference)
+					getRawTypeForName(TypedEdge, state) 
+				else 
+					getRawTypeForName(Object, state);
+					
     		val type = if(ecoreType.value) {
     			val array = owner.newParameterizedTypeReference(owner.newReferenceTo(List).type);
     			array.addTypeArgument(componmentType);

@@ -97,6 +97,11 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//TypeIndicator/sourceType"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//TypeIndicator/viewType"/>
     </genClasses>
+    <genClasses ecoreClass="BXCore.ecore#//XmuCoreContextSource">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//XmuCoreContextSource/mappingSource"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//XmuCoreContextSource/mappingView"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//XmuCoreContextSource/body"/>
+    </genClasses>
     <genClasses ecoreClass="BXCore.ecore#//XmuCoreMatchSource">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//XmuCoreMatchSource/pattern"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//XmuCoreMatchSource/body"/>
@@ -228,6 +233,7 @@
     </genClasses>
     <genClasses ecoreClass="BXCore.ecore#//NavigationExpression">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//NavigationExpression/host"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BXCore.ecore#//NavigationExpression/navOp"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BXCore.ecore#//NavigationExpression/pathName"/>
     </genClasses>
     <genClasses ecoreClass="BXCore.ecore#//ContextVarExpression">

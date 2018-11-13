@@ -241,39 +241,33 @@ public class ModelInferrerUtils {
     return _xifexpression;
   }
   
-  public static Pair<EClassifier, Boolean> navEcoreType(final ContextExpression e) {
-    Pair<EClassifier, Boolean> _xifexpression = null;
+  public static Pair<Object, Boolean> navEcoreType(final ContextExpression e) {
+    Pair<Object, Boolean> _xifexpression = null;
     if ((e instanceof ContextVarExpression)) {
-      Pair<EClassifier, Boolean> _xblockexpression = null;
+      Pair<Object, Boolean> _xblockexpression = null;
       {
         final SideEnum side = ((ContextVarExpression)e).getSide();
         final String varName = ((ContextVarExpression)e).getName();
-        Pair<EClassifier, Boolean> _xtrycatchfinallyexpression = null;
+        Pair<Object, Boolean> _xtrycatchfinallyexpression = null;
         try {
-          Pair<EClassifier, Boolean> _xblockexpression_1 = null;
+          Pair<Object, Boolean> _xblockexpression_1 = null;
           {
             final TupleType tupleType = ModelInferrerUtils.context(e, side);
-            Pair<EClassifier, Boolean> _xifexpression_1 = null;
+            Pair<Object, Boolean> _xifexpression_1 = null;
             if ((tupleType == null)) {
               _xifexpression_1 = null;
             } else {
-              Pair<EClassifier, Boolean> _xblockexpression_2 = null;
+              Pair<Object, Boolean> _xblockexpression_2 = null;
               {
                 final Function1<Tuple3<String, Object, Boolean>, Boolean> _function = (Tuple3<String, Object, Boolean> it) -> {
                   return Boolean.valueOf(it.first.equals(varName));
                 };
                 final Tuple3<String, Object, Boolean> typeDef = IterableExtensions.<Tuple3<String, Object, Boolean>>findFirst(tupleType.tuples, _function);
-                Pair<EClassifier, Boolean> _xifexpression_2 = null;
+                Pair<Object, Boolean> _xifexpression_2 = null;
                 if ((typeDef == null)) {
                   _xifexpression_2 = null;
                 } else {
-                  Pair<EClassifier, Boolean> _xifexpression_3 = null;
-                  if ((typeDef.second instanceof EClass)) {
-                    _xifexpression_3 = Pair.<EClassifier, Boolean>of(((EClass) typeDef.second), Boolean.valueOf(false));
-                  } else {
-                    _xifexpression_3 = null;
-                  }
-                  _xifexpression_2 = _xifexpression_3;
+                  _xifexpression_2 = Pair.<Object, Boolean>of(typeDef.second, typeDef.third);
                 }
                 _xblockexpression_2 = _xifexpression_2;
               }
@@ -293,29 +287,36 @@ public class ModelInferrerUtils {
       }
       _xifexpression = _xblockexpression;
     } else {
-      Pair<EClassifier, Boolean> _xifexpression_1 = null;
+      Pair<Object, Boolean> _xifexpression_1 = null;
       if ((e instanceof NavigationExpression)) {
-        Pair<EClassifier, Boolean> _xblockexpression_1 = null;
+        Pair<Object, Boolean> _xblockexpression_1 = null;
         {
-          final Pair<EClassifier, Boolean> hostType = ModelInferrerUtils.navEcoreType(((NavigationExpression)e).getHost());
+          final Pair<Object, Boolean> hostType = ModelInferrerUtils.navEcoreType(((NavigationExpression)e).getHost());
           final String path = ((NavigationExpression)e).getPathName();
-          Pair<EClassifier, Boolean> _xifexpression_2 = null;
+          final boolean isNode = ((NavigationExpression)e).getNavOp().equals("@");
+          Pair<Object, Boolean> _xifexpression_2 = null;
           if ((hostType == null)) {
             _xifexpression_2 = null;
           } else {
-            Pair<EClassifier, Boolean> _xifexpression_3 = null;
-            EClassifier _key = hostType.getKey();
+            Pair<Object, Boolean> _xifexpression_3 = null;
+            Object _key = hostType.getKey();
             if ((_key instanceof EClass)) {
-              Pair<EClassifier, Boolean> _xblockexpression_2 = null;
+              Pair<Object, Boolean> _xblockexpression_2 = null;
               {
-                EClassifier _key_1 = hostType.getKey();
+                Object _key_1 = hostType.getKey();
                 final EStructuralFeature pathType = ((EClass) _key_1).getEStructuralFeature(path);
-                Pair<EClassifier, Boolean> _xifexpression_4 = null;
+                Pair<Object, Boolean> _xifexpression_4 = null;
                 if ((pathType == null)) {
                   _xifexpression_4 = null;
                 } else {
-                  EClassifier _eType = pathType.getEType();
-                  _xifexpression_4 = Pair.<EClassifier, Boolean>of(_eType, Boolean.valueOf(((hostType.getValue()).booleanValue() || pathType.isMany())));
+                  Pair<Object, Boolean> _xifexpression_5 = null;
+                  if (isNode) {
+                    EClassifier _eType = pathType.getEType();
+                    _xifexpression_5 = Pair.<Object, Boolean>of(_eType, Boolean.valueOf(((hostType.getValue()).booleanValue() || pathType.isMany())));
+                  } else {
+                    _xifexpression_5 = Pair.<Object, Boolean>of(pathType, Boolean.valueOf(((hostType.getValue()).booleanValue() || pathType.isMany())));
+                  }
+                  _xifexpression_4 = _xifexpression_5;
                 }
                 _xblockexpression_2 = _xifexpression_4;
               }
@@ -332,7 +333,7 @@ public class ModelInferrerUtils {
         if ((e instanceof ExpressionConversion)) {
           final EClass type = ((ExpressionConversion)e).getType();
           boolean _isMany = ((ExpressionConversion)e).isMany();
-          return Pair.<EClassifier, Boolean>of(type, Boolean.valueOf(_isMany));
+          return Pair.<Object, Boolean>of(type, Boolean.valueOf(_isMany));
         }
       }
       _xifexpression = _xifexpression_1;

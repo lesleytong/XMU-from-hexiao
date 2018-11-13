@@ -57,6 +57,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.ValueMapping;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.VarMapping;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreAlign;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreCompositionChildStatement;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreContextSource;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreExpandSource;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreExpandView;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreForEachMatchSource;
@@ -276,6 +277,13 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * @generated
    */
   private EClass typeIndicatorEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass xmuCoreContextSourceEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1307,6 +1315,46 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getXmuCoreContextSource()
+  {
+    return xmuCoreContextSourceEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getXmuCoreContextSource_MappingSource()
+  {
+    return (EReference)xmuCoreContextSourceEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getXmuCoreContextSource_MappingView()
+  {
+    return (EReference)xmuCoreContextSourceEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getXmuCoreContextSource_Body()
+  {
+    return (EReference)xmuCoreContextSourceEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getXmuCoreMatchSource()
   {
     return xmuCoreMatchSourceEClass;
@@ -2317,9 +2365,19 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getNavigationExpression_PathName()
+  public EAttribute getNavigationExpression_NavOp()
   {
     return (EAttribute)navigationExpressionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getNavigationExpression_PathName()
+  {
+    return (EAttribute)navigationExpressionEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -2545,6 +2603,11 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     createEReference(typeIndicatorEClass, TYPE_INDICATOR__SOURCE_TYPE);
     createEReference(typeIndicatorEClass, TYPE_INDICATOR__VIEW_TYPE);
 
+    xmuCoreContextSourceEClass = createEClass(XMU_CORE_CONTEXT_SOURCE);
+    createEReference(xmuCoreContextSourceEClass, XMU_CORE_CONTEXT_SOURCE__MAPPING_SOURCE);
+    createEReference(xmuCoreContextSourceEClass, XMU_CORE_CONTEXT_SOURCE__MAPPING_VIEW);
+    createEReference(xmuCoreContextSourceEClass, XMU_CORE_CONTEXT_SOURCE__BODY);
+
     xmuCoreMatchSourceEClass = createEClass(XMU_CORE_MATCH_SOURCE);
     createEReference(xmuCoreMatchSourceEClass, XMU_CORE_MATCH_SOURCE__PATTERN);
     createEReference(xmuCoreMatchSourceEClass, XMU_CORE_MATCH_SOURCE__BODY);
@@ -2682,6 +2745,7 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
 
     navigationExpressionEClass = createEClass(NAVIGATION_EXPRESSION);
     createEReference(navigationExpressionEClass, NAVIGATION_EXPRESSION__HOST);
+    createEAttribute(navigationExpressionEClass, NAVIGATION_EXPRESSION__NAV_OP);
     createEAttribute(navigationExpressionEClass, NAVIGATION_EXPRESSION__PATH_NAME);
 
     contextVarExpressionEClass = createEClass(CONTEXT_VAR_EXPRESSION);
@@ -2750,6 +2814,7 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     patternNodeRefEClass.getESuperTypes().add(this.getPatternValueCondition());
     patternDefinitionReferenceEClass.getESuperTypes().add(this.getPattern());
     xmuCoreCompositionChildStatementEClass.getESuperTypes().add(this.getXmuCoreStatement());
+    xmuCoreContextSourceEClass.getESuperTypes().add(this.getXmuCoreCompositionChildStatement());
     xmuCoreMatchSourceEClass.getESuperTypes().add(this.getXmuCoreCompositionChildStatement());
     xmuCoreMatchViewEClass.getESuperTypes().add(this.getXmuCoreCompositionChildStatement());
     xmuCoreExpandSourceEClass.getESuperTypes().add(this.getXmuCoreCompositionChildStatement());
@@ -2873,6 +2938,11 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     initEClass(typeIndicatorEClass, TypeIndicator.class, "TypeIndicator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getTypeIndicator_SourceType(), this.getContextTypeRef(), null, "sourceType", null, 0, 1, TypeIndicator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getTypeIndicator_ViewType(), this.getContextTypeRef(), null, "viewType", null, 0, 1, TypeIndicator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(xmuCoreContextSourceEClass, XmuCoreContextSource.class, "XmuCoreContextSource", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getXmuCoreContextSource_MappingSource(), this.getOrderedTupleTypeLiteral(), null, "mappingSource", null, 0, 1, XmuCoreContextSource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getXmuCoreContextSource_MappingView(), this.getOrderedTupleTypeLiteral(), null, "mappingView", null, 0, 1, XmuCoreContextSource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getXmuCoreContextSource_Body(), this.getXmuCoreStatement(), null, "body", null, 0, 1, XmuCoreContextSource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(xmuCoreMatchSourceEClass, XmuCoreMatchSource.class, "XmuCoreMatchSource", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getXmuCoreMatchSource_Pattern(), this.getPattern(), null, "pattern", null, 0, 1, XmuCoreMatchSource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3011,6 +3081,7 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
 
     initEClass(navigationExpressionEClass, NavigationExpression.class, "NavigationExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getNavigationExpression_Host(), this.getContextExpression(), null, "host", null, 0, 1, NavigationExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getNavigationExpression_NavOp(), ecorePackage.getEString(), "navOp", null, 0, 1, NavigationExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getNavigationExpression_PathName(), ecorePackage.getEString(), "pathName", null, 0, 1, NavigationExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(contextVarExpressionEClass, ContextVarExpression.class, "ContextVarExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

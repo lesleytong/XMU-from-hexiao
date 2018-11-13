@@ -115,11 +115,18 @@ XmuCoreCompositionChildStatement :
 	XmuCoreMatchSource | XmuCoreMatchView |
 	XmuCoreExpandSource | XmuCoreExpandView | XmuCoreGraphReplace |
 	XmuCoreSwitch | XmuCoreAlign | XmuCoreFunctionCall | XmuCoreIndex |
-	XmuCoreForEachMatchSource
+	XmuCoreContextSource| XmuCoreForEachMatchSource
 ;
 
 TypeIndicator :
 	'<' sourceType=ContextTypeRef ',' viewType=ContextTypeRef '>'
+;
+
+XmuCoreContextSource :
+	'contextS' typeIndicator=TypeIndicator? 
+		mappingSource=OrderedTupleTypeLiteral 
+		mappingView=OrderedTupleTypeLiteral 
+		body=XmuCoreStatement
 ;
 
 XmuCoreMatchSource :
@@ -241,7 +248,7 @@ XPrimaryExpression returns xbase::XExpression :
 ;
  
 ContextExpression returns ContextExpression:
-	(ContextPrimaryExpression ({NavigationExpression.host=current} '.' '@' pathName=ValidID)*)
+	(ContextPrimaryExpression ({NavigationExpression.host=current} '.' navOp=('@'|'@@') pathName=ValidID)*)
 ;
 
 ContextPrimaryExpression:

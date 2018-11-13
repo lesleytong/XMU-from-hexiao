@@ -1906,11 +1906,20 @@ ruleXmuCoreCompositionChildStatement returns [EObject current=null]
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getXmuCoreCompositionChildStatementAccess().getXmuCoreForEachMatchSourceParserRuleCall_9());
+			newCompositeNode(grammarAccess.getXmuCoreCompositionChildStatementAccess().getXmuCoreContextSourceParserRuleCall_9());
 		}
-		this_XmuCoreForEachMatchSource_9=ruleXmuCoreForEachMatchSource
+		this_XmuCoreContextSource_9=ruleXmuCoreContextSource
 		{
-			$current = $this_XmuCoreForEachMatchSource_9.current;
+			$current = $this_XmuCoreContextSource_9.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getXmuCoreCompositionChildStatementAccess().getXmuCoreForEachMatchSourceParserRuleCall_10());
+		}
+		this_XmuCoreForEachMatchSource_10=ruleXmuCoreForEachMatchSource
+		{
+			$current = $this_XmuCoreForEachMatchSource_10.current;
 			afterParserOrEnumRuleCall();
 		}
 	)
@@ -1982,6 +1991,105 @@ ruleTypeIndicator returns [EObject current=null]
 		{
 			newLeafNode(otherlv_4, grammarAccess.getTypeIndicatorAccess().getGreaterThanSignKeyword_4());
 		}
+	)
+;
+
+// Entry rule entryRuleXmuCoreContextSource
+entryRuleXmuCoreContextSource returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getXmuCoreContextSourceRule()); }
+	iv_ruleXmuCoreContextSource=ruleXmuCoreContextSource
+	{ $current=$iv_ruleXmuCoreContextSource.current; }
+	EOF;
+
+// Rule XmuCoreContextSource
+ruleXmuCoreContextSource returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='contextS'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getXmuCoreContextSourceAccess().getContextSKeyword_0());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getXmuCoreContextSourceAccess().getTypeIndicatorTypeIndicatorParserRuleCall_1_0());
+				}
+				lv_typeIndicator_1_0=ruleTypeIndicator
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getXmuCoreContextSourceRule());
+					}
+					set(
+						$current,
+						"typeIndicator",
+						lv_typeIndicator_1_0,
+						"edu.ustb.sei.mde.bxcore.dsl.BXCore.TypeIndicator");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)?
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getXmuCoreContextSourceAccess().getMappingSourceOrderedTupleTypeLiteralParserRuleCall_2_0());
+				}
+				lv_mappingSource_2_0=ruleOrderedTupleTypeLiteral
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getXmuCoreContextSourceRule());
+					}
+					set(
+						$current,
+						"mappingSource",
+						lv_mappingSource_2_0,
+						"edu.ustb.sei.mde.bxcore.dsl.BXCore.OrderedTupleTypeLiteral");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getXmuCoreContextSourceAccess().getMappingViewOrderedTupleTypeLiteralParserRuleCall_3_0());
+				}
+				lv_mappingView_3_0=ruleOrderedTupleTypeLiteral
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getXmuCoreContextSourceRule());
+					}
+					set(
+						$current,
+						"mappingView",
+						lv_mappingView_3_0,
+						"edu.ustb.sei.mde.bxcore.dsl.BXCore.OrderedTupleTypeLiteral");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getXmuCoreContextSourceAccess().getBodyXmuCoreStatementParserRuleCall_4_0());
+				}
+				lv_body_4_0=ruleXmuCoreStatement
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getXmuCoreContextSourceRule());
+					}
+					set(
+						$current,
+						"body",
+						lv_body_4_0,
+						"edu.ustb.sei.mde.bxcore.dsl.BXCore.XmuCoreStatement");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
 	)
 ;
 
@@ -4419,10 +4527,33 @@ ruleContextExpression returns [EObject current=null]
 			{
 				newLeafNode(otherlv_2, grammarAccess.getContextExpressionAccess().getFullStopKeyword_1_1());
 			}
-			otherlv_3='@'
-			{
-				newLeafNode(otherlv_3, grammarAccess.getContextExpressionAccess().getCommercialAtKeyword_1_2());
-			}
+			(
+				(
+					(
+						lv_navOp_3_1='@'
+						{
+							newLeafNode(lv_navOp_3_1, grammarAccess.getContextExpressionAccess().getNavOpCommercialAtKeyword_1_2_0_0());
+						}
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getContextExpressionRule());
+							}
+							setWithLastConsumed($current, "navOp", lv_navOp_3_1, null);
+						}
+						    |
+						lv_navOp_3_2='@@'
+						{
+							newLeafNode(lv_navOp_3_2, grammarAccess.getContextExpressionAccess().getNavOpCommercialAtCommercialAtKeyword_1_2_0_1());
+						}
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getContextExpressionRule());
+							}
+							setWithLastConsumed($current, "navOp", lv_navOp_3_2, null);
+						}
+					)
+				)
+			)
 			(
 				(
 					{

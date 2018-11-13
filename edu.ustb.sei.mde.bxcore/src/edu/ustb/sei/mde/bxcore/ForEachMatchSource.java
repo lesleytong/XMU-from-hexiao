@@ -48,7 +48,6 @@ public class ForEachMatchSource extends XmuCore {
 	@Override
 	public ViewType forward(SourceType s) throws NothingReturnedException {
 		List<Context> sourceMatches = sourcePattern.match(s.first, s.second);
-		
 		if(sourceMatches.isEmpty()) return ViewType.empty();
 		
 		ViewType[] views = new ViewType[sourceMatches.size()];
@@ -119,6 +118,8 @@ public class ForEachMatchSource extends XmuCore {
 		List<Context> sourceMatches = sourcePattern.match(s.first, s.second);
 		if(sourceMatches.isEmpty()) return s;
 		
+		sourceMatches.forEach(m->m.setUpstream(s.second));
+		
 		SourceType[] postSources = new SourceType[sourceMatches.size()];
 		TypedGraph[] interSources = new TypedGraph[sourceMatches.size()];
 		TraceSystem[] interTraces = new TraceSystem[sourceMatches.size()];
@@ -162,11 +163,15 @@ public class ForEachMatchSource extends XmuCore {
 			}
 		}
 		
+		for(Context m : newSources) {
+			m.setUpstream(finalSourcePost);
+		}
+		
 		TypedGraph finalSource = s.first.merge(interSources);
 		TraceSystem finalTrace = TraceSystem.merge(interTraces);
 		
-		
 		submit(newSources);
+		
 		for(int i=0;i<postSources.length;i++) {
 			SourceType r = postSources[i];
 			r.second.setUpstream(finalSourcePost);

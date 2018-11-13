@@ -3,7 +3,6 @@ package edu.ustb.sei.mde.bxcore.dsl.structure;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.EcoreTypeRef;
@@ -20,7 +19,6 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeRef;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.UnorderedTupleTypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.infer.UnsolvedTupleType;
-import edu.ustb.sei.mde.structure.Tuple2;
 import edu.ustb.sei.mde.structure.Tuple3;
 
 public class TupleType {

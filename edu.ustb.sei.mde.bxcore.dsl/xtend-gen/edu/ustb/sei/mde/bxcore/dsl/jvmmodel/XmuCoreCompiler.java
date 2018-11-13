@@ -26,7 +26,6 @@ import edu.ustb.sei.mde.graph.typedGraph.TypedNode;
 import edu.ustb.sei.mde.graph.typedGraph.ValueEdge;
 import java.util.function.Consumer;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -171,7 +170,8 @@ public class XmuCoreCompiler extends XbaseCompiler {
           this.doInternalToJavaStatement(((NavigationExpression)e).getHost(), a, true);
           a.newLine();
           final JvmTypeReference expectedType_2 = this.getType(e);
-          final Pair<EClassifier, Boolean> ecoreType = ModelInferrerUtils.navEcoreType(((ContextExpression)e));
+          final Pair<Object, Boolean> ecoreType = ModelInferrerUtils.navEcoreType(((ContextExpression)e));
+          final boolean navEdge = ((NavigationExpression)e).getNavOp().equals("@");
           if (isReferenced) {
             final String name_2 = a.declareSyntheticVariable(e, "_navExp");
             ITreeAppendable _newLine_2 = a.newLine();
@@ -194,11 +194,13 @@ public class XmuCoreCompiler extends XbaseCompiler {
             String _pathName = ((NavigationExpression)e).getPathName();
             _builder_5.append(_pathName);
             _builder_5.append("\", ");
-            EClassifier _key = ecoreType.getKey();
+            Object _key = ecoreType.getKey();
             _builder_5.append((_key instanceof EClass));
             _builder_5.append(", ");
             Boolean _value = ecoreType.getValue();
             _builder_5.append(_value);
+            _builder_5.append(", ");
+            _builder_5.append(navEdge);
             _builder_5.append(");");
             a.append(_builder_5);
           } else {
@@ -217,11 +219,13 @@ public class XmuCoreCompiler extends XbaseCompiler {
             String _pathName_1 = ((NavigationExpression)e).getPathName();
             _builder_7.append(_pathName_1);
             _builder_7.append("\", ");
-            EClassifier _key_1 = ecoreType.getKey();
+            Object _key_1 = ecoreType.getKey();
             _builder_7.append((_key_1 instanceof EClass));
             _builder_7.append(", ");
             Boolean _value_1 = ecoreType.getValue();
             _builder_7.append(_value_1);
+            _builder_7.append(", ");
+            _builder_7.append(navEdge);
             _builder_7.append(");");
             a.append(_builder_7);
           }

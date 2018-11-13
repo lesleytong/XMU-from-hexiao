@@ -14,6 +14,7 @@ package edu.ustb.sei.mde.bxcore.dsl.bXCore;
  * </p>
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.NavigationExpression#getHost <em>Host</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.NavigationExpression#getNavOp <em>Nav Op</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.NavigationExpression#getPathName <em>Path Name</em>}</li>
  * </ul>
  *
@@ -48,6 +49,32 @@ public interface NavigationExpression extends ContextExpression
    * @generated
    */
   void setHost(ContextExpression value);
+
+  /**
+   * Returns the value of the '<em><b>Nav Op</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Nav Op</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Nav Op</em>' attribute.
+   * @see #setNavOp(String)
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getNavigationExpression_NavOp()
+   * @model
+   * @generated
+   */
+  String getNavOp();
+
+  /**
+   * Sets the value of the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.NavigationExpression#getNavOp <em>Nav Op</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Nav Op</em>' attribute.
+   * @see #getNavOp()
+   * @generated
+   */
+  void setNavOp(String value);
 
   /**
    * Returns the value of the '<em><b>Path Name</b></em>' attribute.

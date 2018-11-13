@@ -5,6 +5,7 @@ package edu.ustb.sei.mde.bxcore.dsl.jvmmodel;
 
 import com.google.inject.Inject;
 import edu.ustb.sei.mde.bxcore.Align;
+import edu.ustb.sei.mde.bxcore.ContextSource;
 import edu.ustb.sei.mde.bxcore.ExpandSource;
 import edu.ustb.sei.mde.bxcore.ExpandView;
 import edu.ustb.sei.mde.bxcore.ForEachMatchSource;
@@ -39,6 +40,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.Definition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ImportSection;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.IndexDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.IndexPart;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.OrderedTupleTypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternDefinitionReference;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternEdge;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternNode;
@@ -49,9 +51,11 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.TupleTypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeIndicator;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeLiteral;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeVar;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.VarMapping;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreAlign;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreCompositionChildStatement;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreContextSource;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreExpandSource;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreExpandView;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreForEachMatchSource;
@@ -76,6 +80,7 @@ import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
 import edu.ustb.sei.mde.bxcore.structures.Context;
 import edu.ustb.sei.mde.bxcore.structures.ContextType;
 import edu.ustb.sei.mde.bxcore.util.EcoreModelUtil;
+import edu.ustb.sei.mde.bxcore.util.XmuProgram;
 import edu.ustb.sei.mde.graph.pattern.Pattern;
 import edu.ustb.sei.mde.graph.type.IStructuralFeatureEdge;
 import edu.ustb.sei.mde.graph.type.ITypeNode;
@@ -187,6 +192,9 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
       final Map<UnsolvedTupleType, Tuple2<TupleType, Integer>> unsolvedTypes = data.getUnsolvedTypeMap();
       final String sourceURI = this.toJavaClassName(element.eResource().getURI().trimFileExtension());
       final Procedure1<JvmGenericType> _function = (JvmGenericType it) -> {
+        EList<JvmTypeReference> _superTypes = it.getSuperTypes();
+        JvmTypeReference _typeRef = this._typeReferenceBuilder.typeRef(XmuProgram.class);
+        this._jvmTypesBuilder.<JvmTypeReference>operator_add(_superTypes, _typeRef);
         final Consumer<ImportSection> _function_1 = (ImportSection i) -> {
           this.generateImportSection(i, it);
         };
@@ -204,8 +212,8 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
             this._jvmTypesBuilder.addArrayTypeDimension(this._typeReferenceBuilder.typeRef(Tuple2.class, this._typeReferenceBuilder.typeRef(String.class), this._typeReferenceBuilder.typeRef(Object.class))));
           this._jvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters_2, _parameter_2);
           EList<JvmTypeReference> _exceptions = it_1.getExceptions();
-          JvmTypeReference _typeRef = this._typeReferenceBuilder.typeRef(NothingReturnedException.class);
-          this._jvmTypesBuilder.<JvmTypeReference>operator_add(_exceptions, _typeRef);
+          JvmTypeReference _typeRef_1 = this._typeReferenceBuilder.typeRef(NothingReturnedException.class);
+          this._jvmTypesBuilder.<JvmTypeReference>operator_add(_exceptions, _typeRef_1);
           if ((!isPreIndexingPhase)) {
             StringConcatenationClient _client = new StringConcatenationClient() {
               @Override
@@ -259,8 +267,8 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
             this._jvmTypesBuilder.addArrayTypeDimension(this._typeReferenceBuilder.typeRef(Tuple2.class, this._typeReferenceBuilder.typeRef(String.class), this._typeReferenceBuilder.typeRef(Object.class))));
           this._jvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters_4, _parameter_4);
           EList<JvmTypeReference> _exceptions = it_1.getExceptions();
-          JvmTypeReference _typeRef = this._typeReferenceBuilder.typeRef(NothingReturnedException.class);
-          this._jvmTypesBuilder.<JvmTypeReference>operator_add(_exceptions, _typeRef);
+          JvmTypeReference _typeRef_1 = this._typeReferenceBuilder.typeRef(NothingReturnedException.class);
+          this._jvmTypesBuilder.<JvmTypeReference>operator_add(_exceptions, _typeRef_1);
           if ((!isPreIndexingPhase)) {
             StringConcatenationClient _client = new StringConcatenationClient() {
               @Override
@@ -425,9 +433,9 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
                 String _firstUpper_1 = StringExtensions.toFirstUpper(((CustomizedBiGULDefinition)def).getName());
                 String _plus_2 = ("BiGUL" + _firstUpper_1);
                 final Procedure1<JvmGenericType> _function_18 = (JvmGenericType it_1) -> {
-                  EList<JvmTypeReference> _superTypes = it_1.getSuperTypes();
-                  JvmTypeReference _typeRef = this._typeReferenceBuilder.typeRef(BidirectionalTransformation.class, this._jvmTypesBuilder.addArrayTypeDimension(this._typeReferenceBuilder.typeRef(Object.class)), this._jvmTypesBuilder.addArrayTypeDimension(this._typeReferenceBuilder.typeRef(Object.class)));
-                  this._jvmTypesBuilder.<JvmTypeReference>operator_add(_superTypes, _typeRef);
+                  EList<JvmTypeReference> _superTypes_1 = it_1.getSuperTypes();
+                  JvmTypeReference _typeRef_1 = this._typeReferenceBuilder.typeRef(BidirectionalTransformation.class, this._jvmTypesBuilder.addArrayTypeDimension(this._typeReferenceBuilder.typeRef(Object.class)), this._jvmTypesBuilder.addArrayTypeDimension(this._typeReferenceBuilder.typeRef(Object.class)));
+                  this._jvmTypesBuilder.<JvmTypeReference>operator_add(_superTypes_1, _typeRef_1);
                   EList<JvmMember> _members_5 = it_1.getMembers();
                   final Function1<JvmFormalParameter, JvmField> _function_19 = (JvmFormalParameter s) -> {
                     final Procedure1<JvmField> _function_20 = (JvmField it_2) -> {
@@ -602,8 +610,8 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
                   final Procedure1<JvmOperation> _function_20 = (JvmOperation it_1) -> {
                     it_1.setVisibility(JvmVisibility.PUBLIC);
                     EList<JvmTypeReference> _exceptions = it_1.getExceptions();
-                    JvmTypeReference _typeRef = this._typeReferenceBuilder.typeRef(BidirectionalTransformationDefinitionException.class);
-                    this._jvmTypesBuilder.<JvmTypeReference>operator_add(_exceptions, _typeRef);
+                    JvmTypeReference _typeRef_1 = this._typeReferenceBuilder.typeRef(BidirectionalTransformationDefinitionException.class);
+                    this._jvmTypesBuilder.<JvmTypeReference>operator_add(_exceptions, _typeRef_1);
                     if ((!isPreIndexingPhase)) {
                       final Procedure1<ITreeAppendable> _function_21 = (ITreeAppendable appendable) -> {
                         StringConcatenation _builder = new StringConcatenation();
@@ -1170,40 +1178,60 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
     this._jvmTypesBuilder.<JvmOperation>operator_add(_members_1, _method);
     EList<JvmMember> _members_2 = type.getMembers();
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("load");
+    _builder.append("register");
     String _firstUpper_1 = StringExtensions.toFirstUpper(i.getShortName());
     _builder.append(_firstUpper_1);
-    _builder.append("Model");
+    _builder.append("Package");
     final Procedure1<JvmOperation> _function_2 = (JvmOperation it) -> {
+      EList<JvmFormalParameter> _parameters = it.getParameters();
+      JvmFormalParameter _parameter = this._jvmTypesBuilder.toParameter(i, "metamodelUri", this._typeReferenceBuilder.typeRef(URI.class));
+      this._jvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+      StringConcatenationClient _client = new StringConcatenationClient() {
+        @Override
+        protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
+          _builder.append("registerPackage(\"");
+          String _shortName = i.getShortName();
+          _builder.append(_shortName);
+          _builder.append("\", metamodelUri);");
+        }
+      };
+      this._jvmTypesBuilder.setBody(it, _client);
+    };
+    JvmOperation _method_1 = this._jvmTypesBuilder.toMethod(i, _builder.toString(), this._typeReferenceBuilder.typeRef(void.class), _function_2);
+    this._jvmTypesBuilder.<JvmOperation>operator_add(_members_2, _method_1);
+    EList<JvmMember> _members_3 = type.getMembers();
+    StringConcatenation _builder_1 = new StringConcatenation();
+    _builder_1.append("load");
+    String _firstUpper_2 = StringExtensions.toFirstUpper(i.getShortName());
+    _builder_1.append(_firstUpper_2);
+    _builder_1.append("Model");
+    final Procedure1<JvmOperation> _function_3 = (JvmOperation it) -> {
       EList<JvmFormalParameter> _parameters = it.getParameters();
       JvmFormalParameter _parameter = this._jvmTypesBuilder.toParameter(i, "modelUri", this._typeReferenceBuilder.typeRef(URI.class));
       this._jvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
-      EList<JvmFormalParameter> _parameters_1 = it.getParameters();
-      JvmFormalParameter _parameter_1 = this._jvmTypesBuilder.toParameter(i, "metamodelUri", this._typeReferenceBuilder.typeRef(URI.class));
-      this._jvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
       StringConcatenationClient _client = new StringConcatenationClient() {
         @Override
         protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
           String _qualifiedName = BXCoreJvmModelInferrer.this._typeReferenceBuilder.typeRef(EPackage.class).getQualifiedName();
           _builder.append(_qualifiedName);
-          _builder.append(" pack = ");
-          String _qualifiedName_1 = BXCoreJvmModelInferrer.this._typeReferenceBuilder.typeRef(EcoreModelUtil.class).getQualifiedName();
-          _builder.append(_qualifiedName_1);
-          _builder.append(".loadPacakge(metamodelUri);");
+          _builder.append(" pack = getPacakge(\"");
+          String _shortName = i.getShortName();
+          _builder.append(_shortName);
+          _builder.append("\");");
           _builder.newLineIfNotEmpty();
-          String _qualifiedName_2 = BXCoreJvmModelInferrer.this._typeReferenceBuilder.typeRef(EObject.class).getQualifiedName();
+          String _qualifiedName_1 = BXCoreJvmModelInferrer.this._typeReferenceBuilder.typeRef(List.class, BXCoreJvmModelInferrer.this._typeReferenceBuilder.typeRef(EObject.class)).getQualifiedName();
+          _builder.append(_qualifiedName_1);
+          _builder.append(" roots = ");
+          String _qualifiedName_2 = BXCoreJvmModelInferrer.this._typeReferenceBuilder.typeRef(EcoreModelUtil.class).getQualifiedName();
           _builder.append(_qualifiedName_2);
-          _builder.append(" root = ");
-          String _qualifiedName_3 = BXCoreJvmModelInferrer.this._typeReferenceBuilder.typeRef(EcoreModelUtil.class).getQualifiedName();
-          _builder.append(_qualifiedName_3);
           _builder.append(".load(modelUri);");
           _builder.newLineIfNotEmpty();
-          String _qualifiedName_4 = BXCoreJvmModelInferrer.this._typeReferenceBuilder.typeRef(TypedGraph.class).getQualifiedName();
-          _builder.append(_qualifiedName_4);
+          String _qualifiedName_3 = BXCoreJvmModelInferrer.this._typeReferenceBuilder.typeRef(TypedGraph.class).getQualifiedName();
+          _builder.append(_qualifiedName_3);
           _builder.append(" graph = ");
-          String _qualifiedName_5 = BXCoreJvmModelInferrer.this._typeReferenceBuilder.typeRef(EcoreModelUtil.class).getQualifiedName();
-          _builder.append(_qualifiedName_5);
-          _builder.append(".load(root, getTypeGraph_");
+          String _qualifiedName_4 = BXCoreJvmModelInferrer.this._typeReferenceBuilder.typeRef(EcoreModelUtil.class).getQualifiedName();
+          _builder.append(_qualifiedName_4);
+          _builder.append(".load(roots, getTypeGraph_");
           String _firstUpper = StringExtensions.toFirstUpper(i.getShortName());
           _builder.append(_firstUpper);
           _builder.append("());");
@@ -1214,8 +1242,8 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
       };
       this._jvmTypesBuilder.setBody(it, _client);
     };
-    JvmOperation _method_1 = this._jvmTypesBuilder.toMethod(i, _builder.toString(), this._typeReferenceBuilder.typeRef(TypedGraph.class), _function_2);
-    this._jvmTypesBuilder.<JvmOperation>operator_add(_members_2, _method_1);
+    JvmOperation _method_2 = this._jvmTypesBuilder.toMethod(i, _builder_1.toString(), this._typeReferenceBuilder.typeRef(TypedGraph.class), _function_3);
+    this._jvmTypesBuilder.<JvmOperation>operator_add(_members_3, _method_2);
   }
   
   protected String toJavaClassName(final URI uri) {
@@ -1932,6 +1960,61 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
           _builder.append(_patternAccessor);
           _builder.append(",");
           return this.generateXmuCode(appendable.append(_builder).newLine().increaseIndentation(), body, indexedStatements, typeLiteralMap, patternLiterals, conditions, actions, unsolvedTypes, data, program).newLine().decreaseIndentation().append(")");
+        }
+      }
+      if (!_matched) {
+        if (statement instanceof XmuCoreContextSource) {
+          _matched=true;
+          final CharSequence viewType = this.typeAccessor(this.viewType(statement, data), typeLiteralMap, unsolvedTypes);
+          final XmuCoreStatement body = ((XmuCoreContextSource)statement).getBody();
+          final OrderedTupleTypeLiteral mappingSrc = ((XmuCoreContextSource)statement).getMappingSource();
+          final OrderedTupleTypeLiteral mappingViw = ((XmuCoreContextSource)statement).getMappingView();
+          final int size = mappingSrc.getElements().size();
+          final CharSequence msType = this.typeAccessor(mappingSrc, typeLiteralMap, unsolvedTypes);
+          final CharSequence mvType = this.typeAccessor(mappingViw, typeLiteralMap, unsolvedTypes);
+          StringConcatenation _builder = new StringConcatenation();
+          _builder.append("new ");
+          String _qualifiedName = this._typeReferenceBuilder.typeRef(ContextSource.class).getQualifiedName();
+          _builder.append(_qualifiedName);
+          _builder.append("(\"");
+          _builder.append(key);
+          _builder.append("\", ");
+          _builder.append(viewType);
+          _builder.append(", ");
+          ITreeAppendable _newLine = this.generateXmuCode(appendable.append(_builder).newLine().increaseIndentation(), body, indexedStatements, typeLiteralMap, patternLiterals, conditions, actions, unsolvedTypes, data, program).append(",").newLine();
+          StringConcatenation _builder_1 = new StringConcatenation();
+          _builder_1.append("new ");
+          String _qualifiedName_1 = this._typeReferenceBuilder.typeRef(Tuple2.class).getQualifiedName();
+          _builder_1.append(_qualifiedName_1);
+          _builder_1.append("[]{");
+          {
+            IntegerRange _upTo = new IntegerRange(0, (size - 1));
+            boolean _hasElements = false;
+            for(final Integer i : _upTo) {
+              if (!_hasElements) {
+                _hasElements = true;
+              } else {
+                _builder_1.appendImmediate(",", "");
+              }
+              final TypeVar sv = mappingSrc.getElements().get((i).intValue());
+              final TypeVar vv = mappingViw.getElements().get((i).intValue());
+              String _qualifiedName_2 = this._typeReferenceBuilder.typeRef(Tuple2.class).getQualifiedName();
+              _builder_1.append(_qualifiedName_2);
+              _builder_1.append(".make(");
+              _builder_1.append(msType);
+              _builder_1.append(".getField(\"");
+              String _name = sv.getName();
+              _builder_1.append(_name);
+              _builder_1.append("\"), ");
+              _builder_1.append(mvType);
+              _builder_1.append(".getField(\"");
+              String _name_1 = vv.getName();
+              _builder_1.append(_name_1);
+              _builder_1.append("\"))");
+            }
+          }
+          _builder_1.append("}");
+          return _newLine.append(_builder_1).newLine().decreaseIndentation().append(")");
         }
       }
       if (!_matched) {

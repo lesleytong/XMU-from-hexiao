@@ -186,7 +186,7 @@ public class Context {
 				try {
 					Object lv = left.getValue(k);
 					Object rv = right.getValue(k);
-					return lv==rv && (lv!=null && lv.equals(rv));
+					return lv==rv || (lv!=null && lv.equals(rv));
 				} catch(Exception e) {
 					return false;
 				}

@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * </p>
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.NavigationExpressionImpl#getHost <em>Host</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.NavigationExpressionImpl#getNavOp <em>Nav Op</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.NavigationExpressionImpl#getPathName <em>Path Name</em>}</li>
  * </ul>
  *
@@ -40,6 +41,26 @@ public class NavigationExpressionImpl extends ContextExpressionImpl implements N
    * @ordered
    */
   protected ContextExpression host;
+
+  /**
+   * The default value of the '{@link #getNavOp() <em>Nav Op</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getNavOp()
+   * @generated
+   * @ordered
+   */
+  protected static final String NAV_OP_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getNavOp() <em>Nav Op</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getNavOp()
+   * @generated
+   * @ordered
+   */
+  protected String navOp = NAV_OP_EDEFAULT;
 
   /**
    * The default value of the '{@link #getPathName() <em>Path Name</em>}' attribute.
@@ -135,6 +156,29 @@ public class NavigationExpressionImpl extends ContextExpressionImpl implements N
    * <!-- end-user-doc -->
    * @generated
    */
+  public String getNavOp()
+  {
+    return navOp;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setNavOp(String newNavOp)
+  {
+    String oldNavOp = navOp;
+    navOp = newNavOp;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, BXCorePackage.NAVIGATION_EXPRESSION__NAV_OP, oldNavOp, navOp));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public String getPathName()
   {
     return pathName;
@@ -181,6 +225,8 @@ public class NavigationExpressionImpl extends ContextExpressionImpl implements N
     {
       case BXCorePackage.NAVIGATION_EXPRESSION__HOST:
         return getHost();
+      case BXCorePackage.NAVIGATION_EXPRESSION__NAV_OP:
+        return getNavOp();
       case BXCorePackage.NAVIGATION_EXPRESSION__PATH_NAME:
         return getPathName();
     }
@@ -199,6 +245,9 @@ public class NavigationExpressionImpl extends ContextExpressionImpl implements N
     {
       case BXCorePackage.NAVIGATION_EXPRESSION__HOST:
         setHost((ContextExpression)newValue);
+        return;
+      case BXCorePackage.NAVIGATION_EXPRESSION__NAV_OP:
+        setNavOp((String)newValue);
         return;
       case BXCorePackage.NAVIGATION_EXPRESSION__PATH_NAME:
         setPathName((String)newValue);
@@ -220,6 +269,9 @@ public class NavigationExpressionImpl extends ContextExpressionImpl implements N
       case BXCorePackage.NAVIGATION_EXPRESSION__HOST:
         setHost((ContextExpression)null);
         return;
+      case BXCorePackage.NAVIGATION_EXPRESSION__NAV_OP:
+        setNavOp(NAV_OP_EDEFAULT);
+        return;
       case BXCorePackage.NAVIGATION_EXPRESSION__PATH_NAME:
         setPathName(PATH_NAME_EDEFAULT);
         return;
@@ -239,6 +291,8 @@ public class NavigationExpressionImpl extends ContextExpressionImpl implements N
     {
       case BXCorePackage.NAVIGATION_EXPRESSION__HOST:
         return host != null;
+      case BXCorePackage.NAVIGATION_EXPRESSION__NAV_OP:
+        return NAV_OP_EDEFAULT == null ? navOp != null : !NAV_OP_EDEFAULT.equals(navOp);
       case BXCorePackage.NAVIGATION_EXPRESSION__PATH_NAME:
         return PATH_NAME_EDEFAULT == null ? pathName != null : !PATH_NAME_EDEFAULT.equals(pathName);
     }
@@ -256,7 +310,9 @@ public class NavigationExpressionImpl extends ContextExpressionImpl implements N
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (pathName: ");
+    result.append(" (navOp: ");
+    result.append(navOp);
+    result.append(", pathName: ");
     result.append(pathName);
     result.append(')');
     return result.toString();

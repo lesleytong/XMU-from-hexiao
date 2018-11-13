@@ -10,6 +10,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXProgram;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.VarMapping;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreAlign;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreContextSource;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreExpandSource;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreExpandView;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreForEachMatchSource;
@@ -168,6 +169,18 @@ public class SourceTypeModel extends TypeModel {
 			TypeEqual c2 = TypeEqual.makeLeftAbstractEqual(pt, bt);
 			this.constraints.add(c2);
 			
+			linkCause(c1, e);
+			linkCause(c2, e);
+		} else if(e instanceof XmuCoreContextSource) {
+			TupleType st = getType(e);
+			TupleType stm = getType(((XmuCoreContextSource) e).getMappingSource());
+			TupleType bt = getType(((XmuCoreContextSource) e).getBody());
+			
+			TypeUnion c1 = TypeUnion.makeSubSet(st, stm);
+			this.constraints.add(c1);
+			TypeEqual c2 = TypeEqual.makeEqual(st, bt);
+			this.constraints.add(c2);
+
 			linkCause(c1, e);
 			linkCause(c2, e);
 		}
