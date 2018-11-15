@@ -17,6 +17,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternValueCondition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PredefinedTypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeRef;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeVar;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.UnorderedTupleTypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.infer.UnsolvedTupleType;
 import edu.ustb.sei.mde.structure.Tuple3;
@@ -68,6 +69,8 @@ public class TupleType {
 					t.tuples.add(Tuple3.make(((PatternNode)e).getName(), ((PatternNode)e).getType(), ((PatternNode)e).isMany()));
 				} else if(e instanceof PatternEdge) {
 					t.tuples.add(Tuple3.make(((PatternEdge)e).getName(), ((PatternEdge)e).getFeature(), isMany((PatternEdge)e)));
+				} else if(e instanceof TypeVar) {
+					t.tuples.add(Tuple3.make(((TypeVar)e).getName(), getType(((TypeVar)e).getType()), ((TypeVar)e).isMany()));
 				}
 				
 			});

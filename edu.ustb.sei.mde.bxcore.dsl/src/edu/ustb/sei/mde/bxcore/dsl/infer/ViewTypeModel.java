@@ -11,6 +11,8 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.VarMapping;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreAlign;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreContextSource;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreDependencyView;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreDeriveSource;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreExpandSource;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreExpandView;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreForEachMatchSource;
@@ -118,7 +120,9 @@ public class ViewTypeModel extends TypeModel {
 		} else if(e instanceof XmuCoreGraphReplace) {
 			TupleType st = getType(e);
 			TupleType pt = getType(((XmuCoreGraphReplace) e).getView());
-			this.constraints.add(TypeEqual.makeEqual(st, pt));
+			TypeEqual c1 = TypeEqual.makeEqual(st, pt);
+			this.constraints.add(c1);
+			linkCause(c1, e);
 		} else if(e instanceof XmuCoreFunctionCall) {
 			TupleType st = getType(e);
 			TupleType bt = getType(((XmuCoreFunctionCall) e).getTarget());
@@ -181,6 +185,26 @@ public class ViewTypeModel extends TypeModel {
 
 			linkCause(c1, e);
 			linkCause(c2, e);
+		} else if(e instanceof XmuCoreDeriveSource) {
+			TupleType st = getType(e);
+			TupleType bt = getType(((XmuCoreDeriveSource) e).getBody());
+			TypeEqual c = TypeEqual.makeEqual(st, bt);
+			this.constraints.add(c);
+			linkCause(c, e);
+		} else if(e instanceof XmuCoreDependencyView) {
+			TupleType st = getType(e);
+			TupleType dt = getType(((XmuCoreDependencyView) e).getDependentType());
+			TupleType bt = getType(((XmuCoreDependencyView) e).getBody());
+			
+			TypeUnion c1 = TypeUnion.makeUnion(st);
+			c1.types.add(dt);
+			c1.types.add(bt);
+			this.constraints.add(c1);
+			linkCause(c1, e);
+			
+			TypeDisjoint c2  = TypeDisjoint.makeDisjoint(dt, bt);
+			this.constraints.add(c2);
+			linkCause(c2, e);
 		}
 	}
 	
@@ -196,7 +220,7 @@ public class ViewTypeModel extends TypeModel {
 
 	@Override
 	protected String getName() {
-		return "source type infer";
+		return "view type infer";
 	}
 
 	@Override

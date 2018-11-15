@@ -82,6 +82,13 @@ public class BXCoreSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case BXCorePackage.CONTEXT_AWARE_ACTION:
+      {
+        ContextAwareAction contextAwareAction = (ContextAwareAction)theEObject;
+        T result = caseContextAwareAction(contextAwareAction);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case BXCorePackage.IMPORT_SECTION:
       {
         ImportSection importSection = (ImportSection)theEObject;
@@ -93,6 +100,14 @@ public class BXCoreSwitch<T> extends Switch<T>
       {
         Definition definition = (Definition)theEObject;
         T result = caseDefinition(definition);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case BXCorePackage.HELPER_DEFINITION:
+      {
+        HelperDefinition helperDefinition = (HelperDefinition)theEObject;
+        T result = caseHelperDefinition(helperDefinition);
+        if (result == null) result = caseDefinition(helperDefinition);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -289,6 +304,32 @@ public class BXCoreSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case BXCorePackage.CONTEXT_AWARE_DERIVATION_ACTION:
+      {
+        ContextAwareDerivationAction contextAwareDerivationAction = (ContextAwareDerivationAction)theEObject;
+        T result = caseContextAwareDerivationAction(contextAwareDerivationAction);
+        if (result == null) result = caseContextAwareAction(contextAwareDerivationAction);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case BXCorePackage.XMU_CORE_DERIVE_SOURCE:
+      {
+        XmuCoreDeriveSource xmuCoreDeriveSource = (XmuCoreDeriveSource)theEObject;
+        T result = caseXmuCoreDeriveSource(xmuCoreDeriveSource);
+        if (result == null) result = caseXmuCoreCompositionChildStatement(xmuCoreDeriveSource);
+        if (result == null) result = caseXmuCoreStatement(xmuCoreDeriveSource);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case BXCorePackage.XMU_CORE_DEPENDENCY_VIEW:
+      {
+        XmuCoreDependencyView xmuCoreDependencyView = (XmuCoreDependencyView)theEObject;
+        T result = caseXmuCoreDependencyView(xmuCoreDependencyView);
+        if (result == null) result = caseXmuCoreCompositionChildStatement(xmuCoreDependencyView);
+        if (result == null) result = caseXmuCoreStatement(xmuCoreDependencyView);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case BXCorePackage.XMU_CORE_MATCH_SOURCE:
       {
         XmuCoreMatchSource xmuCoreMatchSource = (XmuCoreMatchSource)theEObject;
@@ -448,6 +489,7 @@ public class BXCoreSwitch<T> extends Switch<T>
       {
         ContextAwareUnidirectionalAction contextAwareUnidirectionalAction = (ContextAwareUnidirectionalAction)theEObject;
         T result = caseContextAwareUnidirectionalAction(contextAwareUnidirectionalAction);
+        if (result == null) result = caseContextAwareAction(contextAwareUnidirectionalAction);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -637,6 +679,22 @@ public class BXCoreSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Context Aware Action</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Context Aware Action</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseContextAwareAction(ContextAwareAction object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Import Section</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -664,6 +722,22 @@ public class BXCoreSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseDefinition(Definition object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Helper Definition</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Helper Definition</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseHelperDefinition(HelperDefinition object)
   {
     return null;
   }
@@ -1048,6 +1122,54 @@ public class BXCoreSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseXmuCoreContextSource(XmuCoreContextSource object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Context Aware Derivation Action</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Context Aware Derivation Action</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseContextAwareDerivationAction(ContextAwareDerivationAction object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Xmu Core Derive Source</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Xmu Core Derive Source</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseXmuCoreDeriveSource(XmuCoreDeriveSource object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Xmu Core Dependency View</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Xmu Core Dependency View</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseXmuCoreDependencyView(XmuCoreDependencyView object)
   {
     return null;
   }

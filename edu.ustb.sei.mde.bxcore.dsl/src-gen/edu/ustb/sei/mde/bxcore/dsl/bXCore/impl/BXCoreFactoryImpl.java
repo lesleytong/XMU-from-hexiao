@@ -67,8 +67,10 @@ public class BXCoreFactoryImpl extends EFactoryImpl implements BXCoreFactory
     switch (eClass.getClassifierID())
     {
       case BXCorePackage.BX_PROGRAM: return createBXProgram();
+      case BXCorePackage.CONTEXT_AWARE_ACTION: return createContextAwareAction();
       case BXCorePackage.IMPORT_SECTION: return createImportSection();
       case BXCorePackage.DEFINITION: return createDefinition();
+      case BXCorePackage.HELPER_DEFINITION: return createHelperDefinition();
       case BXCorePackage.CUSTOMIZED_BI_GUL_DEFINITION: return createCustomizedBiGULDefinition();
       case BXCorePackage.TYPE_LITERAL: return createTypeLiteral();
       case BXCorePackage.TUPLE_TYPE_LITERAL: return createTupleTypeLiteral();
@@ -93,6 +95,9 @@ public class BXCoreFactoryImpl extends EFactoryImpl implements BXCoreFactory
       case BXCorePackage.XMU_CORE_COMPOSITION_CHILD_STATEMENT: return createXmuCoreCompositionChildStatement();
       case BXCorePackage.TYPE_INDICATOR: return createTypeIndicator();
       case BXCorePackage.XMU_CORE_CONTEXT_SOURCE: return createXmuCoreContextSource();
+      case BXCorePackage.CONTEXT_AWARE_DERIVATION_ACTION: return createContextAwareDerivationAction();
+      case BXCorePackage.XMU_CORE_DERIVE_SOURCE: return createXmuCoreDeriveSource();
+      case BXCorePackage.XMU_CORE_DEPENDENCY_VIEW: return createXmuCoreDependencyView();
       case BXCorePackage.XMU_CORE_MATCH_SOURCE: return createXmuCoreMatchSource();
       case BXCorePackage.XMU_CORE_MATCH_VIEW: return createXmuCoreMatchView();
       case BXCorePackage.XMU_CORE_EXPAND_SOURCE: return createXmuCoreExpandSource();
@@ -188,6 +193,17 @@ public class BXCoreFactoryImpl extends EFactoryImpl implements BXCoreFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public ContextAwareAction createContextAwareAction()
+  {
+    ContextAwareActionImpl contextAwareAction = new ContextAwareActionImpl();
+    return contextAwareAction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public ImportSection createImportSection()
   {
     ImportSectionImpl importSection = new ImportSectionImpl();
@@ -203,6 +219,17 @@ public class BXCoreFactoryImpl extends EFactoryImpl implements BXCoreFactory
   {
     DefinitionImpl definition = new DefinitionImpl();
     return definition;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public HelperDefinition createHelperDefinition()
+  {
+    HelperDefinitionImpl helperDefinition = new HelperDefinitionImpl();
+    return helperDefinition;
   }
 
   /**
@@ -467,6 +494,39 @@ public class BXCoreFactoryImpl extends EFactoryImpl implements BXCoreFactory
   {
     XmuCoreContextSourceImpl xmuCoreContextSource = new XmuCoreContextSourceImpl();
     return xmuCoreContextSource;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ContextAwareDerivationAction createContextAwareDerivationAction()
+  {
+    ContextAwareDerivationActionImpl contextAwareDerivationAction = new ContextAwareDerivationActionImpl();
+    return contextAwareDerivationAction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public XmuCoreDeriveSource createXmuCoreDeriveSource()
+  {
+    XmuCoreDeriveSourceImpl xmuCoreDeriveSource = new XmuCoreDeriveSourceImpl();
+    return xmuCoreDeriveSource;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public XmuCoreDependencyView createXmuCoreDependencyView()
+  {
+    XmuCoreDependencyViewImpl xmuCoreDependencyView = new XmuCoreDependencyViewImpl();
+    return xmuCoreDependencyView;
   }
 
   /**

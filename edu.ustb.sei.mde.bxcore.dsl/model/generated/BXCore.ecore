@@ -10,12 +10,22 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="definitions" upperBound="-1"
         eType="#//Definition" containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ContextAwareAction"/>
   <eClassifiers xsi:type="ecore:EClass" name="ImportSection">
     <eStructuralFeatures xsi:type="ecore:EReference" name="metamodel" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="shortName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Definition">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="HelperDefinition" eSuperTypes="#//Definition">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmTypeReference"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
+        eType="ecore:EClass platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmFormalParameter"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="body" eType="ecore:EClass platform:/resource/org.eclipse.xtext.xbase/model/Xbase.ecore#//XExpression"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CustomizedBiGULDefinition" eSuperTypes="#//Definition">
     <eStructuralFeatures xsi:type="ecore:EReference" name="sourceParams" upperBound="-1"
@@ -56,6 +66,8 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="filter" eType="#//ContextAwareCondition"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="additional" upperBound="-1"
+        eType="#//TypeVar" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeDefinition" eSuperTypes="#//Definition">
     <eStructuralFeatures xsi:type="ecore:EReference" name="literal" eType="#//TypeLiteral"
@@ -116,6 +128,26 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="mappingSource" eType="#//OrderedTupleTypeLiteral"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="mappingView" eType="#//OrderedTupleTypeLiteral"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="body" eType="#//XmuCoreStatement"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ContextAwareDerivationAction" eSuperTypes="#//ContextAwareAction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="body" eType="ecore:EClass platform:/resource/org.eclipse.xtext.xbase/model/Xbase.ecore#//XExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="XmuCoreDeriveSource" eSuperTypes="#//XmuCoreCompositionChildStatement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="derivationFunctions" upperBound="-1"
+        eType="#//ContextAwareDerivationAction" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="derivedType" eType="#//OrderedTupleTypeLiteral"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="body" eType="#//XmuCoreStatement"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="XmuCoreDependencyView" eSuperTypes="#//XmuCoreCompositionChildStatement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dependencyFunctions" upperBound="-1"
+        eType="#//ContextAwareDerivationAction" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dependentType" eType="#//OrderedTupleTypeLiteral"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="body" eType="#//XmuCoreStatement"
         containment="true"/>
@@ -246,7 +278,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="ecore:EClass platform:/resource/org.eclipse.xtext.xbase/model/Xbase.ecore#//XExpression"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ContextAwareUnidirectionalAction">
+  <eClassifiers xsi:type="ecore:EClass" name="ContextAwareUnidirectionalAction" eSuperTypes="#//ContextAwareAction">
     <eStructuralFeatures xsi:type="ecore:EReference" name="action" eType="ecore:EClass platform:/resource/org.eclipse.xtext.xbase/model/Xbase.ecore#//XExpression"
         containment="true"/>
   </eClassifiers>

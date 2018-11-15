@@ -12,12 +12,20 @@ BXProgram :
 	definitions += Definition*
 ;
 
+ContextAwareAction returns ContextAwareAction:
+	ContextAwareDerivationAction | ContextAwareUnidirectionalAction
+;
+
 ImportSection :
 	'import' metamodel=[ecore::EPackage|STRING] 'as' shortName=ValidID
 ;
 
 Definition :
-	CustomizedBiGULDefinition | TypeDefinition | BXFunctionDefinition | IndexDefinition
+	CustomizedBiGULDefinition | TypeDefinition | BXFunctionDefinition | IndexDefinition | HelperDefinition
+;
+
+HelperDefinition :
+	'helper' type=JvmTypeReference name=ValidID '(' (parameters+=JvmFormalParameter (',' parameters+=JvmFormalParameter)*)? ')' body=XBlockExpression
 ;
 
 CustomizedBiGULDefinition :
@@ -36,14 +44,14 @@ TupleTypeLiteral :
 ;
 
 UnorderedTupleTypeLiteral :
-	source=[ImportSection|ValidID] ('(' elements+=TypeVar (',' elements+=TypeVar)* ')')
+	source=[ImportSection|ValidID] '!' ('(' elements+=TypeVar (',' elements+=TypeVar)* ')')
 ;
 
 OrderedTupleTypeLiteral :
-	source=[ImportSection|ValidID] ('[' elements+=TypeVar (',' elements+=TypeVar)* ']')
+	source=[ImportSection|ValidID] '!' ('[' elements+=TypeVar (',' elements+=TypeVar)* ']')
 ;
 
-TypeVar :
+TypeVar returns TypeVar:
 	name=ValidID ':' type=TypeRef (many?='*')?
 ;
 
@@ -52,7 +60,8 @@ PredefinedTypeLiteral :
 ;
 
 PatternTypeLiteral :
-	source=[ImportSection|ValidID] root=PatternNode ('[' filter=ContextAwareCondition ']')?
+	source=[ImportSection|ValidID] '!' root=PatternNode ('[' filter=ContextAwareCondition ']')?
+	('(' additional+=TypeVar (',' additional+=TypeVar)* ')')?
 ;
 
 TypeDefinition:
@@ -115,7 +124,7 @@ XmuCoreCompositionChildStatement :
 	XmuCoreMatchSource | XmuCoreMatchView |
 	XmuCoreExpandSource | XmuCoreExpandView | XmuCoreGraphReplace |
 	XmuCoreSwitch | XmuCoreAlign | XmuCoreFunctionCall | XmuCoreIndex |
-	XmuCoreContextSource| XmuCoreForEachMatchSource
+	XmuCoreContextSource| XmuCoreForEachMatchSource | XmuCoreDeriveSource | XmuCoreDependencyView
 ;
 
 TypeIndicator :
@@ -123,10 +132,26 @@ TypeIndicator :
 ;
 
 XmuCoreContextSource :
-	'contextS' typeIndicator=TypeIndicator? 
-		mappingSource=OrderedTupleTypeLiteral 
+	'context' typeIndicator=TypeIndicator? 
+		mappingSource=OrderedTupleTypeLiteral '->'
 		mappingView=OrderedTupleTypeLiteral 
 		body=XmuCoreStatement
+;
+
+ContextAwareDerivationAction :
+	body = XExpression
+;
+
+XmuCoreDeriveSource :
+	'derive' typeIndicator=TypeIndicator?  
+		'[' (derivationFunctions+=ContextAwareDerivationAction)+ ']' '->' derivedType = OrderedTupleTypeLiteral
+		body=XmuCoreStatement
+;
+
+XmuCoreDependencyView :
+	'dependency' typeIndicator=TypeIndicator? 
+	'[' (dependencyFunctions+=ContextAwareDerivationAction)+ ']' '->' dependentType = OrderedTupleTypeLiteral
+	body=XmuCoreStatement
 ;
 
 XmuCoreMatchSource :
@@ -192,8 +217,8 @@ XmuCoreAlign :
 ;
 
 XmuCoreFunctionCall :
-	target=[BXFunctionDefinition|ValidID] typeIndicator=TypeIndicator?  '(' sourceMappings+=VarMapping (','  sourceMappings+=VarMapping)* ')'
-	'(' viewMappings+=VarMapping (','  viewMappings+=VarMapping)* ')'
+	target=[BXFunctionDefinition|ValidID] typeIndicator=TypeIndicator?  '(' (sourceMappings+=VarMapping (','  sourceMappings+=VarMapping)*)? ')'
+	'(' (viewMappings+=VarMapping (','  viewMappings+=VarMapping)*)? ')'
 ;
 
 XmuCoreIndex :

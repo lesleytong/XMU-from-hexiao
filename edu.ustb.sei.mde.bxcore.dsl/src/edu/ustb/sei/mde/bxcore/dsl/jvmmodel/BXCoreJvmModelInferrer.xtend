@@ -105,6 +105,22 @@ import edu.ustb.sei.mde.bxcore.ContextSource
 import edu.ustb.sei.mde.bxcore.structures.FieldDef
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeVar
 import edu.ustb.sei.mde.bxcore.util.XmuProgram
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.HelperDefinition
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreDeriveSource
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareAction
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareDerivationAction
+import edu.ustb.sei.mde.bxcore.Derive
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreDependencyView
+import edu.ustb.sei.mde.bxcore.Dependency
+import org.eclipse.emf.common.util.Diagnostic
+import org.eclipse.xtext.validation.FeatureBasedDiagnostic
+import edu.ustb.sei.mde.bxcore.dsl.infer.TypeInferenceException
+import org.eclipse.xtext.validation.CheckType
+import org.eclipse.xtext.validation.EObjectDiagnosticImpl
+import org.eclipse.emf.ecore.util.EcoreUtil
+import org.eclipse.xtext.xbase.validation.IssueCodes
+import org.eclipse.xtext.diagnostics.Severity
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage
 
 /**
  * <p>Infers a JVM model from the source model.</p> 
@@ -156,7 +172,6 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 				superTypes+=XmuProgram.typeRef;
 				
 				element.imports.forEach[i|i.generateImportSection(it);];
-				
 
 				members += element.toMethod('execute', ViewType.typeRef) [
 					parameters += element.toParameter('bx', XmuCore.typeRef);
@@ -212,8 +227,8 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 				].toList;
 				conditions.forEach[cond, id|cond.generateCondition(id, it)];
 
-				val actions = element.eAllContents.filter[e|e instanceof ContextAwareUnidirectionalAction].map [
-					it as ContextAwareUnidirectionalAction
+				val actions = element.eAllContents.filter[e|e instanceof ContextAwareAction].map [
+					it as ContextAwareAction
 				].toList;
 				actions.forEach[act, id|act.generateAction(id, it)];
 
@@ -315,11 +330,52 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 								]
 							}
 						]
+					} else if(def instanceof HelperDefinition) {
+						members += def.toMethod(def.name, def.type)[
+							parameters += def.parameters
+							body = def.body
+						];
 					}
 				];
 			]);
 		} catch (Exception e) {
-			e.printStackTrace
+			e.printStackTrace;
+			if(e instanceof TypeInferenceException) {
+				try {
+					val error = new EObjectDiagnosticImpl(
+						Severity.ERROR,
+						IssueCodes.INVALID_IDENTIFIER,
+						e.message,
+						e.reason.eContainer,
+						e.reason.eContainingFeature,
+						-1,
+						#[EcoreUtil.getURI(e.reason).toString()]
+					);
+					element.eResource.errors.add(error);
+				} catch (Exception ee) {
+					val error = new EObjectDiagnosticImpl(
+						Severity.ERROR,
+						IssueCodes.INVALID_IDENTIFIER,
+						e.message,
+						element,
+						BXCorePackage.Literals.BX_PROGRAM__DEFINITIONS,
+						0,
+						#[EcoreUtil.getURI(element).toString()]
+					);
+					element.eResource.errors.add(error);
+				}
+			} else {
+				val error = new EObjectDiagnosticImpl(
+					Severity.ERROR,
+					IssueCodes.INVALID_IDENTIFIER,
+					e.message,
+					element,
+					BXCorePackage.Literals.BX_PROGRAM__DEFINITIONS,
+					0,
+					#[EcoreUtil.getURI(element).toString()]
+				);
+				element.eResource.errors.add(error);
+			}
 		}
 		
 	}
@@ -366,7 +422,7 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 		]
 	}
 	
-	protected def void generateAction(ContextAwareUnidirectionalAction act, Integer id, JvmGenericType type) {
+	protected def dispatch void generateAction(ContextAwareUnidirectionalAction act, Integer id, JvmGenericType type) {
 		type.members += act.toClass('UnidirectionalAction'+id)[
 			superTypes += BiFunction.typeRef(SourceType.typeRef, ViewType.typeRef, SourceType.typeRef);
 			members += act.toMethod('apply', SourceType.typeRef) [
@@ -376,6 +432,33 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 			]
 			 
 		]
+	}
+	
+	protected def dispatch void generateAction(ContextAwareDerivationAction act, Integer id, JvmGenericType type) {
+		type.members += act.toClass('DerivationAction'+id)[
+			
+			if(act.eContainer instanceof XmuCoreDeriveSource) {
+				superTypes += Function.typeRef(SourceType.typeRef, Object.typeRef);
+				members += act.toMethod('apply', Object.typeRef) [
+					parameters += act.toParameter('source', SourceType.typeRef);
+					body = act.body;
+				];				
+			} else {
+				superTypes += Function.typeRef(ViewType.typeRef, Object.typeRef);
+				members += act.toMethod('apply', Object.typeRef) [
+					parameters += act.toParameter('view', ViewType.typeRef);
+					body = act.body;
+				];
+			}
+			
+			 
+		]
+	}
+	
+	protected def actionClass(ContextAwareAction act, List<ContextAwareAction> list) {
+		(if(act instanceof ContextAwareDerivationAction)
+			'DerivationAction'
+		else 'UnidirectionalAction') + list.indexOf(act)
 	}
 	
 	protected def void generateCondition(ContextAwareCondition cond, Integer id, JvmGenericType type) {
@@ -501,7 +584,7 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 		Map<TypeLiteral, Tuple2<TupleType, Integer>> typeLiteralMap, 
 		List<Pair<Integer, PatternTypeLiteral>> patternLiterals, 
 		List<ContextAwareCondition> conditions, 
-		List<ContextAwareUnidirectionalAction> actions, 
+		List<ContextAwareAction> actions, 
 		Map<UnsolvedTupleType, Tuple2<TupleType, Integer>> unsolvedTypes, 
 		InferData data,
 		BXProgram program
@@ -595,7 +678,7 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 				for(a : adaptions) {
 					if(adaptions.get(0)!==a) scope = scope.append(', ');
 					scope = scope.append('''«Tuple2.typeRef.qualifiedName».make(new Condition«conditions.indexOf(a.condition)»(), ''').newLine.increaseIndentation
-							.append('''new UnidirectionalAction«actions.indexOf(a.action)»())''').newLine.decreaseIndentation;
+							.append('''new «a.action.actionClass(actions)»())''').newLine.decreaseIndentation;
 				}
 				scope = scope.append('))').newLine.decreaseIndentation;
 				return scope;
@@ -619,7 +702,7 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 				
 				appendable.append('''new «Align.typeRef.qualifiedName»("«key»", «srcType», «viwType», «srcPat», «viwPat», new Condition«conditions.indexOf(cond)»(), ''').newLine.increaseIndentation
 					.generateXmuCode(match, indexedStatements, typeLiteralMap, patternLiterals, conditions, actions, unsolvedTypes, data, program)
-					.append(''', new UnidirectionalAction«actions.indexOf(unmatchS)»(), new UnidirectionalAction«actions.indexOf(unmatchV)»())''')
+					.append(''', new «unmatchS.actionClass(actions)»(), new «unmatchV.actionClass(actions)»())''')
 			}
 			XmuCoreFunctionCall : {
 				val st = (statement as XmuCoreFunctionCall).target.sourceType(data).typeAccessor(typeLiteralMap, unsolvedTypes);
@@ -668,6 +751,37 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 					.append('''new «Tuple2.typeRef.qualifiedName»[]{«FOR i:0..size-1 SEPARATOR ','»«val sv = mappingSrc.elements.get(i)»«val vv = mappingViw.elements.get(i)»«Tuple2.typeRef.qualifiedName».make(«msType».getField("«sv.name»"), «mvType».getField("«vv.name»"))«ENDFOR»}''')
 					.newLine.decreaseIndentation.append(')')
 				
+			}
+			XmuCoreDeriveSource : {
+				val srcType = statement.sourceType(data).typeAccessor(typeLiteralMap, unsolvedTypes);
+				val body = statement.body;
+				val devType = statement.derivedType;
+				val devFuncs = statement.derivationFunctions;
+				val size = devFuncs.size;
+				
+				val msType = devType.typeAccessor(typeLiteralMap, unsolvedTypes);
+				
+				return appendable.append('''new «Derive.typeRef.qualifiedName»("«key»", «srcType», ''')
+					.newLine.increaseIndentation
+					.generateXmuCode(body, indexedStatements, typeLiteralMap, patternLiterals, conditions, actions, unsolvedTypes, data, program)
+					.append(',').newLine
+					.append('''new «Tuple2.typeRef.qualifiedName»[]{«FOR i:0..size-1 SEPARATOR ','»«val v = devType.elements.get(i)»«val f = devFuncs.get(i)»«Tuple2.typeRef.qualifiedName».make(«msType».getField("«v.name»"),new «f.actionClass(actions)»())«ENDFOR»}''')
+					.newLine.decreaseIndentation.append(')')
+			} XmuCoreDependencyView : {
+				val viwType = statement.viewType(data).typeAccessor(typeLiteralMap, unsolvedTypes);
+				val body = statement.body;
+				val devType = statement.dependentType;
+				val devFuncs = statement.dependencyFunctions;
+				val size = devFuncs.size;
+				
+				val msType = devType.typeAccessor(typeLiteralMap, unsolvedTypes);
+				
+				return appendable.append('''new «Dependency.typeRef.qualifiedName»("«key»", «viwType», ''')
+					.newLine.increaseIndentation
+					.generateXmuCode(body, indexedStatements, typeLiteralMap, patternLiterals, conditions, actions, unsolvedTypes, data, program)
+					.append(',').newLine
+					.append('''new «Tuple2.typeRef.qualifiedName»[]{«FOR i:0..size-1 SEPARATOR ','»«val v = devType.elements.get(i)»«val f = devFuncs.get(i)»«Tuple2.typeRef.qualifiedName».make(«msType».getField("«v.name»"),new «f.actionClass(actions)»())«ENDFOR»}''')
+					.newLine.decreaseIndentation.append(')')
 			}
 			default:
 				appendable.append('''/* undefined */''')

@@ -170,6 +170,16 @@ public class ForEachMatchSource extends XmuCore {
 		TypedGraph finalSource = s.first.merge(interSources);
 		TraceSystem finalTrace = TraceSystem.merge(interTraces);
 		
+		// do we have to check?
+//		List<Context> doubleCheckSourceMatches = sourcePattern.match(finalSource, finalSourcePost);
+//		if(doubleCheckSourceMatches.size()!=sourceMatches.size()) return nothing();
+//		else {
+//			for(Context dc : doubleCheckSourceMatches) {
+//				if(sourceMatches.stream().noneMatch(m->Context.isIdentifical(m, dc)))
+//					return nothing();
+//			}
+//		}
+		
 		submit(newSources);
 		
 		for(int i=0;i<postSources.length;i++) {

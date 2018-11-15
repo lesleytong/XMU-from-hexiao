@@ -83,6 +83,11 @@ public class BXCoreAdapterFactory extends AdapterFactoryImpl
         return createBXProgramAdapter();
       }
       @Override
+      public Adapter caseContextAwareAction(ContextAwareAction object)
+      {
+        return createContextAwareActionAdapter();
+      }
+      @Override
       public Adapter caseImportSection(ImportSection object)
       {
         return createImportSectionAdapter();
@@ -91,6 +96,11 @@ public class BXCoreAdapterFactory extends AdapterFactoryImpl
       public Adapter caseDefinition(Definition object)
       {
         return createDefinitionAdapter();
+      }
+      @Override
+      public Adapter caseHelperDefinition(HelperDefinition object)
+      {
+        return createHelperDefinitionAdapter();
       }
       @Override
       public Adapter caseCustomizedBiGULDefinition(CustomizedBiGULDefinition object)
@@ -211,6 +221,21 @@ public class BXCoreAdapterFactory extends AdapterFactoryImpl
       public Adapter caseXmuCoreContextSource(XmuCoreContextSource object)
       {
         return createXmuCoreContextSourceAdapter();
+      }
+      @Override
+      public Adapter caseContextAwareDerivationAction(ContextAwareDerivationAction object)
+      {
+        return createContextAwareDerivationActionAdapter();
+      }
+      @Override
+      public Adapter caseXmuCoreDeriveSource(XmuCoreDeriveSource object)
+      {
+        return createXmuCoreDeriveSourceAdapter();
+      }
+      @Override
+      public Adapter caseXmuCoreDependencyView(XmuCoreDependencyView object)
+      {
+        return createXmuCoreDependencyViewAdapter();
       }
       @Override
       public Adapter caseXmuCoreMatchSource(XmuCoreMatchSource object)
@@ -455,6 +480,21 @@ public class BXCoreAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareAction <em>Context Aware Action</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareAction
+   * @generated
+   */
+  public Adapter createContextAwareActionAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.ImportSection <em>Import Section</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -480,6 +520,21 @@ public class BXCoreAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createDefinitionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.HelperDefinition <em>Helper Definition</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.HelperDefinition
+   * @generated
+   */
+  public Adapter createHelperDefinitionAdapter()
   {
     return null;
   }
@@ -840,6 +895,51 @@ public class BXCoreAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createXmuCoreContextSourceAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareDerivationAction <em>Context Aware Derivation Action</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareDerivationAction
+   * @generated
+   */
+  public Adapter createContextAwareDerivationActionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreDeriveSource <em>Xmu Core Derive Source</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreDeriveSource
+   * @generated
+   */
+  public Adapter createXmuCoreDeriveSourceAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreDependencyView <em>Xmu Core Dependency View</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreDependencyView
+   * @generated
+   */
+  public Adapter createXmuCoreDependencyViewAdapter()
   {
     return null;
   }

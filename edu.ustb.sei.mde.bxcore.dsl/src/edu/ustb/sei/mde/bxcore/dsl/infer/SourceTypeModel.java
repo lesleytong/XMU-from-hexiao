@@ -11,6 +11,8 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.VarMapping;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreAlign;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreContextSource;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreDependencyView;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreDeriveSource;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreExpandSource;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreExpandView;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreForEachMatchSource;
@@ -118,7 +120,9 @@ public class SourceTypeModel extends TypeModel {
 		} else if(e instanceof XmuCoreGraphReplace) {
 			TupleType st = getType(e);
 			TupleType pt = getType(((XmuCoreGraphReplace) e).getSource());
-			this.constraints.add(TypeEqual.makeEqual(st, pt));
+			TypeEqual c1 = TypeEqual.makeEqual(st, pt);
+			this.constraints.add(c1);
+			linkCause(c1, e);
 		} else if(e instanceof XmuCoreFunctionCall) {
 			TupleType st = getType(e);
 			TupleType bt = getType(((XmuCoreFunctionCall) e).getTarget());
@@ -183,6 +187,29 @@ public class SourceTypeModel extends TypeModel {
 
 			linkCause(c1, e);
 			linkCause(c2, e);
+		} else if(e instanceof XmuCoreDeriveSource) {
+			TupleType st = getType(e);
+			TupleType stm = getType(((XmuCoreDeriveSource) e).getDerivedType());
+			TupleType bt = getType(((XmuCoreDeriveSource) e).getBody());
+			
+			TypeUnion c1 = TypeUnion.makeUnion(bt);
+			c1.types.add(st);
+			c1.types.add(stm);
+			this.constraints.add(c1);
+			
+			TypeDisjoint c2 = TypeDisjoint.makeDisjoint(st, stm);
+			this.constraints.add(c2);
+			
+			linkCause(c1, e);
+			linkCause(c2, e);
+		} else if(e instanceof XmuCoreDependencyView) {
+			TupleType st = getType(e);
+			TupleType bt = getType(((XmuCoreDependencyView) e).getBody());
+			
+			TypeEqual c1 = TypeEqual.makeEqual(st, bt);
+			this.constraints.add(c1);
+			
+			linkCause(c1, e);
 		}
 	}
 

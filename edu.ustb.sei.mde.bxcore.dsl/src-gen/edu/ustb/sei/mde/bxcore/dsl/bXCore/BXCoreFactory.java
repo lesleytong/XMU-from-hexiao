@@ -33,6 +33,15 @@ public interface BXCoreFactory extends EFactory
   BXProgram createBXProgram();
 
   /**
+   * Returns a new object of class '<em>Context Aware Action</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Context Aware Action</em>'.
+   * @generated
+   */
+  ContextAwareAction createContextAwareAction();
+
+  /**
    * Returns a new object of class '<em>Import Section</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -49,6 +58,15 @@ public interface BXCoreFactory extends EFactory
    * @generated
    */
   Definition createDefinition();
+
+  /**
+   * Returns a new object of class '<em>Helper Definition</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Helper Definition</em>'.
+   * @generated
+   */
+  HelperDefinition createHelperDefinition();
 
   /**
    * Returns a new object of class '<em>Customized Bi GUL Definition</em>'.
@@ -265,6 +283,33 @@ public interface BXCoreFactory extends EFactory
    * @generated
    */
   XmuCoreContextSource createXmuCoreContextSource();
+
+  /**
+   * Returns a new object of class '<em>Context Aware Derivation Action</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Context Aware Derivation Action</em>'.
+   * @generated
+   */
+  ContextAwareDerivationAction createContextAwareDerivationAction();
+
+  /**
+   * Returns a new object of class '<em>Xmu Core Derive Source</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Xmu Core Derive Source</em>'.
+   * @generated
+   */
+  XmuCoreDeriveSource createXmuCoreDeriveSource();
+
+  /**
+   * Returns a new object of class '<em>Xmu Core Dependency View</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Xmu Core Dependency View</em>'.
+   * @generated
+   */
+  XmuCoreDependencyView createXmuCoreDependencyView();
 
   /**
    * Returns a new object of class '<em>Xmu Core Match Source</em>'.

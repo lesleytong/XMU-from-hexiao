@@ -4,7 +4,7 @@
 package edu.ustb.sei.mde.bxcore.dsl.bXCore.impl;
 
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage;
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareUnidirectionalAction;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareDerivationAction;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -18,35 +18,35 @@ import org.eclipse.xtext.xbase.XExpression;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Context Aware Unidirectional Action</b></em>'.
+ * An implementation of the model object '<em><b>Context Aware Derivation Action</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.ContextAwareUnidirectionalActionImpl#getAction <em>Action</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.ContextAwareDerivationActionImpl#getBody <em>Body</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ContextAwareUnidirectionalActionImpl extends ContextAwareActionImpl implements ContextAwareUnidirectionalAction
+public class ContextAwareDerivationActionImpl extends ContextAwareActionImpl implements ContextAwareDerivationAction
 {
   /**
-   * The cached value of the '{@link #getAction() <em>Action</em>}' containment reference.
+   * The cached value of the '{@link #getBody() <em>Body</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getAction()
+   * @see #getBody()
    * @generated
    * @ordered
    */
-  protected XExpression action;
+  protected XExpression body;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ContextAwareUnidirectionalActionImpl()
+  protected ContextAwareDerivationActionImpl()
   {
     super();
   }
@@ -59,7 +59,7 @@ public class ContextAwareUnidirectionalActionImpl extends ContextAwareActionImpl
   @Override
   protected EClass eStaticClass()
   {
-    return BXCorePackage.Literals.CONTEXT_AWARE_UNIDIRECTIONAL_ACTION;
+    return BXCorePackage.Literals.CONTEXT_AWARE_DERIVATION_ACTION;
   }
 
   /**
@@ -67,9 +67,9 @@ public class ContextAwareUnidirectionalActionImpl extends ContextAwareActionImpl
    * <!-- end-user-doc -->
    * @generated
    */
-  public XExpression getAction()
+  public XExpression getBody()
   {
-    return action;
+    return body;
   }
 
   /**
@@ -77,13 +77,13 @@ public class ContextAwareUnidirectionalActionImpl extends ContextAwareActionImpl
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetAction(XExpression newAction, NotificationChain msgs)
+  public NotificationChain basicSetBody(XExpression newBody, NotificationChain msgs)
   {
-    XExpression oldAction = action;
-    action = newAction;
+    XExpression oldBody = body;
+    body = newBody;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BXCorePackage.CONTEXT_AWARE_UNIDIRECTIONAL_ACTION__ACTION, oldAction, newAction);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BXCorePackage.CONTEXT_AWARE_DERIVATION_ACTION__BODY, oldBody, newBody);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -94,20 +94,20 @@ public class ContextAwareUnidirectionalActionImpl extends ContextAwareActionImpl
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setAction(XExpression newAction)
+  public void setBody(XExpression newBody)
   {
-    if (newAction != action)
+    if (newBody != body)
     {
       NotificationChain msgs = null;
-      if (action != null)
-        msgs = ((InternalEObject)action).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BXCorePackage.CONTEXT_AWARE_UNIDIRECTIONAL_ACTION__ACTION, null, msgs);
-      if (newAction != null)
-        msgs = ((InternalEObject)newAction).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BXCorePackage.CONTEXT_AWARE_UNIDIRECTIONAL_ACTION__ACTION, null, msgs);
-      msgs = basicSetAction(newAction, msgs);
+      if (body != null)
+        msgs = ((InternalEObject)body).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BXCorePackage.CONTEXT_AWARE_DERIVATION_ACTION__BODY, null, msgs);
+      if (newBody != null)
+        msgs = ((InternalEObject)newBody).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BXCorePackage.CONTEXT_AWARE_DERIVATION_ACTION__BODY, null, msgs);
+      msgs = basicSetBody(newBody, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, BXCorePackage.CONTEXT_AWARE_UNIDIRECTIONAL_ACTION__ACTION, newAction, newAction));
+      eNotify(new ENotificationImpl(this, Notification.SET, BXCorePackage.CONTEXT_AWARE_DERIVATION_ACTION__BODY, newBody, newBody));
   }
 
   /**
@@ -120,8 +120,8 @@ public class ContextAwareUnidirectionalActionImpl extends ContextAwareActionImpl
   {
     switch (featureID)
     {
-      case BXCorePackage.CONTEXT_AWARE_UNIDIRECTIONAL_ACTION__ACTION:
-        return basicSetAction(null, msgs);
+      case BXCorePackage.CONTEXT_AWARE_DERIVATION_ACTION__BODY:
+        return basicSetBody(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -136,8 +136,8 @@ public class ContextAwareUnidirectionalActionImpl extends ContextAwareActionImpl
   {
     switch (featureID)
     {
-      case BXCorePackage.CONTEXT_AWARE_UNIDIRECTIONAL_ACTION__ACTION:
-        return getAction();
+      case BXCorePackage.CONTEXT_AWARE_DERIVATION_ACTION__BODY:
+        return getBody();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -152,8 +152,8 @@ public class ContextAwareUnidirectionalActionImpl extends ContextAwareActionImpl
   {
     switch (featureID)
     {
-      case BXCorePackage.CONTEXT_AWARE_UNIDIRECTIONAL_ACTION__ACTION:
-        setAction((XExpression)newValue);
+      case BXCorePackage.CONTEXT_AWARE_DERIVATION_ACTION__BODY:
+        setBody((XExpression)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -169,8 +169,8 @@ public class ContextAwareUnidirectionalActionImpl extends ContextAwareActionImpl
   {
     switch (featureID)
     {
-      case BXCorePackage.CONTEXT_AWARE_UNIDIRECTIONAL_ACTION__ACTION:
-        setAction((XExpression)null);
+      case BXCorePackage.CONTEXT_AWARE_DERIVATION_ACTION__BODY:
+        setBody((XExpression)null);
         return;
     }
     super.eUnset(featureID);
@@ -186,10 +186,10 @@ public class ContextAwareUnidirectionalActionImpl extends ContextAwareActionImpl
   {
     switch (featureID)
     {
-      case BXCorePackage.CONTEXT_AWARE_UNIDIRECTIONAL_ACTION__ACTION:
-        return action != null;
+      case BXCorePackage.CONTEXT_AWARE_DERIVATION_ACTION__BODY:
+        return body != null;
     }
     return super.eIsSet(featureID);
   }
 
-} //ContextAwareUnidirectionalActionImpl
+} //ContextAwareDerivationActionImpl

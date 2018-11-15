@@ -8,8 +8,14 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXFunctionDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXProgram;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.Conversion;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpressionBlock;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.Pattern;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternDefinitionReference;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternTypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeLiteral;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeVar;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreContextSource;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreDependencyView;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreDeriveSource;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreExpandSource;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreExpandView;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreFork;
@@ -24,12 +30,14 @@ import edu.ustb.sei.mde.bxcore.dsl.structure.TupleType;
 import edu.ustb.sei.mde.bxcore.dsl.validation.AbstractBXCoreValidator;
 import edu.ustb.sei.mde.structure.Tuple2;
 import edu.ustb.sei.mde.structure.Tuple3;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.xbase.XBlockExpression;
@@ -40,6 +48,7 @@ import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.eclipse.xtext.xbase.lib.MapExtensions;
 import org.eclipse.xtext.xbase.lib.Pair;
+import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure2;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure3;
 
@@ -121,6 +130,17 @@ public class BXCoreValidator extends AbstractBXCoreValidator {
           StringConcatenation _builder_2 = new StringConcatenation();
           _builder_2.append("The count of source vars should be equal to the count of the view vars");
           this.error(_builder_2.toString(), stat);
+        }
+      } else {
+        if ((stat instanceof XmuCoreDeriveSource)) {
+          int _size_2 = ((XmuCoreDeriveSource)stat).getDerivedType().getElements().size();
+          int _size_3 = ((XmuCoreDeriveSource)stat).getDerivationFunctions().size();
+          boolean _tripleNotEquals_1 = (_size_2 != _size_3);
+          if (_tripleNotEquals_1) {
+            StringConcatenation _builder_3 = new StringConcatenation();
+            _builder_3.append("The count of source vars should be equal to the count of the derivation functions");
+            this.error(_builder_3.toString(), stat);
+          }
         }
       }
     } catch (Throwable _e) {
@@ -248,6 +268,69 @@ public class BXCoreValidator extends AbstractBXCoreValidator {
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
+  }
+  
+  @Check
+  public void checkPattern(final Pattern e) {
+    PatternTypeLiteral _xifexpression = null;
+    if ((e instanceof PatternTypeLiteral)) {
+      _xifexpression = ((PatternTypeLiteral) e);
+    } else {
+      TypeLiteral _literal = ((PatternDefinitionReference) e).getPattern().getLiteral();
+      _xifexpression = ((PatternTypeLiteral) _literal);
+    }
+    final PatternTypeLiteral pat = _xifexpression;
+    boolean _isEmpty = pat.getAdditional().isEmpty();
+    boolean _not = (!_isEmpty);
+    if (_not) {
+      final boolean isSource = this.isSource(e.eContainingFeature());
+      final List<TypeVar> initializedVars = this.getVarsWithInitializer(e, isSource);
+      if ((!isSource)) {
+        final Procedure1<EObject> _function = (EObject c) -> {
+          if ((c instanceof XmuCoreDependencyView)) {
+            initializedVars.addAll(((XmuCoreDependencyView)c).getDependentType().getElements());
+          }
+        };
+        IteratorExtensions.<EObject>forEach(e.eContainer().eAllContents(), _function);
+      }
+      final Function1<TypeVar, Boolean> _function_1 = (TypeVar f) -> {
+        final Function1<TypeVar, Boolean> _function_2 = (TypeVar v) -> {
+          return Boolean.valueOf(v.getName().equals(f.getName()));
+        };
+        TypeVar _findFirst = IterableExtensions.<TypeVar>findFirst(initializedVars, _function_2);
+        Pair<TypeVar, TypeVar> _mappedTo = Pair.<TypeVar, TypeVar>of(f, _findFirst);
+        return Boolean.valueOf((_mappedTo == null));
+      };
+      final TypeVar uninitialized = IterableExtensions.<TypeVar>findFirst(pat.getAdditional(), _function_1);
+      if ((uninitialized != null)) {
+        this.warning("The additional variable may be uninitialized", uninitialized);
+      }
+    }
+  }
+  
+  public boolean isSource(final EStructuralFeature contain) {
+    boolean _xifexpression = false;
+    if ((((((contain == BXCorePackage.Literals.XMU_CORE_ALIGN__SOURCE_PATTERN) || (contain == BXCorePackage.Literals.XMU_CORE_MATCH_SOURCE__PATTERN)) || (contain == BXCorePackage.Literals.XMU_CORE_EXPAND_SOURCE__PATTERN)) || (contain == BXCorePackage.Literals.XMU_CORE_FOR_EACH_MATCH_SOURCE__PATTERN)) || (contain == BXCorePackage.Literals.XMU_CORE_GRAPH_REPLACE__SOURCE))) {
+      _xifexpression = true;
+    } else {
+      _xifexpression = false;
+    }
+    return _xifexpression;
+  }
+  
+  public List<TypeVar> getVarsWithInitializer(final EObject e, final boolean isSource) {
+    if (((e == null) || (e instanceof BXFunctionDefinition))) {
+      return new ArrayList<TypeVar>();
+    }
+    final List<TypeVar> res = this.getVarsWithInitializer(e.eContainer(), isSource);
+    if (((e instanceof XmuCoreContextSource) && (Boolean.valueOf(isSource) == Boolean.valueOf(false)))) {
+      res.addAll(((XmuCoreContextSource) e).getMappingView().getElements());
+    } else {
+      if (((e instanceof XmuCoreDeriveSource) && isSource)) {
+        res.addAll(((XmuCoreDeriveSource) e).getDerivedType().getElements());
+      }
+    }
+    return res;
   }
   
   public void warning(final String message, final EObject obj) {

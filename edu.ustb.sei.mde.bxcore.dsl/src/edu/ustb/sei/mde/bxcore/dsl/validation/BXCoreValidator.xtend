@@ -6,7 +6,16 @@ package edu.ustb.sei.mde.bxcore.dsl.validation
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXFunctionDefinition
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXProgram
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareUnidirectionalAction
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpressionBlock
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.Pattern
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternDefinition
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternDefinitionReference
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternTypeLiteral
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeLiteral
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeVar
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreContextSource
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreDeriveSource
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreExpandSource
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreExpandView
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreFork
@@ -19,15 +28,15 @@ import edu.ustb.sei.mde.bxcore.dsl.infer.InferManager
 import edu.ustb.sei.mde.bxcore.dsl.infer.TypeInferenceException
 import edu.ustb.sei.mde.bxcore.dsl.structure.TupleType
 import edu.ustb.sei.mde.structure.Tuple2
+import java.util.ArrayList
 import java.util.HashMap
 import java.util.List
-import org.eclipse.emf.ecore.EObject
-import org.eclipse.xtext.validation.Check
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareUnidirectionalAction
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpressionBlock
-import org.eclipse.xtext.xbase.XBlockExpression
 import org.eclipse.emf.ecore.ENamedElement
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreContextSource
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.emf.ecore.EStructuralFeature
+import org.eclipse.xtext.validation.Check
+import org.eclipse.xtext.xbase.XBlockExpression
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreDependencyView
 
 /**
  * This class contains custom validation rules. 
@@ -74,6 +83,12 @@ class BXCoreValidator extends AbstractBXCoreValidator {
 		if(stat instanceof XmuCoreContextSource) {
 			if(stat.mappingSource.elements.size!==stat.mappingView.elements.size) {
 				error('''The count of source vars should be equal to the count of the view vars''', 
+					stat
+				);
+			}
+		} else if(stat instanceof XmuCoreDeriveSource) {
+			if(stat.derivedType.elements.size!==stat.derivationFunctions.size) {
+				error('''The count of source vars should be equal to the count of the derivation functions''', 
 					stat
 				);
 			}
@@ -134,6 +149,53 @@ class BXCoreValidator extends AbstractBXCoreValidator {
 		}
 	}
 	
+	@Check
+	def checkPattern(Pattern e) {
+		val pat = if(e instanceof PatternTypeLiteral) e as PatternTypeLiteral else (e as PatternDefinitionReference).pattern.literal as PatternTypeLiteral;
+		
+		if(!pat.additional.empty) {
+			val isSource = e.eContainingFeature.isSource
+			val initializedVars = e.getVarsWithInitializer(isSource);
+			if(!isSource) {
+				e.eContainer.eAllContents.forEach[c|
+					if(c instanceof XmuCoreDependencyView) {
+						initializedVars.addAll(c.dependentType.elements);
+					} // FIXME: not complete! due to var mappings
+				];
+			}
+			
+			val uninitialized = pat.additional.findFirst[f|f->initializedVars.findFirst[v|v.name.equals(f.name)]===null];
+			
+			if(uninitialized!==null) {
+				warning('The additional variable may be uninitialized', uninitialized); // we ignore var mappings
+			}
+		}
+	}
+	
+	def boolean isSource(EStructuralFeature contain) {
+		if(contain === BXCorePackage.Literals.XMU_CORE_ALIGN__SOURCE_PATTERN
+			|| contain === BXCorePackage.Literals.XMU_CORE_MATCH_SOURCE__PATTERN
+			|| contain === BXCorePackage.Literals.XMU_CORE_EXPAND_SOURCE__PATTERN
+			|| contain === BXCorePackage.Literals.XMU_CORE_FOR_EACH_MATCH_SOURCE__PATTERN
+			|| contain === BXCorePackage.Literals.XMU_CORE_GRAPH_REPLACE__SOURCE
+		) true
+		else false
+	}
+		
+	def List<TypeVar> getVarsWithInitializer(EObject e, boolean isSource) {
+		if(e===null || e instanceof BXFunctionDefinition) return new ArrayList;
+		
+		val res = e.eContainer.getVarsWithInitializer(isSource);
+		
+		if(e instanceof XmuCoreContextSource && isSource===false) {
+			res.addAll((e as XmuCoreContextSource).mappingView.elements);
+		} else if(e instanceof XmuCoreDeriveSource && isSource){
+			res.addAll((e as XmuCoreDeriveSource).derivedType.elements)
+		} // do not handle var mappings
+		
+		return res;
+	}
+	
 	def warning(String message, EObject obj) {
 		if (obj.eContainingFeature.isMany) {
 			val list = obj.eContainer.eGet(obj.eContainingFeature) as List<EObject>;
@@ -149,6 +211,7 @@ class BXCoreValidator extends AbstractBXCoreValidator {
 		} else
 			error(message, obj.eContainer, obj.eContainingFeature);
 	}
+	
 	
 	protected def groupTypeLiterals(BXProgram program) {
 		val literals = program.eAllContents.filter[e|e instanceof TypeLiteral].map[return (it as TypeLiteral)->TupleType.make(it as TypeLiteral)].toList;

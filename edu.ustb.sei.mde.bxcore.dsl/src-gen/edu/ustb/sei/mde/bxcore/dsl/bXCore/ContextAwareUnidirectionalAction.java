@@ -3,8 +3,6 @@
  */
 package edu.ustb.sei.mde.bxcore.dsl.bXCore;
 
-import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.xtext.xbase.XExpression;
 
 /**
@@ -23,7 +21,7 @@ import org.eclipse.xtext.xbase.XExpression;
  * @model
  * @generated
  */
-public interface ContextAwareUnidirectionalAction extends EObject
+public interface ContextAwareUnidirectionalAction extends ContextAwareAction
 {
   /**
    * Returns the value of the '<em><b>Action</b></em>' containment reference.

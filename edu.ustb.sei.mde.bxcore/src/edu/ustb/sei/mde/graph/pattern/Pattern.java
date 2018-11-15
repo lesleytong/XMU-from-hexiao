@@ -47,6 +47,11 @@ public class Pattern implements IGraph {
 	private List<IEdge> edges = new ArrayList<IEdge>();
 	private TypeGraph typeGraph;
 	private Function<Context, Boolean> filter;
+	
+	// it seems that the additional fields of a pattern should be associated with an initializer
+	// we check whether they are context vars or dependent vars now // not implemented!!
+	// maybe we should allow initializer in field def
+	private List<FieldDef<?>> additionalFields = new ArrayList<>(); 
 
 	public void setFilter(Function<Context, Boolean> filter) {
 		this.filter = filter;
@@ -92,6 +97,10 @@ public class Pattern implements IGraph {
 		}
 		this.edges.add(edge);
 	}
+	
+	public void addAdditionalField(FieldDef<?> field) {
+		this.additionalFields.add(field);
+	}
 
 	public TypeGraph getTypeGraph() {
 		return typeGraph;
@@ -124,6 +133,16 @@ public class Pattern implements IGraph {
 				IndexableElement so = (IndexableElement) ev.getSemanticObject();
 				Object idx = so.isIndexable() ? so.getIndex() : so;
 				m.setValue(ev.getName(), idx);
+			});
+			
+			this.additionalFields.forEach(f->{
+				try {
+					Object bv = base.getValue(f);
+					m.setValue(f, bv);
+				} catch (UninitializedException e) {
+					// TODO: derive new value if the base value is missing
+				} catch (Exception e) {
+				}
 			});
 			
 			if(this.filter==null || this.filter.apply(m))
@@ -555,22 +574,22 @@ public class Pattern implements IGraph {
 	static BiFunction<Object,Integer,Object> LIST = (v,i)->((List<Object>)v).get(i);
 	static BiFunction<Object,Integer,Object> ELEMENT = (v,i)->v;
 
-	private boolean checkTypeMatch(Object value, FieldDef<?> f, TypedGraph graph) {
-		try {
-			if(f.isElementType()) {
-				IndexableElement e = graph.getElementByIndexObject((Index)value);
-				if(e instanceof TypedNode && f.getType() instanceof TypeNode) {
-					return graph.getTypeGraph().isSuperTypeOf(((TypedNode) e).getType(), (TypeNode)f.getType());
-				} else if(e instanceof ITypedEdge && f.getType() instanceof IStructuralFeatureEdge) {
-					return ((ITypedEdge) e).getType()==f.getType();
-				} else return false;
-			} else {
-				return value.getClass() == ((DataTypeNode)f.getType()).getDataType(); // or simply ignore?
-			}
-		} catch(Exception e) {
-			return false;
-		}
-	}
+//	private boolean checkTypeMatch(Object value, FieldDef<?> f, TypedGraph graph) {
+//		try {
+//			if(f.isElementType()) {
+//				IndexableElement e = graph.getElementByIndexObject((Index)value);
+//				if(e instanceof TypedNode && f.getType() instanceof TypeNode) {
+//					return graph.getTypeGraph().isSuperTypeOf(((TypedNode) e).getType(), (TypeNode)f.getType());
+//				} else if(e instanceof ITypedEdge && f.getType() instanceof IStructuralFeatureEdge) {
+//					return ((ITypedEdge) e).getType()==f.getType();
+//				} else return false;
+//			} else {
+//				return value.getClass() == ((DataTypeNode)f.getType()).getDataType(); // or simply ignore?
+//			}
+//		} catch(Exception e) {
+//			return false;
+//		}
+//	}
 
 	private ContextType type = null;
 
@@ -582,6 +601,9 @@ public class Pattern implements IGraph {
 			});
 			this.getEdges().forEach(e -> {
 				type.addField(((PatternElement<?>) e).getName(), ((PatternElement<?>) e).getType(), ((PatternElement<?>) e).isMany());
+			});
+			this.additionalFields.forEach(f->{
+				type.addField(f);
 			});
 		}
 		return type;

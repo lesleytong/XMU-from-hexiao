@@ -12,6 +12,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXProgram;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BiGULReplace;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BiGULSkip;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareCondition;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareDerivationAction;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareUnidirectionalAction;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextVarExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.Conversion;
@@ -23,6 +24,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.EcoreTypeRef;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.EnforcementExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ExpressionConversion;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.FeatureTypeRef;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.HelperDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ImportSection;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.IndexDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.IndexPart;
@@ -45,6 +47,8 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.ValueMapping;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.VarMapping;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreAlign;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreContextSource;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreDependencyView;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreDeriveSource;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreExpandSource;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreExpandView;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreForEachMatchSource;
@@ -151,6 +155,9 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 			case BXCorePackage.CONTEXT_AWARE_CONDITION:
 				sequence_ContextAwareCondition(context, (ContextAwareCondition) semanticObject); 
 				return; 
+			case BXCorePackage.CONTEXT_AWARE_DERIVATION_ACTION:
+				sequence_ContextAwareDerivationAction(context, (ContextAwareDerivationAction) semanticObject); 
+				return; 
 			case BXCorePackage.CONTEXT_AWARE_UNIDIRECTIONAL_ACTION:
 				sequence_ContextAwareUnidirectionalAction(context, (ContextAwareUnidirectionalAction) semanticObject); 
 				return; 
@@ -183,6 +190,9 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 				return; 
 			case BXCorePackage.FEATURE_TYPE_REF:
 				sequence_TypeRef(context, (FeatureTypeRef) semanticObject); 
+				return; 
+			case BXCorePackage.HELPER_DEFINITION:
+				sequence_HelperDefinition(context, (HelperDefinition) semanticObject); 
 				return; 
 			case BXCorePackage.IMPORT_SECTION:
 				sequence_ImportSection(context, (ImportSection) semanticObject); 
@@ -249,6 +259,12 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 				return; 
 			case BXCorePackage.XMU_CORE_CONTEXT_SOURCE:
 				sequence_XmuCoreContextSource(context, (XmuCoreContextSource) semanticObject); 
+				return; 
+			case BXCorePackage.XMU_CORE_DEPENDENCY_VIEW:
+				sequence_XmuCoreDependencyView(context, (XmuCoreDependencyView) semanticObject); 
+				return; 
+			case BXCorePackage.XMU_CORE_DERIVE_SOURCE:
+				sequence_XmuCoreDeriveSource(context, (XmuCoreDeriveSource) semanticObject); 
 				return; 
 			case BXCorePackage.XMU_CORE_EXPAND_SOURCE:
 				sequence_XmuCoreExpandSource(context, (XmuCoreExpandSource) semanticObject); 
@@ -673,6 +689,26 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     ContextAwareAction returns ContextAwareDerivationAction
+	 *     ContextAwareDerivationAction returns ContextAwareDerivationAction
+	 *
+	 * Constraint:
+	 *     body=XExpression
+	 */
+	protected void sequence_ContextAwareDerivationAction(ISerializationContext context, ContextAwareDerivationAction semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.CONTEXT_AWARE_DERIVATION_ACTION__BODY) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.CONTEXT_AWARE_DERIVATION_ACTION__BODY));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getContextAwareDerivationActionAccess().getBodyXExpressionParserRuleCall_0(), semanticObject.getBody());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ContextAwareAction returns ContextAwareUnidirectionalAction
 	 *     ContextAwareUnidirectionalAction returns ContextAwareUnidirectionalAction
 	 *
 	 * Constraint:
@@ -994,6 +1030,19 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     Definition returns HelperDefinition
+	 *     HelperDefinition returns HelperDefinition
+	 *
+	 * Constraint:
+	 *     (type=JvmTypeReference name=ValidID (parameters+=JvmFormalParameter parameters+=JvmFormalParameter*)? body=XBlockExpression)
+	 */
+	protected void sequence_HelperDefinition(ISerializationContext context, HelperDefinition semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     ImportSection returns ImportSection
 	 *
 	 * Constraint:
@@ -1242,7 +1291,7 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	 *     Pattern returns PatternTypeLiteral
 	 *
 	 * Constraint:
-	 *     (source=[ImportSection|ValidID] root=PatternNode filter=ContextAwareCondition?)
+	 *     (source=[ImportSection|ValidID] root=PatternNode filter=ContextAwareCondition? (additional+=TypeVar additional+=TypeVar*)?)
 	 */
 	protected void sequence_PatternTypeLiteral(ISerializationContext context, PatternTypeLiteral semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1457,6 +1506,34 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     XmuCoreStatement returns XmuCoreDependencyView
+	 *     XmuCoreCompositionChildStatement returns XmuCoreDependencyView
+	 *     XmuCoreDependencyView returns XmuCoreDependencyView
+	 *
+	 * Constraint:
+	 *     (typeIndicator=TypeIndicator? dependencyFunctions+=ContextAwareDerivationAction+ dependentType=OrderedTupleTypeLiteral body=XmuCoreStatement)
+	 */
+	protected void sequence_XmuCoreDependencyView(ISerializationContext context, XmuCoreDependencyView semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     XmuCoreStatement returns XmuCoreDeriveSource
+	 *     XmuCoreCompositionChildStatement returns XmuCoreDeriveSource
+	 *     XmuCoreDeriveSource returns XmuCoreDeriveSource
+	 *
+	 * Constraint:
+	 *     (typeIndicator=TypeIndicator? derivationFunctions+=ContextAwareDerivationAction+ derivedType=OrderedTupleTypeLiteral body=XmuCoreStatement)
+	 */
+	protected void sequence_XmuCoreDeriveSource(ISerializationContext context, XmuCoreDeriveSource semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     XmuCoreStatement returns XmuCoreExpandSource
 	 *     XmuCoreCompositionChildStatement returns XmuCoreExpandSource
 	 *     XmuCoreExpandSource returns XmuCoreExpandSource
@@ -1532,10 +1609,8 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	 *     (
 	 *         target=[BXFunctionDefinition|ValidID] 
 	 *         typeIndicator=TypeIndicator? 
-	 *         sourceMappings+=VarMapping 
-	 *         sourceMappings+=VarMapping* 
-	 *         viewMappings+=VarMapping 
-	 *         viewMappings+=VarMapping*
+	 *         (sourceMappings+=VarMapping sourceMappings+=VarMapping*)? 
+	 *         (viewMappings+=VarMapping viewMappings+=VarMapping*)?
 	 *     )
 	 */
 	protected void sequence_XmuCoreFunctionCall(ISerializationContext context, XmuCoreFunctionCall semanticObject) {

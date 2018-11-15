@@ -26,6 +26,11 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.SideEnum
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ExpressionConversion
 import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.emf.ecore.EReference
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareDerivationAction
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreDeriveSource
+import edu.ustb.sei.mde.bxcore.Derive
+import edu.ustb.sei.mde.bxcore.Dependency
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreDependencyView
 
 class ModelInferrerUtils {
 	static def groupTypeLiterals(BXProgram program) {
@@ -83,7 +88,17 @@ class ModelInferrerUtils {
 					else if(side===SideEnum.VIEW) (e.eContainer as XmuCoreAlign).viewPattern.context(SideEnum.VIEW)
 					else null
 				} else e.eContainer.context(side)
-			} else if (e instanceof XmuCoreStatement) {
+			} else if(e instanceof ContextAwareDerivationAction) {
+				if(side===SideEnum.SOURCE) {
+					if(e.eContainer instanceof XmuCoreDeriveSource) e.eContainer.context(side)
+					else null
+				} else if(side===SideEnum.VIEW) {
+					if(e.eContainer instanceof XmuCoreDependencyView) 
+						e.eContainer.context(side)
+					else null
+				} else null
+			} 
+			else if (e instanceof XmuCoreStatement) {
 				val inferData = InferManager.getInferredTypeModel(e.eResource);
 				if(side===SideEnum.SOURCE) inferData.sourceInfer.unsolvedTupleTypeMap.get(e)
 				else if(side===SideEnum.VIEW) inferData.viewInfer.unsolvedTupleTypeMap.get(e)

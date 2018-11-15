@@ -4,6 +4,7 @@
 package edu.ustb.sei.mde.bxcore.dsl.ui.labeling
 
 import org.eclipse.xtext.xbase.ui.labeling.XbaseDescriptionLabelProvider
+import org.eclipse.xtext.resource.IEObjectDescription
 
 /**
  * Provides labels for IEObjectDescriptions and IResourceDescriptions.
@@ -14,11 +15,13 @@ class BXCoreDescriptionLabelProvider extends XbaseDescriptionLabelProvider {
 
 	// Labels and icons can be computed like this:
 	
-//	override text(IEObjectDescription ele) {
-//		ele.name.toString
+//	override text(IEObjectDescription element) {
+//		element.getQualifiedName() + " ++ " + element.getEClass().getName();
 //	}
 //	 
 //	override image(IEObjectDescription ele) {
 //		ele.EClass.name + '.gif'
 //	}
+
+
 }

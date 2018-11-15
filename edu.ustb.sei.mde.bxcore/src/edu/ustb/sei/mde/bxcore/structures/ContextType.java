@@ -23,10 +23,14 @@ public class ContextType {
 		orderedKeys = new ArrayList<>();
 	}
 	
+	public <T> void addField(FieldDef<?> field) {
+		fieldDefs.put(field.getName(), field);
+		orderedKeys.add(field);
+	}
+	
 	public <T> void addField(String name, T type, boolean many) {
 		FieldDef<T> field = new FieldDef<T>(name, type, many);
-		fieldDefs.put(name, field);
-		orderedKeys.add(field);
+		addField(field);
 	}
 	
 	public <T> void addField(String name, T type) {
