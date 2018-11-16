@@ -49,6 +49,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BXCore.ecore#//TypeVar/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//TypeVar/type"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BXCore.ecore#//TypeVar/many"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//TypeVar/initializer"/>
     </genClasses>
     <genClasses ecoreClass="BXCore.ecore#//PredefinedTypeLiteral">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BXCore.ecore#//PredefinedTypeLiteral/type"/>
@@ -56,8 +57,8 @@
     <genClasses ecoreClass="BXCore.ecore#//PatternTypeLiteral">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BXCore.ecore#//PatternTypeLiteral/source"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//PatternTypeLiteral/root"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//PatternTypeLiteral/filter"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//PatternTypeLiteral/additional"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//PatternTypeLiteral/filter"/>
     </genClasses>
     <genClasses ecoreClass="BXCore.ecore#//TypeDefinition">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//TypeDefinition/literal"/>
@@ -105,7 +106,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//TypeIndicator/viewType"/>
     </genClasses>
     <genClasses ecoreClass="BXCore.ecore#//XmuCoreContextSource">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//XmuCoreContextSource/mappingSource"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//XmuCoreContextSource/mappingView"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//XmuCoreContextSource/body"/>
     </genClasses>
@@ -113,12 +113,10 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//ContextAwareDerivationAction/body"/>
     </genClasses>
     <genClasses ecoreClass="BXCore.ecore#//XmuCoreDeriveSource">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//XmuCoreDeriveSource/derivationFunctions"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//XmuCoreDeriveSource/derivedType"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//XmuCoreDeriveSource/body"/>
     </genClasses>
     <genClasses ecoreClass="BXCore.ecore#//XmuCoreDependencyView">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//XmuCoreDependencyView/dependencyFunctions"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//XmuCoreDependencyView/dependentType"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//XmuCoreDependencyView/body"/>
     </genClasses>
@@ -141,8 +139,8 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//XmuCoreExpandView/body"/>
     </genClasses>
     <genClasses ecoreClass="BXCore.ecore#//VarMapping">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BXCore.ecore#//VarMapping/from"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BXCore.ecore#//VarMapping/to"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BXCore.ecore#//VarMapping/from"/>
     </genClasses>
     <genClasses ecoreClass="BXCore.ecore#//XmuCoreGraphReplace">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//XmuCoreGraphReplace/source"/>

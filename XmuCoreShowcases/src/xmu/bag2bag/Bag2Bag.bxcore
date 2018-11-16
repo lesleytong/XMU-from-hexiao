@@ -1,0 +1,87 @@
+import '/XmuCoreShowcases/metamodel/Bag1.ecore' as bag1
+import '/XmuCoreShowcases/metamodel/Bag2.ecore' as bag2
+
+import java.util.List
+import edu.ustb.sei.mde.graph.typedGraph.TypedNode
+
+function Bag2Bag<bag1!(b:Bag), bag2!(b:Bag)> =
+	align bag1!b:Bag{le:elements=e:Element[]{lv:value=v:EString}}
+			bag2!b:Bag{le:elements=e:Element{lv:value=v:EString, lc:count=c:EInt}} 
+		with v@source.equals(v@view)
+		match ->
+			switch [
+				case e@source.size===c@view : 
+					replace bag1!b:Bag{le:elements=e:Element[]{lv:value=v:EString}} 
+						bag2!b:Bag{le:elements=e:Element{lv:value=v:EString, lc:count=c:EInt}}
+						{
+							skip (v) (v)
+							count (e) (c)
+						}
+				adaption e@source.size<c@view : {
+					val occ = c@view;
+					val size = e@source.size;
+					
+					val add_e = new @source:bag1!Element[occ-size];
+					val add_le = new @source:bag1!Bag::elements[occ-size];
+					val add_lv = new @source:bag1!Element::value[occ-size];
+					
+					val merged_e = (e@source + add_e).toList;
+					val merged_le = (le@source + add_le).toList;
+					val merged_lv = (lv@source + add_lv).toList;
+					
+					begin
+						enforce bag1!b:Bag{le:elements=e:Element[]{lv:value=v:EString}} 
+							{le<-merged_le, e<-merged_e, lv<-merged_lv, v<-v@view};
+					end
+				}
+				adaption e@source.size>c@view: {
+					val occ = c@view;
+					val size = e@source.size;
+					
+					val all_e = e@source;
+					val all_le = le@source;
+					val all_lv = lv@source;
+					
+					val deleted_e = all_e.subList(occ, size);
+					val deleted_le = all_le.subList(occ, size);
+					val deleted_lv = all_lv.subList(occ, size);
+					
+					begin
+						// delete from model
+						delete deleted_e;
+						delete deleted_le;
+						delete deleted_lv;
+						deleted_e.clear;
+						deleted_le.clear;
+						deleted_lv.clear;
+						enforce bag1!b:Bag{le:elements=e:Element[]{lv:value=v:EString}} 
+							{le<-all_le, e<-all_e, lv<-all_lv, v<-v@view};
+					end
+				}
+			]
+		unmatchS -> {
+			begin
+				delete le@source;
+				delete lv@source;
+				delete e@source;
+			end
+		}
+		unmatchV -> {
+			val occ = c@view;
+					
+			val add_e = new @source:bag1!Element[occ];
+			val add_le = new @source:bag1!Bag::elements[occ];
+			val add_lv = new @source:bag1!Element::value[occ];
+					
+			begin
+				enforce bag1!b:Bag{le:elements=e:Element[]{lv:value=v:EString}}  {le<-add_le, e<-add_e, lv<-add_lv, v<-v@view};
+			end
+		}
+
+bigul count(List<TypedNode> c) (int count) 
+get {
+	count = c.size
+}
+put {
+	if(c.size!==count) nothing
+} 

@@ -79,20 +79,6 @@ class BXCoreValidator extends AbstractBXCoreValidator {
 			}
 		}
 		if(data!==null) stat.checkVarMappings(data);
-		
-		if(stat instanceof XmuCoreContextSource) {
-			if(stat.mappingSource.elements.size!==stat.mappingView.elements.size) {
-				error('''The count of source vars should be equal to the count of the view vars''', 
-					stat
-				);
-			}
-		} else if(stat instanceof XmuCoreDeriveSource) {
-			if(stat.derivedType.elements.size!==stat.derivationFunctions.size) {
-				error('''The count of source vars should be equal to the count of the derivation functions''', 
-					stat
-				);
-			}
-		}
 	}
 		
 	def text(TupleType type) {

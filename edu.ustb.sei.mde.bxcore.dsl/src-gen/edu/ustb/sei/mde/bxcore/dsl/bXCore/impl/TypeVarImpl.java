@@ -4,6 +4,7 @@
 package edu.ustb.sei.mde.bxcore.dsl.bXCore.impl;
 
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareDerivationAction;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeRef;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeVar;
 
@@ -27,6 +28,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.TypeVarImpl#getName <em>Name</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.TypeVarImpl#getType <em>Type</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.TypeVarImpl#isMany <em>Many</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.TypeVarImpl#getInitializer <em>Initializer</em>}</li>
  * </ul>
  *
  * @generated
@@ -82,6 +84,16 @@ public class TypeVarImpl extends MinimalEObjectImpl.Container implements TypeVar
    * @ordered
    */
   protected boolean many = MANY_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getInitializer() <em>Initializer</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getInitializer()
+   * @generated
+   * @ordered
+   */
+  protected ContextAwareDerivationAction initializer;
 
   /**
    * <!-- begin-user-doc -->
@@ -203,6 +215,54 @@ public class TypeVarImpl extends MinimalEObjectImpl.Container implements TypeVar
    * <!-- end-user-doc -->
    * @generated
    */
+  public ContextAwareDerivationAction getInitializer()
+  {
+    return initializer;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetInitializer(ContextAwareDerivationAction newInitializer, NotificationChain msgs)
+  {
+    ContextAwareDerivationAction oldInitializer = initializer;
+    initializer = newInitializer;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BXCorePackage.TYPE_VAR__INITIALIZER, oldInitializer, newInitializer);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setInitializer(ContextAwareDerivationAction newInitializer)
+  {
+    if (newInitializer != initializer)
+    {
+      NotificationChain msgs = null;
+      if (initializer != null)
+        msgs = ((InternalEObject)initializer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BXCorePackage.TYPE_VAR__INITIALIZER, null, msgs);
+      if (newInitializer != null)
+        msgs = ((InternalEObject)newInitializer).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BXCorePackage.TYPE_VAR__INITIALIZER, null, msgs);
+      msgs = basicSetInitializer(newInitializer, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, BXCorePackage.TYPE_VAR__INITIALIZER, newInitializer, newInitializer));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -210,6 +270,8 @@ public class TypeVarImpl extends MinimalEObjectImpl.Container implements TypeVar
     {
       case BXCorePackage.TYPE_VAR__TYPE:
         return basicSetType(null, msgs);
+      case BXCorePackage.TYPE_VAR__INITIALIZER:
+        return basicSetInitializer(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -230,6 +292,8 @@ public class TypeVarImpl extends MinimalEObjectImpl.Container implements TypeVar
         return getType();
       case BXCorePackage.TYPE_VAR__MANY:
         return isMany();
+      case BXCorePackage.TYPE_VAR__INITIALIZER:
+        return getInitializer();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -252,6 +316,9 @@ public class TypeVarImpl extends MinimalEObjectImpl.Container implements TypeVar
         return;
       case BXCorePackage.TYPE_VAR__MANY:
         setMany((Boolean)newValue);
+        return;
+      case BXCorePackage.TYPE_VAR__INITIALIZER:
+        setInitializer((ContextAwareDerivationAction)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -276,6 +343,9 @@ public class TypeVarImpl extends MinimalEObjectImpl.Container implements TypeVar
       case BXCorePackage.TYPE_VAR__MANY:
         setMany(MANY_EDEFAULT);
         return;
+      case BXCorePackage.TYPE_VAR__INITIALIZER:
+        setInitializer((ContextAwareDerivationAction)null);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -296,6 +366,8 @@ public class TypeVarImpl extends MinimalEObjectImpl.Container implements TypeVar
         return type != null;
       case BXCorePackage.TYPE_VAR__MANY:
         return many != MANY_EDEFAULT;
+      case BXCorePackage.TYPE_VAR__INITIALIZER:
+        return initializer != null;
     }
     return super.eIsSet(featureID);
   }

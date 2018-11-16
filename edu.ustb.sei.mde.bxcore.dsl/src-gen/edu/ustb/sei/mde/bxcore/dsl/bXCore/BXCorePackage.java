@@ -459,13 +459,22 @@ public interface BXCorePackage extends EPackage
   int TYPE_VAR__MANY = 2;
 
   /**
+   * The feature id for the '<em><b>Initializer</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TYPE_VAR__INITIALIZER = 3;
+
+  /**
    * The number of structural features of the '<em>Type Var</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int TYPE_VAR_FEATURE_COUNT = 3;
+  int TYPE_VAR_FEATURE_COUNT = 4;
 
   /**
    * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PredefinedTypeLiteralImpl <em>Predefined Type Literal</em>}' class.
@@ -524,22 +533,22 @@ public interface BXCorePackage extends EPackage
   int PATTERN_TYPE_LITERAL__ROOT = TYPE_LITERAL_FEATURE_COUNT + 1;
 
   /**
-   * The feature id for the '<em><b>Filter</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PATTERN_TYPE_LITERAL__FILTER = TYPE_LITERAL_FEATURE_COUNT + 2;
-
-  /**
    * The feature id for the '<em><b>Additional</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PATTERN_TYPE_LITERAL__ADDITIONAL = TYPE_LITERAL_FEATURE_COUNT + 3;
+  int PATTERN_TYPE_LITERAL__ADDITIONAL = TYPE_LITERAL_FEATURE_COUNT + 2;
+
+  /**
+   * The feature id for the '<em><b>Filter</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PATTERN_TYPE_LITERAL__FILTER = TYPE_LITERAL_FEATURE_COUNT + 3;
 
   /**
    * The number of structural features of the '<em>Pattern Type Literal</em>' class.
@@ -1089,22 +1098,13 @@ public interface BXCorePackage extends EPackage
   int XMU_CORE_CONTEXT_SOURCE__TYPE_INDICATOR = XMU_CORE_COMPOSITION_CHILD_STATEMENT__TYPE_INDICATOR;
 
   /**
-   * The feature id for the '<em><b>Mapping Source</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int XMU_CORE_CONTEXT_SOURCE__MAPPING_SOURCE = XMU_CORE_COMPOSITION_CHILD_STATEMENT_FEATURE_COUNT + 0;
-
-  /**
    * The feature id for the '<em><b>Mapping View</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int XMU_CORE_CONTEXT_SOURCE__MAPPING_VIEW = XMU_CORE_COMPOSITION_CHILD_STATEMENT_FEATURE_COUNT + 1;
+  int XMU_CORE_CONTEXT_SOURCE__MAPPING_VIEW = XMU_CORE_COMPOSITION_CHILD_STATEMENT_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Body</b></em>' containment reference.
@@ -1113,7 +1113,7 @@ public interface BXCorePackage extends EPackage
    * @generated
    * @ordered
    */
-  int XMU_CORE_CONTEXT_SOURCE__BODY = XMU_CORE_COMPOSITION_CHILD_STATEMENT_FEATURE_COUNT + 2;
+  int XMU_CORE_CONTEXT_SOURCE__BODY = XMU_CORE_COMPOSITION_CHILD_STATEMENT_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Xmu Core Context Source</em>' class.
@@ -1122,7 +1122,7 @@ public interface BXCorePackage extends EPackage
    * @generated
    * @ordered
    */
-  int XMU_CORE_CONTEXT_SOURCE_FEATURE_COUNT = XMU_CORE_COMPOSITION_CHILD_STATEMENT_FEATURE_COUNT + 3;
+  int XMU_CORE_CONTEXT_SOURCE_FEATURE_COUNT = XMU_CORE_COMPOSITION_CHILD_STATEMENT_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.ContextAwareDerivationActionImpl <em>Context Aware Derivation Action</em>}' class.
@@ -1172,22 +1172,13 @@ public interface BXCorePackage extends EPackage
   int XMU_CORE_DERIVE_SOURCE__TYPE_INDICATOR = XMU_CORE_COMPOSITION_CHILD_STATEMENT__TYPE_INDICATOR;
 
   /**
-   * The feature id for the '<em><b>Derivation Functions</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int XMU_CORE_DERIVE_SOURCE__DERIVATION_FUNCTIONS = XMU_CORE_COMPOSITION_CHILD_STATEMENT_FEATURE_COUNT + 0;
-
-  /**
    * The feature id for the '<em><b>Derived Type</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int XMU_CORE_DERIVE_SOURCE__DERIVED_TYPE = XMU_CORE_COMPOSITION_CHILD_STATEMENT_FEATURE_COUNT + 1;
+  int XMU_CORE_DERIVE_SOURCE__DERIVED_TYPE = XMU_CORE_COMPOSITION_CHILD_STATEMENT_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Body</b></em>' containment reference.
@@ -1196,7 +1187,7 @@ public interface BXCorePackage extends EPackage
    * @generated
    * @ordered
    */
-  int XMU_CORE_DERIVE_SOURCE__BODY = XMU_CORE_COMPOSITION_CHILD_STATEMENT_FEATURE_COUNT + 2;
+  int XMU_CORE_DERIVE_SOURCE__BODY = XMU_CORE_COMPOSITION_CHILD_STATEMENT_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Xmu Core Derive Source</em>' class.
@@ -1205,7 +1196,7 @@ public interface BXCorePackage extends EPackage
    * @generated
    * @ordered
    */
-  int XMU_CORE_DERIVE_SOURCE_FEATURE_COUNT = XMU_CORE_COMPOSITION_CHILD_STATEMENT_FEATURE_COUNT + 3;
+  int XMU_CORE_DERIVE_SOURCE_FEATURE_COUNT = XMU_CORE_COMPOSITION_CHILD_STATEMENT_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.XmuCoreDependencyViewImpl <em>Xmu Core Dependency View</em>}' class.
@@ -1227,22 +1218,13 @@ public interface BXCorePackage extends EPackage
   int XMU_CORE_DEPENDENCY_VIEW__TYPE_INDICATOR = XMU_CORE_COMPOSITION_CHILD_STATEMENT__TYPE_INDICATOR;
 
   /**
-   * The feature id for the '<em><b>Dependency Functions</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int XMU_CORE_DEPENDENCY_VIEW__DEPENDENCY_FUNCTIONS = XMU_CORE_COMPOSITION_CHILD_STATEMENT_FEATURE_COUNT + 0;
-
-  /**
    * The feature id for the '<em><b>Dependent Type</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int XMU_CORE_DEPENDENCY_VIEW__DEPENDENT_TYPE = XMU_CORE_COMPOSITION_CHILD_STATEMENT_FEATURE_COUNT + 1;
+  int XMU_CORE_DEPENDENCY_VIEW__DEPENDENT_TYPE = XMU_CORE_COMPOSITION_CHILD_STATEMENT_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Body</b></em>' containment reference.
@@ -1251,7 +1233,7 @@ public interface BXCorePackage extends EPackage
    * @generated
    * @ordered
    */
-  int XMU_CORE_DEPENDENCY_VIEW__BODY = XMU_CORE_COMPOSITION_CHILD_STATEMENT_FEATURE_COUNT + 2;
+  int XMU_CORE_DEPENDENCY_VIEW__BODY = XMU_CORE_COMPOSITION_CHILD_STATEMENT_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Xmu Core Dependency View</em>' class.
@@ -1260,7 +1242,7 @@ public interface BXCorePackage extends EPackage
    * @generated
    * @ordered
    */
-  int XMU_CORE_DEPENDENCY_VIEW_FEATURE_COUNT = XMU_CORE_COMPOSITION_CHILD_STATEMENT_FEATURE_COUNT + 3;
+  int XMU_CORE_DEPENDENCY_VIEW_FEATURE_COUNT = XMU_CORE_COMPOSITION_CHILD_STATEMENT_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.XmuCoreMatchSourceImpl <em>Xmu Core Match Source</em>}' class.
@@ -1475,22 +1457,22 @@ public interface BXCorePackage extends EPackage
   int VAR_MAPPING = 36;
 
   /**
-   * The feature id for the '<em><b>From</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int VAR_MAPPING__FROM = 0;
-
-  /**
    * The feature id for the '<em><b>To</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int VAR_MAPPING__TO = 1;
+  int VAR_MAPPING__TO = 0;
+
+  /**
+   * The feature id for the '<em><b>From</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VAR_MAPPING__FROM = 1;
 
   /**
    * The number of structural features of the '<em>Var Mapping</em>' class.
@@ -3156,6 +3138,17 @@ public interface BXCorePackage extends EPackage
   EAttribute getTypeVar_Many();
 
   /**
+   * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeVar#getInitializer <em>Initializer</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Initializer</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeVar#getInitializer()
+   * @see #getTypeVar()
+   * @generated
+   */
+  EReference getTypeVar_Initializer();
+
+  /**
    * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PredefinedTypeLiteral <em>Predefined Type Literal</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3209,17 +3202,6 @@ public interface BXCorePackage extends EPackage
   EReference getPatternTypeLiteral_Root();
 
   /**
-   * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternTypeLiteral#getFilter <em>Filter</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Filter</em>'.
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternTypeLiteral#getFilter()
-   * @see #getPatternTypeLiteral()
-   * @generated
-   */
-  EReference getPatternTypeLiteral_Filter();
-
-  /**
    * Returns the meta object for the containment reference list '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternTypeLiteral#getAdditional <em>Additional</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3229,6 +3211,17 @@ public interface BXCorePackage extends EPackage
    * @generated
    */
   EReference getPatternTypeLiteral_Additional();
+
+  /**
+   * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternTypeLiteral#getFilter <em>Filter</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Filter</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternTypeLiteral#getFilter()
+   * @see #getPatternTypeLiteral()
+   * @generated
+   */
+  EReference getPatternTypeLiteral_Filter();
 
   /**
    * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeDefinition <em>Type Definition</em>}'.
@@ -3611,17 +3604,6 @@ public interface BXCorePackage extends EPackage
   EClass getXmuCoreContextSource();
 
   /**
-   * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreContextSource#getMappingSource <em>Mapping Source</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Mapping Source</em>'.
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreContextSource#getMappingSource()
-   * @see #getXmuCoreContextSource()
-   * @generated
-   */
-  EReference getXmuCoreContextSource_MappingSource();
-
-  /**
    * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreContextSource#getMappingView <em>Mapping View</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3675,17 +3657,6 @@ public interface BXCorePackage extends EPackage
   EClass getXmuCoreDeriveSource();
 
   /**
-   * Returns the meta object for the containment reference list '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreDeriveSource#getDerivationFunctions <em>Derivation Functions</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Derivation Functions</em>'.
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreDeriveSource#getDerivationFunctions()
-   * @see #getXmuCoreDeriveSource()
-   * @generated
-   */
-  EReference getXmuCoreDeriveSource_DerivationFunctions();
-
-  /**
    * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreDeriveSource#getDerivedType <em>Derived Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3716,17 +3687,6 @@ public interface BXCorePackage extends EPackage
    * @generated
    */
   EClass getXmuCoreDependencyView();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreDependencyView#getDependencyFunctions <em>Dependency Functions</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Dependency Functions</em>'.
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreDependencyView#getDependencyFunctions()
-   * @see #getXmuCoreDependencyView()
-   * @generated
-   */
-  EReference getXmuCoreDependencyView_DependencyFunctions();
 
   /**
    * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreDependencyView#getDependentType <em>Dependent Type</em>}'.
@@ -3911,17 +3871,6 @@ public interface BXCorePackage extends EPackage
   EClass getVarMapping();
 
   /**
-   * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.VarMapping#getFrom <em>From</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>From</em>'.
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.VarMapping#getFrom()
-   * @see #getVarMapping()
-   * @generated
-   */
-  EAttribute getVarMapping_From();
-
-  /**
    * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.VarMapping#getTo <em>To</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3931,6 +3880,17 @@ public interface BXCorePackage extends EPackage
    * @generated
    */
   EAttribute getVarMapping_To();
+
+  /**
+   * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.VarMapping#getFrom <em>From</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>From</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.VarMapping#getFrom()
+   * @see #getVarMapping()
+   * @generated
+   */
+  EAttribute getVarMapping_From();
 
   /**
    * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreGraphReplace <em>Xmu Core Graph Replace</em>}'.
@@ -5246,6 +5206,14 @@ public interface BXCorePackage extends EPackage
     EAttribute TYPE_VAR__MANY = eINSTANCE.getTypeVar_Many();
 
     /**
+     * The meta object literal for the '<em><b>Initializer</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference TYPE_VAR__INITIALIZER = eINSTANCE.getTypeVar_Initializer();
+
+    /**
      * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PredefinedTypeLiteralImpl <em>Predefined Type Literal</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -5290,20 +5258,20 @@ public interface BXCorePackage extends EPackage
     EReference PATTERN_TYPE_LITERAL__ROOT = eINSTANCE.getPatternTypeLiteral_Root();
 
     /**
-     * The meta object literal for the '<em><b>Filter</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference PATTERN_TYPE_LITERAL__FILTER = eINSTANCE.getPatternTypeLiteral_Filter();
-
-    /**
      * The meta object literal for the '<em><b>Additional</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EReference PATTERN_TYPE_LITERAL__ADDITIONAL = eINSTANCE.getPatternTypeLiteral_Additional();
+
+    /**
+     * The meta object literal for the '<em><b>Filter</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PATTERN_TYPE_LITERAL__FILTER = eINSTANCE.getPatternTypeLiteral_Filter();
 
     /**
      * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.TypeDefinitionImpl <em>Type Definition</em>}' class.
@@ -5626,14 +5594,6 @@ public interface BXCorePackage extends EPackage
     EClass XMU_CORE_CONTEXT_SOURCE = eINSTANCE.getXmuCoreContextSource();
 
     /**
-     * The meta object literal for the '<em><b>Mapping Source</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference XMU_CORE_CONTEXT_SOURCE__MAPPING_SOURCE = eINSTANCE.getXmuCoreContextSource_MappingSource();
-
-    /**
      * The meta object literal for the '<em><b>Mapping View</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -5678,14 +5638,6 @@ public interface BXCorePackage extends EPackage
     EClass XMU_CORE_DERIVE_SOURCE = eINSTANCE.getXmuCoreDeriveSource();
 
     /**
-     * The meta object literal for the '<em><b>Derivation Functions</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference XMU_CORE_DERIVE_SOURCE__DERIVATION_FUNCTIONS = eINSTANCE.getXmuCoreDeriveSource_DerivationFunctions();
-
-    /**
      * The meta object literal for the '<em><b>Derived Type</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -5710,14 +5662,6 @@ public interface BXCorePackage extends EPackage
      * @generated
      */
     EClass XMU_CORE_DEPENDENCY_VIEW = eINSTANCE.getXmuCoreDependencyView();
-
-    /**
-     * The meta object literal for the '<em><b>Dependency Functions</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference XMU_CORE_DEPENDENCY_VIEW__DEPENDENCY_FUNCTIONS = eINSTANCE.getXmuCoreDependencyView_DependencyFunctions();
 
     /**
      * The meta object literal for the '<em><b>Dependent Type</b></em>' containment reference feature.
@@ -5866,20 +5810,20 @@ public interface BXCorePackage extends EPackage
     EClass VAR_MAPPING = eINSTANCE.getVarMapping();
 
     /**
-     * The meta object literal for the '<em><b>From</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute VAR_MAPPING__FROM = eINSTANCE.getVarMapping_From();
-
-    /**
      * The meta object literal for the '<em><b>To</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EAttribute VAR_MAPPING__TO = eINSTANCE.getVarMapping_To();
+
+    /**
+     * The meta object literal for the '<em><b>From</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute VAR_MAPPING__FROM = eINSTANCE.getVarMapping_From();
 
     /**
      * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.XmuCoreGraphReplaceImpl <em>Xmu Core Graph Replace</em>}' class.

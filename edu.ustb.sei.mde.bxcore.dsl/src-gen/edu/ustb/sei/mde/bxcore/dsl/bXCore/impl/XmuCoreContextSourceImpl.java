@@ -4,7 +4,7 @@
 package edu.ustb.sei.mde.bxcore.dsl.bXCore.impl;
 
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage;
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.OrderedTupleTypeLiteral;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.UnorderedTupleTypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreContextSource;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreStatement;
 
@@ -24,7 +24,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.XmuCoreContextSourceImpl#getMappingSource <em>Mapping Source</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.XmuCoreContextSourceImpl#getMappingView <em>Mapping View</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.XmuCoreContextSourceImpl#getBody <em>Body</em>}</li>
  * </ul>
@@ -34,16 +33,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 public class XmuCoreContextSourceImpl extends XmuCoreCompositionChildStatementImpl implements XmuCoreContextSource
 {
   /**
-   * The cached value of the '{@link #getMappingSource() <em>Mapping Source</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getMappingSource()
-   * @generated
-   * @ordered
-   */
-  protected OrderedTupleTypeLiteral mappingSource;
-
-  /**
    * The cached value of the '{@link #getMappingView() <em>Mapping View</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -51,7 +40,7 @@ public class XmuCoreContextSourceImpl extends XmuCoreCompositionChildStatementIm
    * @generated
    * @ordered
    */
-  protected OrderedTupleTypeLiteral mappingView;
+  protected UnorderedTupleTypeLiteral mappingView;
 
   /**
    * The cached value of the '{@link #getBody() <em>Body</em>}' containment reference.
@@ -89,55 +78,7 @@ public class XmuCoreContextSourceImpl extends XmuCoreCompositionChildStatementIm
    * <!-- end-user-doc -->
    * @generated
    */
-  public OrderedTupleTypeLiteral getMappingSource()
-  {
-    return mappingSource;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetMappingSource(OrderedTupleTypeLiteral newMappingSource, NotificationChain msgs)
-  {
-    OrderedTupleTypeLiteral oldMappingSource = mappingSource;
-    mappingSource = newMappingSource;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BXCorePackage.XMU_CORE_CONTEXT_SOURCE__MAPPING_SOURCE, oldMappingSource, newMappingSource);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setMappingSource(OrderedTupleTypeLiteral newMappingSource)
-  {
-    if (newMappingSource != mappingSource)
-    {
-      NotificationChain msgs = null;
-      if (mappingSource != null)
-        msgs = ((InternalEObject)mappingSource).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BXCorePackage.XMU_CORE_CONTEXT_SOURCE__MAPPING_SOURCE, null, msgs);
-      if (newMappingSource != null)
-        msgs = ((InternalEObject)newMappingSource).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BXCorePackage.XMU_CORE_CONTEXT_SOURCE__MAPPING_SOURCE, null, msgs);
-      msgs = basicSetMappingSource(newMappingSource, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, BXCorePackage.XMU_CORE_CONTEXT_SOURCE__MAPPING_SOURCE, newMappingSource, newMappingSource));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public OrderedTupleTypeLiteral getMappingView()
+  public UnorderedTupleTypeLiteral getMappingView()
   {
     return mappingView;
   }
@@ -147,9 +88,9 @@ public class XmuCoreContextSourceImpl extends XmuCoreCompositionChildStatementIm
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetMappingView(OrderedTupleTypeLiteral newMappingView, NotificationChain msgs)
+  public NotificationChain basicSetMappingView(UnorderedTupleTypeLiteral newMappingView, NotificationChain msgs)
   {
-    OrderedTupleTypeLiteral oldMappingView = mappingView;
+    UnorderedTupleTypeLiteral oldMappingView = mappingView;
     mappingView = newMappingView;
     if (eNotificationRequired())
     {
@@ -164,7 +105,7 @@ public class XmuCoreContextSourceImpl extends XmuCoreCompositionChildStatementIm
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setMappingView(OrderedTupleTypeLiteral newMappingView)
+  public void setMappingView(UnorderedTupleTypeLiteral newMappingView)
   {
     if (newMappingView != mappingView)
     {
@@ -238,8 +179,6 @@ public class XmuCoreContextSourceImpl extends XmuCoreCompositionChildStatementIm
   {
     switch (featureID)
     {
-      case BXCorePackage.XMU_CORE_CONTEXT_SOURCE__MAPPING_SOURCE:
-        return basicSetMappingSource(null, msgs);
       case BXCorePackage.XMU_CORE_CONTEXT_SOURCE__MAPPING_VIEW:
         return basicSetMappingView(null, msgs);
       case BXCorePackage.XMU_CORE_CONTEXT_SOURCE__BODY:
@@ -258,8 +197,6 @@ public class XmuCoreContextSourceImpl extends XmuCoreCompositionChildStatementIm
   {
     switch (featureID)
     {
-      case BXCorePackage.XMU_CORE_CONTEXT_SOURCE__MAPPING_SOURCE:
-        return getMappingSource();
       case BXCorePackage.XMU_CORE_CONTEXT_SOURCE__MAPPING_VIEW:
         return getMappingView();
       case BXCorePackage.XMU_CORE_CONTEXT_SOURCE__BODY:
@@ -278,11 +215,8 @@ public class XmuCoreContextSourceImpl extends XmuCoreCompositionChildStatementIm
   {
     switch (featureID)
     {
-      case BXCorePackage.XMU_CORE_CONTEXT_SOURCE__MAPPING_SOURCE:
-        setMappingSource((OrderedTupleTypeLiteral)newValue);
-        return;
       case BXCorePackage.XMU_CORE_CONTEXT_SOURCE__MAPPING_VIEW:
-        setMappingView((OrderedTupleTypeLiteral)newValue);
+        setMappingView((UnorderedTupleTypeLiteral)newValue);
         return;
       case BXCorePackage.XMU_CORE_CONTEXT_SOURCE__BODY:
         setBody((XmuCoreStatement)newValue);
@@ -301,11 +235,8 @@ public class XmuCoreContextSourceImpl extends XmuCoreCompositionChildStatementIm
   {
     switch (featureID)
     {
-      case BXCorePackage.XMU_CORE_CONTEXT_SOURCE__MAPPING_SOURCE:
-        setMappingSource((OrderedTupleTypeLiteral)null);
-        return;
       case BXCorePackage.XMU_CORE_CONTEXT_SOURCE__MAPPING_VIEW:
-        setMappingView((OrderedTupleTypeLiteral)null);
+        setMappingView((UnorderedTupleTypeLiteral)null);
         return;
       case BXCorePackage.XMU_CORE_CONTEXT_SOURCE__BODY:
         setBody((XmuCoreStatement)null);
@@ -324,8 +255,6 @@ public class XmuCoreContextSourceImpl extends XmuCoreCompositionChildStatementIm
   {
     switch (featureID)
     {
-      case BXCorePackage.XMU_CORE_CONTEXT_SOURCE__MAPPING_SOURCE:
-        return mappingSource != null;
       case BXCorePackage.XMU_CORE_CONTEXT_SOURCE__MAPPING_VIEW:
         return mappingView != null;
       case BXCorePackage.XMU_CORE_CONTEXT_SOURCE__BODY:

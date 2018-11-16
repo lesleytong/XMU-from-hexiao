@@ -8,7 +8,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.EnforcementExpression
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ExpressionConversion
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpressionBlock
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.NavigationExpression
-import edu.ustb.sei.mde.bxcore.structures.ContextGraph.GraphModification
+import edu.ustb.sei.mde.bxcore.structures.GraphModification
 import edu.ustb.sei.mde.bxcore.structures.Index
 import edu.ustb.sei.mde.graph.typedGraph.TypedEdge
 import edu.ustb.sei.mde.graph.typedGraph.TypedNode

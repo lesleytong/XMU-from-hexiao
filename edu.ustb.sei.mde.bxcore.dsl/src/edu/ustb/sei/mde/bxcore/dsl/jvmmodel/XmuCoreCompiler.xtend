@@ -17,7 +17,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.SideEnum
 import edu.ustb.sei.mde.bxcore.dsl.infer.InferManager
 import edu.ustb.sei.mde.bxcore.dsl.structure.ExceptionSafeInferface
 import edu.ustb.sei.mde.bxcore.structures.ContextGraph
-import edu.ustb.sei.mde.bxcore.structures.ContextGraph.GraphModification
+import edu.ustb.sei.mde.bxcore.structures.GraphModification
 import edu.ustb.sei.mde.bxcore.structures.Index
 import edu.ustb.sei.mde.graph.typedGraph.TypedEdge
 import edu.ustb.sei.mde.graph.typedGraph.TypedNode
@@ -106,7 +106,7 @@ class XmuCoreCompiler extends XbaseCompiler {
 			a.append('''«GraphModification.canonicalName» «mo» = source.modification();''');
 			
 			e.expressions.forEach[me|
-				me.internalToJavaStatement(a, true);
+				me.internalToJavaStatement(a, false);
 			];
 			if(isReferenced) {
 //				val v = a.declareSyntheticVariable(e, '_modRes');

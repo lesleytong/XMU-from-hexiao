@@ -243,11 +243,32 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 				sequence_TypeIndicator(context, (TypeIndicator) semanticObject); 
 				return; 
 			case BXCorePackage.TYPE_VAR:
-				sequence_TypeVar(context, (TypeVar) semanticObject); 
-				return; 
+				if (rule == grammarAccess.getTypeVarWithInitializerRule()) {
+					sequence_TypeVarWithInitializer(context, (TypeVar) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getTypeVarRule()) {
+					sequence_TypeVarWithInitializer_TypeVarWithoutInitializer(context, (TypeVar) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getTypeVarWithoutInitializerRule()) {
+					sequence_TypeVarWithoutInitializer(context, (TypeVar) semanticObject); 
+					return; 
+				}
+				else break;
 			case BXCorePackage.UNORDERED_TUPLE_TYPE_LITERAL:
-				sequence_UnorderedTupleTypeLiteral(context, (UnorderedTupleTypeLiteral) semanticObject); 
-				return; 
+				if (rule == grammarAccess.getUnorderedTupleTypeLiteralWithInitializerRule()) {
+					sequence_UnorderedTupleTypeLiteralWithInitializer(context, (UnorderedTupleTypeLiteral) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getTypeLiteralRule()
+						|| rule == grammarAccess.getTupleTypeLiteralRule()
+						|| rule == grammarAccess.getUnorderedTupleTypeLiteralRule()
+						|| rule == grammarAccess.getContextTypeRefRule()) {
+					sequence_UnorderedTupleTypeLiteral(context, (UnorderedTupleTypeLiteral) semanticObject); 
+					return; 
+				}
+				else break;
 			case BXCorePackage.VALUE_MAPPING:
 				sequence_ValueMapping(context, (ValueMapping) semanticObject); 
 				return; 
@@ -1191,7 +1212,7 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	 *     ContextTypeRef returns OrderedTupleTypeLiteral
 	 *
 	 * Constraint:
-	 *     (source=[ImportSection|ValidID] elements+=TypeVar elements+=TypeVar*)
+	 *     (source=[ImportSection|ValidID] elements+=TypeVarWithoutInitializer elements+=TypeVarWithoutInitializer*)
 	 */
 	protected void sequence_OrderedTupleTypeLiteral(ISerializationContext context, OrderedTupleTypeLiteral semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1291,7 +1312,7 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	 *     Pattern returns PatternTypeLiteral
 	 *
 	 * Constraint:
-	 *     (source=[ImportSection|ValidID] root=PatternNode filter=ContextAwareCondition? (additional+=TypeVar additional+=TypeVar*)?)
+	 *     (source=[ImportSection|ValidID] root=PatternNode (additional+=TypeVar additional+=TypeVar*)? filter=ContextAwareCondition?)
 	 */
 	protected void sequence_PatternTypeLiteral(ISerializationContext context, PatternTypeLiteral semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1403,12 +1424,48 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     TypeVarWithInitializer returns TypeVar
+	 *
+	 * Constraint:
+	 *     (name=ValidID type=TypeRef many?='[]'? initializer=ContextAwareDerivationAction)
+	 */
+	protected void sequence_TypeVarWithInitializer(ISerializationContext context, TypeVar semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     TypeVar returns TypeVar
 	 *
 	 * Constraint:
-	 *     (name=ValidID type=TypeRef many?='*'?)
+	 *     ((name=ValidID type=TypeRef many?='[]'?) | (name=ValidID type=TypeRef many?='[]'? initializer=ContextAwareDerivationAction))
 	 */
-	protected void sequence_TypeVar(ISerializationContext context, TypeVar semanticObject) {
+	protected void sequence_TypeVarWithInitializer_TypeVarWithoutInitializer(ISerializationContext context, TypeVar semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     TypeVarWithoutInitializer returns TypeVar
+	 *
+	 * Constraint:
+	 *     (name=ValidID type=TypeRef many?='[]'?)
+	 */
+	protected void sequence_TypeVarWithoutInitializer(ISerializationContext context, TypeVar semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     UnorderedTupleTypeLiteralWithInitializer returns UnorderedTupleTypeLiteral
+	 *
+	 * Constraint:
+	 *     (source=[ImportSection|ValidID] elements+=TypeVarWithInitializer elements+=TypeVarWithInitializer*)
+	 */
+	protected void sequence_UnorderedTupleTypeLiteralWithInitializer(ISerializationContext context, UnorderedTupleTypeLiteral semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1421,7 +1478,7 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	 *     ContextTypeRef returns UnorderedTupleTypeLiteral
 	 *
 	 * Constraint:
-	 *     (source=[ImportSection|ValidID] elements+=TypeVar elements+=TypeVar*)
+	 *     (source=[ImportSection|ValidID] elements+=TypeVarWithoutInitializer elements+=TypeVarWithoutInitializer*)
 	 */
 	protected void sequence_UnorderedTupleTypeLiteral(ISerializationContext context, UnorderedTupleTypeLiteral semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1454,18 +1511,18 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	 *     VarMapping returns VarMapping
 	 *
 	 * Constraint:
-	 *     (from=ValidID to=ValidID)
+	 *     (to=ValidID from=ValidID)
 	 */
 	protected void sequence_VarMapping(ISerializationContext context, VarMapping semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.VAR_MAPPING__FROM) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.VAR_MAPPING__FROM));
 			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.VAR_MAPPING__TO) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.VAR_MAPPING__TO));
+			if (transientValues.isValueTransient(semanticObject, BXCorePackage.Literals.VAR_MAPPING__FROM) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BXCorePackage.Literals.VAR_MAPPING__FROM));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getVarMappingAccess().getFromValidIDParserRuleCall_0_0(), semanticObject.getFrom());
-		feeder.accept(grammarAccess.getVarMappingAccess().getToValidIDParserRuleCall_2_0(), semanticObject.getTo());
+		feeder.accept(grammarAccess.getVarMappingAccess().getToValidIDParserRuleCall_0_0(), semanticObject.getTo());
+		feeder.accept(grammarAccess.getVarMappingAccess().getFromValidIDParserRuleCall_2_0(), semanticObject.getFrom());
 		feeder.finish();
 	}
 	
@@ -1497,7 +1554,7 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	 *     XmuCoreContextSource returns XmuCoreContextSource
 	 *
 	 * Constraint:
-	 *     (typeIndicator=TypeIndicator? mappingSource=OrderedTupleTypeLiteral mappingView=OrderedTupleTypeLiteral body=XmuCoreStatement)
+	 *     (typeIndicator=TypeIndicator? mappingView=UnorderedTupleTypeLiteralWithInitializer body=XmuCoreStatement)
 	 */
 	protected void sequence_XmuCoreContextSource(ISerializationContext context, XmuCoreContextSource semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1511,7 +1568,7 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	 *     XmuCoreDependencyView returns XmuCoreDependencyView
 	 *
 	 * Constraint:
-	 *     (typeIndicator=TypeIndicator? dependencyFunctions+=ContextAwareDerivationAction+ dependentType=OrderedTupleTypeLiteral body=XmuCoreStatement)
+	 *     (typeIndicator=TypeIndicator? dependentType=UnorderedTupleTypeLiteralWithInitializer body=XmuCoreStatement)
 	 */
 	protected void sequence_XmuCoreDependencyView(ISerializationContext context, XmuCoreDependencyView semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1525,7 +1582,7 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	 *     XmuCoreDeriveSource returns XmuCoreDeriveSource
 	 *
 	 * Constraint:
-	 *     (typeIndicator=TypeIndicator? derivationFunctions+=ContextAwareDerivationAction+ derivedType=OrderedTupleTypeLiteral body=XmuCoreStatement)
+	 *     (typeIndicator=TypeIndicator? derivedType=UnorderedTupleTypeLiteralWithInitializer body=XmuCoreStatement)
 	 */
 	protected void sequence_XmuCoreDeriveSource(ISerializationContext context, XmuCoreDeriveSource semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

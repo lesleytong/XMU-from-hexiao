@@ -15,7 +15,7 @@ abstract public class XmuProgram {
 			packageMap.put(name, pkg);
 	}
 	
-	public EPackage getPacakge(String name) {
+	public EPackage getPackage(String name) {
 		return packageMap.get(name);
 	}
 }

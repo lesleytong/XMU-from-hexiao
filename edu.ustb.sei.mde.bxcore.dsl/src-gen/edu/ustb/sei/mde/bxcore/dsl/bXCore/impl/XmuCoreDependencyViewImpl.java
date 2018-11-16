@@ -4,25 +4,17 @@
 package edu.ustb.sei.mde.bxcore.dsl.bXCore.impl;
 
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage;
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareDerivationAction;
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.OrderedTupleTypeLiteral;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.UnorderedTupleTypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreDependencyView;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreStatement;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,7 +24,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.XmuCoreDependencyViewImpl#getDependencyFunctions <em>Dependency Functions</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.XmuCoreDependencyViewImpl#getDependentType <em>Dependent Type</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.XmuCoreDependencyViewImpl#getBody <em>Body</em>}</li>
  * </ul>
@@ -42,16 +33,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
 public class XmuCoreDependencyViewImpl extends XmuCoreCompositionChildStatementImpl implements XmuCoreDependencyView
 {
   /**
-   * The cached value of the '{@link #getDependencyFunctions() <em>Dependency Functions</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getDependencyFunctions()
-   * @generated
-   * @ordered
-   */
-  protected EList<ContextAwareDerivationAction> dependencyFunctions;
-
-  /**
    * The cached value of the '{@link #getDependentType() <em>Dependent Type</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -59,7 +40,7 @@ public class XmuCoreDependencyViewImpl extends XmuCoreCompositionChildStatementI
    * @generated
    * @ordered
    */
-  protected OrderedTupleTypeLiteral dependentType;
+  protected UnorderedTupleTypeLiteral dependentType;
 
   /**
    * The cached value of the '{@link #getBody() <em>Body</em>}' containment reference.
@@ -97,21 +78,7 @@ public class XmuCoreDependencyViewImpl extends XmuCoreCompositionChildStatementI
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<ContextAwareDerivationAction> getDependencyFunctions()
-  {
-    if (dependencyFunctions == null)
-    {
-      dependencyFunctions = new EObjectContainmentEList<ContextAwareDerivationAction>(ContextAwareDerivationAction.class, this, BXCorePackage.XMU_CORE_DEPENDENCY_VIEW__DEPENDENCY_FUNCTIONS);
-    }
-    return dependencyFunctions;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public OrderedTupleTypeLiteral getDependentType()
+  public UnorderedTupleTypeLiteral getDependentType()
   {
     return dependentType;
   }
@@ -121,9 +88,9 @@ public class XmuCoreDependencyViewImpl extends XmuCoreCompositionChildStatementI
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetDependentType(OrderedTupleTypeLiteral newDependentType, NotificationChain msgs)
+  public NotificationChain basicSetDependentType(UnorderedTupleTypeLiteral newDependentType, NotificationChain msgs)
   {
-    OrderedTupleTypeLiteral oldDependentType = dependentType;
+    UnorderedTupleTypeLiteral oldDependentType = dependentType;
     dependentType = newDependentType;
     if (eNotificationRequired())
     {
@@ -138,7 +105,7 @@ public class XmuCoreDependencyViewImpl extends XmuCoreCompositionChildStatementI
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setDependentType(OrderedTupleTypeLiteral newDependentType)
+  public void setDependentType(UnorderedTupleTypeLiteral newDependentType)
   {
     if (newDependentType != dependentType)
     {
@@ -212,8 +179,6 @@ public class XmuCoreDependencyViewImpl extends XmuCoreCompositionChildStatementI
   {
     switch (featureID)
     {
-      case BXCorePackage.XMU_CORE_DEPENDENCY_VIEW__DEPENDENCY_FUNCTIONS:
-        return ((InternalEList<?>)getDependencyFunctions()).basicRemove(otherEnd, msgs);
       case BXCorePackage.XMU_CORE_DEPENDENCY_VIEW__DEPENDENT_TYPE:
         return basicSetDependentType(null, msgs);
       case BXCorePackage.XMU_CORE_DEPENDENCY_VIEW__BODY:
@@ -232,8 +197,6 @@ public class XmuCoreDependencyViewImpl extends XmuCoreCompositionChildStatementI
   {
     switch (featureID)
     {
-      case BXCorePackage.XMU_CORE_DEPENDENCY_VIEW__DEPENDENCY_FUNCTIONS:
-        return getDependencyFunctions();
       case BXCorePackage.XMU_CORE_DEPENDENCY_VIEW__DEPENDENT_TYPE:
         return getDependentType();
       case BXCorePackage.XMU_CORE_DEPENDENCY_VIEW__BODY:
@@ -247,18 +210,13 @@ public class XmuCoreDependencyViewImpl extends XmuCoreCompositionChildStatementI
    * <!-- end-user-doc -->
    * @generated
    */
-  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
-      case BXCorePackage.XMU_CORE_DEPENDENCY_VIEW__DEPENDENCY_FUNCTIONS:
-        getDependencyFunctions().clear();
-        getDependencyFunctions().addAll((Collection<? extends ContextAwareDerivationAction>)newValue);
-        return;
       case BXCorePackage.XMU_CORE_DEPENDENCY_VIEW__DEPENDENT_TYPE:
-        setDependentType((OrderedTupleTypeLiteral)newValue);
+        setDependentType((UnorderedTupleTypeLiteral)newValue);
         return;
       case BXCorePackage.XMU_CORE_DEPENDENCY_VIEW__BODY:
         setBody((XmuCoreStatement)newValue);
@@ -277,11 +235,8 @@ public class XmuCoreDependencyViewImpl extends XmuCoreCompositionChildStatementI
   {
     switch (featureID)
     {
-      case BXCorePackage.XMU_CORE_DEPENDENCY_VIEW__DEPENDENCY_FUNCTIONS:
-        getDependencyFunctions().clear();
-        return;
       case BXCorePackage.XMU_CORE_DEPENDENCY_VIEW__DEPENDENT_TYPE:
-        setDependentType((OrderedTupleTypeLiteral)null);
+        setDependentType((UnorderedTupleTypeLiteral)null);
         return;
       case BXCorePackage.XMU_CORE_DEPENDENCY_VIEW__BODY:
         setBody((XmuCoreStatement)null);
@@ -300,8 +255,6 @@ public class XmuCoreDependencyViewImpl extends XmuCoreCompositionChildStatementI
   {
     switch (featureID)
     {
-      case BXCorePackage.XMU_CORE_DEPENDENCY_VIEW__DEPENDENCY_FUNCTIONS:
-        return dependencyFunctions != null && !dependencyFunctions.isEmpty();
       case BXCorePackage.XMU_CORE_DEPENDENCY_VIEW__DEPENDENT_TYPE:
         return dependentType != null;
       case BXCorePackage.XMU_CORE_DEPENDENCY_VIEW__BODY:

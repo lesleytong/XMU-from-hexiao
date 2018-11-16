@@ -10,12 +10,11 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.regex.Matcher;
 
-import org.chocosolver.solver.Solver;
-
 import edu.ustb.sei.mde.bxcore.XmuCoreUtils;
 import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
 import edu.ustb.sei.mde.bxcore.exceptions.UninitializedException;
 import edu.ustb.sei.mde.bxcore.structures.Context;
+import edu.ustb.sei.mde.bxcore.structures.ContextGraph;
 import edu.ustb.sei.mde.bxcore.structures.ContextType;
 import edu.ustb.sei.mde.bxcore.structures.FieldDef;
 import edu.ustb.sei.mde.bxcore.structures.Index;
@@ -41,6 +40,7 @@ import edu.ustb.sei.mde.graph.typedGraph.ValueNode;
 import edu.ustb.sei.mde.modelsolver.EdgeVar;
 import edu.ustb.sei.mde.modelsolver.GraphModel;
 import edu.ustb.sei.mde.modelsolver.NodeVar;
+import edu.ustb.sei.mde.structure.Tuple2;
 
 public class Pattern implements IGraph {
 	private List<INode> nodes = new ArrayList<INode>();
@@ -51,7 +51,7 @@ public class Pattern implements IGraph {
 	// it seems that the additional fields of a pattern should be associated with an initializer
 	// we check whether they are context vars or dependent vars now // not implemented!!
 	// maybe we should allow initializer in field def
-	private List<FieldDef<?>> additionalFields = new ArrayList<>(); 
+	private List<Tuple2<FieldDef<?>, Function<ContextGraph, Object>>> additionalFields = new ArrayList<>(); 
 
 	public void setFilter(Function<Context, Boolean> filter) {
 		this.filter = filter;
@@ -99,7 +99,11 @@ public class Pattern implements IGraph {
 	}
 	
 	public void addAdditionalField(FieldDef<?> field) {
-		this.additionalFields.add(field);
+		this.additionalFields.add(Tuple2.make(field,null));
+	}
+	
+	public void addAdditionalField(FieldDef<?> field, Function<ContextGraph, Object> function) {
+		this.additionalFields.add(Tuple2.make(field,function));
 	}
 
 	public TypeGraph getTypeGraph() {
@@ -134,18 +138,27 @@ public class Pattern implements IGraph {
 				Object idx = so.isIndexable() ? so.getIndex() : so;
 				m.setValue(ev.getName(), idx);
 			});
+			ContextGraph contextGraph = ContextGraph.makeContextGraph(typedGraph, m);
 			
-			this.additionalFields.forEach(f->{
+			boolean valueFilter = this.additionalFields.stream().allMatch(f->{
 				try {
-					Object bv = base.getValue(f);
-					m.setValue(f, bv);
+					Object bv = base.getValue(f.first);
+					m.setValue(f.first, bv);
+					if(f.second!=null) {
+						Object cv = f.second.apply(contextGraph);
+						return cv==bv || (cv!=null && cv.equals(bv));
+					} else return true;
 				} catch (UninitializedException e) {
-					// TODO: derive new value if the base value is missing
+					if(f.second!=null) {
+						m.setValue(f.first, f.second.apply(contextGraph));
+						return true;
+					} else return false;
 				} catch (Exception e) {
+					return false;
 				}
 			});
 			
-			if(this.filter==null || this.filter.apply(m))
+			if(valueFilter && (this.filter==null || this.filter.apply(m)))
 				matches.add(m);
 		}
 		
@@ -557,8 +570,35 @@ public class Pattern implements IGraph {
 			}
 		});
 		
+		if(!edgeConsistent) return false;
 		
-		return edgeConsistent;
+		ContextGraph contextGraph = ContextGraph.makeContextGraph(graph, match);
+		
+		boolean additionalValueConsistent = this.additionalFields.stream().allMatch(f->{
+			if(f.second!=null) {
+				try {
+					Object mv = match.getValue(f.first.getName());
+					Object dv = f.second.apply(contextGraph);
+					return mv==dv || (dv!=null && dv.equals(mv));
+				} catch (UninitializedException e) {
+					match.setValue(f.first, f.second.apply(contextGraph));
+					return true;
+				} catch (Exception e) {
+					return false;
+				}
+			} else {
+				try {
+					match.getValue(f.first.getName());
+					return true;
+				} catch (Exception e) {
+					return false;
+				}
+			}
+		});
+		
+		if(!additionalValueConsistent) return false;
+		
+		return filter==null || filter.apply(match);
 	}
 
 	protected boolean isValueEqual(ValueNode valueNode, Object value) {
@@ -603,7 +643,7 @@ public class Pattern implements IGraph {
 				type.addField(((PatternElement<?>) e).getName(), ((PatternElement<?>) e).getType(), ((PatternElement<?>) e).isMany());
 			});
 			this.additionalFields.forEach(f->{
-				type.addField(f);
+				type.addField(f.first);
 			});
 		}
 		return type;

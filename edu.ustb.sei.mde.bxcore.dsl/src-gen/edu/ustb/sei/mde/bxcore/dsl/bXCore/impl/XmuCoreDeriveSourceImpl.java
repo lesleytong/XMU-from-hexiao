@@ -4,25 +4,17 @@
 package edu.ustb.sei.mde.bxcore.dsl.bXCore.impl;
 
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage;
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareDerivationAction;
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.OrderedTupleTypeLiteral;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.UnorderedTupleTypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreDeriveSource;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreStatement;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,7 +24,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.XmuCoreDeriveSourceImpl#getDerivationFunctions <em>Derivation Functions</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.XmuCoreDeriveSourceImpl#getDerivedType <em>Derived Type</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.XmuCoreDeriveSourceImpl#getBody <em>Body</em>}</li>
  * </ul>
@@ -42,16 +33,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
 public class XmuCoreDeriveSourceImpl extends XmuCoreCompositionChildStatementImpl implements XmuCoreDeriveSource
 {
   /**
-   * The cached value of the '{@link #getDerivationFunctions() <em>Derivation Functions</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getDerivationFunctions()
-   * @generated
-   * @ordered
-   */
-  protected EList<ContextAwareDerivationAction> derivationFunctions;
-
-  /**
    * The cached value of the '{@link #getDerivedType() <em>Derived Type</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -59,7 +40,7 @@ public class XmuCoreDeriveSourceImpl extends XmuCoreCompositionChildStatementImp
    * @generated
    * @ordered
    */
-  protected OrderedTupleTypeLiteral derivedType;
+  protected UnorderedTupleTypeLiteral derivedType;
 
   /**
    * The cached value of the '{@link #getBody() <em>Body</em>}' containment reference.
@@ -97,21 +78,7 @@ public class XmuCoreDeriveSourceImpl extends XmuCoreCompositionChildStatementImp
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<ContextAwareDerivationAction> getDerivationFunctions()
-  {
-    if (derivationFunctions == null)
-    {
-      derivationFunctions = new EObjectContainmentEList<ContextAwareDerivationAction>(ContextAwareDerivationAction.class, this, BXCorePackage.XMU_CORE_DERIVE_SOURCE__DERIVATION_FUNCTIONS);
-    }
-    return derivationFunctions;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public OrderedTupleTypeLiteral getDerivedType()
+  public UnorderedTupleTypeLiteral getDerivedType()
   {
     return derivedType;
   }
@@ -121,9 +88,9 @@ public class XmuCoreDeriveSourceImpl extends XmuCoreCompositionChildStatementImp
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetDerivedType(OrderedTupleTypeLiteral newDerivedType, NotificationChain msgs)
+  public NotificationChain basicSetDerivedType(UnorderedTupleTypeLiteral newDerivedType, NotificationChain msgs)
   {
-    OrderedTupleTypeLiteral oldDerivedType = derivedType;
+    UnorderedTupleTypeLiteral oldDerivedType = derivedType;
     derivedType = newDerivedType;
     if (eNotificationRequired())
     {
@@ -138,7 +105,7 @@ public class XmuCoreDeriveSourceImpl extends XmuCoreCompositionChildStatementImp
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setDerivedType(OrderedTupleTypeLiteral newDerivedType)
+  public void setDerivedType(UnorderedTupleTypeLiteral newDerivedType)
   {
     if (newDerivedType != derivedType)
     {
@@ -212,8 +179,6 @@ public class XmuCoreDeriveSourceImpl extends XmuCoreCompositionChildStatementImp
   {
     switch (featureID)
     {
-      case BXCorePackage.XMU_CORE_DERIVE_SOURCE__DERIVATION_FUNCTIONS:
-        return ((InternalEList<?>)getDerivationFunctions()).basicRemove(otherEnd, msgs);
       case BXCorePackage.XMU_CORE_DERIVE_SOURCE__DERIVED_TYPE:
         return basicSetDerivedType(null, msgs);
       case BXCorePackage.XMU_CORE_DERIVE_SOURCE__BODY:
@@ -232,8 +197,6 @@ public class XmuCoreDeriveSourceImpl extends XmuCoreCompositionChildStatementImp
   {
     switch (featureID)
     {
-      case BXCorePackage.XMU_CORE_DERIVE_SOURCE__DERIVATION_FUNCTIONS:
-        return getDerivationFunctions();
       case BXCorePackage.XMU_CORE_DERIVE_SOURCE__DERIVED_TYPE:
         return getDerivedType();
       case BXCorePackage.XMU_CORE_DERIVE_SOURCE__BODY:
@@ -247,18 +210,13 @@ public class XmuCoreDeriveSourceImpl extends XmuCoreCompositionChildStatementImp
    * <!-- end-user-doc -->
    * @generated
    */
-  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
-      case BXCorePackage.XMU_CORE_DERIVE_SOURCE__DERIVATION_FUNCTIONS:
-        getDerivationFunctions().clear();
-        getDerivationFunctions().addAll((Collection<? extends ContextAwareDerivationAction>)newValue);
-        return;
       case BXCorePackage.XMU_CORE_DERIVE_SOURCE__DERIVED_TYPE:
-        setDerivedType((OrderedTupleTypeLiteral)newValue);
+        setDerivedType((UnorderedTupleTypeLiteral)newValue);
         return;
       case BXCorePackage.XMU_CORE_DERIVE_SOURCE__BODY:
         setBody((XmuCoreStatement)newValue);
@@ -277,11 +235,8 @@ public class XmuCoreDeriveSourceImpl extends XmuCoreCompositionChildStatementImp
   {
     switch (featureID)
     {
-      case BXCorePackage.XMU_CORE_DERIVE_SOURCE__DERIVATION_FUNCTIONS:
-        getDerivationFunctions().clear();
-        return;
       case BXCorePackage.XMU_CORE_DERIVE_SOURCE__DERIVED_TYPE:
-        setDerivedType((OrderedTupleTypeLiteral)null);
+        setDerivedType((UnorderedTupleTypeLiteral)null);
         return;
       case BXCorePackage.XMU_CORE_DERIVE_SOURCE__BODY:
         setBody((XmuCoreStatement)null);
@@ -300,8 +255,6 @@ public class XmuCoreDeriveSourceImpl extends XmuCoreCompositionChildStatementImp
   {
     switch (featureID)
     {
-      case BXCorePackage.XMU_CORE_DERIVE_SOURCE__DERIVATION_FUNCTIONS:
-        return derivationFunctions != null && !derivationFunctions.isEmpty();
       case BXCorePackage.XMU_CORE_DERIVE_SOURCE__DERIVED_TYPE:
         return derivedType != null;
       case BXCorePackage.XMU_CORE_DERIVE_SOURCE__BODY:

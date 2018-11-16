@@ -14,8 +14,8 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.VarMapping#getFrom <em>From</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.VarMapping#getTo <em>To</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.VarMapping#getFrom <em>From</em>}</li>
  * </ul>
  *
  * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getVarMapping()
@@ -24,32 +24,6 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface VarMapping extends EObject
 {
-  /**
-   * Returns the value of the '<em><b>From</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>From</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>From</em>' attribute.
-   * @see #setFrom(String)
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getVarMapping_From()
-   * @model
-   * @generated
-   */
-  String getFrom();
-
-  /**
-   * Sets the value of the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.VarMapping#getFrom <em>From</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>From</em>' attribute.
-   * @see #getFrom()
-   * @generated
-   */
-  void setFrom(String value);
-
   /**
    * Returns the value of the '<em><b>To</b></em>' attribute.
    * <!-- begin-user-doc -->
@@ -75,5 +49,31 @@ public interface VarMapping extends EObject
    * @generated
    */
   void setTo(String value);
+
+  /**
+   * Returns the value of the '<em><b>From</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>From</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>From</em>' attribute.
+   * @see #setFrom(String)
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getVarMapping_From()
+   * @model
+   * @generated
+   */
+  String getFrom();
+
+  /**
+   * Sets the value of the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.VarMapping#getFrom <em>From</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>From</em>' attribute.
+   * @see #getFrom()
+   * @generated
+   */
+  void setFrom(String value);
 
 } // VarMapping

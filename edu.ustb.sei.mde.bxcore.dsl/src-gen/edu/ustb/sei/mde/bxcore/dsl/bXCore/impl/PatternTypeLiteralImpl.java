@@ -35,8 +35,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PatternTypeLiteralImpl#getSource <em>Source</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PatternTypeLiteralImpl#getRoot <em>Root</em>}</li>
- *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PatternTypeLiteralImpl#getFilter <em>Filter</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PatternTypeLiteralImpl#getAdditional <em>Additional</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PatternTypeLiteralImpl#getFilter <em>Filter</em>}</li>
  * </ul>
  *
  * @generated
@@ -64,16 +64,6 @@ public class PatternTypeLiteralImpl extends TypeLiteralImpl implements PatternTy
   protected PatternNode root;
 
   /**
-   * The cached value of the '{@link #getFilter() <em>Filter</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getFilter()
-   * @generated
-   * @ordered
-   */
-  protected ContextAwareCondition filter;
-
-  /**
    * The cached value of the '{@link #getAdditional() <em>Additional</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -82,6 +72,16 @@ public class PatternTypeLiteralImpl extends TypeLiteralImpl implements PatternTy
    * @ordered
    */
   protected EList<TypeVar> additional;
+
+  /**
+   * The cached value of the '{@link #getFilter() <em>Filter</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getFilter()
+   * @generated
+   * @ordered
+   */
+  protected ContextAwareCondition filter;
 
   /**
    * <!-- begin-user-doc -->
@@ -200,6 +200,20 @@ public class PatternTypeLiteralImpl extends TypeLiteralImpl implements PatternTy
    * <!-- end-user-doc -->
    * @generated
    */
+  public EList<TypeVar> getAdditional()
+  {
+    if (additional == null)
+    {
+      additional = new EObjectContainmentEList<TypeVar>(TypeVar.class, this, BXCorePackage.PATTERN_TYPE_LITERAL__ADDITIONAL);
+    }
+    return additional;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public ContextAwareCondition getFilter()
   {
     return filter;
@@ -248,20 +262,6 @@ public class PatternTypeLiteralImpl extends TypeLiteralImpl implements PatternTy
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<TypeVar> getAdditional()
-  {
-    if (additional == null)
-    {
-      additional = new EObjectContainmentEList<TypeVar>(TypeVar.class, this, BXCorePackage.PATTERN_TYPE_LITERAL__ADDITIONAL);
-    }
-    return additional;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -269,10 +269,10 @@ public class PatternTypeLiteralImpl extends TypeLiteralImpl implements PatternTy
     {
       case BXCorePackage.PATTERN_TYPE_LITERAL__ROOT:
         return basicSetRoot(null, msgs);
-      case BXCorePackage.PATTERN_TYPE_LITERAL__FILTER:
-        return basicSetFilter(null, msgs);
       case BXCorePackage.PATTERN_TYPE_LITERAL__ADDITIONAL:
         return ((InternalEList<?>)getAdditional()).basicRemove(otherEnd, msgs);
+      case BXCorePackage.PATTERN_TYPE_LITERAL__FILTER:
+        return basicSetFilter(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -292,10 +292,10 @@ public class PatternTypeLiteralImpl extends TypeLiteralImpl implements PatternTy
         return basicGetSource();
       case BXCorePackage.PATTERN_TYPE_LITERAL__ROOT:
         return getRoot();
-      case BXCorePackage.PATTERN_TYPE_LITERAL__FILTER:
-        return getFilter();
       case BXCorePackage.PATTERN_TYPE_LITERAL__ADDITIONAL:
         return getAdditional();
+      case BXCorePackage.PATTERN_TYPE_LITERAL__FILTER:
+        return getFilter();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -317,12 +317,12 @@ public class PatternTypeLiteralImpl extends TypeLiteralImpl implements PatternTy
       case BXCorePackage.PATTERN_TYPE_LITERAL__ROOT:
         setRoot((PatternNode)newValue);
         return;
-      case BXCorePackage.PATTERN_TYPE_LITERAL__FILTER:
-        setFilter((ContextAwareCondition)newValue);
-        return;
       case BXCorePackage.PATTERN_TYPE_LITERAL__ADDITIONAL:
         getAdditional().clear();
         getAdditional().addAll((Collection<? extends TypeVar>)newValue);
+        return;
+      case BXCorePackage.PATTERN_TYPE_LITERAL__FILTER:
+        setFilter((ContextAwareCondition)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -344,11 +344,11 @@ public class PatternTypeLiteralImpl extends TypeLiteralImpl implements PatternTy
       case BXCorePackage.PATTERN_TYPE_LITERAL__ROOT:
         setRoot((PatternNode)null);
         return;
-      case BXCorePackage.PATTERN_TYPE_LITERAL__FILTER:
-        setFilter((ContextAwareCondition)null);
-        return;
       case BXCorePackage.PATTERN_TYPE_LITERAL__ADDITIONAL:
         getAdditional().clear();
+        return;
+      case BXCorePackage.PATTERN_TYPE_LITERAL__FILTER:
+        setFilter((ContextAwareCondition)null);
         return;
     }
     super.eUnset(featureID);
@@ -368,10 +368,10 @@ public class PatternTypeLiteralImpl extends TypeLiteralImpl implements PatternTy
         return source != null;
       case BXCorePackage.PATTERN_TYPE_LITERAL__ROOT:
         return root != null;
-      case BXCorePackage.PATTERN_TYPE_LITERAL__FILTER:
-        return filter != null;
       case BXCorePackage.PATTERN_TYPE_LITERAL__ADDITIONAL:
         return additional != null && !additional.isEmpty();
+      case BXCorePackage.PATTERN_TYPE_LITERAL__FILTER:
+        return filter != null;
     }
     return super.eIsSet(featureID);
   }

@@ -21,6 +21,7 @@ import org.eclipse.xtext.serializer.sequencer.AbstractSyntacticSequencer;
 public class BXCoreSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected BXCoreGrammarAccess grammarAccess;
+	protected AbstractElementAlias match_ModificationExpressionBlock_SemicolonKeyword_2_1_q;
 	protected AbstractElementAlias match_PatternNode___LeftCurlyBracketKeyword_4_0_RightCurlyBracketKeyword_4_2__q;
 	protected AbstractElementAlias match_XBlockExpression_SemicolonKeyword_2_1_q;
 	protected AbstractElementAlias match_XExpressionInClosure_SemicolonKeyword_1_1_q;
@@ -32,6 +33,7 @@ public class BXCoreSyntacticSequencer extends AbstractSyntacticSequencer {
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (BXCoreGrammarAccess) access;
+		match_ModificationExpressionBlock_SemicolonKeyword_2_1_q = new TokenAlias(false, true, grammarAccess.getModificationExpressionBlockAccess().getSemicolonKeyword_2_1());
 		match_PatternNode___LeftCurlyBracketKeyword_4_0_RightCurlyBracketKeyword_4_2__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getPatternNodeAccess().getLeftCurlyBracketKeyword_4_0()), new TokenAlias(false, false, grammarAccess.getPatternNodeAccess().getRightCurlyBracketKeyword_4_2()));
 		match_XBlockExpression_SemicolonKeyword_2_1_q = new TokenAlias(false, true, grammarAccess.getXBlockExpressionAccess().getSemicolonKeyword_2_1());
 		match_XExpressionInClosure_SemicolonKeyword_1_1_q = new TokenAlias(false, true, grammarAccess.getXExpressionInClosureAccess().getSemicolonKeyword_1_1());
@@ -78,7 +80,9 @@ public class BXCoreSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if (match_PatternNode___LeftCurlyBracketKeyword_4_0_RightCurlyBracketKeyword_4_2__q.equals(syntax))
+			if (match_ModificationExpressionBlock_SemicolonKeyword_2_1_q.equals(syntax))
+				emit_ModificationExpressionBlock_SemicolonKeyword_2_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_PatternNode___LeftCurlyBracketKeyword_4_0_RightCurlyBracketKeyword_4_2__q.equals(syntax))
 				emit_PatternNode___LeftCurlyBracketKeyword_4_0_RightCurlyBracketKeyword_4_2__q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_XBlockExpression_SemicolonKeyword_2_1_q.equals(syntax))
 				emit_XBlockExpression_SemicolonKeyword_2_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
@@ -96,6 +100,19 @@ public class BXCoreSyntacticSequencer extends AbstractSyntacticSequencer {
 		}
 	}
 
+	/**
+	 * Ambiguous syntax:
+	 *     ';'?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     expressions+=XExpression (ambiguity) 'end' ')' (rule end)
+	 *     expressions+=XExpression (ambiguity) 'end' (rule end)
+	 *     expressions+=XExpression (ambiguity) expressions+=XExpression
+	 */
+	protected void emit_ModificationExpressionBlock_SemicolonKeyword_2_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
 	/**
 	 * Ambiguous syntax:
 	 *     ('{' '}')?

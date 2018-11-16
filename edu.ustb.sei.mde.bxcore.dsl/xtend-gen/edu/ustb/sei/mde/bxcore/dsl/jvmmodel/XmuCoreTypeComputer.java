@@ -15,7 +15,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.SideEnum;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ValueMapping;
 import edu.ustb.sei.mde.bxcore.dsl.jvmmodel.ModelInferrerUtils;
 import edu.ustb.sei.mde.bxcore.dsl.structure.TupleType;
-import edu.ustb.sei.mde.bxcore.structures.ContextGraph;
+import edu.ustb.sei.mde.bxcore.structures.GraphModification;
 import edu.ustb.sei.mde.bxcore.structures.Index;
 import edu.ustb.sei.mde.graph.typedGraph.TypedEdge;
 import edu.ustb.sei.mde.graph.typedGraph.TypedNode;
@@ -271,12 +271,12 @@ public class XmuCoreTypeComputer extends XbaseTypeComputer {
       state.withNonVoidExpectation().computeTypes(e.getExpression());
     };
     modification.getValueMappings().forEach(_function);
-    state.acceptActualType(this.getRawTypeForName(ContextGraph.GraphModification.class, state));
+    state.acceptActualType(this.getRawTypeForName(GraphModification.class, state));
   }
   
   protected void _computeTypes(final DeleteElementExpression modification, final ITypeComputationState state) {
     state.withNonVoidExpectation().computeTypes(modification.getElement());
-    state.acceptActualType(this.getRawTypeForName(ContextGraph.GraphModification.class, state));
+    state.acceptActualType(this.getRawTypeForName(GraphModification.class, state));
   }
   
   protected void _computeTypes(final NewInstanceExpression instance, final ITypeComputationState state) {

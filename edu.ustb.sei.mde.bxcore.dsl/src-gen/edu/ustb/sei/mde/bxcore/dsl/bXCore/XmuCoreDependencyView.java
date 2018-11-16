@@ -3,7 +3,6 @@
  */
 package edu.ustb.sei.mde.bxcore.dsl.bXCore;
 
-import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,7 +13,6 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreDependencyView#getDependencyFunctions <em>Dependency Functions</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreDependencyView#getDependentType <em>Dependent Type</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreDependencyView#getBody <em>Body</em>}</li>
  * </ul>
@@ -26,22 +24,6 @@ import org.eclipse.emf.common.util.EList;
 public interface XmuCoreDependencyView extends XmuCoreCompositionChildStatement
 {
   /**
-   * Returns the value of the '<em><b>Dependency Functions</b></em>' containment reference list.
-   * The list contents are of type {@link edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareDerivationAction}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Dependency Functions</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Dependency Functions</em>' containment reference list.
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getXmuCoreDependencyView_DependencyFunctions()
-   * @model containment="true"
-   * @generated
-   */
-  EList<ContextAwareDerivationAction> getDependencyFunctions();
-
-  /**
    * Returns the value of the '<em><b>Dependent Type</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
@@ -50,12 +32,12 @@ public interface XmuCoreDependencyView extends XmuCoreCompositionChildStatement
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Dependent Type</em>' containment reference.
-   * @see #setDependentType(OrderedTupleTypeLiteral)
+   * @see #setDependentType(UnorderedTupleTypeLiteral)
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getXmuCoreDependencyView_DependentType()
    * @model containment="true"
    * @generated
    */
-  OrderedTupleTypeLiteral getDependentType();
+  UnorderedTupleTypeLiteral getDependentType();
 
   /**
    * Sets the value of the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreDependencyView#getDependentType <em>Dependent Type</em>}' containment reference.
@@ -65,7 +47,7 @@ public interface XmuCoreDependencyView extends XmuCoreCompositionChildStatement
    * @see #getDependentType()
    * @generated
    */
-  void setDependentType(OrderedTupleTypeLiteral value);
+  void setDependentType(UnorderedTupleTypeLiteral value);
 
   /**
    * Returns the value of the '<em><b>Body</b></em>' containment reference.

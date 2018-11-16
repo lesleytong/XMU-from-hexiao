@@ -13,7 +13,6 @@ package edu.ustb.sei.mde.bxcore.dsl.bXCore;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreContextSource#getMappingSource <em>Mapping Source</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreContextSource#getMappingView <em>Mapping View</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreContextSource#getBody <em>Body</em>}</li>
  * </ul>
@@ -25,32 +24,6 @@ package edu.ustb.sei.mde.bxcore.dsl.bXCore;
 public interface XmuCoreContextSource extends XmuCoreCompositionChildStatement
 {
   /**
-   * Returns the value of the '<em><b>Mapping Source</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Mapping Source</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Mapping Source</em>' containment reference.
-   * @see #setMappingSource(OrderedTupleTypeLiteral)
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getXmuCoreContextSource_MappingSource()
-   * @model containment="true"
-   * @generated
-   */
-  OrderedTupleTypeLiteral getMappingSource();
-
-  /**
-   * Sets the value of the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreContextSource#getMappingSource <em>Mapping Source</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Mapping Source</em>' containment reference.
-   * @see #getMappingSource()
-   * @generated
-   */
-  void setMappingSource(OrderedTupleTypeLiteral value);
-
-  /**
    * Returns the value of the '<em><b>Mapping View</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
@@ -59,12 +32,12 @@ public interface XmuCoreContextSource extends XmuCoreCompositionChildStatement
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Mapping View</em>' containment reference.
-   * @see #setMappingView(OrderedTupleTypeLiteral)
+   * @see #setMappingView(UnorderedTupleTypeLiteral)
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getXmuCoreContextSource_MappingView()
    * @model containment="true"
    * @generated
    */
-  OrderedTupleTypeLiteral getMappingView();
+  UnorderedTupleTypeLiteral getMappingView();
 
   /**
    * Sets the value of the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreContextSource#getMappingView <em>Mapping View</em>}' containment reference.
@@ -74,7 +47,7 @@ public interface XmuCoreContextSource extends XmuCoreCompositionChildStatement
    * @see #getMappingView()
    * @generated
    */
-  void setMappingView(OrderedTupleTypeLiteral value);
+  void setMappingView(UnorderedTupleTypeLiteral value);
 
   /**
    * Returns the value of the '<em><b>Body</b></em>' containment reference.

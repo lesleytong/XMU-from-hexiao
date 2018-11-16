@@ -122,27 +122,6 @@ public class BXCoreValidator extends AbstractBXCoreValidator {
       if ((data != null)) {
         this.checkVarMappings(stat, data);
       }
-      if ((stat instanceof XmuCoreContextSource)) {
-        int _size = ((XmuCoreContextSource)stat).getMappingSource().getElements().size();
-        int _size_1 = ((XmuCoreContextSource)stat).getMappingView().getElements().size();
-        boolean _tripleNotEquals = (_size != _size_1);
-        if (_tripleNotEquals) {
-          StringConcatenation _builder_2 = new StringConcatenation();
-          _builder_2.append("The count of source vars should be equal to the count of the view vars");
-          this.error(_builder_2.toString(), stat);
-        }
-      } else {
-        if ((stat instanceof XmuCoreDeriveSource)) {
-          int _size_2 = ((XmuCoreDeriveSource)stat).getDerivedType().getElements().size();
-          int _size_3 = ((XmuCoreDeriveSource)stat).getDerivationFunctions().size();
-          boolean _tripleNotEquals_1 = (_size_2 != _size_3);
-          if (_tripleNotEquals_1) {
-            StringConcatenation _builder_3 = new StringConcatenation();
-            _builder_3.append("The count of source vars should be equal to the count of the derivation functions");
-            this.error(_builder_3.toString(), stat);
-          }
-        }
-      }
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

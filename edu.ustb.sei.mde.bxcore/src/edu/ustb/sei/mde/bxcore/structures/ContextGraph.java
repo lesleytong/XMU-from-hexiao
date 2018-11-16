@@ -3,9 +3,7 @@ package edu.ustb.sei.mde.bxcore.structures;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import edu.ustb.sei.mde.bxcore.SourceType;
@@ -25,10 +23,33 @@ import edu.ustb.sei.mde.graph.typedGraph.TypedEdge;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
 import edu.ustb.sei.mde.graph.typedGraph.TypedNode;
 import edu.ustb.sei.mde.graph.typedGraph.ValueEdge;
-import edu.ustb.sei.mde.graph.typedGraph.ValueNode;
 import edu.ustb.sei.mde.structure.Tuple2;
 
 public interface ContextGraph {
+	class ContextGraphImpl implements ContextGraph {
+		public ContextGraphImpl(TypedGraph graph, Context context) {
+			super();
+			this.graph = graph;
+			this.context = context;
+		}
+		private Context context;
+		private TypedGraph graph;
+		
+		@Override
+		public Context getContext() {
+			return context;
+		}
+		
+		@Override
+		public TypedGraph getGraph() {
+			return graph;
+		}
+	}
+	
+	static public ContextGraph makeContextGraph(TypedGraph g, Context c) {
+		return new ContextGraphImpl(g, c);
+	}
+	
 	default Context getContext() {
 		if(this instanceof SourceType)
 			return ((SourceType)this).second;
@@ -156,210 +177,6 @@ public interface ContextGraph {
 		TypedGraph graph = this.getGraph();
 		TypeGraph type = graph.getTypeGraph();
 		return type.getPropertyEdge(node, name);
-	}
-	
-	static public class GraphModification {
-		public GraphModification(ContextGraph data) {
-			super();
-			this.data = data;
-			this.varMap = new HashMap<String, Object>();
-		}
-
-		private ContextGraph data;
-		private Map<String, Object> varMap;
-		
-		public GraphModification addTypedNodeAs(String id, String type) {
-			TypedGraph graph = data.getGraph();
-			TypeGraph typeGraph = graph.getTypeGraph();
-			Context context = data.getContext();
-			
-			TypeNode tn = typeGraph.getTypeNode(type);
-			TypedNode node = new TypedNode(tn);
-			
-			Index idx = null;
-			
-			try {
-				idx = (Index) context.getValue(id);
-			} catch (Exception e) {
-			}
-			
-			if(idx!=null) node.appendIndex(idx);
-			graph.addTypedNode(node);
-			varMap.put(id, node);
-			
-			return this;
-		}
-		public GraphModification addTypedEdge(String sid, String tid, String edge) {
-			return addTypedEdge(null, sid, tid, edge);
-		}
-		
-		public GraphModification addTypedEdge(String eid, String sid, String tid, String edge) {
-			TypedNode src = (TypedNode) varMap.get(sid);
-			TypedNode tar = (TypedNode) varMap.get(tid);
-			
-			TypedGraph graph = data.getGraph();
-			TypeGraph typeGraph = graph.getTypeGraph();
-			
-			TypeEdge te = typeGraph.getTypeEdge(src.getType(), edge);
-			TypedEdge l = new TypedEdge(src, tar, te);
-
-			Context context = data.getContext();
-			Index ind = null;
-			
-			if(eid!=null) {
-				try {
-					ind = (Index) context.getValue(eid);
-				} catch (Exception e) {
-				}
-			}
-			
-			if(ind!=null) l.appendIndex(ind);
-			
-			graph.addTypedEdge(l);
-			
-			return this;
-		}
-		
-		public GraphModification addValueNodeAs(String id, Object value, String type) {
-			TypedGraph graph = data.getGraph();
-			TypeGraph typeGraph = graph.getTypeGraph();
-			DataTypeNode tn = typeGraph.getDataTypeNode(type);
-			ValueNode node = ValueNode.createConstantNode(value, tn);
-			graph.addValueNode(node);
-			varMap.put(id, node);
-			return this;
-		}
-		
-		public GraphModification addValueEdge(String sid, String tid, String edge) {
-			return addValueEdge(sid, tid, edge);
-		}
-		
-		public GraphModification addValueEdge(String eid, String sid, String tid, String edge) {
-			TypedNode src = (TypedNode) varMap.get(sid);
-			ValueNode tar = (ValueNode) varMap.get(tid);
-			
-			TypedGraph graph = data.getGraph();
-			TypeGraph typeGraph = graph.getTypeGraph();
-			
-			PropertyEdge te = typeGraph.getPropertyEdge(src.getType(), edge);
-			
-			ValueEdge l = new ValueEdge(src, tar, te);
-			
-			Context context = data.getContext();
-			Index ind = null;
-			
-			if(eid!=null) {
-				try {
-					ind = (Index) context.getValue(eid);
-				} catch (Exception e) {
-				}
-			}
-			
-			if(ind!=null) l.appendIndex(ind);
-			
-			graph.addValueEdge(l);
-			
-			return this;
-		}
-		
-		public GraphModification remove(String id) {
-			TypedGraph graph = data.getGraph();
-			Context context = data.getContext();
-			Index ind = null;
-			try {
-				ind = (Index) context.getValue(id);
-			} catch (Exception e) {
-			}
-			if (ind != null) {
-				try {
-					IndexableElement e = graph.getElementByIndexObject(ind);
-					remove(e);
-				} catch (NothingReturnedException e) {
-				}
-			}
-			return this;
-		}
-		
-		public GraphModification remove(List<? extends IndexableElement> e) {
-			GraphModification m = this;
-			for(IndexableElement x : e) {
-				m = m.remove(x);
-			}
-			return m;
-		}
-		
-		public GraphModification remove(IndexableElement e) {
-			TypedGraph graph = data.getGraph();
-			if(e instanceof TypedNode)
-				graph.remove((TypedNode)e);
-			else if(e instanceof TypedEdge)
-				graph.remove((TypedEdge)e);
-			else if(e instanceof ValueEdge)
-				graph.remove((ValueEdge)e);
-			
-			return this;
-		}
-		
-		public GraphModification remove(Index id) {
-			TypedGraph graph = data.getGraph();
-			try {
-				IndexableElement e = graph.getElementByIndexObject(id);
-				return remove(e);
-			} catch (NothingReturnedException e1) {
-				return this;
-			}
-		}
-		
-		public GraphModification enforce(Pattern pat, Tuple2<String, Object>[] valueMaps) {
-			if(data instanceof SourceType) {
-				TypedGraph delta;
-				try {
-					Context freshContext = pat.getType().createInstance();
-					for(FieldDef<?> f : freshContext.getType().fields()) {
-						FieldDef<?> up = data.getContext().getType().getField(f.getName());
-						if(up==null) {
-							Tuple2<String, Object> tuple = null;
-							for(Tuple2<String, Object> t : valueMaps) {
-								if(t.first.equals(f.getName())) {
-									tuple = t;
-									break;
-								}
-							}
-							if(tuple==null) {
-								if(f.isMany()) {
-									freshContext.setValue(f, new ArrayList<>());
-								} else {
-									if(f.isElementType()) {
-										freshContext.setValue(f, IndexSystem.generateUUID());
-									} else {
-										freshContext.setValue(f, XmuCoreUtils.defaultValue(f.getType()));
-									}
-								}
-							} else {
-								freshContext.setValue(f, tuple.second);
-							}
-						} else {
-							freshContext.setValue(f, data.getContext().getValue(up));
-						}
-					}
-					
-					delta = pat.construct(data.getGraph(), freshContext);
-					SourceType updated = SourceType.makeSource(((SourceType)data).first.additiveMerge(delta),
-							freshContext, ((SourceType)data).third); 
-					GraphModification modify = new GraphModification(updated);
-					return modify;
-				} catch (UninitializedException | NothingReturnedException e) {
-					return null;
-				}
-			} else {
-				return null;
-			}
-		}
-		
-		@SuppressWarnings("unchecked")
-		public <T extends ContextGraph> T get() {
-			return (T) data;
-		}
 	}
 	
 	default public List<TypedNode> allTypedNodes(String typeName) {

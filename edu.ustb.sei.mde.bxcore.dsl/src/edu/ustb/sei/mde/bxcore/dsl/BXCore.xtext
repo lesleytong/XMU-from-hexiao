@@ -44,15 +44,26 @@ TupleTypeLiteral :
 ;
 
 UnorderedTupleTypeLiteral :
-	source=[ImportSection|ValidID] '!' ('(' elements+=TypeVar (',' elements+=TypeVar)* ')')
+	source=[ImportSection|ValidID] '!' ('(' elements+=TypeVarWithoutInitializer (',' elements+=TypeVarWithoutInitializer)* ')')
+;
+
+UnorderedTupleTypeLiteralWithInitializer returns UnorderedTupleTypeLiteral :
+	source=[ImportSection|ValidID] '!' ('(' elements+=TypeVarWithInitializer (',' elements+=TypeVarWithInitializer)* ')')
 ;
 
 OrderedTupleTypeLiteral :
-	source=[ImportSection|ValidID] '!' ('[' elements+=TypeVar (',' elements+=TypeVar)* ']')
+	source=[ImportSection|ValidID] '!' ('[' elements+=TypeVarWithoutInitializer (',' elements+=TypeVarWithoutInitializer)* ']')
 ;
 
 TypeVar returns TypeVar:
-	name=ValidID ':' type=TypeRef (many?='*')?
+	TypeVarWithoutInitializer | TypeVarWithInitializer
+;
+
+TypeVarWithoutInitializer returns TypeVar :
+	name=ValidID ':' type=TypeRef (many?='[]')?
+;
+TypeVarWithInitializer returns TypeVar :
+	name=ValidID ':' type=TypeRef (many?='[]')? => '<-' initializer=ContextAwareDerivationAction
 ;
 
 PredefinedTypeLiteral :
@@ -60,8 +71,9 @@ PredefinedTypeLiteral :
 ;
 
 PatternTypeLiteral :
-	source=[ImportSection|ValidID] '!' root=PatternNode ('[' filter=ContextAwareCondition ']')?
-	('(' additional+=TypeVar (',' additional+=TypeVar)* ')')?
+	source=[ImportSection|ValidID] '!' root=PatternNode 
+	('(' additional+=TypeVar (',' additional+=TypeVar)* ')')? 
+	('[' filter=ContextAwareCondition ']')?
 ;
 
 TypeDefinition:
@@ -122,9 +134,11 @@ XmuCoreStatement :
 
 XmuCoreCompositionChildStatement :
 	XmuCoreMatchSource | XmuCoreMatchView |
-	XmuCoreExpandSource | XmuCoreExpandView | XmuCoreGraphReplace |
-	XmuCoreSwitch | XmuCoreAlign | XmuCoreFunctionCall | XmuCoreIndex |
-	XmuCoreContextSource| XmuCoreForEachMatchSource | XmuCoreDeriveSource | XmuCoreDependencyView
+	XmuCoreExpandSource | XmuCoreExpandView | 
+	XmuCoreGraphReplace |
+	XmuCoreSwitch | XmuCoreAlign | => XmuCoreFunctionCall | 
+	XmuCoreIndex |
+	XmuCoreForEachMatchSource | XmuCoreContextSource| XmuCoreDeriveSource | XmuCoreDependencyView
 ;
 
 TypeIndicator :
@@ -133,8 +147,7 @@ TypeIndicator :
 
 XmuCoreContextSource :
 	'context' typeIndicator=TypeIndicator? 
-		mappingSource=OrderedTupleTypeLiteral '->'
-		mappingView=OrderedTupleTypeLiteral 
+		mappingView=UnorderedTupleTypeLiteralWithInitializer 
 		body=XmuCoreStatement
 ;
 
@@ -144,14 +157,11 @@ ContextAwareDerivationAction :
 
 XmuCoreDeriveSource :
 	'derive' typeIndicator=TypeIndicator?  
-		'[' (derivationFunctions+=ContextAwareDerivationAction)+ ']' '->' derivedType = OrderedTupleTypeLiteral
-		body=XmuCoreStatement
+		derivedType = UnorderedTupleTypeLiteralWithInitializer body=XmuCoreStatement
 ;
 
 XmuCoreDependencyView :
-	'dependency' typeIndicator=TypeIndicator? 
-	'[' (dependencyFunctions+=ContextAwareDerivationAction)+ ']' '->' dependentType = OrderedTupleTypeLiteral
-	body=XmuCoreStatement
+	'dependency' typeIndicator=TypeIndicator? dependentType = UnorderedTupleTypeLiteralWithInitializer body=XmuCoreStatement
 ;
 
 XmuCoreMatchSource :
@@ -171,7 +181,7 @@ XmuCoreExpandView :
 ;
 
 VarMapping :
-	from=ValidID '->' to=ValidID
+	 to=ValidID '<-' from=ValidID
 ;
 
 XmuCoreGraphReplace :
@@ -202,11 +212,11 @@ Conversion :
 ;
 
 XmuCoreFork :
-	typeIndicator=TypeIndicator? '{' forks+=XmuCoreForkBranch (=> '|' forks+=XmuCoreForkBranch)+ '}'
+	'fork' typeIndicator=TypeIndicator? '{' forks+=XmuCoreForkBranch ( '|' forks+=XmuCoreForkBranch)+ '}'
 ;
 
 XmuCoreForkBranch :
-	'(' sourceMappings+=VarMapping (','  sourceMappings+=VarMapping)* ')'
+	'(' sourceMappings+=VarMapping (','  sourceMappings+=VarMapping)* ')' ','
 	'(' viewMappings+=VarMapping (','  viewMappings+=VarMapping)* ')' '->'
 	body=XmuCoreStatement
 ;
@@ -217,7 +227,7 @@ XmuCoreAlign :
 ;
 
 XmuCoreFunctionCall :
-	target=[BXFunctionDefinition|ValidID] typeIndicator=TypeIndicator?  '(' (sourceMappings+=VarMapping (','  sourceMappings+=VarMapping)*)? ')'
+	target=[BXFunctionDefinition|ValidID] typeIndicator=TypeIndicator? => '(' (sourceMappings+=VarMapping (','  sourceMappings+=VarMapping)*)? ')'
 	'(' (viewMappings+=VarMapping (','  viewMappings+=VarMapping)*)? ')'
 ;
 
@@ -302,7 +312,7 @@ enum SideEnum :
 
 
 ModificationExpressionBlock returns xbase::XExpression:
-	{ModificationExpressionBlock} 'begin' (expressions+=XExpression)* 'end'
+	{ModificationExpressionBlock} 'begin' (expressions+=XExpression ';'?)* 'end'
 ;
 
 ModificationExpression returns ModificationExpression :
@@ -318,7 +328,7 @@ DeleteElementExpression:
 ;
 
 ValueMapping :
-	varName=ValidID '=' expression=XExpression
+	varName=ValidID '<-' expression=XExpression
 ;
 
 

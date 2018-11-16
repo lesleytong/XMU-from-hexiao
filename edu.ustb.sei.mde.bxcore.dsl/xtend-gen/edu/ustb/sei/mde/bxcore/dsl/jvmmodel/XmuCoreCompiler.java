@@ -20,6 +20,7 @@ import edu.ustb.sei.mde.bxcore.dsl.infer.InferManager;
 import edu.ustb.sei.mde.bxcore.dsl.jvmmodel.ModelInferrerUtils;
 import edu.ustb.sei.mde.bxcore.dsl.structure.ExceptionSafeInferface;
 import edu.ustb.sei.mde.bxcore.structures.ContextGraph;
+import edu.ustb.sei.mde.bxcore.structures.GraphModification;
 import edu.ustb.sei.mde.graph.typedGraph.IndexableElement;
 import edu.ustb.sei.mde.graph.typedGraph.TypedEdge;
 import edu.ustb.sei.mde.graph.typedGraph.TypedNode;
@@ -234,14 +235,14 @@ public class XmuCoreCompiler extends XbaseCompiler {
             a.newLine();
             final String mo = a.declareSyntheticVariable(e, "_modStart");
             StringConcatenation _builder_8 = new StringConcatenation();
-            String _canonicalName_4 = ContextGraph.GraphModification.class.getCanonicalName();
+            String _canonicalName_4 = GraphModification.class.getCanonicalName();
             _builder_8.append(_canonicalName_4);
             _builder_8.append(" ");
             _builder_8.append(mo);
             _builder_8.append(" = source.modification();");
             a.append(_builder_8);
             final Consumer<XExpression> _function = (XExpression me) -> {
-              this.internalToJavaStatement(me, a, true);
+              this.internalToJavaStatement(me, a, false);
             };
             ((ModificationExpressionBlock)e).getExpressions().forEach(_function);
             if (isReferenced) {
@@ -266,7 +267,7 @@ public class XmuCoreCompiler extends XbaseCompiler {
                 ((EnforcementExpression)e).getValueMappings().forEach(_function_1);
                 ITreeAppendable _newLine_4 = a.newLine();
                 StringConcatenation _builder_11 = new StringConcatenation();
-                String _canonicalName_5 = ContextGraph.GraphModification.class.getCanonicalName();
+                String _canonicalName_5 = GraphModification.class.getCanonicalName();
                 _builder_11.append(_canonicalName_5);
                 _builder_11.append(" ");
                 _builder_11.append(cur);
@@ -307,7 +308,7 @@ public class XmuCoreCompiler extends XbaseCompiler {
                   this.internalToJavaStatement(((DeleteElementExpression)e).getElement(), a, true);
                   ITreeAppendable _newLine_5 = a.newLine();
                   StringConcatenation _builder_14 = new StringConcatenation();
-                  String _canonicalName_6 = ContextGraph.GraphModification.class.getCanonicalName();
+                  String _canonicalName_6 = GraphModification.class.getCanonicalName();
                   _builder_14.append(_canonicalName_6);
                   _builder_14.append(" ");
                   _builder_14.append(cur);

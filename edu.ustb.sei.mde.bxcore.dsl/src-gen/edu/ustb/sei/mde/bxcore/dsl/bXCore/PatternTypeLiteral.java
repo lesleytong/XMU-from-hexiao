@@ -16,8 +16,8 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternTypeLiteral#getSource <em>Source</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternTypeLiteral#getRoot <em>Root</em>}</li>
- *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternTypeLiteral#getFilter <em>Filter</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternTypeLiteral#getAdditional <em>Additional</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternTypeLiteral#getFilter <em>Filter</em>}</li>
  * </ul>
  *
  * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getPatternTypeLiteral()
@@ -79,6 +79,22 @@ public interface PatternTypeLiteral extends TypeLiteral, Pattern
   void setRoot(PatternNode value);
 
   /**
+   * Returns the value of the '<em><b>Additional</b></em>' containment reference list.
+   * The list contents are of type {@link edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeVar}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Additional</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Additional</em>' containment reference list.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getPatternTypeLiteral_Additional()
+   * @model containment="true"
+   * @generated
+   */
+  EList<TypeVar> getAdditional();
+
+  /**
    * Returns the value of the '<em><b>Filter</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
@@ -103,21 +119,5 @@ public interface PatternTypeLiteral extends TypeLiteral, Pattern
    * @generated
    */
   void setFilter(ContextAwareCondition value);
-
-  /**
-   * Returns the value of the '<em><b>Additional</b></em>' containment reference list.
-   * The list contents are of type {@link edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeVar}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Additional</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Additional</em>' containment reference list.
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getPatternTypeLiteral_Additional()
-   * @model containment="true"
-   * @generated
-   */
-  EList<TypeVar> getAdditional();
 
 } // PatternTypeLiteral

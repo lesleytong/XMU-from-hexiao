@@ -56,6 +56,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//TypeRef"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="many" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="initializer" eType="#//ContextAwareDerivationAction"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PredefinedTypeLiteral" eSuperTypes="#//TupleTypeLiteral">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -64,10 +66,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//ImportSection"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="root" eType="#//PatternNode"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="filter" eType="#//ContextAwareCondition"
-        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="additional" upperBound="-1"
         eType="#//TypeVar" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="filter" eType="#//ContextAwareCondition"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeDefinition" eSuperTypes="#//Definition">
     <eStructuralFeatures xsi:type="ecore:EReference" name="literal" eType="#//TypeLiteral"
@@ -125,9 +127,7 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="XmuCoreContextSource" eSuperTypes="#//XmuCoreCompositionChildStatement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="mappingSource" eType="#//OrderedTupleTypeLiteral"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="mappingView" eType="#//OrderedTupleTypeLiteral"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mappingView" eType="#//UnorderedTupleTypeLiteral"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="body" eType="#//XmuCoreStatement"
         containment="true"/>
@@ -137,17 +137,13 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="XmuCoreDeriveSource" eSuperTypes="#//XmuCoreCompositionChildStatement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="derivationFunctions" upperBound="-1"
-        eType="#//ContextAwareDerivationAction" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="derivedType" eType="#//OrderedTupleTypeLiteral"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="derivedType" eType="#//UnorderedTupleTypeLiteral"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="body" eType="#//XmuCoreStatement"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="XmuCoreDependencyView" eSuperTypes="#//XmuCoreCompositionChildStatement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dependencyFunctions" upperBound="-1"
-        eType="#//ContextAwareDerivationAction" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dependentType" eType="#//OrderedTupleTypeLiteral"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dependentType" eType="#//UnorderedTupleTypeLiteral"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="body" eType="#//XmuCoreStatement"
         containment="true"/>
@@ -181,8 +177,8 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VarMapping">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="from" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="to" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="from" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="XmuCoreGraphReplace" eSuperTypes="#//XmuCoreCompositionChildStatement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//Pattern"

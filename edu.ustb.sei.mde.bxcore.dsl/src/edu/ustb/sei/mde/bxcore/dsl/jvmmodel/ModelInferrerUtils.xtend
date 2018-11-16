@@ -89,14 +89,19 @@ class ModelInferrerUtils {
 					else null
 				} else e.eContainer.context(side)
 			} else if(e instanceof ContextAwareDerivationAction) {
+				val stmt = e.containingStatementOrPattern;
 				if(side===SideEnum.SOURCE) {
-					if(e.eContainer instanceof XmuCoreDeriveSource) e.eContainer.context(side)
+					if(stmt instanceof XmuCoreDeriveSource) stmt.context(side)
 					else null
 				} else if(side===SideEnum.VIEW) {
-					if(e.eContainer instanceof XmuCoreDependencyView) 
-						e.eContainer.context(side)
+					if(stmt instanceof XmuCoreDependencyView) 
+						stmt.context(side)
 					else null
-				} else null
+				} else {
+					if(stmt instanceof PatternTypeLiteral)
+						stmt.context(side)
+					else null
+				}
 			} 
 			else if (e instanceof XmuCoreStatement) {
 				val inferData = InferManager.getInferredTypeModel(e.eResource);
@@ -108,6 +113,11 @@ class ModelInferrerUtils {
     	} catch(Exception exp) {
     		return null;
     	}
+    }
+    
+    static def EObject containingStatementOrPattern(EObject e) {
+    	if(e===null || e instanceof XmuCoreStatement || e instanceof Pattern) e
+    	else e.eContainer.containingStatementOrPattern
     }
     
     static def boolean isContextOnly(EObject e) {

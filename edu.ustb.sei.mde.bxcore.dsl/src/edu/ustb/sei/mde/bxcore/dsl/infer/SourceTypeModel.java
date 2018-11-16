@@ -177,15 +177,15 @@ public class SourceTypeModel extends TypeModel {
 			linkCause(c2, e);
 		} else if(e instanceof XmuCoreContextSource) {
 			TupleType st = getType(e);
-			TupleType stm = getType(((XmuCoreContextSource) e).getMappingSource());
+//			TupleType stm = getType(((XmuCoreContextSource) e).getMappingSource());
 			TupleType bt = getType(((XmuCoreContextSource) e).getBody());
-			
-			TypeUnion c1 = TypeUnion.makeSubSet(st, stm);
-			this.constraints.add(c1);
+//			
+//			TypeUnion c1 = TypeUnion.makeSubSet(st, stm);
+//			this.constraints.add(c1);
 			TypeEqual c2 = TypeEqual.makeEqual(st, bt);
 			this.constraints.add(c2);
 
-			linkCause(c1, e);
+//			linkCause(c1, e);
 			linkCause(c2, e);
 		} else if(e instanceof XmuCoreDeriveSource) {
 			TupleType st = getType(e);

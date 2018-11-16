@@ -21,34 +21,14 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.VarMappingImpl#getFrom <em>From</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.VarMappingImpl#getTo <em>To</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.VarMappingImpl#getFrom <em>From</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class VarMappingImpl extends MinimalEObjectImpl.Container implements VarMapping
 {
-  /**
-   * The default value of the '{@link #getFrom() <em>From</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getFrom()
-   * @generated
-   * @ordered
-   */
-  protected static final String FROM_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getFrom() <em>From</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getFrom()
-   * @generated
-   * @ordered
-   */
-  protected String from = FROM_EDEFAULT;
-
   /**
    * The default value of the '{@link #getTo() <em>To</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -70,6 +50,26 @@ public class VarMappingImpl extends MinimalEObjectImpl.Container implements VarM
   protected String to = TO_EDEFAULT;
 
   /**
+   * The default value of the '{@link #getFrom() <em>From</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getFrom()
+   * @generated
+   * @ordered
+   */
+  protected static final String FROM_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getFrom() <em>From</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getFrom()
+   * @generated
+   * @ordered
+   */
+  protected String from = FROM_EDEFAULT;
+
+  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -88,29 +88,6 @@ public class VarMappingImpl extends MinimalEObjectImpl.Container implements VarM
   protected EClass eStaticClass()
   {
     return BXCorePackage.Literals.VAR_MAPPING;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String getFrom()
-  {
-    return from;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setFrom(String newFrom)
-  {
-    String oldFrom = from;
-    from = newFrom;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, BXCorePackage.VAR_MAPPING__FROM, oldFrom, from));
   }
 
   /**
@@ -141,15 +118,38 @@ public class VarMappingImpl extends MinimalEObjectImpl.Container implements VarM
    * <!-- end-user-doc -->
    * @generated
    */
+  public String getFrom()
+  {
+    return from;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setFrom(String newFrom)
+  {
+    String oldFrom = from;
+    from = newFrom;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, BXCorePackage.VAR_MAPPING__FROM, oldFrom, from));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
     switch (featureID)
     {
-      case BXCorePackage.VAR_MAPPING__FROM:
-        return getFrom();
       case BXCorePackage.VAR_MAPPING__TO:
         return getTo();
+      case BXCorePackage.VAR_MAPPING__FROM:
+        return getFrom();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -164,11 +164,11 @@ public class VarMappingImpl extends MinimalEObjectImpl.Container implements VarM
   {
     switch (featureID)
     {
-      case BXCorePackage.VAR_MAPPING__FROM:
-        setFrom((String)newValue);
-        return;
       case BXCorePackage.VAR_MAPPING__TO:
         setTo((String)newValue);
+        return;
+      case BXCorePackage.VAR_MAPPING__FROM:
+        setFrom((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -184,11 +184,11 @@ public class VarMappingImpl extends MinimalEObjectImpl.Container implements VarM
   {
     switch (featureID)
     {
-      case BXCorePackage.VAR_MAPPING__FROM:
-        setFrom(FROM_EDEFAULT);
-        return;
       case BXCorePackage.VAR_MAPPING__TO:
         setTo(TO_EDEFAULT);
+        return;
+      case BXCorePackage.VAR_MAPPING__FROM:
+        setFrom(FROM_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -204,10 +204,10 @@ public class VarMappingImpl extends MinimalEObjectImpl.Container implements VarM
   {
     switch (featureID)
     {
-      case BXCorePackage.VAR_MAPPING__FROM:
-        return FROM_EDEFAULT == null ? from != null : !FROM_EDEFAULT.equals(from);
       case BXCorePackage.VAR_MAPPING__TO:
         return TO_EDEFAULT == null ? to != null : !TO_EDEFAULT.equals(to);
+      case BXCorePackage.VAR_MAPPING__FROM:
+        return FROM_EDEFAULT == null ? from != null : !FROM_EDEFAULT.equals(from);
     }
     return super.eIsSet(featureID);
   }
@@ -223,10 +223,10 @@ public class VarMappingImpl extends MinimalEObjectImpl.Container implements VarM
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (from: ");
-    result.append(from);
-    result.append(", to: ");
+    result.append(" (to: ");
     result.append(to);
+    result.append(", from: ");
+    result.append(from);
     result.append(')');
     return result.toString();
   }

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bag1:Bag xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:bag1="http://www.ustb.edu.cn/sei/mde/bag1"
+    xsi:schemaLocation="http://www.ustb.edu.cn/sei/mde/bag1 ../../../metamodel/Bag1.ecore">
+  <elements
+      value="A"/>
+  <elements
+      value="B"/>
+  <elements
+      value="B"/>
+  <elements
+      value="C"/>
+  <elements
+      value="C"/>
+  <elements
+      value="C"/>
+</bag1:Bag>

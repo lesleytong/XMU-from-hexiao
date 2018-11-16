@@ -1,11 +1,12 @@
 package edu.ustb.sei.mde.bxcore;
 
 import java.util.Arrays;
+import java.util.function.Function;
 
 import edu.ustb.sei.mde.bxcore.exceptions.BidirectionalTransformationDefinitionException;
 import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
-import edu.ustb.sei.mde.bxcore.exceptions.UninitializedException;
 import edu.ustb.sei.mde.bxcore.structures.Context;
+import edu.ustb.sei.mde.bxcore.structures.ContextGraph;
 import edu.ustb.sei.mde.bxcore.structures.ContextType;
 import edu.ustb.sei.mde.bxcore.structures.FieldDef;
 import edu.ustb.sei.mde.graph.typedGraph.constraint.GraphConstraint;
@@ -19,9 +20,9 @@ import edu.ustb.sei.mde.structure.Tuple2;
  */
 public class ContextSource extends XmuCore {
 	private XmuCore body;
-	private Tuple2<FieldDef<?>, FieldDef<?>>[] varMappings;
+	private Tuple2<FieldDef<?>, Function<ContextGraph, Object>>[] varMappings;
 
-	public ContextSource(Object key, ContextType viewDef, XmuCore body, Tuple2<FieldDef<?>, FieldDef<?>>[] varMappings)
+	public ContextSource(Object key, ContextType viewDef, XmuCore body, Tuple2<FieldDef<?>, Function<ContextGraph, Object>>[] varMappings)
 			throws BidirectionalTransformationDefinitionException {
 		super(key, body.getSourceDef(), viewDef);
 		this.body = body;
@@ -32,15 +33,9 @@ public class ContextSource extends XmuCore {
 	
 	@Override
 	protected void checkWellDefinedness() throws BidirectionalTransformationDefinitionException {
-		for(Tuple2<FieldDef<?>, FieldDef<?>> mapping : varMappings) {
-			if(!this.getSourceDef().fields().contains(mapping.first)) 
-				throw new BidirectionalTransformationDefinitionException("The source variable is undefined in the source context");
-			
-			if(this.getViewDef().fields().contains(mapping.second))
+		for(Tuple2<FieldDef<?>, ?> mapping : varMappings) {
+			if(this.getViewDef().fields().contains(mapping.first))
 				throw new BidirectionalTransformationDefinitionException("The view variable should not be defined the parent view context");
-			
-			if(!this.body.getViewDef().fields().contains(mapping.second))
-				throw new BidirectionalTransformationDefinitionException("The view variable should be defined the child view context");
 		}
 		
 		if(!this.body.getViewDef().fields().containsAll(this.getViewDef().fields()))
@@ -48,7 +43,7 @@ public class ContextSource extends XmuCore {
 		
 		if(!this.body.getViewDef().fields().stream().allMatch(bv->{
 			return this.getViewDef().fields().contains(bv) 
-					|| Arrays.stream(this.varMappings).anyMatch(m->m.second.equals(bv));
+					|| Arrays.stream(this.varMappings).anyMatch(m->m.first.equals(bv));
 		})) 
 			new BidirectionalTransformationDefinitionException("The child view variables should be defined in the parent view or registered by the statement");
 	}
@@ -57,11 +52,14 @@ public class ContextSource extends XmuCore {
 	protected GraphConstraint generateConsistencyConstraint() {
 		GraphConstraint bc = this.body.getConsistencyConstraint();
 		return (gs,cs, gv, cv) ->{
+			SourceType contextGraph = SourceType.makeSource(gs, cs, null);
+			
 			Context newV = cv.createDownstreamContext(body.getViewDef());
-			for(Tuple2<FieldDef<?>, FieldDef<?>> mapping : varMappings) {
+			for(Tuple2<FieldDef<?>, Function<ContextGraph, Object>> mapping : varMappings) {
 				try {
-					newV.setValue(mapping.second, cs.getValue(mapping.first));
-				} catch (UninitializedException | NothingReturnedException e) {
+					
+					newV.setValue(mapping.first, mapping.second.apply(contextGraph));
+				} catch (Exception e) {
 					return ConstraintStatus.unenforceable;
 				}
 			}
@@ -90,10 +88,10 @@ public class ContextSource extends XmuCore {
 	@Override
 	public SourceType backward(SourceType s, ViewType v) throws NothingReturnedException {
 		Context downstreamView = v.second.createDownstreamContext(body.getViewDef());
-		for(Tuple2<FieldDef<?>, FieldDef<?>> mapping : varMappings) {
+		for(Tuple2<FieldDef<?>, Function<ContextGraph, Object>> mapping : varMappings) {
 			try {
-				downstreamView.setValue(mapping.second, s.second.getValue(mapping.first));
-			} catch (UninitializedException | NothingReturnedException e) {
+				downstreamView.setValue(mapping.first, mapping.second.apply(s));
+			} catch (Exception e) {
 				return nothing(e);
 			}
 		}
@@ -101,15 +99,11 @@ public class ContextSource extends XmuCore {
 		downstreamView.setUpstream(v.second);
 		SourceType sourcePost = this.body.backward(s, v.replaceSecond(downstreamView));
 		
-		for(Tuple2<FieldDef<?>, FieldDef<?>> mapping : varMappings) {
-			try {
-			Object prev = s.second.getValue(mapping.first);
-			Object later = sourcePost.second.getValue(mapping.first);
+		for(Tuple2<FieldDef<?>, Function<ContextGraph, Object>> mapping : varMappings) {
+			Object prev = mapping.second.apply(s);
+			Object later = mapping.second.apply(sourcePost);
 			if(prev==later || (prev!=null && prev.equals(later))) continue;
 			else nothing();
-			} catch (UninitializedException|NothingReturnedException e) {
-				return nothing(e);
-			}
 		}
 		
 		submit(downstreamView);

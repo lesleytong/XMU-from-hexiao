@@ -3,7 +3,6 @@
  */
 package edu.ustb.sei.mde.bxcore.dsl.bXCore;
 
-import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,7 +13,6 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreDeriveSource#getDerivationFunctions <em>Derivation Functions</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreDeriveSource#getDerivedType <em>Derived Type</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreDeriveSource#getBody <em>Body</em>}</li>
  * </ul>
@@ -26,22 +24,6 @@ import org.eclipse.emf.common.util.EList;
 public interface XmuCoreDeriveSource extends XmuCoreCompositionChildStatement
 {
   /**
-   * Returns the value of the '<em><b>Derivation Functions</b></em>' containment reference list.
-   * The list contents are of type {@link edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareDerivationAction}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Derivation Functions</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Derivation Functions</em>' containment reference list.
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getXmuCoreDeriveSource_DerivationFunctions()
-   * @model containment="true"
-   * @generated
-   */
-  EList<ContextAwareDerivationAction> getDerivationFunctions();
-
-  /**
    * Returns the value of the '<em><b>Derived Type</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
@@ -50,12 +32,12 @@ public interface XmuCoreDeriveSource extends XmuCoreCompositionChildStatement
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Derived Type</em>' containment reference.
-   * @see #setDerivedType(OrderedTupleTypeLiteral)
+   * @see #setDerivedType(UnorderedTupleTypeLiteral)
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getXmuCoreDeriveSource_DerivedType()
    * @model containment="true"
    * @generated
    */
-  OrderedTupleTypeLiteral getDerivedType();
+  UnorderedTupleTypeLiteral getDerivedType();
 
   /**
    * Sets the value of the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreDeriveSource#getDerivedType <em>Derived Type</em>}' containment reference.
@@ -65,7 +47,7 @@ public interface XmuCoreDeriveSource extends XmuCoreCompositionChildStatement
    * @see #getDerivedType()
    * @generated
    */
-  void setDerivedType(OrderedTupleTypeLiteral value);
+  void setDerivedType(UnorderedTupleTypeLiteral value);
 
   /**
    * Returns the value of the '<em><b>Body</b></em>' containment reference.

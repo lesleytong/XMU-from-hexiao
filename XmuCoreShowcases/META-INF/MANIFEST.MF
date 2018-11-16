@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: XmuCoreShowcases
+Bundle-SymbolicName: XmuCoreShowcases
+Bundle-Version: 1.0.0.qualifier
+Automatic-Module-Name: XmuCoreShowcases
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: edu.ustb.sei.mde.bxcore;bundle-version="1.0.0",
+ edu.ustb.sei.mde.bxcore.dsl;bundle-version="1.0.0",
+ org.eclipse.xtext.builder;bundle-version="2.14.0",
+ org.eclipse.emf.ecore.xmi;bundle-version="2.14.0",
+ org.eclipse.xtext.xbase;bundle-version="2.14.0"
