@@ -280,8 +280,8 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 							}
 						]
 					} else if(def instanceof HelperDefinition) {
-						static=true;
 						members += def.toMethod(def.name, def.type)[
+							static=true;
 							def.parameters.forEach[p|parameters+=p.toParameter(p.name, p.parameterType)];
 							body = def.body
 						];

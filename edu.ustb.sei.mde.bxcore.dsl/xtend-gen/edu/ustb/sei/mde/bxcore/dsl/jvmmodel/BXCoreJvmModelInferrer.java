@@ -537,9 +537,9 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
                   this._jvmTypesBuilder.<JvmOperation>operator_add(_members_4, _method_1);
                 } else {
                   if ((def instanceof HelperDefinition)) {
-                    it.setStatic(true);
                     EList<JvmMember> _members_5 = it.getMembers();
                     final Procedure1<JvmOperation> _function_19 = (JvmOperation it_1) -> {
+                      it_1.setStatic(true);
                       final Consumer<JvmFormalParameter> _function_20 = (JvmFormalParameter p) -> {
                         EList<JvmFormalParameter> _parameters = it_1.getParameters();
                         JvmFormalParameter _parameter = this._jvmTypesBuilder.toParameter(p, p.getName(), p.getParameterType());
