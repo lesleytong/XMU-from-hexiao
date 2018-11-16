@@ -2,6 +2,12 @@ import "/XmuCoreShowcases/metamodel/SimpleClass.ecore" as uml
 import "/XmuCoreShowcases/metamodel/SimpleRDBMS.ecore" as rdbms
 
 import edu.ustb.sei.mde.graph.typedGraph.TypedNode
+
+/*
+ * This code show how to convert class diagrams to rdbms models
+ * We ignore super attributes and complex-typed attributes now for simplicity
+ * Another example shows how to handle them
+ */ 
  
 pattern ClassModel = uml!m:ClassModel
  

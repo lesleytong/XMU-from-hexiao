@@ -2,11 +2,15 @@
 <simpleClass:ClassModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:simpleClass="http://www.ustb.edu.cn/sei/mde/xmu/simpleClass" xsi:schemaLocation="http://www.ustb.edu.cn/sei/mde/xmu/simpleClass ../../../metamodel/SimpleClass.ecore">
   <packages name="p1">
     <classes name="c1">
-      <attributes name="a1"/>
+      <attributes name="a9"/>
     </classes>
-    <classes name="c3">
+    <classes name="c2" super="//@packages.0/@classes.0">
       <attributes name="a2"/>
+      <attributes name="c1-a1"/>
     </classes>
-    <associations name="bn" source="//@packages.0/@classes.0" target="//@packages.0/@classes.1"/>
+    <classes name="c3" super="//@packages.0/@classes.1">
+      <attributes name="c2-c1-a1"/>
+      <attributes name="a0"/>
+    </classes>
   </packages>
 </simpleClass:ClassModel>
