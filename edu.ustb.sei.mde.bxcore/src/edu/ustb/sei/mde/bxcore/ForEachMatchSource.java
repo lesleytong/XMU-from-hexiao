@@ -134,8 +134,7 @@ public class ForEachMatchSource extends XmuCore {
 			newSources[i] = postSources[i].second;
 		}
 		
-		Context finalSourcePost = this.createSourceContext();
-		finalSourcePost.initWith(s.second);
+		Context finalSourcePost = s.second.createUpstreamContext(this.getSourceDef());
 		
 		ContextType st = this.getSourceDef();
 		for(FieldDef<?> sk : st.fields()) {

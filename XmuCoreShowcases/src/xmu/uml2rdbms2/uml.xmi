@@ -13,13 +13,13 @@
           name="a1"/>
     </classes>
     <classes
-        name="c2">
+        name="c2"
+        super="//@packages.0/@classes.0">
       <attributes
           name="a2"/>
     </classes>
-    <associations
-        name="an"
-        source="//@packages.0/@classes.0"
-        target="//@packages.0/@classes.1"/>
+    <classes
+        name="c3"
+        super="//@packages.0/@classes.1"/>
   </packages>
 </simpleClass:ClassModel>

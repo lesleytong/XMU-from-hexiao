@@ -126,16 +126,9 @@ public class SourceTypeModel extends TypeModel {
 		} else if(e instanceof XmuCoreFunctionCall) {
 			TupleType st = getType(e);
 			TupleType bt = getType(((XmuCoreFunctionCall) e).getTarget());
-			TupleType it = new UnsolvedTupleType();
-			this.types.add(it);
-			
-			TypeUnion c1 = TypeUnion.makeSubSet(st, it);
+			TypeEqual c1 = TypeEqual.makeRightAbstractMapping(st, bt, ((XmuCoreFunctionCall) e).getSourceMappings());
 			this.constraints.add(c1);
-			TypeEqual c2 = TypeEqual.makeRightAbstractMapping(it, bt, ((XmuCoreFunctionCall) e).getSourceMappings());
-			this.constraints.add(c2);
-			
 			linkCause(c1, e);
-			linkCause(c2, e);
 		} else if(e instanceof XmuCoreIndex) {
 			TupleType st = getType(e);
 			TupleType bt = getType(((XmuCoreIndex) e).getBody());

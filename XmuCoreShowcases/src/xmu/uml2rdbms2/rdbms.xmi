@@ -9,17 +9,27 @@
     <tables
         name="c1">
       <columns
-          name="a1"/>
-      <foreignKeys
-          name="c1_bn_c3"
-          referTo="//@schemas.0/@tables.1/@key"/>
-      <key name="c1_key"/>
+          name="a9"/>
+    </tables>
+    <tables
+        name="c2">
+      <columns
+          name="a2"/>
+      <columns
+          name="c1-a1"/>
+      <columns
+          name="c1-a9"/>
     </tables>
     <tables
         name="c3">
       <columns
-          name="a2"/>
-      <key name="c3_key"/>
+          name="c2-a2"/>
+      <columns
+          name="c2-c1-a1"/>
+      <columns
+          name="c2-c1-a9"/>
+      <columns
+          name="a0"/>
     </tables>
   </schemas>
 </simpleRDBMS:RDBMSModel>

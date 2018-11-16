@@ -35,8 +35,8 @@ public class Invocation extends XmuCore {
 
 	@Override
 	protected GraphConstraint generateConsistencyConstraint() {
-		GraphConstraint g = this.getBody().generateConsistencyConstraint();
 		return (gs,cs,gv,cv)->{
+			GraphConstraint g = this.getBody().generateConsistencyConstraint();
 			Context ds = cs.createDownstreamContext(this.getBody().getSourceDef(), sourceKeyMappings);
 			Context dv = cs.createDownstreamContext(this.getBody().getViewDef(), viewKeyMappings);
 			return g.check(gs, ds, gv, dv);

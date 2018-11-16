@@ -80,11 +80,15 @@ public class Context {
 	
 	public <T> void setValue(String key, T value) {
 		FieldDef<?> field = type.getField(key);
-		setValue(field, value);
+		internalSetValue(field, value);
+	}
+	
+	public <T> void setValue(FieldDef<?> key, T value) {
+		setValue(key.getName(), value);
 	}
 	
 	@SuppressWarnings("unchecked")
-	public <T> void setValue(FieldDef<?> key, T value) {
+	private <T> void internalSetValue(FieldDef<?> key, T value) {
 		if(key!=null) {
 			if(key.isMany()) {
 				List<Object> values = null;
@@ -143,9 +147,14 @@ public class Context {
 		FieldDef<?> t = type.getField(key);
 		if(t==null) 
 			throw new NothingReturnedException(key+" was not registered as a field name in "+type);
-		return getValue(t);
+		return internalGetValue(t);
 	}
+	
 	public <T> T getValue(FieldDef<?> key) throws UninitializedException, NothingReturnedException {
+		return getValue(key.getName());
+	}
+	
+	private <T> T internalGetValue(FieldDef<?> key) throws UninitializedException, NothingReturnedException {
 		@SuppressWarnings("unchecked")
 		Optional<T> value = (Optional<T>) valueMap.get(key);
 		

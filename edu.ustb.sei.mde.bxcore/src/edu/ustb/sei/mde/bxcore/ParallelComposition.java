@@ -83,7 +83,7 @@ public class ParallelComposition extends XmuCore {
 		ViewType[] result = new ViewType[this.bodies.length];
 		Context[] newSources = new Context[this.bodies.length];
 		for(int i=0;i<this.bodies.length;i++) {
-			Context newSource = s.second.createDownstreamContext(getSourceDef(), sourceMappings.get(i));
+			Context newSource = s.second.createDownstreamContext(this.bodies[i].getSourceDef(), sourceMappings.get(i));
 			newSource.setUpstream(s.second, sourceMappings.get(i));
 			newSources[i] = newSource;
 			result[i] = bodies[i].forward(SourceType.makeSource(s.first, newSource, s.third));
@@ -171,10 +171,10 @@ public class ParallelComposition extends XmuCore {
 		TraceSystem[] interTraces = new TraceSystem[this.bodies.length];
 		
 		for(int i=0;i<this.bodies.length;i++) {
-			newSources[i] = s.second.createDownstreamContext(getSourceDef(), sourceMappings.get(i));
+			newSources[i] = s.second.createDownstreamContext(this.bodies[i].getSourceDef(), sourceMappings.get(i));
 //			newSources[i].initWith(s.second);
 			
-			newViews[i] = v.second.createDownstreamContext(getViewDef(), viewMappings.get(i));
+			newViews[i] = v.second.createDownstreamContext(this.bodies[i].getViewDef(), viewMappings.get(i));
 //			newViews[i].initWith(v.second);
 			
 			newSources[i].setUpstream(s.second,sourceMappings.get(i));

@@ -537,11 +537,15 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
                   this._jvmTypesBuilder.<JvmOperation>operator_add(_members_4, _method_1);
                 } else {
                   if ((def instanceof HelperDefinition)) {
+                    it.setStatic(true);
                     EList<JvmMember> _members_5 = it.getMembers();
                     final Procedure1<JvmOperation> _function_19 = (JvmOperation it_1) -> {
-                      EList<JvmFormalParameter> _parameters = it_1.getParameters();
-                      EList<JvmFormalParameter> _parameters_1 = ((HelperDefinition)def).getParameters();
-                      this._jvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameters_1);
+                      final Consumer<JvmFormalParameter> _function_20 = (JvmFormalParameter p) -> {
+                        EList<JvmFormalParameter> _parameters = it_1.getParameters();
+                        JvmFormalParameter _parameter = this._jvmTypesBuilder.toParameter(p, p.getName(), p.getParameterType());
+                        this._jvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+                      };
+                      ((HelperDefinition)def).getParameters().forEach(_function_20);
                       this._jvmTypesBuilder.setBody(it_1, ((HelperDefinition)def).getBody());
                     };
                     JvmOperation _method_2 = this._jvmTypesBuilder.toMethod(def, ((HelperDefinition)def).getName(), ((HelperDefinition)def).getType(), _function_19);
@@ -2054,8 +2058,8 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
           _matched=true;
           ITreeAppendable _xblockexpression_1 = null;
           {
-            final CharSequence st = this.typeAccessor(this.sourceType(((XmuCoreFunctionCall) statement).getTarget(), data), typeLiteralMap, unsolvedTypes);
-            final CharSequence vt = this.typeAccessor(this.viewType(((XmuCoreFunctionCall) statement).getTarget(), data), typeLiteralMap, unsolvedTypes);
+            final CharSequence st = this.typeAccessor(this.sourceType(((XmuCoreFunctionCall) statement), data), typeLiteralMap, unsolvedTypes);
+            final CharSequence vt = this.typeAccessor(this.viewType(((XmuCoreFunctionCall) statement), data), typeLiteralMap, unsolvedTypes);
             final EList<VarMapping> sk = ((XmuCoreFunctionCall) statement).getSourceMappings();
             final EList<VarMapping> vk = ((XmuCoreFunctionCall) statement).getViewMappings();
             StringConcatenation _builder = new StringConcatenation();

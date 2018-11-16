@@ -280,8 +280,9 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 							}
 						]
 					} else if(def instanceof HelperDefinition) {
+						static=true;
 						members += def.toMethod(def.name, def.type)[
-							parameters += def.parameters
+							def.parameters.forEach[p|parameters+=p.toParameter(p.name, p.parameterType)];
 							body = def.body
 						];
 					}
@@ -739,8 +740,8 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 					.append(''', new «unmatchS.actionClass(actions)»(), new «unmatchV.actionClass(actions)»())''')
 			}
 			XmuCoreFunctionCall : {
-				val st = (statement as XmuCoreFunctionCall).target.sourceType(data).typeAccessor(typeLiteralMap, unsolvedTypes);
-				val vt = (statement as XmuCoreFunctionCall).target.viewType(data).typeAccessor(typeLiteralMap, unsolvedTypes);
+				val st = (statement as XmuCoreFunctionCall).sourceType(data).typeAccessor(typeLiteralMap, unsolvedTypes);
+				val vt = (statement as XmuCoreFunctionCall).viewType(data).typeAccessor(typeLiteralMap, unsolvedTypes);
 				val sk = (statement as XmuCoreFunctionCall).sourceMappings;
 				val vk = (statement as XmuCoreFunctionCall).viewMappings;
 				appendable.append('''new «Invocation.typeRef.qualifiedName»("«key»", «st», «vt», new «Tuple2.typeRef.qualifiedName»[]{«FOR m:sk SEPARATOR ','»«Tuple2.typeRef.qualifiedName».make("«m.from»","«m.to»")«ENDFOR»}, new «Tuple2.typeRef.qualifiedName»[]{«FOR m:vk SEPARATOR ','»«Tuple2.typeRef.qualifiedName».make("«m.from»","«m.to»")«ENDFOR»},()->{try {

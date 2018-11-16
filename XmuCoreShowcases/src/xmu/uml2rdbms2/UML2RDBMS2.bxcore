@@ -1,0 +1,200 @@
+import "/XmuCoreShowcases/metamodel/SimpleClass.ecore" as uml
+import "/XmuCoreShowcases/metamodel/SimpleRDBMS.ecore" as rdbms
+
+import edu.ustb.sei.mde.graph.typedGraph.TypedNode
+import edu.ustb.sei.mde.bxcore.structures.ContextGraph
+import java.util.List
+import edu.ustb.sei.mde.bxcore.SourceType
+import edu.ustb.sei.mde.bxcore.dsl.structure.ExceptionSafeInferface
+
+
+/*
+ * This code shows how to handle super attributes that we ignored in the previous example
+ */
+
+pattern ClassModel = uml!m:ClassModel
+ 
+function ClassModelToRdbmsModel =
+	align ClassModel rdbms!m:RDBMSModel with {true}
+		match -> {
+			replace ClassModel rdbms!m:RDBMSModel
+			| PackageToSchema (m<-m) (m<-m) 
+			} 
+		unmatchS -> {
+			begin
+				delete m@source;
+			end 
+		} 
+		unmatchV -> {
+			begin
+				enforce ClassModel;
+			end
+		}
+
+pattern Package = uml!m:ClassModel{lp:packages=p:Package{ln:name=n:EString}}
+function PackageToSchema =
+	align Package rdbms!m:RDBMSModel{ls:schemas=s:Schema{ln:name=n:EString}}
+		with {
+			n@source.equals(n@view)
+		} 
+		match -> {
+			replace Package rdbms!m:RDBMSModel{ls:schemas=s:Schema{ln:name=n:EString}} {replace (n) (n)}
+			| ClassToTable (p<-p) (s<-s)
+			}
+		unmatchS -> {
+			begin
+				delete lp@source;
+				delete ln@source;
+				delete p@source;
+			end 
+		}
+		unmatchV -> {
+			begin
+				enforce Package {n<-n@view}; 
+			end
+		}
+
+index c2t <uml![c:Class], rdbms![t:Table]>
+
+pattern Class = uml!p:Package{
+	lc:classes=c:Class{ln:name=n:EString}
+} [!n@context.contains('_')]
+
+function ClassToTable = 
+	align Class rdbms!s:Schema{lt:tables=t:Table{ln:name=n:EString}} [!n@context.contains('_')]
+		with {
+			n@source.equals(n@view)
+		} 
+		match -> {
+			index c2t<c|t> in replace Class rdbms!s:Schema{lt:tables=t:Table{ln:name=n:EString}} {replace (n) (n)}
+			| AttributeToColumn (c<-c) (t<-t)
+		}  
+		unmatchS -> {
+			begin 
+				delete lc@source;
+				delete ln@source;
+				delete c@source;
+			end
+		}
+		unmatchV -> { 
+			begin
+				enforce Class {n<-n@view};
+			end
+		}
+		
+pattern Attribute = uml!c:Class{la:attributes=a:Attribute{ln:name=n:EString}}
+function AttributeToColumn =
+	{
+	align Attribute rdbms!t:Table{lc:columns=c:Column{ln:name=n:EString}}
+		with n@source.equals(n@view)
+		match -> replace Attribute rdbms!t:Table{lc:columns=c:Column{ln:name=n:EString}} {replace (n) (n)}
+		unmatchS -> {
+			begin
+				delete la@source;
+				delete ln@source;
+				delete a@source;
+			end
+		}
+		unmatchV -> { 
+			if(shouldDrop(source, c@source, view, t@view, c@view, true)) {
+				// be careful! if you drop the view, XMU does not assure the well-behavedness of the program
+				SourceType.drop
+			} else {
+				begin
+					enforce Attribute {n<-n@view};
+				end
+			}
+		} |
+		foreach uml!c:Class{ls:^super=sc:Class} do 
+			expandS uml!c:Class{ls:^super=sc:Class} (c<-c, sc<-sc) -> 
+				SuperAttributeToColumn (oc<-c, cc<-sc) (t<-t)	
+	}
+ 
+helper boolean shouldDrop(ContextGraph ^source, TypedNode c, ContextGraph view, TypedNode t, TypedNode cl, boolean firstIn) {
+	val cln = ExceptionSafeInferface.navigate(view, cl, "name", false, false, true) as String;
+	
+	val id = cln.indexOf('-');
+	if(id===-1) return !firstIn;
+	
+	val scn = cln.substring(0,id);
+	val scln = cln.substring(id+1);
+	
+	val superClass = (ExceptionSafeInferface.navigate(source, c, "super", true, true, true) as List<TypedNode>).findFirst[TypedNode sc|
+		val name = ExceptionSafeInferface.navigate(source, sc, "name", false, false, true) as String;
+		return name.equals(scn);
+	];
+	
+	if(superClass===null) return false;
+	
+	val superTable = view.allTypedNodes("Table").findFirst[TypedNode st|
+		val name = ExceptionSafeInferface.navigate(view, st, "name", false, false, true) as String;
+		return name.equals(scn);
+	];
+	
+	if(superTable===null) return false;
+	
+	val superColumn = (ExceptionSafeInferface.navigate(view, superTable, "columns", true, true, true) as List<TypedNode>).findFirst[TypedNode scl|
+		val name = ExceptionSafeInferface.navigate(view, scl, "name", false, false, true) as String;
+		return name.equals(scln);
+	];
+	
+	if(superColumn===null) return false;
+	
+	val superAttribute = (ExceptionSafeInferface.navigate(source, superClass, "attributes", true, true, true) as List<TypedNode>).findFirst[TypedNode sca|
+		val name = ExceptionSafeInferface.navigate(source, sca, "name", false, false, true) as String;
+		return name.equals(scln);
+	];
+	
+	if(superAttribute===null) return shouldDrop(source, superClass, view, superTable, superColumn, false);
+	return true;
+}
+
+helper String computePrefix(ContextGraph graph, TypedNode child, TypedNode parent) {
+	if(child===parent) ''
+	else {
+		val superClasses = ExceptionSafeInferface.navigate(graph, child, "super", true, true, true) as List<TypedNode>;
+		for(TypedNode sc : superClasses) {
+			val nextPath = computePrefix(graph,sc, parent);
+			if(nextPath!==null) {
+				val scn = ExceptionSafeInferface.navigate(graph, sc, "name", false, false, true) as String;
+				if(nextPath.equals('')) return scn;
+				return scn+'-'+nextPath;
+			} 
+		}
+		return null;
+	}
+}
+
+bigul columnKey (String prefix, String sn) (String vn)
+ get {
+ 	vn = prefix +'-'+sn;
+ }
+ put {
+ 	if(!vn.equals(prefix +'-'+sn)) nothing();
+ }
+
+function SuperAttributeToColumn<uml!(oc:Class, cc:Class), rdbms!(t:Table)> =
+{
+	derive uml!(prefix:EString<-computePrefix(source, oc@source, cc@source))
+	align uml!cc:Class{la:attributes=a:Attribute{ln:name=n:EString}} (oc:Class, prefix:EString)
+			rdbms!t:Table{lc:columns=c:Column{ln:name=n:EString}} 
+		with {
+			n@view.equals(prefix@source+'-'+n@source);
+		}
+ 		match -> replace uml!cc:Class{la:attributes=a:Attribute{ln:name=n:EString}} (oc:Class, prefix:EString) 
+					rdbms!t:Table{lc:columns=c:Column{ln:name=n:EString}} 
+				 {columnKey (prefix, n) (n)}
+		unmatchS -> {
+			begin
+				delete la@source;
+				delete ln@source;
+				delete a@source;
+			end
+		} // safe to do so
+		unmatchV -> {
+			SourceType.drop
+		} |
+  foreach uml!cc:Class{ls:^super=sc:Class} (oc:Class) do 
+  	expandS uml!cc:Class{ls:^super=sc:Class} (oc:Class) (oc<-oc, sc<-sc) -> 
+  		SuperAttributeToColumn (oc<-oc, cc<-sc) (t<-t) 
+}
