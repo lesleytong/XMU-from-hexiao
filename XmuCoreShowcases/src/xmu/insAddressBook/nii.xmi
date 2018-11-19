@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ASCII"?>
+<nab:NIIBook
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:nab="http://www.ustb.edu.cn/sei/mde/niiaddressbook"
+    xsi:schemaLocation="http://www.ustb.edu.cn/sei/mde/niiaddressbook ../../../metamodel/NIIAddressBook.ecore">
+  <employees
+      name="Bob"
+      email="bob@nii.ac.jp"/>
+  <employees
+      name="Alice"
+      email="alice@nii.ac.jp"/>
+</nab:NIIBook>

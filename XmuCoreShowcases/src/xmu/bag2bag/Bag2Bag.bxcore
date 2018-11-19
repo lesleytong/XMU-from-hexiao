@@ -20,7 +20,7 @@ function Bag2Bag<bag1!(b:Bag), bag2!(b:Bag)> =
 				adaption e@source.size<c@view : {
 					val occ = c@view;
 					val size = e@source.size;
-					
+					 
 					val add_e = new @source:bag1!Element[occ-size];
 					val add_le = new @source:bag1!Bag::elements[occ-size];
 					val add_lv = new @source:bag1!Element::value[occ-size];

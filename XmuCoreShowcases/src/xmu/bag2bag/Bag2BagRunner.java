@@ -60,12 +60,12 @@ public class Bag2BagRunner {
 		TypedNode bag1Node = sourceModel.getTypedNodesOf(sourceModel.getTypeGraph().getTypeNode("Bag"))[0];
 		
 		TypedGraph viewModel = bx.loadBag2Model(URI.createFileURI(viewModelPath));
-		TypedNode bag2 = viewModel.getTypedNodesOf(viewModel.getTypeGraph().getTypeNode("Bag"))[0];
+		TypedNode bag2Node = viewModel.getTypedNodesOf(viewModel.getTypeGraph().getTypeNode("Bag"))[0];
 		
 		
 		SourceType updatedSource = bx.execute(bx.getXmu_Bag2Bag(), 
 				sourceModel, new Tuple2[] {Tuple2.make("b", bag1Node)},
-				viewModel, new Tuple2[] {Tuple2.make("b", bag2)});
+				viewModel, new Tuple2[] {Tuple2.make("b", bag2Node)});
 		
 		bx.saveBag1Model(URI.createFileURI(updatedSourcePath), updatedSource, sourceModel);
 	}

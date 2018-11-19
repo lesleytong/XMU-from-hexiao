@@ -7,7 +7,6 @@ import edu.ustb.sei.mde.bxcore.XmuCore;
 import edu.ustb.sei.mde.bxcore.bigul.BidirectionalTransformation;
 import edu.ustb.sei.mde.bxcore.exceptions.BidirectionalTransformationDefinitionException;
 import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
-import edu.ustb.sei.mde.bxcore.structures.Context;
 import edu.ustb.sei.mde.bxcore.structures.ContextGraph;
 import edu.ustb.sei.mde.bxcore.structures.ContextType;
 import edu.ustb.sei.mde.bxcore.util.XmuProgram;
@@ -115,8 +114,8 @@ public class Bag2Bag extends XmuProgram {
     return bx.backward(edu.ustb.sei.mde.bxcore.SourceType.makeSource(source, sourceContext, new edu.ustb.sei.mde.bxcore.TraceSystem()), edu.ustb.sei.mde.bxcore.ViewType.makeView(view, viewContext));
   }
   
-  public class Condition0 implements BiFunction<Context, Context, Boolean> {
-    public Boolean apply(final Context source, final Context view) {
+  public class Condition0 implements BiFunction<ContextGraph, ContextGraph, Boolean> {
+    public Boolean apply(final ContextGraph source, final ContextGraph view) {
       java.lang.String _contextValue = ((java.lang.String) edu.ustb.sei.mde.bxcore.dsl.structure.ExceptionSafeInferface.getValue(source,"v"));
       java.lang.String _contextValue_1 = ((java.lang.String) edu.ustb.sei.mde.bxcore.dsl.structure.ExceptionSafeInferface.getValue(view,"v"));
       boolean _equals = _contextValue.equals(_contextValue_1);
@@ -163,13 +162,13 @@ public class Bag2Bag extends XmuProgram {
         java.util.List<edu.ustb.sei.mde.graph.typedGraph.TypedNode> _contextValue_1 = ((java.util.List<edu.ustb.sei.mde.graph.typedGraph.TypedNode>) edu.ustb.sei.mde.bxcore.dsl.structure.ExceptionSafeInferface.getValue(source,"e"));
         final int size = _contextValue_1.size();
         java.util.List<edu.ustb.sei.mde.graph.typedGraph.TypedNode> newInstance = new java.util.ArrayList<>();
-        for(int it=0;it<(occ - size);it++) newInstance.add(edu.ustb.sei.mde.bxcore.structures.ContextGraph.newTypedNode());
+        for(int it=0;it<(occ - size);it++) newInstance.add(edu.ustb.sei.mde.bxcore.structures.ContextGraph.newTypedNode(source, "Element"));
         final List<TypedNode> add_e = newInstance;
         java.util.List<edu.ustb.sei.mde.graph.typedGraph.TypedEdge> newInstance_1 = new java.util.ArrayList<>();
-        for(int it_1=0;it_1<(occ - size);it_1++) newInstance_1.add(edu.ustb.sei.mde.bxcore.structures.ContextGraph.newTypedEdge());
+        for(int it_1=0;it_1<(occ - size);it_1++) newInstance_1.add(edu.ustb.sei.mde.bxcore.structures.ContextGraph.newTypedEdge(source, "Bag", "elements"));
         final List<TypedEdge> add_le = newInstance_1;
         java.util.List<edu.ustb.sei.mde.graph.typedGraph.ValueEdge> newInstance_2 = new java.util.ArrayList<>();
-        for(int it_2=0;it_2<(occ - size);it_2++) newInstance_2.add(edu.ustb.sei.mde.bxcore.structures.ContextGraph.newValueEdge());
+        for(int it_2=0;it_2<(occ - size);it_2++) newInstance_2.add(edu.ustb.sei.mde.bxcore.structures.ContextGraph.newValueEdge(source, "Element", "value"));
         final List<ValueEdge> add_lv = newInstance_2;
         java.util.List<edu.ustb.sei.mde.graph.typedGraph.TypedNode> _contextValue_2 = ((java.util.List<edu.ustb.sei.mde.graph.typedGraph.TypedNode>) edu.ustb.sei.mde.bxcore.dsl.structure.ExceptionSafeInferface.getValue(source,"e"));
         final List<TypedNode> merged_e = IterableExtensions.<TypedNode>toList(Iterables.<TypedNode>concat(_contextValue_2, add_e));
@@ -246,13 +245,13 @@ public class Bag2Bag extends XmuProgram {
         int _contextValue = ((int) edu.ustb.sei.mde.bxcore.dsl.structure.ExceptionSafeInferface.getValue(view,"c"));
         final int occ = _contextValue;
         java.util.List<edu.ustb.sei.mde.graph.typedGraph.TypedNode> newInstance = new java.util.ArrayList<>();
-        for(int it=0;it<occ;it++) newInstance.add(edu.ustb.sei.mde.bxcore.structures.ContextGraph.newTypedNode());
+        for(int it=0;it<occ;it++) newInstance.add(edu.ustb.sei.mde.bxcore.structures.ContextGraph.newTypedNode(source, "Element"));
         final List<TypedNode> add_e = newInstance;
         java.util.List<edu.ustb.sei.mde.graph.typedGraph.TypedEdge> newInstance_1 = new java.util.ArrayList<>();
-        for(int it_1=0;it_1<occ;it_1++) newInstance_1.add(edu.ustb.sei.mde.bxcore.structures.ContextGraph.newTypedEdge());
+        for(int it_1=0;it_1<occ;it_1++) newInstance_1.add(edu.ustb.sei.mde.bxcore.structures.ContextGraph.newTypedEdge(source, "Bag", "elements"));
         final List<TypedEdge> add_le = newInstance_1;
         java.util.List<edu.ustb.sei.mde.graph.typedGraph.ValueEdge> newInstance_2 = new java.util.ArrayList<>();
-        for(int it_2=0;it_2<occ;it_2++) newInstance_2.add(edu.ustb.sei.mde.bxcore.structures.ContextGraph.newValueEdge());
+        for(int it_2=0;it_2<occ;it_2++) newInstance_2.add(edu.ustb.sei.mde.bxcore.structures.ContextGraph.newValueEdge(source, "Element", "value"));
         final List<ValueEdge> add_lv = newInstance_2;
         edu.ustb.sei.mde.bxcore.structures.GraphModification _modStart = source.modification();
         java.lang.String _contextValue_1 = ((java.lang.String) edu.ustb.sei.mde.bxcore.dsl.structure.ExceptionSafeInferface.getValue(view,"v"));
@@ -292,6 +291,21 @@ public class Bag2Bag extends XmuProgram {
   }
   
   /**
+   * id:1
+   */
+  private ContextType type_1;
+  
+  public ContextType getType_1() {
+    if(type_1==null) {
+    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Bag2();
+    	type_1 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
+    	Object b_type = typeGraph.getTypeNode("Bag");
+    	type_1.addField("b", b_type, false);
+    }
+    return type_1;
+  }
+  
+  /**
    * id:2
    */
   private ContextType type_2;
@@ -327,21 +341,6 @@ public class Bag2Bag extends XmuProgram {
     	type_0.addField("b", b_type, false);
     }
     return type_0;
-  }
-  
-  /**
-   * id:1
-   */
-  private ContextType type_1;
-  
-  public ContextType getType_1() {
-    if(type_1==null) {
-    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Bag2();
-    	type_1 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
-    	Object b_type = typeGraph.getTypeNode("Bag");
-    	type_1.addField("b", b_type, false);
-    }
-    return type_1;
   }
   
   private Pattern pattern_0;

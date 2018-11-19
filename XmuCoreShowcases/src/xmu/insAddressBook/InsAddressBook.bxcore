@@ -1,0 +1,53 @@
+import '/XmuCoreShowcases/metamodel/SimpleAddressBook.ecore' as sab
+import '/XmuCoreShowcases/metamodel/NIIAddressBook.ecore' as nii
+
+import edu.ustb.sei.mde.graph.typedGraph.TypedEdge
+
+function SabBook2NiiBook<sab!(b:AddressBook),nii!(b:NIIBook)> =
+	align sab!b:AddressBook{lp:persons=p:Person{ln:name=n:EString}} 
+				[p@context.@email.exists[String e| e.endsWith('nii.ac.jp')]]
+			nii!b:NIIBook{le:employees=e:Employee{ln:name=n:EString, lem:email=em:EString}} 
+				with n@source.equals(n@view)
+		match -> switch [
+			case {
+				val firstNiiEmail = p@source.@email.findFirst[String e| e.endsWith('nii.ac.jp')];
+				return Boolean.logicalAnd(firstNiiEmail!==null, firstNiiEmail.equals(em@view));
+			} : 
+				derive sab!(em:EString <- p@source.@email.findFirst[String e| e.endsWith('nii.ac.jp')])
+					replace sab!b:AddressBook{lp:persons=p:Person{ln:name=n:EString}} (em:EString)
+						nii!b:NIIBook{le:employees=e:Employee{ln:name=n:EString, lem:email=em:EString}}
+							{
+								replace (n, em) (n, em)
+							}
+			adaption true : {
+				val nlv = new @source:sab!Person::email (p@source, em@view);
+				begin
+					insert nlv first;
+				end
+			}
+		]
+		unmatchS -> {
+			val allDeleted = p@source.@@email.filter[e|
+				val value = e.target.value as String;
+				return value.endsWith('nii.ac.jp');
+			].toList;
+			
+			println(allDeleted.size);
+			
+			begin
+				delete allDeleted;
+			end
+		}
+		unmatchV -> {
+			val email = em@view;
+			val name = n@view;
+			val lp = b@source.@@persons.findFirst[TypedEdge x|@source:sab!Person(x.target).@name.equals(name)];
+			val n_p = if(lp===null) new @source:sab!Person else lp.target;
+			val n_lp = if(lp===null) new @source:sab!AddressBook::persons (b@source, n_p) else lp;
+			val n_ln = if(lp===null) new @source:sab!Person::name (n_p, name) else @source:sab!Person(n_p).@@name;
+			val n_lv = new @source:sab!Person::email (n_p, email);
+			begin
+				enforce sab!b:AddressBook{lp:persons=p:Person{ln:name=n:EString}} {lp<-n_lp, p<-n_p, ln<-n_ln, n<-name};
+				insert n_lv;
+			end
+		}
