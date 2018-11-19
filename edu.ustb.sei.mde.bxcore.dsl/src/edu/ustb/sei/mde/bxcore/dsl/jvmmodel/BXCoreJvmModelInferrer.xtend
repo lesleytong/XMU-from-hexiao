@@ -480,16 +480,16 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 	protected def void generateCondition(ContextAwareCondition cond, Integer id, JvmGenericType type) {
 		type.members += cond.toClass('Condition'+id)[
 			if (cond.eContainer instanceof XmuCoreAlign) {
-				superTypes += BiFunction.typeRef(Context.typeRef, Context.typeRef, Boolean.typeRef);
+				superTypes += BiFunction.typeRef(ContextGraph.typeRef, ContextGraph.typeRef, Boolean.typeRef);
 				members += cond.toMethod('apply', Boolean.typeRef) [
-					parameters += cond.toParameter('source', Context.typeRef);
-					parameters += cond.toParameter('view', Context.typeRef);
+					parameters += cond.toParameter('source', ContextGraph.typeRef);
+					parameters += cond.toParameter('view', ContextGraph.typeRef);
 					body = cond.condition;
 				]
 			} else if (cond.eContainer instanceof PatternTypeLiteral) {
-				superTypes += Function.typeRef(Context.typeRef, Boolean.typeRef);
+				superTypes += Function.typeRef(ContextGraph.typeRef, Boolean.typeRef);
 				members += cond.toMethod('apply', Boolean.typeRef) [
-					parameters += cond.toParameter('context', Context.typeRef);
+					parameters += cond.toParameter('context', ContextGraph.typeRef);
 					body = cond.condition;
 				]
 			} else {
@@ -735,7 +735,7 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 				val unmatchS = (statement as XmuCoreAlign).unmatchS;
 				val unmatchV = (statement as XmuCoreAlign).unmatchV;
 				
-				appendable.append('''new «Align.typeRef.qualifiedName»("«key»", «srcType», «viwType», «srcPat», «viwPat», new Condition«conditions.indexOf(cond)»(), ''').newLine.increaseIndentation
+				appendable.append('''new «Align.typeRef.qualifiedName»("«key»", «srcType», «viwType», «srcPat», «viwPat»«IF cond!==null», new Condition«conditions.indexOf(cond)»()«ENDIF», ''').newLine.increaseIndentation
 					.generateXmuCode(match, indexedStatements, typeLiteralMap, patternLiterals, conditions, actions, unsolvedTypes, data, program)
 					.append(''', new «unmatchS.actionClass(actions)»(), new «unmatchV.actionClass(actions)»())''')
 			}

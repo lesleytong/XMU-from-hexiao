@@ -77,7 +77,11 @@ class ModelInferrerUtils {
 					if(side===SideEnum.SOURCE) (e.eContainer as XmuCoreAlign).sourcePattern.context(SideEnum.SOURCE)
 					else if(side===SideEnum.VIEW)  (e.eContainer as XmuCoreAlign).viewPattern.context(SideEnum.VIEW)
 					else null
-				} else e.eContainer.context(side)
+				} else if(e.eContainingFeature===BXCorePackage.Literals.PATTERN_TYPE_LITERAL__FILTER) {
+					if(side===SideEnum.CONTEXT) e.eContainer.context(SideEnum.CONTEXT)
+					else null
+				}
+				else e.eContainer.context(side)
 			} else if(e instanceof ContextAwareUnidirectionalAction) {
 				if(e.eContainingFeature===BXCorePackage.Literals.XMU_CORE_ALIGN__UNMATCH_S) {
 					if(side===SideEnum.SOURCE) (e.eContainer as XmuCoreAlign).sourcePattern.context(SideEnum.SOURCE)
@@ -97,7 +101,7 @@ class ModelInferrerUtils {
 					if(stmt instanceof XmuCoreDependencyView) 
 						stmt.context(side)
 					else null
-				} else {
+				} else { // side===Context
 					if(stmt instanceof PatternTypeLiteral)
 						stmt.context(side)
 					else null
@@ -121,12 +125,12 @@ class ModelInferrerUtils {
     }
     
     static def boolean isContextOnly(EObject e) {
-		if(e===null) false
-		else if(e instanceof ContextAwareCondition) {
-			e.eContainingFeature===BXCorePackage.Literals.PATTERN_TYPE_LITERAL__FILTER 
-			|| e.eContainingFeature===BXCorePackage.Literals.XMU_CORE_ALIGN__ALIGNMENT
-		} else if(e instanceof ContextAwareUnidirectionalAction) false
-		else e.eContainer.isContextOnly
+    	false
+//		if(e===null) false
+//		else if(e instanceof ContextAwareCondition) {
+//			e.eContainingFeature===BXCorePackage.Literals.PATTERN_TYPE_LITERAL__FILTER 
+//		} else if(e instanceof ContextAwareUnidirectionalAction) false
+//		else e.eContainer.isContextOnly
 	}
 	
 	static def Pair<Object, Boolean> navEcoreType(ContextExpression e) {

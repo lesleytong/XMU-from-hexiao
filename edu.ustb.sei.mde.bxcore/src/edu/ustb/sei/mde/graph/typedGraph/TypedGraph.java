@@ -1,6 +1,7 @@
 package edu.ustb.sei.mde.graph.typedGraph;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -9,6 +10,8 @@ import java.util.logging.Level;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+
+import com.beust.jcommander.internal.Lists;
 
 import edu.ustb.sei.mde.bxcore.XmuCoreUtils;
 import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
@@ -89,6 +92,50 @@ public class TypedGraph extends IndexSystem implements IGraph {
 			allValueNodes.add(n);
 		
 		indexing(n);
+	}
+	
+	public void moveTypedEdgeTo(int n, int i) {
+		moveEdgeTo(allTypedEdges, n, i);
+	}
+	
+	public void moveValueEdgeTo(int n, int i) {
+		moveEdgeTo(allValueEdges, n, i);
+	}
+	
+	public <T> void moveEdgeTo(List<T> edges, int cur, int i) {
+		T n = edges.get(cur);
+		
+		if(cur==i || cur==-1) return;
+		else {
+			if(cur<i) {
+				for(int j=cur;j<i;j++) {
+					edges.set(j, edges.get(j+1));
+				}
+			} else {
+				for(int j=cur;j>i;j--) {
+					edges.set(j, edges.get(j-1));
+				}
+			}
+			edges.set(i, n);
+		}
+	}
+	
+//	public <T> void moveEdgeTo(List<T> edges, List<Integer> cur, int i) {
+//		if(cur.isEmpty()) return;
+//		Collections.sort(cur);
+//		
+//		if(cur.get(0)>i) {
+//			
+//		} else if(cur.get(cur.size()-1)<i) {
+//			
+//		}
+//	}
+	
+	public int indexOf(List<? extends Object> list, Object o) {
+		for(int i=0;i<list.size();i++) {
+			if(list.get(i)==o) return i;
+		}
+		return -1;
 	}
 	
 	public void addTypedEdge(TypedEdge n) {
@@ -489,13 +536,18 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		return result;
 	}
 	
+	static boolean isEqual(IndexableElement l, IndexableElement r) {
+		return l==r || (l!=null && l.isIndexable() && r.isIndexable() &&
+				l.getIndex().equals(r.getIndex()));
+	}
+	
 	public void remove(TypedNode n) {
-		this.allTypedNodes.remove(n);
+		this.allTypedNodes.removeIf(x->isEqual(x,n));
 		this.clearIndex(n);
 		
 		for(int i = this.allTypedEdges.size()-1;i>=0;i--) {
 			TypedEdge e = this.allTypedEdges.get(i);
-			if(e.getSource()==n || e.getTarget()==n) {
+			if(isEqual(e.getSource(), n) || isEqual(e.getTarget(), n)) {
 				this.allTypedEdges.remove(i);
 				this.clearIndex(e);
 			}
@@ -503,7 +555,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		
 		for(int i = this.allValueEdges.size()-1;i>=0;i--) {
 			ValueEdge e = this.allValueEdges.get(i);
-			if(e.getSource()==n) {
+			if(isEqual(e.getSource(), n)) {
 				this.allValueEdges.remove(i);
 				this.clearIndex(e);
 			}
@@ -511,20 +563,20 @@ public class TypedGraph extends IndexSystem implements IGraph {
 	}
 	
 	private void replaceWith(ValueEdge er, ValueEdge e) {
-		this.allValueEdges.replaceAll(x->(x==er || x.getIndex().equals(er.getIndex()) ? e : x));
+		this.allValueEdges.replaceAll(x->isEqual(x,er) ? e : x);
 		e.mergeIndex(er);
 		reindexing(e);
 	}
 
 	private void replaceWith(TypedEdge er, TypedEdge e) {
-		this.allTypedEdges.replaceAll(x->(x==er || x.getIndex().equals(er.getIndex()) ? e : x));
+		this.allTypedEdges.replaceAll(x->isEqual(x,er) ? e : x);
 		e.mergeIndex(er);
 		reindexing(e);
 	}
 
 	private void replaceWith(TypedNode nr, TypedNode n) {
 		// replace in node list
-		this.allTypedNodes.replaceAll(e->(e==nr || e.getIndex().equals(nr.getIndex()) ? n : e));
+		this.allTypedNodes.replaceAll(e->isEqual(e,nr) ? n : e);
 		
 		//merge indices
 		n.mergeIndex(nr);
@@ -886,12 +938,12 @@ public class TypedGraph extends IndexSystem implements IGraph {
 	}
 
 	public void remove(ValueEdge baseEdge) {
-		this.allValueEdges.remove(baseEdge);
+		this.allValueEdges.removeIf(x->isEqual(x, baseEdge));
 		this.clearIndex(baseEdge);
 	}
 
 	public void remove(TypedEdge baseEdge) {
-		this.allTypedEdges.remove(baseEdge);
+		this.allTypedEdges.removeIf(x->isEqual(x, baseEdge));
 		this.clearIndex(baseEdge);
 		// compute pre-deleted elements when baseEdge is containment, or not?
 	}

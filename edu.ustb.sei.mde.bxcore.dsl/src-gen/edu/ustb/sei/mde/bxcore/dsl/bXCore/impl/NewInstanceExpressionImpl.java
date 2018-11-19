@@ -29,6 +29,8 @@ import org.eclipse.xtext.xbase.impl.XExpressionImpl;
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.NewInstanceExpressionImpl#getType <em>Type</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.NewInstanceExpressionImpl#getSize <em>Size</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.NewInstanceExpressionImpl#getSourceValue <em>Source Value</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.NewInstanceExpressionImpl#getTargetValue <em>Target Value</em>}</li>
  * </ul>
  *
  * @generated
@@ -54,6 +56,26 @@ public class NewInstanceExpressionImpl extends XExpressionImpl implements NewIns
    * @ordered
    */
   protected XExpression size;
+
+  /**
+   * The cached value of the '{@link #getSourceValue() <em>Source Value</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getSourceValue()
+   * @generated
+   * @ordered
+   */
+  protected XExpression sourceValue;
+
+  /**
+   * The cached value of the '{@link #getTargetValue() <em>Target Value</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getTargetValue()
+   * @generated
+   * @ordered
+   */
+  protected XExpression targetValue;
 
   /**
    * <!-- begin-user-doc -->
@@ -177,6 +199,102 @@ public class NewInstanceExpressionImpl extends XExpressionImpl implements NewIns
    * <!-- end-user-doc -->
    * @generated
    */
+  public XExpression getSourceValue()
+  {
+    return sourceValue;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetSourceValue(XExpression newSourceValue, NotificationChain msgs)
+  {
+    XExpression oldSourceValue = sourceValue;
+    sourceValue = newSourceValue;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BXCorePackage.NEW_INSTANCE_EXPRESSION__SOURCE_VALUE, oldSourceValue, newSourceValue);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setSourceValue(XExpression newSourceValue)
+  {
+    if (newSourceValue != sourceValue)
+    {
+      NotificationChain msgs = null;
+      if (sourceValue != null)
+        msgs = ((InternalEObject)sourceValue).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BXCorePackage.NEW_INSTANCE_EXPRESSION__SOURCE_VALUE, null, msgs);
+      if (newSourceValue != null)
+        msgs = ((InternalEObject)newSourceValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BXCorePackage.NEW_INSTANCE_EXPRESSION__SOURCE_VALUE, null, msgs);
+      msgs = basicSetSourceValue(newSourceValue, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, BXCorePackage.NEW_INSTANCE_EXPRESSION__SOURCE_VALUE, newSourceValue, newSourceValue));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public XExpression getTargetValue()
+  {
+    return targetValue;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetTargetValue(XExpression newTargetValue, NotificationChain msgs)
+  {
+    XExpression oldTargetValue = targetValue;
+    targetValue = newTargetValue;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BXCorePackage.NEW_INSTANCE_EXPRESSION__TARGET_VALUE, oldTargetValue, newTargetValue);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setTargetValue(XExpression newTargetValue)
+  {
+    if (newTargetValue != targetValue)
+    {
+      NotificationChain msgs = null;
+      if (targetValue != null)
+        msgs = ((InternalEObject)targetValue).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BXCorePackage.NEW_INSTANCE_EXPRESSION__TARGET_VALUE, null, msgs);
+      if (newTargetValue != null)
+        msgs = ((InternalEObject)newTargetValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BXCorePackage.NEW_INSTANCE_EXPRESSION__TARGET_VALUE, null, msgs);
+      msgs = basicSetTargetValue(newTargetValue, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, BXCorePackage.NEW_INSTANCE_EXPRESSION__TARGET_VALUE, newTargetValue, newTargetValue));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -186,6 +304,10 @@ public class NewInstanceExpressionImpl extends XExpressionImpl implements NewIns
         return basicSetType(null, msgs);
       case BXCorePackage.NEW_INSTANCE_EXPRESSION__SIZE:
         return basicSetSize(null, msgs);
+      case BXCorePackage.NEW_INSTANCE_EXPRESSION__SOURCE_VALUE:
+        return basicSetSourceValue(null, msgs);
+      case BXCorePackage.NEW_INSTANCE_EXPRESSION__TARGET_VALUE:
+        return basicSetTargetValue(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -204,6 +326,10 @@ public class NewInstanceExpressionImpl extends XExpressionImpl implements NewIns
         return getType();
       case BXCorePackage.NEW_INSTANCE_EXPRESSION__SIZE:
         return getSize();
+      case BXCorePackage.NEW_INSTANCE_EXPRESSION__SOURCE_VALUE:
+        return getSourceValue();
+      case BXCorePackage.NEW_INSTANCE_EXPRESSION__TARGET_VALUE:
+        return getTargetValue();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -223,6 +349,12 @@ public class NewInstanceExpressionImpl extends XExpressionImpl implements NewIns
         return;
       case BXCorePackage.NEW_INSTANCE_EXPRESSION__SIZE:
         setSize((XExpression)newValue);
+        return;
+      case BXCorePackage.NEW_INSTANCE_EXPRESSION__SOURCE_VALUE:
+        setSourceValue((XExpression)newValue);
+        return;
+      case BXCorePackage.NEW_INSTANCE_EXPRESSION__TARGET_VALUE:
+        setTargetValue((XExpression)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -244,6 +376,12 @@ public class NewInstanceExpressionImpl extends XExpressionImpl implements NewIns
       case BXCorePackage.NEW_INSTANCE_EXPRESSION__SIZE:
         setSize((XExpression)null);
         return;
+      case BXCorePackage.NEW_INSTANCE_EXPRESSION__SOURCE_VALUE:
+        setSourceValue((XExpression)null);
+        return;
+      case BXCorePackage.NEW_INSTANCE_EXPRESSION__TARGET_VALUE:
+        setTargetValue((XExpression)null);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -262,6 +400,10 @@ public class NewInstanceExpressionImpl extends XExpressionImpl implements NewIns
         return type != null;
       case BXCorePackage.NEW_INSTANCE_EXPRESSION__SIZE:
         return size != null;
+      case BXCorePackage.NEW_INSTANCE_EXPRESSION__SOURCE_VALUE:
+        return sourceValue != null;
+      case BXCorePackage.NEW_INSTANCE_EXPRESSION__TARGET_VALUE:
+        return targetValue != null;
     }
     return super.eIsSet(featureID);
   }

@@ -1,6 +1,7 @@
 package edu.ustb.sei.mde.bxcore.structures;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -95,6 +96,150 @@ public class GraphModification {
 		varMap.put(id, node);
 		return this;
 	}
+	
+	public GraphModification insertTypedNode(TypedNode node) {
+		if(node==null || node.getType()==null || node.getType()==TypeNode.ANY_TYPE) {
+			throw new RuntimeException("Cannot insert an invalid node");
+		}
+		data.getGraph().addTypedNode(node);
+		return this;
+	}
+	
+	public GraphModification insertTypedNode(List<TypedNode> nodes) {
+		for(TypedNode n : nodes)
+			insertTypedNode(n);
+		return this;
+	}
+	
+	public GraphModification insertTypedEdge(TypedEdge edge) {
+		if(edge==null || edge.getType()==null || edge.getSource()==null || edge.getTarget()==null) {
+			throw new RuntimeException("Cannot insert an invalid edge");
+		}
+		data.getGraph().addTypedEdge(edge);
+		return this;
+	}
+	
+	public GraphModification insertTypedEdge(List<TypedEdge> edges) {
+		for(TypedEdge e : edges) {
+			insertTypedEdge(e);
+		}
+		return this;
+	}
+	
+	public GraphModification insertTypedEdgeBefore(TypedEdge edge, TypedEdge anchor) {
+		insertTypedEdge(edge);
+
+		List<TypedEdge> allTypedEdges = data.getGraph().getAllTypedEdges();
+		
+		int ancPos = data.getGraph().indexOf(allTypedEdges, anchor);
+		int edgePos = data.getGraph().indexOf(allTypedEdges, edge);
+		
+		if(edgePos>ancPos) 
+			data.getGraph().moveTypedEdgeTo(edgePos, ancPos);
+		
+		return this;
+	}
+	
+	public GraphModification insertTypedEdgeAfter(TypedEdge edge, TypedEdge anchor) {
+		insertTypedEdge(edge);
+
+		List<TypedEdge> allTypedEdges = data.getGraph().getAllTypedEdges();
+		
+		int ancPos = data.getGraph().indexOf(allTypedEdges, anchor);
+		int edgePos = data.getGraph().indexOf(allTypedEdges, edge);
+		
+		if(edgePos<ancPos) 
+			data.getGraph().moveTypedEdgeTo(edgePos, ancPos);
+		
+		return this;
+	}
+	
+	public GraphModification insertTypedEdgeFirst(TypedEdge edge) {
+		insertTypedEdge(edge);
+
+		List<TypedEdge> allTypedEdges = data.getGraph().getAllTypedEdges();
+		
+		int edgePos = data.getGraph().indexOf(allTypedEdges, edge);
+		
+		if(edgePos>0) 
+			data.getGraph().moveTypedEdgeTo(edgePos, 0);
+		
+		return this;
+	}
+	
+	public GraphModification insertValueEdge(ValueEdge edge) {
+		if(edge==null || edge.getType()==null || edge.getSource()==null || edge.getTarget()==null) {
+			throw new RuntimeException("Cannot insert an invalid edge");
+		}
+		data.getGraph().addValueEdge(edge);
+		return this;
+	}
+	
+	public GraphModification insertValueEdge(List<ValueEdge> edges) {
+		for(ValueEdge e : edges) {
+			insertValueEdge(e);
+		}
+		return this;
+	}
+	
+	public GraphModification insertValueEdgeBefore(ValueEdge edge, ValueEdge anchor) {
+		insertValueEdge(edge);
+
+		List<ValueEdge> allValueEdges = data.getGraph().getAllValueEdges();
+		
+		int ancPos = data.getGraph().indexOf(allValueEdges, anchor);
+		int edgePos = data.getGraph().indexOf(allValueEdges, edge);
+		
+		if(edgePos>ancPos) 
+			data.getGraph().moveValueEdgeTo(edgePos, ancPos);
+		
+		return this;
+	}
+	
+	public GraphModification insertValueEdgeAfter(ValueEdge edge, ValueEdge anchor) {
+		insertValueEdge(edge);
+
+		List<ValueEdge> allValueEdges = data.getGraph().getAllValueEdges();
+		
+		int ancPos = data.getGraph().indexOf(allValueEdges, anchor);
+		int edgePos = data.getGraph().indexOf(allValueEdges, edge);
+		
+		if(edgePos>ancPos) 
+			data.getGraph().moveValueEdgeTo(edgePos, ancPos);
+		
+		return this;
+	}
+	
+	public GraphModification insertValueEdgeFirst(ValueEdge edge) {
+		insertValueEdge(edge);
+
+		List<ValueEdge> allValueEdges = data.getGraph().getAllValueEdges();
+		
+		int edgePos = data.getGraph().indexOf(allValueEdges, edge);
+		
+		if(edgePos>0) 
+			data.getGraph().moveValueEdgeTo(edgePos, 0);
+		
+		return this;
+	}
+	
+//	public GraphModification insertTypedEdgeBefore(List<TypedEdge> edges, TypedEdge anchor) {
+//		insertTypedEdge(edges);
+//
+//		List<TypedEdge> allTypedEdges = data.getGraph().getAllTypedEdges();
+//		
+//		int ancPos = data.getGraph().indexOf(allTypedEdges, anchor);
+//		
+//		List<Integer> edgePoss = new ArrayList<>(edges.size());
+//		
+//		for(TypedEdge edge : edges) {
+//			int cur = data.getGraph().indexOf(allTypedEdges, edge);
+//			if(cur<=ancPos) continue;
+//			else edgePoss.add(cur);
+//		}
+//		
+//		return this;
+//	}
 	
 	public GraphModification addValueEdge(String sid, String tid, String edge) {
 		return addValueEdge(sid, tid, edge);

@@ -48,7 +48,10 @@ public class BXCoreParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getXPrimaryExpressionAccess().getAlternatives(), "rule__XPrimaryExpression__Alternatives");
 			builder.put(grammarAccess.getContextExpressionAccess().getNavOpAlternatives_1_2_0(), "rule__ContextExpression__NavOpAlternatives_1_2_0");
 			builder.put(grammarAccess.getContextVarExpressionAccess().getAlternatives(), "rule__ContextVarExpression__Alternatives");
+			builder.put(grammarAccess.getNewInstanceExpressionAccess().getAlternatives_2(), "rule__NewInstanceExpression__Alternatives_2");
 			builder.put(grammarAccess.getModificationExpressionAccess().getAlternatives(), "rule__ModificationExpression__Alternatives");
+			builder.put(grammarAccess.getInsertElementExpressionAccess().getAlternatives_2(), "rule__InsertElementExpression__Alternatives_2");
+			builder.put(grammarAccess.getInsertElementExpressionAccess().getPositionAlternatives_2_0_0_0(), "rule__InsertElementExpression__PositionAlternatives_2_0_0_0");
 			builder.put(grammarAccess.getXAssignmentAccess().getAlternatives(), "rule__XAssignment__Alternatives");
 			builder.put(grammarAccess.getOpMultiAssignAccess().getAlternatives(), "rule__OpMultiAssign__Alternatives");
 			builder.put(grammarAccess.getOpEqualityAccess().getAlternatives(), "rule__OpEquality__Alternatives");
@@ -154,9 +157,10 @@ public class BXCoreParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getXmuCoreForkBranchAccess().getGroup_2(), "rule__XmuCoreForkBranch__Group_2__0");
 			builder.put(grammarAccess.getXmuCoreForkBranchAccess().getGroup_7(), "rule__XmuCoreForkBranch__Group_7__0");
 			builder.put(grammarAccess.getXmuCoreAlignAccess().getGroup(), "rule__XmuCoreAlign__Group__0");
-			builder.put(grammarAccess.getXmuCoreAlignAccess().getGroup_6_0(), "rule__XmuCoreAlign__Group_6_0__0");
-			builder.put(grammarAccess.getXmuCoreAlignAccess().getGroup_6_1(), "rule__XmuCoreAlign__Group_6_1__0");
-			builder.put(grammarAccess.getXmuCoreAlignAccess().getGroup_6_2(), "rule__XmuCoreAlign__Group_6_2__0");
+			builder.put(grammarAccess.getXmuCoreAlignAccess().getGroup_4(), "rule__XmuCoreAlign__Group_4__0");
+			builder.put(grammarAccess.getXmuCoreAlignAccess().getGroup_5_0(), "rule__XmuCoreAlign__Group_5_0__0");
+			builder.put(grammarAccess.getXmuCoreAlignAccess().getGroup_5_1(), "rule__XmuCoreAlign__Group_5_1__0");
+			builder.put(grammarAccess.getXmuCoreAlignAccess().getGroup_5_2(), "rule__XmuCoreAlign__Group_5_2__0");
 			builder.put(grammarAccess.getXmuCoreFunctionCallAccess().getGroup(), "rule__XmuCoreFunctionCall__Group__0");
 			builder.put(grammarAccess.getXmuCoreFunctionCallAccess().getGroup_3(), "rule__XmuCoreFunctionCall__Group_3__0");
 			builder.put(grammarAccess.getXmuCoreFunctionCallAccess().getGroup_3_1(), "rule__XmuCoreFunctionCall__Group_3_1__0");
@@ -175,7 +179,8 @@ public class BXCoreParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getContextVarExpressionAccess().getGroup_0(), "rule__ContextVarExpression__Group_0__0");
 			builder.put(grammarAccess.getContextVarExpressionAccess().getGroup_1(), "rule__ContextVarExpression__Group_1__0");
 			builder.put(grammarAccess.getNewInstanceExpressionAccess().getGroup(), "rule__NewInstanceExpression__Group__0");
-			builder.put(grammarAccess.getNewInstanceExpressionAccess().getGroup_2(), "rule__NewInstanceExpression__Group_2__0");
+			builder.put(grammarAccess.getNewInstanceExpressionAccess().getGroup_2_0(), "rule__NewInstanceExpression__Group_2_0__0");
+			builder.put(grammarAccess.getNewInstanceExpressionAccess().getGroup_2_1(), "rule__NewInstanceExpression__Group_2_1__0");
 			builder.put(grammarAccess.getAnnotatedTypeAccess().getGroup(), "rule__AnnotatedType__Group__0");
 			builder.put(grammarAccess.getAnnotatedTypeAccess().getGroup_6(), "rule__AnnotatedType__Group_6__0");
 			builder.put(grammarAccess.getAllInstanceExpressionAccess().getGroup(), "rule__AllInstanceExpression__Group__0");
@@ -185,6 +190,8 @@ public class BXCoreParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getEnforcementExpressionAccess().getGroup_2(), "rule__EnforcementExpression__Group_2__0");
 			builder.put(grammarAccess.getEnforcementExpressionAccess().getGroup_2_2(), "rule__EnforcementExpression__Group_2_2__0");
 			builder.put(grammarAccess.getDeleteElementExpressionAccess().getGroup(), "rule__DeleteElementExpression__Group__0");
+			builder.put(grammarAccess.getInsertElementExpressionAccess().getGroup(), "rule__InsertElementExpression__Group__0");
+			builder.put(grammarAccess.getInsertElementExpressionAccess().getGroup_2_0(), "rule__InsertElementExpression__Group_2_0__0");
 			builder.put(grammarAccess.getValueMappingAccess().getGroup(), "rule__ValueMapping__Group__0");
 			builder.put(grammarAccess.getXAssignmentAccess().getGroup_0(), "rule__XAssignment__Group_0__0");
 			builder.put(grammarAccess.getXAssignmentAccess().getGroup_1(), "rule__XAssignment__Group_1__0");
@@ -490,10 +497,10 @@ public class BXCoreParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getXmuCoreAlignAccess().getTypeIndicatorAssignment_1(), "rule__XmuCoreAlign__TypeIndicatorAssignment_1");
 			builder.put(grammarAccess.getXmuCoreAlignAccess().getSourcePatternAssignment_2(), "rule__XmuCoreAlign__SourcePatternAssignment_2");
 			builder.put(grammarAccess.getXmuCoreAlignAccess().getViewPatternAssignment_3(), "rule__XmuCoreAlign__ViewPatternAssignment_3");
-			builder.put(grammarAccess.getXmuCoreAlignAccess().getAlignmentAssignment_5(), "rule__XmuCoreAlign__AlignmentAssignment_5");
-			builder.put(grammarAccess.getXmuCoreAlignAccess().getMatchAssignment_6_0_2(), "rule__XmuCoreAlign__MatchAssignment_6_0_2");
-			builder.put(grammarAccess.getXmuCoreAlignAccess().getUnmatchSAssignment_6_1_2(), "rule__XmuCoreAlign__UnmatchSAssignment_6_1_2");
-			builder.put(grammarAccess.getXmuCoreAlignAccess().getUnmatchVAssignment_6_2_2(), "rule__XmuCoreAlign__UnmatchVAssignment_6_2_2");
+			builder.put(grammarAccess.getXmuCoreAlignAccess().getAlignmentAssignment_4_1(), "rule__XmuCoreAlign__AlignmentAssignment_4_1");
+			builder.put(grammarAccess.getXmuCoreAlignAccess().getMatchAssignment_5_0_2(), "rule__XmuCoreAlign__MatchAssignment_5_0_2");
+			builder.put(grammarAccess.getXmuCoreAlignAccess().getUnmatchSAssignment_5_1_2(), "rule__XmuCoreAlign__UnmatchSAssignment_5_1_2");
+			builder.put(grammarAccess.getXmuCoreAlignAccess().getUnmatchVAssignment_5_2_2(), "rule__XmuCoreAlign__UnmatchVAssignment_5_2_2");
 			builder.put(grammarAccess.getXmuCoreFunctionCallAccess().getTargetAssignment_0(), "rule__XmuCoreFunctionCall__TargetAssignment_0");
 			builder.put(grammarAccess.getXmuCoreFunctionCallAccess().getTypeIndicatorAssignment_1(), "rule__XmuCoreFunctionCall__TypeIndicatorAssignment_1");
 			builder.put(grammarAccess.getXmuCoreFunctionCallAccess().getSourceMappingsAssignment_3_0(), "rule__XmuCoreFunctionCall__SourceMappingsAssignment_3_0");
@@ -525,7 +532,9 @@ public class BXCoreParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getContextVarExpressionAccess().getManyAssignment_1_7(), "rule__ContextVarExpression__ManyAssignment_1_7");
 			builder.put(grammarAccess.getContextVarExpressionAccess().getExpressionAssignment_1_9(), "rule__ContextVarExpression__ExpressionAssignment_1_9");
 			builder.put(grammarAccess.getNewInstanceExpressionAccess().getTypeAssignment_1(), "rule__NewInstanceExpression__TypeAssignment_1");
-			builder.put(grammarAccess.getNewInstanceExpressionAccess().getSizeAssignment_2_1(), "rule__NewInstanceExpression__SizeAssignment_2_1");
+			builder.put(grammarAccess.getNewInstanceExpressionAccess().getSizeAssignment_2_0_1(), "rule__NewInstanceExpression__SizeAssignment_2_0_1");
+			builder.put(grammarAccess.getNewInstanceExpressionAccess().getSourceValueAssignment_2_1_1(), "rule__NewInstanceExpression__SourceValueAssignment_2_1_1");
+			builder.put(grammarAccess.getNewInstanceExpressionAccess().getTargetValueAssignment_2_1_3(), "rule__NewInstanceExpression__TargetValueAssignment_2_1_3");
 			builder.put(grammarAccess.getAnnotatedTypeAccess().getSideAssignment_1(), "rule__AnnotatedType__SideAssignment_1");
 			builder.put(grammarAccess.getAnnotatedTypeAccess().getMetamodelAssignment_3(), "rule__AnnotatedType__MetamodelAssignment_3");
 			builder.put(grammarAccess.getAnnotatedTypeAccess().getTypeAssignment_5(), "rule__AnnotatedType__TypeAssignment_5");
@@ -536,6 +545,10 @@ public class BXCoreParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getEnforcementExpressionAccess().getValueMappingsAssignment_2_1(), "rule__EnforcementExpression__ValueMappingsAssignment_2_1");
 			builder.put(grammarAccess.getEnforcementExpressionAccess().getValueMappingsAssignment_2_2_1(), "rule__EnforcementExpression__ValueMappingsAssignment_2_2_1");
 			builder.put(grammarAccess.getDeleteElementExpressionAccess().getElementAssignment_1(), "rule__DeleteElementExpression__ElementAssignment_1");
+			builder.put(grammarAccess.getInsertElementExpressionAccess().getElementAssignment_1(), "rule__InsertElementExpression__ElementAssignment_1");
+			builder.put(grammarAccess.getInsertElementExpressionAccess().getPositionAssignment_2_0_0(), "rule__InsertElementExpression__PositionAssignment_2_0_0");
+			builder.put(grammarAccess.getInsertElementExpressionAccess().getAnchorAssignment_2_0_1(), "rule__InsertElementExpression__AnchorAssignment_2_0_1");
+			builder.put(grammarAccess.getInsertElementExpressionAccess().getPositionAssignment_2_1(), "rule__InsertElementExpression__PositionAssignment_2_1");
 			builder.put(grammarAccess.getValueMappingAccess().getVarNameAssignment_0(), "rule__ValueMapping__VarNameAssignment_0");
 			builder.put(grammarAccess.getValueMappingAccess().getExpressionAssignment_2(), "rule__ValueMapping__ExpressionAssignment_2");
 			builder.put(grammarAccess.getXAssignmentAccess().getFeatureAssignment_0_1(), "rule__XAssignment__FeatureAssignment_0_1");
@@ -683,7 +696,7 @@ public class BXCoreParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getXImportDeclarationAccess().getImportedTypeAssignment_1_1(), "rule__XImportDeclaration__ImportedTypeAssignment_1_1");
 			builder.put(grammarAccess.getXImportDeclarationAccess().getImportedNamespaceAssignment_1_2(), "rule__XImportDeclaration__ImportedNamespaceAssignment_1_2");
 			builder.put(grammarAccess.getCustomizedBiGULDefinitionAccess().getUnorderedGroup_10(), "rule__CustomizedBiGULDefinition__UnorderedGroup_10");
-			builder.put(grammarAccess.getXmuCoreAlignAccess().getUnorderedGroup_6(), "rule__XmuCoreAlign__UnorderedGroup_6");
+			builder.put(grammarAccess.getXmuCoreAlignAccess().getUnorderedGroup_5(), "rule__XmuCoreAlign__UnorderedGroup_5");
 		}
 	}
 	

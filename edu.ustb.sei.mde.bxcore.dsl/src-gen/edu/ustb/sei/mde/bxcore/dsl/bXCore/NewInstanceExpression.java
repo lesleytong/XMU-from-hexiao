@@ -16,6 +16,8 @@ import org.eclipse.xtext.xbase.XExpression;
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression#getType <em>Type</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression#getSize <em>Size</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression#getSourceValue <em>Source Value</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression#getTargetValue <em>Target Value</em>}</li>
  * </ul>
  *
  * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getNewInstanceExpression()
@@ -75,5 +77,57 @@ public interface NewInstanceExpression extends XExpression
    * @generated
    */
   void setSize(XExpression value);
+
+  /**
+   * Returns the value of the '<em><b>Source Value</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Source Value</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Source Value</em>' containment reference.
+   * @see #setSourceValue(XExpression)
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getNewInstanceExpression_SourceValue()
+   * @model containment="true"
+   * @generated
+   */
+  XExpression getSourceValue();
+
+  /**
+   * Sets the value of the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression#getSourceValue <em>Source Value</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Source Value</em>' containment reference.
+   * @see #getSourceValue()
+   * @generated
+   */
+  void setSourceValue(XExpression value);
+
+  /**
+   * Returns the value of the '<em><b>Target Value</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Target Value</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Target Value</em>' containment reference.
+   * @see #setTargetValue(XExpression)
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getNewInstanceExpression_TargetValue()
+   * @model containment="true"
+   * @generated
+   */
+  XExpression getTargetValue();
+
+  /**
+   * Sets the value of the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression#getTargetValue <em>Target Value</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Target Value</em>' containment reference.
+   * @see #getTargetValue()
+   * @generated
+   */
+  void setTargetValue(XExpression value);
 
 } // NewInstanceExpression

@@ -1092,15 +1092,15 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
       EObject _eContainer = cond.eContainer();
       if ((_eContainer instanceof XmuCoreAlign)) {
         EList<JvmTypeReference> _superTypes = it.getSuperTypes();
-        JvmTypeReference _typeRef = this._typeReferenceBuilder.typeRef(BiFunction.class, this._typeReferenceBuilder.typeRef(Context.class), this._typeReferenceBuilder.typeRef(Context.class), this._typeReferenceBuilder.typeRef(Boolean.class));
+        JvmTypeReference _typeRef = this._typeReferenceBuilder.typeRef(BiFunction.class, this._typeReferenceBuilder.typeRef(ContextGraph.class), this._typeReferenceBuilder.typeRef(ContextGraph.class), this._typeReferenceBuilder.typeRef(Boolean.class));
         this._jvmTypesBuilder.<JvmTypeReference>operator_add(_superTypes, _typeRef);
         EList<JvmMember> _members_1 = it.getMembers();
         final Procedure1<JvmOperation> _function_1 = (JvmOperation it_1) -> {
           EList<JvmFormalParameter> _parameters = it_1.getParameters();
-          JvmFormalParameter _parameter = this._jvmTypesBuilder.toParameter(cond, "source", this._typeReferenceBuilder.typeRef(Context.class));
+          JvmFormalParameter _parameter = this._jvmTypesBuilder.toParameter(cond, "source", this._typeReferenceBuilder.typeRef(ContextGraph.class));
           this._jvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
           EList<JvmFormalParameter> _parameters_1 = it_1.getParameters();
-          JvmFormalParameter _parameter_1 = this._jvmTypesBuilder.toParameter(cond, "view", this._typeReferenceBuilder.typeRef(Context.class));
+          JvmFormalParameter _parameter_1 = this._jvmTypesBuilder.toParameter(cond, "view", this._typeReferenceBuilder.typeRef(ContextGraph.class));
           this._jvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
           this._jvmTypesBuilder.setBody(it_1, cond.getCondition());
         };
@@ -1110,12 +1110,12 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
         EObject _eContainer_1 = cond.eContainer();
         if ((_eContainer_1 instanceof PatternTypeLiteral)) {
           EList<JvmTypeReference> _superTypes_1 = it.getSuperTypes();
-          JvmTypeReference _typeRef_1 = this._typeReferenceBuilder.typeRef(Function.class, this._typeReferenceBuilder.typeRef(Context.class), this._typeReferenceBuilder.typeRef(Boolean.class));
+          JvmTypeReference _typeRef_1 = this._typeReferenceBuilder.typeRef(Function.class, this._typeReferenceBuilder.typeRef(ContextGraph.class), this._typeReferenceBuilder.typeRef(Boolean.class));
           this._jvmTypesBuilder.<JvmTypeReference>operator_add(_superTypes_1, _typeRef_1);
           EList<JvmMember> _members_2 = it.getMembers();
           final Procedure1<JvmOperation> _function_2 = (JvmOperation it_1) -> {
             EList<JvmFormalParameter> _parameters = it_1.getParameters();
-            JvmFormalParameter _parameter = this._jvmTypesBuilder.toParameter(cond, "context", this._typeReferenceBuilder.typeRef(Context.class));
+            JvmFormalParameter _parameter = this._jvmTypesBuilder.toParameter(cond, "context", this._typeReferenceBuilder.typeRef(ContextGraph.class));
             this._jvmTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
             this._jvmTypesBuilder.setBody(it_1, cond.getCondition());
           };
@@ -2035,10 +2035,15 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
             _builder.append(srcPat);
             _builder.append(", ");
             _builder.append(viwPat);
-            _builder.append(", new Condition");
-            int _indexOf = conditions.indexOf(cond);
-            _builder.append(_indexOf);
-            _builder.append("(), ");
+            {
+              if ((cond != null)) {
+                _builder.append(", new Condition");
+                int _indexOf = conditions.indexOf(cond);
+                _builder.append(_indexOf);
+                _builder.append("()");
+              }
+            }
+            _builder.append(", ");
             ITreeAppendable _generateXmuCode = this.generateXmuCode(appendable.append(_builder).newLine().increaseIndentation(), match, indexedStatements, typeLiteralMap, patternLiterals, conditions, actions, unsolvedTypes, data, program);
             StringConcatenation _builder_1 = new StringConcatenation();
             _builder_1.append(", new ");

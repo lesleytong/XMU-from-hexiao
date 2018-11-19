@@ -2316,13 +2316,31 @@ public interface BXCorePackage extends EPackage
   int NEW_INSTANCE_EXPRESSION__SIZE = XbasePackage.XEXPRESSION_FEATURE_COUNT + 1;
 
   /**
+   * The feature id for the '<em><b>Source Value</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NEW_INSTANCE_EXPRESSION__SOURCE_VALUE = XbasePackage.XEXPRESSION_FEATURE_COUNT + 2;
+
+  /**
+   * The feature id for the '<em><b>Target Value</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NEW_INSTANCE_EXPRESSION__TARGET_VALUE = XbasePackage.XEXPRESSION_FEATURE_COUNT + 3;
+
+  /**
    * The number of structural features of the '<em>New Instance Expression</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int NEW_INSTANCE_EXPRESSION_FEATURE_COUNT = XbasePackage.XEXPRESSION_FEATURE_COUNT + 2;
+  int NEW_INSTANCE_EXPRESSION_FEATURE_COUNT = XbasePackage.XEXPRESSION_FEATURE_COUNT + 4;
 
   /**
    * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.AnnotatedTypeImpl <em>Annotated Type</em>}' class.
@@ -2492,6 +2510,52 @@ public interface BXCorePackage extends EPackage
   int DELETE_ELEMENT_EXPRESSION_FEATURE_COUNT = MODIFICATION_EXPRESSION_FEATURE_COUNT + 1;
 
   /**
+   * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.InsertElementExpressionImpl <em>Insert Element Expression</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.InsertElementExpressionImpl
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getInsertElementExpression()
+   * @generated
+   */
+  int INSERT_ELEMENT_EXPRESSION = 64;
+
+  /**
+   * The feature id for the '<em><b>Element</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INSERT_ELEMENT_EXPRESSION__ELEMENT = MODIFICATION_EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Position</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INSERT_ELEMENT_EXPRESSION__POSITION = MODIFICATION_EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Anchor</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INSERT_ELEMENT_EXPRESSION__ANCHOR = MODIFICATION_EXPRESSION_FEATURE_COUNT + 2;
+
+  /**
+   * The number of structural features of the '<em>Insert Element Expression</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INSERT_ELEMENT_EXPRESSION_FEATURE_COUNT = MODIFICATION_EXPRESSION_FEATURE_COUNT + 3;
+
+  /**
    * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.ValueMappingImpl <em>Value Mapping</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2499,7 +2563,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getValueMapping()
    * @generated
    */
-  int VALUE_MAPPING = 64;
+  int VALUE_MAPPING = 65;
 
   /**
    * The feature id for the '<em><b>Var Name</b></em>' attribute.
@@ -2536,7 +2600,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getDefinedContextTypeRef()
    * @generated
    */
-  int DEFINED_CONTEXT_TYPE_REF = 65;
+  int DEFINED_CONTEXT_TYPE_REF = 66;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -2564,7 +2628,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getEcoreTypeRef()
    * @generated
    */
-  int ECORE_TYPE_REF = 66;
+  int ECORE_TYPE_REF = 67;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -2592,7 +2656,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getFeatureTypeRef()
    * @generated
    */
-  int FEATURE_TYPE_REF = 67;
+  int FEATURE_TYPE_REF = 68;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -2629,7 +2693,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getNavigationExpression()
    * @generated
    */
-  int NAVIGATION_EXPRESSION = 68;
+  int NAVIGATION_EXPRESSION = 69;
 
   /**
    * The feature id for the '<em><b>Host</b></em>' containment reference.
@@ -2675,7 +2739,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getContextVarExpression()
    * @generated
    */
-  int CONTEXT_VAR_EXPRESSION = 69;
+  int CONTEXT_VAR_EXPRESSION = 70;
 
   /**
    * The feature id for the '<em><b>Side</b></em>' attribute.
@@ -2712,7 +2776,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getExpressionConversion()
    * @generated
    */
-  int EXPRESSION_CONVERSION = 70;
+  int EXPRESSION_CONVERSION = 71;
 
   /**
    * The feature id for the '<em><b>Side</b></em>' attribute.
@@ -2776,7 +2840,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getModificationExpressionBlock()
    * @generated
    */
-  int MODIFICATION_EXPRESSION_BLOCK = 71;
+  int MODIFICATION_EXPRESSION_BLOCK = 72;
 
   /**
    * The feature id for the '<em><b>Expressions</b></em>' containment reference list.
@@ -2804,7 +2868,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getSideEnum()
    * @generated
    */
-  int SIDE_ENUM = 72;
+  int SIDE_ENUM = 73;
 
 
   /**
@@ -4542,6 +4606,28 @@ public interface BXCorePackage extends EPackage
   EReference getNewInstanceExpression_Size();
 
   /**
+   * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression#getSourceValue <em>Source Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Source Value</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression#getSourceValue()
+   * @see #getNewInstanceExpression()
+   * @generated
+   */
+  EReference getNewInstanceExpression_SourceValue();
+
+  /**
+   * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression#getTargetValue <em>Target Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Target Value</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression#getTargetValue()
+   * @see #getNewInstanceExpression()
+   * @generated
+   */
+  EReference getNewInstanceExpression_TargetValue();
+
+  /**
    * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.AnnotatedType <em>Annotated Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -4678,6 +4764,49 @@ public interface BXCorePackage extends EPackage
    * @generated
    */
   EReference getDeleteElementExpression_Element();
+
+  /**
+   * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.InsertElementExpression <em>Insert Element Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Insert Element Expression</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.InsertElementExpression
+   * @generated
+   */
+  EClass getInsertElementExpression();
+
+  /**
+   * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.InsertElementExpression#getElement <em>Element</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Element</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.InsertElementExpression#getElement()
+   * @see #getInsertElementExpression()
+   * @generated
+   */
+  EReference getInsertElementExpression_Element();
+
+  /**
+   * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.InsertElementExpression#getPosition <em>Position</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Position</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.InsertElementExpression#getPosition()
+   * @see #getInsertElementExpression()
+   * @generated
+   */
+  EAttribute getInsertElementExpression_Position();
+
+  /**
+   * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.InsertElementExpression#getAnchor <em>Anchor</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Anchor</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.InsertElementExpression#getAnchor()
+   * @see #getInsertElementExpression()
+   * @generated
+   */
+  EReference getInsertElementExpression_Anchor();
 
   /**
    * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.ValueMapping <em>Value Mapping</em>}'.
@@ -6358,6 +6487,22 @@ public interface BXCorePackage extends EPackage
     EReference NEW_INSTANCE_EXPRESSION__SIZE = eINSTANCE.getNewInstanceExpression_Size();
 
     /**
+     * The meta object literal for the '<em><b>Source Value</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference NEW_INSTANCE_EXPRESSION__SOURCE_VALUE = eINSTANCE.getNewInstanceExpression_SourceValue();
+
+    /**
+     * The meta object literal for the '<em><b>Target Value</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference NEW_INSTANCE_EXPRESSION__TARGET_VALUE = eINSTANCE.getNewInstanceExpression_TargetValue();
+
+    /**
      * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.AnnotatedTypeImpl <em>Annotated Type</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -6470,6 +6615,40 @@ public interface BXCorePackage extends EPackage
      * @generated
      */
     EReference DELETE_ELEMENT_EXPRESSION__ELEMENT = eINSTANCE.getDeleteElementExpression_Element();
+
+    /**
+     * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.InsertElementExpressionImpl <em>Insert Element Expression</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.InsertElementExpressionImpl
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getInsertElementExpression()
+     * @generated
+     */
+    EClass INSERT_ELEMENT_EXPRESSION = eINSTANCE.getInsertElementExpression();
+
+    /**
+     * The meta object literal for the '<em><b>Element</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference INSERT_ELEMENT_EXPRESSION__ELEMENT = eINSTANCE.getInsertElementExpression_Element();
+
+    /**
+     * The meta object literal for the '<em><b>Position</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute INSERT_ELEMENT_EXPRESSION__POSITION = eINSTANCE.getInsertElementExpression_Position();
+
+    /**
+     * The meta object literal for the '<em><b>Anchor</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference INSERT_ELEMENT_EXPRESSION__ANCHOR = eINSTANCE.getInsertElementExpression_Anchor();
 
     /**
      * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.ValueMappingImpl <em>Value Mapping</em>}' class.

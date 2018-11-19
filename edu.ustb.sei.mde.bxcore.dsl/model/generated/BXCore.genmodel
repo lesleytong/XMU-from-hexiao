@@ -220,6 +220,8 @@
     <genClasses ecoreClass="BXCore.ecore#//NewInstanceExpression">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//NewInstanceExpression/type"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//NewInstanceExpression/size"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//NewInstanceExpression/sourceValue"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//NewInstanceExpression/targetValue"/>
     </genClasses>
     <genClasses ecoreClass="BXCore.ecore#//AnnotatedType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BXCore.ecore#//AnnotatedType/side"/>
@@ -237,6 +239,11 @@
     </genClasses>
     <genClasses ecoreClass="BXCore.ecore#//DeleteElementExpression">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//DeleteElementExpression/element"/>
+    </genClasses>
+    <genClasses ecoreClass="BXCore.ecore#//InsertElementExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//InsertElementExpression/element"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BXCore.ecore#//InsertElementExpression/position"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//InsertElementExpression/anchor"/>
     </genClasses>
     <genClasses ecoreClass="BXCore.ecore#//ValueMapping">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BXCore.ecore#//ValueMapping/varName"/>

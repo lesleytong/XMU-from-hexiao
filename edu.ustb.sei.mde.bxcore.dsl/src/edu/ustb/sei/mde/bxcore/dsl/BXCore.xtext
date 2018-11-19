@@ -222,7 +222,7 @@ XmuCoreForkBranch :
 ;
 
 XmuCoreAlign :
-	'align' typeIndicator=TypeIndicator? sourcePattern=Pattern viewPattern=Pattern 'with' alignment=ContextAwareCondition
+	'align' typeIndicator=TypeIndicator? sourcePattern=Pattern viewPattern=Pattern ('with' alignment=ContextAwareCondition)?
 		(('match' '->' match=XmuCoreStatement) & ('unmatchS' '->' unmatchS=ContextAwareUnidirectionalAction) & ('unmatchV' '->' unmatchV=ContextAwareUnidirectionalAction))
 ;
 
@@ -295,7 +295,7 @@ ContextVarExpression returns ContextPrimaryExpression:
 ;
 
 NewInstanceExpression :
-	'new' type=AnnotatedType (=>'[' size=XExpression ']')?
+	'new' type=AnnotatedType (=>'[' size=XExpression ']'| => '(' sourceValue=XExpression ',' targetValue=XExpression ')')?
 ;
 
 AnnotatedType :
@@ -316,7 +316,7 @@ ModificationExpressionBlock returns xbase::XExpression:
 ;
 
 ModificationExpression returns ModificationExpression :
-	EnforcementExpression | DeleteElementExpression
+	EnforcementExpression | DeleteElementExpression | InsertElementExpression
 ;
 
 EnforcementExpression:
@@ -326,6 +326,11 @@ EnforcementExpression:
 DeleteElementExpression:
 	=>'delete' element=XExpression ';'
 ;
+
+InsertElementExpression :
+	=> 'insert' element=XExpression ((position=('before'|'after') anchor=XExpression)|(position='first'))? ';'
+;
+
 
 ValueMapping :
 	varName=ValidID '<-' expression=XExpression

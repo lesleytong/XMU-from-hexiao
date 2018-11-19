@@ -34,6 +34,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.HelperDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ImportSection;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.IndexDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.IndexPart;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.InsertElementExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpressionBlock;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.NavigationExpression;
@@ -548,6 +549,13 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * @generated
    */
   private EClass deleteElementExpressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass insertElementExpressionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -2315,6 +2323,26 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getNewInstanceExpression_SourceValue()
+  {
+    return (EReference)newInstanceExpressionEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getNewInstanceExpression_TargetValue()
+  {
+    return (EReference)newInstanceExpressionEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getAnnotatedType()
   {
     return annotatedTypeEClass;
@@ -2438,6 +2466,46 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
   public EReference getDeleteElementExpression_Element()
   {
     return (EReference)deleteElementExpressionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getInsertElementExpression()
+  {
+    return insertElementExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getInsertElementExpression_Element()
+  {
+    return (EReference)insertElementExpressionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getInsertElementExpression_Position()
+  {
+    return (EAttribute)insertElementExpressionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getInsertElementExpression_Anchor()
+  {
+    return (EReference)insertElementExpressionEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -2911,6 +2979,8 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     newInstanceExpressionEClass = createEClass(NEW_INSTANCE_EXPRESSION);
     createEReference(newInstanceExpressionEClass, NEW_INSTANCE_EXPRESSION__TYPE);
     createEReference(newInstanceExpressionEClass, NEW_INSTANCE_EXPRESSION__SIZE);
+    createEReference(newInstanceExpressionEClass, NEW_INSTANCE_EXPRESSION__SOURCE_VALUE);
+    createEReference(newInstanceExpressionEClass, NEW_INSTANCE_EXPRESSION__TARGET_VALUE);
 
     annotatedTypeEClass = createEClass(ANNOTATED_TYPE);
     createEAttribute(annotatedTypeEClass, ANNOTATED_TYPE__SIDE);
@@ -2929,6 +2999,11 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
 
     deleteElementExpressionEClass = createEClass(DELETE_ELEMENT_EXPRESSION);
     createEReference(deleteElementExpressionEClass, DELETE_ELEMENT_EXPRESSION__ELEMENT);
+
+    insertElementExpressionEClass = createEClass(INSERT_ELEMENT_EXPRESSION);
+    createEReference(insertElementExpressionEClass, INSERT_ELEMENT_EXPRESSION__ELEMENT);
+    createEAttribute(insertElementExpressionEClass, INSERT_ELEMENT_EXPRESSION__POSITION);
+    createEReference(insertElementExpressionEClass, INSERT_ELEMENT_EXPRESSION__ANCHOR);
 
     valueMappingEClass = createEClass(VALUE_MAPPING);
     createEAttribute(valueMappingEClass, VALUE_MAPPING__VAR_NAME);
@@ -3041,6 +3116,7 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     modificationExpressionEClass.getESuperTypes().add(theXbasePackage.getXExpression());
     enforcementExpressionEClass.getESuperTypes().add(this.getModificationExpression());
     deleteElementExpressionEClass.getESuperTypes().add(this.getModificationExpression());
+    insertElementExpressionEClass.getESuperTypes().add(this.getModificationExpression());
     definedContextTypeRefEClass.getESuperTypes().add(this.getContextTypeRef());
     ecoreTypeRefEClass.getESuperTypes().add(this.getTypeRef());
     featureTypeRefEClass.getESuperTypes().add(this.getTypeRef());
@@ -3271,6 +3347,8 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     initEClass(newInstanceExpressionEClass, NewInstanceExpression.class, "NewInstanceExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getNewInstanceExpression_Type(), this.getAnnotatedType(), null, "type", null, 0, 1, NewInstanceExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getNewInstanceExpression_Size(), theXbasePackage.getXExpression(), null, "size", null, 0, 1, NewInstanceExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getNewInstanceExpression_SourceValue(), theXbasePackage.getXExpression(), null, "sourceValue", null, 0, 1, NewInstanceExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getNewInstanceExpression_TargetValue(), theXbasePackage.getXExpression(), null, "targetValue", null, 0, 1, NewInstanceExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(annotatedTypeEClass, AnnotatedType.class, "AnnotatedType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getAnnotatedType_Side(), this.getSideEnum(), "side", null, 0, 1, AnnotatedType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3289,6 +3367,11 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
 
     initEClass(deleteElementExpressionEClass, DeleteElementExpression.class, "DeleteElementExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getDeleteElementExpression_Element(), theXbasePackage.getXExpression(), null, "element", null, 0, 1, DeleteElementExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(insertElementExpressionEClass, InsertElementExpression.class, "InsertElementExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getInsertElementExpression_Element(), theXbasePackage.getXExpression(), null, "element", null, 0, 1, InsertElementExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getInsertElementExpression_Position(), ecorePackage.getEString(), "position", null, 0, 1, InsertElementExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getInsertElementExpression_Anchor(), theXbasePackage.getXExpression(), null, "anchor", null, 0, 1, InsertElementExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(valueMappingEClass, ValueMapping.class, "ValueMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getValueMapping_VarName(), ecorePackage.getEString(), "varName", null, 0, 1, ValueMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -35,6 +35,8 @@ import org.eclipse.xtext.xbase.compiler.XbaseCompiler
 import org.eclipse.xtext.xbase.compiler.output.ITreeAppendable
 import org.eclipse.xtext.xbase.typesystem.references.LightweightTypeReference
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.AllInstanceExpression
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.InsertElementExpression
+import org.eclipse.xtext.common.types.JvmParameterizedTypeReference
 
 class XmuCoreCompiler extends XbaseCompiler {
 	def patternAccessor(Pattern p) {
@@ -139,26 +141,57 @@ class XmuCoreCompiler extends XbaseCompiler {
 				a.newLine.append('''«GraphModification.canonicalName» «cur» = «blockVar».remove(''');
 				e.element.internalToJavaExpression(a);
 				a.append(''');''').newLine;
-			}
+			} else if(e instanceof InsertElementExpression) {
+				e.element.internalToJavaStatement(a, true);
+				val elemType = getType(e.element);
+				
+				if(e.anchor!==null) {
+					e.anchor.internalToJavaStatement(a, true);
+				}
+				
+				val actType = if(elemType.qualifiedName.startsWith('java.util.List')) {
+					(elemType as JvmParameterizedTypeReference).arguments.get(0)
+				} else elemType;
+				
+				a.newLine.append('''«GraphModification.canonicalName» «cur» = «blockVar».insert«actType.simpleName»«IF e.position!==null»«e.position.toFirstUpper»«ENDIF»(''');
+				e.element.internalToJavaExpression(a);
+				if(e.anchor!==null) {
+					a.append(',');
+					e.anchor.internalToJavaExpression(a);
+				}
+				a.append(');')
+				
+			} 
 			
 		} else if(e instanceof NewInstanceExpression) {
-			if(e.size!==null) {
-				e.size.internalToJavaStatement(a, true);
-			}
-			
 			val componentType = if (e.type.feature === null)
 					TypedNode
 				else if(e.type.feature instanceof EReference) TypedEdge else ValueEdge;
 
 			val v = a.declareSyntheticVariable(e, 'newInstance');
 			if (e.size !== null) {
+				e.size.internalToJavaStatement(a, true);
 				val iv = a.declareUniqueNameVariable(e, 'it');
 				a.newLine.append('''java.util.List<«componentType.canonicalName»> «v» = new java.util.ArrayList<>();''');
 				a.newLine.append('''for(int «iv»=0;«iv»<''');
 				e.size.internalToJavaExpression(a);
-				a.append(''';«iv»++) «v».add(«ContextGraph.canonicalName».new«componentType.simpleName»());''')
+				a.append(''';«iv»++) «v».add(«ContextGraph.canonicalName».new«componentType.simpleName»(«e.type.side.literal», "«e.type.type.name»"«IF e.type.feature!==null», "«e.type.feature.name»"«ENDIF»));''')
 			} else {
-				a.newLine.append('''«componentType.canonicalName» «v» = «ContextGraph.canonicalName».new«componentType.simpleName»();''');
+				if(e.sourceValue!==null) {
+					e.sourceValue.internalToJavaStatement(a, true);
+					e.targetValue.internalToJavaStatement(a, true);
+				}
+				a.newLine.append('''«componentType.canonicalName» «v» = «ContextGraph.canonicalName».new«componentType.simpleName»(«e.type.side.literal», "«e.type.type.name»"''');
+				if(e.type.feature!==null) {
+					a.append(''', "«e.type.feature.name»"''');
+					if(e.sourceValue!==null) {
+						a.append(',');
+						e.sourceValue.internalToJavaExpression(a);
+						a.append(',');
+						e.targetValue.internalToJavaExpression(a);
+					}
+				}
+				a.append(');');
 			}
 		} else if(e instanceof AllInstanceExpression) {
 			val componentType = if (e.type.feature === null)
@@ -183,6 +216,10 @@ class XmuCoreCompiler extends XbaseCompiler {
 		else null;
 	}
 	
+//	override protected canCompileToJavaExpression(XExpression expression, ITreeAppendable appendable) {
+//		super.canCompileToJavaExpression(expression, appendable)
+//	}
+	
 	override protected internalToConvertedExpression(XExpression e, ITreeAppendable a) {
 		if (e instanceof ContextVarExpression) {
 			a.append(getVarName(e, a))	
@@ -201,8 +238,7 @@ class XmuCoreCompiler extends XbaseCompiler {
 		} else if(e instanceof AllInstanceExpression) {
 			val v = getVarName(e,a);
 			a.append(v);
-		}
-		else
+		} else
 			super.internalToConvertedExpression(e, a)
 	}
 	

@@ -46,14 +46,14 @@ public class Pattern implements IGraph {
 	private List<INode> nodes = new ArrayList<INode>();
 	private List<IEdge> edges = new ArrayList<IEdge>();
 	private TypeGraph typeGraph;
-	private Function<Context, Boolean> filter;
+	private Function<ContextGraph, Boolean> filter;
 	
 	// it seems that the additional fields of a pattern should be associated with an initializer
 	// we check whether they are context vars or dependent vars now // not implemented!!
 	// maybe we should allow initializer in field def
 	private List<Tuple2<FieldDef<?>, Function<ContextGraph, Object>>> additionalFields = new ArrayList<>(); 
 
-	public void setFilter(Function<Context, Boolean> filter) {
+	public void setFilter(Function<ContextGraph, Boolean> filter) {
 		this.filter = filter;
 	}
 
@@ -122,6 +122,8 @@ public class Pattern implements IGraph {
 			return Collections.emptyList();
 
 		org.chocosolver.solver.Solver solver = model.getSolver();
+		
+		ContextGraph contextGraph = ContextGraph.makeContextGraph(typedGraph, base);
 
 		List<Context> matches = new ArrayList<>();
 
@@ -138,7 +140,8 @@ public class Pattern implements IGraph {
 				Object idx = so.isIndexable() ? so.getIndex() : so;
 				m.setValue(ev.getName(), idx);
 			});
-			ContextGraph contextGraph = ContextGraph.makeContextGraph(typedGraph, m);
+			
+			contextGraph.replaceContext(m);
 			
 			boolean valueFilter = this.additionalFields.stream().allMatch(f->{
 				try {
@@ -158,7 +161,7 @@ public class Pattern implements IGraph {
 				}
 			});
 			
-			if(valueFilter && (this.filter==null || this.filter.apply(m)))
+			if(valueFilter && (this.filter==null || this.filter.apply(contextGraph)))
 				matches.add(m);
 		}
 		
@@ -598,7 +601,7 @@ public class Pattern implements IGraph {
 		
 		if(!additionalValueConsistent) return false;
 		
-		return filter==null || filter.apply(match);
+		return filter==null || filter.apply(contextGraph);
 	}
 
 	protected boolean isValueEqual(ValueNode valueNode, Object value) {

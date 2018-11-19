@@ -398,6 +398,11 @@ public class BXCoreAdapterFactory extends AdapterFactoryImpl
         return createDeleteElementExpressionAdapter();
       }
       @Override
+      public Adapter caseInsertElementExpression(InsertElementExpression object)
+      {
+        return createInsertElementExpressionAdapter();
+      }
+      @Override
       public Adapter caseValueMapping(ValueMapping object)
       {
         return createValueMappingAdapter();
@@ -1420,6 +1425,21 @@ public class BXCoreAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createDeleteElementExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.InsertElementExpression <em>Insert Element Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.InsertElementExpression
+   * @generated
+   */
+  public Adapter createInsertElementExpressionAdapter()
   {
     return null;
   }

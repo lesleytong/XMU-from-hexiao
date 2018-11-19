@@ -10,6 +10,7 @@ import edu.ustb.sei.mde.bxcore.exceptions.BidirectionalTransformationDefinitionE
 import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
 import edu.ustb.sei.mde.bxcore.exceptions.UninitializedException;
 import edu.ustb.sei.mde.bxcore.structures.Context;
+import edu.ustb.sei.mde.bxcore.structures.ContextGraph;
 import edu.ustb.sei.mde.bxcore.structures.ContextType;
 import edu.ustb.sei.mde.bxcore.structures.FieldDef;
 import edu.ustb.sei.mde.bxcore.structures.Index;
@@ -24,7 +25,7 @@ import edu.ustb.sei.mde.structure.Tuple2;
 public class Align extends XmuCore {
 	private Pattern patS;
 	public Align(Object key, ContextType sourceDef, ContextType viewDef, Pattern patS, Pattern patV,
-			BiFunction<Context, Context, Boolean> alignment, XmuCore match,
+			BiFunction<ContextGraph, ContextGraph, Boolean> alignment, XmuCore match,
 			BiFunction<SourceType, ViewType, SourceType> unmatchedSource,
 			BiFunction<SourceType, ViewType, SourceType> unmatchedView) throws BidirectionalTransformationDefinitionException {
 		super(key, sourceDef, viewDef);
@@ -40,7 +41,7 @@ public class Align extends XmuCore {
 	}
 
 	private Pattern patV;
-	private BiFunction<Context,Context,Boolean> alignment;
+	private BiFunction<ContextGraph,ContextGraph,Boolean> alignment;
 	private XmuCore match;
 	private BiFunction<SourceType, ViewType, SourceType> unmatchedSource;
 	private BiFunction<SourceType, ViewType, SourceType> unmatchedView;
@@ -119,7 +120,7 @@ public class Align extends XmuCore {
 			// construct one-to-one mapping 
 			List<Tuple2<Context,Context>> alignments = new ArrayList<>();
 			try {
-				if(checkAndConstructAlignment(sources, views, alignments)==false)
+				if(checkAndConstructAlignment(gs, sources, gv, views, alignments)==false)
 					return ConstraintStatus.enforceable;
 			} catch (Exception e) {
 				return ConstraintStatus.unenforceable;
@@ -136,7 +137,7 @@ public class Align extends XmuCore {
 		};
 	}
 	
-	protected boolean checkAndConstructAlignment(List<Context> s, List<Context> v, List<Tuple2<Context,Context>> alignments) throws NothingReturnedException {
+	protected boolean checkAndConstructAlignment(TypedGraph sg, List<Context> s, TypedGraph vg, List<Context> v, List<Tuple2<Context,Context>> alignments) throws NothingReturnedException {
 		boolean isAligned = true;
 		
 		int sizeOfS = s.size();
@@ -144,6 +145,9 @@ public class Align extends XmuCore {
 		
 		if(sizeOfS!=sizeOfV) 
 			isAligned = false;
+		
+		ContextGraph source = ContextGraph.makeContextGraph(sg, null);
+		ContextGraph view = ContextGraph.makeContextGraph(vg, null);
 		
 		if(isOrdered) {
 			for(int si=0,vi=0 ; si<sizeOfS || vi<sizeOfV; ) {
@@ -164,7 +168,9 @@ public class Align extends XmuCore {
 					alignments.add(new Tuple2<Context, Context>(sc, null));
 					si++;
 				} else {
-					if(this.alignment.apply(sc, vc)) {
+					source.replaceContext(sc);
+					view.replaceContext(vc);
+					if(this.alignment.apply(source, view)) {
 						alignments.add(new Tuple2<Context, Context>(sc, vc));
 						si++;
 						vi++;
@@ -181,7 +187,10 @@ public class Align extends XmuCore {
 			for(Context vc : v) {
 				Context matched = null;
 				for(Context sc : s) {
-					if(alignment.apply(sc, vc)) {
+					source.replaceContext(sc);
+					view.replaceContext(vc);
+					
+					if(alignment.apply(source, view)) {
 						if(matched!=null) {// multiple alignment
 							throw new NothingReturnedException();
 						}
@@ -313,7 +322,7 @@ public class Align extends XmuCore {
 		
 		List<Tuple2<Context,Context>> alignments = new ArrayList<>();
 		
-		boolean aligned = checkAndConstructAlignment(sourceMatches, viewMatches, alignments);
+		boolean aligned = checkAndConstructAlignment(s.first, sourceMatches, v.first, viewMatches, alignments);
 		
 		if(!aligned) {
 			if(adaption) {

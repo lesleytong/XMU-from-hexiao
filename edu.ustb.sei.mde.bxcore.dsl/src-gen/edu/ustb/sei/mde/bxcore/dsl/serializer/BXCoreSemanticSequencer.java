@@ -28,6 +28,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.HelperDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ImportSection;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.IndexDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.IndexPart;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.InsertElementExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpressionBlock;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.NavigationExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression;
@@ -202,6 +203,9 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 				return; 
 			case BXCorePackage.INDEX_PART:
 				sequence_IndexPart(context, (IndexPart) semanticObject); 
+				return; 
+			case BXCorePackage.INSERT_ELEMENT_EXPRESSION:
+				sequence_InsertElementExpression(context, (InsertElementExpression) semanticObject); 
 				return; 
 			case BXCorePackage.MODIFICATION_EXPRESSION_BLOCK:
 				sequence_ModificationExpressionBlock(context, (ModificationExpressionBlock) semanticObject); 
@@ -1122,6 +1126,49 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     XPrimaryExpression returns InsertElementExpression
+	 *     ModificationExpression returns InsertElementExpression
+	 *     InsertElementExpression returns InsertElementExpression
+	 *     XExpression returns InsertElementExpression
+	 *     XAssignment returns InsertElementExpression
+	 *     XAssignment.XBinaryOperation_1_1_0_0_0 returns InsertElementExpression
+	 *     XOrExpression returns InsertElementExpression
+	 *     XOrExpression.XBinaryOperation_1_0_0_0 returns InsertElementExpression
+	 *     XAndExpression returns InsertElementExpression
+	 *     XAndExpression.XBinaryOperation_1_0_0_0 returns InsertElementExpression
+	 *     XEqualityExpression returns InsertElementExpression
+	 *     XEqualityExpression.XBinaryOperation_1_0_0_0 returns InsertElementExpression
+	 *     XRelationalExpression returns InsertElementExpression
+	 *     XRelationalExpression.XInstanceOfExpression_1_0_0_0_0 returns InsertElementExpression
+	 *     XRelationalExpression.XBinaryOperation_1_1_0_0_0 returns InsertElementExpression
+	 *     XOtherOperatorExpression returns InsertElementExpression
+	 *     XOtherOperatorExpression.XBinaryOperation_1_0_0_0 returns InsertElementExpression
+	 *     XAdditiveExpression returns InsertElementExpression
+	 *     XAdditiveExpression.XBinaryOperation_1_0_0_0 returns InsertElementExpression
+	 *     XMultiplicativeExpression returns InsertElementExpression
+	 *     XMultiplicativeExpression.XBinaryOperation_1_0_0_0 returns InsertElementExpression
+	 *     XUnaryOperation returns InsertElementExpression
+	 *     XCastedExpression returns InsertElementExpression
+	 *     XCastedExpression.XCastedExpression_1_0_0_0 returns InsertElementExpression
+	 *     XPostfixOperation returns InsertElementExpression
+	 *     XPostfixOperation.XPostfixOperation_1_0_0 returns InsertElementExpression
+	 *     XMemberFeatureCall returns InsertElementExpression
+	 *     XMemberFeatureCall.XAssignment_1_0_0_0_0 returns InsertElementExpression
+	 *     XMemberFeatureCall.XMemberFeatureCall_1_1_0_0_0 returns InsertElementExpression
+	 *     XPrimaryExpression returns InsertElementExpression
+	 *     XParenthesizedExpression returns InsertElementExpression
+	 *     XExpressionOrVarDeclaration returns InsertElementExpression
+	 *
+	 * Constraint:
+	 *     (element=XExpression (((position='before' | position='after') anchor=XExpression) | position='first')?)
+	 */
+	protected void sequence_InsertElementExpression(ISerializationContext context, InsertElementExpression semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     XPrimaryExpression returns ModificationExpressionBlock
 	 *     ModificationExpressionBlock returns ModificationExpressionBlock
 	 *     XExpression returns ModificationExpressionBlock
@@ -1197,7 +1244,7 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	 *     XExpressionOrVarDeclaration returns NewInstanceExpression
 	 *
 	 * Constraint:
-	 *     (type=AnnotatedType size=XExpression?)
+	 *     (type=AnnotatedType (size=XExpression | (sourceValue=XExpression targetValue=XExpression))?)
 	 */
 	protected void sequence_NewInstanceExpression(ISerializationContext context, NewInstanceExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1538,7 +1585,7 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	 *         typeIndicator=TypeIndicator? 
 	 *         sourcePattern=Pattern 
 	 *         viewPattern=Pattern 
-	 *         alignment=ContextAwareCondition 
+	 *         alignment=ContextAwareCondition? 
 	 *         (match=XmuCoreStatement | unmatchS=ContextAwareUnidirectionalAction | unmatchV=ContextAwareUnidirectionalAction)+
 	 *     )
 	 */

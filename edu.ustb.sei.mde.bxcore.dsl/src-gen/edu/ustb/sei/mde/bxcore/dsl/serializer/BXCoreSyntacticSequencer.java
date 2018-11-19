@@ -201,6 +201,7 @@ public class BXCoreSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) 'for' '(' declaredParam=JvmFormalParameter
 	 *     (rule start) (ambiguity) 'for' '(' initExpressions+=XExpressionOrVarDeclaration
 	 *     (rule start) (ambiguity) 'if' '(' if=XExpression
+	 *     (rule start) (ambiguity) 'insert' element=XExpression
 	 *     (rule start) (ambiguity) 'new' constructor=[JvmConstructor|QualifiedName]
 	 *     (rule start) (ambiguity) 'new' type=AnnotatedType
 	 *     (rule start) (ambiguity) 'null' (rule start)
@@ -262,6 +263,7 @@ public class BXCoreSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) 'for' '(' declaredParam=JvmFormalParameter
 	 *     (rule start) (ambiguity) 'for' '(' initExpressions+=XExpressionOrVarDeclaration
 	 *     (rule start) (ambiguity) 'if' '(' if=XExpression
+	 *     (rule start) (ambiguity) 'insert' element=XExpression
 	 *     (rule start) (ambiguity) 'new' constructor=[JvmConstructor|QualifiedName]
 	 *     (rule start) (ambiguity) 'new' type=AnnotatedType
 	 *     (rule start) (ambiguity) 'null' ')' (rule start)

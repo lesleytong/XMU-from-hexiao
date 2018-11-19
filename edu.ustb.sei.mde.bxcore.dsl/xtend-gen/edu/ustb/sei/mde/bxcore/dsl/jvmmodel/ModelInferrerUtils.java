@@ -128,125 +128,139 @@ public class ModelInferrerUtils {
               }
               _xifexpression_3 = _xifexpression_4;
             } else {
-              _xifexpression_3 = ModelInferrerUtils.context(((ContextAwareCondition)e).eContainer(), side);
+              TupleType _xifexpression_6 = null;
+              EStructuralFeature _eContainingFeature_1 = ((ContextAwareCondition)e).eContainingFeature();
+              boolean _tripleEquals_1 = (_eContainingFeature_1 == BXCorePackage.Literals.PATTERN_TYPE_LITERAL__FILTER);
+              if (_tripleEquals_1) {
+                TupleType _xifexpression_7 = null;
+                if ((side == SideEnum.CONTEXT)) {
+                  _xifexpression_7 = ModelInferrerUtils.context(((ContextAwareCondition)e).eContainer(), SideEnum.CONTEXT);
+                } else {
+                  _xifexpression_7 = null;
+                }
+                _xifexpression_6 = _xifexpression_7;
+              } else {
+                _xifexpression_6 = ModelInferrerUtils.context(((ContextAwareCondition)e).eContainer(), side);
+              }
+              _xifexpression_3 = _xifexpression_6;
             }
             _xifexpression_2 = _xifexpression_3;
           } else {
-            TupleType _xifexpression_6 = null;
+            TupleType _xifexpression_8 = null;
             if ((e instanceof ContextAwareUnidirectionalAction)) {
-              TupleType _xifexpression_7 = null;
-              EStructuralFeature _eContainingFeature_1 = ((ContextAwareUnidirectionalAction)e).eContainingFeature();
-              boolean _tripleEquals_1 = (_eContainingFeature_1 == BXCorePackage.Literals.XMU_CORE_ALIGN__UNMATCH_S);
-              if (_tripleEquals_1) {
-                TupleType _xifexpression_8 = null;
+              TupleType _xifexpression_9 = null;
+              EStructuralFeature _eContainingFeature_2 = ((ContextAwareUnidirectionalAction)e).eContainingFeature();
+              boolean _tripleEquals_2 = (_eContainingFeature_2 == BXCorePackage.Literals.XMU_CORE_ALIGN__UNMATCH_S);
+              if (_tripleEquals_2) {
+                TupleType _xifexpression_10 = null;
                 if ((side == SideEnum.SOURCE)) {
                   EObject _eContainer_2 = ((ContextAwareUnidirectionalAction)e).eContainer();
-                  _xifexpression_8 = ModelInferrerUtils.context(((XmuCoreAlign) _eContainer_2).getSourcePattern(), SideEnum.SOURCE);
+                  _xifexpression_10 = ModelInferrerUtils.context(((XmuCoreAlign) _eContainer_2).getSourcePattern(), SideEnum.SOURCE);
                 } else {
-                  TupleType _xifexpression_9 = null;
+                  TupleType _xifexpression_11 = null;
                   if ((side == SideEnum.VIEW)) {
                     EObject _eContainer_3 = ((ContextAwareUnidirectionalAction)e).eContainer();
-                    _xifexpression_9 = ModelInferrerUtils.context(((XmuCoreAlign) _eContainer_3), SideEnum.VIEW);
+                    _xifexpression_11 = ModelInferrerUtils.context(((XmuCoreAlign) _eContainer_3), SideEnum.VIEW);
                   } else {
-                    _xifexpression_9 = null;
-                  }
-                  _xifexpression_8 = _xifexpression_9;
-                }
-                _xifexpression_7 = _xifexpression_8;
-              } else {
-                TupleType _xifexpression_10 = null;
-                EStructuralFeature _eContainingFeature_2 = ((ContextAwareUnidirectionalAction)e).eContainingFeature();
-                boolean _tripleEquals_2 = (_eContainingFeature_2 == BXCorePackage.Literals.XMU_CORE_ALIGN__UNMATCH_V);
-                if (_tripleEquals_2) {
-                  TupleType _xifexpression_11 = null;
-                  if ((side == SideEnum.SOURCE)) {
-                    EObject _eContainer_4 = ((ContextAwareUnidirectionalAction)e).eContainer();
-                    _xifexpression_11 = ModelInferrerUtils.context(((XmuCoreAlign) _eContainer_4), SideEnum.SOURCE);
-                  } else {
-                    TupleType _xifexpression_12 = null;
-                    if ((side == SideEnum.VIEW)) {
-                      EObject _eContainer_5 = ((ContextAwareUnidirectionalAction)e).eContainer();
-                      _xifexpression_12 = ModelInferrerUtils.context(((XmuCoreAlign) _eContainer_5).getViewPattern(), SideEnum.VIEW);
-                    } else {
-                      _xifexpression_12 = null;
-                    }
-                    _xifexpression_11 = _xifexpression_12;
+                    _xifexpression_11 = null;
                   }
                   _xifexpression_10 = _xifexpression_11;
-                } else {
-                  _xifexpression_10 = ModelInferrerUtils.context(((ContextAwareUnidirectionalAction)e).eContainer(), side);
                 }
-                _xifexpression_7 = _xifexpression_10;
+                _xifexpression_9 = _xifexpression_10;
+              } else {
+                TupleType _xifexpression_12 = null;
+                EStructuralFeature _eContainingFeature_3 = ((ContextAwareUnidirectionalAction)e).eContainingFeature();
+                boolean _tripleEquals_3 = (_eContainingFeature_3 == BXCorePackage.Literals.XMU_CORE_ALIGN__UNMATCH_V);
+                if (_tripleEquals_3) {
+                  TupleType _xifexpression_13 = null;
+                  if ((side == SideEnum.SOURCE)) {
+                    EObject _eContainer_4 = ((ContextAwareUnidirectionalAction)e).eContainer();
+                    _xifexpression_13 = ModelInferrerUtils.context(((XmuCoreAlign) _eContainer_4), SideEnum.SOURCE);
+                  } else {
+                    TupleType _xifexpression_14 = null;
+                    if ((side == SideEnum.VIEW)) {
+                      EObject _eContainer_5 = ((ContextAwareUnidirectionalAction)e).eContainer();
+                      _xifexpression_14 = ModelInferrerUtils.context(((XmuCoreAlign) _eContainer_5).getViewPattern(), SideEnum.VIEW);
+                    } else {
+                      _xifexpression_14 = null;
+                    }
+                    _xifexpression_13 = _xifexpression_14;
+                  }
+                  _xifexpression_12 = _xifexpression_13;
+                } else {
+                  _xifexpression_12 = ModelInferrerUtils.context(((ContextAwareUnidirectionalAction)e).eContainer(), side);
+                }
+                _xifexpression_9 = _xifexpression_12;
               }
-              _xifexpression_6 = _xifexpression_7;
+              _xifexpression_8 = _xifexpression_9;
             } else {
-              TupleType _xifexpression_13 = null;
+              TupleType _xifexpression_15 = null;
               if ((e instanceof ContextAwareDerivationAction)) {
                 TupleType _xblockexpression_1 = null;
                 {
                   final EObject stmt = ModelInferrerUtils.containingStatementOrPattern(e);
-                  TupleType _xifexpression_14 = null;
+                  TupleType _xifexpression_16 = null;
                   if ((side == SideEnum.SOURCE)) {
-                    TupleType _xifexpression_15 = null;
+                    TupleType _xifexpression_17 = null;
                     if ((stmt instanceof XmuCoreDeriveSource)) {
-                      _xifexpression_15 = ModelInferrerUtils.context(stmt, side);
+                      _xifexpression_17 = ModelInferrerUtils.context(stmt, side);
                     } else {
-                      _xifexpression_15 = null;
+                      _xifexpression_17 = null;
                     }
-                    _xifexpression_14 = _xifexpression_15;
+                    _xifexpression_16 = _xifexpression_17;
                   } else {
-                    TupleType _xifexpression_16 = null;
+                    TupleType _xifexpression_18 = null;
                     if ((side == SideEnum.VIEW)) {
-                      TupleType _xifexpression_17 = null;
+                      TupleType _xifexpression_19 = null;
                       if ((stmt instanceof XmuCoreDependencyView)) {
-                        _xifexpression_17 = ModelInferrerUtils.context(stmt, side);
+                        _xifexpression_19 = ModelInferrerUtils.context(stmt, side);
                       } else {
-                        _xifexpression_17 = null;
+                        _xifexpression_19 = null;
                       }
-                      _xifexpression_16 = _xifexpression_17;
+                      _xifexpression_18 = _xifexpression_19;
                     } else {
-                      TupleType _xifexpression_18 = null;
+                      TupleType _xifexpression_20 = null;
                       if ((stmt instanceof PatternTypeLiteral)) {
-                        _xifexpression_18 = ModelInferrerUtils.context(stmt, side);
+                        _xifexpression_20 = ModelInferrerUtils.context(stmt, side);
                       } else {
-                        _xifexpression_18 = null;
+                        _xifexpression_20 = null;
                       }
-                      _xifexpression_16 = _xifexpression_18;
+                      _xifexpression_18 = _xifexpression_20;
                     }
-                    _xifexpression_14 = _xifexpression_16;
+                    _xifexpression_16 = _xifexpression_18;
                   }
-                  _xblockexpression_1 = _xifexpression_14;
+                  _xblockexpression_1 = _xifexpression_16;
                 }
-                _xifexpression_13 = _xblockexpression_1;
+                _xifexpression_15 = _xblockexpression_1;
               } else {
-                TupleType _xifexpression_14 = null;
+                TupleType _xifexpression_16 = null;
                 if ((e instanceof XmuCoreStatement)) {
                   UnsolvedTupleType _xblockexpression_2 = null;
                   {
                     final InferData inferData = InferManager.getInferredTypeModel(((XmuCoreStatement)e).eResource());
-                    UnsolvedTupleType _xifexpression_15 = null;
+                    UnsolvedTupleType _xifexpression_17 = null;
                     if ((side == SideEnum.SOURCE)) {
-                      _xifexpression_15 = inferData.getSourceInfer().unsolvedTupleTypeMap.get(e);
+                      _xifexpression_17 = inferData.getSourceInfer().unsolvedTupleTypeMap.get(e);
                     } else {
-                      UnsolvedTupleType _xifexpression_16 = null;
+                      UnsolvedTupleType _xifexpression_18 = null;
                       if ((side == SideEnum.VIEW)) {
-                        _xifexpression_16 = inferData.getViewInfer().unsolvedTupleTypeMap.get(e);
+                        _xifexpression_18 = inferData.getViewInfer().unsolvedTupleTypeMap.get(e);
                       } else {
-                        _xifexpression_16 = null;
+                        _xifexpression_18 = null;
                       }
-                      _xifexpression_15 = _xifexpression_16;
+                      _xifexpression_17 = _xifexpression_18;
                     }
-                    _xblockexpression_2 = _xifexpression_15;
+                    _xblockexpression_2 = _xifexpression_17;
                   }
-                  _xifexpression_14 = _xblockexpression_2;
+                  _xifexpression_16 = _xblockexpression_2;
                 } else {
-                  _xifexpression_14 = ModelInferrerUtils.context(e.eContainer(), side);
+                  _xifexpression_16 = ModelInferrerUtils.context(e.eContainer(), side);
                 }
-                _xifexpression_13 = _xifexpression_14;
+                _xifexpression_15 = _xifexpression_16;
               }
-              _xifexpression_6 = _xifexpression_13;
+              _xifexpression_8 = _xifexpression_15;
             }
-            _xifexpression_2 = _xifexpression_6;
+            _xifexpression_2 = _xifexpression_8;
           }
           _xifexpression_1 = _xifexpression_2;
         }
@@ -274,25 +288,7 @@ public class ModelInferrerUtils {
   }
   
   public static boolean isContextOnly(final EObject e) {
-    boolean _xifexpression = false;
-    if ((e == null)) {
-      _xifexpression = false;
-    } else {
-      boolean _xifexpression_1 = false;
-      if ((e instanceof ContextAwareCondition)) {
-        _xifexpression_1 = ((((ContextAwareCondition)e).eContainingFeature() == BXCorePackage.Literals.PATTERN_TYPE_LITERAL__FILTER) || (((ContextAwareCondition)e).eContainingFeature() == BXCorePackage.Literals.XMU_CORE_ALIGN__ALIGNMENT));
-      } else {
-        boolean _xifexpression_2 = false;
-        if ((e instanceof ContextAwareUnidirectionalAction)) {
-          _xifexpression_2 = false;
-        } else {
-          _xifexpression_2 = ModelInferrerUtils.isContextOnly(e.eContainer());
-        }
-        _xifexpression_1 = _xifexpression_2;
-      }
-      _xifexpression = _xifexpression_1;
-    }
-    return _xifexpression;
+    return false;
   }
   
   public static Pair<Object, Boolean> navEcoreType(final ContextExpression e) {

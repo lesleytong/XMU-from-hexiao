@@ -590,6 +590,15 @@ public class BXCoreSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case BXCorePackage.INSERT_ELEMENT_EXPRESSION:
+      {
+        InsertElementExpression insertElementExpression = (InsertElementExpression)theEObject;
+        T result = caseInsertElementExpression(insertElementExpression);
+        if (result == null) result = caseModificationExpression(insertElementExpression);
+        if (result == null) result = caseXExpression(insertElementExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case BXCorePackage.VALUE_MAPPING:
       {
         ValueMapping valueMapping = (ValueMapping)theEObject;
@@ -1682,6 +1691,22 @@ public class BXCoreSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseDeleteElementExpression(DeleteElementExpression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Insert Element Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Insert Element Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseInsertElementExpression(InsertElementExpression object)
   {
     return null;
   }

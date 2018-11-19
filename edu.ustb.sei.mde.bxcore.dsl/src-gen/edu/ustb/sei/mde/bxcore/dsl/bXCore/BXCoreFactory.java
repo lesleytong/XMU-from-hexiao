@@ -600,6 +600,15 @@ public interface BXCoreFactory extends EFactory
   DeleteElementExpression createDeleteElementExpression();
 
   /**
+   * Returns a new object of class '<em>Insert Element Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Insert Element Expression</em>'.
+   * @generated
+   */
+  InsertElementExpression createInsertElementExpression();
+
+  /**
    * Returns a new object of class '<em>Value Mapping</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

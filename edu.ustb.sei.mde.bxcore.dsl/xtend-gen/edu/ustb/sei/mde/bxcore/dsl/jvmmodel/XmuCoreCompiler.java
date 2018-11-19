@@ -6,6 +6,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextVarExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.DeleteElementExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.EnforcementExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ExpressionConversion;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.InsertElementExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpressionBlock;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.NavigationExpression;
@@ -31,6 +32,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.xtend2.lib.StringConcatenation;
+import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
 import org.eclipse.xtext.common.types.JvmTypeReference;
 import org.eclipse.xtext.xbase.XExpression;
 import org.eclipse.xtext.xbase.compiler.XbaseCompiler;
@@ -320,156 +322,247 @@ public class XmuCoreCompiler extends XbaseCompiler {
                   StringConcatenation _builder_15 = new StringConcatenation();
                   _builder_15.append(");");
                   a.append(_builder_15).newLine();
+                } else {
+                  if ((e instanceof InsertElementExpression)) {
+                    this.internalToJavaStatement(((InsertElementExpression)e).getElement(), a, true);
+                    final JvmTypeReference elemType = this.getType(((InsertElementExpression)e).getElement());
+                    XExpression _anchor = ((InsertElementExpression)e).getAnchor();
+                    boolean _tripleNotEquals = (_anchor != null);
+                    if (_tripleNotEquals) {
+                      this.internalToJavaStatement(((InsertElementExpression)e).getAnchor(), a, true);
+                    }
+                    JvmTypeReference _xifexpression = null;
+                    boolean _startsWith = elemType.getQualifiedName().startsWith("java.util.List");
+                    if (_startsWith) {
+                      _xifexpression = ((JvmParameterizedTypeReference) elemType).getArguments().get(0);
+                    } else {
+                      _xifexpression = elemType;
+                    }
+                    final JvmTypeReference actType = _xifexpression;
+                    ITreeAppendable _newLine_6 = a.newLine();
+                    StringConcatenation _builder_16 = new StringConcatenation();
+                    String _canonicalName_7 = GraphModification.class.getCanonicalName();
+                    _builder_16.append(_canonicalName_7);
+                    _builder_16.append(" ");
+                    _builder_16.append(cur);
+                    _builder_16.append(" = ");
+                    _builder_16.append(blockVar);
+                    _builder_16.append(".insert");
+                    String _simpleName = actType.getSimpleName();
+                    _builder_16.append(_simpleName);
+                    {
+                      String _position = ((InsertElementExpression)e).getPosition();
+                      boolean _tripleNotEquals_1 = (_position != null);
+                      if (_tripleNotEquals_1) {
+                        String _firstUpper = StringExtensions.toFirstUpper(((InsertElementExpression)e).getPosition());
+                        _builder_16.append(_firstUpper);
+                      }
+                    }
+                    _builder_16.append("(");
+                    _newLine_6.append(_builder_16);
+                    this.internalToJavaExpression(((InsertElementExpression)e).getElement(), a);
+                    XExpression _anchor_1 = ((InsertElementExpression)e).getAnchor();
+                    boolean _tripleNotEquals_2 = (_anchor_1 != null);
+                    if (_tripleNotEquals_2) {
+                      a.append(",");
+                      this.internalToJavaExpression(((InsertElementExpression)e).getAnchor(), a);
+                    }
+                    a.append(");");
+                  }
                 }
               }
             } else {
               if ((e instanceof NewInstanceExpression)) {
-                XExpression _size = ((NewInstanceExpression)e).getSize();
-                boolean _tripleNotEquals = (_size != null);
-                if (_tripleNotEquals) {
-                  this.internalToJavaStatement(((NewInstanceExpression)e).getSize(), a, true);
-                }
-                Class<? extends IndexableElement> _xifexpression = null;
+                Class<? extends IndexableElement> _xifexpression_1 = null;
                 EStructuralFeature _feature = ((NewInstanceExpression)e).getType().getFeature();
                 boolean _tripleEquals = (_feature == null);
                 if (_tripleEquals) {
-                  _xifexpression = TypedNode.class;
+                  _xifexpression_1 = TypedNode.class;
                 } else {
-                  Class<? extends IndexableElement> _xifexpression_1 = null;
+                  Class<? extends IndexableElement> _xifexpression_2 = null;
                   EStructuralFeature _feature_1 = ((NewInstanceExpression)e).getType().getFeature();
                   if ((_feature_1 instanceof EReference)) {
-                    _xifexpression_1 = TypedEdge.class;
+                    _xifexpression_2 = TypedEdge.class;
                   } else {
-                    _xifexpression_1 = ValueEdge.class;
+                    _xifexpression_2 = ValueEdge.class;
                   }
-                  _xifexpression = _xifexpression_1;
+                  _xifexpression_1 = _xifexpression_2;
                 }
-                final Class<? extends IndexableElement> componentType = _xifexpression;
+                final Class<? extends IndexableElement> componentType = _xifexpression_1;
                 final String v = a.declareSyntheticVariable(e, "newInstance");
-                XExpression _size_1 = ((NewInstanceExpression)e).getSize();
-                boolean _tripleNotEquals_1 = (_size_1 != null);
-                if (_tripleNotEquals_1) {
+                XExpression _size = ((NewInstanceExpression)e).getSize();
+                boolean _tripleNotEquals_3 = (_size != null);
+                if (_tripleNotEquals_3) {
+                  this.internalToJavaStatement(((NewInstanceExpression)e).getSize(), a, true);
                   final String iv = a.declareUniqueNameVariable(e, "it");
-                  ITreeAppendable _newLine_6 = a.newLine();
-                  StringConcatenation _builder_16 = new StringConcatenation();
-                  _builder_16.append("java.util.List<");
-                  String _canonicalName_7 = componentType.getCanonicalName();
-                  _builder_16.append(_canonicalName_7);
-                  _builder_16.append("> ");
-                  _builder_16.append(v);
-                  _builder_16.append(" = new java.util.ArrayList<>();");
-                  _newLine_6.append(_builder_16);
                   ITreeAppendable _newLine_7 = a.newLine();
                   StringConcatenation _builder_17 = new StringConcatenation();
-                  _builder_17.append("for(int ");
-                  _builder_17.append(iv);
-                  _builder_17.append("=0;");
-                  _builder_17.append(iv);
-                  _builder_17.append("<");
+                  _builder_17.append("java.util.List<");
+                  String _canonicalName_8 = componentType.getCanonicalName();
+                  _builder_17.append(_canonicalName_8);
+                  _builder_17.append("> ");
+                  _builder_17.append(v);
+                  _builder_17.append(" = new java.util.ArrayList<>();");
                   _newLine_7.append(_builder_17);
-                  this.internalToJavaExpression(((NewInstanceExpression)e).getSize(), a);
-                  StringConcatenation _builder_18 = new StringConcatenation();
-                  _builder_18.append(";");
-                  _builder_18.append(iv);
-                  _builder_18.append("++) ");
-                  _builder_18.append(v);
-                  _builder_18.append(".add(");
-                  String _canonicalName_8 = ContextGraph.class.getCanonicalName();
-                  _builder_18.append(_canonicalName_8);
-                  _builder_18.append(".new");
-                  String _simpleName = componentType.getSimpleName();
-                  _builder_18.append(_simpleName);
-                  _builder_18.append("());");
-                  a.append(_builder_18);
-                } else {
                   ITreeAppendable _newLine_8 = a.newLine();
+                  StringConcatenation _builder_18 = new StringConcatenation();
+                  _builder_18.append("for(int ");
+                  _builder_18.append(iv);
+                  _builder_18.append("=0;");
+                  _builder_18.append(iv);
+                  _builder_18.append("<");
+                  _newLine_8.append(_builder_18);
+                  this.internalToJavaExpression(((NewInstanceExpression)e).getSize(), a);
                   StringConcatenation _builder_19 = new StringConcatenation();
-                  String _canonicalName_9 = componentType.getCanonicalName();
-                  _builder_19.append(_canonicalName_9);
-                  _builder_19.append(" ");
+                  _builder_19.append(";");
+                  _builder_19.append(iv);
+                  _builder_19.append("++) ");
                   _builder_19.append(v);
-                  _builder_19.append(" = ");
-                  String _canonicalName_10 = ContextGraph.class.getCanonicalName();
-                  _builder_19.append(_canonicalName_10);
+                  _builder_19.append(".add(");
+                  String _canonicalName_9 = ContextGraph.class.getCanonicalName();
+                  _builder_19.append(_canonicalName_9);
                   _builder_19.append(".new");
                   String _simpleName_1 = componentType.getSimpleName();
                   _builder_19.append(_simpleName_1);
-                  _builder_19.append("();");
-                  _newLine_8.append(_builder_19);
+                  _builder_19.append("(");
+                  String _literal_4 = ((NewInstanceExpression)e).getType().getSide().getLiteral();
+                  _builder_19.append(_literal_4);
+                  _builder_19.append(", \"");
+                  String _name_2 = ((NewInstanceExpression)e).getType().getType().getName();
+                  _builder_19.append(_name_2);
+                  _builder_19.append("\"");
+                  {
+                    EStructuralFeature _feature_2 = ((NewInstanceExpression)e).getType().getFeature();
+                    boolean _tripleNotEquals_4 = (_feature_2 != null);
+                    if (_tripleNotEquals_4) {
+                      _builder_19.append(", \"");
+                      String _name_3 = ((NewInstanceExpression)e).getType().getFeature().getName();
+                      _builder_19.append(_name_3);
+                      _builder_19.append("\"");
+                    }
+                  }
+                  _builder_19.append("));");
+                  a.append(_builder_19);
+                } else {
+                  XExpression _sourceValue = ((NewInstanceExpression)e).getSourceValue();
+                  boolean _tripleNotEquals_5 = (_sourceValue != null);
+                  if (_tripleNotEquals_5) {
+                    this.internalToJavaStatement(((NewInstanceExpression)e).getSourceValue(), a, true);
+                    this.internalToJavaStatement(((NewInstanceExpression)e).getTargetValue(), a, true);
+                  }
+                  ITreeAppendable _newLine_9 = a.newLine();
+                  StringConcatenation _builder_20 = new StringConcatenation();
+                  String _canonicalName_10 = componentType.getCanonicalName();
+                  _builder_20.append(_canonicalName_10);
+                  _builder_20.append(" ");
+                  _builder_20.append(v);
+                  _builder_20.append(" = ");
+                  String _canonicalName_11 = ContextGraph.class.getCanonicalName();
+                  _builder_20.append(_canonicalName_11);
+                  _builder_20.append(".new");
+                  String _simpleName_2 = componentType.getSimpleName();
+                  _builder_20.append(_simpleName_2);
+                  _builder_20.append("(");
+                  String _literal_5 = ((NewInstanceExpression)e).getType().getSide().getLiteral();
+                  _builder_20.append(_literal_5);
+                  _builder_20.append(", \"");
+                  String _name_4 = ((NewInstanceExpression)e).getType().getType().getName();
+                  _builder_20.append(_name_4);
+                  _builder_20.append("\"");
+                  _newLine_9.append(_builder_20);
+                  EStructuralFeature _feature_3 = ((NewInstanceExpression)e).getType().getFeature();
+                  boolean _tripleNotEquals_6 = (_feature_3 != null);
+                  if (_tripleNotEquals_6) {
+                    StringConcatenation _builder_21 = new StringConcatenation();
+                    _builder_21.append(", \"");
+                    String _name_5 = ((NewInstanceExpression)e).getType().getFeature().getName();
+                    _builder_21.append(_name_5);
+                    _builder_21.append("\"");
+                    a.append(_builder_21);
+                    XExpression _sourceValue_1 = ((NewInstanceExpression)e).getSourceValue();
+                    boolean _tripleNotEquals_7 = (_sourceValue_1 != null);
+                    if (_tripleNotEquals_7) {
+                      a.append(",");
+                      this.internalToJavaExpression(((NewInstanceExpression)e).getSourceValue(), a);
+                      a.append(",");
+                      this.internalToJavaExpression(((NewInstanceExpression)e).getTargetValue(), a);
+                    }
+                  }
+                  a.append(");");
                 }
               } else {
                 if ((e instanceof AllInstanceExpression)) {
-                  Class<? extends IndexableElement> _xifexpression_2 = null;
-                  EStructuralFeature _feature_2 = ((AllInstanceExpression)e).getType().getFeature();
-                  boolean _tripleEquals_1 = (_feature_2 == null);
+                  Class<? extends IndexableElement> _xifexpression_3 = null;
+                  EStructuralFeature _feature_4 = ((AllInstanceExpression)e).getType().getFeature();
+                  boolean _tripleEquals_1 = (_feature_4 == null);
                   if (_tripleEquals_1) {
-                    _xifexpression_2 = TypedNode.class;
+                    _xifexpression_3 = TypedNode.class;
                   } else {
-                    Class<? extends IndexableElement> _xifexpression_3 = null;
-                    EStructuralFeature _feature_3 = ((AllInstanceExpression)e).getType().getFeature();
-                    if ((_feature_3 instanceof EReference)) {
-                      _xifexpression_3 = TypedEdge.class;
+                    Class<? extends IndexableElement> _xifexpression_4 = null;
+                    EStructuralFeature _feature_5 = ((AllInstanceExpression)e).getType().getFeature();
+                    if ((_feature_5 instanceof EReference)) {
+                      _xifexpression_4 = TypedEdge.class;
                     } else {
-                      _xifexpression_3 = ValueEdge.class;
+                      _xifexpression_4 = ValueEdge.class;
                     }
-                    _xifexpression_2 = _xifexpression_3;
+                    _xifexpression_3 = _xifexpression_4;
                   }
-                  final Class<? extends IndexableElement> componentType_1 = _xifexpression_2;
+                  final Class<? extends IndexableElement> componentType_1 = _xifexpression_3;
                   if (isReferenced) {
                     final String v_1 = a.declareSyntheticVariable(e, "allInstances");
-                    ITreeAppendable _newLine_9 = a.newLine();
-                    StringConcatenation _builder_20 = new StringConcatenation();
-                    _builder_20.append("java.util.List<");
-                    String _canonicalName_11 = componentType_1.getCanonicalName();
-                    _builder_20.append(_canonicalName_11);
-                    _builder_20.append("> ");
-                    _builder_20.append(v_1);
-                    _builder_20.append(" = ");
-                    String _literal_4 = ((AllInstanceExpression)e).getType().getSide().getLiteral();
-                    _builder_20.append(_literal_4);
-                    _builder_20.append(".all");
-                    String _simpleName_2 = componentType_1.getSimpleName();
-                    _builder_20.append(_simpleName_2);
-                    _builder_20.append("s(\"");
-                    String _name_2 = ((AllInstanceExpression)e).getType().getType().getName();
-                    _builder_20.append(_name_2);
-                    _builder_20.append("\"");
-                    {
-                      EStructuralFeature _feature_4 = ((AllInstanceExpression)e).getType().getFeature();
-                      boolean _tripleNotEquals_2 = (_feature_4 != null);
-                      if (_tripleNotEquals_2) {
-                        _builder_20.append(",\"");
-                        String _name_3 = ((AllInstanceExpression)e).getType().getFeature().getName();
-                        _builder_20.append(_name_3);
-                        _builder_20.append("\"");
-                      }
-                    }
-                    _builder_20.append(");");
-                    _newLine_9.append(_builder_20);
-                  } else {
                     ITreeAppendable _newLine_10 = a.newLine();
-                    StringConcatenation _builder_21 = new StringConcatenation();
-                    String _literal_5 = ((AllInstanceExpression)e).getType().getSide().getLiteral();
-                    _builder_21.append(_literal_5);
-                    _builder_21.append(".all");
+                    StringConcatenation _builder_22 = new StringConcatenation();
+                    _builder_22.append("java.util.List<");
+                    String _canonicalName_12 = componentType_1.getCanonicalName();
+                    _builder_22.append(_canonicalName_12);
+                    _builder_22.append("> ");
+                    _builder_22.append(v_1);
+                    _builder_22.append(" = ");
+                    String _literal_6 = ((AllInstanceExpression)e).getType().getSide().getLiteral();
+                    _builder_22.append(_literal_6);
+                    _builder_22.append(".all");
                     String _simpleName_3 = componentType_1.getSimpleName();
-                    _builder_21.append(_simpleName_3);
-                    _builder_21.append("s(\"");
-                    String _name_4 = ((AllInstanceExpression)e).getType().getType().getName();
-                    _builder_21.append(_name_4);
-                    _builder_21.append("\"");
+                    _builder_22.append(_simpleName_3);
+                    _builder_22.append("s(\"");
+                    String _name_6 = ((AllInstanceExpression)e).getType().getType().getName();
+                    _builder_22.append(_name_6);
+                    _builder_22.append("\"");
                     {
-                      EStructuralFeature _feature_5 = ((AllInstanceExpression)e).getType().getFeature();
-                      boolean _tripleNotEquals_3 = (_feature_5 != null);
-                      if (_tripleNotEquals_3) {
-                        _builder_21.append(",\"");
-                        String _name_5 = ((AllInstanceExpression)e).getType().getFeature().getName();
-                        _builder_21.append(_name_5);
-                        _builder_21.append("\"");
+                      EStructuralFeature _feature_6 = ((AllInstanceExpression)e).getType().getFeature();
+                      boolean _tripleNotEquals_8 = (_feature_6 != null);
+                      if (_tripleNotEquals_8) {
+                        _builder_22.append(",\"");
+                        String _name_7 = ((AllInstanceExpression)e).getType().getFeature().getName();
+                        _builder_22.append(_name_7);
+                        _builder_22.append("\"");
                       }
                     }
-                    _builder_21.append(");");
-                    _newLine_10.append(_builder_21);
+                    _builder_22.append(");");
+                    _newLine_10.append(_builder_22);
+                  } else {
+                    ITreeAppendable _newLine_11 = a.newLine();
+                    StringConcatenation _builder_23 = new StringConcatenation();
+                    String _literal_7 = ((AllInstanceExpression)e).getType().getSide().getLiteral();
+                    _builder_23.append(_literal_7);
+                    _builder_23.append(".all");
+                    String _simpleName_4 = componentType_1.getSimpleName();
+                    _builder_23.append(_simpleName_4);
+                    _builder_23.append("s(\"");
+                    String _name_8 = ((AllInstanceExpression)e).getType().getType().getName();
+                    _builder_23.append(_name_8);
+                    _builder_23.append("\"");
+                    {
+                      EStructuralFeature _feature_7 = ((AllInstanceExpression)e).getType().getFeature();
+                      boolean _tripleNotEquals_9 = (_feature_7 != null);
+                      if (_tripleNotEquals_9) {
+                        _builder_23.append(",\"");
+                        String _name_9 = ((AllInstanceExpression)e).getType().getFeature().getName();
+                        _builder_23.append(_name_9);
+                        _builder_23.append("\"");
+                      }
+                    }
+                    _builder_23.append(");");
+                    _newLine_11.append(_builder_23);
                   }
                 } else {
                   super.doInternalToJavaStatement(e, a, isReferenced);

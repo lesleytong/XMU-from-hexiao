@@ -8,6 +8,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextVarExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.DeleteElementExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.EnforcementExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ExpressionConversion;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.InsertElementExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpressionBlock;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.NavigationExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression;
@@ -17,6 +18,7 @@ import edu.ustb.sei.mde.bxcore.dsl.jvmmodel.ModelInferrerUtils;
 import edu.ustb.sei.mde.bxcore.dsl.structure.TupleType;
 import edu.ustb.sei.mde.bxcore.structures.GraphModification;
 import edu.ustb.sei.mde.bxcore.structures.Index;
+import edu.ustb.sei.mde.graph.typedGraph.ITypedEdge;
 import edu.ustb.sei.mde.graph.typedGraph.TypedEdge;
 import edu.ustb.sei.mde.graph.typedGraph.TypedNode;
 import edu.ustb.sei.mde.graph.typedGraph.ValueEdge;
@@ -280,16 +282,12 @@ public class XmuCoreTypeComputer extends XbaseTypeComputer {
   }
   
   protected void _computeTypes(final NewInstanceExpression instance, final ITypeComputationState state) {
-    XExpression _size = instance.getSize();
-    boolean _tripleNotEquals = (_size != null);
-    if (_tripleNotEquals) {
-      state.withExpectation(this.getRawTypeForName(int.class, state)).computeTypes(instance.getSize());
-    }
+    final LightweightTypeReference typedNodeRef = this.getRawTypeForName(TypedNode.class, state);
     LightweightTypeReference _xifexpression = null;
     EStructuralFeature _feature = instance.getType().getFeature();
     boolean _tripleEquals = (_feature == null);
     if (_tripleEquals) {
-      _xifexpression = this.getRawTypeForName(TypedNode.class, state);
+      _xifexpression = typedNodeRef;
     } else {
       LightweightTypeReference _xifexpression_1 = null;
       EStructuralFeature _feature_1 = instance.getType().getFeature();
@@ -301,9 +299,31 @@ public class XmuCoreTypeComputer extends XbaseTypeComputer {
       _xifexpression = _xifexpression_1;
     }
     final LightweightTypeReference elementType = _xifexpression;
+    XExpression _size = instance.getSize();
+    boolean _tripleNotEquals = (_size != null);
+    if (_tripleNotEquals) {
+      state.withExpectation(this.getRawTypeForName(int.class, state)).computeTypes(instance.getSize());
+    } else {
+      XExpression _sourceValue = instance.getSourceValue();
+      boolean _tripleNotEquals_1 = (_sourceValue != null);
+      if (_tripleNotEquals_1) {
+        boolean _isType = elementType.isType(TypedNode.class);
+        if (_isType) {
+        } else {
+          boolean _isType_1 = elementType.isType(TypedEdge.class);
+          if (_isType_1) {
+            state.withExpectation(typedNodeRef).computeTypes(instance.getSourceValue());
+            state.withExpectation(typedNodeRef).computeTypes(instance.getTargetValue());
+          } else {
+            state.withExpectation(typedNodeRef).computeTypes(instance.getSourceValue());
+            state.withNonVoidExpectation().computeTypes(instance.getTargetValue());
+          }
+        }
+      }
+    }
     XExpression _size_1 = instance.getSize();
-    boolean _tripleNotEquals_1 = (_size_1 != null);
-    if (_tripleNotEquals_1) {
+    boolean _tripleNotEquals_2 = (_size_1 != null);
+    if (_tripleNotEquals_2) {
       final ITypeReferenceOwner owner = state.getReferenceOwner();
       final ParameterizedTypeReference array = owner.newParameterizedTypeReference(owner.newReferenceTo(List.class).getType());
       array.addTypeArgument(elementType);
@@ -336,6 +356,19 @@ public class XmuCoreTypeComputer extends XbaseTypeComputer {
     state.acceptActualType(array);
   }
   
+  protected void _computeTypes(final InsertElementExpression insert, final ITypeComputationState state) {
+    final LightweightTypeReference iTypedEdgeRef = this.getRawTypeForName(ITypedEdge.class, state);
+    XExpression _anchor = insert.getAnchor();
+    boolean _tripleNotEquals = (_anchor != null);
+    if (_tripleNotEquals) {
+      state.withExpectation(iTypedEdgeRef).computeTypes(insert.getElement());
+      state.withExpectation(iTypedEdgeRef).computeTypes(insert.getAnchor());
+    } else {
+      state.withNonVoidExpectation().computeTypes(insert.getElement());
+    }
+    state.acceptActualType(this.getRawTypeForName(GraphModification.class, state));
+  }
+  
   public void computeTypes(final XExpression cvar, final ITypeComputationState state) {
     if (cvar instanceof ContextVarExpression) {
       _computeTypes((ContextVarExpression)cvar, state);
@@ -348,6 +381,9 @@ public class XmuCoreTypeComputer extends XbaseTypeComputer {
       return;
     } else if (cvar instanceof EnforcementExpression) {
       _computeTypes((EnforcementExpression)cvar, state);
+      return;
+    } else if (cvar instanceof InsertElementExpression) {
+      _computeTypes((InsertElementExpression)cvar, state);
       return;
     } else if (cvar instanceof NavigationExpression) {
       _computeTypes((NavigationExpression)cvar, state);

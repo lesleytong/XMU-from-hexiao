@@ -23,6 +23,7 @@ import edu.ustb.sei.mde.graph.typedGraph.TypedEdge;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
 import edu.ustb.sei.mde.graph.typedGraph.TypedNode;
 import edu.ustb.sei.mde.graph.typedGraph.ValueEdge;
+import edu.ustb.sei.mde.graph.typedGraph.ValueNode;
 import edu.ustb.sei.mde.structure.Tuple2;
 
 public interface ContextGraph {
@@ -43,6 +44,19 @@ public interface ContextGraph {
 		@Override
 		public TypedGraph getGraph() {
 			return graph;
+		}
+	}
+	
+	default ContextGraph replaceContext(Context c) {
+		if(this instanceof SourceType)
+			return ((SourceType)this).replaceSecond(c);
+		else if(this instanceof ViewType)
+			return ((ViewType)this).replaceSecond(c);
+		else if(this instanceof ContextGraphImpl) {
+			((ContextGraphImpl)this).context = c;
+			return this;
+		} else {
+			return makeContextGraph(getGraph(), c);
 		}
 	}
 	
@@ -73,20 +87,71 @@ public interface ContextGraph {
 		}
 	}
 	
-	static public TypedNode newTypedNode() {
-		TypedNode node = new TypedNode(TypeNode.ANY_TYPE);
+	static public TypedNode newTypedNode(ContextGraph graph, String typeName) {
+		TypeNode type = typeName!=null ? graph.getTypeNode(typeName) : null;
+		TypedNode node;
+		if(type==null)
+			node = new TypedNode(TypeNode.ANY_TYPE);
+		else node = new TypedNode(type);
+		
 		node.appendIndexValue(IndexSystem.generateUUID());
 		return node;
 	}
 	
-	static public TypedEdge newTypedEdge() {
-		TypedEdge edge = new TypedEdge();
+	static public TypedEdge newTypedEdge(ContextGraph graph, String typeName, String featureName) {
+		TypeNode type = typeName!=null? graph.getTypeNode(typeName) : null; 
+		TypeEdge feature = type!=null && featureName!=null ? graph.getTypeEdge(type, featureName) : null;
+		
+		TypedEdge edge;
+		
+		if(feature==null) edge = new TypedEdge();
+		else edge = new TypedEdge(null, null, feature);
+		
 		edge.appendIndexValue(IndexSystem.generateUUID());
 		return edge;
 	}
 	
-	static public ValueEdge newValueEdge() {
-		ValueEdge edge = new ValueEdge();
+	static public TypedEdge newTypedEdge(ContextGraph graph, String typeName, String featureName, TypedNode source, TypedNode target) {
+		TypeNode type = typeName!=null? graph.getTypeNode(typeName) : null;
+		TypeEdge feature = type!=null && featureName!=null ? graph.getTypeEdge(type, featureName) : null;
+		
+		TypedEdge edge;
+		
+		if(feature==null) edge = new TypedEdge();
+		else edge = new TypedEdge(source, target, feature);
+		
+		edge.appendIndexValue(IndexSystem.generateUUID());
+		return edge;
+	}
+	
+	static public ValueEdge newValueEdge(ContextGraph graph, String typeName, String featureName) {
+		TypeNode type = typeName!=null? graph.getTypeNode(typeName) : null;
+		PropertyEdge feature = type!=null && featureName!=null ? graph.getPropertyEdge(type, featureName) : null;
+		
+		ValueEdge edge;
+		
+		if(feature==null) edge = new ValueEdge();
+		else edge = new ValueEdge(null, null, feature);
+		
+		edge.appendIndexValue(IndexSystem.generateUUID());
+		return edge;
+	}
+	
+	static public ValueEdge newValueEdge(ContextGraph graph, String typeName, String featureName, TypedNode source, Object target) {
+		TypeNode type = typeName!=null? graph.getTypeNode(typeName) : null;
+		PropertyEdge feature = type!=null && featureName!=null ? graph.getPropertyEdge(type, featureName) : null;
+		
+		ValueEdge edge;
+		
+		if(feature==null) edge = new ValueEdge();
+		else {
+			ValueNode value = null;
+			if(target instanceof ValueNode) value = (ValueNode) target;
+			else value = ValueNode.createConstantNode(target, feature.getTarget());
+			
+			edge = new ValueEdge(source, value, feature);
+		}
+		
 		edge.appendIndexValue(IndexSystem.generateUUID());
 		return edge;
 	}

@@ -1,18 +1,23 @@
 package edu.ustb.sei.mde.bxcore.dsl.jvmmodel
 
 import edu.ustb.sei.mde.bxcore.SourceType
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.AllInstanceExpression
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextVarExpression
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.DeleteElementExpression
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.EnforcementExpression
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ExpressionConversion
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.InsertElementExpression
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpressionBlock
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.NavigationExpression
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression
 import edu.ustb.sei.mde.bxcore.structures.GraphModification
 import edu.ustb.sei.mde.bxcore.structures.Index
+import edu.ustb.sei.mde.graph.typedGraph.ITypedEdge
 import edu.ustb.sei.mde.graph.typedGraph.TypedEdge
 import edu.ustb.sei.mde.graph.typedGraph.TypedNode
 import edu.ustb.sei.mde.graph.typedGraph.ValueEdge
+import edu.ustb.sei.mde.graph.typedGraph.ValueNode
 import java.util.List
 import org.eclipse.emf.ecore.EAttribute
 import org.eclipse.emf.ecore.EClass
@@ -27,8 +32,6 @@ import org.eclipse.xtext.xbase.typesystem.computation.XbaseTypeComputer
 import org.eclipse.xtext.xbase.typesystem.conformance.ConformanceFlags
 import org.eclipse.xtext.xbase.typesystem.references.LightweightTypeReference
 import org.eclipse.xtext.xbase.validation.IssueCodes
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.AllInstanceExpression
 
 class XmuCoreTypeComputer extends XbaseTypeComputer {
 	
@@ -154,15 +157,28 @@ class XmuCoreTypeComputer extends XbaseTypeComputer {
     }
     
     def dispatch void computeTypes(NewInstanceExpression instance, ITypeComputationState state) {
-    	if(instance.size!==null)
-    		state.withExpectation(getRawTypeForName(int,state)).computeTypes(instance.size);
-    		
+    	val typedNodeRef = getRawTypeForName(TypedNode, state);
+    	
     	val elementType = if (instance.type.feature === null) {
-				getRawTypeForName(TypedNode, state)
+				typedNodeRef
 			} else {
 				if(instance.type.feature instanceof EAttribute) getRawTypeForName(ValueEdge, state) 
 				else getRawTypeForName(TypedEdge, state)
 			}
+
+    	if(instance.size!==null)
+    		state.withExpectation(getRawTypeForName(int,state)).computeTypes(instance.size)
+    	else if(instance.sourceValue!==null) {
+    		if(elementType.isType(TypedNode)) {
+    		} else if(elementType.isType(TypedEdge)) {
+				state.withExpectation(typedNodeRef).computeTypes(instance.sourceValue);
+    			state.withExpectation(typedNodeRef).computeTypes(instance.targetValue);
+    		} else {
+    			state.withExpectation(typedNodeRef).computeTypes(instance.sourceValue);
+    			state.withNonVoidExpectation.computeTypes(instance.targetValue);
+    		}
+    	}
+    		
 		
 		if(instance.size!==null) {
 			val owner = state.getReferenceOwner();
@@ -185,6 +201,17 @@ class XmuCoreTypeComputer extends XbaseTypeComputer {
 			val array = owner.newParameterizedTypeReference(owner.newReferenceTo(List).type);
 			array.addTypeArgument(elementType);
 			state.acceptActualType(array)
+    }
+    
+    def dispatch void computeTypes(InsertElementExpression insert, ITypeComputationState state) {
+    	val iTypedEdgeRef = getRawTypeForName(ITypedEdge, state);
+    	if(insert.anchor!==null) {
+	    	state.withExpectation(iTypedEdgeRef).computeTypes(insert.element);
+			state.withExpectation(iTypedEdgeRef).computeTypes(insert.anchor);
+    	} else {
+    		state.withNonVoidExpectation.computeTypes(insert.element);
+    	}
+    	state.acceptActualType(getRawTypeForName(GraphModification, state));
     }
     
 }

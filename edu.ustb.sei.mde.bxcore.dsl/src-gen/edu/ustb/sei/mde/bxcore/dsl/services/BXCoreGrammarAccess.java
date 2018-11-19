@@ -2314,33 +2314,34 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cSourcePatternPatternParserRuleCall_2_0 = (RuleCall)cSourcePatternAssignment_2.eContents().get(0);
 		private final Assignment cViewPatternAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cViewPatternPatternParserRuleCall_3_0 = (RuleCall)cViewPatternAssignment_3.eContents().get(0);
-		private final Keyword cWithKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Assignment cAlignmentAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cAlignmentContextAwareConditionParserRuleCall_5_0 = (RuleCall)cAlignmentAssignment_5.eContents().get(0);
-		private final UnorderedGroup cUnorderedGroup_6 = (UnorderedGroup)cGroup.eContents().get(6);
-		private final Group cGroup_6_0 = (Group)cUnorderedGroup_6.eContents().get(0);
-		private final Keyword cMatchKeyword_6_0_0 = (Keyword)cGroup_6_0.eContents().get(0);
-		private final Keyword cHyphenMinusGreaterThanSignKeyword_6_0_1 = (Keyword)cGroup_6_0.eContents().get(1);
-		private final Assignment cMatchAssignment_6_0_2 = (Assignment)cGroup_6_0.eContents().get(2);
-		private final RuleCall cMatchXmuCoreStatementParserRuleCall_6_0_2_0 = (RuleCall)cMatchAssignment_6_0_2.eContents().get(0);
-		private final Group cGroup_6_1 = (Group)cUnorderedGroup_6.eContents().get(1);
-		private final Keyword cUnmatchSKeyword_6_1_0 = (Keyword)cGroup_6_1.eContents().get(0);
-		private final Keyword cHyphenMinusGreaterThanSignKeyword_6_1_1 = (Keyword)cGroup_6_1.eContents().get(1);
-		private final Assignment cUnmatchSAssignment_6_1_2 = (Assignment)cGroup_6_1.eContents().get(2);
-		private final RuleCall cUnmatchSContextAwareUnidirectionalActionParserRuleCall_6_1_2_0 = (RuleCall)cUnmatchSAssignment_6_1_2.eContents().get(0);
-		private final Group cGroup_6_2 = (Group)cUnorderedGroup_6.eContents().get(2);
-		private final Keyword cUnmatchVKeyword_6_2_0 = (Keyword)cGroup_6_2.eContents().get(0);
-		private final Keyword cHyphenMinusGreaterThanSignKeyword_6_2_1 = (Keyword)cGroup_6_2.eContents().get(1);
-		private final Assignment cUnmatchVAssignment_6_2_2 = (Assignment)cGroup_6_2.eContents().get(2);
-		private final RuleCall cUnmatchVContextAwareUnidirectionalActionParserRuleCall_6_2_2_0 = (RuleCall)cUnmatchVAssignment_6_2_2.eContents().get(0);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final Keyword cWithKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
+		private final Assignment cAlignmentAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cAlignmentContextAwareConditionParserRuleCall_4_1_0 = (RuleCall)cAlignmentAssignment_4_1.eContents().get(0);
+		private final UnorderedGroup cUnorderedGroup_5 = (UnorderedGroup)cGroup.eContents().get(5);
+		private final Group cGroup_5_0 = (Group)cUnorderedGroup_5.eContents().get(0);
+		private final Keyword cMatchKeyword_5_0_0 = (Keyword)cGroup_5_0.eContents().get(0);
+		private final Keyword cHyphenMinusGreaterThanSignKeyword_5_0_1 = (Keyword)cGroup_5_0.eContents().get(1);
+		private final Assignment cMatchAssignment_5_0_2 = (Assignment)cGroup_5_0.eContents().get(2);
+		private final RuleCall cMatchXmuCoreStatementParserRuleCall_5_0_2_0 = (RuleCall)cMatchAssignment_5_0_2.eContents().get(0);
+		private final Group cGroup_5_1 = (Group)cUnorderedGroup_5.eContents().get(1);
+		private final Keyword cUnmatchSKeyword_5_1_0 = (Keyword)cGroup_5_1.eContents().get(0);
+		private final Keyword cHyphenMinusGreaterThanSignKeyword_5_1_1 = (Keyword)cGroup_5_1.eContents().get(1);
+		private final Assignment cUnmatchSAssignment_5_1_2 = (Assignment)cGroup_5_1.eContents().get(2);
+		private final RuleCall cUnmatchSContextAwareUnidirectionalActionParserRuleCall_5_1_2_0 = (RuleCall)cUnmatchSAssignment_5_1_2.eContents().get(0);
+		private final Group cGroup_5_2 = (Group)cUnorderedGroup_5.eContents().get(2);
+		private final Keyword cUnmatchVKeyword_5_2_0 = (Keyword)cGroup_5_2.eContents().get(0);
+		private final Keyword cHyphenMinusGreaterThanSignKeyword_5_2_1 = (Keyword)cGroup_5_2.eContents().get(1);
+		private final Assignment cUnmatchVAssignment_5_2_2 = (Assignment)cGroup_5_2.eContents().get(2);
+		private final RuleCall cUnmatchVContextAwareUnidirectionalActionParserRuleCall_5_2_2_0 = (RuleCall)cUnmatchVAssignment_5_2_2.eContents().get(0);
 		
 		//XmuCoreAlign:
-		//	'align' typeIndicator=TypeIndicator? sourcePattern=Pattern viewPattern=Pattern 'with' alignment=ContextAwareCondition
-		//	('match' '->' match=XmuCoreStatement & 'unmatchS' '->' unmatchS=ContextAwareUnidirectionalAction & 'unmatchV' '->'
-		//	unmatchV=ContextAwareUnidirectionalAction);
+		//	'align' typeIndicator=TypeIndicator? sourcePattern=Pattern viewPattern=Pattern ('with'
+		//	alignment=ContextAwareCondition)? ('match' '->' match=XmuCoreStatement & 'unmatchS' '->'
+		//	unmatchS=ContextAwareUnidirectionalAction & 'unmatchV' '->' unmatchV=ContextAwareUnidirectionalAction);
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'align' typeIndicator=TypeIndicator? sourcePattern=Pattern viewPattern=Pattern 'with' alignment=ContextAwareCondition
+		//'align' typeIndicator=TypeIndicator? sourcePattern=Pattern viewPattern=Pattern ('with' alignment=ContextAwareCondition)?
 		//('match' '->' match=XmuCoreStatement & 'unmatchS' '->' unmatchS=ContextAwareUnidirectionalAction & 'unmatchV' '->'
 		//unmatchV=ContextAwareUnidirectionalAction)
 		public Group getGroup() { return cGroup; }
@@ -2366,63 +2367,66 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		//Pattern
 		public RuleCall getViewPatternPatternParserRuleCall_3_0() { return cViewPatternPatternParserRuleCall_3_0; }
 		
+		//('with' alignment=ContextAwareCondition)?
+		public Group getGroup_4() { return cGroup_4; }
+		
 		//'with'
-		public Keyword getWithKeyword_4() { return cWithKeyword_4; }
+		public Keyword getWithKeyword_4_0() { return cWithKeyword_4_0; }
 		
 		//alignment=ContextAwareCondition
-		public Assignment getAlignmentAssignment_5() { return cAlignmentAssignment_5; }
+		public Assignment getAlignmentAssignment_4_1() { return cAlignmentAssignment_4_1; }
 		
 		//ContextAwareCondition
-		public RuleCall getAlignmentContextAwareConditionParserRuleCall_5_0() { return cAlignmentContextAwareConditionParserRuleCall_5_0; }
+		public RuleCall getAlignmentContextAwareConditionParserRuleCall_4_1_0() { return cAlignmentContextAwareConditionParserRuleCall_4_1_0; }
 		
 		//'match' '->' match=XmuCoreStatement & 'unmatchS' '->' unmatchS=ContextAwareUnidirectionalAction & 'unmatchV' '->'
 		//unmatchV=ContextAwareUnidirectionalAction
-		public UnorderedGroup getUnorderedGroup_6() { return cUnorderedGroup_6; }
+		public UnorderedGroup getUnorderedGroup_5() { return cUnorderedGroup_5; }
 		
 		//'match' '->' match=XmuCoreStatement
-		public Group getGroup_6_0() { return cGroup_6_0; }
+		public Group getGroup_5_0() { return cGroup_5_0; }
 		
 		//'match'
-		public Keyword getMatchKeyword_6_0_0() { return cMatchKeyword_6_0_0; }
+		public Keyword getMatchKeyword_5_0_0() { return cMatchKeyword_5_0_0; }
 		
 		//'->'
-		public Keyword getHyphenMinusGreaterThanSignKeyword_6_0_1() { return cHyphenMinusGreaterThanSignKeyword_6_0_1; }
+		public Keyword getHyphenMinusGreaterThanSignKeyword_5_0_1() { return cHyphenMinusGreaterThanSignKeyword_5_0_1; }
 		
 		//match=XmuCoreStatement
-		public Assignment getMatchAssignment_6_0_2() { return cMatchAssignment_6_0_2; }
+		public Assignment getMatchAssignment_5_0_2() { return cMatchAssignment_5_0_2; }
 		
 		//XmuCoreStatement
-		public RuleCall getMatchXmuCoreStatementParserRuleCall_6_0_2_0() { return cMatchXmuCoreStatementParserRuleCall_6_0_2_0; }
+		public RuleCall getMatchXmuCoreStatementParserRuleCall_5_0_2_0() { return cMatchXmuCoreStatementParserRuleCall_5_0_2_0; }
 		
 		//'unmatchS' '->' unmatchS=ContextAwareUnidirectionalAction
-		public Group getGroup_6_1() { return cGroup_6_1; }
+		public Group getGroup_5_1() { return cGroup_5_1; }
 		
 		//'unmatchS'
-		public Keyword getUnmatchSKeyword_6_1_0() { return cUnmatchSKeyword_6_1_0; }
+		public Keyword getUnmatchSKeyword_5_1_0() { return cUnmatchSKeyword_5_1_0; }
 		
 		//'->'
-		public Keyword getHyphenMinusGreaterThanSignKeyword_6_1_1() { return cHyphenMinusGreaterThanSignKeyword_6_1_1; }
+		public Keyword getHyphenMinusGreaterThanSignKeyword_5_1_1() { return cHyphenMinusGreaterThanSignKeyword_5_1_1; }
 		
 		//unmatchS=ContextAwareUnidirectionalAction
-		public Assignment getUnmatchSAssignment_6_1_2() { return cUnmatchSAssignment_6_1_2; }
+		public Assignment getUnmatchSAssignment_5_1_2() { return cUnmatchSAssignment_5_1_2; }
 		
 		//ContextAwareUnidirectionalAction
-		public RuleCall getUnmatchSContextAwareUnidirectionalActionParserRuleCall_6_1_2_0() { return cUnmatchSContextAwareUnidirectionalActionParserRuleCall_6_1_2_0; }
+		public RuleCall getUnmatchSContextAwareUnidirectionalActionParserRuleCall_5_1_2_0() { return cUnmatchSContextAwareUnidirectionalActionParserRuleCall_5_1_2_0; }
 		
 		//'unmatchV' '->' unmatchV=ContextAwareUnidirectionalAction
-		public Group getGroup_6_2() { return cGroup_6_2; }
+		public Group getGroup_5_2() { return cGroup_5_2; }
 		
 		//'unmatchV'
-		public Keyword getUnmatchVKeyword_6_2_0() { return cUnmatchVKeyword_6_2_0; }
+		public Keyword getUnmatchVKeyword_5_2_0() { return cUnmatchVKeyword_5_2_0; }
 		
 		//'->'
-		public Keyword getHyphenMinusGreaterThanSignKeyword_6_2_1() { return cHyphenMinusGreaterThanSignKeyword_6_2_1; }
+		public Keyword getHyphenMinusGreaterThanSignKeyword_5_2_1() { return cHyphenMinusGreaterThanSignKeyword_5_2_1; }
 		
 		//unmatchV=ContextAwareUnidirectionalAction
-		public Assignment getUnmatchVAssignment_6_2_2() { return cUnmatchVAssignment_6_2_2; }
+		public Assignment getUnmatchVAssignment_5_2_2() { return cUnmatchVAssignment_5_2_2; }
 		
 		//ContextAwareUnidirectionalAction
-		public RuleCall getUnmatchVContextAwareUnidirectionalActionParserRuleCall_6_2_2_0() { return cUnmatchVContextAwareUnidirectionalActionParserRuleCall_6_2_2_0; }
+		public RuleCall getUnmatchVContextAwareUnidirectionalActionParserRuleCall_5_2_2_0() { return cUnmatchVContextAwareUnidirectionalActionParserRuleCall_5_2_2_0; }
 	}
 	public class XmuCoreFunctionCallElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.bxcore.dsl.BXCore.XmuCoreFunctionCall");
@@ -3120,17 +3124,27 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cNewKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cTypeAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cTypeAnnotatedTypeParserRuleCall_1_0 = (RuleCall)cTypeAssignment_1.eContents().get(0);
-		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final Keyword cLeftSquareBracketKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
-		private final Assignment cSizeAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final RuleCall cSizeXExpressionParserRuleCall_2_1_0 = (RuleCall)cSizeAssignment_2_1.eContents().get(0);
-		private final Keyword cRightSquareBracketKeyword_2_2 = (Keyword)cGroup_2.eContents().get(2);
+		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
+		private final Group cGroup_2_0 = (Group)cAlternatives_2.eContents().get(0);
+		private final Keyword cLeftSquareBracketKeyword_2_0_0 = (Keyword)cGroup_2_0.eContents().get(0);
+		private final Assignment cSizeAssignment_2_0_1 = (Assignment)cGroup_2_0.eContents().get(1);
+		private final RuleCall cSizeXExpressionParserRuleCall_2_0_1_0 = (RuleCall)cSizeAssignment_2_0_1.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_2_0_2 = (Keyword)cGroup_2_0.eContents().get(2);
+		private final Group cGroup_2_1 = (Group)cAlternatives_2.eContents().get(1);
+		private final Keyword cLeftParenthesisKeyword_2_1_0 = (Keyword)cGroup_2_1.eContents().get(0);
+		private final Assignment cSourceValueAssignment_2_1_1 = (Assignment)cGroup_2_1.eContents().get(1);
+		private final RuleCall cSourceValueXExpressionParserRuleCall_2_1_1_0 = (RuleCall)cSourceValueAssignment_2_1_1.eContents().get(0);
+		private final Keyword cCommaKeyword_2_1_2 = (Keyword)cGroup_2_1.eContents().get(2);
+		private final Assignment cTargetValueAssignment_2_1_3 = (Assignment)cGroup_2_1.eContents().get(3);
+		private final RuleCall cTargetValueXExpressionParserRuleCall_2_1_3_0 = (RuleCall)cTargetValueAssignment_2_1_3.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_2_1_4 = (Keyword)cGroup_2_1.eContents().get(4);
 		
 		//NewInstanceExpression:
-		//	'new' type=AnnotatedType (=> '[' size=XExpression ']')?;
+		//	'new' type=AnnotatedType (=> '[' size=XExpression ']' | => '(' sourceValue=XExpression ',' targetValue=XExpression
+		//	')')?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'new' type=AnnotatedType (=> '[' size=XExpression ']')?
+		//'new' type=AnnotatedType (=> '[' size=XExpression ']' | => '(' sourceValue=XExpression ',' targetValue=XExpression ')')?
 		public Group getGroup() { return cGroup; }
 		
 		//'new'
@@ -3142,20 +3156,47 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		//AnnotatedType
 		public RuleCall getTypeAnnotatedTypeParserRuleCall_1_0() { return cTypeAnnotatedTypeParserRuleCall_1_0; }
 		
-		//(=> '[' size=XExpression ']')?
-		public Group getGroup_2() { return cGroup_2; }
+		//(=> '[' size=XExpression ']' | => '(' sourceValue=XExpression ',' targetValue=XExpression ')')?
+		public Alternatives getAlternatives_2() { return cAlternatives_2; }
+		
+		//=> '[' size=XExpression ']'
+		public Group getGroup_2_0() { return cGroup_2_0; }
 		
 		//=> '['
-		public Keyword getLeftSquareBracketKeyword_2_0() { return cLeftSquareBracketKeyword_2_0; }
+		public Keyword getLeftSquareBracketKeyword_2_0_0() { return cLeftSquareBracketKeyword_2_0_0; }
 		
 		//size=XExpression
-		public Assignment getSizeAssignment_2_1() { return cSizeAssignment_2_1; }
+		public Assignment getSizeAssignment_2_0_1() { return cSizeAssignment_2_0_1; }
 		
 		//XExpression
-		public RuleCall getSizeXExpressionParserRuleCall_2_1_0() { return cSizeXExpressionParserRuleCall_2_1_0; }
+		public RuleCall getSizeXExpressionParserRuleCall_2_0_1_0() { return cSizeXExpressionParserRuleCall_2_0_1_0; }
 		
 		//']'
-		public Keyword getRightSquareBracketKeyword_2_2() { return cRightSquareBracketKeyword_2_2; }
+		public Keyword getRightSquareBracketKeyword_2_0_2() { return cRightSquareBracketKeyword_2_0_2; }
+		
+		//=> '(' sourceValue=XExpression ',' targetValue=XExpression ')'
+		public Group getGroup_2_1() { return cGroup_2_1; }
+		
+		//=> '('
+		public Keyword getLeftParenthesisKeyword_2_1_0() { return cLeftParenthesisKeyword_2_1_0; }
+		
+		//sourceValue=XExpression
+		public Assignment getSourceValueAssignment_2_1_1() { return cSourceValueAssignment_2_1_1; }
+		
+		//XExpression
+		public RuleCall getSourceValueXExpressionParserRuleCall_2_1_1_0() { return cSourceValueXExpressionParserRuleCall_2_1_1_0; }
+		
+		//','
+		public Keyword getCommaKeyword_2_1_2() { return cCommaKeyword_2_1_2; }
+		
+		//targetValue=XExpression
+		public Assignment getTargetValueAssignment_2_1_3() { return cTargetValueAssignment_2_1_3; }
+		
+		//XExpression
+		public RuleCall getTargetValueXExpressionParserRuleCall_2_1_3_0() { return cTargetValueXExpressionParserRuleCall_2_1_3_0; }
+		
+		//')'
+		public Keyword getRightParenthesisKeyword_2_1_4() { return cRightParenthesisKeyword_2_1_4; }
 	}
 	public class AnnotatedTypeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.bxcore.dsl.BXCore.AnnotatedType");
@@ -3305,12 +3346,13 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cEnforcementExpressionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cDeleteElementExpressionParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cInsertElementExpressionParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
 		//ModificationExpression:
-		//	EnforcementExpression | DeleteElementExpression;
+		//	EnforcementExpression | DeleteElementExpression | InsertElementExpression;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//EnforcementExpression | DeleteElementExpression
+		//EnforcementExpression | DeleteElementExpression | InsertElementExpression
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//EnforcementExpression
@@ -3318,6 +3360,9 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//DeleteElementExpression
 		public RuleCall getDeleteElementExpressionParserRuleCall_1() { return cDeleteElementExpressionParserRuleCall_1; }
+		
+		//InsertElementExpression
+		public RuleCall getInsertElementExpressionParserRuleCall_2() { return cInsertElementExpressionParserRuleCall_2; }
 	}
 	public class EnforcementExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.bxcore.dsl.BXCore.EnforcementExpression");
@@ -3408,6 +3453,73 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//';'
 		public Keyword getSemicolonKeyword_2() { return cSemicolonKeyword_2; }
+	}
+	public class InsertElementExpressionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.bxcore.dsl.BXCore.InsertElementExpression");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cInsertKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cElementAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cElementXExpressionParserRuleCall_1_0 = (RuleCall)cElementAssignment_1.eContents().get(0);
+		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
+		private final Group cGroup_2_0 = (Group)cAlternatives_2.eContents().get(0);
+		private final Assignment cPositionAssignment_2_0_0 = (Assignment)cGroup_2_0.eContents().get(0);
+		private final Alternatives cPositionAlternatives_2_0_0_0 = (Alternatives)cPositionAssignment_2_0_0.eContents().get(0);
+		private final Keyword cPositionBeforeKeyword_2_0_0_0_0 = (Keyword)cPositionAlternatives_2_0_0_0.eContents().get(0);
+		private final Keyword cPositionAfterKeyword_2_0_0_0_1 = (Keyword)cPositionAlternatives_2_0_0_0.eContents().get(1);
+		private final Assignment cAnchorAssignment_2_0_1 = (Assignment)cGroup_2_0.eContents().get(1);
+		private final RuleCall cAnchorXExpressionParserRuleCall_2_0_1_0 = (RuleCall)cAnchorAssignment_2_0_1.eContents().get(0);
+		private final Assignment cPositionAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
+		private final Keyword cPositionFirstKeyword_2_1_0 = (Keyword)cPositionAssignment_2_1.eContents().get(0);
+		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		
+		//InsertElementExpression:
+		//	=> 'insert' element=XExpression (position=('before' | 'after') anchor=XExpression | position='first')? ';';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//=> 'insert' element=XExpression (position=('before' | 'after') anchor=XExpression | position='first')? ';'
+		public Group getGroup() { return cGroup; }
+		
+		//=> 'insert'
+		public Keyword getInsertKeyword_0() { return cInsertKeyword_0; }
+		
+		//element=XExpression
+		public Assignment getElementAssignment_1() { return cElementAssignment_1; }
+		
+		//XExpression
+		public RuleCall getElementXExpressionParserRuleCall_1_0() { return cElementXExpressionParserRuleCall_1_0; }
+		
+		//(position=('before' | 'after') anchor=XExpression | position='first')?
+		public Alternatives getAlternatives_2() { return cAlternatives_2; }
+		
+		//position=('before' | 'after') anchor=XExpression
+		public Group getGroup_2_0() { return cGroup_2_0; }
+		
+		//position=('before' | 'after')
+		public Assignment getPositionAssignment_2_0_0() { return cPositionAssignment_2_0_0; }
+		
+		//('before' | 'after')
+		public Alternatives getPositionAlternatives_2_0_0_0() { return cPositionAlternatives_2_0_0_0; }
+		
+		//'before'
+		public Keyword getPositionBeforeKeyword_2_0_0_0_0() { return cPositionBeforeKeyword_2_0_0_0_0; }
+		
+		//'after'
+		public Keyword getPositionAfterKeyword_2_0_0_0_1() { return cPositionAfterKeyword_2_0_0_0_1; }
+		
+		//anchor=XExpression
+		public Assignment getAnchorAssignment_2_0_1() { return cAnchorAssignment_2_0_1; }
+		
+		//XExpression
+		public RuleCall getAnchorXExpressionParserRuleCall_2_0_1_0() { return cAnchorXExpressionParserRuleCall_2_0_1_0; }
+		
+		//position='first'
+		public Assignment getPositionAssignment_2_1() { return cPositionAssignment_2_1; }
+		
+		//'first'
+		public Keyword getPositionFirstKeyword_2_1_0() { return cPositionFirstKeyword_2_1_0; }
+		
+		//';'
+		public Keyword getSemicolonKeyword_3() { return cSemicolonKeyword_3; }
 	}
 	public class ValueMappingElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.bxcore.dsl.BXCore.ValueMapping");
@@ -3549,6 +3661,7 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 	private final ModificationExpressionElements pModificationExpression;
 	private final EnforcementExpressionElements pEnforcementExpression;
 	private final DeleteElementExpressionElements pDeleteElementExpression;
+	private final InsertElementExpressionElements pInsertElementExpression;
 	private final ValueMappingElements pValueMapping;
 	
 	private final Grammar grammar;
@@ -3636,6 +3749,7 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		this.pModificationExpression = new ModificationExpressionElements();
 		this.pEnforcementExpression = new EnforcementExpressionElements();
 		this.pDeleteElementExpression = new DeleteElementExpressionElements();
+		this.pInsertElementExpression = new InsertElementExpressionElements();
 		this.pValueMapping = new ValueMappingElements();
 	}
 	
@@ -4176,9 +4290,9 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//XmuCoreAlign:
-	//	'align' typeIndicator=TypeIndicator? sourcePattern=Pattern viewPattern=Pattern 'with' alignment=ContextAwareCondition
-	//	('match' '->' match=XmuCoreStatement & 'unmatchS' '->' unmatchS=ContextAwareUnidirectionalAction & 'unmatchV' '->'
-	//	unmatchV=ContextAwareUnidirectionalAction);
+	//	'align' typeIndicator=TypeIndicator? sourcePattern=Pattern viewPattern=Pattern ('with'
+	//	alignment=ContextAwareCondition)? ('match' '->' match=XmuCoreStatement & 'unmatchS' '->'
+	//	unmatchS=ContextAwareUnidirectionalAction & 'unmatchV' '->' unmatchV=ContextAwareUnidirectionalAction);
 	public XmuCoreAlignElements getXmuCoreAlignAccess() {
 		return pXmuCoreAlign;
 	}
@@ -4350,7 +4464,8 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//NewInstanceExpression:
-	//	'new' type=AnnotatedType (=> '[' size=XExpression ']')?;
+	//	'new' type=AnnotatedType (=> '[' size=XExpression ']' | => '(' sourceValue=XExpression ',' targetValue=XExpression
+	//	')')?;
 	public NewInstanceExpressionElements getNewInstanceExpressionAccess() {
 		return pNewInstanceExpression;
 	}
@@ -4401,7 +4516,7 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ModificationExpression:
-	//	EnforcementExpression | DeleteElementExpression;
+	//	EnforcementExpression | DeleteElementExpression | InsertElementExpression;
 	public ModificationExpressionElements getModificationExpressionAccess() {
 		return pModificationExpression;
 	}
@@ -4428,6 +4543,16 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getDeleteElementExpressionRule() {
 		return getDeleteElementExpressionAccess().getRule();
+	}
+	
+	//InsertElementExpression:
+	//	=> 'insert' element=XExpression (position=('before' | 'after') anchor=XExpression | position='first')? ';';
+	public InsertElementExpressionElements getInsertElementExpressionAccess() {
+		return pInsertElementExpression;
+	}
+	
+	public ParserRule getInsertElementExpressionRule() {
+		return getInsertElementExpressionAccess().getRule();
 	}
 	
 	//ValueMapping:

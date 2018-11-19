@@ -130,6 +130,7 @@ public class BXCoreFactoryImpl extends EFactoryImpl implements BXCoreFactory
       case BXCorePackage.MODIFICATION_EXPRESSION: return createModificationExpression();
       case BXCorePackage.ENFORCEMENT_EXPRESSION: return createEnforcementExpression();
       case BXCorePackage.DELETE_ELEMENT_EXPRESSION: return createDeleteElementExpression();
+      case BXCorePackage.INSERT_ELEMENT_EXPRESSION: return createInsertElementExpression();
       case BXCorePackage.VALUE_MAPPING: return createValueMapping();
       case BXCorePackage.DEFINED_CONTEXT_TYPE_REF: return createDefinedContextTypeRef();
       case BXCorePackage.ECORE_TYPE_REF: return createEcoreTypeRef();
@@ -879,6 +880,17 @@ public class BXCoreFactoryImpl extends EFactoryImpl implements BXCoreFactory
   {
     DeleteElementExpressionImpl deleteElementExpression = new DeleteElementExpressionImpl();
     return deleteElementExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public InsertElementExpression createInsertElementExpression()
+  {
+    InsertElementExpressionImpl insertElementExpression = new InsertElementExpressionImpl();
+    return insertElementExpression;
   }
 
   /**
