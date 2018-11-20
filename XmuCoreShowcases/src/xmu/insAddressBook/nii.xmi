@@ -7,7 +7,7 @@
     xsi:schemaLocation="http://www.ustb.edu.cn/sei/mde/niiaddressbook ../../../metamodel/NIIAddressBook.ecore">
   <employees
       name="Bob"
-      email="bob@nii.ac.jp"/>
+      email="bob1@nii.ac.jp"/>
   <employees
       name="Alice"
       email="alice@nii.ac.jp"/>

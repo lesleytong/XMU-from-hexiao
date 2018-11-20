@@ -4,6 +4,7 @@
     <email>tom@163.com</email>
   </persons>
   <persons name="Bob" tel="123-789">
+    <email>bob1@nii.ac.jp</email>
     <email>bob@nii.ac.jp</email>
   </persons>
   <persons name="Jack" tel="123-999">

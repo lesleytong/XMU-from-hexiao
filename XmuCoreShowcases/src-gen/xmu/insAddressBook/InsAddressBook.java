@@ -269,6 +269,29 @@ public class InsAddressBook extends XmuProgram {
   }
   
   /**
+   * id:2
+   */
+  private ContextType type_2;
+  
+  public ContextType getType_2() {
+    if(type_2==null) {
+    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Sab();
+    	type_2 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
+    	Object b_type = typeGraph.getTypeNode("AddressBook");
+    	type_2.addField("b", b_type, false);
+    	Object ln_type = typeGraph.getPropertyEdge(typeGraph.getTypeNode("Person"),"name");
+    	type_2.addField("ln", ln_type, false);
+    	Object lp_type = typeGraph.getTypeEdge(typeGraph.getTypeNode("AddressBook"),"persons");
+    	type_2.addField("lp", lp_type, false);
+    	Object n_type = typeGraph.getDataTypeNode("EString");
+    	type_2.addField("n", n_type, false);
+    	Object p_type = typeGraph.getTypeNode("Person");
+    	type_2.addField("p", p_type, false);
+    }
+    return type_2;
+  }
+  
+  /**
    * id:3
    */
   private ContextType type_3;
@@ -348,29 +371,6 @@ public class InsAddressBook extends XmuProgram {
     	type_0.addField("b", b_type, false);
     }
     return type_0;
-  }
-  
-  /**
-   * id:2
-   */
-  private ContextType type_2;
-  
-  public ContextType getType_2() {
-    if(type_2==null) {
-    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Sab();
-    	type_2 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
-    	Object b_type = typeGraph.getTypeNode("AddressBook");
-    	type_2.addField("b", b_type, false);
-    	Object ln_type = typeGraph.getPropertyEdge(typeGraph.getTypeNode("Person"),"name");
-    	type_2.addField("ln", ln_type, false);
-    	Object lp_type = typeGraph.getTypeEdge(typeGraph.getTypeNode("AddressBook"),"persons");
-    	type_2.addField("lp", lp_type, false);
-    	Object n_type = typeGraph.getDataTypeNode("EString");
-    	type_2.addField("n", n_type, false);
-    	Object p_type = typeGraph.getTypeNode("Person");
-    	type_2.addField("p", p_type, false);
-    }
-    return type_2;
   }
   
   /**
