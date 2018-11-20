@@ -137,6 +137,8 @@ public class GraphModification {
 		if(edgePos>ancPos) 
 			data.getGraph().moveTypedEdgeTo(edgePos, ancPos);
 		
+		this.data.getGraph().getOrder().add(edge.getIndex(), anchor.getIndex());
+		
 		return this;
 	}
 	
@@ -151,6 +153,8 @@ public class GraphModification {
 		if(edgePos<ancPos) 
 			data.getGraph().moveTypedEdgeTo(edgePos, ancPos);
 		
+		this.data.getGraph().getOrder().add(anchor.getIndex(), edge.getIndex());
+		
 		return this;
 	}
 	
@@ -163,6 +167,11 @@ public class GraphModification {
 		
 		if(edgePos>0) 
 			data.getGraph().moveTypedEdgeTo(edgePos, 0);
+		
+		allTypedEdges.forEach(e->{
+			if(e!=edge)
+				this.data.getGraph().getOrder().add(edge.getIndex(), e.getIndex());			
+		});
 		
 		return this;
 	}
@@ -193,6 +202,7 @@ public class GraphModification {
 		if(edgePos>ancPos) 
 			data.getGraph().moveValueEdgeTo(edgePos, ancPos);
 		
+		this.data.getGraph().getOrder().add(edge.getIndex(), anchor.getIndex());
 		return this;
 	}
 	
@@ -207,6 +217,8 @@ public class GraphModification {
 		if(edgePos>ancPos) 
 			data.getGraph().moveValueEdgeTo(edgePos, ancPos);
 		
+		this.data.getGraph().getOrder().add(anchor.getIndex(), edge.getIndex());
+		
 		return this;
 	}
 	
@@ -219,6 +231,11 @@ public class GraphModification {
 		
 		if(edgePos>0) 
 			data.getGraph().moveValueEdgeTo(edgePos, 0);
+		
+		allValueEdges.forEach(e->{
+			if(e!=edge)
+				this.data.getGraph().getOrder().add(edge.getIndex(), e.getIndex());			
+		});
 		
 		return this;
 	}

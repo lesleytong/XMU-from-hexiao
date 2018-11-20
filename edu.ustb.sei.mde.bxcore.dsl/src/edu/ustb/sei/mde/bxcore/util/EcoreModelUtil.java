@@ -3,6 +3,7 @@ package edu.ustb.sei.mde.bxcore.util;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -161,6 +162,13 @@ public class EcoreModelUtil {
 				edatatypes.put(((EAttribute)o).getEAttributeType().getName(), ((EAttribute)o).getEAttributeType());
 			}
 		});
+		
+		try {
+			graph.enforceOrder();
+		} catch (NothingReturnedException e1) {
+			e1.printStackTrace();
+			return Collections.emptyList();
+		}
 		
 		graph.getAllTypedNodes().forEach(n->{
 			EClass tc = eclasses.get(n.getType().getName());
