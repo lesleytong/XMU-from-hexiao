@@ -269,26 +269,58 @@ public class InsAddressBook extends XmuProgram {
   }
   
   /**
-   * id:2
+   * id:0
    */
-  private ContextType type_2;
+  private ContextType type_0;
   
-  public ContextType getType_2() {
-    if(type_2==null) {
+  public ContextType getType_0() {
+    if(type_0==null) {
     	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Sab();
-    	type_2 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
+    	type_0 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
     	Object b_type = typeGraph.getTypeNode("AddressBook");
-    	type_2.addField("b", b_type, false);
-    	Object ln_type = typeGraph.getPropertyEdge(typeGraph.getTypeNode("Person"),"name");
-    	type_2.addField("ln", ln_type, false);
-    	Object lp_type = typeGraph.getTypeEdge(typeGraph.getTypeNode("AddressBook"),"persons");
-    	type_2.addField("lp", lp_type, false);
-    	Object n_type = typeGraph.getDataTypeNode("EString");
-    	type_2.addField("n", n_type, false);
-    	Object p_type = typeGraph.getTypeNode("Person");
-    	type_2.addField("p", p_type, false);
+    	type_0.addField("b", b_type, false);
     }
-    return type_2;
+    return type_0;
+  }
+  
+  /**
+   * id:4
+   */
+  private ContextType type_4;
+  
+  public ContextType getType_4() {
+    if(type_4==null) {
+    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Sab();
+    	type_4 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
+    	Object em_type = typeGraph.getDataTypeNode("EString");
+    	type_4.addField("em", em_type, false);
+    }
+    return type_4;
+  }
+  
+  /**
+   * id:5
+   */
+  private ContextType type_5;
+  
+  public ContextType getType_5() {
+    if(type_5==null) {
+    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Sab();
+    	type_5 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
+    	Object b_type = typeGraph.getTypeNode("AddressBook");
+    	type_5.addField("b", b_type, false);
+    	Object em_type = typeGraph.getDataTypeNode("EString");
+    	type_5.addField("em", em_type, false);
+    	Object ln_type = typeGraph.getPropertyEdge(typeGraph.getTypeNode("Person"),"name");
+    	type_5.addField("ln", ln_type, false);
+    	Object lp_type = typeGraph.getTypeEdge(typeGraph.getTypeNode("AddressBook"),"persons");
+    	type_5.addField("lp", lp_type, false);
+    	Object n_type = typeGraph.getDataTypeNode("EString");
+    	type_5.addField("n", n_type, false);
+    	Object p_type = typeGraph.getTypeNode("Person");
+    	type_5.addField("p", p_type, false);
+    }
+    return type_5;
   }
   
   /**
@@ -319,28 +351,26 @@ public class InsAddressBook extends XmuProgram {
   }
   
   /**
-   * id:5
+   * id:2
    */
-  private ContextType type_5;
+  private ContextType type_2;
   
-  public ContextType getType_5() {
-    if(type_5==null) {
+  public ContextType getType_2() {
+    if(type_2==null) {
     	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Sab();
-    	type_5 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
+    	type_2 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
     	Object b_type = typeGraph.getTypeNode("AddressBook");
-    	type_5.addField("b", b_type, false);
-    	Object em_type = typeGraph.getDataTypeNode("EString");
-    	type_5.addField("em", em_type, false);
+    	type_2.addField("b", b_type, false);
     	Object ln_type = typeGraph.getPropertyEdge(typeGraph.getTypeNode("Person"),"name");
-    	type_5.addField("ln", ln_type, false);
+    	type_2.addField("ln", ln_type, false);
     	Object lp_type = typeGraph.getTypeEdge(typeGraph.getTypeNode("AddressBook"),"persons");
-    	type_5.addField("lp", lp_type, false);
+    	type_2.addField("lp", lp_type, false);
     	Object n_type = typeGraph.getDataTypeNode("EString");
-    	type_5.addField("n", n_type, false);
+    	type_2.addField("n", n_type, false);
     	Object p_type = typeGraph.getTypeNode("Person");
-    	type_5.addField("p", p_type, false);
+    	type_2.addField("p", p_type, false);
     }
-    return type_5;
+    return type_2;
   }
   
   /**
@@ -356,36 +386,6 @@ public class InsAddressBook extends XmuProgram {
     	type_1.addField("b", b_type, false);
     }
     return type_1;
-  }
-  
-  /**
-   * id:0
-   */
-  private ContextType type_0;
-  
-  public ContextType getType_0() {
-    if(type_0==null) {
-    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Sab();
-    	type_0 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
-    	Object b_type = typeGraph.getTypeNode("AddressBook");
-    	type_0.addField("b", b_type, false);
-    }
-    return type_0;
-  }
-  
-  /**
-   * id:4
-   */
-  private ContextType type_4;
-  
-  public ContextType getType_4() {
-    if(type_4==null) {
-    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Sab();
-    	type_4 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
-    	Object em_type = typeGraph.getDataTypeNode("EString");
-    	type_4.addField("em", em_type, false);
-    }
-    return type_4;
   }
   
   private Pattern pattern_0;
