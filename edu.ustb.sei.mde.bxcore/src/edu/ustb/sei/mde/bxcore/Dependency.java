@@ -10,6 +10,7 @@ import edu.ustb.sei.mde.bxcore.structures.ContextGraph;
 import edu.ustb.sei.mde.bxcore.structures.ContextType;
 import edu.ustb.sei.mde.bxcore.structures.FieldDef;
 import edu.ustb.sei.mde.graph.typedGraph.constraint.GraphConstraint;
+import edu.ustb.sei.mde.graph.typedGraph.constraint.GraphConstraint.ConstraintStatus;
 import edu.ustb.sei.mde.structure.Tuple2;
 
 
@@ -54,7 +55,15 @@ public class Dependency extends XmuCore {
 
 	@Override
 	protected GraphConstraint generateConsistencyConstraint() {
-		return null;
+		GraphConstraint bc = this.body.getConsistencyConstraint();
+		return (gs,cs,gv,cv)->{
+			if(!checkDerivation(ViewType.makeView(gv, cv))) 
+				return ConstraintStatus.unenforceable;
+			else {
+				Context downstreamViewContext = cv.createDownstreamContext(this.body.getViewDef(), keyMappings);
+				return bc.check(gs, cs, gv, downstreamViewContext);
+			}
+		};
 	}
 	
 	protected Context derive(ViewType v) throws NothingReturnedException {

@@ -4,8 +4,10 @@
 package edu.ustb.sei.mde.bxcore.dsl.ui;
 
 import edu.ustb.sei.mde.bxcore.dsl.ui.AbstractBXCoreUiModule;
+import edu.ustb.sei.mde.bxcore.dsl.ui.labeling.BXCoreHoverProvider;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtend.lib.annotations.FinalFieldsConstructor;
+import org.eclipse.xtext.ui.editor.hover.IEObjectHoverProvider;
 
 /**
  * Use this class to register components to be used within the Eclipse IDE.
@@ -13,6 +15,11 @@ import org.eclipse.xtend.lib.annotations.FinalFieldsConstructor;
 @FinalFieldsConstructor
 @SuppressWarnings("all")
 public class BXCoreUiModule extends AbstractBXCoreUiModule {
+  @Override
+  public Class<? extends IEObjectHoverProvider> bindIEObjectHoverProvider() {
+    return BXCoreHoverProvider.class;
+  }
+  
   public BXCoreUiModule(final AbstractUIPlugin plugin) {
     super(plugin);
   }

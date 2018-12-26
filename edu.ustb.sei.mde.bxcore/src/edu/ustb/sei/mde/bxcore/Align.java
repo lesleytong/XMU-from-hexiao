@@ -121,7 +121,7 @@ public class Align extends XmuCore {
 			List<Tuple2<Context,Context>> alignments = new ArrayList<>();
 			try {
 				if(checkAndConstructAlignment(gs, sources, gv, views, alignments)==false)
-					return ConstraintStatus.enforceable;
+					return ConstraintStatus.enforceable; // in fact, we should check
 			} catch (Exception e) {
 				return ConstraintStatus.unenforceable;
 			}

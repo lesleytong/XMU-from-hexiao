@@ -1,8 +1,11 @@
 package edu.ustb.sei.mde.bxcore.dsl.structure;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EPackage;
 
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.EcoreTypeRef;
@@ -110,5 +113,16 @@ public class TupleType {
 		if(hash==0) 
 			hash = tuples.stream().map(t->t.hashCode()).reduce(0, (a,b)->a+b);
 		return hash;
+	}
+	
+	@Override
+	public String toString() {
+		return "("+tuples.stream().map(t->{
+			return t.first + ":" + getTypeName(t.second) + (t.third ? "[]":"");
+		}).reduce((l,r)->l+", "+r).get()+")";
+	}
+	
+	static String getTypeName(Object type) {
+		return ((ENamedElement)type).getName();
 	}
 }
