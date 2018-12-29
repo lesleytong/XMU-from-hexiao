@@ -7,6 +7,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.DeleteElementExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.EnforcementExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ExpressionConversion;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.InsertElementExpression;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.MatchExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpressionBlock;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.NavigationExpression;
@@ -35,6 +36,7 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
 import org.eclipse.xtext.common.types.JvmTypeReference;
 import org.eclipse.xtext.xbase.XExpression;
+import org.eclipse.xtext.xbase.XbasePackage;
 import org.eclipse.xtext.xbase.compiler.XbaseCompiler;
 import org.eclipse.xtext.xbase.compiler.output.ITreeAppendable;
 import org.eclipse.xtext.xbase.lib.Exceptions;
@@ -299,29 +301,23 @@ public class XmuCoreCompiler extends XbaseCompiler {
                 StringConcatenation _builder_12 = new StringConcatenation();
                 _builder_12.append("});");
                 a.append(_builder_12).newLine();
-                StringConcatenation _builder_13 = new StringConcatenation();
-                _builder_13.append(blockVar);
-                _builder_13.append(" = ");
-                _builder_13.append(cur);
-                _builder_13.append(";");
-                a.append(_builder_13);
               } else {
                 if ((e instanceof DeleteElementExpression)) {
                   this.internalToJavaStatement(((DeleteElementExpression)e).getElement(), a, true);
                   ITreeAppendable _newLine_5 = a.newLine();
-                  StringConcatenation _builder_14 = new StringConcatenation();
+                  StringConcatenation _builder_13 = new StringConcatenation();
                   String _canonicalName_6 = GraphModification.class.getCanonicalName();
-                  _builder_14.append(_canonicalName_6);
-                  _builder_14.append(" ");
-                  _builder_14.append(cur);
-                  _builder_14.append(" = ");
-                  _builder_14.append(blockVar);
-                  _builder_14.append(".remove(");
-                  _newLine_5.append(_builder_14);
+                  _builder_13.append(_canonicalName_6);
+                  _builder_13.append(" ");
+                  _builder_13.append(cur);
+                  _builder_13.append(" = ");
+                  _builder_13.append(blockVar);
+                  _builder_13.append(".remove(");
+                  _newLine_5.append(_builder_13);
                   this.internalToJavaExpression(((DeleteElementExpression)e).getElement(), a);
-                  StringConcatenation _builder_15 = new StringConcatenation();
-                  _builder_15.append(");");
-                  a.append(_builder_15).newLine();
+                  StringConcatenation _builder_14 = new StringConcatenation();
+                  _builder_14.append(");");
+                  a.append(_builder_14).newLine();
                 } else {
                   if ((e instanceof InsertElementExpression)) {
                     this.internalToJavaStatement(((InsertElementExpression)e).getElement(), a, true);
@@ -340,26 +336,26 @@ public class XmuCoreCompiler extends XbaseCompiler {
                     }
                     final JvmTypeReference actType = _xifexpression;
                     ITreeAppendable _newLine_6 = a.newLine();
-                    StringConcatenation _builder_16 = new StringConcatenation();
+                    StringConcatenation _builder_15 = new StringConcatenation();
                     String _canonicalName_7 = GraphModification.class.getCanonicalName();
-                    _builder_16.append(_canonicalName_7);
-                    _builder_16.append(" ");
-                    _builder_16.append(cur);
-                    _builder_16.append(" = ");
-                    _builder_16.append(blockVar);
-                    _builder_16.append(".insert");
+                    _builder_15.append(_canonicalName_7);
+                    _builder_15.append(" ");
+                    _builder_15.append(cur);
+                    _builder_15.append(" = ");
+                    _builder_15.append(blockVar);
+                    _builder_15.append(".insert");
                     String _simpleName = actType.getSimpleName();
-                    _builder_16.append(_simpleName);
+                    _builder_15.append(_simpleName);
                     {
                       String _position = ((InsertElementExpression)e).getPosition();
                       boolean _tripleNotEquals_1 = (_position != null);
                       if (_tripleNotEquals_1) {
                         String _firstUpper = StringExtensions.toFirstUpper(((InsertElementExpression)e).getPosition());
-                        _builder_16.append(_firstUpper);
+                        _builder_15.append(_firstUpper);
                       }
                     }
-                    _builder_16.append("(");
-                    _newLine_6.append(_builder_16);
+                    _builder_15.append("(");
+                    _newLine_6.append(_builder_15);
                     this.internalToJavaExpression(((InsertElementExpression)e).getElement(), a);
                     XExpression _anchor_1 = ((InsertElementExpression)e).getAnchor();
                     boolean _tripleNotEquals_2 = (_anchor_1 != null);
@@ -371,6 +367,12 @@ public class XmuCoreCompiler extends XbaseCompiler {
                   }
                 }
               }
+              StringConcatenation _builder_16 = new StringConcatenation();
+              _builder_16.append(blockVar);
+              _builder_16.append(" = ");
+              _builder_16.append(cur);
+              _builder_16.append(";");
+              a.append(_builder_16);
             } else {
               if ((e instanceof NewInstanceExpression)) {
                 Class<? extends IndexableElement> _xifexpression_1 = null;
@@ -565,7 +567,60 @@ public class XmuCoreCompiler extends XbaseCompiler {
                     _newLine_11.append(_builder_23);
                   }
                 } else {
-                  super.doInternalToJavaStatement(e, a, isReferenced);
+                  if ((e instanceof MatchExpression)) {
+                    final boolean cond = this.isCondition(e);
+                    final Consumer<ValueMapping> _function_3 = (ValueMapping it) -> {
+                      this.internalToJavaStatement(it.getExpression(), a, true);
+                    };
+                    ((MatchExpression)e).getValueMappings().forEach(_function_3);
+                    if (cond) {
+                      a.append("unknown match;");
+                    } else {
+                      final ModificationExpressionBlock block_1 = this.block(e);
+                      final String blockVar_1 = this.getVarName(block_1, a);
+                      final String cur_1 = a.declareSyntheticVariable(e, "_mod");
+                      ITreeAppendable _newLine_12 = a.newLine();
+                      StringConcatenation _builder_24 = new StringConcatenation();
+                      String _canonicalName_13 = GraphModification.class.getCanonicalName();
+                      _builder_24.append(_canonicalName_13);
+                      _builder_24.append(" ");
+                      _builder_24.append(cur_1);
+                      _builder_24.append(" = ");
+                      _builder_24.append(blockVar_1);
+                      _builder_24.append(".match(");
+                      CharSequence _patternAccessor_1 = this.patternAccessor(((MatchExpression)e).getPattern());
+                      _builder_24.append(_patternAccessor_1);
+                      _builder_24.append("(), new edu.ustb.sei.mde.structure.Tuple2[] {");
+                      _newLine_12.append(_builder_24);
+                      final Procedure2<ValueMapping, Integer> _function_4 = (ValueMapping m, Integer id) -> {
+                        if (((id).intValue() > 0)) {
+                          a.append(",");
+                        }
+                        StringConcatenation _builder_25 = new StringConcatenation();
+                        _builder_25.append("edu.ustb.sei.mde.structure.Tuple2.make(\"");
+                        String _varName = m.getVarName();
+                        _builder_25.append(_varName);
+                        _builder_25.append("\",");
+                        a.append(_builder_25);
+                        this.internalToJavaExpression(m.getExpression(), a);
+                        StringConcatenation _builder_26 = new StringConcatenation();
+                        _builder_26.append(")");
+                        a.append(_builder_26);
+                      };
+                      IterableExtensions.<ValueMapping>forEach(((MatchExpression)e).getValueMappings(), _function_4);
+                      StringConcatenation _builder_25 = new StringConcatenation();
+                      _builder_25.append("});");
+                      a.append(_builder_25).newLine();
+                      StringConcatenation _builder_26 = new StringConcatenation();
+                      _builder_26.append(blockVar_1);
+                      _builder_26.append(" = ");
+                      _builder_26.append(cur_1);
+                      _builder_26.append(";");
+                      a.append(_builder_26);
+                    }
+                  } else {
+                    super.doInternalToJavaStatement(e, a, isReferenced);
+                  }
                 }
               }
             }
@@ -626,7 +681,11 @@ public class XmuCoreCompiler extends XbaseCompiler {
                   final String v_1 = this.getVarName(e, a);
                   a.append(v_1);
                 } else {
-                  super.internalToConvertedExpression(e, a);
+                  if ((e instanceof MatchExpression)) {
+                    a.append(this.getVarName(e, a));
+                  } else {
+                    super.internalToConvertedExpression(e, a);
+                  }
                 }
               }
             }
@@ -647,6 +706,31 @@ public class XmuCoreCompiler extends XbaseCompiler {
       } else {
         EObject _eContainer = e.eContainer();
         _xifexpression_1 = this.block(((XExpression) _eContainer));
+      }
+      _xifexpression = _xifexpression_1;
+    }
+    return _xifexpression;
+  }
+  
+  public boolean isCondition(final EObject e) {
+    boolean _xifexpression = false;
+    EObject _eContainer = e.eContainer();
+    boolean _not = (!(_eContainer instanceof XExpression));
+    if (_not) {
+      _xifexpression = true;
+    } else {
+      boolean _xifexpression_1 = false;
+      if (((e.eContainmentFeature() == XbasePackage.Literals.XIF_EXPRESSION__IF) || (e.eContainmentFeature() == XbasePackage.Literals.XCASE_PART__CASE))) {
+        _xifexpression_1 = true;
+      } else {
+        boolean _xifexpression_2 = false;
+        EObject _eContainer_1 = e.eContainer();
+        if ((_eContainer_1 instanceof ModificationExpressionBlock)) {
+          _xifexpression_2 = false;
+        } else {
+          _xifexpression_2 = this.isCondition(e.eContainer());
+        }
+        _xifexpression_1 = _xifexpression_2;
       }
       _xifexpression = _xifexpression_1;
     }

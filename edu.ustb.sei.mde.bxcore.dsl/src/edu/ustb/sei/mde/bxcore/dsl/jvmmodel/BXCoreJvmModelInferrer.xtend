@@ -192,6 +192,16 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 					if(pair.second<0) generateTypeLiteral(it, pair.first, pair.second, element);
 				];
 				
+				
+				element.slots.forEach[s|
+					val fieldName = '_slot_'+s.^var.name;
+					members += s.toField(fieldName, s.^var.parameterType)[
+						if(s.initializer!==null)
+							initializer = s.initializer
+					];
+					members += s.toGetter(s.^var.name, fieldName, s.^var.parameterType);
+					members += s.toSetter(s.^var.name, fieldName, s.^var.parameterType);
+				];
 
 				val patternLiterals = data.patternLiterals;
 				

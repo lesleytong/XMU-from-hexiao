@@ -23,6 +23,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextVarExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.Conversion;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.CustomizedBiGULDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.CustomizedBiGULReference;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.DataSlot;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.DefinedContextTypeRef;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.Definition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.DeleteElementExpression;
@@ -35,6 +36,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.ImportSection;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.IndexDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.IndexPart;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.InsertElementExpression;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.MatchExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpressionBlock;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.NavigationExpression;
@@ -122,6 +124,13 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * @generated
    */
   private EClass importSectionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass dataSlotEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -548,6 +557,13 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass matchExpressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass deleteElementExpressionEClass = null;
 
   /**
@@ -723,9 +739,19 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getBXProgram_Definitions()
+  public EReference getBXProgram_Slots()
   {
     return (EReference)bxProgramEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getBXProgram_Definitions()
+  {
+    return (EReference)bxProgramEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -766,6 +792,36 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
   public EAttribute getImportSection_ShortName()
   {
     return (EAttribute)importSectionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getDataSlot()
+  {
+    return dataSlotEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getDataSlot_Var()
+  {
+    return (EReference)dataSlotEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getDataSlot_Initializer()
+  {
+    return (EReference)dataSlotEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -2453,6 +2509,36 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getMatchExpression()
+  {
+    return matchExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getMatchExpression_Pattern()
+  {
+    return (EReference)matchExpressionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getMatchExpression_ValueMappings()
+  {
+    return (EReference)matchExpressionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getDeleteElementExpression()
   {
     return deleteElementExpressionEClass;
@@ -2761,6 +2847,7 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     bxProgramEClass = createEClass(BX_PROGRAM);
     createEReference(bxProgramEClass, BX_PROGRAM__IMPORTS);
     createEReference(bxProgramEClass, BX_PROGRAM__JAVA_IMPORTS);
+    createEReference(bxProgramEClass, BX_PROGRAM__SLOTS);
     createEReference(bxProgramEClass, BX_PROGRAM__DEFINITIONS);
 
     contextAwareActionEClass = createEClass(CONTEXT_AWARE_ACTION);
@@ -2768,6 +2855,10 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     importSectionEClass = createEClass(IMPORT_SECTION);
     createEReference(importSectionEClass, IMPORT_SECTION__METAMODEL);
     createEAttribute(importSectionEClass, IMPORT_SECTION__SHORT_NAME);
+
+    dataSlotEClass = createEClass(DATA_SLOT);
+    createEReference(dataSlotEClass, DATA_SLOT__VAR);
+    createEReference(dataSlotEClass, DATA_SLOT__INITIALIZER);
 
     definitionEClass = createEClass(DEFINITION);
     createEAttribute(definitionEClass, DEFINITION__NAME);
@@ -2997,6 +3088,10 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     createEReference(enforcementExpressionEClass, ENFORCEMENT_EXPRESSION__PATTERN);
     createEReference(enforcementExpressionEClass, ENFORCEMENT_EXPRESSION__VALUE_MAPPINGS);
 
+    matchExpressionEClass = createEClass(MATCH_EXPRESSION);
+    createEReference(matchExpressionEClass, MATCH_EXPRESSION__PATTERN);
+    createEReference(matchExpressionEClass, MATCH_EXPRESSION__VALUE_MAPPINGS);
+
     deleteElementExpressionEClass = createEClass(DELETE_ELEMENT_EXPRESSION);
     createEReference(deleteElementExpressionEClass, DELETE_ELEMENT_EXPRESSION__ELEMENT);
 
@@ -3115,6 +3210,7 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     allInstanceExpressionEClass.getESuperTypes().add(theXbasePackage.getXExpression());
     modificationExpressionEClass.getESuperTypes().add(theXbasePackage.getXExpression());
     enforcementExpressionEClass.getESuperTypes().add(this.getModificationExpression());
+    matchExpressionEClass.getESuperTypes().add(theXbasePackage.getXExpression());
     deleteElementExpressionEClass.getESuperTypes().add(this.getModificationExpression());
     insertElementExpressionEClass.getESuperTypes().add(this.getModificationExpression());
     definedContextTypeRefEClass.getESuperTypes().add(this.getContextTypeRef());
@@ -3129,6 +3225,7 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     initEClass(bxProgramEClass, BXProgram.class, "BXProgram", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getBXProgram_Imports(), this.getImportSection(), null, "imports", null, 0, -1, BXProgram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getBXProgram_JavaImports(), theXtypePackage.getXImportSection(), null, "javaImports", null, 0, 1, BXProgram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getBXProgram_Slots(), this.getDataSlot(), null, "slots", null, 0, -1, BXProgram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getBXProgram_Definitions(), this.getDefinition(), null, "definitions", null, 0, -1, BXProgram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(contextAwareActionEClass, ContextAwareAction.class, "ContextAwareAction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -3136,6 +3233,10 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     initEClass(importSectionEClass, ImportSection.class, "ImportSection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getImportSection_Metamodel(), ecorePackage.getEPackage(), null, "metamodel", null, 0, 1, ImportSection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getImportSection_ShortName(), ecorePackage.getEString(), "shortName", null, 0, 1, ImportSection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(dataSlotEClass, DataSlot.class, "DataSlot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getDataSlot_Var(), theTypesPackage.getJvmFormalParameter(), null, "var", null, 0, 1, DataSlot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDataSlot_Initializer(), theXbasePackage.getXExpression(), null, "initializer", null, 0, 1, DataSlot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(definitionEClass, Definition.class, "Definition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getDefinition_Name(), ecorePackage.getEString(), "name", null, 0, 1, Definition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3364,6 +3465,10 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     initEClass(enforcementExpressionEClass, EnforcementExpression.class, "EnforcementExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getEnforcementExpression_Pattern(), this.getPattern(), null, "pattern", null, 0, 1, EnforcementExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getEnforcementExpression_ValueMappings(), this.getValueMapping(), null, "valueMappings", null, 0, -1, EnforcementExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(matchExpressionEClass, MatchExpression.class, "MatchExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getMatchExpression_Pattern(), this.getPattern(), null, "pattern", null, 0, 1, MatchExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMatchExpression_ValueMappings(), this.getValueMapping(), null, "valueMappings", null, 0, -1, MatchExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(deleteElementExpressionEClass, DeleteElementExpression.class, "DeleteElementExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getDeleteElementExpression_Element(), theXbasePackage.getXExpression(), null, "element", null, 0, 1, DeleteElementExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -14,12 +14,17 @@
     <genClasses ecoreClass="BXCore.ecore#//BXProgram">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//BXProgram/imports"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//BXProgram/javaImports"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//BXProgram/slots"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//BXProgram/definitions"/>
     </genClasses>
     <genClasses ecoreClass="BXCore.ecore#//ContextAwareAction"/>
     <genClasses ecoreClass="BXCore.ecore#//ImportSection">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BXCore.ecore#//ImportSection/metamodel"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BXCore.ecore#//ImportSection/shortName"/>
+    </genClasses>
+    <genClasses ecoreClass="BXCore.ecore#//DataSlot">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//DataSlot/var"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//DataSlot/initializer"/>
     </genClasses>
     <genClasses ecoreClass="BXCore.ecore#//Definition">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BXCore.ecore#//Definition/name"/>
@@ -236,6 +241,10 @@
     <genClasses ecoreClass="BXCore.ecore#//EnforcementExpression">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//EnforcementExpression/pattern"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//EnforcementExpression/valueMappings"/>
+    </genClasses>
+    <genClasses ecoreClass="BXCore.ecore#//MatchExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//MatchExpression/pattern"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//MatchExpression/valueMappings"/>
     </genClasses>
     <genClasses ecoreClass="BXCore.ecore#//DeleteElementExpression">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//DeleteElementExpression/element"/>

@@ -37,6 +37,8 @@ import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.xtext.validation.Check
 import org.eclipse.xtext.xbase.XBlockExpression
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreDependencyView
+import org.eclipse.xtext.xbase.XExpression
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpression
 
 /**
  * This class contains custom validation rules. 
@@ -219,6 +221,11 @@ class BXCoreValidator extends AbstractBXCoreValidator {
 				error('More than one modification block in the context',b);
 		];
 		
+	}
+	
+	override protected mustBeJavaStatementExpression(XExpression expr) {
+		if(!(expr.eContainer instanceof ModificationExpression)) 
+			super.mustBeJavaStatementExpression(expr)
 	}
 	
 }

@@ -18,6 +18,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextVarExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.Conversion;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.CustomizedBiGULDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.CustomizedBiGULReference;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.DataSlot;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.DefinedContextTypeRef;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.DeleteElementExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.EcoreTypeRef;
@@ -29,6 +30,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.ImportSection;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.IndexDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.IndexPart;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.InsertElementExpression;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.MatchExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpressionBlock;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.NavigationExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression;
@@ -174,6 +176,9 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 			case BXCorePackage.CUSTOMIZED_BI_GUL_REFERENCE:
 				sequence_CustomizedBiGULReference(context, (CustomizedBiGULReference) semanticObject); 
 				return; 
+			case BXCorePackage.DATA_SLOT:
+				sequence_DataSlot(context, (DataSlot) semanticObject); 
+				return; 
 			case BXCorePackage.DEFINED_CONTEXT_TYPE_REF:
 				sequence_ContextTypeRef(context, (DefinedContextTypeRef) semanticObject); 
 				return; 
@@ -206,6 +211,9 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 				return; 
 			case BXCorePackage.INSERT_ELEMENT_EXPRESSION:
 				sequence_InsertElementExpression(context, (InsertElementExpression) semanticObject); 
+				return; 
+			case BXCorePackage.MATCH_EXPRESSION:
+				sequence_MatchExpression(context, (MatchExpression) semanticObject); 
 				return; 
 			case BXCorePackage.MODIFICATION_EXPRESSION_BLOCK:
 				sequence_ModificationExpressionBlock(context, (ModificationExpressionBlock) semanticObject); 
@@ -658,8 +666,9 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         (imports+=ImportSection* javaImports=XImportSection definitions+=Definition+) | 
-	 *         (imports+=ImportSection* definitions+=Definition+) | 
+	 *         (imports+=ImportSection+ ((javaImports=XImportSection definitions+=Definition+) | definitions+=Definition+)) | 
+	 *         (((imports+=ImportSection+ javaImports=XImportSection) | javaImports=XImportSection)? slots+=DataSlot+ definitions+=Definition+) | 
+	 *         (javaImports=XImportSection definitions+=Definition+) | 
 	 *         definitions+=Definition+
 	 *     )?
 	 */
@@ -963,6 +972,18 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     DataSlot returns DataSlot
+	 *
+	 * Constraint:
+	 *     (var=FullJvmFormalParameter initializer=XExpression?)
+	 */
+	protected void sequence_DataSlot(ISerializationContext context, DataSlot semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     XPrimaryExpression returns DeleteElementExpression
 	 *     ModificationExpression returns DeleteElementExpression
 	 *     DeleteElementExpression returns DeleteElementExpression
@@ -1163,6 +1184,48 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	 *     (element=XExpression (((position='before' | position='after') anchor=XExpression) | position='first')?)
 	 */
 	protected void sequence_InsertElementExpression(ISerializationContext context, InsertElementExpression semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     XPrimaryExpression returns MatchExpression
+	 *     MatchExpression returns MatchExpression
+	 *     XExpression returns MatchExpression
+	 *     XAssignment returns MatchExpression
+	 *     XAssignment.XBinaryOperation_1_1_0_0_0 returns MatchExpression
+	 *     XOrExpression returns MatchExpression
+	 *     XOrExpression.XBinaryOperation_1_0_0_0 returns MatchExpression
+	 *     XAndExpression returns MatchExpression
+	 *     XAndExpression.XBinaryOperation_1_0_0_0 returns MatchExpression
+	 *     XEqualityExpression returns MatchExpression
+	 *     XEqualityExpression.XBinaryOperation_1_0_0_0 returns MatchExpression
+	 *     XRelationalExpression returns MatchExpression
+	 *     XRelationalExpression.XInstanceOfExpression_1_0_0_0_0 returns MatchExpression
+	 *     XRelationalExpression.XBinaryOperation_1_1_0_0_0 returns MatchExpression
+	 *     XOtherOperatorExpression returns MatchExpression
+	 *     XOtherOperatorExpression.XBinaryOperation_1_0_0_0 returns MatchExpression
+	 *     XAdditiveExpression returns MatchExpression
+	 *     XAdditiveExpression.XBinaryOperation_1_0_0_0 returns MatchExpression
+	 *     XMultiplicativeExpression returns MatchExpression
+	 *     XMultiplicativeExpression.XBinaryOperation_1_0_0_0 returns MatchExpression
+	 *     XUnaryOperation returns MatchExpression
+	 *     XCastedExpression returns MatchExpression
+	 *     XCastedExpression.XCastedExpression_1_0_0_0 returns MatchExpression
+	 *     XPostfixOperation returns MatchExpression
+	 *     XPostfixOperation.XPostfixOperation_1_0_0 returns MatchExpression
+	 *     XMemberFeatureCall returns MatchExpression
+	 *     XMemberFeatureCall.XAssignment_1_0_0_0_0 returns MatchExpression
+	 *     XMemberFeatureCall.XMemberFeatureCall_1_1_0_0_0 returns MatchExpression
+	 *     XPrimaryExpression returns MatchExpression
+	 *     XParenthesizedExpression returns MatchExpression
+	 *     XExpressionOrVarDeclaration returns MatchExpression
+	 *
+	 * Constraint:
+	 *     (pattern=Pattern (valueMappings+=ValueMapping valueMappings+=ValueMapping*)?)
+	 */
+	protected void sequence_MatchExpression(ISerializationContext context, MatchExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

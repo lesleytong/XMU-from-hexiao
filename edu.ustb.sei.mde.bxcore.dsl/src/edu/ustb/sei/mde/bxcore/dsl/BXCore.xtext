@@ -9,6 +9,7 @@ generate bXCore "http://www.ustb.edu/sei/mde/bxcore/dsl/BXCore"
 BXProgram :
 	imports+=ImportSection*
 	javaImports=XImportSection?
+	slots += DataSlot*
 	definitions += Definition*
 ;
 
@@ -18,6 +19,10 @@ ContextAwareAction returns ContextAwareAction:
 
 ImportSection :
 	'import' metamodel=[ecore::EPackage|STRING] 'as' shortName=ValidID
+;
+
+DataSlot :
+	'slot' var=FullJvmFormalParameter ('=' initializer=XExpression)? 
 ;
 
 Definition :
@@ -279,6 +284,7 @@ XPrimaryExpression returns xbase::XExpression :
 	| ContextExpression
 	| NewInstanceExpression
 	| AllInstanceExpression
+	| MatchExpression
 	| super
 ;
  
@@ -323,8 +329,13 @@ EnforcementExpression:
 	'enforce' pattern=Pattern ('{' valueMappings+=ValueMapping (',' valueMappings+=ValueMapping)*'}')? ';'
 ;
 
+MatchExpression:
+	'find' pattern=Pattern ('{' valueMappings+=ValueMapping (',' valueMappings+=ValueMapping)*'}')? ';'
+;
+
+
 DeleteElementExpression:
-	=>'delete' element=XExpression ';'
+	=> 'delete' element=XExpression ';'
 ;
 
 InsertElementExpression :

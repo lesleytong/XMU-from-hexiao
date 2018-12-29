@@ -51,6 +51,15 @@ public interface BXCoreFactory extends EFactory
   ImportSection createImportSection();
 
   /**
+   * Returns a new object of class '<em>Data Slot</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Data Slot</em>'.
+   * @generated
+   */
+  DataSlot createDataSlot();
+
+  /**
    * Returns a new object of class '<em>Definition</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -589,6 +598,15 @@ public interface BXCoreFactory extends EFactory
    * @generated
    */
   EnforcementExpression createEnforcementExpression();
+
+  /**
+   * Returns a new object of class '<em>Match Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Match Expression</em>'.
+   * @generated
+   */
+  MatchExpression createMatchExpression();
 
   /**
    * Returns a new object of class '<em>Delete Element Expression</em>'.

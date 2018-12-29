@@ -5,6 +5,7 @@ package edu.ustb.sei.mde.bxcore.dsl.bXCore.impl;
 
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXProgram;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.DataSlot;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.Definition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ImportSection;
 
@@ -36,6 +37,7 @@ import org.eclipse.xtext.xtype.XImportSection;
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXProgramImpl#getImports <em>Imports</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXProgramImpl#getJavaImports <em>Java Imports</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXProgramImpl#getSlots <em>Slots</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXProgramImpl#getDefinitions <em>Definitions</em>}</li>
  * </ul>
  *
@@ -62,6 +64,16 @@ public class BXProgramImpl extends MinimalEObjectImpl.Container implements BXPro
    * @ordered
    */
   protected XImportSection javaImports;
+
+  /**
+   * The cached value of the '{@link #getSlots() <em>Slots</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getSlots()
+   * @generated
+   * @ordered
+   */
+  protected EList<DataSlot> slots;
 
   /**
    * The cached value of the '{@link #getDefinitions() <em>Definitions</em>}' containment reference list.
@@ -161,6 +173,20 @@ public class BXProgramImpl extends MinimalEObjectImpl.Container implements BXPro
    * <!-- end-user-doc -->
    * @generated
    */
+  public EList<DataSlot> getSlots()
+  {
+    if (slots == null)
+    {
+      slots = new EObjectContainmentEList<DataSlot>(DataSlot.class, this, BXCorePackage.BX_PROGRAM__SLOTS);
+    }
+    return slots;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EList<Definition> getDefinitions()
   {
     if (definitions == null)
@@ -184,6 +210,8 @@ public class BXProgramImpl extends MinimalEObjectImpl.Container implements BXPro
         return ((InternalEList<?>)getImports()).basicRemove(otherEnd, msgs);
       case BXCorePackage.BX_PROGRAM__JAVA_IMPORTS:
         return basicSetJavaImports(null, msgs);
+      case BXCorePackage.BX_PROGRAM__SLOTS:
+        return ((InternalEList<?>)getSlots()).basicRemove(otherEnd, msgs);
       case BXCorePackage.BX_PROGRAM__DEFINITIONS:
         return ((InternalEList<?>)getDefinitions()).basicRemove(otherEnd, msgs);
     }
@@ -204,6 +232,8 @@ public class BXProgramImpl extends MinimalEObjectImpl.Container implements BXPro
         return getImports();
       case BXCorePackage.BX_PROGRAM__JAVA_IMPORTS:
         return getJavaImports();
+      case BXCorePackage.BX_PROGRAM__SLOTS:
+        return getSlots();
       case BXCorePackage.BX_PROGRAM__DEFINITIONS:
         return getDefinitions();
     }
@@ -227,6 +257,10 @@ public class BXProgramImpl extends MinimalEObjectImpl.Container implements BXPro
         return;
       case BXCorePackage.BX_PROGRAM__JAVA_IMPORTS:
         setJavaImports((XImportSection)newValue);
+        return;
+      case BXCorePackage.BX_PROGRAM__SLOTS:
+        getSlots().clear();
+        getSlots().addAll((Collection<? extends DataSlot>)newValue);
         return;
       case BXCorePackage.BX_PROGRAM__DEFINITIONS:
         getDefinitions().clear();
@@ -252,6 +286,9 @@ public class BXProgramImpl extends MinimalEObjectImpl.Container implements BXPro
       case BXCorePackage.BX_PROGRAM__JAVA_IMPORTS:
         setJavaImports((XImportSection)null);
         return;
+      case BXCorePackage.BX_PROGRAM__SLOTS:
+        getSlots().clear();
+        return;
       case BXCorePackage.BX_PROGRAM__DEFINITIONS:
         getDefinitions().clear();
         return;
@@ -273,6 +310,8 @@ public class BXProgramImpl extends MinimalEObjectImpl.Container implements BXPro
         return imports != null && !imports.isEmpty();
       case BXCorePackage.BX_PROGRAM__JAVA_IMPORTS:
         return javaImports != null;
+      case BXCorePackage.BX_PROGRAM__SLOTS:
+        return slots != null && !slots.isEmpty();
       case BXCorePackage.BX_PROGRAM__DEFINITIONS:
         return definitions != null && !definitions.isEmpty();
     }

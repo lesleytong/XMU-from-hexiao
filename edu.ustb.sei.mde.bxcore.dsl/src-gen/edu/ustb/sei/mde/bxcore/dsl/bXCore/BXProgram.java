@@ -20,6 +20,7 @@ import org.eclipse.xtext.xtype.XImportSection;
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.BXProgram#getImports <em>Imports</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.BXProgram#getJavaImports <em>Java Imports</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.BXProgram#getSlots <em>Slots</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.BXProgram#getDefinitions <em>Definitions</em>}</li>
  * </ul>
  *
@@ -70,6 +71,22 @@ public interface BXProgram extends EObject
    * @generated
    */
   void setJavaImports(XImportSection value);
+
+  /**
+   * Returns the value of the '<em><b>Slots</b></em>' containment reference list.
+   * The list contents are of type {@link edu.ustb.sei.mde.bxcore.dsl.bXCore.DataSlot}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Slots</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Slots</em>' containment reference list.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getBXProgram_Slots()
+   * @model containment="true"
+   * @generated
+   */
+  EList<DataSlot> getSlots();
 
   /**
    * Returns the value of the '<em><b>Definitions</b></em>' containment reference list.

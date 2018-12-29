@@ -9,6 +9,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.DeleteElementExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.EnforcementExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ExpressionConversion;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.InsertElementExpression;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.MatchExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpressionBlock;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.NavigationExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression;
@@ -30,6 +31,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -61,6 +63,7 @@ import org.eclipse.xtext.xbase.XTryCatchFinallyExpression;
 import org.eclipse.xtext.xbase.XTypeLiteral;
 import org.eclipse.xtext.xbase.XVariableDeclaration;
 import org.eclipse.xtext.xbase.XWhileExpression;
+import org.eclipse.xtext.xbase.XbasePackage;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.Pair;
@@ -276,6 +279,44 @@ public class XmuCoreTypeComputer extends XbaseTypeComputer {
     state.acceptActualType(this.getRawTypeForName(GraphModification.class, state));
   }
   
+  public boolean isCondition(final EObject e) {
+    boolean _xifexpression = false;
+    EObject _eContainer = e.eContainer();
+    boolean _not = (!(_eContainer instanceof XExpression));
+    if (_not) {
+      _xifexpression = true;
+    } else {
+      boolean _xifexpression_1 = false;
+      if (((e.eContainmentFeature() == XbasePackage.Literals.XIF_EXPRESSION__IF) || (e.eContainmentFeature() == XbasePackage.Literals.XCASE_PART__CASE))) {
+        _xifexpression_1 = true;
+      } else {
+        boolean _xifexpression_2 = false;
+        EObject _eContainer_1 = e.eContainer();
+        if ((_eContainer_1 instanceof ModificationExpressionBlock)) {
+          _xifexpression_2 = false;
+        } else {
+          _xifexpression_2 = this.isCondition(e.eContainer());
+        }
+        _xifexpression_1 = _xifexpression_2;
+      }
+      _xifexpression = _xifexpression_1;
+    }
+    return _xifexpression;
+  }
+  
+  protected void _computeTypes(final MatchExpression match, final ITypeComputationState state) {
+    final Consumer<ValueMapping> _function = (ValueMapping e) -> {
+      state.withNonVoidExpectation().computeTypes(e.getExpression());
+    };
+    match.getValueMappings().forEach(_function);
+    boolean _isCondition = this.isCondition(match);
+    if (_isCondition) {
+      state.acceptActualType(this.getRawTypeForName(boolean.class, state));
+    } else {
+      state.acceptActualType(this.getRawTypeForName(GraphModification.class, state));
+    }
+  }
+  
   protected void _computeTypes(final DeleteElementExpression modification, final ITypeComputationState state) {
     state.withNonVoidExpectation().computeTypes(modification.getElement());
     state.acceptActualType(this.getRawTypeForName(GraphModification.class, state));
@@ -405,6 +446,9 @@ public class XmuCoreTypeComputer extends XbaseTypeComputer {
       return;
     } else if (cvar instanceof AllInstanceExpression) {
       _computeTypes((AllInstanceExpression)cvar, state);
+      return;
+    } else if (cvar instanceof MatchExpression) {
+      _computeTypes((MatchExpression)cvar, state);
       return;
     } else if (cvar instanceof ModificationExpressionBlock) {
       _computeTypes((ModificationExpressionBlock)cvar, state);

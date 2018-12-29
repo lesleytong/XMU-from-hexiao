@@ -23,7 +23,7 @@ public class BXCoreHoverProvider extends XbaseHoverProvider {
 				TupleType vt = data.getViewInfer().getType(stmt);
 				return parentInfo + "<p><b>Source type</b>: "+st.toString() + "</p><p><b>View type</b>: "+vt.toString()+"</p>";
 			} catch (Exception e) {
-				return parentInfo + "<p>Type inference is currently unaviable!</p>";
+				return parentInfo + "<p>Type inference is currently unavaiable!</p>";
 			}
 		}
 		else return parentInfo;

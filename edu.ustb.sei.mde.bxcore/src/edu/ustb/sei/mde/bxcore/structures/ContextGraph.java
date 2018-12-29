@@ -220,6 +220,46 @@ public interface ContextGraph {
 		}
 	}
 	
+	static Tuple2<String, Object> search(FieldDef<?> f, Tuple2<String, Object>[] valueMaps) {
+		for(Tuple2<String, Object> t : valueMaps) {
+			if(t.first.equals(f.getName())) {
+				return t;
+			}
+		}
+		return null;
+	}
+	
+	default List<Context> match(Pattern pat, Tuple2<String, Object>[] valueMaps) {
+		ContextType baseType = new ContextType();
+		getContext().getType().fields().forEach(f->baseType.addField(f));
+		Arrays.stream(valueMaps).forEach(t->baseType.addField(pat.getType().getField(t.first)));
+		Context freshContext = new Context(baseType);
+		for(FieldDef<?> f : baseType.fields()) {					
+			Tuple2<String, Object> tuple = search(f, valueMaps);
+			if(tuple==null) {
+				try {
+					FieldDef<?> up = getContext().getType().getField(f.getName());
+					if (up != null) {
+						freshContext.setValue(f, getContext().getValue(up));
+					}
+				} catch (UninitializedException | NothingReturnedException e) {
+				}
+			} else { // if tuple!=null, user must have provided a value
+				freshContext.setValue(f, tuple.second);
+			}
+		}
+		List<Context> matches = pat.match(getGraph(), freshContext);
+		return matches;
+	}
+	
+	default boolean hasMatch(Pattern pat, Tuple2<String, Object>[] valueMaps) {
+		return !match(pat, valueMaps).isEmpty();
+	}
+	
+	default boolean hasUniqueMatch(Pattern pat, Tuple2<String, Object>[] valueMaps) {
+		return match(pat, valueMaps).size()==1;
+	}
+	
 	default TypeNode getTypeNode(String name) {
 		TypedGraph graph = this.getGraph();
 		TypeGraph type = graph.getTypeGraph();

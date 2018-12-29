@@ -1,7 +1,6 @@
 package edu.ustb.sei.mde.bxcore.structures;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -335,6 +334,19 @@ public class GraphModification {
 			return remove(e);
 		} catch (NothingReturnedException e1) {
 			return this;
+		}
+	}
+	
+	public GraphModification match(Pattern pat, Tuple2<String, Object>[] valueMaps) {
+		if(data instanceof SourceType) {
+			List<Context> matches = data.match(pat, valueMaps);
+			if(matches.size()!=1) {
+				return this;
+			} else {
+				return new GraphModification(data.replaceContext(matches.get(0)));
+			}
+		} else {
+			return null;
 		}
 	}
 	

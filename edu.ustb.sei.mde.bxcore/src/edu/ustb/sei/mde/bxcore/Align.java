@@ -382,10 +382,14 @@ public class Align extends XmuCore {
 				} else if(sp==SourceType.skip()) {
 					// do nothing
 				} else {
-					if(sp.second.getType()!=patS.getType())
+					if(!patS.getType().isSuperOf(sp.second.getType()))
 						throw new NothingReturnedException("Adaption must return a valid source match");
+					Context sc = sp.second;
+					if(patS.getType()!=sp.second.getType()) {
+						sc = sp.second.createUpstreamContext(patS.getType());
+					}
 					delta.add(sp.first);
-					sources.add(sp.second);					
+					sources.add(sc);					
 				} 
 			} else if(alignment.second==null) { // unmatchS
 				SourceType sp = this.unmatchedSource.apply(s.replaceSecond(alignment.first), v);

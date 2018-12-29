@@ -69,6 +69,7 @@ public class BXCoreFactoryImpl extends EFactoryImpl implements BXCoreFactory
       case BXCorePackage.BX_PROGRAM: return createBXProgram();
       case BXCorePackage.CONTEXT_AWARE_ACTION: return createContextAwareAction();
       case BXCorePackage.IMPORT_SECTION: return createImportSection();
+      case BXCorePackage.DATA_SLOT: return createDataSlot();
       case BXCorePackage.DEFINITION: return createDefinition();
       case BXCorePackage.HELPER_DEFINITION: return createHelperDefinition();
       case BXCorePackage.CUSTOMIZED_BI_GUL_DEFINITION: return createCustomizedBiGULDefinition();
@@ -129,6 +130,7 @@ public class BXCoreFactoryImpl extends EFactoryImpl implements BXCoreFactory
       case BXCorePackage.ALL_INSTANCE_EXPRESSION: return createAllInstanceExpression();
       case BXCorePackage.MODIFICATION_EXPRESSION: return createModificationExpression();
       case BXCorePackage.ENFORCEMENT_EXPRESSION: return createEnforcementExpression();
+      case BXCorePackage.MATCH_EXPRESSION: return createMatchExpression();
       case BXCorePackage.DELETE_ELEMENT_EXPRESSION: return createDeleteElementExpression();
       case BXCorePackage.INSERT_ELEMENT_EXPRESSION: return createInsertElementExpression();
       case BXCorePackage.VALUE_MAPPING: return createValueMapping();
@@ -209,6 +211,17 @@ public class BXCoreFactoryImpl extends EFactoryImpl implements BXCoreFactory
   {
     ImportSectionImpl importSection = new ImportSectionImpl();
     return importSection;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public DataSlot createDataSlot()
+  {
+    DataSlotImpl dataSlot = new DataSlotImpl();
+    return dataSlot;
   }
 
   /**
@@ -869,6 +882,17 @@ public class BXCoreFactoryImpl extends EFactoryImpl implements BXCoreFactory
   {
     EnforcementExpressionImpl enforcementExpression = new EnforcementExpressionImpl();
     return enforcementExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public MatchExpression createMatchExpression()
+  {
+    MatchExpressionImpl matchExpression = new MatchExpressionImpl();
+    return matchExpression;
   }
 
   /**

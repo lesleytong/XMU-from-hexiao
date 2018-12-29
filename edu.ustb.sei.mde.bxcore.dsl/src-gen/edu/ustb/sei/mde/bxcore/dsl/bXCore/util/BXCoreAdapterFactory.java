@@ -93,6 +93,11 @@ public class BXCoreAdapterFactory extends AdapterFactoryImpl
         return createImportSectionAdapter();
       }
       @Override
+      public Adapter caseDataSlot(DataSlot object)
+      {
+        return createDataSlotAdapter();
+      }
+      @Override
       public Adapter caseDefinition(Definition object)
       {
         return createDefinitionAdapter();
@@ -393,6 +398,11 @@ public class BXCoreAdapterFactory extends AdapterFactoryImpl
         return createEnforcementExpressionAdapter();
       }
       @Override
+      public Adapter caseMatchExpression(MatchExpression object)
+      {
+        return createMatchExpressionAdapter();
+      }
+      @Override
       public Adapter caseDeleteElementExpression(DeleteElementExpression object)
       {
         return createDeleteElementExpressionAdapter();
@@ -510,6 +520,21 @@ public class BXCoreAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createImportSectionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.DataSlot <em>Data Slot</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.DataSlot
+   * @generated
+   */
+  public Adapter createDataSlotAdapter()
   {
     return null;
   }
@@ -1410,6 +1435,21 @@ public class BXCoreAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createEnforcementExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.MatchExpression <em>Match Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.MatchExpression
+   * @generated
+   */
+  public Adapter createMatchExpressionAdapter()
   {
     return null;
   }

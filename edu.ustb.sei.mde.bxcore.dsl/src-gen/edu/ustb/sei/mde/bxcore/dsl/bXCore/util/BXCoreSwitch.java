@@ -96,6 +96,13 @@ public class BXCoreSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case BXCorePackage.DATA_SLOT:
+      {
+        DataSlot dataSlot = (DataSlot)theEObject;
+        T result = caseDataSlot(dataSlot);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case BXCorePackage.DEFINITION:
       {
         Definition definition = (Definition)theEObject;
@@ -581,6 +588,14 @@ public class BXCoreSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case BXCorePackage.MATCH_EXPRESSION:
+      {
+        MatchExpression matchExpression = (MatchExpression)theEObject;
+        T result = caseMatchExpression(matchExpression);
+        if (result == null) result = caseXExpression(matchExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case BXCorePackage.DELETE_ELEMENT_EXPRESSION:
       {
         DeleteElementExpression deleteElementExpression = (DeleteElementExpression)theEObject;
@@ -715,6 +730,22 @@ public class BXCoreSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseImportSection(ImportSection object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Data Slot</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Data Slot</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDataSlot(DataSlot object)
   {
     return null;
   }
@@ -1675,6 +1706,22 @@ public class BXCoreSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseEnforcementExpression(EnforcementExpression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Match Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Match Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseMatchExpression(MatchExpression object)
   {
     return null;
   }

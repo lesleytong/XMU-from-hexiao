@@ -94,6 +94,8 @@ public class BXCoreParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getSideEnumAccess().getAlternatives(), "rule__SideEnum__Alternatives");
 			builder.put(grammarAccess.getBXProgramAccess().getGroup(), "rule__BXProgram__Group__0");
 			builder.put(grammarAccess.getImportSectionAccess().getGroup(), "rule__ImportSection__Group__0");
+			builder.put(grammarAccess.getDataSlotAccess().getGroup(), "rule__DataSlot__Group__0");
+			builder.put(grammarAccess.getDataSlotAccess().getGroup_2(), "rule__DataSlot__Group_2__0");
 			builder.put(grammarAccess.getHelperDefinitionAccess().getGroup(), "rule__HelperDefinition__Group__0");
 			builder.put(grammarAccess.getHelperDefinitionAccess().getGroup_4(), "rule__HelperDefinition__Group_4__0");
 			builder.put(grammarAccess.getHelperDefinitionAccess().getGroup_4_1(), "rule__HelperDefinition__Group_4_1__0");
@@ -189,6 +191,9 @@ public class BXCoreParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getEnforcementExpressionAccess().getGroup(), "rule__EnforcementExpression__Group__0");
 			builder.put(grammarAccess.getEnforcementExpressionAccess().getGroup_2(), "rule__EnforcementExpression__Group_2__0");
 			builder.put(grammarAccess.getEnforcementExpressionAccess().getGroup_2_2(), "rule__EnforcementExpression__Group_2_2__0");
+			builder.put(grammarAccess.getMatchExpressionAccess().getGroup(), "rule__MatchExpression__Group__0");
+			builder.put(grammarAccess.getMatchExpressionAccess().getGroup_2(), "rule__MatchExpression__Group_2__0");
+			builder.put(grammarAccess.getMatchExpressionAccess().getGroup_2_2(), "rule__MatchExpression__Group_2_2__0");
 			builder.put(grammarAccess.getDeleteElementExpressionAccess().getGroup(), "rule__DeleteElementExpression__Group__0");
 			builder.put(grammarAccess.getInsertElementExpressionAccess().getGroup(), "rule__InsertElementExpression__Group__0");
 			builder.put(grammarAccess.getInsertElementExpressionAccess().getGroup_2_0(), "rule__InsertElementExpression__Group_2_0__0");
@@ -374,9 +379,12 @@ public class BXCoreParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getQualifiedNameInStaticImportAccess().getGroup(), "rule__QualifiedNameInStaticImport__Group__0");
 			builder.put(grammarAccess.getBXProgramAccess().getImportsAssignment_0(), "rule__BXProgram__ImportsAssignment_0");
 			builder.put(grammarAccess.getBXProgramAccess().getJavaImportsAssignment_1(), "rule__BXProgram__JavaImportsAssignment_1");
-			builder.put(grammarAccess.getBXProgramAccess().getDefinitionsAssignment_2(), "rule__BXProgram__DefinitionsAssignment_2");
+			builder.put(grammarAccess.getBXProgramAccess().getSlotsAssignment_2(), "rule__BXProgram__SlotsAssignment_2");
+			builder.put(grammarAccess.getBXProgramAccess().getDefinitionsAssignment_3(), "rule__BXProgram__DefinitionsAssignment_3");
 			builder.put(grammarAccess.getImportSectionAccess().getMetamodelAssignment_1(), "rule__ImportSection__MetamodelAssignment_1");
 			builder.put(grammarAccess.getImportSectionAccess().getShortNameAssignment_3(), "rule__ImportSection__ShortNameAssignment_3");
+			builder.put(grammarAccess.getDataSlotAccess().getVarAssignment_1(), "rule__DataSlot__VarAssignment_1");
+			builder.put(grammarAccess.getDataSlotAccess().getInitializerAssignment_2_1(), "rule__DataSlot__InitializerAssignment_2_1");
 			builder.put(grammarAccess.getHelperDefinitionAccess().getTypeAssignment_1(), "rule__HelperDefinition__TypeAssignment_1");
 			builder.put(grammarAccess.getHelperDefinitionAccess().getNameAssignment_2(), "rule__HelperDefinition__NameAssignment_2");
 			builder.put(grammarAccess.getHelperDefinitionAccess().getParametersAssignment_4_0(), "rule__HelperDefinition__ParametersAssignment_4_0");
@@ -544,6 +552,9 @@ public class BXCoreParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getEnforcementExpressionAccess().getPatternAssignment_1(), "rule__EnforcementExpression__PatternAssignment_1");
 			builder.put(grammarAccess.getEnforcementExpressionAccess().getValueMappingsAssignment_2_1(), "rule__EnforcementExpression__ValueMappingsAssignment_2_1");
 			builder.put(grammarAccess.getEnforcementExpressionAccess().getValueMappingsAssignment_2_2_1(), "rule__EnforcementExpression__ValueMappingsAssignment_2_2_1");
+			builder.put(grammarAccess.getMatchExpressionAccess().getPatternAssignment_1(), "rule__MatchExpression__PatternAssignment_1");
+			builder.put(grammarAccess.getMatchExpressionAccess().getValueMappingsAssignment_2_1(), "rule__MatchExpression__ValueMappingsAssignment_2_1");
+			builder.put(grammarAccess.getMatchExpressionAccess().getValueMappingsAssignment_2_2_1(), "rule__MatchExpression__ValueMappingsAssignment_2_2_1");
 			builder.put(grammarAccess.getDeleteElementExpressionAccess().getElementAssignment_1(), "rule__DeleteElementExpression__ElementAssignment_1");
 			builder.put(grammarAccess.getInsertElementExpressionAccess().getElementAssignment_1(), "rule__InsertElementExpression__ElementAssignment_1");
 			builder.put(grammarAccess.getInsertElementExpressionAccess().getPositionAssignment_2_0_0(), "rule__InsertElementExpression__PositionAssignment_2_0_0");

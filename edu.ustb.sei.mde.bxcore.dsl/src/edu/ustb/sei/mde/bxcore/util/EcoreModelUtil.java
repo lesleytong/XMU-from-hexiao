@@ -348,17 +348,43 @@ public class EcoreModelUtil {
 		Resource resource = privateResourceSet.getResource(uri, true);
 		if(resource!=null) {
 			EPackage pkg = (EPackage) resource.getContents().get(0);
-			privateResourceSet.getPackageRegistry().put(pkg.getNsURI(), pkg);
+			registerPacakge(pkg);
 			return pkg;
 		}
 		return null;
 	}
+
+	public static void registerPacakge(EPackage pkg) {
+		privateResourceSet.getPackageRegistry().put(pkg.getNsURI(), pkg);
+	}
+	
+	public static void save(URI uri, List<EObject> objects) {
+		Resource resource = privateResourceSet.getResource(uri, false);
+		if(resource!=null) resource.unload();
+		resource = privateResourceSet.createResource(uri);
+		resource.getContents().addAll(objects);
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put(XMIResource.OPTION_SCHEMA_LOCATION, true);
+		try {
+			resource.save(map);
+			resource.unload();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	static public List<EObject> load(URI uri) {
-		Resource resource = privateResourceSet.getResource(uri, true);
+		Resource resource = privateResourceSet.getResource(uri, false);
+		if(resource!=null) {
+			// we must unload this resource because it may be updated outsides
+			resource.unload();
+		}
+		resource = privateResourceSet.getResource(uri, true);
 		if(resource!=null) {
 			return resource.getContents();
 		}
 		return null;
 	}
+	
 }

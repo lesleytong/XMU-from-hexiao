@@ -7,6 +7,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXFunctionDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXProgram;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.Conversion;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpressionBlock;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.Pattern;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternDefinitionReference;
@@ -370,5 +371,14 @@ public class BXCoreValidator extends AbstractBXCoreValidator {
       }
     };
     IterableExtensions.<XExpression>forEach(IterableExtensions.<XExpression>filter(block.getExpressions(), _function), _function_1);
+  }
+  
+  @Override
+  protected void mustBeJavaStatementExpression(final XExpression expr) {
+    EObject _eContainer = expr.eContainer();
+    boolean _not = (!(_eContainer instanceof ModificationExpression));
+    if (_not) {
+      super.mustBeJavaStatementExpression(expr);
+    }
   }
 }

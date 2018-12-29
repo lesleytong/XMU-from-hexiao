@@ -195,6 +195,7 @@ public class BXCoreSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) 'do' body=XExpression
 	 *     (rule start) (ambiguity) 'enforce' pattern=Pattern
 	 *     (rule start) (ambiguity) 'false' (rule start)
+	 *     (rule start) (ambiguity) 'find' pattern=Pattern
 	 *     (rule start) (ambiguity) 'for' '(' ';' ';' ')' eachExpression=XExpression
 	 *     (rule start) (ambiguity) 'for' '(' ';' ';' updateExpressions+=XExpression
 	 *     (rule start) (ambiguity) 'for' '(' ';' expression=XExpression
@@ -257,6 +258,7 @@ public class BXCoreSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) 'do' body=XExpression
 	 *     (rule start) (ambiguity) 'enforce' pattern=Pattern
 	 *     (rule start) (ambiguity) 'false' ')' (rule start)
+	 *     (rule start) (ambiguity) 'find' pattern=Pattern
 	 *     (rule start) (ambiguity) 'for' '(' ';' ';' ')' eachExpression=XExpression
 	 *     (rule start) (ambiguity) 'for' '(' ';' ';' updateExpressions+=XExpression
 	 *     (rule start) (ambiguity) 'for' '(' ';' expression=XExpression

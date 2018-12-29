@@ -73,7 +73,7 @@ public class ContextType {
 	}
 	
 	public boolean isSuperOf(ContextType child) {
-		return child.fieldDefs.entrySet().containsAll(this.fieldDefs.entrySet());
+		return this==child || child.fieldDefs.entrySet().containsAll(this.fieldDefs.entrySet());
 	}
 	
 	public boolean isTypeOf(Context c) {
