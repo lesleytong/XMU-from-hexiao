@@ -245,6 +245,8 @@
     <genClasses ecoreClass="BXCore.ecore#//MatchExpression">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//MatchExpression/pattern"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//MatchExpression/valueMappings"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//MatchExpression/then"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//MatchExpression/otherwise"/>
     </genClasses>
     <genClasses ecoreClass="BXCore.ecore#//DeleteElementExpression">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//DeleteElementExpression/element"/>

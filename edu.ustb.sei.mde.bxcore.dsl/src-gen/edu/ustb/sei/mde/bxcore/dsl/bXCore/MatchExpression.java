@@ -18,13 +18,15 @@ import org.eclipse.xtext.xbase.XExpression;
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.MatchExpression#getPattern <em>Pattern</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.MatchExpression#getValueMappings <em>Value Mappings</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.MatchExpression#getThen <em>Then</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.MatchExpression#getOtherwise <em>Otherwise</em>}</li>
  * </ul>
  *
  * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getMatchExpression()
  * @model
  * @generated
  */
-public interface MatchExpression extends XExpression
+public interface MatchExpression extends ModificationExpression
 {
   /**
    * Returns the value of the '<em><b>Pattern</b></em>' containment reference.
@@ -67,5 +69,57 @@ public interface MatchExpression extends XExpression
    * @generated
    */
   EList<ValueMapping> getValueMappings();
+
+  /**
+   * Returns the value of the '<em><b>Then</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Then</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Then</em>' containment reference.
+   * @see #setThen(XExpression)
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getMatchExpression_Then()
+   * @model containment="true"
+   * @generated
+   */
+  XExpression getThen();
+
+  /**
+   * Sets the value of the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.MatchExpression#getThen <em>Then</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Then</em>' containment reference.
+   * @see #getThen()
+   * @generated
+   */
+  void setThen(XExpression value);
+
+  /**
+   * Returns the value of the '<em><b>Otherwise</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Otherwise</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Otherwise</em>' containment reference.
+   * @see #setOtherwise(XExpression)
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getMatchExpression_Otherwise()
+   * @model containment="true"
+   * @generated
+   */
+  XExpression getOtherwise();
+
+  /**
+   * Sets the value of the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.MatchExpression#getOtherwise <em>Otherwise</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Otherwise</em>' containment reference.
+   * @see #getOtherwise()
+   * @generated
+   */
+  void setOtherwise(XExpression value);
 
 } // MatchExpression

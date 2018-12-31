@@ -161,6 +161,35 @@ class XmuCoreCompiler extends XbaseCompiler {
 					e.anchor.internalToJavaExpression(a);
 				}
 				a.append(');')
+			} else if(e instanceof MatchExpression) {
+				e.valueMappings.forEach[it.expression.internalToJavaStatement(a,true)];
+				a.newLine.append('''«GraphModification.canonicalName» «cur» = «blockVar».match(«e.pattern.patternAccessor»(), new edu.ustb.sei.mde.structure.Tuple2[] {''');
+				e.valueMappings.forEach [ m, id |
+					if(id > 0) a.append(',');
+					a.append('''edu.ustb.sei.mde.structure.Tuple2.make("«m.varName»",''');
+					m.expression.internalToJavaExpression(a);
+					a.append(''')''');
+				];
+				a.append('''});''').newLine;
+				a.append('''boolean «cur»_changed = «blockVar»!=«cur»;''').newLine;
+				a.append('''«blockVar» = «cur»;''').newLine;
+				
+				a.append('''if(«cur»_changed) {''').newLine;
+				if(e.then!==null) {
+					e.then.internalToJavaStatement(a,true);
+					a.append('''«cur» = ''');
+					e.then.internalToJavaExpression(a);
+					a.append(''';''').newLine;
+				}
+				a.append('} else {').newLine;
+				if(e.otherwise!==null) {
+					e.otherwise.internalToJavaStatement(a,true);
+					a.append('''«cur» = ''');
+					e.otherwise.internalToJavaExpression(a);
+					a.append(''';''').newLine;
+				}
+				a.append('}')
+				
 			}
 			a.append('''«blockVar» = «cur»;'''); // new scope, we must reset
 		} else if(e instanceof NewInstanceExpression) {
@@ -205,26 +234,6 @@ class XmuCoreCompiler extends XbaseCompiler {
 				a.newLine.append('''«e.type.side.literal».all«componentType.simpleName»s("«e.type.type.name»"«IF e.type.feature!==null»,"«e.type.feature.name»"«ENDIF»);''');
 			}
 			
-		} else if(e instanceof MatchExpression) {
-			val cond = isCondition(e);
-			e.valueMappings.forEach[it.expression.internalToJavaStatement(a,true)];
-			
-			if(cond) {
-				a.append('unknown match;')
-			} else {
-				val block = e.block;
-				val blockVar = getVarName(block, a);
-				val cur = a.declareSyntheticVariable(e, '_mod');
-				a.newLine.append('''«GraphModification.canonicalName» «cur» = «blockVar».match(«e.pattern.patternAccessor»(), new edu.ustb.sei.mde.structure.Tuple2[] {''');
-				e.valueMappings.forEach [ m, id |
-					if(id > 0) a.append(',');
-					a.append('''edu.ustb.sei.mde.structure.Tuple2.make("«m.varName»",''');
-					m.expression.internalToJavaExpression(a);
-					a.append(''')''');
-				];
-				a.append('''});''').newLine;
-				a.append('''«blockVar» = «cur»;''');
-			}
 		} else
 			super.doInternalToJavaStatement(e, a, isReferenced)
 	}
@@ -258,8 +267,6 @@ class XmuCoreCompiler extends XbaseCompiler {
 		} else if(e instanceof AllInstanceExpression) {
 			val v = getVarName(e,a);
 			a.append(v);
-		} else if(e instanceof MatchExpression) {
-			a.append(getVarName(e, a))
 		} else
 			super.internalToConvertedExpression(e, a)
 	}
@@ -270,12 +277,12 @@ class XmuCoreCompiler extends XbaseCompiler {
 		else (e.eContainer as XExpression).block
 	}
 
-	def boolean isCondition(EObject e) {
-    	if(!(e.eContainer instanceof XExpression)) true
-    	else if(e.eContainmentFeature===XbasePackage.Literals.XIF_EXPRESSION__IF 
-    		|| e.eContainmentFeature===XbasePackage.Literals.XCASE_PART__CASE
-    	) true
-    	else if(e.eContainer instanceof ModificationExpressionBlock) false
-    	else isCondition(e.eContainer)
-    }
+//	def boolean isCondition(EObject e) {
+//    	if(!(e.eContainer instanceof XExpression)) true
+//    	else if(e.eContainmentFeature===XbasePackage.Literals.XIF_EXPRESSION__IF 
+//    		|| e.eContainmentFeature===XbasePackage.Literals.XCASE_PART__CASE
+//    	) true
+//    	else if(e.eContainer instanceof ModificationExpressionBlock) false
+//    	else isCondition(e.eContainer)
+//    }
 }

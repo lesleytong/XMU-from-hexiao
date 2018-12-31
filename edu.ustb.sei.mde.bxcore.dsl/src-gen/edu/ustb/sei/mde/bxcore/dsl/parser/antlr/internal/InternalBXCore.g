@@ -5218,20 +5218,11 @@ ruleXPrimaryExpression returns [EObject current=null]
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getXPrimaryExpressionAccess().getMatchExpressionParserRuleCall_5());
+			newCompositeNode(grammarAccess.getXPrimaryExpressionAccess().getXPrimaryExpressionParserRuleCall_5());
 		}
-		this_MatchExpression_5=ruleMatchExpression
+		this_XPrimaryExpression_5=superXPrimaryExpression
 		{
-			$current = $this_MatchExpression_5.current;
-			afterParserOrEnumRuleCall();
-		}
-		    |
-		{
-			newCompositeNode(grammarAccess.getXPrimaryExpressionAccess().getXPrimaryExpressionParserRuleCall_6());
-		}
-		this_XPrimaryExpression_6=superXPrimaryExpression
-		{
-			$current = $this_XPrimaryExpression_6.current;
+			$current = $this_XPrimaryExpression_5.current;
 			afterParserOrEnumRuleCall();
 		}
 	)
@@ -5926,6 +5917,15 @@ ruleModificationExpression returns [EObject current=null]
 				afterParserOrEnumRuleCall();
 			}
 		)
+		    |
+		{
+			newCompositeNode(grammarAccess.getModificationExpressionAccess().getMatchExpressionParserRuleCall_3());
+		}
+		this_MatchExpression_3=ruleMatchExpression
+		{
+			$current = $this_MatchExpression_3.current;
+			afterParserOrEnumRuleCall();
+		}
 	)
 ;
 
@@ -6122,9 +6122,65 @@ ruleMatchExpression returns [EObject current=null]
 				newLeafNode(otherlv_6, grammarAccess.getMatchExpressionAccess().getRightCurlyBracketKeyword_2_3());
 			}
 		)?
-		otherlv_7=';'
+		(
+			(
+				('then')=>
+				otherlv_7='then'
+				{
+					newLeafNode(otherlv_7, grammarAccess.getMatchExpressionAccess().getThenKeyword_3_0());
+				}
+			)
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getMatchExpressionAccess().getThenXBlockExpressionParserRuleCall_3_1_0());
+					}
+					lv_then_8_0=ruleXBlockExpression
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getMatchExpressionRule());
+						}
+						set(
+							$current,
+							"then",
+							lv_then_8_0,
+							"org.eclipse.xtext.xbase.Xbase.XBlockExpression");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)?
+		(
+			(
+				('otherwise')=>
+				otherlv_9='otherwise'
+				{
+					newLeafNode(otherlv_9, grammarAccess.getMatchExpressionAccess().getOtherwiseKeyword_4_0());
+				}
+			)
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getMatchExpressionAccess().getOtherwiseXBlockExpressionParserRuleCall_4_1_0());
+					}
+					lv_otherwise_10_0=ruleXBlockExpression
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getMatchExpressionRule());
+						}
+						set(
+							$current,
+							"otherwise",
+							lv_otherwise_10_0,
+							"org.eclipse.xtext.xbase.Xbase.XBlockExpression");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)?
+		otherlv_11=';'
 		{
-			newLeafNode(otherlv_7, grammarAccess.getMatchExpressionAccess().getSemicolonKeyword_3());
+			newLeafNode(otherlv_11, grammarAccess.getMatchExpressionAccess().getSemicolonKeyword_5());
 		}
 	)
 ;
@@ -11258,7 +11314,7 @@ ruleXReturnExpression returns [EObject current=null]
 			newLeafNode(otherlv_1, grammarAccess.getXReturnExpressionAccess().getReturnKeyword_1());
 		}
 		(
-			('index' | 'align' | 'match' | 'int' | 'String' | 'boolean' | 'type' | 'source' | 'view' | 'get' | 'put' | 'context' | 'extends' | 'static' | 'import' | 'extension' | '!' | '-' | '+' | 'begin' | 'enforce' | 'delete' | 'insert' | '@' | 'new' | 'find' | '{' | 'switch' | 'synchronized' | '<' | 'super' | '#' | '[' | 'false' | 'true' | 'null' | 'typeof' | 'if' | 'for' | 'while' | 'do' | 'throw' | 'return' | 'try' | '(' | RULE_ID | RULE_HEX | RULE_INT | RULE_DECIMAL | RULE_STRING)=>
+			('index' | 'align' | 'match' | 'int' | 'String' | 'boolean' | 'type' | 'source' | 'view' | 'get' | 'put' | 'context' | 'extends' | 'static' | 'import' | 'extension' | '!' | '-' | '+' | 'begin' | 'enforce' | 'delete' | 'insert' | 'find' | '@' | 'new' | '{' | 'switch' | 'synchronized' | '<' | 'super' | '#' | '[' | 'false' | 'true' | 'null' | 'typeof' | 'if' | 'for' | 'while' | 'do' | 'throw' | 'return' | 'try' | '(' | RULE_ID | RULE_HEX | RULE_INT | RULE_DECIMAL | RULE_STRING)=>
 			(
 				{
 					newCompositeNode(grammarAccess.getXReturnExpressionAccess().getExpressionXExpressionParserRuleCall_2_0());

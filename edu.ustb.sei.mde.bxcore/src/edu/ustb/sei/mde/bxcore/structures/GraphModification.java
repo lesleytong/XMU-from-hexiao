@@ -353,34 +353,55 @@ public class GraphModification {
 	public GraphModification enforce(Pattern pat, Tuple2<String, Object>[] valueMaps) {
 		if(data instanceof SourceType) {
 			TypedGraph delta;
+			
+			ContextType updatedType = new ContextType();
+			pat.getType().fields().forEach(f->updatedType.addField(f));
+			data.getContext().getType().fields().forEach(f->{
+				if(!pat.getType().isDefined(f.getName()))
+					updatedType.addField(f);
+			});
+			
+			
 			try {
-				Context freshContext = pat.getType().createInstance();
-				for(FieldDef<?> f : freshContext.getType().fields()) {					
+				Context updatedContext = data.getContext().createDownstreamContext(updatedType); // it is used to return 
+				Context patInstance = pat.getType().createInstance(); // it is used to create the delta. May be removed in the future!!
+				
+				for(FieldDef<?> f : patInstance.getType().fields()) {					
 					Tuple2<String, Object> tuple = search(f, valueMaps);
 					
 					if(tuple==null) {
 						FieldDef<?> up = data.getContext().getType().getField(f.getName());
 						if (up == null) {
 							if (f.isMany()) {
-								freshContext.setValue(f, new ArrayList<>());
+								ArrayList<Object> value = new ArrayList<>();
+								patInstance.setValue(f, value);
+								updatedContext.setValue(f, value);
 							} else {
 								if (f.isElementType()) {
-									freshContext.setValue(f, IndexSystem.generateUUID());
+									Object value = IndexSystem.generateUUID();
+									patInstance.setValue(f, value);
+									updatedContext.setValue(f, value);
 								} else {
-									freshContext.setValue(f, XmuCoreUtils.defaultValue(f.getType()));
+									Object value = XmuCoreUtils.defaultValue(f.getType());
+									patInstance.setValue(f, value);
+									updatedContext.setValue(f, value);
 								}
 							}
 						} else {
-							freshContext.setValue(f, data.getContext().getValue(up));
+							Object value = data.getContext().getValue(up);
+							patInstance.setValue(f, value);
+							updatedContext.setValue(f, value);
 						}
 					} else { // if tuple!=null, user must have provided a value
-						freshContext.setValue(f, tuple.second);
+						patInstance.setValue(f, tuple.second);
+						updatedContext.setValue(f, tuple.second);
 					}
 				}
 				
-				delta = pat.construct(data.getGraph(), freshContext);
+				delta = pat.construct(data.getGraph(), patInstance);
 				SourceType updated = SourceType.makeSource(((SourceType)data).first.additiveMerge(delta),
-						freshContext, ((SourceType)data).third); 
+						updatedContext, ((SourceType)data).third);
+				
 				GraphModification modify = new GraphModification(updated);
 				return modify;
 			} catch (UninitializedException | NothingReturnedException e) {

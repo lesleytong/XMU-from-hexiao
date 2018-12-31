@@ -592,6 +592,7 @@ public class BXCoreSwitch<T> extends Switch<T>
       {
         MatchExpression matchExpression = (MatchExpression)theEObject;
         T result = caseMatchExpression(matchExpression);
+        if (result == null) result = caseModificationExpression(matchExpression);
         if (result == null) result = caseXExpression(matchExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;

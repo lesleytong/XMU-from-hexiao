@@ -2544,7 +2544,7 @@ public interface BXCorePackage extends EPackage
    * @generated
    * @ordered
    */
-  int MATCH_EXPRESSION__PATTERN = XbasePackage.XEXPRESSION_FEATURE_COUNT + 0;
+  int MATCH_EXPRESSION__PATTERN = MODIFICATION_EXPRESSION_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Value Mappings</b></em>' containment reference list.
@@ -2553,7 +2553,25 @@ public interface BXCorePackage extends EPackage
    * @generated
    * @ordered
    */
-  int MATCH_EXPRESSION__VALUE_MAPPINGS = XbasePackage.XEXPRESSION_FEATURE_COUNT + 1;
+  int MATCH_EXPRESSION__VALUE_MAPPINGS = MODIFICATION_EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Then</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MATCH_EXPRESSION__THEN = MODIFICATION_EXPRESSION_FEATURE_COUNT + 2;
+
+  /**
+   * The feature id for the '<em><b>Otherwise</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MATCH_EXPRESSION__OTHERWISE = MODIFICATION_EXPRESSION_FEATURE_COUNT + 3;
 
   /**
    * The number of structural features of the '<em>Match Expression</em>' class.
@@ -2562,7 +2580,7 @@ public interface BXCorePackage extends EPackage
    * @generated
    * @ordered
    */
-  int MATCH_EXPRESSION_FEATURE_COUNT = XbasePackage.XEXPRESSION_FEATURE_COUNT + 2;
+  int MATCH_EXPRESSION_FEATURE_COUNT = MODIFICATION_EXPRESSION_FEATURE_COUNT + 4;
 
   /**
    * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.DeleteElementExpressionImpl <em>Delete Element Expression</em>}' class.
@@ -4903,6 +4921,28 @@ public interface BXCorePackage extends EPackage
   EReference getMatchExpression_ValueMappings();
 
   /**
+   * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.MatchExpression#getThen <em>Then</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Then</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.MatchExpression#getThen()
+   * @see #getMatchExpression()
+   * @generated
+   */
+  EReference getMatchExpression_Then();
+
+  /**
+   * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.MatchExpression#getOtherwise <em>Otherwise</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Otherwise</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.MatchExpression#getOtherwise()
+   * @see #getMatchExpression()
+   * @generated
+   */
+  EReference getMatchExpression_Otherwise();
+
+  /**
    * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.DeleteElementExpression <em>Delete Element Expression</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -6815,6 +6855,22 @@ public interface BXCorePackage extends EPackage
      * @generated
      */
     EReference MATCH_EXPRESSION__VALUE_MAPPINGS = eINSTANCE.getMatchExpression_ValueMappings();
+
+    /**
+     * The meta object literal for the '<em><b>Then</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference MATCH_EXPRESSION__THEN = eINSTANCE.getMatchExpression_Then();
+
+    /**
+     * The meta object literal for the '<em><b>Otherwise</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference MATCH_EXPRESSION__OTHERWISE = eINSTANCE.getMatchExpression_Otherwise();
 
     /**
      * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.DeleteElementExpressionImpl <em>Delete Element Expression</em>}' class.

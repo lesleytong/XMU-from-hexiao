@@ -2539,6 +2539,26 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getMatchExpression_Then()
+  {
+    return (EReference)matchExpressionEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getMatchExpression_Otherwise()
+  {
+    return (EReference)matchExpressionEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getDeleteElementExpression()
   {
     return deleteElementExpressionEClass;
@@ -3091,6 +3111,8 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     matchExpressionEClass = createEClass(MATCH_EXPRESSION);
     createEReference(matchExpressionEClass, MATCH_EXPRESSION__PATTERN);
     createEReference(matchExpressionEClass, MATCH_EXPRESSION__VALUE_MAPPINGS);
+    createEReference(matchExpressionEClass, MATCH_EXPRESSION__THEN);
+    createEReference(matchExpressionEClass, MATCH_EXPRESSION__OTHERWISE);
 
     deleteElementExpressionEClass = createEClass(DELETE_ELEMENT_EXPRESSION);
     createEReference(deleteElementExpressionEClass, DELETE_ELEMENT_EXPRESSION__ELEMENT);
@@ -3210,7 +3232,7 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     allInstanceExpressionEClass.getESuperTypes().add(theXbasePackage.getXExpression());
     modificationExpressionEClass.getESuperTypes().add(theXbasePackage.getXExpression());
     enforcementExpressionEClass.getESuperTypes().add(this.getModificationExpression());
-    matchExpressionEClass.getESuperTypes().add(theXbasePackage.getXExpression());
+    matchExpressionEClass.getESuperTypes().add(this.getModificationExpression());
     deleteElementExpressionEClass.getESuperTypes().add(this.getModificationExpression());
     insertElementExpressionEClass.getESuperTypes().add(this.getModificationExpression());
     definedContextTypeRefEClass.getESuperTypes().add(this.getContextTypeRef());
@@ -3469,6 +3491,8 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     initEClass(matchExpressionEClass, MatchExpression.class, "MatchExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getMatchExpression_Pattern(), this.getPattern(), null, "pattern", null, 0, 1, MatchExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getMatchExpression_ValueMappings(), this.getValueMapping(), null, "valueMappings", null, 0, -1, MatchExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMatchExpression_Then(), theXbasePackage.getXExpression(), null, "then", null, 0, 1, MatchExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMatchExpression_Otherwise(), theXbasePackage.getXExpression(), null, "otherwise", null, 0, 1, MatchExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(deleteElementExpressionEClass, DeleteElementExpression.class, "DeleteElementExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getDeleteElementExpression_Element(), theXbasePackage.getXExpression(), null, "element", null, 0, 1, DeleteElementExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

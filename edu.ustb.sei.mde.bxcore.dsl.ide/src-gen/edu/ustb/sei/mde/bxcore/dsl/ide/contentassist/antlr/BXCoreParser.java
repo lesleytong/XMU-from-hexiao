@@ -194,6 +194,8 @@ public class BXCoreParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getMatchExpressionAccess().getGroup(), "rule__MatchExpression__Group__0");
 			builder.put(grammarAccess.getMatchExpressionAccess().getGroup_2(), "rule__MatchExpression__Group_2__0");
 			builder.put(grammarAccess.getMatchExpressionAccess().getGroup_2_2(), "rule__MatchExpression__Group_2_2__0");
+			builder.put(grammarAccess.getMatchExpressionAccess().getGroup_3(), "rule__MatchExpression__Group_3__0");
+			builder.put(grammarAccess.getMatchExpressionAccess().getGroup_4(), "rule__MatchExpression__Group_4__0");
 			builder.put(grammarAccess.getDeleteElementExpressionAccess().getGroup(), "rule__DeleteElementExpression__Group__0");
 			builder.put(grammarAccess.getInsertElementExpressionAccess().getGroup(), "rule__InsertElementExpression__Group__0");
 			builder.put(grammarAccess.getInsertElementExpressionAccess().getGroup_2_0(), "rule__InsertElementExpression__Group_2_0__0");
@@ -555,6 +557,8 @@ public class BXCoreParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getMatchExpressionAccess().getPatternAssignment_1(), "rule__MatchExpression__PatternAssignment_1");
 			builder.put(grammarAccess.getMatchExpressionAccess().getValueMappingsAssignment_2_1(), "rule__MatchExpression__ValueMappingsAssignment_2_1");
 			builder.put(grammarAccess.getMatchExpressionAccess().getValueMappingsAssignment_2_2_1(), "rule__MatchExpression__ValueMappingsAssignment_2_2_1");
+			builder.put(grammarAccess.getMatchExpressionAccess().getThenAssignment_3_1(), "rule__MatchExpression__ThenAssignment_3_1");
+			builder.put(grammarAccess.getMatchExpressionAccess().getOtherwiseAssignment_4_1(), "rule__MatchExpression__OtherwiseAssignment_4_1");
 			builder.put(grammarAccess.getDeleteElementExpressionAccess().getElementAssignment_1(), "rule__DeleteElementExpression__ElementAssignment_1");
 			builder.put(grammarAccess.getInsertElementExpressionAccess().getElementAssignment_1(), "rule__InsertElementExpression__ElementAssignment_1");
 			builder.put(grammarAccess.getInsertElementExpressionAccess().getPositionAssignment_2_0_0(), "rule__InsertElementExpression__PositionAssignment_2_0_0");

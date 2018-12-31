@@ -2952,8 +2952,7 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cContextExpressionParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		private final RuleCall cNewInstanceExpressionParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		private final RuleCall cAllInstanceExpressionParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
-		private final RuleCall cMatchExpressionParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
-		private final RuleCall cXPrimaryExpressionParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
+		private final RuleCall cXPrimaryExpressionParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
 		
 		//@Override
 		//XPrimaryExpression xbase::XExpression:
@@ -2962,12 +2961,12 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		//	| ContextExpression
 		//	| NewInstanceExpression
 		//	| AllInstanceExpression
-		//	| MatchExpression
+		//	//	| MatchExpression
 		//	| super;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//ModificationExpressionBlock | ModificationExpression | ContextExpression | NewInstanceExpression | AllInstanceExpression
-		//| MatchExpression | super
+		//ModificationExpressionBlock | ModificationExpression | ContextExpression | NewInstanceExpression | AllInstanceExpression //	| MatchExpression
+		//| super
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//ModificationExpressionBlock
@@ -2985,11 +2984,8 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		//AllInstanceExpression
 		public RuleCall getAllInstanceExpressionParserRuleCall_4() { return cAllInstanceExpressionParserRuleCall_4; }
 		
-		//MatchExpression
-		public RuleCall getMatchExpressionParserRuleCall_5() { return cMatchExpressionParserRuleCall_5; }
-		
 		//super
-		public RuleCall getXPrimaryExpressionParserRuleCall_6() { return cXPrimaryExpressionParserRuleCall_6; }
+		public RuleCall getXPrimaryExpressionParserRuleCall_5() { return cXPrimaryExpressionParserRuleCall_5; }
 	}
 	public class ContextExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.bxcore.dsl.BXCore.ContextExpression");
@@ -3400,12 +3396,13 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cEnforcementExpressionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cDeleteElementExpressionParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cInsertElementExpressionParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cMatchExpressionParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		
 		//ModificationExpression:
-		//	EnforcementExpression | DeleteElementExpression | InsertElementExpression;
+		//	EnforcementExpression | DeleteElementExpression | InsertElementExpression | MatchExpression;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//EnforcementExpression | DeleteElementExpression | InsertElementExpression
+		//EnforcementExpression | DeleteElementExpression | InsertElementExpression | MatchExpression
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//EnforcementExpression
@@ -3416,6 +3413,9 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//InsertElementExpression
 		public RuleCall getInsertElementExpressionParserRuleCall_2() { return cInsertElementExpressionParserRuleCall_2; }
+		
+		//MatchExpression
+		public RuleCall getMatchExpressionParserRuleCall_3() { return cMatchExpressionParserRuleCall_3; }
 	}
 	public class EnforcementExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.bxcore.dsl.BXCore.EnforcementExpression");
@@ -3495,13 +3495,24 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cValueMappingsAssignment_2_2_1 = (Assignment)cGroup_2_2.eContents().get(1);
 		private final RuleCall cValueMappingsValueMappingParserRuleCall_2_2_1_0 = (RuleCall)cValueMappingsAssignment_2_2_1.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_2_3 = (Keyword)cGroup_2.eContents().get(3);
-		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Keyword cThenKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Assignment cThenAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cThenXBlockExpressionParserRuleCall_3_1_0 = (RuleCall)cThenAssignment_3_1.eContents().get(0);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final Keyword cOtherwiseKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
+		private final Assignment cOtherwiseAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cOtherwiseXBlockExpressionParserRuleCall_4_1_0 = (RuleCall)cOtherwiseAssignment_4_1.eContents().get(0);
+		private final Keyword cSemicolonKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//MatchExpression:
-		//	'find' pattern=Pattern ('{' valueMappings+=ValueMapping (',' valueMappings+=ValueMapping)* '}')? ';';
+		//	'find' pattern=Pattern ('{' valueMappings+=ValueMapping (',' valueMappings+=ValueMapping)* '}')? (=> 'then'
+		//	then=XBlockExpression)? (=> 'otherwise' otherwise=XBlockExpression)?
+		//	';';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'find' pattern=Pattern ('{' valueMappings+=ValueMapping (',' valueMappings+=ValueMapping)* '}')? ';'
+		//'find' pattern=Pattern ('{' valueMappings+=ValueMapping (',' valueMappings+=ValueMapping)* '}')? (=> 'then'
+		//then=XBlockExpression)? (=> 'otherwise' otherwise=XBlockExpression)? ';'
 		public Group getGroup() { return cGroup; }
 		
 		//'find'
@@ -3540,8 +3551,32 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_2_3() { return cRightCurlyBracketKeyword_2_3; }
 		
+		//(=> 'then' then=XBlockExpression)?
+		public Group getGroup_3() { return cGroup_3; }
+		
+		//=> 'then'
+		public Keyword getThenKeyword_3_0() { return cThenKeyword_3_0; }
+		
+		//then=XBlockExpression
+		public Assignment getThenAssignment_3_1() { return cThenAssignment_3_1; }
+		
+		//XBlockExpression
+		public RuleCall getThenXBlockExpressionParserRuleCall_3_1_0() { return cThenXBlockExpressionParserRuleCall_3_1_0; }
+		
+		//(=> 'otherwise' otherwise=XBlockExpression)?
+		public Group getGroup_4() { return cGroup_4; }
+		
+		//=> 'otherwise'
+		public Keyword getOtherwiseKeyword_4_0() { return cOtherwiseKeyword_4_0; }
+		
+		//otherwise=XBlockExpression
+		public Assignment getOtherwiseAssignment_4_1() { return cOtherwiseAssignment_4_1; }
+		
+		//XBlockExpression
+		public RuleCall getOtherwiseXBlockExpressionParserRuleCall_4_1_0() { return cOtherwiseXBlockExpressionParserRuleCall_4_1_0; }
+		
 		//';'
-		public Keyword getSemicolonKeyword_3() { return cSemicolonKeyword_3; }
+		public Keyword getSemicolonKeyword_5() { return cSemicolonKeyword_5; }
 	}
 	public class DeleteElementExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.bxcore.dsl.BXCore.DeleteElementExpression");
@@ -4554,7 +4589,7 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 	//	| ContextExpression
 	//	| NewInstanceExpression
 	//	| AllInstanceExpression
-	//	| MatchExpression
+	//	//	| MatchExpression
 	//	| super;
 	public XPrimaryExpressionElements getXPrimaryExpressionAccess() {
 		return pXPrimaryExpression;
@@ -4648,7 +4683,7 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ModificationExpression:
-	//	EnforcementExpression | DeleteElementExpression | InsertElementExpression;
+	//	EnforcementExpression | DeleteElementExpression | InsertElementExpression | MatchExpression;
 	public ModificationExpressionElements getModificationExpressionAccess() {
 		return pModificationExpression;
 	}
@@ -4668,7 +4703,9 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//MatchExpression:
-	//	'find' pattern=Pattern ('{' valueMappings+=ValueMapping (',' valueMappings+=ValueMapping)* '}')? ';';
+	//	'find' pattern=Pattern ('{' valueMappings+=ValueMapping (',' valueMappings+=ValueMapping)* '}')? (=> 'then'
+	//	then=XBlockExpression)? (=> 'otherwise' otherwise=XBlockExpression)?
+	//	';';
 	public MatchExpressionElements getMatchExpressionAccess() {
 		return pMatchExpression;
 	}

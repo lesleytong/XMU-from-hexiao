@@ -284,7 +284,7 @@ XPrimaryExpression returns xbase::XExpression :
 	| ContextExpression
 	| NewInstanceExpression
 	| AllInstanceExpression
-	| MatchExpression
+//	| MatchExpression
 	| super
 ;
  
@@ -322,7 +322,7 @@ ModificationExpressionBlock returns xbase::XExpression:
 ;
 
 ModificationExpression returns ModificationExpression :
-	EnforcementExpression | DeleteElementExpression | InsertElementExpression
+	EnforcementExpression | DeleteElementExpression | InsertElementExpression | MatchExpression
 ;
 
 EnforcementExpression:
@@ -330,7 +330,9 @@ EnforcementExpression:
 ;
 
 MatchExpression:
-	'find' pattern=Pattern ('{' valueMappings+=ValueMapping (',' valueMappings+=ValueMapping)*'}')? ';'
+	'find' pattern=Pattern ('{' valueMappings+=ValueMapping (',' valueMappings+=ValueMapping)*'}')?
+		(=> 'then' then=XBlockExpression)? (=> 'otherwise' otherwise=XBlockExpression)?
+	';'
 ;
 
 

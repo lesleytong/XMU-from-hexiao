@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.eclipse.xtext.xbase.impl.XExpressionImpl;
+import org.eclipse.xtext.xbase.XExpression;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,11 +35,13 @@ import org.eclipse.xtext.xbase.impl.XExpressionImpl;
  * <ul>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.MatchExpressionImpl#getPattern <em>Pattern</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.MatchExpressionImpl#getValueMappings <em>Value Mappings</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.MatchExpressionImpl#getThen <em>Then</em>}</li>
+ *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.MatchExpressionImpl#getOtherwise <em>Otherwise</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class MatchExpressionImpl extends XExpressionImpl implements MatchExpression
+public class MatchExpressionImpl extends ModificationExpressionImpl implements MatchExpression
 {
   /**
    * The cached value of the '{@link #getPattern() <em>Pattern</em>}' containment reference.
@@ -60,6 +62,26 @@ public class MatchExpressionImpl extends XExpressionImpl implements MatchExpress
    * @ordered
    */
   protected EList<ValueMapping> valueMappings;
+
+  /**
+   * The cached value of the '{@link #getThen() <em>Then</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getThen()
+   * @generated
+   * @ordered
+   */
+  protected XExpression then;
+
+  /**
+   * The cached value of the '{@link #getOtherwise() <em>Otherwise</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getOtherwise()
+   * @generated
+   * @ordered
+   */
+  protected XExpression otherwise;
 
   /**
    * <!-- begin-user-doc -->
@@ -149,6 +171,102 @@ public class MatchExpressionImpl extends XExpressionImpl implements MatchExpress
    * <!-- end-user-doc -->
    * @generated
    */
+  public XExpression getThen()
+  {
+    return then;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetThen(XExpression newThen, NotificationChain msgs)
+  {
+    XExpression oldThen = then;
+    then = newThen;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BXCorePackage.MATCH_EXPRESSION__THEN, oldThen, newThen);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setThen(XExpression newThen)
+  {
+    if (newThen != then)
+    {
+      NotificationChain msgs = null;
+      if (then != null)
+        msgs = ((InternalEObject)then).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BXCorePackage.MATCH_EXPRESSION__THEN, null, msgs);
+      if (newThen != null)
+        msgs = ((InternalEObject)newThen).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BXCorePackage.MATCH_EXPRESSION__THEN, null, msgs);
+      msgs = basicSetThen(newThen, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, BXCorePackage.MATCH_EXPRESSION__THEN, newThen, newThen));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public XExpression getOtherwise()
+  {
+    return otherwise;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetOtherwise(XExpression newOtherwise, NotificationChain msgs)
+  {
+    XExpression oldOtherwise = otherwise;
+    otherwise = newOtherwise;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BXCorePackage.MATCH_EXPRESSION__OTHERWISE, oldOtherwise, newOtherwise);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setOtherwise(XExpression newOtherwise)
+  {
+    if (newOtherwise != otherwise)
+    {
+      NotificationChain msgs = null;
+      if (otherwise != null)
+        msgs = ((InternalEObject)otherwise).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BXCorePackage.MATCH_EXPRESSION__OTHERWISE, null, msgs);
+      if (newOtherwise != null)
+        msgs = ((InternalEObject)newOtherwise).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BXCorePackage.MATCH_EXPRESSION__OTHERWISE, null, msgs);
+      msgs = basicSetOtherwise(newOtherwise, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, BXCorePackage.MATCH_EXPRESSION__OTHERWISE, newOtherwise, newOtherwise));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -158,6 +276,10 @@ public class MatchExpressionImpl extends XExpressionImpl implements MatchExpress
         return basicSetPattern(null, msgs);
       case BXCorePackage.MATCH_EXPRESSION__VALUE_MAPPINGS:
         return ((InternalEList<?>)getValueMappings()).basicRemove(otherEnd, msgs);
+      case BXCorePackage.MATCH_EXPRESSION__THEN:
+        return basicSetThen(null, msgs);
+      case BXCorePackage.MATCH_EXPRESSION__OTHERWISE:
+        return basicSetOtherwise(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -176,6 +298,10 @@ public class MatchExpressionImpl extends XExpressionImpl implements MatchExpress
         return getPattern();
       case BXCorePackage.MATCH_EXPRESSION__VALUE_MAPPINGS:
         return getValueMappings();
+      case BXCorePackage.MATCH_EXPRESSION__THEN:
+        return getThen();
+      case BXCorePackage.MATCH_EXPRESSION__OTHERWISE:
+        return getOtherwise();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -198,6 +324,12 @@ public class MatchExpressionImpl extends XExpressionImpl implements MatchExpress
         getValueMappings().clear();
         getValueMappings().addAll((Collection<? extends ValueMapping>)newValue);
         return;
+      case BXCorePackage.MATCH_EXPRESSION__THEN:
+        setThen((XExpression)newValue);
+        return;
+      case BXCorePackage.MATCH_EXPRESSION__OTHERWISE:
+        setOtherwise((XExpression)newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -218,6 +350,12 @@ public class MatchExpressionImpl extends XExpressionImpl implements MatchExpress
       case BXCorePackage.MATCH_EXPRESSION__VALUE_MAPPINGS:
         getValueMappings().clear();
         return;
+      case BXCorePackage.MATCH_EXPRESSION__THEN:
+        setThen((XExpression)null);
+        return;
+      case BXCorePackage.MATCH_EXPRESSION__OTHERWISE:
+        setOtherwise((XExpression)null);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -236,6 +374,10 @@ public class MatchExpressionImpl extends XExpressionImpl implements MatchExpress
         return pattern != null;
       case BXCorePackage.MATCH_EXPRESSION__VALUE_MAPPINGS:
         return valueMappings != null && !valueMappings.isEmpty();
+      case BXCorePackage.MATCH_EXPRESSION__THEN:
+        return then != null;
+      case BXCorePackage.MATCH_EXPRESSION__OTHERWISE:
+        return otherwise != null;
     }
     return super.eIsSet(featureID);
   }

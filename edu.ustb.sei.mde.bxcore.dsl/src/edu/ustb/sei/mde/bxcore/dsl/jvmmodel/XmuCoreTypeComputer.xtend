@@ -8,6 +8,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.DeleteElementExpression
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.EnforcementExpression
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ExpressionConversion
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.InsertElementExpression
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.MatchExpression
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpressionBlock
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.NavigationExpression
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression
@@ -23,20 +24,19 @@ import org.eclipse.emf.ecore.EAttribute
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EDataType
 import org.eclipse.emf.ecore.EEnum
+import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.xtext.diagnostics.Severity
 import org.eclipse.xtext.validation.EObjectDiagnosticImpl
+import org.eclipse.xtext.xbase.XExpression
+import org.eclipse.xtext.xbase.XIfExpression
+import org.eclipse.xtext.xbase.XbasePackage
 import org.eclipse.xtext.xbase.typesystem.computation.ITypeComputationState
 import org.eclipse.xtext.xbase.typesystem.computation.XbaseTypeComputer
 import org.eclipse.xtext.xbase.typesystem.conformance.ConformanceFlags
 import org.eclipse.xtext.xbase.typesystem.references.LightweightTypeReference
 import org.eclipse.xtext.xbase.validation.IssueCodes
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.MatchExpression
-import org.eclipse.xtext.xbase.XExpression
-import org.eclipse.xtext.xbase.XIfExpression
-import org.eclipse.xtext.xbase.XbasePackage
-import org.eclipse.emf.ecore.EObject
 
 class XmuCoreTypeComputer extends XbaseTypeComputer {
 	
@@ -156,22 +156,21 @@ class XmuCoreTypeComputer extends XbaseTypeComputer {
     	state.acceptActualType(getRawTypeForName(GraphModification, state));
     }
     
-    def boolean isCondition(EObject e) {
-    	if(!(e.eContainer instanceof XExpression)) true
-    	else if(e.eContainmentFeature===XbasePackage.Literals.XIF_EXPRESSION__IF 
-    		|| e.eContainmentFeature===XbasePackage.Literals.XCASE_PART__CASE
-    	) true
-    	else if(e.eContainer instanceof ModificationExpressionBlock) false
-    	else isCondition(e.eContainer)
-    }
+//    def boolean isCondition(EObject e) {
+//    	if(!(e.eContainer instanceof XExpression)) true
+//    	else if(e.eContainmentFeature===XbasePackage.Literals.XIF_EXPRESSION__IF 
+//    		|| e.eContainmentFeature===XbasePackage.Literals.XCASE_PART__CASE
+//    	) true
+//    	else if(e.eContainer instanceof ModificationExpressionBlock) false
+//    	else isCondition(e.eContainer)
+//    }
     
     def dispatch void computeTypes(MatchExpression match, ITypeComputationState state) {
     	match.valueMappings.forEach[e|state.withNonVoidExpectation.computeTypes(e.expression)];
-    	if(isCondition(match)) {
-    		state.acceptActualType(getRawTypeForName(boolean, state));
-    	} else {
-    		state.acceptActualType(getRawTypeForName(GraphModification, state));
-    	}
+    	val mt = getRawTypeForName(GraphModification, state)
+    	if(match.then!==null) state.withExpectation(mt).computeTypes(match.then);
+    	if(match.otherwise!==null) state.withExpectation(mt).computeTypes(match.otherwise);
+		state.acceptActualType(mt);
     }
     
     def dispatch void computeTypes(DeleteElementExpression modification, ITypeComputationState state) {

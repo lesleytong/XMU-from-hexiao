@@ -31,7 +31,6 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -63,7 +62,6 @@ import org.eclipse.xtext.xbase.XTryCatchFinallyExpression;
 import org.eclipse.xtext.xbase.XTypeLiteral;
 import org.eclipse.xtext.xbase.XVariableDeclaration;
 import org.eclipse.xtext.xbase.XWhileExpression;
-import org.eclipse.xtext.xbase.XbasePackage;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.Pair;
@@ -279,42 +277,23 @@ public class XmuCoreTypeComputer extends XbaseTypeComputer {
     state.acceptActualType(this.getRawTypeForName(GraphModification.class, state));
   }
   
-  public boolean isCondition(final EObject e) {
-    boolean _xifexpression = false;
-    EObject _eContainer = e.eContainer();
-    boolean _not = (!(_eContainer instanceof XExpression));
-    if (_not) {
-      _xifexpression = true;
-    } else {
-      boolean _xifexpression_1 = false;
-      if (((e.eContainmentFeature() == XbasePackage.Literals.XIF_EXPRESSION__IF) || (e.eContainmentFeature() == XbasePackage.Literals.XCASE_PART__CASE))) {
-        _xifexpression_1 = true;
-      } else {
-        boolean _xifexpression_2 = false;
-        EObject _eContainer_1 = e.eContainer();
-        if ((_eContainer_1 instanceof ModificationExpressionBlock)) {
-          _xifexpression_2 = false;
-        } else {
-          _xifexpression_2 = this.isCondition(e.eContainer());
-        }
-        _xifexpression_1 = _xifexpression_2;
-      }
-      _xifexpression = _xifexpression_1;
-    }
-    return _xifexpression;
-  }
-  
   protected void _computeTypes(final MatchExpression match, final ITypeComputationState state) {
     final Consumer<ValueMapping> _function = (ValueMapping e) -> {
       state.withNonVoidExpectation().computeTypes(e.getExpression());
     };
     match.getValueMappings().forEach(_function);
-    boolean _isCondition = this.isCondition(match);
-    if (_isCondition) {
-      state.acceptActualType(this.getRawTypeForName(boolean.class, state));
-    } else {
-      state.acceptActualType(this.getRawTypeForName(GraphModification.class, state));
+    final LightweightTypeReference mt = this.getRawTypeForName(GraphModification.class, state);
+    XExpression _then = match.getThen();
+    boolean _tripleNotEquals = (_then != null);
+    if (_tripleNotEquals) {
+      state.withExpectation(mt).computeTypes(match.getThen());
     }
+    XExpression _otherwise = match.getOtherwise();
+    boolean _tripleNotEquals_1 = (_otherwise != null);
+    if (_tripleNotEquals_1) {
+      state.withExpectation(mt).computeTypes(match.getOtherwise());
+    }
+    state.acceptActualType(mt);
   }
   
   protected void _computeTypes(final DeleteElementExpression modification, final ITypeComputationState state) {
@@ -426,6 +405,9 @@ public class XmuCoreTypeComputer extends XbaseTypeComputer {
     } else if (cvar instanceof InsertElementExpression) {
       _computeTypes((InsertElementExpression)cvar, state);
       return;
+    } else if (cvar instanceof MatchExpression) {
+      _computeTypes((MatchExpression)cvar, state);
+      return;
     } else if (cvar instanceof NavigationExpression) {
       _computeTypes((NavigationExpression)cvar, state);
       return;
@@ -446,9 +428,6 @@ public class XmuCoreTypeComputer extends XbaseTypeComputer {
       return;
     } else if (cvar instanceof AllInstanceExpression) {
       _computeTypes((AllInstanceExpression)cvar, state);
-      return;
-    } else if (cvar instanceof MatchExpression) {
-      _computeTypes((MatchExpression)cvar, state);
       return;
     } else if (cvar instanceof ModificationExpressionBlock) {
       _computeTypes((ModificationExpressionBlock)cvar, state);

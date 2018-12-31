@@ -1191,6 +1191,7 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	/**
 	 * Contexts:
 	 *     XPrimaryExpression returns MatchExpression
+	 *     ModificationExpression returns MatchExpression
 	 *     MatchExpression returns MatchExpression
 	 *     XExpression returns MatchExpression
 	 *     XAssignment returns MatchExpression
@@ -1223,7 +1224,7 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	 *     XExpressionOrVarDeclaration returns MatchExpression
 	 *
 	 * Constraint:
-	 *     (pattern=Pattern (valueMappings+=ValueMapping valueMappings+=ValueMapping*)?)
+	 *     (pattern=Pattern (valueMappings+=ValueMapping valueMappings+=ValueMapping*)? then=XBlockExpression? otherwise=XBlockExpression?)
 	 */
 	protected void sequence_MatchExpression(ISerializationContext context, MatchExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
