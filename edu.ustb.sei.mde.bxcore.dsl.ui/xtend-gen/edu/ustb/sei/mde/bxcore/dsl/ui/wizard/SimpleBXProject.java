@@ -33,7 +33,7 @@ public final class SimpleBXProject extends AbstractProjectTemplate {
   @Override
   protected IStatus validate() {
     Status _xifexpression = null;
-    boolean _matches = this.path.getValue().matches("[a-z][a-z0-9_]*(\\./[a-z][a-z0-9_]*)*");
+    boolean _matches = this.path.getValue().matches("[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)*");
     if (_matches) {
       _xifexpression = null;
     } else {

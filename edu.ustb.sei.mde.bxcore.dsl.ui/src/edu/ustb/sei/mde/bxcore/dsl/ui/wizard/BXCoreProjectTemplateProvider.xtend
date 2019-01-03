@@ -44,7 +44,7 @@ final class SimpleBXProject {
 //	}
 
 	override protected validate() {
-		if (path.value.matches('[a-z][a-z0-9_]*(\\./[a-z][a-z0-9_]*)*')) {
+		if (path.value.matches('[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)*')) {
 			null
 		} else
 			new Status(ERROR, "Wizard", "'" + path + "' is not a valid package name")
