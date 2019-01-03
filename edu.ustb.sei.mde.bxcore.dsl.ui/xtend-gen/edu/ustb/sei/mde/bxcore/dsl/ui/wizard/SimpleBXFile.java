@@ -7,12 +7,12 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.ui.wizard.template.AbstractFileTemplate;
 import org.eclipse.xtext.ui.wizard.template.FileTemplate;
 import org.eclipse.xtext.ui.wizard.template.IFileGenerator;
-import org.eclipse.xtext.ui.wizard.template.StringSelectionTemplateVariable;
+import org.eclipse.xtext.ui.wizard.template.StringTemplateVariable;
 
-@FileTemplate(label = "Hello World", icon = "file_template.png", description = "Create a hello world for BXCore.")
+@FileTemplate(label = "Simple BX File", icon = "file_template.png", description = "Create a simple source file for BXCore.")
 @SuppressWarnings("all")
-public final class HelloWorldFile extends AbstractFileTemplate {
-  private final StringSelectionTemplateVariable helloName = this.combo("Hello Name:", new String[] { "Xtext", "World", "Foo", "Bar" }, "The name to say \'Hello\' to");
+public final class SimpleBXFile extends AbstractFileTemplate {
+  private final StringTemplateVariable name = this.text("Name:", "MyBX", "The name of the BX");
   
   @Override
   public void generateFiles(final IFileGenerator generator) {
@@ -20,14 +20,13 @@ public final class HelloWorldFile extends AbstractFileTemplate {
     String _folder = this.getFolder();
     _builder.append(_folder);
     _builder.append("/");
-    String _name = this.getName();
-    _builder.append(_name);
+    _builder.append(this.name);
     _builder.append(".bxcore");
     StringConcatenation _builder_1 = new StringConcatenation();
     _builder_1.append("/*");
     _builder_1.newLine();
     _builder_1.append(" ");
-    _builder_1.append("* This is an example model");
+    _builder_1.append("* This is a simple bxcore source file");
     _builder_1.newLine();
     _builder_1.append(" ");
     _builder_1.append("*/");

@@ -15,18 +15,18 @@ import org.eclipse.xtext.ui.wizard.template.IFileTemplateProvider
  */
 class BXCoreFileTemplateProvider implements IFileTemplateProvider {
 	override getFileTemplates() {
-		#[new HelloWorldFile]
+		#[new SimpleBXFile]
 	}
 }
 
-@FileTemplate(label="Hello World", icon="file_template.png", description="Create a hello world for BXCore.")
-final class HelloWorldFile {
-	val helloName = combo("Hello Name:", #["Xtext", "World", "Foo", "Bar"], "The name to say 'Hello' to")
-
+@FileTemplate(label="Simple BX File", icon="file_template.png", description="Create a simple source file for BXCore.")
+final class SimpleBXFile {
+	val name = text("Name:", 'MyBX', "The name of the BX")
+	
 	override generateFiles(IFileGenerator generator) {
 		generator.generate('''«folder»/«name».bxcore''', '''
 			/*
-			 * This is an example model
+			 * This is a simple bxcore source file
 			 */
 			import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 		''')

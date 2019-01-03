@@ -3,7 +3,7 @@
  */
 package edu.ustb.sei.mde.bxcore.dsl.ui.wizard;
 
-import edu.ustb.sei.mde.bxcore.dsl.ui.wizard.HelloWorldFile;
+import edu.ustb.sei.mde.bxcore.dsl.ui.wizard.SimpleBXFile;
 import org.eclipse.xtext.ui.wizard.template.AbstractFileTemplate;
 import org.eclipse.xtext.ui.wizard.template.IFileTemplateProvider;
 
@@ -16,7 +16,7 @@ import org.eclipse.xtext.ui.wizard.template.IFileTemplateProvider;
 public class BXCoreFileTemplateProvider implements IFileTemplateProvider {
   @Override
   public AbstractFileTemplate[] getFileTemplates() {
-    HelloWorldFile _helloWorldFile = new HelloWorldFile();
-    return new AbstractFileTemplate[] { _helloWorldFile };
+    SimpleBXFile _simpleBXFile = new SimpleBXFile();
+    return new AbstractFileTemplate[] { _simpleBXFile };
   }
 }

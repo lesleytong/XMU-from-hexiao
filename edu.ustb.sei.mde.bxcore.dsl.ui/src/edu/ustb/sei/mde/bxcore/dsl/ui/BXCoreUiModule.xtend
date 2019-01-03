@@ -15,5 +15,4 @@ class BXCoreUiModule extends AbstractBXCoreUiModule {
 	override bindIEObjectHoverProvider() {
 		BXCoreHoverProvider
 	}
-	
 }

@@ -29,38 +29,49 @@ class BXCoreProjectTemplateProvider implements IProjectTemplateProvider {
 <p>This is a parameterized project for BXCore. You can set a parameter to modify the content in the generated file
 and a parameter to set the package the file is created in.</p>")
 final class SimpleBXProject {
-	val advanced = check("Advanced:", false)
+//	val advanced = check("Advanced:", false)
 	val advancedGroup = group("Properties")
-	val name = combo("Name:", #["Xtext", "World", "Foo", "Bar"], "The name to say 'Hello' to", advancedGroup)
-	val path = text("Package:", "mydsl", "The package path to place the files in", advancedGroup)
-
-	override protected updateVariables() {
-		name.enabled = advanced.value
-		path.enabled = advanced.value
-		if (!advanced.value) {
-			name.value = "Xtext"
-			path.value = "bxcore"
-		}
-	}
+	val name = text("Name:", 'MyBX', "The name of the BX", advancedGroup)
+	val path = text("Package:", "edu.ustb.sei.mde.bxcore", "The package path to place the files in", advancedGroup)
+	
+//	override protected updateVariables() {
+//		name.enabled = advanced.value
+//		path.enabled = advanced.value
+//		if (!advanced.value) {
+//			name.value = "Xtext"
+//			path.value = "bxcore"
+//		}
+//	}
 
 	override protected validate() {
-		if (path.value.matches('[a-z][a-z0-9_]*(/[a-z][a-z0-9_]*)*'))
+		if (path.value.matches('[a-z][a-z0-9_]*(\\./[a-z][a-z0-9_]*)*')) {
 			null
-		else
+		} else
 			new Status(ERROR, "Wizard", "'" + path + "' is not a valid package name")
 	}
 
 	override generateProjects(IProjectGenerator generator) {
+		val pathName = path.value.replace('.','/')
+		
 		generator.generate(new PluginProjectFactory => [
 			projectName = projectInfo.projectName
 			location = projectInfo.locationPath
 			projectNatures += #[JavaCore.NATURE_ID, "org.eclipse.pde.PluginNature", XtextProjectHelper.NATURE_ID]
+			requiredBundles += #['edu.ustb.sei.mde.bxcore', 'edu.ustb.sei.mde.bxcore.dsl', 
+				'org.eclipse.emf.ecore', 'org.eclipse.emf.ecore.xmi', 
+				'org.eclipse.xtext.xbase', 'org.eclipse.xtext.builder']
 			builderIds += #[JavaCore.BUILDER_ID, XtextProjectHelper.BUILDER_ID]
 			folders += "src"
-			addFile('''src/«path»/Model.bxcore''', '''
+			addFile('''src/«pathName»/«name».bxcore''', '''
 				/*
-				 * This is an example model
+				 * Auto-generated BX source file
 				 */
+				import 'http://www.eclipse.org/emf/2002/Ecore' as ecore
+				
+				import java.util.*;
+				import org.eclipse.emf.ecore.*;
+				
+				/* you code here */
 			''')
 		])
 	}

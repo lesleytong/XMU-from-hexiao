@@ -1,53 +1,63 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><templates><template autoinsert="true" context="edu.ustb.sei.mde.bxcore.dsl.BXCore.XmuCoreStatement" deleted="false" description="Insert an Align" enabled="true" name="align" id="edu.ustb.sei.mde.bxcore.align">align ${patS} ${patV} with ${cond}
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<templates>
+	<template autoinsert="true" context="edu.ustb.sei.mde.bxcore.dsl.BXCore.XmuCoreAlign" 
+		deleted="false" description="Insert an Align" enabled="true" name="align" 
+		id="edu.ustb.sei.mde.bxcore.align">align ${patS} ${patV} with ${cond}
 	match -&gt; ${stmtM}
 	unmatchS -&gt; {/* your code here */}
 	unmatchV -&gt; {/* your code here */}</template>
 	<template autoinsert="true"
-		context="edu.ustb.sei.mde.bxcore.dsl.BXCore.XmuCoreStatement"
+		context="edu.ustb.sei.mde.bxcore.dsl.BXCore.XmuCoreFunctionCall"
 		deleted="false" description="Insert a function call" enabled="true"
-		name="call" id="edu.ustb.sei.mde.bxcore.functioncall">
-		${target:CrossReference(XmuCoreFunctionCall.target)}
-		(${toVarS}&lt;-${fromVarS}) (${toVarV}&lt;-${fromVarV})
-	</template>
+		name="call" id="edu.ustb.sei.mde.bxcore.functioncall">${target:CrossReference(XmuCoreFunctionCall.target)} (${toVarS}&lt;-${fromVarS}) (${toVarV}&lt;-${fromVarV})</template>
 	<template autoinsert="true"
-		context="edu.ustb.sei.mde.bxcore.dsl.BXCore.XmuCoreStatement"
+		context="edu.ustb.sei.mde.bxcore.dsl.BXCore.XmuCoreParallelComposition"
 		deleted="false" description="Insert a Composition" enabled="true"
-		name="composite" id="edu.ustb.sei.mde.bxcore.composition">
-		{ ${stmt1} | ${stmt2} }
-	</template>
+		name="composite" id="edu.ustb.sei.mde.bxcore.composition">{
+	${stmt1}
+	| ${stmt2} 
+}</template>
 	<template autoinsert="true"
 		context="edu.ustb.sei.mde.bxcore.dsl.BXCore.PatternEdge"
 		deleted="false" description="Define an edge in a pattern"
-		enabled="true" name="edge" id="edu.ustb.sei.mde.bxcore.edge">
-		${vname}:${feature:CrossReference(PatternEdge.feature)}=${tar}:${tarType:CrossReference(PatternNode.type)}
-	</template>
+		enabled="true" name="edge" id="edu.ustb.sei.mde.bxcore.edge">${vname}:${feature:CrossReference(PatternEdge.feature)}=${tar}:${tarType:CrossReference(PatternNode.type)}</template>
 	<template autoinsert="true"
-		context="edu.ustb.sei.mde.bxcore.dsl.BXCore.XmuCoreStatement"
+		context="edu.ustb.sei.mde.bxcore.dsl.BXCore.XmuCoreExpandSource"
 		deleted="false" description="Insert an ExpandSource" enabled="true"
-		name="expands" id="edu.ustb.sei.mde.bxcore.expands">
-		expandS ${patS} (${toVarS}&lt;-${fromVarS}) -&gt; ${stmt}
-	</template>
+		name="expands" id="edu.ustb.sei.mde.bxcore.expands">expandS ${patS} (${toVarS}&lt;-${fromVarS}) -&gt; ${stmt}</template>
 	<template autoinsert="true"
-		context="edu.ustb.sei.mde.bxcore.dsl.BXCore.XmuCoreStatement"
+		context="edu.ustb.sei.mde.bxcore.dsl.BXCore.XmuCoreExpandView"
 		deleted="false" description="Insert an ExpandView" enabled="true"
-		name="expandv" id="edu.ustb.sei.mde.bxcore.expandv">
-		expandV ${patV} (${toVarV}&lt;-${fromVarV}) -&gt; ${stmt}
-	</template>
-	<template autoinsert="true" context="edu.ustb.sei.mde.bxcore.dsl.BXCore.Definition" deleted="false" description="Define a BX function" enabled="true" name="fundef" id="edu.ustb.sei.mde.bxcore.function">function ${funName} = ${stmt}</template><template autoinsert="true" context="edu.ustb.sei.mde.bxcore.dsl.BXCore.XmuCoreStatement" deleted="false" description="Insert an Index" enabled="true" name="index" id="edu.ustb.sei.mde.bxcore.index">index ${sig} &lt;${sk}|${vk}&gt; in ${stmt}</template>
+		name="expandv" id="edu.ustb.sei.mde.bxcore.expandv">expandV ${patV} (${toVarV}&lt;-${fromVarV}) -&gt; ${stmt}</template>
+	<template autoinsert="true" context="edu.ustb.sei.mde.bxcore.dsl.BXCore.BXFunctionDefinition" 
+		deleted="false" description="Define a BX function" enabled="true" name="fundef" 
+		id="edu.ustb.sei.mde.bxcore.function">function ${funName} = ${stmt}</template>
+	<template autoinsert="true" context="edu.ustb.sei.mde.bxcore.dsl.BXCore.XmuCoreIndex" 
+		deleted="false" description="Insert an Index" enabled="true" name="index" 
+		id="edu.ustb.sei.mde.bxcore.index">index ${sig} &lt;${sk}|${vk}&gt; in ${stmt}</template>
 	<template autoinsert="true"
-		context="edu.ustb.sei.mde.bxcore.dsl.BXCore.XmuCoreStatement"
+		context="edu.ustb.sei.mde.bxcore.dsl.BXCore.XmuCoreMatchSource"
 		deleted="false" description="Insert a MatchSource" enabled="true"
-		name="matchs" id="edu.ustb.sei.mde.bxcore.matchs">
-		matchS ${patS} ${stmt}
-	</template>
-	<template autoinsert="true" context="edu.ustb.sei.mde.bxcore.dsl.BXCore.XmuCoreStatement" deleted="false" description="Insert a MatchView" enabled="true" name="matchv" id="edu.ustb.sei.mde.bxcore.matchv">matchV ${patV} ${stmt}</template><template autoinsert="true" context="edu.ustb.sei.mde.bxcore.dsl.BXCore.Definition" deleted="false" description="Define a pattern" enabled="true" name="patterndef" id="edu.ustb.sei.mde.bxcore.pattern">pattern ${patternName} = ${metamodel:CrossReference(PatternTypeLiteral.source)}!${nodeName}:${nodeType}{}</template>
+		name="matchs" id="edu.ustb.sei.mde.bxcore.matchs">matchS ${patS} ${stmt}</template>
+	<template autoinsert="true" context="edu.ustb.sei.mde.bxcore.dsl.BXCore.XmuCoreMatchView" 
+		deleted="false" description="Insert a MatchView" enabled="true" name="matchv" 
+		id="edu.ustb.sei.mde.bxcore.matchv">matchV ${patV} ${stmt}</template>
+	<template autoinsert="true" context="edu.ustb.sei.mde.bxcore.dsl.BXCore.PatternDefinition" 
+		deleted="false" description="Define a pattern" enabled="true" name="patterndef" 
+		id="edu.ustb.sei.mde.bxcore.pattern">pattern ${patternName} = ${metamodel:CrossReference(PatternTypeLiteral.source)}!${nodeName}:${nodeType}{}</template>
 	<template autoinsert="true"
-		context="edu.ustb.sei.mde.bxcore.dsl.BXCore.XmuCoreStatement"
+		context="edu.ustb.sei.mde.bxcore.dsl.BXCore.XmuCoreGraphReplace"
 		deleted="false" description="Insert a GraphReplace" enabled="true"
-		name="replace" id="edu.ustb.sei.mde.bxcore.replace">
-		replace ${patS} ${patV} {replace (${sv}) (${vv})}
-	</template>
-	<template autoinsert="true" context="edu.ustb.sei.mde.bxcore.dsl.BXCore.XmuCoreStatement" deleted="false" description="Insert a Switch" enabled="true" name="switch" id="edu.ustb.sei.mde.bxcore.switch">switch [
-	case ${condC} : ${stmt}
-	adaption ${condA} : {${adaptionStmt}}
-]</template><template autoinsert="true" context="edu.ustb.sei.mde.bxcore.dsl.BXCore.Definition" deleted="false" description="Define a type" enabled="true" name="typedef" id="edu.ustb.sei.mde.bxcore.typedef">type ${typename} = ${metamodel:CrossReference(UnorderedTupleTypeLiteral.source)}!(${vname}:${type})</template></templates>
+		name="replace" id="edu.ustb.sei.mde.bxcore.replace">replace ${patS} ${patV} {replace (${sv}) (${vv})}</template>
+	<template autoinsert="true" context="edu.ustb.sei.mde.bxcore.dsl.BXCore.XmuCoreSwitch" 
+		deleted="false" description="Insert a Switch" enabled="true" name="switch" 
+		id="edu.ustb.sei.mde.bxcore.switch">switch [ 
+	case ${condC} : ${stmt} 
+	adaption ${condA} : {
+		${adaptionStmt}
+	}
+]</template>
+	<template autoinsert="true" context="edu.ustb.sei.mde.bxcore.dsl.BXCore.TypeDefinition" 
+		deleted="false" description="Define a type" enabled="true" name="typedef" 
+		id="edu.ustb.sei.mde.bxcore.typedef">type ${typename} = ${metamodel:CrossReference(UnorderedTupleTypeLiteral.source)}!(${vname}:${type})</template>
+</templates>

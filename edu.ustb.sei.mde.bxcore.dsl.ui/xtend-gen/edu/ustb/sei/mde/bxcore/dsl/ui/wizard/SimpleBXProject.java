@@ -13,11 +13,9 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.ui.XtextProjectHelper;
 import org.eclipse.xtext.ui.util.PluginProjectFactory;
 import org.eclipse.xtext.ui.wizard.template.AbstractProjectTemplate;
-import org.eclipse.xtext.ui.wizard.template.BooleanTemplateVariable;
 import org.eclipse.xtext.ui.wizard.template.GroupTemplateVariable;
 import org.eclipse.xtext.ui.wizard.template.IProjectGenerator;
 import org.eclipse.xtext.ui.wizard.template.ProjectTemplate;
-import org.eclipse.xtext.ui.wizard.template.StringSelectionTemplateVariable;
 import org.eclipse.xtext.ui.wizard.template.StringTemplateVariable;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
@@ -26,30 +24,16 @@ import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 @ProjectTemplate(label = "BXCore", icon = "project_template.png", description = "<p><b>BXCore</b> project</p>\n<p>This is a parameterized project for BXCore. You can set a parameter to modify the content in the generated file\nand a parameter to set the package the file is created in.</p>")
 @SuppressWarnings("all")
 public final class SimpleBXProject extends AbstractProjectTemplate {
-  private final BooleanTemplateVariable advanced = this.check("Advanced:", false);
-  
   private final GroupTemplateVariable advancedGroup = this.group("Properties");
   
-  private final StringSelectionTemplateVariable name = this.combo("Name:", new String[] { "Xtext", "World", "Foo", "Bar" }, "The name to say \'Hello\' to", this.advancedGroup);
+  private final StringTemplateVariable name = this.text("Name:", "MyBX", "The name of the BX", this.advancedGroup);
   
-  private final StringTemplateVariable path = this.text("Package:", "mydsl", "The package path to place the files in", this.advancedGroup);
-  
-  @Override
-  protected void updateVariables() {
-    this.name.setEnabled(this.advanced.getValue());
-    this.path.setEnabled(this.advanced.getValue());
-    boolean _value = this.advanced.getValue();
-    boolean _not = (!_value);
-    if (_not) {
-      this.name.setValue("Xtext");
-      this.path.setValue("bxcore");
-    }
-  }
+  private final StringTemplateVariable path = this.text("Package:", "edu.ustb.sei.mde.bxcore", "The package path to place the files in", this.advancedGroup);
   
   @Override
   protected IStatus validate() {
     Status _xifexpression = null;
-    boolean _matches = this.path.getValue().matches("[a-z][a-z0-9_]*(/[a-z][a-z0-9_]*)*");
+    boolean _matches = this.path.getValue().matches("[a-z][a-z0-9_]*(\\./[a-z][a-z0-9_]*)*");
     if (_matches) {
       _xifexpression = null;
     } else {
@@ -60,28 +44,43 @@ public final class SimpleBXProject extends AbstractProjectTemplate {
   
   @Override
   public void generateProjects(final IProjectGenerator generator) {
+    final String pathName = this.path.getValue().replace(".", "/");
     PluginProjectFactory _pluginProjectFactory = new PluginProjectFactory();
     final Procedure1<PluginProjectFactory> _function = (PluginProjectFactory it) -> {
       it.setProjectName(this.getProjectInfo().getProjectName());
       it.setLocation(this.getProjectInfo().getLocationPath());
       List<String> _projectNatures = it.getProjectNatures();
       Iterables.<String>addAll(_projectNatures, Collections.<String>unmodifiableList(CollectionLiterals.<String>newArrayList(JavaCore.NATURE_ID, "org.eclipse.pde.PluginNature", XtextProjectHelper.NATURE_ID)));
+      List<String> _requiredBundles = it.getRequiredBundles();
+      Iterables.<String>addAll(_requiredBundles, Collections.<String>unmodifiableList(CollectionLiterals.<String>newArrayList("edu.ustb.sei.mde.bxcore", "edu.ustb.sei.mde.bxcore.dsl", "org.eclipse.emf.ecore", "org.eclipse.emf.ecore.xmi", "org.eclipse.xtext.xbase", "org.eclipse.xtext.builder")));
       List<String> _builderIds = it.getBuilderIds();
       Iterables.<String>addAll(_builderIds, Collections.<String>unmodifiableList(CollectionLiterals.<String>newArrayList(JavaCore.BUILDER_ID, XtextProjectHelper.BUILDER_ID)));
       List<String> _folders = it.getFolders();
       _folders.add("src");
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("src/");
-      _builder.append(this.path);
-      _builder.append("/Model.bxcore");
+      _builder.append(pathName);
+      _builder.append("/");
+      _builder.append(this.name);
+      _builder.append(".bxcore");
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("/*");
       _builder_1.newLine();
       _builder_1.append(" ");
-      _builder_1.append("* This is an example model");
+      _builder_1.append("* Auto-generated BX source file");
       _builder_1.newLine();
       _builder_1.append(" ");
       _builder_1.append("*/");
+      _builder_1.newLine();
+      _builder_1.append("import \'http://www.eclipse.org/emf/2002/Ecore\' as ecore");
+      _builder_1.newLine();
+      _builder_1.newLine();
+      _builder_1.append("import java.util.*;");
+      _builder_1.newLine();
+      _builder_1.append("import org.eclipse.emf.ecore.*;");
+      _builder_1.newLine();
+      _builder_1.newLine();
+      _builder_1.append("/* you code here */");
       _builder_1.newLine();
       this.addFile(it, _builder, _builder_1);
     };

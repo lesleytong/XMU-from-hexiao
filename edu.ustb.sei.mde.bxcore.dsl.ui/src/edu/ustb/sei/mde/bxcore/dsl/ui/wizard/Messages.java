@@ -11,6 +11,8 @@ public class Messages extends NLS {
 	public static String HelloWorldProject_Description;
 	public static String SimpleBXProject_Label;
 	public static String SimpleBXProject_Description;
+	public static String SimpleBXFile_Label;
+	public static String SimpleBXFile_Description;
 	
 	static {
 	// initialize resource bundle

@@ -422,8 +422,30 @@
 				</reference>
 			</activeWhen>
 		</handler>
+		<handler
+			class="edu.ustb.sei.mde.bxcore.dsl.ui.BXCoreExecutableExtensionFactory:org.eclipse.xtext.xbase.ui.imports.OrganizeImportsHandler"
+			commandId="org.eclipse.xtext.xbase.ui.organizeImports">
+			<activeWhen>
+				<reference
+					definitionId="edu.ustb.sei.mde.bxcore.dsl.BXCore.Editor.opened">
+				</reference>
+			</activeWhen>
+		</handler>
 	</extension>
 	<extension point="org.eclipse.ui.menus">
+		<menuContribution
+			locationURI="popup:#TextEditorContext?after=group.edit">
+			 <command
+				 commandId="org.eclipse.xtext.xbase.ui.organizeImports"
+				 style="push"
+				 tooltip="Organize Imports">
+				<visibleWhen checkEnabled="false">
+					<reference
+						definitionId="edu.ustb.sei.mde.bxcore.dsl.BXCore.Editor.opened">
+					</reference>
+				</visibleWhen>
+			</command>
+		</menuContribution>
 		<menuContribution
 			locationURI="popup:#TextEditorContext?after=group.open">
 			<command commandId="org.eclipse.xtext.xbase.ui.hierarchy.OpenTypeHierarchy"
@@ -590,11 +612,61 @@
 			type="text">
 		</fileTypes>
 	</extension>
- <extension
-       point="org.eclipse.xtext.ui.projectTemplate">
-    <projectTemplateProvider
-          class="edu.ustb.sei.mde.bxcore.dsl.ui.wizard.BXCoreProjectTemplateProvider"
-          grammarName="edu.ustb.sei.mde.bxcore.dsl.ui.wizard.BXCoreProjectTemplateProvider">
-    </projectTemplateProvider>
- </extension>
+	<extension
+		point="org.eclipse.ui.newWizards">
+		<category id="edu.ustb.sei.mde.bxcore.dsl.ui.category" name="BXCore">
+		</category>
+		<wizard
+			category="edu.ustb.sei.mde.bxcore.dsl.ui.category"
+			class="edu.ustb.sei.mde.bxcore.dsl.ui.BXCoreExecutableExtensionFactory:org.eclipse.xtext.ui.wizard.template.TemplateNewProjectWizard"
+			id="edu.ustb.sei.mde.bxcore.dsl.ui.wizard.BXCoreNewProjectWizard"
+			name="BXCore Project"
+			icon="icons/new_BXCore_proj.gif"
+			project="true">
+		</wizard>
+	</extension>
+	<extension
+	      point="org.eclipse.xtext.ui.projectTemplate">
+	   <projectTemplateProvider
+	         class="edu.ustb.sei.mde.bxcore.dsl.ui.wizard.BXCoreProjectTemplateProvider"
+	         grammarName="edu.ustb.sei.mde.bxcore.dsl.BXCore">
+	   </projectTemplateProvider>
+	</extension>
+	<extension
+		point="org.eclipse.ui.perspectiveExtensions">
+		<perspectiveExtension targetID="org.eclipse.ui.resourcePerspective">
+			<newWizardShortcut id="edu.ustb.sei.mde.bxcore.dsl.ui.wizard.BXCoreNewProjectWizard"/>
+		</perspectiveExtension>
+		<perspectiveExtension targetID="org.eclipse.jdt.ui.JavaPerspective">
+			<newWizardShortcut id="edu.ustb.sei.mde.bxcore.dsl.ui.wizard.BXCoreNewProjectWizard"/>
+		</perspectiveExtension>
+	</extension>
+	<extension
+		point="org.eclipse.ui.newWizards">
+		<category id="edu.ustb.sei.mde.bxcore.dsl.ui.category" name="BXCore">
+		</category>
+		<wizard
+			category="edu.ustb.sei.mde.bxcore.dsl.ui.category"
+			class="edu.ustb.sei.mde.bxcore.dsl.ui.BXCoreExecutableExtensionFactory:org.eclipse.xtext.ui.wizard.template.TemplateNewFileWizard"
+			id="edu.ustb.sei.mde.bxcore.dsl.ui.wizard.BXCoreNewFileWizard"
+			name="BXCore File"
+			icon="icons/new_BXCore_file.png">
+		</wizard>
+	</extension>
+	<extension
+	      point="org.eclipse.xtext.ui.fileTemplate">
+	   <fileTemplateProvider
+	         class="edu.ustb.sei.mde.bxcore.dsl.ui.wizard.BXCoreFileTemplateProvider"
+	         grammarName="edu.ustb.sei.mde.bxcore.dsl.BXCore">
+	   </fileTemplateProvider>
+	</extension>
+	<extension
+		point="org.eclipse.ui.perspectiveExtensions">
+		<perspectiveExtension targetID="org.eclipse.ui.resourcePerspective">
+			<newWizardShortcut id="edu.ustb.sei.mde.bxcore.dsl.ui.wizard.BXCoreNewFileWizard"/>
+		</perspectiveExtension>
+		<perspectiveExtension targetID="org.eclipse.jdt.ui.JavaPerspective">
+			<newWizardShortcut id="edu.ustb.sei.mde.bxcore.dsl.ui.wizard.BXCoreNewFileWizard"/>
+		</perspectiveExtension>
+	</extension>
 </plugin>
