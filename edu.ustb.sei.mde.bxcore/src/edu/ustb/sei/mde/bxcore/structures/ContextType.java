@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 import edu.ustb.sei.mde.bxcore.TraceSystem;
 import edu.ustb.sei.mde.graph.type.IStructuralFeatureEdge;
+import edu.ustb.sei.mde.graph.type.IType;
 import edu.ustb.sei.mde.graph.type.TypeNode;
 import edu.ustb.sei.mde.graph.typedGraph.IndexSystem;
 import edu.ustb.sei.mde.structure.Tuple2;
@@ -23,21 +24,21 @@ public class ContextType {
 		orderedKeys = new ArrayList<>();
 	}
 	
-	public <T> void addField(FieldDef<?> field) {
+	public <T extends IType> void addField(FieldDef<?> field) {
 		fieldDefs.put(field.getName(), field);
 		orderedKeys.add(field);
 	}
 	
-	public <T> void addField(String name, T type, boolean many) {
+	public <T extends IType> void addField(String name, T type, boolean many) {
 		FieldDef<T> field = new FieldDef<T>(name, type, many);
 		addField(field);
 	}
 	
-	public <T> void addField(String name, T type) {
+	public <T extends IType> void addField(String name, T type) {
 		addField(name, type, false);
 	}
 	
-	public <T> void addCollectionField(String name, T type) {
+	public <T extends IType> void addCollectionField(String name, T type) {
 		addField(name, type, true);
 	}
 	
@@ -148,7 +149,7 @@ public class ContextType {
 	private List<FieldDef<?>> singleValuedFields;
 	public List<FieldDef<?>> singleValuedFields() {
 		if(singleValuedFields==null) {
-			singleValuedFields = fields().stream().filter(f->f.isMany()==false).collect(Collectors.toList());
+			singleValuedFields = fields().stream().filter(f->f.isCollection()==false).collect(Collectors.toList());
 		}
 		return singleValuedFields;
 	}

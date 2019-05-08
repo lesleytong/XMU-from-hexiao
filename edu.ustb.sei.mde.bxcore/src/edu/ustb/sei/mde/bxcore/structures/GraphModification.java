@@ -372,21 +372,9 @@ public class GraphModification {
 					if(tuple==null) {
 						FieldDef<?> up = data.getContext().getType().getField(f.getName());
 						if (up == null) {
-							if (f.isMany()) {
-								ArrayList<Object> value = new ArrayList<>();
-								patInstance.setValue(f, value);
-								updatedContext.setValue(f, value);
-							} else {
-								if (f.isElementType()) {
-									Object value = IndexSystem.generateUUID();
-									patInstance.setValue(f, value);
-									updatedContext.setValue(f, value);
-								} else {
-									Object value = XmuCoreUtils.defaultValue(f.getType());
-									patInstance.setValue(f, value);
-									updatedContext.setValue(f, value);
-								}
-							}
+							Object value = f.getDefaultValue(true);
+							patInstance.setValue(f, value);
+							updatedContext.setValue(f, value);
 						} else {
 							Object value = data.getContext().getValue(up);
 							patInstance.setValue(f, value);

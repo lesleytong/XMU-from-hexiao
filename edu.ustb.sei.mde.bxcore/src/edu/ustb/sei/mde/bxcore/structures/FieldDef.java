@@ -1,11 +1,24 @@
 package edu.ustb.sei.mde.bxcore.structures;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
+
+import edu.ustb.sei.mde.bxcore.XmuCoreUtils;
+import edu.ustb.sei.mde.bxcore.exceptions.InitializationException;
 import edu.ustb.sei.mde.graph.INamedElement;
+import edu.ustb.sei.mde.graph.type.ICollectionType;
+import edu.ustb.sei.mde.graph.type.IElementType;
+import edu.ustb.sei.mde.graph.type.IType;
+import edu.ustb.sei.mde.graph.type.ListType;
+import edu.ustb.sei.mde.graph.type.PathType;
 import edu.ustb.sei.mde.graph.type.PropertyEdge;
 import edu.ustb.sei.mde.graph.type.TypeEdge;
 import edu.ustb.sei.mde.graph.type.TypeNode;
+import edu.ustb.sei.mde.graph.typedGraph.IndexSystem;
 
-public class FieldDef<T> implements INamedElement {
+
+public class FieldDef<T extends IType> implements INamedElement {
 
 	public FieldDef() {
 	}
@@ -17,12 +30,13 @@ public class FieldDef<T> implements INamedElement {
 	public FieldDef(String name, T type, boolean many) {
 		this.name = name;
 		this.type = type;
-		this.many = many;
+		setCollection(many);
+//		this.many = many;
 	}
 	
 	private T type;
 	private String name;
-	private boolean many;
+//	private boolean many;
 
 	public T getType() {
 		return type;
@@ -40,12 +54,22 @@ public class FieldDef<T> implements INamedElement {
 		this.name = name;
 	}
 	
-	public boolean isMany() {
-		return many;
+	public boolean isCollection() {
+		return type instanceof ICollectionType;
 	}
 	
-	public void setMany(boolean many) {
-		this.many = many;
+	@SuppressWarnings("unchecked")
+	public void setCollection(boolean flag) {
+		if(flag==false) {
+			if(isCollection()) throw new InitializationException("Cannot change a collection type to a single-valued type");
+			else return;
+		} else if(isCollection()) 
+			return;
+		else {
+			ListType col = new ListType();
+			col.setElementType((IElementType) this.type);
+			this.type = (T) col;
+		}
 	}
 	
 	@Override
@@ -62,6 +86,9 @@ public class FieldDef<T> implements INamedElement {
 		else return false;
 	}
 	
+	/**
+	 * @return whether this type represents an model element/relationship that requires indices
+	 */
 	public boolean isElementType() {
 		return type instanceof TypeNode || type instanceof TypeEdge || type instanceof PropertyEdge;
 	}
@@ -72,6 +99,35 @@ public class FieldDef<T> implements INamedElement {
 	
 	public String toString() {
 		return name;
+	}
+	
+	
+	final static public Index[] EMPTY_PATH = new Index[0];
+	
+	/**
+	 * get a default of this FieldDef
+	 * @param generate
+	 * @return the default value (i.e., Index, Index[0], ArrayList<>, primitive value) 
+	 */
+	public Object getDefaultValue(boolean generate) {
+		if(isElementType()) {
+			if(generate)
+				return Index.freshIndex(IndexSystem.generateUUID());
+			else 
+				return null;
+		} else {
+			if(getType() instanceof PathType) {
+				return EMPTY_PATH;
+			} else if(getType() instanceof ICollectionType) {
+				if(generate)
+					return new ArrayList<>();
+				else 
+					return Collections.emptyList();
+			} else {
+				// it should be data type node, but we didn't check
+				return XmuCoreUtils.defaultValue(getType());				
+			}
+		}
 	}
 
 }

@@ -39,7 +39,7 @@ public class ExceptionSafeInferface {
 	public static <T> T getValue(ContextGraph context, String name) {
 		try {
 			FieldDef<?> field = context.getContext().getType().getField(name);
-			if(field.isMany()) {
+			if(field.isCollection()) {
 				List values = new ArrayList((List) context.getContext().getValue(field));
 				for(int i=0;i<values.size();i++) {
 					Object value = values.get(i);

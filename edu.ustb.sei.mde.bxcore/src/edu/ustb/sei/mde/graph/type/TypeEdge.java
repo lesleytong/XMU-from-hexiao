@@ -1,6 +1,7 @@
 package edu.ustb.sei.mde.graph.type;
 
 import edu.ustb.sei.mde.graph.Nullable;
+import edu.ustb.sei.mde.graph.typedGraph.TypedEdge;
 
 public class TypeEdge implements IStructuralFeatureEdge {
 	@Nullable(false)
@@ -60,5 +61,26 @@ public class TypeEdge implements IStructuralFeatureEdge {
 
 	public String toString() {
 		return source.getName()+"-"+(isMany?"*":"-")+"->"+target.getName();
+	}
+	
+	private TypeGraph typeGraph;
+	public TypeGraph getTypeGraph() {
+		return typeGraph;
+	}
+
+	public void setTypeGraph(TypeGraph typeGraph) {
+		this.typeGraph = typeGraph;
+	}
+	
+	@Override
+	public Class<?> getJavaType() {
+		return TypedEdge.class;
+	}
+	
+	@Override
+	public boolean isInstance(Object value) {
+		if(value instanceof TypedEdge) {
+			return ((TypedEdge) value).getType()==this;
+		} return false;
 	}
 }

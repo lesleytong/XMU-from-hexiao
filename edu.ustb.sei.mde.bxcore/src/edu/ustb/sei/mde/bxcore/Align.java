@@ -409,7 +409,7 @@ public class Align extends XmuCore {
 	private void enforceOrder(Pattern pattern, List<Context> matches, 
 			TypedGraph graph) throws NothingReturnedException {
 		
-		PatternElement<?> order = pattern.getOrderBy();
+		PatternElement order = pattern.getOrderBy();
 		FieldDef<?> field = pattern.getType().getField(order.getName());
 		
 		Index prev = null;

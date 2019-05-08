@@ -20,6 +20,7 @@ import edu.ustb.sei.mde.graph.Derived;
 import edu.ustb.sei.mde.graph.IEdge;
 import edu.ustb.sei.mde.graph.IGraph;
 import edu.ustb.sei.mde.graph.INode;
+import edu.ustb.sei.mde.graph.type.DataTypeNode;
 import edu.ustb.sei.mde.graph.type.IStructuralFeatureEdge;
 import edu.ustb.sei.mde.graph.type.PropertyEdge;
 import edu.ustb.sei.mde.graph.type.TypeEdge;
@@ -289,6 +290,24 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		}).toArray(i->new TypedNode[i]);
 	}
 	
+	public ValueNode[] getValueNodesOf(DataTypeNode type) {
+		TypeGraph typeGraph = this.getTypeGraph();
+		return allValueNodes.stream().filter(n->{
+			return typeGraph.isSuperTypeOf(n.getType(), type);
+		}).toArray(i->new ValueNode[i]);
+	}
+	
+	public TypedEdge[] getTypedEdgesOf(TypeEdge type) {
+		return allTypedEdges.stream().filter(n->{
+			return n.getType()==type;
+		}).toArray(i->new TypedEdge[i]);
+	}
+	
+	public ValueEdge[] getValueEdgesOf(PropertyEdge type) {
+		return allValueEdges.stream().filter(n->{
+			return n.getType()==type;
+		}).toArray(i->new ValueEdge[i]);
+	}
 	
 	
 	private List<ValueNode> allValueNodes;

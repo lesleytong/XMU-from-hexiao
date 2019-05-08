@@ -196,11 +196,15 @@ public class TypeGraph implements IGraph {
 	
 	public void addNode(INode n) {
 		this.nodes.add(n);
+		((ITypeGraphItem)n).setTypeGraph(this);
+		
 		if(n instanceof TypeNode) this.typeNodes=null;
 		else this.dataTypeNodes=null;
 	}
 	public void addEdge(IEdge e) {
 		this.edges.add(e);
+		if(!(e instanceof GeneralizationEdge)) 
+			((ITypeGraphItem)e).setTypeGraph(this);
 		if(e instanceof TypeEdge) this.typeEdges = null;
 		else if(e instanceof GeneralizationEdge) this.generalizationEdges = null;
 		else this.propertyEdges = null;

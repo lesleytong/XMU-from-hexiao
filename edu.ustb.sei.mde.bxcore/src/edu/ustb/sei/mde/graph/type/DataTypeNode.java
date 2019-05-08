@@ -41,6 +41,14 @@ public class DataTypeNode implements ITypeNode {
 		return "("+"name:"+name+", javaType:"+dataType.getTypeName()+")";
 	}
 	
+	private TypeGraph typeGraph;
+	public TypeGraph getTypeGraph() {
+		return typeGraph;
+	}
+
+	public void setTypeGraph(TypeGraph typeGraph) {
+		this.typeGraph = typeGraph;
+	}
 	
 	static public final DataTypeNode NULL_TYPE;
 	
@@ -49,4 +57,14 @@ public class DataTypeNode implements ITypeNode {
 		NULL_TYPE.setDataType("BOTTOM", null);
 	}
 	
+	@Override
+	public Class<?> getJavaType() {
+		return getDataType();
+	}
+	
+	@Override
+	public boolean isInstance(Object value) {
+		// TODO FIXME
+		return false;
+	}
 }

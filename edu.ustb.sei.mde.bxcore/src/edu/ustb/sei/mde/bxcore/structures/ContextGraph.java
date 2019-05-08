@@ -172,15 +172,16 @@ public interface ContextGraph {
 							}
 						}
 						if(tuple==null) {
-							if(f.isMany()) {
-								freshContext.setValue(f, new ArrayList<>());
-							} else {
-								if(f.isElementType()) {
-									freshContext.setValue(f, IndexSystem.generateUUID());
-								} else {
-									freshContext.setValue(f, XmuCoreUtils.defaultValue(f.getType()));
-								}
-							}
+							freshContext.setValue(f, f.getDefaultValue(true));
+//							if(f.isCollection()) {
+//								freshContext.setValue(f, new ArrayList<>());
+//							} else {
+//								if(f.isElementType()) {
+//									freshContext.setValue(f, IndexSystem.generateUUID());
+//								} else {
+//									freshContext.setValue(f, XmuCoreUtils.defaultValue(f.getType()));
+//								}
+//							}
 						} else {
 							freshContext.setValue(f, tuple.second);
 						}

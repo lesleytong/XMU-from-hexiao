@@ -13,6 +13,7 @@ import java.util.Set;
 import edu.ustb.sei.mde.bxcore.XmuCoreUtils;
 import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
 import edu.ustb.sei.mde.bxcore.exceptions.UninitializedException;
+import edu.ustb.sei.mde.graph.IEdge;
 import edu.ustb.sei.mde.graph.typedGraph.IndexableElement;
 import edu.ustb.sei.mde.graph.typedGraph.ValueNode;
 import edu.ustb.sei.mde.bxcore.Trace;
@@ -90,23 +91,23 @@ public class Context {
 	@SuppressWarnings("unchecked")
 	private <T> void internalSetValue(FieldDef<?> key, T value) {
 		if(key!=null) {
-			if(key.isMany()) {
-				List<Object> values = null;
-				if(value==null) values = Collections.emptyList();
-				else if(value instanceof List) 
-					values = new ArrayList<>((List<Object>) value);
-				else {
-					values = new ArrayList<>();
-					values.add((Object)value);
+			if(key.isCollection()) {
+				List<Object> values = (List<Object>) key.getDefaultValue(value!=null);
+				if(value!=null) {
+					if(value instanceof List) {
+						values.addAll((List<Object>) value);
+					} else {
+						values.add(value);
+					}
 				}
 				
 				for(int i=0;i<values.size();i++) {
-					values.set(i, unboxing(values.get(i)));
+					values.set(i, wrapValue(values.get(i)));
 				}
 				
 				valueMap.put(key, Optional.of(values));
 			} else {
-				valueMap.put(key, Optional.of(unboxing(value)));
+				valueMap.put(key, Optional.of(wrapValue(value)));
 //				if(value instanceof java.util.UUID) {
 //					valueMap.put(key, Optional.of(Index.freshIndex(value)));
 //				} else {
@@ -124,8 +125,22 @@ public class Context {
 		}
 	}
 	
-	private Object unboxing(Object value) {
-		if(value instanceof java.util.UUID) {
+	static public boolean isArray(Class<?> clazz, Class<?> elemcls) {
+		if(clazz.isArray()) {
+			return clazz.getComponentType()==elemcls;
+		}
+		return false;
+	}
+	
+	private Object wrapValue(Object value) {
+		if(value!=null && isArray(value.getClass(), IEdge.class)) {
+			IEdge[] valueArr = (IEdge[]) value;
+			Index[] retValue = new Index[valueArr.length];
+			for(int i=0;i<valueArr.length;i++) {
+				retValue[i] = (Index) wrapValue(valueArr[i]);
+			}
+			return retValue;
+		} else if(value instanceof java.util.UUID) {
 			return Index.freshIndex(value);
 		} else {
 			if(value instanceof IndexableElement) {
@@ -517,7 +532,7 @@ public class Context {
 
 	public void mergeMultiValuedFields(Context c) {
 		for(FieldDef<?> f : this.getType().fields()) {
-			if(f.isMany()) {
+			if(f.isCollection()) {
 				try {
 					List<Object> col = getListValue(f);
 					List<Object> add = c.getListValue(f);
