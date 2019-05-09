@@ -32,96 +32,122 @@ public class EdgeSetNodeNodeSetConnectionPropagator extends Propagator<Variable>
 	@Override
 	public void propagate(int evtmask) throws ContradictionException {
 		// edge => source, target
-		
-		Set<INode> sns = new HashSet<>();
-		Set<INode> tns = new HashSet<>();
-		
-		edge.upperBoundIterator().forEachRemaining(e->{
-			sns.add(e.getSource());
-			tns.add(e.getTarget());
-		});
-		
-		INode s = null;
-		for(Iterator<INode> it = source.iterator(); it.hasNext() ;) {
-			s = it.next();
-			if(!sns.contains(s))
-				source.removeValue(s, this);
-		}
-		
-		INode t = null;
-		for(Iterator<INode> it = target.upperBoundIterator(); it.hasNext() ;) {
-			t = it.next();
-			if(!tns.contains(t))
-				target.remove(t, this);
-		}
+//		Set<INode> sns = new HashSet<>();
+//		Set<INode> tns = new HashSet<>();
+//		
+//		edge.upperBoundIterator().forEachRemaining(e->{
+//			sns.add(e.getSource());
+//			tns.add(e.getTarget());
+//		});
+//		
+//		INode s = null;
+//		for(Iterator<INode> it = source.iterator(); it.hasNext() ;) {
+//			s = it.next();
+//			if(!sns.contains(s))
+//				source.removeValue(s, this);
+//		}
+//		
+//		INode t = null;
+//		for(Iterator<INode> it = target.upperBoundIterator(); it.hasNext() ;) {
+//			t = it.next();
+//			if(!tns.contains(t))
+//				target.remove(t, this);
+//		}
 	}
 	
 	@Override
 	public void propagate(int idxVarInProp, int mask) throws ContradictionException {
-		if(mask==ValueEventType.INSTANTIATE.getMask()) {
-			if(idxVarInProp==0) { // edge
-				Set<INode> sns = new HashSet<>();
-				Set<INode> tns = new HashSet<>();
-				
-				edge.upperBoundIterator().forEachRemaining(e->{
-					sns.add(e.getSource());
-					tns.add(e.getTarget());
-				});
-				
-				if(sns.size()!=1) source.contradiction(this, "Multiple values");
-				
-				INode sn = sns.stream().findAny().get();
-				INode[] tn = tns.toArray(new INode[tns.size()]);
-				
-				source.instantiateTo(sn, this);
-				target.instantiateTo(tn, this);
-			} else if(idxVarInProp==1) { // source => edge, target
-				INode sn = source.getValue();
-				Set<INode> tns = new HashSet<>();
-				
-				IEdge ev = null;
-				for(Iterator<IEdge> it = edge.upperBoundIterator();it.hasNext();) {
-					ev = it.next();
-					if(ev.getSource()==sn) {
-						tns.add(ev.getTarget());
-					} else {
-						edge.remove(ev, this);
-					}
-				}
-				
-				INode tv = null;
-				for(Iterator<INode> it = target.upperBoundIterator();it.hasNext();) {
-					tv = it.next();
-					if(!tns.contains(tv)) {
-						target.remove(tv, this);
-					}
-				}
-			} else if(idxVarInProp==2) { // target => edge, source
-				Set<INode> tns = new HashSet<>();
-				target.lowerBoundIterator().forEachRemaining(tn->{
-					tns.add(tn);
-				});
-				
-				Set<INode> sns = new HashSet<>();
-				
-				IEdge ev = null;
-				for(Iterator<IEdge> it = edge.upperBoundIterator();it.hasNext();) {
-					ev = it.next();
-					if(tns.contains(ev.getTarget())) {
-						sns.add(ev.getSource());
-					} else {
-						edge.remove(ev, this);
-					}
-				}
-				
-				INode sv = null;
-				for(Iterator<INode> it = source.iterator();it.hasNext();) {
-					sv = it.next();
-					if(!sns.contains(sv)) {
-						source.removeValue(sv, this);
-					}
+		if(mask==ValueEventType.ADD_TO_KER.getMask()) {
+			handleAddToKer(idxVarInProp);
+		} else if(mask==ValueEventType.REMOVE_FROM_ENVELOPE.getMask()) {
+			handleRemFromEnv(idxVarInProp);
+		} else if(mask==ValueEventType.INSTANTIATE.getMask()) {
+			handleInst(idxVarInProp);
+		}
+	}
+	
+	public void handleInst(int idxVarInProp) throws ContradictionException {
+		if(idxVarInProp == 1) { // target
+			INode sn = source.getValue();
+			Set<INode> tns = new HashSet<>();
+			
+			IEdge ev = null;
+			for(Iterator<IEdge> it = edge.upperBoundIterator();it.hasNext();) {
+				ev = it.next();
+				if(ev.getSource()==sn) {
+					tns.add(ev.getTarget());
+				} else {
+					edge.remove(ev, this);
 				}
 			}
+			
+			INode tv = null;
+			for(Iterator<INode> it = target.upperBoundIterator();it.hasNext();) {
+				tv = it.next();
+				if(!tns.contains(tv)) {
+					target.remove(tv, this);
+				}
+			}
+		}
+	}
+
+	public void handleRemFromEnv(int idxVarInProp) throws ContradictionException {
+		if(idxVarInProp==0) { // edge
+			Set<INode> sns = new HashSet<>();
+			Set<INode> tns = new HashSet<>();
+			
+			edge.upperBoundIterator().forEachRemaining(e->{
+				sns.add(e.getSource());
+				tns.add(e.getTarget());
+			});
+			
+			for(INode tn : target.getUBValue()) {
+				if(!tns.contains(tn)) target.remove(tn, this);
+			}
+			
+			for(Iterator<INode> it = source.iterator(); it.hasNext();) {
+				INode sn = it.next();
+				if(!sns.contains(sn))
+					source.removeValue(sn, this);
+			}
+			
+		} else if(idxVarInProp==2) { // target => edge, source
+			Set<INode> tns = new HashSet<>();
+			target.lowerBoundIterator().forEachRemaining(tn->{
+				tns.add(tn);
+			});
+			
+			Set<INode> sns = new HashSet<>();
+			
+			IEdge ev = null;
+			for(Iterator<IEdge> it = edge.upperBoundIterator();it.hasNext();) {
+				ev = it.next();
+				if(tns.contains(ev.getTarget())) {
+					sns.add(ev.getSource());
+				} else {
+					edge.remove(ev, this);
+				}
+			}
+			
+			INode tv = null;
+			for(Iterator<INode> it = source.iterator();it.hasNext();) {
+				tv = it.next();
+				if(!sns.contains(tv)) {
+					source.removeValue(tv, this);
+				}
+			}
+		}
+	}
+
+	public void handleAddToKer(int idxVarInProp) throws ContradictionException {
+		if(idxVarInProp==0) { // edge
+			Set<INode> tns = new HashSet<>();
+			
+			edge.lowerBoundIterator().forEachRemaining(e->{
+				tns.add(e.getTarget());
+			});
+			
+			for(INode ttn : tns) target.force(ttn, this);
 		}
 	}
 

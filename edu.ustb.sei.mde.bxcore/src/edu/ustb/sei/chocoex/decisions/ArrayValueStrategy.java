@@ -10,7 +10,8 @@ public class ArrayValueStrategy<T> extends AbstractStrategyEx<AbstractArrayValue
 		super(model, new ValueSelector<AbstractArrayValueVariable<T>, T>() {
 			@Override
 			public T selectValue(AbstractArrayValueVariable<T> var) {
-				return var.firstValue();
+				T val = var.firstValue();
+				return val;
 			}
 		}, variables);
 	}

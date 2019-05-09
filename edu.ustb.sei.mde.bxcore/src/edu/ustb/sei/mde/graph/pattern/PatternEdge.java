@@ -31,7 +31,8 @@ public class PatternEdge extends PatternElement<TypeEdge> implements IEdge {
 	}
 	
 	public String toString() {
-		return this.getName()+":"+source.getName()+"->"+target.getName();
+		return this.getName() + (isCollection() ? "[]" : "") + ":" + source.getName()
+				+ (source.isCollection() ? "[]" : "") + "->" + target.getName() + (target.isCollection() ? "[]" : "");
 	}
 
 	@Override

@@ -272,7 +272,8 @@ public class Pattern implements IGraph {
 			return matches;
 	}
 	
-	static final Object[] EMPTY_ARR = new Object[0];
+	static final INode[] EMPTY_NODE_ARR = new INode[0];
+	static final IEdge[] EMPTY_EDGE_ARR = new IEdge[0];
 	@SuppressWarnings({ "unchecked" })
 	protected GraphModel getSolverModel(TypedGraph typedGraph, Context base) {
 		GraphModel model = new GraphModel("pattern");
@@ -283,7 +284,7 @@ public class Pattern implements IGraph {
 			String name = ((PatternElement<?>) n).getName();
 			ITypeNode nodeType = (ITypeNode) ((PatternElement<?>) n).getElementType();
 			
-			INode[] domain = null;
+			INode[] domain = EMPTY_NODE_ARR;
 			boolean fixedValue = false;
 			try {
 				FieldDef<?> field = null;
@@ -295,7 +296,7 @@ public class Pattern implements IGraph {
 					}
 				} else {
 					if(n instanceof PatternNode) {
-						if(((PatternElement<?>) n).getType() instanceof ICollectionType) {
+						if(((PatternElement<?>) n).isCollection()) {
 							List<Index> indices = base.getValue(field);
 							domain = new INode[indices.size()];
 							for(int i = 0; i< indices.size() ; i++)
@@ -307,7 +308,7 @@ public class Pattern implements IGraph {
 							domain[0] = node;
 						}
 					} else if (n instanceof PatternValueNode) {
-						if(((PatternElement<?>) n).getType() instanceof ICollectionType) {
+						if(((PatternElement<?>) n).isCollection()) {
 							List<Object> values = base.getValue(field);
 							domain = new INode[values.size()];
 							for(int i=0;i<values.size();i++) {
@@ -322,13 +323,13 @@ public class Pattern implements IGraph {
 					fixedValue = true;
 				}
 			} catch (Exception e) {
-				domain  = (INode[]) EMPTY_ARR;
+				domain  = EMPTY_NODE_ARR;
 			}
 			
 			if(domain.length==0) {
 				return null;
 			} else {
-				if(((PatternElement<?>) n).getType() instanceof ICollectionType) {
+				if(((PatternElement<?>) n).isCollection()) {
 					NodeSetVar<INode> var = fixedValue 
 							? model.fixedNodeSet(name, nodeType, domain) 
 									: model.nodeSet(name, nodeType, domain);
@@ -344,7 +345,7 @@ public class Pattern implements IGraph {
 			String name = ((PatternElement<?>) n).getName();
 			IStructuralFeatureEdge edgeType = (IStructuralFeatureEdge) ((PatternElement<?>) n).getElementType();
 			
-			IEdge[] domain = (IEdge[]) EMPTY_ARR;
+			IEdge[] domain = EMPTY_EDGE_ARR;
 			boolean fixedValue = false;
 			try {
 				FieldDef<?> field = null;
@@ -356,7 +357,7 @@ public class Pattern implements IGraph {
 					}
 				} else {
 					if(n instanceof PatternEdge || n instanceof PatternValueEdge) {
-						if(((PatternElement<?>) n).getType() instanceof ICollectionType) {
+						if(((PatternElement<?>) n).isCollection()) {
 							List<Index> indices = base.getValue(field);
 							domain = new IEdge[indices.size()];
 							for(int i = 0; i< indices.size() ; i++)
@@ -373,7 +374,7 @@ public class Pattern implements IGraph {
 					fixedValue = true;
 				}
 			} catch (Exception e) {
-				domain  = (IEdge[]) EMPTY_ARR;
+				domain  = EMPTY_EDGE_ARR;
 			}
 			
 			if(domain.length==0) {
@@ -382,12 +383,12 @@ public class Pattern implements IGraph {
 				if(edgeType instanceof PathType) {
 					// FIXME
 				} else {					
-					if(((PatternElement<?>) n).getType() instanceof ICollectionType) {
+					if(((PatternElement<?>) n).isCollection()) {
 						EdgeSetVar<IEdge> var = fixedValue 
 								? model.fixedEdgeSet(name, edgeType, domain) 
 										: model.edgeSet(name, edgeType, domain);
 								
-								if(((PatternElement<?>)n.getSource()).getType() instanceof ICollectionType) {
+								if(((PatternElement<?>)n.getSource()).isCollection()) {
 									NodeSetVar<INode> sv = (NodeSetVar<INode>) varMap.get(n.getSource());
 									edu.ustb.sei.mde.modelsolver.NodeVar<INode> tv = (edu.ustb.sei.mde.modelsolver.NodeVar<INode>) varMap.get(n.getTarget());
 									model.connection(var, sv, tv).post();
@@ -429,16 +430,16 @@ public class Pattern implements IGraph {
 		if (type instanceof TypeEdge) {
 			PatternEdge edge = new PatternEdge();
 			edge.setName(name);
+			edge.setType((TypeEdge) type);
 			edge.setSource((PatternNode) getNode(source));
 			edge.setTarget((PatternNode) getNode(target));
-			edge.setType((TypeEdge) type);
 			this.addEdge(edge);
 		} else if (type instanceof PropertyEdge) {
 			PatternValueEdge edge = new PatternValueEdge();
 			edge.setName(name);
+			edge.setType((PropertyEdge) type);
 			edge.setSource((PatternNode) getNode(source));
 			edge.setTarget((PatternValueNode) getNode(target));
-			edge.setType((PropertyEdge) type);
 			this.addEdge(edge);
 		}
 		// TODO: handle path edge
@@ -562,20 +563,31 @@ public class Pattern implements IGraph {
 		if (n instanceof PatternNode) {
 			Index index = (Index) value;
 			TypedNode node = null;
-
-			try {
-				node = referenceGraph.getElementByIndexObject(index);
-
-				if (((PatternNode) n).getElementType().isInstance(node)) {
-					graph.addTypedNode(node);
+			
+			try { // because there may be duplicated nodes, we must assure the idempotence 
+				node = graph.getElementByIndexObject(index);
+				if(((PatternNode) n).getElementType().isInstance(node)) {
 					creator.registerNode(nodeName, node);
+					return; // short-cut return
 				} else {
 					throw new NothingReturnedException();
 				}
-
-			} catch (NothingReturnedException | NullPointerException e) {
-				node = creator.createTypedNode(nodeName, ((PatternNode) n).getElementType(), index);
+			} catch (Exception e1) {
+				try {
+					node = referenceGraph.getElementByIndexObject(index);
+					
+					if (((PatternNode) n).getElementType().isInstance(node)) {
+						graph.addTypedNode(node);
+						creator.registerNode(nodeName, node);
+					} else {
+						throw new NothingReturnedException();
+					}
+					
+				} catch (NothingReturnedException | NullPointerException e2) {
+					node = creator.createTypedNode(nodeName, ((PatternNode) n).getElementType(), index);
+				}
 			}
+
 		} else if (n instanceof PatternValueNode) {
 			creator.createValueNode(nodeName, value, ((PatternValueNode) n).getElementType() );
 		}
@@ -674,7 +686,7 @@ public class Pattern implements IGraph {
 				String typeName = matcher.group(4);
 
 				PatternElement<?> sourceNode = this.getPatternElement(sourceName);
-				TypeNode st = (TypeNode) sourceNode.getType();
+				TypeNode st = (TypeNode) sourceNode.getElementType();
 
 				IStructuralFeatureEdge type = null;
 				if ((type = this.typeGraph.getTypeEdge(st, typeName)) == null) {

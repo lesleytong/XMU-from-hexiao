@@ -16,7 +16,6 @@ import org.chocosolver.solver.variables.delta.IDelta;
 import org.chocosolver.solver.variables.delta.IEnumDelta;
 import org.chocosolver.solver.variables.delta.NoDelta;
 import org.chocosolver.solver.variables.events.IEventType;
-import org.chocosolver.solver.variables.events.IntEventType;
 import org.chocosolver.solver.variables.impl.AbstractVariable;
 import org.chocosolver.util.iterators.EvtScheduler;
 
@@ -67,6 +66,7 @@ public abstract class AbstractArrayValueVariable<T> extends AbstractVariable imp
         	return true;
         }
         else {
+        	System.out.println("no value is removed");
         	return false;
         }
 	}
@@ -104,9 +104,9 @@ public abstract class AbstractArrayValueVariable<T> extends AbstractVariable imp
 	
 	private void notifyOnRemovals(int count, ICause cause) throws ContradictionException {
 		SIZE.set(count);
-		IntEventType e = IntEventType.REMOVE;
+		ValueEventType e = ValueEventType.REMOVE;
 		if (count == 1) {
-			e = IntEventType.INSTANTIATE;
+			e = ValueEventType.INSTANTIATE;
 		}
 		this.notifyPropagators(e, cause);
 	}
@@ -133,7 +133,7 @@ public abstract class AbstractArrayValueVariable<T> extends AbstractVariable imp
             this.INDICES.set(index);
             this.SIZE.set(1);
             assert !INDICES.isEmpty();
-            this.notifyPropagators(IntEventType.INSTANTIATE, cause);
+            this.notifyPropagators(ValueEventType.INSTANTIATE, cause);
             return true;
         }
         return false;

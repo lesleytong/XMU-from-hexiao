@@ -11,7 +11,7 @@ import edu.ustb.sei.mde.graph.typedGraph.TypedNode;
 
 public class PatternNode extends PatternElement<TypeNode> implements INode {
 	public String toString() {
-		return this.getName()+":"+this.getType().getName();
+		return this.getName()+(isCollection() ? "[]" : "")+":"+this.getType().getName();
 	}
 
 	@Override

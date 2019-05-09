@@ -27,7 +27,10 @@ abstract public class DecisionEx<V extends Variable,T> extends Decision<V> {
 
 	@Override
 	public void apply() throws ContradictionException {
-		this.assignment.apply(var, value, this);
+		if(this.branch==1)
+			this.assignment.apply(var, value, this);
+		else 
+			this.assignment.unapply(var, value, this);
 	}
 
 	@Override
@@ -48,7 +51,7 @@ abstract public class DecisionEx<V extends Variable,T> extends Decision<V> {
             d = newDecisionEx(poolManager);
         }
         d.set(var, value, assignment);
-        d.branch = this.branch;
+//        d.branch = this.branch;
         return d;
 	}
 

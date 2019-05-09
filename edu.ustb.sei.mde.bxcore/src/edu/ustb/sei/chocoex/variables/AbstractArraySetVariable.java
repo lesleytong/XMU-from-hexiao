@@ -1,5 +1,6 @@
 package edu.ustb.sei.chocoex.variables;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -15,6 +16,7 @@ import org.chocosolver.solver.exception.ContradictionException;
 import org.chocosolver.solver.variables.delta.SetDelta;
 import org.chocosolver.solver.variables.events.IEventType;
 import org.chocosolver.solver.variables.impl.AbstractVariable;
+import org.chocosolver.util.iterators.EvtScheduler;
 import org.chocosolver.util.objects.setDataStructures.ISet;
 import org.chocosolver.util.objects.setDataStructures.ISetIterator;
 import org.chocosolver.util.objects.setDataStructures.SetFactory;
@@ -35,6 +37,9 @@ public abstract class AbstractArraySetVariable<T> extends AbstractVariable {
     
     protected boolean reactOnModification;
     
+    protected boolean allowEmpty() {
+    	return false;
+    }
     
     private T[] removeDuplicate(T[] value) {
     	HashMap<T,Integer> map = new HashMap<>();
@@ -94,10 +99,7 @@ public abstract class AbstractArraySetVariable<T> extends AbstractVariable {
 		iEnv = new TIntHashSet(iEnv).toArray();
 		
 		
-		int offSet = env.length>0?iEnv[0]:0;
-		for(int i : iEnv){
-			offSet = Math.min(offSet,i);
-		}
+		int offSet = 0;
 		
 		lb = SetFactory.makeStoredSet(kerType, offSet, model);
 		ub = SetFactory.makeStoredSet(envType, offSet, model);
@@ -115,6 +117,8 @@ public abstract class AbstractArraySetVariable<T> extends AbstractVariable {
 						+i+" is in the LB but not in the UB.");
 			}
 		}
+		
+		initEvtScheduler();
 	}
 
 	public AbstractArraySetVariable(String name, T[] value, Model model) {
@@ -135,6 +139,8 @@ public abstract class AbstractArraySetVariable<T> extends AbstractVariable {
 		ub = lb;
 		lbReadOnly = new Set_ReadOnly(lb);
 		ubReadOnly = new Set_ReadOnly(ub);
+		
+		initEvtScheduler();
 	}
 
 	//***********************************************************************************
@@ -165,6 +171,14 @@ public abstract class AbstractArraySetVariable<T> extends AbstractVariable {
     public Set<T> getLBValue() {
     	Set<T> res = new HashSet<>();
     	this.lowerBoundIterator().forEachRemaining(v->{
+    		res.add(v);
+    	});
+    	return res;
+    }
+    
+    public Set<T> getUBValue() {
+    	Set<T> res = new HashSet<>();
+    	this.upperBoundIterator().forEachRemaining(v->{
     		res.add(v);
     	});
     	return res;
@@ -215,6 +229,9 @@ public abstract class AbstractArraySetVariable<T> extends AbstractVariable {
             return true;
         }
 		if (ub.remove(index)) {
+			if(allowEmpty()==false && ub.size()==0)
+				this.contradiction(cause, "Empty set is not allowed");
+			
 			if (reactOnModification) {
 				delta.add(index, SetDelta.UB, cause);
 			}
@@ -240,8 +257,8 @@ public abstract class AbstractArraySetVariable<T> extends AbstractVariable {
                 }
             }
         }
-        ValueEventType e = ValueEventType.INSTANTIATE;
-		notifyPropagators(e, cause);
+//        ValueEventType e = ValueEventType.INSTANTIATE;
+//		notifyPropagators(e, cause);
         return changed;
     }
 
@@ -325,5 +342,21 @@ public abstract class AbstractArraySetVariable<T> extends AbstractVariable {
 			return var.VALUES[next];
 		}
     }
+    
+    protected void initEvtScheduler() {
+		Field f = null; //NoSuchFieldException
+		try {
+			AbstractVariable me = this;
+			f = me.getClass().getSuperclass().getSuperclass().getDeclaredField("scheduler");
+			f.setAccessible(true);
+			f.set(me, createEvtScheduler());
+		} catch (NoSuchFieldException | IllegalAccessException e) {
+			e.printStackTrace();
+		}
+	}
+    
+	protected EvtScheduler<? extends IEventType> createEvtScheduler() {
+		return new ArrayValueEventScheduler();
+	}
 
 }

@@ -62,7 +62,7 @@ public class GraphModel extends AbstractModelEx {
 				
 				EdgeSetVar[] esvs = ((AbstractModelEx)model).retrieveVariables(EdgeSetVar.class);
 				if(esvs.length!=0) {
-					all.add(new ArraySetStrategy<NodeSetVar>(model, esvs));
+					all.add(new ArraySetStrategy<EdgeSetVar>(model, esvs));
 				}
 				
 				return Search.sequencer(all.toArray(new AbstractStrategy[all.size()]));

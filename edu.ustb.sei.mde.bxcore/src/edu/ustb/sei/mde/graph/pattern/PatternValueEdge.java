@@ -32,7 +32,7 @@ public class PatternValueEdge extends PatternElement<PropertyEdge> implements IE
 	}
 	
 	public String toString() {
-		return this.getName()+":"+source.getName()+"->"+target.getName();
+		return this.getName()+(isCollection() ? "[]" : "")+":"+source.getName()+(source.isCollection() ? "[]" : "")+"->"+target.getName()+(target.isCollection() ? "[]" : "");
 	}
 	
 	@Override
