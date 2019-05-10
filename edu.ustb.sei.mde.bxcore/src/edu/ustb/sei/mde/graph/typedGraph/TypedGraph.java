@@ -10,9 +10,6 @@ import java.util.logging.Level;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-
-import com.beust.jcommander.internal.Lists;
-
 import edu.ustb.sei.mde.bxcore.XmuCoreUtils;
 import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
 import edu.ustb.sei.mde.bxcore.structures.Index;
@@ -30,6 +27,7 @@ import edu.ustb.sei.mde.graph.typedGraph.constraint.GraphConstraint;
 import edu.ustb.sei.mde.structure.PairMap;
 import edu.ustb.sei.mde.structure.Tuple3;
 
+@SuppressWarnings("unused")
 public class TypedGraph extends IndexSystem implements IGraph {
 	
 	public void init() {
@@ -38,6 +36,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		allTypedEdges = new ArrayList<TypedEdge>();
 		allValueEdges = new ArrayList<ValueEdge>();
 		valueEdgeMap = new HashMap<TypedNode,List<ValueEdge>>();
+		valueReferenceMap = new HashMap<>();
 		incomingEdgeMap = new HashMap<TypedNode,List<TypedEdge>>();
 		outgoingEdgeMap = new HashMap<TypedNode,List<TypedEdge>>();
 		
@@ -265,6 +264,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		}
 		
 		this.valueEdgeMap.remove(n.getSource());
+		this.valueReferenceMap.remove(n.getTarget());
 	}
 	
 	public TypedGraph(TypeGraph typeGraph) {
@@ -381,7 +381,6 @@ public class TypedGraph extends IndexSystem implements IGraph {
 				}
 			}
 		}
-		
 		return result;
 	}
 	
@@ -410,7 +409,9 @@ public class TypedGraph extends IndexSystem implements IGraph {
 	}
 	
 	
+	
 	@Derived private HashMap<TypedNode,List<ValueEdge>> valueEdgeMap;
+	@Derived private HashMap<ValueNode,List<ValueEdge>> valueReferenceMap;
 	@Derived
 	public  List<ValueEdge> getValueEdges(TypedNode source) {
 		List<ValueEdge> result = this.valueEdgeMap.get(source);
@@ -428,12 +429,38 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		return result;
 	}
 	
+	public List<ValueEdge> getValueReferences(ValueNode target) {
+		List<ValueEdge> result = this.valueReferenceMap.get(target);
+		if(result==null) {
+			result = new ArrayList<ValueEdge>();
+			this.valueReferenceMap.put(target, result);
+			
+			for(ValueEdge e : this.getAllValueEdges()) {
+				if(e.getTarget() == target) {
+					result.add(e);
+				}
+			}
+		}
+		
+		return result;
+	}
+	
 	@Derived 
 	public List<ValueEdge> getValueEdges(TypedNode source, PropertyEdge feature) {
 		List<ValueEdge> result = new ArrayList<ValueEdge>();
 		
 		for(ValueEdge e : this.getValueEdges(source)) {
 			if(e.getType()==feature) {
+				result.add(e);
+			}
+		}
+		return result;
+	}
+	
+	public List<ValueEdge> getValueEdgesTo(ValueNode target, PropertyEdge type, TypeNode sourceType) {
+		List<ValueEdge> result = new ArrayList<ValueEdge>();
+		for(ValueEdge e : this.getValueReferences(target)) {
+			if(e.getType()==type && sourceType.isSuperTypeOf(e.getSource().getType())) {
 				result.add(e);
 			}
 		}

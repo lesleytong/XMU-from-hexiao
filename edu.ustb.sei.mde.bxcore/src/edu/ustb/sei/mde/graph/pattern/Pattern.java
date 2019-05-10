@@ -1,5 +1,6 @@
 package edu.ustb.sei.mde.graph.pattern;
 
+import java.io.ObjectInputStream.GetField;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -63,6 +64,10 @@ public class Pattern implements IGraph {
 	public void setFilter(Function<ContextGraph, Boolean> filter) {
 		this.filter = filter;
 	}
+	
+	public Function<ContextGraph, Boolean> getFilter() {
+		return filter;
+	}
 
 	private PatternElement<?> orderBy = null;
 	
@@ -113,6 +118,10 @@ public class Pattern implements IGraph {
 	public void addAdditionalField(FieldDef<?> field, Function<ContextGraph, Object> function) {
 		this.additionalFields.add(Tuple2.make(field,function));
 	}
+	
+	public List<Tuple2<FieldDef<?>, Function<ContextGraph, Object>>> getAdditionalFields() {
+		return additionalFields;
+	}
 
 	public TypeGraph getTypeGraph() {
 		return typeGraph;
@@ -123,158 +132,11 @@ public class Pattern implements IGraph {
 	}
 
 	public List<Context> match(TypedGraph typedGraph, Context base) {
-
 		GraphMatcher matcher = new GraphMatcher(this);
 
-		if (model == null)
-			return Collections.emptyList();
-
-		org.chocosolver.solver.Solver solver = model.getSolver();
+		List<Context> matches = matcher.match(typedGraph, base);
 		
-		ContextGraph contextGraph = ContextGraph.makeContextGraph(typedGraph, base);
-
-		List<Context> matches = new ArrayList<>();
-
-		while (solver.solve()) {
-			Context m = this.getType().createInstance();
-			model.getNodeVars().forEach(nv -> {
-				IndexableElement so = (IndexableElement) nv.getValue();
-				Object idx = so.isIndexable() ? so.getIndex() : ((ValueNode) so).getValue(); // unboxing here
-				m.setValue(nv.getName(), idx);
-			});
-
-			model.getEdgeVars().forEach(ev -> {
-				IndexableElement so = (IndexableElement) ev.getValue();
-				Object idx = so.isIndexable() ? so.getIndex() : so;
-				m.setValue(ev.getName(), idx);
-			});
-			
-			// special treatment for order-sensitive variables
-			model.getEdgeSetVars().forEach(nv->{
-				try {
-					List<Index> edges = base.getValue(nv.getName());
-					m.setValue(nv.getName(), edges);
-					// rebuild the order of source/target collection nodes
-					IEdge e = this.getEdge(nv.getName());
-					
-					if(((PatternElement<?>)e.getSource()).isCollection()) {
-						List<?> srcValue = edges.stream().map(v->{
-							IEdge edge;
-							try {
-								edge = typedGraph.getElementByIndexObject(v);
-								return edge.getSource();
-							} catch (NothingReturnedException e1) {
-								e1.printStackTrace();
-								return null;
-							}
-						}).collect(Collectors.toList());
-						m.setValue(((PatternElement<?>)e.getSource()).getName(), srcValue);
-					}
-					
-					if(((PatternElement<?>)e.getTarget()).isCollection()) {
-						List<?> tarValue = edges.stream().map(v->{
-							IEdge edge;
-							try {
-								edge = typedGraph.getElementByIndexObject(v);
-								return edge.getTarget();
-							} catch (NothingReturnedException e1) {
-								e1.printStackTrace();
-								return null;
-							}
-						}).collect(Collectors.toList());
-						m.setValue(((PatternElement<?>)e.getTarget()).getName(), tarValue);
-					}
-				} catch (UninitializedException | NothingReturnedException e1) {
-					List<?> edges = nv.getLBValueList();
-					List<?> value = edges.stream().map(n->{
-						IndexableElement so = (IndexableElement) n;
-						return so.isIndexable() ? so.getIndex() : so;
-					}).collect(Collectors.toList());
-					m.setValue(nv.getName(), value);
-					// rebuild the order of source/target collection nodes
-					IEdge e = this.getEdge(nv.getName());
-					
-					if(((PatternElement<?>)e.getSource()).isCollection()) {
-						List<?> srcValue = edges.stream().map(v->((IEdge)v).getSource()).collect(Collectors.toList());
-						m.setValue(((PatternElement<?>)e.getSource()).getName(), srcValue);
-					}
-					
-					if(((PatternElement<?>)e.getTarget()).isCollection()) {
-						List<?> tarValue = edges.stream().map(v->((IEdge)v).getTarget()).collect(Collectors.toList());
-						m.setValue(((PatternElement<?>)e.getTarget()).getName(), tarValue);
-					}
-				}
-				
-				
-			});
-			
-//			model.getNodeSetVars().forEach(nv->{
-//				List<?> value = nv.getLBValue().stream().map(n->{
-//					IndexableElement so = (IndexableElement) n;
-//					return so.isIndexable() ? so.getIndex() : ((ValueNode) so).getValue();
-//				}).collect(Collectors.toList());
-//				m.setValue(nv.getName(), value);
-//			});
-			
-			contextGraph.replaceContext(m);
-			
-			boolean valueFilter = this.additionalFields.stream().allMatch(f->{
-				try {
-					Object bv = base.getValue(f.first);
-					m.setValue(f.first, bv);
-					if(f.second!=null) {
-						Object cv = f.second.apply(contextGraph);
-						return cv==bv || (cv!=null && cv.equals(bv));
-					} else return true;
-				} catch (UninitializedException e) {
-					if(f.second!=null) {
-						m.setValue(f.first, f.second.apply(contextGraph));
-						return true;
-					} else return false;
-				} catch (Exception e) {
-					return false;
-				}
-			});
-			
-			if(valueFilter && (this.filter==null || this.filter.apply(contextGraph)))
-				matches.add(m);
-		}
-		
-//		group(matches);
-		
-		if(this.orderBy!=null) {
-			List<Index> set = new ArrayList<>();
-			Map<Index, Context> map = new HashMap<>();
-			FieldDef<?> field = this.getType().getField(this.orderBy.getName());
-			for(Context m : matches) {
-				try {
-					Index idx = m.getIndexValue(field);
-					set.add(idx);
-					map.put(idx, m);
-				} catch (UninitializedException | NothingReturnedException e) {
-				}				
-			}
-			
-			if(set.size()!=matches.size()) {
-				XmuCoreUtils.failure("Matches were discarded due to invalid order");
-				return Collections.emptyList();
-			}
-			
-			try {
-				Index[] ordered =  typedGraph.getOrder().planOrder(set);
-				
-				List<Context> result = new ArrayList<>(matches.size());
-				for(Index i : ordered)
-					result.add(map.get(i));
-				
-				return result;
-			} catch (NothingReturnedException e) {
-				XmuCoreUtils.failure("Matches were discarded due to invalid order");
-				return Collections.emptyList();
-			}
-			
-		} else 
-			return matches;
+		return matches;
 	}
 
 	public void appendPatternNode(String name, ITypeNode type, boolean many) {

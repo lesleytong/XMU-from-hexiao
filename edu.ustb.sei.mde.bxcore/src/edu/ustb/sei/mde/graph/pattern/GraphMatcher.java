@@ -2,16 +2,20 @@ package edu.ustb.sei.mde.graph.pattern;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
+import edu.ustb.sei.mde.bxcore.XmuCoreUtils;
 import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
+import edu.ustb.sei.mde.bxcore.exceptions.UninitializedException;
 import edu.ustb.sei.mde.bxcore.structures.Context;
+import edu.ustb.sei.mde.bxcore.structures.ContextGraph;
+import edu.ustb.sei.mde.bxcore.structures.ContextType;
+import edu.ustb.sei.mde.bxcore.structures.FieldDef;
 import edu.ustb.sei.mde.bxcore.structures.Index;
 import edu.ustb.sei.mde.graph.IEdge;
 import edu.ustb.sei.mde.graph.INode;
@@ -22,7 +26,7 @@ import edu.ustb.sei.mde.graph.type.PropertyEdge;
 import edu.ustb.sei.mde.graph.type.TypeEdge;
 import edu.ustb.sei.mde.graph.type.TypeGraph;
 import edu.ustb.sei.mde.graph.type.TypeNode;
-import edu.ustb.sei.mde.graph.typedGraph.TypedEdge;
+import edu.ustb.sei.mde.graph.typedGraph.ITypedNode;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
 import edu.ustb.sei.mde.graph.typedGraph.TypedNode;
 import edu.ustb.sei.mde.graph.typedGraph.ValueNode;
@@ -63,7 +67,7 @@ public class GraphMatcher {
 	}
 
 	private Map<String, Object> convertContext(Context con, TypedGraph graph) {
-		// need unwrapping
+		// con should not contain collection values
 		Map<String, Object> map = new HashMap<String, Object>();
 
 		pattern.getNodes().forEach(n -> {
@@ -87,31 +91,122 @@ public class GraphMatcher {
 		return map;
 	}
 
-	// here we assume that there is no isolated node 
+	/**
+	 *  <p>Precondition : we assume that there is no isolated node in the pattern</p>
+	 *  <p>Precondition : base should not collection values</p>
+	 *  
+	 *  <p> Pattern matching first treats a pattern as a plain graph (with path support) and find matches.
+	 *  Then, it groups the matches to get collection values; 
+	 *  Afterwards, it computes the additional variables.
+	 *  At last, it filters out the match that does not satisfy the filter condition. </p> 
+	 */
 	public List<Context> match(TypedGraph graph, Context base) {
 		Map<String, Object> initPoint = convertContext(base, graph);
 		Map<String, Object> startingPoint = new HashMap<String, Object>();
 		
-		// start searching from every pattern node
-		List<PatternNode> search = pattern.getNodes().stream().filter(n->n instanceof PatternNode && ((PatternNode)n).isCollection()==false)
+		// find matches of plain pattern
+		List<PatternNode> search = pattern.getNodes().stream().filter(n->n instanceof PatternNode)
 				.map(n->(PatternNode)n).collect(Collectors.toList());
 		List<Map<String, Object>> matchResult = recursiveMatchNodes(search, startingPoint, initPoint, graph);
 		
+		// grouping
+		group(matchResult);
+		
 		// convert Map back to context and put missing default values
-		List<Context> result = new ArrayList<>();
-		matchResult.forEach(mr->{
-			Context match = buildMatch(mr, base, graph);
-			if(match!=null) {
-				result.add(match);
-			}
-		});
+		// check and compute additional variables
+		// check filter condition
+		List<Context> result = buildMatchContext(matchResult, base, graph);
+		
+		// order matches if necessary
+		result = orderMatches(graph, result);
 
-		return null;
+		return result;
 	}
 	
-	private Context buildMatch(Map<String, Object> mr, Context base, TypedGraph graph) {
-		// TODO Auto-generated method stub
-		return null;
+	private List<Context> buildMatchContext(List<Map<String, Object>> matches, Context base, TypedGraph graph) {
+		ContextGraph contextGraph = ContextGraph.makeContextGraph(graph, base);
+		
+		List<Context> result = new ArrayList<>();
+		ContextType contextType = pattern.getType();
+		matches.forEach(match->{
+			Context context = contextType.createInstance();
+			contextType.fields().forEach(field->{
+				try {
+					Object fixedValue = base.getValue(field.getName());
+					context.setValue(field, fixedValue);
+					// we do not check the following property! the algorithm should assure this property
+					// Object valueInMatch = match.get(field.getName());
+					// assert valueInMatch !=null => valueInMatch == fixedValue
+				} catch (UninitializedException | NothingReturnedException e) {
+					Object valueInMatch = match.get(field.getName());
+					context.setValue(field, valueInMatch);
+				}
+			});
+			
+			contextGraph.replaceContext(context);
+			boolean valueFilter = checkAndComputeAdditionalVariables(contextGraph, context);
+			if(valueFilter && (pattern.getFilter()==null || pattern.getFilter().apply(contextGraph)))
+				result.add(context);
+		});
+		return result;
+	}
+	
+	private List<Context> orderMatches(TypedGraph typedGraph, List<Context> matches) {
+		PatternElement<?> orderBy = pattern.getOrderBy();
+		if(orderBy!=null) {
+			ContextType contextType = pattern.getType();
+			List<Index> set = new ArrayList<>();
+			Map<Index, Context> map = new HashMap<>();
+			FieldDef<?> field = contextType.getField(orderBy.getName());
+			for(Context m : matches) {
+				try {
+					Index idx = m.getIndexValue(field);
+					set.add(idx);
+					map.put(idx, m);
+				} catch (UninitializedException | NothingReturnedException e) {
+				}				
+			}
+			
+			if(set.size()!=matches.size()) {
+				XmuCoreUtils.failure("Matches were discarded due to invalid order");
+				return Collections.emptyList();
+			}
+			
+			try {
+				Index[] ordered =  typedGraph.getOrder().planOrder(set);
+				
+				List<Context> result = new ArrayList<>(matches.size());
+				for(Index i : ordered)
+					result.add(map.get(i));
+				
+				return result;
+			} catch (NothingReturnedException e) {
+				XmuCoreUtils.failure("Matches were discarded due to invalid order");
+				return Collections.emptyList();
+			}
+			
+		} else 
+			return matches;
+	}
+
+	private boolean checkAndComputeAdditionalVariables(ContextGraph contextGraph, Context context) {
+		boolean valueFilter = pattern.getAdditionalFields().stream().allMatch(f->{
+			try {
+				Object bv = context.getValue(f.first);
+				if(f.second!=null) {
+					Object cv = f.second.apply(contextGraph);
+					return cv==bv || (cv!=null && cv.equals(bv));
+				} else return true;
+			} catch (UninitializedException e) {
+				if(f.second!=null) {
+					context.setValue(f.first, f.second.apply(contextGraph));
+					return true;
+				} else return false;
+			} catch (Exception e) {
+				return false;
+			}
+		});
+		return valueFilter;
 	}
 
 	protected List<Map<String, Object>> recursiveMatchNodes(List<PatternNode> search, Map<String, Object> startingPoint, Map<String, Object> initPoint, TypedGraph graph) {
@@ -136,11 +231,7 @@ public class GraphMatcher {
 	}
 
 	static boolean checkValue(PatternElement<?> element, List<?> candidates, Object value) {
-		if (element.isCollection()) {
-			return candidates.contains(value);
-		} else {
-			return candidates.equals((List<?>) value);
-		}
+		return candidates.contains(value);
 	}
 
 	protected List<Map<String, Object>> matchEdge(PatternElement<?> edgeInPattern, List<IEdge> expectedValue,
@@ -171,7 +262,6 @@ public class GraphMatcher {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	protected List<Map<String, Object>> internalMatchEdge(PatternElement<?> edgeInPattern, Object existingValue,
 			List<IEdge> expectedValue, Map<String, Object> startingPoint, Map<String, Object> initPoint,
 			TypedGraph graph, PatternElement<?> fromNode) {
@@ -184,31 +274,19 @@ public class GraphMatcher {
 				// existingValue becomes an expectedValue
 				startingPoint = new HashMap<>(startingPoint);
 				startingPoint.put(edgeInPattern.getName(), existingValue);
-				if (edgeInPattern.isCollection()) { // collective edge
-					result = internalMatchEdgeSet(edgeInPattern, (List<IEdge>) existingValue, startingPoint, initPoint, graph,
+				result = internalMatchSingleEdge(edgeInPattern, (IEdge) existingValue, startingPoint, initPoint, graph,
 							fromNode, source, target);
-				} else { // simple edge
-					result = internalMatchSingleEdge(edgeInPattern, (IEdge) existingValue, startingPoint, initPoint, graph,
-							fromNode, source, target);
-				}
 			}
 			// else no match found
 		} else { // no predefined value
-			if (edgeInPattern.isCollection()) {
-				startingPoint = new HashMap<>(startingPoint);
-				startingPoint.put(edgeInPattern.getName(), expectedValue);
-				result = internalMatchEdgeSet(edgeInPattern, expectedValue, startingPoint, initPoint, graph,
-						fromNode, source, target);
-			} else {
-				List<Map<String, Object>> internalResult = new ArrayList<>();
-				for (IEdge candidateEdge : expectedValue) {
-					Map<String, Object> newStartingPoint = new HashMap<>(startingPoint);
-					newStartingPoint.put(edgeInPattern.getName(), candidateEdge);
-					internalResult.addAll(internalMatchSingleEdge(edgeInPattern, candidateEdge, newStartingPoint, initPoint, graph,
-							fromNode, source, target));
-				}
-				result = internalResult;
+			List<Map<String, Object>> internalResult = new ArrayList<>();
+			for (IEdge candidateEdge : expectedValue) {
+				Map<String, Object> newStartingPoint = new HashMap<>(startingPoint);
+				newStartingPoint.put(edgeInPattern.getName(), candidateEdge);
+				internalResult.addAll(internalMatchSingleEdge(edgeInPattern, candidateEdge, newStartingPoint, initPoint, graph,
+						fromNode, source, target));
 			}
+			result = internalResult;
 		}
 		return result;
 	}
@@ -241,64 +319,8 @@ public class GraphMatcher {
 		return result;
 	}
 
-	private List<Map<String, Object>> internalMatchEdgeSet(PatternElement<?> edgeInPattern, List<IEdge> expectedValue,
-			Map<String, Object> startingPoint, Map<String, Object> initPoint, TypedGraph graph,
-			PatternElement<?> fromNode, PatternElement<?> source, PatternElement<?> target) {
-		List<Map<String, Object>> result;
-		Collection<INode> sourceNodes = source.isCollection() ? new ArrayList<>() : new HashSet<>();
-		Collection<INode> targetNodes = target.isCollection() ? new ArrayList<>() : new HashSet<>();
-
-		expectedValue.forEach(edge -> {
-			sourceNodes.add(edge.getSource());
-			targetNodes.add(edge.getTarget());
-		});
-
-		if ((source.isCollection() && targetNodes.size() != 1)
-				|| (target.isCollection() && sourceNodes.size() != 1)) {
-			return Collections.emptyList();
-		}
-
-		List<Map<String, Object>> matchesAfterSource = null;
-		if(fromNode==null) {
-			List<Map<String, Object>> internalResult = new ArrayList<>();
-			if (source.isCollection()) {
-				matchesAfterSource = matchNode(source, (List<INode>) sourceNodes, startingPoint, initPoint,
-						graph, edgeInPattern);
-			} else {
-				matchesAfterSource = matchNode(source, new ArrayList<>(sourceNodes), startingPoint, initPoint,
-						graph, edgeInPattern);
-			}
-			if (target.isCollection()) {
-				matchesAfterSource.forEach(ms -> {
-					List<Map<String, Object>> matchesAfterTarget = matchNode(target, (List<INode>) targetNodes,
-							ms, initPoint, graph, edgeInPattern);
-					internalResult.addAll(matchesAfterTarget);
-				});
-			} else {
-				matchesAfterSource.forEach(ms -> {
-					List<Map<String, Object>> matchesAfterTarget = matchNode(target,
-							new ArrayList<>(targetNodes), ms, initPoint, graph, edgeInPattern);
-					internalResult.addAll(matchesAfterTarget);
-				});
-			}
-			result = internalResult;
-		} else {
-			if(fromNode==source) {
-				result = matchNode(target, new ArrayList<>(targetNodes), startingPoint, initPoint, graph, edgeInPattern);
-			} else {
-				result = matchNode(source, new ArrayList<>(sourceNodes), startingPoint, initPoint, graph, edgeInPattern);
-			}
-		}
-		return result;
-	}
-
 	protected List<Map<String, Object>> matchNode(PatternElement<?> nodeInPattern, List<INode> expectedValue,
 			Map<String, Object> startingPoint, Map<String, Object> initPoint, TypedGraph graph, PatternElement<?> fromEdge) {
-		// 1. list all candidates for nodeInPattern when upstreamCandidates is null
-		// 2. select one candidate and go on
-		// 3. foreach edge connecting to nodeInPattern
-		// 4. calculate edge candidates and call matchEdge
-
 		if (expectedValue.size() == 0)
 			return Collections.emptyList();
 		else {
@@ -335,22 +357,16 @@ public class GraphMatcher {
 				.collect(Collectors.toList());
 
 		List<PatternElement<?>> relatedInComingPatternEdges = pattern.getEdges().stream()
-				.filter(e -> !(e instanceof PatternValueEdge) && e!=fromEdge && e.getTarget() == nodeInPattern).map(e -> (PatternElement<?>) e)
+				.filter(e -> e!=fromEdge && e.getTarget() == nodeInPattern).map(e -> (PatternElement<?>) e)
 				.collect(Collectors.toList());
 
 		List<Map<String, Object>> result = Collections.emptyList();
 		if (existingValue != null) { // has predefined value
-			if (checkValue(nodeInPattern, expectedValue, existingValue)) {
+			if (checkValue(nodeInPattern, expectedValue, existingValue)) { // the existing value is consistent with the expected value
 				startingPoint = new HashMap<>(startingPoint);
 				startingPoint.put(nodeInPattern.getName(), existingValue);
-
-				if (nodeInPattern.isCollection()) { // matching cannot go on from a collective node
-					return Collections.singletonList(startingPoint);
-				} else {
-					// match each pattern edge connecting to nodeInPattern
-					result = recursiveMatchEdges(Tuple2.make(relatedOutGoingPatternEdges, relatedInComingPatternEdges),
-							existingValue, startingPoint, initPoint, graph, nodeInPattern);
-				}
+				result = recursiveMatchEdges(Tuple2.make(relatedOutGoingPatternEdges, relatedInComingPatternEdges),
+						existingValue, startingPoint, initPoint, graph, nodeInPattern);
 			} else {
 				return Collections.emptyList();
 			}
@@ -360,13 +376,12 @@ public class GraphMatcher {
 				Map<String, Object> newStartingPoint = new HashMap<>(startingPoint);
 				newStartingPoint.put(nodeInPattern.getName(), candidate);
 				result.addAll(recursiveMatchEdges(Tuple2.make(relatedOutGoingPatternEdges, relatedInComingPatternEdges),
-						candidate, startingPoint, initPoint, graph, nodeInPattern));
+						candidate, newStartingPoint, initPoint, graph, nodeInPattern));
 			}
 		}
 		return result;
 	}
 
-	// startingNode must be a node
 	@SuppressWarnings("unchecked")
 	private List<Map<String, Object>> recursiveMatchEdges(
 			Tuple2<List<PatternElement<?>>, List<PatternElement<?>>> relatedPatternEdges, Object startingNode,
@@ -378,21 +393,11 @@ public class GraphMatcher {
 		if (!relatedPatternEdges.first.isEmpty()) {
 			PatternElement<?> edgeInPattern = relatedPatternEdges.first.remove(relatedPatternEdges.first.size() - 1);
 			List<Map<String, Object>> result = new ArrayList<>();
-			if (edgeInPattern instanceof PatternEdge) {
+			if (edgeInPattern instanceof PatternEdge || edgeInPattern instanceof PatternValueEdge) {
 				@SuppressWarnings("rawtypes")
 				List candidates = computeOutingEdgeCandidates(graph, (TypedNode) startingNode, 
-						(TypeEdge) edgeInPattern.getElementType(), ((PatternEdge) edgeInPattern).getTarget().getElementType());
-				List<Map<String, Object>> matchesAfterEdge = matchEdge(edgeInPattern, (List<IEdge>) candidates,
-						startingPoint, initPoint, graph, fromNode);
-				matchesAfterEdge.forEach(ms -> {
-					List<Map<String, Object>> matchesRest = recursiveMatchEdges(relatedPatternEdges, startingNode, ms,
-							initPoint, graph, fromNode);
-					result.addAll(matchesRest);
-				});
-			} else if (edgeInPattern instanceof PatternValueEdge) {
-				@SuppressWarnings("rawtypes")
-				List candidates = computeOutingEdgeCandidates(graph, (TypedNode) startingNode, 
-						(PropertyEdge) edgeInPattern.getElementType(), ((PatternEdge) edgeInPattern).getTarget().getElementType());
+						(IStructuralFeatureEdge) edgeInPattern.getElementType(), 
+						(ITypeNode) ((PatternElement<?>)((IEdge) edgeInPattern).getTarget()).getElementType());
 				List<Map<String, Object>> matchesAfterEdge = matchEdge(edgeInPattern, (List<IEdge>) candidates,
 						startingPoint, initPoint, graph, fromNode);
 				matchesAfterEdge.forEach(ms -> {
@@ -407,10 +412,11 @@ public class GraphMatcher {
 		} else {
 			PatternElement<?> edgeInPattern = relatedPatternEdges.second.remove(relatedPatternEdges.second.size() - 1);
 			List<Map<String, Object>> result = new ArrayList<>();
-			if (edgeInPattern instanceof PatternEdge) {
+			if (edgeInPattern instanceof PatternEdge || edgeInPattern instanceof PatternValueEdge) {
 				@SuppressWarnings("rawtypes")
-				List candidates = computeIncomingTypedEdgeCandidates(graph, (TypedNode) startingNode, 
-						(TypeEdge) edgeInPattern.getElementType() , ((PatternEdge) edgeInPattern).getSource().getElementType());
+				List candidates = computeIncomingEdgeCandidates(graph, (ITypedNode) startingNode, 
+						(IStructuralFeatureEdge) edgeInPattern.getElementType() , 
+						(TypeNode) ((PatternElement<?>)((IEdge) edgeInPattern).getSource()).getElementType());
 				List<Map<String, Object>> matchesAfterEdge = matchEdge(edgeInPattern, (List<IEdge>) candidates,
 						startingPoint, initPoint, graph, fromNode);
 				matchesAfterEdge.forEach(ms -> {
@@ -418,10 +424,6 @@ public class GraphMatcher {
 							initPoint, graph, fromNode);
 					result.addAll(matchesRest);
 				});
-			} else if (edgeInPattern instanceof PatternValueEdge) {
-				// startingNode must be a data value node!
-				throw new UnsupportedOperationException();
-//				result.add(startingPoint); // we do not check incoming value edges. leave it to the other side
 			} else if (edgeInPattern instanceof PatternPathEdge) {
 				throw new UnsupportedOperationException();
 			}
@@ -437,7 +439,89 @@ public class GraphMatcher {
 		}
 	}
 	
-	private List<TypedEdge> computeIncomingTypedEdgeCandidates(TypedGraph graph, TypedNode target, TypeEdge edgeType, TypeNode sourceType) {
-		return graph.getIncomingEdges(target, edgeType, sourceType);
+	private List<? extends IEdge> computeIncomingEdgeCandidates(TypedGraph graph, ITypedNode target, IStructuralFeatureEdge edgeType, TypeNode sourceType) {
+		if(edgeType instanceof TypeEdge)
+			return graph.getIncomingEdges((TypedNode) target, (TypeEdge) edgeType, sourceType);
+		else
+			return graph.getValueEdgesTo((ValueNode) target, (PropertyEdge) edgeType, sourceType);
+	}
+	
+	private void group(List<Map<String,Object>> matches) {
+		ContextType contextType = pattern.getType();
+		List<FieldDef<?>> singleValuedFields = contextType.singleValuedFields();
+		if(singleValuedFields.size()==contextType.fields().size()) {
+			return;
+		} else {
+			List<Map<String,Object>> results = new ArrayList<>();
+			for(Map<String,Object> c : matches) {
+				Optional<Map<String,Object>> equal = results.stream().filter(x->isEqualForSingleValuedFields(x, c)).findFirst();
+				if(equal.isPresent()) {
+					mergeMultiValuedFields(equal.get(), c);
+				} else {
+					results.add(castToCollection(c));
+				}
+			}
+			matches.clear();
+			matches.addAll(results);
+		}
+	}
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	private Map<String, Object> castToCollection(Map<String, Object> c) {
+		ContextType contextType = pattern.getType();
+		for(FieldDef<?> f : contextType.fields()) {
+			if(f.isCollection()) {
+				Object v = c.get(f.getName());
+				if(v==null) {
+					c.put(f.getName(), new ArrayList<>());
+				} else {
+					if(!(v instanceof List)) {
+						List col = new ArrayList<>();
+						col.add(v);
+						c.put(f.getName(), col);
+					}
+				}
+			}
+		}
+		return c;
+	}
+
+	private boolean isEqualForSingleValuedFields(Map<String, Object> left, Map<String, Object> right) {
+		ContextType contextType = pattern.getType();
+		for(FieldDef<?> f : contextType.singleValuedFields()) {
+			Object lv = null;
+			Object rv = null;
+			lv = left.get(f.getName());
+			rv = right.get(f.getName());			
+			if(lv==rv || (lv!=null && lv.equals(rv))) continue;
+			else return false;
+		}
+		return true;
+	}
+
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	private void mergeMultiValuedFields(Map<String, Object> left, Map<String, Object> right) {
+		ContextType contextType = pattern.getType();
+		for(FieldDef<?> f : contextType.fields()) {
+			if(f.isCollection()) {
+				Object lv = left.get(f.getName());
+				List col = null;
+				if(lv==null) col = new ArrayList<>();
+				else if(lv instanceof List) col = (List) lv;
+				else {
+					col = new ArrayList<>();
+					col.add(lv);
+				}
+				Object rv = right.get(f.getName());
+				if(rv!=null) {
+					if(rv instanceof List) {
+						col.addAll((List)rv);
+					} else {
+						col.add(rv);
+					}
+				}
+				left.put(f.getName(), col);
+			}
+		}
 	}
 }
