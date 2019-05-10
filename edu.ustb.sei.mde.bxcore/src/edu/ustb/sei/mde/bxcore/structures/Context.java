@@ -101,24 +101,10 @@ public class Context {
 					}
 				}
 				
-				for(int i=0;i<values.size();i++) {
-					values.set(i, wrapValue(values.get(i)));
-				}
-				
-				valueMap.put(key, Optional.of(values));
+//				foreach i do values.set(i, unwrapValue(values.get(i)));				
+				valueMap.put(key, Optional.of(unwrapValue(value)));
 			} else {
-				valueMap.put(key, Optional.of(wrapValue(value)));
-//				if(value instanceof java.util.UUID) {
-//					valueMap.put(key, Optional.of(Index.freshIndex(value)));
-//				} else {
-//					if(value instanceof IndexableElement) {
-//						if(((IndexableElement) value).isIndexable()) {
-//							valueMap.put(key, Optional.of(((IndexableElement) value).getIndex()));
-//						} else { // the only un-indexable element is  value node
-//							valueMap.put(key, Optional.of(((ValueNode)value).getValue()));
-//						}
-//					} else valueMap.put(key, Optional.of(value));
-//				}
+				valueMap.put(key, Optional.of(unwrapValue(value)));
 			}
 		} else {
 			XmuCoreUtils.failure("You are trying to map a value onto an unregistered key in the context");
@@ -132,17 +118,24 @@ public class Context {
 		return false;
 	}
 	
-	private Object wrapValue(Object value) {
+	private Object unwrapValue(Object value) {
 		if(value!=null && isArray(value.getClass(), IEdge.class)) {
 			IEdge[] valueArr = (IEdge[]) value;
 			Index[] retValue = new Index[valueArr.length];
 			for(int i=0;i<valueArr.length;i++) {
-				retValue[i] = (Index) wrapValue(valueArr[i]);
+				retValue[i] = (Index) unwrapValue(valueArr[i]);
 			}
 			return retValue;
 		} else if(value instanceof java.util.UUID) {
 			return Index.freshIndex(value);
-		} else {
+		} else if(value instanceof List<?>) {
+			List<Object> result = new ArrayList<>();
+			for(Object v : (List<?>)value) {
+				result.add(unwrapValue(v));
+			}
+			return result;
+		}
+		else {
 			if(value instanceof IndexableElement) {
 				if(((IndexableElement) value).isIndexable()) {
 					return ((IndexableElement) value).getIndex();
@@ -506,41 +499,5 @@ public class Context {
 			}
 		}
 		return copy;
-	}
-	
-	public boolean isEqualForSingleValuedFields(Context context) {
-		for(FieldDef<?> f : this.getType().singleValuedFields()) {
-			Object lv = null;
-			Object rv = null;
-			
-			try {
-				lv = this.getValue(f);
-			} catch (Exception e) {
-				lv = null;
-			}
-			try {
-				rv = context.getValue(f);				
-			} catch (Exception e) {
-				rv = null;
-			}
-			
-			if(lv==rv || (lv!=null && lv.equals(rv))) continue;
-			else return false;
-		}
-		return true;
-	}
-
-	public void mergeMultiValuedFields(Context c) {
-		for(FieldDef<?> f : this.getType().fields()) {
-			if(f.isCollection()) {
-				try {
-					List<Object> col = getListValue(f);
-					List<Object> add = c.getListValue(f);
-					col.addAll(add);
-				} catch (UninitializedException | NothingReturnedException e) {
-					// what should I do?
-				}
-			}
-		}
 	}
 }

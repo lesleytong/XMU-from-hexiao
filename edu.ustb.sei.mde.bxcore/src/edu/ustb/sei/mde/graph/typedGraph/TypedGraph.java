@@ -355,6 +355,18 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		return result;
 	}
 	
+	@Derived 
+	public List<TypedEdge> getOutgoingEdges(TypedNode source, TypeEdge feature, TypeNode targetType) {
+		List<TypedEdge> result = new ArrayList<TypedEdge>();
+		
+		for(TypedEdge e : this.getOutgoingEdges(source)) {
+			if(e.getType()==feature && targetType.isSuperTypeOf(e.getTarget().getType())) {
+				result.add(e);
+			}
+		}
+		return result;
+	}
+	
 	@Derived private HashMap<TypedNode,List<TypedEdge>> incomingEdgeMap;
 	@Derived
 	public  List<TypedEdge> getIncomingEdges(TypedNode target) {
@@ -379,6 +391,18 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		
 		for(TypedEdge e : this.getIncomingEdges(target)) {
 			if(e.getType()==feature) {
+				result.add(e);
+			}
+		}
+		return result;
+	}
+	
+	@Derived 
+	public List<TypedEdge> getIncomingEdges(TypedNode target, TypeEdge feature, TypeNode sourceType) {
+		List<TypedEdge> result = new ArrayList<TypedEdge>();
+		
+		for(TypedEdge e : this.getIncomingEdges(target)) {
+			if(e.getType()==feature && sourceType.isSuperTypeOf(e.getSource().getType())) {
 				result.add(e);
 			}
 		}

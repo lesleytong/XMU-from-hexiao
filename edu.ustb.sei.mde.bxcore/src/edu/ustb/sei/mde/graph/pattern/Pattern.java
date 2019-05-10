@@ -39,12 +39,16 @@ import edu.ustb.sei.mde.graph.typedGraph.TypedGraphCreator;
 import edu.ustb.sei.mde.graph.typedGraph.TypedNode;
 import edu.ustb.sei.mde.graph.typedGraph.ValueEdge;
 import edu.ustb.sei.mde.graph.typedGraph.ValueNode;
-import edu.ustb.sei.mde.modelsolver.EdgeSetVar;
-import edu.ustb.sei.mde.modelsolver.GraphModel;
-import edu.ustb.sei.mde.modelsolver.NodeSetVar;
-import edu.ustb.sei.mde.modelsolver.NodeVar;
 import edu.ustb.sei.mde.structure.Tuple2;
 
+/**
+ * A pattern is an extended graph structure.
+ * It could be a plain graph, or a graph with collective nodes/edges, and path edges.
+ * For any collective node, there must be at most one (collective) edge that connects to it.
+ * The condition that involves collective nodes will not be used to filter elements in the collection.
+ * @author hexiao
+ *
+ */
 public class Pattern implements IGraph {
 	private List<INode> nodes = new ArrayList<INode>();
 	private List<IEdge> edges = new ArrayList<IEdge>();
@@ -91,6 +95,7 @@ public class Pattern implements IGraph {
 		this.nodes.add(node);
 	}
 
+	// WE MUST ASSURE: for a collective node, there must be one collective edge that connects to the node
 	public void addEdge(IEdge edge) {
 		boolean manyCons = 
 				Boolean.logicalXor(((PatternElement<?>) edge).isCollection(), ((PatternElement<?>) edge.getSource()).isCollection() ||  ((PatternElement<?>) edge.getTarget()).isCollection())
@@ -119,7 +124,7 @@ public class Pattern implements IGraph {
 
 	public List<Context> match(TypedGraph typedGraph, Context base) {
 
-		GraphModel model = getSolverModel(typedGraph, base);
+		GraphMatcher matcher = new GraphMatcher(this);
 
 		if (model == null)
 			return Collections.emptyList();
@@ -270,144 +275,6 @@ public class Pattern implements IGraph {
 			
 		} else 
 			return matches;
-	}
-	
-	static final INode[] EMPTY_NODE_ARR = new INode[0];
-	static final IEdge[] EMPTY_EDGE_ARR = new IEdge[0];
-	@SuppressWarnings({ "unchecked" })
-	protected GraphModel getSolverModel(TypedGraph typedGraph, Context base) {
-		GraphModel model = new GraphModel("pattern");
-		Map<INode, Variable> varMap = new HashMap<>();
-		ContextType baseType = base.getType();
-		
-		for (INode n : this.getNodes()) {
-			String name = ((PatternElement<?>) n).getName();
-			ITypeNode nodeType = (ITypeNode) ((PatternElement<?>) n).getElementType();
-			
-			INode[] domain = EMPTY_NODE_ARR;
-			boolean fixedValue = false;
-			try {
-				FieldDef<?> field = null;
-				if ((field = baseType.getField(name)) == null) {
-					if(n instanceof PatternNode) {
-						domain = typedGraph.getTypedNodesOf((TypeNode) nodeType);
-					} else if (n instanceof PatternValueNode) {
-						domain = typedGraph.getValueNodesOf((DataTypeNode) nodeType);
-					}
-				} else {
-					if(n instanceof PatternNode) {
-						if(((PatternElement<?>) n).isCollection()) {
-							List<Index> indices = base.getValue(field);
-							domain = new INode[indices.size()];
-							for(int i = 0; i< indices.size() ; i++)
-								domain[i] = typedGraph.getElementByIndexObject(indices.get(i));
-						} else {
-							Index index = base.getIndexValue(field);
-							TypedNode node = typedGraph.getElementByIndexObject(index);
-							domain = new INode[1];
-							domain[0] = node;
-						}
-					} else if (n instanceof PatternValueNode) {
-						if(((PatternElement<?>) n).isCollection()) {
-							List<Object> values = base.getValue(field);
-							domain = new INode[values.size()];
-							for(int i=0;i<values.size();i++) {
-								domain[i] = ValueNode.createConstantNode(values.get(i), (DataTypeNode) nodeType);
-							}
-						} else {
-							Object nodeValue = base.getPrimitiveValue(field);
-							domain = new INode[1];
-							domain[0] = ValueNode.createConstantNode(nodeValue, (DataTypeNode) nodeType);
-						}
-					}
-					fixedValue = true;
-				}
-			} catch (Exception e) {
-				domain  = EMPTY_NODE_ARR;
-			}
-			
-			if(domain.length==0) {
-				return null;
-			} else {
-				if(((PatternElement<?>) n).isCollection()) {
-					NodeSetVar<INode> var = fixedValue 
-							? model.fixedNodeSet(name, nodeType, domain) 
-									: model.nodeSet(name, nodeType, domain);
-					varMap.put(n, var);
-				} else {
-					NodeVar<INode> var = model.node(name, nodeType, domain);
-					varMap.put(n, var);
-				}
-			}
-		}
-		
-		for (IEdge n : this.getEdges()) {
-			String name = ((PatternElement<?>) n).getName();
-			IStructuralFeatureEdge edgeType = (IStructuralFeatureEdge) ((PatternElement<?>) n).getElementType();
-			
-			IEdge[] domain = EMPTY_EDGE_ARR;
-			boolean fixedValue = false;
-			try {
-				FieldDef<?> field = null;
-				if ((field = baseType.getField(name)) == null) {
-					if(n instanceof PatternEdge) {
-						domain = typedGraph.getTypedEdgesOf((TypeEdge) edgeType);
-					} else if(n instanceof PatternValueEdge) {
-						domain = typedGraph.getValueEdgesOf((PropertyEdge) edgeType);
-					}
-				} else {
-					if(n instanceof PatternEdge || n instanceof PatternValueEdge) {
-						if(((PatternElement<?>) n).isCollection()) {
-							List<Index> indices = base.getValue(field);
-							domain = new IEdge[indices.size()];
-							for(int i = 0; i< indices.size() ; i++)
-								domain[i] = typedGraph.getElementByIndexObject(indices.get(i));
-						} else {
-							Index index = base.getIndexValue(field);
-							IEdge node = typedGraph.getElementByIndexObject(index);
-							domain = new IEdge[1];
-							domain[0] = node;
-						}
-					} else if(n instanceof PatternPathEdge) {
-						System.out.println("no support");
-					}
-					fixedValue = true;
-				}
-			} catch (Exception e) {
-				domain  = EMPTY_EDGE_ARR;
-			}
-			
-			if(domain.length==0) {
-				return null;
-			} else {
-				if(edgeType instanceof PathType) {
-					// FIXME
-				} else {					
-					if(((PatternElement<?>) n).isCollection()) {
-						EdgeSetVar<IEdge> var = fixedValue 
-								? model.fixedEdgeSet(name, edgeType, domain) 
-										: model.edgeSet(name, edgeType, domain);
-								
-								if(((PatternElement<?>)n.getSource()).isCollection()) {
-									NodeSetVar<INode> sv = (NodeSetVar<INode>) varMap.get(n.getSource());
-									edu.ustb.sei.mde.modelsolver.NodeVar<INode> tv = (edu.ustb.sei.mde.modelsolver.NodeVar<INode>) varMap.get(n.getTarget());
-									model.connection(var, sv, tv).post();
-								} else {
-									NodeSetVar<INode> tv = (NodeSetVar<INode>) varMap.get(n.getTarget());
-									edu.ustb.sei.mde.modelsolver.NodeVar<INode> sv = (edu.ustb.sei.mde.modelsolver.NodeVar<INode>) varMap.get(n.getSource());
-									model.connection(var, sv, tv).post();
-								}
-					} else {
-						edu.ustb.sei.mde.modelsolver.EdgeVar<IEdge> var = model.edge(name, edgeType, domain);
-						edu.ustb.sei.mde.modelsolver.NodeVar<INode> sv = (edu.ustb.sei.mde.modelsolver.NodeVar<INode>) varMap.get(n.getSource());
-						edu.ustb.sei.mde.modelsolver.NodeVar<INode> tv = (edu.ustb.sei.mde.modelsolver.NodeVar<INode>) varMap.get(n.getTarget());
-						
-						model.connection(var, sv, tv).post();
-					}
-				}
-			}
-		}
-		return model;		
 	}
 
 	public void appendPatternNode(String name, ITypeNode type, boolean many) {
