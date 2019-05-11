@@ -440,7 +440,7 @@ public class GraphMatcher {
 				@SuppressWarnings("rawtypes")
 				List candidates = computeIncomingPathCandidates(graph, (ITypedNode) startingNode,
 						((PatternPathEdge) edgeInPattern).getElementType(),
-						(TypeNode) ((PatternElement<?>) ((IEdge) edgeInPattern).getTarget()).getElementType());
+						(TypeNode) ((PatternElement<?>) ((IEdge) edgeInPattern).getSource()).getElementType());
 				List<Map<String, Object>> matchesAfterEdge = matchEdge(edgeInPattern, (List<IEdge>) candidates,
 						startingPoint, initPoint, graph, fromNode);
 				matchesAfterEdge.forEach(ms -> {
@@ -451,16 +451,6 @@ public class GraphMatcher {
 			}
 			return result;
 		}
-	}
-	
-	// TODO:
-	private List<GraphPath> computeOutgoingPathCandidates(TypedGraph graph, TypedNode source, PathType pathType, ITypeNode targetType) {
-		return null;
-	}
-	
-	// TODO:
-	private List<GraphPath> computeIncomingPathCandidates(TypedGraph graph, ITypedNode source, PathType pathType, TypeNode targetType) {
-		return null;
 	}
 	
 	private List<? extends IEdge> computeOutgoingEdgeCandidates(TypedGraph graph, TypedNode source, IStructuralFeatureEdge edgeType, ITypeNode targetType) {
@@ -555,5 +545,35 @@ public class GraphMatcher {
 				left.put(f.getName(), col);
 			}
 		}
+	}
+	
+	// TODO:
+	/**
+	 * Compute all paths from a particular source to a node whose type is (a child of) targetType. 
+	 * Any returned path must conform to pathType.
+	 * This method is a dual of <code>computeIncomingPathCandidates</code>.
+	 * @param graph A typed graph to be searched.
+	 * @param source The starting point of any returned path.
+	 * @param pathType The type (shape) of returned paths, which is a regular path.
+	 * @param targetType The type of the end node of any returned path
+	 * @return All paths that meet the requirement
+	 */
+	private List<GraphPath> computeOutgoingPathCandidates(TypedGraph graph, TypedNode source, PathType pathType, ITypeNode targetType) {
+		return null;
+	}
+	
+	// TODO:
+	/**
+	 * Compute all paths to a particular target to a node whose type is (a child of) sourceType. 
+	 * Any returned path must conform to pathType.
+	 * This method is a dual of <code>computeOutgoingPathCandidates</code>.
+	 * @param graph A typed graph to be searched.
+	 * @param target The starting point of any returned path.
+	 * @param pathType The type (shape) of returned paths, which is a regular path.
+	 * @param sourceType The type of the start node of any returned path
+	 * @return All paths that meet the requirement
+	 */
+	private List<GraphPath> computeIncomingPathCandidates(TypedGraph graph, ITypedNode target, PathType pathType, TypeNode sourceType) {
+		return null;
 	}
 }
