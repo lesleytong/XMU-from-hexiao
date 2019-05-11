@@ -1,13 +1,12 @@
 package edu.ustb.sei.mde.graph.pattern;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.BiFunction;
 
 import edu.ustb.sei.mde.bxcore.exceptions.InitializationException;
-import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
 import edu.ustb.sei.mde.bxcore.structures.Context;
-import edu.ustb.sei.mde.bxcore.structures.Index;
+import edu.ustb.sei.mde.bxcore.structures.GraphPath;
+import edu.ustb.sei.mde.bxcore.structures.IndexPath;
 import edu.ustb.sei.mde.graph.IEdge;
 import edu.ustb.sei.mde.graph.INode;
 import edu.ustb.sei.mde.graph.type.PathType;
@@ -49,36 +48,24 @@ public class PatternPathEdge extends PatternElement<PathType> implements IEdge {
 			Object tv = match.getValue(tn.getName());
 			
 			if(isCollection()) {
-				List<Index[]> edgeIndices = match.getValue(getName());
+				List<IndexPath> indexPaths = match.getValue(getName());
 				BiFunction<Object,Integer,Object> sid = ((PatternElement<?>)getSource()).isCollection() ? LIST : ELEMENT;
 				BiFunction<Object,Integer,Object> tid = ((PatternElement<?>)getTarget()).isCollection() ? LIST : ELEMENT;
-				
-				for(int i=0;i<edgeIndices.size();i++) {
-					Index[] idx = edgeIndices.get(i);
-					IEdge[] path = Arrays.stream(idx).map(id->{
-						try {
-							return (IEdge) graph.getElementByIndexObject(id);
-						} catch (NothingReturnedException e) {
-							return null;
-						}
-					}).toArray(size->new IEdge[size]);
-					
+				for(int i=0;i<indexPaths.size();i++) {
+					GraphPath path = indexPaths.get(i).toGraphPath(graph);
 					if(getElementType().isInstance(path)){
-						if(!(isINodeEqual(path[0].getSource(), sid.apply(sv, i)) 
-								&& isINodeEqual(path[path.length-1].getTarget(), tid.apply(tv,i)))) 
+						if(!(isINodeEqual(path.getSource(), sid.apply(sv, i)) 
+								&& isINodeEqual(path.getTarget(), tid.apply(tv,i)))) 
 							return false;
 					} else return false;
 				}
 				return true;
 			} else {
-				Index[] pathIndices = match.getValue(getName());
-				IEdge[] path = new IEdge[pathIndices.length];
-				for(int i=0;i<path.length;i++) {
-					path[i] = graph.getElementByIndexObject(pathIndices[i]);
-				}
+				IndexPath indexPath = match.getValue(getName());
+				GraphPath path = indexPath.toGraphPath(graph);
 				if(this.getType().isInstance(path)) {
-					if(!(isINodeEqual(path[0].getSource(),sv) 
-							&& isINodeEqual(path[path.length-1].getTarget(), tv)))
+					if(!(isINodeEqual(path.getSource(),sv) 
+							&& isINodeEqual(path.getTarget(), tv)))
 						return false;
 					else 
 						return true;

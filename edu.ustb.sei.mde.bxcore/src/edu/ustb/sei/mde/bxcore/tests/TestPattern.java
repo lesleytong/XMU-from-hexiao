@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 import static org.junit.Assume.assumeTrue;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Assert;
@@ -141,4 +142,12 @@ class TestPattern {
 		Assert.assertTrue(matches.stream().allMatch(match->setPattern.isMatchOf(typedGraph, match)));
 	}
 
+	@Test
+	public void testName() throws Exception {
+		Object[] left = new Object[] {1,2,3};
+		Object[] right = new Object[] {1,2,3};
+		
+		
+		Assert.assertTrue(Arrays.equals(left,right));
+	}
 }

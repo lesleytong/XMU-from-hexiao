@@ -10,14 +10,13 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
+import edu.ustb.sei.mde.bxcore.Trace;
+import edu.ustb.sei.mde.bxcore.TraceSystem;
 import edu.ustb.sei.mde.bxcore.XmuCoreUtils;
 import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
 import edu.ustb.sei.mde.bxcore.exceptions.UninitializedException;
-import edu.ustb.sei.mde.graph.IEdge;
 import edu.ustb.sei.mde.graph.typedGraph.IndexableElement;
 import edu.ustb.sei.mde.graph.typedGraph.ValueNode;
-import edu.ustb.sei.mde.bxcore.Trace;
-import edu.ustb.sei.mde.bxcore.TraceSystem;
 import edu.ustb.sei.mde.structure.Tuple2;
 
 
@@ -111,39 +110,29 @@ public class Context {
 		}
 	}
 	
-	static public boolean isArray(Class<?> clazz, Class<?> elemcls) {
-		if(clazz.isArray()) {
-			return clazz.getComponentType()==elemcls;
-		}
-		return false;
-	}
-	
 	private Object unwrapValue(Object value) {
-		if(value!=null && isArray(value.getClass(), IEdge.class)) {
-			IEdge[] valueArr = (IEdge[]) value;
-			Index[] retValue = new Index[valueArr.length];
-			for(int i=0;i<valueArr.length;i++) {
-				retValue[i] = (Index) unwrapValue(valueArr[i]);
-			}
-			return retValue;
-		} else if(value instanceof java.util.UUID) {
-			return Index.freshIndex(value);
-		} else if(value instanceof List<?>) {
-			List<Object> result = new ArrayList<>();
-			for(Object v : (List<?>)value) {
-				result.add(unwrapValue(v));
-			}
-			return result;
-		}
-		else {
-			if(value instanceof IndexableElement) {
-				if(((IndexableElement) value).isIndexable()) {
-					return ((IndexableElement) value).getIndex();
-				} else { // the only un-indexable element is  value node
-					return ((ValueNode)value).getValue();
+		if(value!=null) {
+			if(value instanceof GraphPath) {
+				return ((GraphPath) value).toIndexPath();
+			} else if(value instanceof java.util.UUID) {
+				return Index.freshIndex(value);
+			} else if(value instanceof List<?>) {
+				List<Object> result = new ArrayList<>();
+				for(Object v : (List<?>)value) {
+					result.add(unwrapValue(v));
 				}
-			} else return value;
-		}
+				return result;
+			} else {
+				if(value instanceof IndexableElement) {
+					if(((IndexableElement) value).isIndexable()) {
+						return ((IndexableElement) value).getIndex();
+					} else { // the only un-indexable element is  value node
+						return ((ValueNode)value).getValue();
+					}
+				} else return value;
+			}
+		} else
+			return value;
 	}
 
 	public void register(FieldDef<?> key) {

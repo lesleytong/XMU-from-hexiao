@@ -16,12 +16,15 @@ import edu.ustb.sei.mde.bxcore.structures.Context;
 import edu.ustb.sei.mde.bxcore.structures.ContextGraph;
 import edu.ustb.sei.mde.bxcore.structures.ContextType;
 import edu.ustb.sei.mde.bxcore.structures.FieldDef;
+import edu.ustb.sei.mde.bxcore.structures.GraphPath;
 import edu.ustb.sei.mde.bxcore.structures.Index;
+import edu.ustb.sei.mde.bxcore.structures.IndexPath;
 import edu.ustb.sei.mde.graph.IEdge;
 import edu.ustb.sei.mde.graph.INode;
 import edu.ustb.sei.mde.graph.type.DataTypeNode;
 import edu.ustb.sei.mde.graph.type.IStructuralFeatureEdge;
 import edu.ustb.sei.mde.graph.type.ITypeNode;
+import edu.ustb.sei.mde.graph.type.PathType;
 import edu.ustb.sei.mde.graph.type.PropertyEdge;
 import edu.ustb.sei.mde.graph.type.TypeEdge;
 import edu.ustb.sei.mde.graph.type.TypeGraph;
@@ -56,11 +59,8 @@ public class GraphMatcher {
 				result.add(wrap(def, v, graph));
 			}
 			return result;
-		} else if(value.getClass().isArray()) {
-			IEdge[] paths = new IEdge[((Index[])value).length];
-			for(int i=0;i<paths.length;i++)
-				paths[i] = (IEdge) wrap(def, ((Index[])value)[i], graph);
-			return paths;
+		} else if(value instanceof IndexPath) {
+			return ((IndexPath) value).toGraphPath(graph);
 		} else {
 			return ValueNode.createConstantNode(value, (DataTypeNode) def.getElementType());
 		}
@@ -395,7 +395,7 @@ public class GraphMatcher {
 			List<Map<String, Object>> result = new ArrayList<>();
 			if (edgeInPattern instanceof PatternEdge || edgeInPattern instanceof PatternValueEdge) {
 				@SuppressWarnings("rawtypes")
-				List candidates = computeOutingEdgeCandidates(graph, (TypedNode) startingNode, 
+				List candidates = computeOutgoingEdgeCandidates(graph, (TypedNode) startingNode, 
 						(IStructuralFeatureEdge) edgeInPattern.getElementType(), 
 						(ITypeNode) ((PatternElement<?>)((IEdge) edgeInPattern).getTarget()).getElementType());
 				List<Map<String, Object>> matchesAfterEdge = matchEdge(edgeInPattern, (List<IEdge>) candidates,
@@ -406,6 +406,18 @@ public class GraphMatcher {
 					result.addAll(matchesRest);
 				});
 			} else if (edgeInPattern instanceof PatternPathEdge) {
+				@SuppressWarnings("rawtypes")
+				List candidates = computeOutgoingPathCandidates(graph, (TypedNode) startingNode,
+						((PatternPathEdge) edgeInPattern).getElementType(),
+						(ITypeNode) ((PatternElement<?>) ((IEdge) edgeInPattern).getTarget()).getElementType());
+				List<Map<String, Object>> matchesAfterEdge = matchEdge(edgeInPattern, (List<IEdge>) candidates,
+						startingPoint, initPoint, graph, fromNode);
+				matchesAfterEdge.forEach(ms -> {
+					List<Map<String, Object>> matchesRest = recursiveMatchEdges(relatedPatternEdges, startingNode, ms,
+							initPoint, graph, fromNode);
+					result.addAll(matchesRest);
+				});
+				
 				throw new UnsupportedOperationException();
 			}
 			return result;
@@ -425,13 +437,33 @@ public class GraphMatcher {
 					result.addAll(matchesRest);
 				});
 			} else if (edgeInPattern instanceof PatternPathEdge) {
-				throw new UnsupportedOperationException();
+				@SuppressWarnings("rawtypes")
+				List candidates = computeIncomingPathCandidates(graph, (ITypedNode) startingNode,
+						((PatternPathEdge) edgeInPattern).getElementType(),
+						(TypeNode) ((PatternElement<?>) ((IEdge) edgeInPattern).getTarget()).getElementType());
+				List<Map<String, Object>> matchesAfterEdge = matchEdge(edgeInPattern, (List<IEdge>) candidates,
+						startingPoint, initPoint, graph, fromNode);
+				matchesAfterEdge.forEach(ms -> {
+					List<Map<String, Object>> matchesRest = recursiveMatchEdges(relatedPatternEdges, startingNode, ms,
+							initPoint, graph, fromNode);
+					result.addAll(matchesRest);
+				});
 			}
 			return result;
 		}
 	}
 	
-	private List<? extends IEdge> computeOutingEdgeCandidates(TypedGraph graph, TypedNode source, IStructuralFeatureEdge edgeType, ITypeNode targetType) {
+	// TODO:
+	private List<GraphPath> computeOutgoingPathCandidates(TypedGraph graph, TypedNode source, PathType pathType, ITypeNode targetType) {
+		return null;
+	}
+	
+	// TODO:
+	private List<GraphPath> computeIncomingPathCandidates(TypedGraph graph, ITypedNode source, PathType pathType, TypeNode targetType) {
+		return null;
+	}
+	
+	private List<? extends IEdge> computeOutgoingEdgeCandidates(TypedGraph graph, TypedNode source, IStructuralFeatureEdge edgeType, ITypeNode targetType) {
 		if(edgeType instanceof TypeEdge) {
 			return graph.getOutgoingEdges(source, (TypeEdge) edgeType, (TypeNode) targetType);
 		} else {

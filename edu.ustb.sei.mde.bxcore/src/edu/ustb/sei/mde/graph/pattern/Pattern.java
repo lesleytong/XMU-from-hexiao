@@ -1,18 +1,10 @@
 package edu.ustb.sei.mde.graph.pattern;
 
-import java.io.ObjectInputStream.GetField;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.function.Function;
 import java.util.regex.Matcher;
-import java.util.stream.Collectors;
 
-import org.chocosolver.solver.variables.Variable;
-
-import edu.ustb.sei.mde.bxcore.XmuCoreUtils;
 import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
 import edu.ustb.sei.mde.bxcore.exceptions.UninitializedException;
 import edu.ustb.sei.mde.bxcore.structures.Context;
@@ -25,7 +17,6 @@ import edu.ustb.sei.mde.graph.IGraph;
 import edu.ustb.sei.mde.graph.INamedElement;
 import edu.ustb.sei.mde.graph.INode;
 import edu.ustb.sei.mde.graph.type.DataTypeNode;
-import edu.ustb.sei.mde.graph.type.ICollectionType;
 import edu.ustb.sei.mde.graph.type.IStructuralFeatureEdge;
 import edu.ustb.sei.mde.graph.type.ITypeNode;
 import edu.ustb.sei.mde.graph.type.PathType;
@@ -33,13 +24,11 @@ import edu.ustb.sei.mde.graph.type.PropertyEdge;
 import edu.ustb.sei.mde.graph.type.TypeEdge;
 import edu.ustb.sei.mde.graph.type.TypeGraph;
 import edu.ustb.sei.mde.graph.type.TypeNode;
-import edu.ustb.sei.mde.graph.typedGraph.IndexableElement;
 import edu.ustb.sei.mde.graph.typedGraph.TypedEdge;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraphCreator;
 import edu.ustb.sei.mde.graph.typedGraph.TypedNode;
 import edu.ustb.sei.mde.graph.typedGraph.ValueEdge;
-import edu.ustb.sei.mde.graph.typedGraph.ValueNode;
 import edu.ustb.sei.mde.structure.Tuple2;
 
 /**
@@ -170,8 +159,14 @@ public class Pattern implements IGraph {
 			edge.setSource((PatternNode) getNode(source));
 			edge.setTarget((PatternValueNode) getNode(target));
 			this.addEdge(edge);
+		} else if(type instanceof PathType) {
+			PatternPathEdge edge = new PatternPathEdge();
+			edge.setName(name);
+			edge.setType((PathType) type);
+			edge.setSource((PatternNode) getNode(source));
+			edge.setTarget(getNode(target));
+			this.addEdge(edge);
 		}
-		// TODO: handle path edge
 	}
 
 	public PatternElement<?> getPatternElement(String name) {
@@ -240,6 +235,8 @@ public class Pattern implements IGraph {
 					id++;
 				}
 			} else {
+				// TODO: handle path edge
+				
 				Index index = (Index) value;
 				createEdge(-1, n, index, creator, graph, referenceGraph);				
 			}
@@ -281,6 +278,11 @@ public class Pattern implements IGraph {
 			} catch (NothingReturnedException | NullPointerException e) {
 				edge = creator.createValueEdge(sourceNodeName, targetNodeName, ((PatternValueEdge) n).getElementType(), index);
 			}
+		} else if (n instanceof PatternValueEdge) {
+			// TODO: First compute shortest path. 
+			// TODO: If the shortest path has a length of 1, create the edge.
+			// TODO: Otherwise, throw
+			throw new UnsupportedOperationException();
 		}
 		// handle path edge
 	}

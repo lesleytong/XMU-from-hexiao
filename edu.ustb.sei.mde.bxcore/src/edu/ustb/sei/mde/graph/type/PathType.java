@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import edu.ustb.sei.mde.bxcore.structures.FieldDef;
+import edu.ustb.sei.mde.bxcore.structures.GraphPath;
 import edu.ustb.sei.mde.graph.IEdge;
 import edu.ustb.sei.mde.graph.typedGraph.ITypedEdge;
 
@@ -49,10 +50,10 @@ public abstract class PathType implements IElementType {
 	static final protected Class<?> edgeArrayType = FieldDef.EMPTY_PATH.getClass();
 	
 	@Override
-	public boolean isInstance(Object value) {
-		if(value==null || value.getClass().isArray()==false) return false;
+	final public boolean isInstance(Object value) {
+		if(value==null || !(value instanceof GraphPath)) return false;
 		else {
-			IEdge[] pathValue = (IEdge[]) value;
+			IEdge[] pathValue = ((GraphPath)value).getPathEdges();
 			for(int i=0;i<pathValue.length - 1;i++) {
 				IEdge pe = pathValue[i];
 				IEdge ne = pathValue[i+1];
