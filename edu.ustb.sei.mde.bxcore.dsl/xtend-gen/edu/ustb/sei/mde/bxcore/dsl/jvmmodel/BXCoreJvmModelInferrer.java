@@ -2641,7 +2641,7 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
                 {
                   for(final Tuple3<String, Object, Boolean> v : elements) {
                     _builder.append("\t");
-                    _builder.append("Object ");
+                    _builder.append("edu.ustb.sei.mde.graph.type.IType ");
                     _builder.append(v.first, "\t");
                     _builder.append("_type = typeGraph.");
                     {

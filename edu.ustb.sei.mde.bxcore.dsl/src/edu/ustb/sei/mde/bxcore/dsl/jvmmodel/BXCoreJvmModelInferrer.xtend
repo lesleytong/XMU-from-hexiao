@@ -908,7 +908,7 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 						«TypeGraph.typeRef.qualifiedName» typeGraph = getTypeGraph_«typeGraph.shortName.toFirstUpper»();
 						«varName» = new «ContextType.typeRef.qualifiedName»();
 						«FOR v : elements»
-						Object «v.first»_type = typeGraph.«IF v.second instanceof EClassifier»«IF v.second instanceof EClass»getTypeNode«ELSE»getDataTypeNode«ENDIF»("«(v.second as EClassifier).name»")«ELSEIF v.second instanceof EStructuralFeature»«IF v.second instanceof EReference»getTypeEdge«ELSE»getPropertyEdge«ENDIF»(typeGraph.getTypeNode("«(v.second as EStructuralFeature).EContainingClass.name»"),"«(v.second as EStructuralFeature).name»")«ELSE»/* ERROR «v.second» */«ENDIF»;
+						edu.ustb.sei.mde.graph.type.IType «v.first»_type = typeGraph.«IF v.second instanceof EClassifier»«IF v.second instanceof EClass»getTypeNode«ELSE»getDataTypeNode«ENDIF»("«(v.second as EClassifier).name»")«ELSEIF v.second instanceof EStructuralFeature»«IF v.second instanceof EReference»getTypeEdge«ELSE»getPropertyEdge«ENDIF»(typeGraph.getTypeNode("«(v.second as EStructuralFeature).EContainingClass.name»"),"«(v.second as EStructuralFeature).name»")«ELSE»/* ERROR «v.second» */«ENDIF»;
 						«varName».addField("«v.first»", «v.first»_type, «v.third»);
 					«ENDFOR»
 					«ENDIF»
