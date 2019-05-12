@@ -19,7 +19,7 @@ import edu.ustb.sei.mde.graph.INode;
 import edu.ustb.sei.mde.graph.type.DataTypeNode;
 import edu.ustb.sei.mde.graph.type.IStructuralFeatureEdge;
 import edu.ustb.sei.mde.graph.type.ITypeNode;
-import edu.ustb.sei.mde.graph.type.PathType;
+import edu.ustb.sei.mde.graph.type.IPathType;
 import edu.ustb.sei.mde.graph.type.PropertyEdge;
 import edu.ustb.sei.mde.graph.type.TypeEdge;
 import edu.ustb.sei.mde.graph.type.TypeGraph;
@@ -159,10 +159,10 @@ public class Pattern implements IGraph {
 			edge.setSource((PatternNode) getNode(source));
 			edge.setTarget((PatternValueNode) getNode(target));
 			this.addEdge(edge);
-		} else if(type instanceof PathType) {
+		} else if(type instanceof IPathType) {
 			PatternPathEdge edge = new PatternPathEdge();
 			edge.setName(name);
-			edge.setType((PathType) type);
+			edge.setType((IPathType) type);
 			edge.setSource((PatternNode) getNode(source));
 			edge.setTarget(getNode(target));
 			this.addEdge(edge);

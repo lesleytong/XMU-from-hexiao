@@ -6,12 +6,13 @@ import java.util.Collections;
 
 import edu.ustb.sei.mde.bxcore.XmuCoreUtils;
 import edu.ustb.sei.mde.bxcore.exceptions.InitializationException;
+import edu.ustb.sei.mde.graph.IEdge;
 import edu.ustb.sei.mde.graph.INamedElement;
 import edu.ustb.sei.mde.graph.type.ICollectionType;
 import edu.ustb.sei.mde.graph.type.IElementType;
 import edu.ustb.sei.mde.graph.type.IType;
 import edu.ustb.sei.mde.graph.type.ListType;
-import edu.ustb.sei.mde.graph.type.PathType;
+import edu.ustb.sei.mde.graph.type.IPathType;
 import edu.ustb.sei.mde.graph.type.PropertyEdge;
 import edu.ustb.sei.mde.graph.type.TypeEdge;
 import edu.ustb.sei.mde.graph.type.TypeNode;
@@ -102,7 +103,7 @@ public class FieldDef<T extends IType> implements INamedElement {
 	}
 	
 	
-	final static public Index[] EMPTY_PATH = new Index[0];
+	final static public GraphPath EMPTY_PATH = new GraphPath(new IEdge[0], null);
 	
 	/**
 	 * get a default of this FieldDef
@@ -116,7 +117,7 @@ public class FieldDef<T extends IType> implements INamedElement {
 			else 
 				return null;
 		} else {
-			if(getType() instanceof PathType) {
+			if(getType() instanceof IPathType) {
 				return EMPTY_PATH;
 			} else if(getType() instanceof ICollectionType) {
 				if(generate)

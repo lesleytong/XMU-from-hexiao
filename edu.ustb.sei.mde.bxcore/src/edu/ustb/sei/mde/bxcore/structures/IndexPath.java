@@ -3,18 +3,18 @@ package edu.ustb.sei.mde.bxcore.structures;
 import java.util.Arrays;
 
 import edu.ustb.sei.mde.graph.IEdge;
-import edu.ustb.sei.mde.graph.type.PathType;
+import edu.ustb.sei.mde.graph.type.IPathType;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
 
 public class IndexPath {
 	protected Index[] indices;
-	protected PathType type;
+	protected IPathType type;
 	
-	public PathType getType() {
+	public IPathType getType() {
 		return type;
 	}
 
-	public IndexPath(Index[] indices, PathType type) {
+	public IndexPath(Index[] indices, IPathType type) {
 		this.indices = indices;
 		this.type = type;
 	}

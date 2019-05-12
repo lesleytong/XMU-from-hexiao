@@ -24,7 +24,7 @@ import edu.ustb.sei.mde.graph.INode;
 import edu.ustb.sei.mde.graph.type.DataTypeNode;
 import edu.ustb.sei.mde.graph.type.IStructuralFeatureEdge;
 import edu.ustb.sei.mde.graph.type.ITypeNode;
-import edu.ustb.sei.mde.graph.type.PathType;
+import edu.ustb.sei.mde.graph.type.IPathType;
 import edu.ustb.sei.mde.graph.type.PropertyEdge;
 import edu.ustb.sei.mde.graph.type.TypeEdge;
 import edu.ustb.sei.mde.graph.type.TypeGraph;
@@ -558,7 +558,7 @@ public class GraphMatcher {
 	 * @param targetType The type of the end node of any returned path
 	 * @return All paths that meet the requirement
 	 */
-	private List<GraphPath> computeOutgoingPathCandidates(TypedGraph graph, TypedNode source, PathType pathType, ITypeNode targetType) {
+	private List<GraphPath> computeOutgoingPathCandidates(TypedGraph graph, TypedNode source, IPathType pathType, ITypeNode targetType) {
 		return null;
 	}
 	
@@ -573,7 +573,7 @@ public class GraphMatcher {
 	 * @param sourceType The type of the start node of any returned path
 	 * @return All paths that meet the requirement
 	 */
-	private List<GraphPath> computeIncomingPathCandidates(TypedGraph graph, ITypedNode target, PathType pathType, TypeNode sourceType) {
+	private List<GraphPath> computeIncomingPathCandidates(TypedGraph graph, ITypedNode target, IPathType pathType, TypeNode sourceType) {
 		return null;
 	}
 }

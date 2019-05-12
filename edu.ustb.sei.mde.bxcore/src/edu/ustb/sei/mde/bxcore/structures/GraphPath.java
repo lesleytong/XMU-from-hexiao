@@ -4,20 +4,20 @@ import java.util.Arrays;
 
 import edu.ustb.sei.mde.graph.IEdge;
 import edu.ustb.sei.mde.graph.INode;
-import edu.ustb.sei.mde.graph.type.PathType;
+import edu.ustb.sei.mde.graph.type.IPathType;
 import edu.ustb.sei.mde.graph.typedGraph.IndexableElement;
 
 public class GraphPath implements IEdge {
-	public GraphPath(IEdge[] path, PathType type) {
+	public GraphPath(IEdge[] path, IPathType type) {
 		super();
 		this.path = path;
 		this.type = type;
 	}
 
 	protected IEdge[] path; 
-	protected PathType type;
+	protected IPathType type;
 	
-	public PathType getType() {
+	public IPathType getType() {
 		return type;
 	}
 

@@ -10,38 +10,59 @@ import edu.ustb.sei.mde.bxcore.structures.GraphPath;
 import edu.ustb.sei.mde.graph.IEdge;
 import edu.ustb.sei.mde.graph.typedGraph.ITypedEdge;
 
-public abstract class PathType implements IElementType {
-	protected PathType container = null;
-	protected PathType silbing = null;
+public interface IPathType extends IElementType {
+}
+
+
+class PathCheckCache {
+	private Map<Object,Map<Integer, Boolean>> cache = new HashMap<>();
+	public Boolean check(Object type, int index) {
+		Map<Integer, Boolean> map = cache.getOrDefault(type, Collections.emptyMap());
+		return map.get(index);
+	}
+	public void setCache(Object type, int index, boolean value) {
+		Map<Integer, Boolean> map = cache.get(type);
+		if(map==null) {
+			map = new HashMap<>();
+			cache.put(type, map);
+		}
+		map.put(index, value);
+	}
+}
+
+@Deprecated
+abstract class RegxPathType implements IPathType {
+	protected RegxPathType container = null;
+	protected RegxPathType silbing = null;
 	
-	protected PathType[] moveToNext() {
-		if(this.silbing!=null) return new PathType[] {this.silbing};
+	protected RegxPathType[] moveToNext() {
+		if(this.silbing!=null) return new RegxPathType[] {this.silbing};
 		else if(this.container!=null) return this.container.moveToNext();
 		else return null;
 	}
 	
 
-	static public PathType simple(IStructuralFeatureEdge edge) {
+	static public RegxPathType simple(IStructuralFeatureEdge edge) {
 		SimplePath p = new SimplePath();
 		p.setEdge(edge);
 		return p;
 	}
 	
-	static public PathType alt(PathType... paths) {
+	static public RegxPathType alt(RegxPathType... paths) {
 		if(paths.length==1) return paths[0];
 		AltPath p = new AltPath();
 		p.setPaths(paths);
 		return p;
 	}
 	
-	static public PathType seq(PathType... paths) {
+	static public RegxPathType seq(RegxPathType... paths) {
 		if(paths.length==1) return paths[0];
 		SeqPath p = new SeqPath();
 		p.setPaths(paths);
 		return p;
 	}
 	
-	static public RepPath rep(PathType path) {
+	static public RegxPathType rep(RegxPathType path) {
 		RepPath p = new RepPath();
 		p.setPath(path);
 		return p;
@@ -67,23 +88,9 @@ public abstract class PathType implements IElementType {
 	abstract protected boolean isInstanceFrom(IEdge[] values, int index, PathCheckCache cache);
 }
 
-class PathCheckCache {
-	private Map<PathType,Map<Integer, Boolean>> cache = new HashMap<>();
-	public Boolean check(PathType type, int index) {
-		Map<Integer, Boolean> map = cache.getOrDefault(type, Collections.emptyMap());
-		return map.get(index);
-	}
-	public void setCache(PathType type, int index, boolean value) {
-		Map<Integer, Boolean> map = cache.get(type);
-		if(map==null) {
-			map = new HashMap<>();
-			cache.put(type, map);
-		}
-		map.put(index, value);
-	}
-}
 
-class SimplePath extends PathType {
+@Deprecated
+class SimplePath extends RegxPathType {
 	private IStructuralFeatureEdge edge;
 
 	public IStructuralFeatureEdge getEdge() {
@@ -114,13 +121,13 @@ class SimplePath extends PathType {
 			return false;
 		}
 		else if(edge.isInstance(values[index])) {
-			PathType[] next = this.moveToNext();
+			RegxPathType[] next = this.moveToNext();
 			if(next==null) {
 				boolean value = index + 1 == values.length;
 				cache.setCache(this, index, value);
 				return value;
 			} else {
-				for(PathType np : next) {
+				for(RegxPathType np : next) {
 					if(np.isInstanceFrom(values, index + 1, cache)) {
 						cache.setCache(this, index, true);
 						return true;
@@ -136,16 +143,17 @@ class SimplePath extends PathType {
 	}
 }
 
-class AltPath extends PathType {
-	private PathType[] paths;
+@Deprecated
+class AltPath extends RegxPathType {
+	private RegxPathType[] paths;
 
-	public PathType[] getPaths() {
+	public RegxPathType[] getPaths() {
 		return paths;
 	}
 
-	void setPaths(PathType[] paths) {
+	void setPaths(RegxPathType[] paths) {
 		this.paths = paths;
-		for(PathType p : paths) {
+		for(RegxPathType p : paths) {
 			p.container = this;
 		}
 	}
@@ -172,7 +180,7 @@ class AltPath extends PathType {
 		Boolean flag = cache.check(this, index);
 		if(flag!=null) return flag;
 		
-		for(PathType edge : paths) {
+		for(RegxPathType edge : paths) {
 			if(edge.isInstanceFrom(values, index, cache)) {
 				cache.setCache(this, index, true);
 				return true;
@@ -183,13 +191,14 @@ class AltPath extends PathType {
 	}
 }
 
-class SeqPath extends PathType {
-	private PathType[] paths;
-	public PathType[] getPaths() {
+@Deprecated
+class SeqPath extends RegxPathType {
+	private RegxPathType[] paths;
+	public RegxPathType[] getPaths() {
 		return paths;
 	}
 
-	void setPaths(PathType[] paths) {
+	void setPaths(RegxPathType[] paths) {
 		this.paths = paths;
 		for(int i=0;i<paths.length-1;i++) {
 			paths[i].silbing = paths[i+1];
@@ -223,15 +232,15 @@ class SeqPath extends PathType {
 	}
 }
 
-class RepPath extends PathType {
-	private PathType path;
+class RepPath extends RegxPathType {
+	private RegxPathType path;
 	private boolean maySkip = false;
 
-	public PathType getPath() {
+	public IPathType getPath() {
 		return path;
 	}
 
-	public void setPath(PathType path) {
+	public void setPath(RegxPathType path) {
 		this.path = path;
 		path.container = this;
 	}
@@ -250,9 +259,9 @@ class RepPath extends PathType {
 	}
 	
 	@Override
-	protected PathType[] moveToNext() {
-		PathType[] oldNext = super.moveToNext();
-		PathType[] newNext = new PathType[oldNext.length+1];
+	protected RegxPathType[] moveToNext() {
+		RegxPathType[] oldNext = super.moveToNext();
+		RegxPathType[] newNext = new RegxPathType[oldNext.length+1];
 		for(int i=0;i<oldNext.length;i++) 
 			newNext[i+1] = oldNext[i];
 		
@@ -267,12 +276,12 @@ class RepPath extends PathType {
 		if(flag!=null) return flag;
 		
 		if(maySkip) {
-			PathType[] next = super.moveToNext();
+			RegxPathType[] next = super.moveToNext();
 			if(next==null) {
 				boolean value = index == values.length;
 				cache.setCache(this, index, value);
 			}
-			for(PathType np : next) {
+			for(RegxPathType np : next) {
 				if(np.isInstanceFrom(values, index, cache)) {
 					cache.setCache(this, index, true);
 					return true;

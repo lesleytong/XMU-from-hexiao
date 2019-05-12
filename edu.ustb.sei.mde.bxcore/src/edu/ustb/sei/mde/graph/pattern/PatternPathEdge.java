@@ -9,10 +9,10 @@ import edu.ustb.sei.mde.bxcore.structures.GraphPath;
 import edu.ustb.sei.mde.bxcore.structures.IndexPath;
 import edu.ustb.sei.mde.graph.IEdge;
 import edu.ustb.sei.mde.graph.INode;
-import edu.ustb.sei.mde.graph.type.PathType;
+import edu.ustb.sei.mde.graph.type.IPathType;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
 
-public class PatternPathEdge extends PatternElement<PathType> implements IEdge {
+public class PatternPathEdge extends PatternElement<IPathType> implements IEdge {
 	private PatternNode source;
 	private PatternElement<?> target;
 	
