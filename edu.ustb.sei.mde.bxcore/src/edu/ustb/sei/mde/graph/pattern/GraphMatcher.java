@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import edu.ustb.sei.mde.bxcore.XmuCoreUtils;
@@ -21,6 +23,8 @@ import edu.ustb.sei.mde.bxcore.structures.Index;
 import edu.ustb.sei.mde.bxcore.structures.IndexPath;
 import edu.ustb.sei.mde.graph.IEdge;
 import edu.ustb.sei.mde.graph.INode;
+import edu.ustb.sei.mde.graph.type.DashedPathType;
+import edu.ustb.sei.mde.graph.type.DashedPathTypeSegment;
 import edu.ustb.sei.mde.graph.type.DataTypeNode;
 import edu.ustb.sei.mde.graph.type.IStructuralFeatureEdge;
 import edu.ustb.sei.mde.graph.type.ITypeNode;
@@ -29,6 +33,7 @@ import edu.ustb.sei.mde.graph.type.PropertyEdge;
 import edu.ustb.sei.mde.graph.type.TypeEdge;
 import edu.ustb.sei.mde.graph.type.TypeGraph;
 import edu.ustb.sei.mde.graph.type.TypeNode;
+import edu.ustb.sei.mde.graph.typedGraph.ITypedEdge;
 import edu.ustb.sei.mde.graph.typedGraph.ITypedNode;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
 import edu.ustb.sei.mde.graph.typedGraph.TypedNode;
@@ -462,10 +467,16 @@ public class GraphMatcher {
 	}
 	
 	private List<? extends IEdge> computeIncomingEdgeCandidates(TypedGraph graph, ITypedNode target, IStructuralFeatureEdge edgeType, TypeNode sourceType) {
-		if(edgeType instanceof TypeEdge)
-			return graph.getIncomingEdges((TypedNode) target, (TypeEdge) edgeType, sourceType);
-		else
-			return graph.getValueEdgesTo((ValueNode) target, (PropertyEdge) edgeType, sourceType);
+		if(edgeType instanceof TypeEdge) {
+			if(target instanceof TypedNode)
+				return graph.getIncomingEdges((TypedNode) target, (TypeEdge) edgeType, sourceType);
+			else return Collections.emptyList();
+		}
+		else {
+			if(target instanceof ValueNode)
+				return graph.getValueEdgesTo((ValueNode) target, (PropertyEdge) edgeType, sourceType);
+			else return Collections.emptyList();
+		}
 	}
 	
 	private void group(List<Map<String,Object>> matches) {
@@ -559,7 +570,129 @@ public class GraphMatcher {
 	 * @return All paths that meet the requirement
 	 */
 	private List<GraphPath> computeOutgoingPathCandidates(TypedGraph graph, TypedNode source, IPathType pathType, ITypeNode targetType) {
-		return null;
+		if(pathType instanceof DashedPathType) {
+			PathTrace start = new PathTrace(source);
+			List<PathTrace> traces = computeOutgoingPathCandidates(graph, start, (DashedPathType) pathType, 0, targetType);
+			
+			List<GraphPath> result = new ArrayList<>();
+			
+			for(PathTrace trace : traces) {
+				IEdge[] path = trace.reduce(true);
+				result.add(new GraphPath(path, pathType));
+			}
+			
+			return result;
+		} else {
+			throw new UnsupportedOperationException("Do not support regular path type now");
+		}
+	}
+	
+	private List<PathTrace> computeOutgoingPathCandidates(TypedGraph graph, PathTrace start, DashedPathType pathType, int segIndex, ITypeNode targetType) {
+		DashedPathTypeSegment[] segments = pathType.getSegments();
+		
+		if(segIndex==segments.length) {
+			if(targetType.isInstance(start.node)) return Collections.singletonList(start);
+			else return Collections.emptyList();
+		}
+		
+		DashedPathTypeSegment curSeg = segments[segIndex];
+		
+		List<PathTrace> seeds = new ArrayList<>();
+		seeds.add(start);
+		
+		// search min
+		for(int min=0;min<curSeg.getMin() && !seeds.isEmpty(); min++) {
+			List<PathTrace> nextSeeds = new ArrayList<>();
+			for(PathTrace seed : seeds) {
+				ITypedNode target = seed.node;
+				if(target instanceof TypedNode) {
+					for(IStructuralFeatureEdge edgeType : curSeg.getEdgeTypes()) {
+						List<? extends IEdge> edges = computeOutgoingEdgeCandidates(graph, ((TypedNode)target), edgeType, null);
+						for(IEdge edge : edges) {
+							if(!seed.checkOccur(edge.getTarget()))
+								nextSeeds.add(new PathTrace((ITypedNode) edge.getTarget(), (ITypedEdge) edge, seed));
+						}
+					}
+				}
+			}
+			seeds = nextSeeds;
+		}
+		
+		if(seeds.isEmpty()) return Collections.emptyList();
+		
+		// search max
+		List<PathTrace> maxResult = new ArrayList<>(); // maxResult contains all traces that meet the min and max requirement
+		maxResult.addAll(seeds);
+		for(int max=curSeg.getMin(); (curSeg.getMax()<0 || max<curSeg.getMax()) && !seeds.isEmpty() ; max++) {
+			List<PathTrace> nextSeeds = new ArrayList<>();
+			for(PathTrace seed : seeds) {
+				ITypedNode target = seed.node;
+				if(target instanceof TypedNode) {
+					for(IStructuralFeatureEdge edgeType : curSeg.getEdgeTypes()) {
+						List<? extends IEdge> edges = computeOutgoingEdgeCandidates(graph, ((TypedNode)target), edgeType, null);
+						for(IEdge edge : edges) {
+							if(!seed.checkOccur(edge.getTarget()))
+								nextSeeds.add(new PathTrace((ITypedNode) edge.getTarget(), (ITypedEdge) edge, seed));
+						}
+					}
+				}
+			}
+			maxResult.addAll(nextSeeds);
+			seeds = nextSeeds;
+		}
+		
+		List<PathTrace> result = new ArrayList<>();
+		for(PathTrace internal : maxResult) {
+			result.addAll(computeOutgoingPathCandidates(graph, internal, pathType, segIndex + 1, targetType));
+		}
+		return result;
+	}
+	
+	final class PathTrace {
+		public PathTrace(ITypedNode node, ITypedEdge edge, PathTrace prev) {
+			this.node = node;
+			this.edge = edge;
+			this.prev = prev;
+		}
+		
+		public PathTrace(ITypedNode node) {
+			this.node = node;
+			this.edge = null;
+			this.prev = null;
+		}
+		final public ITypedNode node;
+		final public ITypedEdge edge;
+		final public PathTrace prev;
+		
+		public boolean checkOccur(INode node) {
+			PathTrace trace = this;
+			while(trace!=null) {
+				if(trace.node==node) return true;
+				trace = trace.prev;
+			}
+			return false;
+		}
+		
+		public IEdge[] reduce(boolean reverse) {
+			return reduce(0, reverse);
+		}
+		
+		private IEdge[] reduce(int index, boolean reverse) {
+			IEdge[] result = null;
+			if(this.prev==null) {
+				result = new IEdge[index];
+			} else {
+				result = this.prev.reduce(index + 1, reverse);
+				if(reverse) {
+					result[result.length - index - 1] = this.edge;
+				} else {
+					result[index] = this.edge;  
+				}
+			}
+			
+			return result;
+			
+		}
 	}
 	
 	// TODO:
@@ -574,6 +707,78 @@ public class GraphMatcher {
 	 * @return All paths that meet the requirement
 	 */
 	private List<GraphPath> computeIncomingPathCandidates(TypedGraph graph, ITypedNode target, IPathType pathType, TypeNode sourceType) {
-		return null;
+		if(pathType instanceof DashedPathType) {
+			PathTrace start = new PathTrace(target);
+			List<PathTrace> traces = computeIncomingPathCandidates(graph, start, (DashedPathType) pathType, 
+					((DashedPathType) pathType).getSegments().length - 1, sourceType);
+			
+			List<GraphPath> result = new ArrayList<>();
+			
+			for(PathTrace trace : traces) {
+				IEdge[] path = trace.reduce(false);
+				result.add(new GraphPath(path, pathType));
+			}
+			
+			return result;
+		} else {
+			throw new UnsupportedOperationException("Do not support regular path type now");
+		}
+	}
+	
+	private List<PathTrace> computeIncomingPathCandidates(TypedGraph graph, PathTrace start, DashedPathType pathType, int segIndex, TypeNode sourceType) {
+		DashedPathTypeSegment[] segments = pathType.getSegments();
+		
+		if(segIndex==-1) {
+			if(sourceType.isInstance(start.node)) return Collections.singletonList(start);
+			else return Collections.emptyList();
+		}
+		
+		DashedPathTypeSegment curSeg = segments[segIndex];
+		
+		List<PathTrace> seeds = new ArrayList<>();
+		seeds.add(start);
+		
+		// search min
+		for(int min=0;min<curSeg.getMin() && !seeds.isEmpty(); min++) {
+			List<PathTrace> nextSeeds = new ArrayList<>();
+			for(PathTrace seed : seeds) {
+				ITypedNode source = seed.node;
+				for(IStructuralFeatureEdge edgeType : curSeg.getEdgeTypes()) {
+					List<? extends IEdge> edges = computeIncomingEdgeCandidates(graph, source, edgeType, null);
+					for(IEdge edge : edges) {
+						if(!seed.checkOccur(edge.getSource()))
+							nextSeeds.add(new PathTrace((ITypedNode) edge.getSource(), (ITypedEdge) edge, seed));
+					}
+				}
+			}
+			seeds = nextSeeds;
+		}
+		
+		if(seeds.isEmpty()) return Collections.emptyList();
+		
+		// search max
+		List<PathTrace> maxResult = new ArrayList<>(); // maxResult contains all traces that meet the min and max requirement
+		maxResult.addAll(seeds);
+		for(int max=curSeg.getMin(); (curSeg.getMax()<0 || max<curSeg.getMax()) && !seeds.isEmpty() ; max++) {
+			List<PathTrace> nextSeeds = new ArrayList<>();
+			for(PathTrace seed : seeds) {
+				ITypedNode source = seed.node;
+				for(IStructuralFeatureEdge edgeType : curSeg.getEdgeTypes()) {
+					List<? extends IEdge> edges = computeIncomingEdgeCandidates(graph, source, edgeType, null);
+					for(IEdge edge : edges) {
+						if(!seed.checkOccur(edge.getTarget()))
+							nextSeeds.add(new PathTrace((ITypedNode) edge.getSource(), (ITypedEdge) edge, seed));
+					}
+				}
+			}
+			maxResult.addAll(nextSeeds);
+			seeds = nextSeeds;
+		}
+		
+		List<PathTrace> result = new ArrayList<>();
+		for(PathTrace internal : maxResult) {
+			result.addAll(computeIncomingPathCandidates(graph, internal, pathType, segIndex - 1, sourceType));
+		}
+		return result;
 	}
 }

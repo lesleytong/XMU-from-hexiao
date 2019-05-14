@@ -360,7 +360,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		List<TypedEdge> result = new ArrayList<TypedEdge>();
 		
 		for(TypedEdge e : this.getOutgoingEdges(source)) {
-			if(e.getType()==feature && targetType.isSuperTypeOf(e.getTarget().getType())) {
+			if(e.getType()==feature && (targetType==null || targetType.isSuperTypeOf(e.getTarget().getType()))) {
 				result.add(e);
 			}
 		}
@@ -401,7 +401,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		List<TypedEdge> result = new ArrayList<TypedEdge>();
 		
 		for(TypedEdge e : this.getIncomingEdges(target)) {
-			if(e.getType()==feature && sourceType.isSuperTypeOf(e.getSource().getType())) {
+			if(e.getType()==feature && (sourceType==null || sourceType.isSuperTypeOf(e.getSource().getType()))) {
 				result.add(e);
 			}
 		}
@@ -460,7 +460,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 	public List<ValueEdge> getValueEdgesTo(ValueNode target, PropertyEdge type, TypeNode sourceType) {
 		List<ValueEdge> result = new ArrayList<ValueEdge>();
 		for(ValueEdge e : this.getValueReferences(target)) {
-			if(e.getType()==type && sourceType.isSuperTypeOf(e.getSource().getType())) {
+			if(e.getType()==type && (sourceType==null || sourceType.isSuperTypeOf(e.getSource().getType()))) {
 				result.add(e);
 			}
 		}
