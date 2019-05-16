@@ -4,6 +4,7 @@ import edu.ustb.sei.mde.bxcore.SourceType
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.AllInstanceExpression
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextVarExpression
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.DashedPathType
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.DeleteElementExpression
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.EnforcementExpression
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ExpressionConversion
@@ -13,25 +14,22 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.ModificationExpressionBlock
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.NavigationExpression
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression
 import edu.ustb.sei.mde.bxcore.structures.GraphModification
+import edu.ustb.sei.mde.bxcore.structures.GraphPath
 import edu.ustb.sei.mde.bxcore.structures.Index
+import edu.ustb.sei.mde.bxcore.structures.IndexPath
 import edu.ustb.sei.mde.graph.typedGraph.ITypedEdge
 import edu.ustb.sei.mde.graph.typedGraph.TypedEdge
 import edu.ustb.sei.mde.graph.typedGraph.TypedNode
 import edu.ustb.sei.mde.graph.typedGraph.ValueEdge
-import edu.ustb.sei.mde.graph.typedGraph.ValueNode
 import java.util.List
 import org.eclipse.emf.ecore.EAttribute
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EDataType
 import org.eclipse.emf.ecore.EEnum
-import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.xtext.diagnostics.Severity
 import org.eclipse.xtext.validation.EObjectDiagnosticImpl
-import org.eclipse.xtext.xbase.XExpression
-import org.eclipse.xtext.xbase.XIfExpression
-import org.eclipse.xtext.xbase.XbasePackage
 import org.eclipse.xtext.xbase.typesystem.computation.ITypeComputationState
 import org.eclipse.xtext.xbase.typesystem.computation.XbaseTypeComputer
 import org.eclipse.xtext.xbase.typesystem.conformance.ConformanceFlags
@@ -83,8 +81,9 @@ class XmuCoreTypeComputer extends XbaseTypeComputer {
 					getRawTypeForName(type.instanceClass, state)
 				else if (type instanceof EReference)
 					getRawTypeForName(Index, state)
-				else if(type instanceof EAttribute) getRawTypeForName(Index, state) else getRawTypeForName(Object,
-					state)
+				else if(type instanceof EAttribute) getRawTypeForName(Index, state) 
+				else if(type instanceof DashedPathType) getRawTypeForName(IndexPath,state)
+				else getRawTypeForName(Object,state)
 			} else {
 				if (type instanceof EClass)
 					getRawTypeForName(TypedNode, state)
@@ -94,8 +93,9 @@ class XmuCoreTypeComputer extends XbaseTypeComputer {
 					getRawTypeForName(type.instanceClass, state)
 				else if (type instanceof EReference)
 					getRawTypeForName(TypedEdge, state)
-				else if(type instanceof EAttribute) getRawTypeForName(ValueEdge, state) else getRawTypeForName(Object,
-					state)
+				else if(type instanceof EAttribute) getRawTypeForName(ValueEdge, state)
+				else if(type instanceof DashedPathType) getRawTypeForName(GraphPath,state) 
+				else getRawTypeForName(Object, state)
 			}
 
 		if (isList) {
@@ -199,6 +199,7 @@ class XmuCoreTypeComputer extends XbaseTypeComputer {
     			state.withExpectation(typedNodeRef).computeTypes(instance.sourceValue);
     			state.withNonVoidExpectation.computeTypes(instance.targetValue);
     		}
+    		// TODO: if new path instance, extend here
     	}
     		
 		

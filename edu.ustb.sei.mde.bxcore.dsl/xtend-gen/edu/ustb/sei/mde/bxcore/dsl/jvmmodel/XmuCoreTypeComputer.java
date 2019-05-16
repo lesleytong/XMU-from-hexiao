@@ -5,6 +5,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.AllInstanceExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextVarExpression;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.DashedPathType;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.DeleteElementExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.EnforcementExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ExpressionConversion;
@@ -18,7 +19,9 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.ValueMapping;
 import edu.ustb.sei.mde.bxcore.dsl.jvmmodel.ModelInferrerUtils;
 import edu.ustb.sei.mde.bxcore.dsl.structure.TupleType;
 import edu.ustb.sei.mde.bxcore.structures.GraphModification;
+import edu.ustb.sei.mde.bxcore.structures.GraphPath;
 import edu.ustb.sei.mde.bxcore.structures.Index;
+import edu.ustb.sei.mde.bxcore.structures.IndexPath;
 import edu.ustb.sei.mde.graph.typedGraph.ITypedEdge;
 import edu.ustb.sei.mde.graph.typedGraph.TypedEdge;
 import edu.ustb.sei.mde.graph.typedGraph.TypedNode;
@@ -131,7 +134,13 @@ public class XmuCoreTypeComputer extends XbaseTypeComputer {
                 if ((type instanceof EAttribute)) {
                   _xifexpression_5 = this.getRawTypeForName(Index.class, state);
                 } else {
-                  _xifexpression_5 = this.getRawTypeForName(Object.class, state);
+                  LightweightTypeReference _xifexpression_6 = null;
+                  if ((type instanceof DashedPathType)) {
+                    _xifexpression_6 = this.getRawTypeForName(IndexPath.class, state);
+                  } else {
+                    _xifexpression_6 = this.getRawTypeForName(Object.class, state);
+                  }
+                  _xifexpression_5 = _xifexpression_6;
                 }
                 _xifexpression_4 = _xifexpression_5;
               }
@@ -143,40 +152,46 @@ public class XmuCoreTypeComputer extends XbaseTypeComputer {
         }
         _xifexpression = _xifexpression_1;
       } else {
-        LightweightTypeReference _xifexpression_6 = null;
+        LightweightTypeReference _xifexpression_7 = null;
         if ((type instanceof EClass)) {
-          _xifexpression_6 = this.getRawTypeForName(TypedNode.class, state);
+          _xifexpression_7 = this.getRawTypeForName(TypedNode.class, state);
         } else {
-          LightweightTypeReference _xifexpression_7 = null;
+          LightweightTypeReference _xifexpression_8 = null;
           if ((type instanceof EEnum)) {
-            _xifexpression_7 = this.getRawTypeForName(String.class, state);
+            _xifexpression_8 = this.getRawTypeForName(String.class, state);
           } else {
-            LightweightTypeReference _xifexpression_8 = null;
+            LightweightTypeReference _xifexpression_9 = null;
             if ((type instanceof EDataType)) {
-              _xifexpression_8 = this.getRawTypeForName(((EDataType)type).getInstanceClass(), state);
+              _xifexpression_9 = this.getRawTypeForName(((EDataType)type).getInstanceClass(), state);
             } else {
-              LightweightTypeReference _xifexpression_9 = null;
+              LightweightTypeReference _xifexpression_10 = null;
               if ((type instanceof EReference)) {
-                _xifexpression_9 = this.getRawTypeForName(TypedEdge.class, state);
+                _xifexpression_10 = this.getRawTypeForName(TypedEdge.class, state);
               } else {
-                LightweightTypeReference _xifexpression_10 = null;
+                LightweightTypeReference _xifexpression_11 = null;
                 if ((type instanceof EAttribute)) {
-                  _xifexpression_10 = this.getRawTypeForName(ValueEdge.class, state);
+                  _xifexpression_11 = this.getRawTypeForName(ValueEdge.class, state);
                 } else {
-                  _xifexpression_10 = this.getRawTypeForName(Object.class, state);
+                  LightweightTypeReference _xifexpression_12 = null;
+                  if ((type instanceof DashedPathType)) {
+                    _xifexpression_12 = this.getRawTypeForName(GraphPath.class, state);
+                  } else {
+                    _xifexpression_12 = this.getRawTypeForName(Object.class, state);
+                  }
+                  _xifexpression_11 = _xifexpression_12;
                 }
-                _xifexpression_9 = _xifexpression_10;
+                _xifexpression_10 = _xifexpression_11;
               }
-              _xifexpression_8 = _xifexpression_9;
+              _xifexpression_9 = _xifexpression_10;
             }
-            _xifexpression_7 = _xifexpression_8;
+            _xifexpression_8 = _xifexpression_9;
           }
-          _xifexpression_6 = _xifexpression_7;
+          _xifexpression_7 = _xifexpression_8;
         }
-        _xifexpression = _xifexpression_6;
+        _xifexpression = _xifexpression_7;
       }
       final LightweightTypeReference elementType = _xifexpression;
-      LightweightTypeReference _xifexpression_11 = null;
+      LightweightTypeReference _xifexpression_13 = null;
       if (isList) {
         ParameterizedTypeReference _xblockexpression_1 = null;
         {
@@ -185,11 +200,11 @@ public class XmuCoreTypeComputer extends XbaseTypeComputer {
           array.addTypeArgument(elementType);
           _xblockexpression_1 = array;
         }
-        _xifexpression_11 = _xblockexpression_1;
+        _xifexpression_13 = _xblockexpression_1;
       } else {
-        _xifexpression_11 = elementType;
+        _xifexpression_13 = elementType;
       }
-      _xblockexpression = _xifexpression_11;
+      _xblockexpression = _xifexpression_13;
     }
     return _xblockexpression;
   }

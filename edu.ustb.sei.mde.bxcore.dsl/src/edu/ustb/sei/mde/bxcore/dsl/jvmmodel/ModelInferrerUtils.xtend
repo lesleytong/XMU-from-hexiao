@@ -1,36 +1,31 @@
 package edu.ustb.sei.mde.bxcore.dsl.jvmmodel
 
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXProgram
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeLiteral
-import java.util.HashMap
-import edu.ustb.sei.mde.structure.Tuple2
-import edu.ustb.sei.mde.bxcore.dsl.structure.TupleType
-import java.util.ArrayList
-import edu.ustb.sei.mde.bxcore.dsl.infer.TypeInferenceException
-import org.eclipse.emf.ecore.EObject
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.Pattern
-import edu.ustb.sei.mde.bxcore.dsl.infer.InferManager
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternDefinitionReference
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternTypeLiteral
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreStatement
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareCondition
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXProgram
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareCondition
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareDerivationAction
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareUnidirectionalAction
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreAlign
-import org.eclipse.emf.ecore.EClassifier
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextExpression
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextVarExpression
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.NavigationExpression
-import org.eclipse.emf.ecore.EClass
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.SideEnum
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ExpressionConversion
-import org.eclipse.emf.ecore.EStructuralFeature
-import org.eclipse.emf.ecore.EReference
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextAwareDerivationAction
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreDeriveSource
-import edu.ustb.sei.mde.bxcore.Derive
-import edu.ustb.sei.mde.bxcore.Dependency
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.NavigationExpression
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.Pattern
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternDefinitionReference
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternTypeLiteral
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.SideEnum
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeLiteral
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreAlign
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreDependencyView
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreDeriveSource
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreStatement
+import edu.ustb.sei.mde.bxcore.dsl.infer.InferManager
+import edu.ustb.sei.mde.bxcore.dsl.infer.TypeInferenceException
+import edu.ustb.sei.mde.bxcore.dsl.structure.TupleType
+import edu.ustb.sei.mde.structure.Tuple2
+import java.util.ArrayList
+import java.util.HashMap
+import org.eclipse.emf.ecore.EClass
+import org.eclipse.emf.ecore.EObject
 
 class ModelInferrerUtils {
 	static def groupTypeLiterals(BXProgram program) {
