@@ -87,7 +87,11 @@ public class BXCoreFactoryImpl extends EFactoryImpl implements BXCoreFactory
       case BXCorePackage.TYPE_REF: return createTypeRef();
       case BXCorePackage.INDEX_DEFINITION: return createIndexDefinition();
       case BXCorePackage.PATTERN_NODE: return createPatternNode();
+      case BXCorePackage.ABSTRACT_PATTERN_EDGE: return createAbstractPatternEdge();
       case BXCorePackage.PATTERN_EDGE: return createPatternEdge();
+      case BXCorePackage.PATTERN_PATH_EDGE: return createPatternPathEdge();
+      case BXCorePackage.DASHED_PATH_TYPE: return createDashedPathType();
+      case BXCorePackage.DASHED_PATH_TYPE_SEGMENT: return createDashedPathTypeSegment();
       case BXCorePackage.PATTERN_VALUE_CONDITION: return createPatternValueCondition();
       case BXCorePackage.PATTERN_NODE_REF: return createPatternNodeRef();
       case BXCorePackage.PATTERN: return createPattern();
@@ -416,10 +420,54 @@ public class BXCoreFactoryImpl extends EFactoryImpl implements BXCoreFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public AbstractPatternEdge createAbstractPatternEdge()
+  {
+    AbstractPatternEdgeImpl abstractPatternEdge = new AbstractPatternEdgeImpl();
+    return abstractPatternEdge;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public PatternEdge createPatternEdge()
   {
     PatternEdgeImpl patternEdge = new PatternEdgeImpl();
     return patternEdge;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PatternPathEdge createPatternPathEdge()
+  {
+    PatternPathEdgeImpl patternPathEdge = new PatternPathEdgeImpl();
+    return patternPathEdge;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public DashedPathType createDashedPathType()
+  {
+    DashedPathTypeImpl dashedPathType = new DashedPathTypeImpl();
+    return dashedPathType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public DashedPathTypeSegment createDashedPathTypeSegment()
+  {
+    DashedPathTypeSegmentImpl dashedPathTypeSegment = new DashedPathTypeSegmentImpl();
+    return dashedPathTypeSegment;
   }
 
   /**

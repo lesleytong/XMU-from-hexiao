@@ -3,8 +3,8 @@
  */
 package edu.ustb.sei.mde.bxcore.dsl.bXCore.impl;
 
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.AbstractPatternEdge;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage;
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternEdge;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternNode;
 
 import java.util.Collection;
@@ -99,7 +99,7 @@ public class PatternNodeImpl extends PatternValueConditionImpl implements Patter
    * @generated
    * @ordered
    */
-  protected EList<PatternEdge> edges;
+  protected EList<AbstractPatternEdge> edges;
 
   /**
    * <!-- begin-user-doc -->
@@ -216,11 +216,11 @@ public class PatternNodeImpl extends PatternValueConditionImpl implements Patter
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<PatternEdge> getEdges()
+  public EList<AbstractPatternEdge> getEdges()
   {
     if (edges == null)
     {
-      edges = new EObjectContainmentEList<PatternEdge>(PatternEdge.class, this, BXCorePackage.PATTERN_NODE__EDGES);
+      edges = new EObjectContainmentEList<AbstractPatternEdge>(AbstractPatternEdge.class, this, BXCorePackage.PATTERN_NODE__EDGES);
     }
     return edges;
   }
@@ -286,7 +286,7 @@ public class PatternNodeImpl extends PatternValueConditionImpl implements Patter
         return;
       case BXCorePackage.PATTERN_NODE__EDGES:
         getEdges().clear();
-        getEdges().addAll((Collection<? extends PatternEdge>)newValue);
+        getEdges().addAll((Collection<? extends AbstractPatternEdge>)newValue);
         return;
     }
     super.eSet(featureID, newValue);

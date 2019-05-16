@@ -39,6 +39,8 @@ public class BXCoreParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getTypeDefinitionAccess().getAlternatives(), "rule__TypeDefinition__Alternatives");
 			builder.put(grammarAccess.getContextTypeRefAccess().getAlternatives(), "rule__ContextTypeRef__Alternatives");
 			builder.put(grammarAccess.getTypeRefAccess().getAlternatives(), "rule__TypeRef__Alternatives");
+			builder.put(grammarAccess.getAbstractPatternEdgeAccess().getAlternatives(), "rule__AbstractPatternEdge__Alternatives");
+			builder.put(grammarAccess.getDashedPathTypeSegmentAccess().getRepeatAlternatives_4_0(), "rule__DashedPathTypeSegment__RepeatAlternatives_4_0");
 			builder.put(grammarAccess.getPatternValueConditionAccess().getAlternatives(), "rule__PatternValueCondition__Alternatives");
 			builder.put(grammarAccess.getPatternAccess().getAlternatives(), "rule__Pattern__Alternatives");
 			builder.put(grammarAccess.getXmuCoreStatementAccess().getAlternatives(), "rule__XmuCoreStatement__Alternatives");
@@ -132,6 +134,11 @@ public class BXCoreParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getPatternNodeAccess().getGroup_4_1(), "rule__PatternNode__Group_4_1__0");
 			builder.put(grammarAccess.getPatternNodeAccess().getGroup_4_1_1(), "rule__PatternNode__Group_4_1_1__0");
 			builder.put(grammarAccess.getPatternEdgeAccess().getGroup(), "rule__PatternEdge__Group__0");
+			builder.put(grammarAccess.getPatternPathEdgeAccess().getGroup(), "rule__PatternPathEdge__Group__0");
+			builder.put(grammarAccess.getDashedPathTypeAccess().getGroup(), "rule__DashedPathType__Group__0");
+			builder.put(grammarAccess.getDashedPathTypeAccess().getGroup_1(), "rule__DashedPathType__Group_1__0");
+			builder.put(grammarAccess.getDashedPathTypeSegmentAccess().getGroup(), "rule__DashedPathTypeSegment__Group__0");
+			builder.put(grammarAccess.getDashedPathTypeSegmentAccess().getGroup_2(), "rule__DashedPathTypeSegment__Group_2__0");
 			builder.put(grammarAccess.getTypeIndicatorAccess().getGroup(), "rule__TypeIndicator__Group__0");
 			builder.put(grammarAccess.getXmuCoreContextSourceAccess().getGroup(), "rule__XmuCoreContextSource__Group__0");
 			builder.put(grammarAccess.getXmuCoreDeriveSourceAccess().getGroup(), "rule__XmuCoreDeriveSource__Group__0");
@@ -445,6 +452,16 @@ public class BXCoreParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getPatternEdgeAccess().getManyAssignment_3(), "rule__PatternEdge__ManyAssignment_3");
 			builder.put(grammarAccess.getPatternEdgeAccess().getOperatorAssignment_4(), "rule__PatternEdge__OperatorAssignment_4");
 			builder.put(grammarAccess.getPatternEdgeAccess().getValueAssignment_5(), "rule__PatternEdge__ValueAssignment_5");
+			builder.put(grammarAccess.getPatternPathEdgeAccess().getNameAssignment_0(), "rule__PatternPathEdge__NameAssignment_0");
+			builder.put(grammarAccess.getPatternPathEdgeAccess().getPathAssignment_2(), "rule__PatternPathEdge__PathAssignment_2");
+			builder.put(grammarAccess.getPatternPathEdgeAccess().getManyAssignment_3(), "rule__PatternPathEdge__ManyAssignment_3");
+			builder.put(grammarAccess.getPatternPathEdgeAccess().getOperatorAssignment_4(), "rule__PatternPathEdge__OperatorAssignment_4");
+			builder.put(grammarAccess.getPatternPathEdgeAccess().getValueAssignment_5(), "rule__PatternPathEdge__ValueAssignment_5");
+			builder.put(grammarAccess.getDashedPathTypeAccess().getSegmentAssignment_0(), "rule__DashedPathType__SegmentAssignment_0");
+			builder.put(grammarAccess.getDashedPathTypeAccess().getNextAssignment_1_1(), "rule__DashedPathType__NextAssignment_1_1");
+			builder.put(grammarAccess.getDashedPathTypeSegmentAccess().getTypesAssignment_1(), "rule__DashedPathTypeSegment__TypesAssignment_1");
+			builder.put(grammarAccess.getDashedPathTypeSegmentAccess().getTypesAssignment_2_1(), "rule__DashedPathTypeSegment__TypesAssignment_2_1");
+			builder.put(grammarAccess.getDashedPathTypeSegmentAccess().getRepeatAssignment_4(), "rule__DashedPathTypeSegment__RepeatAssignment_4");
 			builder.put(grammarAccess.getPatternNodeRefAccess().getNodeAssignment(), "rule__PatternNodeRef__NodeAssignment");
 			builder.put(grammarAccess.getPatternDefinitionReferenceAccess().getPatternAssignment(), "rule__PatternDefinitionReference__PatternAssignment");
 			builder.put(grammarAccess.getTypeIndicatorAccess().getSourceTypeAssignment_1(), "rule__TypeIndicator__SourceTypeAssignment_1");

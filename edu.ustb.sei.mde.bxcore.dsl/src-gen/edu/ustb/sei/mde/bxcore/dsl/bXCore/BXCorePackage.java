@@ -826,7 +826,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getPatternValueCondition()
    * @generated
    */
-  int PATTERN_VALUE_CONDITION = 22;
+  int PATTERN_VALUE_CONDITION = 26;
 
   /**
    * The number of structural features of the '<em>Pattern Value Condition</em>' class.
@@ -893,14 +893,14 @@ public interface BXCorePackage extends EPackage
   int PATTERN_NODE_FEATURE_COUNT = PATTERN_VALUE_CONDITION_FEATURE_COUNT + 4;
 
   /**
-   * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PatternEdgeImpl <em>Pattern Edge</em>}' class.
+   * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.AbstractPatternEdgeImpl <em>Abstract Pattern Edge</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PatternEdgeImpl
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getPatternEdge()
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.AbstractPatternEdgeImpl
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getAbstractPatternEdge()
    * @generated
    */
-  int PATTERN_EDGE = 21;
+  int ABSTRACT_PATTERN_EDGE = 21;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -909,16 +909,7 @@ public interface BXCorePackage extends EPackage
    * @generated
    * @ordered
    */
-  int PATTERN_EDGE__NAME = 0;
-
-  /**
-   * The feature id for the '<em><b>Feature</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PATTERN_EDGE__FEATURE = 1;
+  int ABSTRACT_PATTERN_EDGE__NAME = 0;
 
   /**
    * The feature id for the '<em><b>Many</b></em>' attribute.
@@ -927,7 +918,7 @@ public interface BXCorePackage extends EPackage
    * @generated
    * @ordered
    */
-  int PATTERN_EDGE__MANY = 2;
+  int ABSTRACT_PATTERN_EDGE__MANY = 1;
 
   /**
    * The feature id for the '<em><b>Operator</b></em>' attribute.
@@ -936,7 +927,7 @@ public interface BXCorePackage extends EPackage
    * @generated
    * @ordered
    */
-  int PATTERN_EDGE__OPERATOR = 3;
+  int ABSTRACT_PATTERN_EDGE__OPERATOR = 2;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' containment reference.
@@ -945,7 +936,71 @@ public interface BXCorePackage extends EPackage
    * @generated
    * @ordered
    */
-  int PATTERN_EDGE__VALUE = 4;
+  int ABSTRACT_PATTERN_EDGE__VALUE = 3;
+
+  /**
+   * The number of structural features of the '<em>Abstract Pattern Edge</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ABSTRACT_PATTERN_EDGE_FEATURE_COUNT = 4;
+
+  /**
+   * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PatternEdgeImpl <em>Pattern Edge</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PatternEdgeImpl
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getPatternEdge()
+   * @generated
+   */
+  int PATTERN_EDGE = 22;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PATTERN_EDGE__NAME = ABSTRACT_PATTERN_EDGE__NAME;
+
+  /**
+   * The feature id for the '<em><b>Many</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PATTERN_EDGE__MANY = ABSTRACT_PATTERN_EDGE__MANY;
+
+  /**
+   * The feature id for the '<em><b>Operator</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PATTERN_EDGE__OPERATOR = ABSTRACT_PATTERN_EDGE__OPERATOR;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PATTERN_EDGE__VALUE = ABSTRACT_PATTERN_EDGE__VALUE;
+
+  /**
+   * The feature id for the '<em><b>Feature</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PATTERN_EDGE__FEATURE = ABSTRACT_PATTERN_EDGE_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Pattern Edge</em>' class.
@@ -954,7 +1009,145 @@ public interface BXCorePackage extends EPackage
    * @generated
    * @ordered
    */
-  int PATTERN_EDGE_FEATURE_COUNT = 5;
+  int PATTERN_EDGE_FEATURE_COUNT = ABSTRACT_PATTERN_EDGE_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PatternPathEdgeImpl <em>Pattern Path Edge</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PatternPathEdgeImpl
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getPatternPathEdge()
+   * @generated
+   */
+  int PATTERN_PATH_EDGE = 23;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PATTERN_PATH_EDGE__NAME = ABSTRACT_PATTERN_EDGE__NAME;
+
+  /**
+   * The feature id for the '<em><b>Many</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PATTERN_PATH_EDGE__MANY = ABSTRACT_PATTERN_EDGE__MANY;
+
+  /**
+   * The feature id for the '<em><b>Operator</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PATTERN_PATH_EDGE__OPERATOR = ABSTRACT_PATTERN_EDGE__OPERATOR;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PATTERN_PATH_EDGE__VALUE = ABSTRACT_PATTERN_EDGE__VALUE;
+
+  /**
+   * The feature id for the '<em><b>Path</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PATTERN_PATH_EDGE__PATH = ABSTRACT_PATTERN_EDGE_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Pattern Path Edge</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PATTERN_PATH_EDGE_FEATURE_COUNT = ABSTRACT_PATTERN_EDGE_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.DashedPathTypeImpl <em>Dashed Path Type</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.DashedPathTypeImpl
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getDashedPathType()
+   * @generated
+   */
+  int DASHED_PATH_TYPE = 24;
+
+  /**
+   * The feature id for the '<em><b>Segment</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DASHED_PATH_TYPE__SEGMENT = 0;
+
+  /**
+   * The feature id for the '<em><b>Next</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DASHED_PATH_TYPE__NEXT = 1;
+
+  /**
+   * The number of structural features of the '<em>Dashed Path Type</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DASHED_PATH_TYPE_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.DashedPathTypeSegmentImpl <em>Dashed Path Type Segment</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.DashedPathTypeSegmentImpl
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getDashedPathTypeSegment()
+   * @generated
+   */
+  int DASHED_PATH_TYPE_SEGMENT = 25;
+
+  /**
+   * The feature id for the '<em><b>Types</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DASHED_PATH_TYPE_SEGMENT__TYPES = 0;
+
+  /**
+   * The feature id for the '<em><b>Repeat</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DASHED_PATH_TYPE_SEGMENT__REPEAT = 1;
+
+  /**
+   * The number of structural features of the '<em>Dashed Path Type Segment</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DASHED_PATH_TYPE_SEGMENT_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PatternNodeRefImpl <em>Pattern Node Ref</em>}' class.
@@ -964,7 +1157,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getPatternNodeRef()
    * @generated
    */
-  int PATTERN_NODE_REF = 23;
+  int PATTERN_NODE_REF = 27;
 
   /**
    * The feature id for the '<em><b>Node</b></em>' reference.
@@ -992,7 +1185,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getPattern()
    * @generated
    */
-  int PATTERN = 24;
+  int PATTERN = 28;
 
   /**
    * The number of structural features of the '<em>Pattern</em>' class.
@@ -1011,7 +1204,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getPatternDefinitionReference()
    * @generated
    */
-  int PATTERN_DEFINITION_REFERENCE = 25;
+  int PATTERN_DEFINITION_REFERENCE = 29;
 
   /**
    * The feature id for the '<em><b>Pattern</b></em>' reference.
@@ -1039,7 +1232,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreStatement()
    * @generated
    */
-  int XMU_CORE_STATEMENT = 26;
+  int XMU_CORE_STATEMENT = 30;
 
   /**
    * The feature id for the '<em><b>Type Indicator</b></em>' containment reference.
@@ -1067,7 +1260,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreCompositionChildStatement()
    * @generated
    */
-  int XMU_CORE_COMPOSITION_CHILD_STATEMENT = 27;
+  int XMU_CORE_COMPOSITION_CHILD_STATEMENT = 31;
 
   /**
    * The feature id for the '<em><b>Type Indicator</b></em>' containment reference.
@@ -1095,7 +1288,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getTypeIndicator()
    * @generated
    */
-  int TYPE_INDICATOR = 28;
+  int TYPE_INDICATOR = 32;
 
   /**
    * The feature id for the '<em><b>Source Type</b></em>' containment reference.
@@ -1132,7 +1325,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreContextSource()
    * @generated
    */
-  int XMU_CORE_CONTEXT_SOURCE = 29;
+  int XMU_CORE_CONTEXT_SOURCE = 33;
 
   /**
    * The feature id for the '<em><b>Type Indicator</b></em>' containment reference.
@@ -1178,7 +1371,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getContextAwareDerivationAction()
    * @generated
    */
-  int CONTEXT_AWARE_DERIVATION_ACTION = 30;
+  int CONTEXT_AWARE_DERIVATION_ACTION = 34;
 
   /**
    * The feature id for the '<em><b>Body</b></em>' containment reference.
@@ -1206,7 +1399,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreDeriveSource()
    * @generated
    */
-  int XMU_CORE_DERIVE_SOURCE = 31;
+  int XMU_CORE_DERIVE_SOURCE = 35;
 
   /**
    * The feature id for the '<em><b>Type Indicator</b></em>' containment reference.
@@ -1252,7 +1445,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreDependencyView()
    * @generated
    */
-  int XMU_CORE_DEPENDENCY_VIEW = 32;
+  int XMU_CORE_DEPENDENCY_VIEW = 36;
 
   /**
    * The feature id for the '<em><b>Type Indicator</b></em>' containment reference.
@@ -1298,7 +1491,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreMatchSource()
    * @generated
    */
-  int XMU_CORE_MATCH_SOURCE = 33;
+  int XMU_CORE_MATCH_SOURCE = 37;
 
   /**
    * The feature id for the '<em><b>Type Indicator</b></em>' containment reference.
@@ -1344,7 +1537,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreMatchView()
    * @generated
    */
-  int XMU_CORE_MATCH_VIEW = 34;
+  int XMU_CORE_MATCH_VIEW = 38;
 
   /**
    * The feature id for the '<em><b>Type Indicator</b></em>' containment reference.
@@ -1390,7 +1583,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreExpandSource()
    * @generated
    */
-  int XMU_CORE_EXPAND_SOURCE = 35;
+  int XMU_CORE_EXPAND_SOURCE = 39;
 
   /**
    * The feature id for the '<em><b>Type Indicator</b></em>' containment reference.
@@ -1445,7 +1638,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreExpandView()
    * @generated
    */
-  int XMU_CORE_EXPAND_VIEW = 36;
+  int XMU_CORE_EXPAND_VIEW = 40;
 
   /**
    * The feature id for the '<em><b>Type Indicator</b></em>' containment reference.
@@ -1500,7 +1693,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getVarMapping()
    * @generated
    */
-  int VAR_MAPPING = 37;
+  int VAR_MAPPING = 41;
 
   /**
    * The feature id for the '<em><b>To</b></em>' attribute.
@@ -1537,7 +1730,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreGraphReplace()
    * @generated
    */
-  int XMU_CORE_GRAPH_REPLACE = 38;
+  int XMU_CORE_GRAPH_REPLACE = 42;
 
   /**
    * The feature id for the '<em><b>Type Indicator</b></em>' containment reference.
@@ -1592,7 +1785,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreParallelComposition()
    * @generated
    */
-  int XMU_CORE_PARALLEL_COMPOSITION = 39;
+  int XMU_CORE_PARALLEL_COMPOSITION = 43;
 
   /**
    * The feature id for the '<em><b>Type Indicator</b></em>' containment reference.
@@ -1629,7 +1822,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreSwitch()
    * @generated
    */
-  int XMU_CORE_SWITCH = 40;
+  int XMU_CORE_SWITCH = 44;
 
   /**
    * The feature id for the '<em><b>Type Indicator</b></em>' containment reference.
@@ -1675,7 +1868,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreSwitchBranch()
    * @generated
    */
-  int XMU_CORE_SWITCH_BRANCH = 41;
+  int XMU_CORE_SWITCH_BRANCH = 45;
 
   /**
    * The feature id for the '<em><b>Condition</b></em>' containment reference.
@@ -1712,7 +1905,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreSwitchAdaption()
    * @generated
    */
-  int XMU_CORE_SWITCH_ADAPTION = 42;
+  int XMU_CORE_SWITCH_ADAPTION = 46;
 
   /**
    * The feature id for the '<em><b>Condition</b></em>' containment reference.
@@ -1749,7 +1942,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getConversion()
    * @generated
    */
-  int CONVERSION = 43;
+  int CONVERSION = 47;
 
   /**
    * The feature id for the '<em><b>Bigul</b></em>' containment reference.
@@ -1795,7 +1988,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreFork()
    * @generated
    */
-  int XMU_CORE_FORK = 44;
+  int XMU_CORE_FORK = 48;
 
   /**
    * The feature id for the '<em><b>Type Indicator</b></em>' containment reference.
@@ -1832,7 +2025,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreForkBranch()
    * @generated
    */
-  int XMU_CORE_FORK_BRANCH = 45;
+  int XMU_CORE_FORK_BRANCH = 49;
 
   /**
    * The feature id for the '<em><b>Source Mappings</b></em>' containment reference list.
@@ -1878,7 +2071,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreAlign()
    * @generated
    */
-  int XMU_CORE_ALIGN = 46;
+  int XMU_CORE_ALIGN = 50;
 
   /**
    * The feature id for the '<em><b>Type Indicator</b></em>' containment reference.
@@ -1960,7 +2153,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreFunctionCall()
    * @generated
    */
-  int XMU_CORE_FUNCTION_CALL = 47;
+  int XMU_CORE_FUNCTION_CALL = 51;
 
   /**
    * The feature id for the '<em><b>Type Indicator</b></em>' containment reference.
@@ -2015,7 +2208,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreIndex()
    * @generated
    */
-  int XMU_CORE_INDEX = 48;
+  int XMU_CORE_INDEX = 52;
 
   /**
    * The feature id for the '<em><b>Type Indicator</b></em>' containment reference.
@@ -2061,7 +2254,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getIndexPart()
    * @generated
    */
-  int INDEX_PART = 49;
+  int INDEX_PART = 53;
 
   /**
    * The feature id for the '<em><b>Signature</b></em>' reference.
@@ -2107,7 +2300,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getXmuCoreForEachMatchSource()
    * @generated
    */
-  int XMU_CORE_FOR_EACH_MATCH_SOURCE = 50;
+  int XMU_CORE_FOR_EACH_MATCH_SOURCE = 54;
 
   /**
    * The feature id for the '<em><b>Type Indicator</b></em>' containment reference.
@@ -2153,7 +2346,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getContextAwareCondition()
    * @generated
    */
-  int CONTEXT_AWARE_CONDITION = 51;
+  int CONTEXT_AWARE_CONDITION = 55;
 
   /**
    * The feature id for the '<em><b>Condition</b></em>' containment reference.
@@ -2181,7 +2374,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getContextAwareUnidirectionalAction()
    * @generated
    */
-  int CONTEXT_AWARE_UNIDIRECTIONAL_ACTION = 52;
+  int CONTEXT_AWARE_UNIDIRECTIONAL_ACTION = 56;
 
   /**
    * The feature id for the '<em><b>Action</b></em>' containment reference.
@@ -2209,7 +2402,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getBiGULStatement()
    * @generated
    */
-  int BI_GUL_STATEMENT = 53;
+  int BI_GUL_STATEMENT = 57;
 
   /**
    * The number of structural features of the '<em>Bi GUL Statement</em>' class.
@@ -2228,7 +2421,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getBiGULReplace()
    * @generated
    */
-  int BI_GUL_REPLACE = 54;
+  int BI_GUL_REPLACE = 58;
 
   /**
    * The number of structural features of the '<em>Bi GUL Replace</em>' class.
@@ -2247,7 +2440,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getBiGULSkip()
    * @generated
    */
-  int BI_GUL_SKIP = 55;
+  int BI_GUL_SKIP = 59;
 
   /**
    * The number of structural features of the '<em>Bi GUL Skip</em>' class.
@@ -2266,7 +2459,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getCustomizedBiGULReference()
    * @generated
    */
-  int CUSTOMIZED_BI_GUL_REFERENCE = 56;
+  int CUSTOMIZED_BI_GUL_REFERENCE = 60;
 
   /**
    * The feature id for the '<em><b>Function</b></em>' reference.
@@ -2294,7 +2487,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getContextExpression()
    * @generated
    */
-  int CONTEXT_EXPRESSION = 57;
+  int CONTEXT_EXPRESSION = 61;
 
   /**
    * The number of structural features of the '<em>Context Expression</em>' class.
@@ -2313,7 +2506,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getContextPrimaryExpression()
    * @generated
    */
-  int CONTEXT_PRIMARY_EXPRESSION = 58;
+  int CONTEXT_PRIMARY_EXPRESSION = 62;
 
   /**
    * The feature id for the '<em><b>Side</b></em>' attribute.
@@ -2341,7 +2534,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getNewInstanceExpression()
    * @generated
    */
-  int NEW_INSTANCE_EXPRESSION = 59;
+  int NEW_INSTANCE_EXPRESSION = 63;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -2396,7 +2589,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getAnnotatedType()
    * @generated
    */
-  int ANNOTATED_TYPE = 60;
+  int ANNOTATED_TYPE = 64;
 
   /**
    * The feature id for the '<em><b>Side</b></em>' attribute.
@@ -2451,7 +2644,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getAllInstanceExpression()
    * @generated
    */
-  int ALL_INSTANCE_EXPRESSION = 61;
+  int ALL_INSTANCE_EXPRESSION = 65;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -2479,7 +2672,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getModificationExpression()
    * @generated
    */
-  int MODIFICATION_EXPRESSION = 62;
+  int MODIFICATION_EXPRESSION = 66;
 
   /**
    * The number of structural features of the '<em>Modification Expression</em>' class.
@@ -2498,7 +2691,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getEnforcementExpression()
    * @generated
    */
-  int ENFORCEMENT_EXPRESSION = 63;
+  int ENFORCEMENT_EXPRESSION = 67;
 
   /**
    * The feature id for the '<em><b>Pattern</b></em>' containment reference.
@@ -2535,7 +2728,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getMatchExpression()
    * @generated
    */
-  int MATCH_EXPRESSION = 64;
+  int MATCH_EXPRESSION = 68;
 
   /**
    * The feature id for the '<em><b>Pattern</b></em>' containment reference.
@@ -2590,7 +2783,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getDeleteElementExpression()
    * @generated
    */
-  int DELETE_ELEMENT_EXPRESSION = 65;
+  int DELETE_ELEMENT_EXPRESSION = 69;
 
   /**
    * The feature id for the '<em><b>Element</b></em>' containment reference.
@@ -2618,7 +2811,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getInsertElementExpression()
    * @generated
    */
-  int INSERT_ELEMENT_EXPRESSION = 66;
+  int INSERT_ELEMENT_EXPRESSION = 70;
 
   /**
    * The feature id for the '<em><b>Element</b></em>' containment reference.
@@ -2664,7 +2857,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getValueMapping()
    * @generated
    */
-  int VALUE_MAPPING = 67;
+  int VALUE_MAPPING = 71;
 
   /**
    * The feature id for the '<em><b>Var Name</b></em>' attribute.
@@ -2701,7 +2894,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getDefinedContextTypeRef()
    * @generated
    */
-  int DEFINED_CONTEXT_TYPE_REF = 68;
+  int DEFINED_CONTEXT_TYPE_REF = 72;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -2729,7 +2922,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getEcoreTypeRef()
    * @generated
    */
-  int ECORE_TYPE_REF = 69;
+  int ECORE_TYPE_REF = 73;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -2757,7 +2950,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getFeatureTypeRef()
    * @generated
    */
-  int FEATURE_TYPE_REF = 70;
+  int FEATURE_TYPE_REF = 74;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -2794,7 +2987,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getNavigationExpression()
    * @generated
    */
-  int NAVIGATION_EXPRESSION = 71;
+  int NAVIGATION_EXPRESSION = 75;
 
   /**
    * The feature id for the '<em><b>Host</b></em>' containment reference.
@@ -2840,7 +3033,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getContextVarExpression()
    * @generated
    */
-  int CONTEXT_VAR_EXPRESSION = 72;
+  int CONTEXT_VAR_EXPRESSION = 76;
 
   /**
    * The feature id for the '<em><b>Side</b></em>' attribute.
@@ -2877,7 +3070,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getExpressionConversion()
    * @generated
    */
-  int EXPRESSION_CONVERSION = 73;
+  int EXPRESSION_CONVERSION = 77;
 
   /**
    * The feature id for the '<em><b>Side</b></em>' attribute.
@@ -2941,7 +3134,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getModificationExpressionBlock()
    * @generated
    */
-  int MODIFICATION_EXPRESSION_BLOCK = 74;
+  int MODIFICATION_EXPRESSION_BLOCK = 78;
 
   /**
    * The feature id for the '<em><b>Expressions</b></em>' containment reference list.
@@ -2969,7 +3162,7 @@ public interface BXCorePackage extends EPackage
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getSideEnum()
    * @generated
    */
-  int SIDE_ENUM = 75;
+  int SIDE_ENUM = 79;
 
 
   /**
@@ -3612,6 +3805,60 @@ public interface BXCorePackage extends EPackage
   EReference getPatternNode_Edges();
 
   /**
+   * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.AbstractPatternEdge <em>Abstract Pattern Edge</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Abstract Pattern Edge</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.AbstractPatternEdge
+   * @generated
+   */
+  EClass getAbstractPatternEdge();
+
+  /**
+   * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.AbstractPatternEdge#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.AbstractPatternEdge#getName()
+   * @see #getAbstractPatternEdge()
+   * @generated
+   */
+  EAttribute getAbstractPatternEdge_Name();
+
+  /**
+   * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.AbstractPatternEdge#isMany <em>Many</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Many</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.AbstractPatternEdge#isMany()
+   * @see #getAbstractPatternEdge()
+   * @generated
+   */
+  EAttribute getAbstractPatternEdge_Many();
+
+  /**
+   * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.AbstractPatternEdge#getOperator <em>Operator</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Operator</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.AbstractPatternEdge#getOperator()
+   * @see #getAbstractPatternEdge()
+   * @generated
+   */
+  EAttribute getAbstractPatternEdge_Operator();
+
+  /**
+   * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.AbstractPatternEdge#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Value</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.AbstractPatternEdge#getValue()
+   * @see #getAbstractPatternEdge()
+   * @generated
+   */
+  EReference getAbstractPatternEdge_Value();
+
+  /**
    * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternEdge <em>Pattern Edge</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3620,17 +3867,6 @@ public interface BXCorePackage extends EPackage
    * @generated
    */
   EClass getPatternEdge();
-
-  /**
-   * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternEdge#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternEdge#getName()
-   * @see #getPatternEdge()
-   * @generated
-   */
-  EAttribute getPatternEdge_Name();
 
   /**
    * Returns the meta object for the reference '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternEdge#getFeature <em>Feature</em>}'.
@@ -3644,37 +3880,89 @@ public interface BXCorePackage extends EPackage
   EReference getPatternEdge_Feature();
 
   /**
-   * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternEdge#isMany <em>Many</em>}'.
+   * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternPathEdge <em>Pattern Path Edge</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Many</em>'.
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternEdge#isMany()
-   * @see #getPatternEdge()
+   * @return the meta object for class '<em>Pattern Path Edge</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternPathEdge
    * @generated
    */
-  EAttribute getPatternEdge_Many();
+  EClass getPatternPathEdge();
 
   /**
-   * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternEdge#getOperator <em>Operator</em>}'.
+   * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternPathEdge#getPath <em>Path</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Operator</em>'.
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternEdge#getOperator()
-   * @see #getPatternEdge()
+   * @return the meta object for the containment reference '<em>Path</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternPathEdge#getPath()
+   * @see #getPatternPathEdge()
    * @generated
    */
-  EAttribute getPatternEdge_Operator();
+  EReference getPatternPathEdge_Path();
 
   /**
-   * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternEdge#getValue <em>Value</em>}'.
+   * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.DashedPathType <em>Dashed Path Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Value</em>'.
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternEdge#getValue()
-   * @see #getPatternEdge()
+   * @return the meta object for class '<em>Dashed Path Type</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.DashedPathType
    * @generated
    */
-  EReference getPatternEdge_Value();
+  EClass getDashedPathType();
+
+  /**
+   * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.DashedPathType#getSegment <em>Segment</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Segment</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.DashedPathType#getSegment()
+   * @see #getDashedPathType()
+   * @generated
+   */
+  EReference getDashedPathType_Segment();
+
+  /**
+   * Returns the meta object for the containment reference '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.DashedPathType#getNext <em>Next</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Next</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.DashedPathType#getNext()
+   * @see #getDashedPathType()
+   * @generated
+   */
+  EReference getDashedPathType_Next();
+
+  /**
+   * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.DashedPathTypeSegment <em>Dashed Path Type Segment</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Dashed Path Type Segment</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.DashedPathTypeSegment
+   * @generated
+   */
+  EClass getDashedPathTypeSegment();
+
+  /**
+   * Returns the meta object for the reference list '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.DashedPathTypeSegment#getTypes <em>Types</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference list '<em>Types</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.DashedPathTypeSegment#getTypes()
+   * @see #getDashedPathTypeSegment()
+   * @generated
+   */
+  EReference getDashedPathTypeSegment_Types();
+
+  /**
+   * Returns the meta object for the attribute '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.DashedPathTypeSegment#getRepeat <em>Repeat</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Repeat</em>'.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.DashedPathTypeSegment#getRepeat()
+   * @see #getDashedPathTypeSegment()
+   * @generated
+   */
+  EAttribute getDashedPathTypeSegment_Repeat();
 
   /**
    * Returns the meta object for class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternValueCondition <em>Pattern Value Condition</em>}'.
@@ -5785,6 +6073,48 @@ public interface BXCorePackage extends EPackage
     EReference PATTERN_NODE__EDGES = eINSTANCE.getPatternNode_Edges();
 
     /**
+     * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.AbstractPatternEdgeImpl <em>Abstract Pattern Edge</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.AbstractPatternEdgeImpl
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getAbstractPatternEdge()
+     * @generated
+     */
+    EClass ABSTRACT_PATTERN_EDGE = eINSTANCE.getAbstractPatternEdge();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ABSTRACT_PATTERN_EDGE__NAME = eINSTANCE.getAbstractPatternEdge_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Many</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ABSTRACT_PATTERN_EDGE__MANY = eINSTANCE.getAbstractPatternEdge_Many();
+
+    /**
+     * The meta object literal for the '<em><b>Operator</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ABSTRACT_PATTERN_EDGE__OPERATOR = eINSTANCE.getAbstractPatternEdge_Operator();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ABSTRACT_PATTERN_EDGE__VALUE = eINSTANCE.getAbstractPatternEdge_Value();
+
+    /**
      * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PatternEdgeImpl <em>Pattern Edge</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -5795,14 +6125,6 @@ public interface BXCorePackage extends EPackage
     EClass PATTERN_EDGE = eINSTANCE.getPatternEdge();
 
     /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute PATTERN_EDGE__NAME = eINSTANCE.getPatternEdge_Name();
-
-    /**
      * The meta object literal for the '<em><b>Feature</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -5811,28 +6133,74 @@ public interface BXCorePackage extends EPackage
     EReference PATTERN_EDGE__FEATURE = eINSTANCE.getPatternEdge_Feature();
 
     /**
-     * The meta object literal for the '<em><b>Many</b></em>' attribute feature.
+     * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PatternPathEdgeImpl <em>Pattern Path Edge</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PatternPathEdgeImpl
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getPatternPathEdge()
      * @generated
      */
-    EAttribute PATTERN_EDGE__MANY = eINSTANCE.getPatternEdge_Many();
+    EClass PATTERN_PATH_EDGE = eINSTANCE.getPatternPathEdge();
 
     /**
-     * The meta object literal for the '<em><b>Operator</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Path</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute PATTERN_EDGE__OPERATOR = eINSTANCE.getPatternEdge_Operator();
+    EReference PATTERN_PATH_EDGE__PATH = eINSTANCE.getPatternPathEdge_Path();
 
     /**
-     * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
+     * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.DashedPathTypeImpl <em>Dashed Path Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.DashedPathTypeImpl
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getDashedPathType()
+     * @generated
+     */
+    EClass DASHED_PATH_TYPE = eINSTANCE.getDashedPathType();
+
+    /**
+     * The meta object literal for the '<em><b>Segment</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference PATTERN_EDGE__VALUE = eINSTANCE.getPatternEdge_Value();
+    EReference DASHED_PATH_TYPE__SEGMENT = eINSTANCE.getDashedPathType_Segment();
+
+    /**
+     * The meta object literal for the '<em><b>Next</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference DASHED_PATH_TYPE__NEXT = eINSTANCE.getDashedPathType_Next();
+
+    /**
+     * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.DashedPathTypeSegmentImpl <em>Dashed Path Type Segment</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.DashedPathTypeSegmentImpl
+     * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.BXCorePackageImpl#getDashedPathTypeSegment()
+     * @generated
+     */
+    EClass DASHED_PATH_TYPE_SEGMENT = eINSTANCE.getDashedPathTypeSegment();
+
+    /**
+     * The meta object literal for the '<em><b>Types</b></em>' reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference DASHED_PATH_TYPE_SEGMENT__TYPES = eINSTANCE.getDashedPathTypeSegment_Types();
+
+    /**
+     * The meta object literal for the '<em><b>Repeat</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute DASHED_PATH_TYPE_SEGMENT__REPEAT = eINSTANCE.getDashedPathTypeSegment_Repeat();
 
     /**
      * The meta object literal for the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.impl.PatternValueConditionImpl <em>Pattern Value Condition</em>}' class.

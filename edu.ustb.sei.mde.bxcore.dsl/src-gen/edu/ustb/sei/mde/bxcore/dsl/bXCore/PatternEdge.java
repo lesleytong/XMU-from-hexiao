@@ -3,7 +3,6 @@
  */
 package edu.ustb.sei.mde.bxcore.dsl.bXCore;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 /**
@@ -15,45 +14,15 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternEdge#getName <em>Name</em>}</li>
  *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternEdge#getFeature <em>Feature</em>}</li>
- *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternEdge#isMany <em>Many</em>}</li>
- *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternEdge#getOperator <em>Operator</em>}</li>
- *   <li>{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternEdge#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getPatternEdge()
  * @model
  * @generated
  */
-public interface PatternEdge extends EObject
+public interface PatternEdge extends AbstractPatternEdge
 {
-  /**
-   * Returns the value of the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Name</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Name</em>' attribute.
-   * @see #setName(String)
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getPatternEdge_Name()
-   * @model
-   * @generated
-   */
-  String getName();
-
-  /**
-   * Sets the value of the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternEdge#getName <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Name</em>' attribute.
-   * @see #getName()
-   * @generated
-   */
-  void setName(String value);
-
   /**
    * Returns the value of the '<em><b>Feature</b></em>' reference.
    * <!-- begin-user-doc -->
@@ -79,83 +48,5 @@ public interface PatternEdge extends EObject
    * @generated
    */
   void setFeature(EStructuralFeature value);
-
-  /**
-   * Returns the value of the '<em><b>Many</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Many</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Many</em>' attribute.
-   * @see #setMany(boolean)
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getPatternEdge_Many()
-   * @model
-   * @generated
-   */
-  boolean isMany();
-
-  /**
-   * Sets the value of the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternEdge#isMany <em>Many</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Many</em>' attribute.
-   * @see #isMany()
-   * @generated
-   */
-  void setMany(boolean value);
-
-  /**
-   * Returns the value of the '<em><b>Operator</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Operator</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Operator</em>' attribute.
-   * @see #setOperator(String)
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getPatternEdge_Operator()
-   * @model
-   * @generated
-   */
-  String getOperator();
-
-  /**
-   * Sets the value of the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternEdge#getOperator <em>Operator</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Operator</em>' attribute.
-   * @see #getOperator()
-   * @generated
-   */
-  void setOperator(String value);
-
-  /**
-   * Returns the value of the '<em><b>Value</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Value</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Value</em>' containment reference.
-   * @see #setValue(PatternValueCondition)
-   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getPatternEdge_Value()
-   * @model containment="true"
-   * @generated
-   */
-  PatternValueCondition getValue();
-
-  /**
-   * Sets the value of the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternEdge#getValue <em>Value</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Value</em>' containment reference.
-   * @see #getValue()
-   * @generated
-   */
-  void setValue(PatternValueCondition value);
 
 } // PatternEdge

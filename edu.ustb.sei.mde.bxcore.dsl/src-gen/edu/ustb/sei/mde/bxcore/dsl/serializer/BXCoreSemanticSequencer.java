@@ -18,6 +18,8 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextVarExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.Conversion;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.CustomizedBiGULDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.CustomizedBiGULReference;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.DashedPathType;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.DashedPathTypeSegment;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.DataSlot;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.DefinedContextTypeRef;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.DeleteElementExpression;
@@ -40,6 +42,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternDefinitionReference;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternEdge;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternNode;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternNodeRef;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternPathEdge;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternTypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PredefinedTypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeDefinition;
@@ -176,6 +179,12 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 			case BXCorePackage.CUSTOMIZED_BI_GUL_REFERENCE:
 				sequence_CustomizedBiGULReference(context, (CustomizedBiGULReference) semanticObject); 
 				return; 
+			case BXCorePackage.DASHED_PATH_TYPE:
+				sequence_DashedPathType(context, (DashedPathType) semanticObject); 
+				return; 
+			case BXCorePackage.DASHED_PATH_TYPE_SEGMENT:
+				sequence_DashedPathTypeSegment(context, (DashedPathTypeSegment) semanticObject); 
+				return; 
 			case BXCorePackage.DATA_SLOT:
 				sequence_DataSlot(context, (DataSlot) semanticObject); 
 				return; 
@@ -241,6 +250,9 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 				return; 
 			case BXCorePackage.PATTERN_NODE_REF:
 				sequence_PatternNodeRef(context, (PatternNodeRef) semanticObject); 
+				return; 
+			case BXCorePackage.PATTERN_PATH_EDGE:
+				sequence_PatternPathEdge(context, (PatternPathEdge) semanticObject); 
 				return; 
 			case BXCorePackage.PATTERN_TYPE_LITERAL:
 				sequence_PatternTypeLiteral(context, (PatternTypeLiteral) semanticObject); 
@@ -972,6 +984,30 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     DashedPathTypeSegment returns DashedPathTypeSegment
+	 *
+	 * Constraint:
+	 *     (types+=[EStructuralFeature|ValidID] types+=[EStructuralFeature|ValidID]* (repeat='?' | repeat='*' | repeat='+')?)
+	 */
+	protected void sequence_DashedPathTypeSegment(ISerializationContext context, DashedPathTypeSegment semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     DashedPathType returns DashedPathType
+	 *
+	 * Constraint:
+	 *     (segment=DashedPathTypeSegment next=DashedPathTypeSegment?)
+	 */
+	protected void sequence_DashedPathType(ISerializationContext context, DashedPathType semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     DataSlot returns DataSlot
 	 *
 	 * Constraint:
@@ -1374,6 +1410,7 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     AbstractPatternEdge returns PatternEdge
 	 *     PatternEdge returns PatternEdge
 	 *
 	 * Constraint:
@@ -1409,9 +1446,22 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	 *     PatternValueCondition returns PatternNode
 	 *
 	 * Constraint:
-	 *     (name=ValidID type=[EClassifier|ValidID] many?='[]'? (edges+=PatternEdge edges+=PatternEdge*)?)
+	 *     (name=ValidID type=[EClassifier|ValidID] many?='[]'? (edges+=AbstractPatternEdge edges+=AbstractPatternEdge*)?)
 	 */
 	protected void sequence_PatternNode(ISerializationContext context, PatternNode semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     AbstractPatternEdge returns PatternPathEdge
+	 *     PatternPathEdge returns PatternPathEdge
+	 *
+	 * Constraint:
+	 *     (name=ValidID path=DashedPathType many?='[]'? operator='=' value=PatternValueCondition)
+	 */
+	protected void sequence_PatternPathEdge(ISerializationContext context, PatternPathEdge semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

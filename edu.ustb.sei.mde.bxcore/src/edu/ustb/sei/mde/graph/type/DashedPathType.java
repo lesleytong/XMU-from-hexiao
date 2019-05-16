@@ -12,6 +12,10 @@ import edu.ustb.sei.mde.graph.IEdge;
  *
  */
 public class DashedPathType implements IPathType {
+	public static DashedPathType create(DashedPathTypeSegment... segments) {
+		return new DashedPathType(segments);
+	}
+	
 	public DashedPathType(DashedPathTypeSegment... segments) {
 		super();
 		this.segments = segments;

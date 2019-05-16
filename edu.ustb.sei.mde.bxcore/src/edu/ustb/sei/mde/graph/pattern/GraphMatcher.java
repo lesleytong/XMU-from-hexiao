@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import edu.ustb.sei.mde.bxcore.XmuCoreUtils;
@@ -26,9 +24,9 @@ import edu.ustb.sei.mde.graph.INode;
 import edu.ustb.sei.mde.graph.type.DashedPathType;
 import edu.ustb.sei.mde.graph.type.DashedPathTypeSegment;
 import edu.ustb.sei.mde.graph.type.DataTypeNode;
+import edu.ustb.sei.mde.graph.type.IPathType;
 import edu.ustb.sei.mde.graph.type.IStructuralFeatureEdge;
 import edu.ustb.sei.mde.graph.type.ITypeNode;
-import edu.ustb.sei.mde.graph.type.IPathType;
 import edu.ustb.sei.mde.graph.type.PropertyEdge;
 import edu.ustb.sei.mde.graph.type.TypeEdge;
 import edu.ustb.sei.mde.graph.type.TypeGraph;
@@ -578,7 +576,8 @@ public class GraphMatcher {
 			
 			for(PathTrace trace : traces) {
 				IEdge[] path = trace.reduce(true);
-				result.add(new GraphPath(path, pathType));
+				if(path.length>0)
+					result.add(new GraphPath(path, pathType));
 			}
 			
 			return result;
@@ -716,7 +715,8 @@ public class GraphMatcher {
 			
 			for(PathTrace trace : traces) {
 				IEdge[] path = trace.reduce(false);
-				result.add(new GraphPath(path, pathType));
+				if(path.length>0)
+					result.add(new GraphPath(path, pathType));
 			}
 			
 			return result;

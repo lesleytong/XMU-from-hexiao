@@ -1155,20 +1155,20 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cLeftCurlyBracketKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
 		private final Group cGroup_4_1 = (Group)cGroup_4.eContents().get(1);
 		private final Assignment cEdgesAssignment_4_1_0 = (Assignment)cGroup_4_1.eContents().get(0);
-		private final RuleCall cEdgesPatternEdgeParserRuleCall_4_1_0_0 = (RuleCall)cEdgesAssignment_4_1_0.eContents().get(0);
+		private final RuleCall cEdgesAbstractPatternEdgeParserRuleCall_4_1_0_0 = (RuleCall)cEdgesAssignment_4_1_0.eContents().get(0);
 		private final Group cGroup_4_1_1 = (Group)cGroup_4_1.eContents().get(1);
 		private final Keyword cCommaKeyword_4_1_1_0 = (Keyword)cGroup_4_1_1.eContents().get(0);
 		private final Assignment cEdgesAssignment_4_1_1_1 = (Assignment)cGroup_4_1_1.eContents().get(1);
-		private final RuleCall cEdgesPatternEdgeParserRuleCall_4_1_1_1_0 = (RuleCall)cEdgesAssignment_4_1_1_1.eContents().get(0);
+		private final RuleCall cEdgesAbstractPatternEdgeParserRuleCall_4_1_1_1_0 = (RuleCall)cEdgesAssignment_4_1_1_1.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_4_2 = (Keyword)cGroup_4.eContents().get(2);
 		
 		//PatternNode:
-		//	name=ValidID ':' type=[ecore::EClassifier|ValidID] many?='[]'? ('{' (edges+=PatternEdge (',' edges+=PatternEdge)*)?
-		//	'}')?;
+		//	name=ValidID ':' type=[ecore::EClassifier|ValidID] many?='[]'? ('{' (edges+=AbstractPatternEdge (','
+		//	edges+=AbstractPatternEdge)*)? '}')?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//name=ValidID ':' type=[ecore::EClassifier|ValidID] many?='[]'? ('{' (edges+=PatternEdge (',' edges+=PatternEdge)*)?
-		//'}')?
+		//name=ValidID ':' type=[ecore::EClassifier|ValidID] many?='[]'? ('{' (edges+=AbstractPatternEdge (','
+		//edges+=AbstractPatternEdge)*)? '}')?
 		public Group getGroup() { return cGroup; }
 		
 		//name=ValidID
@@ -1195,35 +1195,54 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		//'[]'
 		public Keyword getManyLeftSquareBracketRightSquareBracketKeyword_3_0() { return cManyLeftSquareBracketRightSquareBracketKeyword_3_0; }
 		
-		//('{' (edges+=PatternEdge (',' edges+=PatternEdge)*)? '}')?
+		//('{' (edges+=AbstractPatternEdge (',' edges+=AbstractPatternEdge)*)? '}')?
 		public Group getGroup_4() { return cGroup_4; }
 		
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_4_0() { return cLeftCurlyBracketKeyword_4_0; }
 		
-		//(edges+=PatternEdge (',' edges+=PatternEdge)*)?
+		//(edges+=AbstractPatternEdge (',' edges+=AbstractPatternEdge)*)?
 		public Group getGroup_4_1() { return cGroup_4_1; }
 		
-		//edges+=PatternEdge
+		//edges+=AbstractPatternEdge
 		public Assignment getEdgesAssignment_4_1_0() { return cEdgesAssignment_4_1_0; }
 		
-		//PatternEdge
-		public RuleCall getEdgesPatternEdgeParserRuleCall_4_1_0_0() { return cEdgesPatternEdgeParserRuleCall_4_1_0_0; }
+		//AbstractPatternEdge
+		public RuleCall getEdgesAbstractPatternEdgeParserRuleCall_4_1_0_0() { return cEdgesAbstractPatternEdgeParserRuleCall_4_1_0_0; }
 		
-		//(',' edges+=PatternEdge)*
+		//(',' edges+=AbstractPatternEdge)*
 		public Group getGroup_4_1_1() { return cGroup_4_1_1; }
 		
 		//','
 		public Keyword getCommaKeyword_4_1_1_0() { return cCommaKeyword_4_1_1_0; }
 		
-		//edges+=PatternEdge
+		//edges+=AbstractPatternEdge
 		public Assignment getEdgesAssignment_4_1_1_1() { return cEdgesAssignment_4_1_1_1; }
 		
-		//PatternEdge
-		public RuleCall getEdgesPatternEdgeParserRuleCall_4_1_1_1_0() { return cEdgesPatternEdgeParserRuleCall_4_1_1_1_0; }
+		//AbstractPatternEdge
+		public RuleCall getEdgesAbstractPatternEdgeParserRuleCall_4_1_1_1_0() { return cEdgesAbstractPatternEdgeParserRuleCall_4_1_1_1_0; }
 		
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_4_2() { return cRightCurlyBracketKeyword_4_2; }
+	}
+	public class AbstractPatternEdgeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.bxcore.dsl.BXCore.AbstractPatternEdge");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cPatternEdgeParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cPatternPathEdgeParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//AbstractPatternEdge:
+		//	PatternEdge | PatternPathEdge;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//PatternEdge | PatternPathEdge
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//PatternEdge
+		public RuleCall getPatternEdgeParserRuleCall_0() { return cPatternEdgeParserRuleCall_0; }
+		
+		//PatternPathEdge
+		public RuleCall getPatternPathEdgeParserRuleCall_1() { return cPatternPathEdgeParserRuleCall_1; }
 	}
 	public class PatternEdgeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.bxcore.dsl.BXCore.PatternEdge");
@@ -1283,6 +1302,169 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//PatternValueCondition
 		public RuleCall getValuePatternValueConditionParserRuleCall_5_0() { return cValuePatternValueConditionParserRuleCall_5_0; }
+	}
+	public class PatternPathEdgeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.bxcore.dsl.BXCore.PatternPathEdge");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cNameValidIDParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
+		private final Keyword cColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cPathAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cPathDashedPathTypeParserRuleCall_2_0 = (RuleCall)cPathAssignment_2.eContents().get(0);
+		private final Assignment cManyAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final Keyword cManyLeftSquareBracketRightSquareBracketKeyword_3_0 = (Keyword)cManyAssignment_3.eContents().get(0);
+		private final Assignment cOperatorAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final Keyword cOperatorEqualsSignKeyword_4_0 = (Keyword)cOperatorAssignment_4.eContents().get(0);
+		private final Assignment cValueAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cValuePatternValueConditionParserRuleCall_5_0 = (RuleCall)cValueAssignment_5.eContents().get(0);
+		
+		//PatternPathEdge:
+		//	name=ValidID ':' path=DashedPathType many?='[]'? operator='=' value=PatternValueCondition;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//name=ValidID ':' path=DashedPathType many?='[]'? operator='=' value=PatternValueCondition
+		public Group getGroup() { return cGroup; }
+		
+		//name=ValidID
+		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+		
+		//ValidID
+		public RuleCall getNameValidIDParserRuleCall_0_0() { return cNameValidIDParserRuleCall_0_0; }
+		
+		//':'
+		public Keyword getColonKeyword_1() { return cColonKeyword_1; }
+		
+		//path=DashedPathType
+		public Assignment getPathAssignment_2() { return cPathAssignment_2; }
+		
+		//DashedPathType
+		public RuleCall getPathDashedPathTypeParserRuleCall_2_0() { return cPathDashedPathTypeParserRuleCall_2_0; }
+		
+		//many?='[]'?
+		public Assignment getManyAssignment_3() { return cManyAssignment_3; }
+		
+		//'[]'
+		public Keyword getManyLeftSquareBracketRightSquareBracketKeyword_3_0() { return cManyLeftSquareBracketRightSquareBracketKeyword_3_0; }
+		
+		//operator='='
+		public Assignment getOperatorAssignment_4() { return cOperatorAssignment_4; }
+		
+		//'='
+		public Keyword getOperatorEqualsSignKeyword_4_0() { return cOperatorEqualsSignKeyword_4_0; }
+		
+		//value=PatternValueCondition
+		public Assignment getValueAssignment_5() { return cValueAssignment_5; }
+		
+		//PatternValueCondition
+		public RuleCall getValuePatternValueConditionParserRuleCall_5_0() { return cValuePatternValueConditionParserRuleCall_5_0; }
+	}
+	public class DashedPathTypeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.bxcore.dsl.BXCore.DashedPathType");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cSegmentAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cSegmentDashedPathTypeSegmentParserRuleCall_0_0 = (RuleCall)cSegmentAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cFullStopKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cNextAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cNextDashedPathTypeSegmentParserRuleCall_1_1_0 = (RuleCall)cNextAssignment_1_1.eContents().get(0);
+		
+		//DashedPathType:
+		//	segment=DashedPathTypeSegment (=> '.' next=DashedPathTypeSegment)?;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//segment=DashedPathTypeSegment (=> '.' next=DashedPathTypeSegment)?
+		public Group getGroup() { return cGroup; }
+		
+		//segment=DashedPathTypeSegment
+		public Assignment getSegmentAssignment_0() { return cSegmentAssignment_0; }
+		
+		//DashedPathTypeSegment
+		public RuleCall getSegmentDashedPathTypeSegmentParserRuleCall_0_0() { return cSegmentDashedPathTypeSegmentParserRuleCall_0_0; }
+		
+		//(=> '.' next=DashedPathTypeSegment)?
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//=> '.'
+		public Keyword getFullStopKeyword_1_0() { return cFullStopKeyword_1_0; }
+		
+		//next=DashedPathTypeSegment
+		public Assignment getNextAssignment_1_1() { return cNextAssignment_1_1; }
+		
+		//DashedPathTypeSegment
+		public RuleCall getNextDashedPathTypeSegmentParserRuleCall_1_1_0() { return cNextDashedPathTypeSegmentParserRuleCall_1_1_0; }
+	}
+	public class DashedPathTypeSegmentElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.bxcore.dsl.BXCore.DashedPathTypeSegment");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cLeftParenthesisKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cTypesAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final CrossReference cTypesEStructuralFeatureCrossReference_1_0 = (CrossReference)cTypesAssignment_1.eContents().get(0);
+		private final RuleCall cTypesEStructuralFeatureValidIDParserRuleCall_1_0_1 = (RuleCall)cTypesEStructuralFeatureCrossReference_1_0.eContents().get(1);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cVerticalLineKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cTypesAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final CrossReference cTypesEStructuralFeatureCrossReference_2_1_0 = (CrossReference)cTypesAssignment_2_1.eContents().get(0);
+		private final RuleCall cTypesEStructuralFeatureValidIDParserRuleCall_2_1_0_1 = (RuleCall)cTypesEStructuralFeatureCrossReference_2_1_0.eContents().get(1);
+		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cRepeatAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final Alternatives cRepeatAlternatives_4_0 = (Alternatives)cRepeatAssignment_4.eContents().get(0);
+		private final Keyword cRepeatQuestionMarkKeyword_4_0_0 = (Keyword)cRepeatAlternatives_4_0.eContents().get(0);
+		private final Keyword cRepeatAsteriskKeyword_4_0_1 = (Keyword)cRepeatAlternatives_4_0.eContents().get(1);
+		private final Keyword cRepeatPlusSignKeyword_4_0_2 = (Keyword)cRepeatAlternatives_4_0.eContents().get(2);
+		
+		//DashedPathTypeSegment:
+		//	'(' types+=[ecore::EStructuralFeature|ValidID] (=> '|' types+=[ecore::EStructuralFeature|ValidID])* ')' repeat=('?' |
+		//	'*' | '+')?;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'(' types+=[ecore::EStructuralFeature|ValidID] (=> '|' types+=[ecore::EStructuralFeature|ValidID])* ')' repeat=('?' |
+		//'*' | '+')?
+		public Group getGroup() { return cGroup; }
+		
+		//'('
+		public Keyword getLeftParenthesisKeyword_0() { return cLeftParenthesisKeyword_0; }
+		
+		//types+=[ecore::EStructuralFeature|ValidID]
+		public Assignment getTypesAssignment_1() { return cTypesAssignment_1; }
+		
+		//[ecore::EStructuralFeature|ValidID]
+		public CrossReference getTypesEStructuralFeatureCrossReference_1_0() { return cTypesEStructuralFeatureCrossReference_1_0; }
+		
+		//ValidID
+		public RuleCall getTypesEStructuralFeatureValidIDParserRuleCall_1_0_1() { return cTypesEStructuralFeatureValidIDParserRuleCall_1_0_1; }
+		
+		//(=> '|' types+=[ecore::EStructuralFeature|ValidID])*
+		public Group getGroup_2() { return cGroup_2; }
+		
+		//=> '|'
+		public Keyword getVerticalLineKeyword_2_0() { return cVerticalLineKeyword_2_0; }
+		
+		//types+=[ecore::EStructuralFeature|ValidID]
+		public Assignment getTypesAssignment_2_1() { return cTypesAssignment_2_1; }
+		
+		//[ecore::EStructuralFeature|ValidID]
+		public CrossReference getTypesEStructuralFeatureCrossReference_2_1_0() { return cTypesEStructuralFeatureCrossReference_2_1_0; }
+		
+		//ValidID
+		public RuleCall getTypesEStructuralFeatureValidIDParserRuleCall_2_1_0_1() { return cTypesEStructuralFeatureValidIDParserRuleCall_2_1_0_1; }
+		
+		//')'
+		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
+		
+		//repeat=('?' | '*' | '+')?
+		public Assignment getRepeatAssignment_4() { return cRepeatAssignment_4; }
+		
+		//('?' | '*' | '+')
+		public Alternatives getRepeatAlternatives_4_0() { return cRepeatAlternatives_4_0; }
+		
+		//'?'
+		public Keyword getRepeatQuestionMarkKeyword_4_0_0() { return cRepeatQuestionMarkKeyword_4_0_0; }
+		
+		//'*'
+		public Keyword getRepeatAsteriskKeyword_4_0_1() { return cRepeatAsteriskKeyword_4_0_1; }
+		
+		//'+'
+		public Keyword getRepeatPlusSignKeyword_4_0_2() { return cRepeatPlusSignKeyword_4_0_2; }
 	}
 	public class PatternValueConditionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.bxcore.dsl.BXCore.PatternValueCondition");
@@ -3764,7 +3946,11 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 	private final TypeRefElements pTypeRef;
 	private final IndexDefinitionElements pIndexDefinition;
 	private final PatternNodeElements pPatternNode;
+	private final AbstractPatternEdgeElements pAbstractPatternEdge;
 	private final PatternEdgeElements pPatternEdge;
+	private final PatternPathEdgeElements pPatternPathEdge;
+	private final DashedPathTypeElements pDashedPathType;
+	private final DashedPathTypeSegmentElements pDashedPathTypeSegment;
 	private final PatternValueConditionElements pPatternValueCondition;
 	private final PatternNodeRefElements pPatternNodeRef;
 	private final PatternElements pPattern;
@@ -3854,7 +4040,11 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		this.pTypeRef = new TypeRefElements();
 		this.pIndexDefinition = new IndexDefinitionElements();
 		this.pPatternNode = new PatternNodeElements();
+		this.pAbstractPatternEdge = new AbstractPatternEdgeElements();
 		this.pPatternEdge = new PatternEdgeElements();
+		this.pPatternPathEdge = new PatternPathEdgeElements();
+		this.pDashedPathType = new DashedPathTypeElements();
+		this.pDashedPathTypeSegment = new DashedPathTypeSegmentElements();
 		this.pPatternValueCondition = new PatternValueConditionElements();
 		this.pPatternNodeRef = new PatternNodeRefElements();
 		this.pPattern = new PatternElements();
@@ -4181,14 +4371,24 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//PatternNode:
-	//	name=ValidID ':' type=[ecore::EClassifier|ValidID] many?='[]'? ('{' (edges+=PatternEdge (',' edges+=PatternEdge)*)?
-	//	'}')?;
+	//	name=ValidID ':' type=[ecore::EClassifier|ValidID] many?='[]'? ('{' (edges+=AbstractPatternEdge (','
+	//	edges+=AbstractPatternEdge)*)? '}')?;
 	public PatternNodeElements getPatternNodeAccess() {
 		return pPatternNode;
 	}
 	
 	public ParserRule getPatternNodeRule() {
 		return getPatternNodeAccess().getRule();
+	}
+	
+	//AbstractPatternEdge:
+	//	PatternEdge | PatternPathEdge;
+	public AbstractPatternEdgeElements getAbstractPatternEdgeAccess() {
+		return pAbstractPatternEdge;
+	}
+	
+	public ParserRule getAbstractPatternEdgeRule() {
+		return getAbstractPatternEdgeAccess().getRule();
 	}
 	
 	//PatternEdge:
@@ -4199,6 +4399,37 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getPatternEdgeRule() {
 		return getPatternEdgeAccess().getRule();
+	}
+	
+	//PatternPathEdge:
+	//	name=ValidID ':' path=DashedPathType many?='[]'? operator='=' value=PatternValueCondition;
+	public PatternPathEdgeElements getPatternPathEdgeAccess() {
+		return pPatternPathEdge;
+	}
+	
+	public ParserRule getPatternPathEdgeRule() {
+		return getPatternPathEdgeAccess().getRule();
+	}
+	
+	//DashedPathType:
+	//	segment=DashedPathTypeSegment (=> '.' next=DashedPathTypeSegment)?;
+	public DashedPathTypeElements getDashedPathTypeAccess() {
+		return pDashedPathType;
+	}
+	
+	public ParserRule getDashedPathTypeRule() {
+		return getDashedPathTypeAccess().getRule();
+	}
+	
+	//DashedPathTypeSegment:
+	//	'(' types+=[ecore::EStructuralFeature|ValidID] (=> '|' types+=[ecore::EStructuralFeature|ValidID])* ')' repeat=('?' |
+	//	'*' | '+')?;
+	public DashedPathTypeSegmentElements getDashedPathTypeSegmentAccess() {
+		return pDashedPathTypeSegment;
+	}
+	
+	public ParserRule getDashedPathTypeSegmentRule() {
+		return getDashedPathTypeSegmentAccess().getRule();
 	}
 	
 	//PatternValueCondition:

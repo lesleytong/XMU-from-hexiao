@@ -223,23 +223,24 @@ public class Pattern implements IGraph {
 		}
 
 		for (IEdge n : this.edges) {
-			Object value = context.getValue(contextType.getField(((PatternElement<?>) n).getName()));
-			
-			if(((PatternElement<?>) n).isCollection()) {
-				// TODO: handle path edge
-				
-				List<Index> values = (List<Index>) value;
-				int id = 0;
-				for(Index v : values) {
-					createEdge(id, n, v, creator, graph, referenceGraph);
-					id++;
-				}
+			if(n instanceof PatternPathEdge) {
+				// TODO: 
 			} else {
-				// TODO: handle path edge
+				Object value = context.getValue(contextType.getField(((PatternElement<?>) n).getName()));
 				
-				Index index = (Index) value;
-				createEdge(-1, n, index, creator, graph, referenceGraph);				
+				if(((PatternElement<?>) n).isCollection()) {
+					List<Index> values = (List<Index>) value;
+					int id = 0;
+					for(Index v : values) {
+						createEdge(id, n, v, creator, graph, referenceGraph);
+						id++;
+					}
+				} else {
+					Index index = (Index) value;
+					createEdge(-1, n, index, creator, graph, referenceGraph);				
+				}
 			}
+			
 		}
 
 		return graph;
@@ -278,13 +279,12 @@ public class Pattern implements IGraph {
 			} catch (NothingReturnedException | NullPointerException e) {
 				edge = creator.createValueEdge(sourceNodeName, targetNodeName, ((PatternValueEdge) n).getElementType(), index);
 			}
-		} else if (n instanceof PatternValueEdge) {
+		} else if (n instanceof PatternPathEdge) {
 			// TODO: First compute shortest path. 
 			// TODO: If the shortest path has a length of 1, create the edge.
 			// TODO: Otherwise, throw
 			throw new UnsupportedOperationException();
 		}
-		// handle path edge
 	}
 
 	protected void createNode(int id, INode n, Object value, TypedGraphCreator creator, TypedGraph graph,

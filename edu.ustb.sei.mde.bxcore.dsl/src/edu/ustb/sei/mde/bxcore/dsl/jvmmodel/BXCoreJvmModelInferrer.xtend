@@ -117,6 +117,10 @@ import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 import org.eclipse.xtext.xbase.validation.IssueCodes
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternPathEdge
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.DashedPathType
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.DashedPathTypeSegment
+import org.eclipse.xtend2.lib.StringConcatenationClient
 
 /**
  * <p>Infers a JVM model from the source model.</p> 
@@ -185,12 +189,14 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 					map[it as XmuCoreStatement].indexed.toList;
 
 				val tupleSet = data.tupleSet;
-				tupleSet.forEach[pair|generateTypeLiteral(it, pair.first, pair.second, element);];
+				tupleSet.forEach[pair|generateTypeLiteral(it, pair.first, pair.second, element, data.pathTypes);];
 				
 				val unsolvedTupleSet = data.unsolvedTypeMap.values.toSet;
 				unsolvedTupleSet.forEach[pair|
-					if(pair.second<0) generateTypeLiteral(it, pair.first, pair.second, element);
+					if(pair.second<0) generateTypeLiteral(it, pair.first, pair.second, element, data.pathTypes);
 				];
+				
+				
 				
 				
 				element.slots.forEach[s|
@@ -206,7 +212,21 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 				val patternLiterals = data.patternLiterals;
 				
 				if(!isPreIndexingPhase)
-					patternLiterals.forEach[p|generatePatternLiteral(it, p.value, p.key, typeLiteralMap, conditions, actions, element);];
+					patternLiterals.forEach[p|generatePatternLiteral(it, p.value, p.key, typeLiteralMap, conditions, actions, element, data.pathTypes);];
+				
+				data.pathTypes.forEach[pt|
+					members += pt.value.toField('pathType_'+pt.key, edu.ustb.sei.mde.graph.type.IPathType.typeRef);
+					members += pt.value.toMethod('getPathType_'+pt.key, edu.ustb.sei.mde.graph.type.IPathType.typeRef)[
+						val pattern = pt.value.pattern;
+						body = '''
+							if(pathType_«pt.key»==null) {
+								edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_«pattern.source.shortName.toFirstUpper»();
+								pathType_«pt.key» = «pt.value.generatePathTypeCode('typeGraph')»;
+							}
+							return pathType_«pt.key»;
+						'''
+					];
+				];
 
 				element.definitions.forEach [ def |
 					if (def instanceof TypeDefinition) {
@@ -302,6 +322,11 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 			handleException(e, element)
 		}
 		
+	}
+		
+	def PatternTypeLiteral getPattern(EObject obj) {
+		if(obj instanceof PatternTypeLiteral) obj as PatternTypeLiteral
+		else obj.eContainer.pattern
 	}
 	
 	protected def boolean handleException(Exception e, BXProgram element) {
@@ -400,8 +425,8 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 		Map<TypeLiteral, Tuple2<TupleType, Integer>> typeLiteralMap,
 		List<ContextAwareCondition> conditions,
 		List<ContextAwareAction> actions,   
-		BXProgram program
-	) {
+		BXProgram program,
+		List<Pair<Integer, DashedPathType>> pathTypes) {
 		owner.members += literal.toField('pattern_' + id, Pattern.typeRef) [
 			visibility = JvmVisibility.PRIVATE;
 		];
@@ -418,13 +443,20 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 					«TypeGraph.typeRef.qualifiedName» typeGraph = getTypeGraph_«typeGraph.shortName.toFirstUpper»();
 					pattern_«id» = new «Pattern.typeRef.qualifiedName»(typeGraph);
 					«FOR node : nodes»
-						«ITypeNode.typeRef.qualifiedName» «node.name»_type = typeGraph.«IF node.type instanceof EClass»getTypeNode«ELSE»getDataTypeNode«ENDIF»("«node.type.name»");
+«««						«ITypeNode.typeRef.qualifiedName» «node.name»_type = typeGraph.«IF node.type instanceof EClass»getTypeNode«ELSE»getDataTypeNode«ENDIF»("«node.type.name»");
+						«ITypeNode.typeRef.qualifiedName» «node.name»_type = «node.type.generateTypeCode('typeGraph', pathTypes)»;
 						pattern_«id».appendPatternNode("«node.name»", «node.name»_type,«node.many»);
 					«ENDFOR»
 					«FOR edge : edges»
 						«val tarNode = if(edge.value instanceof PatternNode) edge.value as PatternNode else if(edge.value instanceof PatternNodeRef) (edge.value as PatternNodeRef).node else null»
 						«val edgeName = if(edge.name!==null) edge.name else ((edge.eContainer as PatternNode).name+'_'+edge.feature.name+'_'+(if(tarNode!==null) tarNode.name else '?'))»
-						«IStructuralFeatureEdge.typeRef.qualifiedName» «edgeName»_type = typeGraph.«IF edge.feature instanceof EReference»getTypeEdge«ELSE»getPropertyEdge«ENDIF»((«TypeNode.typeRef.qualifiedName») «(edge.eContainer as PatternNode).name»_type,"«edge.feature.name»");
+						«IF edge instanceof PatternEdge»
+							«IStructuralFeatureEdge.typeRef.qualifiedName» «edgeName»_type = typeGraph.«IF edge.feature instanceof EReference»getTypeEdge«ELSE»getPropertyEdge«ENDIF»((«TypeNode.typeRef.qualifiedName») «(edge.eContainer as PatternNode).name»_type,"«edge.feature.name»");
+						«ELSEIF edge instanceof PatternPathEdge»
+							«IStructuralFeatureEdge.typeRef.qualifiedName» «edgeName»_type = «(edge as PatternPathEdge).path.generateTypeCode('typeGraph', pathTypes)»;
+						«ELSE»
+							«IStructuralFeatureEdge.typeRef.qualifiedName» «edgeName»_type = /* ERROR */
+						«ENDIF»
 						pattern_«id».appendPatternEdge("«edgeName»", "«(edge.eContainer as PatternNode).name»", "«tarNode.name»", «edgeName»_type);
 					«ENDFOR»
 					«FOR additionalVar : literal.additional»
@@ -885,7 +917,8 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 		}
 	}
 	
-	protected def generateTypeLiteral(JvmGenericType owner, TupleType tuple, int id, BXProgram program) {
+	protected def generateTypeLiteral(JvmGenericType owner, TupleType tuple, int id, BXProgram program, 
+List<Pair<Integer, DashedPathType>> pathTypes) {
 		val varName = 'type_'+(if(id>=0) id else 'u'+(-id));
 		val methodName = 'getType_'+(if(id>=0) id else 'U'+(-id));
 		
@@ -908,7 +941,8 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 						«TypeGraph.typeRef.qualifiedName» typeGraph = getTypeGraph_«typeGraph.shortName.toFirstUpper»();
 						«varName» = new «ContextType.typeRef.qualifiedName»();
 						«FOR v : elements»
-						edu.ustb.sei.mde.graph.type.IType «v.first»_type = typeGraph.«IF v.second instanceof EClassifier»«IF v.second instanceof EClass»getTypeNode«ELSE»getDataTypeNode«ENDIF»("«(v.second as EClassifier).name»")«ELSEIF v.second instanceof EStructuralFeature»«IF v.second instanceof EReference»getTypeEdge«ELSE»getPropertyEdge«ENDIF»(typeGraph.getTypeNode("«(v.second as EStructuralFeature).EContainingClass.name»"),"«(v.second as EStructuralFeature).name»")«ELSE»/* ERROR «v.second» */«ENDIF»;
+«««						edu.ustb.sei.mde.graph.type.IType «v.first»_type = typeGraph.«IF v.second instanceof EClassifier»«IF v.second instanceof EClass»getTypeNode«ELSE»getDataTypeNode«ENDIF»("«(v.second as EClassifier).name»")«ELSEIF v.second instanceof EStructuralFeature»«IF v.second instanceof EReference»getTypeEdge«ELSE»getPropertyEdge«ENDIF»(typeGraph.getTypeNode("«(v.second as EStructuralFeature).EContainingClass.name»"),"«(v.second as EStructuralFeature).name»")«ELSE»/* ERROR «v.second» */«ENDIF»;
+						edu.ustb.sei.mde.graph.type.IType «v.first»_type = «v.second.generateTypeCode('typeGraph', pathTypes)»;
 						«varName».addField("«v.first»", «v.first»_type, «v.third»);
 					«ENDFOR»
 					«ENDIF»
@@ -934,4 +968,30 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 			];
 		}
 	}
+	
+	protected def StringConcatenationClient generatePathTypeCode(Object type, String typeGraph) '''
+	«IF type instanceof DashedPathType»
+		«IF type.eContainer instanceof PatternPathEdge»
+			edu.ustb.sei.mde.graph.type.DashedPathType.create(«(type as DashedPathType).segment.generatePathTypeCode(typeGraph)»«IF (type as DashedPathType).next!==null», «(type as DashedPathType).next.generatePathTypeCode(typeGraph)»«ENDIF»)
+		«ELSE»
+			«(type as DashedPathType).segment.generatePathTypeCode(typeGraph)»«IF (type as DashedPathType).next!==null», «(type as DashedPathType).next.generatePathTypeCode(typeGraph)»«ENDIF»
+		«ENDIF»
+	«ELSEIF type instanceof DashedPathTypeSegment»
+		edu.ustb.sei.mde.graph.type.DashedPathTypeSegment.create«IF '?'.equals((type as DashedPathTypeSegment).repeat)»ZeroOrOne«ELSEIF '*'.equals((type as DashedPathTypeSegment).repeat)»ZeroOrMany«ELSEIF '+'.equals((type as DashedPathTypeSegment).repeat)»OneOrMany«ELSE»One«ENDIF»(«FOR edgeType : (type as DashedPathTypeSegment).types SEPARATOR ','»«edgeType.generatePathTypeCode(typeGraph)»«ENDFOR»)
+	«ELSE»
+		«type.generateTypeCode(typeGraph, null)»
+	«ENDIF»
+	'''
+	
+	protected def generateTypeCode(Object type, String typeGraph, List<Pair<Integer,DashedPathType>> pathTypes) '''
+	«IF type instanceof EClassifier»
+		«typeGraph».«IF type instanceof EClass»getTypeNode«ELSE»getDataTypeNode«ENDIF»("«(type as EClassifier).name»")
+	«ELSEIF type instanceof EStructuralFeature»
+		«typeGraph».«IF type instanceof EReference»getTypeEdge«ELSE»getPropertyEdge«ENDIF»(«typeGraph».getTypeNode("«(type as EStructuralFeature).EContainingClass.name»"),"«(type as EStructuralFeature).name»")
+	«ELSEIF type instanceof DashedPathType»
+		getPathType_«pathTypes.findFirst[pt|pt.value===type].key»()
+	«ELSE»
+		/* ERROR */
+	«ENDIF»
+	'''
 }

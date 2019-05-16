@@ -183,9 +183,29 @@ public class BXCoreAdapterFactory extends AdapterFactoryImpl
         return createPatternNodeAdapter();
       }
       @Override
+      public Adapter caseAbstractPatternEdge(AbstractPatternEdge object)
+      {
+        return createAbstractPatternEdgeAdapter();
+      }
+      @Override
       public Adapter casePatternEdge(PatternEdge object)
       {
         return createPatternEdgeAdapter();
+      }
+      @Override
+      public Adapter casePatternPathEdge(PatternPathEdge object)
+      {
+        return createPatternPathEdgeAdapter();
+      }
+      @Override
+      public Adapter caseDashedPathType(DashedPathType object)
+      {
+        return createDashedPathTypeAdapter();
+      }
+      @Override
+      public Adapter caseDashedPathTypeSegment(DashedPathTypeSegment object)
+      {
+        return createDashedPathTypeSegmentAdapter();
       }
       @Override
       public Adapter casePatternValueCondition(PatternValueCondition object)
@@ -795,6 +815,21 @@ public class BXCoreAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.AbstractPatternEdge <em>Abstract Pattern Edge</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.AbstractPatternEdge
+   * @generated
+   */
+  public Adapter createAbstractPatternEdgeAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternEdge <em>Pattern Edge</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -805,6 +840,51 @@ public class BXCoreAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createPatternEdgeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternPathEdge <em>Pattern Path Edge</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternPathEdge
+   * @generated
+   */
+  public Adapter createPatternPathEdgeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.DashedPathType <em>Dashed Path Type</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.DashedPathType
+   * @generated
+   */
+  public Adapter createDashedPathTypeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.DashedPathTypeSegment <em>Dashed Path Type Segment</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.DashedPathTypeSegment
+   * @generated
+   */
+  public Adapter createDashedPathTypeSegmentAdapter()
   {
     return null;
   }

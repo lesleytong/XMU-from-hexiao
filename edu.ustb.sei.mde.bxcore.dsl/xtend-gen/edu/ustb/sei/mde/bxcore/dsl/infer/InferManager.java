@@ -2,6 +2,8 @@ package edu.ustb.sei.mde.bxcore.dsl.infer;
 
 import edu.ustb.sei.mde.bxcore.XmuCoreUtils;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXProgram;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.DashedPathType;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternPathEdge;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternTypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.infer.InferData;
@@ -71,6 +73,14 @@ public class InferManager {
     };
     final List<Pair<Integer, PatternTypeLiteral>> patternLiterals = IteratorExtensions.<Pair<Integer, PatternTypeLiteral>>toList(IteratorExtensions.<PatternTypeLiteral>indexed(IteratorExtensions.<EObject, PatternTypeLiteral>map(IteratorExtensions.<EObject>filter(program.eAllContents(), _function), _function_1)));
     data.patternLiterals = patternLiterals;
+    final Function1<EObject, Boolean> _function_2 = (EObject it) -> {
+      return Boolean.valueOf((it instanceof PatternPathEdge));
+    };
+    final Function1<EObject, DashedPathType> _function_3 = (EObject it) -> {
+      return ((PatternPathEdge) it).getPath();
+    };
+    final List<Pair<Integer, DashedPathType>> pathTypes = IteratorExtensions.<Pair<Integer, DashedPathType>>toList(IteratorExtensions.<DashedPathType>indexed(IteratorExtensions.<EObject, DashedPathType>map(IteratorExtensions.<EObject>filter(program.eAllContents(), _function_2), _function_3)));
+    data.pathTypes = pathTypes;
     InferManager.inferredDataMap.put(resource, data);
     XmuCoreUtils.log(Level.INFO, "infer created", null);
     return data;

@@ -108,11 +108,27 @@ IndexDefinition :
 ;
 
 PatternNode :
-	name=ValidID ':' type=[ecore::EClassifier|ValidID] (many?='[]')? ('{' (edges+=PatternEdge (',' edges+=PatternEdge)*)? '}')?
+	name=ValidID ':' type=[ecore::EClassifier|ValidID] (many?='[]')? ('{' (edges+=AbstractPatternEdge (',' edges+=AbstractPatternEdge)*)? '}')?
+;
+
+AbstractPatternEdge :
+	PatternEdge | PatternPathEdge
 ;
 
 PatternEdge :
 	name=ValidID ':' feature=[ecore::EStructuralFeature|ValidID] (many?='[]')? operator='=' value=PatternValueCondition
+;
+
+PatternPathEdge :
+	name=ValidID ':' path=DashedPathType (many?='[]')? operator='=' value=PatternValueCondition
+;
+
+DashedPathType :
+	segment = DashedPathTypeSegment (=> '.' next = DashedPathTypeSegment)?
+;
+
+DashedPathTypeSegment :
+	'(' types += [ecore::EStructuralFeature|ValidID] (=> '|' types += [ecore::EStructuralFeature|ValidID])* ')' (repeat=('?'|'*'|'+'))?
 ;
 
 PatternValueCondition :

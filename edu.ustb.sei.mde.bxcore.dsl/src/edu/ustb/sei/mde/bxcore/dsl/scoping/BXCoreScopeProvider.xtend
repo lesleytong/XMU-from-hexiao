@@ -25,10 +25,13 @@ import org.eclipse.xtext.resource.EObjectDescription
 import org.eclipse.xtext.scoping.IScope
 import org.eclipse.xtext.scoping.impl.SimpleScope
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ExpressionConversion
-import edu.ustb.sei.mde.bxcore.dsl.bXCore.NewInstanceExpression
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.xtext.scoping.impl.FilteringScope
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.AnnotatedType
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternPathEdge
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.DashedPathType
+import java.util.List
+import org.eclipse.emf.ecore.EStructuralFeature
 
 /**
  * This class contains custom scoping description.
@@ -50,6 +53,19 @@ class BXCoreScopeProvider extends AbstractBXCoreScopeProvider {
 				return new SimpleScope(objects);
 			}
 		}
+	}
+	
+	def featureScope(List<EStructuralFeature> prevFeatures) {
+		val objects = new ArrayList;
+		prevFeatures.forEach[e|
+			val type = e.EType;
+			if(type instanceof EClass) {
+				type.EAllStructuralFeatures.forEach [ i |
+					objects.add(EObjectDescription.create(i.name, i));
+				];
+			} 
+		];
+		return new SimpleScope(objects);
 	}
 
 	override getScope(EObject context, EReference reference) {
@@ -110,6 +126,20 @@ class BXCoreScopeProvider extends AbstractBXCoreScopeProvider {
 			} else if(reference===BXCorePackage.Literals.ANNOTATED_TYPE__FEATURE) {
 				val type = (context as AnnotatedType).type;
 				return type.featureScope;
+			} else if(reference==BXCorePackage.Literals.DASHED_PATH_TYPE_SEGMENT__TYPES) {
+				val dashedPathType = context.eContainer; // context must be DashedPathTypeSegment
+				val typeContainer = dashedPathType.eContainer;
+				if(typeContainer instanceof PatternPathEdge) {
+					val node = typeContainer.patternNode;
+					if (node.type instanceof EClass) {
+						return (node.type as EClass).featureScope;
+					} else
+						return IScope.NULLSCOPE;
+				} else if(typeContainer instanceof DashedPathType) {
+					val prevSeg = (typeContainer as DashedPathType).segment;
+					return prevSeg.types.featureScope
+				}
+				
 			}
 		} catch(Exception e) {
 		}

@@ -213,6 +213,15 @@ public interface BXCoreFactory extends EFactory
   PatternNode createPatternNode();
 
   /**
+   * Returns a new object of class '<em>Abstract Pattern Edge</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Abstract Pattern Edge</em>'.
+   * @generated
+   */
+  AbstractPatternEdge createAbstractPatternEdge();
+
+  /**
    * Returns a new object of class '<em>Pattern Edge</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -220,6 +229,33 @@ public interface BXCoreFactory extends EFactory
    * @generated
    */
   PatternEdge createPatternEdge();
+
+  /**
+   * Returns a new object of class '<em>Pattern Path Edge</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pattern Path Edge</em>'.
+   * @generated
+   */
+  PatternPathEdge createPatternPathEdge();
+
+  /**
+   * Returns a new object of class '<em>Dashed Path Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Dashed Path Type</em>'.
+   * @generated
+   */
+  DashedPathType createDashedPathType();
+
+  /**
+   * Returns a new object of class '<em>Dashed Path Type Segment</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Dashed Path Type Segment</em>'.
+   * @generated
+   */
+  DashedPathTypeSegment createDashedPathTypeSegment();
 
   /**
    * Returns a new object of class '<em>Pattern Value Condition</em>'.

@@ -87,12 +87,25 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BXCore.ecore#//PatternNode/many"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//PatternNode/edges"/>
     </genClasses>
+    <genClasses ecoreClass="BXCore.ecore#//AbstractPatternEdge">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BXCore.ecore#//AbstractPatternEdge/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BXCore.ecore#//AbstractPatternEdge/many"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BXCore.ecore#//AbstractPatternEdge/operator"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//AbstractPatternEdge/value"/>
+    </genClasses>
     <genClasses ecoreClass="BXCore.ecore#//PatternEdge">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BXCore.ecore#//PatternEdge/name"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BXCore.ecore#//PatternEdge/feature"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BXCore.ecore#//PatternEdge/many"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BXCore.ecore#//PatternEdge/operator"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//PatternEdge/value"/>
+    </genClasses>
+    <genClasses ecoreClass="BXCore.ecore#//PatternPathEdge">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//PatternPathEdge/path"/>
+    </genClasses>
+    <genClasses ecoreClass="BXCore.ecore#//DashedPathType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//DashedPathType/segment"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BXCore.ecore#//DashedPathType/next"/>
+    </genClasses>
+    <genClasses ecoreClass="BXCore.ecore#//DashedPathTypeSegment">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BXCore.ecore#//DashedPathTypeSegment/types"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BXCore.ecore#//DashedPathTypeSegment/repeat"/>
     </genClasses>
     <genClasses ecoreClass="BXCore.ecore#//PatternValueCondition"/>
     <genClasses ecoreClass="BXCore.ecore#//PatternNodeRef">

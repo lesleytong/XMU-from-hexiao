@@ -243,10 +243,40 @@ public class BXCoreSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case BXCorePackage.ABSTRACT_PATTERN_EDGE:
+      {
+        AbstractPatternEdge abstractPatternEdge = (AbstractPatternEdge)theEObject;
+        T result = caseAbstractPatternEdge(abstractPatternEdge);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case BXCorePackage.PATTERN_EDGE:
       {
         PatternEdge patternEdge = (PatternEdge)theEObject;
         T result = casePatternEdge(patternEdge);
+        if (result == null) result = caseAbstractPatternEdge(patternEdge);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case BXCorePackage.PATTERN_PATH_EDGE:
+      {
+        PatternPathEdge patternPathEdge = (PatternPathEdge)theEObject;
+        T result = casePatternPathEdge(patternPathEdge);
+        if (result == null) result = caseAbstractPatternEdge(patternPathEdge);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case BXCorePackage.DASHED_PATH_TYPE:
+      {
+        DashedPathType dashedPathType = (DashedPathType)theEObject;
+        T result = caseDashedPathType(dashedPathType);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case BXCorePackage.DASHED_PATH_TYPE_SEGMENT:
+      {
+        DashedPathTypeSegment dashedPathTypeSegment = (DashedPathTypeSegment)theEObject;
+        T result = caseDashedPathTypeSegment(dashedPathTypeSegment);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1024,6 +1054,22 @@ public class BXCoreSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Abstract Pattern Edge</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Abstract Pattern Edge</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAbstractPatternEdge(AbstractPatternEdge object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Pattern Edge</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -1035,6 +1081,54 @@ public class BXCoreSwitch<T> extends Switch<T>
    * @generated
    */
   public T casePatternEdge(PatternEdge object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pattern Path Edge</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pattern Path Edge</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePatternPathEdge(PatternPathEdge object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Dashed Path Type</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Dashed Path Type</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDashedPathType(DashedPathType object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Dashed Path Type Segment</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Dashed Path Type Segment</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDashedPathTypeSegment(DashedPathTypeSegment object)
   {
     return null;
   }

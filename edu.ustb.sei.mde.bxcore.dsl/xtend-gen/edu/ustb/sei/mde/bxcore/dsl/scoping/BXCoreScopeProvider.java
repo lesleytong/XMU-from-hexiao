@@ -3,11 +3,14 @@
  */
 package edu.ustb.sei.mde.bxcore.dsl.scoping;
 
+import com.google.common.base.Objects;
 import com.google.common.base.Predicate;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.AnnotatedType;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXFunctionDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXProgram;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.DashedPathType;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.DashedPathTypeSegment;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.Definition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ExpressionConversion;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.FeatureTypeRef;
@@ -15,6 +18,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.ImportSection;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.OrderedTupleTypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternNode;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternPathEdge;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternTypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.UnorderedTupleTypeLiteral;
@@ -68,6 +72,21 @@ public class BXCoreScopeProvider extends AbstractBXCoreScopeProvider {
       }
     }
     return null;
+  }
+  
+  public SimpleScope featureScope(final List<EStructuralFeature> prevFeatures) {
+    final ArrayList<IEObjectDescription> objects = new ArrayList<IEObjectDescription>();
+    final Consumer<EStructuralFeature> _function = (EStructuralFeature e) -> {
+      final EClassifier type = e.getEType();
+      if ((type instanceof EClass)) {
+        final Consumer<EStructuralFeature> _function_1 = (EStructuralFeature i) -> {
+          objects.add(EObjectDescription.create(i.getName(), i));
+        };
+        ((EClass)type).getEAllStructuralFeatures().forEach(_function_1);
+      }
+    };
+    prevFeatures.forEach(_function);
+    return new SimpleScope(objects);
   }
   
   @Override
@@ -189,6 +208,27 @@ public class BXCoreScopeProvider extends AbstractBXCoreScopeProvider {
                             if ((reference == BXCorePackage.Literals.ANNOTATED_TYPE__FEATURE)) {
                               final EClass type_1 = ((AnnotatedType) context).getType();
                               return this.featureScope(type_1);
+                            } else {
+                              boolean _equals = Objects.equal(reference, BXCorePackage.Literals.DASHED_PATH_TYPE_SEGMENT__TYPES);
+                              if (_equals) {
+                                final EObject dashedPathType = context.eContainer();
+                                final EObject typeContainer = dashedPathType.eContainer();
+                                if ((typeContainer instanceof PatternPathEdge)) {
+                                  final PatternNode node_1 = this.getPatternNode(typeContainer);
+                                  EClassifier _type_3 = node_1.getType();
+                                  if ((_type_3 instanceof EClass)) {
+                                    EClassifier _type_4 = node_1.getType();
+                                    return this.featureScope(((EClass) _type_4));
+                                  } else {
+                                    return IScope.NULLSCOPE;
+                                  }
+                                } else {
+                                  if ((typeContainer instanceof DashedPathType)) {
+                                    final DashedPathTypeSegment prevSeg = ((DashedPathType) typeContainer).getSegment();
+                                    return this.featureScope(prevSeg.getTypes());
+                                  }
+                                }
+                              }
                             }
                           }
                         }

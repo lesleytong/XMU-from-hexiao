@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 import org.eclipse.xtext.xbase.lib.Pair;
 
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.DashedPathType;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternTypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.structure.TupleType;
@@ -19,7 +20,11 @@ public class InferData {
 	protected Map<TypeLiteral, Tuple2<TupleType, Integer>> literalMap;
 	protected Set<Tuple2<TupleType, Integer>> tupleSet;
 	protected List<Pair<Integer, PatternTypeLiteral>> patternLiterals;
+	protected List<Pair<Integer, DashedPathType>> pathTypes;
 	
+	public List<Pair<Integer, DashedPathType>> getPathTypes() {
+		return pathTypes;
+	}
 	public List<Pair<Integer, PatternTypeLiteral>> getPatternLiterals() {
 		return patternLiterals;
 	}

@@ -3,6 +3,7 @@
  */
 package edu.ustb.sei.mde.bxcore.dsl.bXCore.impl;
 
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.AbstractPatternEdge;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.AllInstanceExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.AnnotatedType;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCoreFactory;
@@ -23,6 +24,8 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.ContextVarExpression;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.Conversion;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.CustomizedBiGULDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.CustomizedBiGULReference;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.DashedPathType;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.DashedPathTypeSegment;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.DataSlot;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.DefinedContextTypeRef;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.Definition;
@@ -48,6 +51,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternDefinitionReference;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternEdge;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternNode;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternNodeRef;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternPathEdge;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternTypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternValueCondition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PredefinedTypeLiteral;
@@ -256,7 +260,35 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass abstractPatternEdgeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass patternEdgeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass patternPathEdgeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass dashedPathTypeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass dashedPathTypeSegmentEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1309,6 +1341,56 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getAbstractPatternEdge()
+  {
+    return abstractPatternEdgeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getAbstractPatternEdge_Name()
+  {
+    return (EAttribute)abstractPatternEdgeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getAbstractPatternEdge_Many()
+  {
+    return (EAttribute)abstractPatternEdgeEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getAbstractPatternEdge_Operator()
+  {
+    return (EAttribute)abstractPatternEdgeEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getAbstractPatternEdge_Value()
+  {
+    return (EReference)abstractPatternEdgeEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getPatternEdge()
   {
     return patternEdgeEClass;
@@ -1319,19 +1401,9 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getPatternEdge_Name()
-  {
-    return (EAttribute)patternEdgeEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EReference getPatternEdge_Feature()
   {
-    return (EReference)patternEdgeEClass.getEStructuralFeatures().get(1);
+    return (EReference)patternEdgeEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1339,9 +1411,9 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getPatternEdge_Many()
+  public EClass getPatternPathEdge()
   {
-    return (EAttribute)patternEdgeEClass.getEStructuralFeatures().get(2);
+    return patternPathEdgeEClass;
   }
 
   /**
@@ -1349,9 +1421,9 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getPatternEdge_Operator()
+  public EReference getPatternPathEdge_Path()
   {
-    return (EAttribute)patternEdgeEClass.getEStructuralFeatures().get(3);
+    return (EReference)patternPathEdgeEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1359,9 +1431,59 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getPatternEdge_Value()
+  public EClass getDashedPathType()
   {
-    return (EReference)patternEdgeEClass.getEStructuralFeatures().get(4);
+    return dashedPathTypeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getDashedPathType_Segment()
+  {
+    return (EReference)dashedPathTypeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getDashedPathType_Next()
+  {
+    return (EReference)dashedPathTypeEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getDashedPathTypeSegment()
+  {
+    return dashedPathTypeSegmentEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getDashedPathTypeSegment_Types()
+  {
+    return (EReference)dashedPathTypeSegmentEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getDashedPathTypeSegment_Repeat()
+  {
+    return (EAttribute)dashedPathTypeSegmentEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -2945,12 +3067,25 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     createEAttribute(patternNodeEClass, PATTERN_NODE__MANY);
     createEReference(patternNodeEClass, PATTERN_NODE__EDGES);
 
+    abstractPatternEdgeEClass = createEClass(ABSTRACT_PATTERN_EDGE);
+    createEAttribute(abstractPatternEdgeEClass, ABSTRACT_PATTERN_EDGE__NAME);
+    createEAttribute(abstractPatternEdgeEClass, ABSTRACT_PATTERN_EDGE__MANY);
+    createEAttribute(abstractPatternEdgeEClass, ABSTRACT_PATTERN_EDGE__OPERATOR);
+    createEReference(abstractPatternEdgeEClass, ABSTRACT_PATTERN_EDGE__VALUE);
+
     patternEdgeEClass = createEClass(PATTERN_EDGE);
-    createEAttribute(patternEdgeEClass, PATTERN_EDGE__NAME);
     createEReference(patternEdgeEClass, PATTERN_EDGE__FEATURE);
-    createEAttribute(patternEdgeEClass, PATTERN_EDGE__MANY);
-    createEAttribute(patternEdgeEClass, PATTERN_EDGE__OPERATOR);
-    createEReference(patternEdgeEClass, PATTERN_EDGE__VALUE);
+
+    patternPathEdgeEClass = createEClass(PATTERN_PATH_EDGE);
+    createEReference(patternPathEdgeEClass, PATTERN_PATH_EDGE__PATH);
+
+    dashedPathTypeEClass = createEClass(DASHED_PATH_TYPE);
+    createEReference(dashedPathTypeEClass, DASHED_PATH_TYPE__SEGMENT);
+    createEReference(dashedPathTypeEClass, DASHED_PATH_TYPE__NEXT);
+
+    dashedPathTypeSegmentEClass = createEClass(DASHED_PATH_TYPE_SEGMENT);
+    createEReference(dashedPathTypeSegmentEClass, DASHED_PATH_TYPE_SEGMENT__TYPES);
+    createEAttribute(dashedPathTypeSegmentEClass, DASHED_PATH_TYPE_SEGMENT__REPEAT);
 
     patternValueConditionEClass = createEClass(PATTERN_VALUE_CONDITION);
 
@@ -3203,6 +3338,8 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     bxFunctionDefinitionEClass.getESuperTypes().add(this.getDefinition());
     indexDefinitionEClass.getESuperTypes().add(this.getDefinition());
     patternNodeEClass.getESuperTypes().add(this.getPatternValueCondition());
+    patternEdgeEClass.getESuperTypes().add(this.getAbstractPatternEdge());
+    patternPathEdgeEClass.getESuperTypes().add(this.getAbstractPatternEdge());
     patternNodeRefEClass.getESuperTypes().add(this.getPatternValueCondition());
     patternDefinitionReferenceEClass.getESuperTypes().add(this.getPattern());
     xmuCoreCompositionChildStatementEClass.getESuperTypes().add(this.getXmuCoreStatement());
@@ -3323,14 +3460,27 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
     initEAttribute(getPatternNode_Name(), ecorePackage.getEString(), "name", null, 0, 1, PatternNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPatternNode_Type(), ecorePackage.getEClassifier(), null, "type", null, 0, 1, PatternNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPatternNode_Many(), ecorePackage.getEBoolean(), "many", null, 0, 1, PatternNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getPatternNode_Edges(), this.getPatternEdge(), null, "edges", null, 0, -1, PatternNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPatternNode_Edges(), this.getAbstractPatternEdge(), null, "edges", null, 0, -1, PatternNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(abstractPatternEdgeEClass, AbstractPatternEdge.class, "AbstractPatternEdge", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getAbstractPatternEdge_Name(), ecorePackage.getEString(), "name", null, 0, 1, AbstractPatternEdge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAbstractPatternEdge_Many(), ecorePackage.getEBoolean(), "many", null, 0, 1, AbstractPatternEdge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAbstractPatternEdge_Operator(), ecorePackage.getEString(), "operator", null, 0, 1, AbstractPatternEdge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAbstractPatternEdge_Value(), this.getPatternValueCondition(), null, "value", null, 0, 1, AbstractPatternEdge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(patternEdgeEClass, PatternEdge.class, "PatternEdge", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getPatternEdge_Name(), ecorePackage.getEString(), "name", null, 0, 1, PatternEdge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPatternEdge_Feature(), ecorePackage.getEStructuralFeature(), null, "feature", null, 0, 1, PatternEdge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getPatternEdge_Many(), ecorePackage.getEBoolean(), "many", null, 0, 1, PatternEdge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getPatternEdge_Operator(), ecorePackage.getEString(), "operator", null, 0, 1, PatternEdge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getPatternEdge_Value(), this.getPatternValueCondition(), null, "value", null, 0, 1, PatternEdge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(patternPathEdgeEClass, PatternPathEdge.class, "PatternPathEdge", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getPatternPathEdge_Path(), this.getDashedPathType(), null, "path", null, 0, 1, PatternPathEdge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(dashedPathTypeEClass, DashedPathType.class, "DashedPathType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getDashedPathType_Segment(), this.getDashedPathTypeSegment(), null, "segment", null, 0, 1, DashedPathType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDashedPathType_Next(), this.getDashedPathTypeSegment(), null, "next", null, 0, 1, DashedPathType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(dashedPathTypeSegmentEClass, DashedPathTypeSegment.class, "DashedPathTypeSegment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getDashedPathTypeSegment_Types(), ecorePackage.getEStructuralFeature(), null, "types", null, 0, -1, DashedPathTypeSegment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getDashedPathTypeSegment_Repeat(), ecorePackage.getEString(), "repeat", null, 0, 1, DashedPathTypeSegment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(patternValueConditionEClass, PatternValueCondition.class, "PatternValueCondition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

@@ -10,6 +10,30 @@ public class DashedPathTypeSegment {
 		this.max = max;
 	}
 	
+	public DashedPathTypeSegment(int min, int max, IStructuralFeatureEdge... edgeTypes) {
+		super();
+		this.edgeTypes = edgeTypes;
+		this.min = min;
+		this.max = max;
+	}
+	
+	public DashedPathTypeSegment createOne(IStructuralFeatureEdge... edgeTypes) {
+		return new DashedPathTypeSegment(1, 1, edgeTypes);
+	}
+	
+	public DashedPathTypeSegment createZeroOrOne(IStructuralFeatureEdge... edgeTypes) {
+		return new DashedPathTypeSegment(0, 1, edgeTypes);
+	}
+	
+	public DashedPathTypeSegment createZeroOrMany(IStructuralFeatureEdge... edgeTypes) {
+		return new DashedPathTypeSegment(0, -1, edgeTypes);
+	}
+	
+	public DashedPathTypeSegment createOneOrMany(IStructuralFeatureEdge... edgeTypes) {
+		return new DashedPathTypeSegment(1, -1, edgeTypes);
+	}
+	
+	
 	private IStructuralFeatureEdge[] edgeTypes;
 	private int min;
 	private int max;

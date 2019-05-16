@@ -108,7 +108,7 @@ public interface PatternNode extends PatternValueCondition
 
   /**
    * Returns the value of the '<em><b>Edges</b></em>' containment reference list.
-   * The list contents are of type {@link edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternEdge}.
+   * The list contents are of type {@link edu.ustb.sei.mde.bxcore.dsl.bXCore.AbstractPatternEdge}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Edges</em>' containment reference list isn't clear,
@@ -120,6 +120,6 @@ public interface PatternNode extends PatternValueCondition
    * @model containment="true"
    * @generated
    */
-  EList<PatternEdge> getEdges();
+  EList<AbstractPatternEdge> getEdges();
 
 } // PatternNode
