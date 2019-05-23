@@ -6321,7 +6321,7 @@ public class InternalBXCoreParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleDashedPathType"
-    // InternalBXCore.g:2305:1: ruleDashedPathType returns [EObject current=null] : ( ( (lv_segment_0_0= ruleDashedPathTypeSegment ) ) ( ( ( '.' )=>otherlv_1= '.' ) ( (lv_next_2_0= ruleDashedPathTypeSegment ) ) )? ) ;
+    // InternalBXCore.g:2305:1: ruleDashedPathType returns [EObject current=null] : ( ( (lv_segment_0_0= ruleDashedPathTypeSegment ) ) ( ( ( '.' )=>otherlv_1= '.' ) ( (lv_next_2_0= ruleDashedPathType ) ) )? ) ;
     public final EObject ruleDashedPathType() throws RecognitionException {
         EObject current = null;
 
@@ -6335,11 +6335,11 @@ public class InternalBXCoreParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalBXCore.g:2311:2: ( ( ( (lv_segment_0_0= ruleDashedPathTypeSegment ) ) ( ( ( '.' )=>otherlv_1= '.' ) ( (lv_next_2_0= ruleDashedPathTypeSegment ) ) )? ) )
-            // InternalBXCore.g:2312:2: ( ( (lv_segment_0_0= ruleDashedPathTypeSegment ) ) ( ( ( '.' )=>otherlv_1= '.' ) ( (lv_next_2_0= ruleDashedPathTypeSegment ) ) )? )
+            // InternalBXCore.g:2311:2: ( ( ( (lv_segment_0_0= ruleDashedPathTypeSegment ) ) ( ( ( '.' )=>otherlv_1= '.' ) ( (lv_next_2_0= ruleDashedPathType ) ) )? ) )
+            // InternalBXCore.g:2312:2: ( ( (lv_segment_0_0= ruleDashedPathTypeSegment ) ) ( ( ( '.' )=>otherlv_1= '.' ) ( (lv_next_2_0= ruleDashedPathType ) ) )? )
             {
-            // InternalBXCore.g:2312:2: ( ( (lv_segment_0_0= ruleDashedPathTypeSegment ) ) ( ( ( '.' )=>otherlv_1= '.' ) ( (lv_next_2_0= ruleDashedPathTypeSegment ) ) )? )
-            // InternalBXCore.g:2313:3: ( (lv_segment_0_0= ruleDashedPathTypeSegment ) ) ( ( ( '.' )=>otherlv_1= '.' ) ( (lv_next_2_0= ruleDashedPathTypeSegment ) ) )?
+            // InternalBXCore.g:2312:2: ( ( (lv_segment_0_0= ruleDashedPathTypeSegment ) ) ( ( ( '.' )=>otherlv_1= '.' ) ( (lv_next_2_0= ruleDashedPathType ) ) )? )
+            // InternalBXCore.g:2313:3: ( (lv_segment_0_0= ruleDashedPathTypeSegment ) ) ( ( ( '.' )=>otherlv_1= '.' ) ( (lv_next_2_0= ruleDashedPathType ) ) )?
             {
             // InternalBXCore.g:2313:3: ( (lv_segment_0_0= ruleDashedPathTypeSegment ) )
             // InternalBXCore.g:2314:4: (lv_segment_0_0= ruleDashedPathTypeSegment )
@@ -6376,7 +6376,7 @@ public class InternalBXCoreParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalBXCore.g:2332:3: ( ( ( '.' )=>otherlv_1= '.' ) ( (lv_next_2_0= ruleDashedPathTypeSegment ) ) )?
+            // InternalBXCore.g:2332:3: ( ( ( '.' )=>otherlv_1= '.' ) ( (lv_next_2_0= ruleDashedPathType ) ) )?
             int alt34=2;
             int LA34_0 = input.LA(1);
 
@@ -6385,7 +6385,7 @@ public class InternalBXCoreParser extends AbstractInternalAntlrParser {
             }
             switch (alt34) {
                 case 1 :
-                    // InternalBXCore.g:2333:4: ( ( '.' )=>otherlv_1= '.' ) ( (lv_next_2_0= ruleDashedPathTypeSegment ) )
+                    // InternalBXCore.g:2333:4: ( ( '.' )=>otherlv_1= '.' ) ( (lv_next_2_0= ruleDashedPathType ) )
                     {
                     // InternalBXCore.g:2333:4: ( ( '.' )=>otherlv_1= '.' )
                     // InternalBXCore.g:2334:5: ( '.' )=>otherlv_1= '.'
@@ -6399,19 +6399,19 @@ public class InternalBXCoreParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // InternalBXCore.g:2340:4: ( (lv_next_2_0= ruleDashedPathTypeSegment ) )
-                    // InternalBXCore.g:2341:5: (lv_next_2_0= ruleDashedPathTypeSegment )
+                    // InternalBXCore.g:2340:4: ( (lv_next_2_0= ruleDashedPathType ) )
+                    // InternalBXCore.g:2341:5: (lv_next_2_0= ruleDashedPathType )
                     {
-                    // InternalBXCore.g:2341:5: (lv_next_2_0= ruleDashedPathTypeSegment )
-                    // InternalBXCore.g:2342:6: lv_next_2_0= ruleDashedPathTypeSegment
+                    // InternalBXCore.g:2341:5: (lv_next_2_0= ruleDashedPathType )
+                    // InternalBXCore.g:2342:6: lv_next_2_0= ruleDashedPathType
                     {
                     if ( state.backtracking==0 ) {
 
-                      						newCompositeNode(grammarAccess.getDashedPathTypeAccess().getNextDashedPathTypeSegmentParserRuleCall_1_1_0());
+                      						newCompositeNode(grammarAccess.getDashedPathTypeAccess().getNextDashedPathTypeParserRuleCall_1_1_0());
                       					
                     }
                     pushFollow(FOLLOW_2);
-                    lv_next_2_0=ruleDashedPathTypeSegment();
+                    lv_next_2_0=ruleDashedPathType();
 
                     state._fsp--;
                     if (state.failed) return current;
@@ -6424,7 +6424,7 @@ public class InternalBXCoreParser extends AbstractInternalAntlrParser {
                       							current,
                       							"next",
                       							lv_next_2_0,
-                      							"edu.ustb.sei.mde.bxcore.dsl.BXCore.DashedPathTypeSegment");
+                      							"edu.ustb.sei.mde.bxcore.dsl.BXCore.DashedPathType");
                       						afterParserOrEnumRuleCall();
                       					
                     }

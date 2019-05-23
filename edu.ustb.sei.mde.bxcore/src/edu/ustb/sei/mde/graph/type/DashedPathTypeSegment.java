@@ -1,5 +1,7 @@
 package edu.ustb.sei.mde.graph.type;
 
+import java.util.Arrays;
+
 import edu.ustb.sei.mde.graph.IEdge;
 
 public class DashedPathTypeSegment {
@@ -71,5 +73,22 @@ public class DashedPathTypeSegment {
 		builder.append(max);
 		builder.append("]");
 		return super.toString();
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj!=null && obj instanceof DashedPathTypeSegment) {
+			return Arrays.equals(this.edgeTypes, ((DashedPathTypeSegment)obj).edgeTypes);
+		}
+		return false;
+	}
+	
+	@Override
+	public int hashCode() {
+		int hash = 0;
+		for(IStructuralFeatureEdge e : edgeTypes) {
+			hash += e.hashCode();
+		}
+		return hash;
 	}
 }

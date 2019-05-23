@@ -30137,9 +30137,9 @@ rule__DashedPathType__NextAssignment_1_1
 	}
 :
 	(
-		{ before(grammarAccess.getDashedPathTypeAccess().getNextDashedPathTypeSegmentParserRuleCall_1_1_0()); }
-		ruleDashedPathTypeSegment
-		{ after(grammarAccess.getDashedPathTypeAccess().getNextDashedPathTypeSegmentParserRuleCall_1_1_0()); }
+		{ before(grammarAccess.getDashedPathTypeAccess().getNextDashedPathTypeParserRuleCall_1_1_0()); }
+		ruleDashedPathType
+		{ after(grammarAccess.getDashedPathTypeAccess().getNextDashedPathTypeParserRuleCall_1_1_0()); }
 	)
 ;
 finally {

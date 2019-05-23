@@ -98384,28 +98384,28 @@ public class InternalBXCoreParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DashedPathType__NextAssignment_1_1"
-    // InternalBXCore.g:30134:1: rule__DashedPathType__NextAssignment_1_1 : ( ruleDashedPathTypeSegment ) ;
+    // InternalBXCore.g:30134:1: rule__DashedPathType__NextAssignment_1_1 : ( ruleDashedPathType ) ;
     public final void rule__DashedPathType__NextAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBXCore.g:30138:1: ( ( ruleDashedPathTypeSegment ) )
-            // InternalBXCore.g:30139:2: ( ruleDashedPathTypeSegment )
+            // InternalBXCore.g:30138:1: ( ( ruleDashedPathType ) )
+            // InternalBXCore.g:30139:2: ( ruleDashedPathType )
             {
-            // InternalBXCore.g:30139:2: ( ruleDashedPathTypeSegment )
-            // InternalBXCore.g:30140:3: ruleDashedPathTypeSegment
+            // InternalBXCore.g:30139:2: ( ruleDashedPathType )
+            // InternalBXCore.g:30140:3: ruleDashedPathType
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getDashedPathTypeAccess().getNextDashedPathTypeSegmentParserRuleCall_1_1_0()); 
+               before(grammarAccess.getDashedPathTypeAccess().getNextDashedPathTypeParserRuleCall_1_1_0()); 
             }
             pushFollow(FOLLOW_2);
-            ruleDashedPathTypeSegment();
+            ruleDashedPathType();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getDashedPathTypeAccess().getNextDashedPathTypeSegmentParserRuleCall_1_1_0()); 
+               after(grammarAccess.getDashedPathTypeAccess().getNextDashedPathTypeParserRuleCall_1_1_0()); 
             }
 
             }

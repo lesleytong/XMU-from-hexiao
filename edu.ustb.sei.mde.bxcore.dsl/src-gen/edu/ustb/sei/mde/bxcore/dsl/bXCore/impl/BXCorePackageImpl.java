@@ -3476,7 +3476,7 @@ public class BXCorePackageImpl extends EPackageImpl implements BXCorePackage
 
     initEClass(dashedPathTypeEClass, DashedPathType.class, "DashedPathType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getDashedPathType_Segment(), this.getDashedPathTypeSegment(), null, "segment", null, 0, 1, DashedPathType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getDashedPathType_Next(), this.getDashedPathTypeSegment(), null, "next", null, 0, 1, DashedPathType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDashedPathType_Next(), this.getDashedPathType(), null, "next", null, 0, 1, DashedPathType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(dashedPathTypeSegmentEClass, DashedPathTypeSegment.class, "DashedPathTypeSegment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getDashedPathTypeSegment_Types(), ecorePackage.getEStructuralFeature(), null, "types", null, 0, -1, DashedPathTypeSegment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

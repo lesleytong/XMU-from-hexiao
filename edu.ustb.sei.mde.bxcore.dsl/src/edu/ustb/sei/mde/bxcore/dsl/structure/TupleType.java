@@ -1,13 +1,12 @@
 package edu.ustb.sei.mde.bxcore.dsl.structure;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EPackage;
 
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.AbstractPatternEdge;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.EcoreTypeRef;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.FeatureTypeRef;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ImportSection;
@@ -15,6 +14,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.OrderedTupleTypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternEdge;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternNode;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternNodeRef;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternPathEdge;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternTypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternValueCondition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PredefinedTypeLiteral;
@@ -72,6 +72,8 @@ public class TupleType {
 					t.tuples.add(Tuple3.make(((PatternNode)e).getName(), ((PatternNode)e).getType(), ((PatternNode)e).isMany()));
 				} else if(e instanceof PatternEdge) {
 					t.tuples.add(Tuple3.make(((PatternEdge)e).getName(), ((PatternEdge)e).getFeature(), isMany((PatternEdge)e)));
+				} else if(e instanceof PatternPathEdge) {
+					t.tuples.add(Tuple3.make(((PatternPathEdge)e).getName(), ((PatternPathEdge)e).getPath(), isMany((PatternPathEdge)e)));
 				} else if(e instanceof TypeVar) {
 					t.tuples.add(Tuple3.make(((TypeVar)e).getName(), getType(((TypeVar)e).getType()), ((TypeVar)e).isMany()));
 				}
@@ -83,7 +85,7 @@ public class TupleType {
 		} else return empty;
 	}
 
-	protected static boolean isMany(PatternEdge e) {
+	protected static boolean isMany(AbstractPatternEdge e) {
 		PatternNode con = (PatternNode) e.eContainer();
 		if(con.isMany()) return true;
 		PatternValueCondition target = e.getValue();
@@ -92,7 +94,7 @@ public class TupleType {
 		} else if(target instanceof PatternNodeRef) {
 			return ((PatternNodeRef) target).getNode().isMany();
 		}
-		return ((PatternEdge)e).isMany();
+		return ((AbstractPatternEdge)e).isMany();
 	}
 	
 	static public Object getType(TypeRef ref) {

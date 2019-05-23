@@ -59,12 +59,12 @@ public interface DashedPathType extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Next</em>' containment reference.
-   * @see #setNext(DashedPathTypeSegment)
+   * @see #setNext(DashedPathType)
    * @see edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage#getDashedPathType_Next()
    * @model containment="true"
    * @generated
    */
-  DashedPathTypeSegment getNext();
+  DashedPathType getNext();
 
   /**
    * Sets the value of the '{@link edu.ustb.sei.mde.bxcore.dsl.bXCore.DashedPathType#getNext <em>Next</em>}' containment reference.
@@ -74,6 +74,6 @@ public interface DashedPathType extends EObject
    * @see #getNext()
    * @generated
    */
-  void setNext(DashedPathTypeSegment value);
+  void setNext(DashedPathType value);
 
 } // DashedPathType

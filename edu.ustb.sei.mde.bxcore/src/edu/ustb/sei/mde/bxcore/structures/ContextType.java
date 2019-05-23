@@ -29,17 +29,9 @@ public class ContextType {
 		orderedKeys.add(field);
 	}
 	
-	public <T extends IType> void addField(String name, T type, boolean many) {
-		FieldDef<T> field = new FieldDef<T>(name, type, many);
-		addField(field);
-	}
-	
 	public <T extends IType> void addField(String name, T type) {
-		addField(name, type, false);
-	}
-	
-	public <T extends IType> void addCollectionField(String name, T type) {
-		addField(name, type, true);
+		FieldDef<T> field = new FieldDef<T>(name, type);
+		addField(field);
 	}
 	
 	public FieldDef<?> getField(String name) {

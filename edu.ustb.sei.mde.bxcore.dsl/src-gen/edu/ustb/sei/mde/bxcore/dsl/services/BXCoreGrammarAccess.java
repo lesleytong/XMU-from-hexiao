@@ -1366,13 +1366,13 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final Keyword cFullStopKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
 		private final Assignment cNextAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cNextDashedPathTypeSegmentParserRuleCall_1_1_0 = (RuleCall)cNextAssignment_1_1.eContents().get(0);
+		private final RuleCall cNextDashedPathTypeParserRuleCall_1_1_0 = (RuleCall)cNextAssignment_1_1.eContents().get(0);
 		
 		//DashedPathType:
-		//	segment=DashedPathTypeSegment (=> '.' next=DashedPathTypeSegment)?;
+		//	segment=DashedPathTypeSegment (=> '.' next=DashedPathType)?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//segment=DashedPathTypeSegment (=> '.' next=DashedPathTypeSegment)?
+		//segment=DashedPathTypeSegment (=> '.' next=DashedPathType)?
 		public Group getGroup() { return cGroup; }
 		
 		//segment=DashedPathTypeSegment
@@ -1381,17 +1381,17 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 		//DashedPathTypeSegment
 		public RuleCall getSegmentDashedPathTypeSegmentParserRuleCall_0_0() { return cSegmentDashedPathTypeSegmentParserRuleCall_0_0; }
 		
-		//(=> '.' next=DashedPathTypeSegment)?
+		//(=> '.' next=DashedPathType)?
 		public Group getGroup_1() { return cGroup_1; }
 		
 		//=> '.'
 		public Keyword getFullStopKeyword_1_0() { return cFullStopKeyword_1_0; }
 		
-		//next=DashedPathTypeSegment
+		//next=DashedPathType
 		public Assignment getNextAssignment_1_1() { return cNextAssignment_1_1; }
 		
-		//DashedPathTypeSegment
-		public RuleCall getNextDashedPathTypeSegmentParserRuleCall_1_1_0() { return cNextDashedPathTypeSegmentParserRuleCall_1_1_0; }
+		//DashedPathType
+		public RuleCall getNextDashedPathTypeParserRuleCall_1_1_0() { return cNextDashedPathTypeParserRuleCall_1_1_0; }
 	}
 	public class DashedPathTypeSegmentElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ustb.sei.mde.bxcore.dsl.BXCore.DashedPathTypeSegment");
@@ -4412,7 +4412,7 @@ public class BXCoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//DashedPathType:
-	//	segment=DashedPathTypeSegment (=> '.' next=DashedPathTypeSegment)?;
+	//	segment=DashedPathTypeSegment (=> '.' next=DashedPathType)?;
 	public DashedPathTypeElements getDashedPathTypeAccess() {
 		return pDashedPathType;
 	}

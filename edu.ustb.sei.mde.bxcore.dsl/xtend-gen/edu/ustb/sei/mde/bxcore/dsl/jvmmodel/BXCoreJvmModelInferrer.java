@@ -27,6 +27,7 @@ import edu.ustb.sei.mde.bxcore.XmuCore;
 import edu.ustb.sei.mde.bxcore.bigul.BidirectionalTransformation;
 import edu.ustb.sei.mde.bxcore.bigul.Replace;
 import edu.ustb.sei.mde.bxcore.bigul.Skip;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.AbstractPatternEdge;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXFunctionDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXProgram;
@@ -864,10 +865,10 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
       final Function1<EObject, Boolean> _function_3 = (EObject it) -> {
         return Boolean.valueOf((it instanceof PatternEdge));
       };
-      final Function1<EObject, PatternEdge> _function_4 = (EObject it) -> {
-        return ((PatternEdge) it);
+      final Function1<EObject, AbstractPatternEdge> _function_4 = (EObject it) -> {
+        return ((AbstractPatternEdge) it);
       };
-      final List<PatternEdge> edges = IteratorExtensions.<PatternEdge>toList(IteratorExtensions.<EObject, PatternEdge>map(IteratorExtensions.<EObject>filter(literal.eAllContents(), _function_3), _function_4));
+      final List<AbstractPatternEdge> edges = IteratorExtensions.<AbstractPatternEdge>toList(IteratorExtensions.<EObject, AbstractPatternEdge>map(IteratorExtensions.<EObject>filter(literal.eAllContents(), _function_3), _function_4));
       final ImportSection typeGraph = literal.getSource();
       final Integer patternTypeId = typeLiteralMap.get(literal).second;
       EList<JvmMember> _members_1 = owner.getMembers();
@@ -926,7 +927,7 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
               }
             }
             {
-              for(final PatternEdge edge : edges) {
+              for(final AbstractPatternEdge edge : edges) {
                 _builder.append("\t");
                 PatternNode _xifexpression = null;
                 PatternValueCondition _value = edge.getValue();
@@ -956,16 +957,21 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
                   EObject _eContainer = edge.eContainer();
                   String _name_4 = ((PatternNode) _eContainer).getName();
                   String _plus = (_name_4 + "_");
-                  String _name_5 = edge.getFeature().getName();
-                  String _plus_1 = (_plus + _name_5);
-                  String _plus_2 = (_plus_1 + "_");
                   String _xifexpression_3 = null;
-                  if ((tarNode != null)) {
-                    _xifexpression_3 = tarNode.getName();
+                  if ((edge instanceof PatternEdge)) {
+                    _xifexpression_3 = ((PatternEdge) edge).getFeature().getName();
                   } else {
-                    _xifexpression_3 = "?";
+                    _xifexpression_3 = ((PatternPathEdge) edge).toString();
                   }
-                  _xifexpression_2 = (_plus_2 + _xifexpression_3);
+                  String _plus_1 = (_plus + _xifexpression_3);
+                  String _plus_2 = (_plus_1 + "_");
+                  String _xifexpression_4 = null;
+                  if ((tarNode != null)) {
+                    _xifexpression_4 = tarNode.getName();
+                  } else {
+                    _xifexpression_4 = "?";
+                  }
+                  _xifexpression_2 = (_plus_2 + _xifexpression_4);
                 }
                 final String edgeName = _xifexpression_2;
                 _builder.newLineIfNotEmpty();
@@ -978,7 +984,7 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
                     _builder.append(edgeName, "\t");
                     _builder.append("_type = typeGraph.");
                     {
-                      EStructuralFeature _feature = edge.getFeature();
+                      EStructuralFeature _feature = ((PatternEdge)edge).getFeature();
                       if ((_feature instanceof EReference)) {
                         _builder.append("getTypeEdge");
                       } else {
@@ -989,12 +995,12 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
                     String _qualifiedName_4 = BXCoreJvmModelInferrer.this._typeReferenceBuilder.typeRef(TypeNode.class).getQualifiedName();
                     _builder.append(_qualifiedName_4, "\t");
                     _builder.append(") ");
-                    EObject _eContainer_1 = edge.eContainer();
-                    String _name_6 = ((PatternNode) _eContainer_1).getName();
-                    _builder.append(_name_6, "\t");
+                    EObject _eContainer_1 = ((PatternEdge)edge).eContainer();
+                    String _name_5 = ((PatternNode) _eContainer_1).getName();
+                    _builder.append(_name_5, "\t");
                     _builder.append("_type,\"");
-                    String _name_7 = edge.getFeature().getName();
-                    _builder.append(_name_7, "\t");
+                    String _name_6 = ((PatternEdge)edge).getFeature().getName();
+                    _builder.append(_name_6, "\t");
                     _builder.append("\");");
                     _builder.newLineIfNotEmpty();
                   } else {
@@ -1027,11 +1033,11 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
                 _builder.append(edgeName, "\t");
                 _builder.append("\", \"");
                 EObject _eContainer_2 = edge.eContainer();
-                String _name_8 = ((PatternNode) _eContainer_2).getName();
-                _builder.append(_name_8, "\t");
+                String _name_7 = ((PatternNode) _eContainer_2).getName();
+                _builder.append(_name_7, "\t");
                 _builder.append("\", \"");
-                String _name_9 = tarNode.getName();
-                _builder.append(_name_9, "\t");
+                String _name_8 = tarNode.getName();
+                _builder.append(_name_8, "\t");
                 _builder.append("\", ");
                 _builder.append(edgeName, "\t");
                 _builder.append("_type);");
@@ -1047,8 +1053,8 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
                 _builder.append(".addAdditionalField(getType_");
                 _builder.append(patternTypeId, "\t");
                 _builder.append("().getField(\"");
-                String _name_10 = additionalVar.getName();
-                _builder.append(_name_10, "\t");
+                String _name_9 = additionalVar.getName();
+                _builder.append(_name_9, "\t");
                 _builder.append("\")");
                 {
                   ContextAwareDerivationAction _initializer = additionalVar.getInitializer();
@@ -2818,7 +2824,7 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
                 StringConcatenationClient _generatePathTypeCode = BXCoreJvmModelInferrer.this.generatePathTypeCode(((DashedPathType) type).getSegment(), typeGraph);
                 _builder.append(_generatePathTypeCode);
                 {
-                  DashedPathTypeSegment _next = ((DashedPathType) type).getNext();
+                  DashedPathType _next = ((DashedPathType) type).getNext();
                   boolean _tripleNotEquals = (_next != null);
                   if (_tripleNotEquals) {
                     _builder.append(", ");
@@ -2832,7 +2838,7 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
                 StringConcatenationClient _generatePathTypeCode_2 = BXCoreJvmModelInferrer.this.generatePathTypeCode(((DashedPathType) type).getSegment(), typeGraph);
                 _builder.append(_generatePathTypeCode_2);
                 {
-                  DashedPathTypeSegment _next_1 = ((DashedPathType) type).getNext();
+                  DashedPathType _next_1 = ((DashedPathType) type).getNext();
                   boolean _tripleNotEquals_1 = (_next_1 != null);
                   if (_tripleNotEquals_1) {
                     _builder.append(", ");

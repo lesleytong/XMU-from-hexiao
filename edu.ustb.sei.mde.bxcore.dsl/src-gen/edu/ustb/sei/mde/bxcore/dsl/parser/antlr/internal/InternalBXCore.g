@@ -2340,9 +2340,9 @@ ruleDashedPathType returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getDashedPathTypeAccess().getNextDashedPathTypeSegmentParserRuleCall_1_1_0());
+						newCompositeNode(grammarAccess.getDashedPathTypeAccess().getNextDashedPathTypeParserRuleCall_1_1_0());
 					}
-					lv_next_2_0=ruleDashedPathTypeSegment
+					lv_next_2_0=ruleDashedPathType
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getDashedPathTypeRule());
@@ -2351,7 +2351,7 @@ ruleDashedPathType returns [EObject current=null]
 							$current,
 							"next",
 							lv_next_2_0,
-							"edu.ustb.sei.mde.bxcore.dsl.BXCore.DashedPathTypeSegment");
+							"edu.ustb.sei.mde.bxcore.dsl.BXCore.DashedPathType");
 						afterParserOrEnumRuleCall();
 					}
 				)

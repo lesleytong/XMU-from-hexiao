@@ -25,14 +25,8 @@ public class FieldDef<T extends IType> implements INamedElement {
 	}
 	
 	public FieldDef(String name, T type) {
-		this(name, type, false);
-	}
-	
-	public FieldDef(String name, T type, boolean many) {
 		this.name = name;
 		this.type = type;
-		setCollection(many);
-//		this.many = many;
 	}
 	
 	private T type;
@@ -67,8 +61,7 @@ public class FieldDef<T extends IType> implements INamedElement {
 		} else if(isCollection()) 
 			return;
 		else {
-			ListType col = new ListType();
-			col.setElementType((IElementType) this.type);
+			ListType col = ListType.makeList((IElementType) this.type);
 			this.type = (T) col;
 		}
 	}

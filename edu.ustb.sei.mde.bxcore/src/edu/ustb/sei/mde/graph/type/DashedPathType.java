@@ -2,6 +2,7 @@ package edu.ustb.sei.mde.graph.type;
 
 import java.util.ArrayList;
 
+import edu.ustb.sei.mde.bxcore.exceptions.InitializationException;
 import edu.ustb.sei.mde.bxcore.structures.GraphPath;
 import edu.ustb.sei.mde.graph.IEdge;
 
@@ -129,5 +130,41 @@ public class DashedPathType implements IPathType {
 		return builder.toString();
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj!=null && obj instanceof DashedPathType) {
+			if(this.segments.length!=((DashedPathType)obj).segments.length) return false;
+			for(int i=0;i<this.segments.length;i++) {
+				if(!this.segments[i].equals(((DashedPathType)obj).segments[i])) return false;
+			}
+			return true;
+		}
+		return false;
+	}
+	
+	
+	public IStructuralFeatureEdge getSingleEdge() {
+		int min = this.getMinLengthFrom(0);
+		if(min>1) return null;
+		else {
+			if(min==0) {
+				return segments[0].getEdgeTypes()[0];
+			} else {
+				for(DashedPathTypeSegment s : segments) {
+					if(s.getMin()==1) return s.getEdgeTypes()[0];
+				}
+				throw new InitializationException();
+			}
+		}
+	}
+	
+	@Override
+	public int hashCode() {
+		int hash = 0;
+		for(DashedPathTypeSegment s : segments) {
+			hash += s.hashCode();
+		}
+		return hash;
+	}
 	
 }

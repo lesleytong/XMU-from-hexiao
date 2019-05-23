@@ -28,6 +28,7 @@ import org.eclipse.xtext.xbase.XExpression;
 
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXFunctionDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXProgram;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.DashedPathType;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.DefinedContextTypeRef;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ImportSection;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.Pattern;
@@ -280,6 +281,8 @@ public abstract class TypeModel {
 		boolean[][] superTypeTable = null;
 		
 		Set<Object> typeSet = new HashSet<>();
+		
+		// search imported types
 		program.getImports().forEach(sec->{
 			sec.getMetamodel().eAllContents().forEachRemaining(e->{
 				if(e instanceof EClassifier) typeSet.add(e);
@@ -289,6 +292,17 @@ public abstract class TypeModel {
 				}
 			});
 		});
+		
+		// search path types
+		TreeIterator<EObject> itr = program.eAllContents();
+		while(itr.hasNext()) {
+			EObject e = itr.next();
+			if(e instanceof DashedPathType) {
+				typeSet.add(e);
+				itr.prune();
+			}
+		}
+		
 		typeList.addAll(typeSet);
 		superTypeTable = new boolean[typeList.size()][];
 		

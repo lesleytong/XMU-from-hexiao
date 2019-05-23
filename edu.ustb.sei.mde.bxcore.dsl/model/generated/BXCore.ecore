@@ -124,7 +124,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="DashedPathType">
     <eStructuralFeatures xsi:type="ecore:EReference" name="segment" eType="#//DashedPathTypeSegment"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="next" eType="#//DashedPathTypeSegment"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="next" eType="#//DashedPathType"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DashedPathTypeSegment">

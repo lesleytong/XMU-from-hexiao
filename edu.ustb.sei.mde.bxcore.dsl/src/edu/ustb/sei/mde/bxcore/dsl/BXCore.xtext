@@ -124,7 +124,7 @@ PatternPathEdge :
 ;
 
 DashedPathType :
-	segment = DashedPathTypeSegment (=> '.' next = DashedPathTypeSegment)?
+	segment = DashedPathTypeSegment (=> '.' next = DashedPathType)?
 ;
 
 DashedPathTypeSegment :

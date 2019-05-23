@@ -35,6 +35,8 @@ public class Index implements Cloneable {
 	}
 	
 	public void merge(Index index) {
+		if(this==index) return;
+		
 		if(this.freshIndex!=index.freshIndex)
 			this.freshIndex = true;
 		

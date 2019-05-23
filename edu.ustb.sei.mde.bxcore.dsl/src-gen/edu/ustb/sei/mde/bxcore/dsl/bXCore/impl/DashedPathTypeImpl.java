@@ -6,6 +6,7 @@ package edu.ustb.sei.mde.bxcore.dsl.bXCore.impl;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.DashedPathType;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.DashedPathTypeSegment;
+import edu.ustb.sei.mde.bxcore.util.PathTypeUtil;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -50,7 +51,7 @@ public class DashedPathTypeImpl extends MinimalEObjectImpl.Container implements 
    * @generated
    * @ordered
    */
-  protected DashedPathTypeSegment next;
+  protected DashedPathType next;
 
   /**
    * <!-- begin-user-doc -->
@@ -126,7 +127,7 @@ public class DashedPathTypeImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public DashedPathTypeSegment getNext()
+  public DashedPathType getNext()
   {
     return next;
   }
@@ -136,9 +137,9 @@ public class DashedPathTypeImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetNext(DashedPathTypeSegment newNext, NotificationChain msgs)
+  public NotificationChain basicSetNext(DashedPathType newNext, NotificationChain msgs)
   {
-    DashedPathTypeSegment oldNext = next;
+    DashedPathType oldNext = next;
     next = newNext;
     if (eNotificationRequired())
     {
@@ -153,7 +154,7 @@ public class DashedPathTypeImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setNext(DashedPathTypeSegment newNext)
+  public void setNext(DashedPathType newNext)
   {
     if (newNext != next)
     {
@@ -219,7 +220,7 @@ public class DashedPathTypeImpl extends MinimalEObjectImpl.Container implements 
         setSegment((DashedPathTypeSegment)newValue);
         return;
       case BXCorePackage.DASHED_PATH_TYPE__NEXT:
-        setNext((DashedPathTypeSegment)newValue);
+        setNext((DashedPathType)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -239,7 +240,7 @@ public class DashedPathTypeImpl extends MinimalEObjectImpl.Container implements 
         setSegment((DashedPathTypeSegment)null);
         return;
       case BXCorePackage.DASHED_PATH_TYPE__NEXT:
-        setNext((DashedPathTypeSegment)null);
+        setNext((DashedPathType)null);
         return;
     }
     super.eUnset(featureID);
@@ -262,5 +263,19 @@ public class DashedPathTypeImpl extends MinimalEObjectImpl.Container implements 
     }
     return super.eIsSet(featureID);
   }
+  
+  
+  // customized code
+  
+  @Override
+  public int hashCode() {
+	  return PathTypeUtil.hash(this);
+  }
+  
+  @Override
+  public boolean equals(Object obj) {
+	  return PathTypeUtil.isEqual(this, obj);
+  }
+  
 
 } //DashedPathTypeImpl

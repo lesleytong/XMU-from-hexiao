@@ -999,7 +999,7 @@ public class BXCoreSemanticSequencer extends XbaseSemanticSequencer {
 	 *     DashedPathType returns DashedPathType
 	 *
 	 * Constraint:
-	 *     (segment=DashedPathTypeSegment next=DashedPathTypeSegment?)
+	 *     (segment=DashedPathTypeSegment next=DashedPathType?)
 	 */
 	protected void sequence_DashedPathType(ISerializationContext context, DashedPathType semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

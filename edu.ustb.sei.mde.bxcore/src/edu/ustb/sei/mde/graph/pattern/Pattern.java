@@ -11,13 +11,17 @@ import edu.ustb.sei.mde.bxcore.structures.Context;
 import edu.ustb.sei.mde.bxcore.structures.ContextGraph;
 import edu.ustb.sei.mde.bxcore.structures.ContextType;
 import edu.ustb.sei.mde.bxcore.structures.FieldDef;
+import edu.ustb.sei.mde.bxcore.structures.GraphPath;
 import edu.ustb.sei.mde.bxcore.structures.Index;
+import edu.ustb.sei.mde.bxcore.structures.IndexPath;
 import edu.ustb.sei.mde.graph.IEdge;
 import edu.ustb.sei.mde.graph.IGraph;
 import edu.ustb.sei.mde.graph.INamedElement;
 import edu.ustb.sei.mde.graph.INode;
 import edu.ustb.sei.mde.graph.type.DataTypeNode;
+import edu.ustb.sei.mde.graph.type.IElementType;
 import edu.ustb.sei.mde.graph.type.IStructuralFeatureEdge;
+import edu.ustb.sei.mde.graph.type.IType;
 import edu.ustb.sei.mde.graph.type.ITypeNode;
 import edu.ustb.sei.mde.graph.type.IPathType;
 import edu.ustb.sei.mde.graph.type.PropertyEdge;
@@ -29,6 +33,7 @@ import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraphCreator;
 import edu.ustb.sei.mde.graph.typedGraph.TypedNode;
 import edu.ustb.sei.mde.graph.typedGraph.ValueEdge;
+import edu.ustb.sei.mde.graph.typedGraph.ValueNode;
 import edu.ustb.sei.mde.structure.Tuple2;
 
 /**
@@ -144,7 +149,7 @@ public class Pattern implements IGraph {
 		}
 	}
 
-	public void appendPatternEdge(String name, String source, String target, IStructuralFeatureEdge type) {
+	public void appendPatternEdge(String name, String source, String target, IElementType type) {
 		if (type instanceof TypeEdge) {
 			PatternEdge edge = new PatternEdge();
 			edge.setName(name);
@@ -224,7 +229,18 @@ public class Pattern implements IGraph {
 
 		for (IEdge n : this.edges) {
 			if(n instanceof PatternPathEdge) {
-				// TODO: 
+				Object value = context.getValue(contextType.getField(((PatternElement<?>) n).getName()));
+				if(((PatternElement<?>) n).isCollection()) {
+					List<IndexPath> values = (List<IndexPath>) value;
+					int id = 0;
+					for(IndexPath v : values) {
+						createPath(id, n, v, creator, graph, referenceGraph);
+						id++;
+					}
+				} else {
+					IndexPath index = (IndexPath) value;
+					createPath(-1, n, index, creator, graph, referenceGraph);				
+				}
 			} else {
 				Object value = context.getValue(contextType.getField(((PatternElement<?>) n).getName()));
 				
@@ -244,6 +260,60 @@ public class Pattern implements IGraph {
 		}
 
 		return graph;
+	}
+	
+	
+
+	protected void createPath(int id, IEdge n, IndexPath indexPath, TypedGraphCreator creator, TypedGraph graph,
+			TypedGraph referenceGraph) {
+		String sourceNodeName = ((PatternElement<?>) n.getSource()).isCollection() ? ((PatternElement<?>) n.getSource()).getName()+'-'+id : ((PatternElement<?>) n.getSource()).getName();
+		String targetNodeName = ((PatternElement<?>) n.getTarget()).isCollection() ? ((PatternElement<?>) n.getTarget()).getName()+'-'+id : ((PatternElement<?>) n.getTarget()).getName();
+		IType elementType = ((PatternElement<?>)n).getElementType();
+		
+		GraphPath path = null;
+		
+		path = indexPath.toGraphPath(graph);
+		if(path!=null) {
+			if(elementType.isInstance(path)
+					&& path.getSource() == creator.getNode(sourceNodeName)
+					&& path.getTarget() == creator.getNode(targetNodeName)) 
+				return; // shortcut return
+		}
+			
+		try {
+			path = indexPath.toGraphPath(referenceGraph);
+			if(path==null) {
+				throw new NothingReturnedException();
+			} else {
+				if(elementType.isInstance(path)
+						&& path.getSource() == creator.getNode(sourceNodeName)
+						&& path.getTarget() == creator.getNode(targetNodeName)) {
+					for(IEdge pathEdge : path.getPathEdges()) {
+						moveOrCreateTypedNode(null, ((TypedNode) pathEdge.getSource()).getIndex(), 
+								((TypedNode) pathEdge.getSource()).getType(), creator, graph, referenceGraph);
+						if(pathEdge instanceof TypedEdge) {
+							moveOrCreateTypedNode(null, ((TypedNode) pathEdge.getTarget()).getIndex(), 
+									((TypedNode) pathEdge.getTarget()).getType(), creator, graph, referenceGraph);
+							graph.addTypedEdge((TypedEdge) pathEdge);
+						} else {
+							graph.addValueNode((ValueNode)pathEdge.getTarget());
+							graph.addValueEdge((ValueEdge) pathEdge);
+						}
+					}
+				} else new NothingReturnedException();
+			}
+		} catch (NothingReturnedException|NullPointerException e) {
+			// create path from scratch
+			IStructuralFeatureEdge singleEdge = ((IPathType) elementType).getSingleEdge();
+			if(singleEdge==null || indexPath.getPathIndices().length!=1) {
+				throw new UnsupportedOperationException(); 
+			} else {
+				if(singleEdge instanceof TypeEdge)
+					creator.createTypedEdge(sourceNodeName, targetNodeName, (TypeEdge) singleEdge, indexPath.getPathIndices()[0]);
+				else 
+					creator.createValueEdge(sourceNodeName, targetNodeName, ((PatternValueEdge) n).getElementType(), indexPath.getPathIndices()[0]);
+			}
+		}
 	}
 
 	protected void createEdge(int id, IEdge n, Index index, TypedGraphCreator creator, TypedGraph graph, TypedGraph referenceGraph) {
@@ -280,12 +350,11 @@ public class Pattern implements IGraph {
 				edge = creator.createValueEdge(sourceNodeName, targetNodeName, ((PatternValueEdge) n).getElementType(), index);
 			}
 		} else if (n instanceof PatternPathEdge) {
-			// TODO: First compute shortest path. 
-			// TODO: If the shortest path has a length of 1, create the edge.
-			// TODO: Otherwise, throw
 			throw new UnsupportedOperationException();
 		}
 	}
+	
+	
 
 	protected void createNode(int id, INode n, Object value, TypedGraphCreator creator, TypedGraph graph,
 			TypedGraph referenceGraph) {
@@ -293,34 +362,50 @@ public class Pattern implements IGraph {
 		
 		if (n instanceof PatternNode) {
 			Index index = (Index) value;
-			TypedNode node = null;
-			
-			try { // because there may be duplicated nodes, we must assure the idempotence 
-				node = graph.getElementByIndexObject(index);
-				if(((PatternNode) n).getElementType().isInstance(node)) {
-					creator.registerNode(nodeName, node);
-					return; // short-cut return
+			TypeNode elementType = ((PatternNode) n).getElementType();
+
+			moveOrCreateTypedNode(nodeName, index, elementType, creator, graph, referenceGraph);
+
+		} else if (n instanceof PatternValueNode) {
+			creator.createValueNode(nodeName, value, ((PatternValueNode) n).getElementType());
+		}
+	}
+
+	protected void moveOrCreateTypedNode(String nodeName, Index index, TypeNode elementType, TypedGraphCreator creator,
+			TypedGraph graph, TypedGraph referenceGraph) {
+		TypedNode node = null;
+		
+		try { // because there may be duplicated nodes, we must assure the idempotence 
+			node = graph.getElementByIndexObject(index);
+			if(elementType.isInstance(node)) {
+				if(nodeName!=null) creator.registerNode(nodeName, node);
+				return; // short-cut return
+			} else {
+				throw new NothingReturnedException();
+			}
+		} catch (Exception e1) {
+			try {
+				if(node!=null) {
+					if(index!=node.getIndex()) {
+						Index newIndex = Index.index();
+						newIndex.merge(index);
+						newIndex.merge(node.getIndex());
+						index = newIndex;
+					}
+				}
+				
+				node = referenceGraph.getElementByIndexObject(index);
+				
+				if (elementType.isInstance(node)) {
+					graph.addTypedNode(node);
+					if(nodeName!=null) creator.registerNode(nodeName, node);
 				} else {
 					throw new NothingReturnedException();
 				}
-			} catch (Exception e1) {
-				try {
-					node = referenceGraph.getElementByIndexObject(index);
-					
-					if (((PatternNode) n).getElementType().isInstance(node)) {
-						graph.addTypedNode(node);
-						creator.registerNode(nodeName, node);
-					} else {
-						throw new NothingReturnedException();
-					}
-					
-				} catch (NothingReturnedException | NullPointerException e2) {
-					node = creator.createTypedNode(nodeName, ((PatternNode) n).getElementType(), index);
-				}
+				
+			} catch (NothingReturnedException | NullPointerException e2) {
+				node = creator.createTypedNode(nodeName, elementType, index);
 			}
-
-		} else if (n instanceof PatternValueNode) {
-			creator.createValueNode(nodeName, value, ((PatternValueNode) n).getElementType() );
 		}
 	}
 
@@ -372,10 +457,10 @@ public class Pattern implements IGraph {
 		if (type == null) {
 			type = new ContextType();
 			this.getNodes().forEach(n -> {
-				type.addField(((PatternElement<?>) n).getName(), ((PatternElement<?>) n).getType(), ((PatternElement<?>) n).isCollection());
+				type.addField(((PatternElement<?>) n).getName(), ((PatternElement<?>) n).getType());
 			});
 			this.getEdges().forEach(e -> {
-				type.addField(((PatternElement<?>) e).getName(), ((PatternElement<?>) e).getType(), ((PatternElement<?>) e).isCollection());
+				type.addField(((PatternElement<?>) e).getName(), ((PatternElement<?>) e).getType());
 			});
 			this.additionalFields.forEach(f->{
 				type.addField(f.first);

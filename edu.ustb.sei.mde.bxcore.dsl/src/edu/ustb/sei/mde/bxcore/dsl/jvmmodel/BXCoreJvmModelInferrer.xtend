@@ -121,6 +121,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternPathEdge
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.DashedPathType
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.DashedPathTypeSegment
 import org.eclipse.xtend2.lib.StringConcatenationClient
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.AbstractPatternEdge
 
 /**
  * <p>Infers a JVM model from the source model.</p> 
@@ -432,7 +433,7 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 		];
 		
 		val nodes = literal.eAllContents.filter[it instanceof PatternNode].map[it as PatternNode].toList;
-		val edges = literal.eAllContents.filter[it instanceof PatternEdge].map[it as PatternEdge].toList;
+		val edges = literal.eAllContents.filter[it instanceof PatternEdge].map[it as AbstractPatternEdge].toList;
 		val typeGraph = literal.source;
 		val patternTypeId = typeLiteralMap.get(literal).second;
 		
@@ -449,7 +450,7 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 					«ENDFOR»
 					«FOR edge : edges»
 						«val tarNode = if(edge.value instanceof PatternNode) edge.value as PatternNode else if(edge.value instanceof PatternNodeRef) (edge.value as PatternNodeRef).node else null»
-						«val edgeName = if(edge.name!==null) edge.name else ((edge.eContainer as PatternNode).name+'_'+edge.feature.name+'_'+(if(tarNode!==null) tarNode.name else '?'))»
+						«val edgeName = if(edge.name!==null) edge.name else ((edge.eContainer as PatternNode).name+'_'+(if(edge instanceof PatternEdge) (edge as PatternEdge).feature.name else (edge as PatternPathEdge).toString)+'_'+(if(tarNode!==null) tarNode.name else '?'))»
 						«IF edge instanceof PatternEdge»
 							«IStructuralFeatureEdge.typeRef.qualifiedName» «edgeName»_type = typeGraph.«IF edge.feature instanceof EReference»getTypeEdge«ELSE»getPropertyEdge«ENDIF»((«TypeNode.typeRef.qualifiedName») «(edge.eContainer as PatternNode).name»_type,"«edge.feature.name»");
 						«ELSEIF edge instanceof PatternPathEdge»
