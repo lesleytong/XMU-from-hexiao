@@ -288,15 +288,25 @@ public class Pattern implements IGraph {
 				if(elementType.isInstance(path)
 						&& path.getSource() == creator.getNode(sourceNodeName)
 						&& path.getTarget() == creator.getNode(targetNodeName)) {
+					
+					// handle hidden nodes
+					// in fact, we do not have to check the first and the last node
 					for(IEdge pathEdge : path.getPathEdges()) {
-						moveOrCreateTypedNode(null, ((TypedNode) pathEdge.getSource()).getIndex(), 
-								((TypedNode) pathEdge.getSource()).getType(), creator, graph, referenceGraph);
-						if(pathEdge instanceof TypedEdge) {
+						if(path.getPathEdges()[0]==pathEdge) {
+							moveOrCreateTypedNode(null, ((TypedNode) pathEdge.getSource()).getIndex(), 
+									((TypedNode) pathEdge.getSource()).getType(), creator, graph, referenceGraph);
+						}
+						if(pathEdge instanceof TypedEdge)
 							moveOrCreateTypedNode(null, ((TypedNode) pathEdge.getTarget()).getIndex(), 
-									((TypedNode) pathEdge.getTarget()).getType(), creator, graph, referenceGraph);
+								((TypedNode) pathEdge.getTarget()).getType(), creator, graph, referenceGraph);
+						else graph.addValueNode((ValueNode)pathEdge.getTarget());
+					}
+					
+					// handle edges
+					for(IEdge pathEdge : path.getPathEdges()) {
+						if(pathEdge instanceof TypedEdge) {
 							graph.addTypedEdge((TypedEdge) pathEdge);
 						} else {
-							graph.addValueNode((ValueNode)pathEdge.getTarget());
 							graph.addValueEdge((ValueEdge) pathEdge);
 						}
 					}
