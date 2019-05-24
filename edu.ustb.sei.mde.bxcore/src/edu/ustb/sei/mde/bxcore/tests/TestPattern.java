@@ -14,6 +14,9 @@ import org.junit.jupiter.api.Test;
 
 import edu.ustb.sei.mde.bxcore.structures.Context;
 import edu.ustb.sei.mde.graph.pattern.Pattern;
+import edu.ustb.sei.mde.graph.pattern.PatternPathEdge;
+import edu.ustb.sei.mde.graph.type.DashedPathType;
+import edu.ustb.sei.mde.graph.type.DashedPathTypeSegment;
 import edu.ustb.sei.mde.graph.type.TypeGraph;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
 
@@ -139,6 +142,32 @@ class TestPattern {
 		List<Context> matches = setPattern.match(typedGraph, base);
 		
 		Assert.assertTrue(matches.size()+" matches are found", matches.size()==2);
+		Assert.assertTrue(matches.stream().allMatch(match->setPattern.isMatchOf(typedGraph, match)));
+	}
+	
+	@Test
+	public void testSetPatternPathMatching() throws Exception {
+		Pattern setPattern = new Pattern(typeGraph);
+		setPattern.declare("pa:A");
+//		setPattern.declare("pb:B");
+		setPattern.declare("pc:C");
+//		setPattern.declare("pa2b:pa-a2b->pb");
+//		setPattern.declare("pb2c:pb-b2c->pc");
+		
+		DashedPathType dpt = new DashedPathType(
+				DashedPathTypeSegment.createOne(typeGraph.getTypeEdge(typeGraph.getTypeNode("A"), "a2b")),
+				DashedPathTypeSegment.createOne(typeGraph.getTypeEdge(typeGraph.getTypeNode("B"), "b2c")));
+		
+		setPattern.appendPatternEdge("pabc", "pa", "pc", dpt);
+		
+		
+		System.out.println(setPattern);
+		
+		Context base = Context.emptyContext();
+		
+		List<Context> matches = setPattern.match(typedGraph, base);
+		
+		Assert.assertTrue(matches.size()+" matches are found", matches.size()==6);
 		Assert.assertTrue(matches.stream().allMatch(match->setPattern.isMatchOf(typedGraph, match)));
 	}
 

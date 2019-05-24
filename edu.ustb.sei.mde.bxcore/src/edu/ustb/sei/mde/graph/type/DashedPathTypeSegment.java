@@ -19,19 +19,19 @@ public class DashedPathTypeSegment {
 		this.max = max;
 	}
 	
-	public DashedPathTypeSegment createOne(IStructuralFeatureEdge... edgeTypes) {
+	static public DashedPathTypeSegment createOne(IStructuralFeatureEdge... edgeTypes) {
 		return new DashedPathTypeSegment(1, 1, edgeTypes);
 	}
 	
-	public DashedPathTypeSegment createZeroOrOne(IStructuralFeatureEdge... edgeTypes) {
+	static public DashedPathTypeSegment createZeroOrOne(IStructuralFeatureEdge... edgeTypes) {
 		return new DashedPathTypeSegment(0, 1, edgeTypes);
 	}
 	
-	public DashedPathTypeSegment createZeroOrMany(IStructuralFeatureEdge... edgeTypes) {
+	static public DashedPathTypeSegment createZeroOrMany(IStructuralFeatureEdge... edgeTypes) {
 		return new DashedPathTypeSegment(0, -1, edgeTypes);
 	}
 	
-	public DashedPathTypeSegment createOneOrMany(IStructuralFeatureEdge... edgeTypes) {
+	static public DashedPathTypeSegment createOneOrMany(IStructuralFeatureEdge... edgeTypes) {
 		return new DashedPathTypeSegment(1, -1, edgeTypes);
 	}
 	

@@ -385,14 +385,15 @@ public class Pattern implements IGraph {
 			}
 		} catch (Exception e1) {
 			try {
-				if(node!=null) {
-					if(index!=node.getIndex()) {
-						Index newIndex = Index.index();
-						newIndex.merge(index);
-						newIndex.merge(node.getIndex());
-						index = newIndex;
-					}
-				}
+				// not sure if I should check this
+//				if(node!=null) {
+//					if(index!=node.getIndex()) {
+//						Index newIndex = Index.index();
+//						newIndex.merge(index);
+//						newIndex.merge(node.getIndex());
+//						index = newIndex;
+//					}
+//				}
 				
 				node = referenceGraph.getElementByIndexObject(index);
 				

@@ -76,7 +76,7 @@ public class DashedPathType implements IPathType {
 		}
 		
 		ArrayList<Integer> posArr = new ArrayList<>();
-		posArr.add(min);
+		posArr.add(edgeIndex + min);
 		for(int cur = min; cur < max; cur++) {
 			int actualPos = edgeIndex + cur;
 			posArr.add(actualPos + 1);
