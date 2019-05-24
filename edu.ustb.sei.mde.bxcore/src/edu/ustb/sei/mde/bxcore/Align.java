@@ -247,8 +247,9 @@ public class Align extends XmuCore {
 					try {
 						upstreamView.setValue(vk,  ViewType.summarize(views,vk,this));
 					} catch (Exception e) {
-						Object common = IndexSystem.generateUUID();
-						Index index = Index.freshIndex(common);
+//						Object common = IndexSystem.generateUUID();
+//						Index index = Index.freshIndex(common);
+						Index index = IndexSystem.generateFreshIndex();
 						upstreamView.setValue(vk, index);
 						for(ViewType v : views) {
 							try {

@@ -1,12 +1,10 @@
 package edu.ustb.sei.mde.bxcore.structures;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import edu.ustb.sei.mde.bxcore.SourceType;
-import edu.ustb.sei.mde.bxcore.XmuCoreUtils;
 import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
 import edu.ustb.sei.mde.bxcore.exceptions.UninitializedException;
 import edu.ustb.sei.mde.graph.pattern.Pattern;
@@ -15,7 +13,6 @@ import edu.ustb.sei.mde.graph.type.PropertyEdge;
 import edu.ustb.sei.mde.graph.type.TypeEdge;
 import edu.ustb.sei.mde.graph.type.TypeGraph;
 import edu.ustb.sei.mde.graph.type.TypeNode;
-import edu.ustb.sei.mde.graph.typedGraph.IndexSystem;
 import edu.ustb.sei.mde.graph.typedGraph.IndexableElement;
 import edu.ustb.sei.mde.graph.typedGraph.TypedEdge;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;

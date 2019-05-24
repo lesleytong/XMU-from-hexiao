@@ -10,6 +10,7 @@ import edu.ustb.sei.mde.bxcore.exceptions.UninitializedException;
 import edu.ustb.sei.mde.bxcore.structures.Context;
 import edu.ustb.sei.mde.bxcore.structures.ContextType;
 import edu.ustb.sei.mde.bxcore.structures.FieldDef;
+import edu.ustb.sei.mde.bxcore.structures.Index;
 import edu.ustb.sei.mde.graph.typedGraph.IndexSystem;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
 import edu.ustb.sei.mde.graph.typedGraph.constraint.GraphConstraint;
@@ -111,8 +112,9 @@ public class Fork extends XmuCore {
 				upstreamView.setValue(uk, ViewType.summarize(viewResults,uk,allViewMappings, this));
 			} catch (Exception e) {
 				if(uk.isElementType()) {
-					Object common = IndexSystem.generateUUID();
-					upstreamView.setValue(uk, common);
+//					Object common = IndexSystem.generateUUID();
+					Index index = IndexSystem.generateFreshIndex();
+					upstreamView.setValue(uk, index);
 					
 					for(int i=0;i<viewResults.length;i++) {
 						ViewType v = viewResults[i];
@@ -122,7 +124,7 @@ public class Fork extends XmuCore {
 						for(FieldDef<?> dk : dks) {
 							try {
 								// in principle, we should reset downstream values
-								v.first.addIndex(common, v.first.getElementByIndexObject(v.second.getIndexValue(dk)));
+								v.first.addIndex(index, v.first.getElementByIndexObject(v.second.getIndexValue(dk)));
 							} catch (UninitializedException e1) {
 								return nothing(e1);
 							}
@@ -249,8 +251,9 @@ public class Fork extends XmuCore {
 				finalSourcePost.setValue(uk, SourceType.summarize(sourceResults, uk, allSourceMappings, this));
 			} catch (Exception e) {
 				if(uk.isElementType()) {
-					Object value = IndexSystem.generateUUID();
-					finalSourcePost.setValue(uk, value);
+//					Object value = IndexSystem.generateUUID();
+					Index index = IndexSystem.generateFreshIndex();
+					finalSourcePost.setValue(uk, index);
 					
 					for(int i=0;i<sourceResults.length;i++) {
 						SourceType sp = sourceResults[i];
@@ -260,7 +263,7 @@ public class Fork extends XmuCore {
 						for(FieldDef<?> dk : dks) {
 							try {
 								// in principle, we should reset downstream values
-								sp.first.addIndex(value, sp.first.getElementByIndexObject(sp.second.getIndexValue(dk)));
+								sp.first.addIndex(index, sp.first.getElementByIndexObject(sp.second.getIndexValue(dk)));
 							} catch (UninitializedException e1) {
 								return nothing(e1);
 							}

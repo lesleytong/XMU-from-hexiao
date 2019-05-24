@@ -1,6 +1,5 @@
 package edu.ustb.sei.mde.bxcore.structures;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -8,7 +7,6 @@ import java.util.stream.Collectors;
 
 import edu.ustb.sei.mde.bxcore.SourceType;
 import edu.ustb.sei.mde.bxcore.ViewType;
-import edu.ustb.sei.mde.bxcore.XmuCoreUtils;
 import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
 import edu.ustb.sei.mde.bxcore.exceptions.UninitializedException;
 import edu.ustb.sei.mde.graph.pattern.Pattern;
@@ -17,7 +15,6 @@ import edu.ustb.sei.mde.graph.type.PropertyEdge;
 import edu.ustb.sei.mde.graph.type.TypeEdge;
 import edu.ustb.sei.mde.graph.type.TypeGraph;
 import edu.ustb.sei.mde.graph.type.TypeNode;
-import edu.ustb.sei.mde.graph.typedGraph.IndexSystem;
 import edu.ustb.sei.mde.graph.typedGraph.IndexableElement;
 import edu.ustb.sei.mde.graph.typedGraph.TypedEdge;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
@@ -94,7 +91,7 @@ public interface ContextGraph {
 			node = new TypedNode(TypeNode.ANY_TYPE);
 		else node = new TypedNode(type);
 		
-		node.appendIndexValue(IndexSystem.generateUUID());
+		node.autoAppendIndex();
 		return node;
 	}
 	
@@ -107,7 +104,7 @@ public interface ContextGraph {
 		if(feature==null) edge = new TypedEdge();
 		else edge = new TypedEdge(null, null, feature);
 		
-		edge.appendIndexValue(IndexSystem.generateUUID());
+		edge.autoAppendIndex();
 		return edge;
 	}
 	
@@ -120,7 +117,7 @@ public interface ContextGraph {
 		if(feature==null) edge = new TypedEdge();
 		else edge = new TypedEdge(source, target, feature);
 		
-		edge.appendIndexValue(IndexSystem.generateUUID());
+		edge.autoAppendIndex();
 		return edge;
 	}
 	
@@ -133,7 +130,7 @@ public interface ContextGraph {
 		if(feature==null) edge = new ValueEdge();
 		else edge = new ValueEdge(null, null, feature);
 		
-		edge.appendIndexValue(IndexSystem.generateUUID());
+		edge.autoAppendIndex();
 		return edge;
 	}
 	
@@ -152,7 +149,7 @@ public interface ContextGraph {
 			edge = new ValueEdge(source, value, feature);
 		}
 		
-		edge.appendIndexValue(IndexSystem.generateUUID());
+		edge.autoAppendIndex();
 		return edge;
 	}
 	

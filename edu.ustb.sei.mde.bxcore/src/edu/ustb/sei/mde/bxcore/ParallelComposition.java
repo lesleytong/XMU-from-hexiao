@@ -13,6 +13,7 @@ import edu.ustb.sei.mde.bxcore.exceptions.UninitializedException;
 import edu.ustb.sei.mde.bxcore.structures.Context;
 import edu.ustb.sei.mde.bxcore.structures.ContextType;
 import edu.ustb.sei.mde.bxcore.structures.FieldDef;
+import edu.ustb.sei.mde.bxcore.structures.Index;
 import edu.ustb.sei.mde.graph.typedGraph.IndexSystem;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
 import edu.ustb.sei.mde.graph.typedGraph.constraint.GraphConstraint;
@@ -97,13 +98,14 @@ public class ParallelComposition extends XmuCore {
 				try {
 					finalViewContext.setValue(vk, ViewType.summarize(result,vk, this));
 				} catch (Exception e) {
-					Object common = IndexSystem.generateUUID();
-					finalViewContext.setValue(vk, common);
+//					Object common = IndexSystem.generateUUID();
+					Index index = IndexSystem.generateFreshIndex();
+					finalViewContext.setValue(vk, index);
 					for(ViewType v : result) {
 						try {
 							if(v==null || v==ViewType.empty()) continue;
 							// in principle, we should reset downstream values
-							v.first.addIndex(common, v.first.getElementByIndexObject(v.second.getIndexValue(vk)));
+							v.first.addIndex(index, v.first.getElementByIndexObject(v.second.getIndexValue(vk)));
 						} catch (UninitializedException e1) {
 							return nothing(e1);
 						}
@@ -199,12 +201,13 @@ public class ParallelComposition extends XmuCore {
 				try {
 					finalSourcePost.setValue(sk, SourceType.summarize(results, sk,this));
 				} catch (Exception e) {
-					Object value = IndexSystem.generateUUID();
-					finalSourcePost.setValue(sk, value);
+//					Object value = IndexSystem.generateUUID();
+					Index index = IndexSystem.generateFreshIndex();
+					finalSourcePost.setValue(sk, index);
 					
 					for(SourceType r : results) {
 						try {
-							r.first.addIndex(value, r.first.getElementByIndexObject(r.second.getIndexValue(sk)));
+							r.first.addIndex(index, r.first.getElementByIndexObject(r.second.getIndexValue(sk)));
 						} catch (UninitializedException e1) {
 							return nothing(e1);
 						}

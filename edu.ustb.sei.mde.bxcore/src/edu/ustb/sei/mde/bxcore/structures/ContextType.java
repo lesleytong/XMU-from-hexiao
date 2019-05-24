@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import edu.ustb.sei.mde.bxcore.TraceSystem;
+import edu.ustb.sei.mde.graph.type.IPathType;
 import edu.ustb.sei.mde.graph.type.IStructuralFeatureEdge;
 import edu.ustb.sei.mde.graph.type.IType;
 import edu.ustb.sei.mde.graph.type.TypeNode;
@@ -87,6 +88,10 @@ public class ContextType {
 			} catch(Exception e) {
 				if(t.isElementType())
 					result.setValue(k, IndexSystem.generateFreshSourceIndex(null, source, view, t, traceSys));
+				else if(t.isPathType()) {
+					IndexPath indexPath = new IndexPath(new Index[] {IndexSystem.generateFreshIndex()}, (IPathType) t.getType());
+					result.setValue(k, indexPath);
+				}
 			}
 		});
 	}
@@ -98,6 +103,10 @@ public class ContextType {
 			} catch(Exception e) {
 				if(t.isElementType())
 					result.setValue(k, IndexSystem.generateFreshViewIndex(null, source, t, traceSys));
+				else if(t.isPathType()) {
+					IndexPath indexPath = new IndexPath(new Index[] {IndexSystem.generateFreshIndex()}, (IPathType) t.getType());
+					result.setValue(k, indexPath);
+				}
 			}
 		});
 	}

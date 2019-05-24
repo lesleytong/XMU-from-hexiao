@@ -76,11 +76,11 @@ public class IndexSystem {
 		throw new NothingReturnedException();
 	}
 	
-	static public Object generateUUID() {
+	static protected Object generateUUID() {
 		return java.util.UUID.randomUUID();
 	}
 	
-	static public Object generateFreshIndex() {
+	static public Index generateFreshIndex() {
 		return Index.freshIndex(generateUUID());
 	}
 	

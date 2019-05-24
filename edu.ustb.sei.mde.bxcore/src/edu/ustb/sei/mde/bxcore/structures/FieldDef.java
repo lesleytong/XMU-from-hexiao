@@ -87,6 +87,10 @@ public class FieldDef<T extends IType> implements INamedElement {
 		return type instanceof TypeNode || type instanceof TypeEdge || type instanceof PropertyEdge;
 	}
 	
+	public boolean isPathType() {
+		return type instanceof IPathType;
+	}
+	
 	public boolean isSharable() {
 		return type instanceof TypeNode;
 	}
@@ -106,7 +110,8 @@ public class FieldDef<T extends IType> implements INamedElement {
 	public Object getDefaultValue(boolean generate) {
 		if(isElementType()) {
 			if(generate)
-				return Index.freshIndex(IndexSystem.generateUUID());
+//				return Index.freshIndex(IndexSystem.generateUUID());
+				return IndexSystem.generateFreshIndex();
 			else 
 				return null;
 		} else {

@@ -67,8 +67,9 @@ public class ForEachMatchSource extends XmuCore {
 				try {
 					upstreamView.setValue(vk,  ViewType.summarize(views,vk,this));
 				} catch (Exception e) {
-					Object common = IndexSystem.generateUUID();
-					Index index = Index.freshIndex(common);
+//					Object common = IndexSystem.generateUUID();
+//					Index index = Index.freshIndex(common);
+					Index index = IndexSystem.generateFreshIndex();
 					upstreamView.setValue(vk, index);
 					for(ViewType v : views) {
 						try {
@@ -142,12 +143,13 @@ public class ForEachMatchSource extends XmuCore {
 				try {
 					finalSourcePost.setValue(sk, SourceType.summarize(postSources, sk,this));
 				} catch (Exception e) {
-					Object value = IndexSystem.generateUUID();
-					finalSourcePost.setValue(sk, value);
+//					Object value = IndexSystem.generateUUID();
+					Index index = IndexSystem.generateFreshIndex();
+					finalSourcePost.setValue(sk, index);
 					
 					for(SourceType r : postSources) {
 						try {
-							r.first.addIndex(value, r.first.getElementByIndexObject(r.second.getIndexValue(sk)));
+							r.first.addIndex(index, r.first.getElementByIndexObject(r.second.getIndexValue(sk)));
 						} catch (UninitializedException e1) {
 							return nothing(e1);
 						}

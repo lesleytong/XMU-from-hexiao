@@ -43,6 +43,10 @@ abstract public class IndexableElement {
 //		indices.addAll(e.getIndices());
 //	}
 	
+	public void autoAppendIndex() {
+		appendIndexValue(IndexSystem.generateUUID());
+	}
+	
 	public void appendIndexValue(Object ind) {
 		index.add(ind);
 	}
