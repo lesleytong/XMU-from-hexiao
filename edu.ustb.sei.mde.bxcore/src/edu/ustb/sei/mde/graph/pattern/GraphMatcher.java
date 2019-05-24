@@ -110,7 +110,7 @@ public class GraphMatcher {
 		// find matches of plain pattern
 		List<PatternNode> search = pattern.getNodes().stream().filter(n->n instanceof PatternNode)
 				.map(n->(PatternNode)n).collect(Collectors.toList());
-		List<Map<String, Object>> matchResult = recursiveMatchNodes(search, startingPoint, initPoint, graph);
+		List<Map<String, Object>> matchResult = recursiveMatchNodes(0, search, startingPoint, initPoint, graph);
 		
 		// grouping
 		group(matchResult);
@@ -212,23 +212,25 @@ public class GraphMatcher {
 		return valueFilter;
 	}
 
-	protected List<Map<String, Object>> recursiveMatchNodes(List<PatternNode> search, Map<String, Object> startingPoint, Map<String, Object> initPoint, TypedGraph graph) {
-		if(search.isEmpty()) return Collections.singletonList(startingPoint);
+	protected List<Map<String, Object>> recursiveMatchNodes(int searchCur, List<PatternNode> search, Map<String, Object> startingPoint, Map<String, Object> initPoint, TypedGraph graph) {
+		if(searchCur==search.size()) return Collections.singletonList(startingPoint);
 		else {
-			PatternNode searchNode = search.remove(search.size()-1);
+			PatternNode searchNode = search.get(searchCur);
 			@SuppressWarnings("rawtypes")
 			List candidates = Arrays.asList(graph.getTypedNodesOf((TypeNode) searchNode.getElementType()));
 			
 			@SuppressWarnings("unchecked")
 			List<Map<String, Object>> internalResult = matchNode(searchNode, candidates, startingPoint, initPoint, graph, null);
-			if(internalResult.isEmpty()) return Collections.emptyList();
-			else {
-				List<Map<String, Object>> result = new ArrayList<>(internalResult.size()*2);
+			List<Map<String, Object>> result = null;
+			if(internalResult.isEmpty()) {
+				result =  Collections.emptyList();
+			} else {
+				result = new ArrayList<>(internalResult.size()*2);
 				for(Map<String, Object> ms : internalResult) {
-					result.addAll(recursiveMatchNodes(search, ms, initPoint, graph));
+					result.addAll(recursiveMatchNodes(searchCur + 1, search, ms, initPoint, graph));
 				}
-				return result;
 			}
+			return result;
 			
 		}
 	}
