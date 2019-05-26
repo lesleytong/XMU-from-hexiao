@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -370,7 +371,7 @@ public class GraphMatcher {
 			if (checkValue(nodeInPattern, expectedValue, existingValue)) { // the existing value is consistent with the expected value
 				startingPoint = new HashMap<>(startingPoint);
 				startingPoint.put(nodeInPattern.getName(), existingValue);
-				result = recursiveMatchEdges(Tuple2.make(relatedOutGoingPatternEdges, relatedInComingPatternEdges),
+				result = recursiveMatchEdges(Tuple2.make(relatedOutGoingPatternEdges.iterator(), relatedInComingPatternEdges.iterator()),
 						existingValue, startingPoint, initPoint, graph, nodeInPattern);
 			} else {
 				return Collections.emptyList();
@@ -380,23 +381,23 @@ public class GraphMatcher {
 			for (INode candidate : expectedValue) {
 				Map<String, Object> newStartingPoint = new HashMap<>(startingPoint);
 				newStartingPoint.put(nodeInPattern.getName(), candidate);
-				result.addAll(recursiveMatchEdges(Tuple2.make(relatedOutGoingPatternEdges, relatedInComingPatternEdges),
+				result.addAll(recursiveMatchEdges(Tuple2.make(relatedOutGoingPatternEdges.iterator(), relatedInComingPatternEdges.iterator()),
 						candidate, newStartingPoint, initPoint, graph, nodeInPattern));
 			}
 		}
 		return result;
 	}
-
+	
 	@SuppressWarnings("unchecked")
 	private List<Map<String, Object>> recursiveMatchEdges(
-			Tuple2<List<PatternElement<?>>, List<PatternElement<?>>> relatedPatternEdges, Object startingNode,
+			Tuple2<Iterator<PatternElement<?>>, Iterator<PatternElement<?>>> relatedPatternEdges, Object startingNode,
 			Map<String, Object> startingPoint, Map<String, Object> initPoint, TypedGraph graph, PatternElement<?> fromNode) {
 
-		if (relatedPatternEdges.first.isEmpty() && relatedPatternEdges.second.isEmpty()) {
+		if (relatedPatternEdges.first.hasNext()==false && relatedPatternEdges.second.hasNext()==false) {
 			return Collections.singletonList(startingPoint);
 		}
-		if (!relatedPatternEdges.first.isEmpty()) {
-			PatternElement<?> edgeInPattern = relatedPatternEdges.first.remove(relatedPatternEdges.first.size() - 1);
+		if (relatedPatternEdges.first.hasNext()) {
+			PatternElement<?> edgeInPattern = relatedPatternEdges.first.next();
 			List<Map<String, Object>> result = new ArrayList<>();
 			if (edgeInPattern instanceof PatternEdge || edgeInPattern instanceof PatternValueEdge) {
 				@SuppressWarnings("rawtypes")
@@ -427,7 +428,7 @@ public class GraphMatcher {
 			}
 			return result;
 		} else {
-			PatternElement<?> edgeInPattern = relatedPatternEdges.second.remove(relatedPatternEdges.second.size() - 1);
+			PatternElement<?> edgeInPattern = relatedPatternEdges.second.next();
 			List<Map<String, Object>> result = new ArrayList<>();
 			if (edgeInPattern instanceof PatternEdge || edgeInPattern instanceof PatternValueEdge) {
 				@SuppressWarnings("rawtypes")
