@@ -688,31 +688,130 @@ public class XmuCoreCompiler extends XbaseCompiler {
   @Override
   protected void internalToConvertedExpression(final XExpression e, final ITreeAppendable a) {
     if ((e instanceof ContextVarExpression)) {
-      a.append(this.getVarName(e, a));
+      boolean _hasName = a.hasName(e);
+      if (_hasName) {
+        a.trace(e, false).append(this.getVarName(e, a));
+      } else {
+        final JvmTypeReference expectedType = this.getType(e);
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("((");
+        String _qualifiedName = expectedType.getQualifiedName();
+        _builder.append(_qualifiedName);
+        _builder.append(") ");
+        String _canonicalName = ExceptionSafeInferface.class.getCanonicalName();
+        _builder.append(_canonicalName);
+        _builder.append(".getValue(");
+        String _literal = ((ContextVarExpression)e).getSide().getLiteral();
+        _builder.append(_literal);
+        _builder.append(",\"");
+        String _name = ((ContextVarExpression)e).getName();
+        _builder.append(_name);
+        _builder.append("\"))");
+        a.append(_builder);
+      }
     } else {
       if ((e instanceof ExpressionConversion)) {
-        a.append(this.getVarName(e, a));
+        boolean _hasName_1 = a.hasName(e);
+        if (_hasName_1) {
+          a.trace(e, false).append(this.getVarName(e, a));
+        } else {
+          this.doInternalToJavaStatement(((ExpressionConversion)e).getExpression(), a, true);
+          this.internalToJavaExpression(((ExpressionConversion)e).getExpression(), a);
+        }
       } else {
         if ((e instanceof NavigationExpression)) {
-          a.append(this.getVarName(e, a));
+          boolean _hasName_2 = a.hasName(e);
+          if (_hasName_2) {
+            a.trace(e, false).append(this.getVarName(e, a));
+          } else {
+            this.doInternalToJavaStatement(((NavigationExpression)e).getHost(), a, true);
+            final Pair<Object, Boolean> ecoreType = ModelInferrerUtils.navEcoreType(((ContextExpression)e));
+            final boolean navEdge = ((NavigationExpression)e).getNavOp().equals("@");
+            ITreeAppendable _newLine = a.newLine();
+            StringConcatenation _builder_1 = new StringConcatenation();
+            String _canonicalName_1 = ExceptionSafeInferface.class.getCanonicalName();
+            _builder_1.append(_canonicalName_1);
+            _builder_1.append(".navigate(");
+            String _literal_1 = this.side(((ContextExpression)e)).getLiteral();
+            _builder_1.append(_literal_1);
+            _builder_1.append(", ");
+            _newLine.append(_builder_1);
+            this.internalToJavaExpression(((NavigationExpression)e).getHost(), a);
+            StringConcatenation _builder_2 = new StringConcatenation();
+            _builder_2.append(", \"");
+            String _pathName = ((NavigationExpression)e).getPathName();
+            _builder_2.append(_pathName);
+            _builder_2.append("\", ");
+            Object _key = ecoreType.getKey();
+            _builder_2.append((_key instanceof EClass));
+            _builder_2.append(", ");
+            Boolean _value = ecoreType.getValue();
+            _builder_2.append(_value);
+            _builder_2.append(", ");
+            _builder_2.append(navEdge);
+            _builder_2.append(")");
+            a.append(_builder_2);
+          }
         } else {
           if ((e instanceof ModificationExpression)) {
             a.append(this.getVarName(e, a));
           } else {
             if ((e instanceof ModificationExpressionBlock)) {
               final String lastResult = this.getVarName(e, a);
-              StringConcatenation _builder = new StringConcatenation();
-              _builder.append(lastResult);
-              _builder.append(".get()");
-              a.append(_builder);
+              StringConcatenation _builder_3 = new StringConcatenation();
+              _builder_3.append(lastResult);
+              _builder_3.append(".get()");
+              a.append(_builder_3);
             } else {
               if ((e instanceof NewInstanceExpression)) {
                 final String v = this.getVarName(e, a);
                 a.append(v);
               } else {
                 if ((e instanceof AllInstanceExpression)) {
-                  final String v_1 = this.getVarName(e, a);
-                  a.append(v_1);
+                  boolean _hasName_3 = a.hasName(e);
+                  if (_hasName_3) {
+                    a.trace(e, false).append(this.getVarName(e, a));
+                  } else {
+                    Class<? extends IndexableElement> _xifexpression = null;
+                    EStructuralFeature _feature = ((AllInstanceExpression)e).getType().getFeature();
+                    boolean _tripleEquals = (_feature == null);
+                    if (_tripleEquals) {
+                      _xifexpression = TypedNode.class;
+                    } else {
+                      Class<? extends IndexableElement> _xifexpression_1 = null;
+                      EStructuralFeature _feature_1 = ((AllInstanceExpression)e).getType().getFeature();
+                      if ((_feature_1 instanceof EReference)) {
+                        _xifexpression_1 = TypedEdge.class;
+                      } else {
+                        _xifexpression_1 = ValueEdge.class;
+                      }
+                      _xifexpression = _xifexpression_1;
+                    }
+                    final Class<? extends IndexableElement> componentType = _xifexpression;
+                    ITreeAppendable _newLine_1 = a.newLine();
+                    StringConcatenation _builder_4 = new StringConcatenation();
+                    String _literal_2 = ((AllInstanceExpression)e).getType().getSide().getLiteral();
+                    _builder_4.append(_literal_2);
+                    _builder_4.append(".all");
+                    String _simpleName = componentType.getSimpleName();
+                    _builder_4.append(_simpleName);
+                    _builder_4.append("s(\"");
+                    String _name_1 = ((AllInstanceExpression)e).getType().getType().getName();
+                    _builder_4.append(_name_1);
+                    _builder_4.append("\"");
+                    {
+                      EStructuralFeature _feature_2 = ((AllInstanceExpression)e).getType().getFeature();
+                      boolean _tripleNotEquals = (_feature_2 != null);
+                      if (_tripleNotEquals) {
+                        _builder_4.append(",\"");
+                        String _name_2 = ((AllInstanceExpression)e).getType().getFeature().getName();
+                        _builder_4.append(_name_2);
+                        _builder_4.append("\"");
+                      }
+                    }
+                    _builder_4.append(")");
+                    _newLine_1.append(_builder_4);
+                  }
                 } else {
                   super.internalToConvertedExpression(e, a);
                 }

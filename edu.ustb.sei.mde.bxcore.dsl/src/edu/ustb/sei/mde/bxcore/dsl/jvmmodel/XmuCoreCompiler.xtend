@@ -245,17 +245,32 @@ class XmuCoreCompiler extends XbaseCompiler {
 		else null;
 	}
 	
-//	override protected canCompileToJavaExpression(XExpression expression, ITreeAppendable appendable) {
-//		super.canCompileToJavaExpression(expression, appendable)
-//	}
-	
 	override protected internalToConvertedExpression(XExpression e, ITreeAppendable a) {
 		if (e instanceof ContextVarExpression) {
-			a.append(getVarName(e, a))	
+			if(a.hasName(e)) {
+				a.trace(e, false).append(getVarName(e, a))
+			} else {
+				val expectedType = getType(e);
+				a.append('''((«expectedType.qualifiedName») «ExceptionSafeInferface.canonicalName».getValue(«e.side.literal»,"«e.name»"))''')
+			}
 		} else if (e instanceof ExpressionConversion) {
-			a.append(getVarName(e, a))	
+			if(a.hasName(e)){
+				a.trace(e, false).append(getVarName(e, a))
+			} else {
+				e.expression.doInternalToJavaStatement(a,true);
+				e.expression.internalToJavaExpression(a);
+			}
 		} else if(e instanceof NavigationExpression) {
-			a.append(getVarName(e, a))
+			if(a.hasName(e)){
+				a.trace(e, false).append(getVarName(e, a))
+			} else {
+				e.host.doInternalToJavaStatement(a,true);
+				val ecoreType = ModelInferrerUtils.navEcoreType(e);
+				val navEdge = e.navOp.equals('@');
+				a.newLine.append('''«ExceptionSafeInferface.canonicalName».navigate(«e.side.literal», ''');
+				e.host.internalToJavaExpression(a);
+				a.append(''', "«e.pathName»", «ecoreType.key instanceof EClass», «ecoreType.value», «navEdge»)''');
+			}
 		}  else if(e instanceof ModificationExpression) {
 			a.append(getVarName(e, a))
 		} else if(e instanceof ModificationExpressionBlock) {
@@ -265,8 +280,13 @@ class XmuCoreCompiler extends XbaseCompiler {
 			val v = getVarName(e,a);
 			a.append(v);
 		} else if(e instanceof AllInstanceExpression) {
-			val v = getVarName(e,a);
-			a.append(v);
+			if(a.hasName(e)){
+				a.trace(e, false).append(getVarName(e, a))
+			} else {
+				val componentType = if (e.type.feature === null) TypedNode
+				else if(e.type.feature instanceof EReference) TypedEdge else ValueEdge;
+				a.newLine.append('''«e.type.side.literal».all«componentType.simpleName»s("«e.type.type.name»"«IF e.type.feature!==null»,"«e.type.feature.name»"«ENDIF»)''');
+			}
 		} else
 			super.internalToConvertedExpression(e, a)
 	}
