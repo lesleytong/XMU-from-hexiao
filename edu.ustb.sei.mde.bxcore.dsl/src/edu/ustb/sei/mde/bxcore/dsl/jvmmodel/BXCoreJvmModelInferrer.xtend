@@ -944,7 +944,8 @@ List<Pair<Integer, DashedPathType>> pathTypes) {
 						«FOR v : elements»
 «««						edu.ustb.sei.mde.graph.type.IType «v.first»_type = typeGraph.«IF v.second instanceof EClassifier»«IF v.second instanceof EClass»getTypeNode«ELSE»getDataTypeNode«ENDIF»("«(v.second as EClassifier).name»")«ELSEIF v.second instanceof EStructuralFeature»«IF v.second instanceof EReference»getTypeEdge«ELSE»getPropertyEdge«ENDIF»(typeGraph.getTypeNode("«(v.second as EStructuralFeature).EContainingClass.name»"),"«(v.second as EStructuralFeature).name»")«ELSE»/* ERROR «v.second» */«ENDIF»;
 						edu.ustb.sei.mde.graph.type.IType «v.first»_type = «v.second.generateTypeCode('typeGraph', pathTypes)»;
-						«varName».addField("«v.first»", «v.first»_type, «v.third»);
+«««						«varName».addField("«v.first»", «v.first»_type, «v.third»);
+						«varName».addField("«v.first»", «v.first»_type);
 					«ENDFOR»
 					«ENDIF»
 				}

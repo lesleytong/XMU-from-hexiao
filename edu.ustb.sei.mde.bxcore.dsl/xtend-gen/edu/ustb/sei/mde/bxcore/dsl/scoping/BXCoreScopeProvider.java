@@ -43,6 +43,7 @@ import org.eclipse.xtext.scoping.impl.FilteringScope;
 import org.eclipse.xtext.scoping.impl.SimpleScope;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
@@ -69,9 +70,10 @@ public class BXCoreScopeProvider extends AbstractBXCoreScopeProvider {
         };
         type.getEAllStructuralFeatures().forEach(_function);
         return new SimpleScope(objects);
+      } else {
+        return SimpleScope.NULLSCOPE;
       }
     }
-    return null;
   }
   
   public SimpleScope featureScope(final List<EStructuralFeature> prevFeatures) {
@@ -211,6 +213,7 @@ public class BXCoreScopeProvider extends AbstractBXCoreScopeProvider {
                             } else {
                               boolean _equals = Objects.equal(reference, BXCorePackage.Literals.DASHED_PATH_TYPE_SEGMENT__TYPES);
                               if (_equals) {
+                                InputOutput.<String>println("in linking path_types");
                                 final EObject dashedPathType = context.eContainer();
                                 final EObject typeContainer = dashedPathType.eContainer();
                                 if ((typeContainer instanceof PatternPathEdge)) {

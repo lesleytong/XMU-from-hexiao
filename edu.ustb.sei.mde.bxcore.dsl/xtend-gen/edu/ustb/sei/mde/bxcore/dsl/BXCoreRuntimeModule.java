@@ -7,7 +7,9 @@ import edu.ustb.sei.mde.bxcore.dsl.AbstractBXCoreRuntimeModule;
 import edu.ustb.sei.mde.bxcore.dsl.jvmmodel.XmuCoreCompiler;
 import edu.ustb.sei.mde.bxcore.dsl.jvmmodel.XmuCoreTypeComputer;
 import edu.ustb.sei.mde.bxcore.dsl.scoping.BXCoreLinkingService;
+import edu.ustb.sei.mde.bxcore.dsl.scoping.BXCoreQualifiedNameProvider;
 import org.eclipse.xtext.linking.ILinkingService;
+import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.xbase.compiler.XbaseCompiler;
 import org.eclipse.xtext.xbase.typesystem.computation.ITypeComputer;
 
@@ -27,5 +29,10 @@ public class BXCoreRuntimeModule extends AbstractBXCoreRuntimeModule {
   
   public Class<? extends XbaseCompiler> bindXbaseCompiler() {
     return XmuCoreCompiler.class;
+  }
+  
+  @Override
+  public Class<? extends IQualifiedNameProvider> bindIQualifiedNameProvider() {
+    return BXCoreQualifiedNameProvider.class;
   }
 }

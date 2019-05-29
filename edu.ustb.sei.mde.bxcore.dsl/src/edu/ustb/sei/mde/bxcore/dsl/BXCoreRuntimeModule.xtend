@@ -8,6 +8,7 @@ import org.eclipse.xtext.xbase.typesystem.computation.ITypeComputer
 import edu.ustb.sei.mde.bxcore.dsl.jvmmodel.XmuCoreTypeComputer
 import org.eclipse.xtext.xbase.compiler.XbaseCompiler
 import edu.ustb.sei.mde.bxcore.dsl.jvmmodel.XmuCoreCompiler
+import edu.ustb.sei.mde.bxcore.dsl.scoping.BXCoreQualifiedNameProvider
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
@@ -25,4 +26,9 @@ class BXCoreRuntimeModule extends AbstractBXCoreRuntimeModule {
 	def Class<? extends XbaseCompiler> bindXbaseCompiler() { 
 		XmuCoreCompiler
 	}
+	
+	override bindIQualifiedNameProvider() {
+		BXCoreQualifiedNameProvider
+	}
+	
 }

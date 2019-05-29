@@ -51,6 +51,8 @@ class BXCoreScopeProvider extends AbstractBXCoreScopeProvider {
 					objects.add(EObjectDescription.create(i.name, i));
 				];
 				return new SimpleScope(objects);
+			} else {
+				return SimpleScope.NULLSCOPE
 			}
 		}
 	}
@@ -127,6 +129,7 @@ class BXCoreScopeProvider extends AbstractBXCoreScopeProvider {
 				val type = (context as AnnotatedType).type;
 				return type.featureScope;
 			} else if(reference==BXCorePackage.Literals.DASHED_PATH_TYPE_SEGMENT__TYPES) {
+				println("in linking path_types")
 				val dashedPathType = context.eContainer; // context must be DashedPathTypeSegment
 				val typeContainer = dashedPathType.eContainer;
 				if(typeContainer instanceof PatternPathEdge) {

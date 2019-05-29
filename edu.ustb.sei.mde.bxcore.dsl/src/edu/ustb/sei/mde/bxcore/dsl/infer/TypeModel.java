@@ -315,12 +315,18 @@ public abstract class TypeModel {
 				for(int j=0;j<typeList.size();j++) {
 					tableForI[j] = (i==j);
 				}			
-			} else {
+			} else if(typeI instanceof EClass) {
 				for(int j=0;j<typeList.size();j++) {
 					Object typeJ = typeList.get(j);
 					if(typeI==typeJ) tableForI[j] = true;
-					else if(typeJ instanceof EStructuralFeature || typeJ instanceof EDataType) tableForI[j] = false;
+					else if(!(typeJ instanceof EClass)) tableForI[j] = false;
 					else tableForI[j] = ((EClass)typeI).isSuperTypeOf((EClass)typeJ);
+				}
+			} else if(typeI instanceof DashedPathType) {
+				for(int j=0;j<typeList.size();j++) {
+					Object typeJ = typeList.get(j);
+					if(typeI==typeJ) tableForI[j] = true;
+					else tableForI[j] = ((DashedPathType)typeI).equals(typeJ);
 				}
 			}
 		}
