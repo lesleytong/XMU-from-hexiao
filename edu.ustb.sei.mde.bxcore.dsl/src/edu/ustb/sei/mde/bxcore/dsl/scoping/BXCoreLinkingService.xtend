@@ -16,24 +16,20 @@ class BXCoreLinkingService extends DefaultLinkingService {
 	
 	override getLinkedObjects(EObject context, EReference ref, INode node) throws IllegalNodeException {
 		if(ref===BXCorePackage.Literals.IMPORT_SECTION__METAMODEL) {
-			println("in linking metamodel")
 			try {
 				val String uri = node.crossRefNodeAsString;
 				val IScope scope = getScope(context, ref);
 				for (IEObjectDescription d : scope.allElements) {
 					if (d.qualifiedName.firstSegment.equals(uri)) {
-						println("out linking metamodel")
 						return Collections.singletonList(d.EObjectOrProxy);
 					}
 				}
 				val EPackage p = EcoreUtil2.loadEPackage(uri, this.class.classLoader);
 				if(p !== null) {
-					println("out linking metamodel")
 					return Collections.singletonList(p);
 				}
 
 			} catch (Exception e) {
-				println("out linking metamodel")
 				return Collections.emptyList();
 			}
 		}

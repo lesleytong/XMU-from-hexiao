@@ -16,6 +16,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.ExpressionConversion;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.FeatureTypeRef;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ImportSection;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.OrderedTupleTypeLiteral;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.Pattern;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternNode;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternPathEdge;
@@ -43,7 +44,6 @@ import org.eclipse.xtext.scoping.impl.FilteringScope;
 import org.eclipse.xtext.scoping.impl.SimpleScope;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
@@ -129,7 +129,7 @@ public class BXCoreScopeProvider extends AbstractBXCoreScopeProvider {
                   }
                 } else {
                   if ((reference == BXCorePackage.Literals.PATTERN_NODE_REF__NODE)) {
-                    final PatternDefinition pattern = this.getPattern(context);
+                    final Pattern pattern = this.getPattern(context);
                     final ArrayList<IEObjectDescription> objects = new ArrayList<IEObjectDescription>();
                     final Procedure1<EObject> _function_1 = (EObject e) -> {
                       if ((e instanceof PatternNode)) {
@@ -213,7 +213,6 @@ public class BXCoreScopeProvider extends AbstractBXCoreScopeProvider {
                             } else {
                               boolean _equals = Objects.equal(reference, BXCorePackage.Literals.DASHED_PATH_TYPE_SEGMENT__TYPES);
                               if (_equals) {
-                                InputOutput.<String>println("in linking path_types");
                                 final EObject dashedPathType = context.eContainer();
                                 final EObject typeContainer = dashedPathType.eContainer();
                                 if ((typeContainer instanceof PatternPathEdge)) {
@@ -379,14 +378,14 @@ public class BXCoreScopeProvider extends AbstractBXCoreScopeProvider {
     return _xifexpression;
   }
   
-  public PatternDefinition getPattern(final EObject object) {
-    PatternDefinition _xifexpression = null;
+  public Pattern getPattern(final EObject object) {
+    Pattern _xifexpression = null;
     if ((object == null)) {
       return null;
     } else {
-      PatternDefinition _xifexpression_1 = null;
-      if ((object instanceof PatternDefinition)) {
-        _xifexpression_1 = ((PatternDefinition) object);
+      Pattern _xifexpression_1 = null;
+      if ((object instanceof Pattern)) {
+        _xifexpression_1 = ((Pattern) object);
       } else {
         _xifexpression_1 = this.getPattern(object.eContainer());
       }

@@ -32,6 +32,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternPathEdge
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.DashedPathType
 import java.util.List
 import org.eclipse.emf.ecore.EStructuralFeature
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.Pattern
 
 /**
  * This class contains custom scoping description.
@@ -129,7 +130,6 @@ class BXCoreScopeProvider extends AbstractBXCoreScopeProvider {
 				val type = (context as AnnotatedType).type;
 				return type.featureScope;
 			} else if(reference==BXCorePackage.Literals.DASHED_PATH_TYPE_SEGMENT__TYPES) {
-				println("in linking path_types")
 				val dashedPathType = context.eContainer; // context must be DashedPathTypeSegment
 				val typeContainer = dashedPathType.eContainer;
 				if(typeContainer instanceof PatternPathEdge) {
@@ -210,9 +210,9 @@ class BXCoreScopeProvider extends AbstractBXCoreScopeProvider {
 		else object.eContainer.patternNode
 	}
 	
-	def PatternDefinition getPattern(EObject object) {
+	def Pattern getPattern(EObject object) {
 		if(object===null) return null
-		else if(object instanceof PatternDefinition) object as PatternDefinition
+		else if(object instanceof Pattern) object as Pattern
 		else object.eContainer.pattern
 	}
 	

@@ -13,14 +13,12 @@ import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.xbase.lib.Exceptions;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 
 @SuppressWarnings("all")
 public class BXCoreLinkingService extends DefaultLinkingService {
   @Override
   public List<EObject> getLinkedObjects(final EObject context, final EReference ref, final INode node) throws IllegalNodeException {
     if ((ref == BXCorePackage.Literals.IMPORT_SECTION__METAMODEL)) {
-      InputOutput.<String>println("in linking metamodel");
       try {
         final String uri = this.getCrossRefNodeAsString(node);
         final IScope scope = this.getScope(context, ref);
@@ -28,18 +26,15 @@ public class BXCoreLinkingService extends DefaultLinkingService {
         for (final IEObjectDescription d : _allElements) {
           boolean _equals = d.getQualifiedName().getFirstSegment().equals(uri);
           if (_equals) {
-            InputOutput.<String>println("out linking metamodel");
             return Collections.<EObject>singletonList(d.getEObjectOrProxy());
           }
         }
         final EPackage p = EcoreUtil2.loadEPackage(uri, this.getClass().getClassLoader());
         if ((p != null)) {
-          InputOutput.<String>println("out linking metamodel");
           return Collections.<EObject>singletonList(p);
         }
       } catch (final Throwable _t) {
         if (_t instanceof Exception) {
-          InputOutput.<String>println("out linking metamodel");
           return Collections.<EObject>emptyList();
         } else {
           throw Exceptions.sneakyThrow(_t);
