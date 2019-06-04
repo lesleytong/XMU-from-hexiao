@@ -93,6 +93,20 @@ public class GraphModification {
 		return this;
 	}
 	
+	public GraphModification insertValueNode(ValueNode node) {
+		if(node==null || node.getType()==null) {
+			throw new RuntimeException("Cannot insert an invalid node");
+		}
+		data.getGraph().addValueNode(node);
+		return this;
+	}
+	
+	public GraphModification insertValueNode(List<ValueNode> nodes) {
+		for(ValueNode n : nodes)
+			insertValueNode(n);
+		return this;
+	}
+	
 	public GraphModification insertTypedNode(TypedNode node) {
 		if(node==null || node.getType()==null || node.getType()==TypeNode.ANY_TYPE) {
 			throw new RuntimeException("Cannot insert an invalid node");

@@ -424,7 +424,6 @@ public class GraphMatcher {
 					result.addAll(matchesRest);
 				});
 				
-				throw new UnsupportedOperationException();
 			}
 			return result;
 		} else {
