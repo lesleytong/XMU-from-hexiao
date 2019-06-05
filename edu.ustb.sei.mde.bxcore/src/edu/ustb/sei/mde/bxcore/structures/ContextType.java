@@ -35,6 +35,12 @@ public class ContextType {
 		addField(field);
 	}
 	
+	public <T extends IType> void addField(String name, T type, boolean collection) {
+		FieldDef<T> field = new FieldDef<T>(name, type);
+		if(collection) field.setCollection(collection);
+		addField(field);
+	}
+	
 	public FieldDef<?> getField(String name) {
 		return fieldDefs.get(name);
 	}

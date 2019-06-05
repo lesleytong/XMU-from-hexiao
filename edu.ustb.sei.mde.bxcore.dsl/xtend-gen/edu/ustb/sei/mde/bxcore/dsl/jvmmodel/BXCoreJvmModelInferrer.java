@@ -2739,7 +2739,9 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
                     _builder.append(v.first, "\t");
                     _builder.append("\", ");
                     _builder.append(v.first, "\t");
-                    _builder.append("_type);");
+                    _builder.append("_type, ");
+                    _builder.append(v.third, "\t");
+                    _builder.append(");");
                     _builder.newLineIfNotEmpty();
                   }
                 }
