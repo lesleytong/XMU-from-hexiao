@@ -205,11 +205,11 @@ public class Bag2Bag extends XmuProgram {
         final List<ValueEdge> deleted_lv = all_lv.subList(occ, size);
         edu.ustb.sei.mde.bxcore.structures.GraphModification _modStart = source.modification();
         edu.ustb.sei.mde.bxcore.structures.GraphModification _mod = _modStart.remove(deleted_e);
-        
+        _modStart = _mod;
         edu.ustb.sei.mde.bxcore.structures.GraphModification _mod_1 = _modStart.remove(deleted_le);
-        
+        _modStart = _mod_1;
         edu.ustb.sei.mde.bxcore.structures.GraphModification _mod_2 = _modStart.remove(deleted_lv);
-        
+        _modStart = _mod_2;
         deleted_e.clear();
         deleted_le.clear();
         deleted_lv.clear();
@@ -227,13 +227,13 @@ public class Bag2Bag extends XmuProgram {
       edu.ustb.sei.mde.bxcore.structures.GraphModification _modStart = source.modification();
       java.util.List<edu.ustb.sei.mde.graph.typedGraph.TypedEdge> _contextValue = ((java.util.List<edu.ustb.sei.mde.graph.typedGraph.TypedEdge>) edu.ustb.sei.mde.bxcore.dsl.structure.ExceptionSafeInferface.getValue(source,"le"));
       edu.ustb.sei.mde.bxcore.structures.GraphModification _mod = _modStart.remove(_contextValue);
-      
+      _modStart = _mod;
       java.util.List<edu.ustb.sei.mde.graph.typedGraph.ValueEdge> _contextValue_1 = ((java.util.List<edu.ustb.sei.mde.graph.typedGraph.ValueEdge>) edu.ustb.sei.mde.bxcore.dsl.structure.ExceptionSafeInferface.getValue(source,"lv"));
       edu.ustb.sei.mde.bxcore.structures.GraphModification _mod_1 = _modStart.remove(_contextValue_1);
-      
+      _modStart = _mod_1;
       java.util.List<edu.ustb.sei.mde.graph.typedGraph.TypedNode> _contextValue_2 = ((java.util.List<edu.ustb.sei.mde.graph.typedGraph.TypedNode>) edu.ustb.sei.mde.bxcore.dsl.structure.ExceptionSafeInferface.getValue(source,"e"));
       edu.ustb.sei.mde.bxcore.structures.GraphModification _mod_2 = _modStart.remove(_contextValue_2);
-      
+      _modStart = _mod_2;
       return _modStart.get();
     }
   }
@@ -272,33 +272,23 @@ public class Bag2Bag extends XmuProgram {
     if(type_2==null) {
     	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Bag1();
     	type_2 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
-    	Object b_type = typeGraph.getTypeNode("Bag");
+    	edu.ustb.sei.mde.graph.type.IType b_type = typeGraph.getTypeNode("Bag")
+    	;
     	type_2.addField("b", b_type, false);
-    	Object e_type = typeGraph.getTypeNode("Element");
+    	edu.ustb.sei.mde.graph.type.IType e_type = typeGraph.getTypeNode("Element")
+    	;
     	type_2.addField("e", e_type, true);
-    	Object le_type = typeGraph.getTypeEdge(typeGraph.getTypeNode("Bag"),"elements");
+    	edu.ustb.sei.mde.graph.type.IType le_type = typeGraph.getTypeEdge(typeGraph.getTypeNode("Bag"),"elements")
+    	;
     	type_2.addField("le", le_type, true);
-    	Object lv_type = typeGraph.getPropertyEdge(typeGraph.getTypeNode("Element"),"value");
+    	edu.ustb.sei.mde.graph.type.IType lv_type = typeGraph.getPropertyEdge(typeGraph.getTypeNode("Element"),"value")
+    	;
     	type_2.addField("lv", lv_type, true);
-    	Object v_type = typeGraph.getDataTypeNode("EString");
+    	edu.ustb.sei.mde.graph.type.IType v_type = typeGraph.getDataTypeNode("EString")
+    	;
     	type_2.addField("v", v_type, false);
     }
     return type_2;
-  }
-  
-  /**
-   * id:0
-   */
-  private ContextType type_0;
-  
-  public ContextType getType_0() {
-    if(type_0==null) {
-    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Bag1();
-    	type_0 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
-    	Object b_type = typeGraph.getTypeNode("Bag");
-    	type_0.addField("b", b_type, false);
-    }
-    return type_0;
   }
   
   /**
@@ -310,7 +300,8 @@ public class Bag2Bag extends XmuProgram {
     if(type_1==null) {
     	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Bag2();
     	type_1 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
-    	Object b_type = typeGraph.getTypeNode("Bag");
+    	edu.ustb.sei.mde.graph.type.IType b_type = typeGraph.getTypeNode("Bag")
+    	;
     	type_1.addField("b", b_type, false);
     }
     return type_1;
@@ -325,22 +316,45 @@ public class Bag2Bag extends XmuProgram {
     if(type_3==null) {
     	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Bag2();
     	type_3 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
-    	Object b_type = typeGraph.getTypeNode("Bag");
+    	edu.ustb.sei.mde.graph.type.IType b_type = typeGraph.getTypeNode("Bag")
+    	;
     	type_3.addField("b", b_type, false);
-    	Object c_type = typeGraph.getDataTypeNode("EInt");
+    	edu.ustb.sei.mde.graph.type.IType c_type = typeGraph.getDataTypeNode("EInt")
+    	;
     	type_3.addField("c", c_type, false);
-    	Object e_type = typeGraph.getTypeNode("Element");
+    	edu.ustb.sei.mde.graph.type.IType e_type = typeGraph.getTypeNode("Element")
+    	;
     	type_3.addField("e", e_type, false);
-    	Object lc_type = typeGraph.getPropertyEdge(typeGraph.getTypeNode("Element"),"count");
+    	edu.ustb.sei.mde.graph.type.IType lc_type = typeGraph.getPropertyEdge(typeGraph.getTypeNode("Element"),"count")
+    	;
     	type_3.addField("lc", lc_type, false);
-    	Object le_type = typeGraph.getTypeEdge(typeGraph.getTypeNode("Bag"),"elements");
+    	edu.ustb.sei.mde.graph.type.IType le_type = typeGraph.getTypeEdge(typeGraph.getTypeNode("Bag"),"elements")
+    	;
     	type_3.addField("le", le_type, false);
-    	Object lv_type = typeGraph.getPropertyEdge(typeGraph.getTypeNode("Element"),"value");
+    	edu.ustb.sei.mde.graph.type.IType lv_type = typeGraph.getPropertyEdge(typeGraph.getTypeNode("Element"),"value")
+    	;
     	type_3.addField("lv", lv_type, false);
-    	Object v_type = typeGraph.getDataTypeNode("EString");
+    	edu.ustb.sei.mde.graph.type.IType v_type = typeGraph.getDataTypeNode("EString")
+    	;
     	type_3.addField("v", v_type, false);
     }
     return type_3;
+  }
+  
+  /**
+   * id:0
+   */
+  private ContextType type_0;
+  
+  public ContextType getType_0() {
+    if(type_0==null) {
+    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Bag1();
+    	type_0 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
+    	edu.ustb.sei.mde.graph.type.IType b_type = typeGraph.getTypeNode("Bag")
+    	;
+    	type_0.addField("b", b_type, false);
+    }
+    return type_0;
   }
   
   private Pattern pattern_0;
@@ -349,11 +363,14 @@ public class Bag2Bag extends XmuProgram {
     if(pattern_0==null) {
     	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Bag1();
     	pattern_0 = new edu.ustb.sei.mde.graph.pattern.Pattern(typeGraph);
-    	edu.ustb.sei.mde.graph.type.ITypeNode b_type = typeGraph.getTypeNode("Bag");
+    	edu.ustb.sei.mde.graph.type.ITypeNode b_type = typeGraph.getTypeNode("Bag")
+    	;
     	pattern_0.appendPatternNode("b", b_type,false);
-    	edu.ustb.sei.mde.graph.type.ITypeNode e_type = typeGraph.getTypeNode("Element");
+    	edu.ustb.sei.mde.graph.type.ITypeNode e_type = typeGraph.getTypeNode("Element")
+    	;
     	pattern_0.appendPatternNode("e", e_type,true);
-    	edu.ustb.sei.mde.graph.type.ITypeNode v_type = typeGraph.getDataTypeNode("EString");
+    	edu.ustb.sei.mde.graph.type.ITypeNode v_type = typeGraph.getDataTypeNode("EString")
+    	;
     	pattern_0.appendPatternNode("v", v_type,false);
     	edu.ustb.sei.mde.graph.type.IStructuralFeatureEdge le_type = typeGraph.getTypeEdge((edu.ustb.sei.mde.graph.type.TypeNode) b_type,"elements");
     	pattern_0.appendPatternEdge("le", "b", "e", le_type);
@@ -370,13 +387,17 @@ public class Bag2Bag extends XmuProgram {
     if(pattern_1==null) {
     	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Bag2();
     	pattern_1 = new edu.ustb.sei.mde.graph.pattern.Pattern(typeGraph);
-    	edu.ustb.sei.mde.graph.type.ITypeNode b_type = typeGraph.getTypeNode("Bag");
+    	edu.ustb.sei.mde.graph.type.ITypeNode b_type = typeGraph.getTypeNode("Bag")
+    	;
     	pattern_1.appendPatternNode("b", b_type,false);
-    	edu.ustb.sei.mde.graph.type.ITypeNode e_type = typeGraph.getTypeNode("Element");
+    	edu.ustb.sei.mde.graph.type.ITypeNode e_type = typeGraph.getTypeNode("Element")
+    	;
     	pattern_1.appendPatternNode("e", e_type,false);
-    	edu.ustb.sei.mde.graph.type.ITypeNode v_type = typeGraph.getDataTypeNode("EString");
+    	edu.ustb.sei.mde.graph.type.ITypeNode v_type = typeGraph.getDataTypeNode("EString")
+    	;
     	pattern_1.appendPatternNode("v", v_type,false);
-    	edu.ustb.sei.mde.graph.type.ITypeNode c_type = typeGraph.getDataTypeNode("EInt");
+    	edu.ustb.sei.mde.graph.type.ITypeNode c_type = typeGraph.getDataTypeNode("EInt")
+    	;
     	pattern_1.appendPatternNode("c", c_type,false);
     	edu.ustb.sei.mde.graph.type.IStructuralFeatureEdge le_type = typeGraph.getTypeEdge((edu.ustb.sei.mde.graph.type.TypeNode) b_type,"elements");
     	pattern_1.appendPatternEdge("le", "b", "e", le_type);
@@ -395,11 +416,14 @@ public class Bag2Bag extends XmuProgram {
     if(pattern_2==null) {
     	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Bag1();
     	pattern_2 = new edu.ustb.sei.mde.graph.pattern.Pattern(typeGraph);
-    	edu.ustb.sei.mde.graph.type.ITypeNode b_type = typeGraph.getTypeNode("Bag");
+    	edu.ustb.sei.mde.graph.type.ITypeNode b_type = typeGraph.getTypeNode("Bag")
+    	;
     	pattern_2.appendPatternNode("b", b_type,false);
-    	edu.ustb.sei.mde.graph.type.ITypeNode e_type = typeGraph.getTypeNode("Element");
+    	edu.ustb.sei.mde.graph.type.ITypeNode e_type = typeGraph.getTypeNode("Element")
+    	;
     	pattern_2.appendPatternNode("e", e_type,true);
-    	edu.ustb.sei.mde.graph.type.ITypeNode v_type = typeGraph.getDataTypeNode("EString");
+    	edu.ustb.sei.mde.graph.type.ITypeNode v_type = typeGraph.getDataTypeNode("EString")
+    	;
     	pattern_2.appendPatternNode("v", v_type,false);
     	edu.ustb.sei.mde.graph.type.IStructuralFeatureEdge le_type = typeGraph.getTypeEdge((edu.ustb.sei.mde.graph.type.TypeNode) b_type,"elements");
     	pattern_2.appendPatternEdge("le", "b", "e", le_type);
@@ -416,13 +440,17 @@ public class Bag2Bag extends XmuProgram {
     if(pattern_3==null) {
     	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Bag2();
     	pattern_3 = new edu.ustb.sei.mde.graph.pattern.Pattern(typeGraph);
-    	edu.ustb.sei.mde.graph.type.ITypeNode b_type = typeGraph.getTypeNode("Bag");
+    	edu.ustb.sei.mde.graph.type.ITypeNode b_type = typeGraph.getTypeNode("Bag")
+    	;
     	pattern_3.appendPatternNode("b", b_type,false);
-    	edu.ustb.sei.mde.graph.type.ITypeNode e_type = typeGraph.getTypeNode("Element");
+    	edu.ustb.sei.mde.graph.type.ITypeNode e_type = typeGraph.getTypeNode("Element")
+    	;
     	pattern_3.appendPatternNode("e", e_type,false);
-    	edu.ustb.sei.mde.graph.type.ITypeNode v_type = typeGraph.getDataTypeNode("EString");
+    	edu.ustb.sei.mde.graph.type.ITypeNode v_type = typeGraph.getDataTypeNode("EString")
+    	;
     	pattern_3.appendPatternNode("v", v_type,false);
-    	edu.ustb.sei.mde.graph.type.ITypeNode c_type = typeGraph.getDataTypeNode("EInt");
+    	edu.ustb.sei.mde.graph.type.ITypeNode c_type = typeGraph.getDataTypeNode("EInt")
+    	;
     	pattern_3.appendPatternNode("c", c_type,false);
     	edu.ustb.sei.mde.graph.type.IStructuralFeatureEdge le_type = typeGraph.getTypeEdge((edu.ustb.sei.mde.graph.type.TypeNode) b_type,"elements");
     	pattern_3.appendPatternEdge("le", "b", "e", le_type);
@@ -441,11 +469,14 @@ public class Bag2Bag extends XmuProgram {
     if(pattern_4==null) {
     	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Bag1();
     	pattern_4 = new edu.ustb.sei.mde.graph.pattern.Pattern(typeGraph);
-    	edu.ustb.sei.mde.graph.type.ITypeNode b_type = typeGraph.getTypeNode("Bag");
+    	edu.ustb.sei.mde.graph.type.ITypeNode b_type = typeGraph.getTypeNode("Bag")
+    	;
     	pattern_4.appendPatternNode("b", b_type,false);
-    	edu.ustb.sei.mde.graph.type.ITypeNode e_type = typeGraph.getTypeNode("Element");
+    	edu.ustb.sei.mde.graph.type.ITypeNode e_type = typeGraph.getTypeNode("Element")
+    	;
     	pattern_4.appendPatternNode("e", e_type,true);
-    	edu.ustb.sei.mde.graph.type.ITypeNode v_type = typeGraph.getDataTypeNode("EString");
+    	edu.ustb.sei.mde.graph.type.ITypeNode v_type = typeGraph.getDataTypeNode("EString")
+    	;
     	pattern_4.appendPatternNode("v", v_type,false);
     	edu.ustb.sei.mde.graph.type.IStructuralFeatureEdge le_type = typeGraph.getTypeEdge((edu.ustb.sei.mde.graph.type.TypeNode) b_type,"elements");
     	pattern_4.appendPatternEdge("le", "b", "e", le_type);
@@ -462,11 +493,14 @@ public class Bag2Bag extends XmuProgram {
     if(pattern_5==null) {
     	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Bag1();
     	pattern_5 = new edu.ustb.sei.mde.graph.pattern.Pattern(typeGraph);
-    	edu.ustb.sei.mde.graph.type.ITypeNode b_type = typeGraph.getTypeNode("Bag");
+    	edu.ustb.sei.mde.graph.type.ITypeNode b_type = typeGraph.getTypeNode("Bag")
+    	;
     	pattern_5.appendPatternNode("b", b_type,false);
-    	edu.ustb.sei.mde.graph.type.ITypeNode e_type = typeGraph.getTypeNode("Element");
+    	edu.ustb.sei.mde.graph.type.ITypeNode e_type = typeGraph.getTypeNode("Element")
+    	;
     	pattern_5.appendPatternNode("e", e_type,true);
-    	edu.ustb.sei.mde.graph.type.ITypeNode v_type = typeGraph.getDataTypeNode("EString");
+    	edu.ustb.sei.mde.graph.type.ITypeNode v_type = typeGraph.getDataTypeNode("EString")
+    	;
     	pattern_5.appendPatternNode("v", v_type,false);
     	edu.ustb.sei.mde.graph.type.IStructuralFeatureEdge le_type = typeGraph.getTypeEdge((edu.ustb.sei.mde.graph.type.TypeNode) b_type,"elements");
     	pattern_5.appendPatternEdge("le", "b", "e", le_type);
@@ -483,11 +517,14 @@ public class Bag2Bag extends XmuProgram {
     if(pattern_6==null) {
     	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Bag1();
     	pattern_6 = new edu.ustb.sei.mde.graph.pattern.Pattern(typeGraph);
-    	edu.ustb.sei.mde.graph.type.ITypeNode b_type = typeGraph.getTypeNode("Bag");
+    	edu.ustb.sei.mde.graph.type.ITypeNode b_type = typeGraph.getTypeNode("Bag")
+    	;
     	pattern_6.appendPatternNode("b", b_type,false);
-    	edu.ustb.sei.mde.graph.type.ITypeNode e_type = typeGraph.getTypeNode("Element");
+    	edu.ustb.sei.mde.graph.type.ITypeNode e_type = typeGraph.getTypeNode("Element")
+    	;
     	pattern_6.appendPatternNode("e", e_type,true);
-    	edu.ustb.sei.mde.graph.type.ITypeNode v_type = typeGraph.getDataTypeNode("EString");
+    	edu.ustb.sei.mde.graph.type.ITypeNode v_type = typeGraph.getDataTypeNode("EString")
+    	;
     	pattern_6.appendPatternNode("v", v_type,false);
     	edu.ustb.sei.mde.graph.type.IStructuralFeatureEdge le_type = typeGraph.getTypeEdge((edu.ustb.sei.mde.graph.type.TypeNode) b_type,"elements");
     	pattern_6.appendPatternEdge("le", "b", "e", le_type);

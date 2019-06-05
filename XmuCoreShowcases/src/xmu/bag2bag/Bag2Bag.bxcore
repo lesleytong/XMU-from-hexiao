@@ -16,7 +16,7 @@ function Bag2Bag<bag1!(b:Bag), bag2!(b:Bag)> =
 						{
 							skip (v) (v)
 							count (e) (c)
-						}
+						} 
 				adaption e@source.size<c@view : {
 					val occ = c@view;
 					val size = e@source.size;
