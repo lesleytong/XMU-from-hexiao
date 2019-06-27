@@ -303,6 +303,8 @@ XPrimaryExpression returns xbase::XExpression :
 //	| MatchExpression
 	| super
 ;
+
+
  
 ContextExpression returns ContextExpression:
 	(ContextPrimaryExpression ({NavigationExpression.host=current} '.' navOp=('@'|'@@') pathName=ValidID)*)
@@ -315,6 +317,8 @@ ContextVarExpression returns ContextPrimaryExpression:
 	({ContextVarExpression} name=ValidID '@' side=SideEnum) |
 	({ExpressionConversion} '@'  side=SideEnum ':' metamodel=[ImportSection|ValidID] '!' type=[ecore::EClass|ValidID] (many?='[]')? '(' expression=XExpression ')')
 ;
+
+
 
 NewInstanceExpression :
 	'new' type=AnnotatedType (=>'[' size=XExpression ']'| => '(' sourceValue=XExpression ',' targetValue=XExpression ')')?

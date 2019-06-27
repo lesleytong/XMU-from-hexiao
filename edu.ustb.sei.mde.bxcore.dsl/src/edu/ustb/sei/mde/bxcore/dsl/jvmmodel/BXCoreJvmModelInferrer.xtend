@@ -122,6 +122,8 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.DashedPathType
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.DashedPathTypeSegment
 import org.eclipse.xtend2.lib.StringConcatenationClient
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.AbstractPatternEdge
+import edu.ustb.sei.mde.graph.type.IPathType
+import edu.ustb.sei.mde.bxcore.util.PathTypeUtil
 
 /**
  * <p>Infers a JVM model from the source model.</p> 
@@ -216,16 +218,26 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 					patternLiterals.forEach[p|generatePatternLiteral(it, p.value, p.key, typeLiteralMap, conditions, actions, element, data.pathTypes);];
 				
 				data.pathTypes.forEach[pt|
+					val firstPT = data.pathTypes.findFirst[p|PathTypeUtil.isEqual(p.value,pt.value)];
+					
 					members += pt.value.toField('pathType_'+pt.key, edu.ustb.sei.mde.graph.type.IPathType.typeRef);
 					members += pt.value.toMethod('getPathType_'+pt.key, edu.ustb.sei.mde.graph.type.IPathType.typeRef)[
 						val pattern = pt.value.pattern;
-						body = '''
-							if(pathType_«pt.key»==null) {
-								edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_«pattern.source.shortName.toFirstUpper»();
-								pathType_«pt.key» = «pt.value.generatePathTypeCode('typeGraph')»;
-							}
-							return pathType_«pt.key»;
-						'''
+						
+						if(firstPT.value===pt.value) { // first
+							body = '''
+								if(pathType_«pt.key»==null) {
+									edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_«pattern.source.shortName.toFirstUpper»();
+									pathType_«pt.key» = «pt.value.generatePathTypeCode('typeGraph')»;
+								}
+								return pathType_«pt.key»;
+							'''
+						} else {
+							body = '''
+								return getPathType_«firstPT.key»();
+							'''
+						}
+						
 					];
 				];
 
@@ -433,7 +445,7 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 		];
 		
 		val nodes = literal.eAllContents.filter[it instanceof PatternNode].map[it as PatternNode].toList;
-		val edges = literal.eAllContents.filter[it instanceof PatternEdge].map[it as AbstractPatternEdge].toList;
+		val edges = literal.eAllContents.filter[it instanceof AbstractPatternEdge].map[it as AbstractPatternEdge].toList;
 		val typeGraph = literal.source;
 		val patternTypeId = typeLiteralMap.get(literal).second;
 		
@@ -454,7 +466,7 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 						«IF edge instanceof PatternEdge»
 							«IStructuralFeatureEdge.typeRef.qualifiedName» «edgeName»_type = typeGraph.«IF edge.feature instanceof EReference»getTypeEdge«ELSE»getPropertyEdge«ENDIF»((«TypeNode.typeRef.qualifiedName») «(edge.eContainer as PatternNode).name»_type,"«edge.feature.name»");
 						«ELSEIF edge instanceof PatternPathEdge»
-							«IStructuralFeatureEdge.typeRef.qualifiedName» «edgeName»_type = «(edge as PatternPathEdge).path.generateTypeCode('typeGraph', pathTypes)»;
+							«IPathType.typeRef.qualifiedName» «edgeName»_type = «(edge as PatternPathEdge).path.generateTypeCode('typeGraph', pathTypes)»;
 						«ELSE»
 							«IStructuralFeatureEdge.typeRef.qualifiedName» «edgeName»_type = /* ERROR */
 						«ENDIF»

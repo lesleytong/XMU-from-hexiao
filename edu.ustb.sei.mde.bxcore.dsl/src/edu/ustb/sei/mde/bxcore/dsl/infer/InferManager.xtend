@@ -49,7 +49,7 @@ class InferManager {
 		val patternLiterals = program.eAllContents.filter[it instanceof PatternTypeLiteral].map [it as PatternTypeLiteral].indexed.toList;
 		data.patternLiterals = patternLiterals;
 		
-		val pathTypes = program.eAllContents.filter[it instanceof PatternPathEdge].map [(it as PatternPathEdge).path].indexed.toList;
+		val pathTypes = program.eAllContents.filter[it instanceof PatternPathEdge].map[(it as PatternPathEdge).path].indexed.toList;
 		data.pathTypes = pathTypes;
 		
 		inferredDataMap.put(resource,data);

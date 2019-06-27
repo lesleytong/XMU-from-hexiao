@@ -96,6 +96,7 @@ import edu.ustb.sei.mde.bxcore.structures.Context;
 import edu.ustb.sei.mde.bxcore.structures.ContextGraph;
 import edu.ustb.sei.mde.bxcore.structures.ContextType;
 import edu.ustb.sei.mde.bxcore.util.EcoreModelUtil;
+import edu.ustb.sei.mde.bxcore.util.PathTypeUtil;
 import edu.ustb.sei.mde.bxcore.util.XmuProgram;
 import edu.ustb.sei.mde.graph.pattern.Pattern;
 import edu.ustb.sei.mde.graph.type.IPathType;
@@ -293,6 +294,10 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
           patternLiterals.forEach(_function_13);
         }
         final Consumer<Pair<Integer, DashedPathType>> _function_14 = (Pair<Integer, DashedPathType> pt) -> {
+          final Function1<Pair<Integer, DashedPathType>, Boolean> _function_15 = (Pair<Integer, DashedPathType> p) -> {
+            return Boolean.valueOf(PathTypeUtil.isEqual(p.getValue(), pt.getValue()));
+          };
+          final Pair<Integer, DashedPathType> firstPT = IterableExtensions.<Pair<Integer, DashedPathType>>findFirst(data.getPathTypes(), _function_15);
           EList<JvmMember> _members = it.getMembers();
           Integer _key = pt.getKey();
           String _plus = ("pathType_" + _key);
@@ -301,43 +306,60 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
           EList<JvmMember> _members_1 = it.getMembers();
           Integer _key_1 = pt.getKey();
           String _plus_1 = ("getPathType_" + _key_1);
-          final Procedure1<JvmOperation> _function_15 = (JvmOperation it_1) -> {
+          final Procedure1<JvmOperation> _function_16 = (JvmOperation it_1) -> {
             final PatternTypeLiteral pattern = this.getPattern(pt.getValue());
-            StringConcatenationClient _client = new StringConcatenationClient() {
-              @Override
-              protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
-                _builder.append("if(pathType_");
-                Integer _key = pt.getKey();
-                _builder.append(_key);
-                _builder.append("==null) {");
-                _builder.newLineIfNotEmpty();
-                _builder.append("\t");
-                _builder.append("edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_");
-                String _firstUpper = StringExtensions.toFirstUpper(pattern.getSource().getShortName());
-                _builder.append(_firstUpper, "\t");
-                _builder.append("();");
-                _builder.newLineIfNotEmpty();
-                _builder.append("\t");
-                _builder.append("pathType_");
-                Integer _key_1 = pt.getKey();
-                _builder.append(_key_1, "\t");
-                _builder.append(" = ");
-                StringConcatenationClient _generatePathTypeCode = BXCoreJvmModelInferrer.this.generatePathTypeCode(pt.getValue(), "typeGraph");
-                _builder.append(_generatePathTypeCode, "\t");
-                _builder.append(";");
-                _builder.newLineIfNotEmpty();
-                _builder.append("}");
-                _builder.newLine();
-                _builder.append("return pathType_");
-                Integer _key_2 = pt.getKey();
-                _builder.append(_key_2);
-                _builder.append(";");
-                _builder.newLineIfNotEmpty();
-              }
-            };
-            this._jvmTypesBuilder.setBody(it_1, _client);
+            DashedPathType _value = firstPT.getValue();
+            DashedPathType _value_1 = pt.getValue();
+            boolean _tripleEquals_1 = (_value == _value_1);
+            if (_tripleEquals_1) {
+              StringConcatenationClient _client = new StringConcatenationClient() {
+                @Override
+                protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
+                  _builder.append("if(pathType_");
+                  Integer _key = pt.getKey();
+                  _builder.append(_key);
+                  _builder.append("==null) {");
+                  _builder.newLineIfNotEmpty();
+                  _builder.append("\t");
+                  _builder.append("edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_");
+                  String _firstUpper = StringExtensions.toFirstUpper(pattern.getSource().getShortName());
+                  _builder.append(_firstUpper, "\t");
+                  _builder.append("();");
+                  _builder.newLineIfNotEmpty();
+                  _builder.append("\t");
+                  _builder.append("pathType_");
+                  Integer _key_1 = pt.getKey();
+                  _builder.append(_key_1, "\t");
+                  _builder.append(" = ");
+                  StringConcatenationClient _generatePathTypeCode = BXCoreJvmModelInferrer.this.generatePathTypeCode(pt.getValue(), "typeGraph");
+                  _builder.append(_generatePathTypeCode, "\t");
+                  _builder.append(";");
+                  _builder.newLineIfNotEmpty();
+                  _builder.append("}");
+                  _builder.newLine();
+                  _builder.append("return pathType_");
+                  Integer _key_2 = pt.getKey();
+                  _builder.append(_key_2);
+                  _builder.append(";");
+                  _builder.newLineIfNotEmpty();
+                }
+              };
+              this._jvmTypesBuilder.setBody(it_1, _client);
+            } else {
+              StringConcatenationClient _client_1 = new StringConcatenationClient() {
+                @Override
+                protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
+                  _builder.append("return getPathType_");
+                  Integer _key = firstPT.getKey();
+                  _builder.append(_key);
+                  _builder.append("();");
+                  _builder.newLineIfNotEmpty();
+                }
+              };
+              this._jvmTypesBuilder.setBody(it_1, _client_1);
+            }
           };
-          JvmOperation _method = this._jvmTypesBuilder.toMethod(pt.getValue(), _plus_1, this._typeReferenceBuilder.typeRef(IPathType.class), _function_15);
+          JvmOperation _method = this._jvmTypesBuilder.toMethod(pt.getValue(), _plus_1, this._typeReferenceBuilder.typeRef(IPathType.class), _function_16);
           this._jvmTypesBuilder.<JvmOperation>operator_add(_members_1, _method);
         };
         data.getPathTypes().forEach(_function_14);
@@ -863,7 +885,7 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
       };
       final List<PatternNode> nodes = IteratorExtensions.<PatternNode>toList(IteratorExtensions.<EObject, PatternNode>map(IteratorExtensions.<EObject>filter(literal.eAllContents(), _function_1), _function_2));
       final Function1<EObject, Boolean> _function_3 = (EObject it) -> {
-        return Boolean.valueOf((it instanceof PatternEdge));
+        return Boolean.valueOf((it instanceof AbstractPatternEdge));
       };
       final Function1<EObject, AbstractPatternEdge> _function_4 = (EObject it) -> {
         return ((AbstractPatternEdge) it);
@@ -1006,7 +1028,7 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
                   } else {
                     if ((edge instanceof PatternPathEdge)) {
                       _builder.append("\t");
-                      String _qualifiedName_5 = BXCoreJvmModelInferrer.this._typeReferenceBuilder.typeRef(IStructuralFeatureEdge.class).getQualifiedName();
+                      String _qualifiedName_5 = BXCoreJvmModelInferrer.this._typeReferenceBuilder.typeRef(IPathType.class).getQualifiedName();
                       _builder.append(_qualifiedName_5, "\t");
                       _builder.append(" ");
                       _builder.append(edgeName, "\t");
