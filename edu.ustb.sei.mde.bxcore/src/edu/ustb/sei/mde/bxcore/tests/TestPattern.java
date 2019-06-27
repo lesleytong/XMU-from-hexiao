@@ -13,12 +13,19 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import edu.ustb.sei.mde.bxcore.structures.Context;
+import edu.ustb.sei.mde.bxcore.structures.GraphPath;
+import edu.ustb.sei.mde.bxcore.structures.IndexPath;
+import edu.ustb.sei.mde.graph.IEdge;
 import edu.ustb.sei.mde.graph.pattern.Pattern;
 import edu.ustb.sei.mde.graph.pattern.PatternPathEdge;
 import edu.ustb.sei.mde.graph.type.DashedPathType;
 import edu.ustb.sei.mde.graph.type.DashedPathTypeSegment;
+import edu.ustb.sei.mde.graph.type.IStructuralFeatureEdge;
+import edu.ustb.sei.mde.graph.type.TypeEdge;
 import edu.ustb.sei.mde.graph.type.TypeGraph;
+import edu.ustb.sei.mde.graph.typedGraph.TypedEdge;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
+import edu.ustb.sei.mde.graph.typedGraph.TypedNode;
 
 class TestPattern {
 
@@ -45,6 +52,7 @@ class TestPattern {
 				+"b5:B;"
 				+"b6:B;"
 				+"c1:C;"
+				+"d1:D;"
 				+"a1-a2b->b1;"
 				+"a1-a2b->b2;"
 				+"a1-a2b->b3;"
@@ -57,6 +65,7 @@ class TestPattern {
 				+"b4-b2c->c1;"
 				+"b5-b2c->c1;"
 				+"b6-b2c->c1;"
+				+"c1-c2d->d1;"
 				+"a1.a2S=\"str1\";"
 				+"a1.a2S=\"str2\";"
 				+"a1.a2S=\"str1\";");
@@ -70,12 +79,16 @@ class TestPattern {
 		typeGraph.declare("B");
 		typeGraph.declare("C");
 		
+		typeGraph.declare("D");
+		
 		// add data type nodes
 		typeGraph.declare("String:java.lang.String");
 		
 		// add type edges
 		typeGraph.declare("a2b:A->B*");
 		typeGraph.declare("b2c:B->C");
+		
+		typeGraph.declare("c2d:C->D");
 		
 		// add property edges
 		typeGraph.declare("a2S:A->String#");
@@ -116,9 +129,9 @@ class TestPattern {
 		Pattern plainPattern = new Pattern(typeGraph);
 		plainPattern.declare("pa:A");
 		plainPattern.declare("pb:B");
-		plainPattern.declare("pc:C");
+//		plainPattern.declare("pc:C");
 		plainPattern.declare("pa2b:pa-a2b->pb");
-		plainPattern.declare("pb2c:pb-b2c->pc");
+//		plainPattern.declare("pb2c:pb-b2c->pc");
 		
 		Context base = Context.emptyContext();
 		
@@ -169,6 +182,58 @@ class TestPattern {
 		
 		Assert.assertTrue(matches.size()+" matches are found", matches.size()==6);
 		Assert.assertTrue(matches.stream().allMatch(match->setPattern.isMatchOf(typedGraph, match)));
+	}
+	
+	@Test
+	public void testPath() throws Exception {
+
+	 Pattern pattern = new Pattern(typeGraph);
+	 
+	 //define
+	 pattern.declare("pa:A");
+	 pattern.declare("pd:D");
+
+	 IStructuralFeatureEdge e1 = typeGraph.getTypeEdge(typeGraph.getTypeNode("A"), "a2b");
+	 IStructuralFeatureEdge e2 = typeGraph.getTypeEdge(typeGraph.getTypeNode("B"), "b2c");
+	 IStructuralFeatureEdge e3 = typeGraph.getTypeEdge(typeGraph.getTypeNode("C"), "c2d");
+	 
+	 DashedPathType dPathType = new DashedPathType(new DashedPathTypeSegment(0, -1, e1), 
+			 										new DashedPathTypeSegment(0, -1, e2),
+			 										 new DashedPathTypeSegment(0, 5, e3));
+
+	 pattern.appendPatternEdge("PathPattern", "pa", "pd", dPathType);
+
+	 // match typedGraph
+	 Context base = Context.emptyContext();
+	 List<Context> matches = pattern.match(typedGraph, base);
+	 System.out.println(matches.size());
+	 
+	 
+	 Context newMatch = matches.get(0).getCopy();
+	 
+	 DashedPathType newPathType = new DashedPathType(new DashedPathTypeSegment(0, -1, e1), 
+				new DashedPathTypeSegment(0, -1, e2),
+				 new DashedPathTypeSegment(0, 5, e3));
+	 
+	 TypedNode a = typedGraph.getElementByIndexObject(newMatch.getValue("pa"));
+	 TypedNode nb = new TypedNode(typeGraph.getTypeNode("B"));
+	 TypedNode nc = new TypedNode(typeGraph.getTypeNode("C"));
+	 TypedNode d = typedGraph.getElementByIndexObject(newMatch.getValue("pd"));
+	 
+	 TypedEdge a2b = new TypedEdge(a, nb, (TypeEdge) e1);
+	 TypedEdge b2c = new TypedEdge(nb, nc, (TypeEdge) e2);
+	 TypedEdge c2d = new TypedEdge(nc, d, (TypeEdge) e3);
+	 
+	 GraphPath p = new GraphPath(new IEdge[] {a2b, b2c, c2d}, newPathType);
+	 newMatch.setValue("PathPattern", p);
+	 
+	 
+	 TypedGraph newGraph = pattern.construct(typedGraph, newMatch);
+	 
+	 System.out.println(newGraph.printGraph());
+	 
+	 //Assert.assertTrue(matches.size()+" matches are found", matches.size()==6);
+     //Assert.assertTrue(matches.stream().allMatch(match->pattern.isMatchOf(typedGraph, match)));
 	}
 
 	@Test

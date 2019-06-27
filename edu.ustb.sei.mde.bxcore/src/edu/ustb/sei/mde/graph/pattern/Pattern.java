@@ -281,7 +281,7 @@ public class Pattern implements IGraph {
 		}
 			
 		try {
-			path = indexPath.toGraphPath(referenceGraph);
+			path = indexPath.toGraphPathWithRecovery(referenceGraph);
 			if(path==null) {
 				throw new NothingReturnedException();
 			} else {

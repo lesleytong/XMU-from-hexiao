@@ -37,7 +37,7 @@ public class GraphPath implements IEdge {
 		Index[] indices = new Index[path.length];
 		for(int i=0;i<path.length;i++)
 			indices[i] = ((IndexableElement)path[i]).getIndex();
-		return new IndexPath(indices, type);
+		return new IndexPath(indices, type, this);
 	}
 	
 	@Override
