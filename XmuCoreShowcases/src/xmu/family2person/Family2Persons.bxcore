@@ -1,0 +1,125 @@
+/*
+ * Auto-generated BX source file
+ */
+import 'http://www.eclipse.org/emf/2002/Ecore' as ecore
+
+import '/XmuCoreShowcases/metamodel/FamilyRegister.ecore' as FR
+import  '/XmuCoreShowcases/metamodel/PersonsRegister.ecore' as PR
+ 
+import java.util.*;
+import org.eclipse.emf.ecore.*;
+import edu.ustb.sei.mde.graph.typedGraph.TypedNode;
+import edu.ustb.sei.mde.graph.typedGraph.TypedEdge;
+import edu.ustb.sei.mde.graph.typedGraph.IndexableElement
+import edu.ustb.sei.mde.graph.type.DashedPathType
+import edu.ustb.sei.mde.graph.type.DashedPathTypeSegment
+import edu.ustb.sei.mde.bxcore.structures.GraphPath
+import edu.ustb.sei.mde.graph.IEdge
+import edu.ustb.sei.mde.graph.typedGraph.ITypedEdge
+import edu.ustb.sei.mde.graph.typedGraph.ValueEdge
+
+/* you code here */
+
+index f2p <FR![f:Family], PR![s:EString] >
+
+bigul identity (GraphPath p) (String id)
+	get {
+		id = (p.pathEdges.get(0) as TypedEdge).type.name
+	}
+	put {
+		val nid = (p.pathEdges.get(0) as TypedEdge).type.name;
+		if(!(nid.equals(id))) nothing
+	}
+ 
+
+function Father2Person<FR!(x:FamilyRegister),PR!(y:PersonsRegister)> =
+	align FR!x:FamilyRegister{
+		lf:families=f:Family{
+			ln:name=n:EString,
+			lp:(mother|father|son|daughter)=m:Member{
+				lnn:name=nn:EString
+			}
+		}
+	}
+	PR!y:PersonsRegister{
+		lp:persons=p:Person{li:identity=id:EString,
+			lln:lastName=lastn:EString,
+			lfn:firstName=firstn:EString
+		}
+	}
+		with nn@source.equals(firstn@view) && n@source.equals(lastn@view)
+		match -> index f2p <f|lastn> in 
+					replace FR!x:FamilyRegister{
+						lf:families=f:Family{
+							ln:name=n:EString,
+							lp:(mother|father|son|daughter)=m:Member{
+								lnn:name=nn:EString
+							}
+						}
+					}
+					PR!y:PersonsRegister{
+						lp:persons=p:Person{
+							li:identity=id:EString,
+							lln:lastName=lastn:EString,
+							lfn:firstName=firstn:EString
+						}
+					}
+					{
+						replace (n, nn) (lastn, firstn)
+						identity (lp) (id)
+					}
+					
+		unmatchS -> {
+			begin
+				delete lp@source.pathEdges.get(0) as IndexableElement;
+				delete lnn@source;
+				delete m@source;
+			end
+		}
+				
+		unmatchV -> {
+			//If the Family doesn't exist, we will create a new Family
+			//If the Family exist, we add a relation between Family and a member;
+			val typeGraph = source.^first.typeGraph;
+//			val familyTypeNode = typeGraph.getTypeNode('Family');
+			
+			val pathType = typeGraph.resolvePathType('Family::(father|mother|son|daughter){1,1}');
+			
+			
+			val family = x@source.@families.findFirst[TypedNode fm | lastn@view.equals(@source:FR!Family(fm).@name)];
+			
+			
+			
+			val edges = 
+				if(family===null) {
+					val nf = new @source:FR!Family;
+					val nm = new @source:FR!Member;
+					val e = 
+						if(id@view.equals('father')) new @source:FR!Family::father(nf,nm)
+						else if(id@view.equals('mother')) new @source:FR!Family::mother(nf,nm)
+						else if(id@view.equals('son')) new @source:FR!Family::son(nf,nm)
+						else if(id@view.equals('daughter')) new @source:FR!Family::daughter(nf,nm);
+					#[e]
+				} else {
+					val nm = new @source:FR!Member;
+					val e = 
+						if(id@view.equals('father')) new @source:FR!Family::father(family,nm)
+						else if(id@view.equals('mother')) new @source:FR!Family::mother(family,nm)
+						else if(id@view.equals('son')) new @source:FR!Family::son(family,nm)
+						else if(id@view.equals('daughter')) new @source:FR!Family::daughter(family,nm);
+					#[e]
+				}
+			
+			val path = new GraphPath(edges, pathType);
+			
+			begin
+				enforce FR!x:FamilyRegister{
+					lf:families=f:Family{
+						ln:name=n:EString,
+						lp:(mother|father|son|daughter)=m:Member{
+							lnn:name=nn:EString
+						}
+					}
+				} {n<-lastn@view, nn<-firstn@view, lp<-path};
+			end
+		}
