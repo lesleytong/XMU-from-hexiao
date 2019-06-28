@@ -1,5 +1,7 @@
 package edu.ustb.sei.mde.bxcore;
 
+import java.util.logging.Level;
+
 import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
 import edu.ustb.sei.mde.bxcore.exceptions.UninitializedException;
 import edu.ustb.sei.mde.bxcore.structures.Context;
@@ -77,7 +79,8 @@ public class IndexingFunction {
 			if(vf.isElementType()) {
 				result.setValue(vf, Index.freshIndex(string+"@"+vf.getName()));
 			} else {
-				throw new NothingReturnedException();
+//				throw new NothingReturnedException();
+				XmuCoreUtils.log(Level.INFO, "IndexFunction ignores one view index", null);
 			}
 		}
 		
