@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.regex.Matcher;
 
+import edu.ustb.sei.mde.bxcore.exceptions.InternalBidirectionalTransformationError;
 import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
 import edu.ustb.sei.mde.bxcore.exceptions.UninitializedException;
 import edu.ustb.sei.mde.bxcore.structures.Context;
@@ -265,7 +266,7 @@ public class Pattern implements IGraph {
 	
 
 	protected void createPath(int id, IEdge n, IndexPath indexPath, TypedGraphCreator creator, TypedGraph graph,
-			TypedGraph referenceGraph) {
+			TypedGraph referenceGraph) throws NothingReturnedException {
 		String sourceNodeName = ((PatternElement<?>) n.getSource()).isCollection() ? ((PatternElement<?>) n.getSource()).getName()+'-'+id : ((PatternElement<?>) n.getSource()).getName();
 		String targetNodeName = ((PatternElement<?>) n.getTarget()).isCollection() ? ((PatternElement<?>) n.getTarget()).getName()+'-'+id : ((PatternElement<?>) n.getTarget()).getName();
 		IType elementType = ((PatternElement<?>)n).getElementType();
@@ -310,7 +311,7 @@ public class Pattern implements IGraph {
 							graph.addValueEdge((ValueEdge) pathEdge);
 						}
 					}
-				} else new NothingReturnedException();
+				} else throw new InternalBidirectionalTransformationError("A GraphPath between ("+sourceNodeName+","+targetNodeName+") cannot be added. ");
 			}
 		} catch (NothingReturnedException|NullPointerException e) {
 			// create path from scratch
@@ -323,6 +324,8 @@ public class Pattern implements IGraph {
 				else 
 					creator.createValueEdge(sourceNodeName, targetNodeName, ((PatternValueEdge) n).getElementType(), indexPath.getPathIndices()[0]);
 			}
+		} catch (InternalBidirectionalTransformationError e) {
+			throw new NothingReturnedException(e);
 		}
 	}
 
