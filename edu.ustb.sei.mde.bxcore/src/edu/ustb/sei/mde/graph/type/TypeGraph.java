@@ -2,7 +2,9 @@ package edu.ustb.sei.mde.graph.type;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -458,4 +460,66 @@ public class TypeGraph implements IGraph {
 	}
 	
 	
+	static final Pattern pathSegPat = Pattern.compile("\\s*\\((.+)\\s*\\)\\s*\\{\\s*(\\d+)\\s*,\\s*(-?\\d+)\\s*\\}\\s*");
+	private HashMap<String, IPathType> pathMap = new HashMap<>();
+	public IPathType resolvePathType(String typeString) {
+		IPathType r = pathMap.get(typeString);
+		if(r!=null) return r;
+		
+		try {
+			String[] buf;
+			// typeString = nodeType :: path
+			buf = typeString.split("::");
+			
+			String nodeType = buf[0].trim();
+			String pathType = buf[1].trim();
+			
+			Set<TypeNode> startNodes = new HashSet<>();
+			Set<TypeNode> endNodes = new HashSet<>();
+			Set<IStructuralFeatureEdge> features = new java.util.LinkedHashSet<>();
+			
+			startNodes.add(this.getTypeNode(nodeType));
+			
+			buf = pathType.split("\\.");
+			
+			List<DashedPathTypeSegment> segs = new ArrayList<>();
+			
+			for(String pathSeg : buf) {
+				features.clear();
+				endNodes.clear();
+				
+				Matcher matcher = pathSegPat.matcher(pathSeg);
+				if(matcher.matches()==false) throw new NullPointerException();
+				String[] featureNames = matcher.group(1).split("\\|");
+				int min = Integer.parseInt(matcher.group(2));
+				int max = Integer.parseInt(matcher.group(3));
+				
+				for(String fn : featureNames) {
+					for(TypeNode s : startNodes) {
+						IStructuralFeatureEdge edge = this.getTypeEdge(s, fn);
+						if(edge!=null) {
+							features.add(edge);
+							endNodes.add((TypeNode) edge.getTarget());
+						} else {
+							edge = this.getPropertyEdge(s, fn);
+							features.add(edge);
+						}				
+					}
+				}
+				
+				DashedPathTypeSegment seg = new DashedPathTypeSegment(min, max, features.stream().toArray((i)->new IStructuralFeatureEdge[i]));
+				segs.add(seg);
+				
+				Set<TypeNode> temp = startNodes;
+				startNodes = endNodes;
+				endNodes = temp;
+			}
+			
+			DashedPathType result = new DashedPathType(segs.stream().toArray(i->new DashedPathTypeSegment[i]));
+			pathMap.put(typeString, result);
+			return result;
+		} catch (Exception e) {
+			return null;
+		}
+	}
 }

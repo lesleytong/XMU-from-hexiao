@@ -211,9 +211,13 @@ class TestPattern {
 	 
 	 Context newMatch = matches.get(0).getCopy();
 	 
-	 DashedPathType newPathType = new DashedPathType(new DashedPathTypeSegment(0, -1, e1), 
-				new DashedPathTypeSegment(0, -1, e2),
-				 new DashedPathTypeSegment(0, 5, e3));
+	 
+	 
+	 DashedPathType newPathType = (DashedPathType) typeGraph.resolvePathType("A::(a2b){0,-1}.(b2c){0,-1}.(c2d){0,5}"); 
+			 
+//			 new DashedPathType(new DashedPathTypeSegment(0, -1, e1), 
+//				new DashedPathTypeSegment(0, -1, e2),
+//				 new DashedPathTypeSegment(0, 5, e3));
 	 
 	 TypedNode a = typedGraph.getElementByIndexObject(newMatch.getValue("pa"));
 	 TypedNode nb = new TypedNode(typeGraph.getTypeNode("B"));
