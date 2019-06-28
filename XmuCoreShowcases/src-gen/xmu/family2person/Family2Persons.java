@@ -10,6 +10,7 @@ import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
 import edu.ustb.sei.mde.bxcore.structures.ContextGraph;
 import edu.ustb.sei.mde.bxcore.structures.ContextType;
 import edu.ustb.sei.mde.bxcore.structures.GraphPath;
+import edu.ustb.sei.mde.bxcore.structures.IndexPath;
 import edu.ustb.sei.mde.bxcore.util.XmuProgram;
 import edu.ustb.sei.mde.graph.IEdge;
 import edu.ustb.sei.mde.graph.pattern.Pattern;
@@ -206,10 +207,10 @@ public class Family2Persons extends XmuProgram {
     	typeGraph_FR.declare("name:Family->EString");
     	typeGraph_FR.declare("name:Member->EString");
     	typeGraph_FR.declare("@families:FamilyRegister->Family*");
-    	typeGraph_FR.declare("mother:Family->Member");
-    	typeGraph_FR.declare("father:Family->Member");
-    	typeGraph_FR.declare("son:Family->Member*");
-    	typeGraph_FR.declare("daughter:Family->Member*");
+    	typeGraph_FR.declare("@mother:Family->Member");
+    	typeGraph_FR.declare("@father:Family->Member");
+    	typeGraph_FR.declare("@son:Family->Member*");
+    	typeGraph_FR.declare("@daughter:Family->Member*");
     }
     return typeGraph_FR;
   }
@@ -244,7 +245,7 @@ public class Family2Persons extends XmuProgram {
     	typeGraph_PR.declare("lastName:Person->EString");
     	typeGraph_PR.declare("identity:Person->EString");
     	typeGraph_PR.declare("firstName:Person->EString");
-    	typeGraph_PR.declare("persons:PersonsRegister->Person*");
+    	typeGraph_PR.declare("@persons:PersonsRegister->Person*");
     }
     return typeGraph_PR;
   }
@@ -329,6 +330,8 @@ public class Family2Persons extends XmuProgram {
           return Boolean.valueOf(_contextValue_1.equals(_navExp_1));
         };
         final TypedNode family = IterableExtensions.<TypedNode>findFirst(_navExp, _function);
+        TypedNode n_f = null;
+        TypedNode n_m = null;
         List<TypedEdge> _xifexpression = null;
         if ((family == null)) {
           List<TypedEdge> _xblockexpression_1 = null;
@@ -337,6 +340,8 @@ public class Family2Persons extends XmuProgram {
             final TypedNode nf = newInstance;
             edu.ustb.sei.mde.graph.typedGraph.TypedNode newInstance_1 = edu.ustb.sei.mde.bxcore.structures.ContextGraph.newTypedNode(source, "Member");
             final TypedNode nm = newInstance_1;
+            n_f = nf;
+            n_m = nm;
             TypedEdge _xifexpression_1 = null;
             java.lang.String _contextValue_1 = ((java.lang.String) edu.ustb.sei.mde.bxcore.dsl.structure.ExceptionSafeInferface.getValue(view,"id"));
             boolean _equals = _contextValue_1.equals("father");
@@ -380,6 +385,8 @@ public class Family2Persons extends XmuProgram {
           {
             edu.ustb.sei.mde.graph.typedGraph.TypedNode newInstance = edu.ustb.sei.mde.bxcore.structures.ContextGraph.newTypedNode(source, "Member");
             final TypedNode nm = newInstance;
+            n_f = family;
+            n_m = nm;
             TypedEdge _xifexpression_1 = null;
             java.lang.String _contextValue_1 = ((java.lang.String) edu.ustb.sei.mde.bxcore.dsl.structure.ExceptionSafeInferface.getValue(view,"id"));
             boolean _equals = _contextValue_1.equals("father");
@@ -421,55 +428,19 @@ public class Family2Persons extends XmuProgram {
         }
         final List<TypedEdge> edges = _xifexpression;
         final GraphPath path = new GraphPath(((IEdge[])Conversions.unwrapArray(edges, IEdge.class)), pathType);
-        edu.ustb.sei.mde.bxcore.structures.GraphModification _modStart = source.modification();
         java.lang.String _contextValue_1 = ((java.lang.String) edu.ustb.sei.mde.bxcore.dsl.structure.ExceptionSafeInferface.getValue(view,"lastn"));
-        java.lang.String _contextValue_2 = ((java.lang.String) edu.ustb.sei.mde.bxcore.dsl.structure.ExceptionSafeInferface.getValue(view,"firstn"));
-        edu.ustb.sei.mde.bxcore.structures.GraphModification _mod = _modStart.enforce(getPattern_4(), new edu.ustb.sei.mde.structure.Tuple2[] {edu.ustb.sei.mde.structure.Tuple2.make("n",_contextValue_1),edu.ustb.sei.mde.structure.Tuple2.make("nn",_contextValue_2),edu.ustb.sei.mde.structure.Tuple2.make("lp",path)});
-        _modStart = _mod;
+        n_f.appendIndexValue(_contextValue_1);
+        edu.ustb.sei.mde.bxcore.structures.GraphModification _modStart = source.modification();
+        edu.ustb.sei.mde.bxcore.structures.GraphModification _mod = _modStart.insertTypedNode(n_f);_modStart = _mod;
+        edu.ustb.sei.mde.bxcore.structures.GraphModification _mod_1 = _modStart.insertTypedNode(n_m);_modStart = _mod_1;
+        java.lang.String _contextValue_2 = ((java.lang.String) edu.ustb.sei.mde.bxcore.dsl.structure.ExceptionSafeInferface.getValue(view,"lastn"));
+        java.lang.String _contextValue_3 = ((java.lang.String) edu.ustb.sei.mde.bxcore.dsl.structure.ExceptionSafeInferface.getValue(view,"firstn"));
+        edu.ustb.sei.mde.bxcore.structures.GraphModification _mod_2 = _modStart.enforce(getPattern_4(), new edu.ustb.sei.mde.structure.Tuple2[] {edu.ustb.sei.mde.structure.Tuple2.make("n",_contextValue_2),edu.ustb.sei.mde.structure.Tuple2.make("nn",_contextValue_3),edu.ustb.sei.mde.structure.Tuple2.make("lp",path),edu.ustb.sei.mde.structure.Tuple2.make("f",n_f),edu.ustb.sei.mde.structure.Tuple2.make("m",n_m)});
+        _modStart = _mod_2;
         _xblockexpression = _modStart.get();
       }
       return _xblockexpression;
     }
-  }
-  
-  /**
-   * id:5
-   */
-  private ContextType type_5;
-  
-  public ContextType getType_5() {
-    if(type_5==null) {
-    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_PR();
-    	type_5 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
-    	edu.ustb.sei.mde.graph.type.IType firstn_type = typeGraph.getDataTypeNode("EString")
-    	;
-    	type_5.addField("firstn", firstn_type, false);
-    	edu.ustb.sei.mde.graph.type.IType id_type = typeGraph.getDataTypeNode("EString")
-    	;
-    	type_5.addField("id", id_type, false);
-    	edu.ustb.sei.mde.graph.type.IType lastn_type = typeGraph.getDataTypeNode("EString")
-    	;
-    	type_5.addField("lastn", lastn_type, false);
-    	edu.ustb.sei.mde.graph.type.IType lfn_type = typeGraph.getPropertyEdge(typeGraph.getTypeNode("Person"),"firstName")
-    	;
-    	type_5.addField("lfn", lfn_type, false);
-    	edu.ustb.sei.mde.graph.type.IType li_type = typeGraph.getPropertyEdge(typeGraph.getTypeNode("Person"),"identity")
-    	;
-    	type_5.addField("li", li_type, false);
-    	edu.ustb.sei.mde.graph.type.IType lln_type = typeGraph.getPropertyEdge(typeGraph.getTypeNode("Person"),"lastName")
-    	;
-    	type_5.addField("lln", lln_type, false);
-    	edu.ustb.sei.mde.graph.type.IType lp_type = typeGraph.getTypeEdge(typeGraph.getTypeNode("PersonsRegister"),"persons")
-    	;
-    	type_5.addField("lp", lp_type, false);
-    	edu.ustb.sei.mde.graph.type.IType p_type = typeGraph.getTypeNode("Person")
-    	;
-    	type_5.addField("p", p_type, false);
-    	edu.ustb.sei.mde.graph.type.IType y_type = typeGraph.getTypeNode("PersonsRegister")
-    	;
-    	type_5.addField("y", y_type, false);
-    }
-    return type_5;
   }
   
   /**
@@ -513,6 +484,46 @@ public class Family2Persons extends XmuProgram {
   }
   
   /**
+   * id:5
+   */
+  private ContextType type_5;
+  
+  public ContextType getType_5() {
+    if(type_5==null) {
+    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_PR();
+    	type_5 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
+    	edu.ustb.sei.mde.graph.type.IType firstn_type = typeGraph.getDataTypeNode("EString")
+    	;
+    	type_5.addField("firstn", firstn_type, false);
+    	edu.ustb.sei.mde.graph.type.IType id_type = typeGraph.getDataTypeNode("EString")
+    	;
+    	type_5.addField("id", id_type, false);
+    	edu.ustb.sei.mde.graph.type.IType lastn_type = typeGraph.getDataTypeNode("EString")
+    	;
+    	type_5.addField("lastn", lastn_type, false);
+    	edu.ustb.sei.mde.graph.type.IType lfn_type = typeGraph.getPropertyEdge(typeGraph.getTypeNode("Person"),"firstName")
+    	;
+    	type_5.addField("lfn", lfn_type, false);
+    	edu.ustb.sei.mde.graph.type.IType li_type = typeGraph.getPropertyEdge(typeGraph.getTypeNode("Person"),"identity")
+    	;
+    	type_5.addField("li", li_type, false);
+    	edu.ustb.sei.mde.graph.type.IType lln_type = typeGraph.getPropertyEdge(typeGraph.getTypeNode("Person"),"lastName")
+    	;
+    	type_5.addField("lln", lln_type, false);
+    	edu.ustb.sei.mde.graph.type.IType lp_type = typeGraph.getTypeEdge(typeGraph.getTypeNode("PersonsRegister"),"persons")
+    	;
+    	type_5.addField("lp", lp_type, false);
+    	edu.ustb.sei.mde.graph.type.IType p_type = typeGraph.getTypeNode("Person")
+    	;
+    	type_5.addField("p", p_type, false);
+    	edu.ustb.sei.mde.graph.type.IType y_type = typeGraph.getTypeNode("PersonsRegister")
+    	;
+    	type_5.addField("y", y_type, false);
+    }
+    return type_5;
+  }
+  
+  /**
    * id:3
    */
   private ContextType type_3;
@@ -526,22 +537,6 @@ public class Family2Persons extends XmuProgram {
     	type_3.addField("y", y_type, false);
     }
     return type_3;
-  }
-  
-  /**
-   * id:2
-   */
-  private ContextType type_2;
-  
-  public ContextType getType_2() {
-    if(type_2==null) {
-    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_FR();
-    	type_2 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
-    	edu.ustb.sei.mde.graph.type.IType x_type = typeGraph.getTypeNode("FamilyRegister")
-    	;
-    	type_2.addField("x", x_type, false);
-    }
-    return type_2;
   }
   
   /**
@@ -574,6 +569,22 @@ public class Family2Persons extends XmuProgram {
     	type_0.addField("f", f_type, false);
     }
     return type_0;
+  }
+  
+  /**
+   * id:2
+   */
+  private ContextType type_2;
+  
+  public ContextType getType_2() {
+    if(type_2==null) {
+    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_FR();
+    	type_2 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
+    	edu.ustb.sei.mde.graph.type.IType x_type = typeGraph.getTypeNode("FamilyRegister")
+    	;
+    	type_2.addField("x", x_type, false);
+    }
+    return type_2;
   }
   
   private Pattern pattern_0;
@@ -787,18 +798,18 @@ public class Family2Persons extends XmuProgram {
   }
   
   public class BiGULIdentity extends BidirectionalTransformation<Object[], Object[]> {
-    private GraphPath p;
+    private IndexPath p;
     
     private String id;
     
     private void internalGet() {
-      IEdge _get = this.p.getPathEdges()[0];
+      IEdge _get = this.p.toGraphPathWithRecovery(null).getPathEdges()[0];
       this.id = ((TypedEdge) _get).getType().getName();
     }
     
     private void internalPut() {
       try {
-        IEdge _get = this.p.getPathEdges()[0];
+        IEdge _get = this.p.toGraphPathWithRecovery(null).getPathEdges()[0];
         final String nid = ((TypedEdge) _get).getType().getName();
         boolean _equals = nid.equals(this.id);
         boolean _not = (!_equals);
@@ -811,13 +822,13 @@ public class Family2Persons extends XmuProgram {
     }
     
     public Object[] forward(final Object[] s) {
-      p = (edu.ustb.sei.mde.bxcore.structures.GraphPath) s[0];
+      p = (edu.ustb.sei.mde.bxcore.structures.IndexPath) s[0];
       internalGet();
       return new Object[]{id};
     }
     
     public Object[] backward(final Object[] s, final Object[] v) {
-      p = (edu.ustb.sei.mde.bxcore.structures.GraphPath) s[0];
+      p = (edu.ustb.sei.mde.bxcore.structures.IndexPath) s[0];
       id = (java.lang.String) v[0];
       internalPut();
       return new Object[]{p};
@@ -829,8 +840,8 @@ public class Family2Persons extends XmuProgram {
   public XmuCore getXmu_Father2Person() throws BidirectionalTransformationDefinitionException {
     if(xmu_Father2Person==null) {
     xmu_Father2Person = new edu.ustb.sei.mde.bxcore.Align("xmu0", getType_2(), getType_3(), getPattern_0(), getPattern_1(), new Condition0(), 
-    new edu.ustb.sei.mde.bxcore.Indexing(getIndex_F2p(), new String[]{"f"}, new String[]{"lastn"}, new edu.ustb.sei.mde.bxcore.GraphReplace("xmu2", getPattern_2(), getPattern_3(), new edu.ustb.sei.mde.structure.Tuple3[]{edu.ustb.sei.mde.structure.Tuple3.make(new String[]{"n","nn"}, new String[]{"lastn","firstn"}, new edu.ustb.sei.mde.bxcore.bigul.Replace<java.lang.Object[]>()),edu.ustb.sei.mde.structure.Tuple3.make(new String[]{"lp"}, new String[]{"id"}, new BiGULIdentity())})
-      ), new UnidirectionalAction0(), new UnidirectionalAction1());
+    new edu.ustb.sei.mde.bxcore.GraphReplace("xmu1", getPattern_2(), getPattern_3(), new edu.ustb.sei.mde.structure.Tuple3[]{edu.ustb.sei.mde.structure.Tuple3.make(new String[]{"n","nn"}, new String[]{"lastn","firstn"}, new edu.ustb.sei.mde.bxcore.bigul.Replace<java.lang.Object[]>()),edu.ustb.sei.mde.structure.Tuple3.make(new String[]{"lp"}, new String[]{"id"}, new BiGULIdentity())})
+      , new UnidirectionalAction0(), new UnidirectionalAction1());
       }
       return xmu_Father2Person;
     }

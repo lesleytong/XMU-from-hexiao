@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ASCII"?>
+<FR:FamilyRegister xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:FR="http://www.ustb.edu.cn/sei/mde/xmu/family" xsi:schemaLocation="http://www.ustb.edu.cn/sei/mde/xmu/family ../../../metamodel/FamilyRegister.ecore">
+  <families name="Smith">
+    <mother name="Alice"/>
+    <father name="Tom"/>
+    <son name="Will"/>
+    <son name="George"/>
+    <daughter name="Ada"/>
+  </families>
+  <families name="Wang">
+    <mother name="Li"/>
+    <father name="Yuanchao"/>
+    <son name="Xin"/>
+    <son name="Xiang"/>
+  </families>
+  <families name="He">
+    <son name="Xiang"/>
+    <son name="Zhang"/>
+  </families>
+</FR:FamilyRegister>

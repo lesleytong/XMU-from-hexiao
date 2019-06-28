@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ASCII"?>
+<PR:PersonsRegister
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:PR="http://www.ustb.edu.cn/sei/mde/xmu/persons"
+    xsi:schemaLocation="http://www.ustb.edu.cn/sei/mde/xmu/persons ../../../metamodel/PersonsRegister.ecore">
+  <persons lastName="Smith"
+      identity="mother"
+      firstName="Alice"/>
+  <persons lastName="Smith"
+      identity="father"
+      firstName="Tom"/>
+  <persons lastName="Smith"
+      identity="son"
+      firstName="Will"/>
+  <persons lastName="Smith"
+      identity="son"
+      firstName="George"/>
+  <persons lastName="Smith"
+      identity="daughter"
+      firstName="Ada"/>
+  <persons lastName="Wang"
+      identity="mother"
+      firstName="Li"/>
+  <persons lastName="Wang"
+      identity="father"
+      firstName="Yuanchao"/>
+  <persons lastName="Wang"
+      identity="son"
+      firstName="Xin"/>
+  <persons lastName="Wang"
+      identity="son"
+      firstName="Xiang"/>
+  <persons lastName="He"
+      identity="son"
+      firstName="Xiang"/>
+  <persons lastName="He"
+      identity="son"
+      firstName="Zhang"/>
+</PR:PersonsRegister>

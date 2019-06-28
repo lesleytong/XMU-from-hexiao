@@ -264,22 +264,6 @@ public class Bag2Bag extends XmuProgram {
   }
   
   /**
-   * id:1
-   */
-  private ContextType type_1;
-  
-  public ContextType getType_1() {
-    if(type_1==null) {
-    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Bag2();
-    	type_1 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
-    	edu.ustb.sei.mde.graph.type.IType b_type = typeGraph.getTypeNode("Bag")
-    	;
-    	type_1.addField("b", b_type, false);
-    }
-    return type_1;
-  }
-  
-  /**
    * id:2
    */
   private ContextType type_2;
@@ -305,6 +289,22 @@ public class Bag2Bag extends XmuProgram {
     	type_2.addField("v", v_type, false);
     }
     return type_2;
+  }
+  
+  /**
+   * id:0
+   */
+  private ContextType type_0;
+  
+  public ContextType getType_0() {
+    if(type_0==null) {
+    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Bag1();
+    	type_0 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
+    	edu.ustb.sei.mde.graph.type.IType b_type = typeGraph.getTypeNode("Bag")
+    	;
+    	type_0.addField("b", b_type, false);
+    }
+    return type_0;
   }
   
   /**
@@ -342,19 +342,19 @@ public class Bag2Bag extends XmuProgram {
   }
   
   /**
-   * id:0
+   * id:1
    */
-  private ContextType type_0;
+  private ContextType type_1;
   
-  public ContextType getType_0() {
-    if(type_0==null) {
-    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Bag1();
-    	type_0 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
+  public ContextType getType_1() {
+    if(type_1==null) {
+    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Bag2();
+    	type_1 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
     	edu.ustb.sei.mde.graph.type.IType b_type = typeGraph.getTypeNode("Bag")
     	;
-    	type_0.addField("b", b_type, false);
+    	type_1.addField("b", b_type, false);
     }
-    return type_0;
+    return type_1;
   }
   
   private Pattern pattern_0;

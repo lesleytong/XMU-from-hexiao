@@ -17,17 +17,18 @@ import edu.ustb.sei.mde.bxcore.structures.GraphPath
 import edu.ustb.sei.mde.graph.IEdge
 import edu.ustb.sei.mde.graph.typedGraph.ITypedEdge
 import edu.ustb.sei.mde.graph.typedGraph.ValueEdge
+import edu.ustb.sei.mde.bxcore.structures.IndexPath
 
 /* you code here */
 
 index f2p <FR![f:Family], PR![s:EString] >
 
-bigul identity (GraphPath p) (String id)
+bigul identity (IndexPath p) (String id)
 	get {
-		id = (p.pathEdges.get(0) as TypedEdge).type.name
+		id = (p.toGraphPathWithRecovery(null).pathEdges.get(0) as TypedEdge).type.name
 	}
 	put {
-		val nid = (p.pathEdges.get(0) as TypedEdge).type.name;
+		val nid = (p.toGraphPathWithRecovery(null).pathEdges.get(0) as TypedEdge).type.name;
 		if(!(nid.equals(id))) nothing
 	}
  
@@ -48,7 +49,8 @@ function Father2Person<FR!(x:FamilyRegister),PR!(y:PersonsRegister)> =
 		}
 	}
 		with nn@source.equals(firstn@view) && n@source.equals(lastn@view)
-		match -> index f2p <f|lastn> in 
+		match -> 
+		//index f2p <f|lastn> in // it seems that index is not needed
 					replace FR!x:FamilyRegister{
 						lf:families=f:Family{
 							ln:name=n:EString,
@@ -76,7 +78,7 @@ function Father2Person<FR!(x:FamilyRegister),PR!(y:PersonsRegister)> =
 				delete m@source;
 			end
 		}
-				
+
 		unmatchV -> {
 			//If the Family doesn't exist, we will create a new Family
 			//If the Family exist, we add a relation between Family and a member;
@@ -88,12 +90,17 @@ function Father2Person<FR!(x:FamilyRegister),PR!(y:PersonsRegister)> =
 			
 			val family = x@source.@families.findFirst[TypedNode fm | lastn@view.equals(@source:FR!Family(fm).@name)];
 			
-			
+			var TypedNode n_f;
+			var TypedNode n_m;
 			
 			val edges = 
 				if(family===null) {
 					val nf = new @source:FR!Family;
 					val nm = new @source:FR!Member;
+					
+					n_f = nf;
+					n_m = nm;
+					
 					val e = 
 						if(id@view.equals('father')) new @source:FR!Family::father(nf,nm)
 						else if(id@view.equals('mother')) new @source:FR!Family::mother(nf,nm)
@@ -102,6 +109,10 @@ function Father2Person<FR!(x:FamilyRegister),PR!(y:PersonsRegister)> =
 					#[e]
 				} else {
 					val nm = new @source:FR!Member;
+					
+					n_f = family;
+					n_m = nm;
+					
 					val e = 
 						if(id@view.equals('father')) new @source:FR!Family::father(family,nm)
 						else if(id@view.equals('mother')) new @source:FR!Family::mother(family,nm)
@@ -112,7 +123,11 @@ function Father2Person<FR!(x:FamilyRegister),PR!(y:PersonsRegister)> =
 			
 			val path = new GraphPath(edges, pathType);
 			
+			n_f.appendIndexValue(lastn@view); // necessary to ensure shared nodes
+			
 			begin
+				insert n_f; // necessary to ensure path addition
+				insert n_m; // necessary to ensure path addition
 				enforce FR!x:FamilyRegister{
 					lf:families=f:Family{
 						ln:name=n:EString,
@@ -120,6 +135,6 @@ function Father2Person<FR!(x:FamilyRegister),PR!(y:PersonsRegister)> =
 							lnn:name=nn:EString
 						}
 					}
-				} {n<-lastn@view, nn<-firstn@view, lp<-path};
+				} {n<-lastn@view, nn<-firstn@view, lp<-path, f<-n_f, m<-n_m};
 			end
 		}

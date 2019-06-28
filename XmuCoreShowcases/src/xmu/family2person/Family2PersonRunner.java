@@ -19,22 +19,22 @@ public class Family2PersonRunner {
 		final String personsMetamodelPath = basePath+"/XmuCoreShowcases/metamodel/PersonsRegister.ecore";
 		
 		/* use your own models */
-		final String familyModelPath = basePath+"/XmuCoreShowcases/src/xmu/family2person/family.xmi";
-		final String personModelPath = basePath+"/XmuCoreShowcases/src/xmu/family2person/person.xmi";
+		final String familyModelPath = basePath+"/XmuCoreShowcases/src/xmu/family2person/Family.xmi";
+		final String personModelPath = basePath+"/XmuCoreShowcases/src/xmu/family2person/Person.xmi";
 		final String updatedFamilyModelPath = basePath+"/XmuCoreShowcases/src/xmu/family2person/family-updated.xmi";
 		
 		/* 
 		 * test forward execution 
 		 * please comment the backward execution before doing forward
 		 */
-//		testForward(bag1MetamodelPath, bag2MetamodelPath, bag1ModelPath, bag2ModelPath);
+		testForward(familyMetamodelPath, personsMetamodelPath, familyModelPath, personModelPath);
 		
 		/* 
 		 * test backward execution 
 		 * if you execute the forward execution, please change the rdbms model to examine the backward behavior
 		 * please comment the forward execution before doing backward 
 		 */
-		testBackward(familyMetamodelPath, personsMetamodelPath, familyModelPath, personModelPath, updatedFamilyModelPath);
+//		testBackward(familyMetamodelPath, personsMetamodelPath, familyModelPath, personModelPath, updatedFamilyModelPath);
 	}
 
 	static public void testForward(String sourceMetamodelPath, String viewMetamodelPath, String sourceModelPath, String viewModelPath) throws Exception {
