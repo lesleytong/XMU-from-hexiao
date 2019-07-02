@@ -249,20 +249,29 @@ public class Context {
 		return leftValue.equals(rightValue);
 	}
 	
+	/**
+	 * collect all synchronizations bottom-up about rk from root
+	 * @param rk
+	 * @param root
+	 * @param traceSys
+	 * @return
+	 */
 	private static List<Trace> collectSynchronizationTracesBottomUp(FieldDef<?> rk, Context root, TraceSystem traceSys) {
 		List<Trace> result = null;
 		
 		ContextMapping upstreamMapping = root.upstreamMapping;
 		
+		// navigate to the top context
 		if(upstreamMapping!=null) {
 			FieldDef<?> upKey = upstreamMapping.upKey(rk);
 			if(upKey!=null)
 				result = collectSynchronizationTracesBottomUp(upKey, upstreamMapping.upstream, traceSys);
 			else result = new ArrayList<>();
 		} else result = new ArrayList<>();
-			
+		
+		// check current level
 		for(Trace t : traceSys.allTraces()) {
-			if(t.view.isDownstreamOf(root)) {
+			if(t.view.isDownstreamOf(root)) { // special shape for index?
 				FieldDef<?> dk = t.view.upstreamMapping.downKey(rk);
 				if(dk!=null) {
 					result.add(t);
@@ -295,6 +304,13 @@ public class Context {
 		return result;
 	}
 	
+	/**
+	 * Compute the direct variable mappings between contexts based on upstreamMappings bottom-up
+	 * Such variables should be mapped onto the same value.
+	 * @param current
+	 * @param below
+	 * @param result
+	 */
 	private static void collectEquivalentNodeSetBottomUp(Context current, Context below,  List<Tuple2<FieldDef<?>, Context>> result) {
 		if(below==null) {
 			for(FieldDef<?> k : current.keys()) {
@@ -376,6 +392,13 @@ public class Context {
 		return true;
 	}
 	
+	/**
+	 * Compute the direct variable mappings between contexts based on upstreamMappings top-down
+	 * Such variables should be mapped onto the same value.
+	 * @param current
+	 * @param below
+	 * @param result
+	 */
 	static private void collectEquivalentNodeSetTopDown(Context upstream, Context downstream,  Set<Tuple2<FieldDef<?>, Context>> result) {
 		for(FieldDef<?> dk : downstream.keys()) {
 			if(!dk.isElementType() || !dk.isSharable()) continue;
@@ -391,6 +414,10 @@ public class Context {
 	
 	public FieldDef<?> getDownKeyFromUpstreamKey(FieldDef<?> ukey) {
 		return this.upstreamMapping.downKey(ukey);
+	}
+	
+	public FieldDef<?> getUpKeyFromDownstreamKey(FieldDef<?> dkey) {
+		return this.upstreamMapping.upKey(dkey);
 	}
 
 	public boolean isDownstreamOf(Context source) {

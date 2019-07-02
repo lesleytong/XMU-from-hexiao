@@ -287,11 +287,24 @@ public class Pattern implements IGraph {
 				throw new NothingReturnedException();
 			} else {
 				if(elementType.isInstance(path)
-						&& path.getSource() == creator.getNode(sourceNodeName)
-						&& path.getTarget() == creator.getNode(targetNodeName)) {
-					
+//						&& path.getSource() == creator.getNode(sourceNodeName)
+//						&& path.getTarget() == creator.getNode(targetNodeName)
+						) {
+					// KNOWN ISSUE: did not check the consistency of source/target and sourceNode/targetNode
 					// handle hidden nodes
-					// in fact, we do not have to check the first and the last node
+					
+					INode rsn = creator.getNode(sourceNodeName);
+					INode rtn = creator.getNode(targetNodeName);
+					
+					if(rsn instanceof TypedNode) {
+						((TypedNode) rsn).mergeIndex((TypedNode) path.getSource());
+					}
+					
+					if(rtn!=null && rtn instanceof TypedNode) {
+						((TypedNode) rtn).mergeIndex((TypedNode) path.getTarget());
+					}
+					
+					
 					for(IEdge pathEdge : path.getPathEdges()) {
 						if(path.getPathEdges()[0]==pathEdge) {
 							moveOrCreateTypedNode(null, ((TypedNode) pathEdge.getSource()).getIndex(), 

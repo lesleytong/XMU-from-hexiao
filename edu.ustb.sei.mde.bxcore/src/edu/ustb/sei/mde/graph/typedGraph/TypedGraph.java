@@ -162,7 +162,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 			
 			for(int i=0;i<allTypedEdges.size();i++) {
 				TypedEdge e = allTypedEdges.get(i);
-				if(e.getSource()==n.getSource() 
+				if(e.getSource()==n.getSource() // below I did use replaceWith, so I use == rather than Index.equals
 						&& e.getType() == n.getType()) {
 					
 					n.mergeIndex(e);

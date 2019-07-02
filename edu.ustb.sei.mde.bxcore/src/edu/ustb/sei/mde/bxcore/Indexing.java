@@ -86,6 +86,22 @@ public class Indexing extends XmuCore {
 		
 		viewIndexing.setUpstream(v.second,this.viewKeys); // useless in forward transformation
 		
+		// handle primitive view variables
+		try {
+			for(FieldDef<?> f : this.signature.getViewType().fields()) {
+				if(!(f.isElementType() || f.isPathType())) {
+					FieldDef<?> uf = viewIndexing.getUpKeyFromDownstreamKey(f);
+					if(uf!=null) {
+						viewIndexing.setValue(f, v.second.getValue(uf));					
+					} else {
+						nothing();
+					}
+				}
+			}
+		} catch (UninitializedException e) {
+			nothing(e);
+		}
+		
 		for(int i=0;i<viewKeys.length;i++) {
 			String k = this.viewKeys[i].first;
 			FieldDef<?> upK = this.getViewDef().getField(k);
