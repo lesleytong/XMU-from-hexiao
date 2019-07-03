@@ -36,7 +36,7 @@ public class Align extends XmuCore {
 		this.unmatchedSource = unmatchedSource;
 		this.unmatchedView = unmatchedView;
 		this.isOrdered = patV.getOrderBy()!=null;
-		
+		this.allowMultiple = true;
 		checkWellDefinedness();
 	}
 
@@ -47,6 +47,7 @@ public class Align extends XmuCore {
 	private BiFunction<SourceType, ViewType, SourceType> unmatchedView;
 	
 	private boolean isOrdered;
+	private boolean allowMultiple;
 	
 	public Align(Object key, ContextType sourceDef, ContextType viewDef, Pattern patS, Pattern patV, XmuCore match,
 			BiFunction<SourceType, ViewType, SourceType> unmatchedSource,
@@ -191,13 +192,23 @@ public class Align extends XmuCore {
 					view.replaceContext(vc);
 					
 					if(alignment.apply(source, view)) {
-						if(matched!=null) {// multiple alignment
-							throw new NothingReturnedException();
+						if(!this.allowMultiple) {
+							if(matched!=null) {// multiple alignment
+								throw new NothingReturnedException();
+							}
+							if(aligned.contains(sc)) // multiple alignment
+								throw new NothingReturnedException();
+							matched = sc;
+							aligned.add(sc);
+						} else {
+							if(aligned.contains(sc)) continue;
+							else {
+								matched = sc;
+								aligned.add(sc);
+								break;
+							}
 						}
-						if(aligned.contains(sc)) // multiple alignment
-							throw new NothingReturnedException();
-						matched = sc;
-						aligned.add(sc);
+						
 					}
 				}
 				
@@ -410,7 +421,7 @@ public class Align extends XmuCore {
 	private void enforceOrder(Pattern pattern, List<Context> matches, 
 			TypedGraph graph) throws NothingReturnedException {
 		
-		PatternElement order = pattern.getOrderBy();
+		PatternElement<?> order = pattern.getOrderBy();
 		FieldDef<?> field = pattern.getType().getField(order.getName());
 		
 		Index prev = null;
