@@ -94,11 +94,11 @@ public class IndexSystem {
 					return trace.view.getIndexValue(downKey);
 				} catch (UninitializedException | NothingReturnedException e) {
 					XmuCoreUtils.warning("A fresh new view index is generated while a traced index is expected", e);
-					return Index.freshIndex(generateUUID());
+					return generateFreshIndex();
 				}
 			}
 		}
-		return Index.freshIndex(generateUUID());
+		return generateFreshIndex();
 	}
 	
 	static public Index generateFreshSourceIndex(String tkey, Context source, Context view, FieldDef<?> skey, TraceSystem traceSys) {
@@ -111,11 +111,11 @@ public class IndexSystem {
 					return trace.sourcePost.getIndexValue(downKey);
 				} catch (UninitializedException | NothingReturnedException e) {
 					XmuCoreUtils.warning("A fresh new source index is generated while a traced index is expected", e);
-					return Index.freshIndex(generateUUID());
+					return generateFreshIndex();
 				}
 			}
 		}
-		return Index.freshIndex(generateUUID());
+		return generateFreshIndex();
 	}
 
 }

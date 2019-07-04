@@ -113,7 +113,8 @@ public class Fork extends XmuCore {
 			} catch (Exception e) {
 				if(uk.isElementType()) {
 //					Object common = IndexSystem.generateUUID();
-					Index index = IndexSystem.generateFreshIndex();
+//					Index index = IndexSystem.generateFreshIndex();
+					Index index = IndexSystem.generateFreshViewIndex(null, s.second, uk, s.third);
 					upstreamView.setValue(uk, index);
 					
 					for(int i=0;i<viewResults.length;i++) {
@@ -252,7 +253,8 @@ public class Fork extends XmuCore {
 			} catch (Exception e) {
 				if(uk.isElementType()) {
 //					Object value = IndexSystem.generateUUID();
-					Index index = IndexSystem.generateFreshIndex();
+//					Index index = IndexSystem.generateFreshIndex();
+					Index index = IndexSystem.generateFreshSourceIndex(null, s.second, v.second, uk, s.third);
 					finalSourcePost.setValue(uk, index);
 					
 					for(int i=0;i<sourceResults.length;i++) {

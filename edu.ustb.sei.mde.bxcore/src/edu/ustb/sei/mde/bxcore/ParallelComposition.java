@@ -99,7 +99,8 @@ public class ParallelComposition extends XmuCore {
 					finalViewContext.setValue(vk, ViewType.summarize(result,vk, this));
 				} catch (Exception e) {
 //					Object common = IndexSystem.generateUUID();
-					Index index = IndexSystem.generateFreshIndex();
+//					Index index = IndexSystem.generateFreshIndex();
+					Index index = IndexSystem.generateFreshViewIndex(null, s.second, vk, s.third);
 					finalViewContext.setValue(vk, index);
 					for(ViewType v : result) {
 						try {
@@ -202,7 +203,8 @@ public class ParallelComposition extends XmuCore {
 					finalSourcePost.setValue(sk, SourceType.summarize(results, sk,this));
 				} catch (Exception e) {
 //					Object value = IndexSystem.generateUUID();
-					Index index = IndexSystem.generateFreshIndex();
+//					Index index = IndexSystem.generateFreshIndex();
+					Index index = IndexSystem.generateFreshSourceIndex(null, s.second, v.second, sk, s.third);
 					finalSourcePost.setValue(sk, index);
 					
 					for(SourceType r : results) {

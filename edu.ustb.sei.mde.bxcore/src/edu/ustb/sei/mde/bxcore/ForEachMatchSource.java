@@ -69,7 +69,8 @@ public class ForEachMatchSource extends XmuCore {
 				} catch (Exception e) {
 //					Object common = IndexSystem.generateUUID();
 //					Index index = Index.freshIndex(common);
-					Index index = IndexSystem.generateFreshIndex();
+//					Index index = IndexSystem.generateFreshIndex();
+					Index index = IndexSystem.generateFreshViewIndex(null, s.second, vk, s.third);
 					upstreamView.setValue(vk, index);
 					for(ViewType v : views) {
 						try {
@@ -144,7 +145,8 @@ public class ForEachMatchSource extends XmuCore {
 					finalSourcePost.setValue(sk, SourceType.summarize(postSources, sk,this));
 				} catch (Exception e) {
 //					Object value = IndexSystem.generateUUID();
-					Index index = IndexSystem.generateFreshIndex();
+//					Index index = IndexSystem.generateFreshIndex();
+					Index index = IndexSystem.generateFreshSourceIndex(null, s.second, v.second, sk, s.third);
 					finalSourcePost.setValue(sk, index);
 					
 					for(SourceType r : postSources) {

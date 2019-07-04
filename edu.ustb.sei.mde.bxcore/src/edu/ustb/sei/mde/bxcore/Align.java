@@ -260,7 +260,8 @@ public class Align extends XmuCore {
 					} catch (Exception e) {
 //						Object common = IndexSystem.generateUUID();
 //						Index index = Index.freshIndex(common);
-						Index index = IndexSystem.generateFreshIndex();
+//						Index index = IndexSystem.generateFreshIndex();
+						Index index = IndexSystem.generateFreshViewIndex(null, s.second, vk, s.third);
 						upstreamView.setValue(vk, index);
 						for(ViewType v : views) {
 							try {
