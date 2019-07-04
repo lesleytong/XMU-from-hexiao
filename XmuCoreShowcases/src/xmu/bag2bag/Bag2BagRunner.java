@@ -48,6 +48,8 @@ public class Bag2BagRunner {
 		
 		ViewType view = bx.execute(bx.getXmu_Bag2Bag(), sourceModel, new Tuple2[] {Tuple2.make("b", bagNode)});
 		bx.saveBag2Model(URI.createFileURI(viewModelPath), view);
+		
+		bx.exportTypedGraph(view.first, viewModelPath,"png");
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -68,5 +70,6 @@ public class Bag2BagRunner {
 				viewModel, new Tuple2[] {Tuple2.make("b", bag2Node)});
 		
 		bx.saveBag1Model(URI.createFileURI(updatedSourcePath), updatedSource, sourceModel);
+		bx.exportTypedGraph(updatedSource.first, updatedSourcePath, "png");
 	}
 }

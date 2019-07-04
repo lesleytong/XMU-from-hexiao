@@ -1,0 +1,31 @@
+digraph name {
+	ID_0 [shape=ellipse, width=.75, height=.5,label="ID_0:Bag"];
+	ID_1 [shape=ellipse, width=.75, height=.5,label="ID_1:Element"];
+	ID_2 [shape=ellipse, width=.75, height=.5,label="ID_2:Element"];
+	ID_3 [shape=ellipse, width=.75, height=.5,label="ID_3:Element"];
+	ID_4 [shape=ellipse, width=.75, height=.5,label="ID_4:Element"];
+	ID_5 [shape=ellipse, width=.75, height=.5,label="ID_5:Element"];
+	ID_6 [shape=ellipse, width=.75, height=.5,label="ID_6:Element"];
+	ID_7 [shape=ellipse, width=.75, height=.5,label="ID_7:Element"];
+	ID_8 [shape=ellipse, width=.75, height=.5,label="ID_8:Element"];
+	ID_9 [shape=box, color=red,label="A:EString"];
+	ID_10 [shape=box, color=red,label="B:EString"];
+	ID_11 [shape=box, color=red,label="C:EString"];
+	ID_12 [shape=box, color=red,label="D:EString"];
+	ID_0->ID_1 [style=solid,label=":elements"];
+	ID_0->ID_2 [style=solid,label=":elements"];
+	ID_0->ID_3 [style=solid,label=":elements"];
+	ID_0->ID_4 [style=solid,label=":elements"];
+	ID_0->ID_5 [style=solid,label=":elements"];
+	ID_0->ID_6 [style=solid,label=":elements"];
+	ID_0->ID_7 [style=solid,label=":elements"];
+	ID_0->ID_8 [style=solid,label=":elements"];
+	ID_1->ID_9 [style=dashed,color=red,label=":value"];
+	ID_2->ID_10 [style=dashed,color=red,label=":value"];
+	ID_3->ID_12 [style=dashed,color=red,label=":value"];
+	ID_4->ID_12 [style=dashed,color=red,label=":value"];
+	ID_5->ID_12 [style=dashed,color=red,label=":value"];
+	ID_6->ID_9 [style=dashed,color=red,label=":value"];
+	ID_7->ID_9 [style=dashed,color=red,label=":value"];
+	ID_8->ID_9 [style=dashed,color=red,label=":value"];
+}
