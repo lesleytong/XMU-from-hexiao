@@ -18,7 +18,7 @@ import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
 
 abstract public class XmuProgram {
 	private Map<String, EPackage> packageMap = new HashMap<>();
-	private String dotPath = "/usr/local/bin/";
+	private String dotPath = "/usr/local/bin/dot";
 	
 	public String getDotPath() {
 		return dotPath;
@@ -41,15 +41,19 @@ abstract public class XmuProgram {
 		return packageMap.get(name);
 	}
 	
-	public void exportTypedGraph(TypedGraph graph, String uri) {
+	public void exportTypedGraph(TypedGraph graph, String uri,String type) {
 		GraphvizExporterForTypedGraph exporter = new GraphvizExporterForTypedGraph();
 		String content = exporter.export(graph, "TypedGraph");
 		
 		try {
-			File file = new File(uri+".gv"); 
+			File file = new File(uri+"."+type+".gv"); 
 			Writer writer = new java.io.BufferedWriter(new FileWriter(file));
 			writer.append(content);
 			writer.close();
+			
+			String[] args = {dotPath, "-T"+type, file.getAbsolutePath(), "-o", uri+"."+type};
+			Process p = Runtime.getRuntime().exec(args);
+	        p.waitFor();
 		} catch (Exception e) {
 			XmuCoreUtils.log(Level.WARNING, "Cannot save graphviz file! The content is printed below", e);
 			System.out.println(content);
