@@ -87,6 +87,7 @@ public class IndexingFunction {
 		return result;
 	}
 	
+	@Deprecated
 	public Context computeForwardIndices(Context source, Context view) throws UninitializedException, NothingReturnedException {
 		Context result = view.getType().createInstance();
 		
