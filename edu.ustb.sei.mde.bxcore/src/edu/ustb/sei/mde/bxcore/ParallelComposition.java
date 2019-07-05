@@ -99,8 +99,8 @@ public class ParallelComposition extends XmuCore {
 					finalViewContext.setValue(vk, ViewType.summarize(result,vk, this));
 				} catch (Exception e) {
 //					Object common = IndexSystem.generateUUID();
-//					Index index = IndexSystem.generateFreshIndex();
-					Index index = IndexSystem.generateFreshViewIndex(null, s.second, vk, s.third);
+					Index index = IndexSystem.generateFreshIndex();
+//					Index index = IndexSystem.generateFreshViewIndex(null, s.second, vk, s.third);
 					finalViewContext.setValue(vk, index);
 					for(ViewType v : result) {
 						try {
@@ -145,26 +145,6 @@ public class ParallelComposition extends XmuCore {
 		return ViewType.makeView(finalView, finalViewContext);
 	}
 
-//	private Object summarize(ViewType[] result, FieldDef<?> vk) throws NothingReturnedException {
-//		Object value = null;
-//		boolean mayBeEmpty = true;
-//		for(ViewType v : result) {
-//			if(v==null || v==ViewType.empty()) continue;
-//			try {
-//				if(value==null)
-//					value = v.second.getValue(vk.getName());
-//				else if(value.equals(v.second.getValue(vk.getName()))==false)
-//					return internalError();
-//				mayBeEmpty = false;
-//			} catch(NothingReturnedException e) {
-//			} catch (Exception e) {
-//				return nothing();
-//			}
-//		}
-//		if(mayBeEmpty) nothing();
-//		return value;
-//	}
-
 	@Override
 	public SourceType backward(SourceType s, ViewType v) throws NothingReturnedException {
 		Context[] newSources = new Context[this.bodies.length];
@@ -203,8 +183,8 @@ public class ParallelComposition extends XmuCore {
 					finalSourcePost.setValue(sk, SourceType.summarize(results, sk,this));
 				} catch (Exception e) {
 //					Object value = IndexSystem.generateUUID();
-//					Index index = IndexSystem.generateFreshIndex();
-					Index index = IndexSystem.generateFreshSourceIndex(null, s.second, v.second, sk, s.third);
+					Index index = IndexSystem.generateFreshIndex();
+//					Index index = IndexSystem.generateFreshSourceIndex(null, s.second, v.second, sk, s.third);
 					finalSourcePost.setValue(sk, index);
 					
 					for(SourceType r : results) {

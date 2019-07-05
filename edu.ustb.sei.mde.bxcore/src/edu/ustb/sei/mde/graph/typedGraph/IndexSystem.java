@@ -48,22 +48,6 @@ public class IndexSystem {
 		});
 	}
 	
-//	@SuppressWarnings("unchecked")
-//	public <T> T getElementByIndexValue(Object index) throws NothingReturnedException {
-//		if(index==null)
-//			throw new NothingReturnedException();
-//		
-//		if(index instanceof Index)
-//			throw new RuntimeException("wrong index type");
-//		
-//		T res = (T)this.indexToObjectMap.get(index);
-//		
-//		if(res==null)
-//			throw new NothingReturnedException();
-//		else
-//			return res;
-//	}
-	
 	
 	@SuppressWarnings("unchecked")
 	public <T> T getElementByIndexObject(Index index) throws NothingReturnedException {

@@ -260,8 +260,8 @@ public class Align extends XmuCore {
 					} catch (Exception e) {
 //						Object common = IndexSystem.generateUUID();
 //						Index index = Index.freshIndex(common);
-//						Index index = IndexSystem.generateFreshIndex();
-						Index index = IndexSystem.generateFreshViewIndex(null, s.second, vk, s.third);
+						Index index = IndexSystem.generateFreshIndex();
+//						Index index = IndexSystem.generateFreshViewIndex(null, s.second, vk, s.third);
 						upstreamView.setValue(vk, index);
 						for(ViewType v : views) {
 							try {
@@ -306,21 +306,6 @@ public class Align extends XmuCore {
 		
 		return ViewType.makeView(finalView, upstreamView);
 	}
-	
-//	private Object summarize(List<ViewType> result, FieldDef<?> vk) throws NothingReturnedException {
-//		Object value = null;
-//		for(ViewType v : result) {
-//			try {
-//				if(value==null)
-//					value = v.second.getValue(vk.getName());
-//				else if(value.equals(v.second.getValue(vk.getName()))==false)
-//					return nothing();
-//			}catch (UninitializedException e) {
-//				return nothing();
-//			}
-//		}
-//		return value;
-//	}
 
 	@Override
 	public SourceType backward(SourceType s, ViewType v) throws NothingReturnedException {

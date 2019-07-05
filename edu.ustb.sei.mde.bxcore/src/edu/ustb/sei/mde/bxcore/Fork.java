@@ -113,8 +113,8 @@ public class Fork extends XmuCore {
 			} catch (Exception e) {
 				if(uk.isElementType()) {
 //					Object common = IndexSystem.generateUUID();
-//					Index index = IndexSystem.generateFreshIndex();
-					Index index = IndexSystem.generateFreshViewIndex(null, s.second, uk, s.third);
+					Index index = IndexSystem.generateFreshIndex();
+//					Index index = IndexSystem.generateFreshViewIndex(null, s.second, uk, s.third);
 					upstreamView.setValue(uk, index);
 					
 					for(int i=0;i<viewResults.length;i++) {
@@ -155,65 +155,6 @@ public class Fork extends XmuCore {
 		return ViewType.makeView(finalView, upstreamView);
 	}
 
-//	private Object summarize(ViewType[] result, FieldDef<?> vk) throws NothingReturnedException {
-//		Object value = null;
-//		boolean init = false;
-//		
-//		for(int i=0;i<result.length;i++) {
-//			ViewType v = result[i];
-//			if(v==null || v==ViewType.empty()) continue;
-//			Tuple2<String, String>[] mappings = forks[i].second;
-//			
-//			for(Tuple2<String, String> m : mappings) {
-//				if(m.first.equals(vk.getName())==false) continue;
-//				try {
-//					Object downValue = v.second.getValue(m.second);
-//					if(!init) {
-//						value = downValue;
-//						init = true;
-//					} else if(value.equals(downValue)==false)
-//						return internalError();
-//				} catch(NothingReturnedException e) {
-//				} catch (Exception e) {
-//					return nothing(e);
-//				}
-//			}
-//		}
-//		
-//		if(init) return value;
-//		else return nothing();
-//	}
-	
-//	private Object summarize(SourceType[] result,  FieldDef<?> sk) throws NothingReturnedException {
-//		Object value = null;
-//		boolean init = false;
-//		
-//		
-//		for(int i=0;i<result.length;i++) {
-//			SourceType s = result[i];
-//			Tuple2<String, String>[] mappings = forks[i].first;
-//			
-//			for(Tuple2<String, String> m : mappings) {
-//				if(m.first.equals(sk.getName())==false) continue;
-//				
-//				try {
-//					Object downValue = s.second.getValue(m.second);
-//					if(!init) {
-//						value = downValue;
-//						init = true;
-//					} else if(value.equals(downValue)==false)
-//						return internalError();
-//				} catch (NothingReturnedException e) {
-//				} catch (Exception e) {
-//					return nothing(e);
-//				}
-//			}
-//		}
-//		
-//		if(init) return value;
-//		else return nothing();
-//	}
-
 	@Override
 	public SourceType backward(SourceType s, ViewType v) throws NothingReturnedException {
 		Context[] downstreamSources = new Context[this.forks.length];
@@ -253,8 +194,8 @@ public class Fork extends XmuCore {
 			} catch (Exception e) {
 				if(uk.isElementType()) {
 //					Object value = IndexSystem.generateUUID();
-//					Index index = IndexSystem.generateFreshIndex();
-					Index index = IndexSystem.generateFreshSourceIndex(null, s.second, v.second, uk, s.third);
+					Index index = IndexSystem.generateFreshIndex();
+//					Index index = IndexSystem.generateFreshSourceIndex(null, s.second, v.second, uk, s.third);
 					finalSourcePost.setValue(uk, index);
 					
 					for(int i=0;i<sourceResults.length;i++) {
