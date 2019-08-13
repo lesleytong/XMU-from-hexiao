@@ -267,20 +267,20 @@ public class DashedPathTypeImpl extends MinimalEObjectImpl.Container implements 
   
   // customized code
   
-  @Override
-  public int hashCode() {
-	  /*
-	   * because we override hashCode that will be invoked during DefaultDeclarativeQualifiedNameProvider.getFullyQualiedName
-	   * we must also override DefaultDeclarativeQualifiedNameProvider.getFullyQualiedName
-	   * otherwise, cyclic linking will be detected 
-	   */
-	  return PathTypeUtil.hash(this);
-  }
-  
-  @Override
-  public boolean equals(Object obj) {
-	  return PathTypeUtil.isEqual(this, obj);
-  }
+//  @Override
+//  public int hashCode() {
+//	  /*
+//	   * because we override hashCode that will be invoked during DefaultDeclarativeQualifiedNameProvider.getFullyQualiedName
+//	   * we must also override DefaultDeclarativeQualifiedNameProvider.getFullyQualiedName
+//	   * otherwise, cyclic linking will be detected 
+//	   */
+//	  return PathTypeUtil.hash(this);
+//  }
+//  
+//  @Override
+//  public boolean equals(Object obj) {
+//	  return PathTypeUtil.isEqual(this, obj);
+//  }
   
 
 } //DashedPathTypeImpl

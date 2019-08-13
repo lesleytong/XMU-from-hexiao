@@ -1,12 +1,14 @@
 package edu.ustb.sei.mde.bxcore.dsl.structure;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EPackage;
 
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.AbstractPatternEdge;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.DashedPathType;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.EcoreTypeRef;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.FeatureTypeRef;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.ImportSection;
@@ -23,6 +25,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeRef;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeVar;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.UnorderedTupleTypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.infer.UnsolvedTupleType;
+import edu.ustb.sei.mde.bxcore.util.PathTypeUtil;
 import edu.ustb.sei.mde.structure.Tuple3;
 
 public class TupleType {
@@ -40,7 +43,7 @@ public class TupleType {
 		TupleType right = o;
 		if ((this.tuples.isEmpty() || this.ordered == right.ordered) && this.tuples.size() == right.tuples.size()) {
 			return this.tuples.stream().allMatch(t -> {
-				return right.tuples.contains(t);
+				return right.tuples.stream().anyMatch(r->compareTuple(t,r));
 			});
 		} else return false;
 	}
@@ -113,8 +116,51 @@ public class TupleType {
 	@Override
 	public int hashCode() {
 		if(hash==0) 
-			hash = tuples.stream().map(t->t.hashCode()).reduce(0, (a,b)->a+b);
+			hash = tuples.stream().map(t->hashTuple(t)).reduce(0, (a,b)->a+b);
 		return hash;
+	}
+	
+	/**
+	 * We need this customized hash method because the second element may be PathTypes in DSL.
+	 * They cannot have a customized hashCode and equal.
+	 * @param tuple
+	 * @return
+	 */
+	private int hashTuple(Tuple3<String,Object, Boolean> tuple) {
+		int firstCode = tuple.first==null ? 0 : tuple.first.hashCode();
+		int secondCode = 0;
+		
+		if(tuple.second!=null) {
+			if(tuple.second instanceof DashedPathType) {
+				secondCode = PathTypeUtil.hash((DashedPathType) tuple.second);
+			} else {
+				secondCode = tuple.second.hashCode(); 
+			}
+		}
+		
+		int thirdCode = tuple.third==null ? 0 : tuple.third.hashCode();
+		return ((firstCode&0xFFFF)<<20) & ((secondCode&0xFFFF)<<10) & (thirdCode&0xFFFF);
+	}
+	
+	/**
+	 * We need this customized compare method because the second element may be PathTypes in DSL.
+	 * They cannot have a customized hashCode and equal.
+	 * @param tuple
+	 * @return
+	 */
+	private boolean compareTuple(Tuple3<String,Object, Boolean> l, Tuple3<String,Object, Boolean> r) {
+		if(!(l.first==r.first || (l.first!=null && l.first.equals(r.first)))) return false;
+		if(!(l.third==r.third || (l.third!=null && l.third.equals(r.third)))) return false;
+		
+		if(l.second == r.second) return true;
+		else if(l.second!=null) {
+			if(l.second instanceof DashedPathType) {
+				return PathTypeUtil.isEqual((DashedPathType) l.second, r.second);
+			} else {
+				return l.second.equals(r.second);
+			}
+		} else 
+			return false;
 	}
 	
 	@Override

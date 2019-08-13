@@ -78,34 +78,6 @@ public class Align extends XmuCore {
 		if(patS.getType()!=match.getSourceDef() || patV.getType()!=match.getViewDef())
 			throw new BidirectionalTransformationDefinitionException("Type inconsistent");
 	}
-	
-//	protected GraphConstraint generateConsistencyConstraint(List<Context> views) {
-//		GraphConstraint innerCons = match.getConsistencyConstraint();
-//		return (gs,cs,gv,cv) -> {
-//			List<Context> sources = patS.match(gs, cs);
-//			
-//			if(sources.size()!=views.size()) 
-//				return ConstraintStatus.enforceable; // it may not be enforceable
-//			
-//			// construct one-to-one mapping 
-//			List<Tuple2<Context,Context>> alignments = new ArrayList<>();
-//			try {
-//				if(checkAndConstructAlignment(sources, views, alignments)==false)
-//					return ConstraintStatus.enforceable;
-//			} catch (Exception e) {
-//				return ConstraintStatus.unenforceable;
-//			}
-//			
-//			// check match condition for each alignment
-//			ConstraintStatus status = ConstraintStatus.sat;
-//			
-//			for(Tuple2<Context, Context> a : alignments) {
-//				status = GraphConstraint.mergeStatus(status, innerCons.check(gs, a.first, gv, a.second));
-//			}
-//			
-//			return status;
-//		};
-//	}
 
 	@Override
 	protected GraphConstraint generateConsistencyConstraint() {

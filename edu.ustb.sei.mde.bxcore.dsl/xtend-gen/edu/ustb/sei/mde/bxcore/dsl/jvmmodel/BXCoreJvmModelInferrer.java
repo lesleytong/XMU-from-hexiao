@@ -298,20 +298,22 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
             return Boolean.valueOf(PathTypeUtil.isEqual(p.getValue(), pt.getValue()));
           };
           final Pair<Integer, DashedPathType> firstPT = IterableExtensions.<Pair<Integer, DashedPathType>>findFirst(data.getPathTypes(), _function_15);
-          EList<JvmMember> _members = it.getMembers();
-          Integer _key = pt.getKey();
-          String _plus = ("pathType_" + _key);
-          JvmField _field = this._jvmTypesBuilder.toField(pt.getValue(), _plus, this._typeReferenceBuilder.typeRef(IPathType.class));
-          this._jvmTypesBuilder.<JvmField>operator_add(_members, _field);
+          DashedPathType _value = firstPT.getValue();
+          DashedPathType _value_1 = pt.getValue();
+          final boolean isFirst = (_value == _value_1);
+          if (isFirst) {
+            EList<JvmMember> _members = it.getMembers();
+            Integer _key = pt.getKey();
+            String _plus = ("pathType_" + _key);
+            JvmField _field = this._jvmTypesBuilder.toField(pt.getValue(), _plus, this._typeReferenceBuilder.typeRef(IPathType.class));
+            this._jvmTypesBuilder.<JvmField>operator_add(_members, _field);
+          }
           EList<JvmMember> _members_1 = it.getMembers();
           Integer _key_1 = pt.getKey();
           String _plus_1 = ("getPathType_" + _key_1);
           final Procedure1<JvmOperation> _function_16 = (JvmOperation it_1) -> {
             final PatternTypeLiteral pattern = this.getPattern(pt.getValue());
-            DashedPathType _value = firstPT.getValue();
-            DashedPathType _value_1 = pt.getValue();
-            boolean _tripleEquals_1 = (_value == _value_1);
-            if (_tripleEquals_1) {
+            if (isFirst) {
               StringConcatenationClient _client = new StringConcatenationClient() {
                 @Override
                 protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
@@ -721,7 +723,7 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
         }
         _xifexpression = _xtrycatchfinallyexpression;
       } else {
-        boolean _xblockexpression_3 = false;
+        boolean _xblockexpression_1 = false;
         {
           String _message = e.getMessage();
           String _string = EcoreUtil.getURI(element).toString();
@@ -731,9 +733,9 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
             BXCorePackage.Literals.BX_PROGRAM__DEFINITIONS, 
             0, 
             new String[] { _string });
-          _xblockexpression_3 = element.eResource().getErrors().add(error);
+          _xblockexpression_1 = element.eResource().getErrors().add(error);
         }
-        _xifexpression = _xblockexpression_3;
+        _xifexpression = _xblockexpression_1;
       }
       _xblockexpression = _xifexpression;
     }

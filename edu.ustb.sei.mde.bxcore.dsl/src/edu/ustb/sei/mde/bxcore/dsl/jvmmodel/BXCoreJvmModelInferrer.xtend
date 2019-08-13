@@ -219,12 +219,14 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 				
 				data.pathTypes.forEach[pt|
 					val firstPT = data.pathTypes.findFirst[p|PathTypeUtil.isEqual(p.value,pt.value)];
+					val isFirst = firstPT.value===pt.value;
 					
-					members += pt.value.toField('pathType_'+pt.key, edu.ustb.sei.mde.graph.type.IPathType.typeRef);
+					if(isFirst)
+						members += pt.value.toField('pathType_'+pt.key, edu.ustb.sei.mde.graph.type.IPathType.typeRef);
 					members += pt.value.toMethod('getPathType_'+pt.key, edu.ustb.sei.mde.graph.type.IPathType.typeRef)[
 						val pattern = pt.value.pattern;
 						
-						if(firstPT.value===pt.value) { // first
+						if(isFirst) { // first
 							body = '''
 								if(pathType_«pt.key»==null) {
 									edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_«pattern.source.shortName.toFirstUpper»();

@@ -37,6 +37,9 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeDefinition;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.XmuCoreStatement;
 import edu.ustb.sei.mde.bxcore.dsl.structure.TupleType;
+import edu.ustb.sei.mde.bxcore.util.ListWithCustomizedCompare;
+import edu.ustb.sei.mde.bxcore.util.PathTypeUtil;
+import edu.ustb.sei.mde.bxcore.util.SetWithCustomizedCompare;
 import edu.ustb.sei.mde.structure.Tuple2;
 import edu.ustb.sei.mde.structure.Tuple3;
 
@@ -277,10 +280,10 @@ public abstract class TypeModel {
 	}
 	
 	static protected Tuple2<List<Object>, boolean[][]> buildTypeTable(BXProgram program) {
-		List<Object> typeList = new ArrayList<>();
+		List<Object> typeList = new ListWithCustomizedCompare<>();
 		boolean[][] superTypeTable = null;
 		
-		Set<Object> typeSet = new HashSet<>();
+		Set<Object> typeSet = new SetWithCustomizedCompare<>();
 		
 		// search imported types
 		program.getImports().forEach(sec->{
@@ -326,7 +329,7 @@ public abstract class TypeModel {
 				for(int j=0;j<typeList.size();j++) {
 					Object typeJ = typeList.get(j);
 					if(typeI==typeJ) tableForI[j] = true;
-					else tableForI[j] = ((DashedPathType)typeI).equals(typeJ);
+					else tableForI[j] = PathTypeUtil.isEqual((DashedPathType)typeI, typeJ);
 				}
 			}
 		}
