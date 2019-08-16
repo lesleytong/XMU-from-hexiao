@@ -123,8 +123,41 @@ public class GraphMatcher {
 		
 		// order matches if necessary
 		result = orderMatches(graph, result);
+		
+		// if pivot is defined, select match according to pivot
+		result = checkPivot(result);
 
 		return result;
+	}
+	
+	private List<Context> checkPivot(List<Context> matches) {
+		FieldDef<?> pivot;
+		
+		if(pattern.getOrderBy()!=null && (pivot=pattern.getPivot())!=null 
+				&& matches.isEmpty()==false) {
+			int i = 0;
+			for(;i<matches.size();i++) {
+				Context mc = matches.get(i);
+				try {
+					Object pv = mc.getValue(pivot);
+					Object ov = mc.getValue(pattern.getOrderBy());
+					if(pv==ov || (pv!=null && pv.equals(ov))) {
+						break;
+					}
+				} catch (UninitializedException | NothingReturnedException e) {
+					return Collections.emptyList();
+				}
+			}
+			
+			if(i==matches.size()) { // pivot is out of the scope, return first or last
+				if(pattern.isAfterPivot()) return Collections.singletonList(matches.get(0));
+				else return Collections.singletonList(matches.get(matches.size()-1));
+			} else { // return the value before or after pivot
+				int rc = pattern.isAfterPivot() ? i + 1 : i - 1;
+				if(rc==-1 || rc==matches.size()) return Collections.emptyList();
+				else return Collections.singletonList(matches.get(rc));
+			}
+		} else return matches;
 	}
 	
 	private List<Context> buildMatchContext(List<Map<String, Object>> matches, Context base, TypedGraph graph) {

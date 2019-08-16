@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import edu.ustb.sei.mde.bxcore.XmuCoreUtils;
+import edu.ustb.sei.mde.graph.typedGraph.IndexSystem;
 
 
 public class Index implements Cloneable {

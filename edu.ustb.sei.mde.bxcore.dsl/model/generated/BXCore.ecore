@@ -78,6 +78,9 @@
         eType="#//TypeVar" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="filter" eType="#//ContextAwareCondition"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="orderBy" eType="#//AbstractPatternEdge"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="direction" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pivot" eType="#//TypeVar"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeDefinition" eSuperTypes="#//Definition">
     <eStructuralFeatures xsi:type="ecore:EReference" name="literal" eType="#//TypeLiteral"

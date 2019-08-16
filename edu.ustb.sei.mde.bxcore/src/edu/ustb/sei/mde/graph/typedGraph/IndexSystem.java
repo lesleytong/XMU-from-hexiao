@@ -13,6 +13,8 @@ import edu.ustb.sei.mde.bxcore.structures.FieldDef;
 import edu.ustb.sei.mde.bxcore.structures.Index;
 
 public class IndexSystem {
+	final static public Index INITIAL_INDEX = IndexSystem.generateFreshIndex();
+	final static public Index TERMINAL_INDEX = IndexSystem.generateFreshIndex();
 	
 	protected Map<Object,IndexableElement> indexToObjectMap;
 	

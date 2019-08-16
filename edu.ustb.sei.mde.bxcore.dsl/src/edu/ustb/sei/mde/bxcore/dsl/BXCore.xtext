@@ -78,7 +78,8 @@ PredefinedTypeLiteral :
 PatternTypeLiteral :
 	source=[ImportSection|ValidID] '!' root=PatternNode 
 	('(' additional+=TypeVar (',' additional+=TypeVar)* ')')? 
-	('[' filter=ContextAwareCondition ']')?
+	('[' filter=ContextAwareCondition ']')? 
+	('order' orderBy=[AbstractPatternEdge|ValidID] (direction=('after'|'before') pivot=[TypeVar|ValidID])?)?
 ;
 
 TypeDefinition:

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.regex.Matcher;
 
+import edu.ustb.sei.mde.bxcore.XmuCoreUtils;
 import edu.ustb.sei.mde.bxcore.exceptions.InternalBidirectionalTransformationError;
 import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
 import edu.ustb.sei.mde.bxcore.exceptions.UninitializedException;
@@ -64,7 +65,18 @@ public class Pattern implements IGraph {
 		return filter;
 	}
 
+	/** 
+	 * The match will be ordered by this feature.
+	 * We assume that different matches has different orderBy values
+	 */
 	private PatternElement<?> orderBy = null;
+	
+	/**
+	 * Combined with orderBy, pivot tells us a match to be selected.
+	 * pivot must exist in additional fields
+	 */
+	private FieldDef<?> pivot = null;
+	private boolean afterPivot = true; // before or after
 	
 	
 	public Pattern() {
@@ -81,6 +93,28 @@ public class Pattern implements IGraph {
 	
 	public void setOrderBy(PatternElement<?> o) {
 		this.orderBy = o;
+	}
+	
+	/**
+	 * We assume this method is always called after setOrderBy
+	 * @param p
+	 * @param after
+	 */
+	public void setPivot(FieldDef<?> p, boolean after) {
+		this.pivot = p;
+		this.afterPivot = after;
+		if(this.orderBy!=null) {
+			if(!this.orderBy.getType().equals(pivot.getType())) {
+				XmuCoreUtils.failure("Inconsistent pattern! The type of orderBy must be equal to the type of pivot!");
+			}
+		}
+	}
+	
+	public FieldDef<?> getPivot() {
+		return pivot;
+	}
+	public boolean isAfterPivot() {
+		return afterPivot;
 	}
 
 	public List<INode> getNodes() {
@@ -116,6 +150,13 @@ public class Pattern implements IGraph {
 	
 	public List<Tuple2<FieldDef<?>, Function<ContextGraph, Object>>> getAdditionalFields() {
 		return additionalFields;
+	}
+	
+	public Tuple2<FieldDef<?>, Function<ContextGraph, Object>> getAdditionalField(String name) {
+		for(Tuple2<FieldDef<?>, Function<ContextGraph, Object>> v : additionalFields) {
+			if(v.first.getName().equals(name)) return v;
+		}
+		return null;
 	}
 
 	public TypeGraph getTypeGraph() {
@@ -258,6 +299,21 @@ public class Pattern implements IGraph {
 				}
 			}
 			
+		}
+		
+		// enforce pivot
+		FieldDef<?> pivot;
+		FieldDef<?> orderBy;
+		
+		if((orderBy=this.getOrderBy())!=null && (pivot=this.getPivot())!=null) {
+			Index pv = context.getIndexValue(pivot);
+			Index ov = context.getIndexValue(orderBy);
+			
+			if(this.isAfterPivot()) {
+				graph.getOrder().add(pv, ov);
+			} else {
+				graph.getOrder().add(ov, pv);
+			}
 		}
 
 		return graph;

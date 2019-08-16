@@ -98,6 +98,7 @@ public class ParallelComposition extends XmuCore {
 				try {
 					finalViewContext.setValue(vk, ViewType.summarize(result,vk, this));
 				} catch (Exception e) {
+					// merge index
 //					Object common = IndexSystem.generateUUID();
 					Index index = IndexSystem.generateFreshIndex();
 //					Index index = IndexSystem.generateFreshViewIndex(null, s.second, vk, s.third);

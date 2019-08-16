@@ -269,19 +269,47 @@ public class InsAddressBook extends XmuProgram {
   }
   
   /**
-   * id:1
+   * id:4
    */
-  private ContextType type_1;
+  private ContextType type_4;
   
-  public ContextType getType_1() {
-    if(type_1==null) {
-    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Nii();
-    	type_1 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
-    	edu.ustb.sei.mde.graph.type.IType b_type = typeGraph.getTypeNode("NIIBook")
+  public ContextType getType_4() {
+    if(type_4==null) {
+    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Sab();
+    	type_4 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
+    	edu.ustb.sei.mde.graph.type.IType em_type = typeGraph.getDataTypeNode("EString")
     	;
-    	type_1.addField("b", b_type, false);
+    	type_4.addField("em", em_type, false);
     }
-    return type_1;
+    return type_4;
+  }
+  
+  /**
+   * id:2
+   */
+  private ContextType type_2;
+  
+  public ContextType getType_2() {
+    if(type_2==null) {
+    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Sab();
+    	type_2 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
+    	edu.ustb.sei.mde.graph.type.IType b_type = typeGraph.getTypeNode("AddressBook")
+    	;
+    	type_2.addField("b", b_type, false);
+    	edu.ustb.sei.mde.graph.type.IType ln_type = typeGraph.getPropertyEdge(typeGraph.getTypeNode("Person"),"name")
+    	;
+    	type_2.addField("ln", ln_type, false);
+    	edu.ustb.sei.mde.graph.type.IType lp_type = typeGraph.getTypeEdge(typeGraph.getTypeNode("AddressBook"),"persons")
+    	;
+    	type_2.addField("lp", lp_type, false);
+    	edu.ustb.sei.mde.graph.type.IType n_type = typeGraph.getDataTypeNode("EString")
+    	;
+    	type_2.addField("n", n_type, false);
+    	edu.ustb.sei.mde.graph.type.IType p_type = typeGraph.getTypeNode("Person")
+    	;
+    	type_2.addField("p", p_type, false);
+    }
+    return type_2;
   }
   
   /**
@@ -319,22 +347,6 @@ public class InsAddressBook extends XmuProgram {
   }
   
   /**
-   * id:4
-   */
-  private ContextType type_4;
-  
-  public ContextType getType_4() {
-    if(type_4==null) {
-    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Sab();
-    	type_4 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
-    	edu.ustb.sei.mde.graph.type.IType em_type = typeGraph.getDataTypeNode("EString")
-    	;
-    	type_4.addField("em", em_type, false);
-    }
-    return type_4;
-  }
-  
-  /**
    * id:0
    */
   private ContextType type_0;
@@ -351,31 +363,19 @@ public class InsAddressBook extends XmuProgram {
   }
   
   /**
-   * id:2
+   * id:1
    */
-  private ContextType type_2;
+  private ContextType type_1;
   
-  public ContextType getType_2() {
-    if(type_2==null) {
-    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Sab();
-    	type_2 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
-    	edu.ustb.sei.mde.graph.type.IType b_type = typeGraph.getTypeNode("AddressBook")
+  public ContextType getType_1() {
+    if(type_1==null) {
+    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Nii();
+    	type_1 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
+    	edu.ustb.sei.mde.graph.type.IType b_type = typeGraph.getTypeNode("NIIBook")
     	;
-    	type_2.addField("b", b_type, false);
-    	edu.ustb.sei.mde.graph.type.IType ln_type = typeGraph.getPropertyEdge(typeGraph.getTypeNode("Person"),"name")
-    	;
-    	type_2.addField("ln", ln_type, false);
-    	edu.ustb.sei.mde.graph.type.IType lp_type = typeGraph.getTypeEdge(typeGraph.getTypeNode("AddressBook"),"persons")
-    	;
-    	type_2.addField("lp", lp_type, false);
-    	edu.ustb.sei.mde.graph.type.IType n_type = typeGraph.getDataTypeNode("EString")
-    	;
-    	type_2.addField("n", n_type, false);
-    	edu.ustb.sei.mde.graph.type.IType p_type = typeGraph.getTypeNode("Person")
-    	;
-    	type_2.addField("p", p_type, false);
+    	type_1.addField("b", b_type, false);
     }
-    return type_2;
+    return type_1;
   }
   
   /**

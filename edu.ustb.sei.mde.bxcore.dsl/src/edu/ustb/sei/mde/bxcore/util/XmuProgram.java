@@ -5,6 +5,8 @@ import java.io.FileWriter;
 import java.io.Writer;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 import java.util.logging.Level;
 
 import org.apache.log4j.Logger;
@@ -13,12 +15,26 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
 
 import edu.ustb.sei.mde.bxcore.XmuCoreUtils;
+import edu.ustb.sei.mde.bxcore.structures.ContextGraph;
+import edu.ustb.sei.mde.bxcore.structures.Index;
 import edu.ustb.sei.mde.graph.typedGraph.GraphvizExporterForTypedGraph;
+import edu.ustb.sei.mde.graph.typedGraph.IndexSystem;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
 
 abstract public class XmuProgram {
 	private Map<String, EPackage> packageMap = new HashMap<>();
 	private String dotPath = "/usr/local/bin/dot";
+	
+	final static protected Index BEGIN = IndexSystem.INITIAL_INDEX; 
+	final static protected Index END = IndexSystem.TERMINAL_INDEX; 
+	
+	static protected Object defaultValue(String name, ContextGraph con, Object value) {
+		try {
+			return con.getContext().getValue(name);
+		} catch (Exception e) {
+		}
+		return value;
+	}
 	
 	public String getDotPath() {
 		return dotPath;

@@ -250,15 +250,6 @@
 		<super type="org.eclipse.xtext.ui.check.expensive"/>
 		<persistent value="true"/>
 	</extension>
-	<extension point="org.eclipse.ui.preferencePages">
-		<page
-			category="edu.ustb.sei.mde.bxcore.dsl.BXCore"
-			class="edu.ustb.sei.mde.bxcore.dsl.ui.BXCoreExecutableExtensionFactory:org.eclipse.xtext.ui.validation.ValidatorPreferencePage"
-			id="edu.ustb.sei.mde.bxcore.dsl.BXCore.validator.preferencePage"
-			name="Errors/Warnings">
-			<keywordReference id="edu.ustb.sei.mde.bxcore.dsl.ui.keyword_BXCore"/>
-		</page>
-	</extension>
 	<extension point="org.eclipse.xtext.builder.participant">
 		<participant
 			class="edu.ustb.sei.mde.bxcore.dsl.ui.BXCoreExecutableExtensionFactory:org.eclipse.xtext.builder.IXtextBuilderParticipant"
@@ -626,11 +617,11 @@
 		</wizard>
 	</extension>
 	<extension
-	      point="org.eclipse.xtext.ui.projectTemplate">
-	   <projectTemplateProvider
-	         class="edu.ustb.sei.mde.bxcore.dsl.ui.wizard.BXCoreProjectTemplateProvider"
-	         grammarName="edu.ustb.sei.mde.bxcore.dsl.BXCore">
-	   </projectTemplateProvider>
+		point="org.eclipse.xtext.ui.projectTemplate">
+		<projectTemplateProvider
+			class="edu.ustb.sei.mde.bxcore.dsl.ui.BXCoreExecutableExtensionFactory:edu.ustb.sei.mde.bxcore.dsl.ui.wizard.BXCoreProjectTemplateProvider"
+			grammarName="edu.ustb.sei.mde.bxcore.dsl.BXCore">
+		</projectTemplateProvider>
 	</extension>
 	<extension
 		point="org.eclipse.ui.perspectiveExtensions">
@@ -654,11 +645,11 @@
 		</wizard>
 	</extension>
 	<extension
-	      point="org.eclipse.xtext.ui.fileTemplate">
-	   <fileTemplateProvider
-	         class="edu.ustb.sei.mde.bxcore.dsl.ui.wizard.BXCoreFileTemplateProvider"
-	         grammarName="edu.ustb.sei.mde.bxcore.dsl.BXCore">
-	   </fileTemplateProvider>
+		point="org.eclipse.xtext.ui.fileTemplate">
+		<fileTemplateProvider
+			class="edu.ustb.sei.mde.bxcore.dsl.ui.BXCoreExecutableExtensionFactory:edu.ustb.sei.mde.bxcore.dsl.ui.wizard.BXCoreFileTemplateProvider"
+			grammarName="edu.ustb.sei.mde.bxcore.dsl.BXCore">
+		</fileTemplateProvider>
 	</extension>
 	<extension
 		point="org.eclipse.ui.perspectiveExtensions">

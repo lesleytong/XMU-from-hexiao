@@ -124,6 +124,7 @@ import org.eclipse.xtend2.lib.StringConcatenationClient
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.AbstractPatternEdge
 import edu.ustb.sei.mde.graph.type.IPathType
 import edu.ustb.sei.mde.bxcore.util.PathTypeUtil
+import edu.ustb.sei.mde.graph.pattern.PatternElement
 
 /**
  * <p>Infers a JVM model from the source model.</p> 
@@ -480,6 +481,12 @@ class BXCoreJvmModelInferrer extends AbstractModelInferrer {
 					pattern_«id».setType(getType_«patternTypeId»());
 					«IF literal.filter!==null»
 					pattern_«id».setFilter(new Condition«conditions.indexOf(literal.filter)»());
+					«ENDIF»
+					«IF literal.orderBy!==null»
+					pattern_«id».setOrderBy((«PatternElement.typeRef.qualifiedName») pattern_«id».getPatternElement("«literal.orderBy.name»"));
+					«ENDIF»
+					«IF literal.pivot!==null»
+					pattern_«id».setPivot(pattern_«id».getAdditionalField("«literal.pivot.name»").first, «literal.direction.equals("after")»);
 					«ENDIF»
 				}
 				return pattern_«id»;

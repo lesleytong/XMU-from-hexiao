@@ -3,8 +3,8 @@
  */
 package edu.ustb.sei.mde.bxcore.dsl.scoping;
 
-import com.google.common.base.Objects;
 import com.google.common.base.Predicate;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.AbstractPatternEdge;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.AnnotatedType;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXCorePackage;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.BXFunctionDefinition;
@@ -22,6 +22,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternNode;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternPathEdge;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.PatternTypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeDefinition;
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.TypeVar;
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.UnorderedTupleTypeLiteral;
 import edu.ustb.sei.mde.bxcore.dsl.scoping.AbstractBXCoreScopeProvider;
 import java.util.ArrayList;
@@ -211,8 +212,7 @@ public class BXCoreScopeProvider extends AbstractBXCoreScopeProvider {
                               final EClass type_1 = ((AnnotatedType) context).getType();
                               return this.featureScope(type_1);
                             } else {
-                              boolean _equals = Objects.equal(reference, BXCorePackage.Literals.DASHED_PATH_TYPE_SEGMENT__TYPES);
-                              if (_equals) {
+                              if ((reference == BXCorePackage.Literals.DASHED_PATH_TYPE_SEGMENT__TYPES)) {
                                 final EObject dashedPathType = context.eContainer();
                                 final EObject typeContainer = dashedPathType.eContainer();
                                 if ((typeContainer instanceof PatternPathEdge)) {
@@ -228,6 +228,39 @@ public class BXCoreScopeProvider extends AbstractBXCoreScopeProvider {
                                   if ((typeContainer instanceof DashedPathType)) {
                                     final DashedPathTypeSegment prevSeg = ((DashedPathType) typeContainer).getSegment();
                                     return this.featureScope(prevSeg.getTypes());
+                                  }
+                                }
+                              } else {
+                                if ((reference == BXCorePackage.Literals.PATTERN_TYPE_LITERAL__ORDER_BY)) {
+                                  final Pattern pattern_1 = this.getPattern(context);
+                                  if ((pattern_1 == null)) {
+                                    return IScope.NULLSCOPE;
+                                  } else {
+                                    final ArrayList<IEObjectDescription> objects_2 = new ArrayList<IEObjectDescription>();
+                                    final Function1<EObject, Boolean> _function_11 = (EObject it) -> {
+                                      return Boolean.valueOf((it instanceof AbstractPatternEdge));
+                                    };
+                                    final Procedure1<EObject> _function_12 = (EObject p) -> {
+                                      IEObjectDescription _create = EObjectDescription.create(((AbstractPatternEdge) p).getName(), p);
+                                      objects_2.add(_create);
+                                    };
+                                    IteratorExtensions.<EObject>forEach(IteratorExtensions.<EObject>filter(pattern_1.eAllContents(), _function_11), _function_12);
+                                    return new SimpleScope(objects_2);
+                                  }
+                                } else {
+                                  if ((reference == BXCorePackage.Literals.PATTERN_TYPE_LITERAL__PIVOT)) {
+                                    final Pattern pattern_2 = this.getPattern(context);
+                                    if (((pattern_2 == null) || (!(pattern_2 instanceof PatternTypeLiteral)))) {
+                                      return IScope.NULLSCOPE;
+                                    } else {
+                                      final ArrayList<IEObjectDescription> objects_3 = new ArrayList<IEObjectDescription>();
+                                      final Consumer<TypeVar> _function_13 = (TypeVar p) -> {
+                                        IEObjectDescription _create = EObjectDescription.create(p.getName(), p);
+                                        objects_3.add(_create);
+                                      };
+                                      ((PatternTypeLiteral) pattern_2).getAdditional().forEach(_function_13);
+                                      return new SimpleScope(objects_3);
+                                    }
                                   }
                                 }
                               }

@@ -99,6 +99,7 @@ import edu.ustb.sei.mde.bxcore.util.EcoreModelUtil;
 import edu.ustb.sei.mde.bxcore.util.PathTypeUtil;
 import edu.ustb.sei.mde.bxcore.util.XmuProgram;
 import edu.ustb.sei.mde.graph.pattern.Pattern;
+import edu.ustb.sei.mde.graph.pattern.PatternElement;
 import edu.ustb.sei.mde.graph.type.IPathType;
 import edu.ustb.sei.mde.graph.type.IStructuralFeatureEdge;
 import edu.ustb.sei.mde.graph.type.ITypeNode;
@@ -1112,6 +1113,44 @@ public class BXCoreJvmModelInferrer extends AbstractModelInferrer {
                 int _indexOf = conditions.indexOf(literal.getFilter());
                 _builder.append(_indexOf, "\t");
                 _builder.append("());");
+                _builder.newLineIfNotEmpty();
+              }
+            }
+            {
+              AbstractPatternEdge _orderBy = literal.getOrderBy();
+              boolean _tripleNotEquals_3 = (_orderBy != null);
+              if (_tripleNotEquals_3) {
+                _builder.append("\t");
+                _builder.append("pattern_");
+                _builder.append(id, "\t");
+                _builder.append(".setOrderBy((");
+                String _qualifiedName_7 = BXCoreJvmModelInferrer.this._typeReferenceBuilder.typeRef(PatternElement.class).getQualifiedName();
+                _builder.append(_qualifiedName_7, "\t");
+                _builder.append(") pattern_");
+                _builder.append(id, "\t");
+                _builder.append(".getPatternElement(\"");
+                String _name_10 = literal.getOrderBy().getName();
+                _builder.append(_name_10, "\t");
+                _builder.append("\"));");
+                _builder.newLineIfNotEmpty();
+              }
+            }
+            {
+              TypeVar _pivot = literal.getPivot();
+              boolean _tripleNotEquals_4 = (_pivot != null);
+              if (_tripleNotEquals_4) {
+                _builder.append("\t");
+                _builder.append("pattern_");
+                _builder.append(id, "\t");
+                _builder.append(".setPivot(pattern_");
+                _builder.append(id, "\t");
+                _builder.append(".getAdditionalField(\"");
+                String _name_11 = literal.getPivot().getName();
+                _builder.append(_name_11, "\t");
+                _builder.append("\").first, ");
+                boolean _equals = literal.getDirection().equals("after");
+                _builder.append(_equals, "\t");
+                _builder.append(");");
                 _builder.newLineIfNotEmpty();
               }
             }

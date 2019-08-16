@@ -33,6 +33,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.DashedPathType
 import java.util.List
 import org.eclipse.emf.ecore.EStructuralFeature
 import edu.ustb.sei.mde.bxcore.dsl.bXCore.Pattern
+import edu.ustb.sei.mde.bxcore.dsl.bXCore.AbstractPatternEdge
 
 /**
  * This class contains custom scoping description.
@@ -129,7 +130,7 @@ class BXCoreScopeProvider extends AbstractBXCoreScopeProvider {
 			} else if(reference===BXCorePackage.Literals.ANNOTATED_TYPE__FEATURE) {
 				val type = (context as AnnotatedType).type;
 				return type.featureScope;
-			} else if(reference==BXCorePackage.Literals.DASHED_PATH_TYPE_SEGMENT__TYPES) {
+			} else if(reference===BXCorePackage.Literals.DASHED_PATH_TYPE_SEGMENT__TYPES) {
 				val dashedPathType = context.eContainer; // context must be DashedPathTypeSegment
 				val typeContainer = dashedPathType.eContainer;
 				if(typeContainer instanceof PatternPathEdge) {
@@ -143,6 +144,28 @@ class BXCoreScopeProvider extends AbstractBXCoreScopeProvider {
 					return prevSeg.types.featureScope
 				}
 				
+			} else if(reference===BXCorePackage.Literals.PATTERN_TYPE_LITERAL__ORDER_BY) {
+				val pattern = context.pattern;
+				if(pattern===null) {
+					return IScope.NULLSCOPE;
+				} else {
+					val objects = new ArrayList;
+					pattern.eAllContents.filter[it instanceof AbstractPatternEdge].forEach[p|
+						objects += EObjectDescription.create((p as AbstractPatternEdge).name, p)
+					]
+					return new SimpleScope(objects);
+				}
+			} else if(reference===BXCorePackage.Literals.PATTERN_TYPE_LITERAL__PIVOT) {
+				val pattern = context.pattern;
+				if(pattern===null || !(pattern instanceof PatternTypeLiteral)) {
+					return IScope.NULLSCOPE;
+				} else {
+					val objects = new ArrayList;
+					(pattern as PatternTypeLiteral).additional.forEach[p|
+						objects += EObjectDescription.create(p.name, p)
+					];
+					return new SimpleScope(objects);
+				}
 			}
 		} catch(Exception e) {
 		}
