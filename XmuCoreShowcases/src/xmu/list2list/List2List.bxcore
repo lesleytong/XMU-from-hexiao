@@ -1,0 +1,213 @@
+/*
+ * This is a simple bxcore source file
+ */
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+import "/XmuCoreShowcases/metamodel/List1.ecore" as L1
+import "/XmuCoreShowcases/metamodel/List2.ecore" as L2
+
+
+function List2List<L1!(l:List),L2!(l:List)> =
+	matchS L1!l:List{} (firstE:List::elements<-BEGIN)
+		matchV L2!l:List{} (firstE:Element<-BEGIN)
+			{
+				replace  L1!l:List{} (firstE:List::elements) L2!l:List{} (firstE:Element) {forceBegin (firstE) (firstE)}
+			|	Element2Element (l<-l,afterE<-firstE) (l<-l, afterE<-firstE)
+			}
+
+
+pattern srcListElement = L1!l:List{le:elements=e:Element{lv:value=v:EString}} (afterE:List::elements) order le after afterE
+
+bigul forceBegin (Object s_val) (Object v_val)
+	get {
+		v_val = BEGIN
+	}
+	put {
+		if(v_val!==BEGIN) nothing
+	}
+
+function Element2Element<L1!(l:List,afterE:List::elements),L2!(l:List,afterE:Element)> =
+	switch [
+		case { // last one
+			val afterE = afterE@source;
+			if(afterE===null) return false;
+			val nextSId = l@source.@@elements.indexOf(afterE)+1;
+			println("last one in "+nextSId);
+			if(nextSId!==l@source.@@elements.size) return false;
+			
+			try { // applicable for backward only
+				val list2 = l@view; // as a test of forward trans
+				if(view.context.getValue('afterE')===BEGIN) return false;
+				val nextVE = @view:L2!Element(afterE@view).@next;
+				if(nextVE!==null) return false;
+			} catch(Exception e) {
+				println("forward tested in case 1")
+			}
+			
+			println("last one true");
+			return true; 
+		} :
+			replace  L1!l:List{} (afterE:List::elements) L2!l:List{} (afterE:Element)
+		
+		case { // first one
+			println("first one in");
+			val srcElementsEdges = l@source.@@elements;
+			val afterE = afterE@source;
+			val nextSId = if(afterE===null) 0 else (srcElementsEdges.indexOf(afterE)+1);
+			if(nextSId!==0 || srcElementsEdges.isEmpty) return false;
+			val nextSE = srcElementsEdges.get(nextSId).target;
+			
+			try {
+				val nextVE = if(BEGIN.equals(view.context.getValue('afterE'))) 
+						l@view.@elements.findFirst[e| l@view.@elements.forall[@view:L2!Element(it).@next!==e]] 
+					else  null
+				if(nextVE===null) return false;
+				return @source:L1!Element(nextSE).@value.equals(@view:L2!Element(nextVE).@value)				
+			} catch(Exception e) {
+			}
+			println("first one true");
+			return true;
+			
+			// check key
+		} :  matchS srcListElement
+				matchV L2!l:List{le:elements=e:Element{lv:value=v:EString}} (afterE:Element) 
+					[{
+						val flag = l@context.@elements.forall[@context:L2!Element(it).@next!==e@context];
+						return flag; 
+					}]
+				  {
+				  	replace srcListElement L2!l:List{le:elements=e:Element{lv:value=v:EString}} (afterE:Element) {
+				  		replace (v) (v) 
+				  		forceBegin (afterE) (afterE)
+				  	}
+				  	| Element2Element (l<-l, afterE<-le) (l<-l, afterE<-e)
+				  }
+		
+		case { // in middle
+			println("middle one in");
+			val srcElementsEdges = l@source.@@elements;
+			val afterE = afterE@source;
+			if(afterE===null) return false;
+			val nextSId = srcElementsEdges.indexOf(afterE)+1;
+			if(nextSId===srcElementsEdges.size) return false;
+			val nextSE = srcElementsEdges.get(nextSId).target;
+			
+			try {
+				val nextVE = if(view.context.getValue('afterE')===BEGIN) null else @view:L2!Element(afterE@view).@next;
+				if(nextVE===null) return false;
+				// check key
+				return @source:L1!Element(nextSE).@value.equals(@view:L2!Element(nextVE).@value)
+				
+			} catch(Exception e) {
+			}
+			println("middle one true");
+			return true;
+		} :  matchS srcListElement
+				matchV L2!l:List{le:elements=e:Element{lv:value=v:EString}, le2:elements=afterE:Element{ln:next=e}}  
+				  {
+				  	replace srcListElement L2!l:List{le:elements=e:Element{lv:value=v:EString}, le2:elements=afterE:Element{ln:next=e}} {replace (v) (v)}
+				  	| Element2Element (l<-l, afterE<-le) (l<-l, afterE<-e)
+				  }
+		
+		// the case when there is no more view element
+		adaption {
+			if(view.context.getValue('afterE')!==BEGIN)
+				afterE@view.@next===null
+			else false
+		} : {
+			// no next element in view
+			println("adaption 1 in");
+			val nextSId = if(afterE@source===null) 0 else l@source.@@elements.indexOf(afterE@source)+1;
+			val delEdge = newArrayList;
+			val delNode = newArrayList;
+			
+			l@source.@@elements.forEach[e,i|
+				if(i>=nextSId) {
+					delEdge+=e
+					delNode+=e.target
+				}
+			];
+			
+			begin
+				delete delEdge;
+				delete delNode;
+			end
+		}
+		
+		// the case when the order of source is wrong
+		adaption {
+			val elements = l@source.@@elements;
+			val nextSId = if(afterE@source===null) 0 else elements.indexOf(afterE@source)+1;
+			if(nextSId===elements.size) return false;
+			val nextVE = if(view.context.getValue('afterE')===BEGIN) 
+					l@view.@elements.findFirst[e| l@view.@elements.forall[@view:L2!Element(it).@next!==e]] 
+				else @view:L2!Element(afterE@view).@next;
+			return elements.exists[e| 
+				if(elements.indexOf(e)>nextSId) @source:L1!Element(e.target).@value===@view:L2!Element(nextVE).@value
+				else false
+			];
+		} : {
+			// reorder source
+			println("adaption 2 in");
+			val elements = l@source.@@elements;
+			val prevLE = afterE@source;
+			val nextId = if(prevLE===null) 0 else elements.indexOf(prevLE);
+			val nextLE = if(nextId===elements.size-1) null else elements.get(nextId+1);
+			val nextVE = if(view.context.getValue('afterE')===BEGIN) 
+					l@view.@elements.findFirst[e| l@view.@elements.forall[@view:L2!Element(it).@next!==e]] 
+				else @view:L2!Element(afterE@view).@next;
+			
+			val corLE = elements.findFirst[e|
+				if(elements.indexOf(e)>nextId) @source:L1!Element(e.target).@value===@view:L2!Element(nextVE).@value
+				else false
+			];
+			
+			val corE = corLE.target;
+			
+			begin
+				enforce L1!l:List{le:elements=e:Element{}} (afterE:List::elements) order le after afterE {lv<-corLE, e<-corE, afterE<-prevLE};
+				enforce L1!l:List{le:elements=e:Element{}} (beforeE:List::elements) order le before beforeE {lv<-corLE, e<-corE, beforeE<-nextLE};
+			end
+		}
+		
+		// the case when there is no more source element
+		adaption {
+			val nextVE = if(view.context.getValue('afterE')===BEGIN) 
+					l@view.@elements.findFirst[e| l@view.@elements.forall[@view:L2!Element(it).@next!==e]]  
+				else @view:L2!Element(afterE@view).@next;
+			
+			return nextVE!==null;
+			
+		} : {
+			// create new source
+			println("adaption 3 in");
+			val elements = l@source.@@elements;
+			val prevLE = afterE@source;
+			
+//			val prevId = elements.indexOf(source.context.getValue('afterE'));
+//			println("prevId="+prevId);
+			val nextLE = if(prevLE===null) elements.get(0) else if(elements.indexOf(prevLE)===elements.size-1) null else elements.get(elements.indexOf(prevLE)+1);
+			
+			val nextVE = if(view.context.getValue('afterE')===BEGIN) 
+					l@view.@elements.findFirst[e| l@view.@elements.forall[@view:L2!Element(it).@next!==e]]  
+				else @view:L2!Element(afterE@view).@next;
+				
+			val v = @view:L2!Element(nextVE).@value;
+			
+			val corE = new @source:L1!Element;
+			val corLE = new @source:L1!List::elements;
+			val corLV = new @source:L1!Element::value;
+			
+			begin
+				if(prevLE===null) {
+					enforce L1!l:List{le:elements=e:Element{lv:value=v:EString}} (afterE:List::elements) order le after afterE {le<-corLE, e<-corE, lv<-corLV, afterE<-BEGIN, v<-v};
+					if(nextLE!==null)
+						enforce L1!l:List{le:elements=e:Element{lv:value=v:EString}} (beforeE:List::elements) order le before beforeE {le<-corLE, e<-corE, lv<-corLV, beforeE<-nextLE, v<-v};
+				}
+				else {
+					enforce L1!l:List{le:elements=e:Element{lv:value=v:EString}} (afterE:List::elements) order le after afterE {le<-corLE, e<-corE, lv<-corLV, afterE<-prevLE, v<-v};
+					if(nextLE!==null)
+						enforce L1!l:List{le:elements=e:Element{lv:value=v:EString}} (beforeE:List::elements) order le before beforeE {le<-corLE, e<-corE, lv<-corLV, beforeE<-nextLE, v<-v};
+				}
+			end
+		}
+	]

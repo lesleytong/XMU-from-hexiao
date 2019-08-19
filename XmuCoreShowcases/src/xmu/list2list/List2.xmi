@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ASCII"?>
+<L2:List xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:L2="http://www.ustb.edu.cn/sei/mde/list2"
+    xsi:schemaLocation="http://www.ustb.edu.cn/sei/mde/list2 ../../../metamodel/List2.ecore">
+  <elements
+      value="a"
+      next="//@elements.1"/>
+  <elements
+      value="d"
+      next="//@elements.2"/>
+  <elements
+      value="c"/>
+</L2:List>

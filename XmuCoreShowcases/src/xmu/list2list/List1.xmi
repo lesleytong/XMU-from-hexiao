@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<L1:List xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:L1="http://www.ustb.edu.cn/sei/mde/list1"
+    xsi:schemaLocation="http://www.ustb.edu.cn/sei/mde/list1 ../../../metamodel/List1.ecore">
+  <elements
+      value="a"/>
+  <elements
+      value="b"/>
+  <elements
+      value="c"/>
+</L1:List>
