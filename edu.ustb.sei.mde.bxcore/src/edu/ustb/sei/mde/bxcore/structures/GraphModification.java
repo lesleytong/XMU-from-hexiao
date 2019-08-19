@@ -421,6 +421,11 @@ public class GraphModification {
 	
 	@SuppressWarnings("unchecked")
 	public <T extends ContextGraph> T get() {
+		try {
+			data.getGraph().enforceOrder();
+		} catch (NothingReturnedException e) {
+			e.printStackTrace();
+		}
 		return (T) data;
 	}
 }

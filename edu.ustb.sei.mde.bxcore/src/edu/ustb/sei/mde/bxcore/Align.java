@@ -17,6 +17,7 @@ import edu.ustb.sei.mde.bxcore.structures.Index;
 import edu.ustb.sei.mde.graph.pattern.Pattern;
 import edu.ustb.sei.mde.graph.pattern.PatternElement;
 import edu.ustb.sei.mde.graph.typedGraph.IndexSystem;
+import edu.ustb.sei.mde.graph.typedGraph.IndexableElement;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
 import edu.ustb.sei.mde.graph.typedGraph.constraint.GraphConstraint;
 import edu.ustb.sei.mde.graph.typedGraph.constraint.GraphConstraint.ConstraintStatus;
@@ -239,7 +240,13 @@ public class Align extends XmuCore {
 							try {
 								// in principle, we should reset downstream values
 								v.second.setUpstream(upstreamView);
-								v.first.addIndex(index, v.first.getElementByIndexObject((Index) v.second.getValue(vk.getName())));
+								Index value = (Index) v.second.getValue(vk.getName());
+								IndexableElement elementByIndexObject = null;
+								try {
+									elementByIndexObject = v.first.getElementByIndexObject(value);
+								} catch (NothingReturnedException noe) {
+								}
+								if(elementByIndexObject!=null) v.first.addIndex(index, elementByIndexObject);
 							} catch (UninitializedException e1) {
 								return nothing(e1);
 							}

@@ -59,6 +59,8 @@ public class IndexSystem {
 				return res;
 			}
 		}
+		
+		XmuCoreUtils.warning("No element is associated with this index");
 		throw new NothingReturnedException();
 	}
 	

@@ -176,7 +176,11 @@ public class GraphMatcher {
 					// assert valueInMatch !=null => valueInMatch == fixedValue
 				} catch (UninitializedException | NothingReturnedException e) {
 					Object valueInMatch = match.get(field.getName());
-					context.setValue(field, valueInMatch);
+					if(valueInMatch==null) {
+						if(pattern.getAdditionalField(field.getName())==null)
+							return;
+					} else 
+						context.setValue(field, valueInMatch);
 				}
 			});
 			

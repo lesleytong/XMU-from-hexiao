@@ -298,7 +298,6 @@ public class Pattern implements IGraph {
 					createEdge(-1, n, index, creator, graph, referenceGraph);				
 				}
 			}
-			
 		}
 		
 		// enforce pivot

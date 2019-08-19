@@ -15,6 +15,7 @@ import edu.ustb.sei.mde.bxcore.structures.ContextType;
 import edu.ustb.sei.mde.bxcore.structures.FieldDef;
 import edu.ustb.sei.mde.bxcore.structures.Index;
 import edu.ustb.sei.mde.graph.typedGraph.IndexSystem;
+import edu.ustb.sei.mde.graph.typedGraph.IndexableElement;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
 import edu.ustb.sei.mde.graph.typedGraph.constraint.GraphConstraint;
 import edu.ustb.sei.mde.structure.Tuple2;
@@ -107,7 +108,13 @@ public class ParallelComposition extends XmuCore {
 						try {
 							if(v==null || v==ViewType.empty()) continue;
 							// in principle, we should reset downstream values
-							v.first.addIndex(index, v.first.getElementByIndexObject(v.second.getIndexValue(vk)));
+							Index indexValue = v.second.getIndexValue(vk);
+							IndexableElement elementByIndexObject = null;
+							try {
+								elementByIndexObject = v.first.getElementByIndexObject(indexValue);
+							} catch (NothingReturnedException noe) {
+							}
+							if(elementByIndexObject!=null) v.first.addIndex(index, elementByIndexObject);
 						} catch (UninitializedException e1) {
 							return nothing(e1);
 						}
@@ -190,7 +197,13 @@ public class ParallelComposition extends XmuCore {
 					
 					for(SourceType r : results) {
 						try {
-							r.first.addIndex(index, r.first.getElementByIndexObject(r.second.getIndexValue(sk)));
+							Index indexValue = r.second.getIndexValue(sk);
+							IndexableElement elementByIndexObject = null;
+							try {
+								elementByIndexObject = r.first.getElementByIndexObject(indexValue);
+							} catch (NothingReturnedException noe) {
+							}
+							if(elementByIndexObject!=null) r.first.addIndex(index, elementByIndexObject);
 						} catch (UninitializedException e1) {
 							return nothing(e1);
 						}

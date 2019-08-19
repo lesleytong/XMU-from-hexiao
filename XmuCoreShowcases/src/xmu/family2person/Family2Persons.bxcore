@@ -31,7 +31,6 @@ bigul identity (IndexPath p) (String id)
 		val nid = (p.toGraphPathWithRecovery(null).pathEdges.get(0) as TypedEdge).type.name;
 		if(!(nid.equals(id))) nothing
 	}
- 
 
 function Father2Person<FR!(x:FamilyRegister),PR!(y:PersonsRegister)> =
 	align FR!x:FamilyRegister{

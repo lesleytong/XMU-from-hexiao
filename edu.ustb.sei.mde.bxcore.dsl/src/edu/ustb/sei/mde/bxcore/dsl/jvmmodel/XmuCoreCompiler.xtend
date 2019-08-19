@@ -55,7 +55,7 @@ class XmuCoreCompiler extends XbaseCompiler {
 				'getPattern_' + lit.key
 			}
 			else if(p instanceof PatternDefinitionReference)
-				p.pattern.name.toFirstUpper
+				p.pattern.name
 			else '/* ERROR: unknown pattern type */'
 		} catch (Exception e) {
 			'''/* ERROR: «e.message»*/'''
@@ -98,11 +98,11 @@ class XmuCoreCompiler extends XbaseCompiler {
 				val name = a.declareSyntheticVariable(e, "_navExp");
 				a.newLine.append('''«expectedType.qualifiedName» «name» = «ExceptionSafeInferface.canonicalName».navigate(«e.side.literal», ''');
 				e.host.internalToJavaExpression(a);
-				a.append(''', "«e.pathName»", «ecoreType.key instanceof EClass», «ecoreType.value», «navEdge»);''');
+				a.append(''', "«e.pathName»", «ecoreType.key instanceof EClass || ecoreType.key instanceof EReference», «ecoreType.value», «navEdge»);''');
 			} else {
 				a.newLine.append('''«ExceptionSafeInferface.canonicalName».navigate(«e.side.literal», ''');
 				e.host.internalToJavaExpression(a);
-				a.append(''', "«e.pathName»", «ecoreType.key instanceof EClass», «ecoreType.value», «navEdge»);''');
+				a.append(''', "«e.pathName»", «ecoreType.key instanceof EClass || ecoreType.key instanceof EReference», «ecoreType.value», «navEdge»);''');
 			}
 		} else if(e instanceof ModificationExpressionBlock) {
 			a.newLine;
@@ -269,7 +269,7 @@ class XmuCoreCompiler extends XbaseCompiler {
 				val navEdge = e.navOp.equals('@');
 				a.newLine.append('''«ExceptionSafeInferface.canonicalName».navigate(«e.side.literal», ''');
 				e.host.internalToJavaExpression(a);
-				a.append(''', "«e.pathName»", «ecoreType.key instanceof EClass», «ecoreType.value», «navEdge»)''');
+				a.append(''', "«e.pathName»", «ecoreType.key instanceof EClass || ecoreType.key instanceof EReference», «ecoreType.value», «navEdge»)''');
 			}
 		}  else if(e instanceof ModificationExpression) {
 			a.append(getVarName(e, a))

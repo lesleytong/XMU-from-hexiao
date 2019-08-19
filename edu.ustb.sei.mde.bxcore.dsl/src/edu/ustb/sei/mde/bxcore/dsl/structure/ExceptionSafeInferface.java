@@ -19,14 +19,19 @@ import edu.ustb.sei.mde.graph.typedGraph.TypedNode;
 import edu.ustb.sei.mde.graph.typedGraph.ValueEdge;
 
 public class ExceptionSafeInferface {
+	@Deprecated
 	public static <T> T getValue(Context context, String name) {
+		FieldDef<?> field = context.getType().getField(name);
 		try {
-			return context.getValue(name);
+			return context.getValue(field);
 		} catch (Exception e) {
-			throw new RuntimeException(e);
+//			throw new RuntimeException(e);
+			if(field==null) return defaultValue(false);
+			else return defaultValue(field.isCollection());
 		}
 	}
 	
+	@Deprecated
 	public static <T> void setValue(Context context, String name, T value) {
 		try {
 			context.setValue(name, value);
@@ -37,8 +42,8 @@ public class ExceptionSafeInferface {
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static <T> T getValue(ContextGraph context, String name) {
+		FieldDef<?> field = context.getContext().getType().getField(name);
 		try {
-			FieldDef<?> field = context.getContext().getType().getField(name);
 			if(field.isCollection()) {
 				List values = new ArrayList((List) context.getContext().getValue(field));
 				for(int i=0;i<values.size();i++) {
@@ -57,7 +62,9 @@ public class ExceptionSafeInferface {
 			}
 			
 		} catch (Exception e) {
-			throw new RuntimeException(e);
+//			throw new RuntimeException(e);
+			if(field==null) return defaultValue(false);
+			else return defaultValue(field.isCollection());
 		}
 	}
 	

@@ -113,6 +113,7 @@ public class MatchView extends XmuCore {
 			if(finalSource!=null) {
 				// check again to ensure PutTwice
 				{
+					finalSource.first.enforceOrder();
 					GraphConstraint inner = getBodyConstraint();
 					
 					int count = 0;

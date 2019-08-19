@@ -76,7 +76,7 @@ public class XmuCoreCompiler extends XbaseCompiler {
         } else {
           String _xifexpression_1 = null;
           if ((p instanceof PatternDefinitionReference)) {
-            _xifexpression_1 = StringExtensions.toFirstUpper(((PatternDefinitionReference)p).getPattern().getName());
+            _xifexpression_1 = ((PatternDefinitionReference)p).getPattern().getName();
           } else {
             _xifexpression_1 = "/* ERROR: unknown pattern type */";
           }
@@ -198,8 +198,7 @@ public class XmuCoreCompiler extends XbaseCompiler {
             String _pathName = ((NavigationExpression)e).getPathName();
             _builder_5.append(_pathName);
             _builder_5.append("\", ");
-            Object _key = ecoreType.getKey();
-            _builder_5.append((_key instanceof EClass));
+            _builder_5.append(((ecoreType.getKey() instanceof EClass) || (ecoreType.getKey() instanceof EReference)));
             _builder_5.append(", ");
             Boolean _value = ecoreType.getValue();
             _builder_5.append(_value);
@@ -223,8 +222,7 @@ public class XmuCoreCompiler extends XbaseCompiler {
             String _pathName_1 = ((NavigationExpression)e).getPathName();
             _builder_7.append(_pathName_1);
             _builder_7.append("\", ");
-            Object _key_1 = ecoreType.getKey();
-            _builder_7.append((_key_1 instanceof EClass));
+            _builder_7.append(((ecoreType.getKey() instanceof EClass) || (ecoreType.getKey() instanceof EReference)));
             _builder_7.append(", ");
             Boolean _value_1 = ecoreType.getValue();
             _builder_7.append(_value_1);
@@ -742,8 +740,7 @@ public class XmuCoreCompiler extends XbaseCompiler {
             String _pathName = ((NavigationExpression)e).getPathName();
             _builder_2.append(_pathName);
             _builder_2.append("\", ");
-            Object _key = ecoreType.getKey();
-            _builder_2.append((_key instanceof EClass));
+            _builder_2.append(((ecoreType.getKey() instanceof EClass) || (ecoreType.getKey() instanceof EReference)));
             _builder_2.append(", ");
             Boolean _value = ecoreType.getValue();
             _builder_2.append(_value);

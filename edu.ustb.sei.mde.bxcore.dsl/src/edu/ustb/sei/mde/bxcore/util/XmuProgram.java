@@ -25,10 +25,10 @@ abstract public class XmuProgram {
 	private Map<String, EPackage> packageMap = new HashMap<>();
 	private String dotPath = "/usr/local/bin/dot";
 	
-	final static protected Index BEGIN = IndexSystem.INITIAL_INDEX; 
-	final static protected Index END = IndexSystem.TERMINAL_INDEX; 
+	final static public Index BEGIN = IndexSystem.INITIAL_INDEX; 
+	final static public Index END = IndexSystem.TERMINAL_INDEX; 
 	
-	static protected Object defaultValue(String name, ContextGraph con, Object value) {
+	static public Object defaultValue(String name, ContextGraph con, Object value) {
 		try {
 			return con.getContext().getValue(name);
 		} catch (Exception e) {

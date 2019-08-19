@@ -12,6 +12,7 @@ import edu.ustb.sei.mde.bxcore.structures.ContextType;
 import edu.ustb.sei.mde.bxcore.structures.FieldDef;
 import edu.ustb.sei.mde.bxcore.structures.Index;
 import edu.ustb.sei.mde.graph.typedGraph.IndexSystem;
+import edu.ustb.sei.mde.graph.typedGraph.IndexableElement;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
 import edu.ustb.sei.mde.graph.typedGraph.constraint.GraphConstraint;
 import edu.ustb.sei.mde.structure.Tuple2;
@@ -125,7 +126,13 @@ public class Fork extends XmuCore {
 						for(FieldDef<?> dk : dks) {
 							try {
 								// in principle, we should reset downstream values
-								v.first.addIndex(index, v.first.getElementByIndexObject(v.second.getIndexValue(dk)));
+								Index indexValue = v.second.getIndexValue(dk);
+								IndexableElement elementByIndexObject = null;
+								try {
+									elementByIndexObject = v.first.getElementByIndexObject(indexValue);
+								} catch (Exception noe) {
+								}
+								if(elementByIndexObject!=null) v.first.addIndex(index, elementByIndexObject);
 							} catch (UninitializedException e1) {
 								return nothing(e1);
 							}
@@ -206,7 +213,13 @@ public class Fork extends XmuCore {
 						for(FieldDef<?> dk : dks) {
 							try {
 								// in principle, we should reset downstream values
-								sp.first.addIndex(index, sp.first.getElementByIndexObject(sp.second.getIndexValue(dk)));
+								Index indexValue = sp.second.getIndexValue(dk);
+								IndexableElement elementByIndexObject = null;
+								try {
+									elementByIndexObject = sp.first.getElementByIndexObject(indexValue);
+								} catch (NothingReturnedException noe) {
+								}
+								if(elementByIndexObject!=null) sp.first.addIndex(index, elementByIndexObject);
 							} catch (UninitializedException e1) {
 								return nothing(e1);
 							}
