@@ -31,25 +31,19 @@ function Element2Element<L1!(l:List,afterE:List::elements),L2!(l:List,afterE:Ele
 			val afterE = afterE@source;
 			if(afterE===null) return false;
 			val nextSId = l@source.@@elements.indexOf(afterE)+1;
-			println("last one in "+nextSId);
 			if(nextSId!==l@source.@@elements.size) return false;
 			
 			try { // applicable for backward only
-				val list2 = l@view; // as a test of forward trans
 				if(view.context.getValue('afterE')===BEGIN) return false;
 				val nextVE = @view:L2!Element(afterE@view).@next;
 				if(nextVE!==null) return false;
 			} catch(Exception e) {
-				println("forward tested in case 1")
 			}
-			
-			println("last one true");
 			return true; 
 		} :
 			replace  L1!l:List{} (afterE:List::elements) L2!l:List{} (afterE:Element)
 		
 		case { // first one
-			println("first one in");
 			val srcElementsEdges = l@source.@@elements;
 			val afterE = afterE@source;
 			val nextSId = if(afterE===null) 0 else (srcElementsEdges.indexOf(afterE)+1);
@@ -64,7 +58,6 @@ function Element2Element<L1!(l:List,afterE:List::elements),L2!(l:List,afterE:Ele
 				return @source:L1!Element(nextSE).@value.equals(@view:L2!Element(nextVE).@value)				
 			} catch(Exception e) {
 			}
-			println("first one true");
 			return true;
 			
 			// check key
@@ -83,7 +76,6 @@ function Element2Element<L1!(l:List,afterE:List::elements),L2!(l:List,afterE:Ele
 				  }
 		
 		case { // in middle
-			println("middle one in");
 			val srcElementsEdges = l@source.@@elements;
 			val afterE = afterE@source;
 			if(afterE===null) return false;
@@ -99,7 +91,6 @@ function Element2Element<L1!(l:List,afterE:List::elements),L2!(l:List,afterE:Ele
 				
 			} catch(Exception e) {
 			}
-			println("middle one true");
 			return true;
 		} :  matchS srcListElement
 				matchV L2!l:List{le:elements=e:Element{lv:value=v:EString}, le2:elements=afterE:Element{ln:next=e}}  
@@ -115,7 +106,6 @@ function Element2Element<L1!(l:List,afterE:List::elements),L2!(l:List,afterE:Ele
 			else false
 		} : {
 			// no next element in view
-			println("adaption 1 in");
 			val nextSId = if(afterE@source===null) 0 else l@source.@@elements.indexOf(afterE@source)+1;
 			val delEdge = newArrayList;
 			val delNode = newArrayList;
@@ -147,7 +137,6 @@ function Element2Element<L1!(l:List,afterE:List::elements),L2!(l:List,afterE:Ele
 			];
 		} : {
 			// reorder source
-			println("adaption 2 in");
 			val elements = l@source.@@elements;
 			val prevLE = afterE@source;
 			val nextId = if(prevLE===null) 0 else elements.indexOf(prevLE);
@@ -179,7 +168,6 @@ function Element2Element<L1!(l:List,afterE:List::elements),L2!(l:List,afterE:Ele
 			
 		} : {
 			// create new source
-			println("adaption 3 in");
 			val elements = l@source.@@elements;
 			val prevLE = afterE@source;
 			
