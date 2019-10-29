@@ -21,7 +21,7 @@ import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 
-@ProjectTemplate(label = "BXCore", icon = "project_template.png", description = "<p><b>BXCore</b> project</p>\n<p>This is a parameterized project for BXCore. You can set a parameter to modify the content in the generated file\nand a parameter to set the package the file is created in.</p>")
+@ProjectTemplate(label = "BXCore", icon = "project_template.png", description = "<p><b>BXCore</b> project</p>\r\n<p>This is a parameterized project for BXCore. You can set a parameter to modify the content in the generated file\r\nand a parameter to set the package the file is created in.</p>")
 @SuppressWarnings("all")
 public final class SimpleBXProject extends AbstractProjectTemplate {
   private final GroupTemplateVariable advancedGroup = this.group("Properties");

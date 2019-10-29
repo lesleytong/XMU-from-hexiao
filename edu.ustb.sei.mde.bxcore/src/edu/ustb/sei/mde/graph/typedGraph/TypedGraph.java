@@ -49,9 +49,9 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		return order;
 	}
 	
-	private OrderInformation order;
+	OrderInformation order;
 	
-	private GraphConstraint constraint;
+	GraphConstraint constraint;
 	
 //	private Environment environment;
 //	
@@ -278,7 +278,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		return this.typeGraph;
 	}
 	
-	private List<TypedNode> allTypedNodes;
+	List<TypedNode> allTypedNodes;
 	public List<TypedNode> getAllTypedNodes() {
 		return allTypedNodes;
 	}
@@ -315,12 +315,12 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		return allValueNodes;
 	}
 	
-	private List<TypedEdge> allTypedEdges;
+	List<TypedEdge> allTypedEdges;
 	public List<TypedEdge> getAllTypedEdges() {
 		return allTypedEdges;
 	}
 	
-	private List<ValueEdge> allValueEdges;
+	List<ValueEdge> allValueEdges;
 	public List<ValueEdge> getAllValueEdges() {
 		return allValueEdges;
 	}
@@ -559,51 +559,54 @@ public class TypedGraph extends IndexSystem implements IGraph {
 	}
 	
 	public TypedGraph additiveMerge(TypedGraph graph) {
-		TypedGraph result = this.getCopy();
 		
-		graph.getAllTypedNodes().forEach(n->{
-			try {
-				TypedNode nr = result.getElementByIndexObject(n.getIndex());
-				if(nr!=n) {
-					result.replaceWith(nr,n);
-				}
-			} catch (NothingReturnedException e) {
-				result.addTypedNode(n);
-			}
-		});
+		return BXMerge.additiveMerge(this, graph);
 		
-		graph.getAllValueNodes().forEach(n->{
-			result.addValueNode(n);
-		});
-		
-		graph.getAllTypedEdges().forEach(e->{
-			try {
-				TypedEdge er = result.getElementByIndexObject(e.getIndex());
-				if(er!=e) {
-					result.replaceWith(er, e);
-				}
-			} catch (NothingReturnedException ex) {
-				result.addTypedEdge(e);
-			}
-		});
-		
-		graph.getAllValueEdges().forEach(e->{
-			try {
-				ValueEdge er = result.getElementByIndexObject(e.getIndex());
-				if(er!=e) {
-					result.replaceWith(er, e);
-				}
-			} catch (NothingReturnedException ex) {
-				result.addValueEdge(e);
-			}
-		});
-		
-		result.order.merge(graph.order);
-		
-		result.constraint=GraphConstraint.and(this.constraint, graph.constraint);
-		// check 
-		
-		return result;
+//		TypedGraph result = this.getCopy();
+//		
+//		graph.getAllTypedNodes().forEach(n->{
+//			try {
+//				TypedNode nr = result.getElementByIndexObject(n.getIndex());
+//				if(nr!=n) {
+//					result.replaceWith(nr,n);
+//				}
+//			} catch (NothingReturnedException e) {
+//				result.addTypedNode(n);
+//			}
+//		});
+//		
+//		graph.getAllValueNodes().forEach(n->{
+//			result.addValueNode(n);
+//		});
+//		
+//		graph.getAllTypedEdges().forEach(e->{
+//			try {
+//				TypedEdge er = result.getElementByIndexObject(e.getIndex());
+//				if(er!=e) {
+//					result.replaceWith(er, e);
+//				}
+//			} catch (NothingReturnedException ex) {
+//				result.addTypedEdge(e);
+//			}
+//		});
+//		
+//		graph.getAllValueEdges().forEach(e->{
+//			try {
+//				ValueEdge er = result.getElementByIndexObject(e.getIndex());
+//				if(er!=e) {
+//					result.replaceWith(er, e);
+//				}
+//			} catch (NothingReturnedException ex) {
+//				result.addValueEdge(e);
+//			}
+//		});
+//		
+//		result.order.merge(graph.order);
+//		
+//		result.constraint=GraphConstraint.and(this.constraint, graph.constraint);
+//		// check 
+//		
+//		return result;
 	}
 	
 	static boolean isEqual(IndexableElement l, IndexableElement r) {
@@ -632,19 +635,19 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		}
 	}
 	
-	private void replaceWith(ValueEdge er, ValueEdge e) {
+	void replaceWith(ValueEdge er, ValueEdge e) {
 		this.allValueEdges.replaceAll(x->isEqual(x,er) ? e : x);
 		e.mergeIndex(er);
 		reindexing(e);
 	}
 
-	private void replaceWith(TypedEdge er, TypedEdge e) {
+	void replaceWith(TypedEdge er, TypedEdge e) {
 		this.allTypedEdges.replaceAll(x->isEqual(x,er) ? e : x);
 		e.mergeIndex(er);
 		reindexing(e);
 	}
 
-	private void replaceWith(TypedNode nr, TypedNode n) {
+	void replaceWith(TypedNode nr, TypedNode n) {
 		// replace in node list
 		this.allTypedNodes.replaceAll(e->isEqual(e,nr) ? n : e);
 		
@@ -743,222 +746,225 @@ public class TypedGraph extends IndexSystem implements IGraph {
 //	}
 
 	public TypedGraph merge(TypedGraph... interSources) throws NothingReturnedException {
-		TypedGraph result = this.getCopy();
 		
-		// each typed node n in result, collect images in interSources (null means deleted, Any means default, T means required to be changed to T type)
-		//   if all the images of n are compatible, (1) delete or (2) change to the common sub-type
+		return BXMerge.merge(this, interSources);
 		
-		TypeNode[] nodeImages = new TypeNode[interSources.length];
-		for(TypedNode baseNode : this.getAllTypedNodes()) {
-			for(int i=0;i<interSources.length;i++) {
-				nodeImages[i] = computeImage(baseNode, this, interSources[i]);
-			}
-			
-			try {
-				TypeNode finalType = computeType(nodeImages, this.getTypeGraph());
-				
-				if(finalType==TypeNode.NULL_TYPE) {
-					result.remove(baseNode);
-				} else {
-					if(finalType==TypeNode.ANY_TYPE)
-						finalType = baseNode.getType();
-					
-					TypedNode n = new TypedNode();
-					n.setType(finalType);
-					
-					for(TypedGraph image : interSources) {
-						n.mergeIndex(image.getElementByIndexObject(baseNode.getIndex()));
-					}
-					
-					result.replaceWith(baseNode, n);
-				}
-				
-			} catch (NothingReturnedException e) {
-				throw e;
-			}
-		}
-		
-		for(TypedGraph image : interSources) {
-			image.getAllValueNodes().forEach(v->{result.addValueNode(v);});
-		}
-		
-		
-		// each typed edge e in the result, collect images in interSources (null means deleted, Any means default, <s,t>:T means required)
-		TypedEdge[] typedEdgeImages = new TypedEdge[interSources.length];
-		for(TypedEdge baseEdge : this.getAllTypedEdges()) {
-			for(int i=0;i<interSources.length;i++) {
-				typedEdgeImages[i] = computeImage(baseEdge, this, interSources[i]);
-			}
-			try {
-				Tuple3<TypedNode, TypedNode, TypeEdge> finalEdgeInfo = computeEdge(baseEdge, typedEdgeImages);
-				if(finalEdgeInfo==null) {
-					result.remove(baseEdge);
-				} else {
-					TypedNode source = result.getElementByIndexObject(finalEdgeInfo.first.getIndex());
-					TypedNode target = result.getElementByIndexObject(finalEdgeInfo.second.getIndex());
-					TypedEdge edge = new TypedEdge();
-					edge.setSource(source);
-					edge.setTarget(target);
-					edge.setType(finalEdgeInfo.third);
-					
-					for(TypedGraph image : interSources) {
-						edge.mergeIndex(image.getElementByIndexObject(baseEdge.getIndex()));
-					}
-					result.replaceWith(baseEdge, edge);
-				}
-			} catch (NothingReturnedException e) {
-				throw e;
-			}
-		}
-		
-		// each typed edge e in the result, collect images in interSources (null means deleted, Any means default, <s,t>:T means required)
-		ValueEdge[] valueEdgeImages = new ValueEdge[interSources.length];
-		for(ValueEdge baseEdge : this.getAllValueEdges()) {
-			for(int i=0;i<interSources.length;i++) {
-				valueEdgeImages[i] = computeImage(baseEdge, this, interSources[i]);
-			}
-			try {
-				Tuple3<TypedNode, ValueNode, PropertyEdge> finalEdgeInfo = computeEdge(baseEdge, valueEdgeImages);
-				if(finalEdgeInfo==null) {
-					result.remove(baseEdge);
-				} else {
-					TypedNode source = result.getElementByIndexObject(finalEdgeInfo.first.getIndex());
-					ValueNode target = finalEdgeInfo.second;
-					ValueEdge edge = new ValueEdge();
-					edge.setSource(source);
-					edge.setTarget(target);
-					edge.setType(finalEdgeInfo.third);
-					
-					for(TypedGraph image : interSources) {
-						edge.mergeIndex(image.getElementByIndexObject(baseEdge.getIndex()));
-					}
-					result.replaceWith(baseEdge, edge);
-				}
-			} catch (NothingReturnedException e) {
-				throw e;
-			}
-		}
-		
-		// add extra nodes and edges
-		
-		for(TypedGraph image : interSources) {
-			for(TypedNode n : image.allTypedNodes) {
-				try {
-					this.getElementByIndexObject(n.getIndex());
-				} catch (NothingReturnedException e) {
-					TypedNode rn = null;
-					try {
-						rn = result.getElementByIndexObject(n.getIndex());
-					} catch (NothingReturnedException e1) {
-						result.addTypedNode(n);
-						rn = null;
-					} finally {
-						if(rn!=null) {
-							TypeNode lt = rn.getType();
-							TypeNode rt = n.getType();
-							TypeNode ct = this.getTypeGraph().computeSubtype(lt, rt);
-							if(ct==TypeNode.NULL_TYPE) {
-								// incompatible
-								throw new NothingReturnedException();
-							} else {
-//								TypedNode res = new TypedNode();
-//								res.setType(ct);;
-//								res.mergeIndices(rn);
-//								res.mergeIndices(n);
-//								result.replaceWith(rn, res);
-								rn.mergeIndex(n);
-								rn.setType(ct);
-							}
-						}
-					}
-				}
-			}
-			
-			for(TypedEdge e : image.allTypedEdges) {
-				try {
-					this.getElementByIndexObject(e.getIndex());
-				} catch (Exception ex) {
-					TypedEdge re = null;
-					try {
-						re = result.getElementByIndexObject(e.getIndex());
-					} catch (Exception ex2) {
-						TypedNode source = result.getElementByIndexObject(e.getSource().getIndex());
-						TypedNode target = result.getElementByIndexObject(e.getTarget().getIndex());
-						if(e.getSource()!=source || e.getTarget()!=target) {
-							TypedEdge ne = new TypedEdge();
-							ne.setSource(source);
-							ne.setTarget(target);
-							ne.setType(e.getType());
-							ne.mergeIndex(e);
-							result.addTypedEdge(ne);
-						} else result.addTypedEdge(e);
-						re = null;
-					} finally {
-						if(re!=null) {
-							if(re.getType()!=e.getType()
-									|| !re.getSource().getIndex().equals(e.getSource().getIndex())
-									|| !re.getTarget().getIndex().equals(e.getTarget().getIndex())) {
-								throw new NothingReturnedException();
-							} else {
-								re.mergeIndex(e);
-							}
-						}
-					}
-				}
-			}
-			
-			for(ValueEdge e : image.allValueEdges) {
-				try {
-					this.getElementByIndexObject(e.getIndex());
-				} catch (Exception ex) {
-					ValueEdge re = null;
-					try {
-						re = result.getElementByIndexObject(e.getIndex());
-					} catch (Exception ex2) {
-						TypedNode source = result.getElementByIndexObject(e.getSource().getIndex());
-//						ValueNode target = e.getTarget();
-						if(e.getSource()!=source) {
-							ValueEdge ne = new ValueEdge();
-							ne.setSource(source);
-							ne.setTarget(e.getTarget());
-							ne.setType(e.getType());
-							ne.mergeIndex(e);
-							result.addValueEdge(ne);
-						} else result.addValueEdge(e);
-//						result.addValueEdge(e);
-						re = null;
-					} finally {
-						if(re!=null) {
-							if(re.getType()!=e.getType()
-									|| !re.getSource().getIndex().equals(e.getSource().getIndex())
-									|| re.getTarget().equals(e.getTarget())==false) {
-								throw new NothingReturnedException();
-							} else {
-								re.mergeIndex(e);
-							}
-						}
-					}
-				}
-			}
-		}
-		
-		OrderInformation[] orders = new OrderInformation[interSources.length];
-		for(int i=0;i<interSources.length;i++)
-			orders[i] = interSources[i].order;
-		result.order.merge(orders);
-		
-		List<GraphConstraint> cons = new ArrayList<>();
-		cons.add(this.getConstraint());
-		for(TypedGraph g : interSources) {
-			cons.add(g.constraint);
-		}
-		result.constraint = GraphConstraint.and(cons);
-		// check
-		
-		return result;
+//		TypedGraph result = this.getCopy();
+//		
+//		// each typed node n in result, collect images in interSources (null means deleted, Any means default, T means required to be changed to T type)
+//		//   if all the images of n are compatible, (1) delete or (2) change to the common sub-type
+//		
+//		TypeNode[] nodeImages = new TypeNode[interSources.length];
+//		for(TypedNode baseNode : this.getAllTypedNodes()) {
+//			for(int i=0;i<interSources.length;i++) {
+//				nodeImages[i] = computeImage(baseNode, this, interSources[i]);
+//			}
+//			
+//			try {
+//				TypeNode finalType = computeType(nodeImages, this.getTypeGraph());
+//				
+//				if(finalType==TypeNode.NULL_TYPE) {
+//					result.remove(baseNode);
+//				} else {
+//					if(finalType==TypeNode.ANY_TYPE)
+//						finalType = baseNode.getType();
+//					
+//					TypedNode n = new TypedNode();
+//					n.setType(finalType);
+//					
+//					for(TypedGraph image : interSources) {
+//						n.mergeIndex(image.getElementByIndexObject(baseNode.getIndex()));
+//					}
+//					
+//					result.replaceWith(baseNode, n);
+//				}
+//				
+//			} catch (NothingReturnedException e) {
+//				throw e;
+//			}
+//		}
+//		
+//		for(TypedGraph image : interSources) {
+//			image.getAllValueNodes().forEach(v->{result.addValueNode(v);});
+//		}
+//		
+//		
+//		// each typed edge e in the result, collect images in interSources (null means deleted, Any means default, <s,t>:T means required)
+//		TypedEdge[] typedEdgeImages = new TypedEdge[interSources.length];
+//		for(TypedEdge baseEdge : this.getAllTypedEdges()) {
+//			for(int i=0;i<interSources.length;i++) {
+//				typedEdgeImages[i] = computeImage(baseEdge, this, interSources[i]);
+//			}
+//			try {
+//				Tuple3<TypedNode, TypedNode, TypeEdge> finalEdgeInfo = computeEdge(baseEdge, typedEdgeImages);
+//				if(finalEdgeInfo==null) {
+//					result.remove(baseEdge);
+//				} else {
+//					TypedNode source = result.getElementByIndexObject(finalEdgeInfo.first.getIndex());
+//					TypedNode target = result.getElementByIndexObject(finalEdgeInfo.second.getIndex());
+//					TypedEdge edge = new TypedEdge();
+//					edge.setSource(source);
+//					edge.setTarget(target);
+//					edge.setType(finalEdgeInfo.third);
+//					
+//					for(TypedGraph image : interSources) {
+//						edge.mergeIndex(image.getElementByIndexObject(baseEdge.getIndex()));
+//					}
+//					result.replaceWith(baseEdge, edge);
+//				}
+//			} catch (NothingReturnedException e) {
+//				throw e;
+//			}
+//		}
+//		
+//		// each typed edge e in the result, collect images in interSources (null means deleted, Any means default, <s,t>:T means required)
+//		ValueEdge[] valueEdgeImages = new ValueEdge[interSources.length];
+//		for(ValueEdge baseEdge : this.getAllValueEdges()) {
+//			for(int i=0;i<interSources.length;i++) {
+//				valueEdgeImages[i] = computeImage(baseEdge, this, interSources[i]);
+//			}
+//			try {
+//				Tuple3<TypedNode, ValueNode, PropertyEdge> finalEdgeInfo = computeEdge(baseEdge, valueEdgeImages);
+//				if(finalEdgeInfo==null) {
+//					result.remove(baseEdge);
+//				} else {
+//					TypedNode source = result.getElementByIndexObject(finalEdgeInfo.first.getIndex());
+//					ValueNode target = finalEdgeInfo.second;
+//					ValueEdge edge = new ValueEdge();
+//					edge.setSource(source);
+//					edge.setTarget(target);
+//					edge.setType(finalEdgeInfo.third);
+//					
+//					for(TypedGraph image : interSources) {
+//						edge.mergeIndex(image.getElementByIndexObject(baseEdge.getIndex()));
+//					}
+//					result.replaceWith(baseEdge, edge);
+//				}
+//			} catch (NothingReturnedException e) {
+//				throw e;
+//			}
+//		}
+//		
+//		// add extra nodes and edges
+//		
+//		for(TypedGraph image : interSources) {
+//			for(TypedNode n : image.allTypedNodes) {
+//				try {
+//					this.getElementByIndexObject(n.getIndex());
+//				} catch (NothingReturnedException e) {
+//					TypedNode rn = null;
+//					try {
+//						rn = result.getElementByIndexObject(n.getIndex());
+//					} catch (NothingReturnedException e1) {
+//						result.addTypedNode(n);
+//						rn = null;
+//					} finally {
+//						if(rn!=null) {
+//							TypeNode lt = rn.getType();
+//							TypeNode rt = n.getType();
+//							TypeNode ct = this.getTypeGraph().computeSubtype(lt, rt);
+//							if(ct==TypeNode.NULL_TYPE) {
+//								// incompatible
+//								throw new NothingReturnedException();
+//							} else {
+////								TypedNode res = new TypedNode();
+////								res.setType(ct);;
+////								res.mergeIndices(rn);
+////								res.mergeIndices(n);
+////								result.replaceWith(rn, res);
+//								rn.mergeIndex(n);
+//								rn.setType(ct);
+//							}
+//						}
+//					}
+//				}
+//			}
+//			
+//			for(TypedEdge e : image.allTypedEdges) {
+//				try {
+//					this.getElementByIndexObject(e.getIndex());
+//				} catch (Exception ex) {
+//					TypedEdge re = null;
+//					try {
+//						re = result.getElementByIndexObject(e.getIndex());
+//					} catch (Exception ex2) {
+//						TypedNode source = result.getElementByIndexObject(e.getSource().getIndex());
+//						TypedNode target = result.getElementByIndexObject(e.getTarget().getIndex());
+//						if(e.getSource()!=source || e.getTarget()!=target) {
+//							TypedEdge ne = new TypedEdge();
+//							ne.setSource(source);
+//							ne.setTarget(target);
+//							ne.setType(e.getType());
+//							ne.mergeIndex(e);
+//							result.addTypedEdge(ne);
+//						} else result.addTypedEdge(e);
+//						re = null;
+//					} finally {
+//						if(re!=null) {
+//							if(re.getType()!=e.getType()
+//									|| !re.getSource().getIndex().equals(e.getSource().getIndex())
+//									|| !re.getTarget().getIndex().equals(e.getTarget().getIndex())) {
+//								throw new NothingReturnedException();
+//							} else {
+//								re.mergeIndex(e);
+//							}
+//						}
+//					}
+//				}
+//			}
+//			
+//			for(ValueEdge e : image.allValueEdges) {
+//				try {
+//					this.getElementByIndexObject(e.getIndex());
+//				} catch (Exception ex) {
+//					ValueEdge re = null;
+//					try {
+//						re = result.getElementByIndexObject(e.getIndex());
+//					} catch (Exception ex2) {
+//						TypedNode source = result.getElementByIndexObject(e.getSource().getIndex());
+////						ValueNode target = e.getTarget();
+//						if(e.getSource()!=source) {
+//							ValueEdge ne = new ValueEdge();
+//							ne.setSource(source);
+//							ne.setTarget(e.getTarget());
+//							ne.setType(e.getType());
+//							ne.mergeIndex(e);
+//							result.addValueEdge(ne);
+//						} else result.addValueEdge(e);
+////						result.addValueEdge(e);
+//						re = null;
+//					} finally {
+//						if(re!=null) {
+//							if(re.getType()!=e.getType()
+//									|| !re.getSource().getIndex().equals(e.getSource().getIndex())
+//									|| re.getTarget().equals(e.getTarget())==false) {
+//								throw new NothingReturnedException();
+//							} else {
+//								re.mergeIndex(e);
+//							}
+//						}
+//					}
+//				}
+//			}
+//		}
+//		
+//		OrderInformation[] orders = new OrderInformation[interSources.length];
+//		for(int i=0;i<interSources.length;i++)
+//			orders[i] = interSources[i].order;
+//		result.order.merge(orders);
+//		
+//		List<GraphConstraint> cons = new ArrayList<>();
+//		cons.add(this.getConstraint());
+//		for(TypedGraph g : interSources) {
+//			cons.add(g.constraint);
+//		}
+//		result.constraint = GraphConstraint.and(cons);
+//		// check
+//		
+//		return result;
 	}
 	
-	private Tuple3<TypedNode, ValueNode, PropertyEdge> computeEdge(ValueEdge base, ValueEdge[] valueEdgeImages) throws NothingReturnedException {
+	static Tuple3<TypedNode, ValueNode, PropertyEdge> computeEdge(ValueEdge base, ValueEdge[] valueEdgeImages) throws NothingReturnedException {
 		Tuple3<TypedNode, ValueNode, PropertyEdge> any = new Tuple3<TypedNode, ValueNode, PropertyEdge>(base.getSource(), base.getTarget(), base.getType());
 		Tuple3<TypedNode, ValueNode, PropertyEdge> tuple = any;
 		
@@ -993,7 +999,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 				&& tuple.second.equals(base.getTarget());
 	}
 
-	private ValueEdge computeImage(ValueEdge baseEdge, TypedGraph baseGraph, TypedGraph imageGraph) {
+	static ValueEdge computeImage(ValueEdge baseEdge, TypedGraph baseGraph, TypedGraph imageGraph) {
 		try {
 			ValueEdge imageEdge = imageGraph.getElementByIndexObject(baseEdge.getIndex());
 			if(imageEdge.getType()==baseEdge.getType()
@@ -1018,7 +1024,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		// compute pre-deleted elements when baseEdge is containment, or not?
 	}
 
-	private Tuple3<TypedNode, TypedNode, TypeEdge> computeEdge(TypedEdge base, TypedEdge[] typedEdgeImages) throws NothingReturnedException {
+	static Tuple3<TypedNode, TypedNode, TypeEdge> computeEdge(TypedEdge base, TypedEdge[] typedEdgeImages) throws NothingReturnedException {
 		Tuple3<TypedNode, TypedNode, TypeEdge> any = new Tuple3<TypedNode, TypedNode, TypeEdge>(base.getSource(), base.getTarget(), base.getType());
 		Tuple3<TypedNode, TypedNode, TypeEdge> tuple = any;
 		
@@ -1054,7 +1060,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		&& tuple.second.getIndex().equals(base.getTarget().getIndex());
 	}
 
-	private TypedEdge computeImage(TypedEdge baseEdge, TypedGraph baseGraph, TypedGraph imageGraph) {
+	static TypedEdge computeImage(TypedEdge baseEdge, TypedGraph baseGraph, TypedGraph imageGraph) {
 		try {
 			TypedEdge imageEdge = imageGraph.getElementByIndexObject(baseEdge.getIndex());
 			if(imageEdge.getType()==baseEdge.getType()
@@ -1068,7 +1074,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		}
 	}
 
-	static private TypeNode computeType(TypeNode[] images, TypeGraph typeGraph) throws NothingReturnedException {
+	static TypeNode computeType(TypeNode[] images, TypeGraph typeGraph) throws NothingReturnedException {
 		TypeNode finalType = TypeNode.ANY_TYPE;
 		
 		for(TypeNode n : images) {
@@ -1095,7 +1101,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		return finalType;
 	}
 
-	private static TypeNode computeImage(TypedNode baseNode, TypedGraph baseGraph, TypedGraph imageGraph) {
+	static TypeNode computeImage(TypedNode baseNode, TypedGraph baseGraph, TypedGraph imageGraph) {
 		try {
 			TypedNode imageNode = imageGraph.getElementByIndexObject(baseNode.getIndex());
 			

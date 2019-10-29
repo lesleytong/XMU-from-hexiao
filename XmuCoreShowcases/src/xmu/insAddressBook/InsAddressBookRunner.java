@@ -14,7 +14,7 @@ public class InsAddressBookRunner {
 
 	public static void main(String[] args) throws Exception {
 		/* please change the basePath to the actual path of the workspace */
-		final String basePath =  "/Volumes/Macintosh HD Data/Eclipse Projects/git/morel";
+		final String basePath =  "E:/git/morel";
 		
 		final String sabMetamodelPath = basePath+"/XmuCoreShowcases/metamodel/SimpleAddressBook.ecore";
 		final String niiMetamodelPath = basePath+"/XmuCoreShowcases/metamodel/NIIAddressBook.ecore";
@@ -28,14 +28,14 @@ public class InsAddressBookRunner {
 		 * test forward execution 
 		 * please comment the backward execution before doing forward
 		 */
-//		testForward(sabMetamodelPath, niiMetamodelPath, sabModelPath, niiModelPath);
+		testForward(sabMetamodelPath, niiMetamodelPath, sabModelPath, niiModelPath);
 		
 		/* 
 		 * test backward execution 
 		 * if you execute the forward execution, please change the rdbms model to examine the backward behavior
 		 * please comment the forward execution before doing backward 
 		 */
-		testBackward(sabMetamodelPath, niiMetamodelPath, sabModelPath, niiModelPath, updatedSabModelPath);
+//		testBackward(sabMetamodelPath, niiMetamodelPath, sabModelPath, niiModelPath, updatedSabModelPath);
 	}
 
 	static public void testForward(String sourceMetamodelPath, String viewMetamodelPath, String sourceModelPath, String viewModelPath) throws Exception {

@@ -292,22 +292,6 @@ public class Bag2Bag extends XmuProgram {
   }
   
   /**
-   * id:0
-   */
-  private ContextType type_0;
-  
-  public ContextType getType_0() {
-    if(type_0==null) {
-    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Bag1();
-    	type_0 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
-    	edu.ustb.sei.mde.graph.type.IType b_type = typeGraph.getTypeNode("Bag")
-    	;
-    	type_0.addField("b", b_type, false);
-    }
-    return type_0;
-  }
-  
-  /**
    * id:3
    */
   private ContextType type_3;
@@ -339,6 +323,22 @@ public class Bag2Bag extends XmuProgram {
     	type_3.addField("v", v_type, false);
     }
     return type_3;
+  }
+  
+  /**
+   * id:0
+   */
+  private ContextType type_0;
+  
+  public ContextType getType_0() {
+    if(type_0==null) {
+    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Bag1();
+    	type_0 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
+    	edu.ustb.sei.mde.graph.type.IType b_type = typeGraph.getTypeNode("Bag")
+    	;
+    	type_0.addField("b", b_type, false);
+    }
+    return type_0;
   }
   
   /**

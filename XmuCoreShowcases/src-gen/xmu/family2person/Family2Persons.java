@@ -444,6 +444,54 @@ public class Family2Persons extends XmuProgram {
   }
   
   /**
+   * id:3
+   */
+  private ContextType type_3;
+  
+  public ContextType getType_3() {
+    if(type_3==null) {
+    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_PR();
+    	type_3 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
+    	edu.ustb.sei.mde.graph.type.IType y_type = typeGraph.getTypeNode("PersonsRegister")
+    	;
+    	type_3.addField("y", y_type, false);
+    }
+    return type_3;
+  }
+  
+  /**
+   * id:1
+   */
+  private ContextType type_1;
+  
+  public ContextType getType_1() {
+    if(type_1==null) {
+    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_PR();
+    	type_1 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
+    	edu.ustb.sei.mde.graph.type.IType s_type = typeGraph.getDataTypeNode("EString")
+    	;
+    	type_1.addField("s", s_type, false);
+    }
+    return type_1;
+  }
+  
+  /**
+   * id:0
+   */
+  private ContextType type_0;
+  
+  public ContextType getType_0() {
+    if(type_0==null) {
+    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_FR();
+    	type_0 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
+    	edu.ustb.sei.mde.graph.type.IType f_type = typeGraph.getTypeNode("Family")
+    	;
+    	type_0.addField("f", f_type, false);
+    }
+    return type_0;
+  }
+  
+  /**
    * id:4
    */
   private ContextType type_4;
@@ -481,54 +529,6 @@ public class Family2Persons extends XmuProgram {
     	type_4.addField("x", x_type, false);
     }
     return type_4;
-  }
-  
-  /**
-   * id:0
-   */
-  private ContextType type_0;
-  
-  public ContextType getType_0() {
-    if(type_0==null) {
-    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_FR();
-    	type_0 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
-    	edu.ustb.sei.mde.graph.type.IType f_type = typeGraph.getTypeNode("Family")
-    	;
-    	type_0.addField("f", f_type, false);
-    }
-    return type_0;
-  }
-  
-  /**
-   * id:3
-   */
-  private ContextType type_3;
-  
-  public ContextType getType_3() {
-    if(type_3==null) {
-    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_PR();
-    	type_3 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
-    	edu.ustb.sei.mde.graph.type.IType y_type = typeGraph.getTypeNode("PersonsRegister")
-    	;
-    	type_3.addField("y", y_type, false);
-    }
-    return type_3;
-  }
-  
-  /**
-   * id:2
-   */
-  private ContextType type_2;
-  
-  public ContextType getType_2() {
-    if(type_2==null) {
-    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_FR();
-    	type_2 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
-    	edu.ustb.sei.mde.graph.type.IType x_type = typeGraph.getTypeNode("FamilyRegister")
-    	;
-    	type_2.addField("x", x_type, false);
-    }
-    return type_2;
   }
   
   /**
@@ -572,19 +572,19 @@ public class Family2Persons extends XmuProgram {
   }
   
   /**
-   * id:1
+   * id:2
    */
-  private ContextType type_1;
+  private ContextType type_2;
   
-  public ContextType getType_1() {
-    if(type_1==null) {
-    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_PR();
-    	type_1 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
-    	edu.ustb.sei.mde.graph.type.IType s_type = typeGraph.getDataTypeNode("EString")
+  public ContextType getType_2() {
+    if(type_2==null) {
+    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_FR();
+    	type_2 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
+    	edu.ustb.sei.mde.graph.type.IType x_type = typeGraph.getTypeNode("FamilyRegister")
     	;
-    	type_1.addField("s", s_type, false);
+    	type_2.addField("x", x_type, false);
     }
-    return type_1;
+    return type_2;
   }
   
   private Pattern pattern_0;
