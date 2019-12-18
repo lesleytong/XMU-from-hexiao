@@ -16,14 +16,14 @@ import edu.ustb.sei.mde.structure.PairMap;
 import edu.ustb.sei.mde.structure.Tuple2;
 
 public class OrderInformation {
+	
 	private Set<Tuple2<Index,Index>> order = new HashSet<>();
+	private PairMap<Index, Index, Boolean> cache = new PairMap<>();
 	
 	public void add(Index from, Index to) {
 		order.add(Tuple2.make(from, to));
 		cache.clear();
 	}
-	
-	
 	
 	public boolean path(Index from, Index to) {
 		Boolean result = null;
@@ -31,8 +31,6 @@ public class OrderInformation {
 		Set<Index> visited = new HashSet<>();
 		return path(from, to, visited);
 	}
-	
-	private PairMap<Index, Index, Boolean> cache = new PairMap<>();
 	
 	private boolean path(Index from, Index to, Set<Index> visited) {
 		if(visited.contains(from)) return false;
@@ -44,15 +42,17 @@ public class OrderInformation {
 		return result;
 	}
 	
+	
 	public OrderInformation getCopy() {
 		OrderInformation oi = new OrderInformation();
 		oi.order.addAll(order);
 		return oi;
 	}
 	
+	//调用此方法的对象是result.order，意思是将graph.order的序信息添加到result.order中
 	public void merge(OrderInformation... merges) {
 		for(OrderInformation oi : merges) 
-			order.addAll(oi.order);
+			order.addAll(oi.order);	//Set集合的addAll()方法
 	}
 	
 	public boolean validate() {

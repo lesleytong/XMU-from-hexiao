@@ -59,6 +59,7 @@ abstract public class IndexableElement {
 		index.internalIndices().forEach(a);
 	}
 	
+	//比如调用：re.mergeIndex(e)，将e的索引集合并到re的索引集中
 	public void mergeIndex(IndexableElement e) {
 		index.merge(e.getIndex());
 	}

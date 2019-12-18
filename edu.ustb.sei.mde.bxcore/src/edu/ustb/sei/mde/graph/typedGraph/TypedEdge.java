@@ -4,6 +4,14 @@ import edu.ustb.sei.mde.graph.type.TypeEdge;
 
 public class TypedEdge extends IndexableElement implements ITypedEdge {
 	
+	private TypedNode source;
+	private TypedNode target;
+	private TypeEdge type;	//TypedEdge的类型看TypeEdge
+	
+	public TypedEdge() {
+		
+	}
+	
 	public TypedEdge(TypedNode source, TypedNode target, TypeEdge type) {
 		super();
 		this.source = source;
@@ -11,16 +19,6 @@ public class TypedEdge extends IndexableElement implements ITypedEdge {
 		this.type = type;
 	}
 
-	private TypedNode source;
-	private TypedNode target;
-	private TypeEdge type;
-	
-	public TypedEdge() {
-		
-	}
-	
-	
-	
 	public TypedNode getSource() {
 		return source;
 	}

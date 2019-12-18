@@ -1,7 +1,4 @@
 package edu.ustb.sei.mde.bxcore;
-
-
-
 import java.util.List;
 
 import edu.ustb.sei.mde.bxcore.exceptions.BidirectionalTransformationDefinitionException;

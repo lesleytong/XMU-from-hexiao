@@ -1,6 +1,11 @@
 package edu.ustb.sei.mde.structure;
 
+//二元组
 public class Tuple2<F, S> {
+	
+	public final F first;	
+	public final S second;
+	
 	public Tuple2(F first, S second) {
 		super();
 		this.first = first;
@@ -11,9 +16,6 @@ public class Tuple2<F, S> {
 		return new Tuple2<F, S>(f, s);
 	}
 	
-	public final F first;
-	public final S second;
-	
 	@Override
 	public int hashCode() {
 		int firstCode = first==null ? 0 : first.hashCode();
@@ -21,6 +23,7 @@ public class Tuple2<F, S> {
 		return ((firstCode&0xFFFF)<<16) & (secondCode&0xFFFF);
 	}
 	
+	//判断两个元组相等的方法<a,b>=<c, d>当且仅当，a=c且b=d
 	@SuppressWarnings("rawtypes")
 	public boolean equals(Object o) {
 		if(o==null || ! (o instanceof Tuple2))

@@ -13,7 +13,7 @@ import edu.ustb.sei.mde.bxcore.structures.FieldDef;
 import edu.ustb.sei.mde.bxcore.structures.Index;
 
 public class IndexSystem {
-	final static public Index INITIAL_INDEX = IndexSystem.generateFreshIndex();
+	final static public Index INITIAL_INDEX = IndexSystem.generateFreshIndex();	
 	final static public Index TERMINAL_INDEX = IndexSystem.generateFreshIndex();
 	
 	protected Map<Object,IndexableElement> indexToObjectMap;
@@ -35,27 +35,27 @@ public class IndexSystem {
 //		indices.add(index);
 	}
 
+	/** 将索引集和对象的对应关系，添加到indexToObjectMap中 */
 	public void registerIndex(Object index, IndexableElement obj) throws NothingReturnedException {
-		Object prev = this.indexToObjectMap.put(index, obj);
+		Object prev = this.indexToObjectMap.put(index, obj);	//put的返回类型是Value的类型（即IndexableElement）
 		
 		if((prev!=null && prev!=obj) || obj.isIndexable()==false) 
 			throw new NothingReturnedException("You are trying to map an index onto two elements");
 	}
 	
-
-	
+	/** 将元素e的索引集从indexToObjectMap中清除 */
 	protected void clearIndex(IndexableElement e) {
 		e.foreach(i->{
 			this.indexToObjectMap.remove(i);
 		});
 	}
 	
-	
+	/** 根据Index获取对象 */
 	@SuppressWarnings("unchecked")
 	public <T> T getElementByIndexObject(Index index) throws NothingReturnedException {
 		T res = null;
 		for(Object i : index.internalIndices()) {
-			if((res = (T) this.indexToObjectMap.get(i))!=null) {
+			if((res=(T) this.indexToObjectMap.get(i)) != null) {	//根据键获取值
 				return res;
 			}
 		}

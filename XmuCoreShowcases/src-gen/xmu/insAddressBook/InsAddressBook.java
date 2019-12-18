@@ -269,6 +269,53 @@ public class InsAddressBook extends XmuProgram {
   }
   
   /**
+   * id:0
+   */
+  private ContextType type_0;
+  
+  public ContextType getType_0() {
+    if(type_0==null) {
+    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Sab();
+    	type_0 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
+    	edu.ustb.sei.mde.graph.type.IType b_type = typeGraph.getTypeNode("AddressBook")
+    	;
+    	type_0.addField("b", b_type, false);
+    }
+    return type_0;
+  }
+  
+  /**
+   * id:5
+   */
+  private ContextType type_5;
+  
+  public ContextType getType_5() {
+    if(type_5==null) {
+    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Sab();
+    	type_5 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
+    	edu.ustb.sei.mde.graph.type.IType b_type = typeGraph.getTypeNode("AddressBook")
+    	;
+    	type_5.addField("b", b_type, false);
+    	edu.ustb.sei.mde.graph.type.IType em_type = typeGraph.getDataTypeNode("EString")
+    	;
+    	type_5.addField("em", em_type, false);
+    	edu.ustb.sei.mde.graph.type.IType ln_type = typeGraph.getPropertyEdge(typeGraph.getTypeNode("Person"),"name")
+    	;
+    	type_5.addField("ln", ln_type, false);
+    	edu.ustb.sei.mde.graph.type.IType lp_type = typeGraph.getTypeEdge(typeGraph.getTypeNode("AddressBook"),"persons")
+    	;
+    	type_5.addField("lp", lp_type, false);
+    	edu.ustb.sei.mde.graph.type.IType n_type = typeGraph.getDataTypeNode("EString")
+    	;
+    	type_5.addField("n", n_type, false);
+    	edu.ustb.sei.mde.graph.type.IType p_type = typeGraph.getTypeNode("Person")
+    	;
+    	type_5.addField("p", p_type, false);
+    }
+    return type_5;
+  }
+  
+  /**
    * id:1
    */
   private ContextType type_1;
@@ -313,38 +360,6 @@ public class InsAddressBook extends XmuProgram {
   }
   
   /**
-   * id:4
-   */
-  private ContextType type_4;
-  
-  public ContextType getType_4() {
-    if(type_4==null) {
-    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Sab();
-    	type_4 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
-    	edu.ustb.sei.mde.graph.type.IType em_type = typeGraph.getDataTypeNode("EString")
-    	;
-    	type_4.addField("em", em_type, false);
-    }
-    return type_4;
-  }
-  
-  /**
-   * id:0
-   */
-  private ContextType type_0;
-  
-  public ContextType getType_0() {
-    if(type_0==null) {
-    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Sab();
-    	type_0 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
-    	edu.ustb.sei.mde.graph.type.IType b_type = typeGraph.getTypeNode("AddressBook")
-    	;
-    	type_0.addField("b", b_type, false);
-    }
-    return type_0;
-  }
-  
-  /**
    * id:3
    */
   private ContextType type_3;
@@ -379,34 +394,19 @@ public class InsAddressBook extends XmuProgram {
   }
   
   /**
-   * id:5
+   * id:4
    */
-  private ContextType type_5;
+  private ContextType type_4;
   
-  public ContextType getType_5() {
-    if(type_5==null) {
+  public ContextType getType_4() {
+    if(type_4==null) {
     	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Sab();
-    	type_5 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
-    	edu.ustb.sei.mde.graph.type.IType b_type = typeGraph.getTypeNode("AddressBook")
-    	;
-    	type_5.addField("b", b_type, false);
+    	type_4 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
     	edu.ustb.sei.mde.graph.type.IType em_type = typeGraph.getDataTypeNode("EString")
     	;
-    	type_5.addField("em", em_type, false);
-    	edu.ustb.sei.mde.graph.type.IType ln_type = typeGraph.getPropertyEdge(typeGraph.getTypeNode("Person"),"name")
-    	;
-    	type_5.addField("ln", ln_type, false);
-    	edu.ustb.sei.mde.graph.type.IType lp_type = typeGraph.getTypeEdge(typeGraph.getTypeNode("AddressBook"),"persons")
-    	;
-    	type_5.addField("lp", lp_type, false);
-    	edu.ustb.sei.mde.graph.type.IType n_type = typeGraph.getDataTypeNode("EString")
-    	;
-    	type_5.addField("n", n_type, false);
-    	edu.ustb.sei.mde.graph.type.IType p_type = typeGraph.getTypeNode("Person")
-    	;
-    	type_5.addField("p", p_type, false);
+    	type_4.addField("em", em_type, false);
     }
-    return type_5;
+    return type_4;
   }
   
   private Pattern pattern_0;

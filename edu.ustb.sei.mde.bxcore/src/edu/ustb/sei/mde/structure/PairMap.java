@@ -1,8 +1,9 @@
 package edu.ustb.sei.mde.structure;
 
 import java.util.concurrent.ConcurrentHashMap;
-
+//ศýิชื้
 public class PairMap<F, S, V> {
+	
 	private ConcurrentHashMap<F,ConcurrentHashMap<S, V>> pairMap = new ConcurrentHashMap<>();
 	
 	public V get(F f, S s) {

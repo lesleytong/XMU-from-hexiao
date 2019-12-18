@@ -28,14 +28,14 @@ public class InsAddressBookRunner {
 		 * test forward execution 
 		 * please comment the backward execution before doing forward
 		 */
-		testForward(sabMetamodelPath, niiMetamodelPath, sabModelPath, niiModelPath);
+//		testForward(sabMetamodelPath, niiMetamodelPath, sabModelPath, niiModelPath);
 		
 		/* 
 		 * test backward execution 
 		 * if you execute the forward execution, please change the rdbms model to examine the backward behavior
 		 * please comment the forward execution before doing backward 
 		 */
-//		testBackward(sabMetamodelPath, niiMetamodelPath, sabModelPath, niiModelPath, updatedSabModelPath);
+		testBackward(sabMetamodelPath, niiMetamodelPath, sabModelPath, niiModelPath, updatedSabModelPath);
 	}
 
 	static public void testForward(String sourceMetamodelPath, String viewMetamodelPath, String sourceModelPath, String viewModelPath) throws Exception {

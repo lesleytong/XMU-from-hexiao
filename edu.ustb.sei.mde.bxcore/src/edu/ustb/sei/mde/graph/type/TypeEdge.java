@@ -10,26 +10,12 @@ public class TypeEdge implements IStructuralFeatureEdge {
 	private TypeNode target;
 	@Nullable(false)
 	private String name;
-	
-	private boolean isMany;
 
+	private boolean isMany;
 	private boolean isUnique;
-	
 	private boolean isContainment;
 	
-	public boolean isContainment() {
-		return isContainment;
-	}
-	public void setContainment(boolean isContainment) {
-		this.isContainment = isContainment;
-	}
-	
-	public boolean isUnique() {
-		return isMany==false || isUnique;
-	}
-	void setUnique(boolean isUnique) {
-		this.isUnique = isUnique;
-	}
+	private TypeGraph typeGraph;
 	
 	public TypeNode getSource() {
 		return source;
@@ -58,12 +44,23 @@ public class TypeEdge implements IStructuralFeatureEdge {
 	void setMany(boolean isMany) {
 		this.isMany = isMany;
 	}
-
-	public String toString() {
-		return source.getName()+"-"+(isMany?"*":"-")+"->"+target.getName();
+	
+	public boolean isUnique() {
+		return isMany==false || isUnique;
+	}
+	void setUnique(boolean isUnique) {
+		this.isUnique = isUnique;
 	}
 	
-	private TypeGraph typeGraph;
+	public boolean isContainment() {
+		return isContainment;
+	}
+	public void setContainment(boolean isContainment) {
+		this.isContainment = isContainment;
+	}
+	
+
+	
 	public TypeGraph getTypeGraph() {
 		return typeGraph;
 	}
@@ -71,7 +68,11 @@ public class TypeEdge implements IStructuralFeatureEdge {
 	public void setTypeGraph(TypeGraph typeGraph) {
 		this.typeGraph = typeGraph;
 	}
-	
+
+	public String toString() {
+		return source.getName()+"-"+(isMany?"*":"-")+"->"+target.getName();
+	}
+
 	@Override
 	public Class<?> getJavaType() {
 		return TypedEdge.class;

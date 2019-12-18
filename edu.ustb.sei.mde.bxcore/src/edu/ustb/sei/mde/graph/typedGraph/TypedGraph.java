@@ -30,6 +30,19 @@ import edu.ustb.sei.mde.structure.Tuple3;
 @SuppressWarnings("unused")
 public class TypedGraph extends IndexSystem implements IGraph {
 	
+	OrderInformation order;
+	GraphConstraint constraint;
+	List<TypedNode> allTypedNodes;
+	List<ValueNode> allValueNodes;
+	List<TypedEdge> allTypedEdges;
+	List<ValueEdge> allValueEdges;
+	@Derived private HashMap<TypedNode,List<ValueEdge>> valueEdgeMap;
+	@Derived private HashMap<ValueNode,List<ValueEdge>> valueReferenceMap;
+	@Derived private HashMap<TypedNode,List<TypedEdge>> incomingEdgeMap;
+	@Derived private HashMap<TypedNode,List<TypedEdge>> outgoingEdgeMap;
+	private TypeGraph typeGraph;	//有类型图的类型图，相当于模型的元模型
+
+	/** TypedGraph构造方法中调用init() */
 	public void init() {
 		allTypedNodes = new ArrayList<TypedNode>();
 		allValueNodes = new ArrayList<ValueNode>();
@@ -45,13 +58,31 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		constraint = GraphConstraint.TRUE;
 	}
 	
+	public List<TypedNode> getAllTypedNodes() {
+		return allTypedNodes;
+	}
+	
+	public List<ValueNode> getAllValueNodes() {
+		return allValueNodes;
+	}
+	
+	public List<TypedEdge> getAllTypedEdges() {
+		return allTypedEdges;
+	}
+	
+	public List<ValueEdge> getAllValueEdges() {
+		return allValueEdges;
+	}
+	
 	public OrderInformation getOrder() {
 		return order;
 	}
 	
-	OrderInformation order;
+	public TypeGraph getTypeGraph() {
+		return this.typeGraph;
+	}
 	
-	GraphConstraint constraint;
+
 	
 //	private Environment environment;
 //	
@@ -82,13 +113,13 @@ public class TypedGraph extends IndexSystem implements IGraph {
 	
 	
 	public void addTypedNode(TypedNode n) {
-		allTypedNodes.add(n);
+		allTypedNodes.add(n);	
 		
-		indexing(n);
+		indexing(n);	//给对象生成索引、更新图的indexToObjectMap
 	}
 	
 	public void addValueNode(ValueNode n) {
-		if(allValueNodes.contains(n)==false)
+		if(allValueNodes.contains(n)==false)	//为什么其它的add没有这个判断？
 			allValueNodes.add(n);
 		
 		indexing(n);
@@ -138,6 +169,42 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		return -1;
 	}
 	
+	/** 泛型方法，为对象生成索引，并将对象和索引集的映射关系添加到图的indexToObject中 */
+	private <T extends IndexableElement> void indexing(T n) {
+		if(n.isIndexable()==false) 
+			return;
+		
+		try {
+			//第一次为对象生成索引
+			if(n.getIndex().isEmpty()) {
+				//生成全局唯一的索引，并添加到对象n的内部索引集中
+				n.appendIndexValue(IndexSystem.generateUUID());
+				XmuCoreUtils.warning("An object without index was found");
+			}
+		} catch (Exception e) {
+			XmuCoreUtils.failure("Unknown error", e);
+			return;
+		}
+			
+		n.foreach(i->{
+			try {
+				//讲索引集和对象的映射关系添加到图的indexToObjectMap中
+				this.registerIndex(i, n);
+			} catch (NothingReturnedException e) {
+				java.util.logging.Logger.getLogger(XmuCoreUtils.COMPONENT_NAME).log(Level.SEVERE, "Two objects are mapped onto the same index", e);
+			}
+		});
+			
+	}
+	
+	/** 更新图的indexToObjectMap */
+	private void reindexing(IndexableElement n) {
+		n.foreach(i->{
+			this.indexToObjectMap.put(i, n);	
+		});
+	}
+	
+	/** 在图中的List<TypedEdge>添加边对象 */
 	public void addTypedEdge(TypedEdge n) {
 		if(n.getType().isMany()) {
 			if(n.getType().isUnique()) {
@@ -160,7 +227,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		} else {
 			boolean replaced = false;
 			
-			for(int i=0;i<allTypedEdges.size();i++) {
+			for(int i=0; i<allTypedEdges.size(); i++) {
 				TypedEdge e = allTypedEdges.get(i);
 				if(e.getSource()==n.getSource() // below I did use replaceWith, so I use == rather than Index.equals
 						&& e.getType() == n.getType()) {
@@ -187,36 +254,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		this.incomingEdgeMap.remove(n.getTarget());
 	}
 
-	private <T extends IndexableElement> void indexing(T n) {
-		if(n.isIndexable()==false) 
-			return;
-		
-		try {
-			if(n.getIndex().isEmpty()) {
-				n.appendIndexValue(IndexSystem.generateUUID());
-				XmuCoreUtils.warning("An object without index was found");
-			}
-		} catch (Exception e) {
-			XmuCoreUtils.failure("Unknown error", e);
-			return;
-		}
-			
-		n.foreach(i->{
-			try {
-				this.registerIndex(i, n);
-			} catch (NothingReturnedException e) {
-				java.util.logging.Logger.getLogger(XmuCoreUtils.COMPONENT_NAME).log(Level.SEVERE, "Two objects are mapped onto the same index", e);
-			}
-		});
-			
-	}
-	
-	private void reindexing(IndexableElement n) {
-		n.foreach(i->{
-			this.indexToObjectMap.put(i, n);
-		});
-	}
-	
+	/** 在图中添加List<ValueEdge>对象 */
 	public void addValueEdge(ValueEdge n) {
 		if(n.getType().isMany()) {
 			if(n.getType().isUnique()) {
@@ -239,7 +277,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		} else {
 			boolean replaced = false;
 			
-			for(int i=0;i<allValueEdges.size();i++) {
+			for(int i=0; i<allValueEdges.size(); i++) {
 				ValueEdge e = allValueEdges.get(i);
 				if(e.getSource()==n.getSource() 
 						&& e.getType() == n.getType()) {
@@ -272,16 +310,6 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		this.typeGraph = typeGraph;
 		init();
 	}
-
-	private TypeGraph typeGraph;
-	public TypeGraph getTypeGraph() {
-		return this.typeGraph;
-	}
-	
-	List<TypedNode> allTypedNodes;
-	public List<TypedNode> getAllTypedNodes() {
-		return allTypedNodes;
-	}
 	
 	public TypedNode[] getTypedNodesOf(TypeNode type) {
 		TypeGraph typeGraph = this.getTypeGraph();
@@ -310,22 +338,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 	}
 	
 	
-	private List<ValueNode> allValueNodes;
-	public List<ValueNode> getAllValueNodes() {
-		return allValueNodes;
-	}
-	
-	List<TypedEdge> allTypedEdges;
-	public List<TypedEdge> getAllTypedEdges() {
-		return allTypedEdges;
-	}
-	
-	List<ValueEdge> allValueEdges;
-	public List<ValueEdge> getAllValueEdges() {
-		return allValueEdges;
-	}
-	
-	@Derived private HashMap<TypedNode,List<TypedEdge>> outgoingEdgeMap;
+
 	@Derived
 	public  List<TypedEdge> getOutgoingEdges(TypedNode source) {
 		List<TypedEdge> result = this.outgoingEdgeMap.get(source);
@@ -367,7 +380,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		return result;
 	}
 	
-	@Derived private HashMap<TypedNode,List<TypedEdge>> incomingEdgeMap;
+	
 	@Derived
 	public  List<TypedEdge> getIncomingEdges(TypedNode target) {
 		List<TypedEdge> result = this.incomingEdgeMap.get(target);
@@ -410,14 +423,14 @@ public class TypedGraph extends IndexSystem implements IGraph {
 	
 	
 	
-	@Derived private HashMap<TypedNode,List<ValueEdge>> valueEdgeMap;
-	@Derived private HashMap<ValueNode,List<ValueEdge>> valueReferenceMap;
+
 	@Derived
 	public  List<ValueEdge> getValueEdges(TypedNode source) {
-		List<ValueEdge> result = this.valueEdgeMap.get(source);
+		List<ValueEdge> result = this.valueEdgeMap.get(source);	//根据key(TypedNode)找到value(List<ValueEdge>)
+		
 		if(result==null) {
 			result = new ArrayList<ValueEdge>();
-			this.valueEdgeMap.put(source, result);
+			this.valueEdgeMap.put(source, result);	//如果没有找到，则将(source, result)添加到valueEdgeMap中
 			
 			for(ValueEdge e : this.getAllValueEdges()) {
 				if(e.getSource() == source) {
@@ -425,7 +438,6 @@ public class TypedGraph extends IndexSystem implements IGraph {
 				}
 			}
 		}
-		
 		return result;
 	}
 	
@@ -449,9 +461,9 @@ public class TypedGraph extends IndexSystem implements IGraph {
 	public List<ValueEdge> getValueEdges(TypedNode source, PropertyEdge feature) {
 		List<ValueEdge> result = new ArrayList<ValueEdge>();
 		
-		for(ValueEdge e : this.getValueEdges(source)) {
-			if(e.getType()==feature) {
-				result.add(e);
+		for(ValueEdge e : this.getValueEdges(source)) {		//根据key(TypedNode)获取value(List<ValueEdge>)
+			if(e.getType()==feature) {	
+				result.add(e);	//再将feature相符的添加到result中
 			}
 		}
 		return result;
@@ -543,82 +555,314 @@ public class TypedGraph extends IndexSystem implements IGraph {
 
 	public TypedGraph getCopy() {
 		TypedGraph copy = new TypedGraph(this.typeGraph);
-		
-		copy.getAllTypedNodes().addAll(this.getAllTypedNodes());
-		copy.getAllTypedEdges().addAll(this.getAllTypedEdges());
+		//addAll(c: Collection<? extends E>): boolean 将集合c中的所有元素添加到该集合中。引用类型是复制对象的引用
+		copy.getAllTypedNodes().addAll(this.getAllTypedNodes());	
 		copy.getAllValueNodes().addAll(this.getAllValueNodes());
+		copy.getAllTypedEdges().addAll(this.getAllTypedEdges());
 		copy.getAllValueEdges().addAll(this.getAllValueEdges());
 		
 		copy.indexToObjectMap.putAll(this.indexToObjectMap);
 		
-		copy.order = this.order.getCopy();
+//		copy.order = this.order.getCopy();
+		copy.order = this.order;	//lyt-将上面的修改为此行
 		
-		copy.constraint=this.constraint;
+		copy.constraint = this.constraint;
 		
 		return copy;
 	}
 	
 	public TypedGraph additiveMerge(TypedGraph graph) {
 		
-		return BXMerge.additiveMerge(this, graph);
+//		return BXMerge.additiveMerge(this, graph);
 		
-//		TypedGraph result = this.getCopy();
-//		
-//		graph.getAllTypedNodes().forEach(n->{
-//			try {
-//				TypedNode nr = result.getElementByIndexObject(n.getIndex());
-//				if(nr!=n) {
-//					result.replaceWith(nr,n);
-//				}
-//			} catch (NothingReturnedException e) {
-//				result.addTypedNode(n);
-//			}
-//		});
-//		
-//		graph.getAllValueNodes().forEach(n->{
-//			result.addValueNode(n);
-//		});
-//		
-//		graph.getAllTypedEdges().forEach(e->{
-//			try {
-//				TypedEdge er = result.getElementByIndexObject(e.getIndex());
-//				if(er!=e) {
-//					result.replaceWith(er, e);
-//				}
-//			} catch (NothingReturnedException ex) {
-//				result.addTypedEdge(e);
-//			}
-//		});
-//		
-//		graph.getAllValueEdges().forEach(e->{
-//			try {
-//				ValueEdge er = result.getElementByIndexObject(e.getIndex());
-//				if(er!=e) {
-//					result.replaceWith(er, e);
-//				}
-//			} catch (NothingReturnedException ex) {
-//				result.addValueEdge(e);
-//			}
-//		});
-//		
-//		result.order.merge(graph.order);
-//		
-//		result.constraint=GraphConstraint.and(this.constraint, graph.constraint);
-//		// check 
-//		
-//		return result;
+		TypedGraph result = this.getCopy();
+		
+		graph.getAllTypedNodes().forEach(n->{
+			try {
+				TypedNode nr = result.getElementByIndexObject(n.getIndex());
+				if(nr!=n) {
+					//如果两个对象的地址不同，将nr替换为n
+					result.replaceWith(nr,n);
+				}
+			} catch (NothingReturnedException e) {
+				result.addTypedNode(n);
+			}
+		});
+		
+		graph.getAllValueNodes().forEach(n->{
+			result.addValueNode(n);
+		});
+		
+		graph.getAllTypedEdges().forEach(e->{
+			try {
+				TypedEdge er = result.getElementByIndexObject(e.getIndex());
+				if(er!=e) {
+					result.replaceWith(er, e);
+				}
+			} catch (NothingReturnedException ex) {
+				result.addTypedEdge(e);
+			}
+		});
+		
+		graph.getAllValueEdges().forEach(e->{
+			try {
+				ValueEdge er = result.getElementByIndexObject(e.getIndex());
+				if(er!=e) {
+					result.replaceWith(er, e);
+				}
+			} catch (NothingReturnedException ex) {
+				result.addValueEdge(e);
+			}
+		});
+		
+		result.order.merge(graph.order);
+		
+		result.constraint=GraphConstraint.and(this.constraint, graph.constraint);
+		// check 
+		
+		return result;
 	}
 	
+	//	static public boolean isIdentifical(TypedGraph left, TypedGraph right) {
+	//		return false;
+	//	}
+	
+		public TypedGraph merge(TypedGraph... interSources) throws NothingReturnedException {
+			
+	//		return BXMerge.merge(this, interSources);
+			
+			TypedGraph result = this.getCopy();
+			
+			// each typed node n in result, collect images in interSources (null means deleted, Any means default, T means required to be changed to T type)
+			//   if all the images of n are compatible, (1) delete or (2) change to the common sub-type
+			
+			TypeNode[] nodeImages = new TypeNode[interSources.length];
+			for(TypedNode baseNode : this.getAllTypedNodes()) {
+				for(int i=0;i<interSources.length;i++) {
+					nodeImages[i] = computeImage(baseNode, this, interSources[i]);
+				}
+				
+				try {
+					TypeNode finalType = computeType(nodeImages, this.getTypeGraph());
+					
+					if(finalType==TypeNode.NULL_TYPE) {
+						result.remove(baseNode);
+					} else {
+						if(finalType==TypeNode.ANY_TYPE)
+							finalType = baseNode.getType();
+						
+						TypedNode n = new TypedNode();
+						n.setType(finalType);
+						
+						for(TypedGraph image : interSources) {
+							n.mergeIndex(image.getElementByIndexObject(baseNode.getIndex()));
+						}
+						
+						result.replaceWith(baseNode, n);	//参考BXMerge
+					}
+					
+				} catch (NothingReturnedException e) {
+					throw e;
+				}
+			}
+			
+			for(TypedGraph image : interSources) {
+				image.getAllValueNodes().forEach(v->{result.addValueNode(v);});
+			}
+			
+			
+			// each typed edge e in the result, collect images in interSources (null means deleted, Any means default, <s,t>:T means required)
+			TypedEdge[] typedEdgeImages = new TypedEdge[interSources.length];
+			for(TypedEdge baseEdge : this.getAllTypedEdges()) {
+				for(int i=0;i<interSources.length;i++) {
+					typedEdgeImages[i] = computeImage(baseEdge, this, interSources[i]);
+				}
+				try {
+					Tuple3<TypedNode, TypedNode, TypeEdge> finalEdgeInfo = computeEdge(baseEdge, typedEdgeImages);
+					if(finalEdgeInfo==null) {
+						result.remove(baseEdge);
+					} else {
+						TypedNode source = result.getElementByIndexObject(finalEdgeInfo.first.getIndex());
+						TypedNode target = result.getElementByIndexObject(finalEdgeInfo.second.getIndex());
+						TypedEdge edge = new TypedEdge();
+						edge.setSource(source);
+						edge.setTarget(target);
+						edge.setType(finalEdgeInfo.third);
+						
+						for(TypedGraph image : interSources) {
+							edge.mergeIndex(image.getElementByIndexObject(baseEdge.getIndex()));
+						}
+						result.replaceWith(baseEdge, edge);
+					}
+				} catch (NothingReturnedException e) {
+					throw e;
+				}
+			}
+			
+			// each typed edge e in the result, collect images in interSources (null means deleted, Any means default, <s,t>:T means required)
+			ValueEdge[] valueEdgeImages = new ValueEdge[interSources.length];
+			for(ValueEdge baseEdge : this.getAllValueEdges()) {
+				for(int i=0;i<interSources.length;i++) {
+					valueEdgeImages[i] = computeImage(baseEdge, this, interSources[i]);
+				}
+				try {
+					Tuple3<TypedNode, ValueNode, PropertyEdge> finalEdgeInfo = computeEdge(baseEdge, valueEdgeImages);
+					if(finalEdgeInfo==null) {
+						result.remove(baseEdge);
+					} else {
+						TypedNode source = result.getElementByIndexObject(finalEdgeInfo.first.getIndex());
+						ValueNode target = finalEdgeInfo.second;
+						ValueEdge edge = new ValueEdge();
+						edge.setSource(source);
+						edge.setTarget(target);
+						edge.setType(finalEdgeInfo.third);
+						
+						for(TypedGraph image : interSources) {
+							edge.mergeIndex(image.getElementByIndexObject(baseEdge.getIndex()));
+						}
+						result.replaceWith(baseEdge, edge);
+					}
+				} catch (NothingReturnedException e) {
+					throw e;
+				}
+			}
+			
+			// add extra nodes and edges
+			
+			for(TypedGraph image : interSources) {
+				for(TypedNode n : image.allTypedNodes) {
+					try {
+						this.getElementByIndexObject(n.getIndex());
+					} catch (NothingReturnedException e) {
+						TypedNode rn = null;
+						try {
+							rn = result.getElementByIndexObject(n.getIndex());
+						} catch (NothingReturnedException e1) {
+							result.addTypedNode(n);
+							rn = null;
+						} finally {
+							if(rn!=null) {
+								TypeNode lt = rn.getType();
+								TypeNode rt = n.getType();
+								TypeNode ct = this.getTypeGraph().computeSubtype(lt, rt);
+								if(ct==TypeNode.NULL_TYPE) {
+									// incompatible
+									throw new NothingReturnedException();
+								} else {
+	//								TypedNode res = new TypedNode();
+	//								res.setType(ct);;
+	//								res.mergeIndices(rn);
+	//								res.mergeIndices(n);
+	//								result.replaceWith(rn, res);
+									rn.mergeIndex(n);
+									rn.setType(ct);
+									reindexing(rn);	//lyt-更改
+								}
+							}
+						}
+					}
+				}
+				
+				for(TypedEdge e : image.allTypedEdges) {
+					try {
+						this.getElementByIndexObject(e.getIndex());
+					} catch (Exception ex) {
+						TypedEdge re = null;
+						try {
+							re = result.getElementByIndexObject(e.getIndex());
+						} catch (Exception ex2) {
+							TypedNode source = result.getElementByIndexObject(e.getSource().getIndex());
+							TypedNode target = result.getElementByIndexObject(e.getTarget().getIndex());
+							if(e.getSource()!=source || e.getTarget()!=target) {
+								TypedEdge ne = new TypedEdge();
+								ne.setSource(source);
+								ne.setTarget(target);
+								ne.setType(e.getType());
+								ne.mergeIndex(e);
+								result.addTypedEdge(ne);
+							} else result.addTypedEdge(e);
+							re = null;
+						} finally {
+							if(re!=null) {
+								if(re.getType()!=e.getType()
+										|| !re.getSource().getIndex().equals(e.getSource().getIndex())
+										|| !re.getTarget().getIndex().equals(e.getTarget().getIndex())) {
+									throw new NothingReturnedException();
+								} else {
+									re.mergeIndex(e);
+									reindexing(re);	//lyt
+								}
+							}
+						}
+					}
+				}
+				
+				for(ValueEdge e : image.allValueEdges) {
+					try {
+						this.getElementByIndexObject(e.getIndex());
+					} catch (Exception ex) {
+						ValueEdge re = null;
+						try {
+							re = result.getElementByIndexObject(e.getIndex());
+						} catch (Exception ex2) {
+							TypedNode source = result.getElementByIndexObject(e.getSource().getIndex());
+	//						ValueNode target = e.getTarget();
+							if(e.getSource()!=source) {
+								ValueEdge ne = new ValueEdge();
+								ne.setSource(source);
+								ne.setTarget(e.getTarget());
+								ne.setType(e.getType());
+								ne.mergeIndex(e);
+								result.addValueEdge(ne);
+							} else result.addValueEdge(e);
+	//						result.addValueEdge(e);
+							re = null;
+						} finally {
+							if(re!=null) {
+								if(re.getType()!=e.getType()
+										|| !re.getSource().getIndex().equals(e.getSource().getIndex())
+										|| re.getTarget().equals(e.getTarget())==false) {
+									throw new NothingReturnedException();
+								} else {
+									re.mergeIndex(e);
+									reindexing(re);	//lyt
+								}
+							}
+						}
+					}
+				}
+			}
+			
+			OrderInformation[] orders = new OrderInformation[interSources.length];
+			for(int i=0;i<interSources.length;i++)
+				orders[i] = interSources[i].order;
+			result.order.merge(orders);
+			
+			List<GraphConstraint> cons = new ArrayList<>();
+			cons.add(this.getConstraint());
+			for(TypedGraph g : interSources) {
+				cons.add(g.constraint);
+			}
+			result.constraint = GraphConstraint.and(cons);
+			// check
+			
+			return result;
+		}
+
+	//判断两个元素是否相等	
 	static boolean isEqual(IndexableElement l, IndexableElement r) {
 		return l==r || (l!=null && l.isIndexable() && r.isIndexable() &&
 				l.getIndex().equals(r.getIndex()));
 	}
 	
+	/** 在图中删除TypedNode类型的节点 */
 	public void remove(TypedNode n) {
+		//找到List<TypedNodes>中与n相等的点，删除
 		this.allTypedNodes.removeIf(x->isEqual(x,n));
 		this.clearIndex(n);
 		
-		for(int i = this.allTypedEdges.size()-1;i>=0;i--) {
+		//如果此节点还是某条TypedEdge类型边e的source或target端点，删除这条边e
+		for(int i=this.allTypedEdges.size()-1; i>=0; i--) {
 			TypedEdge e = this.allTypedEdges.get(i);
 			if(isEqual(e.getSource(), n) || isEqual(e.getTarget(), n)) {
 				this.allTypedEdges.remove(i);
@@ -626,7 +870,8 @@ public class TypedGraph extends IndexSystem implements IGraph {
 			}
 		}
 		
-		for(int i = this.allValueEdges.size()-1;i>=0;i--) {
+		//如果此节点还是某条ValueEdge类型边e的source端点，删除这条边e
+		for(int i=this.allValueEdges.size()-1; i>=0; i--) {
 			ValueEdge e = this.allValueEdges.get(i);
 			if(isEqual(e.getSource(), n)) {
 				this.allValueEdges.remove(i);
@@ -635,53 +880,61 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		}
 	}
 	
+	
+	/** 将图中的ValueEdge边er替换为e */
 	void replaceWith(ValueEdge er, ValueEdge e) {
 		this.allValueEdges.replaceAll(x->isEqual(x,er) ? e : x);
 		e.mergeIndex(er);
 		reindexing(e);
 	}
-
+	
+	/** 将图中的TypedEdge边er替换为e */
 	void replaceWith(TypedEdge er, TypedEdge e) {
+		//先找到List中的er，替换为e
 		this.allTypedEdges.replaceAll(x->isEqual(x,er) ? e : x);
 		e.mergeIndex(er);
-		reindexing(e);
+		reindexing(e);	
 	}
 
+	/** 将图中的TypedNode节点nr替换为n，还要考虑TypedEdge边和ValueEdge边*/
 	void replaceWith(TypedNode nr, TypedNode n) {
-		// replace in node list
+		//找到图的List<TypedNode>中的nr对象，替换为n对象
 		this.allTypedNodes.replaceAll(e->isEqual(e,nr) ? n : e);
+		//合并索引集
+		n.mergeIndex(nr);	
+		//更新图的indexToObjectMap
+		reindexing(n);	
 		
-		//merge indices
-		n.mergeIndex(nr);
-		
-		// re-map
-		reindexing(n);
-		
-		// change edge ends
-		if(nr!=n) {
+		// TypedNode节点替换后，还要考虑相邻的边
+		if(nr!=n) {	
+			
 			TypeNode nodeType = n.getType();
 			
+			//处理TypedEdge类型的边
 			List<TypedEdge> removedTypedEdges = new ArrayList<TypedEdge>();
-			this.allTypedEdges.replaceAll(e->{
-				TypeEdge edgeType = e.getType();
-				TypeNode sourceType = edgeType.getSource();
+			this.allTypedEdges.replaceAll(e->{	//对于result图中List<TypedEdge>的每个元素e
+				TypeEdge edgeType = e.getType();	//先获取e的type
+				//再根据edgeType可以获得sourceType和targetType
+				TypeNode sourceType = edgeType.getSource();	
 				TypeNode targetType = edgeType.getTarget();
 				
-				if(e.getSource()==nr && e.getTarget()==nr) {
+				if(e.getSource()==nr && e.getTarget()==nr) {	//1.如果e的source和target都是nr节点（TypedNode）
+					//并且n的type(nodeType)是e的sourceType、targetType的子类型
 					if(this.typeGraph.isSuperTypeOf(nodeType, sourceType) && this.typeGraph.isSuperTypeOf(nodeType, targetType)) {
 						TypedEdge res = new TypedEdge();
-						res.setSource(n);
+						res.setSource(n);	
 						res.setTarget(n);
-						res.setType(edgeType);
+						res.setType(edgeType);	//疑问：res边的type赋值为edgeType，意味着sourceType和targetType也一样？不应该是nodeType吗？
 						res.mergeIndex(e);
 						reindexing(res);
-						return res;
-					} else {
-						removedTypedEdges.add(e);
-						clearIndex(e);
-						return e;
+						return res;	//将e替换为res
+					} else {	//并且n的type不是e的sourceType |(&) targetType的子类型
+						removedTypedEdges.add(e);	//将e添加到removedTypedEdges集合中
+						clearIndex(e);	//将元素e的索引集从indexToObjectMap中清除
+						return e; //先使e->e
 					}
-				} else if(e.getSource()==nr) {
+				} else if(e.getSource()==nr) {	//2. 仅e的source是nr，e的target不是nr
+					//并且n的type(nodeType)是e的sourceType的子类型
 					if(this.typeGraph.isSuperTypeOf(nodeType, sourceType)) {
 						TypedEdge res = new TypedEdge();
 						res.setSource(n);
@@ -690,12 +943,13 @@ public class TypedGraph extends IndexSystem implements IGraph {
 						res.mergeIndex(e);
 						reindexing(res);
 						return res;
-					} else {
+					} else {	//并且n的type不是e的sourceType的子类型
 						removedTypedEdges.add(e);
 						clearIndex(e);
 						return e;
 					}
-				} else if(e.getTarget()==nr) {
+				} else if(e.getTarget()==nr) {	//3. 仅e的target是nr，e的source不是nr
+					//并且n的type(nodeType)是e的targetType的子类型
 					if(this.typeGraph.isSuperTypeOf(nodeType, targetType)) {
 						TypedEdge res = new TypedEdge();
 						res.setSource(e.getSource());
@@ -704,22 +958,24 @@ public class TypedGraph extends IndexSystem implements IGraph {
 						res.mergeIndex(e);
 						reindexing(res);
 						return res;
-					} else {
+					} else {	//并且n的type(nodeType)不是e的targetType的子类型
 						removedTypedEdges.add(e);
 						clearIndex(e);
 						return e;
 					}
-				} else 
+				} else 	//4. e的source不是nr、target也不是nr
 					return e;
 			});
-			this.allTypedEdges.removeAll(removedTypedEdges);
+			this.allTypedEdges.removeAll(removedTypedEdges);	//集合操作removeAll()：A <- A-B，即从A集合中删除B集合
 			
+			//处理ValueEdge类型的边
 			List<ValueEdge> removedValueEdges = new ArrayList<ValueEdge>();
-			this.allValueEdges.replaceAll(e->{
+			this.allValueEdges.replaceAll(e->{	//对于result图中List<ValueEdge>的每一个边e
 				PropertyEdge edgeType = e.getType();
 				TypeNode sourceType = edgeType.getSource();
 				
-				if(e.getSource()==nr) {
+				if(e.getSource()==nr) {	
+					//如果e的source是nr，并且n的type是nr的type的子类型，则将e替换为res
 					if(this.typeGraph.isSuperTypeOf(nodeType, sourceType)) {
 						ValueEdge res = new ValueEdge();
 						res.setSource(n);
@@ -729,11 +985,12 @@ public class TypedGraph extends IndexSystem implements IGraph {
 						reindexing(res);
 						return res;
 					} else {
+						//如果e的source是nr，但n的type与nr的type不兼容，则删除e
 						removedValueEdges.add(e);
 						clearIndex(e);
 						return e;
 					}
-				} else return e;
+				} else return e;	//如果e的source不是nr，则保留
 			});
 			this.allValueEdges.removeAll(removedValueEdges);
 			
@@ -745,247 +1002,33 @@ public class TypedGraph extends IndexSystem implements IGraph {
 //		return false;
 //	}
 
-	public TypedGraph merge(TypedGraph... interSources) throws NothingReturnedException {
-		
-		return BXMerge.merge(this, interSources);
-		
-//		TypedGraph result = this.getCopy();
-//		
-//		// each typed node n in result, collect images in interSources (null means deleted, Any means default, T means required to be changed to T type)
-//		//   if all the images of n are compatible, (1) delete or (2) change to the common sub-type
-//		
-//		TypeNode[] nodeImages = new TypeNode[interSources.length];
-//		for(TypedNode baseNode : this.getAllTypedNodes()) {
-//			for(int i=0;i<interSources.length;i++) {
-//				nodeImages[i] = computeImage(baseNode, this, interSources[i]);
-//			}
-//			
-//			try {
-//				TypeNode finalType = computeType(nodeImages, this.getTypeGraph());
-//				
-//				if(finalType==TypeNode.NULL_TYPE) {
-//					result.remove(baseNode);
-//				} else {
-//					if(finalType==TypeNode.ANY_TYPE)
-//						finalType = baseNode.getType();
-//					
-//					TypedNode n = new TypedNode();
-//					n.setType(finalType);
-//					
-//					for(TypedGraph image : interSources) {
-//						n.mergeIndex(image.getElementByIndexObject(baseNode.getIndex()));
-//					}
-//					
-//					result.replaceWith(baseNode, n);
-//				}
-//				
-//			} catch (NothingReturnedException e) {
-//				throw e;
-//			}
-//		}
-//		
-//		for(TypedGraph image : interSources) {
-//			image.getAllValueNodes().forEach(v->{result.addValueNode(v);});
-//		}
-//		
-//		
-//		// each typed edge e in the result, collect images in interSources (null means deleted, Any means default, <s,t>:T means required)
-//		TypedEdge[] typedEdgeImages = new TypedEdge[interSources.length];
-//		for(TypedEdge baseEdge : this.getAllTypedEdges()) {
-//			for(int i=0;i<interSources.length;i++) {
-//				typedEdgeImages[i] = computeImage(baseEdge, this, interSources[i]);
-//			}
-//			try {
-//				Tuple3<TypedNode, TypedNode, TypeEdge> finalEdgeInfo = computeEdge(baseEdge, typedEdgeImages);
-//				if(finalEdgeInfo==null) {
-//					result.remove(baseEdge);
-//				} else {
-//					TypedNode source = result.getElementByIndexObject(finalEdgeInfo.first.getIndex());
-//					TypedNode target = result.getElementByIndexObject(finalEdgeInfo.second.getIndex());
-//					TypedEdge edge = new TypedEdge();
-//					edge.setSource(source);
-//					edge.setTarget(target);
-//					edge.setType(finalEdgeInfo.third);
-//					
-//					for(TypedGraph image : interSources) {
-//						edge.mergeIndex(image.getElementByIndexObject(baseEdge.getIndex()));
-//					}
-//					result.replaceWith(baseEdge, edge);
-//				}
-//			} catch (NothingReturnedException e) {
-//				throw e;
-//			}
-//		}
-//		
-//		// each typed edge e in the result, collect images in interSources (null means deleted, Any means default, <s,t>:T means required)
-//		ValueEdge[] valueEdgeImages = new ValueEdge[interSources.length];
-//		for(ValueEdge baseEdge : this.getAllValueEdges()) {
-//			for(int i=0;i<interSources.length;i++) {
-//				valueEdgeImages[i] = computeImage(baseEdge, this, interSources[i]);
-//			}
-//			try {
-//				Tuple3<TypedNode, ValueNode, PropertyEdge> finalEdgeInfo = computeEdge(baseEdge, valueEdgeImages);
-//				if(finalEdgeInfo==null) {
-//					result.remove(baseEdge);
-//				} else {
-//					TypedNode source = result.getElementByIndexObject(finalEdgeInfo.first.getIndex());
-//					ValueNode target = finalEdgeInfo.second;
-//					ValueEdge edge = new ValueEdge();
-//					edge.setSource(source);
-//					edge.setTarget(target);
-//					edge.setType(finalEdgeInfo.third);
-//					
-//					for(TypedGraph image : interSources) {
-//						edge.mergeIndex(image.getElementByIndexObject(baseEdge.getIndex()));
-//					}
-//					result.replaceWith(baseEdge, edge);
-//				}
-//			} catch (NothingReturnedException e) {
-//				throw e;
-//			}
-//		}
-//		
-//		// add extra nodes and edges
-//		
-//		for(TypedGraph image : interSources) {
-//			for(TypedNode n : image.allTypedNodes) {
-//				try {
-//					this.getElementByIndexObject(n.getIndex());
-//				} catch (NothingReturnedException e) {
-//					TypedNode rn = null;
-//					try {
-//						rn = result.getElementByIndexObject(n.getIndex());
-//					} catch (NothingReturnedException e1) {
-//						result.addTypedNode(n);
-//						rn = null;
-//					} finally {
-//						if(rn!=null) {
-//							TypeNode lt = rn.getType();
-//							TypeNode rt = n.getType();
-//							TypeNode ct = this.getTypeGraph().computeSubtype(lt, rt);
-//							if(ct==TypeNode.NULL_TYPE) {
-//								// incompatible
-//								throw new NothingReturnedException();
-//							} else {
-////								TypedNode res = new TypedNode();
-////								res.setType(ct);;
-////								res.mergeIndices(rn);
-////								res.mergeIndices(n);
-////								result.replaceWith(rn, res);
-//								rn.mergeIndex(n);
-//								rn.setType(ct);
-//							}
-//						}
-//					}
-//				}
-//			}
-//			
-//			for(TypedEdge e : image.allTypedEdges) {
-//				try {
-//					this.getElementByIndexObject(e.getIndex());
-//				} catch (Exception ex) {
-//					TypedEdge re = null;
-//					try {
-//						re = result.getElementByIndexObject(e.getIndex());
-//					} catch (Exception ex2) {
-//						TypedNode source = result.getElementByIndexObject(e.getSource().getIndex());
-//						TypedNode target = result.getElementByIndexObject(e.getTarget().getIndex());
-//						if(e.getSource()!=source || e.getTarget()!=target) {
-//							TypedEdge ne = new TypedEdge();
-//							ne.setSource(source);
-//							ne.setTarget(target);
-//							ne.setType(e.getType());
-//							ne.mergeIndex(e);
-//							result.addTypedEdge(ne);
-//						} else result.addTypedEdge(e);
-//						re = null;
-//					} finally {
-//						if(re!=null) {
-//							if(re.getType()!=e.getType()
-//									|| !re.getSource().getIndex().equals(e.getSource().getIndex())
-//									|| !re.getTarget().getIndex().equals(e.getTarget().getIndex())) {
-//								throw new NothingReturnedException();
-//							} else {
-//								re.mergeIndex(e);
-//							}
-//						}
-//					}
-//				}
-//			}
-//			
-//			for(ValueEdge e : image.allValueEdges) {
-//				try {
-//					this.getElementByIndexObject(e.getIndex());
-//				} catch (Exception ex) {
-//					ValueEdge re = null;
-//					try {
-//						re = result.getElementByIndexObject(e.getIndex());
-//					} catch (Exception ex2) {
-//						TypedNode source = result.getElementByIndexObject(e.getSource().getIndex());
-////						ValueNode target = e.getTarget();
-//						if(e.getSource()!=source) {
-//							ValueEdge ne = new ValueEdge();
-//							ne.setSource(source);
-//							ne.setTarget(e.getTarget());
-//							ne.setType(e.getType());
-//							ne.mergeIndex(e);
-//							result.addValueEdge(ne);
-//						} else result.addValueEdge(e);
-////						result.addValueEdge(e);
-//						re = null;
-//					} finally {
-//						if(re!=null) {
-//							if(re.getType()!=e.getType()
-//									|| !re.getSource().getIndex().equals(e.getSource().getIndex())
-//									|| re.getTarget().equals(e.getTarget())==false) {
-//								throw new NothingReturnedException();
-//							} else {
-//								re.mergeIndex(e);
-//							}
-//						}
-//					}
-//				}
-//			}
-//		}
-//		
-//		OrderInformation[] orders = new OrderInformation[interSources.length];
-//		for(int i=0;i<interSources.length;i++)
-//			orders[i] = interSources[i].order;
-//		result.order.merge(orders);
-//		
-//		List<GraphConstraint> cons = new ArrayList<>();
-//		cons.add(this.getConstraint());
-//		for(TypedGraph g : interSources) {
-//			cons.add(g.constraint);
-//		}
-//		result.constraint = GraphConstraint.and(cons);
-//		// check
-//		
-//		return result;
-	}
-	
-	static Tuple3<TypedNode, ValueNode, PropertyEdge> computeEdge(ValueEdge base, ValueEdge[] valueEdgeImages) throws NothingReturnedException {
-		Tuple3<TypedNode, ValueNode, PropertyEdge> any = new Tuple3<TypedNode, ValueNode, PropertyEdge>(base.getSource(), base.getTarget(), base.getType());
-		Tuple3<TypedNode, ValueNode, PropertyEdge> tuple = any;
+	/** 再根据valueEdgeImages[]中的情况，确定finalEdgeInfo三元组 
+	 *  1) 返回baseEdge三元组信息：a==baseEdge并且b==baseEdge
+	 *  2) 返回null：a==baseEdge并且b==null | a==null并且b==baseEdge | a==null并且b==null
+	 *  3) 抛出异常：a==null并且b==imageEdge | a==imageEdge并且b==null | a==imageEdge并且b==imageEdge但不兼容
+	 *  4) 返回imageEdge三元组信息：a==baseEdge并且b==imageEdge | a==imageEdge并且b==baseEdge | a==imageEdge并且b==imageEdge而且兼容  
+	 */
+	static Tuple3<TypedNode, ValueNode, PropertyEdge> computeEdge(ValueEdge baseEdge, ValueEdge[] valueEdgeImages) throws NothingReturnedException {
+		Tuple3<TypedNode, ValueNode, PropertyEdge> any = new Tuple3<TypedNode, ValueNode, PropertyEdge>(baseEdge.getSource(), baseEdge.getTarget(), baseEdge.getType());
+		Tuple3<TypedNode, ValueNode, PropertyEdge> tuple = any;	//初始化为baseEdge的信息
 		
 		for(ValueEdge e : valueEdgeImages) {
-			if(e==base) continue;
+			if(e==baseEdge) continue;
 			else if(e==null) {
-				if(tuple==null 
-						|| isImage(tuple, base))
+				if(tuple==null || isImage(tuple, baseEdge))
 					tuple = null;
 				else
-					throw new NothingReturnedException(); // incompatible
+					throw new NothingReturnedException(); // incompatible: a==imageEdge并且b==null
 			} else {
 				if(tuple==null) 
-					throw new NothingReturnedException();
-				else if(isImage(tuple,base))
+					throw new NothingReturnedException(); // incompatible: a==null并且b==imageEdge
+				else if(isImage(tuple,baseEdge))
 					tuple = new Tuple3<TypedNode, ValueNode, PropertyEdge>(e.getSource(), e.getTarget(), e.getType());
 				else {
-					if(isImage(tuple,e))
+					if(isImage(tuple,e))	//a==imageEdge并且b==imageEdge时，判断是否兼容
 						continue;
 					else 
-						throw new NothingReturnedException();
+						throw new NothingReturnedException();	// incompatible: a==imageEdge并且b==imageEdge而且不兼容
 				}
 			}
 		}
@@ -993,14 +1036,17 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		return tuple;
 	}
 
-	static private boolean isImage(Tuple3<TypedNode, ValueNode, PropertyEdge> tuple, ValueEdge base) {
-		return tuple.third==base.getType()
-				&& tuple.first.getIndex().equals(base.getSource().getIndex())
-				&& tuple.second.equals(base.getTarget());
+	/** 判断两个ValueEdge是否兼容，三元组tuple是第一个ValueEdge的信息 */
+	static private boolean isImage(Tuple3<TypedNode, ValueNode, PropertyEdge> tuple, ValueEdge e) {
+		return tuple.third==e.getType()
+				&& tuple.first.getIndex().equals(e.getSource().getIndex())	//看TypedNode类型对象的index是否有交集
+				&& tuple.second.equals(e.getTarget());	//看ValueNode类型对象是否为同一对象
 	}
 
+	/** 两个分支图先和基本图作比较，baseEdge的情况分别存储在imageGraph[]中，可能是null、baseEdge、imageEdge */
 	static ValueEdge computeImage(ValueEdge baseEdge, TypedGraph baseGraph, TypedGraph imageGraph) {
 		try {
+			//找到了
 			ValueEdge imageEdge = imageGraph.getElementByIndexObject(baseEdge.getIndex());
 			if(imageEdge.getType()==baseEdge.getType()
 					&& imageEdge.getSource().getIndex().equals(baseEdge.getSource().getIndex())
@@ -1008,72 +1054,92 @@ public class TypedGraph extends IndexSystem implements IGraph {
 				return baseEdge;
 			else return imageEdge;
 		
-		} catch (Exception e) {
+		} catch (Exception e) {	//没找到，说明在分支图中被删了
 			return null;
 		}
 	}
 
+	/** 删除result图中的ValueEdge类型边baseEdge */
 	public void remove(ValueEdge baseEdge) {
 		this.allValueEdges.removeIf(x->isEqual(x, baseEdge));
 		this.clearIndex(baseEdge);
 	}
 
+	/** 删除result图中的TypedEdge类型边baseEdge */
 	public void remove(TypedEdge baseEdge) {
 		this.allTypedEdges.removeIf(x->isEqual(x, baseEdge));
 		this.clearIndex(baseEdge);
 		// compute pre-deleted elements when baseEdge is containment, or not?
 	}
 
-	static Tuple3<TypedNode, TypedNode, TypeEdge> computeEdge(TypedEdge base, TypedEdge[] typedEdgeImages) throws NothingReturnedException {
-		Tuple3<TypedNode, TypedNode, TypeEdge> any = new Tuple3<TypedNode, TypedNode, TypeEdge>(base.getSource(), base.getTarget(), base.getType());
-		Tuple3<TypedNode, TypedNode, TypeEdge> tuple = any;
+	/** 再根据typedEdgeImages中的情况，确定finalEdgeInfo三元组信息 
+	 *  1) 返回baseEdge三元组信息：a==baseEdge并且b==baseEdge
+	 *  2) 返回null：a==baseEdge并且b==null | a==null并且b==baseEdge | a==null并且b==null
+	 *  3) 抛出异常：a==null并且b==imageEdge | a==imageEdge并且b==null | a==imageEdge并且b==imageEdge但不兼容
+	 *  4) 返回imageEdge三元组信息：a==baseEdge并且b==imageEdge | a==imageEdge并且b==baseEdge | a==imageEdge并且b==imageEdge而且兼容
+	 */
+	static Tuple3<TypedNode, TypedNode, TypeEdge> computeEdge(TypedEdge baseEdge, TypedEdge[] typedEdgeImages) throws NothingReturnedException {
+		
+		Tuple3<TypedNode, TypedNode, TypeEdge> any = new Tuple3<TypedNode, TypedNode, TypeEdge>(baseEdge.getSource(), baseEdge.getTarget(), baseEdge.getType());
+		Tuple3<TypedNode, TypedNode, TypeEdge> tuple = any;	//结果初始化为baseEdge的信息
 		
 		for(TypedEdge e : typedEdgeImages) {
-			if(e==base) continue;
+			if(e==baseEdge) continue;	
 			else if(e==null) {
-				if(tuple==null 
-						|| isImage(tuple, base))
+				if(tuple==null || isImage(tuple, baseEdge))
 					tuple = null;
 				else
-					throw new NothingReturnedException(); // incompatible
+					throw new NothingReturnedException(); // incompatible: a==imageEdge并且b==null
 			} else {
 				if(tuple==null) 
-					throw new NothingReturnedException();
-				else if(isImage(tuple,base))
+					throw new NothingReturnedException();	//incompatible: a==null并且b==imageEdge
+				else if(isImage(tuple, baseEdge))
 					tuple = new Tuple3<TypedNode, TypedNode, TypeEdge>(e.getSource(), e.getTarget(), e.getType());
 				else {
-					if(isImage(tuple,e))
+					if(isImage(tuple, e))	//a==imageEdge并且b==imageEdge时，判断两个是否兼容
 						continue;
 					else 
-						throw new NothingReturnedException();
+						throw new NothingReturnedException();	//incompatible: a==imageEdge并且b==imageEdge，但不兼容
 				}
 			}
 		}
 		
 		return tuple;
-		
 	}
 
-	static private boolean isImage(Tuple3<TypedNode, TypedNode, TypeEdge> tuple, TypedEdge base) {
-		return tuple.third==base.getType()
-		&& tuple.first.getIndex().equals(base.getSource().getIndex())
-		&& tuple.second.getIndex().equals(base.getTarget().getIndex());
+	/** 比较两个TypedEdge是否兼容，tuple是第一条边的三元组信息 */
+	static private boolean isImage(Tuple3<TypedNode, TypedNode, TypeEdge> tuple, TypedEdge e) {
+		return tuple.third==e.getType()
+		&& tuple.first.getIndex().equals(e.getSource().getIndex())
+		&& tuple.second.getIndex().equals(e.getTarget().getIndex());
 	}
-
+	
+	/** 两个分支图先分别和基本图作比较，baseEdge的情况分别存储在typedEdgeImages[i]中，可能是baseEdge、imageEdge、null */
 	static TypedEdge computeImage(TypedEdge baseEdge, TypedGraph baseGraph, TypedGraph imageGraph) {
 		try {
+			//根据baseEdge的索引集在分支图中找到了
 			TypedEdge imageEdge = imageGraph.getElementByIndexObject(baseEdge.getIndex());
+			//如果baseEdge在分支图和基本图中一致(type & source & target)，则返回baseEdge
 			if(imageEdge.getType()==baseEdge.getType()
 					&& imageEdge.getSource().getIndex().equals(baseEdge.getSource().getIndex())
 					&& imageEdge.getTarget().getIndex().equals(baseEdge.getTarget().getIndex())) 
 				return baseEdge;
-			else return imageEdge;
+			else return imageEdge;	//如果不一致，则返回修改后的imageEdge
 		
-		} catch (Exception e) {
+		} catch (Exception e) {	//根据baseEdge的索引在分支图中没有找到，说明被删了，返回null
 			return null;
 		}
 	}
 
+	/**
+	 * 
+	 * 比如调用：TypeNode finalType = TypedGraph.computeType(nodeImages, first.getTypeGraph())
+	 * 当两个分支和base比较完后，再根据两分支baseNode的情况（NULL、ANY、修改后的类型）确定finalType;
+	 * 1)返回ANY：a、b是ANY
+	 * 2)返回NULL：a是ANY、b是NULL | a是NULL、b是ANY | a是NULL、b是NULL  
+	 * 3)抛出异常：a是NULL、b改了 | a改了、b是NULL | a改了b也改了，但不兼容
+	 * 4)返回修改后的类型：a是ANY、b改了 | a改了、b是ANY  | a改了b也改了，但兼容
+	 */
 	static TypeNode computeType(TypeNode[] images, TypeGraph typeGraph) throws NothingReturnedException {
 		TypeNode finalType = TypeNode.ANY_TYPE;
 		
@@ -1083,42 +1149,45 @@ public class TypedGraph extends IndexSystem implements IGraph {
 				if(finalType==TypeNode.ANY_TYPE || finalType==TypeNode.NULL_TYPE)
 					finalType = TypeNode.NULL_TYPE;
 				else
-					throw new NothingReturnedException(); // incompatible
+					throw new NothingReturnedException(); // incompatibe：a改了、b是NULL
 			} else {
 				if(finalType==TypeNode.NULL_TYPE) 
-					throw new NothingReturnedException(); // incompatible
+					throw new NothingReturnedException(); // incompatible：a是NULL、b改了
 				else if(finalType==TypeNode.ANY_TYPE)
 					finalType = n;
 				else {
-					finalType = typeGraph.computeSubtype(finalType,n);
+					//a相对于base改了，b相对于base也改了。第一次finalType是a中的类型，第二次会进入此else语句块，确定finalType最终的类型。
+					finalType = typeGraph.computeSubtype(finalType, n);
 					if(finalType==TypeNode.NULL_TYPE)
 						throw new NothingReturnedException();
 				}
 					
 			}
 		}
-		
 		return finalType;
 	}
 
+	/** 节点在分支图和基本图中的比较，可能返回imageNode的type、ANY、NULL */
 	static TypeNode computeImage(TypedNode baseNode, TypedGraph baseGraph, TypedGraph imageGraph) {
 		try {
-			TypedNode imageNode = imageGraph.getElementByIndexObject(baseNode.getIndex());
-			
-			if(imageNode.getType()!=baseNode.getType()) 
-				return imageNode.getType();
-			else {
-				if(isTouched(imageNode, imageGraph, baseNode, baseGraph)) {
+			//在分支图中根据索引查找对应的baseNode，如果找到则赋值给imageNode
+			TypedNode imageNode = imageGraph.getElementByIndexObject(baseNode.getIndex());	
+			//如果此节点在baseGraph和imageGraph中的类型不一致，则返回imageNode
+			if(imageNode.getType() != baseNode.getType())	
+				return imageNode.getType(); 
+			else { //如果此节点在baseGraph和imageGraph中的类型一致，则返回ANY
+				if(isTouched(imageNode, imageGraph, baseNode, baseGraph)) {	//可以省略？
 					return imageNode.getType();
 				} else 
-					return TypeNode.ANY_TYPE;
+					return TypeNode.ANY_TYPE;	
 			}
 			
 		} catch (NothingReturnedException e) {
-			return TypeNode.NULL_TYPE;
+			return TypeNode.NULL_TYPE;	//imageGraph中没有找到相应的baseNode，则返回NULL_TYPE给nodeImage[0]
 		}
 	}
 
+	/** 可以省略？？ */
 	private static boolean isTouched(TypedNode imageNode, TypedGraph imageGraph, TypedNode baseNode,
 			TypedGraph baseGraph) {
 		// may be omitted
@@ -1181,6 +1250,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		return false;
 	}
 	
+	
 	public void setConstraint(GraphConstraint c) {
 		this.constraint = c;
 	}
@@ -1189,6 +1259,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		return this.constraint;
 	}
 	
+	/** 用于buildTypedGraph */
 	public void declare(String graphString) {
 		// 1. split by ';'
 		// 2. match by node/edge formats

@@ -17,13 +17,14 @@ import edu.ustb.sei.mde.graph.INode;
 
 public class TypeGraph implements IGraph {
 	
+	private ArrayList<INode> nodes;
+	private ArrayList<IEdge> edges;
+	
 	public TypeGraph() {
 		nodes = new ArrayList<>();
 		edges = new ArrayList<>();
 	}
-	
-	private ArrayList<INode> nodes;
-	private ArrayList<IEdge> edges;
+
 	
 	@Derived private List<TypeNode> typeNodes = null;
 	@Derived 
@@ -105,6 +106,7 @@ public class TypeGraph implements IGraph {
 		return st;
 	}
 	
+	//
 	public boolean isSuperTypeOf(ITypeNode child, ITypeNode parent)  {
 		if(parent==TypeNode.ANY_TYPE 
 				|| child==DataTypeNode.NULL_TYPE // NULL value
@@ -348,19 +350,19 @@ public class TypeGraph implements IGraph {
 		return builder.toString();
 	}
 
+	//比如调用：finalType = typeGraph.computeSubtype(finalType, n);
 	public TypeNode computeSubtype(TypeNode left, TypeNode right) {
 		if(left==right) return left;
-		if(isSuperTypeOf(left, right)) 
+		if(isSuperTypeOf(left, right))	//isSuperTypeOf(child, parent)
 			return left;
 		if(isSuperTypeOf(right, left)) 
 			return right;
 
 		// should go on
-		
 		return TypeNode.NULL_TYPE;
 	}
 	
-	
+	/** 用于buildTypeGraph */
 	public void declare(String statement) {
 		String typeNodeFormat = "\\s*(@?)(\\w+)\\s*((,\\w+)*)\\s*";
 		String dataNodeFormat = "\\s*(\\w+)\\s*:\\s*([\\w\\.]+)\\s*";

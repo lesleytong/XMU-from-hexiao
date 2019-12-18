@@ -38,6 +38,27 @@ class TestPattern {
 		buildTypedGraph();
 	}
 
+	public void buildTypeGraph() {
+		typeGraph = new TypeGraph();
+		
+		// add type nodes
+		typeGraph.declare("A");
+		typeGraph.declare("B");
+		typeGraph.declare("C");
+		typeGraph.declare("D");
+		
+		// add data type nodes
+		typeGraph.declare("String:java.lang.String");
+		
+		// add type edges
+		typeGraph.declare("a2b:A->B*");
+		typeGraph.declare("b2c:B->C");
+		typeGraph.declare("c2d:C->D");
+		
+		// add property edges
+		typeGraph.declare("a2S:A->String#");
+	}
+
 	public void buildTypedGraph() {
 		typedGraph = new TypedGraph(typeGraph);
 		
@@ -69,29 +90,6 @@ class TestPattern {
 				+"a1.a2S=\"str1\";"
 				+"a1.a2S=\"str2\";"
 				+"a1.a2S=\"str1\";");
-	}
-
-	public void buildTypeGraph() {
-		typeGraph = new TypeGraph();
-		
-		// add type nodes
-		typeGraph.declare("A");
-		typeGraph.declare("B");
-		typeGraph.declare("C");
-		
-		typeGraph.declare("D");
-		
-		// add data type nodes
-		typeGraph.declare("String:java.lang.String");
-		
-		// add type edges
-		typeGraph.declare("a2b:A->B*");
-		typeGraph.declare("b2c:B->C");
-		
-		typeGraph.declare("c2d:C->D");
-		
-		// add property edges
-		typeGraph.declare("a2S:A->String#");
 	}
 
 	@AfterEach
@@ -248,4 +246,9 @@ class TestPattern {
 		
 		Assert.assertTrue(Arrays.equals(left,right));
 	}
+	
+	
+	
+	
+	
 }
