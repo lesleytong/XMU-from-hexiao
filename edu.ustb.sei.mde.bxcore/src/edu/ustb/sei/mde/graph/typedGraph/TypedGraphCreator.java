@@ -44,6 +44,7 @@ public class TypedGraphCreator extends GraphCreator {
 	public TypedNode createTypedNode(String nodeID, TypeNode type) {
 		return createTypedNode(nodeID, type,null);
 	}
+	
 	public TypedNode createTypedNode(String nodeID, TypeNode type, Index index) {
 		TypedNode n = (TypedNode) this.createNode(nodeID, TYPED_NODE, type);
 		if(index!=null) n.appendIndex(index);
