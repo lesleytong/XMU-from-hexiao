@@ -203,8 +203,8 @@ public class TypedGraph extends IndexSystem implements IGraph {
 
 	}
 
-	/** 更新图的indexToObjectMap */
-	private void reindexing(IndexableElement n) {
+	/** 更新图的indexToObjectMap，我修改了private */
+	void reindexing(IndexableElement n) {
 		n.foreach(i -> {
 			this.indexToObjectMap.put(i, n);
 		});

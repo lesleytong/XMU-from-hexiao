@@ -19,7 +19,9 @@ public class Index implements Cloneable {
 	/**
 	 * 判断两个index是否相等：任一有空集抛出异常、有交集则返回true、没有交集则false
 	 * 比如调用l.getIndex().equals(r.getIndex())
+	 * 必须有@Override
 	 */
+	@Override
 	public boolean equals(Object index) {
 		if (index instanceof Index) {
 			if (this.internalIndices.isEmpty() || ((Index) index).internalIndices.isEmpty()) {
@@ -32,6 +34,17 @@ public class Index implements Cloneable {
 			return false;
 	}
 
+	
+	// lyt-重写hashCode()
+	@Override
+	public int hashCode() {
+		
+		//Object中的是返回对象内存地址
+		//怎么优化？否则散列没意义了
+		return 0;
+		
+	}
+	
 	public boolean isFreshIndex() {
 		return this.freshIndex;
 	}
@@ -119,4 +132,6 @@ public class Index implements Cloneable {
 	public String toString() {
 		return "@" + this.internalIndices;
 	}
+	
+	
 }

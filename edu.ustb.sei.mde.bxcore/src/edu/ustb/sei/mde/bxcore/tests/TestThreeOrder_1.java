@@ -7,32 +7,31 @@ import edu.ustb.sei.mde.graph.typedGraph.TypedEdge;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
 /**
  * 测试TypedEdge的序
- * 新添
+ * 删除、交换序
  * @author 10242
  */
-public class TestOrder_2 {
+public class TestThreeOrder_1 {
 
 	static TypedGraph baseGraph = null;
 	static TypedGraph aGraph = null;
 	static TypedGraph bGraph = null;
 	static TypedGraph resultGraph = null;
-	static TypedGraph tmpGraph = null;
 	
 	public static void main(String[] args){
 		
 		build_baseGraph();
 		build_aGraph();
 		build_bGraph();
-				
+		
 		try {
-			
 			resultGraph = BXMerge.merge(baseGraph, aGraph, bGraph);
 			System.out.println("resultGraph: ");
 			print(resultGraph);
 			
-			//处理序关系
+			//保证序关系
 			System.out.println("###############################序处理##################################");
-			BXMerge.Order(baseGraph, aGraph, bGraph, resultGraph);
+			BXMerge.threeOrder(baseGraph, aGraph, bGraph, resultGraph);
+			
 			
 		} catch (NothingReturnedException e) {
 			e.printStackTrace();
@@ -63,14 +62,23 @@ public class TestOrder_2 {
 		baseGraph.declare(	
 				"a1:A;"
 				+"b1:B;"
-				+"a1-a2b->b1;"			//e1
+				+"b2:B;"
+				+"b3:B;"
+				+"c1:C;"
+				+"c2:C;"
+				+"c3:C;"
+				+"d1:D;"
+				+"d2:D;"
+				+"a1-a2b->b1;"		//e1-e2-e3-e4
+				+"a1-a2b->b2;"
+				+"b3-b2c->c1;"
+				+"c2-c2d->d1;"
 				+"a1.a2S=\"str1\";"
 				+"a1.a2S=\"str2\";"
 				+"a1.a2S=\"str3\";");	
 		
 		System.out.println("baseGraph: ");
-		print(baseGraph);
-	
+		print(baseGraph);	
 		
 	}
 	
@@ -79,8 +87,11 @@ public class TestOrder_2 {
 		
 		aGraph = baseGraph.getCopy();
 		
-		// e1-e2
-		aGraph.declare("c1:C;" + "d1:D;" + "c1-c2d->d1;");
+		//e4-e2-e3
+		aGraph.remove(aGraph.getAllTypedEdges().get(0));	//删除用图的remove
+		TypedEdge typedEdge = aGraph.getAllTypedEdges().get(2);
+		aGraph.getAllTypedEdges().remove(2);	//交换序用列表的remove
+		aGraph.getAllTypedEdges().add(0, typedEdge);	
 		
 		System.out.println("aGraph: ");
 		print(aGraph);
@@ -91,15 +102,13 @@ public class TestOrder_2 {
 		
 		bGraph = baseGraph.getCopy();
 		
-		// e3-e1
-		bGraph.declare("b2:B;" + "c2:C;" + "b2-b2c->c2;");
-		TypedEdge typedEdge = bGraph.getAllTypedEdges().get(1);
-		bGraph.getAllTypedEdges().remove(1);	//交换序用列表的remove
-		bGraph.getAllTypedEdges().add(0, typedEdge);
+		//e1-e3-e2-e4
+		TypedEdge typedEdge = bGraph.getAllTypedEdges().get(2);
+		bGraph.getAllTypedEdges().remove(2);	//交换序用列表的remove
+		bGraph.getAllTypedEdges().add(1, typedEdge);
 		
 		System.out.println("bGraph: ");
 		print(bGraph);
-		
 	}
 	
 	private static void print(TypedGraph typedGraph) {

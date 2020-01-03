@@ -5,7 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.naming.spi.DirStateFactory.Result;
+
 import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
+import edu.ustb.sei.mde.bxcore.structures.Index;
 import edu.ustb.sei.mde.graph.type.PropertyEdge;
 import edu.ustb.sei.mde.graph.type.TypeEdge;
 import edu.ustb.sei.mde.graph.type.TypeNode;
@@ -112,8 +115,7 @@ public class BXMerge {
 							} else {
 								rn.setType(ct); // 若兼容，则rn的type设置为ct
 								rn.mergeIndex(n);
-								// 问题：不需要reindexing(rn)吗--lyt在TypedGraph添加了
-
+								result.reindexing(rn); // lyt-修改
 							}
 						}
 					}
@@ -161,7 +163,7 @@ public class BXMerge {
 								throw new NothingReturnedException();
 							} else {
 								re.mergeIndex(e);
-								// lyt--在TypedGraph中添加了reindexing(e)
+								result.reindexing(re); // lyt修改
 							}
 						}
 					}
@@ -206,7 +208,7 @@ public class BXMerge {
 								throw new NothingReturnedException();
 							} else {
 								re.mergeIndex(e);
-								// lyt在TypedGraph中添加了reindexing(re)
+								result.reindexing(re); // lyt修改
 							}
 						}
 					}
@@ -345,8 +347,86 @@ public class BXMerge {
 		return result;
 	}
 
+	public static List<TypedEdge> twoOrder(TypedGraph baseGraph, TypedGraph aGraph, TypedGraph resultGraph) {
+
+		List<TypedEdge> base = baseGraph.getAllTypedEdges();
+		System.out.println("base: " + base);
+
+		List<TypedEdge> a = aGraph.getAllTypedEdges();
+		System.out.println("a: " + a);
+
+		List<TypedEdge> result = resultGraph.getAllTypedEdges();
+		System.out.println("result: " + result);
+
+		int round = 1;
+
+		if (a.size() == result.size()) {
+			System.out.println("**********a和result的size相等，最终的序关系就是a的序关系：\n" + a);
+			return a;
+		} else {
+
+			Map<TypedEdge, Integer> baseFlag = new HashMap<>();
+			for (int i = 0; i < base.size(); i++) {
+				baseFlag.put(base.get(i), i);
+			}
+
+			List<TypedEdge> merge = new ArrayList<>();
+			for (int i = 0; i < a.size(); i++) {
+				merge.add(a.get(i));
+			}
+
+			// 遍历base中的每个元素
+			for (int i = 0; i < base.size(); i++) {
+
+				try {
+					// 如果根据base.get(i)的索引能在aGraph中找到，则跳过
+					aGraph.getElementByIndexObject(base.get(i).getIndex());
+					continue;
+
+				} catch (NothingReturnedException e) { // 如果在aGraph中不能找到，说明要添加到merge中
+
+					int j;
+					for (j = 0; j < merge.size(); j++) {
+
+						try {
+							// 如果根据merge(j)的索引在baseGraph中找到了，则有以下操作
+							TypedEdge typedEdge = baseGraph.getElementByIndexObject(merge.get(j).getIndex());
+
+							int tmp = baseFlag.get(base.get(i)) - baseFlag.get(typedEdge);
+
+							if (tmp > 0) {
+								continue;
+							} else {
+								merge.add(j, base.get(i));
+								System.out.println("回合" + round++ + merge);
+								break;
+							}
+
+						} catch (NothingReturnedException e2) {
+							// 如果根据merge(j)的索引在baseGraph中没找到，则跳过
+							continue;
+						}
+
+					}
+
+					if (j == merge.size()) {
+						merge.add(j, base.get(i));
+						System.out.println("回合" + round++ + merge);
+					}
+
+				}
+
+			}
+
+			System.out.println("*************最终的序: \n" + merge);
+			return merge;
+
+		}
+
+	}
+
 	/** 保证TypedEdge的序 */
-	public static List<TypedEdge> Order(TypedGraph baseGraph, TypedGraph aGraph, TypedGraph bGraph,
+	public static List<TypedEdge> threeOrder_1(TypedGraph baseGraph, TypedGraph aGraph, TypedGraph bGraph,
 			TypedGraph resultGraph) {
 
 		List<TypedEdge> base = baseGraph.getAllTypedEdges();
@@ -392,7 +472,7 @@ public class BXMerge {
 
 				if (flag == false) { // 非第一次执行
 
-					// 用于：如果根据base.get(j)的索引在mergeFlag中已经是front了，则不用动
+					// 之后用于：如果根据base.get(j)的索引在mergeFlag中已经是front了，则不用动
 					Map<TypedEdge, String> mergeFlag = new HashMap<>();
 					int position = merge.indexOf(element);
 					for (int k = 0; k < position; k++) {
@@ -571,6 +651,444 @@ public class BXMerge {
 						}
 
 						// 如果都在bMap中，则element应该插入到merge列表最后
+						if (k == merge.size()) {
+							merge.add(element);
+						}
+
+						System.out.println("处理b中一个新添加的元素后，merge: " + merge);
+
+					} catch (NothingReturnedException e2) {
+						// 如果不在baseGraph中又不在aGraph中，且不在resultGraph中，则跳过
+						continue;
+					}
+
+				}
+			}
+
+		}
+
+		System.out.println("\n处理完序后，merge: " + merge);
+
+		return merge;
+	}
+
+	/** 保证TypedEdge的序 */
+	public static List<TypedEdge> threeOrder_2(TypedGraph baseGraph, TypedGraph aGraph, TypedGraph bGraph,
+			TypedGraph resultGraph) {
+
+		List<TypedEdge> base = baseGraph.getAllTypedEdges();
+		System.out.println("base: " + base);
+
+		List<TypedEdge> a = aGraph.getAllTypedEdges();
+		System.out.println("a: " + a);
+
+		List<TypedEdge> b = bGraph.getAllTypedEdges();
+		System.out.println("b: " + b);
+
+		List<TypedEdge> result = resultGraph.getAllTypedEdges();
+		System.out.println("result: " + result);
+
+		List<TypedEdge> merge = new ArrayList<>();
+		boolean flag = true;
+		int round = 1; // 回合计数
+
+		Map<TypedEdge, Integer> aFlag = new HashMap<>();
+		for (int i = 0; i < a.size(); i++) {
+			aFlag.put(a.get(i), i);
+		}
+
+		Map<TypedEdge, Integer> bFlag = new HashMap<>();
+		for (int i = 0; i < b.size(); i++) {
+			bFlag.put(b.get(i), i);
+		}
+
+		// 对于base中每个元素
+		for (int i = 0; i < base.size(); i++) {
+
+			try {
+				// 根据base.get(i)的索引查找resultGraph，如果找到，则赋给element
+				TypedEdge element = resultGraph.getElementByIndexObject(base.get(i).getIndex());
+
+				if (flag == false) { // 非第一次执行
+
+					// 之后用于：如果根据base.get(j)的索引在mergeFlag中已经是front了，则不用动
+					Map<TypedEdge, String> mergeFlag = new HashMap<>();
+					int position = merge.indexOf(element);
+					for (int k = 0; k < position; k++) {
+						mergeFlag.put(merge.get(k), "front");
+					}
+
+					for (int j = i + 1; j < base.size(); j++) {
+
+						try {
+							// 根据base.get(j)索引在resultGraph中查找，如果找到则赋给re
+							TypedEdge re = resultGraph.getElementByIndexObject(base.get(j).getIndex());
+
+							int aSubtract = aFlag.get(aGraph.getElementByIndexObject(base.get(j).getIndex()))
+									- aFlag.get(aGraph.getElementByIndexObject(base.get(i).getIndex()));
+
+							int bSubtract = bFlag.get(bGraph.getElementByIndexObject(base.get(j).getIndex()))
+									- bFlag.get(bGraph.getElementByIndexObject(base.get(i).getIndex()));
+
+							if (aSubtract > 0 && bSubtract > 0) {
+								continue;
+							} else {
+
+								if (mergeFlag.get(re) == "front") {
+									continue;
+								} else {
+									System.out.println("****************remove前：" + merge);
+									merge.remove(re);
+									System.out.println("****************remove后：" + merge);
+									merge.add(merge.indexOf(element), re);
+									System.out.println("****************add后：" + merge);
+								}
+
+							}
+
+						} catch (NothingReturnedException e) { // 如果根据base.get(j)的索引在resultGraph中没找到，则跳过
+							continue;
+						}
+
+					}
+
+				} else { // 第一次执行
+
+					merge.add(element);
+					flag = false;
+
+					for (int j = i + 1; j < base.size(); j++) {
+
+						try {
+							// 根据base.get(j)索引在resultGraph中查找，如果找到则赋给re
+							TypedEdge re = resultGraph.getElementByIndexObject(base.get(j).getIndex());
+
+							int aSubtract = aFlag.get(aGraph.getElementByIndexObject(base.get(j).getIndex()))
+									- aFlag.get(aGraph.getElementByIndexObject(base.get(i).getIndex()));
+
+							int bSubtract = bFlag.get(bGraph.getElementByIndexObject(base.get(j).getIndex()))
+									- bFlag.get(bGraph.getElementByIndexObject(base.get(i).getIndex()));
+
+							if (aSubtract > 0 && bSubtract > 0) {
+								merge.add(re);
+							} else {
+								merge.add(merge.indexOf(element), re);
+							}
+
+						} catch (NothingReturnedException e) { // 如果根据base.get(j)的索引在resultGraph中没找到，则跳过
+							continue;
+						}
+					}
+
+				}
+
+			} catch (NothingReturnedException e) { // 如果根据base.get(i)索引在resultGraph中没找到，则跳过
+				continue;
+			}
+
+			System.out.println("回合" + round++ + "merge: " + merge);
+
+		}
+
+		// 保留一下【此时】的merge，用于处理b分支新添加的元素的if条件
+		List<TypedEdge> intermediate = new ArrayList<>();
+		intermediate.addAll(merge);
+
+		// 处理a中新添加的元素
+		for (int i = 0; i < a.size(); i++) {
+
+			// 对于a中每个元素，如果不在baseGraph中但在resultGraph中，说明是新添加的元素
+			try {
+				// 如果在baseGraph中，则跳过
+				baseGraph.getElementByIndexObject(a.get(i).getIndex());
+				continue;
+			} catch (NothingReturnedException e) { // 如果不在baseGraph中
+
+				try {
+					// 如果不在baseGraph中但在resultGraph中，则有以下操作
+					TypedEdge element = resultGraph.getElementByIndexObject(a.get(i).getIndex());
+
+					int k;
+					for (k = 0; k < merge.size(); k++) {
+						int tmp = aFlag.get(a.get(i))
+								- aFlag.get(aGraph.getElementByIndexObject(merge.get(k).getIndex()));
+						if (tmp > 0) {
+							continue;
+						} else {
+							merge.add(k, element);
+							break;
+						}
+					}
+
+					if (k == merge.size()) {
+						merge.add(element);
+					}
+
+					System.out.println("处理a中一个新添加的元素后，merge: " + merge);
+
+				} catch (NothingReturnedException e1) {
+					// 如果不在baseGraph中又不在resultGraph中，则跳过
+					continue;
+				}
+
+			}
+
+		}
+
+		// 处理b中新添加的元素
+		for (int i = 0; i < b.size(); i++) {
+
+			// 对于b中每个元素，如果不在baseGraph中但在resultGraph中，说明是新添加的元素。
+			// 如果在aGraph中，则跳过（为了不重复添加）
+			try {
+				// 如果在baseGraph中，则跳过
+				baseGraph.getElementByIndexObject(b.get(i).getIndex());
+				continue;
+
+			} catch (NothingReturnedException e) {
+
+				try {
+					// 如果不在baseGraph中但在aGraph中，则跳过（为了不重复添加）
+					aGraph.getElementByIndexObject(b.get(i).getIndex());
+					continue;
+
+				} catch (NothingReturnedException e1) {
+
+					try {
+						// 如果不在baseGraph中又不在aGraph中，但在resultGraph中，则有以下操作
+						TypedEdge element = resultGraph.getElementByIndexObject(b.get(i).getIndex()); // 错因
+
+						int k;
+						for (k = 0; k < merge.size(); k++) {
+
+							// intermediate用于if的第二个条件：a分支新元素已添加进merge中，为了防止b分支的新元素插错位置
+							int tmp = bFlag.get(b.get(i))
+									- bFlag.get(bGraph.getElementByIndexObject(merge.get(k).getIndex()));
+							if (tmp > 0 || !intermediate.contains(merge.get(k))) {
+								continue;
+							} else {
+								merge.add(k, element);
+								break;
+							}
+
+						}
+
+						if (k == merge.size()) {
+							merge.add(element);
+						}
+
+						System.out.println("处理b中一个新添加的元素后，merge: " + merge);
+
+					} catch (NothingReturnedException e2) {
+						// 如果不在baseGraph中又不在aGraph中，且不在resultGraph中，则跳过
+						continue;
+					}
+
+				}
+			}
+
+		}
+
+		System.out.println("\n处理完序后，merge: " + merge);
+
+		return merge;
+	}
+
+	/** 保证TypedEdge的序 */
+	public static List<TypedEdge> threeOrder(TypedGraph baseGraph, TypedGraph aGraph, TypedGraph bGraph,
+			TypedGraph resultGraph) {
+
+		List<TypedEdge> base = baseGraph.getAllTypedEdges();
+		System.out.println("base: " + base);
+
+		List<TypedEdge> a = aGraph.getAllTypedEdges();
+		System.out.println("a: " + a);
+
+		List<TypedEdge> b = bGraph.getAllTypedEdges();
+		System.out.println("b: " + b);
+
+		List<TypedEdge> result = resultGraph.getAllTypedEdges();
+		System.out.println("result: " + result);
+
+		List<TypedEdge> merge = new ArrayList<>();
+		boolean flag = true;
+		int round = 1; // 回合计数
+
+		Map<Index, Integer> aFlag = new HashMap<>();
+		for (int i = 0; i < a.size(); i++) {
+			aFlag.put(a.get(i).getIndex(), i);
+		}
+
+		Map<Index, Integer> bFlag = new HashMap<>();
+		for (int i = 0; i < b.size(); i++) {
+			bFlag.put(b.get(i).getIndex(), i);
+		}
+
+		// 对于base中每个元素
+		for (int i = 0; i < base.size(); i++) {
+
+			try {
+				// 根据base.get(i)的索引查找resultGraph，如果找到，则赋给element
+				TypedEdge element = resultGraph.getElementByIndexObject(base.get(i).getIndex());
+
+				if (flag == false) { // 非第一次执行
+
+					// 之后用于：如果根据base.get(j)的索引在mergeFlag中已经是front了，则不用动
+					Map<TypedEdge, String> mergeFlag = new HashMap<>();
+					int position = merge.indexOf(element);
+					for (int k = 0; k < position; k++) {
+						mergeFlag.put(merge.get(k), "front");
+					}
+
+					for (int j = i + 1; j < base.size(); j++) {
+
+						try {
+							// 根据base.get(j)索引在resultGraph中查找，如果找到则赋给re
+							TypedEdge re = resultGraph.getElementByIndexObject(base.get(j).getIndex());
+
+							int aSubtract = aFlag.get(base.get(i).getIndex()) - aFlag.get(base.get(j).getIndex());
+
+							int bSubtract = bFlag.get(base.get(i).getIndex()) - bFlag.get(base.get(j).getIndex());
+
+							if (aSubtract < 0 && bSubtract < 0) {
+								continue;
+							} else {
+
+								if (mergeFlag.get(re) == "front") {
+									continue;
+								} else {
+									System.out.println("****************remove前：" + merge);
+									merge.remove(re);
+									System.out.println("****************remove后：" + merge);
+									merge.add(merge.indexOf(element), re);
+									System.out.println("****************add后：" + merge);
+								}
+
+							}
+
+						} catch (NothingReturnedException e) { // 如果根据base.get(j)的索引在resultGraph中没找到，则跳过
+							continue;
+						}
+
+					}
+
+				} else { // 第一次执行
+
+					merge.add(element);
+					flag = false;
+
+					for (int j = i + 1; j < base.size(); j++) {
+
+						try {
+							// 根据base.get(j)索引在resultGraph中查找，如果找到则赋给re
+							TypedEdge re = resultGraph.getElementByIndexObject(base.get(j).getIndex());
+
+							int aSubtract = aFlag.get(base.get(i).getIndex()) - aFlag.get(base.get(j).getIndex());
+
+							int bSubtract = bFlag.get(base.get(i).getIndex()) - bFlag.get(base.get(j).getIndex());
+
+							if (aSubtract < 0 && bSubtract < 0) {
+								merge.add(re);
+							} else {
+								merge.add(merge.indexOf(element), re);
+							}
+
+						} catch (NothingReturnedException e) { // 如果根据base.get(j)的索引在resultGraph中没找到，则跳过
+							continue;
+						}
+					}
+
+				}
+
+			} catch (NothingReturnedException e) { // 如果根据base.get(i)索引在resultGraph中没找到，则跳过
+				continue;
+			}
+
+			System.out.println("回合" + round++ + "merge: " + merge);
+
+		}
+
+		// 保留一下【此时】的merge，用于处理b分支新添加的元素的if条件
+		List<TypedEdge> intermediate = new ArrayList<>();
+		intermediate.addAll(merge);
+
+		// 处理a中新添加的元素
+		for (int i = 0; i < a.size(); i++) {
+
+			// 对于a中每个元素，如果不在baseGraph中但在resultGraph中，说明是新添加的元素
+			try {
+				// 如果在baseGraph中，则跳过
+				baseGraph.getElementByIndexObject(a.get(i).getIndex());
+				continue;
+			} catch (NothingReturnedException e) { // 如果不在baseGraph中
+
+				try {
+					// 如果不在baseGraph中但在resultGraph中，则有以下操作
+					TypedEdge element = resultGraph.getElementByIndexObject(a.get(i).getIndex());
+
+					int k;
+					for (k = 0; k < merge.size(); k++) {
+						int tmp = aFlag.get(merge.get(k).getIndex()) - aFlag.get(a.get(i).getIndex());
+						if (tmp < 0) {
+							continue;
+						} else {
+							merge.add(k, element);
+							break;
+						}
+					}
+
+					if (k == merge.size()) {
+						merge.add(element);
+					}
+
+					System.out.println("处理a中一个新添加的元素后，merge: " + merge);
+
+				} catch (NothingReturnedException e1) {
+					// 如果不在baseGraph中又不在resultGraph中，则跳过
+					continue;
+				}
+
+			}
+
+		}
+
+		// 处理b中新添加的元素
+		for (int i = 0; i < b.size(); i++) {
+
+			// 对于b中每个元素，如果不在baseGraph中但在resultGraph中，说明是新添加的元素。
+			// 如果在aGraph中，则跳过（为了不重复添加）
+			try {
+				// 如果在baseGraph中，则跳过
+				baseGraph.getElementByIndexObject(b.get(i).getIndex());
+				continue;
+
+			} catch (NothingReturnedException e) {
+
+				try {
+					// 如果不在baseGraph中但在aGraph中，则跳过（为了不重复添加）
+					aGraph.getElementByIndexObject(b.get(i).getIndex());
+					continue;
+
+				} catch (NothingReturnedException e1) {
+
+					try {
+						// 如果不在baseGraph中又不在aGraph中，但在resultGraph中，则有以下操作
+						TypedEdge element = resultGraph.getElementByIndexObject(b.get(i).getIndex()); // 错因
+
+						int k;
+						for (k = 0; k < merge.size(); k++) {
+
+							// intermediate用于if的第二个条件：a分支新元素已添加进merge中，为了防止b分支的新元素插错位置
+							int tmp = bFlag.get(merge.get(k).getIndex()) - bFlag.get(b.get(i).getIndex());
+							if (tmp < 0 || !intermediate.contains(merge.get(k))) {
+								continue;
+							} else {
+								merge.add(k, element);
+								break;
+							}
+
+						}
+
 						if (k == merge.size()) {
 							merge.add(element);
 						}
