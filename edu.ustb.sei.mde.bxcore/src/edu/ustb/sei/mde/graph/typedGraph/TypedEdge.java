@@ -22,19 +22,26 @@ public class TypedEdge extends IndexableElement implements ITypedEdge {
 	public TypedNode getSource() {
 		return source;
 	}
-	void setSource(TypedNode source) {
+	
+	// lyt - 为了在TestTwoOrder中使用，修改成了public
+	public void setSource(TypedNode source) {
 		this.source = source;
 	}
 	public TypedNode getTarget() {
 		return target;
 	}
-	void setTarget(TypedNode target) {
+	
+	// lyt - 为了在TestTwoOrder中使用，修改成了public
+	public void setTarget(TypedNode target) {
 		this.target = target;
 	}
+	
 	public TypeEdge getType() {
 		return type;
 	}
-	void setType(TypeEdge type) {
+	
+	// lyt - 为了在TestTwoOrder中使用，修改成了public
+	public void setType(TypeEdge type) {
 		this.type = type;
 	}
 	

@@ -902,6 +902,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 	}
 
 	/** 将图中的TypedEdge边er替换为e */
+	//lyt - 修改为了public，为了在TestThreeOrder里面使用
 	public void replaceWith(TypedEdge er, TypedEdge e) {
 		// 先找到List中的er对象，替换为e对象
 		this.allTypedEdges.replaceAll(x -> isEqual(x, er) ? e : x);

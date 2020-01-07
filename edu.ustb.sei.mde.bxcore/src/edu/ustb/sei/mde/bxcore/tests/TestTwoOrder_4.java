@@ -1,6 +1,7 @@
 package edu.ustb.sei.mde.bxcore.tests;
 
 import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
+import edu.ustb.sei.mde.graph.type.TypeEdge;
 import edu.ustb.sei.mde.graph.type.TypeGraph;
 import edu.ustb.sei.mde.graph.typedGraph.BXMerge;
 import edu.ustb.sei.mde.graph.typedGraph.TypedEdge;
@@ -11,7 +12,7 @@ import edu.ustb.sei.mde.graph.typedGraph.TypedNode;
  * 测试TypedEdge的序
  * @author 10242
  */
-public class TestTwoOrder_1 {
+public class TestTwoOrder_4 {
 
 	static TypedGraph baseGraph = null;
 	static TypedGraph aGraph = null;
@@ -22,6 +23,7 @@ public class TestTwoOrder_1 {
 		build_baseGraph();
 		build_aGraph();
 		
+		//发现：有循环包含冲突，并没有抛出异常。---待优化
 		TypedGraph resultGraph = BXMerge.additiveMerge(baseGraph, aGraph);
 		
 		BXMerge.twoOrder(baseGraph, aGraph, resultGraph);
@@ -43,6 +45,7 @@ public class TestTwoOrder_1 {
 		typeGraph.declare("a2b:A->B*");
 		typeGraph.declare("b2c:B->C");
 		typeGraph.declare("c2d:C->D");
+		typeGraph.declare("d2c:D->C");
 		// add property edges
 		typeGraph.declare("a2S:A->String#");
 		
@@ -51,20 +54,30 @@ public class TestTwoOrder_1 {
 				"a1:A;"
 				+"b1:B;"
 				+"b2:B;"
-				+"b3:B;"
 				+"c1:C;"
-				+"c2:C;"
 				+"d1:D;"
-				+"a1-a2b->b1;"		//e1-e2-e3-e4
+				+"a1-a2b->b1;"		//e1-e2-e3
 				+"a1-a2b->b2;"
-				+"b3-b2c->c1;"
-				+"c2-c2d->d1;"
+				+"c1-c2d->d1;"
 				+"a1.a2S=\"str1\";"
 				+"a1.a2S=\"str2\";"
 				+"a1.a2S=\"str3\";");	
 		
+		
+		TypeEdge type = baseGraph.getAllTypedEdges().get(2).getType();
+		System.out.println("isMany?" + type.isMany());	//true
+		System.out.println("isContainment?" + type.isContainment());	//false
+		System.out.println("isUnique?" + type.isUnique());	//true
+			
+		type.setContainment(true);
+		
+		//返回true
+		System.out.println(baseGraph.getAllTypedEdges().get(2).getType().isContainment());
+		
 		System.out.println("baseGraph: ");
 		print(baseGraph);	
+		
+		
 		
 	}
 	
@@ -73,35 +86,33 @@ public class TestTwoOrder_1 {
 		
 		aGraph = baseGraph.getCopy();
 		
-		System.out.println("!!!!!!!!!!!!!c2: " + aGraph.getAllTypedNodes().get(5));
-		TypedNode c2 = aGraph.getAllTypedNodes().get(5);
-		
 		aGraph.declare(
-					"b4:B;"
-				   +"c3:C;"		
-				   +"d2:D;"
-				   +"c3-c2d->d2;"
-				   );
+				"d2:D;"
+			   +"c2:C;"		
+			   +"d2-d2c->c2;"
+			   );
 		
-		System.out.println("!!!!!!!!!!!!!b4: " + aGraph.getAllTypedNodes().get(7));
-		TypedNode b4 = aGraph.getAllTypedNodes().get(7);
+		TypeEdge type = aGraph.getAllTypedEdges().get(3).getType();	//d2c的type
+		type.setContainment(true);
 		
-		System.out.println("!!!!!!!!!!!!!b2c: " + aGraph.getAllTypedEdges().get(2));
-		TypedEdge e3 = aGraph.getAllTypedEdges().get(2);
+		TypedNode d1 = aGraph.getAllTypedNodes().get(4);
+		TypedNode c1 = aGraph.getAllTypedNodes().get(3);
 		
-		TypedEdge e = new TypedEdge();
-		e.setType(e3.getType());
-		e.setSource(b4);
-		e.setTarget(c2);
-		aGraph.addTypedEdge(e);
-		System.out.println(aGraph.getAllTypedEdges());	//此时：e1-e2-e3-e4-e6-e5
+		TypedEdge e4 = new TypedEdge();
+		e4.setType(type);	
+		e4.setSource(d1);
+		e4.setTarget(c1);
+		aGraph.addTypedEdge(e4);	//此时：e1-e2-e3-e-e4
 		
-		//e1-e5-e3-e6
+		//返回true
+		System.out.println(aGraph.getAllTypedEdges().get(4).getType().isContainment());
+		
+		//e3-e4-e2
 		aGraph.remove(aGraph.getAllTypedEdges().get(3));
-		aGraph.remove(aGraph.getAllTypedEdges().get(1));
-		TypedEdge e5 = aGraph.getAllTypedEdges().get(3);
-		aGraph.getAllTypedEdges().remove(e5);	//用列表的remove
-		aGraph.getAllTypedEdges().add(1, e5);
+		aGraph.remove(aGraph.getAllTypedEdges().get(0));
+		TypedEdge e2 = aGraph.getAllTypedEdges().get(0);
+		aGraph.getAllTypedEdges().remove(e2);
+		aGraph.getAllTypedEdges().add(e2);
 		
 		System.out.println("aGraph: ");
 		print(aGraph);

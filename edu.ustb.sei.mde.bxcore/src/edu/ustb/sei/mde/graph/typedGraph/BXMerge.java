@@ -72,7 +72,7 @@ public class BXMerge {
 			}
 		});
 
-		// 最后处理result中的位置信息?
+		// 位置约束关系
 		result.order.merge(graph.order);
 
 		result.constraint = GraphConstraint.and(first.constraint, graph.constraint);
@@ -347,7 +347,8 @@ public class BXMerge {
 		return result;
 	}
 
-	public static List<TypedEdge> twoOrder(TypedGraph baseGraph, TypedGraph aGraph, TypedGraph resultGraph) {
+	/** 二向合并的序 */
+	public static List<TypedEdge> twoOrder_origin(TypedGraph baseGraph, TypedGraph aGraph, TypedGraph resultGraph) {
 
 		List<TypedEdge> base = baseGraph.getAllTypedEdges();
 		System.out.println("base: " + base);
@@ -371,9 +372,7 @@ public class BXMerge {
 			}
 
 			List<TypedEdge> merge = new ArrayList<>();
-			for (int i = 0; i < a.size(); i++) {
-				merge.add(a.get(i));
-			}
+			merge.addAll(a);
 
 			// 遍历base中的每个元素
 			for (int i = 0; i < base.size(); i++) {
@@ -404,7 +403,7 @@ public class BXMerge {
 
 						} catch (NothingReturnedException e2) {
 							// 如果根据merge(j)的索引在baseGraph中没找到，则跳过
-							continue;
+//							continue;	//可以不写continue
 						}
 
 					}
@@ -425,7 +424,91 @@ public class BXMerge {
 
 	}
 
-	/** 保证TypedEdge的序 */
+	/** 二向合并的序 */
+	public static List<TypedEdge> twoOrder(TypedGraph baseGraph, TypedGraph aGraph, TypedGraph resultGraph) {
+
+		List<TypedEdge> base = baseGraph.getAllTypedEdges();
+		System.out.println("base: " + base);
+
+		List<TypedEdge> a = aGraph.getAllTypedEdges();
+		System.out.println("a: " + a);
+
+		List<TypedEdge> result = resultGraph.getAllTypedEdges();
+		System.out.println("result: " + result);
+
+		int round = 1;
+
+		List<TypedEdge> merge = new ArrayList<>();
+
+		//遍历a中元素，如果根据索引不能在result中找到，则不会添加进merge
+		for(int i=0; i<a.size(); i++) {
+			
+			try {
+				
+				resultGraph.getElementByIndexObject(a.get(i).getIndex());
+				merge.add(a.get(i));
+				
+			} catch (NothingReturnedException e) {
+				
+			}
+			
+		}
+		
+		Map<Index, Integer> baseFlag = new HashMap<>();
+		for (int i = 0; i < base.size(); i++) {
+			baseFlag.put(base.get(i).getIndex(), i);
+		}
+		
+		
+		// 遍历base中的每个元素
+		for (int i = 0; i < base.size(); i++) {
+
+			try {
+				// 如果根据base.get(i)的索引能在aGraph中找到，则跳过
+				aGraph.getElementByIndexObject(base.get(i).getIndex());
+				continue;
+
+			} catch (NothingReturnedException e) { // 如果在aGraph中不能找到，说明要添加到merge中
+
+				int j;
+				for (j = 0; j < merge.size(); j++) {
+
+					try {
+						// 如果根据merge(j)的索引在baseGraph中找到了，则有以下操作
+						baseGraph.getElementByIndexObject(merge.get(j).getIndex());
+
+						int tmp = baseFlag.get(merge.get(j).getIndex()) - baseFlag.get(base.get(i).getIndex());
+
+						if (tmp < 0) {
+							continue;
+						} else {
+							merge.add(j, base.get(i));
+							System.out.println("回合" + round++ + merge);
+							break;
+						}
+
+					} catch (NothingReturnedException e2) {
+						// 如果根据merge(j)的索引在baseGraph中没找到，则跳过
+						// continue; //可以不写
+					}
+
+				}
+
+				if (j == merge.size()) {
+					merge.add(j, base.get(i));
+					System.out.println("回合" + round++ + merge);
+				}
+
+			}
+
+		}
+
+		System.out.println("*************最终的序: \n" + merge);
+		return merge;
+
+	}
+
+	/** 用了front和back */
 	public static List<TypedEdge> threeOrder_1(TypedGraph baseGraph, TypedGraph aGraph, TypedGraph bGraph,
 			TypedGraph resultGraph) {
 
@@ -672,7 +755,7 @@ public class BXMerge {
 		return merge;
 	}
 
-	/** 保证TypedEdge的序 */
+	/** 用了HashMap<TypedEdge, Integer> */
 	public static List<TypedEdge> threeOrder_2(TypedGraph baseGraph, TypedGraph aGraph, TypedGraph bGraph,
 			TypedGraph resultGraph) {
 
@@ -894,7 +977,7 @@ public class BXMerge {
 		return merge;
 	}
 
-	/** 保证TypedEdge的序 */
+	/** 用了Map<Index, Integer> */
 	public static List<TypedEdge> threeOrder(TypedGraph baseGraph, TypedGraph aGraph, TypedGraph bGraph,
 			TypedGraph resultGraph) {
 
