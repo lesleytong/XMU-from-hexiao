@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.naming.spi.DirStateFactory.Result;
 
@@ -13,6 +14,7 @@ import edu.ustb.sei.mde.graph.type.PropertyEdge;
 import edu.ustb.sei.mde.graph.type.TypeEdge;
 import edu.ustb.sei.mde.graph.type.TypeNode;
 import edu.ustb.sei.mde.graph.typedGraph.constraint.GraphConstraint;
+import edu.ustb.sei.mde.structure.Tuple2;
 import edu.ustb.sei.mde.structure.Tuple3;
 
 public class BXMerge {
@@ -76,6 +78,7 @@ public class BXMerge {
 		result.order.merge(graph.order);
 
 		result.constraint = GraphConstraint.and(first.constraint, graph.constraint);
+
 		// check
 
 		return result;
@@ -440,26 +443,25 @@ public class BXMerge {
 
 		List<TypedEdge> merge = new ArrayList<>();
 
-		//遍历a中元素，如果根据索引不能在result中找到，则不会添加进merge
-		for(int i=0; i<a.size(); i++) {
-			
+		// 遍历a中元素，如果根据索引不能在result中找到，则不会添加进merge
+		for (int i = 0; i < a.size(); i++) {
+
 			try {
-				
+
 				resultGraph.getElementByIndexObject(a.get(i).getIndex());
 				merge.add(a.get(i));
-				
+
 			} catch (NothingReturnedException e) {
-				
+
 			}
-			
+
 		}
-		
+
 		Map<Index, Integer> baseFlag = new HashMap<>();
 		for (int i = 0; i < base.size(); i++) {
 			baseFlag.put(base.get(i).getIndex(), i);
 		}
-		
-		
+
 		// 遍历base中的每个元素
 		for (int i = 0; i < base.size(); i++) {
 
@@ -945,14 +947,31 @@ public class BXMerge {
 						for (k = 0; k < merge.size(); k++) {
 
 							// intermediate用于if的第二个条件：a分支新元素已添加进merge中，为了防止b分支的新元素插错位置
+							// 出现bug: 这里如果减号后面的bFlag没找到，会处理b的下一个元素
+//							int tmp = bFlag.get(b.get(i))
+//									- bFlag.get(bGraph.getElementByIndexObject(merge.get(k).getIndex()));
+//							
+//							if (tmp > 0 || !intermediate.contains(merge.get(k))) {
+//								continue;
+//							} else {
+//								merge.add(k, element);
+//								break;
+//							}
+							
+							if(!intermediate.contains(merge.get(k))) {
+								continue;
+							}
+							
 							int tmp = bFlag.get(b.get(i))
 									- bFlag.get(bGraph.getElementByIndexObject(merge.get(k).getIndex()));
-							if (tmp > 0 || !intermediate.contains(merge.get(k))) {
+							
+							if(tmp > 0) {
 								continue;
-							} else {
+							}else {
 								merge.add(k, element);
 								break;
 							}
+							
 
 						}
 
@@ -977,7 +996,7 @@ public class BXMerge {
 		return merge;
 	}
 
-	/** 用了Map<Index, Integer> */
+	/** 用了HashMap<Index, Integer> */
 	public static List<TypedEdge> threeOrder(TypedGraph baseGraph, TypedGraph aGraph, TypedGraph bGraph,
 			TypedGraph resultGraph) {
 
@@ -1092,6 +1111,7 @@ public class BXMerge {
 		}
 
 		// 保留一下【此时】的merge，用于处理b分支新添加的元素的if条件
+		// 是否可优化？？
 		List<TypedEdge> intermediate = new ArrayList<>();
 		intermediate.addAll(merge);
 
@@ -1162,13 +1182,27 @@ public class BXMerge {
 						for (k = 0; k < merge.size(); k++) {
 
 							// intermediate用于if的第二个条件：a分支新元素已添加进merge中，为了防止b分支的新元素插错位置
+							// 出现bug: 如果第一个bFlag没找到，会抛出异常
+//							int tmp = bFlag.get(merge.get(k).getIndex()) - bFlag.get(b.get(i).getIndex());
+//							if (tmp < 0 || !intermediate.contains(merge.get(k))) {
+//								continue;
+//							} else {
+//								merge.add(k, element);
+//								break;
+//							}
+							
+							if(!intermediate.contains(merge.get(k))) {
+								continue;	//说明是merge中添加进的a分支新元素
+							}
+							
 							int tmp = bFlag.get(merge.get(k).getIndex()) - bFlag.get(b.get(i).getIndex());
-							if (tmp < 0 || !intermediate.contains(merge.get(k))) {
+							if(tmp < 0) {
 								continue;
-							} else {
+							}else {
 								merge.add(k, element);
 								break;
 							}
+							
 
 						}
 
@@ -1190,6 +1224,61 @@ public class BXMerge {
 
 		System.out.println("\n处理完序后，merge: " + merge);
 
+		return merge;
+	}
+
+	// 处理强制序关系
+	public static List<TypedEdge> forceOrder(List<TypedEdge> merge, Set<Tuple2<Index, Index>> orders) throws NothingReturnedException {
+
+		Map<Index, Integer> mergeFlag = new HashMap<>();
+		Map<Integer, Integer> helper = new HashMap<>();
+		for (int i = 0; i < merge.size(); i++) {
+			mergeFlag.put(merge.get(i).getIndex(), i);
+			helper.put(i, 0);
+		}
+
+		for (Tuple2<Index, Index> order : orders) {
+			
+			try {
+				
+				// Index类的hashCode()和equals()重写了，只要Index对象的内部索引集有交集，就能找到
+				int first = mergeFlag.get(order.first);
+				int second = mergeFlag.get(order.second);
+				
+				if(helper.get(first)==2 && helper.get(second)==1) {
+					throw new NothingReturnedException("强制序中构成环，产生冲突");
+				}
+				
+				if(helper.get(first)==1) {
+					throw new NothingReturnedException("强制序中有<x, y>&&<x, z>冲突");
+				}
+				if(helper.get(first)==0) {
+					helper.replace(first, 1);	// 改成1，注意顺序
+				}
+			
+				if(helper.get(second)==2) {
+					throw new NothingReturnedException("强制序中有<y, x>&&<z, x>冲突");
+				}
+				if(helper.get(second)==0) {
+					helper.replace(second, 2);	//改成2
+				}
+				
+				// 有此判断，可减少不必要操作
+				if (second == first + 1)
+					continue;
+
+				TypedEdge front = merge.get(first);
+				TypedEdge back = merge.get(second);
+				merge.remove(back);
+				merge.add(merge.indexOf(front)+1, back);
+				
+			} catch (NullPointerException e) {
+				// first或second找不到的话，catch这里不作处理，会跳过此order
+			}			
+		}
+
+		System.out.println("处理完约束信息后，merge: " + merge);
+		
 		return merge;
 	}
 

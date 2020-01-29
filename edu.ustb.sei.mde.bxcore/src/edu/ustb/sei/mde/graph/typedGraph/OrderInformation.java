@@ -27,21 +27,23 @@ public class OrderInformation {
 	
 	public boolean path(Index from, Index to) {
 		Boolean result = null;
-		if((result=cache.get(from, to))!=null) return result;
+		if((result=cache.get(from, to))!=null) return result;	//返回值是Boolean
 		Set<Index> visited = new HashSet<>();
 		return path(from, to, visited);
 	}
 	
 	private boolean path(Index from, Index to, Set<Index> visited) {
-		if(visited.contains(from)) return false;
+		if(visited.contains(from)) return false;	// 如果visited集合包含from，返回false
 		visited.add(from);
+		
 		Boolean result = null;
-		if((result=cache.get(from, to))!=null) return result;
-		result = order.stream().anyMatch(o->o.first.equals(from) && (o.second.equals(to) || path(o.second, to, visited)));
+		if((result=cache.get(from, to))!=null) return result;	//返回值是Boolean
+		
+		result = order.stream().anyMatch(o -> o.first.equals(from) && (o.second.equals(to) || path(o.second, to, visited)) );
 		cache.put(from, to, result);
+		
 		return result;
 	}
-	
 	
 	public OrderInformation getCopy() {
 		OrderInformation oi = new OrderInformation();
@@ -49,14 +51,13 @@ public class OrderInformation {
 		return oi;
 	}
 	
-	//调用此方法的对象是result.order，意思是将graph.order的序信息添加到result.order中
 	public void merge(OrderInformation... merges) {
 		for(OrderInformation oi : merges) 
 			order.addAll(oi.order);	//Set集合的addAll()方法
 	}
 	
 	public boolean validate() {
-		List<Index> indices = order.stream().map(o->o.first).distinct().collect(Collectors.toList());
+		List<Index> indices = order.stream().map(o -> o.first).distinct().collect(Collectors.toList());
 		try {
 			planOrder(indices);
 		} catch (Exception e) {
