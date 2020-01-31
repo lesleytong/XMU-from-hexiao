@@ -82,7 +82,7 @@ public class ContextSource extends XmuCore {
 		submit(downstreamViewResult.second);
 		
 		downstreamViewResult.first.setConstraint(getConsistencyConstraint());
-		return downstreamViewResult.replaceSecond(upstreamView);
+		return downstreamViewResult.replaceSecond(upstreamView); // error? I should return upstream view
 	}
 
 	@Override
