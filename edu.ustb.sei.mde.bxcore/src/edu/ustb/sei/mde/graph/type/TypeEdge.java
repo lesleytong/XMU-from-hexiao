@@ -17,6 +17,9 @@ public class TypeEdge implements IStructuralFeatureEdge {
 	
 	private TypeGraph typeGraph;
 	
+	// lyt
+	private ConcurrentTypeGraph concurrentTypeGraph;
+	
 	public TypeNode getSource() {
 		return source;
 	}
@@ -69,6 +72,18 @@ public class TypeEdge implements IStructuralFeatureEdge {
 		this.typeGraph = typeGraph;
 	}
 
+	// lyt
+	@Override
+	public ConcurrentTypeGraph getConcurrentTypeGraph() {
+		return concurrentTypeGraph;
+	}
+	
+	// lyt
+	@Override
+	public void setConcurrentTypeGraph(ConcurrentTypeGraph g) {
+		this.concurrentTypeGraph = g;
+	}
+	
 	public String toString() {
 		return source.getName()+"-"+(isMany?"*":"-")+"->"+target.getName();
 	}

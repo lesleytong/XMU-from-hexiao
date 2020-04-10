@@ -37,7 +37,7 @@ public class TestForceOrder_5 {
 			//保证序关系
 			System.out.println("###############################序处理##################################");
 			List<TypedEdge> merge = null;
-			merge = BXMerge.threeOrder(baseGraph, aGraph, bGraph, resultGraph);
+			merge = BXMerge.threeOrder_origin(baseGraph, aGraph, bGraph, resultGraph);
 			
 			// 强制序关系
 			if(orders.size() != 0) {

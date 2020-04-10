@@ -7,9 +7,13 @@ public class TypeNode implements ITypeNode {
 	@Nullable(false) 
 	private String name;
 	private boolean isAbstract;
-	private TypeGraph typeGraph;
 	static public final TypeNode NULL_TYPE;
 	static public final TypeNode ANY_TYPE;
+	
+	private TypeGraph typeGraph;
+	
+	// lyt
+	private ConcurrentTypeGraph concurrentTypeGraph;
 	
 	static {
 		NULL_TYPE = new TypeNode();
@@ -34,18 +38,30 @@ public class TypeNode implements ITypeNode {
 		this.isAbstract = isAbstract;
 	}
 	
-	public TypeGraph getTypeGraph() {
-		return typeGraph;
-	}
-	
 	public boolean isAbstract() {
 		return isAbstract;
+	}
+
+	public TypeGraph getTypeGraph() {
+		return typeGraph;
 	}
 	
 	public void setTypeGraph(TypeGraph typeGraph) {
 		this.typeGraph = typeGraph;
 	}
 	
+	// lyt
+	@Override
+	public ConcurrentTypeGraph getConcurrentTypeGraph() {
+		return concurrentTypeGraph;
+	}
+
+	// lyt
+	@Override
+	public void setConcurrentTypeGraph(ConcurrentTypeGraph g) {
+		this.concurrentTypeGraph = g;
+	}
+
 	public String toString() {
 		return "("+"name:"+name+", isAbstract:"+isAbstract+")";
 	}

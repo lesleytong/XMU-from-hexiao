@@ -1,10 +1,10 @@
 package edu.ustb.sei.mde.graph.type;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.logging.Level;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -14,16 +14,15 @@ import edu.ustb.sei.mde.graph.Derived;
 import edu.ustb.sei.mde.graph.IEdge;
 import edu.ustb.sei.mde.graph.IGraph;
 import edu.ustb.sei.mde.graph.INode;
-import edu.ustb.sei.mde.graph.typedGraph.ConcurrentTypedGraph;
 
-public class TypeGraph implements IGraph {
+public class ConcurrentTypeGraph implements IGraph {
 
-	private ArrayList<INode> nodes;
-	private ArrayList<IEdge> edges;
+	private CopyOnWriteArrayList<INode> nodes;
+	private CopyOnWriteArrayList<IEdge> edges;
 
-	public TypeGraph() {
-		nodes = new ArrayList<>();
-		edges = new ArrayList<>();
+	public ConcurrentTypeGraph() {
+		nodes = new CopyOnWriteArrayList<>();
+		edges = new CopyOnWriteArrayList<>();
 	}
 	
 	@Derived
@@ -32,7 +31,7 @@ public class TypeGraph implements IGraph {
 	@Derived
 	public List<TypeNode> getAllTypeNodes() {
 		if (typeNodes == null) {
-			typeNodes = new ArrayList<TypeNode>();
+			typeNodes = new CopyOnWriteArrayList<TypeNode>();
 			nodes.forEach((n) -> {
 				if (n instanceof TypeNode)
 					typeNodes.add((TypeNode) n);
@@ -47,7 +46,7 @@ public class TypeGraph implements IGraph {
 	@Derived
 	public List<DataTypeNode> getAllDataTypeNodes() {
 		if (dataTypeNodes == null) {
-			dataTypeNodes = new ArrayList<DataTypeNode>();
+			dataTypeNodes = new CopyOnWriteArrayList<DataTypeNode>();
 			nodes.forEach((n) -> {
 				if (n instanceof DataTypeNode)
 					dataTypeNodes.add((DataTypeNode) n);
@@ -62,7 +61,7 @@ public class TypeGraph implements IGraph {
 	@Derived
 	public List<TypeEdge> getAllTypeEdges() {
 		if (typeEdges == null) {
-			typeEdges = new ArrayList<TypeEdge>();
+			typeEdges = new CopyOnWriteArrayList<TypeEdge>();
 			edges.forEach((n) -> {
 				if (n instanceof TypeEdge)
 					typeEdges.add((TypeEdge) n);
@@ -77,7 +76,7 @@ public class TypeGraph implements IGraph {
 	@Derived
 	public List<GeneralizationEdge> getAllGeneralizationEdges() {
 		if (generalizationEdges == null) {
-			generalizationEdges = new ArrayList<GeneralizationEdge>();
+			generalizationEdges = new CopyOnWriteArrayList<GeneralizationEdge>();
 			edges.forEach((n) -> {
 				if (n instanceof GeneralizationEdge)
 					generalizationEdges.add((GeneralizationEdge) n);
@@ -92,7 +91,7 @@ public class TypeGraph implements IGraph {
 	@Derived
 	public List<PropertyEdge> getAllPropertyEdges() {
 		if (propertyEdges == null) {
-			propertyEdges = new ArrayList<PropertyEdge>();
+			propertyEdges = new CopyOnWriteArrayList<PropertyEdge>();
 			edges.forEach((n) -> {
 				if (n instanceof PropertyEdge)
 					propertyEdges.add((PropertyEdge) n);
@@ -112,13 +111,13 @@ public class TypeGraph implements IGraph {
 	}
 
 	@Derived
-	HashMap<TypeNode, List<TypeNode>> superTypeMap = new HashMap<TypeNode, List<TypeNode>>();
+	ConcurrentHashMap<TypeNode, List<TypeNode>> superTypeMap = new ConcurrentHashMap<TypeNode, List<TypeNode>>();
 
 	@Derived
 	public List<TypeNode> getAllSuperTypes(TypeNode n) {
 		List<TypeNode> st = superTypeMap.get(n);
 		if (st == null) {
-			st = new ArrayList<TypeNode>();
+			st = new CopyOnWriteArrayList<TypeNode>();
 			superTypeMap.put(n, st);
 			List<GeneralizationEdge> elist = this.getAllGeneralizationEdges();
 			for (GeneralizationEdge g : elist) {
@@ -146,13 +145,13 @@ public class TypeGraph implements IGraph {
 	}
 
 	@Derived
-	HashMap<TypeNode, List<PropertyEdge>> propertyEdgeMap = new HashMap<TypeNode, List<PropertyEdge>>();
+	ConcurrentHashMap<TypeNode, List<PropertyEdge>> propertyEdgeMap = new ConcurrentHashMap<TypeNode, List<PropertyEdge>>();
 
 	@Derived
 	public List<PropertyEdge> getAllPropertyEdges(TypeNode n) {
 		List<PropertyEdge> result = propertyEdgeMap.get(n);
 		if (result == null) {
-			result = new ArrayList<PropertyEdge>();
+			result = new CopyOnWriteArrayList<PropertyEdge>();
 			propertyEdgeMap.put(n, result);
 			List<TypeNode> superTypesOfN = this.getAllSuperTypes(n);
 
@@ -174,13 +173,13 @@ public class TypeGraph implements IGraph {
 	}
 
 	@Derived
-	HashMap<TypeNode, List<TypeEdge>> outgoingTypeEdgeMap = new HashMap<TypeNode, List<TypeEdge>>();
+	ConcurrentHashMap<TypeNode, List<TypeEdge>> outgoingTypeEdgeMap = new ConcurrentHashMap<TypeNode, List<TypeEdge>>();
 
 	@Derived
 	public List<TypeEdge> getAllOutgoingTypeEdges(TypeNode n) {
 		List<TypeEdge> result = outgoingTypeEdgeMap.get(n);
 		if (result == null) {
-			result = new ArrayList<TypeEdge>();
+			result = new CopyOnWriteArrayList<TypeEdge>();
 			outgoingTypeEdgeMap.put(n, result);
 			List<TypeNode> superTypesOfN = this.getAllSuperTypes(n);
 
@@ -202,13 +201,13 @@ public class TypeGraph implements IGraph {
 	}
 
 	@Derived
-	HashMap<TypeNode, List<TypeEdge>> incomingTypeEdgeMap = new HashMap<TypeNode, List<TypeEdge>>();
+	ConcurrentHashMap<TypeNode, List<TypeEdge>> incomingTypeEdgeMap = new ConcurrentHashMap<TypeNode, List<TypeEdge>>();
 
 	@Derived
 	public List<TypeEdge> getAllIncomingTypeEdges(TypeNode n) {
 		List<TypeEdge> result = incomingTypeEdgeMap.get(n);
 		if (result == null) {
-			result = new ArrayList<TypeEdge>();
+			result = new CopyOnWriteArrayList<TypeEdge>();
 			incomingTypeEdgeMap.put(n, result);
 			List<TypeNode> superTypesOfN = this.getAllSuperTypes(n);
 
@@ -231,7 +230,7 @@ public class TypeGraph implements IGraph {
 
 	public void addNode(INode n) {
 		this.nodes.add(n);
-		((ITypeGraphItem) n).setTypeGraph(this);
+		((ITypeGraphItem) n).setConcurrentTypeGraph(this);
 
 		if (n instanceof TypeNode)
 			this.typeNodes = null;
@@ -242,7 +241,7 @@ public class TypeGraph implements IGraph {
 	public void addEdge(IEdge e) {
 		this.edges.add(e);
 		if (!(e instanceof GeneralizationEdge))
-			((ITypeGraphItem) e).setTypeGraph(this);
+			((ITypeGraphItem) e).setConcurrentTypeGraph(this);
 		if (e instanceof TypeEdge)
 			this.typeEdges = null;
 		else if (e instanceof GeneralizationEdge)
@@ -514,7 +513,7 @@ public class TypeGraph implements IGraph {
 
 	static final Pattern pathSegPat = Pattern
 			.compile("\\s*\\((.+)\\s*\\)\\s*\\{\\s*(\\d+)\\s*,\\s*(-?\\d+)\\s*\\}\\s*");
-	private HashMap<String, IPathType> pathMap = new HashMap<>();
+	private ConcurrentHashMap<String, IPathType> pathMap = new ConcurrentHashMap<>();
 
 	public IPathType resolvePathType(String typeString) {
 		IPathType r = pathMap.get(typeString);
@@ -537,7 +536,7 @@ public class TypeGraph implements IGraph {
 
 			buf = pathType.split("\\.");
 
-			List<DashedPathTypeSegment> segs = new ArrayList<>();
+			List<DashedPathTypeSegment> segs = new CopyOnWriteArrayList<>();
 
 			for (String pathSeg : buf) {
 				features.clear();

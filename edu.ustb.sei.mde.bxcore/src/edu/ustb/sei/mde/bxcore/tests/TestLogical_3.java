@@ -1,34 +1,38 @@
 package edu.ustb.sei.mde.bxcore.tests;
 
-import java.util.ArrayList;
-
 import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
-import edu.ustb.sei.mde.graph.type.TypeEdge;
 import edu.ustb.sei.mde.graph.type.TypeGraph;
 import edu.ustb.sei.mde.graph.typedGraph.BXMerge;
 import edu.ustb.sei.mde.graph.typedGraph.TypedEdge;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
+import edu.ustb.sei.mde.graph.typedGraph.TypedNode;
+import edu.ustb.sei.mde.graph.typedGraph.ValueNode;
 /**
- * 二向合并
- * 测试TypedEdge的序
+ * 测试变更是否应该在新添的前面
+ * 是的。可以检测出删除-引用冲突
  * @author 10242
+ *
  */
-public class TestTwoOrder_2 {
+public class TestLogical_3 {
 
 	static TypedGraph baseGraph = null;
 	static TypedGraph aGraph = null;
+	static TypedGraph bGraph = null;
 	static TypedGraph resultGraph = null;
 	
 	public static void main(String[] args){
 		
 		build_baseGraph();
 		build_aGraph();
+		build_bGraph();
 		
-		TypedGraph resultGraph = BXMerge.additiveMerge(baseGraph, aGraph);
-		
-//		BXMerge.twoOrder_origin(baseGraph, aGraph, resultGraph);
-		ArrayList<TypedEdge> merge = BXMerge.twoOrder(baseGraph.getAllTypedEdges(), aGraph.getAllTypedEdges(), resultGraph.getAllTypedEdges());
-		System.out.println("\n处理完序后，merge: " + merge);
+		try {
+			resultGraph = BXMerge.merge(baseGraph, aGraph, bGraph);
+			System.out.println("resultGraph: ");
+			print(resultGraph);
+		} catch (NothingReturnedException e) {
+			e.printStackTrace();
+		}
 		
 	}
 	
@@ -48,25 +52,19 @@ public class TestTwoOrder_2 {
 		typeGraph.declare("b2c:B->C");
 		typeGraph.declare("c2d:C->D");
 		// add property edges
-		typeGraph.declare("a2S:A->String#");
+//		typeGraph.declare("b2S:B->String#");
 		
 		baseGraph = new TypedGraph(typeGraph);
 		baseGraph.declare(	
 				"a1:A;"
 				+"b1:B;"
-				+"b2:B;"
 				+"c1:C;"
-				+"d1:D;"
-				+"a1-a2b->b1;"		//e1-e2-e3
-				+"a1-a2b->b2;"
-				+"c1-c2d->d1;"
-				+"a1.a2S=\"str1\";"
-				+"a1.a2S=\"str2\";"
-				+"a1.a2S=\"str3\";");	
+				+"a1-a2b->b1;"		// e1	
+				+"b1-b2c->c1;");
 		
-		System.out.println("baseGraph: ");
-		print(baseGraph);	
-			
+//		System.out.println("baseGraph: ");
+//		print(baseGraph);
+		
 	}
 	
 			
@@ -74,32 +72,32 @@ public class TestTwoOrder_2 {
 		
 		aGraph = baseGraph.getCopy();
 		
-		aGraph.declare(
-					"b3:B;"
-				   +"c2:C;"
-				   +"c3:C;"		
-				   +"d2:D;"
-				   +"b3-b2c->c3;"
-				   +"c2-c2d->d2;"
-				   );
+		// 删除b1
+		TypedNode b1 = aGraph.getAllTypedNodes().get(1);
+		aGraph.remove(b1);
 		
-		TypedEdge typedEdge = aGraph.getAllTypedEdges().get(4);
-		aGraph.remove(typedEdge); 	//替换也用图的remove，之后的repalceWith会添加indexToObject
-		aGraph.replaceWith(aGraph.getAllTypedEdges().get(2), typedEdge);
-		TypedEdge e4 = aGraph.getAllTypedEdges().get(3);
-		aGraph.getAllTypedEdges().remove(e4);	//交换序用列表的remove
-		aGraph.getAllTypedEdges().add(0, e4); 	//e4-e1-e2-e3'
-		TypedEdge e3 = aGraph.getAllTypedEdges().get(3);
-		aGraph.getAllTypedEdges().remove(e3);	//交换序用列表的remove
-		aGraph.getAllTypedEdges().add(2, e3);	//e4-e1-e3'-e2
-		
-		aGraph.remove(aGraph.getAllTypedEdges().get(3));	//e4-e1-e3'
+		TypedNode c1 = aGraph.getAllTypedNodes().get(1);
+		aGraph.remove(c1);
 		
 		System.out.println("aGraph: ");
 		print(aGraph);
 		
 	}
+	
+	private static void build_bGraph() {
 		
+		bGraph = baseGraph.getCopy();
+		
+		TypedNode c1 = baseGraph.getAllTypedNodes().get(2);
+		baseGraph.remove(c1);
+		System.out.println("baseGraph: ");
+		print(baseGraph);
+		
+		System.out.println("bGraph: ");
+		print(bGraph);
+		
+	}
+	
 	private static void print(TypedGraph typedGraph) {
 		
 		System.out.println("TypedNodes: " + typedGraph.getAllTypedNodes().toString());

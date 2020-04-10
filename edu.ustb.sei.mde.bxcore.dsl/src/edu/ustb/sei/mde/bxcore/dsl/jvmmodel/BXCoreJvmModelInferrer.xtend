@@ -84,7 +84,6 @@ import edu.ustb.sei.mde.graph.type.IStructuralFeatureEdge
 import edu.ustb.sei.mde.graph.type.ITypeNode
 import edu.ustb.sei.mde.graph.type.TypeGraph
 import edu.ustb.sei.mde.graph.type.TypeNode
-import edu.ustb.sei.mde.graph.typedGraph.TypedGraph
 import edu.ustb.sei.mde.structure.Tuple2
 import edu.ustb.sei.mde.structure.Tuple3
 import java.util.ArrayList
@@ -125,6 +124,7 @@ import edu.ustb.sei.mde.bxcore.dsl.bXCore.AbstractPatternEdge
 import edu.ustb.sei.mde.graph.type.IPathType
 import edu.ustb.sei.mde.bxcore.util.PathTypeUtil
 import edu.ustb.sei.mde.graph.pattern.PatternElement
+import edu.ustb.sei.mde.graph.typedGraph.TypedGraph
 
 /**
  * <p>Infers a JVM model from the source model.</p> 
