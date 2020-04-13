@@ -41,9 +41,9 @@ public class TestForceOrder_3 {
 			
 			// 强制序关系
 			if(orders.size() != 0) {
-				BXMerge.forceOrder(merge, orders);
+				List<TypedEdge> mergeUpdate = BXMerge.forceOrder_origin(merge, orders);
+				System.out.println("处理完强制序关系后，merge: " + mergeUpdate);
 			}
-			
 			
 		} catch (NothingReturnedException e) {
 			e.printStackTrace();

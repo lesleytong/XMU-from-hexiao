@@ -41,9 +41,9 @@ public class TestForceOrder_1 {
 			
 			// 强制序关系
 			if(orders.size() != 0) {
-				BXMerge.forceOrder(merge, orders);
+				List<TypedEdge> mergeUpdate = BXMerge.forceOrder_origin(merge, orders);
+				System.out.println("处理完序关系后，merge: " + mergeUpdate);
 			}
-			
 			
 		} catch (NothingReturnedException e) {
 			e.printStackTrace();
@@ -110,6 +110,12 @@ public class TestForceOrder_1 {
 		
 		orders.add(order1);
 		
+		// 添加<e3, e2>
+		Tuple2<Index, Index> order2 = Tuple2.make(aGraph.getAllTypedEdges().get(1).getIndex(), 
+				aGraph.getAllTypedEdges().get(2).getIndex());
+		
+		orders.add(order2);
+		
 	}
 	
 	private static void build_bGraph() {
@@ -124,6 +130,12 @@ public class TestForceOrder_1 {
 		bGraph.getAllTypedEdges().remove(e1);
 		bGraph.getAllTypedEdges().add(0, e4);
 		bGraph.getAllTypedEdges().add(e1);
+		
+		// 添加<e2, e4>
+		Tuple2<Index, Index> order1 = Tuple2.make(bGraph.getAllTypedEdges().get(1).getIndex(), 
+				bGraph.getAllTypedEdges().get(0).getIndex());
+		
+		orders.add(order1);
 		
 		System.out.println("bGraph: ");
 		print(bGraph);

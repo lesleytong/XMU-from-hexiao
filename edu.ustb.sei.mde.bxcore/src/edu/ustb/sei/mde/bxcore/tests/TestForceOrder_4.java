@@ -1,5 +1,6 @@
 package edu.ustb.sei.mde.bxcore.tests;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -20,7 +21,6 @@ public class TestForceOrder_4 {
 
 	static TypedGraph baseGraph = null;
 	static TypedGraph aGraph = null;
-	static TypedGraph bGraph = null;
 	static TypedGraph resultGraph = null;
 	static Set<Tuple2<Index, Index>> orders = new HashSet<>();
 	
@@ -28,23 +28,24 @@ public class TestForceOrder_4 {
 		
 		build_baseGraph();
 		build_aGraph();
-		build_bGraph();
 		
 		try {
-			resultGraph = BXMerge.merge(baseGraph, aGraph, bGraph);
+			
+			// 添加性合并
+			resultGraph = BXMerge.additiveMerge(baseGraph, aGraph);
 			System.out.println("resultGraph: ");
 			print(resultGraph);
 			
 			//保证序关系
 			System.out.println("###############################序处理##################################");
-			List<TypedEdge> merge = null;
-			merge = BXMerge.threeOrder_origin(baseGraph, aGraph, bGraph, resultGraph);
+			ArrayList<TypedEdge> merge = BXMerge.twoOrder(baseGraph.getAllTypedEdges(), aGraph.getAllTypedEdges(), resultGraph.getAllTypedEdges());
+			System.out.println("合并后，merge: " + merge);
 			
 			// 强制序关系
 			if(orders.size() != 0) {
-				BXMerge.forceOrder(merge, orders);
+				List<TypedEdge> mergeUpdate = BXMerge.forceOrder_origin(merge, orders);
+				System.out.println("处理完序关系后，merge: " + mergeUpdate);
 			}
-			
 			
 		} catch (NothingReturnedException e) {
 			e.printStackTrace();
@@ -103,37 +104,26 @@ public class TestForceOrder_4 {
 		System.out.println("aGraph: ");
 		print(aGraph);
 		
-		// <e1, e4>
-		Tuple2<Index, Index> order1 = Tuple2.make(aGraph.getAllTypedEdges().get(0).getIndex(), 
-				aGraph.getAllTypedEdges().get(1).getIndex());
-		orders.add(order1);
-		
-		// <e1, e2>
-		Tuple2<Index, Index> order2 = Tuple2.make(aGraph.getAllTypedEdges().get(0).getIndex(), 
-				aGraph.getAllTypedEdges().get(2).getIndex());
-		orders.add(order2);
-		
-//		// <e4, e2>
-//		Tuple2<Index, Index> order1 = Tuple2.make(aGraph.getAllTypedEdges().get(1).getIndex(), 
-//				aGraph.getAllTypedEdges().get(2).getIndex());
+//		// <e1, e4>
+//		Tuple2<Index, Index> order1 = Tuple2.make(aGraph.getAllTypedEdges().get(0).getIndex(), 
+//				aGraph.getAllTypedEdges().get(1).getIndex());
 //		orders.add(order1);
 //		
-//		// <e3, e2>
-//		Tuple2<Index, Index> order2 = Tuple2.make(aGraph.getAllTypedEdges().get(3).getIndex(), 
+//		// <e1, e2>
+//		Tuple2<Index, Index> order2 = Tuple2.make(aGraph.getAllTypedEdges().get(0).getIndex(), 
 //				aGraph.getAllTypedEdges().get(2).getIndex());
 //		orders.add(order2);
 		
-	}
-	
-	private static void build_bGraph() {
+		// <e4, e2>
+		Tuple2<Index, Index> order1 = Tuple2.make(aGraph.getAllTypedEdges().get(1).getIndex(), 
+				aGraph.getAllTypedEdges().get(2).getIndex());
+		orders.add(order1);
 		
-		bGraph = baseGraph.getCopy();
+		// <e3, e2>
+		Tuple2<Index, Index> order2 = Tuple2.make(aGraph.getAllTypedEdges().get(3).getIndex(), 
+				aGraph.getAllTypedEdges().get(2).getIndex());
+		orders.add(order2);
 		
-		// e1-e2-e3
-		
-		System.out.println("bGraph: ");
-		print(bGraph);
-				
 	}
 	
 	private static void print(TypedGraph typedGraph) {

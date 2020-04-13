@@ -44,7 +44,8 @@ public class TestForceOrder_2 {
 					
 			// 强制序关系
 			if(orders.size() != 0) {
-				BXMerge.forceOrder(merge, orders);
+				List<TypedEdge> mergeUpdate = BXMerge.forceOrder_origin(merge, orders);
+				System.out.println("处理完序关系后，merge: " + mergeUpdate);
 			}
 			
 		} catch (NothingReturnedException e) {
@@ -103,10 +104,10 @@ public class TestForceOrder_2 {
 		aGraph.getAllTypedEdges().remove(e3);
 		aGraph.getAllTypedEdges().add(1, e3);
 	
-		// 添加<e2, e1>
-		System.out.println(aGraph.getAllTypedEdges().get(2) + " " + aGraph.getAllTypedEdges().get(0));
-		Tuple2<Index, Index> order1 = Tuple2.make(aGraph.getAllTypedEdges().get(2).getIndex(), 
-				aGraph.getAllTypedEdges().get(0).getIndex());
+		// 添加<e1, e2>
+		System.out.println(aGraph.getAllTypedEdges().get(0) + " " + aGraph.getAllTypedEdges().get(2));
+		Tuple2<Index, Index> order1 = Tuple2.make(aGraph.getAllTypedEdges().get(0).getIndex(), 
+				aGraph.getAllTypedEdges().get(2).getIndex());
 		
 		orders.add(order1);
 		
@@ -128,17 +129,10 @@ public class TestForceOrder_2 {
 		bGraph.getAllTypedEdges().add(0, e4);
 		bGraph.getAllTypedEdges().add(e1);
 		
-		//e4-e2'-e1
-		bGraph.declare("a2:A;" + "b4:B;" + "a2-a2b->b4;");
-		TypedEdge e2 = bGraph.getAllTypedEdges().get(1);
-		TypedEdge e = bGraph.getAllTypedEdges().get(3);
-		bGraph.remove(e);
-		bGraph.replaceWith(e2, e);
-		
-		// 添加<e2', e1>
-		System.out.println(bGraph.getAllTypedEdges().get(1) + " " + bGraph.getAllTypedEdges().get(2));
-		Tuple2<Index, Index> order2 = Tuple2.make(bGraph.getAllTypedEdges().get(1).getIndex(), 
-				bGraph.getAllTypedEdges().get(2).getIndex());
+		// 添加<e1, e2>
+		System.out.println(bGraph.getAllTypedEdges().get(2) + " " + bGraph.getAllTypedEdges().get(1));
+		Tuple2<Index, Index> order2 = Tuple2.make(bGraph.getAllTypedEdges().get(2).getIndex(), 
+				bGraph.getAllTypedEdges().get(1).getIndex());
 		
 		orders.add(order2);
 		System.out.println(orders.size());	//输出是1！
