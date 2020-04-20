@@ -102,6 +102,7 @@ public class TestThreeOrder_1 {
 		System.out.println("aGraph: ");
 		print(aGraph);
 		
+
 	}
 	
 	private static void build_bGraph() {

@@ -90,49 +90,12 @@ public class BXMerge {
 
 		TypedGraph result = first.getCopy();
 
-		// 处理TypedNode的变更情况
-		TypeNode[] nodeImages = new TypeNode[interSources.length]; // 比如length=2
-		for (TypedNode baseNode : first.getAllTypedNodes()) { // 对于基本图中每一个TypedNode节点
-
-			for (int i = 0; i < interSources.length; i++) {
-				// 两个分支图先分别和基本图作比较，baseNode的情况分别存储在nodeImages[i]中。可能是NULL、ANY、修改后的类型
-				nodeImages[i] = TypedGraph.computeImage(baseNode, first, interSources[i]);
-			}
-
-			try {
-				// 再根据nodeImages[]中的情况，确定baseNode的finalType
-				TypeNode finalType = TypedGraph.computeType(nodeImages, first.getTypeGraph());
-
-				if (finalType == TypeNode.NULL_TYPE) { // 在某一分支中删除或两个分支都删除，则在result图中也删除
-					result.remove(baseNode);
-					// 这里也要删base图的相邻的边，避免后面重复处理；其实result.remove()主要目的是删新加的边
-					// 但不能更改base图的话，还是不要动比较好。
-
-				} else {
-
-					if (finalType == TypeNode.ANY_TYPE) // 此节点在两个分支图和基本图中的类型一致
-						finalType = baseNode.getType();
-
-					TypedNode n = new TypedNode(); // 新申请的节点
-					n.setType(finalType); // 设置新节点n的类型：和基本图中一样的类型或是替换后的类型
-
-					for (TypedGraph image : interSources) {
-						// 将新节点n和两个分支图中对应的baseNode的索引集合并
-						n.mergeIndex(image.getElementByIndexObject(baseNode.getIndex()));
-					}
-					// 将result图中的baseNode替换为n；这里可能在result图中替换或删除相邻边
-					result.replaceWith(baseNode, n);
-				}
-
-			} catch (NothingReturnedException e) {
-				throw e; // 捕捉到异常后抛出
-			}
-		}
-
 		// 处理TypedEdge的变更情况
 		TypedEdge[] typedEdgeImages = new TypedEdge[interSources.length];
 		for (TypedEdge baseEdge : first.getAllTypedEdges()) { // 对于基本图中每一个TypedEdge类型的边baseEdge
-
+			
+			System.out.println("********************baseEdge: " + baseEdge);
+			
 			// 两个分支图先分别和基本图作比较，baseEdge的情况分别存储在typedEdgeImages[i]中，可能是baseEdge、imageEdge、null
 			for (int i = 0; i < interSources.length; i++) {
 				typedEdgeImages[i] = TypedGraph.computeImage(baseEdge, first, interSources[i]);
@@ -200,10 +163,49 @@ public class BXMerge {
 			}
 		}
 
+		// 处理TypedNode的变更情况
+		TypeNode[] nodeImages = new TypeNode[interSources.length]; // 比如length=2
+		for (TypedNode baseNode : first.getAllTypedNodes()) { // 对于基本图中每一个TypedNode节点
+
+			for (int i = 0; i < interSources.length; i++) {
+				// 两个分支图先分别和基本图作比较，baseNode的情况分别存储在nodeImages[i]中。可能是NULL、ANY、修改后的类型
+				nodeImages[i] = TypedGraph.computeImage(baseNode, first, interSources[i]);
+			}
+
+			try {
+				// 再根据nodeImages[]中的情况，确定baseNode的finalType
+				TypeNode finalType = TypedGraph.computeType(nodeImages, first.getTypeGraph());
+
+				if (finalType == TypeNode.NULL_TYPE) { // 在某一分支中删除或两个分支都删除，则在result图中也删除
+					result.remove(baseNode);
+					// 这里也要删base图的相邻的边，避免后面重复处理；其实result.remove()主要目的是删新加的边
+					// 但不能更改base图的话，还是不要动比较好。
+
+				} else {
+
+					if (finalType == TypeNode.ANY_TYPE) // 此节点在两个分支图和基本图中的类型一致
+						finalType = baseNode.getType();
+
+					TypedNode n = new TypedNode(); // 新申请的节点
+					n.setType(finalType); // 设置新节点n的类型：和基本图中一样的类型或是替换后的类型
+
+					for (TypedGraph image : interSources) {
+						// 将新节点n和两个分支图中对应的baseNode的索引集合并
+						n.mergeIndex(image.getElementByIndexObject(baseNode.getIndex()));
+					}
+					// 将result图中的baseNode替换为n；这里可能在result图中替换或删除相邻边
+					result.replaceWith(baseNode, n);
+				}
+
+			} catch (NothingReturnedException e) {
+				throw e; // 捕捉到异常后抛出
+			}
+		}
+
 		// 处理新加入的点和边
 		for (TypedGraph image : interSources) {
 
-			// 分支图中所有新添加的ValueNode类型节点全部扔进result图中
+			// 新加入的ValueNode
 			image.getAllValueNodes().forEach(v -> {
 				result.addValueNode(v);
 			});
@@ -799,75 +801,71 @@ public class BXMerge {
 		return merge;
 	}
 
-	
-	    // 处理强制序关系
-		public static List<TypedEdge> forceOrder_origin(List<TypedEdge> merge, Set<Tuple2<Index, Index>> orders)
-				throws NothingReturnedException {
+	// 处理强制序关系
+	public static List<TypedEdge> forceOrder_origin(List<TypedEdge> merge, Set<Tuple2<Index, Index>> orders)
+			throws NothingReturnedException {
 
-			Map<Index, Integer> mergeFlag = new HashMap<>();
-			Map<Index, Integer> helper = new HashMap<>();
-			for(int i=0; i<merge.size(); i++) {
-				helper.put(merge.get(i).getIndex(), 0);
-			}
-
-			for (Tuple2<Index, Index> order : orders) {
-
-				try {
-					
-					for (int i = 0; i < merge.size(); i++) {
-						mergeFlag.put(merge.get(i).getIndex(), i);
-					}
-
-					// Index类的hashCode()和equals()重写了，只要Index对象的内部索引集有交集，就能找到
-					int first = mergeFlag.get(order.first);
-					int second = mergeFlag.get(order.second);
-
-					if (helper.get(order.first) == 2 && helper.get(order.second) == 1) {
-						throw new NothingReturnedException("强制序中构成环，产生冲突");
-					}
-
-					if (helper.get(order.first) == 1) {
-						throw new NothingReturnedException("强制序中有<x, y>&&<x, z>冲突");
-					}
-					if (helper.get(order.first) == 0) {
-						helper.replace(order.first, 1); // 改成1，注意顺序
-					}
-					
-					// 当first为2时，不会更新
-
-					if (helper.get(order.second) == 2) {
-						throw new NothingReturnedException("强制序中有<y, x>&&<z, x>冲突");
-					}
-					if (helper.get(order.second) == 0) {
-						helper.replace(order.second, 2); // 改成2
-					}
-					
-					// 当second为1时，不会更新
-
-					// 有次判断，可减少不必要操作
-					if (second == first + 1)
-						continue;
-					
-					TypedEdge front = merge.get(first);
-					TypedEdge back = merge.get(second);
-					merge.remove(back);
-					merge.add(merge.indexOf(front) + 1, back);
-					
-				} catch (NullPointerException e) {
-					// first或second找不到的话，catch这里不作处理，会跳过此order
-				}
-			}
-
-			return merge;
+		Map<Index, Integer> mergeFlag = new HashMap<>();
+		Map<Index, Integer> helper = new HashMap<>();
+		for (int i = 0; i < merge.size(); i++) {
+			helper.put(merge.get(i).getIndex(), 0);
 		}
-	
-	
+
+		for (Tuple2<Index, Index> order : orders) {
+
+			try {
+
+				for (int i = 0; i < merge.size(); i++) {
+					mergeFlag.put(merge.get(i).getIndex(), i);
+				}
+
+				// Index类的hashCode()和equals()重写了，只要Index对象的内部索引集有交集，就能找到
+				int first = mergeFlag.get(order.first);
+				int second = mergeFlag.get(order.second);
+
+				if (helper.get(order.first) == 2 && helper.get(order.second) == 1) {
+					throw new NothingReturnedException("强制序中构成环，产生冲突");
+				}
+
+				if (helper.get(order.first) == 1) {
+					throw new NothingReturnedException("强制序中有<x, y>&&<x, z>冲突");
+				}
+				if (helper.get(order.first) == 0) {
+					helper.replace(order.first, 1); // 改成1，注意顺序
+				}
+
+				// 当first为2时，不会更新
+
+				if (helper.get(order.second) == 2) {
+					throw new NothingReturnedException("强制序中有<y, x>&&<z, x>冲突");
+				}
+				if (helper.get(order.second) == 0) {
+					helper.replace(order.second, 2); // 改成2
+				}
+
+				// 当second为1时，不会更新
+
+				// 有次判断，可减少不必要操作
+				if (second == first + 1)
+					continue;
+
+				TypedEdge front = merge.get(first);
+				TypedEdge back = merge.get(second);
+				merge.remove(back);
+				merge.add(merge.indexOf(front) + 1, back);
+
+			} catch (NullPointerException e) {
+				// first或second找不到的话，catch这里不作处理，会跳过此order
+			}
+		}
+
+		return merge;
+	}
+
 	// 处理强制序关系
 	public static List<TypedEdge> forceOrder(List<TypedEdge> merge, Set<Tuple2<Index, Index>> orders)
 			throws NothingReturnedException {
 
-		
-		
 		return merge;
 	}
 

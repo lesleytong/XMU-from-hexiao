@@ -122,7 +122,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 	}
 
 	public void addValueNode(ValueNode n) {
-		if (allValueNodes.contains(n) == false) // 为什么其它的添加没有这个判断？
+		if (allValueNodes.contains(n) == false) 
 			allValueNodes.add(n);
 
 		indexing(n);
@@ -1026,6 +1026,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 				else
 					throw new NothingReturnedException(); // incompatible: a==imageEdge并且b==null
 			} else {
+				
 				if (tuple == null)
 					throw new NothingReturnedException(); // incompatible: a==null并且b==imageEdge
 				else if (isImage(tuple, baseEdge))
@@ -1091,14 +1092,14 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		
 	}
 
-	/** 删除result图中的TypedEdge类型边baseEdge */
+	/** 删除图中的TypedEdge类型边 */
 	public void remove(TypedEdge baseEdge) {
 		this.allTypedEdges.removeIf(x -> isEqual(x, baseEdge));
 		this.clearIndex(baseEdge);
 		// compute pre-deleted elements when baseEdge is containment, or not?
 	}
 
-	/** 删除result图中的ValueEdge类型边baseEdge */
+	/** 删除图中的ValueEdge类型边 */
 	public void remove(ValueEdge baseEdge) {
 		this.allValueEdges.removeIf(x -> isEqual(x, baseEdge));
 		this.clearIndex(baseEdge);
@@ -1119,18 +1120,21 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		Tuple3<TypedNode, TypedNode, TypeEdge> tuple = any; // 结果初始化为baseEdge的信息
 
 		for (TypedEdge e : typedEdgeImages) {
-			if (e == baseEdge)
+			
+			if (e == baseEdge)	// 没被替换，对象相同
 				continue;
 			else if (e == null) {
 				if (tuple == null || isImage(tuple, baseEdge))
 					tuple = null;
 				else
 					throw new NothingReturnedException(); // incompatible: a==imageEdge并且b==null
-			} else {
+			} else {	// 被替换了，对象不同		
+				
 				if (tuple == null)
 					throw new NothingReturnedException(); // incompatible: a==null并且b==imageEdge
-				else if (isImage(tuple, baseEdge))
+				else if (isImage(tuple, baseEdge)) {
 					tuple = new Tuple3<TypedNode, TypedNode, TypeEdge>(e.getSource(), e.getTarget(), e.getType());
+				}
 				else {
 					if (isImage(tuple, e)) // a==imageEdge并且b==imageEdge时，如果兼容则跳过
 						continue;	
@@ -1145,8 +1149,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 
 	/** 比较两个TypedEdge是否兼容，tuple是第一条边的三元组信息 */
 	static private boolean isImage(Tuple3<TypedNode, TypedNode, TypeEdge> tuple, TypedEdge e) {
-		return tuple.third == e.getType() && tuple.first.getIndex().equals(e.getSource().getIndex())
-				&& tuple.second.getIndex().equals(e.getTarget().getIndex());
+		return tuple.third == e.getType() && tuple.first.getIndex().equals(e.getSource().getIndex()) && tuple.second.getIndex().equals(e.getTarget().getIndex());
 	}
 
 	/**

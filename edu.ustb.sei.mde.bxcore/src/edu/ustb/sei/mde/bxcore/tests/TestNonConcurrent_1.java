@@ -7,9 +7,8 @@ import edu.ustb.sei.mde.graph.typedGraph.TypedEdge;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
 import edu.ustb.sei.mde.graph.typedGraph.TypedNode;
 /**
- * ²âÊÔTypedEdgeµÄĞò
- * ĞÂÌí
  * @author 10242
+ *
  */
 public class TestNonConcurrent_1 {
 
