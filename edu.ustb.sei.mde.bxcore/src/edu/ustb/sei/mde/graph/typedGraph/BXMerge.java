@@ -2,6 +2,7 @@ package edu.ustb.sei.mde.graph.typedGraph;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -93,9 +94,9 @@ public class BXMerge {
 		// 处理TypedEdge的变更情况
 		TypedEdge[] typedEdgeImages = new TypedEdge[interSources.length];
 		for (TypedEdge baseEdge : first.getAllTypedEdges()) { // 对于基本图中每一个TypedEdge类型的边baseEdge
-			
+
 			System.out.println("********************baseEdge: " + baseEdge);
-			
+
 			// 两个分支图先分别和基本图作比较，baseEdge的情况分别存储在typedEdgeImages[i]中，可能是baseEdge、imageEdge、null
 			for (int i = 0; i < interSources.length; i++) {
 				typedEdgeImages[i] = TypedGraph.computeImage(baseEdge, first, interSources[i]);
@@ -444,7 +445,7 @@ public class BXMerge {
 			resultFlag.put(result.get(i).getIndex(), i);
 		}
 
-		ArrayList<TypedEdge> merge = new ArrayList<>(a);
+		ArrayList<TypedEdge> merge = new ArrayList<>(a); // mergeList复制aList
 
 		// 删除merge里的不在result中的边
 		for (int i = 0; i < a.size(); i++) {
@@ -802,69 +803,111 @@ public class BXMerge {
 	}
 
 	// 处理强制序关系
-	public static List<TypedEdge> forceOrder_origin(List<TypedEdge> merge, Set<Tuple2<Index, Index>> orders)
+	public static List<TypedEdge> forceOrder(List<TypedEdge> merge, Set<Tuple2<Index, Index>> orders)
 			throws NothingReturnedException {
 
-		Map<Index, Integer> mergeFlag = new HashMap<>();
+		// helper用于判断有无其它冲突
 		Map<Index, Integer> helper = new HashMap<>();
 		for (int i = 0; i < merge.size(); i++) {
 			helper.put(merge.get(i).getIndex(), 0);
 		}
 
-		for (Tuple2<Index, Index> order : orders) {
-
-			try {
-
-				for (int i = 0; i < merge.size(); i++) {
-					mergeFlag.put(merge.get(i).getIndex(), i);
-				}
-
-				// Index类的hashCode()和equals()重写了，只要Index对象的内部索引集有交集，就能找到
-				int first = mergeFlag.get(order.first);
-				int second = mergeFlag.get(order.second);
-
-				if (helper.get(order.first) == 2 && helper.get(order.second) == 1) {
-					throw new NothingReturnedException("强制序中构成环，产生冲突");
-				}
-
-				if (helper.get(order.first) == 1) {
-					throw new NothingReturnedException("强制序中有<x, y>&&<x, z>冲突");
-				}
-				if (helper.get(order.first) == 0) {
-					helper.replace(order.first, 1); // 改成1，注意顺序
-				}
-
-				// 当first为2时，不会更新
-
-				if (helper.get(order.second) == 2) {
-					throw new NothingReturnedException("强制序中有<y, x>&&<z, x>冲突");
-				}
-				if (helper.get(order.second) == 0) {
-					helper.replace(order.second, 2); // 改成2
-				}
-
-				// 当second为1时，不会更新
-
-				// 有次判断，可减少不必要操作
-				if (second == first + 1)
-					continue;
-
-				TypedEdge front = merge.get(first);
-				TypedEdge back = merge.get(second);
-				merge.remove(back);
-				merge.add(merge.indexOf(front) + 1, back);
-
-			} catch (NullPointerException e) {
-				// first或second找不到的话，catch这里不作处理，会跳过此order
+		// ringFlag用于判断有无环冲突
+		HashMap<Index, Index> ringFlag = new HashMap<>();		
+		Iterator<Tuple2<Index, Index>> iterator = orders.iterator();
+		while(iterator.hasNext()) {
+			Tuple2<Index, Index> order = iterator.next();
+			if(helper.get(order.first) != null && helper.get(order.second) != null) {
+				ringFlag.put(order.first, order.second);
+			}else {
+				// first或second找不到的话，删除此order
+				iterator.remove();
 			}
 		}
 
-		return merge;
-	}
+		for (Tuple2<Index, Index> order : orders) {
 
-	// 处理强制序关系
-	public static List<TypedEdge> forceOrder(List<TypedEdge> merge, Set<Tuple2<Index, Index>> orders)
-			throws NothingReturnedException {
+			int firstHelper = helper.get(order.first);
+			int secondHelper = helper.get(order.second);
+
+			switch (firstHelper) {
+			case 0:
+				helper.replace(order.first, 1); // 改成1
+				break;
+			case 1:
+				throw new NothingReturnedException("强制序中有<x, y>&&<x, z>冲突");
+			default:
+				// 当first为2时，不会更新！
+				break;
+			}
+
+			switch (secondHelper) {
+			case 0:
+				helper.replace(order.second, 2); // 改成2
+				break;
+			case 2:
+				throw new NothingReturnedException("强制序中有<y, x>&&<z, x>冲突");
+			default:
+				// 当second为1时，不会更新！
+				break;
+			}
+
+			// 检测环冲突
+			Tuple2<Index, Index> tmp = new Tuple2<>(order.first, order.second); //错因：不能直接tmp = order，否则order都变了
+			while (ringFlag.get(tmp.second) != null) {
+				if (ringFlag.get(tmp.second).equals(order.first)) {
+					throw new NothingReturnedException("强制序中有环冲突");
+				}
+				tmp.second = ringFlag.get(tmp.second);
+			}
+
+		}
+
+		// 合法后，再执行强制序
+		for (Tuple2<Index, Index> order : orders) {
+
+			HashMap<Index, Integer> mergeFlag = new HashMap<>();
+
+			// 每次循环都要重新更新mergeFlag
+			for (int i = 0; i < merge.size(); i++) {
+				mergeFlag.put(merge.get(i).getIndex(), i);
+			}
+
+			// Index类的hashCode()和equals()重写了，只要Index对象的内部索引集有交集，就能找到
+			int firstPosition = mergeFlag.get(order.first);
+			int secondPosition = mergeFlag.get(order.second);
+
+			// 有此判断，可减少不必要操作
+			if (secondPosition == firstPosition + 1)
+				continue;
+
+			TypedEdge front = merge.get(firstPosition);
+			TypedEdge back = merge.get(secondPosition);
+
+			// 如果helper中first为1，second为2，则front不动（默认）
+			// 如果helper中first为2，second为2，则front也不动
+			if (helper.get(order.first) == 1 && helper.get(order.second) == 2
+					|| helper.get(order.first) == 2 && helper.get(order.second) == 2) {
+				merge.remove(back);
+				merge.add(merge.indexOf(front) + 1, back);
+			}
+			// 如果helper中first为1，second为1，则back不动
+			else if (helper.get(order.first) == 1 && helper.get(order.second) == 1) {
+				merge.remove(front);
+				merge.add(merge.indexOf(back), front);
+			}
+
+			// 如果helper中first为2，second为1，则<back, back+1>不动
+			// 将<front-1, front>移到其前面
+			else if (helper.get(order.first) == 2 && helper.get(order.second) == 1) {
+				TypedEdge previousFront = merge.get(firstPosition - 1);
+				merge.remove(previousFront);
+				merge.remove(front);
+				merge.add(merge.indexOf(back), previousFront);
+				merge.add(merge.indexOf(back), front);
+			}
+
+		}
 
 		return merge;
 	}

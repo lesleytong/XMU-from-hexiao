@@ -19,7 +19,8 @@ public class TypedNode  extends IndexableElement implements ITypedNode {
 		return type;
 	}
 
-	void setType(TypeNode type) {
+	// lyt-ÔÝÊ±¸Ä³Épublic 
+	public void setType(TypeNode type) {
 		this.type = type;
 	}
 	

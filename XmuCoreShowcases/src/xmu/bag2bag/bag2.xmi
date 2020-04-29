@@ -1,16 +1,6 @@
 <?xml version="1.0" encoding="ASCII"?>
-<bag2:Bag xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:bag2="http://www.ustb.edu.cn/sei/mde/bag2"
-    xsi:schemaLocation="http://www.ustb.edu.cn/sei/mde/bag2 ../../../metamodel/Bag2.ecore">
-  <elements
-      value="A"
-      count="4"/>
-  <elements
-      value="B"
-      count="1"/>
-  <elements
-      value="D"
-      count="3"/>
+<bag2:Bag xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bag2="http://www.ustb.edu.cn/sei/mde/bag2" xsi:schemaLocation="http://www.ustb.edu.cn/sei/mde/bag2 ../../../metamodel/Bag2.ecore">
+  <elements value="A" count="1"/>
+  <elements value="B" count="1"/>
+  <elements value="C" count="1"/>
 </bag2:Bag>

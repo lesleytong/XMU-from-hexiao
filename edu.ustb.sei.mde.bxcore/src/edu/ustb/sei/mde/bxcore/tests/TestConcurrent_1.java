@@ -5,6 +5,7 @@ package edu.ustb.sei.mde.bxcore.tests;
 import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
 import edu.ustb.sei.mde.graph.type.ConcurrentTypeGraph;
 import edu.ustb.sei.mde.graph.typedGraph.ConcurrentBXMerge;
+import edu.ustb.sei.mde.graph.typedGraph.ConcurrentBXMergeLatch;
 import edu.ustb.sei.mde.graph.typedGraph.ConcurrentTypedGraph;
 import edu.ustb.sei.mde.graph.typedGraph.TypedEdge;
 import edu.ustb.sei.mde.graph.typedGraph.TypedNode;
@@ -26,8 +27,7 @@ public class TestConcurrent_1 {
 		try {
 			
 			Profiler.begin();
-			resultGraph = ConcurrentBXMerge.merge(baseGraph, aGraph, bGraph);
-//			resultGraph = ConcurrentBXMerge2.merge(baseGraph, aGraph, bGraph);
+			resultGraph = ConcurrentBXMergeLatch.merge(baseGraph, aGraph, bGraph);
 			System.out.println("并行：" + Profiler.end() + "ms");
 			
 			System.out.println("merge后的resultGraph: ");

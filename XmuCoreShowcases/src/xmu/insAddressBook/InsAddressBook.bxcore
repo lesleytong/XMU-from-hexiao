@@ -3,6 +3,7 @@ import '/XmuCoreShowcases/metamodel/NIIAddressBook.ecore' as nii
 
 import edu.ustb.sei.mde.graph.typedGraph.TypedEdge
 
+// 与这个有莫大的关系
 function SabBook2NiiBook<sab!(b:AddressBook),nii!(b:NIIBook)> =
 	align sab!b:AddressBook{lp:persons=p:Person{ln:name=n:EString}} 
 				[p@context.@email.exists[String e| e.endsWith('nii.ac.jp')]]

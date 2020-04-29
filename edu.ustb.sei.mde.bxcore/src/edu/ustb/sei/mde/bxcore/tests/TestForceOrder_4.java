@@ -39,12 +39,13 @@ public class TestForceOrder_4 {
 			//保证序关系
 			System.out.println("###############################序处理##################################");
 			ArrayList<TypedEdge> merge = BXMerge.twoOrder(baseGraph.getAllTypedEdges(), aGraph.getAllTypedEdges(), resultGraph.getAllTypedEdges());
-			System.out.println("合并后，merge: " + merge);
+			System.out.println("merge: " + merge);
 			
 			// 强制序关系
+			System.out.println("###############################强制序##################################");
 			if(orders.size() != 0) {
-				List<TypedEdge> mergeUpdate = BXMerge.forceOrder_origin(merge, orders);
-				System.out.println("处理完序关系后，merge: " + mergeUpdate);
+				BXMerge.forceOrder(merge, orders);
+				System.out.println("mergeUpdate:" + merge);
 			}
 			
 		} catch (NothingReturnedException e) {
@@ -104,25 +105,25 @@ public class TestForceOrder_4 {
 		System.out.println("aGraph: ");
 		print(aGraph);
 		
-//		// <e1, e4>
-//		Tuple2<Index, Index> order1 = Tuple2.make(aGraph.getAllTypedEdges().get(0).getIndex(), 
-//				aGraph.getAllTypedEdges().get(1).getIndex());
-//		orders.add(order1);
-//		
-//		// <e1, e2>
-//		Tuple2<Index, Index> order2 = Tuple2.make(aGraph.getAllTypedEdges().get(0).getIndex(), 
-//				aGraph.getAllTypedEdges().get(2).getIndex());
-//		orders.add(order2);
-		
-		// <e4, e2>
-		Tuple2<Index, Index> order1 = Tuple2.make(aGraph.getAllTypedEdges().get(1).getIndex(), 
-				aGraph.getAllTypedEdges().get(2).getIndex());
+		// <e1, e4>
+		Tuple2<Index, Index> order1 = Tuple2.make(aGraph.getAllTypedEdges().get(0).getIndex(), 
+				aGraph.getAllTypedEdges().get(1).getIndex());
 		orders.add(order1);
 		
-		// <e3, e2>
-		Tuple2<Index, Index> order2 = Tuple2.make(aGraph.getAllTypedEdges().get(3).getIndex(), 
+		// <e1, e2>
+		Tuple2<Index, Index> order2 = Tuple2.make(aGraph.getAllTypedEdges().get(0).getIndex(), 
 				aGraph.getAllTypedEdges().get(2).getIndex());
 		orders.add(order2);
+		
+//		// <e4, e2>
+//		Tuple2<Index, Index> order1 = Tuple2.make(aGraph.getAllTypedEdges().get(1).getIndex(), 
+//				aGraph.getAllTypedEdges().get(2).getIndex());
+//		orders.add(order1);
+//		
+//		// <e3, e2>
+//		Tuple2<Index, Index> order2 = Tuple2.make(aGraph.getAllTypedEdges().get(3).getIndex(), 
+//				aGraph.getAllTypedEdges().get(2).getIndex());
+//		orders.add(order2);
 		
 	}
 	

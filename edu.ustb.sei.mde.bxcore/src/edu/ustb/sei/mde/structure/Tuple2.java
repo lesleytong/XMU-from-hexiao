@@ -4,7 +4,8 @@ package edu.ustb.sei.mde.structure;
 public class Tuple2<F, S> {
 	
 	public final F first;	
-	public final S second;
+	// lyt-为了检测强制序的环冲突，暂时去掉final修饰符
+	public S second;
 	
 	public Tuple2(F first, S second) {
 		super();
@@ -49,6 +50,7 @@ public class Tuple2<F, S> {
 		return Tuple2.make(f, second);
 	}
 	
+	// 注意replaceSecond是返回一个新对象
 	public Tuple2<F,S> replaceSecond(S s) {
 		return Tuple2.make(first, s);
 	}

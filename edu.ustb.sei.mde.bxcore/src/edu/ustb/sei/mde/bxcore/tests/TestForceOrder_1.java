@@ -12,7 +12,8 @@ import edu.ustb.sei.mde.graph.typedGraph.TypedEdge;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
 import edu.ustb.sei.mde.structure.Tuple2;
 /**
- * 测试新添元素的强制序
+ * 强制序
+ * 简单实现
  * @author 10242
  */
 public class TestForceOrder_1 {
@@ -30,6 +31,7 @@ public class TestForceOrder_1 {
 		build_bGraph();
 		
 		try {
+			// 三向合并
 			resultGraph = BXMerge.merge(baseGraph, aGraph, bGraph);
 			System.out.println("resultGraph: ");
 			print(resultGraph);
@@ -37,12 +39,15 @@ public class TestForceOrder_1 {
 			//保证序关系
 			System.out.println("###############################序处理##################################");
 			List<TypedEdge> merge = null;
-			merge = BXMerge.threeOrder_origin(baseGraph, aGraph, bGraph, resultGraph);
+			merge = BXMerge.threeOrder(baseGraph.getAllTypedEdges(), aGraph.getAllTypedEdges(), 
+					bGraph.getAllTypedEdges(), resultGraph.getAllTypedEdges());
+			System.out.println("merge: " + merge);
 			
 			// 强制序关系
+			System.out.println("###############################强制序##################################");
 			if(orders.size() != 0) {
-				List<TypedEdge> mergeUpdate = BXMerge.forceOrder_origin(merge, orders);
-				System.out.println("处理完序关系后，merge: " + mergeUpdate);
+				BXMerge.forceOrder(merge, orders);
+				System.out.println("mergeUpdate: " + merge);
 			}
 			
 		} catch (NothingReturnedException e) {

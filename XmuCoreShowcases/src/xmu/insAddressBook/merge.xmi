@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="ASCII"?>
 <sab:AddressBook xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sab="http://www.ustb.edu.cn/sei/mde/simpleaddressbook" xsi:schemaLocation="http://www.ustb.edu.cn/sei/mde/simpleaddressbook ../../../metamodel/SimpleAddressBook.ecore">
-  <persons name="Jack" tel="123-999">
-    <email>jack@nii.ac.jp</email>
-  </persons>
-  <persons name="Lesley">
+  <persons name="Lesley" tel="154-222">
     <email>lesley@nii.ac.jp</email>
   </persons>
-  <persons name="Lucky">
-    <email>Lucky@nii.ac.jp</email>
-  </persons>
+  <persons name="Lisa"/>
 </sab:AddressBook>

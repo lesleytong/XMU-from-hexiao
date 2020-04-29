@@ -8,9 +8,10 @@ import edu.ustb.sei.mde.graph.type.TypeGraph;
 import edu.ustb.sei.mde.graph.typedGraph.BXMerge;
 import edu.ustb.sei.mde.graph.typedGraph.TypedEdge;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
+import edu.ustb.sei.mde.graph.typedGraph.TypedNode;
 /**
- * 二向合并
- * 测试TypedEdge的序
+ * 添加性合并
+ * 替换
  * @author 10242
  */
 public class TestTwoOrder_2 {
@@ -57,6 +58,7 @@ public class TestTwoOrder_2 {
 				+"b2:B;"
 				+"c1:C;"
 				+"d1:D;"
+				+"d2:D;"
 				+"a1-a2b->b1;"		//e1-e2-e3
 				+"a1-a2b->b2;"
 				+"c1-c2d->d1;"
@@ -76,24 +78,26 @@ public class TestTwoOrder_2 {
 		
 		aGraph.declare(
 					"b3:B;"
-				   +"c2:C;"
-				   +"c3:C;"		
-				   +"d2:D;"
+				   +"c3:C;"
 				   +"b3-b2c->c3;"
-				   +"c2-c2d->d2;"
 				   );
 		
-		TypedEdge typedEdge = aGraph.getAllTypedEdges().get(4);
-		aGraph.remove(typedEdge); 	//替换也用图的remove，之后的repalceWith会添加indexToObject
-		aGraph.replaceWith(aGraph.getAllTypedEdges().get(2), typedEdge);
+		// e4-e1-e3'
+		TypedEdge e2 = aGraph.getAllTypedEdges().get(1);
+		TypedEdge e3base = baseGraph.getAllTypedEdges().get(2);
 		TypedEdge e4 = aGraph.getAllTypedEdges().get(3);
-		aGraph.getAllTypedEdges().remove(e4);	//交换序用列表的remove
-		aGraph.getAllTypedEdges().add(0, e4); 	//e4-e1-e2-e3'
-		TypedEdge e3 = aGraph.getAllTypedEdges().get(3);
-		aGraph.getAllTypedEdges().remove(e3);	//交换序用列表的remove
-		aGraph.getAllTypedEdges().add(2, e3);	//e4-e1-e3'-e2
 		
-		aGraph.remove(aGraph.getAllTypedEdges().get(3));	//e4-e1-e3'
+		aGraph.getAllTypedEdges().remove(e4);	// 交换序用列表的remove
+		aGraph.getAllTypedEdges().add(0, e4);
+		
+		aGraph.remove(e2);	// 删除用图的remove
+		
+		TypedNode d2 = aGraph.getAllTypedNodes().get(5);
+		TypedEdge e = new TypedEdge();
+		e.setType(e3base.getType());
+		e.setSource(e3base.getSource());
+		e.setTarget(d2);
+		aGraph.replaceWith(e3base, e);
 		
 		System.out.println("aGraph: ");
 		print(aGraph);

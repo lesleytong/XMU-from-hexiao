@@ -1,15 +1,12 @@
 package edu.ustb.sei.mde.bxcore.tests;
 
-import java.awt.List;
 import java.util.ArrayList;
-
 import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
 import edu.ustb.sei.mde.graph.type.TypeGraph;
 import edu.ustb.sei.mde.graph.typedGraph.BXMerge;
 import edu.ustb.sei.mde.graph.typedGraph.TypedEdge;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
 /**
- * ²âÊÔTypedEdgeµÄÐò
  * É¾³ý¡¢½»»»Ðò
  * @author 10242
  */

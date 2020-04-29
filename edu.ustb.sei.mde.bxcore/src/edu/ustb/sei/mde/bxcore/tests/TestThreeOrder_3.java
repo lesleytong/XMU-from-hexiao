@@ -10,11 +10,12 @@ import edu.ustb.sei.mde.graph.type.TypeGraph;
 import edu.ustb.sei.mde.graph.typedGraph.BXMerge;
 import edu.ustb.sei.mde.graph.typedGraph.TypedEdge;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
+import edu.ustb.sei.mde.graph.typedGraph.TypedNode;
 /**
- * 测试TypedEdge的序
+ * 替换
  * @author 10242
  */
-public class TestThreeOrder_5 {
+public class TestThreeOrder_3 {
 
 	static TypedGraph baseGraph = null;
 	static TypedGraph aGraph = null;
@@ -58,7 +59,7 @@ public class TestThreeOrder_5 {
 		typeGraph.declare("String:java.lang.String");
 		// add type edges
 		typeGraph.declare("a2b:A->B*");
-		typeGraph.declare("b2c:B->C");	
+		typeGraph.declare("b2c:B->C");
 		typeGraph.declare("c2d:C->D");
 		// add property edges
 		typeGraph.declare("a2S:A->String#");
@@ -67,19 +68,18 @@ public class TestThreeOrder_5 {
 		baseGraph.declare(	
 				"a1:A;"
 				+"b1:B;"
-				+"b2:B;"
 				+"c1:C;"
-				+"c2:C;"
 				+"d1:D;"
-				+"a1-a2b->b1;"		// e1-e2-e3
-				+"b2-b2c->c1;"		
-				+"c2-c2d->d1;"
+				+"d2:D;"
+				+"a1-a2b->b1;"		//e1-e2-e3
+				+"b1-b2c->c1;"
+				+"c1-c2d->d1;"
 				+"a1.a2S=\"str1\";"
 				+"a1.a2S=\"str2\";"
 				+"a1.a2S=\"str3\";");	
-
+		
 		System.out.println("baseGraph: ");
-		print(baseGraph);
+		print(baseGraph);	
 		
 	}
 	
@@ -91,8 +91,14 @@ public class TestThreeOrder_5 {
 					   +"c3:C;"
 					   +"b3-b2c->c3;");
 		
-		//e1-e2-e4
-		aGraph.remove(aGraph.getAllTypedEdges().get(2));
+		// e4-e2-e3
+		TypedEdge e4 = aGraph.getAllTypedEdges().get(3);
+		aGraph.getAllTypedEdges().remove(e4); // 交换序用列表的remove方法
+		
+		TypedEdge e1 = aGraph.getAllTypedEdges().get(0);
+		aGraph.remove(e1);	// 删除用图的remove方法，能清除indexToObject
+		
+		aGraph.getAllTypedEdges().add(0, e4);
 		
 		System.out.println("aGraph: ");
 		print(aGraph);
@@ -102,18 +108,34 @@ public class TestThreeOrder_5 {
 	private static void build_bGraph() {
 		
 		bGraph = baseGraph.getCopy();
-		
-		bGraph.declare("c4:C;"
-				       +"d2:D;"
-				       +"c4-c2d->d2;");
 
-		//e5-e2-e1-e3
-		TypedEdge e5 = bGraph.getAllTypedEdges().get(3);
-		bGraph.getAllTypedEdges().remove(e5);
-		TypedEdge e1 = bGraph.getAllTypedEdges().get(0);
-		bGraph.getAllTypedEdges().remove(e1);
-		bGraph.getAllTypedEdges().add(1, e1);
-		bGraph.getAllTypedEdges().add(0, e5);
+		// e1-e3'-e2
+		TypedNode d2 = bGraph.getAllTypedNodes().get(4);
+		TypedEdge e3 = bGraph.getAllTypedEdges().get(2);
+		TypedEdge e3new = new TypedEdge();
+		e3new.setType(e3.getType());
+		e3new.setSource(e3.getSource());
+		e3new.setTarget(d2);
+		
+		// 替换之前
+		TypedEdge e3base = baseGraph.getAllTypedEdges().get(2);
+		System.out.println("***替换前e3new内部索引集的hashCode：" + e3new.getIndex().getInternalIndices().hashCode());
+		System.out.println("***替换前e3base内部索引集的hashCode：" + e3base.getIndex().getInternalIndices().hashCode());
+		
+		bGraph.replaceWith(e3, e3new);
+		
+		// 替换之后，内部索引集的hashCode是一样的
+		System.out.println("***替换后e3new内部索引集的hashCode：" + e3new.getIndex().getInternalIndices().hashCode());
+		System.out.println("***替换后e3base内部索引集的hashCode：" + e3base.getIndex().getInternalIndices().hashCode());
+		
+		System.out.println("***替换后e3new的hashCode：" + e3new.hashCode());
+		System.out.println("***替换后e3base的hashCode：" + e3base.hashCode());
+		
+		TypedEdge e2 = bGraph.getAllTypedEdges().get(1);
+		bGraph.getAllTypedEdges().remove(e2);
+		bGraph.getAllTypedEdges().add(e2);
+				
+		System.out.println();
 		
 		System.out.println("bGraph: ");
 		print(bGraph);

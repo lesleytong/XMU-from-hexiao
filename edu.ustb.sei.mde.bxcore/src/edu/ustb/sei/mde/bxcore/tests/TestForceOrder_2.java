@@ -12,10 +12,10 @@ import edu.ustb.sei.mde.graph.typedGraph.TypedEdge;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
 import edu.ustb.sei.mde.structure.Tuple2;
 /**
- * 测试重复添加的强制序。
+ * 测试重复添加的强制序
+ * 
  * 集合判断是相同元素的方法是：Tuple2<a, b>==Tuple2<c, d>当且仅当a==b&&c==d。
- * 当然我的算法里是Tuple<Index, Index>，所以最后判断还是看Index的hashCode()和equals()方法。
- * 因此测试一下边被替换后，能否重复添加。---不能
+ * 当然我的算法里是Tuple<Index, Index>，判断要看Index的hashCode()和equals()方法。
  * @author 10242
  */
 public class TestForceOrder_2 {
@@ -33,6 +33,7 @@ public class TestForceOrder_2 {
 		build_bGraph();
 		
 		try {
+			// 三向合并
 			resultGraph = BXMerge.merge(baseGraph, aGraph, bGraph);
 			System.out.println("resultGraph: ");
 			print(resultGraph);
@@ -40,12 +41,15 @@ public class TestForceOrder_2 {
 			//保证序关系
 			System.out.println("###############################序处理##################################");
 			List<TypedEdge> merge = null;
-			merge = BXMerge.threeOrder_origin(baseGraph, aGraph, bGraph, resultGraph);
-					
+			merge = BXMerge.threeOrder(baseGraph.getAllTypedEdges(), aGraph.getAllTypedEdges(), 
+					bGraph.getAllTypedEdges(), resultGraph.getAllTypedEdges());
+			System.out.println("merge: " + merge);
+			
 			// 强制序关系
+			System.out.println("###############################强制序##################################");
 			if(orders.size() != 0) {
-				List<TypedEdge> mergeUpdate = BXMerge.forceOrder_origin(merge, orders);
-				System.out.println("处理完序关系后，merge: " + mergeUpdate);
+				BXMerge.forceOrder(merge, orders);
+				System.out.println("mergeUpdate: " + merge);
 			}
 			
 		} catch (NothingReturnedException e) {

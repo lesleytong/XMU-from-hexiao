@@ -23,7 +23,8 @@ public class ValueEdge extends IndexableElement  implements ITypedEdge {
 		return source;
 	}
 
-	void setSource(TypedNode source) {
+	// lyt-暂时改成public 
+	public void setSource(TypedNode source) {
 		this.source = source;
 	}
 
@@ -31,8 +32,8 @@ public class ValueEdge extends IndexableElement  implements ITypedEdge {
 		return target;
 	}
 
-
-	void setTarget(ValueNode target) {
+	// lyt-暂时改成public 
+	public void setTarget(ValueNode target) {
 		this.target = target;
 	}
 
@@ -41,8 +42,8 @@ public class ValueEdge extends IndexableElement  implements ITypedEdge {
 		return type;
 	}
 
-
-	void setType(PropertyEdge type) {
+	// lyt 暂时改成public 
+	public void setType(PropertyEdge type) {
 		this.type = type;
 	}
 	

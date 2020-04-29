@@ -15,7 +15,7 @@ public class Index implements Cloneable {
 	private boolean freshIndex = false;
 	private Set<Object> internalIndices = new HashSet<>();
 	private Object fixedIndex = null;
-
+	
 	/**
 	 * 判断两个index是否相等：任一有空集抛出异常、有交集则返回true、没有交集则false
 	 * 比如调用l.getIndex().equals(r.getIndex())
@@ -35,14 +35,21 @@ public class Index implements Cloneable {
 	}
 
 	
-	// lyt-重写hashCode()
+	// lyt-重写hashCode()-第一个版本
+//	@Override
+//	public int hashCode() {
+//		// Object中默认是返回对象的内存地址
+//		// 如果按照默认的话，先判断hashCode定是不同，没有后续去执行equals
+//		// 所以HashMap的get无法实现internalIndices有交集就找到
+//		// 但是这样的话散列就没意义了，该怎么写？hashCode返回值只能为int。
+//		return 1;
+//		
+//	}
+	
+	// lyt-重写hashCode()-第二个版本
 	@Override
 	public int hashCode() {
-		
-		//Object中的是返回对象内存地址
-		//怎么优化？否则散列没意义了
-		return 0;
-		
+		return this.internalIndices.hashCode();
 	}
 	
 	public boolean isFreshIndex() {
@@ -63,8 +70,17 @@ public class Index implements Cloneable {
 
 		if (this.fixedIndex == null)
 			this.fixedIndex = index.fixedIndex;
+		
+//		// lyt-暂时添加，为了验证替换后内部索引集的hashCode
+//		System.out.println(this.internalIndices.hashCode());
+//		System.out.println(index.internalIndices.hashCode());
 
-		internalIndices.addAll(index.internalIndices); // 将实参的内部索引集添加入调入者的内部索引集中
+		internalIndices.addAll(index.internalIndices); // 集合的并
+		
+//		// lyt-暂时添加，为了验证替换后内部索引集的hashCode
+//		System.out.println(this.internalIndices.hashCode());
+//		System.out.println(index.internalIndices.hashCode());
+		
 	}
 
 	private Index() {
@@ -127,11 +143,15 @@ public class Index implements Cloneable {
 	public Object getFixedIndex() {
 		return fixedIndex;
 	}
+	
+	// lyt-暂时能getInternalIndicies，用于验证Index的hashCode
+	public Set<Object> getInternalIndices() {
+		return internalIndices;
+	}
 
 	@Override
 	public String toString() {
 		return "@" + this.internalIndices;
 	}
-	
-	
+
 }

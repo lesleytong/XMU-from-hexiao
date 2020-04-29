@@ -8,7 +8,6 @@ import edu.ustb.sei.mde.graph.typedGraph.BXMerge;
 import edu.ustb.sei.mde.graph.typedGraph.TypedEdge;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
 /**
- * ²âÊÔTypedEdgeµÄĞò
  * ĞÂÌí
  * @author 10242
  */

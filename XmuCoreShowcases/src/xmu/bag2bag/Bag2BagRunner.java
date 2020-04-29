@@ -14,7 +14,7 @@ public class Bag2BagRunner {
 
 	public static void main(String[] args) throws Exception {
 		/* please change the basePath to the actual path of the workspace */
-		final String basePath =  "/Volumes/Macintosh HD Data/Eclipse Projects/git/morel";
+		final String basePath =  "E:/git/morel";
 		
 		final String bag1MetamodelPath = basePath+"/XmuCoreShowcases/metamodel/Bag1.ecore";
 		final String bag2MetamodelPath = basePath+"/XmuCoreShowcases/metamodel/Bag2.ecore";
@@ -49,7 +49,7 @@ public class Bag2BagRunner {
 		ViewType view = bx.execute(bx.getXmu_Bag2Bag(), sourceModel, new Tuple2[] {Tuple2.make("b", bagNode)});
 		bx.saveBag2Model(URI.createFileURI(viewModelPath), view);
 		
-		bx.exportTypedGraph(view.first, viewModelPath,"png");
+//		bx.exportTypedGraph(view.first, viewModelPath,"png");
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -70,6 +70,7 @@ public class Bag2BagRunner {
 				viewModel, new Tuple2[] {Tuple2.make("b", bag2Node)});
 		
 		bx.saveBag1Model(URI.createFileURI(updatedSourcePath), updatedSource, sourceModel);
-		bx.exportTypedGraph(updatedSource.first, updatedSourcePath, "png");
+		
+//		bx.exportTypedGraph(updatedSource.first, updatedSourcePath, "png");
 	}
 }

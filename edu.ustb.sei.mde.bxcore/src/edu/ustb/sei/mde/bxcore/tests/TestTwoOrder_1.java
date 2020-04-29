@@ -9,7 +9,7 @@ import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
 import edu.ustb.sei.mde.graph.typedGraph.TypedNode;
 /**
  * 添加性合并
- * 测试TypedEdge的序
+ * 新添、交换序
  * @author 10242
  */
 public class TestTwoOrder_1 {
