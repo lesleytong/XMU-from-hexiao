@@ -1,14 +1,20 @@
 package xmu.insAddressBook;
 
 import org.eclipse.emf.common.util.URI;
-
 import edu.ustb.sei.mde.bxcore.SourceType;
 import edu.ustb.sei.mde.bxcore.ViewType;
+import edu.ustb.sei.mde.bxcore.exceptions.BidirectionalTransformationDefinitionException;
+import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
+import edu.ustb.sei.mde.bxcore.structures.ContextGraph;
+import edu.ustb.sei.mde.bxcore.util.XmuProgram;
 import edu.ustb.sei.mde.graph.type.DataTypeNode;
 import edu.ustb.sei.mde.graph.type.PropertyEdge;
 import edu.ustb.sei.mde.graph.type.TypeEdge;
+import edu.ustb.sei.mde.graph.type.TypeGraph;
 import edu.ustb.sei.mde.graph.type.TypeNode;
 import edu.ustb.sei.mde.graph.typedGraph.BXMerge;
+import edu.ustb.sei.mde.graph.typedGraph.GraphChangeTool;
+import edu.ustb.sei.mde.graph.typedGraph.Profiler;
 import edu.ustb.sei.mde.graph.typedGraph.TypedEdge;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
 import edu.ustb.sei.mde.graph.typedGraph.TypedNode;
@@ -18,8 +24,8 @@ import edu.ustb.sei.mde.structure.Tuple2;
 import xmu.uml2rdbms.UML2RDBMS;
 
 @SuppressWarnings("all")
-public class InsAddressBookRunner2 {
-
+public class InsAddressBookRunner2 extends XmuProgram {
+	
 	public static void main(String[] args) throws Exception {
 		/* please change the basePath to the actual path of the workspace */
 		final String basePath =  "E:/git/morel";
@@ -31,28 +37,17 @@ public class InsAddressBookRunner2 {
 		final String bModelPath = basePath+"/XmuCoreShowcases/src/xmu/insAddressBook/b.xmi";
 		final String mergeModelPath = basePath+"/XmuCoreShowcases/src/xmu/insAddressBook/merge.xmi";
 
-		init(MetamodelPath, baseModelPath, aModelPath, bModelPath);
-		
-		test(MetamodelPath, baseModelPath, aModelPath, bModelPath, mergeModelPath);
+		InsAddressBookRunner2 runner2 = new InsAddressBookRunner2();
+		runner2.test(MetamodelPath, baseModelPath, aModelPath, bModelPath, mergeModelPath);
 	}
 	
-	@SuppressWarnings("unchecked")
-	static public void init(String MetamodelPath, String baseModelPath,String aModelPath, String bModelPath) throws Exception {
-		InsAddressBook bx = new InsAddressBook();
-		bx.registerSabPackage(URI.createFileURI(MetamodelPath));
-		
-		TypedGraph baseModel = bx.loadSabModel(URI.createFileURI(baseModelPath));
-		System.out.println("*****************baseModel: ");
-		print(baseModel);
-		
-	}
 	
-	@SuppressWarnings("unchecked")
-	static public void test(String MetamodelPath, String baseModelPath,String aModelPath, String bModelPath, String mergeModelPath) throws Exception {
-		InsAddressBook bx = new InsAddressBook();
-		bx.registerSabPackage(URI.createFileURI(MetamodelPath));
+	public void test(String MetamodelPath, String baseModelPath,String aModelPath, 
+			String bModelPath, String mergeModelPath) throws Exception {
 		
-		TypedGraph baseModel = bx.loadSabModel(URI.createFileURI(baseModelPath));
+		registerSabPackage(URI.createFileURI(MetamodelPath));
+		
+		TypedGraph baseModel = loadSabModel(URI.createFileURI(baseModelPath));
 		
 		TypedGraph aModel = baseModel.getCopy();
 		TypedGraph bModel = baseModel.getCopy();
@@ -60,16 +55,55 @@ public class InsAddressBookRunner2 {
 		aModelChange(aModel);
 		bModelChange(bModel);
 		
-		bx.saveSabModel(URI.createFileURI(aModelPath), aModel);
-		bx.saveSabModel(URI.createFileURI(bModelPath), bModel);
+		saveSabModel(URI.createFileURI(aModelPath), aModel);
+		saveSabModel(URI.createFileURI(bModelPath), bModel);
 		
+		Profiler.begin();
 		TypedGraph mergeModel = BXMerge.merge(baseModel, aModel, bModel);
-		bx.saveSabModel(URI.createFileURI(mergeModelPath), mergeModel);
+		System.out.println("串行：" + Profiler.end() + "ms");
+		saveSabModel(URI.createFileURI(mergeModelPath), mergeModel);
 		
 	}
 	
-	private static void aModelChange(TypedGraph aModel) {
+	 private TypeGraph typeGraph_sab;
+	
+	 public TypeGraph getTypeGraph_Sab() {
+	    if(typeGraph_sab==null) {
+	    	typeGraph_sab = new edu.ustb.sei.mde.graph.type.TypeGraph();
+	    	// TypedNode
+	    	typeGraph_sab.declare("AddressBook");
+	    	typeGraph_sab.declare("Person");
+	    	// ValueNode
+	    	typeGraph_sab.declare("EString:java.lang.String");
+	    	// ValueEdge
+	    	typeGraph_sab.declare("name:Person->EString");
+	    	typeGraph_sab.declare("email:Person->EString*");
+	    	typeGraph_sab.declare("tel:Person->EString");
+	    	// TypedEdge
+	    	typeGraph_sab.declare("@persons:AddressBook->Person*");
+	    }
+	    return typeGraph_sab;
+	 }	
+	
+
+	
+	public void registerSabPackage(final URI metamodelUri) {
+		registerPackage("sab", metamodelUri);
+	}
+	
+	public TypedGraph loadSabModel(final URI modelUri) {
+		org.eclipse.emf.ecore.EPackage pack = getPackage("sab");
+		java.util.List<org.eclipse.emf.ecore.EObject> roots = edu.ustb.sei.mde.bxcore.util.EcoreModelUtil.load(modelUri);
+		edu.ustb.sei.mde.graph.typedGraph.TypedGraph graph = edu.ustb.sei.mde.bxcore.util.EcoreModelUtil.load(roots, getTypeGraph_Sab());
+		return graph;
+	}
+	
+	public void saveSabModel(final URI uri, final TypedGraph graph) throws NothingReturnedException, BidirectionalTransformationDefinitionException {
+		edu.ustb.sei.mde.bxcore.util.EcoreModelUtil.save(uri, graph, null, getPackage("sab"));
+	}
 		
+	
+	private static void aModelChange(TypedGraph aModel) {
 		// 删除TypedNode节点
 		TypedNode n1 = aModel.getAllTypedNodes().get(1);
 		aModel.remove(n1);
@@ -80,7 +114,6 @@ public class InsAddressBookRunner2 {
 	}
 	
 	private static void bModelChange(TypedGraph bModel) {
-		
 		// 新添TypedNode节点，类型为Person
 		TypeNode typePerson = bModel.getTypeGraph().getTypeNode("Person");
 		TypedNode n4 = new TypedNode();
@@ -113,7 +146,6 @@ public class InsAddressBookRunner2 {
 		print(bModel);
 		
 	}
-	
 	
 	private static void print(TypedGraph typedGraph) {
 		

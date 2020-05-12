@@ -1,8 +1,8 @@
-package edu.ustb.sei.mde.bxcore.tests;
+package edu.ustb.sei.mde.graph.typedGraph;
 
 import java.util.concurrent.TimeUnit;
 
-public class Profiler {
+public class Profiler2 {
 
 	private static final ThreadLocal<Long> TIME_THREADLOCAL = new ThreadLocal<Long>() {
 																	protected Long initialValue() {
@@ -13,15 +13,15 @@ public class Profiler {
 	public static final void begin() {
 		TIME_THREADLOCAL.set(System.currentTimeMillis());
 	}
-										
+											
 	public static final long end() {
 		return System.currentTimeMillis() - TIME_THREADLOCAL.get();
 	}
 	
 	public static void main(String[] args) throws InterruptedException {
-		Profiler.begin();
+		Profiler2.begin();
 		TimeUnit.SECONDS.sleep(1);
-		System.out.println(Profiler.end());
+		System.out.println(Profiler2.end());
 	}
 
 }

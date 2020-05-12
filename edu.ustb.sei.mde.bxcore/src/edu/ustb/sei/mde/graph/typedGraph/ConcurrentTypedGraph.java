@@ -1,6 +1,7 @@
 package edu.ustb.sei.mde.graph.typedGraph;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -88,7 +89,7 @@ public class ConcurrentTypedGraph extends IndexSystem implements IGraph {
 	public OrderInformation getOrder() {
 		return order;
 	}
-	
+
 	// lyt
 	public ConcurrentTypeGraph getConcurrentTypeGraph() {
 		return this.concurrentTypeGraph;
@@ -118,7 +119,7 @@ public class ConcurrentTypedGraph extends IndexSystem implements IGraph {
 	}
 
 	public void addValueNode(ValueNode n) {
-		if (allValueNodes.contains(n) == false) // 为什么其它的添加没有这个判断？
+		if (allValueNodes.contains(n) == false)
 			allValueNodes.add(n);
 
 		indexing(n);
@@ -159,7 +160,7 @@ public class ConcurrentTypedGraph extends IndexSystem implements IGraph {
 		return -1;
 	}
 
-	/** 泛型方法，为对象生成索引，并将对象和索引集的映射关系添加到图的indexToObject中 */
+	/** 泛型方法，为对象生成索引，并将内部索引集和对象的映射关系添加到图的indexToObject中 */
 	private <T extends IndexableElement> void indexing(T n) {
 		if (n.isIndexable() == false)
 			return;
@@ -169,14 +170,24 @@ public class ConcurrentTypedGraph extends IndexSystem implements IGraph {
 			if (n.getIndex().isEmpty()) {
 				// 生成全局唯一的索引，并添加到对象n的内部索引集中
 				n.appendIndexValue(IndexSystem.generateUUID());
-				XmuCoreUtils.warning("An object without index was found");
+				// lyt-为了看控制台输出，暂时注释
+//				XmuCoreUtils.warning("An object without index was found");
 			}
 		} catch (Exception e) {
 			XmuCoreUtils.failure("Unknown error", e);
 			return;
 		}
 
-		n.foreach(i -> {
+//		n.foreach(i -> {
+//			try {
+//				// 将内部索引集和对象的映射关系注册到图的indexToObjectMap中
+//				this.registerIndex(i, n);
+//			} catch (NothingReturnedException e) {
+//				java.util.logging.Logger.getLogger(XmuCoreUtils.COMPONENT_NAME).log(Level.SEVERE,
+//						"Two objects are mapped onto the same index", e);
+//			}
+//		});
+		n.getIndex().getInternalIndices().parallelStream().forEach(i -> {
 			try {
 				// 将内部索引集和对象的映射关系注册到图的indexToObjectMap中
 				this.registerIndex(i, n);
@@ -189,8 +200,14 @@ public class ConcurrentTypedGraph extends IndexSystem implements IGraph {
 	}
 
 	/** 更新图的indexToObjectMap，我修改了private */
+//	void reindexing(IndexableElement n) {
+//		// 传入foreach的参数是个lambda表达式
+//		n.foreach(i -> {
+//			this.indexToObjectMap.put(i, n);
+//		});
+//	}
 	void reindexing(IndexableElement n) {
-		n.foreach(i -> {
+		n.getIndex().getInternalIndices().parallelStream().forEach(i -> {
 			this.indexToObjectMap.put(i, n);
 		});
 	}
@@ -221,10 +238,11 @@ public class ConcurrentTypedGraph extends IndexSystem implements IGraph {
 
 			for (int i = 0; i < allTypedEdges.size(); i++) {
 				TypedEdge tmp = allTypedEdges.get(i);
-				if (tmp.getSource() == e.getSource() // below I did use replaceWith, so I use == rather than Index.equals
+				if (tmp.getSource() == e.getSource() // below I did use replaceWith, so I use == rather than
+														// Index.equals
 						&& tmp.getType() == e.getType()) {
 
-					e.mergeIndex(tmp);	
+					e.mergeIndex(tmp);
 					reindexing(e);
 
 					if (replaced) { // reduce redundant
@@ -296,18 +314,17 @@ public class ConcurrentTypedGraph extends IndexSystem implements IGraph {
 		this.valueEdgeMap.remove(e.getSource());
 		this.valueReferenceMap.remove(e.getTarget());
 	}
-	
+
 	// lyt
 	public ConcurrentTypedGraph(ConcurrentTypeGraph concurrentTypeGraph) {
 		super();
 		this.concurrentTypeGraph = concurrentTypeGraph;
 		init();
 	}
-	
 
 	public TypedNode[] getTypedNodesOf(TypeNode type) {
 		ConcurrentTypeGraph concurrentTypeGraph = this.getConcurrentTypeGraph();
-		
+
 		return allTypedNodes.stream().filter(n -> {
 			return concurrentTypeGraph.isSuperTypeOf(n.getType(), type);
 		}).toArray(i -> new TypedNode[i]);
@@ -315,7 +332,7 @@ public class ConcurrentTypedGraph extends IndexSystem implements IGraph {
 
 	public ValueNode[] getValueNodesOf(DataTypeNode type) {
 		ConcurrentTypeGraph concurrentTypeGraph = this.getConcurrentTypeGraph();
-		
+
 		return allValueNodes.stream().filter(n -> {
 			return concurrentTypeGraph.isSuperTypeOf(n.getType(), type);
 		}).toArray(i -> new ValueNode[i]);
@@ -345,6 +362,7 @@ public class ConcurrentTypedGraph extends IndexSystem implements IGraph {
 					result.add(e);
 				}
 			}
+
 		}
 
 		return result;
@@ -557,7 +575,7 @@ public class ConcurrentTypedGraph extends IndexSystem implements IGraph {
 
 	/** TypedGraph类型的图的复制 */
 	public ConcurrentTypedGraph getCopy() {
-		
+
 		ConcurrentTypedGraph copy = new ConcurrentTypedGraph(this.concurrentTypeGraph);
 		// addAll(c: Collection<? extends E>): boolean 将集合c中的所有元素添加到该集合中。引用类型就复制对象的引用
 		copy.getAllTypedNodes().addAll(this.getAllTypedNodes());
@@ -871,32 +889,42 @@ public class ConcurrentTypedGraph extends IndexSystem implements IGraph {
 		this.clearIndex(n);
 
 		// 如果此节点还是某条TypedEdge类型边e的source或target端点，则删除这条边e
-		for (int i = this.allTypedEdges.size() - 1; i >= 0; i--) {
-			TypedEdge e = this.allTypedEdges.get(i);
-			if (isEqual(e.getSource(), n) || isEqual(e.getTarget(), n)) {
-				this.allTypedEdges.remove(i);
-				this.clearIndex(e);
-			}
-		}
+//		for (int i = this.allTypedEdges.size() - 1; i >= 0; i--) {
+//			TypedEdge e = this.allTypedEdges.get(i);
+//			if (isEqual(e.getSource(), n) || isEqual(e.getTarget(), n)) {
+//				this.allTypedEdges.remove(i);
+//				this.clearIndex(e);
+//			}
+//		}
+		this.allTypedEdges.parallelStream().filter(e -> isEqual(e.getSource(), n) || isEqual(e.getTarget(), n))
+				.forEach(e -> {
+					this.allTypedEdges.remove(e);
+					this.clearIndex(e);
+				});
 
 		// 如果此节点还是某条ValueEdge类型边e的source端点，则删除这条边e
-		for (int i = this.allValueEdges.size() - 1; i >= 0; i--) {
-			ValueEdge e = this.allValueEdges.get(i);
-			if (isEqual(e.getSource(), n)) {
-				this.allValueEdges.remove(i);
-				this.clearIndex(e);
-			}
-		}
+//		for (int i = this.allValueEdges.size() - 1; i >= 0; i--) {
+//			ValueEdge e = this.allValueEdges.get(i);
+//			if (isEqual(e.getSource(), n)) {
+//				this.allValueEdges.remove(i);
+//				this.clearIndex(e);
+//			}
+//		}
+		this.allValueEdges.parallelStream().filter(e -> isEqual(e.getSource(), n)).forEach(e -> {
+			this.allValueEdges.remove(e);
+			this.clearIndex(e);
+		});
+
 	}
 
 	/** 将图中的TypedEdge边er替换为e */
-	//lyt - 修改为了public，为了在TestThreeOrder里面使用
+	// lyt - 修改为了public，为了在TestThreeOrder里面使用
 	public void replaceWith(TypedEdge er, TypedEdge e) {
 		// 先找到allTypedEdges中的er对象，替换为e对象
 		this.allTypedEdges.replaceAll(x -> isEqual(x, er) ? e : x);
 		e.mergeIndex(er);
 		reindexing(e);
-		
+
 	}
 
 	/** 将图中的ValueEdge边er替换为e */
@@ -909,19 +937,19 @@ public class ConcurrentTypedGraph extends IndexSystem implements IGraph {
 	/** 将图中的TypedNode节点nr替换为n，注意还要考虑相邻的TypedEdge边和ValueEdge边 */
 	// 为了测试，default改成了public
 	public void replaceWith(TypedNode nr, TypedNode n) {
-		
+
 		List<TypedNode> allTypedNodes = this.allTypedNodes;
 		List<TypedEdge> allTypedEdges = this.allTypedEdges;
 		List<ValueEdge> allValueEdges = this.allValueEdges;
 		ConcurrentTypeGraph concurrentTypeGraph = this.concurrentTypeGraph;
-		
+
 		// 找到图的List<TypedNode>中的nr对象，替换为n对象
 		allTypedNodes.replaceAll(e -> isEqual(e, nr) ? n : e);
 		// 合并索引集
 		n.mergeIndex(nr);
 		// 更新图的indexToObjectMap
 		reindexing(n);
-				
+
 		// TypedNode节点替换后，还要考虑相邻的边
 		if (nr != n) {
 
@@ -985,15 +1013,14 @@ public class ConcurrentTypedGraph extends IndexSystem implements IGraph {
 					return e;
 			});
 			allTypedEdges.removeAll(removedTypedEdges); // 集合操作removeAll()：A <- A-B，即从A集合中删除B集合
-			
-			
+
 			// 处理相邻的ValueEdge类型的边
 			List<ValueEdge> removedValueEdges = new CopyOnWriteArrayList<ValueEdge>();
 			allValueEdges.replaceAll(e -> { // 对于result图中List<ValueEdge>的每一个边e
 				PropertyEdge edgeType = e.getType();
 				TypeNode sourceType = edgeType.getSource();
 
-				if (e.getSource() == nr) {	// 如果e的source是nr
+				if (e.getSource() == nr) { // 如果e的source是nr
 					// 并且n的type是e的sourceType的子类型，则将e替换为res
 					if (concurrentTypeGraph.isSuperTypeOf(nodeType, sourceType)) {
 						ValueEdge res = new ValueEdge();
@@ -1013,9 +1040,9 @@ public class ConcurrentTypedGraph extends IndexSystem implements IGraph {
 					return e; // 如果e的source不是nr，则保留
 			});
 			allValueEdges.removeAll(removedValueEdges);
-			
+
 		}
-		
+
 	}
 
 //	static public boolean isIdentifical(TypedGraph left, TypedGraph right) {
@@ -1098,11 +1125,12 @@ public class ConcurrentTypedGraph extends IndexSystem implements IGraph {
 	}
 
 	/**
-	 * 再根据typedEdgeImages中的情况，确定finalEdgeInfo三元组信息 
-	 * 1)返回baseEdge三元组信息：a==baseEdge并且b==baseEdge 
-	 * 2) 返回null：a==baseEdge并且b==null |a==null并且b==baseEdge | a==null并且b==null 
-	 * 3) 抛出异常：a==null并且b==imageEdge | a==imageEdge并且b==null | a==imageEdge并且b==imageEdge但不兼容 
-	 * 4) 返回imageEdge三元组信息：a==baseEdge并且b==imageEdge | a==imageEdge并且b==baseEdge |a==imageEdge并且b==imageEdge而且兼容
+	 * 再根据typedEdgeImages中的情况，确定finalEdgeInfo三元组信息
+	 * 1)返回baseEdge三元组信息：a==baseEdge并且b==baseEdge 2) 返回null：a==baseEdge并且b==null
+	 * |a==null并且b==baseEdge | a==null并且b==null 3) 抛出异常：a==null并且b==imageEdge |
+	 * a==imageEdge并且b==null | a==imageEdge并且b==imageEdge但不兼容 4)
+	 * 返回imageEdge三元组信息：a==baseEdge并且b==imageEdge | a==imageEdge并且b==baseEdge
+	 * |a==imageEdge并且b==imageEdge而且兼容
 	 */
 	static Tuple3<TypedNode, TypedNode, TypeEdge> computeEdge(TypedEdge baseEdge, TypedEdge[] typedEdgeImages)
 			throws NothingReturnedException {
@@ -1126,7 +1154,7 @@ public class ConcurrentTypedGraph extends IndexSystem implements IGraph {
 					tuple = new Tuple3<TypedNode, TypedNode, TypeEdge>(e.getSource(), e.getTarget(), e.getType());
 				else {
 					if (isImage(tuple, e)) // a==imageEdge并且b==imageEdge时，如果兼容则跳过
-						continue;	
+						continue;
 					else
 						throw new NothingReturnedException(); // incompatible: a==imageEdge并且b==imageEdge，但不兼容
 				}
@@ -1162,6 +1190,23 @@ public class ConcurrentTypedGraph extends IndexSystem implements IGraph {
 		}
 	}
 
+	/** lyt-修改computeImage */
+	static TypedEdge computeImage(TypedEdge baseEdge, Map<Index, TypedEdge> imageMap) {
+
+		TypedEdge imageEdge = imageMap.get(baseEdge.getIndex());
+		if(imageEdge != null) {
+			// 如果baseEdge在分支图和基本图中一致(type & source & target)，则返回baseEdge
+			if (imageEdge.getType() == baseEdge.getType()
+					&& imageEdge.getSource().getIndex().equals(baseEdge.getSource().getIndex())
+					&& imageEdge.getTarget().getIndex().equals(baseEdge.getTarget().getIndex()))
+				return baseEdge;
+			else
+				return imageEdge; // 如果不一致，则返回修改后的imageEdge
+		}
+		// 根据baseEdge的索引在分支图中没有找到，说明被删了，返回null
+		return null;
+	}
+
 	/**
 	 * 
 	 * 比如调用：TypeNode finalType = TypedGraph.computeType(nodeImages,
@@ -1170,7 +1215,8 @@ public class ConcurrentTypedGraph extends IndexSystem implements IGraph {
 	 * 2)返回NULL：a是ANY、b是NULL | a是NULL、b是ANY | a是NULL、b是NULL 3)抛出异常：a是NULL、b改了 |
 	 * a改了、b是NULL | a改了b也改了，但不兼容 4)返回修改后的类型：a是ANY、b改了 | a改了、b是ANY | a改了b也改了，但兼容
 	 */
-	static TypeNode computeType(TypeNode[] images, ConcurrentTypeGraph concurrentTypeGraph) throws NothingReturnedException {
+	static TypeNode computeType(TypeNode[] images, ConcurrentTypeGraph concurrentTypeGraph)
+			throws NothingReturnedException {
 		TypeNode finalType = TypeNode.ANY_TYPE;
 
 		for (TypeNode n : images) {
@@ -1211,7 +1257,7 @@ public class ConcurrentTypedGraph extends IndexSystem implements IGraph {
 //					return imageNode.getType();
 //				} else
 //					return TypeNode.ANY_TYPE;
-				
+
 				return TypeNode.ANY_TYPE;
 			}
 

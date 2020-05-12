@@ -1,26 +1,23 @@
 package edu.ustb.sei.mde.bxcore.tests;
 
 import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
-import edu.ustb.sei.mde.graph.type.ConcurrentTypeGraph;
-import edu.ustb.sei.mde.graph.typedGraph.ConcurrentBXMerge;
-import edu.ustb.sei.mde.graph.typedGraph.ConcurrentBXMerge;
-import edu.ustb.sei.mde.graph.typedGraph.ConcurrentBXMergeJoin;
-import edu.ustb.sei.mde.graph.typedGraph.ConcurrentTypedGraph;
+import edu.ustb.sei.mde.graph.type.TypeGraph;
+import edu.ustb.sei.mde.graph.typedGraph.BXMerge;
+import edu.ustb.sei.mde.graph.typedGraph.BXMerge_Con;
+import edu.ustb.sei.mde.graph.typedGraph.GraphChangeTool;
 import edu.ustb.sei.mde.graph.typedGraph.GraphChangeTool_Con;
+import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
 import edu.ustb.sei.mde.graph.typedGraph.Profiler;
+import edu.ustb.sei.mde.graph.typedGraph.Profiler2;
 
-public class TestAutomatic_1_Con {
+public class TestAutomatic_2_Non {
 
-	static ConcurrentTypedGraph baseGraph = null;
-	static ConcurrentTypedGraph aGraph = null;
-	static ConcurrentTypedGraph bGraph = null;
-	static ConcurrentTypedGraph resultGraph = null;
+	static TypedGraph baseGraph = null;
+	static TypedGraph aGraph = null;
+	static TypedGraph bGraph = null;
+	static TypedGraph resultGraph = null;
 	
 	public static void main(String[] args){
-		
-		// 打印可用CPU数量
-//		int availableProcessors = Runtime.getRuntime() .availableProcessors();
-//		System.out.println("********" + availableProcessors);	// 输出8
 		
 		build_baseGraph();
 		build_aGraph();
@@ -28,9 +25,9 @@ public class TestAutomatic_1_Con {
 		
 		try {
 			
-			Profiler.begin();
-			resultGraph = ConcurrentBXMerge.merge(baseGraph, aGraph, bGraph);
-			System.out.println("并行：" + Profiler.end() + "ms");
+			Profiler2.begin();
+			resultGraph = BXMerge_Con.merge(baseGraph, aGraph, bGraph);
+			System.out.println("：" + Profiler2.end() + "ms");
 			
 			System.out.println("********************************合并后的resultGraph:");
 			print(resultGraph);
@@ -43,27 +40,25 @@ public class TestAutomatic_1_Con {
 	
 	private static void build_baseGraph() {
 		
-		ConcurrentTypeGraph concurrentTypeGraph = new ConcurrentTypeGraph();
-		
+		TypeGraph typeGraph = new TypeGraph();
 		// add type nodes
-		concurrentTypeGraph.declare("A");
-		concurrentTypeGraph.declare("B");
-		concurrentTypeGraph.declare("C");
-		concurrentTypeGraph.declare("D");
+		typeGraph.declare("A");
+		typeGraph.declare("B");
+		typeGraph.declare("C");
+		typeGraph.declare("D");
 		// add data type nodes
-		concurrentTypeGraph.declare("String:java.lang.String");
+		typeGraph.declare("String:java.lang.String");
 		// add type edges
-		concurrentTypeGraph.declare("a2b:A->B*");
-		concurrentTypeGraph.declare("b2c:B->C");
-		concurrentTypeGraph.declare("c2d:C->D");
+		typeGraph.declare("a2b:A->B*");
+		typeGraph.declare("b2c:B->C");
+		typeGraph.declare("c2d:C->D");
 		// add property edges
-		concurrentTypeGraph.declare("a2S:A->String#");
-		concurrentTypeGraph.declare("b2S:B->String#");
-		concurrentTypeGraph.declare("c2S:C->String#");
-		concurrentTypeGraph.declare("d2S:D->String#");
+		typeGraph.declare("a2S:A->String#");
+		typeGraph.declare("b2S:B->String#");
+		typeGraph.declare("c2S:C->String#");
+		typeGraph.declare("d2S:D->String#");
 		
-		baseGraph = new ConcurrentTypedGraph(concurrentTypeGraph);
-		
+		baseGraph = new TypedGraph(typeGraph);
 		baseGraph.declare(	
 				 "a1:A;"
 				+"a2:A;"
@@ -137,8 +132,8 @@ public class TestAutomatic_1_Con {
 				+"d1.d2S=\"str9\";"
 				
 				);	
-		
-		for (int i = 0; i < 500; i++) {
+			
+		for (int i = 0; i < 5000; i++) {
 			baseGraph.declare(
 					   "a1:A;" 
 			         + "b1:B;" 
@@ -148,8 +143,8 @@ public class TestAutomatic_1_Con {
 					);
 		}
 		
-		System.out.println("**************baseGraph: ");
-		print(baseGraph);
+//		System.out.println("**************************************baseGraph:");
+//		print(baseGraph);
 				
 	}
 	
@@ -158,25 +153,25 @@ public class TestAutomatic_1_Con {
 		aGraph = baseGraph.getCopy();
 		
 		// change TypedEdges
-		GraphChangeTool_Con.changeTypedEdges(aGraph, 1, 30);		
+		// '起始点'与从其下标相差1的边交换序；删除300个；注意还替换了一个
+		GraphChangeTool.changeTypedEdges(aGraph, 1, 300);		
 		
 		// change ValueEdges
-		GraphChangeTool_Con.changeValueEdges(aGraph, 30); 		
-		
+		GraphChangeTool.changeValueEdges(aGraph, 300); 		// 删除300个
 		
 		// change TypedNodes
-		GraphChangeTool_Con.changeTypedNodes(aGraph, 10, 30);	
+		GraphChangeTool.changeTypedNodes(aGraph, 100, 300);		// 替换100个；删除300个
 		
 //		---------------------------------------------------------------------------------------------
 		
 		// add z TypedEdges and 2*z TypedNodes
-		GraphChangeTool_Con.addTypedNodesAndTypedEdges(aGraph, 500);
+		GraphChangeTool.addTypedNodesAndTypedEdges(aGraph, 500);
 		
 		// add z ValueEdges and z TypedNodes and z ValueNodes
-		GraphChangeTool_Con.addNodesAndValueEdges(aGraph, 50);
+		GraphChangeTool.addNodesAndValueEdges(aGraph, 50);
 		
-		System.out.println("**************************************aGraph:");
-		print(aGraph);
+//		System.out.println("**************************************aGraph:");
+//		print(aGraph);
 		
 	}
 	
@@ -185,32 +180,33 @@ public class TestAutomatic_1_Con {
 		bGraph = baseGraph.getCopy();
 		
 		// change TypedEdges
-		GraphChangeTool_Con.changeTypedEdges(bGraph, 1, 20);	
+		// '起始点'与从其下标相差1的边交换；删除200个；注意还替换了1个
+		GraphChangeTool.changeTypedEdges(bGraph, 1, 200);		
 															
 		// change ValueEdges
-		GraphChangeTool_Con.changeValueEdges(bGraph, 20);		
+		GraphChangeTool.changeValueEdges(bGraph, 200);		//删除200个
 		
 		// change TypedNodes
-		GraphChangeTool_Con.changeTypedNodes(bGraph, 20, 20); 	
+		GraphChangeTool.changeTypedNodes(bGraph, 200, 200); 	// 替换200个；删除200个
 		
 //		---------------------------------------------------------------------------------------------
 				
 		// add z TypedEdges and 2*z TypedNodes
-		GraphChangeTool_Con.addTypedNodesAndTypedEdges(bGraph, 50);
+		GraphChangeTool.addTypedNodesAndTypedEdges(bGraph, 50);
 		
 		// add z ValueEdges and z TypedNodes and z ValueNodes
-		GraphChangeTool_Con.addNodesAndValueEdges(bGraph, 500);
+		GraphChangeTool.addNodesAndValueEdges(bGraph, 500);
 		
-		System.out.println("**************************************bGraph:");
-		print(bGraph);
+//		System.out.println("**************************************bGraph:");
+//		print(bGraph);
+		
 	}
 	
-	private static void print(ConcurrentTypedGraph concurrentTypedGraph) {
-		
-		System.out.println("TypedNodes: " + concurrentTypedGraph.getAllTypedNodes().size());
-		System.out.println("ValueNodes: " + concurrentTypedGraph.getAllValueNodes().size());
-		System.out.println("TypedEdges: " + concurrentTypedGraph.getAllTypedEdges().size());
-		System.out.println("ValueEdges: " + concurrentTypedGraph.getAllValueEdges().size());
+	private static void print(TypedGraph typedGraph) {
+		System.out.println("TypedNodes: " + typedGraph.getAllTypedNodes().size());
+		System.out.println("ValueNodes: " + typedGraph.getAllValueNodes().size());
+		System.out.println("TypedEdges: " + typedGraph.getAllTypedEdges().size());
+		System.out.println("ValueEdges: " + typedGraph.getAllValueEdges().size());
 		System.out.println("*********************************************************************");
 		System.out.println();
 	}

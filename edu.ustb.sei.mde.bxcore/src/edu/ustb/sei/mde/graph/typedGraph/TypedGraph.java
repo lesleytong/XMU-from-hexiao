@@ -184,7 +184,8 @@ public class TypedGraph extends IndexSystem implements IGraph {
 			if (n.getIndex().isEmpty()) {
 				// 生成全局唯一的索引，并添加到对象n的内部索引集中
 				n.appendIndexValue(IndexSystem.generateUUID());
-				XmuCoreUtils.warning("An object without index was found");
+				// lyt-为了看控制台输出，暂时注释掉
+//				XmuCoreUtils.warning("An object without index was found");
 			}
 		} catch (Exception e) {
 			XmuCoreUtils.failure("Unknown error", e);

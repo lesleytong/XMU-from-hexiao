@@ -55,26 +55,6 @@ public class GraphChangeTool_Con {
 			graph.remove(ed);
 		}
 
-//		 if(changeTypedEdgesFlag == true) {
-//		
-//		 // 替换边，type变了
-//		 TypedEdge e0 = graph.getAllTypedEdges().get(0);
-//		 System.out.println(e0);
-//		
-//		 TypedEdge et = new TypedEdge();
-//		 TypeEdge type =
-//		 graph.getTypeGraph().getTypeEdge(graph.getTypeGraph().getTypeNode("C"),
-//		 "c2d");
-//		 et.setType(type);
-//		
-//		 et.setSource(e0.getSource());
-//		 et.setTarget(e0.getTarget());
-//		 System.out.println(et);
-//		
-//		 graph.replaceWith(e0, et); // 将e0替换为et
-
-//		 }
-
 		// 替换type无意义的话，那就保证替换边的两个端点与原type符合，改变source或target。
 		if (changeTypedEdgesFlag == true) {
 			// 找到第一个类型为a2b的边e，如果没有就不进行替换
@@ -139,8 +119,8 @@ public class GraphChangeTool_Con {
 			}
 		}
 
-		System.out.println("更改后TypedEdges规模: " + graph.getAllTypedEdges().size());
-		System.out.println(graph.getAllTypedEdges());
+//		System.out.println("更改后TypedEdges规模: " + graph.getAllTypedEdges().size());
+//		System.out.println(graph.getAllTypedEdges());
 
 		changeTypedEdgesFlag = (changeTypedEdgesFlag == true) ? false : true;
 
@@ -176,8 +156,8 @@ public class GraphChangeTool_Con {
 			graph.remove(ed);
 		}
 
-		System.out.println("更改完后ValueEdges的规模：" + graph.getAllValueEdges().size());
-		System.out.println(graph.getAllValueEdges());
+//		System.out.println("更改完后ValueEdges的规模：" + graph.getAllValueEdges().size());
+//		System.out.println(graph.getAllValueEdges());
 
 		changeValueEdgesFlag = (changeValueEdgesFlag == true) ? false : true;
 
@@ -186,11 +166,11 @@ public class GraphChangeTool_Con {
 	// 改x个，删y个
 	public static void changeTypedNodes(ConcurrentTypedGraph graph, int x, int y) {
 		
-		System.out.println("TypedNodes开始前的TypedEdges: " + graph.getAllTypedEdges().size());
-		System.out.println(graph.getAllTypedEdges());
-		
-		System.out.println("TypedNodes开始前的ValueEdges: " + graph.getAllValueEdges().size());
-		System.out.println(graph.getAllValueEdges());
+//		System.out.println("TypedNodes开始前的TypedEdges: " + graph.getAllTypedEdges().size());
+//		System.out.println(graph.getAllTypedEdges());
+//		
+//		System.out.println("TypedNodes开始前的ValueEdges: " + graph.getAllValueEdges().size());
+//		System.out.println(graph.getAllValueEdges());
 		
 		int replaceStart = 0, replaceEnd = 0;
 		int deleteStart = 0, deleteEnd = 0;
@@ -231,12 +211,12 @@ public class GraphChangeTool_Con {
 			graph.remove(nd);
 		}
 
-		System.out.println("更改完TypedNodes后TypedNodes的规模：" + graph.getAllTypedNodes().size());
-		System.out.println(graph.getAllTypedNodes());
-		System.out.println("更改完TypedNodes后TypedEdges的规模：" + graph.getAllTypedEdges().size());
-		System.out.println(graph.getAllTypedEdges());
-		System.out.println("更改完TypedNodes后ValueEdges的规模：" + graph.getAllValueEdges().size());
-		System.out.println(graph.getAllValueNodes());
+//		System.out.println("更改完TypedNodes后TypedNodes的规模：" + graph.getAllTypedNodes().size());
+//		System.out.println(graph.getAllTypedNodes());
+//		System.out.println("更改完TypedNodes后TypedEdges的规模：" + graph.getAllTypedEdges().size());
+//		System.out.println(graph.getAllTypedEdges());
+//		System.out.println("更改完TypedNodes后ValueEdges的规模：" + graph.getAllValueEdges().size());
+//		System.out.println(graph.getAllValueNodes());
 
 		changeTypedNodesFlag = (changeTypedNodesFlag == true) ? false : true;
 
@@ -254,8 +234,8 @@ public class GraphChangeTool_Con {
 			}
 		}
 
-		System.out.println("添加TypedEdges后的TypedEdges的规模：" + graph.getAllTypedEdges().size());
-		System.out.println("添加TypedEdges后的TypedNodes的规模：" + graph.getAllTypedNodes().size());
+//		System.out.println("添加TypedEdges后的TypedEdges的规模：" + graph.getAllTypedEdges().size());
+//		System.out.println("添加TypedEdges后的TypedNodes的规模：" + graph.getAllTypedNodes().size());
 
 		addTypedEdgesFlag = (addTypedEdgesFlag == true) ? false : true;
 
@@ -273,9 +253,9 @@ public class GraphChangeTool_Con {
 			}
 		}
 
-		System.out.println("添加ValueEdges后的ValueEdges的规模：" + graph.getAllValueEdges().size());
-		System.out.println("添加ValueEdges后的TypedNodes的规模：" + graph.getAllTypedNodes().size());
-		System.out.println("添加ValueEdges后的ValueNodes的规模：" + graph.getAllValueNodes().size());
+//		System.out.println("添加ValueEdges后的ValueEdges的规模：" + graph.getAllValueEdges().size());
+//		System.out.println("添加ValueEdges后的TypedNodes的规模：" + graph.getAllTypedNodes().size());
+//		System.out.println("添加ValueEdges后的ValueNodes的规模：" + graph.getAllValueNodes().size());
 
 		addValueEdgesFlag = (addValueEdgesFlag == true) ? false : true;
 

@@ -9,6 +9,7 @@ import edu.ustb.sei.mde.graph.typedGraph.ConcurrentTypedGraph;
 import edu.ustb.sei.mde.graph.typedGraph.TypedEdge;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
 import edu.ustb.sei.mde.graph.typedGraph.TypedNode;
+import edu.ustb.sei.mde.graph.typedGraph.Profiler;
 
 public class TestLogical_3_Concurrent {
 

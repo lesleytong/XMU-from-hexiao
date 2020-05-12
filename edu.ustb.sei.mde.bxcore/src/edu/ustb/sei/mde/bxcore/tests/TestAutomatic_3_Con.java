@@ -3,13 +3,12 @@ package edu.ustb.sei.mde.bxcore.tests;
 import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
 import edu.ustb.sei.mde.graph.type.ConcurrentTypeGraph;
 import edu.ustb.sei.mde.graph.typedGraph.ConcurrentBXMerge;
-import edu.ustb.sei.mde.graph.typedGraph.ConcurrentBXMerge;
 import edu.ustb.sei.mde.graph.typedGraph.ConcurrentBXMergeJoin;
 import edu.ustb.sei.mde.graph.typedGraph.ConcurrentTypedGraph;
 import edu.ustb.sei.mde.graph.typedGraph.GraphChangeTool_Con;
 import edu.ustb.sei.mde.graph.typedGraph.Profiler;
 
-public class TestAutomatic_1_Con {
+public class TestAutomatic_3_Con {
 
 	static ConcurrentTypedGraph baseGraph = null;
 	static ConcurrentTypedGraph aGraph = null;
@@ -17,10 +16,6 @@ public class TestAutomatic_1_Con {
 	static ConcurrentTypedGraph resultGraph = null;
 	
 	public static void main(String[] args){
-		
-		// 打印可用CPU数量
-//		int availableProcessors = Runtime.getRuntime() .availableProcessors();
-//		System.out.println("********" + availableProcessors);	// 输出8
 		
 		build_baseGraph();
 		build_aGraph();
@@ -163,20 +158,19 @@ public class TestAutomatic_1_Con {
 		// change ValueEdges
 		GraphChangeTool_Con.changeValueEdges(aGraph, 30); 		
 		
-		
 		// change TypedNodes
 		GraphChangeTool_Con.changeTypedNodes(aGraph, 10, 30);	
 		
 //		---------------------------------------------------------------------------------------------
 		
 		// add z TypedEdges and 2*z TypedNodes
-		GraphChangeTool_Con.addTypedNodesAndTypedEdges(aGraph, 500);
+		GraphChangeTool_Con.addTypedNodesAndTypedEdges(aGraph, 0);
 		
 		// add z ValueEdges and z TypedNodes and z ValueNodes
-		GraphChangeTool_Con.addNodesAndValueEdges(aGraph, 50);
+		GraphChangeTool_Con.addNodesAndValueEdges(aGraph, 0);
 		
-		System.out.println("**************************************aGraph:");
-		print(aGraph);
+//		System.out.println("**************************************aGraph:");
+//		print(aGraph);
 		
 	}
 	
@@ -196,13 +190,13 @@ public class TestAutomatic_1_Con {
 //		---------------------------------------------------------------------------------------------
 				
 		// add z TypedEdges and 2*z TypedNodes
-		GraphChangeTool_Con.addTypedNodesAndTypedEdges(bGraph, 50);
+		GraphChangeTool_Con.addTypedNodesAndTypedEdges(bGraph, 0);
 		
 		// add z ValueEdges and z TypedNodes and z ValueNodes
-		GraphChangeTool_Con.addNodesAndValueEdges(bGraph, 500);
+		GraphChangeTool_Con.addNodesAndValueEdges(bGraph, 0);
 		
-		System.out.println("**************************************bGraph:");
-		print(bGraph);
+//		System.out.println("**************************************bGraph:");
+//		print(bGraph);
 	}
 	
 	private static void print(ConcurrentTypedGraph concurrentTypedGraph) {

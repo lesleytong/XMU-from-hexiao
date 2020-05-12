@@ -5,6 +5,7 @@ package edu.ustb.sei.mde.bxcore.tests;
 import edu.ustb.sei.mde.graph.type.ConcurrentTypeGraph;
 import edu.ustb.sei.mde.graph.typedGraph.ConcurrentBXMerge;
 import edu.ustb.sei.mde.graph.typedGraph.ConcurrentTypedGraph;
+import edu.ustb.sei.mde.graph.typedGraph.Profiler;
 
 public class TestConcurrent_2 {
 

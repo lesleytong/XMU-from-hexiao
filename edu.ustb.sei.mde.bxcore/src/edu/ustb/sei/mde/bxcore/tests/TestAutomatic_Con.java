@@ -9,7 +9,7 @@ import edu.ustb.sei.mde.graph.typedGraph.ConcurrentTypedGraph;
 import edu.ustb.sei.mde.graph.typedGraph.GraphChangeTool_Con;
 import edu.ustb.sei.mde.graph.typedGraph.Profiler;
 
-public class TestAutomatic_1_Con {
+public class TestAutomatic_Con {
 
 	static ConcurrentTypedGraph baseGraph = null;
 	static ConcurrentTypedGraph aGraph = null;
@@ -17,10 +17,6 @@ public class TestAutomatic_1_Con {
 	static ConcurrentTypedGraph resultGraph = null;
 	
 	public static void main(String[] args){
-		
-		// 打印可用CPU数量
-//		int availableProcessors = Runtime.getRuntime() .availableProcessors();
-//		System.out.println("********" + availableProcessors);	// 输出8
 		
 		build_baseGraph();
 		build_aGraph();
@@ -138,17 +134,7 @@ public class TestAutomatic_1_Con {
 				
 				);	
 		
-		for (int i = 0; i < 500; i++) {
-			baseGraph.declare(
-					   "a1:A;" 
-			         + "b1:B;" 
-					 + "a1-a2b->b1;"
-					 + "c1:C;" 
-					 + "c1.c2S=\"string1\";"
-					);
-		}
-		
-		System.out.println("**************baseGraph: ");
+		System.out.println("**************************************baseGraph:");
 		print(baseGraph);
 				
 	}
@@ -158,25 +144,33 @@ public class TestAutomatic_1_Con {
 		aGraph = baseGraph.getCopy();
 		
 		// change TypedEdges
-		GraphChangeTool_Con.changeTypedEdges(aGraph, 1, 30);		
+		System.out.println("\naGraph当前TypedEdges的规模：" + aGraph.getAllTypedEdges().size());
+		System.out.println(aGraph.getAllTypedEdges());
+		GraphChangeTool_Con.changeTypedEdges(aGraph, 1, 0);		// '起始点'与从其下标相差1的边交换；删除0个
 		
 		// change ValueEdges
-		GraphChangeTool_Con.changeValueEdges(aGraph, 30); 		
+		System.out.println("\naGraph当前ValueEdges的规模：" + aGraph.getAllValueEdges().size());
+		System.out.println(aGraph.getAllValueEdges());
+		GraphChangeTool_Con.changeValueEdges(aGraph, 3); 		// 删除3个，但由于3> 9/4，实际上删了2个
 		
 		
 		// change TypedNodes
-		GraphChangeTool_Con.changeTypedNodes(aGraph, 10, 30);	
+		System.out.println("\naGraph当前TypedNodes的规模：" + aGraph.getAllTypedNodes().size());
+		System.out.println(aGraph.getAllTypedNodes());
+		GraphChangeTool_Con.changeTypedNodes(aGraph, 2, 3);		// 替换2个；删除3个
 		
 //		---------------------------------------------------------------------------------------------
 		
 		// add z TypedEdges and 2*z TypedNodes
-		GraphChangeTool_Con.addTypedNodesAndTypedEdges(aGraph, 500);
+		System.out.println("\naGraph当前TypedEdges的规模：" + aGraph.getAllTypedEdges().size());
+		System.out.println("aGraph当前TypedNodes的规模：" + aGraph.getAllTypedNodes().size());
+		GraphChangeTool_Con.addTypedNodesAndTypedEdges(aGraph, 0);
 		
 		// add z ValueEdges and z TypedNodes and z ValueNodes
-		GraphChangeTool_Con.addNodesAndValueEdges(aGraph, 50);
-		
-		System.out.println("**************************************aGraph:");
-		print(aGraph);
+		System.out.println("\naGraph当前ValueEdges的规模：" + aGraph.getAllValueEdges().size());
+		System.out.println("aGraph当前TypedNodes的规模：" + aGraph.getAllTypedNodes().size());
+		System.out.println("aGraph当前ValueNodes的规模：" + aGraph.getAllValueNodes().size());
+		GraphChangeTool_Con.addNodesAndValueEdges(aGraph, 0);
 		
 	}
 	
@@ -185,24 +179,35 @@ public class TestAutomatic_1_Con {
 		bGraph = baseGraph.getCopy();
 		
 		// change TypedEdges
-		GraphChangeTool_Con.changeTypedEdges(bGraph, 1, 20);	
+		System.out.println("base: " + baseGraph.getAllTypedEdges());
+		System.out.println("\nbGraph当前TypedEdges的规模： " + bGraph.getAllTypedEdges().size());
+		System.out.println(bGraph.getAllTypedEdges());
+		// '起始点'与从其下标相差1的边交换；删除1个
+		GraphChangeTool_Con.changeTypedEdges(bGraph, 1, 1);	
 															
 		// change ValueEdges
-		GraphChangeTool_Con.changeValueEdges(bGraph, 20);		
+		System.out.println("\nbGraph当前ValueEdges的规模： " + bGraph.getAllValueEdges().size());
+		System.out.println(bGraph.getAllValueEdges());
+		GraphChangeTool_Con.changeValueEdges(bGraph, 1);		//删除1个
 		
 		// change TypedNodes
-		GraphChangeTool_Con.changeTypedNodes(bGraph, 20, 20); 	
+		System.out.println("\nbGraph当前TypedNodes的规模：" + bGraph.getAllTypedNodes().size());
+		System.out.println(bGraph.getAllTypedNodes());
+		GraphChangeTool_Con.changeTypedNodes(bGraph, 0, 12); 	// 替换0个；删除12个（因为12+threeQuarterSize>allSize，实际上删了9个）
 		
 //		---------------------------------------------------------------------------------------------
 				
 		// add z TypedEdges and 2*z TypedNodes
-		GraphChangeTool_Con.addTypedNodesAndTypedEdges(bGraph, 50);
+		System.out.println("\nbGraph当前TypedEdges的规模：" + bGraph.getAllTypedEdges().size());
+		System.out.println("bGraph当前TypedNodes的规模：" + bGraph.getAllTypedNodes().size());
+		GraphChangeTool_Con.addTypedNodesAndTypedEdges(bGraph, 0);
 		
 		// add z ValueEdges and z TypedNodes and z ValueNodes
-		GraphChangeTool_Con.addNodesAndValueEdges(bGraph, 500);
+		System.out.println("\nbGraph当前ValueEdges的规模：" + bGraph.getAllValueEdges().size());
+		System.out.println("bGraph当前TypedNodes的规模：" + bGraph.getAllTypedNodes().size());
+		System.out.println("bGraph当前ValueNodes的规模：" + bGraph.getAllValueNodes().size());
+		GraphChangeTool_Con.addNodesAndValueEdges(bGraph, 0);
 		
-		System.out.println("**************************************bGraph:");
-		print(bGraph);
 	}
 	
 	private static void print(ConcurrentTypedGraph concurrentTypedGraph) {

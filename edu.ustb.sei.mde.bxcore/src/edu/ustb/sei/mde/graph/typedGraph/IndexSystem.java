@@ -2,6 +2,9 @@ package edu.ustb.sei.mde.graph.typedGraph;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Stream;
 
 import edu.ustb.sei.mde.bxcore.Trace;
 import edu.ustb.sei.mde.bxcore.TraceSystem;
@@ -20,11 +23,13 @@ public class IndexSystem {
 
 	public IndexSystem() {
 		this.indexToObjectMap = new HashMap<>();
+		// lyt-用并发集合类
+//		this.indexToObjectMap = new ConcurrentHashMap<>();
 	}
 
 	public void addIndex(Object index, IndexableElement obj) throws NothingReturnedException {
 		if (index instanceof Index) {
-			for (Object o : ((Index) index).internalIndices()) {
+			for (Object o : ((Index) index).getInternalIndices()) {
 				addIndex(o, obj);
 			}
 		} else {
@@ -54,13 +59,14 @@ public class IndexSystem {
 	@SuppressWarnings("unchecked")
 	public <T> T getElementByIndexObject(Index index) throws NothingReturnedException {
 		T res = null;
-		for (Object i : index.internalIndices()) {
+		for (Object i : index.getInternalIndices()) {
 			if ((res = (T) this.indexToObjectMap.get(i)) != null) { // 根据键获取值
 				return res;
 			}
 		}
 
-		XmuCoreUtils.warning("No element is associated with this index");
+		// lyt-为了看控制台输出执行任务的时间，暂时注释掉
+//		XmuCoreUtils.warning("No element is associated with this index");
 		throw new NothingReturnedException();
 	}
 

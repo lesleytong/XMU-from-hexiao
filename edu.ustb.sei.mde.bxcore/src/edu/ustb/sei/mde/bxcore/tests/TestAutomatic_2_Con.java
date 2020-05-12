@@ -4,12 +4,13 @@ import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
 import edu.ustb.sei.mde.graph.type.ConcurrentTypeGraph;
 import edu.ustb.sei.mde.graph.typedGraph.ConcurrentBXMerge;
 import edu.ustb.sei.mde.graph.typedGraph.ConcurrentBXMerge;
+import edu.ustb.sei.mde.graph.typedGraph.ConcurrentBXMerge;
 import edu.ustb.sei.mde.graph.typedGraph.ConcurrentBXMergeJoin;
 import edu.ustb.sei.mde.graph.typedGraph.ConcurrentTypedGraph;
 import edu.ustb.sei.mde.graph.typedGraph.GraphChangeTool_Con;
 import edu.ustb.sei.mde.graph.typedGraph.Profiler;
 
-public class TestAutomatic_1_Con {
+public class TestAutomatic_2_Con {
 
 	static ConcurrentTypedGraph baseGraph = null;
 	static ConcurrentTypedGraph aGraph = null;
@@ -17,10 +18,6 @@ public class TestAutomatic_1_Con {
 	static ConcurrentTypedGraph resultGraph = null;
 	
 	public static void main(String[] args){
-		
-		// 打印可用CPU数量
-//		int availableProcessors = Runtime.getRuntime() .availableProcessors();
-//		System.out.println("********" + availableProcessors);	// 输出8
 		
 		build_baseGraph();
 		build_aGraph();
@@ -50,12 +47,14 @@ public class TestAutomatic_1_Con {
 		concurrentTypeGraph.declare("B");
 		concurrentTypeGraph.declare("C");
 		concurrentTypeGraph.declare("D");
+		concurrentTypeGraph.declare("E");
 		// add data type nodes
 		concurrentTypeGraph.declare("String:java.lang.String");
 		// add type edges
 		concurrentTypeGraph.declare("a2b:A->B*");
 		concurrentTypeGraph.declare("b2c:B->C");
 		concurrentTypeGraph.declare("c2d:C->D");
+		concurrentTypeGraph.declare("d2e:D->E");
 		// add property edges
 		concurrentTypeGraph.declare("a2S:A->String#");
 		concurrentTypeGraph.declare("b2S:B->String#");
@@ -138,7 +137,7 @@ public class TestAutomatic_1_Con {
 				
 				);	
 		
-		for (int i = 0; i < 500; i++) {
+		for (int i = 0; i < 5000; i++) {
 			baseGraph.declare(
 					   "a1:A;" 
 			         + "b1:B;" 
@@ -158,14 +157,13 @@ public class TestAutomatic_1_Con {
 		aGraph = baseGraph.getCopy();
 		
 		// change TypedEdges
-		GraphChangeTool_Con.changeTypedEdges(aGraph, 1, 30);		
+		GraphChangeTool_Con.changeTypedEdges(aGraph, 1, 300);		
 		
 		// change ValueEdges
-		GraphChangeTool_Con.changeValueEdges(aGraph, 30); 		
-		
+		GraphChangeTool_Con.changeValueEdges(aGraph, 300); 		
 		
 		// change TypedNodes
-		GraphChangeTool_Con.changeTypedNodes(aGraph, 10, 30);	
+		GraphChangeTool_Con.changeTypedNodes(aGraph, 100, 300);	
 		
 //		---------------------------------------------------------------------------------------------
 		
@@ -185,13 +183,13 @@ public class TestAutomatic_1_Con {
 		bGraph = baseGraph.getCopy();
 		
 		// change TypedEdges
-		GraphChangeTool_Con.changeTypedEdges(bGraph, 1, 20);	
+		GraphChangeTool_Con.changeTypedEdges(bGraph, 1, 200);	
 															
 		// change ValueEdges
-		GraphChangeTool_Con.changeValueEdges(bGraph, 20);		
+		GraphChangeTool_Con.changeValueEdges(bGraph, 200);		
 		
 		// change TypedNodes
-		GraphChangeTool_Con.changeTypedNodes(bGraph, 20, 20); 	
+		GraphChangeTool_Con.changeTypedNodes(bGraph, 200, 200); 	
 		
 //		---------------------------------------------------------------------------------------------
 				

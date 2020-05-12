@@ -3,6 +3,8 @@ package edu.ustb.sei.mde.bxcore.tests;
 import edu.ustb.sei.mde.graph.type.TypeGraph;
 import edu.ustb.sei.mde.graph.typedGraph.BXMerge;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
+import edu.ustb.sei.mde.graph.typedGraph.Profiler;
+
 /**
  * ²âÊÔTypedEdgeµÄĞò
  * ĞÂÌí

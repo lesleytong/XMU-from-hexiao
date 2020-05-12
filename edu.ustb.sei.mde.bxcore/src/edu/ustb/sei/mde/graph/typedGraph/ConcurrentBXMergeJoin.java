@@ -1,5 +1,8 @@
 package edu.ustb.sei.mde.graph.typedGraph;
-
+/**
+ * 普通Thread + join
+ * 并行集合类
+ */
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -154,95 +157,10 @@ public class ConcurrentBXMergeJoin {
 		ConcurrentTypedGraph result = first.getCopy();
 		int len = interSources.length;
 		
-		Thread changeTypedEdgesThread = new Thread(new Runnable() {
-			@Override
-			public void run() {
-				// 变更的TypedEdges
-				TypedEdge[] typedEdgeImages = new TypedEdge[len];
-				for (TypedEdge baseEdge : first.getAllTypedEdges()) { // 对于基本图中每一个TypedEdge类型的边baseEdge
-
-					// 两个分支图先分别和基本图作比较，baseEdge的情况分别存储在typedEdgeImages[i]中，可能是baseEdge、imageEdge、null
-					for (int i = 0; i < len; i++) {
-						typedEdgeImages[i] = ConcurrentTypedGraph.computeImage(baseEdge, first, interSources[i]);
-					}
-
-					try {
-						// 再根据typedEdgeImages[]中的情况，确定finalEdgeInfo
-						Tuple3<TypedNode, TypedNode, TypeEdge> finalEdgeInfo = ConcurrentTypedGraph
-								.computeEdge(baseEdge, typedEdgeImages);
-
-						if (finalEdgeInfo == null) {
-							result.remove(baseEdge);
-						} else {
-
-							TypedNode source = result.getElementByIndexObject(finalEdgeInfo.first.getIndex());
-							TypedNode target = result.getElementByIndexObject(finalEdgeInfo.second.getIndex());
-							TypedEdge edge = new TypedEdge(); // 新申请的对象edge
-							edge.setSource(source);
-							edge.setTarget(target);
-							edge.setType(finalEdgeInfo.third);
-
-							for (ConcurrentTypedGraph image : interSources) { // 合并两个分支的索引集
-								edge.mergeIndex(image.getElementByIndexObject(baseEdge.getIndex()));
-							}
-
-							result.replaceWith(baseEdge, edge); // 将baseEdge替换为edge
-						}
-					} catch (NothingReturnedException e) {
-						e.printStackTrace();
-					}
-				}
-			}
-		});
-		changeTypedEdgesThread.start();
-		
-		
-		Thread changeValueEdgesThread = new Thread(new Runnable() {
-			@Override
-			public void run() {
-				// 变更的ValueEdges
-				ValueEdge[] valueEdgeImages = new ValueEdge[len];
-				for (ValueEdge baseEdge : first.getAllValueEdges()) { // 对于基本图中每一个条ValueEdge类型的边
-
-					// 两个分支图先和基本图作比较，baseEdge的情况分别存储在valueEdgeImages[]中，可能是null、baseEdge、imageEdge
-					for (int i = 0; i < len; i++) {
-						valueEdgeImages[i] = ConcurrentTypedGraph.computeImage(baseEdge, first, interSources[i]);
-					}
-
-					try {
-						// 再根据valueEdgeImages[]中的情况，确定finalEdgeInfo
-						Tuple3<TypedNode, ValueNode, PropertyEdge> finalEdgeInfo = ConcurrentTypedGraph
-								.computeEdge(baseEdge, valueEdgeImages);
-
-						if (finalEdgeInfo == null) {
-							result.remove(baseEdge);
-						} else {
-							TypedNode source = result.getElementByIndexObject(finalEdgeInfo.first.getIndex());
-							ValueNode target = finalEdgeInfo.second;
-							ValueEdge edge = new ValueEdge();
-							edge.setSource(source);
-							edge.setTarget(target);
-							edge.setType(finalEdgeInfo.third);
-
-							for (ConcurrentTypedGraph image : interSources) {
-								edge.mergeIndex(image.getElementByIndexObject(baseEdge.getIndex()));
-							}
-
-							result.replaceWith(baseEdge, edge);
-						}
-					} catch (NothingReturnedException e) {
-						e.printStackTrace();
-					}
-				}
-			}
-		});
-		changeValueEdgesThread.start();
-		
-		
+		//新加TypedNodes
 		Thread addTypedNodesThread = new Thread(new Runnable() {
 			@Override
 			public void run() {
-				// 新加入的TypedNodes
 				for (ConcurrentTypedGraph image : interSources) {
 					for (TypedNode n : image.allTypedNodes) { // 对于分支图中每个TypedNode类型的节点n
 						try {
@@ -280,14 +198,13 @@ public class ConcurrentBXMergeJoin {
 					}
 				}
 			}
-		});
+		}, "addTypedNodesThread");
 		addTypedNodesThread.start();
-
 		
+		// 新加ValueNodes
 		Thread addValueNodesThread = new Thread(new Runnable() {
 			@Override
 			public void run() {
-				// 新加入的ValueNodes
 				for (ConcurrentTypedGraph image : interSources) {
 					// 分支图中所有新添加的ValueNode类型节点全部扔进result图中
 					image.getAllValueNodes().forEach(v -> {
@@ -295,21 +212,122 @@ public class ConcurrentBXMergeJoin {
 					});
 				}
 			}
-		});
+		}, "addValueNodesThread");
 		addValueNodesThread.start();
 		
+		
+		// 变更TypedEdges
+		Thread changeTypedEdgesThread = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				
+				try {
+					addTypedNodesThread.join();
+				} catch (InterruptedException e1) {
+					e1.printStackTrace();
+				}
+				
+				// 变更的TypedEdges
+				TypedEdge[] typedEdgeImages = new TypedEdge[len];
+				for (TypedEdge baseEdge : first.getAllTypedEdges()) { // 对于基本图中每一个TypedEdge类型的边baseEdge
 
+					// 两个分支图先分别和基本图作比较，baseEdge的情况分别存储在typedEdgeImages[i]中，可能是baseEdge、imageEdge、null
+					for (int i = 0; i < len; i++) {
+						typedEdgeImages[i] = ConcurrentTypedGraph.computeImage(baseEdge, first, interSources[i]);
+					}
+
+					try {
+						// 再根据typedEdgeImages[]中的情况，确定finalEdgeInfo
+						Tuple3<TypedNode, TypedNode, TypeEdge> finalEdgeInfo = ConcurrentTypedGraph
+								.computeEdge(baseEdge, typedEdgeImages);
+
+						if (finalEdgeInfo == null) {
+							result.remove(baseEdge);
+						} else {
+
+							TypedNode source = result.getElementByIndexObject(finalEdgeInfo.first.getIndex());
+							TypedNode target = result.getElementByIndexObject(finalEdgeInfo.second.getIndex());
+							TypedEdge edge = new TypedEdge(); // 新申请的对象edge
+							edge.setSource(source);
+							edge.setTarget(target);
+							edge.setType(finalEdgeInfo.third);
+
+							for (ConcurrentTypedGraph image : interSources) { // 合并两个分支的索引集
+								edge.mergeIndex(image.getElementByIndexObject(baseEdge.getIndex()));
+							}
+
+							result.replaceWith(baseEdge, edge); // 将baseEdge替换为edge
+						}
+					} catch (NothingReturnedException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		}, "changeTypedEdgesThread");
+		changeTypedEdgesThread.start();
+		
+		
+		// 变更ValueEdges
+		Thread changeValueEdgesThread = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				
+				try {
+					addTypedNodesThread.join();
+					addValueNodesThread.join();
+				} catch (InterruptedException e1) {
+					e1.printStackTrace();
+				}
+				
+				// 变更的ValueEdges
+				ValueEdge[] valueEdgeImages = new ValueEdge[len];
+				for (ValueEdge baseEdge : first.getAllValueEdges()) { // 对于基本图中每一个条ValueEdge类型的边
+
+					// 两个分支图先和基本图作比较，baseEdge的情况分别存储在valueEdgeImages[]中，可能是null、baseEdge、imageEdge
+					for (int i = 0; i < len; i++) {
+						valueEdgeImages[i] = ConcurrentTypedGraph.computeImage(baseEdge, first, interSources[i]);
+					}
+
+					try {
+						// 再根据valueEdgeImages[]中的情况，确定finalEdgeInfo
+						Tuple3<TypedNode, ValueNode, PropertyEdge> finalEdgeInfo = ConcurrentTypedGraph
+								.computeEdge(baseEdge, valueEdgeImages);
+
+						if (finalEdgeInfo == null) {
+							result.remove(baseEdge);
+						} else {
+							TypedNode source = result.getElementByIndexObject(finalEdgeInfo.first.getIndex());
+							ValueNode target = finalEdgeInfo.second;
+							ValueEdge edge = new ValueEdge();
+							edge.setSource(source);
+							edge.setTarget(target);
+							edge.setType(finalEdgeInfo.third);
+
+							for (ConcurrentTypedGraph image : interSources) {
+								edge.mergeIndex(image.getElementByIndexObject(baseEdge.getIndex()));
+							}
+
+							result.replaceWith(baseEdge, edge);
+						}
+					} catch (NothingReturnedException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		}, "changeValueEdgesThread");
+		changeValueEdgesThread.start();
+		
+		// 变更TypedNodes
 		Thread changeTypedNodesThread = new Thread(new Runnable() {
 			@Override
 			public void run() {
-				// 变更的TypedNodes
 				try {
 					changeTypedEdgesThread.join();
 					changeValueEdgesThread.join();
 				} catch (InterruptedException e1) {
 					e1.printStackTrace();
 				}
-				
+
 				TypeNode[] nodeImages = new TypeNode[len];
 				for (TypedNode baseNode : first.getAllTypedNodes()) { // 对于基本图中每一个TypedNode节点
 
@@ -345,159 +363,155 @@ public class ConcurrentBXMergeJoin {
 						e.printStackTrace();
 					}
 				}
-				
-			}	
-		});
+
+			}
+		}, "changeTypedNodesThread");
 		changeTypedNodesThread.start();
 		
 		
-		Thread addValueEdgesThread = new Thread(new Runnable() {
-			@Override
-			public void run() {
-				// 新加入的ValueEdges
-				try {
-					addTypedNodesThread.join();
-					addValueNodesThread.join();
-					changeTypedNodesThread.join();
-					
-					for (ConcurrentTypedGraph image : interSources) {
-						for (ValueEdge e : image.allValueEdges) { // 对于分支图中的每一个ValueEdge边e
-							try {
-								// 根据e的索引查找基本图中有无相应的对象，如果有则不处理
-								first.getElementByIndexObject(e.getIndex());
-							} catch (Exception ex) { // 如果基本图中没有相应的对象
-								ValueEdge re = null;
-								try {
-									// 根据e的索引查找result图中有无相应的对象，如果有则赋值给re
-									re = result.getElementByIndexObject(e.getIndex());
-								} catch (Exception ex2) { // 根据e的索引没有找到result图中相应的对象，则需要添加e到图的List<ValueEdge>中
-
-									/*
-									 * result图中没有ValueEdge类型的边e，但一定存在source节点。 如果不存在，说明有冲突，合并无法继续。 不写在try语句块里，说明不处理。
-									 */
-									TypedNode source = null;
-									try {
-										source = result.getElementByIndexObject(e.getSource().getIndex());
-									} catch (NothingReturnedException e1) {
-										e1.printStackTrace();
-									}
-
-									if (e.getSource() != source) { // source是基本图中有的，result图合并过三个图的索引集，但不是同一对象
-										ValueEdge ne = new ValueEdge();
-										ne.setSource(source);
-										ne.setTarget(e.getTarget());
-										ne.setType(e.getType());
-										ne.mergeIndex(e);
-										result.addValueEdge(ne);
-									} else // e的source和result图中是同一对象，说明是新添加的TypedNode对象
-										result.addValueEdge(e);
-
-									re = null;
-								} finally {
-
-									if (re != null) { // re!=null，说明result图中找到了相应的对象，并且赋值给了re
-										if (re.getType() != e.getType()
-												|| !re.getSource().getIndex().equals(e.getSource().getIndex())
-												|| re.getTarget().equals(e.getTarget()) == false) {
-											try {
-												throw new NothingReturnedException();
-											} catch (NothingReturnedException e2) {
-												e2.printStackTrace();
-											}
-										} else {
-											re.mergeIndex(e);
-											result.reindexing(re); // lyt修改
-										}
-									}
-								}
-							}
-						}
-					}
-					
-				} catch (InterruptedException e3) {
-					e3.printStackTrace();
-				}
-			}
-		});
-		addValueEdgesThread.start();
-		
-		
+		// 新加TypedEdges
 		Thread addTypedEdgesThread = new Thread(new Runnable() {
 			@Override
 			public void run() {
-				// 新加入的TypedEdges
 				try {
-					addTypedNodesThread.join();
 					changeTypedNodesThread.join();
-					
-					for (ConcurrentTypedGraph image : interSources) {
-						for (TypedEdge e : image.allTypedEdges) { // 对于分支图中每一个TypedEdge边e
-							try { // 根据e的索引查找基本图中有无相应的对象，如果有则不做处理
-								first.getElementByIndexObject(e.getIndex());
-							} catch (Exception ex) { // 基本图中没有找到相应的对象
-								TypedEdge re = null;
+				} catch (InterruptedException e3) {
+					e3.printStackTrace();
+				}
+
+				for (ConcurrentTypedGraph image : interSources) {
+					for (TypedEdge e : image.allTypedEdges) { // 对于分支图中每一个TypedEdge边e
+						try { // 根据e的索引查找基本图中有无相应的对象，如果有则不做处理
+							first.getElementByIndexObject(e.getIndex());
+						} catch (Exception ex) { // 基本图中没有找到相应的对象
+							TypedEdge re = null;
+							try {
+								// 根据e的索引查找result图中有无相应的对象，如果有则赋值给re；可能两个分支图都添加相同索引的e
+								re = result.getElementByIndexObject(e.getIndex());
+							} catch (Exception ex2) { // 根据e的索引没有找到result图中相应的对象，则应添加e到result图的List<TypedEdge>中
+
+								/*
+								 * 虽然e没在result图中，但既然能在分支图中新加e，说明result图中一定存在对应的source和target节点
+								 * 如果不存在，说明有冲突，合并无法继续进行。 不写在try语句块里，说明不处理。
+								 */
+								TypedNode source = null;
+								TypedNode target = null;
 								try {
-									// 根据e的索引查找result图中有无相应的对象，如果有则赋值给re；可能两个分支图都添加相同索引的e
-									re = result.getElementByIndexObject(e.getIndex());
-								} catch (Exception ex2) { // 根据e的索引没有找到result图中相应的对象，则应添加e到result图的List<TypedEdge>中
+									source = result.getElementByIndexObject(e.getSource().getIndex());
+									target = result.getElementByIndexObject(e.getTarget().getIndex());
+								} catch (NothingReturnedException e1) {
+									e1.printStackTrace();
+								}
 
-									/*
-									 * 虽然e没在result图中，但既然能在分支图中新加e，说明result图中一定存在对应的source和target节点
-									 * 如果不存在，说明有冲突，合并无法继续进行。 不写在try语句块里，说明不处理。
-									 */
-									TypedNode source = null;
-									TypedNode target = null;
-									try {
-										source = result.getElementByIndexObject(e.getSource().getIndex());
-										target = result.getElementByIndexObject(e.getTarget().getIndex());
-									} catch (NothingReturnedException e1) {
-										e1.printStackTrace();
-									}
+								// e的source或者target是基本图中有的
+								if (e.getSource() != source || e.getTarget() != target) {
+									TypedEdge ne = new TypedEdge();
+									ne.setSource(source);
+									ne.setTarget(target);
+									ne.setType(e.getType());
+									ne.mergeIndex(e);
+									result.addTypedEdge(ne);
+								} else // e的source和target是在分支图中新添加的TypedNode类型节点
+									result.addTypedEdge(e);
 
-									// e的source或者target是基本图中有的
-									if (e.getSource() != source || e.getTarget() != target) {
-										TypedEdge ne = new TypedEdge();
-										ne.setSource(source);
-										ne.setTarget(target);
-										ne.setType(e.getType());
-										ne.mergeIndex(e);
-										result.addTypedEdge(ne);
-									} else // e的source和target是在分支图中新添加的TypedNode类型节点
-										result.addTypedEdge(e);
+								re = null;
 
-									re = null;
+							} finally {
 
-								} finally {
-
-									// 两分支图都新添加了相同索引的e
-									if (re != null) {
-										if (re.getType() != e.getType()
-												|| !re.getSource().getIndex().equals(e.getSource().getIndex())
-												|| !re.getTarget().getIndex().equals(e.getTarget().getIndex())) {
-											try {
-												throw new NothingReturnedException();
-											} catch (NothingReturnedException e2) {
-												e2.printStackTrace();
-											}
-										} else {
-											re.mergeIndex(e);
-											result.reindexing(re); // lyt修改
+								// 两分支图都新添加了相同索引的e
+								if (re != null) {
+									if (re.getType() != e.getType()
+											|| !re.getSource().getIndex().equals(e.getSource().getIndex())
+											|| !re.getTarget().getIndex().equals(e.getTarget().getIndex())) {
+										try {
+											throw new NothingReturnedException();
+										} catch (NothingReturnedException e2) {
+											e2.printStackTrace();
 										}
+									} else {
+										re.mergeIndex(e);
+//											result.reindexing(re); // lyt修改
 									}
+								}
 
+							}
+						}
+					}
+				}
+
+			}
+		}, "addTypedEdgesThread");
+		addTypedEdgesThread.start();
+
+		
+		// 新加ValueEdges
+		Thread addValueEdgesThread = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					changeTypedNodesThread.join();
+				} catch (InterruptedException e3) {
+					e3.printStackTrace();
+				}
+
+				for (ConcurrentTypedGraph image : interSources) {
+					for (ValueEdge e : image.allValueEdges) { // 对于分支图中的每一个ValueEdge边e
+						try {
+							// 根据e的索引查找基本图中有无相应的对象，如果有则不处理
+							first.getElementByIndexObject(e.getIndex());
+						} catch (Exception ex) { // 如果基本图中没有相应的对象
+							ValueEdge re = null;
+							try {
+								// 根据e的索引查找result图中有无相应的对象，如果有则赋值给re
+								re = result.getElementByIndexObject(e.getIndex());
+							} catch (Exception ex2) { // 根据e的索引没有找到result图中相应的对象，则需要添加e到图的List<ValueEdge>中
+
+								/*
+								 * result图中没有ValueEdge类型的边e，但一定存在source节点。 如果不存在，说明有冲突，合并无法继续。 不写在try语句块里，说明不处理。
+								 */
+								TypedNode source = null;
+								try {
+									source = result.getElementByIndexObject(e.getSource().getIndex());
+								} catch (NothingReturnedException e1) {
+									e1.printStackTrace();
+								}
+
+								if (e.getSource() != source) { // source是基本图中有的，result图合并过三个图的索引集，但不是同一对象
+									ValueEdge ne = new ValueEdge();
+									ne.setSource(source);
+									ne.setTarget(e.getTarget());
+									ne.setType(e.getType());
+									ne.mergeIndex(e);
+									result.addValueEdge(ne);
+								} else // e的source和result图中是同一对象，说明是新添加的TypedNode对象
+									result.addValueEdge(e);
+
+								re = null;
+							} finally {
+
+								if (re != null) { // re!=null，说明result图中找到了相应的对象，并且赋值给了re
+									if (re.getType() != e.getType()
+											|| !re.getSource().getIndex().equals(e.getSource().getIndex())
+											|| re.getTarget().equals(e.getTarget()) == false) {
+										try {
+											throw new NothingReturnedException();
+										} catch (NothingReturnedException e2) {
+											e2.printStackTrace();
+										}
+									} else {
+										re.mergeIndex(e);
+										result.reindexing(re); // lyt修改
+									}
 								}
 							}
 						}
 					}
-					
-				} catch (InterruptedException e3) {
-					e3.printStackTrace();
 				}
-			}
-		});
-		addTypedEdgesThread.start();
 
-		
+			}
+		}, "addValueEdgesThread");
+		addValueEdgesThread.start();
+
 		OrderInformation[] orders = new OrderInformation[len];
 		for (int i = 0; i < len; i++)
 			orders[i] = interSources[i].order;
@@ -510,17 +524,16 @@ public class ConcurrentBXMergeJoin {
 		}
 		result.constraint = GraphConstraint.and(cons);
 		// check
-		
+
 		try {
 			addTypedEdgesThread.join();
 			addValueEdgesThread.join();
-			
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		
+
 		return result;
-		
+
 	}
 
 	/** 二向合并的序 */

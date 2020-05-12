@@ -3,6 +3,7 @@ package edu.ustb.sei.mde.bxcore.structures;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.CopyOnWriteArraySet;
 
 import edu.ustb.sei.mde.bxcore.XmuCoreUtils;
 
@@ -14,6 +15,8 @@ public class Index implements Cloneable {
 	 */
 	private boolean freshIndex = false;
 	private Set<Object> internalIndices = new HashSet<>();
+	// lyt-用并发集合类
+//	private Set<Object> internalIndices = new CopyOnWriteArraySet<>();
 	private Object fixedIndex = null;
 	
 	/**
@@ -56,7 +59,12 @@ public class Index implements Cloneable {
 		return this.freshIndex;
 	}
 
-	public Set<Object> internalIndices() {
+	
+//	public Set<Object> internalIndices() {
+//		return internalIndices;
+//	}
+	// lyt-改成getInternalIndicies，用于验证Index的hashCode
+	public Set<Object> getInternalIndices() {
 		return internalIndices;
 	}
 
@@ -144,10 +152,6 @@ public class Index implements Cloneable {
 		return fixedIndex;
 	}
 	
-	// lyt-暂时能getInternalIndicies，用于验证Index的hashCode
-	public Set<Object> getInternalIndices() {
-		return internalIndices;
-	}
 
 	@Override
 	public String toString() {

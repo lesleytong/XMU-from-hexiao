@@ -56,7 +56,7 @@ abstract public class IndexableElement {
 
 	/** 操作内部索引集的每个元素 */
 	public void foreach(Consumer<Object> a) {
-		index.internalIndices().forEach(a);
+		index.getInternalIndices().forEach(a);
 	}
 
 	// 比如调用：re.mergeIndex(e)，将e的索引集合并到re的索引集中

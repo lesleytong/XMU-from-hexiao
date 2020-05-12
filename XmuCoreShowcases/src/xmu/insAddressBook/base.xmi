@@ -13,4 +13,16 @@
       tel="154-222">
     <email>lesley@nii.ac.jp</email>
   </persons>
+    <persons name="a"
+      tel="a">
+    <email>a@nii.ac.jp</email>
+  </persons>
+    <persons name="b"
+      tel="b">
+    <email>b@nii.ac.jp</email>
+  </persons>
+    <persons name="c"
+      tel="c">
+    <email>c@nii.ac.jp</email>
+  </persons>
 </sab:AddressBook>
