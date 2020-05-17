@@ -49,11 +49,11 @@ public class Index implements Cloneable {
 //		
 //	}
 	
-	// lyt-重写hashCode()-第二个版本
-	@Override
-	public int hashCode() {
-		return this.internalIndices.hashCode();
-	}
+//	// lyt-重写hashCode()-第二个版本
+//	@Override
+//	public int hashCode() {
+//		return this.internalIndices.hashCode();
+//	}
 	
 	public boolean isFreshIndex() {
 		return this.freshIndex;

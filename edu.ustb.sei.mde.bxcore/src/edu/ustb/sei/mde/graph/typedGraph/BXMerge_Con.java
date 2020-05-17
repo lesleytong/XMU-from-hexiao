@@ -303,6 +303,7 @@ public class BXMerge_Con {
 							}
 
 							result.replaceWith(baseNode, n); // 将result图中的baseNode替换为n
+							
 						}
 
 					} catch (NothingReturnedException e) {

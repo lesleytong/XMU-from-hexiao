@@ -1,6 +1,7 @@
 package edu.ustb.sei.mde.bxcore.tests;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
 import edu.ustb.sei.mde.graph.type.TypeGraph;
@@ -32,9 +33,11 @@ public class TestThreeOrder_4 {
 			
 			//保证序关系
 			System.out.println("###############################序处理##################################");
-//			BXMerge.threeOrder_origin(baseGraph, aGraph, bGraph, resultGraph);
-			ArrayList<TypedEdge> merge = BXMerge.threeOrder(baseGraph.getAllTypedEdges(), aGraph.getAllTypedEdges(), 
-					bGraph.getAllTypedEdges(), resultGraph.getAllTypedEdges());
+//			ArrayList<TypedEdge> merge = BXMerge.threeOrder(baseGraph.getAllTypedEdges(), aGraph.getAllTypedEdges(), 
+//					bGraph.getAllTypedEdges(), resultGraph.getAllTypedEdges());
+//			System.out.println("\n处理完序后，merge: " + merge);
+
+			List<TypedEdge> merge = BXMerge.threeOrder2(baseGraph, resultGraph, aGraph, bGraph);
 			System.out.println("\n处理完序后，merge: " + merge);
 			
 		} catch (NothingReturnedException e) {

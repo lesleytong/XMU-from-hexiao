@@ -953,8 +953,7 @@ public class ConcurrentTypedGraph extends IndexSystem implements IGraph {
 		// TypedNode节点替换后，还要考虑相邻的边
 		if (nr != n) {
 
-			TypeNode nodeType = n.getType();
-
+			TypeNode nodeType = n.getType();			
 			// 处理相邻的TypedEdge类型的边
 			List<TypedEdge> removedTypedEdges = new CopyOnWriteArrayList<TypedEdge>();
 			allTypedEdges.replaceAll(e -> { // 对于result图中List<TypedEdge>的每个元素e

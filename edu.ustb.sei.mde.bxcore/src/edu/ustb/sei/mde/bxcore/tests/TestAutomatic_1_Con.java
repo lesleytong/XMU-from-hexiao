@@ -6,6 +6,7 @@ import edu.ustb.sei.mde.graph.typedGraph.ConcurrentBXMerge;
 import edu.ustb.sei.mde.graph.typedGraph.ConcurrentBXMerge;
 import edu.ustb.sei.mde.graph.typedGraph.ConcurrentBXMergeJoin;
 import edu.ustb.sei.mde.graph.typedGraph.ConcurrentTypedGraph;
+import edu.ustb.sei.mde.graph.typedGraph.GraphChangeTool;
 import edu.ustb.sei.mde.graph.typedGraph.GraphChangeTool_Con;
 import edu.ustb.sei.mde.graph.typedGraph.Profiler;
 
@@ -138,13 +139,13 @@ public class TestAutomatic_1_Con {
 				
 				);	
 		
-		for (int i = 0; i < 500; i++) {
+		for (int i = 0; i < 3000; i++) {
+			String str = GraphChangeTool.getRandomString(5, true);
 			baseGraph.declare(
 					   "a1:A;" 
 			         + "b1:B;" 
 					 + "a1-a2b->b1;"
-					 + "c1:C;" 
-					 + "c1.c2S=\"string1\";"
+					 + "b1.b2S=\""+str+"\";"
 					);
 		}
 		
@@ -157,26 +158,21 @@ public class TestAutomatic_1_Con {
 		
 		aGraph = baseGraph.getCopy();
 		
-		// change TypedEdges
-		GraphChangeTool_Con.changeTypedEdges(aGraph, 1, 30);		
-		
-		// change ValueEdges
-		GraphChangeTool_Con.changeValueEdges(aGraph, 30); 		
-		
-		
-		// change TypedNodes
-		GraphChangeTool_Con.changeTypedNodes(aGraph, 10, 30);	
-		
-//		---------------------------------------------------------------------------------------------
-		
 		// add z TypedEdges and 2*z TypedNodes
-		GraphChangeTool_Con.addTypedNodesAndTypedEdges(aGraph, 500);
+		GraphChangeTool_Con.addTypedNodesAndTypedEdges(aGraph, 30);
 		
 		// add z ValueEdges and z TypedNodes and z ValueNodes
-		GraphChangeTool_Con.addNodesAndValueEdges(aGraph, 50);
+		GraphChangeTool_Con.addNodesAndValueEdges(aGraph, 40);
 		
-		System.out.println("**************************************aGraph:");
-		print(aGraph);
+		// change TypedEdges
+		// '起始点'与从其下标相差1的边交换序；删除30个；注意还替换了一个
+		GraphChangeTool_Con.changeTypedEdges(aGraph, 0, 100);		
+		
+		// change ValueEdges
+		GraphChangeTool_Con.changeValueEdges(aGraph, 100); 		// 删除30个
+		
+		// change TypedNodes
+		GraphChangeTool_Con.changeTypedNodes(aGraph, 100, 100);		// 替换10个；删除30个
 		
 	}
 	
@@ -184,25 +180,22 @@ public class TestAutomatic_1_Con {
 		
 		bGraph = baseGraph.getCopy();
 		
-		// change TypedEdges
-		GraphChangeTool_Con.changeTypedEdges(bGraph, 1, 20);	
-															
-		// change ValueEdges
-		GraphChangeTool_Con.changeValueEdges(bGraph, 20);		
-		
-		// change TypedNodes
-		GraphChangeTool_Con.changeTypedNodes(bGraph, 20, 20); 	
-		
-//		---------------------------------------------------------------------------------------------
-				
 		// add z TypedEdges and 2*z TypedNodes
-		GraphChangeTool_Con.addTypedNodesAndTypedEdges(bGraph, 50);
+		GraphChangeTool_Con.addTypedNodesAndTypedEdges(bGraph, 20);
 		
 		// add z ValueEdges and z TypedNodes and z ValueNodes
-		GraphChangeTool_Con.addNodesAndValueEdges(bGraph, 500);
+		GraphChangeTool_Con.addNodesAndValueEdges(bGraph, 20);
 		
-		System.out.println("**************************************bGraph:");
-		print(bGraph);
+		// change TypedEdges
+		// '起始点'与从其下标相差1的边交换；删除20个；注意还替换了1个
+		GraphChangeTool_Con.changeTypedEdges(bGraph, 0, 200);		
+															
+		// change ValueEdges
+		GraphChangeTool_Con.changeValueEdges(bGraph, 200);		//删除20个
+		
+		// change TypedNodes
+		GraphChangeTool_Con.changeTypedNodes(bGraph, 200, 200); 	// 替换20个；删除20个	
+
 	}
 	
 	private static void print(ConcurrentTypedGraph concurrentTypedGraph) {

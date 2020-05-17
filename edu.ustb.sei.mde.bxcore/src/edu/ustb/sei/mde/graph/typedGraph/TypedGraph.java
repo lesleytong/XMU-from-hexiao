@@ -122,7 +122,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 	}
 
 	public void addValueNode(ValueNode n) {
-		if (allValueNodes.contains(n) == false) 
+		if (allValueNodes.contains(n) == false)
 			allValueNodes.add(n);
 
 		indexing(n);
@@ -237,10 +237,11 @@ public class TypedGraph extends IndexSystem implements IGraph {
 
 			for (int i = 0; i < allTypedEdges.size(); i++) {
 				TypedEdge tmp = allTypedEdges.get(i);
-				if (tmp.getSource() == e.getSource() // below I did use replaceWith, so I use == rather than Index.equals
+				if (tmp.getSource() == e.getSource() // below I did use replaceWith, so I use == rather than
+														// Index.equals
 						&& tmp.getType() == e.getType()) {
 
-					e.mergeIndex(tmp);	// 如果不是isMany，但添加了多条边，会合并它们的索引集
+					e.mergeIndex(tmp); // 如果不是isMany，但添加了多条边，会合并它们的索引集
 					reindexing(e);
 
 					if (replaced) { // reduce redundant
@@ -569,7 +570,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 
 	/** TypedGraph类型的图的复制 */
 	public TypedGraph getCopy() {
-		
+
 		TypedGraph copy = new TypedGraph(this.typeGraph);
 		// addAll(c: Collection<? extends E>): boolean 将集合c中的所有元素添加到该集合中。引用类型就复制对象的引用
 		copy.getAllTypedNodes().addAll(this.getAllTypedNodes());
@@ -749,10 +750,10 @@ public class TypedGraph extends IndexSystem implements IGraph {
 
 		// add extra nodes and edges
 		for (TypedGraph image : interSources) {
-			
+
 			for (TypedNode n : image.allTypedNodes) {
 				try {
-					this.getElementByIndexObject(n.getIndex());	// baseGraph去调用的merge方法，this就是baseGraph
+					this.getElementByIndexObject(n.getIndex()); // baseGraph去调用的merge方法，this就是baseGraph
 				} catch (NothingReturnedException e) {
 					TypedNode rn = null;
 					try {
@@ -877,13 +878,13 @@ public class TypedGraph extends IndexSystem implements IGraph {
 	}
 
 	/** 将图中的TypedEdge边er替换为e */
-	//lyt - 修改为了public，为了在TestThreeOrder里面使用
+	// lyt - 修改为了public，为了在TestThreeOrder里面使用
 	public void replaceWith(TypedEdge er, TypedEdge e) {
 		// 先找到allTypedEdges中的er对象，替换为e对象
 		this.allTypedEdges.replaceAll(x -> isEqual(x, er) ? e : x);
 		e.mergeIndex(er);
 		reindexing(e);
-		
+
 	}
 
 	/** 将图中的ValueEdge边er替换为e */
@@ -895,7 +896,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 
 	/** 将图中的TypedNode节点nr替换为n，注意还要考虑相邻的TypedEdge边和ValueEdge边 */
 	// lyt - default修改成了public，为了再TestLogical_2中使用
-	public void replaceWith(TypedNode nr, TypedNode n) {
+	public  void replaceWith(TypedNode nr, TypedNode n) {
 
 		// 找到图的List<TypedNode>中的nr对象，替换为n对象
 		this.allTypedNodes.replaceAll(e -> isEqual(e, nr) ? n : e);
@@ -904,11 +905,9 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		// 更新图的indexToObjectMap
 		reindexing(n);
 
-		// TypedNode节点替换后，还要考虑相邻的边
 		if (nr != n) {
-
+			
 			TypeNode nodeType = n.getType();
-
 			// 处理相邻的TypedEdge类型的边
 			List<TypedEdge> removedTypedEdges = new ArrayList<TypedEdge>();
 			this.allTypedEdges.replaceAll(e -> { // 对于result图中List<TypedEdge>的每个元素e
@@ -967,7 +966,6 @@ public class TypedGraph extends IndexSystem implements IGraph {
 					return e;
 			});
 			this.allTypedEdges.removeAll(removedTypedEdges); // 集合操作removeAll()：A <- A-B，即从A集合中删除B集合
-
 			
 			// 处理相邻的ValueEdge类型的边
 			List<ValueEdge> removedValueEdges = new ArrayList<ValueEdge>();
@@ -975,7 +973,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 				PropertyEdge edgeType = e.getType();
 				TypeNode sourceType = edgeType.getSource();
 
-				if (e.getSource() == nr) {	// 如果e的source是nr
+				if (e.getSource() == nr) { // 如果e的source是nr
 					// 并且n的type是e的sourceType的子类型，则将e替换为res
 					if (this.typeGraph.isSuperTypeOf(nodeType, sourceType)) {
 						ValueEdge res = new ValueEdge();
@@ -995,9 +993,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 					return e; // 如果e的source不是nr，则保留
 			});
 			this.allValueEdges.removeAll(removedValueEdges);
-
 		}
-
 	}
 
 //	static public boolean isIdentifical(TypedGraph left, TypedGraph right) {
@@ -1027,7 +1023,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 				else
 					throw new NothingReturnedException(); // incompatible: a==imageEdge并且b==null
 			} else {
-				
+
 				if (tuple == null)
 					throw new NothingReturnedException(); // incompatible: a==null并且b==imageEdge
 				else if (isImage(tuple, baseEdge))
@@ -1072,7 +1068,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		// 找到List<TypedNodes>中与索引集相交的点，删除
 		this.allTypedNodes.removeIf(x -> isEqual(x, n));
 		this.clearIndex(n);
-	
+
 		// 如果此节点还是某条TypedEdge类型边e的source或target端点，删除这条边e
 		for (int i = this.allTypedEdges.size() - 1; i >= 0; i--) {
 			TypedEdge e = this.allTypedEdges.get(i);
@@ -1081,7 +1077,19 @@ public class TypedGraph extends IndexSystem implements IGraph {
 				this.clearIndex(e);
 			}
 		}
-	
+//		new Thread(new Runnable() {
+//			@Override
+//			public void run() {
+//				for (int i = allTypedEdges.size() - 1; i >= 0; i--) {
+//					TypedEdge e = allTypedEdges.get(i);
+//					if (isEqual(e.getSource(), n) || isEqual(e.getTarget(), n)) {
+//						allTypedEdges.remove(i);
+//						clearIndex(e);
+//					}
+//				}
+//			}
+//		}, "removeAdjacentTypedEdges").start();
+
 		// 如果此节点还是某条ValueEdge类型边e的source端点，删除这条边e
 		for (int i = this.allValueEdges.size() - 1; i >= 0; i--) {
 			ValueEdge e = this.allValueEdges.get(i);
@@ -1090,7 +1098,18 @@ public class TypedGraph extends IndexSystem implements IGraph {
 				this.clearIndex(e);
 			}
 		}
-		
+//		new Thread(new Runnable() {
+//			@Override
+//			public void run() {
+//				for (int i = allValueEdges.size() - 1; i >= 0; i--) {
+//					ValueEdge e = allValueEdges.get(i);
+//					if (isEqual(e.getSource(), n)) {
+//						allValueEdges.remove(i);
+//						clearIndex(e);
+//					}
+//				}
+//			}
+//		}, "removeAdjacentValueEdges").start();
 	}
 
 	/** 删除图中的TypedEdge类型边 */
@@ -1107,11 +1126,12 @@ public class TypedGraph extends IndexSystem implements IGraph {
 	}
 
 	/**
-	 * 再根据typedEdgeImages中的情况，确定finalEdgeInfo三元组信息 
-	 * 1)返回baseEdge三元组信息：a==baseEdge并且b==baseEdge 
-	 * 2) 返回null：a==baseEdge并且b==null |a==null并且b==baseEdge | a==null并且b==null 
-	 * 3) 抛出异常：a==null并且b==imageEdge | a==imageEdge并且b==null | a==imageEdge并且b==imageEdge但不兼容 
-	 * 4) 返回imageEdge三元组信息：a==baseEdge并且b==imageEdge | a==imageEdge并且b==baseEdge |a==imageEdge并且b==imageEdge而且兼容
+	 * 再根据typedEdgeImages中的情况，确定finalEdgeInfo三元组信息
+	 * 1)返回baseEdge三元组信息：a==baseEdge并且b==baseEdge 2) 返回null：a==baseEdge并且b==null
+	 * |a==null并且b==baseEdge | a==null并且b==null 3) 抛出异常：a==null并且b==imageEdge |
+	 * a==imageEdge并且b==null | a==imageEdge并且b==imageEdge但不兼容 4)
+	 * 返回imageEdge三元组信息：a==baseEdge并且b==imageEdge | a==imageEdge并且b==baseEdge
+	 * |a==imageEdge并且b==imageEdge而且兼容
 	 */
 	static Tuple3<TypedNode, TypedNode, TypeEdge> computeEdge(TypedEdge baseEdge, TypedEdge[] typedEdgeImages)
 			throws NothingReturnedException {
@@ -1121,24 +1141,23 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		Tuple3<TypedNode, TypedNode, TypeEdge> tuple = any; // 结果初始化为baseEdge的信息
 
 		for (TypedEdge e : typedEdgeImages) {
-			
-			if (e == baseEdge)	// 没被替换，对象相同
+
+			if (e == baseEdge) // 没被替换，对象相同
 				continue;
 			else if (e == null) {
 				if (tuple == null || isImage(tuple, baseEdge))
 					tuple = null;
 				else
 					throw new NothingReturnedException(); // incompatible: a==imageEdge并且b==null
-			} else {	// 被替换了，对象不同		
-				
+			} else { // 被替换了，对象不同
+
 				if (tuple == null)
 					throw new NothingReturnedException(); // incompatible: a==null并且b==imageEdge
 				else if (isImage(tuple, baseEdge)) {
 					tuple = new Tuple3<TypedNode, TypedNode, TypeEdge>(e.getSource(), e.getTarget(), e.getType());
-				}
-				else {
+				} else {
 					if (isImage(tuple, e)) // a==imageEdge并且b==imageEdge时，如果兼容则跳过
-						continue;	
+						continue;
 					else
 						throw new NothingReturnedException(); // incompatible: a==imageEdge并且b==imageEdge，但不兼容
 				}
@@ -1150,7 +1169,8 @@ public class TypedGraph extends IndexSystem implements IGraph {
 
 	/** 比较两个TypedEdge是否兼容，tuple是第一条边的三元组信息 */
 	static private boolean isImage(Tuple3<TypedNode, TypedNode, TypeEdge> tuple, TypedEdge e) {
-		return tuple.third == e.getType() && tuple.first.getIndex().equals(e.getSource().getIndex()) && tuple.second.getIndex().equals(e.getTarget().getIndex());
+		return tuple.third == e.getType() && tuple.first.getIndex().equals(e.getSource().getIndex())
+				&& tuple.second.getIndex().equals(e.getTarget().getIndex());
 	}
 
 	/**
@@ -1222,7 +1242,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 //					return imageNode.getType();
 //				} else
 //					return TypeNode.ANY_TYPE;
-				
+
 				return TypeNode.ANY_TYPE;
 			}
 

@@ -19,6 +19,8 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
+import org.junit.internal.runners.statements.RunAfters;
+
 import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
 import edu.ustb.sei.mde.bxcore.structures.Index;
 import edu.ustb.sei.mde.graph.type.DataTypeNode;
@@ -191,16 +193,17 @@ public class ConcurrentBXMerge {
 		int len = interSources.length;
 
 		CountDownLatch c1 = new CountDownLatch(1);
-		CountDownLatch c1_2 = new CountDownLatch(3);
+		CountDownLatch c1_2 = new CountDownLatch(2);
 		CountDownLatch c3_4 = new CountDownLatch(2);
 		CountDownLatch c5 = new CountDownLatch(1);
 		CountDownLatch c6_7 = new CountDownLatch(4);
-
-		// 新加TypedNodes
-		for (ConcurrentTypedGraph image : interSources) {
-			executor.execute(new Runnable() {
-				@Override
-				public void run() {
+		
+		
+		executor.execute(new Runnable() {
+			@Override
+			public void run() {
+				// 新加TypedNodes
+				for (ConcurrentTypedGraph image : interSources) {
 					for (TypedNode n : image.allTypedNodes) { // 对于分支图中每个TypedNode类型的节点n
 						try {
 							// 根据n的索引查找基本图中有无相应的对象，如果有则不做处理
@@ -236,29 +239,27 @@ public class ConcurrentBXMerge {
 							}
 						}
 					}
-					c1.countDown();
-					c1_2.countDown();
 				}
-			});
-
-		}
-
-		// 新加ValueNodes
-		for (ConcurrentTypedGraph image : interSources) {
-			executor.execute(new Runnable() {
-				@Override
-				public void run() {
+				c1.countDown();
+				c1_2.countDown();
+			}
+		});
+		
+		executor.execute(new Runnable() {
+			@Override
+			public void run() {
+				// 新加ValueNodes
+				for (ConcurrentTypedGraph image : interSources) {
 					// 分支图中所有新添加的ValueNode类型节点全部扔进result图中
 					image.getAllValueNodes().forEach(v -> {
 						result.addValueNode(v);
 					});
-					c1_2.countDown();
 				}
-			});
-		}
+				c1_2.countDown();
+			}
+		});
 
-		// 变更TypeEdges
-		TypedEdge[] typedEdgeImages = new TypedEdge[len];
+
 		executor.execute(new Runnable() {
 			@Override
 			public void run() {
@@ -268,7 +269,9 @@ public class ConcurrentBXMerge {
 				} catch (InterruptedException e1) {
 					e1.printStackTrace();
 				}
-
+				
+				// 变更TypeEdges
+				TypedEdge[] typedEdgeImages = new TypedEdge[len];
 				for (TypedEdge baseEdge : first.getAllTypedEdges()) { // 对于基本图中每一个TypedEdge类型的边baseEdge
 
 					// 两个分支图先分别和基本图作比较，baseEdge的情况分别存储在typedEdgeImages[i]中，可能是baseEdge、imageEdge、null
@@ -306,8 +309,6 @@ public class ConcurrentBXMerge {
 			}
 		});
 
-		// 变更ValueEdges
-		ValueEdge[] valueEdgeImages = new ValueEdge[len];
 		executor.execute(new Runnable() {
 			@Override
 			public void run() {
@@ -318,6 +319,8 @@ public class ConcurrentBXMerge {
 					e1.printStackTrace();
 				}
 				
+				// 变更ValueEdges
+				ValueEdge[] valueEdgeImages = new ValueEdge[len];
 				for (ValueEdge baseEdge : first.getAllValueEdges()) { // 对于基本图中每一个条ValueEdge类型的边
 
 					// 两个分支图先和基本图作比较，baseEdge的情况分别存储在valueEdgeImages[]中，可能是null、baseEdge、imageEdge
@@ -354,8 +357,7 @@ public class ConcurrentBXMerge {
 			}
 		});
 
-		// 变更TypedNodes
-		TypeNode[] nodeImages = new TypeNode[len];
+
 		executor.execute(new Runnable() {
 			@Override
 			public void run() {
@@ -365,6 +367,8 @@ public class ConcurrentBXMerge {
 				} catch (InterruptedException e1) {
 				}
 
+				// 变更TypedNodes
+				TypeNode[] nodeImages = new TypeNode[len];
 				for (TypedNode baseNode : first.getAllTypedNodes()) { // 对于基本图中每一个TypedNode节点
 
 					for (int i = 0; i < len; i++) {

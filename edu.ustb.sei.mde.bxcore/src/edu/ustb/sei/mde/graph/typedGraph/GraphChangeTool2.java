@@ -175,7 +175,6 @@ public class GraphChangeTool2 {
 			ValueNode valueNodeTel = v0.createConstantNode(tel, v0.getType());
 			graph.addValueNode(valueNodeTel);
 
-			System.out.println("**********" + graph.getAllValueEdges().size());
 			
 			// ´´½¨ValueEdge
 			ValueEdge valueEdgeName = new ValueEdge();

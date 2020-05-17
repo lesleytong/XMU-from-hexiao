@@ -1,6 +1,7 @@
 package edu.ustb.sei.mde.bxcore.tests;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.hamcrest.core.IsEqual;
 
@@ -36,9 +37,11 @@ public class TestThreeOrder_3 {
 			
 			//处理序关系
 			System.out.println("###############################序处理##################################");
-//			BXMerge.threeOrder_origin(baseGraph, aGraph, bGraph, resultGraph);
-			ArrayList<TypedEdge> merge = BXMerge.threeOrder(baseGraph.getAllTypedEdges(), aGraph.getAllTypedEdges(), 
-					bGraph.getAllTypedEdges(), resultGraph.getAllTypedEdges());
+//			ArrayList<TypedEdge> merge = BXMerge.threeOrder(baseGraph.getAllTypedEdges(), aGraph.getAllTypedEdges(), 
+//					bGraph.getAllTypedEdges(), resultGraph.getAllTypedEdges());
+//			System.out.println("\n处理完序后，merge: " + merge);
+			
+			List<TypedEdge> merge = BXMerge.threeOrder2(baseGraph, resultGraph, aGraph, bGraph);
 			System.out.println("\n处理完序后，merge: " + merge);
 			
 		} catch (NothingReturnedException e) {
@@ -111,26 +114,34 @@ public class TestThreeOrder_3 {
 
 		// e1-e3'-e2
 		TypedNode d2 = bGraph.getAllTypedNodes().get(4);
-		TypedEdge e3 = bGraph.getAllTypedEdges().get(2);
-		TypedEdge e3new = new TypedEdge();
-		e3new.setType(e3.getType());
-		e3new.setSource(e3.getSource());
-		e3new.setTarget(d2);
+		TypedEdge e3base = bGraph.getAllTypedEdges().get(2);
 		
+		// 申请新对象
+		TypedEdge e3new = new TypedEdge();
+		e3new.setType(e3base.getType());
+		e3new.setSource(e3base.getSource());
+		e3new.setTarget(d2);		
 		// 替换之前
-		TypedEdge e3base = baseGraph.getAllTypedEdges().get(2);
 		System.out.println("***替换前e3new内部索引集的hashCode：" + e3new.getIndex().getInternalIndices().hashCode());
 		System.out.println("***替换前e3base内部索引集的hashCode：" + e3base.getIndex().getInternalIndices().hashCode());
-		
-		bGraph.replaceWith(e3, e3new);
-		
+		bGraph.replaceWith(e3base, e3new);
 		// 替换之后，内部索引集的hashCode是一样的
 		System.out.println("***替换后e3new内部索引集的hashCode：" + e3new.getIndex().getInternalIndices().hashCode());
 		System.out.println("***替换后e3base内部索引集的hashCode：" + e3base.getIndex().getInternalIndices().hashCode());
+
+//		// 测试内部索引集只是有交集
+//		TypedEdge e0 = bGraph.getAllTypedEdges().get(0);
+//		System.out.println("***替换前e0内部索引集的hashCode：" + e0.getIndex().getInternalIndices().hashCode());
+//		System.out.println("***替换前e3base内部索引集的hashCode：" + e3base.getIndex().getInternalIndices().hashCode());
+//		e0.setType(e3base.getType());
+//		e0.setSource(e3base.getSource());
+//		e0.setTarget(d2);
+//		bGraph.replaceWith(e3base, e0);
+//		System.out.println("***替换后e0内部索引集的hashCode：" + e0.getIndex().getInternalIndices().hashCode());
+//		System.out.println("***替换后e3base内部索引集的hashCode：" + e3base.getIndex().getInternalIndices().hashCode());
 		
-		System.out.println("***替换后e3new的hashCode：" + e3new.hashCode());
-		System.out.println("***替换后e3base的hashCode：" + e3base.hashCode());
 		
+			
 		TypedEdge e2 = bGraph.getAllTypedEdges().get(1);
 		bGraph.getAllTypedEdges().remove(e2);
 		bGraph.getAllTypedEdges().add(e2);

@@ -1,4 +1,5 @@
 package edu.ustb.sei.mde.graph.typedGraph;
+
 /**
  * 串行
  */
@@ -92,7 +93,7 @@ public class BXMerge {
 	public static TypedGraph merge(TypedGraph first, TypedGraph... interSources) throws NothingReturnedException {
 
 		TypedGraph result = first.getCopy();
-		
+
 		Profiler.begin();
 		// 新加TypedNodes
 		for (TypedGraph image : interSources) {
@@ -127,8 +128,8 @@ public class BXMerge {
 				}
 			}
 		}
-		System.out.println("*******串行的新加TypedNodes：" + Profiler.end() + "ms");
-		
+		System.out.println("*******串行新加TypedNodes：" + Profiler.end() + "ms");
+
 		Profiler.begin();
 		// 新加ValueNodes
 		for (TypedGraph image : interSources) {
@@ -136,8 +137,8 @@ public class BXMerge {
 				result.addValueNode(v);
 			});
 		}
-		System.out.println("*******串行的新加ValueNodes：" + Profiler.end() + "ms");
-		
+		System.out.println("*******串行新加ValueNodes：" + Profiler.end() + "ms");
+
 		Profiler.begin();
 		// 变更TypedEdges
 		TypedEdge[] typedEdgeImages = new TypedEdge[interSources.length];
@@ -174,8 +175,8 @@ public class BXMerge {
 				throw e; // 捕捉到异常后抛出
 			}
 		}
-		System.out.println("*******串行的变更TypedEdges：" + Profiler.end() + "ms");
-		
+		System.out.println("*******串行变更TypedEdges：" + Profiler.end() + "ms");
+
 		Profiler.begin();
 		// 变更ValueEdges
 		ValueEdge[] valueEdgeImages = new ValueEdge[interSources.length];
@@ -211,8 +212,8 @@ public class BXMerge {
 				throw e;
 			}
 		}
-		System.out.println("*******串行的变更ValueEdges：" + Profiler.end() + "ms");
-		
+		System.out.println("*******串行变更ValueEdges：" + Profiler.end() + "ms");
+
 		Profiler.begin();
 		// 变更TypedNodes
 		TypeNode[] nodeImages = new TypeNode[interSources.length]; // 比如length=2
@@ -249,8 +250,8 @@ public class BXMerge {
 				throw e; // 捕捉到异常后抛出
 			}
 		}
-		System.out.println("*******串行的变更TypedNodes：" + Profiler.end() + "ms");
-		
+		System.out.println("*******串行变更TypedNodes：" + Profiler.end() + "ms");
+
 		Profiler.begin();
 		// 新加TypedEdges
 		for (TypedGraph image : interSources) {
@@ -300,8 +301,8 @@ public class BXMerge {
 				}
 			}
 		}
-		System.out.println("*******串行的新加TypedEdges：" + Profiler.end() + "ms");
-		
+		System.out.println("*******串行新加TypedEdges：" + Profiler.end() + "ms");
+
 		Profiler.begin();
 		// 新加ValueEdges
 		for (TypedGraph image : interSources) {
@@ -350,7 +351,7 @@ public class BXMerge {
 				}
 			}
 		}
-		System.out.println("*******串行的新加ValueEdges：" + Profiler.end() + "ms");
+		System.out.println("*******串行新加ValueEdges：" + Profiler.end() + "ms");
 
 		OrderInformation[] orders = new OrderInformation[interSources.length];
 		for (int i = 0; i < interSources.length; i++)
@@ -815,6 +816,63 @@ public class BXMerge {
 		return merge;
 	}
 
+	// 适用于多图的序关系
+	public static List<TypedEdge> threeOrder2(TypedGraph baseGraph, TypedGraph resultGraph,
+			TypedGraph... branchGraphs) {
+
+		List<TypedEdge> base = baseGraph.getAllTypedEdges();
+		HashMap<TypedEdge, Integer> baseFlag = new HashMap<>();
+		for (int j = 0; j < base.size(); j++) {
+			baseFlag.put(base.get(j), j);
+		}
+
+		int len = branchGraphs.length;
+		HashMap<TypedEdge, Integer>[] branchFlag = new HashMap[len];
+		for (int i = 0; i < len; i++) {
+			List<TypedEdge> branch = branchGraphs[i].getAllTypedEdges();
+			branchFlag[i] = new HashMap<>();
+			for (int j = 0; j < branch.size(); j++) {
+				branchFlag[i].put(branch.get(j), j);
+			}
+		}
+
+		List<TypedEdge> result = resultGraph.getAllTypedEdges();
+		List<TypedEdge> merge = new ArrayList<>(result);
+		
+		for (int i = 0; i < result.size() - 1; i++) {
+			for (int j = i + 1; j < result.size(); j++) {
+
+				for (int k = 0; k < len; k++) {
+					TypedEdge efirst = null;
+					TypedEdge esecond = null;
+					try {
+						efirst = branchGraphs[k].getElementByIndexObject(result.get(i).getIndex());
+						esecond = branchGraphs[k].getElementByIndexObject(result.get(j).getIndex());
+
+						if (branchFlag[k].get(efirst) - branchFlag[k].get(esecond) < 0) {
+							continue;
+						} else {
+							if (merge.indexOf(result.get(i)) > merge.indexOf(result.get(j))) {
+								continue;
+							} else {
+								TypedEdge re = result.get(j);
+								merge.remove(re);
+								merge.add(merge.indexOf(result.get(i)), re);
+								break;
+							}
+						}
+
+					} catch (NothingReturnedException e) {
+						// 说明不是此分支新加的，跳过
+						
+					}
+				}
+			}
+		}
+	
+		return merge;
+	}
+
 	// 处理强制序关系
 	public static List<TypedEdge> forceOrder(List<TypedEdge> merge, Set<Tuple2<Index, Index>> orders)
 			throws NothingReturnedException {
@@ -826,13 +884,13 @@ public class BXMerge {
 		}
 
 		// ringFlag用于判断有无环冲突
-		HashMap<Index, Index> ringFlag = new HashMap<>();		
+		HashMap<Index, Index> ringFlag = new HashMap<>();
 		Iterator<Tuple2<Index, Index>> iterator = orders.iterator();
-		while(iterator.hasNext()) {
+		while (iterator.hasNext()) {
 			Tuple2<Index, Index> order = iterator.next();
-			if(helper.get(order.first) != null && helper.get(order.second) != null) {
+			if (helper.get(order.first) != null && helper.get(order.second) != null) {
 				ringFlag.put(order.first, order.second);
-			}else {
+			} else {
 				// first或second找不到的话，删除此order
 				iterator.remove();
 			}
@@ -866,7 +924,7 @@ public class BXMerge {
 			}
 
 			// 检测环冲突
-			Tuple2<Index, Index> tmp = new Tuple2<>(order.first, order.second); //错因：不能直接tmp = order，否则order都变了
+			Tuple2<Index, Index> tmp = new Tuple2<>(order.first, order.second); // 错因：不能直接tmp = order，否则order都变了
 			while (ringFlag.get(tmp.second) != null) {
 				if (ringFlag.get(tmp.second).equals(order.first)) {
 					throw new NothingReturnedException("强制序中有环冲突");

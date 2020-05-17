@@ -2,6 +2,7 @@ package edu.ustb.sei.mde.graph.typedGraph;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 import edu.ustb.sei.mde.graph.type.TypeEdge;
 import edu.ustb.sei.mde.graph.type.TypeNode;
@@ -245,11 +246,13 @@ public class GraphChangeTool {
 
 		if (addValueEdgesFlag == true) {
 			for (int i = 0; i < z; i++) {
-				graph.declare("c1:C;" + "c1.c2S=\"string1\";"); // string1节点不会重复添加
+				String str = getRandomString(5, true);
+				graph.declare("c1:C;" + "c1.c2S=\""+str+"\";"); 
 			}
 		} else {
 			for (int i = 0; i < z; i++) {
-				graph.declare("b1:B;" + "b1.b2S=\"string2\";"); // string2节点不会重复添加
+				String str = getRandomString(5, true);
+				graph.declare("b1:B;" + "b1.b2S=\""+str+"\";"); 
 			}
 		}
 
@@ -259,6 +262,27 @@ public class GraphChangeTool {
 
 		addValueEdgesFlag = (addValueEdgesFlag == true) ? false : true;
 
+	}
+	
+	/** 生成任意长度的随机字符串，全字母或全数字 */
+	public static String getRandomString(int length, boolean letter) {
+		String str = null;
+		int len = 0;
+		if (letter) {
+			str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+			len = str.length();
+		} else {
+			str = "0123456789";
+			len = str.length();
+		}
+
+		Random random = new Random();
+		StringBuffer sb = new StringBuffer();
+		for (int i = 0; i < length; i++) {
+			int num = random.nextInt(len);
+			sb.append(str.charAt(num));
+		}
+		return sb.toString();
 	}
 
 }
