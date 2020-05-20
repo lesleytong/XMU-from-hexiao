@@ -452,31 +452,31 @@ public class BXMerge {
 
 	}
 
-	public static ArrayList<TypedEdge> twoOrder(List<TypedEdge> base, List<TypedEdge> a, List<TypedEdge> result) {
+	public static ArrayList<TypedEdge> twoOrder(List<TypedEdge> baseList, List<TypedEdge> aList, List<TypedEdge> resultList) {
 
 		HashMap<Index, Integer> resultFlag = new HashMap<>();
-		for (int i = 0; i < result.size(); i++) {
-			resultFlag.put(result.get(i).getIndex(), i);
+		for (int i = 0; i < resultList.size(); i++) {
+			resultFlag.put(resultList.get(i).getIndex(), i);
 		}
 
-		ArrayList<TypedEdge> merge = new ArrayList<>(a); // mergeList复制aList
+		ArrayList<TypedEdge> merge = new ArrayList<>(aList); // mergeList复制aList
 
-		// 删除merge里的不在result中的边
-		for (int i = 0; i < a.size(); i++) {
-			if (resultFlag.get(a.get(i).getIndex()) != null) {
+		// 删除merge中的不在result中的边
+		for (int i = 0; i < aList.size(); i++) {
+			if (resultFlag.get(aList.get(i).getIndex()) != null) {
 				continue;
 			}
-			merge.remove(a.get(i));
+			merge.remove(aList.get(i));
 		}
 
 		// 过滤后，如果merge.size() == result.size()，则直接返回merge
-		if (merge.size() == result.size()) {
+		if (merge.size() == resultList.size()) {
 			return merge;
 		}
 
 		HashMap<Index, Integer> baseFlag = new HashMap<>();
-		for (int i = 0; i < base.size(); i++) {
-			baseFlag.put(base.get(i).getIndex(), i);
+		for (int i = 0; i < baseList.size(); i++) {
+			baseFlag.put(baseList.get(i).getIndex(), i);
 		}
 
 		HashMap<Index, Integer> mergeFlag = new HashMap<>();
@@ -484,11 +484,12 @@ public class BXMerge {
 			mergeFlag.put(merge.get(i).getIndex(), i);
 		}
 
-		// 将base中原有的边添加进merge（即a的删除操作无效）
-		for (int i = 0; i < base.size(); i++) {
+		// 将baseList中原有的边添加进merge（即aList的删除操作无效）
+		// 注意，添加性合并中resultList并没有重新申请边对象去合并索引集
+		for (int i = 0; i < baseList.size(); i++) {
 
 			// 如果能在merge中找到，则跳过
-			if (mergeFlag.get(base.get(i).getIndex()) != null) {
+			if (mergeFlag.get(baseList.get(i).getIndex()) != null) {
 				continue;
 			}
 			// 如果不能找到，说明要添加进merge
@@ -501,21 +502,74 @@ public class BXMerge {
 					if (baseDistance > 0) {
 						continue;
 					}
-					merge.add(j, base.get(i));
+					merge.add(j, baseList.get(i));
 					break;
 				} catch (NullPointerException e2) {
 					// 如果merge中的元素不能在base中找到，则跳过
 				}
 			}
 
-			// 添加到merge队尾
+			// 若已经跑完mergeList，添加到merge队尾
 			if (j == merge.size()) {
-				merge.add(base.get(i));
+				merge.add(baseList.get(i));
 			}
 
 		}
 
 		return merge;
+	}
+
+	public static List<TypedEdge> twoOrder2(TypedGraph baseGraph, TypedGraph aGraph, TypedGraph resultGraph) {
+
+		List<TypedEdge> aList = aGraph.getAllTypedEdges();
+		ArrayList<TypedEdge> mergeList = new ArrayList<>(aList);	//添加性合并中替换了也没有申请新对象
+		List<TypedEdge> resultList = resultGraph.getAllTypedEdges();
+		List<TypedEdge> baseList = baseGraph.getAllTypedEdges();
+		
+		// 删除merge中的不在result中的边（因为aList中存在的边不一定在resultList中）
+		for (int i = 0; i < aList.size(); i++) {
+			try {
+				resultGraph.getElementByIndexObject(aList.get(i).getIndex());
+			} catch (NothingReturnedException e) {
+				mergeList.remove(aList.get(i));
+			}
+		}
+		
+		// 过滤后，如果merge.size() == result.size()，则直接返回merge
+		if (mergeList.size() == resultList.size()) {
+			return mergeList;
+		}
+		
+		// 将baseList中原有的边添加进merge（即aList的删除操作无效）
+		for (int i = 0; i < baseList.size(); i++) {
+			
+			try {
+				aGraph.getElementByIndexObject(baseList.get(i).getIndex());
+				// 能找到，跳过
+				continue;
+			} catch (NothingReturnedException e) {
+				// 不能找到，说明要添加进aList
+				int j = 0;
+				for (j = 0; j < mergeList.size(); j++) {
+					try {
+						TypedEdge ebase = baseGraph.getElementByIndexObject(mergeList.get(j).getIndex());
+						if(i - baseList.indexOf(ebase) > 0) {
+							continue;
+						}else {
+							mergeList.add(j, baseList.get(i)); // 添加性合并中新加并没有申请新对象
+							break;
+						}
+					} catch (NothingReturnedException e1) {
+					}
+				}
+				// 若已经跑完mergeList，添加到mergeList队尾
+				if (j == mergeList.size()) {
+					mergeList.add(baseList.get(i));
+				}
+			}
+		}
+		
+		return mergeList;
 	}
 
 	/** 用了HashMap<Index, Integer> */
@@ -820,67 +874,81 @@ public class BXMerge {
 	public static List<TypedEdge> threeOrder2(TypedGraph baseGraph, TypedGraph resultGraph,
 			TypedGraph... branchGraphs) {
 
-		List<TypedEdge> base = baseGraph.getAllTypedEdges();
 		HashMap<TypedEdge, Integer> baseFlag = new HashMap<>();
-		for (int j = 0; j < base.size(); j++) {
-			baseFlag.put(base.get(j), j);
+		List<TypedEdge> baseList = baseGraph.getAllTypedEdges();
+		for (int i = 0; i < baseList.size(); i++) {
+			baseFlag.put(baseList.get(i), i);
 		}
 
 		int len = branchGraphs.length;
 		HashMap<TypedEdge, Integer>[] branchFlag = new HashMap[len];
 		for (int i = 0; i < len; i++) {
-			List<TypedEdge> branch = branchGraphs[i].getAllTypedEdges();
+			List<TypedEdge> branchList = branchGraphs[i].getAllTypedEdges();
 			branchFlag[i] = new HashMap<>();
-			for (int j = 0; j < branch.size(); j++) {
-				branchFlag[i].put(branch.get(j), j);
+			for (int j = 0; j < branchList.size(); j++) {
+				branchFlag[i].put(branchList.get(j), j);
 			}
 		}
 
-		List<TypedEdge> result = resultGraph.getAllTypedEdges();
-		List<TypedEdge> merge = new ArrayList<>(result);
-		
-		for (int i = 0; i < result.size() - 1; i++) {
-			for (int j = i + 1; j < result.size(); j++) {
+		List<TypedEdge> resultList = resultGraph.getAllTypedEdges();
+		List<TypedEdge> mergeList = new ArrayList<>(resultList);
 
+		for (int i = 0; i < resultList.size() - 1; i++) {
+			for (int j = i + 1; j < resultList.size(); j++) {
 				for (int k = 0; k < len; k++) {
-					TypedEdge efirst = null;
-					TypedEdge esecond = null;
 					try {
-						efirst = branchGraphs[k].getElementByIndexObject(result.get(i).getIndex());
-						esecond = branchGraphs[k].getElementByIndexObject(result.get(j).getIndex());
-
+						TypedEdge efirst = branchGraphs[k].getElementByIndexObject(resultList.get(i).getIndex());
+						TypedEdge esecond = branchGraphs[k].getElementByIndexObject(resultList.get(j).getIndex());
 						if (branchFlag[k].get(efirst) - branchFlag[k].get(esecond) < 0) {
 							continue;
 						} else {
-							if (merge.indexOf(result.get(i)) > merge.indexOf(result.get(j))) {
-								continue;
-							} else {
-								TypedEdge re = result.get(j);
-								merge.remove(re);
-								merge.add(merge.indexOf(result.get(i)), re);
-								break;
+							try {
+								TypedEdge efirstBase = baseGraph.getElementByIndexObject(resultList.get(i).getIndex());
+								TypedEdge esecondBase = baseGraph.getElementByIndexObject(resultList.get(j).getIndex());
+								// 在基图中能找到，视基图的情况而定
+								int first = baseFlag.get(efirstBase);
+								int second = baseFlag.get(esecondBase);
+								if (first - second < 0) {
+									if (mergeList.indexOf(resultList.get(i)) > mergeList.indexOf(resultList.get(j))) {
+										continue;
+									} else {
+										TypedEdge re = resultList.get(j);
+										mergeList.remove(re);
+										mergeList.add(mergeList.indexOf(resultList.get(i)), re);
+										break;
+									}
+								}
+							} catch (NothingReturnedException e) {
+								// 在基图中不能找到，说明是新加的
+								if (mergeList.indexOf(resultList.get(i)) > mergeList.indexOf(resultList.get(j))) {
+									continue;
+								} else {
+									TypedEdge re = resultList.get(j);
+									mergeList.remove(re);
+									mergeList.add(mergeList.indexOf(resultList.get(i)), re);
+									break;
+								}
 							}
 						}
 
 					} catch (NothingReturnedException e) {
 						// 说明不是此分支新加的，跳过
-						
 					}
 				}
 			}
 		}
-	
-		return merge;
+
+		return mergeList;
 	}
 
 	// 处理强制序关系
-	public static List<TypedEdge> forceOrder(List<TypedEdge> merge, Set<Tuple2<Index, Index>> orders)
+	public static List<TypedEdge> forceOrder(List<TypedEdge> mergeList, Set<Tuple2<Index, Index>> orders)
 			throws NothingReturnedException {
 
 		// helper用于判断有无其它冲突
 		Map<Index, Integer> helper = new HashMap<>();
-		for (int i = 0; i < merge.size(); i++) {
-			helper.put(merge.get(i).getIndex(), 0);
+		for (int i = 0; i < mergeList.size(); i++) {
+			helper.put(mergeList.get(i).getIndex(), 0);
 		}
 
 		// ringFlag用于判断有无环冲突
@@ -896,6 +964,7 @@ public class BXMerge {
 			}
 		}
 
+		// 先检验序关系集合的合法性
 		for (Tuple2<Index, Index> order : orders) {
 
 			int firstHelper = helper.get(order.first);
@@ -938,10 +1007,9 @@ public class BXMerge {
 		for (Tuple2<Index, Index> order : orders) {
 
 			HashMap<Index, Integer> mergeFlag = new HashMap<>();
-
-			// 每次循环都要重新更新mergeFlag
-			for (int i = 0; i < merge.size(); i++) {
-				mergeFlag.put(merge.get(i).getIndex(), i);
+			// 每次循环里都要重新更新mergeFlag
+			for (int i = 0; i < mergeList.size(); i++) {
+				mergeFlag.put(mergeList.get(i).getIndex(), i);
 			}
 
 			// Index类的hashCode()和equals()重写了，只要Index对象的内部索引集有交集，就能找到
@@ -952,35 +1020,146 @@ public class BXMerge {
 			if (secondPosition == firstPosition + 1)
 				continue;
 
-			TypedEdge front = merge.get(firstPosition);
-			TypedEdge back = merge.get(secondPosition);
+			TypedEdge front = mergeList.get(firstPosition);
+			TypedEdge back = mergeList.get(secondPosition);
 
 			// 如果helper中first为1，second为2，则front不动（默认）
 			// 如果helper中first为2，second为2，则front也不动
 			if (helper.get(order.first) == 1 && helper.get(order.second) == 2
 					|| helper.get(order.first) == 2 && helper.get(order.second) == 2) {
-				merge.remove(back);
-				merge.add(merge.indexOf(front) + 1, back);
+				mergeList.remove(back);
+				mergeList.add(mergeList.indexOf(front) + 1, back);
 			}
 			// 如果helper中first为1，second为1，则back不动
 			else if (helper.get(order.first) == 1 && helper.get(order.second) == 1) {
-				merge.remove(front);
-				merge.add(merge.indexOf(back), front);
+				mergeList.remove(front);
+				mergeList.add(mergeList.indexOf(back), front);
 			}
 
 			// 如果helper中first为2，second为1，则<back, back+1>不动
 			// 将<front-1, front>移到其前面
 			else if (helper.get(order.first) == 2 && helper.get(order.second) == 1) {
-				TypedEdge previousFront = merge.get(firstPosition - 1);
-				merge.remove(previousFront);
-				merge.remove(front);
-				merge.add(merge.indexOf(back), previousFront);
-				merge.add(merge.indexOf(back), front);
+				TypedEdge previousFront = mergeList.get(firstPosition - 1);
+				mergeList.remove(previousFront);
+				mergeList.remove(front);
+				mergeList.add(mergeList.indexOf(back), previousFront);
+				mergeList.add(mergeList.indexOf(back), front);
 			}
 
 		}
 
-		return merge;
+		return mergeList;
+	}
+
+	// 用getElementByIndexObject()
+	public static List<TypedEdge> forceOrder2(List<TypedEdge> mergeList, Set<Tuple2<TypedEdge, TypedEdge>> orders,
+			TypedGraph resultGraph) throws NothingReturnedException {
+
+		// helper用于判断有无其它冲突
+		Map<TypedEdge, Integer> helper = new HashMap<>();
+		for (int i = 0; i < mergeList.size(); i++) {
+			helper.put(mergeList.get(i), 0);
+		}
+
+		// ringFlag用于判断有无环冲突
+		HashMap<TypedEdge, TypedEdge> ringFlag = new HashMap<>();
+		Iterator<Tuple2<TypedEdge, TypedEdge>> iterator = orders.iterator();
+		while (iterator.hasNext()) {
+			Tuple2<TypedEdge, TypedEdge> order = iterator.next();
+			try {
+				resultGraph.getElementByIndexObject(order.first.getIndex());
+				resultGraph.getElementByIndexObject(order.second.getIndex());
+				ringFlag.put(order.first, order.second);
+			} catch (NothingReturnedException e) {
+				// first或second找不到的话，删除此order
+				iterator.remove();
+			}
+		}
+
+		// 先检验序关系集合的合法性
+		for (Tuple2<TypedEdge, TypedEdge> order : orders) {
+
+			TypedEdge efirst = resultGraph.getElementByIndexObject(order.first.getIndex());
+			TypedEdge esecond = resultGraph.getElementByIndexObject(order.second.getIndex());
+
+			int firstHelper = helper.get(efirst);
+			int secondHelper = helper.get(esecond);
+
+			switch (firstHelper) {
+			case 0:
+				helper.replace(efirst, 1); // 改成1
+				break;
+			case 1:
+				throw new NothingReturnedException("强制序中有<x, y>&&<x, z>冲突");
+			default:
+				// 当first为2时，不会更新！
+				break;
+			}
+
+			switch (secondHelper) {
+			case 0:
+				helper.replace(esecond, 2); // 改成2
+				break;
+			case 2:
+				throw new NothingReturnedException("强制序中有<y, x>&&<z, x>冲突");
+			default:
+				// 当second为1时，不会更新！
+				break;
+			}
+
+			// 检测环冲突
+			// 错因：不能直接tmp = order，否则order都变了
+			Tuple2<TypedEdge, TypedEdge> tmp = new Tuple2<>(order.first, order.second);
+			while (ringFlag.get(tmp.second) != null) {
+				if (ringFlag.get(tmp.second).equals(order.first)) {
+					throw new NothingReturnedException("强制序中有环冲突");
+				}
+				tmp.second = ringFlag.get(tmp.second);
+			}
+
+		}
+		
+		
+		// 合法后，再执行强制序
+		for (Tuple2<TypedEdge, TypedEdge> order : orders) {
+	
+			TypedEdge front = resultGraph.getElementByIndexObject(order.first.getIndex());
+			TypedEdge back = resultGraph.getElementByIndexObject(order.second.getIndex());
+			
+			// mergeList在变
+			int firstPosition = mergeList.indexOf(front);
+			int secondPosition = mergeList.indexOf(back);
+
+			// 有此判断，可减少不必要操作
+			if (secondPosition == firstPosition + 1)
+				continue;
+
+			// 如果helper中first为1，second为2，则front不动（默认）
+			// 如果helper中first为2，second为2，则front也不动
+			if (helper.get(front) == 1 && helper.get(back) == 2
+					|| helper.get(front) == 2 && helper.get(back) == 2) {
+				mergeList.remove(back);
+				mergeList.add(mergeList.indexOf(front) + 1, back);
+			}
+			// 如果helper中first为1，second为1，则back不动
+			else if (helper.get(front) == 1 && helper.get(back) == 1) {
+				mergeList.remove(front);
+				mergeList.add(mergeList.indexOf(back), front);
+			}
+
+			// 如果helper中first为2，second为1，则<back, back+1>不动
+			// 将<front-1, front>移到其前面
+			else if (helper.get(front) == 2 && helper.get(back) == 1) {
+				TypedEdge previousFront = mergeList.get(firstPosition - 1);
+				mergeList.remove(previousFront);
+				mergeList.remove(front);
+				mergeList.add(mergeList.indexOf(back), previousFront);
+				mergeList.add(mergeList.indexOf(back), front);
+			}
+
+		}
+
+		return mergeList;
 	}
 
 }

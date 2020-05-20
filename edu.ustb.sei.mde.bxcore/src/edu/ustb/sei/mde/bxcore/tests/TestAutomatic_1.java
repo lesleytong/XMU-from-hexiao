@@ -26,7 +26,7 @@ public class TestAutomatic_1 {
 		try {
 			
 			Profiler2.begin();
-			resultGraph = BXMerge.merge(baseGraph, aGraph, bGraph);
+			resultGraph = BXMerge_Con.merge(baseGraph, aGraph, bGraph);
 			System.out.println("：" + Profiler2.end() + "ms");
 			
 			System.out.println("********************************合并后的resultGraph:");
@@ -133,7 +133,7 @@ public class TestAutomatic_1 {
 				
 				);	
 			
-		for (int i = 0; i < 25000; i++) {
+		for (int i = 0; i < 50000; i++) {
 			String str = GraphChangeTool.getRandomString(5, true);
 			baseGraph.declare(
 					   "a1:A;" 

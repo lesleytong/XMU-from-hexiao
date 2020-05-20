@@ -12,17 +12,19 @@ import edu.ustb.sei.mde.graph.typedGraph.TypedEdge;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
 import edu.ustb.sei.mde.structure.Tuple2;
 /**
- * 强制序
- * 简单实现
+ * 测试重复添加的强制序
+ * 
+ * 集合判断是相同元素的方法是：Tuple2<a, b>==Tuple2<c, d>当且仅当a==b&&c==d。
+ * 当然我的算法里是Tuple<Index, Index>，判断要看Index的hashCode()和equals()方法。
  * @author 10242
  */
-public class TestForceOrder_1 {
+public class TestForceOrder_2_new {
 
 	static TypedGraph baseGraph = null;
 	static TypedGraph aGraph = null;
 	static TypedGraph bGraph = null;
 	static TypedGraph resultGraph = null;
-	static Set<Tuple2<Index, Index>> orders = new HashSet<>();
+	static Set<Tuple2<TypedEdge, TypedEdge>> orders = new HashSet<>();
 	
 	public static void main(String[] args){
 		
@@ -38,18 +40,14 @@ public class TestForceOrder_1 {
 			
 			//保证序关系
 			System.out.println("###############################序处理##################################");
-//			List<TypedEdge> merge  = BXMerge.threeOrder(baseGraph.getAllTypedEdges(), aGraph.getAllTypedEdges(), 
-//					bGraph.getAllTypedEdges(), resultGraph.getAllTypedEdges());
-//			System.out.println("merge: " + merge);
-			
-			List<TypedEdge> merge = BXMerge.threeOrder2(baseGraph, resultGraph, aGraph, bGraph);
-			System.out.println("merge: " + merge);
+			List<TypedEdge> mergeList = BXMerge.threeOrder2(baseGraph, resultGraph, aGraph, bGraph);
+			System.out.println("merge: " + mergeList);
 			
 			// 强制序关系
 			System.out.println("###############################强制序##################################");
 			if(orders.size() != 0) {
-				BXMerge.forceOrder(merge, orders);
-				System.out.println("mergeUpdate: " + merge);
+				BXMerge.forceOrder2(mergeList, orders, resultGraph);
+				System.out.println("更新后的merge: " + mergeList);
 			}
 			
 		} catch (NothingReturnedException e) {
@@ -102,27 +100,22 @@ public class TestForceOrder_1 {
 		
 		aGraph = baseGraph.getCopy();
 		
-		//e1-e3-e2
+		// e1-e3-e2
 		aGraph.declare("b3:B;" + "c1:C;" + "b3-b2c->c1;");
 		TypedEdge e3 = aGraph.getAllTypedEdges().get(2);
 		aGraph.getAllTypedEdges().remove(e3);
 		aGraph.getAllTypedEdges().add(1, e3);
 	
-		System.out.println("aGraph: ");
-		print(aGraph);
-		
-		// 添加<e1, e3>
-		Tuple2<Index, Index> order1 = Tuple2.make(aGraph.getAllTypedEdges().get(0).getIndex(), 
-				aGraph.getAllTypedEdges().get(1).getIndex());
+		// 添加<e1, e2>
+		System.out.println(aGraph.getAllTypedEdges().get(0) + " " + aGraph.getAllTypedEdges().get(2));
+		Tuple2<TypedEdge, TypedEdge> order1 = Tuple2.make(aGraph.getAllTypedEdges().get(0), 
+				aGraph.getAllTypedEdges().get(2));
 		
 		orders.add(order1);
 		
-		// 添加<e3, e2>
-		Tuple2<Index, Index> order2 = Tuple2.make(aGraph.getAllTypedEdges().get(1).getIndex(), 
-				aGraph.getAllTypedEdges().get(2).getIndex());
-		
-		orders.add(order2);
-		
+		System.out.println("aGraph: ");
+		print(aGraph);
+				
 	}
 	
 	private static void build_bGraph() {
@@ -138,15 +131,18 @@ public class TestForceOrder_1 {
 		bGraph.getAllTypedEdges().add(0, e4);
 		bGraph.getAllTypedEdges().add(e1);
 		
-		// 添加<e2, e4>
-		Tuple2<Index, Index> order1 = Tuple2.make(bGraph.getAllTypedEdges().get(1).getIndex(), 
-				bGraph.getAllTypedEdges().get(0).getIndex());
+		// 添加<e1, e2>
+		System.out.println(bGraph.getAllTypedEdges().get(2) + " " + bGraph.getAllTypedEdges().get(1));
+		Tuple2<TypedEdge, TypedEdge> order2 = Tuple2.make(bGraph.getAllTypedEdges().get(2), 
+				bGraph.getAllTypedEdges().get(1));
 		
-		orders.add(order1);
+		orders.add(order2);
+		System.out.println(orders.size());	//输出是1！
+											//因为e2'内部索引集包含了e2，Set<Index, Index>判断是相同的元素，不能重复添加！
 		
 		System.out.println("bGraph: ");
 		print(bGraph);
-				
+			
 	}
 	
 	private static void print(TypedGraph typedGraph) {

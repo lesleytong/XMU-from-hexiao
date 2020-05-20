@@ -1,55 +1,60 @@
 package edu.ustb.sei.mde.bxcore.tests;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
-import edu.ustb.sei.mde.graph.type.TypeEdge;
+import edu.ustb.sei.mde.bxcore.structures.Index;
 import edu.ustb.sei.mde.graph.type.TypeGraph;
 import edu.ustb.sei.mde.graph.typedGraph.BXMerge;
 import edu.ustb.sei.mde.graph.typedGraph.TypedEdge;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
-import edu.ustb.sei.mde.graph.typedGraph.TypedNode;
+import edu.ustb.sei.mde.structure.Tuple2;
+
 /**
- * 添加性合并
- * 替换
+ * 测试<x, y>&<x, z>冲突 以及<y, x>&<z, x>冲突
+ * 
  * @author 10242
  */
-public class TestTwoOrder_2 {
+public class TestForceOrder_4_new {
 
 	static TypedGraph baseGraph = null;
 	static TypedGraph aGraph = null;
 	static TypedGraph resultGraph = null;
-	
+	static Set<Tuple2<TypedEdge, TypedEdge>> orders = new HashSet<>();
+
 	public static void main(String[] args){
-		
+
 		build_baseGraph();
 		build_aGraph();
-		
-		TypedGraph resultGraph = BXMerge.additiveMerge(baseGraph, aGraph);
+
+		// 添加性合并
+		resultGraph = BXMerge.additiveMerge(baseGraph, aGraph);
 		System.out.println("resultGraph: ");
 		print(resultGraph);
-		
+
+		// 保证序关系
 		System.out.println("###############################序处理##################################");
 		List<TypedEdge> mergeList = BXMerge.twoOrder2(baseGraph, aGraph, resultGraph);
-		System.out.println("\n处理完序后，mergeList: " + mergeList);
-		
-//		// 验证mergeList和resultList中对象一致
-//		List<TypedEdge> resultList = resultGraph.getAllTypedEdges();
-//		for(int i=0; i<mergeList.size(); i++) {
-//			boolean contains = resultList.contains(mergeList.get(i));
-//			System.out.println(contains);
-//		}
-		
-		
-		
-		
-		
+		System.out.println("mergeList: " + mergeList);
+
+		// 强制序关系
+		System.out.println("###############################强制序##################################");
+		if (orders.size() != 0) {
+			try {
+				BXMerge.forceOrder2(mergeList, orders, resultGraph);
+				System.out.println("更新后的mergeList: ");
+			} catch (NothingReturnedException e) {
+				e.printStackTrace();
+			}
+		}
+
 	}
-	
 
 	private static void build_baseGraph() {
-		
+
 		TypeGraph typeGraph = new TypeGraph();
 		// add type nodes
 		typeGraph.declare("A");
@@ -64,66 +69,53 @@ public class TestTwoOrder_2 {
 		typeGraph.declare("c2d:C->D");
 		// add property edges
 		typeGraph.declare("a2S:A->String#");
-		
+
 		baseGraph = new TypedGraph(typeGraph);
-		baseGraph.declare(	
-				"a1:A;"
-				+"b1:B;"
-				+"b2:B;"
-				+"c1:C;"
-				+"d1:D;"
-				+"d2:D;"
-				+"a1-a2b->b1;"		//e1-e2-e3
-				+"b1-b2c->c1;"
-				+"c1-c2d->d1;"
-				+"a1.a2S=\"str1\";"
-				+"a1.a2S=\"str2\";"
-				+"a1.a2S=\"str3\";");	
-		
-		TypedEdge e1 = baseGraph.getAllTypedEdges().get(0);
-		baseGraph.getAllTypedEdges().remove(e1); // 交换序用列表的remove
-		baseGraph.getAllTypedEdges().add(e1);
-		
+		baseGraph.declare("a1:A;" + "b1:B;" + "b2:B;" + "b3:B;" + "c1:C;" + "a1-a2b->b1;" // e1-e2-e3
+				+ "a1-a2b->b2;" + "b3-b2c->c1;" + "a1.a2S=\"str1\";" + "a1.a2S=\"str2\";" + "a1.a2S=\"str3\";");
+
 		System.out.println("baseGraph: ");
-		print(baseGraph);	
-			
+		print(baseGraph);
+
 	}
-	
-			
+
 	private static void build_aGraph() {
-		
+
 		aGraph = baseGraph.getCopy();
-		
-		aGraph.declare(
-					"b3:B;"
-				   +"c3:C;"
-				   +"b3-b2c->c3;"
-				   );
-		
-		// e4-e1-e3'
-		TypedEdge e1 = aGraph.getAllTypedEdges().get(0);
-		TypedEdge e3base = baseGraph.getAllTypedEdges().get(2);
+
+		// e1-e4-e2-e3
+		aGraph.declare("c2:C;" + "d1:D;" + "c2-c2d->d1;");
 		TypedEdge e4 = aGraph.getAllTypedEdges().get(3);
-		
-		aGraph.getAllTypedEdges().remove(e4);	// 交换序用列表的remove
-		aGraph.getAllTypedEdges().add(0, e4);
-		
-		aGraph.remove(e1);	// 删除用图的remove
-		
-		TypedNode d2 = aGraph.getAllTypedNodes().get(5);
-		TypedEdge e = new TypedEdge();
-		e.setType(e3base.getType());
-		e.setSource(e3base.getSource());
-		e.setTarget(d2);
-		aGraph.replaceWith(e3base, e);
-		
+		aGraph.getAllTypedEdges().remove(e4);
+		aGraph.getAllTypedEdges().add(1, e4);
+
 		System.out.println("aGraph: ");
 		print(aGraph);
-		
+
+		// <e1, e4>
+		Tuple2<TypedEdge, TypedEdge> order1 = Tuple2.make(aGraph.getAllTypedEdges().get(0),
+				aGraph.getAllTypedEdges().get(1));
+		orders.add(order1);
+
+		// <e1, e2>
+		Tuple2<TypedEdge, TypedEdge> order2 = Tuple2.make(aGraph.getAllTypedEdges().get(0),
+				aGraph.getAllTypedEdges().get(2));
+		orders.add(order2);
+
+//		// <e4, e2>
+//		Tuple2<Index, Index> order1 = Tuple2.make(aGraph.getAllTypedEdges().get(1).getIndex(), 
+//				aGraph.getAllTypedEdges().get(2).getIndex());
+//		orders.add(order1);
+//		
+//		// <e3, e2>
+//		Tuple2<Index, Index> order2 = Tuple2.make(aGraph.getAllTypedEdges().get(3).getIndex(), 
+//				aGraph.getAllTypedEdges().get(2).getIndex());
+//		orders.add(order2);
+
 	}
-		
+
 	private static void print(TypedGraph typedGraph) {
-		
+
 		System.out.println("TypedNodes: " + typedGraph.getAllTypedNodes().toString());
 		System.out.println("ValueNodes: " + typedGraph.getAllValueNodes().toString());
 		System.out.println("TypedEdges: " + typedGraph.getAllTypedEdges().toString());

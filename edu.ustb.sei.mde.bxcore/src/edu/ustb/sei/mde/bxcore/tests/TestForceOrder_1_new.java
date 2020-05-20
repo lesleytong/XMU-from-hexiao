@@ -16,13 +16,13 @@ import edu.ustb.sei.mde.structure.Tuple2;
  * 简单实现
  * @author 10242
  */
-public class TestForceOrder_1 {
+public class TestForceOrder_1_new {
 
 	static TypedGraph baseGraph = null;
 	static TypedGraph aGraph = null;
 	static TypedGraph bGraph = null;
 	static TypedGraph resultGraph = null;
-	static Set<Tuple2<Index, Index>> orders = new HashSet<>();
+	static Set<Tuple2<TypedEdge, TypedEdge>> orders = new HashSet<>();
 	
 	public static void main(String[] args){
 		
@@ -38,18 +38,14 @@ public class TestForceOrder_1 {
 			
 			//保证序关系
 			System.out.println("###############################序处理##################################");
-//			List<TypedEdge> merge  = BXMerge.threeOrder(baseGraph.getAllTypedEdges(), aGraph.getAllTypedEdges(), 
-//					bGraph.getAllTypedEdges(), resultGraph.getAllTypedEdges());
-//			System.out.println("merge: " + merge);
-			
-			List<TypedEdge> merge = BXMerge.threeOrder2(baseGraph, resultGraph, aGraph, bGraph);
-			System.out.println("merge: " + merge);
+			List<TypedEdge> mergeList = BXMerge.threeOrder2(baseGraph, resultGraph, aGraph, bGraph);
+			System.out.println("merge: " + mergeList);
 			
 			// 强制序关系
 			System.out.println("###############################强制序##################################");
 			if(orders.size() != 0) {
-				BXMerge.forceOrder(merge, orders);
-				System.out.println("mergeUpdate: " + merge);
+				BXMerge.forceOrder2(mergeList, orders, resultGraph);
+				System.out.println("mergeUpdate: " + mergeList);
 			}
 			
 		} catch (NothingReturnedException e) {
@@ -112,14 +108,14 @@ public class TestForceOrder_1 {
 		print(aGraph);
 		
 		// 添加<e1, e3>
-		Tuple2<Index, Index> order1 = Tuple2.make(aGraph.getAllTypedEdges().get(0).getIndex(), 
-				aGraph.getAllTypedEdges().get(1).getIndex());
+		Tuple2<TypedEdge, TypedEdge> order1 = Tuple2.make(aGraph.getAllTypedEdges().get(0), 
+				aGraph.getAllTypedEdges().get(1));
 		
 		orders.add(order1);
 		
 		// 添加<e3, e2>
-		Tuple2<Index, Index> order2 = Tuple2.make(aGraph.getAllTypedEdges().get(1).getIndex(), 
-				aGraph.getAllTypedEdges().get(2).getIndex());
+		Tuple2<TypedEdge, TypedEdge> order2 = Tuple2.make(aGraph.getAllTypedEdges().get(1), 
+				aGraph.getAllTypedEdges().get(2));
 		
 		orders.add(order2);
 		
@@ -139,8 +135,8 @@ public class TestForceOrder_1 {
 		bGraph.getAllTypedEdges().add(e1);
 		
 		// 添加<e2, e4>
-		Tuple2<Index, Index> order1 = Tuple2.make(bGraph.getAllTypedEdges().get(1).getIndex(), 
-				bGraph.getAllTypedEdges().get(0).getIndex());
+		Tuple2<TypedEdge, TypedEdge> order1 = Tuple2.make(bGraph.getAllTypedEdges().get(1), 
+				bGraph.getAllTypedEdges().get(0));
 		
 		orders.add(order1);
 		
