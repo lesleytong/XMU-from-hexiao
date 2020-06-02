@@ -55,7 +55,7 @@ public class IndexSystem {
 		});
 	}
 
-	/** 根据Index获取对象 */
+	/** 根据索引的内部索引集获取对象 */
 	@SuppressWarnings("unchecked")
 	public <T> T getElementByIndexObject(Index index) throws NothingReturnedException {
 		T res = null;

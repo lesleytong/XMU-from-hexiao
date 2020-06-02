@@ -137,7 +137,7 @@ public class BXMerge_Con {
 						}
 					}
 				}
-				System.out.println("*****并行新加TypedNodes: " + Profiler.end() + "ms");
+				System.out.println("*****并发新加TypedNodes: " + Profiler.end() + "ms");
 			}
 		}, "addTypedNodesThread");
 		addTypedNodesThread.start();
@@ -154,7 +154,7 @@ public class BXMerge_Con {
 						result.addValueNode(v);
 					});
 				}
-				System.out.println("*****并行新加ValueNodes: " + Profiler.end() + "ms");
+				System.out.println("*****并发新加ValueNodes: " + Profiler.end() + "ms");
 			}
 		}, "addValueNodesThread");
 		addValueNodesThread.start();
@@ -205,7 +205,7 @@ public class BXMerge_Con {
 						e.printStackTrace();
 					}
 				}
-				System.out.println("*****并行变更TypedEdges: " + Profiler.end() + "ms");
+				System.out.println("*****并发变更TypedEdges: " + Profiler.end() + "ms");
 			}
 		}, "changeTypedEdgesThread");
 		changeTypedEdgesThread.start();
@@ -256,7 +256,7 @@ public class BXMerge_Con {
 						e.printStackTrace();
 					}
 				}
-				System.out.println("*****并行变更ValueEdges: " + Profiler.end() + "ms");
+				System.out.println("*****并发变更ValueEdges: " + Profiler.end() + "ms");
 			}
 		}, "changeValueEdgesThread");
 		changeValueEdgesThread.start();
@@ -310,7 +310,7 @@ public class BXMerge_Con {
 						e.printStackTrace();
 					}
 				}
-				System.out.println("*****并行变更TypedNodes: " + Profiler.end() + "ms");
+				System.out.println("*****并发变更TypedNodes: " + Profiler.end() + "ms");
 			}	
 		}, "changeTypedNodesThread");
 		changeTypedNodesThread.start();
@@ -385,7 +385,7 @@ public class BXMerge_Con {
 						}
 					}
 				}
-				System.out.println("*****并行新加TypedEdges: " + Profiler.end() + "ms");
+				System.out.println("*****并发新加TypedEdges: " + Profiler.end() + "ms");
 			}
 		}, "addTypedEdgesThread");
 		addTypedEdgesThread.start();
@@ -455,7 +455,7 @@ public class BXMerge_Con {
 						}
 					}
 				}
-				System.out.println("*****并行新加ValueEdges: " + Profiler.end() + "ms");
+				System.out.println("*****并发新加ValueEdges: " + Profiler.end() + "ms");
 			}
 		}, "addValueEdgesThread");
 		addValueEdgesThread.start();

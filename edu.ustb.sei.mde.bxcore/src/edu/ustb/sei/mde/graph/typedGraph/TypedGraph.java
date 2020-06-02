@@ -46,7 +46,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 	@Derived
 	private HashMap<ValueNode, List<ValueEdge>> valueReferenceMap;
 
-	private TypeGraph typeGraph; // 有类型图的类型图，相当于模型的元模型
+	TypeGraph typeGraph; // 有类型图的类型图，相当于模型的元模型
 
 	/** TypedGraph构造方法中调用init() */
 	public void init() {
@@ -888,14 +888,15 @@ public class TypedGraph extends IndexSystem implements IGraph {
 	}
 
 	/** 将图中的ValueEdge边er替换为e */
-	void replaceWith(ValueEdge er, ValueEdge e) {
+	// lyt-修改为了public，为了在AddressBookRunnerOrigin中使用
+	public void replaceWith(ValueEdge er, ValueEdge e) {
 		this.allValueEdges.replaceAll(x -> isEqual(x, er) ? e : x);
 		e.mergeIndex(er);
 		reindexing(e);
 	}
 
 	/** 将图中的TypedNode节点nr替换为n，注意还要考虑相邻的TypedEdge边和ValueEdge边 */
-	// lyt - default修改成了public，为了再TestLogical_2中使用
+	// lyt - default修改成了public，为了在TestLogical_2中使用
 	public  void replaceWith(TypedNode nr, TypedNode n) {
 
 		// 找到图的List<TypedNode>中的nr对象，替换为n对象
@@ -967,6 +968,8 @@ public class TypedGraph extends IndexSystem implements IGraph {
 			});
 			this.allTypedEdges.removeAll(removedTypedEdges); // 集合操作removeAll()：A <- A-B，即从A集合中删除B集合
 			
+			
+			
 			// 处理相邻的ValueEdge类型的边
 			List<ValueEdge> removedValueEdges = new ArrayList<ValueEdge>();
 			this.allValueEdges.replaceAll(e -> { // 对于result图中List<ValueEdge>的每一个边e
@@ -995,6 +998,17 @@ public class TypedGraph extends IndexSystem implements IGraph {
 			this.allValueEdges.removeAll(removedValueEdges);
 		}
 	}
+	
+	// lyt-之后再删除相邻边
+	public  void replaceWith2(TypedNode nr, TypedNode n) {
+		// 找到图的List<TypedNode>中的nr对象，替换为n对象
+		this.allTypedNodes.replaceAll(e -> isEqual(e, nr) ? n : e);
+		// 合并索引集
+		n.mergeIndex(nr);
+		// 更新图的indexToObjectMap
+		reindexing(n);
+	}
+	
 
 //	static public boolean isIdentifical(TypedGraph left, TypedGraph right) {
 //		return false;
@@ -1077,18 +1091,6 @@ public class TypedGraph extends IndexSystem implements IGraph {
 				this.clearIndex(e);
 			}
 		}
-//		new Thread(new Runnable() {
-//			@Override
-//			public void run() {
-//				for (int i = allTypedEdges.size() - 1; i >= 0; i--) {
-//					TypedEdge e = allTypedEdges.get(i);
-//					if (isEqual(e.getSource(), n) || isEqual(e.getTarget(), n)) {
-//						allTypedEdges.remove(i);
-//						clearIndex(e);
-//					}
-//				}
-//			}
-//		}, "removeAdjacentTypedEdges").start();
 
 		// 如果此节点还是某条ValueEdge类型边e的source端点，删除这条边e
 		for (int i = this.allValueEdges.size() - 1; i >= 0; i--) {
@@ -1098,19 +1100,18 @@ public class TypedGraph extends IndexSystem implements IGraph {
 				this.clearIndex(e);
 			}
 		}
-//		new Thread(new Runnable() {
-//			@Override
-//			public void run() {
-//				for (int i = allValueEdges.size() - 1; i >= 0; i--) {
-//					ValueEdge e = allValueEdges.get(i);
-//					if (isEqual(e.getSource(), n)) {
-//						allValueEdges.remove(i);
-//						clearIndex(e);
-//					}
-//				}
-//			}
-//		}, "removeAdjacentValueEdges").start();
+		
 	}
+	
+	
+	/** lyt-之后再删除相邻边 */
+	public void remove2(TypedNode n) {
+		// 找到List<TypedNodes>中与索引集相交的点，删除
+		this.allTypedNodes.removeIf(x -> isEqual(x, n));
+		this.clearIndex(n);
+		
+	}
+	
 
 	/** 删除图中的TypedEdge类型边 */
 	public void remove(TypedEdge baseEdge) {
@@ -1127,11 +1128,10 @@ public class TypedGraph extends IndexSystem implements IGraph {
 
 	/**
 	 * 再根据typedEdgeImages中的情况，确定finalEdgeInfo三元组信息
-	 * 1)返回baseEdge三元组信息：a==baseEdge并且b==baseEdge 2) 返回null：a==baseEdge并且b==null
-	 * |a==null并且b==baseEdge | a==null并且b==null 3) 抛出异常：a==null并且b==imageEdge |
-	 * a==imageEdge并且b==null | a==imageEdge并且b==imageEdge但不兼容 4)
-	 * 返回imageEdge三元组信息：a==baseEdge并且b==imageEdge | a==imageEdge并且b==baseEdge
-	 * |a==imageEdge并且b==imageEdge而且兼容
+	 * 1)返回baseEdge三元组信息：a==baseEdge并且b==baseEdge 
+	 * 2) 返回null：a==baseEdge并且b==null |a==null并且b==baseEdge | a==null并且b==null 
+	 * 3) 抛出异常：a==null并且b==imageEdge | a==imageEdge并且b==null | a==imageEdge并且b==imageEdge但不兼容 
+	 * 4) 返回imageEdge三元组信息：a==baseEdge并且b==imageEdge | a==imageEdge并且b==baseEdge |a==imageEdge并且b==imageEdge而且兼容
 	 */
 	static Tuple3<TypedNode, TypedNode, TypeEdge> computeEdge(TypedEdge baseEdge, TypedEdge[] typedEdgeImages)
 			throws NothingReturnedException {

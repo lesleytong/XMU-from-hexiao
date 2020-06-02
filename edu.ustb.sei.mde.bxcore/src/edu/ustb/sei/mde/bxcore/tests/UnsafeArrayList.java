@@ -28,6 +28,8 @@ public class UnsafeArrayList {
 	}
 	
 	public static void main(String[] args) {
+		
+		
 		Thread t1 = new Thread(new AddTask(), "t1");
 		Thread t2 = new Thread(new AddTask(), "t2");
 		t1.start();

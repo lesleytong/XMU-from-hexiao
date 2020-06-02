@@ -12,8 +12,8 @@ import edu.ustb.sei.mde.graph.typedGraph.TypedEdge;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
 import edu.ustb.sei.mde.structure.Tuple2;
 /**
- * 强制序
- * 简单实现
+ * 序关系保证后，
+ * 强制序实现
  * @author 10242
  */
 public class TestForceOrder_1 {
