@@ -510,7 +510,6 @@ public class BXMerge_NewVersion {
 			public void run() {
 				Profiler.begin();
 				try {
-					addTypedNodesThread.join();
 					adjacentTypedEdgesThread.join();
 				} catch (InterruptedException e) {
 				}
@@ -584,7 +583,6 @@ public class BXMerge_NewVersion {
 			public void run() {
 				Profiler.begin();
 				try {
-					addTypedNodesThread.join();
 					addValueNodesThread.join();
 					adjacentValueEdgesThread.join();
 				} catch (InterruptedException e) {

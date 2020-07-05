@@ -48,7 +48,7 @@ public class TestForceOrder_1 {
 			// 强制序关系
 			System.out.println("###############################强制序##################################");
 			if(orders.size() != 0) {
-				BXMerge.forceOrder(merge, orders);
+				BXMerge.forceOrder1(merge, orders);
 				System.out.println("mergeUpdate: " + merge);
 			}
 			

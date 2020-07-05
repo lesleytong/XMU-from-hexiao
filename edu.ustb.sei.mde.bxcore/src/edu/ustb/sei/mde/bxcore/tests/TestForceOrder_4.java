@@ -38,13 +38,13 @@ public class TestForceOrder_4 {
 			
 			//保证序关系
 			System.out.println("###############################序处理##################################");
-			ArrayList<TypedEdge> merge = BXMerge.twoOrder(baseGraph.getAllTypedEdges(), aGraph.getAllTypedEdges(), resultGraph.getAllTypedEdges());
+			ArrayList<TypedEdge> merge = BXMerge.twoOrder1(baseGraph.getAllTypedEdges(), aGraph.getAllTypedEdges(), resultGraph.getAllTypedEdges());
 			System.out.println("merge: " + merge);
 			
 			// 强制序关系
 			System.out.println("###############################强制序##################################");
 			if(orders.size() != 0) {
-				BXMerge.forceOrder(merge, orders);
+				BXMerge.forceOrder1(merge, orders);
 				System.out.println("mergeUpdate:" + merge);
 			}
 			

@@ -37,7 +37,7 @@ public class TestThreeOrder_2 {
 //					bGraph.getAllTypedEdges(), resultGraph.getAllTypedEdges());
 //			System.out.println("\n处理完序后，merge: " + merge);
 			
-			List<TypedEdge> merge = BXMerge.threeOrder2(baseGraph, resultGraph, aGraph, bGraph);
+			List<TypedEdge> merge = BXMerge.threeOrder3(baseGraph, resultGraph, aGraph, bGraph);
 			System.out.println("\n处理完序后，merge: " + merge);
 			
 		} catch (NothingReturnedException e) {

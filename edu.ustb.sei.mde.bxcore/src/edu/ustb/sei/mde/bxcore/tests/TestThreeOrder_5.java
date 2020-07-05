@@ -34,7 +34,7 @@ public class TestThreeOrder_5 {
 			
 			//保证序关系
 			System.out.println("###############################序处理##################################");			
-			List<TypedEdge> merge = BXMerge.threeOrder2(baseGraph, resultGraph, aGraph, bGraph, cGraph);
+			List<TypedEdge> merge = BXMerge.threeOrder3(baseGraph, resultGraph, aGraph, bGraph, cGraph);
 			System.out.println("\n处理完序后，merge: " + merge);
 			
 			

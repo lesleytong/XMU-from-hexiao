@@ -1238,7 +1238,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 			if (imageNode.getType() != baseNode.getType())
 				return imageNode.getType();
 			else { // 如果此节点在baseGraph和imageGraph中的类型一致，则返回ANY
-//				if (isTouched(imageNode, imageGraph, baseNode, baseGraph)) { // 可以省略？
+//				if (isTouched(imageNode, imageGraph, baseNode, baseGraph)) { // lyt-可以省略？
 //					return imageNode.getType();
 //				} else
 //					return TypeNode.ANY_TYPE;

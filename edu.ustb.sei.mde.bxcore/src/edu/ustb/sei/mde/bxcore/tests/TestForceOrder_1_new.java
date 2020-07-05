@@ -1,5 +1,6 @@
 package edu.ustb.sei.mde.bxcore.tests;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -35,17 +36,31 @@ public class TestForceOrder_1_new {
 			System.out.println("\n调用图合并算法后得到的resultGraph: ");
 			print(resultGraph);
 			
-			//保证序关系
-			System.out.println("###############################序处理##################################");
-			List<TypedEdge> resultList = BXMerge.threeOrder2(baseGraph, resultGraph, aGraph, bGraph);
-			System.out.println("merge: " + resultList);
+			HashMap<TypedEdge, TypedEdge> forceOrd = BXMerge.checkForceOrd(resultGraph, orders);
 			
-			// 强制序关系
-			System.out.println("###############################强制序##################################");
-			if(orders.size() != 0) {
-				List<TypedEdge> mergeList = BXMerge.forceOrder2(resultList, orders, resultGraph);
-				System.out.println("mergeUpdate: " + mergeList);
-			}
+			List<TypedEdge> mergeList = BXMerge.threeOrder4(baseGraph, resultGraph, forceOrd, aGraph, bGraph);
+			System.out.println("调用后: ");
+			System.out.println(mergeList);
+			
+//			System.out.println("###");
+//			System.out.println("调用前：");
+//			System.out.println(resultGraph.getAllTypedEdges());
+//			BXMerge.mergeSort(resultGraph.getAllTypedEdges(), baseGraph, forceOrd, aGraph, bGraph);
+//			System.out.println("调用后：");
+//			System.out.println(resultGraph.getAllTypedEdges());	
+//			System.out.println("###");
+			
+//			//保证序关系
+//			System.out.println("###############################序处理##################################");
+//			List<TypedEdge> resultList = BXMerge.threeOrder2(baseGraph, resultGraph, aGraph, bGraph);
+//			System.out.println("merge: " + resultList);
+//			
+//			// 强制序关系
+//			System.out.println("###############################强制序##################################");
+//			if(orders.size() != 0) {
+//				List<TypedEdge> mergeList = BXMerge.forceOrder2(resultList, orders, resultGraph);
+//				System.out.println("mergeUpdate: " + mergeList);
+//			}
 			
 		} catch (NothingReturnedException e) {
 			e.printStackTrace();

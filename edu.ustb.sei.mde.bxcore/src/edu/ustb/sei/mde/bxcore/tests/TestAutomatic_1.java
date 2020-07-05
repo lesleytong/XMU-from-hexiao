@@ -27,7 +27,7 @@ public class TestAutomatic_1 {
 		try {
 			
 			Profiler2.begin();
-			resultGraph = BXMerge.merge(baseGraph, aGraph, bGraph);
+			resultGraph = BXMerge_NewVersion.merge(baseGraph, aGraph, bGraph);
 //			resultGraph = baseGraph.merge(aGraph, bGraph);
 			System.out.println("£º" + Profiler2.end() + "ms");
 			
@@ -135,7 +135,7 @@ public class TestAutomatic_1 {
 				
 				);	
 			
-		for (int i = 0; i < 20000; i++) {
+		for (int i = 0; i < 5000; i++) {
 			String str = GraphChangeTool.getRandomString(5, true);
 			baseGraph.declare(
 					   "a1:A;" 

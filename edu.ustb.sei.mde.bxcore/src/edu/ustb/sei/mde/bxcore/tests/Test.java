@@ -7,6 +7,7 @@ import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
 import edu.ustb.sei.mde.graph.type.TypeGraph;
 import edu.ustb.sei.mde.graph.typedGraph.BXMerge;
 import edu.ustb.sei.mde.graph.typedGraph.BXMerge_Con;
+import edu.ustb.sei.mde.graph.typedGraph.BXMerge_NewVersion;
 import edu.ustb.sei.mde.graph.typedGraph.TypedEdge;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
 import edu.ustb.sei.mde.graph.typedGraph.TypedNode;
@@ -29,10 +30,9 @@ public class Test {
 		build_cGraph();
 		
 		try {
-			resultGraph = BXMerge_Con.merge(baseGraph, aGraph, bGraph, cGraph);
+			resultGraph = BXMerge.merge(baseGraph, aGraph, bGraph, cGraph);
 			System.out.println("\n执行图合并算法后的合并图G': ");
 			print(resultGraph);
-						
 		} catch (NothingReturnedException e) {
 			e.printStackTrace();
 		}
@@ -65,7 +65,7 @@ public class Test {
 				+"c1:C;"
 				+"c2:C;"
 				+"d1:D;"
-				+"a1-a2b->b1;"		
+				+"a1-a2b->b1;"		// e1-e2-e3-e4
 				+"a1-a2b->b2;"
 				+"b1-b2c->c1;"
 				+"c2-c2d->d1;"
