@@ -4,22 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
+import edu.ustb.sei.mde.graph.type.DataTypeNode;
 import edu.ustb.sei.mde.graph.type.TypeGraph;
 import edu.ustb.sei.mde.graph.typedGraph.BXMerge;
-import edu.ustb.sei.mde.graph.typedGraph.BXMerge_NewVersion;
+import edu.ustb.sei.mde.graph.typedGraph.BXMerge2;
+import edu.ustb.sei.mde.graph.typedGraph.BXMerge3;
 import edu.ustb.sei.mde.graph.typedGraph.BXMerge_NewVersion2;
 import edu.ustb.sei.mde.graph.typedGraph.TypedEdge;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
-/**
- * 删除、交换序
- * @author 10242
- */
-public class TestThreeOrder_5 {
+import edu.ustb.sei.mde.graph.typedGraph.ValueEdge;
+import edu.ustb.sei.mde.graph.typedGraph.ValueNode;
+
+public class Test_1 {
 
 	static TypedGraph baseGraph = null;
 	static TypedGraph aGraph = null;
 	static TypedGraph bGraph = null;
-	static TypedGraph cGraph = null;
 	static TypedGraph resultGraph = null;
 	
 	public static void main(String[] args){
@@ -27,19 +27,12 @@ public class TestThreeOrder_5 {
 		build_baseGraph();
 		build_aGraph();
 		build_bGraph();
-		build_cGraph();
 		
 		try {
-			resultGraph = BXMerge_NewVersion.merge(baseGraph, aGraph, bGraph, cGraph);
+			resultGraph = BXMerge2.merge(baseGraph, aGraph, bGraph);
 			System.out.println("resultGraph: ");
 			print(resultGraph);
-			
-//			//保证序关系
-//			System.out.println("###############################序处理##################################");			
-//			List<TypedEdge> merge = BXMerge.threeOrder3(baseGraph, resultGraph, aGraph, bGraph, cGraph);
-//			System.out.println("\n处理完序后，merge: " + merge);
-			
-			
+									
 		} catch (NothingReturnedException e) {
 			e.printStackTrace();
 		}
@@ -64,6 +57,9 @@ public class TestThreeOrder_5 {
 		typeGraph.declare("c2d:C->D");
 		// add property edges
 		typeGraph.declare("a2S:A->String#");
+		typeGraph.declare("b2S:B->String#");
+		typeGraph.declare("c2S:C->String#");
+		typeGraph.declare("d2S:D->String#");
 		
 		baseGraph = new TypedGraph(typeGraph);
 		baseGraph.declare(	
@@ -72,14 +68,8 @@ public class TestThreeOrder_5 {
 				+"b2:B;"
 				+"b3:B;"
 				+"c1:C;"
-				+"c2:C;"
-				+"c3:C;"
-				+"d1:D;"
-				+"d2:D;"
-				+"a1-a2b->b1;"		//e1-e2-e3-e4
-				+"a1-a2b->b2;"
+				+"a1-a2b->b1;"		
 				+"b3-b2c->c1;"
-				+"c2-c2d->d1;"
 				+"a1.a2S=\"str1\";"
 				+"a1.a2S=\"str2\";"
 				+"a1.a2S=\"str3\";");	
@@ -94,15 +84,33 @@ public class TestThreeOrder_5 {
 		
 		aGraph = baseGraph.getCopy();
 		
-		//e4-e2-e3
-		aGraph.remove(aGraph.getAllTypedEdges().get(0));	//删除用图的remove
-		TypedEdge typedEdge = aGraph.getAllTypedEdges().get(2);
-		aGraph.getAllTypedEdges().remove(2);	//交换序用列表的remove
-		aGraph.getAllTypedEdges().add(0, typedEdge);	
+		// 新加d1
+		aGraph.declare("d1:D;");
+		
+		// 修改e1的target为b2
+		TypedEdge e1 = aGraph.getAllTypedEdges().get(0);
+		TypedEdge e = new TypedEdge();
+		e.setType(e1.getType());
+		e.setSource(e1.getSource());
+		e.setTarget(aGraph.getAllTypedNodes().get(2));
+		aGraph.replaceWith(e1, e);
+		
+		// 新加ValueNode"hello"
+		ValueNode vn1 = aGraph.getAllValueNodes().get(0); // 没有直接new ValueNode()方法，
+		ValueNode vn4 = vn1.createConstantNode("hello", vn1.getType());
+		aGraph.addValueNode(vn4);
+		
+		// 修改ve1的target为"hello"
+		ValueEdge ve1 = aGraph.getAllValueEdges().get(0);
+		ValueEdge ve = new ValueEdge();
+		ve.setType(ve1.getType());
+		ve.setSource(ve1.getSource());
+		ve.setTarget(aGraph.getAllValueNodes().get(3));
+		aGraph.replaceWith(ve1, ve);
+
 		
 		System.out.println("aGraph: ");
 		print(aGraph);
-		
 
 	}
 	
@@ -110,30 +118,28 @@ public class TestThreeOrder_5 {
 		
 		bGraph = baseGraph.getCopy();
 		
-		//e1-e4-e2-e3
-		TypedEdge e4 = bGraph.getAllTypedEdges().get(3);
-		bGraph.getAllTypedEdges().remove(e4);
-		bGraph.getAllTypedEdges().add(1, e4);
-
+		// 新加d2
+		bGraph.declare("d2:D;");
+		
+		// 删除e2
+		bGraph.remove(bGraph.getAllTypedEdges().get(1));
+		
+		// 新加ValueNode"world"
+		ValueNode v0 = bGraph.getAllValueNodes().get(0); // 没有直接new ValueNode()方法，
+		ValueNode v = v0.createConstantNode("world", v0.getType());
+		bGraph.addValueNode(v);
+		
+		// 删除ve2
+		bGraph.remove(bGraph.getAllValueEdges().get(1));
+		
+		
+		
+		
+		
 		
 		System.out.println("bGraph: ");
 		print(bGraph);
-	}
-	
-	private static void build_cGraph() {
 		
-		cGraph = baseGraph.getCopy();
-		
-		//e3-e1-e4-e2
-		TypedEdge e3 = cGraph.getAllTypedEdges().get(2);
-		TypedEdge e4 = cGraph.getAllTypedEdges().get(3);
-		cGraph.getAllTypedEdges().remove(e3);
-		cGraph.getAllTypedEdges().remove(e4);
-		cGraph.getAllTypedEdges().add(0, e3);
-		cGraph.getAllTypedEdges().add(2, e4);
-	
-		System.out.println("cGraph: ");
-		print(cGraph);
 	}
 	
 	private static void print(TypedGraph typedGraph) {

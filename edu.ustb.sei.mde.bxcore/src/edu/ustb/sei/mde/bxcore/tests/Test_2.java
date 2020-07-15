@@ -1,25 +1,21 @@
 package edu.ustb.sei.mde.bxcore.tests;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
+import edu.ustb.sei.mde.graph.type.TypeEdge;
 import edu.ustb.sei.mde.graph.type.TypeGraph;
-import edu.ustb.sei.mde.graph.typedGraph.BXMerge;
-import edu.ustb.sei.mde.graph.typedGraph.BXMerge_Con;
-import edu.ustb.sei.mde.graph.typedGraph.BXMerge_NewVersion;
+import edu.ustb.sei.mde.graph.type.TypeNode;
+import edu.ustb.sei.mde.graph.typedGraph.BXMerge2;
+import edu.ustb.sei.mde.graph.typedGraph.BXMerge3;
+import edu.ustb.sei.mde.graph.typedGraph.BXMerge_NewVersion2;
 import edu.ustb.sei.mde.graph.typedGraph.TypedEdge;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
 import edu.ustb.sei.mde.graph.typedGraph.TypedNode;
-/**
- * @author 10242
- */
-public class Test {
+
+public class Test_2 {
 
 	static TypedGraph baseGraph = null;
 	static TypedGraph aGraph = null;
 	static TypedGraph bGraph = null;
-	static TypedGraph cGraph = null;
 	static TypedGraph resultGraph = null;
 	
 	public static void main(String[] args){
@@ -27,16 +23,17 @@ public class Test {
 		build_baseGraph();
 		build_aGraph();
 		build_bGraph();
-		build_cGraph();
 		
 		try {
-			resultGraph = BXMerge.merge(baseGraph, aGraph, bGraph, cGraph);
-			System.out.println("\n执行图合并算法后的合并图G': ");
+			resultGraph = BXMerge2.merge(baseGraph, aGraph, bGraph);
+			System.out.println("\nresultGraph: ");
 			print(resultGraph);
+									
 		} catch (NothingReturnedException e) {
 			e.printStackTrace();
 		}
 				
+		
 	}
 	
 
@@ -55,6 +52,9 @@ public class Test {
 		typeGraph.declare("b2c:B->C");
 		typeGraph.declare("c2d:C->D");
 		// add property edges
+		typeGraph.declare("a2S:A->String#");
+		typeGraph.declare("b2S:B->String#");
+		typeGraph.declare("c2S:C->String#");
 		typeGraph.declare("d2S:D->String#");
 		
 		baseGraph = new TypedGraph(typeGraph);
@@ -62,19 +62,15 @@ public class Test {
 				"a1:A;"
 				+"b1:B;"
 				+"b2:B;"
+				+"b3:B;"
 				+"c1:C;"
-				+"c2:C;"
-				+"d1:D;"
-				+"a1-a2b->b1;"		// e1-e2-e3-e4
-				+"a1-a2b->b2;"
-				+"b1-b2c->c1;"
-				+"c2-c2d->d1;"
-				+"d1.d2S=\"str1\";"
-				+"d1.d2S=\"str2\";"
-				+"d1.d2S=\"str3\";"
-				);	
+				+"a1-a2b->b1;"		
+				+"b3-b2c->c1;"
+				+"a1.a2S=\"str1\";"
+				+"a1.a2S=\"str2\";"
+				+"a1.a2S=\"str3\";");	
 		
-		System.out.println("基础图G: ");
+		System.out.println("baseGraph: ");
 		print(baseGraph);	
 		
 	}
@@ -85,46 +81,42 @@ public class Test {
 		aGraph = baseGraph.getCopy();
 		
 		// 删除b1
-		TypedNode b1 = aGraph.getAllTypedNodes().get(1);
-		aGraph.remove(b1);
+		aGraph.remove(aGraph.getAllTypedNodes().get(1));
 		
-		System.out.println("分支图G_1: ");
+		// 新加a1-b2
+		TypeEdge type = aGraph.getTypeGraph().getAllTypeEdges().get(0);
+		TypedEdge e3 = new TypedEdge();
+		e3.setType(type);
+		TypedNode a1 = aGraph.getAllTypedNodes().get(0);
+		TypedNode b2 = aGraph.getAllTypedNodes().get(1);
+		e3.setSource(a1);
+		e3.setTarget(b2);
+		aGraph.getAllTypedEdges().add(e3);
+		
+		System.out.println("aGraph: ");
 		print(aGraph);
+
 	}
 	
 	private static void build_bGraph() {
 		
 		bGraph = baseGraph.getCopy();
+	
+		// 修改b3为d1
+		TypeNode type = bGraph.getTypeGraph().getAllTypeNodes().get(3);
+		TypedNode d1 = new TypedNode();
+		d1.setType(type);
+		TypedNode b3 = bGraph.getAllTypedNodes().get(3);
+		bGraph.replaceWith(b3, d1);
 		
-		// 新增d2，替换c2-d1为c2-d2
-		bGraph.declare("d2:D;");
-		TypedNode d2 = bGraph.getAllTypedNodes().get(6);
-		TypedEdge e = bGraph.getAllTypedEdges().get(3);
+		// 新加d1-"hello"
+		bGraph.declare(
+				  "d2:D;"
+				+ "d2.d2S=\"hello\";");
 		
-		TypedEdge enew = new TypedEdge();
-		enew.setType(e.getType());
-		enew.setSource(e.getSource());
-		enew.setTarget(d2);
-		
-		bGraph.replaceWith(e, enew);
-		
-		System.out.println("分支图G_2: ");
+		System.out.println("bGraph: ");
 		print(bGraph);
-	}
-	
-	private static void build_cGraph() {
 		
-		cGraph = baseGraph.getCopy();
-		
-		// 替换b2为b3
-		TypedNode b2 = cGraph.getAllTypedNodes().get(2);
-		TypedNode b3 = new TypedNode();
-		b3.setType(b2.getType());
-		
-		cGraph.replaceWith(b2, b3);
-	
-		System.out.println("分支图G_3: ");
-		print(cGraph);
 	}
 	
 	private static void print(TypedGraph typedGraph) {

@@ -3,7 +3,6 @@ package edu.ustb.sei.mde.bxcore.tests;
 import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
 import edu.ustb.sei.mde.graph.type.TypeGraph;
 import edu.ustb.sei.mde.graph.typedGraph.BXMerge;
-import edu.ustb.sei.mde.graph.typedGraph.BXMerge_Con;
 import edu.ustb.sei.mde.graph.typedGraph.GraphChangeTool;
 import edu.ustb.sei.mde.graph.typedGraph.GraphChangeTool_Con;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
@@ -26,7 +25,7 @@ public class TestAutomatic_3 {
 		try {
 			
 			Profiler2.begin();
-			resultGraph = BXMerge_Con.merge(baseGraph, aGraph, bGraph);
+			resultGraph = BXMerge.merge(baseGraph, aGraph, bGraph);
 			System.out.println("：" + Profiler2.end() + "ms");
 			
 			System.out.println("********************************合并后的resultGraph:");

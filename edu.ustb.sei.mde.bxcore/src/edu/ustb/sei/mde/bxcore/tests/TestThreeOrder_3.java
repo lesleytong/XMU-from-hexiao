@@ -9,6 +9,8 @@ import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
 import edu.ustb.sei.mde.graph.type.TypeEdge;
 import edu.ustb.sei.mde.graph.type.TypeGraph;
 import edu.ustb.sei.mde.graph.typedGraph.BXMerge;
+import edu.ustb.sei.mde.graph.typedGraph.BXMerge_NewVersion;
+import edu.ustb.sei.mde.graph.typedGraph.BXMerge_NewVersion2;
 import edu.ustb.sei.mde.graph.typedGraph.TypedEdge;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
 import edu.ustb.sei.mde.graph.typedGraph.TypedNode;
@@ -31,18 +33,18 @@ public class TestThreeOrder_3 {
 		
 		try {
 			
-			resultGraph = BXMerge.merge(baseGraph, aGraph, bGraph);
+			resultGraph = BXMerge_NewVersion.merge(baseGraph, aGraph, bGraph);
 			System.out.println("resultGraph: ");
 			print(resultGraph);
 			
 			//处理序关系
-			System.out.println("###############################序处理##################################");
+//			System.out.println("###############################序处理##################################");
 //			ArrayList<TypedEdge> merge = BXMerge.threeOrder(baseGraph.getAllTypedEdges(), aGraph.getAllTypedEdges(), 
 //					bGraph.getAllTypedEdges(), resultGraph.getAllTypedEdges());
 //			System.out.println("\n处理完序后，merge: " + merge);
 			
-			List<TypedEdge> merge = BXMerge.threeOrder3(baseGraph, resultGraph, aGraph, bGraph);
-			System.out.println("\n处理完序后，merge: " + merge);
+//			List<TypedEdge> merge = BXMerge.threeOrder3(baseGraph, resultGraph, aGraph, bGraph);
+//			System.out.println("\n处理完序后，merge: " + merge);
 			
 		} catch (NothingReturnedException e) {
 			e.printStackTrace();

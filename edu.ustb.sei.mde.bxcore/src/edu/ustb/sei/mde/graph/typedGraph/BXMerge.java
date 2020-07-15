@@ -1,7 +1,9 @@
 package edu.ustb.sei.mde.graph.typedGraph;
 
 /**
- * 串行
+ * 串行合并，
+ * 结果图首先会拷贝基图。
+ * 更通用的computeOrd()方法。
  */
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -132,6 +134,8 @@ public class BXMerge {
 		}
 		System.out.println("*******串行新加TypedNodes：" + Profiler.end() + "ms");
 
+		
+		
 		Profiler.begin();
 		// 新加ValueNodes
 		for (TypedGraph image : interSources) {
@@ -141,8 +145,10 @@ public class BXMerge {
 		}
 		System.out.println("*******串行新加ValueNodes：" + Profiler.end() + "ms");
 
+		
+		
 		Profiler.begin();
-		// 变更TypedEdges
+		// 删除和修改TypedEdges
 		TypedEdge[] typedEdgeImages = new TypedEdge[interSources.length];
 		for (TypedEdge baseEdge : first.allTypedEdges) { // 对于基本图中每一个TypedEdge类型的边baseEdge
 
@@ -177,10 +183,12 @@ public class BXMerge {
 				throw e; // 捕捉到异常后抛出
 			}
 		}
-		System.out.println("*******串行变更TypedEdges：" + Profiler.end() + "ms");
+		System.out.println("*******串行删除和修改TypedEdges：" + Profiler.end() + "ms");
+		
+		
 
 		Profiler.begin();
-		// 变更ValueEdges
+		// 删除和修改ValueEdges
 		ValueEdge[] valueEdgeImages = new ValueEdge[interSources.length];
 		for (ValueEdge baseEdge : first.allValueEdges) { // 对于基本图中每一个条ValueEdge类型的边
 
@@ -214,10 +222,12 @@ public class BXMerge {
 				throw e;
 			}
 		}
-		System.out.println("*******串行变更ValueEdges：" + Profiler.end() + "ms");
+		System.out.println("*******串行删除和修改ValueEdges：" + Profiler.end() + "ms");
 
+		
+		
 		Profiler.begin();
-		// 变更TypedNodes
+		// 删除和修改TypedNodes
 		TypeNode[] nodeImages = new TypeNode[interSources.length]; // 比如length=2
 		for (TypedNode baseNode : first.allTypedNodes) { // 对于基本图中每一个TypedNode节点
 
@@ -252,7 +262,8 @@ public class BXMerge {
 				throw e; // 捕捉到异常后抛出
 			}
 		}
-		System.out.println("*******串行变更TypedNodes：" + Profiler.end() + "ms");
+		System.out.println("*******串行删除和修改TypedNodes，并处理相邻的TypedEdges边和ValueEdges边：" + Profiler.end() + "ms");
+		
 
 		Profiler.begin();
 		// 新加TypedEdges
@@ -302,6 +313,8 @@ public class BXMerge {
 		}
 		System.out.println("*******串行新加TypedEdges：" + Profiler.end() + "ms");
 
+		
+		
 		Profiler.begin();
 		// 新加ValueEdges
 		for (TypedGraph image : interSources) {
@@ -349,22 +362,24 @@ public class BXMerge {
 		}
 		System.out.println("*******串行新加ValueEdges：" + Profiler.end() + "ms");
 
-		OrderInformation[] orders = new OrderInformation[interSources.length];
-		for (int i = 0; i < interSources.length; i++)
-			orders[i] = interSources[i].order;
-		result.order.merge(orders); // 将orders[i]合并到result的order中
+		
+		
+//		OrderInformation[] orders = new OrderInformation[interSources.length];
+//		for (int i = 0; i < interSources.length; i++)
+//			orders[i] = interSources[i].order;
+//		result.order.merge(orders); // 将orders[i]合并到result的order中
 
 //		// lyt-测试原来的序方法
 //		System.out.println("执行enforceOrder前： " + result.getAllTypedEdges());
 //		result.enforceOrder();
 //		System.out.println("执行enforceOrder后：" + result.getAllTypedEdges());
 
-		List<GraphConstraint> cons = new ArrayList<>();
-		cons.add(first.getConstraint());
-		for (TypedGraph g : interSources) {
-			cons.add(g.constraint);
-		}
-		result.constraint = GraphConstraint.and(cons);
+//		List<GraphConstraint> cons = new ArrayList<>();
+//		cons.add(first.getConstraint());
+//		for (TypedGraph g : interSources) {
+//			cons.add(g.constraint);
+//		}
+//		result.constraint = GraphConstraint.and(cons);
 		// check
 
 		return result;
@@ -1383,7 +1398,7 @@ public class BXMerge {
 					continue;
 				} else {
 					// 实际上，resultList隐含了baseList的序信息
-					if (mergeFlag.get(resultList.get(i)) > mergeFlag.get(resultList.get(j))) {
+					if (mergeFlag.get(ei) > mergeFlag.get(ej)) {
 						continue;
 					} else {
 						mergeList.remove(ej);

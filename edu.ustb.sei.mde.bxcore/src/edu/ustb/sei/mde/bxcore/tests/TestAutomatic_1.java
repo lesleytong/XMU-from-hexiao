@@ -1,10 +1,15 @@
 package edu.ustb.sei.mde.bxcore.tests;
 
+import java.util.List;
+
 import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
 import edu.ustb.sei.mde.graph.type.TypeGraph;
+import edu.ustb.sei.mde.graph.type.TypeNode;
 import edu.ustb.sei.mde.graph.typedGraph.BXMerge;
-import edu.ustb.sei.mde.graph.typedGraph.BXMerge_Con;
+import edu.ustb.sei.mde.graph.typedGraph.BXMerge2;
+import edu.ustb.sei.mde.graph.typedGraph.BXMerge3;
 import edu.ustb.sei.mde.graph.typedGraph.BXMerge_NewVersion;
+import edu.ustb.sei.mde.graph.typedGraph.BXMerge_NewVersion2;
 import edu.ustb.sei.mde.graph.typedGraph.GraphChangeTool;
 import edu.ustb.sei.mde.graph.typedGraph.GraphChangeTool_Con;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
@@ -22,13 +27,13 @@ public class TestAutomatic_1 {
 		
 		build_baseGraph();
 		build_aGraph();
-		build_bGraph();
+		build_bGraph();	
 		
 		try {
 			
 			Profiler2.begin();
-			resultGraph = BXMerge_NewVersion.merge(baseGraph, aGraph, bGraph);
-//			resultGraph = baseGraph.merge(aGraph, bGraph);
+			resultGraph = BXMerge3.merge(baseGraph, aGraph, bGraph);
+			
 			System.out.println("：" + Profiler2.end() + "ms");
 			
 			System.out.println("********************************合并后的resultGraph:");

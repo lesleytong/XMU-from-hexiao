@@ -7,6 +7,7 @@ public class TypedEdge extends IndexableElement implements ITypedEdge {
 	private TypedNode source;
 	private TypedNode target;
 	private TypeEdge type;	//TypedEdge的类型看TypeEdge
+	public boolean flag = false;	// lyt: 便于对齐
 	
 	public TypedEdge() {
 		

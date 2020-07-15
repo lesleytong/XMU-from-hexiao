@@ -117,7 +117,6 @@ public class TypedGraph extends IndexSystem implements IGraph {
 
 	public void addTypedNode(TypedNode n) {
 		allTypedNodes.add(n);
-
 		indexing(n); // 给对象生成索引、更新图的indexToObjectMap
 	}
 
@@ -895,6 +894,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		reindexing(e);
 	}
 
+	
 	/** 将图中的TypedNode节点nr替换为n，注意还要考虑相邻的TypedEdge边和ValueEdge边 */
 	// lyt - default修改成了public，为了在TestLogical_2中使用
 	public  void replaceWith(TypedNode nr, TypedNode n) {
@@ -906,6 +906,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		// 更新图的indexToObjectMap
 		reindexing(n);
 
+	
 		if (nr != n) {
 			
 			TypeNode nodeType = n.getType();
@@ -997,9 +998,10 @@ public class TypedGraph extends IndexSystem implements IGraph {
 			});
 			this.allValueEdges.removeAll(removedValueEdges);
 		}
+
 	}
 	
-	// lyt-之后再删除相邻边
+	// lyt-先替换，之后再删除相邻边
 	public  void replaceWith2(TypedNode nr, TypedNode n) {
 		// 找到图的List<TypedNode>中的nr对象，替换为n对象
 		this.allTypedNodes.replaceAll(e -> isEqual(e, nr) ? n : e);
@@ -1007,6 +1009,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		n.mergeIndex(nr);
 		// 更新图的indexToObjectMap
 		reindexing(n);
+		
 	}
 	
 
@@ -1065,6 +1068,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		try {
 			// 找到了
 			ValueEdge imageEdge = imageGraph.getElementByIndexObject(baseEdge.getIndex());
+			imageEdge.flag = true;	// lyt
 			if (imageEdge.getType() == baseEdge.getType()
 					&& imageEdge.getSource().getIndex().equals(baseEdge.getSource().getIndex())
 					&& imageEdge.getTarget().equals(baseEdge.getTarget()))
@@ -1077,8 +1081,10 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		}
 	}
 
+
 	/** 在图中删除TypedNode类型的节点 */
 	public void remove(TypedNode n) {
+		
 		// 找到List<TypedNodes>中与索引集相交的点，删除
 		this.allTypedNodes.removeIf(x -> isEqual(x, n));
 		this.clearIndex(n);
@@ -1092,6 +1098,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 			}
 		}
 
+		
 		// 如果此节点还是某条ValueEdge类型边e的source端点，删除这条边e
 		for (int i = this.allValueEdges.size() - 1; i >= 0; i--) {
 			ValueEdge e = this.allValueEdges.get(i);
@@ -1145,7 +1152,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 			if (e == baseEdge) // 没被替换，对象相同
 				continue;
 			else if (e == null) {
-				if (tuple == null || isImage(tuple, baseEdge))
+				if (tuple == null || isImage(tuple, baseEdge))	// ***
 					tuple = null;
 				else
 					throw new NothingReturnedException(); // incompatible: a==imageEdge并且b==null
@@ -1180,6 +1187,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		try {
 			// 根据baseEdge的索引集在分支图中找到了
 			TypedEdge imageEdge = imageGraph.getElementByIndexObject(baseEdge.getIndex());
+			imageEdge.flag = true;	// lyt: 便于对齐
 			// 如果baseEdge在分支图和基本图中一致(type & source & target)，则返回baseEdge
 			if (imageEdge.getType() == baseEdge.getType()
 					&& imageEdge.getSource().getIndex().equals(baseEdge.getSource().getIndex())

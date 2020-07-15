@@ -7,6 +7,7 @@ public class ValueEdge extends IndexableElement  implements ITypedEdge {
 	private TypedNode source;
 	private ValueNode target;
 	private PropertyEdge type;	//ValueEdgeµÄtypeÊÇPropertyEdge
+	public boolean flag = false;
 	
 	public ValueEdge() {
 		

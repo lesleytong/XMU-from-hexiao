@@ -1,6 +1,8 @@
 package edu.ustb.sei.mde.graph.typedGraph;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -54,7 +56,7 @@ public class IndexSystem {
 			this.indexToObjectMap.remove(i);
 		});
 	}
-
+	
 	/** 根据索引的内部索引集获取对象 */
 	@SuppressWarnings("unchecked")
 	public <T> T getElementByIndexObject(Index index) throws NothingReturnedException {
