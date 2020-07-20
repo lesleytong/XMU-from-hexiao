@@ -656,6 +656,9 @@ public class BXMerge3 {
 	
 		List<Tuple2<Character, Character>> ord_k = new ArrayList<>();
 	
+		boolean flag = true;
+		TypedEdge ei_b = null;
+		TypedEdge ej_b = null;
 		for (int k = 0; k < len; k++) {
 			char t = 'S';
 			char o = 'n';
@@ -683,8 +686,11 @@ public class BXMerge3 {
 					}
 				}
 				try {
-					TypedEdge ei_b = baseGraph.getElementByIndexObject(ei.getIndex());
-					TypedEdge ej_b = baseGraph.getElementByIndexObject(ej.getIndex());
+					if(flag == true) {
+						ei_b = baseGraph.getElementByIndexObject(ei.getIndex());
+						ej_b = baseGraph.getElementByIndexObject(ej.getIndex());
+						flag = false;
+					}
 					// 若ei和ej还都属于基础图
 					if (forceOrd.get(ei_b) == ej_b) {
 						t = 'H';
