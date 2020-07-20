@@ -32,7 +32,8 @@ public class TestAutomatic_1 {
 		try {
 			
 			Profiler2.begin();
-			resultGraph = BXMerge3.merge(baseGraph, aGraph, bGraph);
+//			resultGraph = BXMerge3.merge(baseGraph, aGraph, bGraph);
+			resultGraph = BXMerge3.merge_Con(baseGraph, aGraph, bGraph);
 			
 			System.out.println("£º" + Profiler2.end() + "ms");
 			

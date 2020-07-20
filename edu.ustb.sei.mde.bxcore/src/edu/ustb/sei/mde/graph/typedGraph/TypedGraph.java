@@ -1152,7 +1152,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 			if (e == baseEdge) // 没被替换，对象相同
 				continue;
 			else if (e == null) {
-				if (tuple == null || isImage(tuple, baseEdge))	// ***
+				if (tuple == null || isImage(tuple, baseEdge))
 					tuple = null;
 				else
 					throw new NothingReturnedException(); // incompatible: a==imageEdge并且b==null
@@ -1242,6 +1242,8 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		try {
 			// 在分支图中根据索引查找对应的baseNode，如果找到则赋值给imageNode
 			TypedNode imageNode = imageGraph.getElementByIndexObject(baseNode.getIndex());
+			// 放到Set里
+			
 			// 如果此节点在baseGraph和imageGraph中的类型不一致，则返回imageNode
 			if (imageNode.getType() != baseNode.getType())
 				return imageNode.getType();
