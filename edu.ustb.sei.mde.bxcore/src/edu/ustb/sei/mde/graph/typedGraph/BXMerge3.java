@@ -3,7 +3,11 @@ package edu.ustb.sei.mde.graph.typedGraph;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -15,9 +19,11 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 
 import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
+import edu.ustb.sei.mde.bxcore.structures.Index;
 import edu.ustb.sei.mde.graph.type.PropertyEdge;
 import edu.ustb.sei.mde.graph.type.TypeEdge;
 import edu.ustb.sei.mde.graph.type.TypeNode;
+import edu.ustb.sei.mde.structure.Tuple2;
 import edu.ustb.sei.mde.structure.Tuple3;
 
 public class BXMerge3 {
@@ -392,12 +398,7 @@ public class BXMerge3 {
 
 						for (TypedGraph image : interSources) {
 							// 将新节点n和所有分支图中对应的baseNode的索引集合并
-							try {
-								n.mergeIndex(image.getElementByIndexObject(baseNode.getIndex()));
-							} catch (NothingReturnedException e) {
-								e.printStackTrace();
-							}
-
+							n.mergeIndex(image.getElementByIndexObject(baseNode.getIndex()));
 						}
 
 						resultGraph.addTypedNode(n);
@@ -598,25 +599,228 @@ public class BXMerge3 {
 			}
 			System.out.println("*******串行新加ValueEdges：" + Profiler.end() + "ms");
 	
-			// OrderInformation[] orders = new OrderInformation[interSources.length];
-			// for (int i = 0; i < interSources.length; i++)
-			// orders[i] = interSources[i].order;
-			// resultGraph.order.merge(orders); // 将orders[i]合并到result的order中
-	
-			// // lyt-测试原来的序方法
-			// System.out.println("执行enforceOrder前： " + result.getAllTypedEdges());
-			// result.enforceOrder();
-			// System.out.println("执行enforceOrder后：" + result.getAllTypedEdges());
-	
-			// List<GraphConstraint> cons = new ArrayList<>();
-			// cons.add(baseGraph.getConstraint());
-			// for (TypedGraph g : interSources) {
-			// cons.add(g.constraint);
-			// }
-			// resultGraph.constraint = GraphConstraint.and(cons);
-			// // check
-	
 			return resultGraph;
 		}
+
+	// 利用computeOrd()
+	public static List<TypedEdge> threeOrder(TypedGraph baseGraph, TypedGraph resultGraph,
+			HashMap<TypedEdge, TypedEdge> forceOrd, TypedGraph... branchGraphs) {
+	
+		List<TypedEdge> resultList = resultGraph.getAllTypedEdges();
+		List<TypedEdge> mergeList = new LinkedList<>(resultList);
+		HashMap<TypedEdge, Integer> mergeFlag = new HashMap<>();
+	
+		for (int i = 0; i < resultList.size() - 1; i++) {
+			TypedEdge ei = resultList.get(i);
+			// 更新mergeList的位置映射
+			int m = 0;
+			for (TypedEdge typedEdge : mergeList) {
+				mergeFlag.put(typedEdge, m++);
+			}
+			for (int j = i + 1; j < resultList.size(); j++) {
+				TypedEdge ej = resultList.get(j);
+				Tuple2<Character, Character> computeOrd = computeOrd(ei, ej, baseGraph, forceOrd, branchGraphs);
+				if (computeOrd.second == 'n' || computeOrd.second == '<') {
+					continue;
+				} else {
+					if (mergeFlag.get(ei) > mergeFlag.get(ej)) {
+						continue;
+					} else {
+						mergeList.remove(ej);
+						mergeList.add(mergeList.indexOf(ei), ej);
+					}
+				}
+			}
+		}
+		return mergeList;
+	}
+
+	public static Tuple2<Character, Character> computeOrd(TypedEdge ei, TypedEdge ej, TypedGraph baseGraph,
+			HashMap<TypedEdge, TypedEdge> forceOrd, TypedGraph... branchGraphs) {
+	
+		HashMap<TypedEdge, Integer> baseFlag = new HashMap<>();
+		List<TypedEdge> baseList = baseGraph.getAllTypedEdges();
+		for (int i = 0; i < baseList.size(); i++) {
+			baseFlag.put(baseList.get(i), i);
+		}
+	
+		int len = branchGraphs.length;
+		HashMap<TypedEdge, Integer>[] branchFlag = new HashMap[len];
+		for (int i = 0; i < len; i++) {
+			List<TypedEdge> branchList = branchGraphs[i].getAllTypedEdges();
+			branchFlag[i] = new HashMap<>();
+			for (int j = 0; j < branchList.size(); j++) {
+				branchFlag[i].put(branchList.get(j), j);
+			}
+		}
+	
+		List<Tuple2<Character, Character>> ord_k = new ArrayList<>();
+	
+		for (int k = 0; k < len; k++) {
+			char t = 'S';
+			char o = 'n';
+			try {
+				TypedEdge ei_k = branchGraphs[k].getElementByIndexObject(ei.getIndex());
+				TypedEdge ej_k = branchGraphs[k].getElementByIndexObject(ej.getIndex());
+				// 如果ei和ej都属于某个分支图
+				char t_k;
+				char o_k;
+				if (forceOrd.get(ei_k) == ej_k) {
+					t_k = 'H';
+					o_k = '<';
+				} else if (forceOrd.get(ej_k) == ei_k) {
+					t_k = 'H';
+					o_k = '>';
+				} else {
+					t_k = 'S';
+					int distance_k = branchFlag[k].get(ei_k) - branchFlag[k].get(ej_k);
+					if (distance_k < 0) {
+						o_k = '<';
+					} else if (distance_k == 0) {
+						o_k = '=';
+					} else {
+						o_k = '>';
+					}
+				}
+				try {
+					TypedEdge ei_b = baseGraph.getElementByIndexObject(ei.getIndex());
+					TypedEdge ej_b = baseGraph.getElementByIndexObject(ej.getIndex());
+					// 若ei和ej还都属于基础图
+					if (forceOrd.get(ei_b) == ej_b) {
+						t = 'H';
+						o = '<';
+					} else if (forceOrd.get(ej_b) == ei_b) {
+						t = 'H';
+						o = '>';
+					} else {
+						t = 'S';
+						int distance_b = baseFlag.get(ei_b) - baseFlag.get(ej_b);
+						if (distance_b < 0) {
+							o = '<';
+						} else if (distance_b == 0) {
+							o = '=';
+						} else {
+							o = '>';
+						}
+					}
+	
+					if (o_k == o) {
+						if (t_k == 'H' || t == 'H') {
+							t = 'H';
+						}
+					} else if (t == 'S') { // o_k不等于o
+						t = 'H';
+						o = o_k;
+					} else {
+						throw new NothingReturnedException("@@@conflict");
+					}
+				} catch (NothingReturnedException e) {
+					// 若ei和ej不是都属于基础图，则以分支图为准
+					t = t_k;
+					o = o_k;
+				}
+			} catch (NothingReturnedException e) {
+				// 如果ei和ej不是都属于某个分支图
+			}
+			ord_k.add(new Tuple2<Character, Character>(t, o));
+		}
+	
+		// 再计算ord
+		Tuple2<Character, Character> t1 = ord_k.get(0);
+		Tuple2<Character, Character> t2;
+		// 计算ei和ej的最终序
+		for (int p = 1; p < ord_k.size(); p++) {
+			t2 = ord_k.get(p);
+			try {
+				t1 = mergeOrd(t1, t2);
+			} catch (NothingReturnedException e) {
+				e.printStackTrace();
+			}
+		}
+		return t1;
+	}
+
+	public static Tuple2<Character, Character> mergeOrd(Tuple2<Character, Character> c1,
+			Tuple2<Character, Character> c2) throws NothingReturnedException {
+	
+		if (c1.first == 'H' && c2.first == 'S') {
+			return new Tuple2<Character, Character>('H', c1.second);
+		} else if (c1.first == 'S' && c2.first == 'H') {
+			return new Tuple2<Character, Character>('H', c2.second);
+		} else if (c1.first == 'H' && c2.first == 'H') {
+			if (c1.second == c2.second) {
+				return new Tuple2<Character, Character>('H', c1.second);
+			} else {
+				throw new NothingReturnedException("###conflict");
+			}
+		} else if (c1.first == 'S' && c2.first == 'S') {
+			if (c1.second == 'n' && c2.second == 'n') {
+				return new Tuple2<Character, Character>('S', c1.second);
+			} else if (c1.second == 'n' && c2.second != 'n') {
+				return new Tuple2<Character, Character>('S', c2.second);
+			} else if (c1.second != 'n' && c2.second == 'n') {
+				return new Tuple2<Character, Character>('S', c1.second);
+			} else if (c1.second != 'n' && c2.second != 'n') {
+				if (c1.second == c2.second) {
+					return new Tuple2<Character, Character>('S', c1.second);
+				} else {
+					throw new NothingReturnedException("***conflict");
+				}
+			}
+		} else {
+			throw new NothingReturnedException("error");
+		}
+		return null;
+	}
+
+	public static HashMap<TypedEdge, TypedEdge> checkForceOrd(TypedGraph resultGraph,
+			Set<Tuple2<TypedEdge, TypedEdge>> orders) throws NothingReturnedException {
+	
+		HashMap<TypedEdge, TypedEdge> orderMap = new HashMap<>();
+	
+		if (orders.size() == 0) {
+			return orderMap;
+		}
+	
+		// ringFlag用于判断有无环冲突
+		HashMap<TypedEdge, TypedEdge> ringFlag = new HashMap<>();
+		Iterator<Tuple2<TypedEdge, TypedEdge>> iterator = orders.iterator();
+		while (iterator.hasNext()) {
+			Tuple2<TypedEdge, TypedEdge> order = iterator.next();
+			try {
+				resultGraph.getElementByIndexObject(order.first.getIndex());
+				resultGraph.getElementByIndexObject(order.second.getIndex());
+				ringFlag.put(order.first, order.second);
+			} catch (NothingReturnedException e) {
+				// first或second找不到的话，删除此order
+				iterator.remove();
+			}
+		}
+		
+		if (orders.size() == 0) {
+			return orderMap;
+		}
+	
+		// 先检验序关系集合的合法性
+		for (Tuple2<TypedEdge, TypedEdge> order : orders) {
+	
+			// 检测环冲突
+			// 错因：不能直接tmp = order，否则order都变了
+			Tuple2<TypedEdge, TypedEdge> tmp = new Tuple2<>(order.first, order.second);
+			while (ringFlag.get(tmp.second) != null) {
+				if (ringFlag.get(tmp.second).equals(order.first)) {
+					throw new NothingReturnedException("强制序中有环冲突");
+				}
+				tmp.second = ringFlag.get(tmp.second);
+			}
+	
+		}
+	
+		// 转换为HashMap
+		for (Tuple2<TypedEdge, TypedEdge> order : orders) {
+			orderMap.put(order.first, order.second);
+		}
+		return orderMap;
+	}
 
 }

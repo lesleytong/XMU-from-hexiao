@@ -4,7 +4,6 @@ import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
 import edu.ustb.sei.mde.graph.type.TypeEdge;
 import edu.ustb.sei.mde.graph.type.TypeGraph;
 import edu.ustb.sei.mde.graph.type.TypeNode;
-import edu.ustb.sei.mde.graph.typedGraph.BXMerge2;
 import edu.ustb.sei.mde.graph.typedGraph.BXMerge3;
 import edu.ustb.sei.mde.graph.typedGraph.BXMerge_NewVersion2;
 import edu.ustb.sei.mde.graph.typedGraph.TypedEdge;
@@ -25,7 +24,7 @@ public class Test_2 {
 		build_bGraph();
 		
 		try {
-			resultGraph = BXMerge2.merge(baseGraph, aGraph, bGraph);
+			resultGraph = BXMerge3.merge(baseGraph, aGraph, bGraph);
 			System.out.println("\nresultGraph: ");
 			print(resultGraph);
 									

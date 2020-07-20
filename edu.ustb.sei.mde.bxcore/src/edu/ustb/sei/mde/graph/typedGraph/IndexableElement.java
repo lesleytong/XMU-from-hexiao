@@ -63,5 +63,9 @@ abstract public class IndexableElement {
 	public void mergeIndex(IndexableElement e) {
 		index.merge(e.getIndex());
 	}
+	
+	public void mergeIndex2(Index e) {
+		index.merge(e);
+	}
 
 }

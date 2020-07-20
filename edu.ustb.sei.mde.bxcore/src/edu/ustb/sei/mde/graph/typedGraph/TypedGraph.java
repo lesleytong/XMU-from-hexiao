@@ -1068,7 +1068,6 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		try {
 			// 找到了
 			ValueEdge imageEdge = imageGraph.getElementByIndexObject(baseEdge.getIndex());
-			imageEdge.flag = true;	// lyt
 			if (imageEdge.getType() == baseEdge.getType()
 					&& imageEdge.getSource().getIndex().equals(baseEdge.getSource().getIndex())
 					&& imageEdge.getTarget().equals(baseEdge.getTarget()))
@@ -1187,7 +1186,6 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		try {
 			// 根据baseEdge的索引集在分支图中找到了
 			TypedEdge imageEdge = imageGraph.getElementByIndexObject(baseEdge.getIndex());
-			imageEdge.flag = true;	// lyt: 便于对齐
 			// 如果baseEdge在分支图和基本图中一致(type & source & target)，则返回baseEdge
 			if (imageEdge.getType() == baseEdge.getType()
 					&& imageEdge.getSource().getIndex().equals(baseEdge.getSource().getIndex())
@@ -1242,7 +1240,6 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		try {
 			// 在分支图中根据索引查找对应的baseNode，如果找到则赋值给imageNode
 			TypedNode imageNode = imageGraph.getElementByIndexObject(baseNode.getIndex());
-			// 放到Set里
 			
 			// 如果此节点在baseGraph和imageGraph中的类型不一致，则返回imageNode
 			if (imageNode.getType() != baseNode.getType())
@@ -1260,7 +1257,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 			return TypeNode.NULL_TYPE; // imageGraph中没有找到相应的baseNode，则返回NULL_TYPE给nodeImage[0]
 		}
 	}
-
+	
 	/** 可以省略？？ */
 	private static boolean isTouched(TypedNode imageNode, TypedGraph imageGraph, TypedNode baseNode,
 			TypedGraph baseGraph) {

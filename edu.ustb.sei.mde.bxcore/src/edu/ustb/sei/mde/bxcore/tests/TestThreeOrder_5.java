@@ -1,15 +1,15 @@
 package edu.ustb.sei.mde.bxcore.tests;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
-
+import java.util.Set;
 import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
 import edu.ustb.sei.mde.graph.type.TypeGraph;
-import edu.ustb.sei.mde.graph.typedGraph.BXMerge;
-import edu.ustb.sei.mde.graph.typedGraph.BXMerge_NewVersion;
-import edu.ustb.sei.mde.graph.typedGraph.BXMerge_NewVersion2;
+import edu.ustb.sei.mde.graph.typedGraph.BXMerge3;
 import edu.ustb.sei.mde.graph.typedGraph.TypedEdge;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
+import edu.ustb.sei.mde.structure.Tuple2;
 /**
  * 删除、交换序
  * @author 10242
@@ -21,6 +21,7 @@ public class TestThreeOrder_5 {
 	static TypedGraph bGraph = null;
 	static TypedGraph cGraph = null;
 	static TypedGraph resultGraph = null;
+	static Set<Tuple2<TypedEdge, TypedEdge>> orders = new HashSet<>();
 	
 	public static void main(String[] args){
 		
@@ -30,14 +31,15 @@ public class TestThreeOrder_5 {
 		build_cGraph();
 		
 		try {
-			resultGraph = BXMerge_NewVersion.merge(baseGraph, aGraph, bGraph, cGraph);
+			resultGraph = BXMerge3.merge_Con(baseGraph, aGraph, bGraph, cGraph);
 			System.out.println("resultGraph: ");
 			print(resultGraph);
 			
-//			//保证序关系
-//			System.out.println("###############################序处理##################################");			
-//			List<TypedEdge> merge = BXMerge.threeOrder3(baseGraph, resultGraph, aGraph, bGraph, cGraph);
-//			System.out.println("\n处理完序后，merge: " + merge);
+			HashMap<TypedEdge, TypedEdge> forceOrd = BXMerge3.checkForceOrd(resultGraph, orders);
+			
+			System.out.println("###############################序处理##################################");			
+			List<TypedEdge> merge = BXMerge3.threeOrder(baseGraph, resultGraph, forceOrd, aGraph, bGraph, cGraph);
+			System.out.println("\n处理完序后，merge: " + merge);
 			
 			
 		} catch (NothingReturnedException e) {

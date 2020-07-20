@@ -1,6 +1,6 @@
 package edu.ustb.sei.mde.graph.typedGraph;
 /**
- * 并发
+ * 并发，利用join()
  */
 import java.io.ObjectOutputStream.PutField;
 
