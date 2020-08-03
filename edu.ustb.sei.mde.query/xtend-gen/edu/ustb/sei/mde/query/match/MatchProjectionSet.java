@@ -4,7 +4,6 @@ import edu.ustb.sei.mde.query.match.Match;
 import edu.ustb.sei.mde.query.match.MatchNegSet;
 import edu.ustb.sei.mde.query.match.MatchSet;
 import edu.ustb.sei.mde.query.pattern.Variable;
-import edu.ustb.sei.mde.query.structure.BiMap;
 import edu.ustb.sei.mde.query.structure.TupleN;
 import java.util.Collection;
 import java.util.Iterator;
@@ -14,7 +13,6 @@ import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.Functions.Function2;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
-import org.eclipse.xtext.xbase.lib.Procedures.Procedure2;
 
 @SuppressWarnings("all")
 public class MatchProjectionSet extends MatchSet {
@@ -24,22 +22,12 @@ public class MatchProjectionSet extends MatchSet {
   
   private Variable[] originalVars;
   
-  private BiMap<Variable, Variable> varMap;
-  
   public static MatchProjectionSet make(final MatchSet originalMatch, final Variable[] projVars, final Variable[] originalVars) {
     final MatchProjectionSet r = new MatchProjectionSet();
     r.originalMatch = originalMatch;
     r.projVars = projVars;
     r.originalVars = originalVars;
-    r.buildMap();
     return r;
-  }
-  
-  private void buildMap() {
-    final Procedure2<Variable, Integer> _function = (Variable v, Integer i) -> {
-      this.varMap.forwardPut(v, this.originalVars[(i).intValue()]);
-    };
-    IterableExtensions.<Variable>forEach(((Iterable<Variable>)Conversions.doWrapArray(this.projVars)), _function);
   }
   
   @Override

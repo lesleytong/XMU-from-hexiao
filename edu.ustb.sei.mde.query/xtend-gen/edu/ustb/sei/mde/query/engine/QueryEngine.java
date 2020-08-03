@@ -1,11 +1,11 @@
-package edu.ustb.sei.mde.query.match;
+package edu.ustb.sei.mde.query.engine;
 
 import com.google.common.collect.Iterables;
+import edu.ustb.sei.mde.query.engine.CandidateSet;
+import edu.ustb.sei.mde.query.engine.GQLCandidateSet;
 import edu.ustb.sei.mde.query.indexing.Profile;
 import edu.ustb.sei.mde.query.infra.IQueryIntrastructure;
 import edu.ustb.sei.mde.query.infra.TypeContext;
-import edu.ustb.sei.mde.query.match.CandidateSet;
-import edu.ustb.sei.mde.query.match.GQLCandidateSet;
 import edu.ustb.sei.mde.query.match.Match;
 import edu.ustb.sei.mde.query.match.MatchListSet;
 import edu.ustb.sei.mde.query.match.MatchOrSet;
@@ -21,6 +21,8 @@ import edu.ustb.sei.mde.query.pattern.OrPattern;
 import edu.ustb.sei.mde.query.pattern.Pattern;
 import edu.ustb.sei.mde.query.pattern.ProjectionPattern;
 import edu.ustb.sei.mde.query.pattern.Variable;
+import edu.ustb.sei.mde.query.structure.ContainerCreator;
+import edu.ustb.sei.mde.query.structure.TupleN;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -28,6 +30,7 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.BiConsumer;
@@ -45,6 +48,7 @@ import org.eclipse.xtext.xbase.lib.ListExtensions;
 import org.eclipse.xtext.xbase.lib.MapExtensions;
 import org.eclipse.xtext.xbase.lib.Pair;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure2;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 @SuppressWarnings("all")
 public class QueryEngine<METAMODEL extends Object, MODEL extends Object, CLASSIFIER extends Object, CLASS extends CLASSIFIER, OBJECT extends Object, DATATYPE extends CLASSIFIER, SLOT extends Object, FEATURE extends Object, REFERENCE extends FEATURE, LINK extends Object, ATTRIBUTE extends FEATURE, SLOTLINK extends Object> {
@@ -52,11 +56,59 @@ public class QueryEngine<METAMODEL extends Object, MODEL extends Object, CLASSIF
   
   private TypeContext<METAMODEL, CLASSIFIER, CLASS, DATATYPE, FEATURE, REFERENCE, ATTRIBUTE> typeContext;
   
+  private Map<Pattern, MatchSet> matchSetMap;
+  
   public static <METAMODEL extends Object, MODEL extends Object, CLASSIFIER extends Object, CLASS extends CLASSIFIER, OBJECT extends Object, DATATYPE extends CLASSIFIER, SLOT extends Object, FEATURE extends Object, REFERENCE extends FEATURE, LINK extends Object, ATTRIBUTE extends FEATURE, SLOTLINK extends Object> QueryEngine<METAMODEL, MODEL, CLASSIFIER, CLASS, OBJECT, DATATYPE, SLOT, FEATURE, REFERENCE, LINK, ATTRIBUTE, SLOTLINK> make(final IQueryIntrastructure<METAMODEL, MODEL, CLASSIFIER, CLASS, OBJECT, DATATYPE, SLOT, FEATURE, REFERENCE, LINK, ATTRIBUTE, SLOTLINK> infrastructure, final TypeContext<METAMODEL, CLASSIFIER, CLASS, DATATYPE, FEATURE, REFERENCE, ATTRIBUTE> typeContext) {
     final QueryEngine<METAMODEL, MODEL, CLASSIFIER, CLASS, OBJECT, DATATYPE, SLOT, FEATURE, REFERENCE, LINK, ATTRIBUTE, SLOTLINK> engine = new QueryEngine<METAMODEL, MODEL, CLASSIFIER, CLASS, OBJECT, DATATYPE, SLOT, FEATURE, REFERENCE, LINK, ATTRIBUTE, SLOTLINK>();
     engine.infrastructure = infrastructure;
     engine.typeContext = typeContext;
+    engine.matchSetMap = ContainerCreator.<Pattern, MatchSet>autoMap();
     return engine;
+  }
+  
+  public MatchSet match(final Pattern pattern) {
+    final MatchSet matchSet = this.matchSetMap.get(pattern);
+    if ((matchSet == null)) {
+      MatchSet _switchResult = null;
+      boolean _matched = false;
+      if (pattern instanceof GraphPattern) {
+        _matched=true;
+        Match _match = new Match();
+        _switchResult = this.match(pattern, _match);
+      }
+      if (!_matched) {
+        if (pattern instanceof OrPattern) {
+          _matched=true;
+          final Function1<Pattern, MatchSet> _function = (Pattern s) -> {
+            return this.match(s);
+          };
+          _switchResult = MatchOrSet.make(ListExtensions.<Pattern, MatchSet>map(((List<Pattern>)Conversions.doWrapArray(((OrPattern)pattern).getSubPatterns())), _function));
+        }
+      }
+      if (!_matched) {
+        if (pattern instanceof NegPattern) {
+          _matched=true;
+          _switchResult = this.match(((NegPattern)pattern).getSubPattern()).neg();
+        }
+      }
+      if (!_matched) {
+        if (pattern instanceof ProjectionPattern) {
+          _matched=true;
+          _switchResult = MatchProjectionSet.make(this.match(((ProjectionPattern)pattern).getSubPattern()), ((ProjectionPattern)pattern).getPorts(), ((ProjectionPattern)pattern).getSubPattern().getPorts());
+        }
+      }
+      if (!_matched) {
+        if (pattern instanceof ClosurePattern) {
+          _matched=true;
+          throw new NotImplementedException();
+        }
+      }
+      final MatchSet _matchSet = _switchResult;
+      this.matchSetMap.put(pattern, _matchSet);
+      return _matchSet;
+    } else {
+      return matchSet;
+    }
   }
   
   protected MatchSet _match(final ClosurePattern pattern, final Match base) {
@@ -73,7 +125,7 @@ public class QueryEngine<METAMODEL extends Object, MODEL extends Object, CLASSIF
   protected MatchSet _match(final NegPattern pattern, final Match base) {
     MatchSet _xblockexpression = null;
     {
-      final MatchSet match = this.match(pattern.getHostPattern(), base);
+      final MatchSet match = this.match(pattern.getSubPattern(), base);
       _xblockexpression = match.neg();
     }
     return _xblockexpression;
@@ -82,7 +134,7 @@ public class QueryEngine<METAMODEL extends Object, MODEL extends Object, CLASSIF
   protected MatchSet _match(final ProjectionPattern pattern, final Match base) {
     MatchProjectionSet _xblockexpression = null;
     {
-      final Pattern host = pattern.getHostPattern();
+      final Pattern host = pattern.getSubPattern();
       final Variable[] ports = pattern.getPorts();
       final Match newBase = new Match();
       final Procedure2<Variable, Integer> _function = (Variable p, Integer i) -> {
@@ -240,7 +292,7 @@ public class QueryEngine<METAMODEL extends Object, MODEL extends Object, CLASSIF
       int _size = order.size();
       boolean _equals = (position == _size);
       if (_equals) {
-        boolean _verifyOtherConstraints = this.verifyOtherConstraints(base);
+        boolean _verifyOtherConstraints = this.verifyOtherConstraints(pattern, base);
         if (_verifyOtherConstraints) {
           matches.add(base.clone());
         }
@@ -262,7 +314,26 @@ public class QueryEngine<METAMODEL extends Object, MODEL extends Object, CLASSIF
     }
   }
   
-  public boolean verifyOtherConstraints(final Match match) {
+  /**
+   * Other constraints include closure edge, or pattern, negative pattern, and projection pattern
+   */
+  public boolean verifyOtherConstraints(final GraphPattern<CLASSIFIER, FEATURE> pattern, final Match match) {
+    Pattern[] _relations = pattern.getRelations();
+    for (final Pattern cons : _relations) {
+      if ((!(cons instanceof EdgePattern))) {
+        final MatchSet matchSet = this.match(cons);
+        final Function1<Variable, Object> _function = (Variable p) -> {
+          return match.<Object>get(p);
+        };
+        Object[] _array = ListExtensions.<Variable, Object>map(((List<Variable>)Conversions.doWrapArray(cons.getPorts())), _function).toArray();
+        final TupleN tuple = new TupleN(_array);
+        boolean _checkRelation = matchSet.checkRelation(tuple);
+        boolean _not = (!_checkRelation);
+        if (_not) {
+          return false;
+        }
+      }
+    }
     return true;
   }
   

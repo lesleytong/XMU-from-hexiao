@@ -3,25 +3,25 @@ package edu.ustb.sei.mde.query.pattern;
 public class NegPattern implements Pattern {
 	public NegPattern(ProjectionPattern hostPattern) {
 		super();
-		this.hostPattern = hostPattern;
+		this.subPattern = hostPattern;
 	}
 	
-	private Pattern hostPattern;
+	private Pattern subPattern;
 	
 
 	@Override
 	public Variable[] getPorts() {
-		return hostPattern.getPorts();
+		return subPattern.getPorts();
 	}
 
 
-	public Pattern getHostPattern() {
-		return hostPattern;
+	public Pattern getSubPattern() {
+		return subPattern;
 	}
 	
 	@Override
 	public String toString() {
-		return "neg "+hostPattern.toString();
+		return "neg "+subPattern.toString();
 	}
 
 }

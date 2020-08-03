@@ -1,6 +1,5 @@
-package edu.ustb.sei.mde.query.match
+package edu.ustb.sei.mde.query.engine
 
-import edu.ustb.sei.mde.query.match.CandidateSet
 import edu.ustb.sei.mde.query.pattern.Pattern
 import java.util.Collection
 import java.util.Map

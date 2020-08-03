@@ -4,18 +4,18 @@ import java.util.Arrays;
 
 public class ProjectionPattern implements Pattern {
 	private Variable[] ports;
-	private Pattern hostPattern;
+	private Pattern subPattern;
 	private boolean unique;
 	
 	public ProjectionPattern(Variable[] ports, Pattern hostPattern) {
 		assert ports.length==hostPattern.getPorts().length;
 		this.ports = ports;
-		this.hostPattern = extract(hostPattern);
+		this.subPattern = extract(hostPattern);
 		this.unique = true;
 	}
 	
 	private Pattern extract(Pattern p) {
-		if(p instanceof ProjectionPattern) return ((ProjectionPattern) p).hostPattern;
+		if(p instanceof ProjectionPattern) return ((ProjectionPattern) p).subPattern;
 		else return p;
 	}
 
@@ -24,8 +24,8 @@ public class ProjectionPattern implements Pattern {
 		return ports;
 	}
 
-	public Pattern getHostPattern() {
-		return hostPattern;
+	public Pattern getSubPattern() {
+		return subPattern;
 	}
 
 	public boolean isUnique() {
@@ -35,10 +35,10 @@ public class ProjectionPattern implements Pattern {
 	@Override
 	public String toString() {
 		String params = Arrays.stream(getPorts()).map(p->p.getName()).reduce((l,r)->l+","+r).orElse("");
-		if(hostPattern instanceof GraphPattern<?, ?>) {
-			return "("+params+")->"+((GraphPattern<?,?>) hostPattern).getName();
+		if(subPattern instanceof GraphPattern<?, ?>) {
+			return "("+params+")->"+((GraphPattern<?,?>) subPattern).getName();
 		} else {
-			return "("+params+")->"+hostPattern.toString();
+			return "("+params+")->"+subPattern.toString();
 		}
 	}
 

@@ -24,7 +24,7 @@ import edu.ustb.sei.mde.query.infra.ecore.EcoreQueryInfrastructure;
 import edu.ustb.sei.mde.query.infra.ecore.EcoreTypeContext;
 import edu.ustb.sei.mde.query.match.Match;
 import edu.ustb.sei.mde.query.match.MatchSet;
-import edu.ustb.sei.mde.query.match.QueryEngine;
+import edu.ustb.sei.mde.query.engine.QueryEngine;
 import edu.ustb.sei.mde.query.pattern.ClosurePattern;
 import edu.ustb.sei.mde.query.pattern.EdgePattern;
 import edu.ustb.sei.mde.query.pattern.GraphPattern;
@@ -144,7 +144,7 @@ class TestToString {
 		res.getResourceFactoryRegistry().getExtensionToFactoryMap().put(
 			    Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
 		
-		URI uri = URI.createFileURI("/Volumes/Macintosh HD Data/Eclipse Projects/xtext_new/edu.ustb.sei.mde.query/tests/edu/ustb/sei/mde/query/test.ecore");
+		URI uri = URI.createFileURI("/Volumes/Macintosh HD Data/Eclipse Projects/git/morel/edu.ustb.sei.mde.query/tests/edu/ustb/sei/mde/query/test.ecore");
 		Resource model = res.getResource(uri, true);
 		
 		EcoreTypeContext typeContext = new EcoreTypeContext();
@@ -159,7 +159,7 @@ class TestToString {
 		QueryEngine<EPackage, Resource, EClassifier, EClass, EObject, EDataType, Object, EStructuralFeature, EReference, Setting, EAttribute, Setting> query = QueryEngine.make(infra, typeContext);
 		
 		long start = System.currentTimeMillis();
-		MatchSet matchSet = query.match(pat1, new Match());
+		MatchSet matchSet = query.match(negPat);
 		long end = System.currentTimeMillis();
 		
 		

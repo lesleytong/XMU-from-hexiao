@@ -30,7 +30,7 @@ public class Match implements Cloneable {
 	}
 	
 	@Override
-	protected Match clone() throws CloneNotSupportedException {
+	public Match clone() throws CloneNotSupportedException {
 		Match clone = new Match();
 		clone.bindings.putAll(this.bindings);
 		return clone;
@@ -48,5 +48,9 @@ public class Match implements Cloneable {
 		});
 		builder.append("====MATCH END======");
 		return builder.toString();
+	}
+	
+	public boolean isEmpty() {
+		return bindings.isEmpty();
 	}
 }

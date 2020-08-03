@@ -1,4 +1,4 @@
-package edu.ustb.sei.mde.query.match
+package edu.ustb.sei.mde.query.engine
 
 import edu.ustb.sei.mde.query.infra.IQueryIntrastructure
 import edu.ustb.sei.mde.query.infra.TypeContext
@@ -13,18 +13,49 @@ import edu.ustb.sei.mde.query.pattern.ProjectionPattern
 import edu.ustb.sei.mde.query.pattern.ClosurePattern
 import edu.ustb.sei.mde.query.pattern.OrPattern
 import edu.ustb.sei.mde.query.pattern.NegPattern
+import edu.ustb.sei.mde.query.match.MatchSet
+import edu.ustb.sei.mde.query.match.Match
+import edu.ustb.sei.mde.query.match.MatchProjectionSet
+import edu.ustb.sei.mde.query.match.MatchListSet
+import edu.ustb.sei.mde.query.match.MatchOrSet
+import java.util.Map
+import edu.ustb.sei.mde.query.pattern.Pattern
+import edu.ustb.sei.mde.query.structure.ContainerCreator
+import edu.ustb.sei.mde.query.pattern.EdgePattern
+import sun.reflect.generics.reflectiveObjects.NotImplementedException
+import edu.ustb.sei.mde.query.structure.TupleN
 
 class QueryEngine<METAMODEL, MODEL, CLASSIFIER, CLASS extends CLASSIFIER, OBJECT, DATATYPE extends CLASSIFIER, SLOT, FEATURE, REFERENCE extends FEATURE, LINK, ATTRIBUTE extends FEATURE, SLOTLINK> {
 	IQueryIntrastructure<METAMODEL, MODEL, CLASSIFIER, CLASS, OBJECT, DATATYPE, SLOT, FEATURE, REFERENCE, LINK, ATTRIBUTE, SLOTLINK> infrastructure;
 	TypeContext<METAMODEL, CLASSIFIER, CLASS, DATATYPE, FEATURE, REFERENCE, ATTRIBUTE> typeContext;
+	Map<Pattern, MatchSet> matchSetMap;
 	
 	static def <METAMODEL, MODEL, CLASSIFIER, CLASS extends CLASSIFIER, OBJECT, DATATYPE extends CLASSIFIER, SLOT, FEATURE, REFERENCE extends FEATURE, LINK, ATTRIBUTE extends FEATURE, SLOTLINK> make(IQueryIntrastructure<METAMODEL, MODEL, CLASSIFIER, CLASS, OBJECT, DATATYPE, SLOT, FEATURE, REFERENCE, LINK, ATTRIBUTE, SLOTLINK> infrastructure, TypeContext<METAMODEL, CLASSIFIER, CLASS, DATATYPE, FEATURE, REFERENCE, ATTRIBUTE> typeContext) {
 		val engine = new QueryEngine<METAMODEL, MODEL, CLASSIFIER, CLASS, OBJECT, DATATYPE, SLOT, FEATURE, REFERENCE, LINK, ATTRIBUTE, SLOTLINK>
 		engine.infrastructure = infrastructure;
 		engine.typeContext = typeContext
+		engine.matchSetMap =  ContainerCreator.autoMap
 		return engine
 	}
 	
+	def MatchSet match(Pattern pattern) {
+		val matchSet = matchSetMap.get(pattern)
+		if(matchSet===null) {
+			val _matchSet = 
+			switch(pattern)
+			{
+				GraphPattern<?,?>: match(pattern, new Match)
+				OrPattern :	MatchOrSet.make(pattern.subPatterns.map[s|match(s)])
+				NegPattern : match(pattern.getSubPattern).neg
+				ProjectionPattern : MatchProjectionSet.make(match(pattern.subPattern), pattern.ports, pattern.subPattern.ports)
+				ClosurePattern : {
+					throw new NotImplementedException
+				}
+			}
+			matchSetMap.put(pattern, _matchSet)
+			return _matchSet
+		} else return matchSet
+	}
 	
 	dispatch def MatchSet match(ClosurePattern pattern, Match base) {
 		// match pattern.subPattern
@@ -37,12 +68,12 @@ class QueryEngine<METAMODEL, MODEL, CLASSIFIER, CLASS extends CLASSIFIER, OBJECT
 	}
 	
 	dispatch def MatchSet match(NegPattern pattern, Match base) {
-		val match = match(pattern.hostPattern, base)
+		val match = match(pattern.getSubPattern, base)
 		match.neg
 	}
 	
 	dispatch def MatchSet match(ProjectionPattern pattern, Match base) {
-		val host = pattern.hostPattern
+		val host = pattern.getSubPattern
 		val ports = pattern.ports
 		
 		val newBase = new Match;
@@ -60,6 +91,7 @@ class QueryEngine<METAMODEL, MODEL, CLASSIFIER, CLASS extends CLASSIFIER, OBJECT
 		enumerate(pattern, cs, order, base, 0, results);
 		return results
 	}
+	
 	
 	def CandidateSet<CLASSIFIER> computeCandidateSet(GraphPattern<CLASSIFIER,FEATURE> pattern) {
 		computeCandidateSetLDF(pattern)
@@ -121,7 +153,7 @@ class QueryEngine<METAMODEL, MODEL, CLASSIFIER, CLASS extends CLASSIFIER, OBJECT
 	
 	def void enumerate(GraphPattern<CLASSIFIER,FEATURE> pattern, CandidateSet<CLASSIFIER> globalCandidateSet, List<Graphlet<CLASSIFIER, FEATURE>> order, Match base, int position, Collection<Match> matches) {
 		if(position==order.size()) {
-			if(verifyOtherConstraints(base))
+			if(verifyOtherConstraints(pattern, base))
 				matches.add(base.clone)
 		} else {
 			val next = selectNext(order, base, position)
@@ -136,8 +168,18 @@ class QueryEngine<METAMODEL, MODEL, CLASSIFIER, CLASS extends CLASSIFIER, OBJECT
 		}
 	}
 	
-	def boolean verifyOtherConstraints(Match match) {
-		true
+	/**
+	 * Other constraints include closure edge, or pattern, negative pattern, and projection pattern
+	 */
+	def boolean verifyOtherConstraints(GraphPattern<CLASSIFIER,FEATURE> pattern, Match match) {
+		for(cons : pattern.relations) {
+			if(!(cons instanceof EdgePattern)) {
+				val matchSet = match(cons)
+				val tuple = new TupleN(cons.ports.map[p|match.get(p)].toArray);
+				if(!matchSet.checkRelation(tuple)) return false 
+			}
+		}
+		return true
 	}
 	
 	def Graphlet<CLASSIFIER, FEATURE> selectNext(List<Graphlet<CLASSIFIER, FEATURE>> order, Match base, int position) {

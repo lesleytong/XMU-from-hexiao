@@ -12,20 +12,20 @@ class MatchProjectionSet extends MatchSet {
 	Variable[] projVars;
 	Variable[] originalVars;
 	
-	BiMap<Variable,Variable> varMap;
+//	BiMap<Variable,Variable> varMap;
 	
 	static def make(MatchSet originalMatch, Variable[] projVars, Variable[] originalVars) {
 		val MatchProjectionSet r = new MatchProjectionSet();
 		r.originalMatch = originalMatch;
 		r.projVars = projVars
 		r.originalVars = originalVars
-		r.buildMap
+//		r.buildMap
 		return r;
 	}
 	
-	private def buildMap() {
-		projVars.forEach[v,i| varMap.forwardPut(v, originalVars.get(i))]
-	}
+//	private def buildMap() {
+//		projVars.forEach[v,i| varMap.forwardPut(v, originalVars.get(i))]
+//	}
 	
 	
 	override checkRelation(TupleN tuple) {

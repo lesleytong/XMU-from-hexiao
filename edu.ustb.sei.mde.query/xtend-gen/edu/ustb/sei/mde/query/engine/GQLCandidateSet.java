@@ -1,6 +1,6 @@
-package edu.ustb.sei.mde.query.match;
+package edu.ustb.sei.mde.query.engine;
 
-import edu.ustb.sei.mde.query.match.CandidateSet;
+import edu.ustb.sei.mde.query.engine.CandidateSet;
 import edu.ustb.sei.mde.query.pattern.NodePattern;
 import edu.ustb.sei.mde.query.pattern.Pattern;
 import java.util.Collection;
