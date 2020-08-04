@@ -1,12 +1,9 @@
 package edu.ustb.sei.mde.bxcore.tests;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
-import edu.ustb.sei.mde.graph.type.TypeEdge;
 import edu.ustb.sei.mde.graph.type.TypeGraph;
-import edu.ustb.sei.mde.graph.typedGraph.BXMerge;
+import edu.ustb.sei.mde.graph.typedGraph.BXMerge3;
 import edu.ustb.sei.mde.graph.typedGraph.TypedEdge;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
 import edu.ustb.sei.mde.graph.typedGraph.TypedNode;
@@ -26,12 +23,12 @@ public class TestTwoOrder_2 {
 		build_baseGraph();
 		build_aGraph();
 		
-		TypedGraph resultGraph = BXMerge.additiveMerge(baseGraph, aGraph);
+		TypedGraph resultGraph = BXMerge3.additiveMerge(baseGraph, aGraph);
 		System.out.println("resultGraph: ");
 		print(resultGraph);
 		
 		System.out.println("###############################序处理##################################");
-		List<TypedEdge> mergeList = BXMerge.twoOrder2(baseGraph, aGraph, resultGraph);
+		List<TypedEdge> mergeList = BXMerge3.twoOrder(baseGraph, aGraph, resultGraph);
 		System.out.println("\n处理完序后，mergeList: " + mergeList);
 		
 //		// 验证mergeList和resultList中对象一致

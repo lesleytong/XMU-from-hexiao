@@ -1,13 +1,10 @@
 package edu.ustb.sei.mde.bxcore.tests;
 
-import java.util.ArrayList;
 import java.util.List;
-
 import edu.ustb.sei.mde.graph.type.TypeGraph;
-import edu.ustb.sei.mde.graph.typedGraph.BXMerge;
+import edu.ustb.sei.mde.graph.typedGraph.BXMerge3;
 import edu.ustb.sei.mde.graph.typedGraph.TypedEdge;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
-import edu.ustb.sei.mde.graph.typedGraph.TypedNode;
 /**
  * 添加性合并
  * 新添、交换序
@@ -24,12 +21,12 @@ public class TestTwoOrder_1 {
 		build_baseGraph();
 		build_aGraph();
 		
-		TypedGraph resultGraph = BXMerge.additiveMerge(baseGraph, aGraph);
+		TypedGraph resultGraph = BXMerge3.additiveMerge(baseGraph, aGraph);
 		System.out.println("resultGraph: ");
 		print(resultGraph);
 		
 		System.out.println("###############################序处理##################################");
-		List<TypedEdge> mergeList = BXMerge.twoOrder2(baseGraph, aGraph, resultGraph);
+		List<TypedEdge> mergeList = BXMerge3.twoOrder(baseGraph, aGraph, resultGraph);
 		System.out.println("\n处理完序后，mergeList: " + mergeList);
 		
 		
@@ -70,6 +67,7 @@ public class TestTwoOrder_1 {
 				+"a1.a2S=\"str2\";"
 				+"a1.a2S=\"str3\";");	
 		
+		
 		System.out.println("baseGraph: ");
 		print(baseGraph);	
 		
@@ -79,9 +77,6 @@ public class TestTwoOrder_1 {
 	private static void build_aGraph() {
 		
 		aGraph = baseGraph.getCopy();
-		
-		System.out.println("!!!!!!!!!!!!!c2: " + aGraph.getAllTypedNodes().get(5));
-		TypedNode c2 = aGraph.getAllTypedNodes().get(5);
 		
 		aGraph.declare(
 				    "c3:C;"		
@@ -94,15 +89,13 @@ public class TestTwoOrder_1 {
 				   );
 		
 		// e3-e5-e1-e6
-		TypedEdge e5 = aGraph.getAllTypedEdges().get(4);
-		TypedEdge e6 = aGraph.getAllTypedEdges().get(5);
-		aGraph.getAllTypedEdges().remove(e5);
-		aGraph.remove(aGraph.getAllTypedEdges().get(3));
-		aGraph.remove(aGraph.getAllTypedEdges().get(1));
-		TypedEdge e3 = aGraph.getAllTypedEdges().get(1);
-		aGraph.getAllTypedEdges().remove(e3);
-		aGraph.getAllTypedEdges().add(0, e3);
-		aGraph.getAllTypedEdges().add(1, e5);
+		TypedEdge e2 = aGraph.getAllTypedEdges().get(1);
+		TypedEdge e4 = aGraph.getAllTypedEdges().get(3);
+		aGraph.remove(e2);
+		aGraph.remove(e4);
+		TypedEdge e1 = aGraph.getAllTypedEdges().get(0);
+		aGraph.getAllTypedEdges().remove(e1);
+		aGraph.getAllTypedEdges().add(2, e1);
 				
 		System.out.println("aGraph: ");
 		print(aGraph);

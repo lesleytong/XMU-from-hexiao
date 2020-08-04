@@ -1,13 +1,16 @@
 package edu.ustb.sei.mde.bxcore.tests;
 
 import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
+import edu.ustb.sei.mde.graph.type.TypeEdge;
 import edu.ustb.sei.mde.graph.type.TypeGraph;
 import edu.ustb.sei.mde.graph.typedGraph.BXMerge;
+import edu.ustb.sei.mde.graph.typedGraph.BXMerge3;
 import edu.ustb.sei.mde.graph.typedGraph.TypedEdge;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
 import edu.ustb.sei.mde.graph.typedGraph.TypedNode;
 /**
- * 非isMany
+ * A-B*是isMany、isUnique
+ * a分支和b分支添加“同样的”边
  * @author 10242
  *
  */
@@ -26,15 +29,13 @@ public class TestLogical_5 {
 				
 		try {
 			
-			resultGraph = BXMerge.merge(baseGraph, aGraph, bGraph);
+			resultGraph = BXMerge3.merge(baseGraph, aGraph, bGraph);
 			System.out.println("resultGraph: ");
 			print(resultGraph);
 						
 		} catch (NothingReturnedException e) {
 			e.printStackTrace();
 		}
-				
-		
 	}
 	
 
@@ -57,25 +58,35 @@ public class TestLogical_5 {
 		
 		baseGraph = new TypedGraph(typeGraph);
 		baseGraph.declare(	
-				 "b1:B;"
-				+"c1:C;"
-				+"b1-b2c->c1;"			//e0，为了用它的type
-				);		
+				"a1:A;"
+				+"b1:B;"
+				+"a1.a2S=\"str1\";"
+				+"a1.a2S=\"str2\";"
+				+"a1.a2S=\"str3\";");	
+		
 	}
-				
+	
+			
 	private static void build_aGraph() {
 		
 		aGraph = baseGraph.getCopy();
 		
-		TypedEdge e0 = aGraph.getAllTypedEdges().get(0);
-		aGraph.remove(e0);
+		TypeEdge typeEdge = aGraph.getTypeGraph().getAllTypeEdges().get(0);
+		System.out.println(typeEdge);
+		
+		TypedNode a1 = aGraph.getAllTypedNodes().get(0);
+		TypedNode b1 = aGraph.getAllTypedNodes().get(1);
 		
 		TypedEdge e1 = new TypedEdge();
-		e1.setType(e0.getType());
-		e1.setSource(e0.getSource());
-		e1.setTarget(e0.getTarget());
-		aGraph.addTypedEdge(e1); 	// b1-c1
+		e1.setType(typeEdge);
+		e1.setSource(a1);
+		e1.setTarget(b1);
 				
+		aGraph.addTypedEdge(e1);
+		
+		System.out.println(e1.getType().isMany());
+		System.out.println(e1.getType().isUnique());
+		
 		System.out.println("aGraph: ");
 		print(aGraph);
 		
@@ -85,29 +96,28 @@ public class TestLogical_5 {
 		
 		bGraph = baseGraph.getCopy();
 		
-		bGraph.declare(	
-				"c2:C;");
+		bGraph.declare("b2:B;");
 		
-		TypedEdge e0 = bGraph.getAllTypedEdges().get(0);
-		bGraph.remove(e0);
+		TypeEdge typeEdge = bGraph.getTypeGraph().getAllTypeEdges().get(0);
+		System.out.println(typeEdge);
 		
-		TypedNode c2 = bGraph.getAllTypedNodes().get(2);
+		TypedNode a1 = bGraph.getAllTypedNodes().get(0);
+		TypedNode b2 = bGraph.getAllTypedNodes().get(2);
 		
-		TypedEdge e2 = new TypedEdge();
-		e2.setType(e0.getType());
-		e2.setSource(e0.getSource());
-		e2.setTarget(c2);
-		bGraph.addTypedEdge(e2); 	// b1-c2
+		TypedEdge e1 = new TypedEdge();
+		e1.setType(typeEdge);
+		e1.setSource(a1);
+		e1.setTarget(b2);
+		
+		bGraph.addTypedEdge(e1);
 		
 		System.out.println("bGraph: ");
 		print(bGraph);
 		
-		baseGraph.remove(e0);	// baseGraph也要删，e0在三图中对象引用一致
-		System.out.println("baseGraph: ");
-		print(baseGraph);
 	}
 	
 	private static void print(TypedGraph typedGraph) {
+		
 		System.out.println("TypedNodes: " + typedGraph.getAllTypedNodes().toString());
 		System.out.println("ValueNodes: " + typedGraph.getAllValueNodes().toString());
 		System.out.println("TypedEdges: " + typedGraph.getAllTypedEdges().toString());

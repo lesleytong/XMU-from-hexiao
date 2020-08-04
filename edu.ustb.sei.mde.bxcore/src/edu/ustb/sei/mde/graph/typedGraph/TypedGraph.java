@@ -210,13 +210,74 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		});
 	}
 
+	// lyt: simply add
+	public void simAddTypedEdge(TypedEdge e) {
+		allTypedEdges.add(e);
+		indexing(e);
+	}
+
+	// lyt: additional information: int start
+	public void addTypedEdge(TypedEdge e, int start) {
+		if (e.getType().isMany()) {
+			if (e.getType().isUnique()) {
+				int i;
+				for (i = start; i < allTypedEdges.size(); i++) {
+					TypedEdge tmp = allTypedEdges.get(i);
+					if (tmp.getType() == e.getType() && tmp.getSource().getIndex().equals(e.getSource().getIndex())
+							&& tmp.getTarget().getIndex().equals(e.getTarget().getIndex())) {
+						e.mergeIndex(tmp);
+						reindexing(e);
+						allTypedEdges.set(i, e);
+						break;
+					}
+				}
+				if(i == allTypedEdges.size()) {
+					allTypedEdges.add(e);
+					indexing(e);
+				}
+			} else {
+				allTypedEdges.add(e);
+				indexing(e);
+			}
+		} else {
+
+			boolean replaced = false; // 每次都初始化为false
+
+			for (int i = start; i < allTypedEdges.size(); i++) { // 新加只会与新加的冲突
+				TypedEdge tmp = allTypedEdges.get(i);
+				if (tmp.getSource() == e.getSource() && tmp.getType() == e.getType()) {
+
+					e.mergeIndex(tmp); // 如果不是isMany，但添加了多条边，会合并它们的索引集
+					reindexing(e);
+
+					if (replaced) { // reduce redundant, 感觉不会有此情况
+						allTypedEdges.remove(i);
+						i--;
+						XmuCoreUtils.failure("Redundant edges " + tmp);
+					} else {
+						allTypedEdges.set(i, e); // 设置为后来的边对象
+						replaced = true;
+					}
+				}
+			}
+			// 如果replaced是false，说明此单值边是第一次添加
+			if (!replaced) {
+				allTypedEdges.add(e);
+				indexing(e);
+			}
+		}
+		this.outgoingEdgeMap.remove(e.getSource());
+		this.incomingEdgeMap.remove(e.getTarget());
+	}
+
 	/** 在图中添加TypedEdge类型的边对象 */
 	public void addTypedEdge(TypedEdge e) {
 		if (e.getType().isMany()) { // 如果e的TypeEdge是isMany
 			if (e.getType().isUnique()) { // 如果是isMany，并且是isUnique
 				TypedEdge err = null;
 				try {
-					err = allTypedEdges.stream().filter(er -> {
+					// type、source、target都一致
+					err = allTypedEdges.stream().filter(er -> { // 改成for循环，有位置信息
 						return er.getType() == e.getType() && er.getSource().getIndex().equals(e.getSource().getIndex())
 								&& er.getTarget().getIndex().equals(e.getTarget().getIndex());
 					}).findAny().get();
@@ -232,28 +293,27 @@ public class TypedGraph extends IndexSystem implements IGraph {
 			}
 		} else { // 如果不是isMany
 
-			boolean replaced = false;
+			boolean replaced = false; // 每次都初始化为false
 
-			for (int i = 0; i < allTypedEdges.size(); i++) {
+			for (int i = 0; i < allTypedEdges.size(); i++) { // 新加只会新加的冲突
 				TypedEdge tmp = allTypedEdges.get(i);
-				if (tmp.getSource() == e.getSource() // below I did use replaceWith, so I use == rather than
-														// Index.equals
-						&& tmp.getType() == e.getType()) {
+				if (tmp.getSource() == e.getSource() && tmp.getType() == e.getType()) {
 
 					e.mergeIndex(tmp); // 如果不是isMany，但添加了多条边，会合并它们的索引集
 					reindexing(e);
 
-					if (replaced) { // reduce redundant
+					if (replaced) { // reduce redundant, 感觉不会有此情况
 						allTypedEdges.remove(i);
 						i--;
 						XmuCoreUtils.failure("Redundant edges " + tmp);
 					} else {
-						allTypedEdges.set(i, e);
+						allTypedEdges.set(i, e); // 设置为后来的边对象
 						replaced = true;
 					}
 				}
 			}
-			if (!replaced) { // 如果replaced是false，添加e
+			// 如果replaced是false，说明此单值边是第一次添加
+			if (!replaced) {
 				allTypedEdges.add(e);
 				indexing(e);
 			}
@@ -263,6 +323,68 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		this.incomingEdgeMap.remove(e.getTarget());
 	}
 
+	
+	// lyt: simply add
+	public void simAddValueEdge(ValueEdge e) {
+		allValueEdges.add(e);
+		indexing(e);
+	}
+	
+	// lyt: additional information: int start
+	public void addValueEdge(ValueEdge e, int start) {
+		if(e.getType().isMany()) {
+			if (e.getType().isUnique()) {
+				int i;
+				for (i = start; i < allValueEdges.size(); i++) {
+					ValueEdge tmp = allValueEdges.get(i);
+					if (tmp.getType() == e.getType() && tmp.getSource().getIndex().equals(e.getSource().getIndex())
+							&& tmp.getTarget().getIndex().equals(e.getTarget().getIndex())) {
+						e.mergeIndex(tmp);
+						reindexing(e);
+						allValueEdges.set(i, e);
+						break;
+					}
+				}
+				if(i == allValueEdges.size()) {
+					allValueEdges.add(e);
+					indexing(e);
+				}
+				
+			}else {
+				allValueEdges.add(e);
+				indexing(e);
+			}
+			
+		}else {
+			boolean replaced = false;
+			for (int i = start; i < allValueEdges.size(); i++) {
+				ValueEdge tmp = allValueEdges.get(i);
+				if (tmp.getSource() == e.getSource() && tmp.getType() == e.getType()) {
+
+					e.mergeIndex(tmp);
+					reindexing(e);
+
+					if (replaced) { // reduce redundant
+						allValueEdges.remove(i);
+						i--;
+						XmuCoreUtils.failure("Redundant edges " + tmp);
+					} else {
+						allValueEdges.set(i, e);
+						replaced = true;
+					}
+				}
+			}
+			if (!replaced) { // 如果replace还是false
+				allValueEdges.add(e);
+				indexing(e);
+			}
+		}
+		
+		this.valueEdgeMap.remove(e.getSource());
+		this.valueReferenceMap.remove(e.getTarget());
+	}
+	
+	
 	/** 在图中添加ValueEdge类型的边对象 */
 	public void addValueEdge(ValueEdge e) {
 		if (e.getType().isMany()) { // 如果e的PropertyEdge是isMany
@@ -883,7 +1005,6 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		this.allTypedEdges.replaceAll(x -> isEqual(x, er) ? e : x);
 		e.mergeIndex(er);
 		reindexing(e);
-
 	}
 
 	/** 将图中的ValueEdge边er替换为e */
@@ -894,10 +1015,9 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		reindexing(e);
 	}
 
-	
 	/** 将图中的TypedNode节点nr替换为n，注意还要考虑相邻的TypedEdge边和ValueEdge边 */
 	// lyt - default修改成了public，为了在TestLogical_2中使用
-	public  void replaceWith(TypedNode nr, TypedNode n) {
+	public void replaceWith(TypedNode nr, TypedNode n) {
 
 		// 找到图的List<TypedNode>中的nr对象，替换为n对象
 		this.allTypedNodes.replaceAll(e -> isEqual(e, nr) ? n : e);
@@ -906,9 +1026,8 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		// 更新图的indexToObjectMap
 		reindexing(n);
 
-	
 		if (nr != n) {
-			
+
 			TypeNode nodeType = n.getType();
 			// 处理相邻的TypedEdge类型的边
 			List<TypedEdge> removedTypedEdges = new ArrayList<TypedEdge>();
@@ -968,9 +1087,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 					return e;
 			});
 			this.allTypedEdges.removeAll(removedTypedEdges); // 集合操作removeAll()：A <- A-B，即从A集合中删除B集合
-			
-			
-			
+
 			// 处理相邻的ValueEdge类型的边
 			List<ValueEdge> removedValueEdges = new ArrayList<ValueEdge>();
 			this.allValueEdges.replaceAll(e -> { // 对于result图中List<ValueEdge>的每一个边e
@@ -1000,18 +1117,17 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		}
 
 	}
-	
+
 	// lyt-先替换，之后再删除相邻边
-	public  void replaceWith2(TypedNode nr, TypedNode n) {
+	public void replaceWith2(TypedNode nr, TypedNode n) {
 		// 找到图的List<TypedNode>中的nr对象，替换为n对象
 		this.allTypedNodes.replaceAll(e -> isEqual(e, nr) ? n : e);
 		// 合并索引集
 		n.mergeIndex(nr);
 		// 更新图的indexToObjectMap
 		reindexing(n);
-		
+
 	}
-	
 
 //	static public boolean isIdentifical(TypedGraph left, TypedGraph right) {
 //		return false;
@@ -1080,10 +1196,9 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		}
 	}
 
-
 	/** 在图中删除TypedNode类型的节点 */
 	public void remove(TypedNode n) {
-		
+
 		// 找到List<TypedNodes>中与索引集相交的点，删除
 		this.allTypedNodes.removeIf(x -> isEqual(x, n));
 		this.clearIndex(n);
@@ -1097,7 +1212,6 @@ public class TypedGraph extends IndexSystem implements IGraph {
 			}
 		}
 
-		
 		// 如果此节点还是某条ValueEdge类型边e的source端点，删除这条边e
 		for (int i = this.allValueEdges.size() - 1; i >= 0; i--) {
 			ValueEdge e = this.allValueEdges.get(i);
@@ -1106,18 +1220,16 @@ public class TypedGraph extends IndexSystem implements IGraph {
 				this.clearIndex(e);
 			}
 		}
-		
+
 	}
-	
-	
+
 	/** lyt-之后再删除相邻边 */
 	public void remove2(TypedNode n) {
 		// 找到List<TypedNodes>中与索引集相交的点，删除
 		this.allTypedNodes.removeIf(x -> isEqual(x, n));
 		this.clearIndex(n);
-		
+
 	}
-	
 
 	/** 删除图中的TypedEdge类型边 */
 	public void remove(TypedEdge baseEdge) {
@@ -1134,10 +1246,11 @@ public class TypedGraph extends IndexSystem implements IGraph {
 
 	/**
 	 * 再根据typedEdgeImages中的情况，确定finalEdgeInfo三元组信息
-	 * 1)返回baseEdge三元组信息：a==baseEdge并且b==baseEdge 
-	 * 2) 返回null：a==baseEdge并且b==null |a==null并且b==baseEdge | a==null并且b==null 
-	 * 3) 抛出异常：a==null并且b==imageEdge | a==imageEdge并且b==null | a==imageEdge并且b==imageEdge但不兼容 
-	 * 4) 返回imageEdge三元组信息：a==baseEdge并且b==imageEdge | a==imageEdge并且b==baseEdge |a==imageEdge并且b==imageEdge而且兼容
+	 * 1)返回baseEdge三元组信息：a==baseEdge并且b==baseEdge 2) 返回null：a==baseEdge并且b==null
+	 * |a==null并且b==baseEdge | a==null并且b==null 3) 抛出异常：a==null并且b==imageEdge |
+	 * a==imageEdge并且b==null | a==imageEdge并且b==imageEdge但不兼容 4)
+	 * 返回imageEdge三元组信息：a==baseEdge并且b==imageEdge | a==imageEdge并且b==baseEdge
+	 * |a==imageEdge并且b==imageEdge而且兼容
 	 */
 	static Tuple3<TypedNode, TypedNode, TypeEdge> computeEdge(TypedEdge baseEdge, TypedEdge[] typedEdgeImages)
 			throws NothingReturnedException {
@@ -1240,7 +1353,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		try {
 			// 在分支图中根据索引查找对应的baseNode，如果找到则赋值给imageNode
 			TypedNode imageNode = imageGraph.getElementByIndexObject(baseNode.getIndex());
-			
+
 			// 如果此节点在baseGraph和imageGraph中的类型不一致，则返回imageNode
 			if (imageNode.getType() != baseNode.getType())
 				return imageNode.getType();
@@ -1257,7 +1370,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 			return TypeNode.NULL_TYPE; // imageGraph中没有找到相应的baseNode，则返回NULL_TYPE给nodeImage[0]
 		}
 	}
-	
+
 	/** 可以省略？？ */
 	private static boolean isTouched(TypedNode imageNode, TypedGraph imageGraph, TypedNode baseNode,
 			TypedGraph baseGraph) {

@@ -1,7 +1,6 @@
 package edu.ustb.sei.mde.bxcore.tests;
 
 import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
-import edu.ustb.sei.mde.graph.type.PropertyEdge;
 import edu.ustb.sei.mde.graph.type.TypeEdge;
 import edu.ustb.sei.mde.graph.type.TypeGraph;
 import edu.ustb.sei.mde.graph.typedGraph.BXMerge;
@@ -9,19 +8,17 @@ import edu.ustb.sei.mde.graph.typedGraph.BXMerge3;
 import edu.ustb.sei.mde.graph.typedGraph.TypedEdge;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
 import edu.ustb.sei.mde.graph.typedGraph.TypedNode;
-import edu.ustb.sei.mde.graph.typedGraph.ValueEdge;
-import edu.ustb.sei.mde.graph.typedGraph.ValueNode;
 /**
- * A-B*是isMany、isUnique
- * a分支和b分支添加“同样的”边
+ * 非isMany
  * @author 10242
  *
  */
-public class TestLogical_4 {
+public class TestLogical_6 {
 
 	static TypedGraph baseGraph = null;
 	static TypedGraph aGraph = null;
 	static TypedGraph bGraph = null;
+	static TypedGraph cGraph = null;
 	static TypedGraph resultGraph = null;
 	
 	public static void main(String[] args){
@@ -29,16 +26,19 @@ public class TestLogical_4 {
 		build_baseGraph();
 		build_aGraph();
 		build_bGraph();
+		build_cGraph();
 				
 		try {
 			
-			resultGraph = BXMerge3.merge(baseGraph, aGraph, bGraph);
+			resultGraph = BXMerge3.merge(baseGraph, aGraph, bGraph, cGraph);
 			System.out.println("resultGraph: ");
 			print(resultGraph);
 						
 		} catch (NothingReturnedException e) {
 			e.printStackTrace();
 		}
+				
+		
 	}
 	
 
@@ -53,56 +53,30 @@ public class TestLogical_4 {
 		// add data type nodes
 		typeGraph.declare("String:java.lang.String");
 		// add type edges
-		typeGraph.declare("a2b:A->B*");
 		typeGraph.declare("b2c:B->C");
-		typeGraph.declare("c2d:C->D");
 		// add property edges
 		typeGraph.declare("a2S:A->String#");
-		typeGraph.declare("b2S:B->String#");
 		
 		baseGraph = new TypedGraph(typeGraph);
 		baseGraph.declare(	
-				"a1:A;"
-				+"b1:B;"
-				+"a1.a2S=\"str1\";"
-				+"a1.a2S=\"str2\";"
-				+"a1.a2S=\"str3\";");	
-		
+				 "b1:B;"
+				+"c1:C;"
+				);		
 	}
-	
-			
+				
 	private static void build_aGraph() {
 		
 		aGraph = baseGraph.getCopy();
-		
-		// a1-b1
-		TypeEdge typeEdge = aGraph.getTypeGraph().getAllTypeEdges().get(0);
-		System.out.println(typeEdge);
-		
-		TypedNode a1 = aGraph.getAllTypedNodes().get(0);
-		TypedNode b1 = aGraph.getAllTypedNodes().get(1);
-		
-		TypedEdge e1 = new TypedEdge();
-		e1.setType(typeEdge);
-		e1.setSource(a1);
-		e1.setTarget(b1);
-		aGraph.addTypedEdge(e1);
-		
-		System.out.println(e1.getType().isMany());
-		System.out.println(e1.getType().isUnique());
-		
-		// b1-str1
-		ValueNode str1 = aGraph.getAllValueNodes().get(0);
-		PropertyEdge propertyEdge = aGraph.getTypeGraph().getAllPropertyEdges().get(1);
-		ValueEdge v1 = new ValueEdge();
-		v1.setType(propertyEdge);
-		v1.setSource(b1);
-		v1.setTarget(str1);
-		aGraph.addValueEdge(v1);
-		
-		System.out.println(v1.getType().isMany());
-		System.out.println(v1.getType().isUnique());
-		
+
+		TypedEdge e = new TypedEdge();
+		TypedNode source = aGraph.getAllTypedNodes().get(0);
+		TypedNode target = aGraph.getAllTypedNodes().get(1);
+		TypeEdge type = aGraph.getTypeGraph().getAllTypeEdges().get(0);
+		e.setSource(source);
+		e.setTarget(target);
+		e.setType(type);
+		aGraph.addTypedEdge(e);
+				
 		System.out.println("aGraph: ");
 		print(aGraph);
 		
@@ -112,39 +86,47 @@ public class TestLogical_4 {
 		
 		bGraph = baseGraph.getCopy();
 		
-		// a1-b1
-		TypeEdge typeEdge = bGraph.getTypeGraph().getAllTypeEdges().get(0);
-		System.out.println(typeEdge);
+		bGraph.declare(	
+				"c2:C;"
+				);
 		
-		TypedNode a1 = bGraph.getAllTypedNodes().get(0);
-		TypedNode b1 = bGraph.getAllTypedNodes().get(1);
-		
-		TypedEdge e1 = new TypedEdge();
-		e1.setType(typeEdge);
-		e1.setSource(a1);
-		e1.setTarget(b1);
-		
-		bGraph.addTypedEdge(e1);
-		
-		// b1-str1
-		ValueNode str1 = bGraph.getAllValueNodes().get(0);
-		PropertyEdge propertyEdge = bGraph.getTypeGraph().getAllPropertyEdges().get(1);
-		ValueEdge v1 = new ValueEdge();
-		v1.setType(propertyEdge);
-		v1.setSource(b1);
-		v1.setTarget(str1);
-		bGraph.addValueEdge(v1);
-		
-		System.out.println(v1.getType().isMany());
-		System.out.println(v1.getType().isUnique());
+		TypedEdge e = new TypedEdge();
+		TypedNode source = bGraph.getAllTypedNodes().get(0);
+		TypedNode target = bGraph.getAllTypedNodes().get(2);
+		TypeEdge type = bGraph.getTypeGraph().getAllTypeEdges().get(0);
+		e.setSource(source);
+		e.setTarget(target);
+		e.setType(type);
+		bGraph.addTypedEdge(e);
 		
 		System.out.println("bGraph: ");
 		print(bGraph);
+
+	}
+	
+	private static void build_cGraph() {
 		
+		cGraph = baseGraph.getCopy();
+		
+		cGraph.declare(	
+				"c3:C;"
+				);
+		
+		TypedEdge e = new TypedEdge();
+		TypedNode source = cGraph.getAllTypedNodes().get(0);
+		TypedNode target = cGraph.getAllTypedNodes().get(2);
+		TypeEdge type = cGraph.getTypeGraph().getAllTypeEdges().get(0);
+		e.setSource(source);
+		e.setTarget(target);
+		e.setType(type);
+		cGraph.addTypedEdge(e);
+		
+		System.out.println("cGraph: ");
+		print(cGraph);
+
 	}
 	
 	private static void print(TypedGraph typedGraph) {
-		
 		System.out.println("TypedNodes: " + typedGraph.getAllTypedNodes().toString());
 		System.out.println("ValueNodes: " + typedGraph.getAllValueNodes().toString());
 		System.out.println("TypedEdges: " + typedGraph.getAllTypedEdges().toString());

@@ -35,12 +35,15 @@ public class BXMerge {
 		// result图为基本图的复制
 		TypedGraph result = first.getCopy();
 
+		long start = System.currentTimeMillis();
 		// 对于第二个图graph中的新添加的ValueNode类型的节点n，直接扔到result图中
 		graph.getAllValueNodes().forEach(n -> {
 			result.addValueNode(n);
 		});
+		System.out.println("串行ValueNodes：" + (System.currentTimeMillis() - start));
 
 		// 对于第二个图graph中的每个TypedNode类型的节点n
+		start = System.currentTimeMillis();
 		graph.getAllTypedNodes().forEach(n -> {
 			try {
 				// 根据n的索引查找result图中是否有相应的对象，如果找到则将其赋值给nr
@@ -55,8 +58,11 @@ public class BXMerge {
 				result.addTypedNode(n);
 			}
 		});
+		System.out.println("串行TypedNodes: " + (System.currentTimeMillis() - start));
+		
 
 		// 对于第二个图graph中每个TypedEdge类型的边e
+		start = System.currentTimeMillis();
 		graph.getAllTypedEdges().forEach(e -> {
 			try {
 				// 根据e的索引，查找result图中的TypedEdge类型的边，如果找到则赋值给er
@@ -70,8 +76,11 @@ public class BXMerge {
 				result.addTypedEdge(e);
 			}
 		});
+		System.out.println("串行TypedEdges: " + (System.currentTimeMillis() - start));
+		
 
 		// 对于第二个图graph中每个ValueEdge类型的边e
+		start = System.currentTimeMillis();
 		graph.getAllValueEdges().forEach(e -> {
 			try {
 				// 根据e的索引，查找result图中的边，如果找到则赋值给er
@@ -85,10 +94,10 @@ public class BXMerge {
 				result.addValueEdge(e);
 			}
 		});
+		System.out.println("串行ValueEdges: " + (System.currentTimeMillis() - start));
 
-		result.order.merge(graph.order);
-
-		result.constraint = GraphConstraint.and(first.constraint, graph.constraint);
+//		result.order.merge(graph.order);
+//		result.constraint = GraphConstraint.and(first.constraint, graph.constraint);
 
 		return result;
 	}
