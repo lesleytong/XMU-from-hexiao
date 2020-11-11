@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Set;
 import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
 import edu.ustb.sei.mde.graph.type.TypeGraph;
-import edu.ustb.sei.mde.graph.typedGraph.BXMerge3;
 import edu.ustb.sei.mde.graph.typedGraph.TypedEdge;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
 import edu.ustb.sei.mde.structure.Tuple2;
@@ -30,20 +29,6 @@ public class TestThreeOrder_1 {
 		build_aGraph();
 		build_bGraph();
 
-		try {
-			resultGraph = BXMerge3.merge_Con(baseGraph, aGraph, bGraph);
-			System.out.println("resultGraph: ");
-			print(resultGraph);
-
-			HashMap<TypedEdge, TypedEdge> forceOrd = BXMerge3.checkForceOrd(resultGraph, orders);
-
-			System.out.println("###############################序处理##################################");
-			List<TypedEdge> merge = BXMerge3.threeOrder(baseGraph, resultGraph, forceOrd, aGraph, bGraph);
-			System.out.println("处理完序后，merge: " + merge);
-
-		} catch (NothingReturnedException e) {
-			e.printStackTrace();
-		}
 
 	}
 

@@ -12,9 +12,6 @@ public class TypeNode implements ITypeNode {
 	
 	private TypeGraph typeGraph;
 	
-	// lyt
-	private ConcurrentTypeGraph concurrentTypeGraph;
-	
 	static {
 		NULL_TYPE = new TypeNode();
 		NULL_TYPE.setName("BOTTOM");
@@ -48,18 +45,6 @@ public class TypeNode implements ITypeNode {
 	
 	public void setTypeGraph(TypeGraph typeGraph) {
 		this.typeGraph = typeGraph;
-	}
-	
-	// lyt
-	@Override
-	public ConcurrentTypeGraph getConcurrentTypeGraph() {
-		return concurrentTypeGraph;
-	}
-
-	// lyt
-	@Override
-	public void setConcurrentTypeGraph(ConcurrentTypeGraph g) {
-		this.concurrentTypeGraph = g;
 	}
 
 	public String toString() {

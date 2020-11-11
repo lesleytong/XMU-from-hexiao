@@ -107,7 +107,6 @@ public class BXMerge {
 
 		TypedGraph result = first.getCopy();
 
-		Profiler.begin();
 		// 新加TypedNodes
 		for (TypedGraph image : interSources) {
 			for (TypedNode n : image.allTypedNodes) { // 对于分支图中每个TypedNode类型的节点n
@@ -141,22 +140,18 @@ public class BXMerge {
 				}
 			}
 		}
-		System.out.println("*******串行新加TypedNodes：" + Profiler.end() + "ms");
 
 		
 		
-		Profiler.begin();
 		// 新加ValueNodes
 		for (TypedGraph image : interSources) {
 			image.allValueNodes.forEach(v -> {
 				result.addValueNode(v);
 			});
 		}
-		System.out.println("*******串行新加ValueNodes：" + Profiler.end() + "ms");
 
 		
 		
-		Profiler.begin();
 		// 删除和修改TypedEdges
 		TypedEdge[] typedEdgeImages = new TypedEdge[interSources.length];
 		for (TypedEdge baseEdge : first.allTypedEdges) { // 对于基本图中每一个TypedEdge类型的边baseEdge
@@ -192,11 +187,9 @@ public class BXMerge {
 				throw e; // 捕捉到异常后抛出
 			}
 		}
-		System.out.println("*******串行删除和修改TypedEdges：" + Profiler.end() + "ms");
 		
 		
 
-		Profiler.begin();
 		// 删除和修改ValueEdges
 		ValueEdge[] valueEdgeImages = new ValueEdge[interSources.length];
 		for (ValueEdge baseEdge : first.allValueEdges) { // 对于基本图中每一个条ValueEdge类型的边
@@ -231,11 +224,9 @@ public class BXMerge {
 				throw e;
 			}
 		}
-		System.out.println("*******串行删除和修改ValueEdges：" + Profiler.end() + "ms");
 
 		
 		
-		Profiler.begin();
 		// 删除和修改TypedNodes
 		TypeNode[] nodeImages = new TypeNode[interSources.length]; // 比如length=2
 		for (TypedNode baseNode : first.allTypedNodes) { // 对于基本图中每一个TypedNode节点
@@ -271,10 +262,8 @@ public class BXMerge {
 				throw e; // 捕捉到异常后抛出
 			}
 		}
-		System.out.println("*******串行删除和修改TypedNodes，并处理相邻的TypedEdges边和ValueEdges边：" + Profiler.end() + "ms");
 		
 
-		Profiler.begin();
 		// 新加TypedEdges
 		for (TypedGraph image : interSources) {
 			for (TypedEdge e : image.allTypedEdges) { // 对于分支图中每一个TypedEdge边e
@@ -320,11 +309,8 @@ public class BXMerge {
 				}
 			}
 		}
-		System.out.println("*******串行新加TypedEdges：" + Profiler.end() + "ms");
-
 		
 		
-		Profiler.begin();
 		// 新加ValueEdges
 		for (TypedGraph image : interSources) {
 			// 新加入的ValueEdge
@@ -369,7 +355,6 @@ public class BXMerge {
 				}
 			}
 		}
-		System.out.println("*******串行新加ValueEdges：" + Profiler.end() + "ms");
 
 		
 		

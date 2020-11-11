@@ -1,6 +1,7 @@
 package edu.ustb.sei.mde.bxcore.tests;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
@@ -100,7 +101,7 @@ public class Test_1 {
 		aGraph.addValueNode(vn4);
 		
 		// ÐÞ¸Äve1µÄtargetÎª"hello"
-		ValueEdge ve1 = aGraph.getAllValueEdges().get(0);
+		ValueEdge ve1 = aGraph.getAllValueEdges().get(0); 
 		ValueEdge ve = new ValueEdge();
 		ve.setType(ve1.getType());
 		ve.setSource(ve1.getSource());

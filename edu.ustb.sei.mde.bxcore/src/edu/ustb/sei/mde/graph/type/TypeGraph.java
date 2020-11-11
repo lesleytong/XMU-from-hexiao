@@ -14,7 +14,6 @@ import edu.ustb.sei.mde.graph.Derived;
 import edu.ustb.sei.mde.graph.IEdge;
 import edu.ustb.sei.mde.graph.IGraph;
 import edu.ustb.sei.mde.graph.INode;
-import edu.ustb.sei.mde.graph.typedGraph.ConcurrentTypedGraph;
 
 public class TypeGraph implements IGraph {
 

@@ -4,7 +4,6 @@ import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
 import edu.ustb.sei.mde.graph.type.TypeGraph;
 import edu.ustb.sei.mde.graph.typedGraph.BXMerge;
 import edu.ustb.sei.mde.graph.typedGraph.GraphChangeTool;
-import edu.ustb.sei.mde.graph.typedGraph.GraphChangeTool_Con;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
 import edu.ustb.sei.mde.graph.typedGraph.Profiler;
 import edu.ustb.sei.mde.graph.typedGraph.Profiler2;

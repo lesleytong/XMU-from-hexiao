@@ -35,13 +35,11 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import edu.ustb.sei.mde.bxcore.XmuCoreUtils;
 import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
 import edu.ustb.sei.mde.bxcore.structures.Index;
-import edu.ustb.sei.mde.graph.type.ConcurrentTypeGraph;
 import edu.ustb.sei.mde.graph.type.DataTypeNode;
 import edu.ustb.sei.mde.graph.type.PropertyEdge;
 import edu.ustb.sei.mde.graph.type.TypeEdge;
 import edu.ustb.sei.mde.graph.type.TypeGraph;
 import edu.ustb.sei.mde.graph.type.TypeNode;
-import edu.ustb.sei.mde.graph.typedGraph.ConcurrentTypedGraph;
 import edu.ustb.sei.mde.graph.typedGraph.TypedEdge;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
 import edu.ustb.sei.mde.graph.typedGraph.TypedNode;
@@ -135,16 +133,6 @@ public class EcoreModelUtil {
 		return graph;
 	}
 	
-	// lyt-为了在runtime时使用支持并发的图
-	static public ConcurrentTypedGraph load2(List<EObject> roots, ConcurrentTypeGraph typeGraph) {
-		Map<EObject, TypedNode> nodeMap = new ConcurrentHashMap<>();
-		ConcurrentTypedGraph graph = new ConcurrentTypedGraph(typeGraph);
-		roots.forEach(root->addTypedNode(root, typeGraph, nodeMap, graph));
-		roots.forEach(root->root.eAllContents().forEachRemaining(o->addTypedNode(o, typeGraph, nodeMap, graph)));
-		roots.forEach(root->addTypedEdges(root, typeGraph, nodeMap, graph));
-		return graph;
-	}
-	
 	static public void save(URI uri, TypedGraph graph, TypedGraph originalGraph, EPackage pack) {
 		Collection<EObject> roots = save(graph, originalGraph, pack);
 		
@@ -159,23 +147,6 @@ public class EcoreModelUtil {
 			e.printStackTrace();
 		}
 	}
-	
-	// lyt-runtime
-	static public void save(URI uri, ConcurrentTypedGraph graph, ConcurrentTypedGraph originalGraph, EPackage pack) {
-		Collection<EObject> roots = save(graph, originalGraph, pack);
-		
-		Resource resource = privateResourceSet.createResource(uri);
-		resource.getContents().addAll(roots);
-		
-		Map<String, Object> map = new ConcurrentHashMap<>();
-		map.put(XMIResource.OPTION_SCHEMA_LOCATION, true);
-		try {
-			resource.save(map);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
 	
 	static public Collection<EObject> save(TypedGraph graph, TypedGraph originalGraph, EPackage pack) {
 		Map<TypedNode, EObject> nodeMap = new HashMap<>();
@@ -289,119 +260,6 @@ public class EcoreModelUtil {
 	}
 	
 	
-	// lyt-runtime
-	static public Collection<EObject> save(ConcurrentTypedGraph graph, ConcurrentTypedGraph originalGraph, EPackage pack) {
-		Map<TypedNode, EObject> nodeMap = new ConcurrentHashMap<>();
-		
-		Map<String, EClass> eclasses = new ConcurrentHashMap<>();
-		Map<String, EDataType> edatatypes = new ConcurrentHashMap<>();
-
-		pack.eAllContents().forEachRemaining(o->{
-			if(o instanceof EClass) eclasses.put(((EClass)o).getName(), (EClass)o);
-			else if(o instanceof EReference) {
-				eclasses.put(((EReference)o).getEReferenceType().getName(),((EReference)o).getEReferenceType());
-			}
-			else if(o instanceof EDataType) edatatypes.put(((EDataType)o).getName(), (EDataType)o);
-			else if(o instanceof EAttribute) {
-				edatatypes.put(((EAttribute)o).getEAttributeType().getName(), ((EAttribute)o).getEAttributeType());
-			}
-		});
-		
-		try {
-			graph.enforceOrder();
-		} catch (NothingReturnedException e1) {
-			e1.printStackTrace();
-			return Collections.emptyList();
-		}
-		
-		graph.getAllTypedNodes().forEach(n->{
-			EClass tc = eclasses.get(n.getType().getName());
-			EObject obj = EcoreUtil.create(tc);
-			nodeMap.put(n, obj);
-			
-			tc.getEAllAttributes().forEach(a->{
-				if(a.isChangeable()==false || a.isDerived() || a.isTransient()) return;
-				
-				PropertyEdge edge = graph.getConcurrentTypeGraph().getPropertyEdge(n.getType(), a.getName());
-				
-				if(a.isMany()) {
-					List<Object> values = new CopyOnWriteArrayList<>();
-					if(a.getEAttributeType() instanceof EEnum) {
-						graph.getValueEdges(n, edge).forEach(l->{
-							values.add(EcoreUtil.createFromString(a.getEAttributeType(), l.getTarget().getValue().toString()));
-						});
-					} else {
-						graph.getValueEdges(n, edge).forEach(l->{
-							values.add(l.getTarget().getValue());
-						});
-					}
-					obj.eSet(a, values);
-				} else {
-					List<ValueEdge> values = graph.getValueEdges(n, edge);
-					if(values.isEmpty()==false) {
-						Object value = values.get(0).getTarget().getValue();
-						if(a.getEAttributeType() instanceof EEnum) {
-							if(value!=null) value = EcoreUtil.createFromString(a.getEAttributeType(), value.toString());
-						}
-						obj.eSet(a, value);
-					} else {
-						// currently, we do not set default value
-//						if(a.isChangeable())
-//							obj.eSet(a, );
-					}
-					
-				}
-			});
-		});
-		
-		graph.getAllTypedNodes().forEach(n->{
-			EClass tc = eclasses.get(n.getType().getName());
-			EObject src = nodeMap.get(n);
-			tc.getEAllReferences().forEach(r->{
-				if(r.isChangeable()==false || r.isDerived() || r.isTransient()) return;
-				
-				TypeEdge edge = graph.getConcurrentTypeGraph().getTypeEdge(n.getType(), r.getName());
-				if(r.isMany()) {
-					List<EObject> values = new CopyOnWriteArrayList<>();
-					graph.getOutgoingEdges(n, edge).forEach(l->{
-						values.add(nodeMap.get(l.getTarget()));
-					});
-					src.eSet(r, values);
-				} else {
-					List<TypedEdge> values = graph.getOutgoingEdges(n, edge);
-					if(values.isEmpty()==false) {
-						EObject tar = nodeMap.get(values.get(0).getTarget());
-						src.eSet(r, tar);
-					}
-				}
-			});
-		});
-		
-		// lyt-不知道stream的toList能实现CopyOnWriteArrayList吗？这里的List需要转换吗？
-		List<EObject> roots = nodeMap.values().stream().filter(n->n.eContainer()==null).collect(Collectors.toList());
-		
-		if(roots.size()!=1 && originalGraph!=null)
-			roots = nodeMap.entrySet().stream().filter(entry->{
-				Index ind = entry.getKey().getIndex();
-				TypedNode oldNode = null;
-				try {
-					oldNode = originalGraph.getElementByIndexObject(ind);
-				} catch (NothingReturnedException e) {
-					oldNode = null;
-				}
-				
-				boolean oldRoot = oldNode==null || originalGraph.getIncomingEdges(oldNode).stream().allMatch(l->{
-					EClass sc = eclasses.get(l.getSource().getType().getName());
-					EStructuralFeature feature = sc.getEStructuralFeature(l.getType().getName());
-					return feature instanceof EAttribute || !((EReference)feature).isContainment();
-				});
-				
-				return entry.getValue().eContainer()==null && oldRoot;
-			}).map(entry->entry.getValue()).collect(Collectors.toList());
-		
-		return roots;
-	}
-
 	@SuppressWarnings("unchecked")
 	private static void addTypedEdges(EObject root, TypeGraph typeGraph, Map<EObject, TypedNode> nodeMap,
 			TypedGraph graph) {
@@ -441,90 +299,8 @@ public class EcoreModelUtil {
 	}
 	
 	
-	// lyt-为了能在运行时能用ConcurrentTypedGraph
-	@SuppressWarnings("unchecked")
-	private static void addTypedEdges(EObject root, ConcurrentTypeGraph typeGraph, Map<EObject, TypedNode> nodeMap,
-			ConcurrentTypedGraph graph) {
-		EClass cls = root.eClass();
-		TypeNode tn = typeGraph.getTypeNode(cls.getName());
-		
-		cls.getEAllReferences().forEach(r->{
-			TypeEdge typeEdge = typeGraph.getTypeEdge(tn, r.getName());
-			if(r.isMany()) {
-				Collection<EObject> targets = (Collection<EObject>) root.eGet(r);
-				targets.forEach(t->{
-					TypedNode targetNode = nodeMap.get(t);
-					if(targetNode==null) {
-						XmuCoreUtils.log(Level.WARNING, "The target node is not registered. The loader will ignore this edge: "+r, null);
-					} else {
-						TypedEdge edge = new TypedEdge(nodeMap.get(root), targetNode, typeEdge);
-						graph.addTypedEdge(edge);
-						if(r.isContainment())
-							addTypedEdges(t, typeGraph, nodeMap, graph);
-					}
-				});
-			} else {
-				EObject t = (EObject) root.eGet(r);
-				if(t!=null) {
-					TypedNode targetNode = nodeMap.get(t);
-					if(targetNode==null) {
-						XmuCoreUtils.log(Level.WARNING, "The target node is not registered. The loader will ignore this edge: "+r, null);
-					} else {
-						TypedEdge edge = new TypedEdge(nodeMap.get(root), targetNode, typeEdge);
-						graph.addTypedEdge(edge);
-						if(r.isContainment())
-							addTypedEdges(t, typeGraph, nodeMap, graph);
-					}
-				}
-			}
-		});
-	}
-
 	private static void addTypedNode(EObject node, TypeGraph typeGraph, Map<EObject, TypedNode> nodeMap,
 			TypedGraph graph) {
-		
-		TypeNode typeNode = typeGraph.getTypeNode(node.eClass().getName());
-		TypedNode rootNode = new TypedNode(typeNode);
-		graph.addTypedNode(rootNode);
-		nodeMap.put(node, rootNode);
-		
-		EClass cls = node.eClass();
-		cls.getEAllAttributes().forEach(a->{
-			DataTypeNode dataTypeNode = typeGraph.getDataTypeNode(a.getEAttributeType().getName());
-			PropertyEdge propertyEdge = typeGraph.getPropertyEdge(typeNode, a.getName());
-
-			if(a.isMany()) {
-				@SuppressWarnings("unchecked")
-				Collection<Object> values = (Collection<Object>) node.eGet(a);
-				values.forEach(v->{
-					if(a.getEAttributeType() instanceof EEnum) {
-						if(v instanceof Enumerator) v = ((Enumerator) v).getLiteral();
-						else v = v.toString();
-					}
-					
-					ValueNode vn = ValueNode.createConstantNode(v, dataTypeNode);
-					graph.addValueNode(vn);
-					graph.addValueEdge(new ValueEdge(rootNode, vn, propertyEdge));
-				});
-			} else {
-				Object v = node.eGet(a);
-				if(v!=null) {
-					if(a.getEAttributeType() instanceof EEnum) {
-						if(v instanceof Enumerator) v = ((Enumerator) v).getLiteral();
-						else v = v.toString();
-					}
-					ValueNode vn = ValueNode.createConstantNode(v, dataTypeNode);
-					graph.addValueNode(vn);
-					graph.addValueEdge(new ValueEdge(rootNode, vn, propertyEdge));
-				}
-				
-			}
-		});
-	}
-	
-	// lyt-为了在运行能用ConcurrentTypedGraph
-	private static void addTypedNode(EObject node, ConcurrentTypeGraph typeGraph, Map<EObject, TypedNode> nodeMap,
-			ConcurrentTypedGraph graph) {
 		
 		TypeNode typeNode = typeGraph.getTypeNode(node.eClass().getName());
 		TypedNode rootNode = new TypedNode(typeNode);

@@ -243,7 +243,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 
 			boolean replaced = false; // 每次都初始化为false
 
-			for (int i = start; i < allTypedEdges.size(); i++) { // 新加只会与新加的冲突
+			for (int i = start; i < allTypedEdges.size(); i++) { // 新加只会与新加的冲突，start的作用
 				TypedEdge tmp = allTypedEdges.get(i);
 				if (tmp.getSource() == e.getSource() && tmp.getType() == e.getType()) {
 
@@ -693,7 +693,8 @@ public class TypedGraph extends IndexSystem implements IGraph {
 	public TypedGraph getCopy() {
 
 		TypedGraph copy = new TypedGraph(this.typeGraph);
-		// addAll(c: Collection<? extends E>): boolean 将集合c中的所有元素添加到该集合中。引用类型就复制对象的引用
+		// addAll(c: Collection<? extends E>): boolean 将集合c中的所有元素添加到该集合中。引用类型就复制对象的引用	
+		
 		copy.getAllTypedNodes().addAll(this.getAllTypedNodes());
 		copy.getAllValueNodes().addAll(this.getAllValueNodes());
 		copy.getAllTypedEdges().addAll(this.getAllTypedEdges());
@@ -703,7 +704,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 
 		copy.order = this.order.getCopy();
 
-		copy.constraint = this.constraint;
+		copy.constraint = this.constraint;		
 
 		return copy;
 	}

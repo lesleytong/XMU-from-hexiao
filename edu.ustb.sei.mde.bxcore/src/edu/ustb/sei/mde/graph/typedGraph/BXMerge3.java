@@ -651,7 +651,7 @@ public class BXMerge3 {
 							edge.mergeIndex(image.getElementByIndexObject(baseEdge.getIndex()));
 						}
 						start = System.currentTimeMillis();
-						// simply add: 1) edge exists in all versions 2) edge in all branch versions is syntactically right.
+						// simply add: 1) edge exists in all versions 2) edge in all branch versions is syntactically correct.
 						resultGraph.simAddTypedEdge(edge);
 						array[2] += System.currentTimeMillis() - start;
 					}
@@ -860,7 +860,7 @@ public class BXMerge3 {
 		long end = System.currentTimeMillis();
 		System.out.println("*******parallelStream新加TypedNodes：" + (end - start) + "ms");
 		
-		// 新加ValueNodes
+		// 基础图原有的、分支图新加的ValueNodes
 		start = System.currentTimeMillis();
 		baseGraph.allValueNodes.parallelStream().forEach(v -> {
 			resultGraph.addValueNode(v);
@@ -887,7 +887,7 @@ public class BXMerge3 {
 			}
 	
 			for (int i = 0; i < interSources.length; i++) {
-				// 两个分支图先分别和基本图作比较，baseNode的情况分别存储在nodeImages[i]中。可能是NULL、ANY、修改后的类型
+				// 多个分支图先分别和基本图作比较，baseNode的情况分别存储在nodeImages[i]中。可能是NULL、ANY、修改后的类型
 				nodeImages[i] = TypedGraph.computeImage(baseNode, baseGraph, interSources[i]);
 			}
 	
@@ -1041,7 +1041,7 @@ public class BXMerge3 {
 							ne.setTarget(target);
 							ne.setType(e.getType());
 							ne.mergeIndex(e);
-							resultGraph.addTypedEdge(ne, typedEdgeSize);
+							resultGraph.addTypedEdge(ne, typedEdgeSize);	// 新加时，就不是simplyAdd了
 							
 						} else // 说明e的source和target是在分支图中新添加的TypedNode类型节点，所以在分支图和result图中是同一对象
 							resultGraph.addTypedEdge(e, typedEdgeSize);

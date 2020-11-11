@@ -10,7 +10,7 @@ public class ValueNode  extends IndexableElement implements ITypedNode {
 //	private final Object value;
 	private Object value;
 	private final DataTypeNode type;	//type «DataTypeNode
-	
+		
 	static final public ValueNode NULL = new ValueNode(null,DataTypeNode.NULL_TYPE);
 	
 	static final private HashMap<Object,HashMap<DataTypeNode,ValueNode>> constants = new HashMap<Object,HashMap<DataTypeNode,ValueNode>>();

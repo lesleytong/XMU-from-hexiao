@@ -337,50 +337,6 @@ public class UML2RDBMS2 extends XmuProgram {
   }
   
   /**
-   * id:1
-   */
-  private ContextType type_1;
-  
-  public ContextType getType_1() {
-    if(type_1==null) {
-    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Rdbms();
-    	type_1 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
-    	edu.ustb.sei.mde.graph.type.IType m_type = typeGraph.getTypeNode("RDBMSModel")
-    	;
-    	type_1.addField("m", m_type, false);
-    }
-    return type_1;
-  }
-  
-  /**
-   * id:7
-   */
-  private ContextType type_7;
-  
-  public ContextType getType_7() {
-    if(type_7==null) {
-    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Rdbms();
-    	type_7 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
-    	edu.ustb.sei.mde.graph.type.IType ln_type = typeGraph.getPropertyEdge(typeGraph.getTypeNode("NamedElement"),"name")
-    	;
-    	type_7.addField("ln", ln_type, false);
-    	edu.ustb.sei.mde.graph.type.IType lt_type = typeGraph.getTypeEdge(typeGraph.getTypeNode("Schema"),"tables")
-    	;
-    	type_7.addField("lt", lt_type, false);
-    	edu.ustb.sei.mde.graph.type.IType n_type = typeGraph.getDataTypeNode("EString")
-    	;
-    	type_7.addField("n", n_type, false);
-    	edu.ustb.sei.mde.graph.type.IType s_type = typeGraph.getTypeNode("Schema")
-    	;
-    	type_7.addField("s", s_type, false);
-    	edu.ustb.sei.mde.graph.type.IType t_type = typeGraph.getTypeNode("Table")
-    	;
-    	type_7.addField("t", t_type, false);
-    }
-    return type_7;
-  }
-  
-  /**
    * id:14
    */
   private ContextType type_14;
@@ -415,50 +371,6 @@ public class UML2RDBMS2 extends XmuProgram {
   }
   
   /**
-   * id:2
-   */
-  private ContextType type_2;
-  
-  public ContextType getType_2() {
-    if(type_2==null) {
-    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Uml();
-    	type_2 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
-    	edu.ustb.sei.mde.graph.type.IType ln_type = typeGraph.getPropertyEdge(typeGraph.getTypeNode("NamedElement"),"name")
-    	;
-    	type_2.addField("ln", ln_type, false);
-    	edu.ustb.sei.mde.graph.type.IType lp_type = typeGraph.getTypeEdge(typeGraph.getTypeNode("ClassModel"),"packages")
-    	;
-    	type_2.addField("lp", lp_type, false);
-    	edu.ustb.sei.mde.graph.type.IType m_type = typeGraph.getTypeNode("ClassModel")
-    	;
-    	type_2.addField("m", m_type, false);
-    	edu.ustb.sei.mde.graph.type.IType n_type = typeGraph.getDataTypeNode("EString")
-    	;
-    	type_2.addField("n", n_type, false);
-    	edu.ustb.sei.mde.graph.type.IType p_type = typeGraph.getTypeNode("Package")
-    	;
-    	type_2.addField("p", p_type, false);
-    }
-    return type_2;
-  }
-  
-  /**
-   * id:4
-   */
-  private ContextType type_4;
-  
-  public ContextType getType_4() {
-    if(type_4==null) {
-    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Uml();
-    	type_4 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
-    	edu.ustb.sei.mde.graph.type.IType c_type = typeGraph.getTypeNode("Class")
-    	;
-    	type_4.addField("c", c_type, false);
-    }
-    return type_4;
-  }
-  
-  /**
    * id:9
    */
   private ContextType type_9;
@@ -484,6 +396,56 @@ public class UML2RDBMS2 extends XmuProgram {
     	type_9.addField("t", t_type, false);
     }
     return type_9;
+  }
+  
+  /**
+   * id:10
+   */
+  private ContextType type_10;
+  
+  public ContextType getType_10() {
+    if(type_10==null) {
+    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Uml();
+    	type_10 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
+    	edu.ustb.sei.mde.graph.type.IType c_type = typeGraph.getTypeNode("Class")
+    	;
+    	type_10.addField("c", c_type, false);
+    	edu.ustb.sei.mde.graph.type.IType ls_type = typeGraph.getTypeEdge(typeGraph.getTypeNode("Class"),"super")
+    	;
+    	type_10.addField("ls", ls_type, false);
+    	edu.ustb.sei.mde.graph.type.IType sc_type = typeGraph.getTypeNode("Class")
+    	;
+    	type_10.addField("sc", sc_type, false);
+    }
+    return type_10;
+  }
+  
+  /**
+   * id:7
+   */
+  private ContextType type_7;
+  
+  public ContextType getType_7() {
+    if(type_7==null) {
+    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Rdbms();
+    	type_7 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
+    	edu.ustb.sei.mde.graph.type.IType ln_type = typeGraph.getPropertyEdge(typeGraph.getTypeNode("NamedElement"),"name")
+    	;
+    	type_7.addField("ln", ln_type, false);
+    	edu.ustb.sei.mde.graph.type.IType lt_type = typeGraph.getTypeEdge(typeGraph.getTypeNode("Schema"),"tables")
+    	;
+    	type_7.addField("lt", lt_type, false);
+    	edu.ustb.sei.mde.graph.type.IType n_type = typeGraph.getDataTypeNode("EString")
+    	;
+    	type_7.addField("n", n_type, false);
+    	edu.ustb.sei.mde.graph.type.IType s_type = typeGraph.getTypeNode("Schema")
+    	;
+    	type_7.addField("s", s_type, false);
+    	edu.ustb.sei.mde.graph.type.IType t_type = typeGraph.getTypeNode("Table")
+    	;
+    	type_7.addField("t", t_type, false);
+    }
+    return type_7;
   }
   
   /**
@@ -515,44 +477,47 @@ public class UML2RDBMS2 extends XmuProgram {
   }
   
   /**
-   * id:15
+   * id:8
    */
-  private ContextType type_15;
+  private ContextType type_8;
   
-  public ContextType getType_15() {
-    if(type_15==null) {
+  public ContextType getType_8() {
+    if(type_8==null) {
     	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Uml();
-    	type_15 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
-    	edu.ustb.sei.mde.graph.type.IType cc_type = typeGraph.getTypeNode("Class")
+    	type_8 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
+    	edu.ustb.sei.mde.graph.type.IType a_type = typeGraph.getTypeNode("Attribute")
     	;
-    	type_15.addField("cc", cc_type, false);
-    	edu.ustb.sei.mde.graph.type.IType ls_type = typeGraph.getTypeEdge(typeGraph.getTypeNode("Class"),"super")
+    	type_8.addField("a", a_type, false);
+    	edu.ustb.sei.mde.graph.type.IType c_type = typeGraph.getTypeNode("Class")
     	;
-    	type_15.addField("ls", ls_type, false);
-    	edu.ustb.sei.mde.graph.type.IType oc_type = typeGraph.getTypeNode("Class")
+    	type_8.addField("c", c_type, false);
+    	edu.ustb.sei.mde.graph.type.IType la_type = typeGraph.getTypeEdge(typeGraph.getTypeNode("Class"),"attributes")
     	;
-    	type_15.addField("oc", oc_type, false);
-    	edu.ustb.sei.mde.graph.type.IType sc_type = typeGraph.getTypeNode("Class")
+    	type_8.addField("la", la_type, false);
+    	edu.ustb.sei.mde.graph.type.IType ln_type = typeGraph.getPropertyEdge(typeGraph.getTypeNode("NamedElement"),"name")
     	;
-    	type_15.addField("sc", sc_type, false);
+    	type_8.addField("ln", ln_type, false);
+    	edu.ustb.sei.mde.graph.type.IType n_type = typeGraph.getDataTypeNode("EString")
+    	;
+    	type_8.addField("n", n_type, false);
     }
-    return type_15;
+    return type_8;
   }
   
   /**
-   * id:0
+   * id:5
    */
-  private ContextType type_0;
+  private ContextType type_5;
   
-  public ContextType getType_0() {
-    if(type_0==null) {
-    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Uml();
-    	type_0 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
-    	edu.ustb.sei.mde.graph.type.IType m_type = typeGraph.getTypeNode("ClassModel")
+  public ContextType getType_5() {
+    if(type_5==null) {
+    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Rdbms();
+    	type_5 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
+    	edu.ustb.sei.mde.graph.type.IType t_type = typeGraph.getTypeNode("Table")
     	;
-    	type_0.addField("m", m_type, false);
+    	type_5.addField("t", t_type, false);
     }
-    return type_0;
+    return type_5;
   }
   
   /**
@@ -572,19 +537,35 @@ public class UML2RDBMS2 extends XmuProgram {
   }
   
   /**
-   * id:5
+   * id:13
    */
-  private ContextType type_5;
+  private ContextType type_13;
   
-  public ContextType getType_5() {
-    if(type_5==null) {
-    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Rdbms();
-    	type_5 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
-    	edu.ustb.sei.mde.graph.type.IType t_type = typeGraph.getTypeNode("Table")
+  public ContextType getType_13() {
+    if(type_13==null) {
+    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Uml();
+    	type_13 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
+    	edu.ustb.sei.mde.graph.type.IType prefix_type = typeGraph.getDataTypeNode("EString")
     	;
-    	type_5.addField("t", t_type, false);
+    	type_13.addField("prefix", prefix_type, false);
     }
-    return type_5;
+    return type_13;
+  }
+  
+  /**
+   * id:0
+   */
+  private ContextType type_0;
+  
+  public ContextType getType_0() {
+    if(type_0==null) {
+    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Uml();
+    	type_0 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
+    	edu.ustb.sei.mde.graph.type.IType m_type = typeGraph.getTypeNode("ClassModel")
+    	;
+    	type_0.addField("m", m_type, false);
+    }
+    return type_0;
   }
   
   /**
@@ -635,154 +616,88 @@ public class UML2RDBMS2 extends XmuProgram {
   }
   
   /**
-   * id:8
+   * id:2
    */
-  private ContextType type_8;
+  private ContextType type_2;
   
-  public ContextType getType_8() {
-    if(type_8==null) {
+  public ContextType getType_2() {
+    if(type_2==null) {
     	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Uml();
-    	type_8 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
-    	edu.ustb.sei.mde.graph.type.IType a_type = typeGraph.getTypeNode("Attribute")
-    	;
-    	type_8.addField("a", a_type, false);
-    	edu.ustb.sei.mde.graph.type.IType c_type = typeGraph.getTypeNode("Class")
-    	;
-    	type_8.addField("c", c_type, false);
-    	edu.ustb.sei.mde.graph.type.IType la_type = typeGraph.getTypeEdge(typeGraph.getTypeNode("Class"),"attributes")
-    	;
-    	type_8.addField("la", la_type, false);
+    	type_2 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
     	edu.ustb.sei.mde.graph.type.IType ln_type = typeGraph.getPropertyEdge(typeGraph.getTypeNode("NamedElement"),"name")
     	;
-    	type_8.addField("ln", ln_type, false);
+    	type_2.addField("ln", ln_type, false);
+    	edu.ustb.sei.mde.graph.type.IType lp_type = typeGraph.getTypeEdge(typeGraph.getTypeNode("ClassModel"),"packages")
+    	;
+    	type_2.addField("lp", lp_type, false);
+    	edu.ustb.sei.mde.graph.type.IType m_type = typeGraph.getTypeNode("ClassModel")
+    	;
+    	type_2.addField("m", m_type, false);
     	edu.ustb.sei.mde.graph.type.IType n_type = typeGraph.getDataTypeNode("EString")
     	;
-    	type_8.addField("n", n_type, false);
+    	type_2.addField("n", n_type, false);
+    	edu.ustb.sei.mde.graph.type.IType p_type = typeGraph.getTypeNode("Package")
+    	;
+    	type_2.addField("p", p_type, false);
     }
-    return type_8;
+    return type_2;
   }
   
   /**
-   * id:10
+   * id:4
    */
-  private ContextType type_10;
+  private ContextType type_4;
   
-  public ContextType getType_10() {
-    if(type_10==null) {
+  public ContextType getType_4() {
+    if(type_4==null) {
     	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Uml();
-    	type_10 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
+    	type_4 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
     	edu.ustb.sei.mde.graph.type.IType c_type = typeGraph.getTypeNode("Class")
     	;
-    	type_10.addField("c", c_type, false);
-    	edu.ustb.sei.mde.graph.type.IType ls_type = typeGraph.getTypeEdge(typeGraph.getTypeNode("Class"),"super")
-    	;
-    	type_10.addField("ls", ls_type, false);
-    	edu.ustb.sei.mde.graph.type.IType sc_type = typeGraph.getTypeNode("Class")
-    	;
-    	type_10.addField("sc", sc_type, false);
+    	type_4.addField("c", c_type, false);
     }
-    return type_10;
+    return type_4;
   }
   
   /**
-   * id:13
+   * id:15
    */
-  private ContextType type_13;
+  private ContextType type_15;
   
-  public ContextType getType_13() {
-    if(type_13==null) {
+  public ContextType getType_15() {
+    if(type_15==null) {
     	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Uml();
-    	type_13 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
-    	edu.ustb.sei.mde.graph.type.IType prefix_type = typeGraph.getDataTypeNode("EString")
-    	;
-    	type_13.addField("prefix", prefix_type, false);
-    }
-    return type_13;
-  }
-  
-  /**
-   * id:-3
-   */
-  private ContextType type_u3;
-  
-  /**
-   * XmuCoreFunctionCall(xmu18)
-   */
-  public ContextType getType_U3() {
-    if(type_u3==null) {
-    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Uml();
-    	type_u3 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
-    	edu.ustb.sei.mde.graph.type.IType c_type = typeGraph.getTypeNode("Class")
-    	;
-    	type_u3.addField("c", c_type, false);
-    	edu.ustb.sei.mde.graph.type.IType sc_type = typeGraph.getTypeNode("Class")
-    	;
-    	type_u3.addField("sc", sc_type, false);
-    }
-    return type_u3;
-  }
-  
-  /**
-   * id:-8
-   */
-  private ContextType type_u8;
-  
-  /**
-   * XmuCoreParallelComposition(xmu13)
-   */
-  public ContextType getType_U8() {
-    if(type_u8==null) {
-    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Uml();
-    	type_u8 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
-    	edu.ustb.sei.mde.graph.type.IType c_type = typeGraph.getTypeNode("NamedElement")
-    	;
-    	type_u8.addField("c", c_type, false);
-    }
-    return type_u8;
-  }
-  
-  /**
-   * id:-12
-   */
-  private ContextType type_u12;
-  
-  /**
-   * XmuCoreParallelComposition(xmu13)
-   */
-  public ContextType getType_U12() {
-    if(type_u12==null) {
-    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Rdbms();
-    	type_u12 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
-    	edu.ustb.sei.mde.graph.type.IType t_type = typeGraph.getTypeNode("NamedElement")
-    	;
-    	type_u12.addField("t", t_type, false);
-    }
-    return type_u12;
-  }
-  
-  /**
-   * id:-6
-   */
-  private ContextType type_u6;
-  
-  /**
-   * XmuCoreAlign(xmu21)
-   */
-  public ContextType getType_U6() {
-    if(type_u6==null) {
-    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Uml();
-    	type_u6 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
+    	type_15 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
     	edu.ustb.sei.mde.graph.type.IType cc_type = typeGraph.getTypeNode("Class")
     	;
-    	type_u6.addField("cc", cc_type, false);
-    	edu.ustb.sei.mde.graph.type.IType prefix_type = typeGraph.getDataTypeNode("EString")
+    	type_15.addField("cc", cc_type, false);
+    	edu.ustb.sei.mde.graph.type.IType ls_type = typeGraph.getTypeEdge(typeGraph.getTypeNode("Class"),"super")
     	;
-    	type_u6.addField("prefix", prefix_type, false);
+    	type_15.addField("ls", ls_type, false);
     	edu.ustb.sei.mde.graph.type.IType oc_type = typeGraph.getTypeNode("Class")
     	;
-    	type_u6.addField("oc", oc_type, false);
+    	type_15.addField("oc", oc_type, false);
+    	edu.ustb.sei.mde.graph.type.IType sc_type = typeGraph.getTypeNode("Class")
+    	;
+    	type_15.addField("sc", sc_type, false);
     }
-    return type_u6;
+    return type_15;
+  }
+  
+  /**
+   * id:1
+   */
+  private ContextType type_1;
+  
+  public ContextType getType_1() {
+    if(type_1==null) {
+    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Rdbms();
+    	type_1 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
+    	edu.ustb.sei.mde.graph.type.IType m_type = typeGraph.getTypeNode("RDBMSModel")
+    	;
+    	type_1.addField("m", m_type, false);
+    }
+    return type_1;
   }
   
   /**
@@ -791,36 +706,42 @@ public class UML2RDBMS2 extends XmuProgram {
   private ContextType type_u4;
   
   /**
-   * XmuCoreAlign(xmu8)
+   * XmuCoreAlign(xmu21)
    */
   public ContextType getType_U4() {
     if(type_u4==null) {
     	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Uml();
     	type_u4 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
-    	edu.ustb.sei.mde.graph.type.IType p_type = typeGraph.getTypeNode("Package")
+    	edu.ustb.sei.mde.graph.type.IType cc_type = typeGraph.getTypeNode("Class")
     	;
-    	type_u4.addField("p", p_type, false);
+    	type_u4.addField("cc", cc_type, false);
+    	edu.ustb.sei.mde.graph.type.IType prefix_type = typeGraph.getDataTypeNode("EString")
+    	;
+    	type_u4.addField("prefix", prefix_type, false);
+    	edu.ustb.sei.mde.graph.type.IType oc_type = typeGraph.getTypeNode("Class")
+    	;
+    	type_u4.addField("oc", oc_type, false);
     }
     return type_u4;
   }
   
   /**
-   * id:-1
+   * id:-5
    */
-  private ContextType type_u1;
+  private ContextType type_u5;
   
   /**
-   * XmuCoreForEachMatchSource(xmu16)
+   * XmuCoreFunctionCall(xmu12)
    */
-  public ContextType getType_U1() {
-    if(type_u1==null) {
+  public ContextType getType_U5() {
+    if(type_u5==null) {
     	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Uml();
-    	type_u1 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
+    	type_u5 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
     	edu.ustb.sei.mde.graph.type.IType c_type = typeGraph.getTypeNode("Class")
     	;
-    	type_u1.addField("c", c_type, false);
+    	type_u5.addField("c", c_type, false);
     }
-    return type_u1;
+    return type_u5;
   }
   
   /**
@@ -843,25 +764,104 @@ public class UML2RDBMS2 extends XmuProgram {
   }
   
   /**
-   * id:-9
+   * id:-1
    */
-  private ContextType type_u9;
+  private ContextType type_u1;
   
   /**
    * XmuCoreFunctionCall(xmu25)
    */
-  public ContextType getType_U9() {
-    if(type_u9==null) {
+  public ContextType getType_U1() {
+    if(type_u1==null) {
     	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Uml();
-    	type_u9 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
+    	type_u1 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
     	edu.ustb.sei.mde.graph.type.IType sc_type = typeGraph.getTypeNode("Class")
     	;
-    	type_u9.addField("sc", sc_type, false);
+    	type_u1.addField("sc", sc_type, false);
     	edu.ustb.sei.mde.graph.type.IType oc_type = typeGraph.getTypeNode("Class")
     	;
-    	type_u9.addField("oc", oc_type, false);
+    	type_u1.addField("oc", oc_type, false);
     }
-    return type_u9;
+    return type_u1;
+  }
+  
+  /**
+   * id:-12
+   */
+  private ContextType type_u12;
+  
+  /**
+   * XmuCoreParallelComposition(xmu13)
+   */
+  public ContextType getType_U12() {
+    if(type_u12==null) {
+    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Rdbms();
+    	type_u12 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
+    	edu.ustb.sei.mde.graph.type.IType t_type = typeGraph.getTypeNode("NamedElement")
+    	;
+    	type_u12.addField("t", t_type, false);
+    }
+    return type_u12;
+  }
+  
+  /**
+   * id:-2
+   */
+  private ContextType type_u2;
+  
+  /**
+   * XmuCoreFunctionCall(xmu18)
+   */
+  public ContextType getType_U2() {
+    if(type_u2==null) {
+    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Uml();
+    	type_u2 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
+    	edu.ustb.sei.mde.graph.type.IType c_type = typeGraph.getTypeNode("Class")
+    	;
+    	type_u2.addField("c", c_type, false);
+    	edu.ustb.sei.mde.graph.type.IType sc_type = typeGraph.getTypeNode("Class")
+    	;
+    	type_u2.addField("sc", sc_type, false);
+    }
+    return type_u2;
+  }
+  
+  /**
+   * id:-8
+   */
+  private ContextType type_u8;
+  
+  /**
+   * XmuCoreParallelComposition(xmu13)
+   */
+  public ContextType getType_U8() {
+    if(type_u8==null) {
+    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Uml();
+    	type_u8 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
+    	edu.ustb.sei.mde.graph.type.IType c_type = typeGraph.getTypeNode("NamedElement")
+    	;
+    	type_u8.addField("c", c_type, false);
+    }
+    return type_u8;
+  }
+  
+  /**
+   * id:-3
+   */
+  private ContextType type_u3;
+  
+  /**
+   * XmuCoreAlign(xmu8)
+   */
+  public ContextType getType_U3() {
+    if(type_u3==null) {
+    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Uml();
+    	type_u3 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
+    	edu.ustb.sei.mde.graph.type.IType p_type = typeGraph.getTypeNode("Package")
+    	;
+    	type_u3.addField("p", p_type, false);
+    }
+    return type_u3;
   }
   
   private Pattern pattern_0;
@@ -1345,7 +1345,7 @@ public class UML2RDBMS2 extends XmuProgram {
       new edu.ustb.sei.mde.bxcore.ParallelComposition("xmu5", getType_2(), getType_3(), new edu.ustb.sei.mde.bxcore.XmuCore[] {
         new edu.ustb.sei.mde.bxcore.GraphReplace("xmu6", Package(), getPattern_5(), new edu.ustb.sei.mde.structure.Tuple3[]{edu.ustb.sei.mde.structure.Tuple3.make(new String[]{"n"}, new String[]{"n"}, new edu.ustb.sei.mde.bxcore.bigul.Replace<java.lang.Object[]>())})
           ,
-          new edu.ustb.sei.mde.bxcore.Invocation("xmu7", getType_U4(), getType_U10(), new edu.ustb.sei.mde.structure.Tuple2[]{edu.ustb.sei.mde.structure.Tuple2.make("p","p")}, new edu.ustb.sei.mde.structure.Tuple2[]{edu.ustb.sei.mde.structure.Tuple2.make("s","s")},()->{try {
+          new edu.ustb.sei.mde.bxcore.Invocation("xmu7", getType_U3(), getType_U10(), new edu.ustb.sei.mde.structure.Tuple2[]{edu.ustb.sei.mde.structure.Tuple2.make("p","p")}, new edu.ustb.sei.mde.structure.Tuple2[]{edu.ustb.sei.mde.structure.Tuple2.make("s","s")},()->{try {
           					return getXmu_ClassToTable();
           				} catch(Exception e){
           					e.printStackTrace();
@@ -1377,11 +1377,11 @@ public class UML2RDBMS2 extends XmuProgram {
       
       public XmuCore getXmu_ClassToTable() throws BidirectionalTransformationDefinitionException {
         if(xmu_ClassToTable==null) {
-        xmu_ClassToTable = new edu.ustb.sei.mde.bxcore.Align("xmu8", getType_U4(), getType_U10(), Class(), getPattern_7(), new Condition4(), 
+        xmu_ClassToTable = new edu.ustb.sei.mde.bxcore.Align("xmu8", getType_U3(), getType_U10(), Class(), getPattern_7(), new Condition4(), 
         new edu.ustb.sei.mde.bxcore.ParallelComposition("xmu9", getType_6(), getType_7(), new edu.ustb.sei.mde.bxcore.XmuCore[] {
           new edu.ustb.sei.mde.bxcore.Indexing(getIndex_C2t(), new String[]{"c"}, new String[]{"t"}, new edu.ustb.sei.mde.bxcore.GraphReplace("xmu11", Class(), getPattern_8(), new edu.ustb.sei.mde.structure.Tuple3[]{edu.ustb.sei.mde.structure.Tuple3.make(new String[]{"n"}, new String[]{"n"}, new edu.ustb.sei.mde.bxcore.bigul.Replace<java.lang.Object[]>())})
             ),
-            new edu.ustb.sei.mde.bxcore.Invocation("xmu12", getType_U1(), getType_12(), new edu.ustb.sei.mde.structure.Tuple2[]{edu.ustb.sei.mde.structure.Tuple2.make("c","c")}, new edu.ustb.sei.mde.structure.Tuple2[]{edu.ustb.sei.mde.structure.Tuple2.make("t","t")},()->{try {
+            new edu.ustb.sei.mde.bxcore.Invocation("xmu12", getType_U5(), getType_12(), new edu.ustb.sei.mde.structure.Tuple2[]{edu.ustb.sei.mde.structure.Tuple2.make("c","c")}, new edu.ustb.sei.mde.structure.Tuple2[]{edu.ustb.sei.mde.structure.Tuple2.make("t","t")},()->{try {
             					return getXmu_AttributeToColumn();
             				} catch(Exception e){
             					e.printStackTrace();
@@ -1405,12 +1405,12 @@ public class UML2RDBMS2 extends XmuProgram {
         public XmuCore getXmu_AttributeToColumn() throws BidirectionalTransformationDefinitionException {
           if(xmu_AttributeToColumn==null) {
           xmu_AttributeToColumn = new edu.ustb.sei.mde.bxcore.ParallelComposition("xmu13", getType_U8(), getType_U12(), new edu.ustb.sei.mde.bxcore.XmuCore[] {
-          new edu.ustb.sei.mde.bxcore.Align("xmu14", getType_U1(), getType_12(), Attribute(), getPattern_10(), new Condition5(), 
+          new edu.ustb.sei.mde.bxcore.Align("xmu14", getType_U5(), getType_12(), Attribute(), getPattern_10(), new Condition5(), 
             new edu.ustb.sei.mde.bxcore.GraphReplace("xmu15", Attribute(), getPattern_11(), new edu.ustb.sei.mde.structure.Tuple3[]{edu.ustb.sei.mde.structure.Tuple3.make(new String[]{"n"}, new String[]{"n"}, new edu.ustb.sei.mde.bxcore.bigul.Replace<java.lang.Object[]>())})
               , new UnidirectionalAction6(), new UnidirectionalAction7()),
-              new edu.ustb.sei.mde.bxcore.ForEachMatchSource("xmu16", getType_U1(), getPattern_12(),
+              new edu.ustb.sei.mde.bxcore.ForEachMatchSource("xmu16", getType_U5(), getPattern_12(),
               new edu.ustb.sei.mde.bxcore.ExpandSource("xmu17", getPattern_13(), 
-                new edu.ustb.sei.mde.bxcore.Invocation("xmu18", getType_U3(), getType_12(), new edu.ustb.sei.mde.structure.Tuple2[]{edu.ustb.sei.mde.structure.Tuple2.make("c","oc"),edu.ustb.sei.mde.structure.Tuple2.make("sc","cc")}, new edu.ustb.sei.mde.structure.Tuple2[]{edu.ustb.sei.mde.structure.Tuple2.make("t","t")},()->{try {
+                new edu.ustb.sei.mde.bxcore.Invocation("xmu18", getType_U2(), getType_12(), new edu.ustb.sei.mde.structure.Tuple2[]{edu.ustb.sei.mde.structure.Tuple2.make("c","oc"),edu.ustb.sei.mde.structure.Tuple2.make("sc","cc")}, new edu.ustb.sei.mde.structure.Tuple2[]{edu.ustb.sei.mde.structure.Tuple2.make("t","t")},()->{try {
                   					return getXmu_SuperAttributeToColumn();
                   				} catch(Exception e){
                   					e.printStackTrace();
@@ -1546,14 +1546,14 @@ public class UML2RDBMS2 extends XmuProgram {
             if(xmu_SuperAttributeToColumn==null) {
             xmu_SuperAttributeToColumn = new edu.ustb.sei.mde.bxcore.ParallelComposition("xmu19", getType_11(), getType_12(), new edu.ustb.sei.mde.bxcore.XmuCore[] {
             new edu.ustb.sei.mde.bxcore.Derive("xmu20", getType_11(), 
-              new edu.ustb.sei.mde.bxcore.Align("xmu21", getType_U6(), getType_12(), getPattern_14(), getPattern_15(), new Condition6(), 
+              new edu.ustb.sei.mde.bxcore.Align("xmu21", getType_U4(), getType_12(), getPattern_14(), getPattern_15(), new Condition6(), 
                 new edu.ustb.sei.mde.bxcore.GraphReplace("xmu22", getPattern_16(), getPattern_17(), new edu.ustb.sei.mde.structure.Tuple3[]{edu.ustb.sei.mde.structure.Tuple3.make(new String[]{"prefix","n"}, new String[]{"n"}, new BiGULColumnKey())})
                   , new UnidirectionalAction9(), new UnidirectionalAction10()),
                   new edu.ustb.sei.mde.structure.Tuple2[]{edu.ustb.sei.mde.structure.Tuple2.make(getType_13().getField("prefix"),new DerivationAction8())}
                   ),
                 new edu.ustb.sei.mde.bxcore.ForEachMatchSource("xmu23", getType_11(), getPattern_18(),
                 new edu.ustb.sei.mde.bxcore.ExpandSource("xmu24", getPattern_19(), 
-                  new edu.ustb.sei.mde.bxcore.Invocation("xmu25", getType_U9(), getType_12(), new edu.ustb.sei.mde.structure.Tuple2[]{edu.ustb.sei.mde.structure.Tuple2.make("oc","oc"),edu.ustb.sei.mde.structure.Tuple2.make("sc","cc")}, new edu.ustb.sei.mde.structure.Tuple2[]{edu.ustb.sei.mde.structure.Tuple2.make("t","t")},()->{try {
+                  new edu.ustb.sei.mde.bxcore.Invocation("xmu25", getType_U1(), getType_12(), new edu.ustb.sei.mde.structure.Tuple2[]{edu.ustb.sei.mde.structure.Tuple2.make("oc","oc"),edu.ustb.sei.mde.structure.Tuple2.make("sc","cc")}, new edu.ustb.sei.mde.structure.Tuple2[]{edu.ustb.sei.mde.structure.Tuple2.make("t","t")},()->{try {
                     					return getXmu_SuperAttributeToColumn();
                     				} catch(Exception e){
                     					e.printStackTrace();
