@@ -1113,6 +1113,26 @@ public class BXMerge3 {
 		return resultGraph;
 	}
 	
+	/*
+	 * 先计算出前面元素与之后所有元素的序关系
+	 * 如果是小于关系，则往graph中添加边
+	 * 最后调用拓扑排序方法
+	 */
+	public static void nOrder(TypedGraph baseGraph, TypedGraph resultGraph,
+			HashMap<TypedEdge, TypedEdge> forceOrd, TypedGraph... branchGraphs) {
+				
+		List<TypedEdge> resultList = resultGraph.getAllTypedEdges();
+		int size = resultList.size();
+		
+		for(int i=0; i<size; i++) {
+			for(int j = i+1; j<size; j++) {
+				
+			}
+		}
+				
+		
+	}
+	
 	// 利用computeOrd()
 	public static TypedGraph threeOrder(TypedGraph baseGraph, TypedGraph resultGraph,
 			HashMap<TypedEdge, TypedEdge> forceOrd, TypedGraph... branchGraphs) {
