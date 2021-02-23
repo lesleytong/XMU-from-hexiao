@@ -1,46 +1,51 @@
 package edu.ustb.sei.mde.bxcore.tests;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
-import edu.ustb.sei.mde.graph.type.TypeEdge;
 import edu.ustb.sei.mde.graph.type.TypeGraph;
 import edu.ustb.sei.mde.graph.typedGraph.BXMerge;
-import edu.ustb.sei.mde.graph.typedGraph.BXMerge3;
 import edu.ustb.sei.mde.graph.typedGraph.TypedEdge;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
-import edu.ustb.sei.mde.graph.typedGraph.TypedNode;
+import edu.ustb.sei.mde.structure.Tuple2;
+
 /**
- * A-B*是isMany、isUnique
- * a分支和b分支添加“同样的”边
+ * 测试序中构成环的冲突
+ * 
  * @author 10242
- *
  */
-public class TestLogical_5 {
+public class TestForceOrder_1 {
 
 	static TypedGraph baseGraph = null;
 	static TypedGraph aGraph = null;
-	static TypedGraph bGraph = null;
+
 	static TypedGraph resultGraph = null;
-	
-	public static void main(String[] args){
-		
+	static Set<Tuple2<TypedEdge, TypedEdge>> orders = new HashSet<>();
+
+	public static void main(String[] args) {
+
 		build_baseGraph();
 		build_aGraph();
-		build_bGraph();
-				
+
 		try {
-			
-			resultGraph = BXMerge3.mergeSerial(baseGraph, aGraph, bGraph);
+
+			// 添加性合并
+			resultGraph = BXMerge.additiveMerge(baseGraph, aGraph);
 			System.out.println("resultGraph: ");
 			print(resultGraph);
-						
+
+			// 检查强制序是否合法
+			BXMerge.checkForceOrd(resultGraph, orders);
+
 		} catch (NothingReturnedException e) {
 			e.printStackTrace();
 		}
+
 	}
-	
 
 	private static void build_baseGraph() {
-		
+
 		TypeGraph typeGraph = new TypeGraph();
 		// add type nodes
 		typeGraph.declare("A");
@@ -55,69 +60,51 @@ public class TestLogical_5 {
 		typeGraph.declare("c2d:C->D");
 		// add property edges
 		typeGraph.declare("a2S:A->String#");
-		
+
 		baseGraph = new TypedGraph(typeGraph);
-		baseGraph.declare(	
-				"a1:A;"
-				+"b1:B;"
-				+"a1.a2S=\"str1\";"
-				+"a1.a2S=\"str2\";"
-				+"a1.a2S=\"str3\";");	
-		
+		baseGraph.declare("a1:A;" + "b1:B;" + "b2:B;" + "b3:B;" + "c1:C;" + "a1-a2b->b1;" // e1-e2-e3
+				+ "a1-a2b->b2;" + "b3-b2c->c1;" + "a1.a2S=\"str1\";" + "a1.a2S=\"str2\";" + "a1.a2S=\"str3\";");
+
+		System.out.println("baseGraph: ");
+		print(baseGraph);
+
 	}
-	
-			
+
 	private static void build_aGraph() {
-		
+
 		aGraph = baseGraph.getCopy();
-		
-		TypeEdge typeEdge = aGraph.getTypeGraph().getAllTypeEdges().get(0);
-		System.out.println(typeEdge);
-		
-		TypedNode a1 = aGraph.getAllTypedNodes().get(0);
-		TypedNode b1 = aGraph.getAllTypedNodes().get(1);
-		
-		TypedEdge e1 = new TypedEdge();
-		e1.setType(typeEdge);
-		e1.setSource(a1);
-		e1.setTarget(b1);
-				
-		aGraph.addTypedEdge(e1);
-		
-		System.out.println(e1.getType().isMany());
-		System.out.println(e1.getType().isUnique());
-		
+
+		// e1-e4-e2-e3
+		aGraph.declare("c2:C;" + "d1:D;" + "c2-c2d->d1;");
+		TypedEdge e4 = aGraph.getAllTypedEdges().get(3);
+		aGraph.getAllTypedEdges().remove(e4);
+		aGraph.getAllTypedEdges().add(1, e4);
+
 		System.out.println("aGraph: ");
 		print(aGraph);
-		
+
+		TypedEdge e1 = aGraph.getAllTypedEdges().get(0);
+		e4 = aGraph.getAllTypedEdges().get(1);
+		TypedEdge e2 = aGraph.getAllTypedEdges().get(2);
+		TypedEdge e3 = aGraph.getAllTypedEdges().get(3);
+
+		// {<e4, e1>, <e3, e4>, <e1, e2>, <e2, e3>}有冲突
+		Tuple2<TypedEdge, TypedEdge> order1 = Tuple2.make(e4, e1);
+		orders.add(order1);
+
+		Tuple2<TypedEdge, TypedEdge> order2 = Tuple2.make(e3, e4);
+		orders.add(order2);
+
+		Tuple2<TypedEdge, TypedEdge> order3 = Tuple2.make(e1, e2);
+		orders.add(order3);
+
+		Tuple2<TypedEdge, TypedEdge> order4 = Tuple2.make(e2, e3);
+		orders.add(order4);
+
 	}
-	
-	private static void build_bGraph() {
-		
-		bGraph = baseGraph.getCopy();
-		
-		bGraph.declare("b2:B;");
-		
-		TypeEdge typeEdge = bGraph.getTypeGraph().getAllTypeEdges().get(0);
-		System.out.println(typeEdge);
-		
-		TypedNode a1 = bGraph.getAllTypedNodes().get(0);
-		TypedNode b2 = bGraph.getAllTypedNodes().get(2);
-		
-		TypedEdge e1 = new TypedEdge();
-		e1.setType(typeEdge);
-		e1.setSource(a1);
-		e1.setTarget(b2);
-		
-		bGraph.addTypedEdge(e1);
-		
-		System.out.println("bGraph: ");
-		print(bGraph);
-		
-	}
-	
+
 	private static void print(TypedGraph typedGraph) {
-		
+
 		System.out.println("TypedNodes: " + typedGraph.getAllTypedNodes().toString());
 		System.out.println("ValueNodes: " + typedGraph.getAllValueNodes().toString());
 		System.out.println("TypedEdges: " + typedGraph.getAllTypedEdges().toString());

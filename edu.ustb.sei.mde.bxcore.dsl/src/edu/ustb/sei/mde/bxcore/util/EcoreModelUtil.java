@@ -9,8 +9,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
 
@@ -134,8 +132,8 @@ public class EcoreModelUtil {
 	}
 	
 	static public void save(URI uri, TypedGraph graph, TypedGraph originalGraph, EPackage pack) {
-		Collection<EObject> roots = save(graph, originalGraph, pack);
 		
+		Collection<EObject> roots = save(graph, originalGraph, pack);		
 		Resource resource = privateResourceSet.createResource(uri);
 		resource.getContents().addAll(roots);
 		
@@ -212,11 +210,15 @@ public class EcoreModelUtil {
 			});
 		});
 		
-		graph.getAllTypedNodes().forEach(n->{
+		// tmp
+		for(TypedNode n : graph.getAllTypedNodes()) {
 			EClass tc = eclasses.get(n.getType().getName());
 			EObject src = nodeMap.get(n);
-			tc.getEAllReferences().forEach(r->{
-				if(r.isChangeable()==false || r.isDerived() || r.isTransient()) return;
+			for(EReference r : tc.getEAllReferences()) {
+								
+				if(r.isChangeable()==false || r.isDerived() || r.isTransient()) {
+					continue;
+				}
 				
 				TypeEdge edge = graph.getTypeGraph().getTypeEdge(n.getType(), r.getName());
 				if(r.isMany()) {
@@ -232,8 +234,31 @@ public class EcoreModelUtil {
 						src.eSet(r, tar);
 					}
 				}
-			});
-		});
+			}
+		}
+		
+//		graph.getAllTypedNodes().forEach(n->{			
+//			EClass tc = eclasses.get(n.getType().getName());
+//			EObject src = nodeMap.get(n);
+//			tc.getEAllReferences().forEach(r->{								
+//				if(r.isChangeable()==false || r.isDerived() || r.isTransient()) return;
+//				
+//				TypeEdge edge = graph.getTypeGraph().getTypeEdge(n.getType(), r.getName());
+//				if(r.isMany()) {
+//					List<EObject> values = new ArrayList<>();
+//					graph.getOutgoingEdges(n, edge).forEach(l->{
+//						values.add(nodeMap.get(l.getTarget()));
+//					});
+//					src.eSet(r, values);
+//				} else {
+//					List<TypedEdge> values = graph.getOutgoingEdges(n, edge);
+//					if(values.isEmpty()==false) {
+//						EObject tar = nodeMap.get(values.get(0).getTarget());
+//						src.eSet(r, tar);
+//					}
+//				}
+//			});
+//		});
 		
 		List<EObject> roots = nodeMap.values().stream().filter(n->n.eContainer()==null).collect(Collectors.toList());
 		
@@ -258,8 +283,7 @@ public class EcoreModelUtil {
 		
 		return roots;
 	}
-	
-	
+
 	@SuppressWarnings("unchecked")
 	private static void addTypedEdges(EObject root, TypeGraph typeGraph, Map<EObject, TypedNode> nodeMap,
 			TypedGraph graph) {
@@ -297,8 +321,7 @@ public class EcoreModelUtil {
 			}
 		});
 	}
-	
-	
+
 	private static void addTypedNode(EObject node, TypeGraph typeGraph, Map<EObject, TypedNode> nodeMap,
 			TypedGraph graph) {
 		
@@ -340,6 +363,7 @@ public class EcoreModelUtil {
 			}
 		});
 	}
+	
 	
 	static private ResourceSet privateResourceSet = new ResourceSetImpl();
 	static {

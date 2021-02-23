@@ -1,15 +1,8 @@
 package edu.ustb.sei.mde.bxcore.tests;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
-import edu.ustb.sei.mde.graph.type.DataTypeNode;
 import edu.ustb.sei.mde.graph.type.TypeGraph;
-import edu.ustb.sei.mde.graph.typedGraph.BXMerge;
 import edu.ustb.sei.mde.graph.typedGraph.BXMerge3;
-import edu.ustb.sei.mde.graph.typedGraph.BXMerge_NewVersion2;
 import edu.ustb.sei.mde.graph.typedGraph.TypedEdge;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
 import edu.ustb.sei.mde.graph.typedGraph.ValueEdge;
@@ -29,7 +22,7 @@ public class Test_1 {
 		build_bGraph();
 		
 		try {
-			resultGraph = BXMerge3.merge(baseGraph, aGraph, bGraph);
+			resultGraph = BXMerge3.mergeOrigin(baseGraph, aGraph, bGraph);
 			System.out.println("resultGraph: ");
 			print(resultGraph);
 									
@@ -107,7 +100,6 @@ public class Test_1 {
 		ve.setSource(ve1.getSource());
 		ve.setTarget(aGraph.getAllValueNodes().get(3));
 		aGraph.replaceWith(ve1, ve);
-
 		
 		System.out.println("aGraph: ");
 		print(aGraph);
@@ -131,11 +123,6 @@ public class Test_1 {
 		
 		// É¾³ýve2
 		bGraph.remove(bGraph.getAllValueEdges().get(1));
-		
-		
-		
-		
-		
 		
 		System.out.println("bGraph: ");
 		print(bGraph);

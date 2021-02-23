@@ -56,7 +56,7 @@ public class GraphChangeTool {
 			graph.remove(ed);
 		}
 
-		// 替换type无意义的话，那就保证替换边的两个端点与原type符合，改变source或target。
+		// 替换type无意义的话，就保证替换边的两个端点与原type符合，改变source或target。
 		if (changeTypedEdgesFlag == true) {
 			// 找到第一个类型为a2b的边e，如果没有就不进行替换
 			TypeEdge type = graph.getTypeGraph().getTypeEdge(graph.getTypeGraph().getTypeNode("A"), "a2b");
@@ -197,7 +197,7 @@ public class GraphChangeTool {
 		TypeNode typeD = graph.getTypeGraph().getTypeNode("D");
 		for (int i = replaceStart; i <= replaceEnd; i++) {
 			TypedNode n = new TypedNode();
-			n.setType(typeD); // 可以改策略
+			n.setType(typeD); // 可以更改策略
 			graph.replaceWith(graph.getAllTypedNodes().get(i), n);
 		}
 

@@ -1,10 +1,8 @@
 package edu.ustb.sei.mde.bxcore.tests;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
-import edu.ustb.sei.mde.bxcore.exceptions.NothingReturnedException;
+
 import edu.ustb.sei.mde.graph.type.TypeGraph;
 import edu.ustb.sei.mde.graph.typedGraph.TypedEdge;
 import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;

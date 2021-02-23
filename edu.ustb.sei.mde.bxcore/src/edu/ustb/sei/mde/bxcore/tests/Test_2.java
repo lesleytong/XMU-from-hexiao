@@ -24,7 +24,7 @@ public class Test_2 {
 		build_bGraph();
 		
 		try {
-			resultGraph = BXMerge3.merge(baseGraph, aGraph, bGraph);
+			resultGraph = BXMerge3.mergeSerial(baseGraph, aGraph, bGraph);
 			System.out.println("\nresultGraph: ");
 			print(resultGraph);
 									

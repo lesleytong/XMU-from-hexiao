@@ -204,7 +204,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 	}
 
 	/** 更新图的indexToObjectMap，我修改了private */
-	void reindexing(IndexableElement n) {
+	public void reindexing(IndexableElement n) {
 		n.foreach(i -> {
 			this.indexToObjectMap.put(i, n);
 		});
@@ -1155,18 +1155,18 @@ public class TypedGraph extends IndexSystem implements IGraph {
 				if (tuple == null || isImage(tuple, baseEdge))
 					tuple = null;
 				else
-					throw new NothingReturnedException(); // incompatible: a==imageEdge并且b==null
+					throw new NothingReturnedException("删除修改冲突"); // incompatible: a==imageEdge并且b==null
 			} else {
 
 				if (tuple == null)
-					throw new NothingReturnedException(); // incompatible: a==null并且b==imageEdge
+					throw new NothingReturnedException("删除修改冲突"); // incompatible: a==null并且b==imageEdge
 				else if (isImage(tuple, baseEdge))
 					tuple = new Tuple3<TypedNode, ValueNode, PropertyEdge>(e.getSource(), e.getTarget(), e.getType());
 				else {
 					if (isImage(tuple, e)) // a==imageEdge并且b==imageEdge时，判断是否兼容
 						continue;
 					else
-						throw new NothingReturnedException(); // incompatible: a==imageEdge并且b==imageEdge而且不兼容
+						throw new NothingReturnedException("都修改冲突"); // incompatible: a==imageEdge并且b==imageEdge而且不兼容
 				}
 			}
 		}

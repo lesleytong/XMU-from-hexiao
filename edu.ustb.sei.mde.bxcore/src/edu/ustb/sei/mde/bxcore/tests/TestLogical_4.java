@@ -32,7 +32,7 @@ public class TestLogical_4 {
 				
 		try {
 			
-			resultGraph = BXMerge3.merge(baseGraph, aGraph, bGraph);
+			resultGraph = BXMerge3.mergeSerial(baseGraph, aGraph, bGraph);
 			System.out.println("resultGraph: ");
 			print(resultGraph);
 						

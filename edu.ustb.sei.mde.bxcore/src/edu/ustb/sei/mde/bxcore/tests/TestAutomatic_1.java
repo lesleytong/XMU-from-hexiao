@@ -25,7 +25,7 @@ public class TestAutomatic_1 {
 			long start = System.currentTimeMillis();
 //			resultGraph = BXMerge3.merge_origin(baseGraph, aGraph, bGraph);
 //			resultGraph = BXMerge3.merge(baseGraph, aGraph, bGraph);
-			resultGraph = BXMerge3.merge_Con(baseGraph, aGraph, bGraph);
+			resultGraph = BXMerge3.mergeParallel(baseGraph, aGraph, bGraph);
 			long end = System.currentTimeMillis();
 			System.out.println("ºÄÊ±£º" + (end - start) + "ms");
 			

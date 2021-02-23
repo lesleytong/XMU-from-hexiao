@@ -23,7 +23,6 @@ public class SimMerge {
 	/** PENDING: 添加行合并 */
 
 	/** 多路合并 */
-	@SuppressWarnings("unlikely-arg-type")
 	public static TypedGraph nWayMerge(TypedGraph baseGraph, TypedGraph... branchGraphs)
 			throws NothingReturnedException {
 
@@ -34,7 +33,7 @@ public class SimMerge {
 		/** 根据基础图，排出一个遍历节点的顺序 */
 		LinkedList<TypeNode> topologyList = topology(baseGraph);
 
-		/** 顺序排出来后，需要把baseGraph中的TypedNode分类。否则需要多次遍历allTypedNodes */
+		/** 顺序排出来后，需要把baseGraph中的TypedNode分类。否则，需要多次遍历allTypedNodes */
 		Map<TypeNode, ArrayList<TypedNode>> nodeMap = new HashMap<>();
 		for (TypedNode baseNode : baseGraph.allTypedNodes) {
 			TypeNode baseNodeType = baseNode.getType();
@@ -48,8 +47,7 @@ public class SimMerge {
 		}
 
 		/** 处理基础图的TypedNode节点 */
-		HashMap<TypedNode, ArrayList<TypedNode>> matchNodeMap = new HashMap<>();	// 必须放在全局
-		
+		HashMap<TypedNode, ArrayList<TypedNode>> matchTypedNodeMap = new HashMap<>();	// 必须放在全局		
 		// 按照遍历节点的顺序，进行匹配工作
 		for (TypeNode typeNode : topologyList) {
 			ArrayList<TypedNode> baseTypedNodesList = nodeMap.get(typeNode);
@@ -89,7 +87,7 @@ public class SimMerge {
 														
 							// 如果此分支节点已被匹配，则跳过
 							boolean flag = false;
-							for (Map.Entry<TypedNode, ArrayList<TypedNode>> entry : matchNodeMap.entrySet()) {
+							for (Map.Entry<TypedNode, ArrayList<TypedNode>> entry : matchTypedNodeMap.entrySet()) {
 								if(entry.getKey().getType() == branchNode.getType()) {
 									if(entry.getValue().get(i) == branchNode) {
 										flag = true;
@@ -111,7 +109,7 @@ public class SimMerge {
 							if (baseIncomingList.size() != 0 && branchIncomingList.size() != 0) {
 								TypedNode baseSource = baseIncomingList.get(0).getSource();
 								TypedNode branchSource = branchIncomingList.get(0).getSource();										
-								if(matchNodeMap.get(baseSource).get(i) == branchSource) {
+								if(matchTypedNodeMap.get(baseSource).get(i) == branchSource) {
 									currentWeight++;
 								}								
 							}
@@ -136,9 +134,10 @@ public class SimMerge {
 												
 				} // 所有分支图的TypedNode
 				
-				matchNodeMap.put(baseNode, matchNodeList);
+				// TypedNode没有修改状态
+				matchTypedNodeMap.put(baseNode, matchNodeList);
 				if(matchNodeList.contains(null) == false) {
-					TypedNode resultNode = new TypedNode();
+					TypedNode resultNode = new TypedNode();                          
 					resultNode.setType(baseNode.getType());
 					resultGraph.addTypedNode(resultNode);
 					globalMap.put(baseNode, resultNode);
@@ -148,7 +147,7 @@ public class SimMerge {
 			
 		}	// 基础图所有类型的TypedNode
 		
-		
+	
 		/** 处理基础图原有的、分支图新加的ValueNode */
 		baseGraph.allValueNodes.parallelStream().forEach(v -> {
 			resultGraph.addValueNode(v);
@@ -174,8 +173,8 @@ public class SimMerge {
 						TypedNode baseTarget = baseEdge.getTarget();
 						TypedNode branchSource = branchEdge.getSource();
 						TypedNode branchTarget = branchEdge.getTarget();
-						if(matchNodeMap.get(baseSource).get(i) == branchSource 
-								&& matchNodeMap.get(baseTarget).get(i) == branchTarget) {
+						if(matchTypedNodeMap.get(baseSource).get(i) == branchSource 
+								&& matchTypedNodeMap.get(baseTarget).get(i) == branchTarget) {
 							flag = true;
 							if(preStatus == STATUS.UNMATCH) {
 								preStatus = STATUS.UNCHANGE;	// TypedEdge没有修改的状态；
@@ -215,7 +214,7 @@ public class SimMerge {
 					if(baseEdge.getType() == branchEdge.getType()) {
 						TypedNode baseSource = baseEdge.getSource();
 						TypedNode branchSource = branchEdge.getSource();
-						if(matchNodeMap.get(baseSource).get(i) == branchSource) {
+						if(matchTypedNodeMap.get(baseSource).get(i) == branchSource) {
 							flag = true;
 							ValueNode baseTarget = baseEdge.getTarget();
 							ValueNode branchTarget = branchEdge.getTarget();
@@ -267,7 +266,19 @@ public class SimMerge {
 		
 		
 		
-	
+		/** 对于分支图新加的TypedNode */
+		for(int i=0; i<branchGraphs.length; i++) {
+			for(TypedNode typedNode : branchGraphs[i].allTypedNodes) {
+				
+				
+				
+			}
+		}
+		
+		
+		
+		
+		
 		return resultGraph;
 	}
 
