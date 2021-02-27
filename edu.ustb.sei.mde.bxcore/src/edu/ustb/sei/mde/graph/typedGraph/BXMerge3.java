@@ -511,7 +511,8 @@ public class BXMerge3 {
 	}
 
 	/** 多路合并 */
-	public static TypedGraph mergeSerial(TypedGraph baseGraph, TypedGraph... interSources) throws NothingReturnedException {
+	public static TypedGraph mergeSerial(TypedGraph baseGraph, TypedGraph... interSources)
+			throws NothingReturnedException {
 
 		TypedGraph resultGraph = new TypedGraph(baseGraph.getTypeGraph());
 
@@ -615,7 +616,7 @@ public class BXMerge3 {
 
 			try {
 				start = System.currentTimeMillis();
-							
+
 				// 再根据typedEdgeImages[]中的情况，确定finalEdgeInfo
 				Tuple3<TypedNode, TypedNode, TypeEdge> finalEdgeInfo = TypedGraph.computeEdge(baseEdge,
 						typedEdgeImages);
@@ -697,8 +698,8 @@ public class BXMerge3 {
 					try {
 						// 根据e的索引查找result图中有无相应的对象，如果有则赋值给re
 						re = resultGraph.getElementByIndexObject(e.getIndex());
-					} catch (Exception ex2) { // 根据e的索引没有找到result图中相应的对象，则应添加e到result图的allTypedEdges中										
-						TypedNode source = resultGraph.getElementByIndexObject(e.getSource().getIndex());						
+					} catch (Exception ex2) { // 根据e的索引没有找到result图中相应的对象，则应添加e到result图的allTypedEdges中
+						TypedNode source = resultGraph.getElementByIndexObject(e.getSource().getIndex());
 						TypedNode target = resultGraph.getElementByIndexObject(e.getTarget().getIndex());
 
 						if (e.getSource() != source || e.getTarget() != target) { // 说明e的source或者target是基本图中有的，result图合并过三个图的索引，但不是同一对象
@@ -1112,27 +1113,80 @@ public class BXMerge3 {
 
 		return resultGraph;
 	}
-	
-	/*
-	 * 先计算出前面元素与之后所有元素的序关系
-	 * 如果是小于关系，则往graph中添加边
-	 * 最后调用拓扑排序方法
-	 */
-	public static void nOrder(TypedGraph baseGraph, TypedGraph resultGraph,
-			HashMap<TypedEdge, TypedEdge> forceOrd, TypedGraph... branchGraphs) {
-				
-		List<TypedEdge> resultList = resultGraph.getAllTypedEdges();
-		int size = resultList.size();
-		
-		for(int i=0; i<size; i++) {
-			for(int j = i+1; j<size; j++) {
-				
+
+	/** 过滤出需要排序的相应TypedEdge类型的信息 */
+	public static List<TypedEdge> classify(List<TypedEdge> typedEdgeList, String typeEdgeName) {
+		ArrayList<TypedEdge> filterList = new ArrayList<>();
+		for (TypedEdge t : typedEdgeList) {
+			if (t.getType().toString().equals(typeEdgeName)) {
+				filterList.add(t);
 			}
 		}
-				
-		
+		return filterList;
 	}
-	
+
+	/*
+	 * 同样计算出前面元素与之后所有元素的序关系， 若出现小于关系，则往拓扑图里添加边<i, j>， 若出现大于关系，则往拓扑图里添加边<j, i>，
+	 * 最后用拓扑排序得出结果。
+	 */
+	public static void topoOrder(TypedGraph baseGraph, TypedGraph resultGraph, HashMap<TypedEdge, TypedEdge> forceOrd,
+			String typeEdgeName, TypedGraph... branchGraphs) {
+
+		List<TypedEdge> resultList = resultGraph.getAllTypedEdges();
+
+		List<TypedEdge> filterList = null;
+		if (typeEdgeName.equals("") == false) {
+			filterList = classify(resultList, typeEdgeName);
+		} else {
+			filterList = resultList;
+		}
+
+		int size = filterList.size();
+		TopoGraph g = new TopoGraph(size);
+
+		for (int i = 0; i < size; i++) {
+			TypedEdge ei = filterList.get(i);
+			for (int j = i + 1; j < size; j++) {
+				TypedEdge ej = filterList.get(j);
+				Order computeOrd = null;
+				try {
+					computeOrd = computeOrd(ei, ej, baseGraph, forceOrd, branchGraphs);
+				} catch (NothingReturnedException e) {
+					System.out.println("下面这两个元素的序发生冲突：");
+					System.out.println(ei + " " + ej);
+					e.printStackTrace();
+					// PENDING: 检测出序冲突后，怎么处理？
+				}
+				if (computeOrd == Order.less) {
+					g.addEdge(i, j);
+				} else if (computeOrd == Order.greater) {
+					g.addEdge(j, i);
+				}
+			}
+		}
+
+		ArrayList<Integer> topologicalSort;
+		try {
+			topologicalSort = g.topologicalSort();
+
+			List<TypedEdge> mergeList = new ArrayList<>();
+			for (int i : topologicalSort) {
+				mergeList.add(filterList.get(i));
+			}
+
+			if (typeEdgeName.equals("") == false) {
+				resultList.removeAll(filterList); // 先求差集
+				resultList.addAll(mergeList); // 再求并集
+			} else {
+				resultGraph.allTypedEdges = mergeList;
+			}
+
+		} catch (NothingReturnedException e) {
+			e.printStackTrace();
+		}
+
+	}
+
 	// 利用computeOrd()
 	public static TypedGraph threeOrder(TypedGraph baseGraph, TypedGraph resultGraph,
 			HashMap<TypedEdge, TypedEdge> forceOrd, TypedGraph... branchGraphs) {
@@ -1149,14 +1203,14 @@ public class BXMerge3 {
 				mergeFlag.put(typedEdge, m++);
 			}
 			for (int j = i + 1; j < resultList.size(); j++) {
-				TypedEdge ej = resultList.get(j);	
+				TypedEdge ej = resultList.get(j);
 				Order computeOrd = null;
 				try {
-					computeOrd = computeOrd(ei, ej, baseGraph, forceOrd, branchGraphs);					
+					computeOrd = computeOrd(ei, ej, baseGraph, forceOrd, branchGraphs);
 				} catch (NothingReturnedException e) {
 					System.out.println("下面这两个元素的序发生冲突：");
 					System.out.println(ei + " " + ej);
-					e.printStackTrace();	
+					e.printStackTrace();
 					// PENDING: 检测出序冲突后，怎么处理？
 				}
 				if (computeOrd == Order.unkown || computeOrd == Order.less) {
@@ -1177,16 +1231,16 @@ public class BXMerge3 {
 		return resultGraph;
 
 	}
-	
+
 	public static Order computeOrd(TypedEdge ei, TypedEdge ej, TypedGraph baseGraph,
 			HashMap<TypedEdge, TypedEdge> forceOrd, TypedGraph... branchGraphs) throws NothingReturnedException {
-			
+
 		HashMap<TypedEdge, Integer> baseFlag = new HashMap<>();
 		List<TypedEdge> baseList = baseGraph.getAllTypedEdges();
 		for (int i = 0; i < baseList.size(); i++) {
 			baseFlag.put(baseList.get(i), i);
 		}
-	
+
 		int len = branchGraphs.length;
 		HashMap<TypedEdge, Integer>[] branchFlag = new HashMap[len];
 		for (int i = 0; i < len; i++) {
@@ -1196,21 +1250,21 @@ public class BXMerge3 {
 				branchFlag[i].put(branchList.get(j), j);
 			}
 		}
-		
+
 		List<Tuple2<Force, Order>> ord_k = new ArrayList<>();
 		boolean flag = true;
 		TypedEdge ei_b = null;
 		TypedEdge ej_b = null;
-		
+
 		for (int k = 0; k < len; k++) {
 			Force t = Force.soft;
-			Order o = Order.unkown;			
+			Order o = Order.unkown;
 			try {
 				TypedEdge ei_k = branchGraphs[k].getElementByIndexObject(ei.getIndex());
 				TypedEdge ej_k = branchGraphs[k].getElementByIndexObject(ej.getIndex());
 				// 如果ei和ej都属于某个分支图
 				Force t_k;
-				Order o_k;				
+				Order o_k;
 				if (forceOrd.get(ei_k) == ej_k) {
 					t_k = Force.hard;
 					o_k = Order.less;
@@ -1229,7 +1283,7 @@ public class BXMerge3 {
 					}
 				}
 				try {
-					if(flag == true) {
+					if (flag == true) {
 						ei_b = baseGraph.getElementByIndexObject(ei.getIndex());
 						ej_b = baseGraph.getElementByIndexObject(ej.getIndex());
 						flag = false;
@@ -1252,19 +1306,18 @@ public class BXMerge3 {
 							o = Order.greater;
 						}
 					}
-						
-					if(o_k == o) {
-						if(t_k == Force.hard || t == Force.hard) {
+
+					if (o_k == o) {
+						if (t_k == Force.hard || t == Force.hard) {
 							t = Force.hard;
 						}
-					} else if(t == Force.soft) {	// o_k不等于o，以分支的序为准
+					} else if (t == Force.soft) { // o_k不等于o，以分支的序为准
 						t = Force.hard;
 						o = o_k;
-					}else {
+					} else {
 						throw new NothingReturnedException("@@@conflict");
 					}
-					
-					
+
 				} catch (NothingReturnedException e) {
 					// 若ei和ej不是都属于基础图，则以分支的序为准
 					t = t_k;
@@ -1275,7 +1328,7 @@ public class BXMerge3 {
 			}
 			ord_k.add(new Tuple2<Force, Order>(t, o));
 		}
-		
+
 		// 再计算ord
 		Tuple2<Force, Order> t1 = ord_k.get(0);
 		Tuple2<Force, Order> t2;
@@ -1289,14 +1342,14 @@ public class BXMerge3 {
 			}
 		}
 		return t1.second;
-		
+
 	}
-	
-	public static Tuple2<Force, Order> mergeOrd(Tuple2<Force, Order> c1,
-			Tuple2<Force, Order> c2) throws NothingReturnedException {
-		
+
+	public static Tuple2<Force, Order> mergeOrd(Tuple2<Force, Order> c1, Tuple2<Force, Order> c2)
+			throws NothingReturnedException {
+
 		if (c1.first == Force.hard && c2.first == Force.soft) {
-			return new Tuple2<Force, Order>( Force.hard, c1.second);
+			return new Tuple2<Force, Order>(Force.hard, c1.second);
 		} else if (c1.first == Force.soft && c2.first == Force.hard) {
 			return new Tuple2<Force, Order>(Force.hard, c2.second);
 		} else if (c1.first == Force.hard && c2.first == Force.hard) {
@@ -1321,20 +1374,19 @@ public class BXMerge3 {
 			}
 		} else {
 			throw new NothingReturnedException("error");
-		}		
+		}
 		return null;
 	}
-	
-	
+
 	public static Tuple2<Character, Character> computeOrd_origin(TypedEdge ei, TypedEdge ej, TypedGraph baseGraph,
 			HashMap<TypedEdge, TypedEdge> forceOrd, TypedGraph... branchGraphs) {
-	
+
 		HashMap<TypedEdge, Integer> baseFlag = new HashMap<>();
 		List<TypedEdge> baseList = baseGraph.getAllTypedEdges();
 		for (int i = 0; i < baseList.size(); i++) {
 			baseFlag.put(baseList.get(i), i);
 		}
-	
+
 		int len = branchGraphs.length;
 		HashMap<TypedEdge, Integer>[] branchFlag = new HashMap[len];
 		for (int i = 0; i < len; i++) {
@@ -1344,9 +1396,9 @@ public class BXMerge3 {
 				branchFlag[i].put(branchList.get(j), j);
 			}
 		}
-	
+
 		List<Tuple2<Character, Character>> ord_k = new ArrayList<>();
-	
+
 		boolean flag = true;
 		TypedEdge ei_b = null;
 		TypedEdge ej_b = null;
@@ -1377,7 +1429,7 @@ public class BXMerge3 {
 					}
 				}
 				try {
-					if(flag == true) {
+					if (flag == true) {
 						ei_b = baseGraph.getElementByIndexObject(ei.getIndex());
 						ej_b = baseGraph.getElementByIndexObject(ej.getIndex());
 						flag = false;
@@ -1400,7 +1452,7 @@ public class BXMerge3 {
 							o = '>';
 						}
 					}
-	
+
 					if (o_k == o) {
 						if (t_k == 'H' || t == 'H') {
 							t = 'H';
@@ -1421,7 +1473,7 @@ public class BXMerge3 {
 			}
 			ord_k.add(new Tuple2<Character, Character>(t, o));
 		}
-	
+
 		// 再计算ord
 		Tuple2<Character, Character> t1 = ord_k.get(0);
 		Tuple2<Character, Character> t2;
@@ -1523,6 +1575,10 @@ public class BXMerge3 {
 
 }
 
-enum Force{soft, hard}
+enum Force {
+	soft, hard
+}
 
-enum Order{less, greater, equal, unkown}
+enum Order {
+	less, greater, equal, unkown
+}

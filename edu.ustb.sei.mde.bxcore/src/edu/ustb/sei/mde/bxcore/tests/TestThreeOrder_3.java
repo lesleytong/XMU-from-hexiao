@@ -34,8 +34,10 @@ public class TestThreeOrder_3 {
 			System.out.println("resultGraph: ");
 			print(resultGraph);
 			
-			BXMerge3.threeOrder(baseGraph, resultGraph, forceOrd, aGraph, bGraph);
-			print(resultGraph);
+//			BXMerge3.threeOrder(baseGraph, resultGraph, forceOrd, aGraph, bGraph);
+//			print(resultGraph);
+			
+			BXMerge3.topoOrder(baseGraph, resultGraph, forceOrd, "", aGraph, bGraph);
 									
 		} catch (NothingReturnedException e) {
 			e.printStackTrace();

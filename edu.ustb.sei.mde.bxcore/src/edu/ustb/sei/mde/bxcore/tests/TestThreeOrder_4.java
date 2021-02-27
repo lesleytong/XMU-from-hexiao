@@ -11,7 +11,8 @@ import edu.ustb.sei.mde.graph.typedGraph.TypedGraph;
  *  base: ABCDEF
  *     a: ACDEFBG
  *     b: ABDECHF
- * merge(threeOrder): 
+ * merge(threeOrder): ADECHFBG
+ * 但按照拓扑排序的话，此例存在环（B, H, F）
  * @author 10242
  *
  */
@@ -34,8 +35,10 @@ public class TestThreeOrder_4 {
 			System.out.println("resultGraph: ");
 			print(resultGraph);
 			
-			BXMerge3.threeOrder(baseGraph, resultGraph, forceOrd, aGraph, bGraph);
-			print(resultGraph);
+//			BXMerge3.threeOrder(baseGraph, resultGraph, forceOrd, aGraph, bGraph);
+//			print(resultGraph);
+			
+			BXMerge3.topoOrder(baseGraph, resultGraph, forceOrd, "",aGraph, bGraph);
 									
 		} catch (NothingReturnedException e) {
 			e.printStackTrace();
