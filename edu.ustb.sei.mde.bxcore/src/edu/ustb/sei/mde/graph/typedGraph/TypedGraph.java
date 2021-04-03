@@ -326,7 +326,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 	
 	// lyt: simply add
 	public void simAddValueEdge(ValueEdge e) {
-		allValueEdges.add(e);
+		allValueEdges.add(e);			
 		indexing(e);
 	}
 	
@@ -1163,10 +1163,12 @@ public class TypedGraph extends IndexSystem implements IGraph {
 				else if (isImage(tuple, baseEdge))
 					tuple = new Tuple3<TypedNode, ValueNode, PropertyEdge>(e.getSource(), e.getTarget(), e.getType());
 				else {
+					
 					if (isImage(tuple, e)) // a==imageEdge并且b==imageEdge时，判断是否兼容
 						continue;
-					else
+					else {					
 						throw new NothingReturnedException("都修改冲突"); // incompatible: a==imageEdge并且b==imageEdge而且不兼容
+					}
 				}
 			}
 		}
@@ -1278,8 +1280,9 @@ public class TypedGraph extends IndexSystem implements IGraph {
 				} else {
 					if (isImage(tuple, e)) // a==imageEdge并且b==imageEdge时，如果兼容则跳过
 						continue;
-					else
-						throw new NothingReturnedException(); // incompatible: a==imageEdge并且b==imageEdge，但不兼容
+					else {																				
+						throw new NothingReturnedException("都修改冲突"); // incompatible: a==imageEdge并且b==imageEdge，但不兼容					
+					}
 				}
 			}
 		}
@@ -1305,8 +1308,9 @@ public class TypedGraph extends IndexSystem implements IGraph {
 					&& imageEdge.getSource().getIndex().equals(baseEdge.getSource().getIndex())
 					&& imageEdge.getTarget().getIndex().equals(baseEdge.getTarget().getIndex()))
 				return baseEdge;
-			else
+			else {				
 				return imageEdge; // 如果不一致，则返回修改后的imageEdge
+			}
 
 		} catch (Exception e) { // 根据baseEdge的索引在分支图中没有找到，说明被删了，返回null
 			return null;

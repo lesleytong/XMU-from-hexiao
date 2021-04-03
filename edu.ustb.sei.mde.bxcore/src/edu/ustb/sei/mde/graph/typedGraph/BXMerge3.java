@@ -557,6 +557,7 @@ public class BXMerge3 {
 		baseGraph.allValueNodes.forEach(v -> {
 			resultGraph.addValueNode(v);
 		});
+
 		for (TypedGraph image : interSources) {
 			image.allValueNodes.forEach(v -> {
 				resultGraph.addValueNode(v);
@@ -699,6 +700,7 @@ public class BXMerge3 {
 						// 根据e的索引查找result图中有无相应的对象，如果有则赋值给re
 						re = resultGraph.getElementByIndexObject(e.getIndex());
 					} catch (Exception ex2) { // 根据e的索引没有找到result图中相应的对象，则应添加e到result图的allTypedEdges中
+
 						TypedNode source = resultGraph.getElementByIndexObject(e.getSource().getIndex());
 						TypedNode target = resultGraph.getElementByIndexObject(e.getTarget().getIndex());
 
@@ -1132,25 +1134,47 @@ public class BXMerge3 {
 	public static void topoOrder(TypedGraph baseGraph, TypedGraph resultGraph, HashMap<TypedEdge, TypedEdge> forceOrd,
 			String typeEdgeName, TypedGraph... branchGraphs) {
 
+		long start = System.currentTimeMillis();
 		List<TypedEdge> resultList = resultGraph.getAllTypedEdges();
-
 		List<TypedEdge> filterList = null;
 		if (typeEdgeName.equals("") == false) {
 			filterList = classify(resultList, typeEdgeName);
 		} else {
 			filterList = resultList;
 		}
+		long end = System.currentTimeMillis();
+		System.out.println("filerList耗时: " + (end - start) + "ms");
 
+		start = System.currentTimeMillis();
+		// 辅助Map应该拿到这里，只put一轮
+		HashMap<TypedEdge, Integer> baseFlag = new HashMap<>();
+		List<TypedEdge> baseList = baseGraph.getAllTypedEdges();
+		for (int i = 0; i < baseList.size(); i++) {
+			baseFlag.put(baseList.get(i), i);
+		}
+
+		int len = branchGraphs.length;
+		HashMap<TypedEdge, Integer>[] branchFlag = new HashMap[len];
+		for (int i = 0; i < len; i++) {
+			List<TypedEdge> branchList = branchGraphs[i].getAllTypedEdges();
+			branchFlag[i] = new HashMap<>();
+			for (int j = 0; j < branchList.size(); j++) {
+				branchFlag[i].put(branchList.get(j), j);
+			}
+		}
+		end = System.currentTimeMillis();
+		System.out.println("辅助Map耗时: " + (end - start) + "ms");
+
+		start = System.currentTimeMillis();
 		int size = filterList.size();
 		TopoGraph g = new TopoGraph(size);
-
 		for (int i = 0; i < size; i++) {
 			TypedEdge ei = filterList.get(i);
 			for (int j = i + 1; j < size; j++) {
 				TypedEdge ej = filterList.get(j);
 				Order computeOrd = null;
 				try {
-					computeOrd = computeOrd(ei, ej, baseGraph, forceOrd, branchGraphs);
+					computeOrd = computeOrd(ei, ej, baseFlag, branchFlag, baseGraph, forceOrd, branchGraphs);
 				} catch (NothingReturnedException e) {
 					System.out.println("下面这两个元素的序发生冲突：");
 					System.out.println(ei + " " + ej);
@@ -1164,7 +1188,10 @@ public class BXMerge3 {
 				}
 			}
 		}
+		end = System.currentTimeMillis();
+		System.out.println("computeOrd耗时: " + (end - start) + "ms");
 
+		start = System.currentTimeMillis();
 		ArrayList<Integer> topologicalSort;
 		try {
 			topologicalSort = g.topologicalSort();
@@ -1184,6 +1211,8 @@ public class BXMerge3 {
 		} catch (NothingReturnedException e) {
 			e.printStackTrace();
 		}
+		end = System.currentTimeMillis();
+		System.out.println("拓扑排序耗时：" + (end - start) + "ms");
 
 	}
 
@@ -1194,6 +1223,23 @@ public class BXMerge3 {
 		List<TypedEdge> resultList = resultGraph.getAllTypedEdges();
 		List<TypedEdge> mergeList = new LinkedList<>(resultList);
 		HashMap<TypedEdge, Integer> mergeFlag = new HashMap<>();
+
+		// 辅助Flag应该拿到这里，只put一轮
+		HashMap<TypedEdge, Integer> baseFlag = new HashMap<>();
+		List<TypedEdge> baseList = baseGraph.getAllTypedEdges();
+		for (int i = 0; i < baseList.size(); i++) {
+			baseFlag.put(baseList.get(i), i);
+		}
+
+		int len = branchGraphs.length;
+		HashMap<TypedEdge, Integer>[] branchFlag = new HashMap[len];
+		for (int i = 0; i < len; i++) {
+			List<TypedEdge> branchList = branchGraphs[i].getAllTypedEdges();
+			branchFlag[i] = new HashMap<>();
+			for (int j = 0; j < branchList.size(); j++) {
+				branchFlag[i].put(branchList.get(j), j);
+			}
+		}
 
 		for (int i = 0; i < resultList.size() - 1; i++) {
 			TypedEdge ei = resultList.get(i);
@@ -1206,7 +1252,7 @@ public class BXMerge3 {
 				TypedEdge ej = resultList.get(j);
 				Order computeOrd = null;
 				try {
-					computeOrd = computeOrd(ei, ej, baseGraph, forceOrd, branchGraphs);
+					computeOrd = computeOrd(ei, ej, baseFlag, branchFlag, baseGraph, forceOrd, branchGraphs);
 				} catch (NothingReturnedException e) {
 					System.out.println("下面这两个元素的序发生冲突：");
 					System.out.println(ei + " " + ej);
@@ -1232,25 +1278,11 @@ public class BXMerge3 {
 
 	}
 
-	public static Order computeOrd(TypedEdge ei, TypedEdge ej, TypedGraph baseGraph,
-			HashMap<TypedEdge, TypedEdge> forceOrd, TypedGraph... branchGraphs) throws NothingReturnedException {
-
-		HashMap<TypedEdge, Integer> baseFlag = new HashMap<>();
-		List<TypedEdge> baseList = baseGraph.getAllTypedEdges();
-		for (int i = 0; i < baseList.size(); i++) {
-			baseFlag.put(baseList.get(i), i);
-		}
+	public static Order computeOrd(TypedEdge ei, TypedEdge ej, HashMap<TypedEdge, Integer> baseFlag,
+			HashMap<TypedEdge, Integer>[] branchFlag, TypedGraph baseGraph, HashMap<TypedEdge, TypedEdge> forceOrd,
+			TypedGraph... branchGraphs) throws NothingReturnedException {
 
 		int len = branchGraphs.length;
-		HashMap<TypedEdge, Integer>[] branchFlag = new HashMap[len];
-		for (int i = 0; i < len; i++) {
-			List<TypedEdge> branchList = branchGraphs[i].getAllTypedEdges();
-			branchFlag[i] = new HashMap<>();
-			for (int j = 0; j < branchList.size(); j++) {
-				branchFlag[i].put(branchList.get(j), j);
-			}
-		}
-
 		List<Tuple2<Force, Order>> ord_k = new ArrayList<>();
 		boolean flag = true;
 		TypedEdge ei_b = null;
@@ -1341,6 +1373,7 @@ public class BXMerge3 {
 				throw e;
 			}
 		}
+
 		return t1.second;
 
 	}

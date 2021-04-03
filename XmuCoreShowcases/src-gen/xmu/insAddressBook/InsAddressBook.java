@@ -303,38 +303,6 @@ public class InsAddressBook extends XmuProgram {
   }
   
   /**
-   * id:1
-   */
-  private ContextType type_1;
-  
-  public ContextType getType_1() {
-    if(type_1==null) {
-    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Nii();
-    	type_1 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
-    	edu.ustb.sei.mde.graph.type.IType b_type = typeGraph.getTypeNode("NIIBook")
-    	;
-    	type_1.addField("b", b_type, false);
-    }
-    return type_1;
-  }
-  
-  /**
-   * id:4
-   */
-  private ContextType type_4;
-  
-  public ContextType getType_4() {
-    if(type_4==null) {
-    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Sab();
-    	type_4 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
-    	edu.ustb.sei.mde.graph.type.IType em_type = typeGraph.getDataTypeNode("EString")
-    	;
-    	type_4.addField("em", em_type, false);
-    }
-    return type_4;
-  }
-  
-  /**
    * id:5
    */
   private ContextType type_5;
@@ -407,6 +375,38 @@ public class InsAddressBook extends XmuProgram {
     	type_2.addField("p", p_type, false);
     }
     return type_2;
+  }
+  
+  /**
+   * id:4
+   */
+  private ContextType type_4;
+  
+  public ContextType getType_4() {
+    if(type_4==null) {
+    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Sab();
+    	type_4 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
+    	edu.ustb.sei.mde.graph.type.IType em_type = typeGraph.getDataTypeNode("EString")
+    	;
+    	type_4.addField("em", em_type, false);
+    }
+    return type_4;
+  }
+  
+  /**
+   * id:1
+   */
+  private ContextType type_1;
+  
+  public ContextType getType_1() {
+    if(type_1==null) {
+    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Nii();
+    	type_1 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
+    	edu.ustb.sei.mde.graph.type.IType b_type = typeGraph.getTypeNode("NIIBook")
+    	;
+    	type_1.addField("b", b_type, false);
+    }
+    return type_1;
   }
   
   private Pattern pattern_0;

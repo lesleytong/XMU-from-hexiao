@@ -444,6 +444,38 @@ public class Family2Persons extends XmuProgram {
   }
   
   /**
+   * id:3
+   */
+  private ContextType type_3;
+  
+  public ContextType getType_3() {
+    if(type_3==null) {
+    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_PR();
+    	type_3 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
+    	edu.ustb.sei.mde.graph.type.IType y_type = typeGraph.getTypeNode("PersonsRegister")
+    	;
+    	type_3.addField("y", y_type, false);
+    }
+    return type_3;
+  }
+  
+  /**
+   * id:1
+   */
+  private ContextType type_1;
+  
+  public ContextType getType_1() {
+    if(type_1==null) {
+    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_PR();
+    	type_1 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
+    	edu.ustb.sei.mde.graph.type.IType s_type = typeGraph.getDataTypeNode("EString")
+    	;
+    	type_1.addField("s", s_type, false);
+    }
+    return type_1;
+  }
+  
+  /**
    * id:4
    */
   private ContextType type_4;
@@ -553,38 +585,6 @@ public class Family2Persons extends XmuProgram {
     	type_5.addField("y", y_type, false);
     }
     return type_5;
-  }
-  
-  /**
-   * id:1
-   */
-  private ContextType type_1;
-  
-  public ContextType getType_1() {
-    if(type_1==null) {
-    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_PR();
-    	type_1 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
-    	edu.ustb.sei.mde.graph.type.IType s_type = typeGraph.getDataTypeNode("EString")
-    	;
-    	type_1.addField("s", s_type, false);
-    }
-    return type_1;
-  }
-  
-  /**
-   * id:3
-   */
-  private ContextType type_3;
-  
-  public ContextType getType_3() {
-    if(type_3==null) {
-    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_PR();
-    	type_3 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
-    	edu.ustb.sei.mde.graph.type.IType y_type = typeGraph.getTypeNode("PersonsRegister")
-    	;
-    	type_3.addField("y", y_type, false);
-    }
-    return type_3;
   }
   
   private Pattern pattern_0;
