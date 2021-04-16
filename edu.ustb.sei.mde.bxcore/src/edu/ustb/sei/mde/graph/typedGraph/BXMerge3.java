@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -1116,37 +1117,18 @@ public class BXMerge3 {
 		return resultGraph;
 	}
 
-	/** 过滤出需要排序的相应TypedEdge类型的信息 */
-	public static List<TypedEdge> classify(List<TypedEdge> typedEdgeList, String typeEdgeName) {
-		ArrayList<TypedEdge> filterList = new ArrayList<>();
-		for (TypedEdge t : typedEdgeList) {
-			if (t.getType().toString().equals(typeEdgeName)) {
-				filterList.add(t);
-			}
-		}
-		return filterList;
-	}
-
-	/*
-	 * 同样计算出前面元素与之后所有元素的序关系， 若出现小于关系，则往拓扑图里添加边<i, j>， 若出现大于关系，则往拓扑图里添加边<j, i>，
-	 * 最后用拓扑排序得出结果。
-	 */
+	/** 边的拓扑排序 */
 	public static void topoOrder(TypedGraph baseGraph, TypedGraph resultGraph, HashMap<TypedEdge, TypedEdge> forceOrd,
-			String typeEdgeName, TypedGraph... branchGraphs) {
+			List<TypeEdge> typeEdgeList, TypedGraph... branchGraphs) {
 
-		long start = System.currentTimeMillis();
-		List<TypedEdge> resultList = resultGraph.getAllTypedEdges();
-		List<TypedEdge> filterList = null;
-		if (typeEdgeName.equals("") == false) {
-			filterList = classify(resultList, typeEdgeName);
-		} else {
-			filterList = resultList;
+		// 如果没有指定需要排序的边，就不进行排序
+		if (typeEdgeList == null || typeEdgeList.size() == 0) {
+			return;
 		}
-		long end = System.currentTimeMillis();
-		System.out.println("filerList耗时: " + (end - start) + "ms");
 
-		start = System.currentTimeMillis();
-		// 辅助Map应该拿到这里，只put一轮
+		List<TypedEdge> resultList = resultGraph.getAllTypedEdges();
+
+		// 辅助Flag
 		HashMap<TypedEdge, Integer> baseFlag = new HashMap<>();
 		List<TypedEdge> baseList = baseGraph.getAllTypedEdges();
 		for (int i = 0; i < baseList.size(); i++) {
@@ -1162,16 +1144,38 @@ public class BXMerge3 {
 				branchFlag[i].put(branchList.get(j), j);
 			}
 		}
-		end = System.currentTimeMillis();
-		System.out.println("辅助Map耗时: " + (end - start) + "ms");
 
-		start = System.currentTimeMillis();
-		int size = filterList.size();
+		// 指定了需要排序的边（不同类型）
+		Map<TypeEdge, Map<TypedNode, List<TypedEdge>>> groups = new HashMap<>();
+		// 不需要排序的边
+		List<TypedEdge> others = new ArrayList<>();
+		// 进行分组
+		grouping(typeEdgeList, resultList, groups, others);
+
+		resultList.clear();
+		groups.values().forEach(m -> {
+			m.values().forEach(list -> {
+				// 调用拓扑排序方法
+				List<TypedEdge> topoEveryList = topoEveryList(baseGraph, forceOrd, baseFlag, branchFlag, list,
+						branchGraphs);
+				resultList.addAll(topoEveryList);
+			});
+		});
+		resultList.addAll(others);
+
+	}
+
+	/** 对每个list进行拓扑排序 */
+	private static List<TypedEdge> topoEveryList(TypedGraph baseGraph, HashMap<TypedEdge, TypedEdge> forceOrd,
+			HashMap<TypedEdge, Integer> baseFlag, HashMap<TypedEdge, Integer>[] branchFlag, List<TypedEdge> list,
+			TypedGraph... branchGraphs) {
+
+		int size = list.size();
 		TopoGraph g = new TopoGraph(size);
 		for (int i = 0; i < size; i++) {
-			TypedEdge ei = filterList.get(i);
+			TypedEdge ei = list.get(i);
 			for (int j = i + 1; j < size; j++) {
-				TypedEdge ej = filterList.get(j);
+				TypedEdge ej = list.get(j);
 				Order computeOrd = null;
 				try {
 					computeOrd = computeOrd(ei, ej, baseFlag, branchFlag, baseGraph, forceOrd, branchGraphs);
@@ -1188,32 +1192,45 @@ public class BXMerge3 {
 				}
 			}
 		}
-		end = System.currentTimeMillis();
-		System.out.println("computeOrd耗时: " + (end - start) + "ms");
 
-		start = System.currentTimeMillis();
 		ArrayList<Integer> topologicalSort;
+		List<TypedEdge> mergeList = new ArrayList<>();
 		try {
 			topologicalSort = g.topologicalSort();
-
-			List<TypedEdge> mergeList = new ArrayList<>();
 			for (int i : topologicalSort) {
-				mergeList.add(filterList.get(i));
+				mergeList.add(list.get(i));
 			}
-
-			if (typeEdgeName.equals("") == false) {
-				resultList.removeAll(filterList); // 先求差集
-				resultList.addAll(mergeList); // 再求并集
-			} else {
-				resultGraph.allTypedEdges = mergeList;
-			}
-
 		} catch (NothingReturnedException e) {
 			e.printStackTrace();
 		}
-		end = System.currentTimeMillis();
-		System.out.println("拓扑排序耗时：" + (end - start) + "ms");
 
+		return mergeList;
+	}
+
+	/** 对需要排序的边进行分组 */
+	private static void grouping(List<TypeEdge> typeEdgeList, List<TypedEdge> resultList,
+			Map<TypeEdge, Map<TypedNode, List<TypedEdge>>> groups, List<TypedEdge> others) {
+
+		typeEdgeList.forEach(typeEdge -> {
+			groups.put(typeEdge, new HashMap<>());
+		});
+
+		resultList.forEach(edge -> {
+			Map<TypedNode, List<TypedEdge>> map = groups.get(edge.getType());
+			if (map != null) {
+				// edge.getSource()作为key是比较好的，比如一个类节点下有那么多属性
+				List<TypedEdge> list = map.get(edge.getSource());
+				if (list == null) { // 若list没有创建，则先创建
+					list = new ArrayList<>();
+					map.put(edge.getSource(), list);
+				}
+				// 创建后，再添加到相应的list中；或者已经创建了，直接添加到相应的list中
+				list.add(edge);
+			} else {
+				// 说明此边不需要进行排序
+				others.add(edge);
+			}
+		});
 	}
 
 	// 利用computeOrd()
@@ -1278,6 +1295,7 @@ public class BXMerge3 {
 
 	}
 
+	/** 计算任意两个元素ei，ej的序关系 */
 	public static Order computeOrd(TypedEdge ei, TypedEdge ej, HashMap<TypedEdge, Integer> baseFlag,
 			HashMap<TypedEdge, Integer>[] branchFlag, TypedGraph baseGraph, HashMap<TypedEdge, TypedEdge> forceOrd,
 			TypedGraph... branchGraphs) throws NothingReturnedException {

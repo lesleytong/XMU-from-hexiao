@@ -402,8 +402,7 @@ public class TypeGraph implements IGraph {
 	public void declare(String statement) {
 		String typeNodeFormat = "\\s*(@?)(\\w+)\\s*((,\\w+)*)\\s*";
 		String dataNodeFormat = "\\s*(\\w+)\\s*:\\s*([\\w\\.]+)\\s*";
-//		String edgeFormat = "\\s*(@?)\\s*(\\w+)\\s*:\\s*(\\w+)\\s*->\\s*(\\w+)([\\*#]?)\\s*";
-		String edgeFormat = "\\s*(@?)\\s*(\\w+|\\w+:\\w+)\\s*:\\s*(\\w+)\\s*->\\s*(\\w+)([\\*#]?)\\s*";
+		String edgeFormat = "\\s*(@?)\\s*(\\w+)\\s*:\\s*(\\w+)\\s*->\\s*(\\w+)([\\*#]?)\\s*";
 		
 		Pattern typeNodePat = Pattern.compile(typeNodeFormat);
 		Pattern dataNodePat = Pattern.compile(dataNodeFormat);

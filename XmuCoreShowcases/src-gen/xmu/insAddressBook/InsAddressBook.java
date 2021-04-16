@@ -269,37 +269,47 @@ public class InsAddressBook extends XmuProgram {
   }
   
   /**
-   * id:3
+   * id:1
    */
-  private ContextType type_3;
+  private ContextType type_1;
   
-  public ContextType getType_3() {
-    if(type_3==null) {
+  public ContextType getType_1() {
+    if(type_1==null) {
     	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Nii();
-    	type_3 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
+    	type_1 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
     	edu.ustb.sei.mde.graph.type.IType b_type = typeGraph.getTypeNode("NIIBook")
     	;
-    	type_3.addField("b", b_type, false);
-    	edu.ustb.sei.mde.graph.type.IType e_type = typeGraph.getTypeNode("Employee")
+    	type_1.addField("b", b_type, false);
+    }
+    return type_1;
+  }
+  
+  /**
+   * id:2
+   */
+  private ContextType type_2;
+  
+  public ContextType getType_2() {
+    if(type_2==null) {
+    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Sab();
+    	type_2 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
+    	edu.ustb.sei.mde.graph.type.IType b_type = typeGraph.getTypeNode("AddressBook")
     	;
-    	type_3.addField("e", e_type, false);
-    	edu.ustb.sei.mde.graph.type.IType em_type = typeGraph.getDataTypeNode("EString")
+    	type_2.addField("b", b_type, false);
+    	edu.ustb.sei.mde.graph.type.IType ln_type = typeGraph.getPropertyEdge(typeGraph.getTypeNode("Person"),"name")
     	;
-    	type_3.addField("em", em_type, false);
-    	edu.ustb.sei.mde.graph.type.IType le_type = typeGraph.getTypeEdge(typeGraph.getTypeNode("NIIBook"),"employees")
+    	type_2.addField("ln", ln_type, false);
+    	edu.ustb.sei.mde.graph.type.IType lp_type = typeGraph.getTypeEdge(typeGraph.getTypeNode("AddressBook"),"persons")
     	;
-    	type_3.addField("le", le_type, false);
-    	edu.ustb.sei.mde.graph.type.IType lem_type = typeGraph.getPropertyEdge(typeGraph.getTypeNode("Employee"),"email")
-    	;
-    	type_3.addField("lem", lem_type, false);
-    	edu.ustb.sei.mde.graph.type.IType ln_type = typeGraph.getPropertyEdge(typeGraph.getTypeNode("Employee"),"name")
-    	;
-    	type_3.addField("ln", ln_type, false);
+    	type_2.addField("lp", lp_type, false);
     	edu.ustb.sei.mde.graph.type.IType n_type = typeGraph.getDataTypeNode("EString")
     	;
-    	type_3.addField("n", n_type, false);
+    	type_2.addField("n", n_type, false);
+    	edu.ustb.sei.mde.graph.type.IType p_type = typeGraph.getTypeNode("Person")
+    	;
+    	type_2.addField("p", p_type, false);
     }
-    return type_3;
+    return type_2;
   }
   
   /**
@@ -334,50 +344,6 @@ public class InsAddressBook extends XmuProgram {
   }
   
   /**
-   * id:0
-   */
-  private ContextType type_0;
-  
-  public ContextType getType_0() {
-    if(type_0==null) {
-    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Sab();
-    	type_0 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
-    	edu.ustb.sei.mde.graph.type.IType b_type = typeGraph.getTypeNode("AddressBook")
-    	;
-    	type_0.addField("b", b_type, false);
-    }
-    return type_0;
-  }
-  
-  /**
-   * id:2
-   */
-  private ContextType type_2;
-  
-  public ContextType getType_2() {
-    if(type_2==null) {
-    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Sab();
-    	type_2 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
-    	edu.ustb.sei.mde.graph.type.IType b_type = typeGraph.getTypeNode("AddressBook")
-    	;
-    	type_2.addField("b", b_type, false);
-    	edu.ustb.sei.mde.graph.type.IType ln_type = typeGraph.getPropertyEdge(typeGraph.getTypeNode("Person"),"name")
-    	;
-    	type_2.addField("ln", ln_type, false);
-    	edu.ustb.sei.mde.graph.type.IType lp_type = typeGraph.getTypeEdge(typeGraph.getTypeNode("AddressBook"),"persons")
-    	;
-    	type_2.addField("lp", lp_type, false);
-    	edu.ustb.sei.mde.graph.type.IType n_type = typeGraph.getDataTypeNode("EString")
-    	;
-    	type_2.addField("n", n_type, false);
-    	edu.ustb.sei.mde.graph.type.IType p_type = typeGraph.getTypeNode("Person")
-    	;
-    	type_2.addField("p", p_type, false);
-    }
-    return type_2;
-  }
-  
-  /**
    * id:4
    */
   private ContextType type_4;
@@ -394,19 +360,53 @@ public class InsAddressBook extends XmuProgram {
   }
   
   /**
-   * id:1
+   * id:0
    */
-  private ContextType type_1;
+  private ContextType type_0;
   
-  public ContextType getType_1() {
-    if(type_1==null) {
+  public ContextType getType_0() {
+    if(type_0==null) {
+    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Sab();
+    	type_0 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
+    	edu.ustb.sei.mde.graph.type.IType b_type = typeGraph.getTypeNode("AddressBook")
+    	;
+    	type_0.addField("b", b_type, false);
+    }
+    return type_0;
+  }
+  
+  /**
+   * id:3
+   */
+  private ContextType type_3;
+  
+  public ContextType getType_3() {
+    if(type_3==null) {
     	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_Nii();
-    	type_1 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
+    	type_3 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
     	edu.ustb.sei.mde.graph.type.IType b_type = typeGraph.getTypeNode("NIIBook")
     	;
-    	type_1.addField("b", b_type, false);
+    	type_3.addField("b", b_type, false);
+    	edu.ustb.sei.mde.graph.type.IType e_type = typeGraph.getTypeNode("Employee")
+    	;
+    	type_3.addField("e", e_type, false);
+    	edu.ustb.sei.mde.graph.type.IType em_type = typeGraph.getDataTypeNode("EString")
+    	;
+    	type_3.addField("em", em_type, false);
+    	edu.ustb.sei.mde.graph.type.IType le_type = typeGraph.getTypeEdge(typeGraph.getTypeNode("NIIBook"),"employees")
+    	;
+    	type_3.addField("le", le_type, false);
+    	edu.ustb.sei.mde.graph.type.IType lem_type = typeGraph.getPropertyEdge(typeGraph.getTypeNode("Employee"),"email")
+    	;
+    	type_3.addField("lem", lem_type, false);
+    	edu.ustb.sei.mde.graph.type.IType ln_type = typeGraph.getPropertyEdge(typeGraph.getTypeNode("Employee"),"name")
+    	;
+    	type_3.addField("ln", ln_type, false);
+    	edu.ustb.sei.mde.graph.type.IType n_type = typeGraph.getDataTypeNode("EString")
+    	;
+    	type_3.addField("n", n_type, false);
     }
-    return type_1;
+    return type_3;
   }
   
   private Pattern pattern_0;
