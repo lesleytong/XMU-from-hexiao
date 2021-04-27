@@ -231,7 +231,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 						break;
 					}
 				}
-				if(i == allTypedEdges.size()) {
+				if (i == allTypedEdges.size()) {
 					allTypedEdges.add(e);
 					indexing(e);
 				}
@@ -323,39 +323,39 @@ public class TypedGraph extends IndexSystem implements IGraph {
 		this.incomingEdgeMap.remove(e.getTarget());
 	}
 
-	
 	// lyt: simply add
 	public void simAddValueEdge(ValueEdge e) {
-		allValueEdges.add(e);			
+		allValueEdges.add(e);
 		indexing(e);
 	}
-	
+
 	// lyt: additional information: int start
 	public void addValueEdge(ValueEdge e, int start) {
-		if(e.getType().isMany()) {
+		if (e.getType().isMany()) {
 			if (e.getType().isUnique()) {
 				int i;
 				for (i = start; i < allValueEdges.size(); i++) {
 					ValueEdge tmp = allValueEdges.get(i);
+
 					if (tmp.getType() == e.getType() && tmp.getSource().getIndex().equals(e.getSource().getIndex())
-							&& tmp.getTarget().getIndex().equals(e.getTarget().getIndex())) {
+							&& tmp.getTarget().equals(e.getTarget())) { // 我有毒，将这里誊错：竟加了getIndex()
 						e.mergeIndex(tmp);
 						reindexing(e);
 						allValueEdges.set(i, e);
 						break;
 					}
 				}
-				if(i == allValueEdges.size()) {
+				if (i == allValueEdges.size()) {
 					allValueEdges.add(e);
 					indexing(e);
 				}
-				
-			}else {
+
+			} else {
 				allValueEdges.add(e);
 				indexing(e);
 			}
-			
-		}else {
+
+		} else {
 			boolean replaced = false;
 			for (int i = start; i < allValueEdges.size(); i++) {
 				ValueEdge tmp = allValueEdges.get(i);
@@ -379,12 +379,11 @@ public class TypedGraph extends IndexSystem implements IGraph {
 				indexing(e);
 			}
 		}
-		
+
 		this.valueEdgeMap.remove(e.getSource());
 		this.valueReferenceMap.remove(e.getTarget());
 	}
-	
-	
+
 	/** 在图中添加ValueEdge类型的边对象 */
 	public void addValueEdge(ValueEdge e) {
 		if (e.getType().isMany()) { // 如果e的PropertyEdge是isMany
@@ -693,8 +692,8 @@ public class TypedGraph extends IndexSystem implements IGraph {
 	public TypedGraph getCopy() {
 
 		TypedGraph copy = new TypedGraph(this.typeGraph);
-		// addAll(c: Collection<? extends E>): boolean 将集合c中的所有元素添加到该集合中。引用类型就复制对象的引用	
-		
+		// addAll(c: Collection<? extends E>): boolean 将集合c中的所有元素添加到该集合中。引用类型就复制对象的引用
+
 		copy.getAllTypedNodes().addAll(this.getAllTypedNodes());
 		copy.getAllValueNodes().addAll(this.getAllValueNodes());
 		copy.getAllTypedEdges().addAll(this.getAllTypedEdges());
@@ -704,7 +703,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 
 		copy.order = this.order.getCopy();
 
-		copy.constraint = this.constraint;		
+		copy.constraint = this.constraint;
 
 		return copy;
 	}
@@ -1163,10 +1162,10 @@ public class TypedGraph extends IndexSystem implements IGraph {
 				else if (isImage(tuple, baseEdge))
 					tuple = new Tuple3<TypedNode, ValueNode, PropertyEdge>(e.getSource(), e.getTarget(), e.getType());
 				else {
-					
+
 					if (isImage(tuple, e)) // a==imageEdge并且b==imageEdge时，判断是否兼容
 						continue;
-					else {					
+					else {
 						throw new NothingReturnedException("都修改冲突"); // incompatible: a==imageEdge并且b==imageEdge而且不兼容
 					}
 				}
@@ -1280,8 +1279,8 @@ public class TypedGraph extends IndexSystem implements IGraph {
 				} else {
 					if (isImage(tuple, e)) // a==imageEdge并且b==imageEdge时，如果兼容则跳过
 						continue;
-					else {																				
-						throw new NothingReturnedException("都修改冲突"); // incompatible: a==imageEdge并且b==imageEdge，但不兼容					
+					else {
+						throw new NothingReturnedException("都修改冲突"); // incompatible: a==imageEdge并且b==imageEdge，但不兼容
 					}
 				}
 			}
@@ -1308,7 +1307,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 					&& imageEdge.getSource().getIndex().equals(baseEdge.getSource().getIndex())
 					&& imageEdge.getTarget().getIndex().equals(baseEdge.getTarget().getIndex()))
 				return baseEdge;
-			else {				
+			else {
 				return imageEdge; // 如果不一致，则返回修改后的imageEdge
 			}
 
@@ -1345,7 +1344,7 @@ public class TypedGraph extends IndexSystem implements IGraph {
 					// a相对于base改了，b相对于base也改了。第一次finalType是a中的类型，第二次会进入此else语句块，确定finalType最终的类型。
 					finalType = typeGraph.computeSubtype(finalType, n);
 					if (finalType == TypeNode.NULL_TYPE)
-						throw new NothingReturnedException();
+						throw new NothingReturnedException("类型不兼容");
 				}
 
 			}

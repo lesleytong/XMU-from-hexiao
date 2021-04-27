@@ -830,6 +830,160 @@ public class List2List extends XmuProgram {
   }
   
   /**
+   * id:5
+   */
+  private ContextType type_5;
+  
+  public ContextType getType_5() {
+    if(type_5==null) {
+    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_L1();
+    	type_5 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
+    	edu.ustb.sei.mde.graph.type.IType afterE_type = typeGraph.getTypeEdge(typeGraph.getTypeNode("List"),"elements")
+    	;
+    	type_5.addField("afterE", afterE_type, false);
+    	edu.ustb.sei.mde.graph.type.IType l_type = typeGraph.getTypeNode("List")
+    	;
+    	type_5.addField("l", l_type, false);
+    }
+    return type_5;
+  }
+  
+  /**
+   * id:10
+   */
+  private ContextType type_10;
+  
+  public ContextType getType_10() {
+    if(type_10==null) {
+    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_L1();
+    	type_10 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
+    	edu.ustb.sei.mde.graph.type.IType beforeE_type = typeGraph.getTypeEdge(typeGraph.getTypeNode("List"),"elements")
+    	;
+    	type_10.addField("beforeE", beforeE_type, false);
+    	edu.ustb.sei.mde.graph.type.IType e_type = typeGraph.getTypeNode("Element")
+    	;
+    	type_10.addField("e", e_type, false);
+    	edu.ustb.sei.mde.graph.type.IType l_type = typeGraph.getTypeNode("List")
+    	;
+    	type_10.addField("l", l_type, false);
+    	edu.ustb.sei.mde.graph.type.IType le_type = typeGraph.getTypeEdge(typeGraph.getTypeNode("List"),"elements")
+    	;
+    	type_10.addField("le", le_type, false);
+    }
+    return type_10;
+  }
+  
+  /**
+   * id:3
+   */
+  private ContextType type_3;
+  
+  public ContextType getType_3() {
+    if(type_3==null) {
+    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_L2();
+    	type_3 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
+    	edu.ustb.sei.mde.graph.type.IType firstE_type = typeGraph.getTypeNode("Element")
+    	;
+    	type_3.addField("firstE", firstE_type, false);
+    	edu.ustb.sei.mde.graph.type.IType l_type = typeGraph.getTypeNode("List")
+    	;
+    	type_3.addField("l", l_type, false);
+    }
+    return type_3;
+  }
+  
+  /**
+   * id:1
+   */
+  private ContextType type_1;
+  
+  public ContextType getType_1() {
+    if(type_1==null) {
+    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_L2();
+    	type_1 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
+    	edu.ustb.sei.mde.graph.type.IType l_type = typeGraph.getTypeNode("List")
+    	;
+    	type_1.addField("l", l_type, false);
+    }
+    return type_1;
+  }
+  
+  /**
+   * id:7
+   */
+  private ContextType type_7;
+  
+  public ContextType getType_7() {
+    if(type_7==null) {
+    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_L2();
+    	type_7 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
+    	edu.ustb.sei.mde.graph.type.IType afterE_type = typeGraph.getTypeNode("Element")
+    	;
+    	type_7.addField("afterE", afterE_type, false);
+    	edu.ustb.sei.mde.graph.type.IType e_type = typeGraph.getTypeNode("Element")
+    	;
+    	type_7.addField("e", e_type, false);
+    	edu.ustb.sei.mde.graph.type.IType l_type = typeGraph.getTypeNode("List")
+    	;
+    	type_7.addField("l", l_type, false);
+    	edu.ustb.sei.mde.graph.type.IType le_type = typeGraph.getTypeEdge(typeGraph.getTypeNode("List"),"elements")
+    	;
+    	type_7.addField("le", le_type, false);
+    	edu.ustb.sei.mde.graph.type.IType lv_type = typeGraph.getPropertyEdge(typeGraph.getTypeNode("Element"),"value")
+    	;
+    	type_7.addField("lv", lv_type, false);
+    	edu.ustb.sei.mde.graph.type.IType v_type = typeGraph.getDataTypeNode("EString")
+    	;
+    	type_7.addField("v", v_type, false);
+    }
+    return type_7;
+  }
+  
+  /**
+   * id:2
+   */
+  private ContextType type_2;
+  
+  public ContextType getType_2() {
+    if(type_2==null) {
+    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_L1();
+    	type_2 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
+    	edu.ustb.sei.mde.graph.type.IType firstE_type = typeGraph.getTypeEdge(typeGraph.getTypeNode("List"),"elements")
+    	;
+    	type_2.addField("firstE", firstE_type, false);
+    	edu.ustb.sei.mde.graph.type.IType l_type = typeGraph.getTypeNode("List")
+    	;
+    	type_2.addField("l", l_type, false);
+    }
+    return type_2;
+  }
+  
+  /**
+   * id:9
+   */
+  private ContextType type_9;
+  
+  public ContextType getType_9() {
+    if(type_9==null) {
+    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_L1();
+    	type_9 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
+    	edu.ustb.sei.mde.graph.type.IType afterE_type = typeGraph.getTypeEdge(typeGraph.getTypeNode("List"),"elements")
+    	;
+    	type_9.addField("afterE", afterE_type, false);
+    	edu.ustb.sei.mde.graph.type.IType e_type = typeGraph.getTypeNode("Element")
+    	;
+    	type_9.addField("e", e_type, false);
+    	edu.ustb.sei.mde.graph.type.IType l_type = typeGraph.getTypeNode("List")
+    	;
+    	type_9.addField("l", l_type, false);
+    	edu.ustb.sei.mde.graph.type.IType le_type = typeGraph.getTypeEdge(typeGraph.getTypeNode("List"),"elements")
+    	;
+    	type_9.addField("le", le_type, false);
+    }
+    return type_9;
+  }
+  
+  /**
    * id:11
    */
   private ContextType type_11;
@@ -892,6 +1046,22 @@ public class List2List extends XmuProgram {
   }
   
   /**
+   * id:0
+   */
+  private ContextType type_0;
+  
+  public ContextType getType_0() {
+    if(type_0==null) {
+    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_L1();
+    	type_0 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
+    	edu.ustb.sei.mde.graph.type.IType l_type = typeGraph.getTypeNode("List")
+    	;
+    	type_0.addField("l", l_type, false);
+    }
+    return type_0;
+  }
+  
+  /**
    * id:6
    */
   private ContextType type_6;
@@ -908,100 +1078,6 @@ public class List2List extends XmuProgram {
     	type_6.addField("l", l_type, false);
     }
     return type_6;
-  }
-  
-  /**
-   * id:7
-   */
-  private ContextType type_7;
-  
-  public ContextType getType_7() {
-    if(type_7==null) {
-    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_L2();
-    	type_7 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
-    	edu.ustb.sei.mde.graph.type.IType afterE_type = typeGraph.getTypeNode("Element")
-    	;
-    	type_7.addField("afterE", afterE_type, false);
-    	edu.ustb.sei.mde.graph.type.IType e_type = typeGraph.getTypeNode("Element")
-    	;
-    	type_7.addField("e", e_type, false);
-    	edu.ustb.sei.mde.graph.type.IType l_type = typeGraph.getTypeNode("List")
-    	;
-    	type_7.addField("l", l_type, false);
-    	edu.ustb.sei.mde.graph.type.IType le_type = typeGraph.getTypeEdge(typeGraph.getTypeNode("List"),"elements")
-    	;
-    	type_7.addField("le", le_type, false);
-    	edu.ustb.sei.mde.graph.type.IType lv_type = typeGraph.getPropertyEdge(typeGraph.getTypeNode("Element"),"value")
-    	;
-    	type_7.addField("lv", lv_type, false);
-    	edu.ustb.sei.mde.graph.type.IType v_type = typeGraph.getDataTypeNode("EString")
-    	;
-    	type_7.addField("v", v_type, false);
-    }
-    return type_7;
-  }
-  
-  /**
-   * id:9
-   */
-  private ContextType type_9;
-  
-  public ContextType getType_9() {
-    if(type_9==null) {
-    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_L1();
-    	type_9 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
-    	edu.ustb.sei.mde.graph.type.IType afterE_type = typeGraph.getTypeEdge(typeGraph.getTypeNode("List"),"elements")
-    	;
-    	type_9.addField("afterE", afterE_type, false);
-    	edu.ustb.sei.mde.graph.type.IType e_type = typeGraph.getTypeNode("Element")
-    	;
-    	type_9.addField("e", e_type, false);
-    	edu.ustb.sei.mde.graph.type.IType l_type = typeGraph.getTypeNode("List")
-    	;
-    	type_9.addField("l", l_type, false);
-    	edu.ustb.sei.mde.graph.type.IType le_type = typeGraph.getTypeEdge(typeGraph.getTypeNode("List"),"elements")
-    	;
-    	type_9.addField("le", le_type, false);
-    }
-    return type_9;
-  }
-  
-  /**
-   * id:2
-   */
-  private ContextType type_2;
-  
-  public ContextType getType_2() {
-    if(type_2==null) {
-    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_L1();
-    	type_2 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
-    	edu.ustb.sei.mde.graph.type.IType firstE_type = typeGraph.getTypeEdge(typeGraph.getTypeNode("List"),"elements")
-    	;
-    	type_2.addField("firstE", firstE_type, false);
-    	edu.ustb.sei.mde.graph.type.IType l_type = typeGraph.getTypeNode("List")
-    	;
-    	type_2.addField("l", l_type, false);
-    }
-    return type_2;
-  }
-  
-  /**
-   * id:5
-   */
-  private ContextType type_5;
-  
-  public ContextType getType_5() {
-    if(type_5==null) {
-    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_L1();
-    	type_5 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
-    	edu.ustb.sei.mde.graph.type.IType afterE_type = typeGraph.getTypeEdge(typeGraph.getTypeNode("List"),"elements")
-    	;
-    	type_5.addField("afterE", afterE_type, false);
-    	edu.ustb.sei.mde.graph.type.IType l_type = typeGraph.getTypeNode("List")
-    	;
-    	type_5.addField("l", l_type, false);
-    }
-    return type_5;
   }
   
   /**
@@ -1042,79 +1118,25 @@ public class List2List extends XmuProgram {
   }
   
   /**
-   * id:10
+   * id:-3
    */
-  private ContextType type_10;
+  private ContextType type_u3;
   
-  public ContextType getType_10() {
-    if(type_10==null) {
-    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_L1();
-    	type_10 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
-    	edu.ustb.sei.mde.graph.type.IType beforeE_type = typeGraph.getTypeEdge(typeGraph.getTypeNode("List"),"elements")
-    	;
-    	type_10.addField("beforeE", beforeE_type, false);
+  /**
+   * XmuCoreFunctionCall(xmu16)
+   */
+  public ContextType getType_U3() {
+    if(type_u3==null) {
+    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_L2();
+    	type_u3 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
     	edu.ustb.sei.mde.graph.type.IType e_type = typeGraph.getTypeNode("Element")
     	;
-    	type_10.addField("e", e_type, false);
+    	type_u3.addField("e", e_type, false);
     	edu.ustb.sei.mde.graph.type.IType l_type = typeGraph.getTypeNode("List")
     	;
-    	type_10.addField("l", l_type, false);
-    	edu.ustb.sei.mde.graph.type.IType le_type = typeGraph.getTypeEdge(typeGraph.getTypeNode("List"),"elements")
-    	;
-    	type_10.addField("le", le_type, false);
+    	type_u3.addField("l", l_type, false);
     }
-    return type_10;
-  }
-  
-  /**
-   * id:0
-   */
-  private ContextType type_0;
-  
-  public ContextType getType_0() {
-    if(type_0==null) {
-    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_L1();
-    	type_0 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
-    	edu.ustb.sei.mde.graph.type.IType l_type = typeGraph.getTypeNode("List")
-    	;
-    	type_0.addField("l", l_type, false);
-    }
-    return type_0;
-  }
-  
-  /**
-   * id:1
-   */
-  private ContextType type_1;
-  
-  public ContextType getType_1() {
-    if(type_1==null) {
-    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_L2();
-    	type_1 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
-    	edu.ustb.sei.mde.graph.type.IType l_type = typeGraph.getTypeNode("List")
-    	;
-    	type_1.addField("l", l_type, false);
-    }
-    return type_1;
-  }
-  
-  /**
-   * id:3
-   */
-  private ContextType type_3;
-  
-  public ContextType getType_3() {
-    if(type_3==null) {
-    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_L2();
-    	type_3 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
-    	edu.ustb.sei.mde.graph.type.IType firstE_type = typeGraph.getTypeNode("Element")
-    	;
-    	type_3.addField("firstE", firstE_type, false);
-    	edu.ustb.sei.mde.graph.type.IType l_type = typeGraph.getTypeNode("List")
-    	;
-    	type_3.addField("l", l_type, false);
-    }
-    return type_3;
+    return type_u3;
   }
   
   /**
@@ -1137,28 +1159,6 @@ public class List2List extends XmuProgram {
     	type_u1.addField("l", l_type, false);
     }
     return type_u1;
-  }
-  
-  /**
-   * id:-3
-   */
-  private ContextType type_u3;
-  
-  /**
-   * XmuCoreFunctionCall(xmu16)
-   */
-  public ContextType getType_U3() {
-    if(type_u3==null) {
-    	edu.ustb.sei.mde.graph.type.TypeGraph typeGraph = getTypeGraph_L2();
-    	type_u3 = new edu.ustb.sei.mde.bxcore.structures.ContextType();
-    	edu.ustb.sei.mde.graph.type.IType e_type = typeGraph.getTypeNode("Element")
-    	;
-    	type_u3.addField("e", e_type, false);
-    	edu.ustb.sei.mde.graph.type.IType l_type = typeGraph.getTypeNode("List")
-    	;
-    	type_u3.addField("l", l_type, false);
-    }
-    return type_u3;
   }
   
   private Pattern pattern_0;

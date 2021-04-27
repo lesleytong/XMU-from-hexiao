@@ -6,9 +6,7 @@ import edu.ustb.sei.mde.graph.type.DataTypeNode;
 
 public class ValueNode  extends IndexableElement implements ITypedNode {
 	
-	// lyt 暂时改一下
-//	private final Object value;
-	private Object value;
+	private final Object value;
 	private final DataTypeNode type;	//type是DataTypeNode
 		
 	static final public ValueNode NULL = new ValueNode(null,DataTypeNode.NULL_TYPE);
@@ -24,13 +22,7 @@ public class ValueNode  extends IndexableElement implements ITypedNode {
 	public <T> T getValue() {
 		return (T) value;
 	}
-	
-	// lyt 暂时改一下
-	@SuppressWarnings("unchecked")
-	public void setValue(Object value) {
-		this.value = value;
-	}
-	
+		
 	@Override
 	public DataTypeNode getType() {
 		return this.type;

@@ -7,7 +7,6 @@ public class ValueEdge extends IndexableElement  implements ITypedEdge {
 	private TypedNode source;
 	private ValueNode target;
 	private PropertyEdge type;	// ValueEdge的type是PropertyEdge
-	public boolean flag = false;	// lyt: 便于对齐？
 		
 	public ValueEdge() {
 		
