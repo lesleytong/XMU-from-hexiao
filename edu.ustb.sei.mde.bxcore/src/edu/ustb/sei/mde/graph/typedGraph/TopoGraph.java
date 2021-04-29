@@ -69,7 +69,6 @@ public class TopoGraph {
         }
         // Check if there was a cycle
         if(cnt != V){
-        	System.out.println("TopoGraph line 72");
             throw new NothingReturnedException("There exists a cycle in the graph");
         }
         return order;

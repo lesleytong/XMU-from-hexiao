@@ -1265,6 +1265,12 @@ public class BXMerge3 {
 		TopoGraph g = new TopoGraph(size);
 		for (int i = 0; i < size; i++) {
 			ValueEdge ei = list.get(i);
+			
+			// tmp
+			if(ei.getTarget().getValue().equals("AEU") || ei.getTarget().getValue().equals("SIQ")) {
+				System.out.println("BXMerge3 line 1271");
+			}
+			
 			for (int j = i + 1; j < size; j++) {
 				ValueEdge ej = list.get(j);
 				Order computeOrd = null;
@@ -1328,24 +1334,29 @@ public class BXMerge3 {
 	public static void grouping2(List<PropertyEdge> propertyEdgeList, List<ValueEdge> resultList,
 			Map<PropertyEdge, Map<TypedNode, List<ValueEdge>>> groups, List<ValueEdge> others) {
 
-		propertyEdgeList.forEach(edge -> {
-			groups.put(edge, new HashMap<>());
+		propertyEdgeList.forEach(typeEdge -> {
+			groups.put(typeEdge, new HashMap<>());
 		});
 
-		resultList.forEach(edge -> {
-			Map<TypedNode, List<ValueEdge>> map = groups.get(edge.getType());
+		resultList.forEach(valueEdge -> {
+			Map<TypedNode, List<ValueEdge>> map = groups.get(valueEdge.getType());
 			if (map != null) {
 				// edge.getSource()作为key是比较好的，比如一个类节点下有那么多属性
-				List<ValueEdge> list = map.get(edge.getSource());
+				List<ValueEdge> list = map.get(valueEdge.getSource());
 				if (list == null) { // 若list没有创建，则先创建
 					list = new ArrayList<>();
-					map.put(edge.getSource(), list);
+					map.put(valueEdge.getSource(), list);
 				}
 				// 创建后，再添加到相应的list中；或者已经创建了，直接添加到相应的list中
-				list.add(edge);
+				list.add(valueEdge);
+				
+				if(valueEdge.getTarget().getValue().equals("AEU")) {
+					System.out.println("BXMerge3 line 1354");
+				}
+				
 			} else {
 				// 说明此边不需要进行排序
-				others.add(edge);
+				others.add(valueEdge);
 			}
 		});
 	}
